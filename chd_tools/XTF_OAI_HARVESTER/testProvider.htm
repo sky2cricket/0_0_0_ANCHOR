@@ -1,0 +1,172 @@
+<html>
+<head><title>testProvider</title>
+<script language="javascript">
+
+//Set Base URL
+function setBASE(){
+var s2 = new String(document.forms[0].selectBase.value);
+//alert("selectBase.value=\n"+s2);
+var s = new String();
+    document.forms[0].baseURL.value= s2;
+    s = s2;
+}//end function
+
+
+//Verbs Without Modifiers
+function buildvwm(NUM){
+var N = new Number(NUM);
+var V = new Array();
+    V[0]='Identify';
+    V[1]='ListMetadataFormats';
+    V[2]='ListSets';
+
+var s = new String(V[N]);
+var u = new String(document.forms[0].baseURL.value);
+    u = u+"?verb="+s;    
+var U = new String();
+    U = '<a href="'+u+'" target="_blank">'+u+'</a>';
+document.all.DIVbuild00.innerHTML=U;
+}//end function
+
+//Verbs With metadataPrefix
+function buildvwmp(NUM){
+var N = new Number(NUM);
+var V = new Array();
+    V[0]='ListIdentifiers';
+    V[1]='ListRecords';
+
+var s = new String(V[N]);
+var t = new String('&metadataPrefix=');
+    t = t+document.forms[0].vwmp.value;
+var u = new String(document.forms[0].baseURL.value);
+    u = u+"?verb="+s+t;    
+var U = new String();
+    U = '<a href="'+u+'" target="_blank">'+u+'</a>';
+document.all.DIVbuildvwmp.innerHTML=U;
+}//end function
+
+//Verbs With resumptionToken after first request
+function buildvwrt(NUM){
+var N = new Number(NUM);
+var V = new Array();
+    V[0]='ListIdentifiers';
+    V[1]='ListRecords';
+
+var s = new String(V[N]);
+var t = new String('&resumptionToken=');
+    t = t+document.forms[0].vwrt.value;
+var u = new String(document.forms[0].baseURL.value);
+    u = u+"?verb="+s+t;    
+var U = new String();
+    U = '<a href="'+u+'" target="_blank">'+u+'</a>';
+document.all.DIVbuildvwrt.innerHTML=U;
+}//end function
+
+
+//GetRecord
+function buildgrr(){
+
+var s = new String('GetRecord');
+var t = new String('&metadataPrefix=');
+    t = t+document.forms[0].gr_vwmp.value;
+var w = new String('&identifier=');
+    w = w + document.forms[0].identifier.value;
+var u = new String(document.forms[0].baseURL.value);
+    u = u+"?verb="+s+t+w;    
+var U = new String();
+    U = '<a href="'+u+'" target="_blank">'+u+'</a>';
+document.all.DIVbuild02.innerHTML=U;
+
+}//end function
+
+</script>
+</head>
+<body bgcolor="ffccccc">
+<b>OAI Provider Test Page from the University of Tennessee Digital Library</b> 
+ <br>Based on information From: <a href="http://www.openarchives.org/OAI/2.0/openarchivesprotocol.htm#ProtocolMessages" target="GRwindow">http://www.openarchives.org/OAI/2.0/openarchivesprotocol.htm#ProtocolMessages</a>
+<form name="getRequest">
+<table border="01" cellpadding="2" cellspacing="0">
+<tr bgcolor="ffffff"><td colspan="3"><pre> 4. Protocol Requests and Responses
+   4.1. GetRecord ............................... needs metadataPrefix and identifier
+   4.2. Identify ................................ no modifiers
+   4.3. ListIdentifiers ......................... needs metadataPrefix, can have resumptionToken after first request
+   4.4. ListMetadataFormats ..................... no modifiers
+   4.5. ListRecords ............................. needs metadataPrefix, can have resumptionToken after first reuqest
+   4.6. ListSets ................................ no modifiers </pre>
+</td></tr>
+<tr bgcolor="eeeeff"><td valign="top"><b>Set Base URL</b></td>
+<td valign="top" colspan="2">
+&nbsp;<select name="selectBase" size="3" onchange="setBASE()">
+<option value="http://otherOaiProvider/">otherOaiProvider</option>
+<option value="http://yourPath:8080/xtf/oai">http://yourPath:8080/xtf/oai</option>
+<option value="Enter new value here">Enter new value for Base URL</option>
+</select>
+<br>
+The value of <b>otherOaiProvider</b> can be any other oai provider that works.  This can be used for easy comparison. 
+<br>The value of <b>yourPath</b> corresponds to the tomcat5/webapps directory containing xft.
+<br>You can find this value by looking at the URL for one of your XTF online objects.
+&nbsp;
+</td></tr>
+<tr bgcolor="eeeeff"><td>&nbsp;</td><td colspan="2">&nbsp;<input type="text" name="baseURL" size=60 value="http://yourPath:8080/xtf/oai">
+</td>
+
+<tr bgcolor="ffffee"><td><b>Verbs Without Modifiers</b></td>
+<td colspan="2" valign="top">
+<input type="button" name="vwm00" value="Identify" onclick="buildvwm(0)">
+&nbsp;&nbsp;&nbsp;
+<input type="button" name="vwm01" value="ListMetadataFormats" onclick="buildvwm(1)">
+&nbsp;&nbsp;&nbsp;
+<input type="button" name="vwm02" value="ListSets" onclick="buildvwm(2)">
+&nbsp;&nbsp;&nbsp;
+</td>
+</tr>
+<tr bgcolor="ffffee"><td>&nbsp;</td>
+<td colspan="2"><div name="DIVbuild00" id="DIVbuild00">DIVbuild00</div>
+</td> </tr>
+
+
+<tr bgcolor="eeeeff" valign="top"><td><b>Verbs With metadataPrefix</b></td>
+<td colspan="2" valign="top">
+<input type="text" size="20" name="vwmp" value="oai_dc">
+<br>
+<input type="button" name="vwmp00" value="ListIdentifiers" onclick="buildvwmp(0)">
+&nbsp;&nbsp;&nbsp;
+<input type="button" name="vwmp01" value="ListRecords" onclick="buildvwmp(1)">
+</td>
+</tr>
+<tr bgcolor="eeeeff"><td>&nbsp;</td>
+<td colspan="2"><div name="DIVbuildvwmp" id="DIVbuildvwmp">DIVbuildvwmp</div>
+</td> </tr>
+
+<tr bgcolor="ffffee"><td valign="top"><b>Verbs With resumptionToken <br>after first request</b></td>
+<td colspan="2" valign="top">
+<input type="text" size="20" name="vwrt" value="!!!oai_dc!50">
+<br>
+<input type="button" name="vwrt00" value="ListIdentifiers" onclick="buildvwrt(0)">
+&nbsp;&nbsp;&nbsp;
+<input type="button" name="vwrt01" value="ListRecords" onclick="buildvwrt(1)">
+</td>
+</tr>
+
+
+<tr bgcolor="ffffee"><td>&nbsp;</td>
+<td colspan="2"><div name="DIVbuildvwrt" id="DIVbuildvwrt">DIVbuildvwrt</div>
+</td> </tr>
+
+<tr bgcolor="eeeeff" rowspan="2"><td><b>GetRecord<br>needs metadataPrefix<br>and identifier</b></td>
+<td colspan="2">
+<input type="text" size="20" name="gr_vwmp" value="oai_dc">&nbsp;&nbsp;
+<input type="text" size="60" name="identifier" value="identifier">&nbsp;&nbsp;
+<br>
+<input type="button" name="gr_request" value="GetRecord"
+onclick="buildgrr()">
+</td>
+</tr>
+<tr bgcolor="eeeeff"><td>&nbsp;</td>
+<td colspan="2"><div name="DIVbuild02" id="DIVbuild02">DIVbuild02</div>
+</td> </tr>
+</table>
+</form>
+</body>
+</html>
+
