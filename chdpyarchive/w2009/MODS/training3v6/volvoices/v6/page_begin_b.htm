@@ -1,0 +1,477 @@
+
+<html>
+<head>
+<title>
+page_begin
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+<script language=javascript src="vv_formvardebug.js"></script>
+<script language=javascript src="vv_build_mods_utility.js"></script>
+
+
+<!-- script language=javascript src="vv_compose_tags.js"></script -->
+
+<script language=javascript src="ipage_begin_b/vv_load_UF_DF_page_begin_b.js"></script>
+
+
+
+<script>
+//document.write("test php<hr>parent.mytest="+parent.mytest+"<HR>");
+//document.write("test php<hr>parent.admindb_data="+parent.admindb_data+"<HR>");
+
+var DATE = new Date();
+
+
+function change_tiff_list(){
+//affected by numConstituentsTIFF change
+changeNumConstits();
+
+//affected by filename change
+changeFilename();
+
+//generate new list
+parent.U.document.UF.file_list_tiff.value=generate_file_list_tiff() ;
+document.DF.file_list_tiff.value=parent.U.document.UF.file_list_tiff.value;
+
+}
+
+//VVcomment_02 is readonly
+function changeNumConstits(){
+document.DF.VVcomment_02.value=document.DF.numConstituentsTIFF.value;
+parent.U.document.UF.VVcomment_02.value=document.DF.VVcomment_02.value;
+parent.U.document.UF.numConstituentsTIFF.value=document.DF.numConstituentsTIFF.value;
+}
+
+function changeFilename(){
+var strF = new String(document.DF.XMLFILENAME.value);
+var i    = strF.lastIndexOf("_");
+parent.U.document.UF.XMLFILENAME.value=strF;
+document.DF.XMLBASE.value=strF.replace("0000.xml","");
+parent.U.document.UF.XMLBASE.value=document.DF.XMLBASE.value;
+document.DF.VVcomment_01.value=strF;
+parent.U.document.UF.VVcomment_01.value=strF;
+parent.U.document.UF.admindb_data.value = strF.substring(0,i);
+
+parent.U.document.UF.RELOAD_SWITCH.value="yes";
+parent.U.document.UF.today_verbose.value=Date();
+parent.U.document.UF.today_numeric.value=parent.U.get_today_numeric();
+parent.U.document.UF.record_creation_date.value=parent.U.document.UF.today_numeric.value;
+}
+
+
+</script>
+
+
+</head>
+
+<script>document.write('<body onload="load_DF_form();"  bgcolor="'+parent.adb_background_color+'" >');</script>
+
+<font face="arial" size="3">
+<center><font face="arial">
+<h2> <script> document.write(parent.adb_project_name); </script>
+ Workbook Begin_b Page </h2>
+</center>
+
+<script>
+///Civil War Salt Peter Mining None, LCNAF, ULAN. 
+
+
+//alert("parent.L.RELOAD="+parent.L.RELOAD);
+
+
+</script>
+
+<form name="DF"  action="new.xml">
+
+Values in this grey area may not be changed.
+<br><input type="text" name="VVcomment_01" value="" size="50" READONLY> VVcomment_01 filename
+<br><input type="text" name="VVcomment_02" value="" size="50" READONLY> VVcomment_02 num constits
+<br><input type="text" name="VVcomment_03b" value="" size="50" READONLY> VVcomment_03b first work date
+<br><input type="text" name="VVcomment_03d" value="" size="50" READONLY> VVcomment_03d most recent work date
+<br><input type="text" name="VVcomment_03r" value="" size="50" READONLY> VVcomment_03r reload yes/no
+<br><input type="text" name="VVcomment_04" value="" size="50" READONLY> VVcomment_04 validation
+<BR><input type ="text" name="XMLBASE" value=""  size="50" READONLY > XMLBASE for constituent filenames
+<BR><textarea name="file_list_tiff" value="" cols="50" rows="10" READONLY></textarea> file_list_tiff <br>See page 5 for full filenames.
+<hr>
+<table class="bgINNER" border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="ddeeff">
+<tr class="bgstandard"><td colspan="3">
+
+Values below may be changed. Be careful!
+
+</td></tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+
+<tr class="bgstandard"><td colspan="1" class="label12u">
+XML FILE NAME
+</td><td class="value10nou">
+Filename values must come from the Volunteer Voices Admin Database.
+<br>Changing this value also changes the value of XMLBASE and constituent filenames.
+<BR><input type ="text" name="XMLFILENAME" value="" class="required300w" >&nbsp;<input type="button" class="button100w" name="Bfilename" value="Change Filename" 
+onclick="change_tiff_list();">
+</td>
+<td>&nbsp;</td>
+</tr>
+
+<tr class="bgstandard"><td colspan="1" class="label12u">
+# Constituent Image Files <br>(# jpg files)
+</td><td class="value10nou">
+<input type ="text" name="numConstituentsTIFF" value="1" class="required60w" 
+onkeypress="return parent.L.digits_only_rule_max(event,this,4)"
+><input type="button" name="Bconstit" value="Change Number" class="button100w" onclick="change_tiff_list()">&nbsp;Constituent Image Files. Digits only. Only count .jpg files.</td>
+<td>&nbsp;</td>
+</tr>
+
+<tr class="bgstandard"><td colspan="1" class="label12u">
+Cataloger
+</td><td class="value10nou">
+<input type ="text" name="VVcomment_03c" value="1" class="required300w" 
+ > Name of cataloger(s).  Can be a short list.	</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="bgstandard"><td colspan="1" class="label12u">
+Project
+</td><td class="value10nou">
+<input type ="text" name="VVcomment_03p" value="1" class="required300w" 
+ > Name of Project</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="bgstandard"><td colspan="1" class="label12u">
+Institution
+</td><td class="value10nou">
+<input type ="text" name="VVcomment_03i" value="1" class="required300w" 
+ > Name of Institution.</td>
+<td>&nbsp;</td>
+</tr>
+
+<tr class="bgstandard">
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+<tr class="bgstandard"><td colspan="3" align="center">
+&nbsp;&nbsp;
+
+<!--
+<input type="button" name="B_UF" value="Save FILENAME Values" onclick="load_UF_form();" class="buttonnw">
+-->
+
+<input type="button" name="B_TAGS" value="Save and View MODS TAGS(1)"
+onclick="buildModsTags(1);" class="buttonnw">
+
+<input type="button" name="B_TAGS" value="Save and View MODS TAGS(0)"
+onclick="buildModsTags(0);" class="buttonnw">
+</td></tr>
+
+
+<tr class="bgstandard">
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+
+</table>
+</td>
+<td>&nbsp;</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+
+
+</table>
+
+
+
+
+
+
+
+</form name="forms[0]">
+
+
+<center><font face="arial">
+<h2> <script> document.write(parent.adb_project_name); </script>
+ Workbook Begin_b Page </h2>
+</center>
+
+<hr>
+<script>
+
+
+function generate_file_list_tiff() {
+
+
+if ( isNaN(document.DF.numConstituentsTIFF.value)) {
+	alert("Please enter a number for image count.");
+	return;
+	}
+
+var str = new String();
+    str = "xxx";
+
+var N = 0;
+    N = Number(document.DF.numConstituentsTIFF.value );
+
+var base = new String(document.DF.XMLBASE.value) ;
+    base = base.replace(" ","");
+	//alert("base= >>"+base+"<<");
+var XMLFILENAME = new String();
+    XMLFILENAME = base + "0000.xml";
+
+var append = new String();
+var j=0, chop=0;
+
+for ( i=0; i<N; i++ ) {
+	j= i+1;
+	append = "0000"+String(j);
+	chop = append.length -4;
+	append=append.substring(chop);
+	//alert("tiff file: "+base+append);
+	//ORIGINAL DEPENDS ON admindb file name convention str += ","+base+append;
+	//NEW Jan 20 2010, can have other file name conventions
+	str += ",\n"+base+append;
+}
+
+///ORIGINAL str = str.substring(1);
+str = str.substring(5);
+
+
+return str;
+
+
+
+}//end function generate_file_list_tiff() 
+
+
+function load_UF_form() {
+
+parent.U.document.UF.validate_page_begin.value="0"; //no caching from previous value
+parent.U.document.UF.validate_page_05.value="0"; //no caching from previous value
+
+if ( document.DF.XMLBASE.value == "" ) {
+	alert("You must enter a value for XMLBASE by clicking the Calculate XMLBASE button.");
+	return;
+	}
+
+
+if ( isNaN(document.DF.numConstituentsTIFF.value) ) {
+	alert ("Please enter a value for number of constituent files.");
+	return;
+} else {
+	parent.U.document.UF.file_list_tiff.value=generate_file_list_tiff() ;
+	parent.U.document.UF.VVcomment_02.value= document.forms[0].numConstituentsTIFF.value;
+	parent.U.document.UF.validate_page_begin.value="1"; //pass
+	parent.U.document.UF.validate_page_05.value="0"; //pass
+}
+	
+
+var backslash = new String("/");  //formerly "\\" for ms backslash
+var d = new Date();
+
+///parent.U.document.reload();
+//////alert("load_UF_form()");
+parent.U.document.UF.VVcomment_01.value  = document.DF.VVcomment_01.value;
+parent.U.document.UF.VVcomment_02.value  = document.DF.VVcomment_02.value;
+parent.U.document.UF.VVcomment_03b.value = document.DF.VVcomment_03b.value;
+parent.U.document.UF.VVcomment_03d.value = document.DF.VVcomment_03d.value;
+parent.U.document.UF.VVcomment_03r.value = document.DF.VVcomment_03r.value;
+parent.U.document.UF.VVcomment_03c.value = document.DF.VVcomment_03c.value;
+parent.U.document.UF.VVcomment_03p.value = document.DF.VVcomment_03p.value;
+parent.U.document.UF.VVcomment_03i.value = document.DF.VVcomment_03i.value;
+parent.U.document.UF.VVcomment_04.value  = document.DF.VVcomment_04.value;
+
+parent.U.document.UF.XMLBASE.value = document.DF.XMLBASE.value;
+parent.U.document.UF.XMLFILENAME.value = document.DF.XMLFILENAME.value;
+parent.U.document.UF.numConstituentsTIFF.value = document.DF.numConstituentsTIFF.value;
+
+
+alert("FILENAME Values have been saved."
+	+"\n\n When you have completed the workbook, \n you will save your xmlfile to \n\n "
+	+document.forms[0].XMLBASE.value+"0000.xml           "
+	+"\n\n Please make sure that you use this filename."
+	+"\n\n This filename is displayed when you click the Save and View MODS TAGS button."
+	);
+
+
+parent.U.document.UF.validate_page_begin.value="1";
+parent.U.document.UF.validate_page_05.value="1";
+parent.L.update_page_validation(0,1);
+parent.L.update_page_validation(5,1);
+
+}
+
+function load_DF_form() {
+//alert("load_DF_FORM");
+
+//load_UF_form(); basically a bad idea, depends on defs from current file.
+
+//eval(get_page_begin_b_load_UF_strings("_01"));
+
+var NUM = 0;
+
+if ( typeof(num) != 'undefined') NUM = num;
+
+////////alert("load_DF_form()");
+document.DF.VVcomment_01.value = parent.U.document.UF.VVcomment_01.value ;
+document.DF.VVcomment_02.value = parent.U.document.UF.VVcomment_02.value ;
+document.DF.VVcomment_03b.value = parent.U.document.UF.VVcomment_03b.value ;
+document.DF.VVcomment_03d.value = parent.U.document.UF.VVcomment_03d.value ;
+document.DF.VVcomment_03r.value = parent.U.document.UF.VVcomment_03r.value ;
+document.DF.VVcomment_03c.value = parent.U.document.UF.VVcomment_03c.value ;
+document.DF.VVcomment_03p.value = parent.U.document.UF.VVcomment_03p.value ;
+document.DF.VVcomment_03i.value = parent.U.document.UF.VVcomment_03i.value ;
+document.DF.VVcomment_04.value = parent.U.document.UF.VVcomment_04.value ;
+
+
+document.DF.XMLFILENAME.value = parent.U.document.UF.XMLFILENAME.value ;
+document.DF.XMLBASE.value = parent.U.document.UF.XMLBASE.value ;
+document.DF.numConstituentsTIFF.value = parent.U.document.UF.numConstituentsTIFF.value ;
+document.DF.file_list_tiff.value = parent.U.document.UF.file_list_tiff.value;
+
+
+//------------------------------------------------------------
+//cannot do this on the onload of page_upper because L not yet available!
+parent.U.document.UF.physical_location_county.value=parent.L.getCountyCode(parent.L.aVVcounty,parent.U.document.UF.physical_location_county_display.value);
+
+var backslash = new String("/");  //formerly "\\" for ms backslash
+
+if (NUM == 2) { 
+	alert("Values have been reset."
+	+"\n\n When you have completed the workbook, \n you will save your xmlfile to \n\n "
+	+document.forms[0].XMLBASE.value+"0000.xml           "
+	+"\n\n Please make sure that you use this filename."
+
+	);
+}
+
+if ( document.DF.numConstituentsTIFF.value == "x" ) {
+	alert ("end Please enter a value for number of constituent files.");
+	document.DF.numConstituentsTIFF.value="";
+	document.DF.numConstituentsTIFF.focus();
+	return;
+}else{
+	parent.U.document.UF.file_list_tiff.value=generate_file_list_tiff() ;
+	document.DF.file_list_tiff.value=parent.U.document.UF.file_list_tiff.value;
+}
+
+return;
+}
+
+
+
+function buildModsTags(N) {
+
+//alert("RELOAD_SWITCH: "+parent.U.document.UF.RELOAD_SWITCH.value);
+
+
+////do this first so current values are loaded regardless of validation status
+load_UF_form();
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+var num = new Number();
+    num = N;
+    //num = 1;//get rid of save only button
+//num=downloadTypeN  [0 for download; 1 for html display]
+
+
+
+//var aps= new Array();
+var hps= new Array(); //header
+var cps= new Array(); //closer
+
+//downloadTypeN  [0 for download of text; 1 for html display]
+//strN "01","02"..."06"
+//function buildTagsArray_page_01(downloadTypeN,strN)
+
+
+    hps = buildTagsArray_header(num);
+    cps = buildTagsArray_closer(num);
+
+
+   
+
+//=================================================
+
+// document.DF.XMLFILENAME.value;
+
+document.write('<input type="button" name="BBACK" onclick="javascript: history.back()" value="BACK">');
+if (num==1){
+document.write('<p><font face="Elephant" size="3" color="a00000">'+parent.adb_project_name+' Workbook, page_begin_b.htm<p></font>');
+//PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+//document.write( "This is the generated xml script.  Values you entered are highlighted in red.<HR>");
+document.write('Save your final file to: <font face="Elephant" size="3" color="a00000">'
++parent.U.document.UF.XMLFILENAME.value+'</font><p>');
+document.write('<font face="Elephant" size="3" color="a00000">PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+		+"This is the generated xml script.  Values you entered are highlighted in red."
+		+"<br>oNI = num ="+num
+		+"<HR>");
+}else
+if(num==0){
+document.write("\r\n\r\nClick on View Source to see a text version of the generated xml file.");
+
+}
+
+
+//document.write('< ? xml version="1.0"  ? > \r\n'); 
+///document.write("Content-Type: text/xml ")
+
+
+/**/
+// var brtag= new String(BRTAG[oNI]);
+//var btag = new String("<BR>"); //html display
+//if (num==0){btag="";} //text
+var brtag = new String(BRTAG[num]);
+document.write(brtag+"\n\n<!-- Generated XML below the cutline.\n\n---------------------------------------------->\n\n");
+
+
+for (i=0;i<hps.length;i++) {
+	var vps = new String(hps[i]);
+	//if (!confirm("vps.length="+vps.length))return;
+	if (vps.length>4) {
+		document.write(brtag+vps);
+		}
+	}
+
+
+for (i=0;i<cps.length;i++) {
+	var vps = new String(cps[i]);
+	//if (!confirm("vps.length="+vps.length))return;
+	document.write(brtag+vps);
+
+	}
+/**/
+
+if(num==1){
+document.write('<p>&nbsp;<p><input type="button" name="BBACK2" onclick="javascript: history.back()" value="BACK"><P>');
+}
+}//end function
+
+
+
+formvardebug();
+
+
+
+
+
+
+</script>
+	
+
+
+</body>
+</html>
+

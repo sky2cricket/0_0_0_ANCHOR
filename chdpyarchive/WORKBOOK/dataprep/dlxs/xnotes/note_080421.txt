@@ -1,0 +1,53 @@
+/d1/dlxs/prep/v/vvz/save_orig
+
+note_080421.txt
+save_orig contains orig versions of 080303 minibatch
+
+/d1/dlxs/prep/v/vvz contains test versions of ic.vvz.norm.sgm
+and ic.vvz.unnorm.sgm
+
+
+in ic.vvz.unnorm.sgm replace &#x  with AMP#x, then it is processed
+without any drama to go to ic.vvz.norm.sgm
+
+The problem is perl freaks out with & because anything that starts
+with & is automatically a function. For example...
+
+[root@diglib2 image]# idb norm vvz
+DLXSDATAROOT = /d1/dlxs
+DLXSROOT = /d1/dlxs
+Validating and normalizing vvz SGML with sgmlnorm -E 200001.
+sgmlnorm:/d1/dlxs/prep/v/vvz/ic.vvz.unnorm.sgm:224:76:E: "X00FC" is not a function name
+sgmlnorm:/d1/dlxs/prep/v/vvz/ic.vvz.unnorm.sgm:224:90:E: "X00E4" is not a function name
+sgmlnorm:/d1/dlxs/prep/v/vvz/ic.vvz.unnorm.sgm:224:220:E: "X00FC" is not a function name
+sgmlnorm:/d1/dlxs/prep/v/vvz/ic.vvz.unnorm.sgm:224:234:E: "X00E4" is not a function name
+sgmlnorm:/d1/dlxs/prep/v/vvz/ic.vvz.unnorm.sgm:225:232:E: "X00FC" is not a function name
+sgmlnorm:/d1/dlxs/prep/v/vvz/ic.vvz.unnorm.sgm:225:246:E: "X00E4" is not a function name
+sgmlnorm:/d1/dlxs/prep/v/vvz/ic.vvz.unnorm.sgm:227:57:E: "X00FC" is not a function name
+sgmlnorm:/d1/dlxs/prep/v/vvz/ic.vvz.unnorm.sgm:227:71:E: "X00E4" is not a function name
+Done validating and normalizing vvz SGML.
+
+And you wonder why I prefer python and php?
+
+----------------
+So going back to the singles directory /d1/workarea/dlxs/image/tel/singles
+All those files I made with modsICsearchOai_chd
+turned out okay.  Tomorrow I will suppress more substitutions in modsICsearchOai_chd.
+
+ic2/*
+mods2/*
+modsbib2/*
+newmods2/*
+search2/*
+
+
+------------------------april 22 2008----------------
+in directory 
+/d1/dlxs/prep/v/vvz/save_orig
+mv ic.vvz.norm.sgm ic2.vvz.norm.sgm
+mv ic.vvz.unnorm.sgm ic2.vvz.unnorm.sgm
+mv save_orig/* .
+rmdir save_orig
+rm note_080418.txt (original name is incorrect)
+
+This makes this file the only copy of note_080421.txt

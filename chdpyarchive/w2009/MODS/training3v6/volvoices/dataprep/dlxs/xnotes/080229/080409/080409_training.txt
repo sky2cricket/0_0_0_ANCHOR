@@ -1,0 +1,86 @@
+080409_training.txt
+
+
+[root@diglib2 vv]# pwd
+/d1/workarea/dlxs/bib/mods/vv
+
+preservation mods created by  OAI_modsbibToPresMods
+after running fixPreserveSubjectsBib
+output in DLCpres dir
+
+
+[root@diglib2 tel]# transform
+outputfilename is vvo.xml
+outfile is /d1/workarea/dlxs/text/tel/output/ocr/vvo.xml
+completed transforming 387 files for directory /d1/workarea/dlxs/text/tel/tei/ocr/  
+outputfilename is vvt.xml
+outfile is /d1/workarea/dlxs/text/tel/output/typed/vvt.xml
+completed transforming 250 files for directory /d1/workarea/dlxs/text/tel/tei/typed/  
+outputfilename is vvb.xml
+outfile is /d1/workarea/dlxs/text/tel/output/notext/vvb.xml
+completed transforming 342 files for directory /d1/workarea/dlxs/text/tel/tei/notext/  
+[root@diglib2 tel]# 
+
+validation
+ nsgmls -s -f ./output/typed/vvt.errors /d1/dlxs/prep/v/vvt/vvt.inp output/typed/vvt.xml
+ nsgmls -s -f ./output/ocr/vvo.errors /d1/dlxs/prep/v/vvo/vvo.inp output/ocr/vvo.xml
+ nsgmls -s -f ./output/notext/vvb.errors /d1/dlxs/prep/v/vvb/vvb.inp output/notext/vvb.xml
+
+[root@diglib2 tel]# ls -lai output/*/*.errors
+8077636 -rw-r--r--    1 root     root            0 Apr  9 13:39 output/notext/vvb.errors
+5833882 -rw-r--r--    1 root     root            0 Apr  9 13:39 output/ocr/vvo.errors
+ 622966 -rw-r--r--    1 root     root            0 Apr  9 13:39 output/typed/vvt.errors
+[root@diglib2 tel]# 
+ /bin/cp output/typed/vvt.xml /d1/dlxs/obj/v/vvt/.
+ /bin/cp output/notext/vvb.xml /d1/dlxs/obj/v/vvb/.
+ /bin/cp output/ocr/vvo.xml /d1/dlxs/obj/v/vvo/.
+cp ocr/jpegs/* /d1/dlxs/obj/v/vvo/JPG/
+cp typed/jpegs/* /d1/dlxs/obj/v/vvt/JPG/
+cp notext/jpegs/* /d1/dlxs/obj/v/vvb/JPG/
+AND copy the subfiles (constitutent xml files) to /d1/dlxs/prep/v/vv_/subfiles
+  /bin/cp output/typed/*0000.xml /d1/dlxs/prep/v/vvt/subfiles/
+  /bin/cp output/ocr/*0000.xml /d1/dlxs/prep/v/vvo/subfiles/
+  /bin/cp output/notext/*0000.xml /d1/dlxs/prep/v/vvb/subfiles/
+
+
+step 11 - make convert
+
+step 12 -make_nodefy
+ ./tei2text /d1/dlxs/obj/v/vvo/vvo.xml /d1/dlxs/obj/v/vvo/
+ ./nodefy /d1/dlxs/obj/v/vvo/vvo.xml
+ mv  /d1/dlxs/obj/v/vvo/vvo.xml.noded  /d1/dlxs/obj/v/vvo/vvo.xml
+
+step 13 -cd
+make singledd
+make sgml
+make post
+
+step 14
+index
+
+
+
+URL TO LOOK AT TEXT CLASS
+http://diglib2.lib.utk.edu/cgi/t/text/text-idx
+http://diglib2.lib.utk.edu/cgi/t/text/text-idx?c=vvt
+
+directory ownership problem for text display
+
+[root@diglib2 web]# cd t
+[root@diglib2 t]# ls -l
+total 28
+drwxr-xr-x    6 diglib   diglib       4096 Nov 27 14:07 tdh
+drwxr-xr-x    3 diglib   diglib       4096 Jul 31  2006 tdh-bib
+drwxr-xr-x    4 diglib   diglib       4096 May 13  2003 tdhtif
+drwxrwxr-x    2 diglib   diglib       4096 Mar 11  2003 teso
+drwxr-xr-x    3 diglib   diglib       4096 Jul 31  2006 test
+drwxrwxr-x    6 diglib   diglib       4096 Dec 20 15:13 text
+drwxrwxr-x    2 diglib   diglib       4096 Mar  4  2003 times
+[root@diglib2 t]# cd ..
+[root@diglib2 web]# chown -R apache.apache t/text/
+
+
+apache has to be able to write to web/t/text/gifcvtdir
+
+/d1/dlxs/web/t/text/gifctvdir/
+ 

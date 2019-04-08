@@ -1,0 +1,29 @@
+
+<!--
+*!/usr/bin/perl
+
+* pickupTime
+
+* checks to make sure directories are clean for new files
+* asks which directories to pick up from
+* copies the files;  as it does, adds this to TOP of the xml file:
+*  <!-- DISPLAY BATCH: (.*?)   BUCKET: (.*?)   NAME: (.*?)   DATESTAMP: (.*?) -->
+* where datestamp is yyyymmddhhmmss when this script ran.
+
+*jody DeRidder, 6/8/07
+
+* Checks these directories to make sure they are empty, then 
+* will write to them.
+*   Bucket 00:
+* /d1/dlxs/workarea/image/tel/singles/mods/ jpegs/ thumbs/ minithumbs/
+*   Bucket 01:
+* /d1/dlxs/workarea/image/tel/multiples/mods/ jpegs/ thumbs/ minithumbs/
+*   Bucket 02:
+* /d1/workarea/dlxs/text/tel/ocr/mods/  jpegs/ minithumbs/ text/
+*   Bucket 03:
+* /d1/workarea/dlxs/text/tel/typed/mods/  jpegs/ minithumbs/ text/
+*   Bucket 04:
+* /d1/workarea/dlxs/text/tel/notext/mods/  jpegs/ minithumbs/ 
+--->
+
+

@@ -1,0 +1,92 @@
+<html>
+<head>
+<title>Image Class Access Control</title>
+
+
+
+
+
+ <link href="../../dlxsdocs.css" rel="stylesheet" type="text/css">
+</head>         <body>
+<div class="pageTitle">Image Class Access Control</div>  
+<p><a href="mailto:dlxs-help@umich.edu">dlxs-help@umich.edu</a> </p>
+
+<p>The document on <a href="/intro/auth.html">DLXS Authentication and Authorization</a> covers in depth what you need to do to set up access control for all of DLXS, including Image Class. </p>
+
+<p>A special Image Class option allows collections that are unrestricted at  the collection level, to have  
+    individually identified full-size images restricted at the record level. A good 
+    example of this is the <a href="http://images.umdl.umich.edu/m/musart/">University 
+    of Michigan, Museum of Art</a>. Authorized users (University of Michigan
+    faculty, staff, students) have unrestricted (collection level) access to
+    all text records, thumbnail images, and full size images. Those using the
+    collection from outside the range of valid umich IP addresses are allowed
+    to access all text records, all thumbnail images, and most full-size images,
+    but are restricted from viewing some full-size images that are identified
+    in the item level record as being restricted (due to
+    copyright in the case of the Museum).</p>
+<p><strong>MySQL:</strong> item level access information is stored in
+  the <strong>m_entryauth</strong> field of the <strong>media table</strong>.  </p>
+<p><strong>XPat:</strong> item level access information is stored in
+  the ENTRYAUTH element,  MALLOW attribute of the SGML.</p>
+<table border="1" cellspacing="0" cellpadding="5">
+  <tbody>
+    <tr>
+      <th width="75">Value</th>
+      <th>Restriction</th>
+    </tr>
+    <tr>
+      <td>world</td>
+      <td>unrestricted access to full-size images.</td>
+    </tr>
+    <tr>
+      <td>[collid]</td>
+      <td>access to full-size images restricted to authorized users of the collection.
+        note: use the actual collid, not "[collid]".</td>
+    </tr>
+    <tr>
+      <td>no access</td>
+      <td>access to full-size image is completely restricted. nobody can see
+        it.</td>
+    </tr>
+  </tbody>
+</table>
+<p>Keep in mind that if the collection is restricted to an authorized group of users at the collection level, the Image Class middleware will not allow unauthorized users to access the image, no matter what the ENTRYAUTH says.</p>
+
+<p>The value of the ENTRYAUTH MALLOW attribute is established at the time the
+   data records are loaded to MySQL or encoded in SGML. The value can be specified
+  globally (for an entire collection). </p>
+<p><strong>MySQL:</strong> global configuration is  in the entryauth field of the CollMgr record.</p>
+<p><strong>XPat</strong>: global configuration is in the coll-info.txt file. Please
+  see the <a href="datatransform.html#CollectionLevelInformation">Collection
+   Level Information</a> section of the <a href="datatransform.html">Image 
+  Class Data Transformation</a> documentation for details on how to create/edit
+  the collection  info file. The collection info file is a simple file with four
+  fields delimited  by "#". The third field is used to globally specify item
+level access for a  collection. Here are two examples...</p>
+<p>It is also possible for each record/ENTRY to 
+  have the ENTRYAUTH specified independently. This allows <i>some</i> full-size
+   images to be available to the world, and others to be restricted to certain
+   user groups. In order for this to be utilized, the source data must have
+  a field dedicated to specifying access restrictions for the full-size images
+  associated with the record, and the field must be mapped
+  to the "DLXS_ea" Administrative Field Mappings.</p>
+<p><strong>MySQL: </strong><a href="mysql.html#itemaccess">Administrative Field Mapping</a> is done in the <strong>field_admin_maps</strong>  CollMgr field.</p>
+<p><strong>XPat:</strong> <a href="datatransform.html#RecordNumber4">Administrative
+    Field Mapping</a> is
+  done in record 4 of the transformation configuration file.</p>
+<p>Currently, if the value of the field mapped to DLXS_ea is "www" or "world" 
+  (not case sensitive) then the ENTRYAUTH will be set to "WORLD" in the SGML&#0160;file.
+</p>
+<p>If the value of the field mapped to DLXS_ea is &quot;nobody&quot; or &quot;no access&quot; (not
+  case sensitive) then the ENTRYAUTH will be set to &quot;no access&quot;. </p>
+<p>Any other value in the DLXS.ea mapped field will result in the ENTRYAUTH MALLOW
+     being set to the value of the third field of the coll-info.txt file. </p>
+<p>See <a href="accesstable.html">Image Class Access Control Summary and 
+  Examples Table</a> for useful examples.</p>
+
+
+
+ 
+</body>
+
+</html>

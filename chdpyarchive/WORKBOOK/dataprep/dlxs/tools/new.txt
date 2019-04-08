@@ -1,0 +1,58 @@
+
+A.2 DC-> ISO 19115 stylesheet
+
+&lt;?xml version="1.0" encoding="ISO-8859-1" ?>
+
+&lt;xsl:stylesheet
+        version="1.0" xmlns:xsl ="http://www.w3.org/1999/XSL/Transform"
+        xmlns:rdf="http://www.w3.org/2000/02/22-rdf-syntax-ns#"
+        xlmns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+        xlmns:dc=http://purl.org/dc/elements/1.1"
+        xlmns:dcterms="http://purl.org/dc/terms"
+        xlmns:iso19115="http://www.isotc211.org/iso19115/"
+        xlmns:xsi="http:w3.org/2001/XMLSchema-instance">
+&lt;xsl: output method="xml" indent="yes" encoding="ISO-8859-1" />
+...
+&lt;xsl:template match="rdf:RDF">
+	&lt;xsl:if test="rdf:Description">
+		&lt;xsl:element name="iso19115:MD_Metadata">
+		    &lt;xsl:element name="iso19115:_MD_Identification">
+			&lt;xsl:attribute name="xsi:type">iso19115:MD_DataIdentificationType&lt;/xsl:attribute>
+			    &lt;xsl:element name="citation">
+	&lt;!-- CONVERSION OF TITLE ELEMENT: The title attribute is mandatory within CI_Citation
+	entity.  If there is no value for DC:TITLE, "Default Title" will be generated. -->
+		&lt;xsl:choose>
+		    &lt;xsl:when test=".rdf:Description/dc:title">
+			&lt;xsl:element name="title">
+				&lt;xsl:value-of select="./rdf:Description/dc:title" />
+			&lt;/xsl:element>
+		    &lt;/xsl:when>
+		    &lt;xsl:otherwise>
+			&lt;xsl:text>Default Title&lt;/xsl:text>
+		    &lt;/xsl:otherwise>
+		&lt;/xsl:choose>
+	...
+	&lt;/xsl:element> &lt;!-- citation -->
+	...
+	&lt;!-- CONVERSION OF CREATOR ELEMENT: This element is optional in both standards. For
+	each occurrence of DC:CREATOR, a new pointOfContact will be created.  The text of 
+	DC:CREATOR will correspond to the CI_ResponsibleParty.organizationName attribute. -->
+		&lt;xsl:for-each slelect="./rdf:Description/dc:creator">
+			&lt;xsl:element name="pointOfContact">
+			    &lt;xsl:element name="role">
+				&lt;xsl:element name="CI_RoleCode_CodeList">
+					&lt;xsl:text>originator&lt;/xsl:text>
+				&lt;/xsl:element>
+			    &lt;/xsl:element>
+			    &lt;xsl:element name="organizationName">
+				&lt;xsl:value-of select="." />
+			    &lt;/xsl:element>
+			&lt;/xsl:element>
+		&lt;/xsl:for-each>
+		...
+	&lt;/xsl:if>&lt;!-- of: &lt;xsl:if test="rdf:Description-->
+	...
+&lt;/xsl:template>
+&lt;/xsl:stylesheet>
+		
+

@@ -1,0 +1,461 @@
+<!-- This code is issued under the GNU General Public License, 
+    version 3, 29 June 2007.
+
+    The DLC-MODS Workbook provides a series of web pages to help you 
+    generate a MODS metadata record that follows the Digital Library 
+    Federation Implementation Guidelines for Shareable MODS Records, 
+    as described in the DLF Aquifer Guidlines November 2006.  These 
+    Guidelines and the specific MODS Profile are documented on the 
+    MODS Profile Page of the DLC-MODS Workbook.
+
+    Copyright (C) 2007 
+    Christine Haygood Deane 
+    University of Tennessee Libraries
+    Digital Library Center
+ 
+
+    This program is free software: you can redistribute it and/or modify    
+    it under the terms of the GNU General Public License as published by    
+    the Free Software Foundation, version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see http://www.gnu.org/licenses/
+-->
+
+<html>
+<head>
+<title>
+subject
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+<script>
+
+var split_token=parent.U.split_token;
+parent.L.thisDocument = parent.D.document;
+
+function test_DF_form(){
+alert("under construction");
+}
+
+function addOneSubjectBlock() {
+if (!confirm("You have chosen to add one Subject Block.\n\nDo you wish to continue?")){return;} 
+buildModsTags(11);
+var N = new Number( parent.U.document.UF.numSubjectBlocks.value);
+N=N+1;
+parent.U.document.UF.numSubjectBlocks.value = N;
+parent.U.document.UF.VVcomment_02b.value = "<!-- NUMBER_OF_SUBJECT_BLOCKS: "+N+": -->"; 
+parent.D.location.replace("page_04.htm");
+}//end function
+
+
+function subtractOneSubjectBlock() {
+var N = new Number( parent.U.document.UF.numSubjectBlocks.value);
+if (N==1) {
+	alert("Subject Block #1 may not be removed.");
+	return;
+	}
+if (!confirm("You have chosen to remove one Subject Block.\n\nDo you wish to continue?")){return;} 
+N=N-1;
+parent.U.document.UF.numSubjectBlocks.value = N;
+parent.U.document.UF.VVcomment_02b.value = "<!-- NUMBER_OF_SUBJECT_BLOCKS: "+N+": -->"; 
+parent.D.location.replace("page_04.htm");
+}//end function
+
+
+function clearText_01(N,B){
+var n = new Number(N);
+var b = new Number(B);//which subject block
+
+var sa = new String();
+var sb = new String();
+var sc = new String();
+
+sa = 'document.forms[0].subject_0'+b+'_auth.value=""';
+sb = 'document.forms[0].subject_0'+b+'.value=""';
+sc = 'document.forms[0].subject_0'+b+'_auth_close.value=""';
+
+if (n==0) {
+	eval(sa);
+	eval(sb);
+	eval(sc);
+}
+
+if (n==1) {
+	eval(sa);
+	eval(sc);
+}
+
+if (n==2) {
+	eval(sb);
+}
+
+}//end function clearText
+
+//+'onclick="parent.L.selectOneOptionSubject(this,a500,a600)">\r\n'
+//+'onclick="checkSubjectAuthority(this)">\r\n'
+
+function checkSubjectAuthority(sbox,x,y) {
+
+//alert("sbox.name ="+ sbox.name);
+var s = new String(sbox.name);
+var token = new String()
+token = s.substr(s.lastIndexOf("_"));
+//alert ("token="+token);
+
+var a = new String();
+    a = 'document.forms[0].subject'+token+'_auth.value';
+//alert ( "a = " +a); 
+//alert("eval(a)="+eval(a));
+
+if (eval(a) == "" ) {
+	alert("You must select the subject authority before adding any subelement."); 
+	return;
+	}else{
+	parent.L.selectOneOptionSubject(sbox,x,y);
+	}
+
+}
+
+
+
+</script>
+
+</head>
+
+
+<script> 
+document.write('<body onload="load_DF_form();"  bgcolor="'+parent.adb_background_color+'" >'); </script>
+<font face="arial" size="3">
+<center>
+<h2><script> document.write(parent.adb_project_name); </script>
+&lt;subject></h2></center>
+<form name="DF">
+<table class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" >
+<tr class="bgstandard"><td colspan="3">
+<p>
+<b>
+The &lt;subject> page allows you to build detailed subject headings according to the MODS standard.  
+<br>The Workbook, however, does not check whether the subelements are properly applied.
+<br>This is the responsibility of the cataloger.
+<br>For guiduance on building MODS subject tags, refer to 
+<a href="http://www.loc.gov/standards/mods/v3/mods-userguide.html" target="_blank">LOC MODS USERGUIDE</a>.
+<br>and to the <a href="http://www.diglib.org/aquifer/dlfmodsimplementationguidelines_finalnov2006.pdf" target="_blank">
+DLF Aquifer Guidlines for MODS Shareable Records</a>.
+</b>
+</p>
+</td></tr>
+
+<script>
+var a500 = new String("500");
+var a600 = new String("600");
+var a700 = new String("700");
+
+var numSubBlocks = new Number(parent.U.document.UF.numSubjectBlocks.value);
+var j=0;
+
+for (k=0;k<numSubBlocks;k++) {
+j=k+1;//use for LABEL ONLY
+document.write(
+ '<tr class="greenrow"><td colspan="3" ><font face="arial" size="3" color="ffffff">\r\n'
++'<b>Subject Block #'+j+'</td></tr>\r\n'
++'<tr class="bgstandard" >\r\n'
++'<td class="label13u">\r\n'
++'Subject Block #'+j+'\r\n'
++'</td>\r\n'
++'<td>\r\n'
+
+/* real--------------------------------------------------------*/
++'<input type="text" name="subject_0'+k+'_auth" size="40" value=""\r\n'
++'style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; xwidth:300px; background:#ffffff"  READONLY><br>\r\n'
++'<textarea name="subject_0'+k+'" cols="80" rows="12" READONLY\r\n'
++'style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; xwidth:300px"></textarea>\r\n'
++'<br><input type="text" name="subject_0'+k+'_auth_close" size="40" value=""\r\n'
++'style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; xwidth:300px" READONLY>\r\n'
+/*-------------------------------------------------------------*/
+/* test--------------------------------------------------------
++'<input type="text" name="subject_0'+k+'_auth" size="40" value="<mods:subject authority=&quot;0'+k+'&quot;>"\r\n'
++'style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; xwidth:300px" READONLY><br>\r\n'
++'<textarea name="subject_0'+k+'" cols="80" rows="12" READONLY\r\n'
++'style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; xwidth:300px">SUBJECT_0'+k+' TAGS TEST INPUT</textarea>\r\n'
++'<br><input type="text" name="subject_0'+k+'_auth_close" size="40" value="</mods:subject test=0'+k+'>"\r\n'
++'style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; xwidth:300px" READONLY>\r\n'
+--------------------------------------------------------------- */
+
++'<br>&nbsp;\r\n'
++'<input type="button" name="Bauth_subject_0'+k+'" value="select subject authority" class="button140w"\r\n'
++'onclick="parent.L.selectOneOptionSubject(this,a700,a700)">\r\n'
++'<input type="button" name="Clear_subject_0'+k+'" value="clear all" class="button140w"\r\n'
++'onclick="clearText_01(0,'+k+')">\r\n'
++'<input type="button" name="Clear_subject_0'+k+'a" value="clear subject authority" class="button140w"\r\n'
++'onclick="clearText_01(1,'+k+')">\r\n'
++'<input type="button" name="Clear_subject_0'+k+'b" value="clear subelements" class="button140w"\r\n'
++'onclick="clearText_01(2,'+k+')">\r\n'
++'<br>&nbsp;\r\n'
++'<input type="button" name="Bcart_subject_0'+k+'" value="cartographics" class="button140w"\r\n'
++'onclick="checkSubjectAuthority(this,a500,a600)">\r\n'
++'<input type="button" name="Bcgeo_subject_0'+k+'" value="geographicCode" class="button140w"\r\n'
++'onclick="checkSubjectAuthority(this,a500,a600)">\r\n'
++'<input type="button" name="Bhgeo_subject_0'+k+'" value="hierarchicalGeographic" class="button140w"\r\n'
++'onclick="checkSubjectAuthority(this,a500,a600)">\r\n'
++'<input type="button" name="Bgeog_subject_0'+k+'" value="geographic" class="button140w"\r\n'
++'onclick="checkSubjectAuthority(this,a500,a600)">\r\n'
++'<br>&nbsp;\r\n'
++'<input type="button" name="Bgenr_subject_0'+k+'" value="genre" class="button140w"\r\n'
++'onclick="checkSubjectAuthority(this,a500,a600)">\r\n'
++'<input type="button" name="Btopi_subject_0'+k+'" value="topic" class="button140w"\r\n'
++'onclick="checkSubjectAuthority(this,a500,a600)">\r\n'
++'<input type="button" name="Boccu_subject_0'+k+'" value="occupation" class="button140w"\r\n'
++'onclick="checkSubjectAuthority(this,a500,a600)">\r\n'
++'<input type="button" name="Btemp_subject_0'+k+'" value="temporal" class="button140w"\r\n'
++'onclick="checkSubjectAuthority(this,a600,a600)">\r\n'
++'<br>&nbsp;\r\n'
++'<input type="button" name="Bnamp_subject_0'+k+'" value="name personal" class="button140w"\r\n'
++'onclick="checkSubjectAuthority(this,a500,a600)">\r\n'
++'<input type="button" name="Bnamc_subject_0'+k+'" value="name corporate" class="button140w"\r\n'
++'onclick="checkSubjectAuthority(this,a500,a600)">\r\n'
++'<input type="button" name="Bnamm_subject_0'+k+'" value="name conference" class="button140w"\r\n'
++'onclick="checkSubjectAuthority(this,a500,a600)">\r\n'
++'<input type="button" name="Btitl_subject_0'+k+'" value="titleInfo" class="button140w"\r\n'
++'onclick="checkSubjectAuthority(this,a500,a600)">\r\n'
++'<br>&nbsp;\r\n'
++'<font face="arial" size="1" color="000000" ><br> No tags will be generated unlss the subject wrapper element contains at least one subelement.\r\n'
++'<br>Click on the subelement name to create the corresponding subelement tag within the subject wrapper.\r\n'
++'<br>&nbsp;\r\n'
++'</td>\r\n'
++'<td>&nbsp</td>\r\n'
++'</tr>\r\n'
+);
+}///end for k
+
+
+</script>
+
+
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+<tr class="bgstandard">
+<td class="label13u">Add or Remove<br>One Subject Block</td><td>&nbsp;
+<input type="button" name="AddOne" 
+value="Click here to Add One Subject Block" class="buttonnw" onClick="addOneSubjectBlock();">
+<input type="button" name="SubtractOne" 
+value="Click here to Remove One Subject Block" class="buttonnw" onClick="subtractOneSubjectBlock();">
+
+</td><td>&nbsp;</td>
+</tr>
+
+<input type="hidden" name="subject_auth_list" value="">
+<input type="hidden" name="subject_list" value="">
+<input type="hidden" name="subject_auth_close_list" value="">
+
+
+<input type="hidden" name="subject_block_list" value="">
+
+
+
+<tr class="bgstandard">
+<td>&nbsp</td><td>&nbsp;</td><td>&nbsp;</td>
+</tr>
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+<tr class="bgstandard"><td colspan="3" align="center">
+&nbsp;&nbsp;
+<!--
+<input type="button" name="B_UF" value="Save" class="buttonnw" onclick="buildModsTags(10);">
+-->
+<script>
+if ( parent.U.document.UF.contributorName.value == "cricket") {
+//document.write('<input type="button" name="xB_DF" value="Reset"  class="buttonnw" onclick="buildModsTags(1);">');
+}
+</script>
+
+
+<input type="button" name="B2" 
+value="Save Data and View MODS TAGS" class="buttonnw"
+onclick="buildModsTags(1)">
+
+
+</td></tr>
+<tr class="bgstandard" >
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+</table>
+
+</form name="forms[0]">
+
+
+<center><font face="arial">
+<h2><script> document.write(parent.adb_project_name); </script></h2>
+</center>
+
+<script>
+
+
+function load_UF_form() {
+//alert("page_04.htm function load_UF_form()");
+
+parent.U.document.UF.subject_block_list.value = document.DF.subject_block_list.value;
+
+return;
+}
+
+function load_DF_form() {
+
+////alert("begin function load_DF_form");
+var split_token=parent.U.split_token;
+////alert("load_DF_FORM split_token="+split_token);
+if (parent.U.document.UF.subject_block_list.value == "" ) {
+	return;
+	}
+
+document.DF.subject_block_list.value = parent.U.document.UF.subject_block_list.value;
+
+var subdL = new String(parent.U.document.UF.subject_block_list.value);
+var Asd = new Array();
+    Asd = subdL.split(split_token);
+
+for (i=0;i<Asd.length;i++){
+	//alert("load_DF_form(): Asd["+i+"]="+Asd[i]);
+	}
+
+var numS = parent.U.document.UF.numSubjectBlocks.value;
+
+var m=0; //counter for Asd[m] array
+for(i=0;i<document.DF.length;i++)
+{
+var sbox = document.DF.elements[i];
+if ( sbox.name.indexOf("subject_0") == 0 ) {
+		if(typeof(Asd[m]) != "undefined") {
+		sbox.value = Asd[m++];	
+		if (sbox.value == "empty_string") { sbox.value=""; }
+		//alert("document.DF.elements["+i+"].name="+sbox.name
+	 	//+"\ndocuments.DF.elements["+i+"].value="+sbox.value);
+		}else{
+		sbox.value="";
+		}
+	}
+}
+
+
+///alert("end function load_DF_form");
+
+return;
+}///end function load_DF_form
+
+
+
+function buildModsTags(N) {
+
+var split_token=parent.U.split_token;
+
+
+
+var sbaAll = new String("");
+var s= new String("");
+var v= new String("");
+for(i=0;i<document.DF.length;i++)
+{
+s = document.DF.elements[i].name;
+v = document.DF.elements[i].value;
+if ( s.indexOf("subject_0") == 0 ) {
+	if (v == "") { v="empty_string"; }
+	sbaAll += split_token + v; /////document.DF.elements[i].value;
+	//alert("document.DF.elements["+i+"].name="+s
+	   //+"\ndocument.DF.elements["+i+"].value="+v);
+	}
+}
+
+sbaAll = sbaAll.substring(split_token.length);
+
+//alert("sbaALL ="+sbaAll)
+document.DF.subject_block_list.value = sbaAll;
+
+	
+////do this first so current values are loaded regardless of validation status
+load_UF_form();
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+//before writing MODS TAGS, make sure all required fields are populated
+//checkAllRequired... true  validation sets validation status to J  -- complete
+//checkAllRequired... false validation sets validation status to j  -- incomplete
+
+if (!parent.L.checkAllRequiredElements_Page_subject() ) {
+	parent.L.update_page_validation('subject','j'); 
+	return;
+}
+parent.L.update_page_validation('subject','J');
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+var num = new Number();
+    num = N;
+
+if (num == 11) {return;}
+if (num == 10) {
+        alert("Values have been saved.");
+        return;
+        }
+
+
+var aps= new Array();
+var hps= new Array();
+var cps= new Array();
+    
+    hps = parent.L.buildTagsArray_header(num);
+    aps = parent.L.buildTagsArray_subject(num);
+    cps = parent.L.buildTagsArray_closer(num);
+
+//=================================================
+
+document.write('<input type="button" name="BBACK" onclick="javascript: history.back()" value="BACK"><P>');
+document.write('<font face="Elephant" size="3" color="a00000">'+parent.adb_project_name+' &lt;subject><p></font>');
+document.write('<font face="Elephant" size="3" color="a00000">PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY (N='+N+')</font><p>'
+		+"This is the generated xml script.  Values you entered are highlighted in red."
+		+"<HR>");
+
+for (i=0;i<hps.length;i++) {
+	var vps = new String(hps[i]);
+ 	document.write("<br>"+vps);
+	}
+
+
+
+for (i=0;i<aps.length;i++) {
+	///alert("aps["+i+"]="+aps[i]);
+	var vps = new String(aps[i]);
+	document.write("<br>"+vps);
+	}
+
+
+
+for (i=0;i<cps.length;i++) {
+	var vps = new String(cps[i]);
+	document.write("<br>"+vps);
+	}
+
+
+
+
+}//end function buildModsTags
+
+
+
+
+</script>
+<script language=javascript src="fdg.js"></script>
+<script>fdg();</script>
+	
+</body>
+</html>
+

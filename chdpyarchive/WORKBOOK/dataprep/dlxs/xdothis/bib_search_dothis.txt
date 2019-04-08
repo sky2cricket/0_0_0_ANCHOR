@@ -1,0 +1,10 @@
+/d1/workarea/dlxs/bib/search/dothis
+
+cat opensearch xml/* closesearch > vvs-bib.xml  (or whatever, match colleciton)
+cp vvs-bib.xml /d1/dlxs/prep/v/vvs-bib/.
+cd /d1/dlxs/prep/v/vvs-bib
+transform
+cp vvs-bib.xml ../../../obj/v/vvs-bib
+cd ../../../idx/v/vvs-bib
+make all
+(make a release to production:  bib class)

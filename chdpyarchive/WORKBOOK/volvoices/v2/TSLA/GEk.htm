@@ -1,0 +1,234 @@
+<html>
+<head>
+<title>vv_popupGE</title>
+
+<link href="../vv_workbook.css" type="text/css" rel="stylesheet">
+<script language=javascript src="../vv_functions_tsla.js"></script>
+
+
+
+
+<script language="javascript">
+
+var select_id= new String();
+function get_select_id() {
+
+var str = new String();
+    str = parent.location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  parent.window.opener.location.href="+parent.window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=get_select_id();
+
+
+
+var strSelect_GE_A = new String('');
+
+strSelect_GE_A = '<select name="aaa"  size="24" style="font-size:10px"> \r\n'
+	+'<option  selected>No Value Selected</option> \r\n'	
+
+
+
+
+
+
+
+	+'<option>KELLER CEMETERY (BEDFORD COUNTY, TENN.)</option>  \r\n'
+	+'<option>KENTON (TENN.)</option>  \r\n'
+	+'<option>KENTON (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>KENTUCKY - BOUNDARIES - TENNESSEE</option>  \r\n'
+	+'<option>KENTUCKY LAKE (KY. AND TENN.)</option>  \r\n'
+	+'<option>KENTUCKY LAKE (KY. AND TENN.) - MAPS</option>  \r\n'
+	+'<option>KENTUCKY LAKE REGION (KY. AND TENN.) - HISTORY</option>  \r\n'
+	+'<option>KEY CORNER (TENN.) - HISTORY</option>  \r\n'
+	+'<option>KIMBERLY-CLARK SITE (TENN.)</option>  \r\n'
+	+'<option>KINGSPORT (TENN.)</option>  \r\n'
+	+'<option>KINGSPORT (TENN.) - AERIAL PHOTOGRAPHS</option>  \r\n'
+	+'<option>KINGSPORT (TENN.) - DESCRIPTION AND TRAVEL</option>  \r\n'
+	+'<option>KINGSPORT (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>KINGSPORT (TENN.) - ECONOMIC CONDITIONS</option>  \r\n'
+	+'<option>KINGSPORT (TENN.) - HISTORICAL GEOGRAPHY - MAPS</option>  \r\n'
+	+'<option>KINGSPORT (TENN.) - HISTORY</option>  \r\n'
+	+'<option>KINGSPORT (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>KINGSPORT (TENN.) - SOCIAL LIFE AND CUSTOMS - PICTORIAL WORKS</option>  \r\n'
+	+'<option>KINGSPORT (TENN.) - POLITICS AND GOVERNMENT</option>  \r\n'
+	+'<option>KINGSPORT (TENN.) - STREETS</option>  \r\n'
+	+'<option>KINGSTON (TENN.) - CHURCH HISTORY - SOURCES</option>  \r\n'
+	+'<option>KINGSTON (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>KINGSTON (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>KINGSTON (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>KINGSTON (TENN.) - HISTORY</option>  \r\n'
+	+'<option>KINGSTON (TENN.) - HISTORY - CIVIL WAR, 1861-1865 - MAPS</option>  \r\n'
+	+'<option>KINGSTON (TENN.) - MAPS</option>  \r\n'
+	+'<option>KINGSTON (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>KINGSTON REGION (TENN.) - HISTORY</option>  \r\n'
+	+'<option>KLONDYKE AREA (MEMPHIS, TENN.)</option>  \r\n'
+	+'<option>KNOX COUNTY (TENN.)</option>  \r\n'
+	+'<option>KNOX COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>KNOX COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>KNOX COUNTY (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>KNOX COUNTY (TENN.) - CHURCHES</option>  \r\n'
+	+'<option>KNOX COUNTY (TENN.) - COMMERCE - 20TH CENTURY - SOURCES</option>  \r\n'
+	+'<option>KNOX COUNTY (TENN.) - DESCRIPTION AND TRAVEL</option>  \r\n'
+	+'<option>KNOX COUNTY (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>KNOX COUNTY (TENN.) - ECONOMIC CONDITIONS</option>  \r\n'
+	+'<option>KNOX COUNTY (TENN.) - ECONOMIC CONDITIONS - 20TH CENTURY - STATISTICS</option>  \r\n'
+	+'<option>KNOX COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>KNOX COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>KNOX COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>KNOX COUNTY (TENN.) - HISTORY - CIVIL WAR, 1861-1865</option>  \r\n'
+	+'<option>KNOX COUNTY (TENN.) - HISTORY - PICTORIAL WORKS</option>  \r\n'
+	+'<option>KNOX COUNTY (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>KNOX COUNTY (TENN.) - INDUSTRIES</option>  \r\n'
+	+'<option>KNOX COUNTY (TENN.) - MAPS</option>  \r\n'
+	+'<option>KNOX COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>KNOX COUNTY (TENN.) - PHOTOGRAPHS</option>  \r\n'
+	+'<option>KNOX COUNTY (TENN.) - PICTORIAL WORKS</option>  \r\n'
+	+'<option>KNOX COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>KNOX COUNTY (TENN.) - POLITICS AND GOVERNMENT</option>  \r\n'
+	+'<option>KNOX COUNTY (TENN.) - POPULATION - STATISTICS</option>  \r\n'
+	+'<option>KNOX COUNTY (TENN.) - PUBLIC SCHOOLS</option>  \r\n'
+	+'<option>KNOX COUNTY (TENN.) - TOURS</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.)</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - AERIAL VIEWS</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - APPROPRIATIONS AND EXPENDITURES</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - BUILDINGS, STRUCTURES, ETC.</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - BUILDINGS, STRUCTURES, ETC. - PICTORIAL WORKS</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - CHARTERS</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - CHURCHES</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - CITY HALL</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - CITY PLANNING</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - CONSERVATION AND RESTORATION</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - DESCRIPTION AND TRAVEL</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - DESCRIPTION AND TRAVEL - GUIDEBOOKS</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - DESCRIPTION AND TRAVEL - VIEWS</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - ECONOMIC CONDITIONS</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - ECONOMIC CONDITIONS - 20TH CENTURY - STATISTICS</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - ETHNIC RELATIONS</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - FAIRS</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - FLOODS</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - FORTIFICATIONS, MILITARY INSTALLATIONS, ETC. - MAPS</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - GUIDEBOOKS</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - HISTORY</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - HISTORY - 19TH CENTURY</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - HISTORY - CIVIL WAR, 1861-1865 - MAPS</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - HISTORY - PICTORIAL WORKS</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - HISTORY - SIEGE, 1863</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - HOSPITALS</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - INDUSTRIES</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - LIBRARIES</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - MAPS</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - PERIODICALS</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - PICTORIAL WORKS</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - POETRY</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - POLITICS AND GOVERNMENT</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - POPULATION - STATISTICS</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - PUBLIC SCHOOLS</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - RACE RELATIONS</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - SIEGE, 1863</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - SOCIAL CONDITIONS</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - SOCIAL LIFE AND CUSTOMS - 19TH CENTURY</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - SOCIAL REGISTERS</option>  \r\n'
+	+'<option>KNOXVILLE (TENN.) - TOURS</option>  \r\n'
+	+'<option>KNOXVILLE METROPOLITAN AREA (TENN.) - ECONOMIC CONDITIONS</option>  \r\n'
+	+'<option>KNOXVILLE REGION (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>KNOXVILLE ZOOLOGICAL PARK (KNOXVILLE, TENN.)</option>  \r\n'
+
+
++'</select> \r\n';
+	
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+<body class="background">
+
+
+
+
+<form name="FormOne" >
+
+
+<div name="SS" id="SS">
+<script>
+document.write(
+
+	 '<table border="1" cellpadding="4" cellspacing="0"  width="90%">\r\n'
+	+'<tr><td  bgcolor="ddeeff">\r\n'
+	///+'vv_functions.htm called by '+select_id+' <br>\r\n'
+	+'<b>Select Geographic Subject K </b> \r\n'
+	+'</td></tr><tr><td bgcolor="ddeeff"> \r\n' 
+	+ strSelect_GE_A
+
+	+'</td></tr></table> \r\n'
+	///+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+</script>
+	
+</div>
+
+<input type="button" onclick="showSelection();" name="B1" value="Geographic Name">
+
+</form>
+
+<script>
+
+
+
+                  
+
+function showSelection() {
+
+val = new String();
+
+for ( i=0; i< document.FormOne.aaa.length; i++ ) {
+
+if ( document.FormOne.aaa[i].selected == true ) {
+  	val = document.FormOne.aaa[i].text;
+	break;
+	}
+else { val = "you never selected anything"; 
+	}
+
+}
+////////////////////////alert ("You selected " +val);
+val=reformatGeo(val);
+
+switch ( select_id ) {
+
+case  "subject_geographic_lcsh_01" :
+	parent.window.opener.document.forms[0].subject_geographic_lcsh_01.value=val;
+	parent.window.close();
+	break;
+
+case  "subject_geographic_lcsh_02" :
+	parent.window.opener.document.forms[0].subject_geographic_lcsh_02.value=val;
+	parent.window.close();
+	break;
+
+}//end switch
+
+}///end function
+</script>
+

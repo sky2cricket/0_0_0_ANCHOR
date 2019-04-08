@@ -1,0 +1,35 @@
+<html>
+<head>
+<title>Character Sets/Representation, Bibliographic Class</title>
+<link href="../../dlxsdocs.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="pageTitle">Character Sets/Representation, Bibliographic Class</div>
+<p>At the current time, XPAT (the DLXS search engine) supports both 7- and 8-bit
+   character sets, with no specific ties to any standard or non-standard character
+   set. The following approaches are equally possible:</p>
+<ol>
+<li>An 8-bit ISO Latin 1 approach in the data dictionary (the <tt>.dd</tt> file),
+   mapping characters with diacritics to their unaccented form (e.g., an "a" with
+   umlaut would be searchable as an "a").</li>
+<li>An 8-bit ISO Latin 1 approach in the data dictionary, leaving characters
+   with diacritics searchable in their accented form (e.g., an "a" with umlaut
+   would be searchable only as an "a" with umlaut).</li>
+<li>An 8-bit ISO Latin 2 approach in the data dictionary, mapping characters
+   with diacritics to their unaccented form (e.g., an "a" with macron would be
+   searchable as an "a").</li>
+<li>... and so forth</li>
+</ol>
+<p>The most common approach is to rely primarily on 8-bit representations of
+   ISO Latin 1 mappings for the bulk of the characters, and character entity
+   references for most other cases (e.g., &amp;amacr;). A sample data dictionary
+   using 8-bit ISO Latin 1 values is linked <a href="bib-sample.dd">here</a> as
+   an example of this approach.</p>
+<p>We do not yet provide filtering of these character entity set-based characters
+   to displayable representations, but will probably use transparent GIFs as
+   an interim strategy (as we do elsewhere in DLXS classes).</p>
+<p>Currently, we offer no documentation here for converting characters to ISO
+   Latin 1 values. In the interim, see the <a href="../image/charconversion.html">Image
+   Class Character Set Conversion</a>.</p>
+</body>
+</html>

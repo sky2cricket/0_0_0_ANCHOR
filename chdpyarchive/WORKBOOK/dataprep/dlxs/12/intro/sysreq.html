@@ -1,0 +1,164 @@
+<html>
+<head>
+<title>DLXS System Requirements</title>
+
+
+
+ <link href="../dlxsdocs.css" rel="stylesheet" type="text/css">
+</head>         <body>
+<div class="pageTitle">DLXS System Requirements</div>
+  
+      <ol>
+	<li><b>Supported platforms</b> 
+	  <ol>
+	    <li><i>Platforms in active development.</i> We currently develop and/or deploy 
+	      live material on these platforms:
+	      <ol>
+		<li>Solaris SPARC 2.6 or higher</li>
+		<li>Red Hat Linux Intel 8.0 or higher</li>
+	      </ol>
+	    </li>
+
+	  </ol>
+	</li>
+	<li><b>Disk space requirements</b> 
+          <ol>
+            <li><i>DLXS Middleware:</i> 10 MB to store the libraries and programs that make
+                up the working DLXS system.
+            </li>
+            <li><i>Content:</i> This varies dramatically according to the amount and format
+                of your material. For a collection of significant scale, the storage requirements
+                will be dominated by the number of page images and/or continuous tone
+                images--SGML and metadata are quite small in comparison. DLXS allows you to store
+                the middleware and the content in different locations to simplify system
+                administration.
+            </li>
+          </ol>
+        </li>
+	<li><b>Required capabilities and software</b> 
+	  <ol>
+	    <li>root access (to change aspects of the environment, e.g., directory and file permissions, web server configuration, etc.)</li>
+	    <li><a href="http://www.perl.com/" target="external">Perl 5.8.3</a> or higher.</li>
+	    <li>The following <a href="http://www.cpan.org/modules/" target="external">Perl modules</a> (where
+                versions are given, DLXS requires that version or higher):</li>
+         <table width="50%" cellpadding="3" cellspacing="3">
+        <tr><td align="LEFT"><div align="CENTER"><strong>Module</strong></div></td>
+        <td><div align="CENTER"><strong>Version</strong></div></td>
+        </tr>
+<tr><td>Apache::Session</td><td>1.54</div></td></tr>
+<tr><td>CGI</td><td>3.04</div></td></tr>
+<tr><td>Carp</td><td>1.01</div></td></tr>
+<tr><td>Cwd</td><td>2.15</div></td></tr>
+<tr><td>DBD::CSV</td><td>0.2002</div></td></tr>
+<tr><td>DBD::mysql</td><td>2.9003</div></td></tr>
+<tr><td>DBI</td><td>1.40</div></td></tr>
+<tr><td>Exporter</td><td>5.57</div></td></tr>
+<tr><td>File::Basename</td><td>2.72</div></td></tr>
+<tr><td>File::Copy</td><td>2.07</div></td></tr>
+<tr><td>File::Find</td><td>1.06</div></td></tr>
+<tr><td>File::Path</td><td>1.06</div></td></tr>
+<tr><td>FileHandle</td><td>2.01</div></td></tr>
+<tr><td>Getopt::Std</td><td>1.05</div></td></tr>
+<tr><td>HTML::Parser</td><td>3.35</div></td></tr>
+<tr><td>HTML::Template</td><td>2.6</div></td></tr>
+<tr><td>IPC::Open3</td><td>1.0105</div></td></tr>
+<tr><td>LWP::Simple</td><td>1.38</div></td></tr>
+<tr><td>Mail::Mailer</td><td>1.60</div></td></tr>
+<tr><td>Mail::Send</td><td>1.60</div></td></tr>
+<tr><td>MIME::Base64</td><td>3.00</div></td></tr>
+<tr><td>Net::hostent</td><td>1.01</div></td></tr>
+<tr><td>POSIX</td><td>1.07</div></td></tr>
+<tr><td>Socket</td><td>1.76</div></td></tr>
+<tr><td>SQL::Statement</td><td>1.005</div></td></tr>
+<tr><td>Storable</td><td>2.15</div></td></tr>
+<tr><td>Symbol</td><td>1.05</div></td></tr>
+<tr><td>Text::CSV_XS</td><td>0.23</div></td></tr>
+<tr><td>URI</td><td>1.30</div></td></tr>
+<tr><td>XML::LibXSLT</td><td>1.57</div></td></tr>
+<tr><td>XML::LibXML</td><td>1.57</div></td></tr>
+</table>
+          <p><b>IMPORTANT NOTE:</b> The SQL::Statement version 1.005 Perl module is not backward
+             compatible with version 0.1021, our previous requirement.  Version 0.1021 was typical
+             of Perl version 5.6.1 whereas 1.005 is typical of Perl 5.8.0. We recommend you install
+             Perl 5.8.0 and SQL::Statement 1.005 or higher and follow the workarounds below as
+             necessary. (These workarounds may not be required when SQL::Statement 1.006 becomes
+             available.)
+          <ul>
+            <li>collmgr
+              <ul>
+                <li>Functions normally with either 0.1021 or 1.005</li>
+              </ul>
+            </li>
+          </ul>
+          <ul>
+            <li>dbmove
+              <ul>
+                <li>Functions normally moving CSV to MySQL under either 1.005 or 0.1021</li>
+                <li>Incorrectly uppercases column names when moving MySQL to CSV under 1.005.  The
+                    workaround is to lower case the resulting column names using an ascii editor.</li>
+                <li>Fails completely under 0.1021 moving CSV to MySQL or vice versa.</li>
+              </ul>
+            </li>
+          </ul>
+          <ul>
+            <li>upgrade_1_2, upgrade_2_3
+              <ul>
+                <li>Functions normally upgrading a MySQL database under either 1.005 or 0.1021</li>
+                <li>Incorrectly uppercases column names when upgrading CSV under 1.005.  The workaround
+                    is to lower case the resulting column names using an ascii editor.</li>
+              </ul>
+            </li>
+          </ul>
+          </P>
+            <li>Storable 2.07</li>
+        <li>Symbol 1.04</li>
+        <li>Text::CSV_XS 0.23</li>
+        <li>URI 1.23</li>
+        <li>XML::LibXSLT 1.53</li>
+        <li>XML::LibXML 1.53</li>
+        <p>Note that XML::LibXML and XML::LibXSLT are not required unless you configure a collection's collmgr <b>rendering</b> field to <i>xslt</i>.</p>
+      </ol>
+      <li>A web server that supports Apache sessions. We recommend <a href="http://httpd.apache.org/" target="external">Apache</a> 1.3.26 or higher.</li>
+      <li><a href="http://openjade.sourceforge.net/" target="external">OpenSP</a> 1.5 or higher (for using the supplied tools to prepare SGML and/or XML content for delivery via DLXS).</li>
+	  </ol>
+	</li>
+	<li><b>Optional components</b> 
+	  <ol>
+	    <li>For database management
+	      <ol>
+		<li><a href="http://www.mysql.com/" target="external">MySQL</a> for <strong>Image Class</strong> metadata version 4.1. MySQL client must also be version 4.1 or newer. Use of MySQL for Image Class requires MySQL to be used with Collmgr as well.</li>
+		  <li><a href="http://www.mysql.com/" target="external">MySQL</a> for storing session data and/or collection data (Collmgr).</li>
+	      </ol>
+	    </li>
+	    <li>For page image viewing 
+	      <ol>
+		<li><a href="http://c42pdf.ffii.org/" target="external">c42pdf</a> for displaying TIFF images in PDF format (free)</li>
+		<li><a href="http://www.dlxs.org/products/products.html" target="external">tif2web</a> for displaying TIFF images
+		  in GIF and/or PNG format (free)</li>
+	      </ol>
+	    </li>
+	    <li>For <strong>JPEG2000</strong>-compressed continuous tone image viewing
+	      <ol>
+		<li>a JPEG2000 encoding tool such as <strong>kdu_compress</strong> that supports batch encoding of images (provided to DLXS subscribers and readily available at <a href="http://www.kakadusoftware.com/" target="external">Kakadu Software</a>)</li>
+		<li><strong>kdu_expand</strong> for expanding and displaying
+		  JPEG2000-compressed images (provided to DLXS subscribers and readily available at <a href="http://www.kakadusoftware.com/" target="external">Kakadu Software</a>)</li>
+		<li><strong>cjpeg</strong> for use in conjunction with kdu_expand for JPEG2000 web delivery (available as part of libjpeg)</li>
+	      </ol>
+	    </li>
+	    <li>For <a href="http://www.lizardtech.com/" target="external">MrSID</a>-compressed continuous tone image viewing
+	      <ol>
+		<li>a MrSID encoding product such as MrSIDGeo that supports batch encoding of images (not free)</li>
+		<li><a href="http://www.dlxs.org/products/products.html" target="external">mrsid_retrieve</a> for displaying
+		  MrSID-encoded images in JPEG format (free)</li>
+	      </ol>
+	    </li>
+	  </ol>
+	</li>
+      </ol>
+      <p>We appreciate hearing from you if you encounter other system requirements. 
+	Please <a href="mailto:csnavely@umich.edu?subject=dlxs system requirements">contact the author</a> for
+	additions and suggestions.</p>
+    
+  </body>
+
+</html>

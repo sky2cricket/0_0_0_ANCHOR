@@ -1,0 +1,64 @@
+
+page_004_genre.htm
+
+var split_token=parent.U.split_token;
+parent.L.thisDocument = parent.D.document;
+
+<input type="hidden" name="sentinel_00" value="5">
+
+<input type="hidden" name="mods_genre_authority_aat" value="aat">
+&nbsp;<textarea name="mods_genre_aat" rows="2" cols="40"></textarea>
+<input type="hidden" name="mods_genre_authority_chenhall" value="nmc">
+&nbsp;<textarea name="mods_genre_chenhall" rows="2" cols="40"></textarea>
+<input type="hidden" name="mods_genre_authority" value="marcgt">
+&nbsp;<textarea name="mods_genre" rows="2" cols="40"></textarea>
+
+<input type="hidden" name="sentinel_01" value="0">
+<input type="hidden" name="gt_block_list" value="">
+
+
+button - Save Data and View MODS TAGS
+
+
+function load_UF_form() {
+
+parent.U.document.UF.gt_block_list.value = document.DF.gt_block_list.value;
+
+parent.U.document.UF.mods_genre_aat.value = document.DF.mods_genre_aat.value;
+parent.U.document.UF.mods_genre_chenhall.value = 
+
+document.DF.mods_genre_chenhall.value;
+parent.U.document.UF.mods_genre.value = document.DF.mods_genre.value;
+///authorities not passed but are needed for popup menu to work.
+return;
+}
+
+function load_DF_form() {
+document.DF.mods_genre_aat.value = parent.U.document.UF.mods_genre_aat.value;
+document.DF.mods_genre_chenhall.value = 
+
+parent.U.document.UF.mods_genre_chenhall.value;
+document.DF.mods_genre.value = parent.U.document.UF.mods_genre.value;
+document.DF.gt_block_list.value = parent.U.document.UF.gt_block_list.value;
+return;
+}
+
+
+function buildModsTags(N) {
+
+parent.U.document.UF.gt_block_list.value = document.DF.gt_block_list.value;
+load_UF_form();
+
+if (!parent.L.checkAllRequiredElements_Page_genre() ) {
+        parent.L.update_page_validation('genre','e');
+        return;
+}
+parent.L.update_page_validation('genre','E');
+
+    hps = parent.L.buildTagsArray_header(num);
+    aps = parent.L.buildTagsArray_genre(num);
+    cps = parent.L.buildTagsArray_closer(num);
+
+}
+
+elements();

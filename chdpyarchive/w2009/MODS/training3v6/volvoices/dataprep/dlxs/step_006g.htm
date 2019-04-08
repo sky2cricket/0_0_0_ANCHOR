@@ -1,0 +1,214 @@
+<html>
+<head>
+<script language=javascript src="links/vv_functions_links.js"></script>
+<title>
+char_check
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+</head>
+<!-- body  class="bg_aabbcc" -->
+<body bgcolor="aabbcc">
+<font face="arial" size="3">
+<center><font face="arial">
+<script>//document.write(dlxs_vv_header);</script>
+<p>
+</center>
+<table  class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="99aabb">
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+<tr class="bgstandardwhite" ><td colspan="3" align="left" class="step">
+<pre>
+step_006g.htm
+(using 0018_000054_000232 files as an example)
+processing 01 files in /d1/workarea/dlxs/bib/search/vv/
+                and in /d1/dlxs/prep/v/vvs-bib/
+
+[root@diglib2 vv]# ls /d1/workarea/dlxs/bib/search/vv/
+closesearch  opensearch  vvs-bib.xml  vvs-mods.xml  xml
+
+[root@diglib2 vvs-bib]# ls /d1/dlxs/prep/v/vvs-bib
+arr-bib.extra.srch  old_vvs-bib.extra.srch   transform           vvs-bib.presgml.dd
+modsSearch3.dtd     short_input_vvs-bib.xml  transformed.xml     vvs-bib.single.blank.dd
+modsSearch.dtd      short_norm.xml           vvs-bib.errors      vvs-bib.xml
+norm.xml            short_transform          vvs-bib.extra.dd    vvs-bib.xml.bk
+NOTE                short_vvs-bib.xml        vvs-bib.extra.srch
+old                 spc-bib.xml              vvs-bib.prepost.dd
+
+
+[root@diglib2 vvs-bib]# ls /d1/dlxs/idx/v/vvs-bib
+author.rgn                    date.rgn        loccd.rgn      repository.rgn  vvs-bib.dd
+bib-regions.tags              detail.rgn      locco.rgn      subject.rgn     vvs-bib.idx
+bib-regions.tags.modsSearch2  genre.rgn       Makefile       temporal.rgn    vvs-bib.init
+catcode.rgn                   geographic.rgn  media.rgn      textpage.rgn    vvs-bib.inp
+charents.frag                 id.rgn          name.rgn       text.rgn        vvs-bib.rgn
+collid.rgn                    ITEM.rgn        names.rgn      title.rgn
+coll.rgn                      keydate.rgn     publisher.rgn  topic.rgn
+creator.rgn                   location.rgn    record.rgn     vvcat.rgn
+
+.....................................................
+1. copy non-0012 files from multiples directory to /d1/workarea/dlxs/bib/search/vv/xml
+	command> cp /d1/workarea/dlxs/image/tel/multiples/search/*  /d1/workarea/dlxs/bib/search/vv/xml/
+
+	example: <a href="xfiles/01_vvi/0018_000054_000232/search_0018_000054_000232_0000.txt" target="_blank">0018_000054_000232_0000</a>
+
+2.  create the vvs-bib.xml file and move it to the prep directory
+	command> cd  /d1/workarea/dlxs/bib/search/vv/
+	command> ls 
+	closesearch  opensearch  vvs-bib.xml  vvs-mods.xml  xml/
+	command> cat opensearch xml/* closesearch > vvs-bib.xml <a href="xfiles/01_vvi/0018_000054_000232/short_search_vvs-bib.xml.txt" target="_blank">view short vvs-bib.xml</a> 
+	command> cp vvs-bib.xml /d1/dlxs/prep/v/vvs-bib/
+	warning about overwrite, answer yes
+	cp: overwrite `/d1/dlxs/prep/v/vvs-bib/vvs-bib.xml'? y
+
+3. Run the transform program that is in /d1/dlxs/prep/v/vvs-bib/
+	command> cd /d1/dlxs/prep/v/vvs-bib/
+	command> perl transform
+
+	What just happened?  I ran transform on the short version vvs-mods to show the changes.
+	transform takes the input file <a href="xfiles/01_vvi/0018_000054_000232/short_search_vvs-bib.xml.txt" target="_blank">vvs-bib.xml</a>
+	An intermediate file named <a href="xfiles/01_vvi/0018_000054_000232/short_search_vvs-bib_transform_norm.txt" target="_blank">norm.xml</a> is created.
+	Then transform grinds through norm.xml to create a new compressed version of <a href="xfiles/01_vvi/0018_000054_000232/short_search_vvs-bib_after_transform.txt" target="_blank">vvs_bib.xml</a>
+	The new compressed vvs-mods.xml is one long line, but if you use view source from
+	the browser it is a little more human-readable.
+
+
+4.  Copy the newly compressed vvs-bib.xml from the prep directory to the object directory
+	command> cp /d1/dlxs/prep/v/vvs-bib/vvs-bib.xml /d1/dlxs/obj/v/vvs-bib/
+	warning about overwrite, answer yes
+	cp: overwrite `/d1/dlxs/obj/v/vvs-bib/vvs-bib.xml'? y
+
+
+5.  Move to the idx directory to run the Makefile.
+	command> cd /d1/dlxs/idx/v/vvs-bib/
+	command> make all
+-----------------------------------------------------------
+screen capture......
+[root@diglib2 vvs-bib]# cd /d1/dlxs/idx/v/vvs-bib/
+[root@diglib2 vvs-bib]# make all
+make convert
+make[1]: Entering directory `/d1/dlxs/idx/v/vvs-bib'
+/d1/dlxs/bin/t/text/isolat128bit.pl /d1/dlxs/obj/v/vvs-bib/vvs-bib.xml
+make[1]: Leaving directory `/d1/dlxs/idx/v/vvs-bib'
+make norm
+make[1]: Entering directory `/d1/dlxs/idx/v/vvs-bib'
+sgmlnorm \
+/d1/dlxs/idx/v/vvs-bib/vvs-bib.inp \
+/d1/dlxs/obj/v/vvs-bib/vvs-bib.xml  > /d1/dlxs/obj/v/vvs-bib/vvs-bib.norm.xml
+mv  /d1/dlxs/obj/v/vvs-bib/vvs-bib.norm.xml /d1/dlxs/obj/v/vvs-bib/vvs-bib.xml
+make[1]: Leaving directory `/d1/dlxs/idx/v/vvs-bib'
+make validate
+make[1]: Entering directory `/d1/dlxs/idx/v/vvs-bib'
+nsgmls -s -f /d1/dlxs/prep/v/vvs-bib/vvs-bib.errors /d1/dlxs/idx/v/vvs-bib/vvs-bib.inp /d1/dlxs/obj/v/vvs-bib/vvs-bib.xml
+make[1]: Leaving directory `/d1/dlxs/idx/v/vvs-bib'
+make singledd
+make[1]: Entering directory `/d1/dlxs/idx/v/vvs-bib'
+cp /d1/dlxs/prep/v/vvs-bib/vvs-bib.single.blank.dd /d1/dlxs/idx/v/vvs-bib/vvs-bib.dd
+/usr/local/xpat/bin/xpatbld -m 256m -D /d1/dlxs/idx/v/vvs-bib/vvs-bib.dd
+cp /d1/dlxs/idx/v/vvs-bib/vvs-bib.dd /d1/dlxs/prep/v/vvs-bib/vvs-bib.presgml.dd
+make[1]: Leaving directory `/d1/dlxs/idx/v/vvs-bib'
+make multi
+make[1]: Entering directory `/d1/dlxs/idx/v/vvs-bib'
+cp /d1/dlxs/prep/v/vvs-bib/vvs-bib.presgml.dd /d1/dlxs/idx/v/vvs-bib/vvs-bib.dd
+/usr/local/xpat/bin/multirgn -f -D /d1/dlxs/idx/v/vvs-bib/vvs-bib.dd -t /d1/dlxs/idx/v/vvs-bib/bib-regions.tags
+cp /d1/dlxs/idx/v/vvs-bib/vvs-bib.dd /d1/dlxs/prep/v/vvs-bib/vvs-bib.prepost.dd
+make[1]: Leaving directory `/d1/dlxs/idx/v/vvs-bib'
+make post
+make[1]: Entering directory `/d1/dlxs/idx/v/vvs-bib'
+cp /d1/dlxs/prep/v/vvs-bib/vvs-bib.prepost.dd /d1/dlxs/idx/v/vvs-bib/vvs-bib.dd
+touch /d1/dlxs/idx/v/vvs-bib/vvs-bib.init
+/usr/local/xpat/bin/xpat -q /d1/dlxs/idx/v/vvs-bib/vvs-bib.dd < /d1/dlxs/prep/v/vvs-bib/vvs-bib.extra.srch | /d1/dlxs/bin/t/text/output.dd.frag.pl /d1/dlxs/idx/v/vvs-bib/ > /d1/dlxs/prep/v/vvs-bib/vvs-bib.extra.dd
+/d1/dlxs/bin/t/text/inc.extra.dd.pl /d1/dlxs/prep/v/vvs-bib/vvs-bib.extra.dd /d1/dlxs/idx/v/vvs-bib/vvs-bib.dd
+make[1]: Leaving directory `/d1/dlxs/idx/v/vvs-bib'
+-----------------------------------------------------------
+
+6.  Make a release to production:  bib class? search class?
+Release to production:
+	http://diglib2.lib.utk.edu/cgi/c/collmgr/collmgr/ Select Release to Production, Bib Class
+
+
+7.  Copy minithumbs for search display on diglib.
+	command> scp minithumbs/* diglib@diglib.lib.utk.edu:/d1/dlxs/web/thumbs/vv/.
+
+/d1/workarea/dlxs/bib/search/dothis
+
+cat opensearch xml/* closesearch > vvs-bib.xml  (or whatever, match colleciton)
+cp vvs-bib.xml /d1/dlxs/prep/v/vvs-bib/.
+cd /d1/dlxs/prep/v/vvs-bib
+transform
+cp vvs-bib.xml ../../../obj/v/vvs-bib
+cd ../../../idx/v/vvs-bib
+make all
+(make a release to production:  bib class)
+
+
+10. command> /bin/cp search/0012* spc/modssearch/.
+11. command> /bin/cp search/* /d1/workarea/dlxs/bib/search/vv/xml/
+
+You will go there to put all the search and mods files from different directories up.
+12. command> scp minithumbs/* diglib@diglib.lib.utk.edu:/d1/dlxs/web/thumbs/vv/.
+(need these for search display)
+
+
+----------------end of this page, notes for next----------------
+see SUMMARY for deleted lines about changing class
+
+
+b.  fixSubjects - this process now done at /d1/workarea/dlxs/bib/mods/vv
+	# fixSubjects
+	# repairs the MODS and the modsbib (not the search)
+	# so that each subject is contained in its own &lt;subject auth= tag.
+	# also, for LCSH ones, splits them out on the "--" value.
+	# if the  value contains "century" or numbers (dashes?), label it temporal
+	# if the value contains only "Tennessee" or "United States" and spaces,
+	#    label it geographic
+	# otherwise, the first value keeps its current tag, and all following 
+	# values (that don't meet those specs) get labeled topic, and stay within the
+	# same subject tag.
+
+c. hexmess - use only if software breaks when you normalize
+	#hexmess
+	#hexdumps files and checks the hexdump for bad characters.
+	# outputs list of characters that must be removed or replaced.
+	# use to test OCR files in particular
+
+<!---------------------------------
+other things to do, including special handling for special collectios
+this came from the "dothis" file in /d1/workarea/dlxs/image/tel/singles
+
+
+separate out the newmods from institution 0012 and put in spc directory.
+/bin/mv newmods/0012* spc/mods/.
+
+for bib class:
+/bin/mv  modsbib/0012* spc/modsbib/.
+/bin/cp modsbib/* /d1/workarea/dlxs/bib/mods/vv/xml
+
+
+for search:
+/bin/cp search/0012* spc/modssearch/.
+/bin/cp search/* /d1/workarea/dlxs/bib/search/vv/xml/
+
+You will go there to put all the search and mods files from different directories up.
+scp minithumbs/* diglib@diglib.lib.utk.edu:/d1/dlxs/web/thumbs/vv/.
+(need these for search display)
+
+run fixSubjects
+
+(more about fixSubjects in MODS dir where we will be making preservation versions)
+
+do NOT run infotrack on these yet, as we need to relate them to their EADs,
+and alter them for crosslinking.
+
+hopefully you have all new dlc files in one directory alone.
+point infotrack at this directory and run it, to put info on files into
+InfoTrack database.  then copy new stuff to store1.
+-->
+
+
+</pre>
+</font>
+</td></tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+</table>
+
+

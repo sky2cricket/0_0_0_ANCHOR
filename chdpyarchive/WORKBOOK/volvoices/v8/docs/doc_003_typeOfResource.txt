@@ -1,0 +1,43 @@
+
+page_003_typeOfResource.htm
+
+
+<form name="DF"  >
+
+
+<input type="hidden" name="sentinel_00" value="5">
+
+<textarea name="type_of_resource_all" cols="50" rows="4"></textarea>
+
+<input type="hidden" name="sentinel_01" value="5">
+
+button - Save Data and View MODS TAGS
+
+
+</form name = "DF">
+
+function load_UF_form() {
+parent.U.document.UF.type_of_resource_all.value = document.DF.type_of_resource_all.value;
+return;
+}
+
+function load_DF_form() {
+document.DF.type_of_resource_all.value = parent.U.document.UF.type_of_resource_all.value;
+return;
+}
+
+
+function buildModsTags(N) {
+load_UF_form();
+
+if (!parent.L.checkAllRequiredElements_Page_typeOfResource() ) {
+        parent.L.update_page_validation('typeOfResource','d');
+        return;
+}
+parent.L.update_page_validation('typeOfResource','D');
+    hps = parent.L.buildTagsArray_header(num);
+    aps = parent.L.buildTagsArray_typeOfResource(num);
+    cps = parent.L.buildTagsArray_closer(num);
+}
+
+elements()

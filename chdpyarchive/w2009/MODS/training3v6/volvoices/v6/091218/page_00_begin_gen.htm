@@ -1,0 +1,522 @@
+
+<html>
+<head>
+<title>
+page_begin
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+<script language=javascript src="vv_compose_tags.js"></script>
+
+
+<script>
+
+var DATE = new Date();
+
+function buildXmlFileName() {
+
+var basename=new String(document.forms[0].XMLBASE.value);
+
+basename=basename.replace(/ /gi,"");
+if ( basename == "" ) { 
+	//alert("You must enter a value for XMLBASE to continue.");
+	return;
+	}
+
+
+document.forms[0].XMLBASE.value = basename;
+
+var filename= new String(" ");
+
+filename = document.forms[0].XMLBASE.value + "0000.xml";
+
+document.forms[0].XMLmaster_alt.value=filename;
+
+
+}//end function
+
+
+function buildPathNames() {
+
+var pathname = new String(document.forms[0].XMLPATH_alt.value);
+    pathname = pathname.replace(/ /gi,"");
+if (pathname == "" ) {
+	//alert("You must enter a value for the Path.");
+	return;
+	}
+
+var backSlash = new String("\\");
+
+var lastCharIndex = pathname.length - 1;
+//alert ("pathname last char = "+pathname.charAt(lastCharIndex));
+
+if (pathname.charAt(lastCharIndex) != backSlash ) {
+	pathname = pathname +backSlash;
+	alert("A backslash is being appended to the Directory Full Path.");
+        document.forms[0].XMLPATH_alt.value = pathname;
+	}
+	
+
+document.forms[0].XMLPATH.value = pathname;
+document.forms[0].XMLPATHFULL.value = pathname;
+
+
+}//end function
+
+
+
+
+
+</script>
+
+
+</head>
+
+<script>document.write('<body onload="load_DF_form();"  bgcolor="'+parent.adb_background_color+'" >');</script>
+
+<font face="arial" size="3">
+<center><font face="arial">
+<h2> <script> document.write(parent.adb_project_name); </script>
+ Begin Page </h2>
+</center>
+
+<script>
+///Civil War Salt Peter Mining None, LCNAF, ULAN. 
+
+
+
+</script>
+
+<form name="DF"  action="new.xml">
+
+<input type="hidden" name="VVcomment_01" value="">
+<input type="hidden" name="VVcomment_02" value="">
+<input type="hidden" name="VVcomment_03" value="">
+<input type="hidden" name="VVcomment_03c" value="">
+<input type="hidden" name="VVcomment_03p" value="">
+<input type="hidden" name="VVcomment_03d" value="">
+<input type="hidden" name="VVcomment_04" value="">
+
+<table class="bgINNER" border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="ddeeff">
+<tr class="bgstandard"><td colspan="3">
+
+All fields on this page are required.
+<br>The base filename (<u>XMLBASE</u>) controls the names 
+of the <u>XML master file</u> and the <u>Constituent Files</u>.
+<br>The <u>Directory Full Path</u> is used remind the user of the preferred download directory. 
+<br>All of this information appears in the block of comments at the beginning of the xml file.
+
+<br>&nbsp;
+
+</td></tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+<tr class="bgstandard"><td colspan="1" class="label0nou">
+&nbsp;
+</td><td class="value10nou">
+&nbsp;
+<input type ="hidden" name="XMLmaster_01" value="alt" >
+<input type ="hidden" name="XMLmaster_02" value="alt" >
+<input type ="hidden" name="XMLmaster_03" value="alt" >
+<input type ="hidden" name="XMLmaster_04" value="0000" >
+<input type ="hidden" name="XMLmaster_05" value=".xml" >
+</td>
+<td>&nbsp;</td>
+</tr>
+
+<tr class="bgstandard"><td colspan="1" class="label12u">
+Content Contributor
+</td><td class="value10nou">
+<input type ="text" name="contributorName" value="" class="required300w" > &nbsp;
+<br>This name goes into the comment block and gives credit to the person who did the work.</td>
+<td>&nbsp;</td>
+</tr>
+
+<tr class="bgstandard"><td colspan="1" class="label12u">
+Institution
+</td><td class="value10nou">
+<input type ="text" name="institutionName" value="" class="required300w" > &nbsp;
+<br>This name goes into the comment block and gives credit to the institution which supports this  work.</td>
+<td>&nbsp;</td>
+</tr>
+
+
+<tr class="bgstandard"><td colspan="1" class="label12u">
+XMLBASE
+</td><td class="value10nou">
+
+<input type ="text" name="XMLBASE" value="" class="required300w" onblur="buildXmlFileName()" 
+ > &nbsp;
+<!---
+<input type ="button" name="B1a" value="Build XML Filename" class="button120w"  onclick="buildXmlFileName()">
+
+--->
+
+<BR>The value for XMLBASE controls the names generated for the XML master file and the Constituent Files.
+<BR>The XML master file will be XMLBASE +"0000.xml".
+<br>All constituent files will be named using XMLBASE as the first part of the name.</td>
+
+<td>&nbsp;</td>
+</tr>
+
+
+<tr class="bgstandard"><td colspan="1" class="label12u">
+XML Filename
+</td><td class="value10nou">
+
+<input type ="text" name="XMLmaster_alt" value="" class="required300w" READONLY
+ > &nbsp;&nbsp;&nbsp; Final xml file name.
+<br>The workbook will assign the XML Filename using XMLBASE as the first part of the name.
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+
+
+
+
+
+
+<tr class="bgstandard"><td colspan="1" class="label12u">
+Directory Full Path
+</td><td class="value10nou">
+<input type="hidden" name="selectXMLPATH" value="99">
+<input type="text" name="XMLPATH_alt" size="60" value="C:\" class="required300w" >
+&nbsp;&nbsp;&nbsp; Download directory for final xml file.
+<input type="hidden" name="XMLPATH" value="">
+<input type="hidden" name="XMLPATHFULL" value="">
+
+
+</td>
+<td>&nbsp;</td>
+</tr>
+
+<tr class="bgstandard"><td colspan="1" class="label12u">
+# Constituent Files <br>(# TIF files)
+</td><td class="value10nou">
+<input type ="text" name="numConstituentsTIFF" value="1" class="required60w" 
+onkeypress="return parent.L.digits_only_rule_max(event,this,4)" >Digits only. Only count .TIF files.</td>
+<td>&nbsp;</td>
+</tr>
+
+
+
+
+
+
+<tr class="bgstandard">
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+
+
+<tr class="bgstandard"><td colspan="3" align="center">
+&nbsp;&nbsp;
+
+<input type="button" name="B_UF" value="Save FILENAME Values" onclick="load_UF_form();" class="buttonnw">
+&nbsp;&nbsp;&nbsp;
+<input type="button" name="B_DF" value="Clear" onclick="clearForm()" class="buttonnw">
+
+
+</td></tr>
+
+
+<tr class="bgstandard">
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+
+
+<tr class="bgstandard">
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+
+
+</table>
+
+
+
+
+
+
+
+</form name="forms[0]">
+
+
+<center><font face="arial">
+<h2> <script> document.write(parent.adb_project_name); </script>
+ Alternate Begin Page </h2>
+</center>
+
+<script>
+
+function clearForm() {
+    var strPath = "C:\\";
+    document.DF.contributorName.value = "";
+    document.DF.institutionName.value = "";
+    document.DF.XMLBASE.value = "";
+    document.DF.XMLmaster_alt.value = "";
+    document.DF.XMLPATH_alt.value = strPath;
+    document.DF.numConstituentsTIFF.value="0" ;
+}
+
+function generate_file_list_tiff() {
+
+var str = new String();
+
+var N = 0;
+    N = Number(document.DF.numConstituentsTIFF.value );
+
+var base = document.DF.XMLBASE.value ;
+
+var append = new String();
+var j=0, chop=0;
+
+for ( i=0; i<N; i++ ) {
+	j= i+1;
+	append = "0000"+String(j);
+	chop = append.length -4;
+	append=append.substring(chop);
+	///alert("tiff file: "+base+append);
+	str += ","+base+append;
+}
+
+str = str.substring(1);
+
+///alert("file list tiff:\n"+str);
+
+return str;
+
+
+
+}//end function generate_file_list_tiff() 
+
+
+
+
+function load_UF_form() {
+
+parent.adb_fullname = document.forms[0].contributorName.value;
+parent.adb_instname = document.forms[0].institutionName.value;
+
+buildXmlFileName();
+buildPathNames();
+
+
+parent.U.document.UF.validate_page_begin.value="0"; //no caching from previous value
+parent.U.document.UF.validate_page_05.value="0"; //no caching from previous value
+
+var strMsg = new String(" ");
+
+var strTest = new String();
+
+    strTest = document.DF.contributorName.value;
+    strTest = strTest.replace(/ /gi,"");
+if ( document.DF.contributorName.value == "" || strTest.length == 0) {
+	strMsg += "You must enter a value for Contributor Name.\n\n";
+	}
+
+
+    strTest = document.DF.institutionName.value;
+    strTest = strTest.replace(/ /gi,"");
+if ( document.DF.institutionName.value == "" || strTest.length == 0) {
+	strMsg += "You must enter a value for Institution Name.\n\n";
+	}
+
+    strTest = document.DF.XMLBASE.value;
+    strTest = strTest.replace(/ /gi,"");
+    document.DF.XMLBASE.value = strTest;//no whitespace in basename
+if ( document.DF.XMLBASE.value == "" ||  strTest.length == 0) {
+	strMsg += "You must enter a value for XMLBASE.\n\n";
+	}
+
+
+    strTest = document.DF.XMLPATH_alt.value;
+    strTest = strTest.replace(/ /gi,"");
+    document.DF.XMLPATH_alt.value = strTest;//no whitespace in xmlpath
+if ( document.DF.XMLPATH_alt.value == "" || strTest == 0) {
+	strMsg += "You must enter a value for Directory Full Path.\n\n";
+	}
+
+if ( document.DF.numConstituentsTIFF.value == "0" || document.DF.numConstituentsTIFF.value == "" ) {
+	strMsg += "You have entered  0 or blank for number of constituent files."
+	       +"\nYou must enter a number greater than 0.";
+	}
+
+if ( strMsg.length > 1 ) {
+	strMsg = strMsg.substring(1);
+	alert(strMsg);
+	return;
+} 
+/////else {
+parent.U.document.UF.file_list_tiff.value=generate_file_list_tiff() ;
+parent.U.document.UF.VVcomment_02.value= "<!-- NUMBER_OF_CONSTITUENT_FILES: "+document.forms[0].numConstituentsTIFF.value + ": --> \r\n";
+parent.U.document.UF.validate_page_begin.value="1"; //pass
+parent.U.document.UF.validate_page_05.value="1"; //pass
+
+	
+
+var backslash = new String("/");  //formerly "\\" for ms backslash
+var d = new Date();
+
+var strComment_01  = new String();
+var strComment_02  = new String();
+var strComment_03  = new String();
+var strComment_03c = new String();
+var strComment_03p = new String();
+var strComment_03d = new String();
+var strComment_04  = new String();
+
+	
+
+strComment_01 = "<!-- FILENAME: "+document.forms[0].XMLPATH_alt.value+document.forms[0].XMLBASE.value+"0000.xml  --> \r\n";
+
+if ( parent.U.document.UF.VVcomment_03.value.indexOf("RELOAD") == -1 ) {
+  	strComment_02  = "<!-- NUMBER_OF_CONSTITUENT_FILES: "+document.forms[0].numConstituentsTIFF.value + ": --> \r\n";
+    	strComment_03  = "<!-- Reload: none -->\r\n";
+    	strComment_03c = "<!-- Content Contributor:  "+parent.adb_fullname +" --> \r\n";
+    	strComment_03p = "<!-- Institution:  "+parent.adb_instname +" --> \r\n";
+    	strComment_03d = "<!-- Record Creation Date:  "+d +" --> \r\n";
+    	strComment_04  = "<!-- PAGE VALIDATION :0:0:0:0:0:0:0: --> ";
+}else{
+   	strComment_02  = parent.U.document.UF.VVcomment_02.value;
+	strComment_03  = parent.U.document.UF.VVcomment_03.value;
+	strComment_03c = parent.U.document.UF.VVcomment_03c.value;
+    	strComment_03p = parent.U.document.UF.VVcomment_03p.value;
+    	strComment_03d = parent.U.document.UF.VVcomment_03d.value;
+    	strComment_04  = parent.U.document.UF.VVcomment_04.value;
+}
+
+    document.DF.VVcomment_01.value  = strComment_01;
+    document.DF.VVcomment_02.value  = strComment_02;
+    document.DF.VVcomment_03.value  = strComment_03;
+    document.DF.VVcomment_03c.value = strComment_03c;
+    document.DF.VVcomment_03p.value = strComment_03p;
+    document.DF.VVcomment_03d.value = strComment_03d;
+    document.DF.VVcomment_04.value  = strComment_04;
+  
+///parent.U.document.reload();
+//////alert("load_UF_form()");
+parent.U.document.UF.VVcomment_01.value = document.DF.VVcomment_01.value;
+parent.U.document.UF.VVcomment_02.value = document.DF.VVcomment_02.value;
+parent.U.document.UF.VVcomment_03.value = document.DF.VVcomment_03.value;
+parent.U.document.UF.VVcomment_03c.value = document.DF.VVcomment_03c.value;
+parent.U.document.UF.VVcomment_03p.value = document.DF.VVcomment_03p.value;
+parent.U.document.UF.VVcomment_03d.value = document.DF.VVcomment_03d.value;
+parent.U.document.UF.VVcomment_04.value = document.DF.VVcomment_04.value;
+
+
+
+parent.U.document.UF.contributorName.value = document.DF.contributorName.value; 
+parent.U.document.UF.institutionName.value = document.DF.institutionName.value; 
+
+parent.U.document.UF.XMLmaster_01.value = "alt";
+parent.U.document.UF.XMLmaster_02.value = "alt";
+parent.U.document.UF.XMLmaster_03.value = "alt";
+parent.U.document.UF.XMLmaster_04.value = document.DF.XMLmaster_04.value;
+parent.U.document.UF.XMLmaster_05.value = document.DF.XMLmaster_05.value;
+parent.U.document.UF.XMLmaster_alt.value = document.DF.XMLmaster_alt.value ;
+parent.U.document.UF.XMLPATH_alt.value = document.DF.XMLPATH_alt.value ;
+parent.U.document.UF.XMLBASE.value = document.DF.XMLBASE.value;
+parent.U.document.UF.XMLPATH.value = document.DF.XMLPATH.value;
+parent.U.document.UF.XMLPATHFULL.value = document.DF.XMLPATHFULL.value;
+
+/* Need this code for upper form, because the select menu exists in the upper form.
+   But the select menu does not exist in the lower form, so no analog for DF
+   This allows the Custom Begin Page for UTK to function correctly.
+*/
+parent.U.document.UF.selectXMLPATH[0].selected = true;
+for(i=1;i<document.DF.selectXMLPATH.length;i++ ) {
+parent.U.document.UF.selectXMLPATH[i].selected = false;
+}
+parent.U.document.UF.numConstituentsTIFF.value = document.DF.numConstituentsTIFF.value;
+
+
+
+alert("FILENAME Values have been saved."
+	+"\n\n When you have completed the workbook, \n you will save your xmlfile to \n\n "
+	+document.forms[0].XMLPATHFULL.value+document.forms[0].XMLBASE.value+"0000.xml           "
+	+"\n\n Please make sure that the directory (folder) shown below exists on your computer."
+	+"\n\n "+document.forms[0].XMLPATHFULL.value
+	+"\n\n If this directory (folder) does not exist on your computer, please add it now."
+	);
+
+
+parent.U.document.UF.validate_page_begin.value="1";
+parent.U.document.UF.validate_page_05.value="1";
+parent.L.update_page_validation(0,1);
+parent.L.update_page_validation(5,1);
+
+}
+
+function load_DF_form(num) {
+
+
+var NUM = 0;
+
+if ( typeof(num) != 'undefined') NUM = num;
+
+////////alert("load_DF_form()");
+document.DF.VVcomment_01.value = parent.U.document.UF.VVcomment_01.value ;
+document.DF.VVcomment_02.value = parent.U.document.UF.VVcomment_02.value ;
+document.DF.VVcomment_03.value = parent.U.document.UF.VVcomment_03.value ;
+document.DF.VVcomment_03c.value = parent.U.document.UF.VVcomment_03c.value ;
+document.DF.VVcomment_03d.value = parent.U.document.UF.VVcomment_03d.value ;
+document.DF.VVcomment_04.value = parent.U.document.UF.VVcomment_04.value ;
+
+document.DF.contributorName.value = parent.adb_fullname;
+document.DF.institutionName.value = parent.adb_instname;
+
+document.DF.XMLmaster_01.value = parent.U.document.UF.XMLmaster_01.value ;
+document.DF.XMLmaster_02.value = parent.U.document.UF.XMLmaster_02.value ;
+document.DF.XMLmaster_03.value = parent.U.document.UF.XMLmaster_03.value ;
+document.DF.XMLmaster_04.value = parent.U.document.UF.XMLmaster_04.value ;
+document.DF.XMLmaster_05.value = parent.U.document.UF.XMLmaster_05.value ;
+document.DF.XMLmaster_alt.value = parent.U.document.UF.XMLmaster_alt.value ;
+document.DF.XMLPATH_alt.value = parent.U.document.UF.XMLPATH_alt.value ;
+document.DF.XMLBASE.value = parent.U.document.UF.XMLBASE.value ;
+document.DF.XMLPATH.value = parent.U.document.UF.XMLPATH.value ;
+document.DF.XMLPATHFULL.value = parent.U.document.UF.XMLPATHFULL.value ;
+
+/* --- no formvar selectXMP
+for(i=0;i<parent.U.document.UF.selectXMLPATH.length;i++ ) {
+document.DF.selectXMLPATH[i].selected = parent.U.document.UF.selectXMLPATH[i].selected;
+}
+*/
+
+document.DF.numConstituentsTIFF.value = parent.U.document.UF.numConstituentsTIFF.value ;
+
+var backslash = new String("/");  //formerly "\\" for ms backslash
+
+if (NUM == 2) { 
+	alert("Values have been reset."
+	+"\n\n When you have completed the workbook, \n you will save your xmlfile to \n\n "
+	+document.forms[0].XMLPATH_alt.value+document.forms[0].XMLBASE.value+"0000.xml           "
+	+"\n\n Please make sure that the directory (folder) shown below exists on your computer."
+	+"\n\n "+document.forms[0].XMLPATHFULL.value
+	+"\n\n If this directory (folder) does not exist on your computer, please add it now."
+
+	);
+}
+
+return;
+}
+
+
+
+
+</script>
+	
+
+
+</body>
+</html>
+

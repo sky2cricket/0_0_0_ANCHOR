@@ -1,0 +1,148 @@
+<html>
+<head>
+<title>vv_popupCA</title>
+
+<link href="../vv_workbook.css" type="text/css" rel="stylesheet">
+
+
+
+
+<script language="javascript">
+
+var select_id= new String();
+function get_select_id() {
+
+var str = new String();
+    str = parent.location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  parent.window.opener.location.href="+parent.window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=get_select_id();
+
+
+
+var strSelect_PN_A = new String('');
+
+
+strSelect_PN_A = '<select name="aaa"  size="24" style="font-size:10px"> \r\n'
+	+'<option value="0" selected>No value selected</option> \r\n'
+		
+
+	+'<option>O\'BRYAN\'S SELECT SCHOOL (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>OAK GROVE BAPTIST CHURCH (BUENA VISTA, TENN.)</option>  \r\n'
+	+'<option>OAK GROVE CUMBERLAND PRESBYTERIAN CHURCH (CHESTER COUNTY, TENN.)</option>  \r\n'
+	+'<option>OAK GROVE CUMBERLAND PRESBYTERIAN CHURCH (DECATUR COUNTY, TENN.)</option>  \r\n'
+	+'<option>OAK GROVE CUMBERLAND PRESBYTERIAN CHURCH (DICKSON COUNTY, TENN.)</option>  \r\n'
+	+'<option>OAK HILL BAPTIST CHURCH (HENRY COUNTY, TENN.)</option>  \r\n'
+	+'<option>OAK HILL CUMBERLAND PRESBYTERIAN CHURCH (HENRY COUNTY, TENN.)</option>  \r\n'
+	+'<option>OAK HILL INSTITUTE (LINCOLN COUNTY, TENN.)</option>  \r\n'
+	+'<option>OAK HILL METHODIST CHURCH (HENRY COUNTY, TENN.)</option>  \r\n'
+	+'<option>OAK HILL MISSIONARY BAPTIST CHURCH (HENRY COUNTY, TENN.)</option>  \r\n'
+	+'<option>OAKLAND UNITED METHODIST CHURCH (LOUDON COUNTY, TENN.)</option>  \r\n'
+	+'<option>OAKLANDS (MURFREESBORO, TENN.)</option>  \r\n'
+	+'<option>OBION HIGH SCHOOL (OBION, TENN.)</option>  \r\n'
+	+'<option>OCOEE BAPTIST CHURCH (POLK COUNTY, TENN.)</option>  \r\n'
+	+'<option>ODD FELLOWS FEMALE INSTITUTE (CORNERSVILLE, TENN.)</option>  \r\n'
+	+'<option>OHAVA EMES CONGREGATION (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>OLD BROWN MILL (GILES COUNTY, TENN.)</option>  \r\n'
+	+'<option>OLD CITY CEMETERY (BOLIVAR, TENN.)</option>  \r\n'
+	+'<option>OLD GIBSON PRIMITIVE BAPTIST CHURCH (GIBSON COUNTY, TENN.)</option>  \r\n'
+	+'<option>OLD GRAY CEMETERY (KNOXVILLE, TENN.)</option>  \r\n'
+	+'<option>OLD KINGSPORT PRESBYTERIAN CHURCH (KINGSPORT, TENN.)</option>  \r\n'
+	+'<option>OLD OAK CLUB (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>OLD SALEM CEMETERY (MADISON COUNTY, TENN.)</option>  \r\n'
+	+'<option>OLIVET CUMBERLAND PRESBYTERIAN CHURCH (SAVANNAH, TENN.)</option>  \r\n'
+	+'<option>ONEIDA (TENN.) - INDEPENDENT SCHOOL DISTRICT</option>  \r\n'
+	+'<option>ORPHEUM THEATRE (MEMPHIS, TENN.)</option>  \r\n'
+	+'<option>OSSOLI CIRCLE (KNOXVILLE, TENN.)</option>  \r\n'
+	+'<option>OVERTON HALL (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>OWEN METHODIST CHURCH (MARION COUNTY, TENN.)</option>  \r\n'
+
+
++'</select> \r\n';
+	
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+<body class="background">
+
+
+
+
+<form name="FormOne" >
+
+
+<div name="SS" id="SS">
+<script>
+document.write(
+
+	 '<table border="1" cellpadding="4" cellspacing="0"  width="90%">\r\n'
+	+'<tr><td  bgcolor="ddeeff">\r\n'
+	///+'vv_functions.htm called by '+select_id+' <br>\r\n'
+	+'<b>Select Corporate Author O</b> \r\n'
+	+'</td></tr><tr><td bgcolor="ddeeff"> \r\n' 
+	+ strSelect_PN_A
+
+	+'</td></tr></table> \r\n'
+	///+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+</script>
+	
+</div>
+
+<input type="button" onclick="showSelection();" name="B1" value="Corporate Author">
+
+</form>
+
+<script>
+
+
+
+                  
+
+function showSelection() {
+
+val = new String();
+
+for ( i=0; i< document.FormOne.aaa.length; i++ ) {
+
+if ( document.FormOne.aaa[i].selected == true ) {
+  	val = document.FormOne.aaa[i].text;
+	break;
+	}
+else { val = "you never selected anything"; 
+	}
+
+}
+////////////////////////alert ("You selected " +val);
+
+switch ( select_id ) {
+
+case  "subject_name_lcsh_01" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_01.value=val;
+	parent.window.close();
+	break;
+
+case  "subject_name_lcsh_02" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_02.value=val;
+	parent.window.close();
+	break;
+}//end switch
+
+}///end function
+</script>
+

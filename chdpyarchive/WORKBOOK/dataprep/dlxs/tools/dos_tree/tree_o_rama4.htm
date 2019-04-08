@@ -1,0 +1,237 @@
+
+
+<html>
+<head>
+<title>
+tree_o_rama
+</title>
+<link href="../../vv_workbook.css" type="text/css" rel="stylesheet">
+
+
+<script language="Javascript">
+
+function clearData() {
+document.forms[0].chomp.value = "";
+document.forms[0].chomp2.value = "";
+document.DF.reset();
+return;
+}
+
+function tree_o_rama_01() {
+document.DF.chomp2.value = "";
+var s = new String();
+var t = new String();
+var u = new String();
+var v = new String("\n");
+var baseDir = new String(".");
+var currDir = new String(".");
+var full_text = new String("\n\n\nDirectories covered by this tree:\n\n\n");
+var file_count = 0;
+var index  =0;
+var i4     = index+3;
+var findex =0;
+//alert("tree_o_rama_01"); 
+if(!confirm("file_count="+file_count+"\nfile_count given every 5000 to show progress")) return;
+s = document.DF.chomp.value;
+//alert ("s="+s);
+var t = s.split("\r\n");
+for (i=0;i<t.length;i++) {
+	u = t[i];
+	index   = u.indexOf("---");
+	fIndex  = u.indexOf("|");
+	fRIndex = u.lastIndexOf(" ")+1;
+	if (index > -1 ) {
+		i4 = index+3;
+		dN = u.substr(i4);
+		if (index == 1) {
+			dN1 = dN;
+			currDir= baseDir+"/"+dN1;
+		}else if (index == 5){
+			dN5 = dN;
+			currDir= baseDir+"/"+dN1+"/"+dN5;
+		}else if (index == 9){
+			dN9 = dN;
+			currDir= baseDir+"/"+dN1+"/"+dN5+"/"+dN9;
+		}else if (index == 13){
+			dN13 = dN;
+			currDir= baseDir+"/"+dN1+"/"+dN5+"/"+dN9+"/"+dN13;
+		}else if (index == 17){
+			dN17 = dN;
+			currDir= baseDir+"/"+dN1+"/"+dN5+"/"+dN9+"/"+dN13+"/"+dN17;
+		}else if (index == 21){
+			dN21 = dN;
+			currDir= baseDir+"/"+dN1+"/"+dN5+"/"+dN9+"/"+dN13+"/"+dN17+"/"+dN21;
+		}else if (index == 25){
+			dN25 = dN;
+			currDir= baseDir+"/"+dN1+"/"+dN5+"/"+dN9+"/"+dN13+"/"+dN17+"/"+dN21+"/"+dN25;
+		}else if (index == 29){
+			dN29 = dN;
+			currDir= baseDir+"/"+dN1+"/"+dN5+"/"+dN9+"/"+dN13+"/"+dN17+"/"+dN21+"/"+dN25+"/"+dN29;
+		}
+		//xx3 v += currDir +"\n";
+		//xx3 full_text += index +"\t"+t[i]+"\n";
+		//alert ("index="+index+"\n\ncurrDir=\n"+currDir); 
+	}//end if (index>-1)
+	else if (fIndex > -1){
+		file_count++;
+		fName = u.substr(fRIndex);
+		if (fName.length > 0 && fName.indexOf(".tif") > -1 ){
+		  v+= "status,Volunteer Voices,"+currDir+","+currDir+"/"+fName+","+fName+"\n";
+
+			//v += file_count+"\t"+currDir+"/"+fName+"\t"+fName+"\n";
+			//v = file_count+"\t"+currDir+"/"+fName+"\t"+fName+"\n";
+			//if (!confirm ("v=\n"+v)) return;
+			if (file_count%1000==0) {
+				document.DF.chomp2.value += v;
+				v="";
+				if (file_count%5000 ==0){
+				  if(!confirm("file_count="+file_count)) return;
+					}
+				}
+			}
+		}
+}//end for
+
+
+document.DF.chomp2.value += v;
+alert("file_count="+file_count);
+full_text += "\n\nfile_count="+file_count+"\n";
+document.DF.chomp2.value += full_text;
+
+alert("Final file_count: "+file_count+"\n\nNow you are done. :) ");
+
+
+
+}//end function tree_o_rama
+
+
+
+
+</script>
+
+
+</head>
+
+<body class="bg_aabbcc">
+
+<font face="arial" size="3">
+<center><font face="arial">
+
+<h2>Tree_O_Rama4 Tool (tiffs only)</h2>
+<p>
+<a href="./tree_sample.txt" target="_blank">sample_tree</a> provided for testing
+</center>
+
+<script>
+
+
+function save_tree() {
+
+alert("This only works for files less than one thousand lines.");
+return;
+
+document.DF.action = "save_tree.php";
+document.DF.method = "POST";
+///////////document.DF.myfilename.value = document.DF.begin_file.value;
+document.DF.submit();
+
+}//end function
+
+</script>
+
+<form name="DF" >
+
+
+<table  class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="99aabb">
+
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+<tr class="bgstandard" ><td colspan="1" class="label12u">
+tree_o_rama3<br>input
+</td><td class="value10nou">
+<textarea name="chomp" rows="8" cols="80" value=""></textarea> document.DF.chomp.value
+<br>
+<input type="button" name ="bChomp1top" onclick="tree_o_rama_01();" value="tree_o_rama GO">
+&nbsp;
+&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+<tr class="bgstandard" ><td colspan="1" class="label12u">
+tree_o_rama3<br>output
+</td><td class="value10nou">
+<!-- textarea: document.DF.chomp.value<br-->
+<textarea name="chomp2"
+rows="8" cols="80"></textarea> document.DF.chomp2.value
+<br>
+<input type="button" name ="bClear" onclick="clearData();" value="Clear TextAreas">
+<!---
+Save file as: <input type="text" size="50" name="myfilename" value="MYFILE.txt">
+<br>Please use .txt file extension.
+<p>
+--->
+
+&nbsp;</td>
+
+<td>&nbsp;</td>
+</tr>
+
+
+
+
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+<tr class="bgstandard" >
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard" ><td colspan="1" class="label12u">
+How to use<br>tree_o_rama3
+</td><td class="value12nou">
+First, create a DOS tree by typing <u>tree /f /a > mytree.txt</u> on the DOS command line.
+<BR>(or use the <a href="sample_tree.txt" target="_blank">sample_tree</a> provided here.)
+<br>Second, copy and paste the text file mytree.txt into the tree_o_rama input text area.
+<br>Push the button <u>tree_o_rama GO</u>.
+<br>This outputs the parsed tree to the tree_o_rama output text area.
+<br>If you like the output, cut and paste into Excel or into a text file.
+<p>I have tested this on a tree that contains 35334 files.
+<br>(Yes, you can copy-paste that many lines)
+<p>Unfortunately the save output to file only worked on small trees, so I dropped it.
+<hr>
+The tree_o_rama3 output is a 5 column comma delimited text file.
+<br>Column 1: status = "status"
+<br>Column 2: project="Volunteer Voices".
+<br>Column 3: Full path directory name of each file in the tree.
+<br>Column 4: Full path filename of each file in the tree.
+<br>Column 5: Filename only of each file in the tree.
+<br>tree_o_rama2 output is for .tif files only!  Use original tree_o_rama to get them all
+<hr>
+This output can be copied directly into Microsoft Excel.
+<br>You can sort by Column 3 filenames to see if any files are repeated.
+<br>You should select the A->Z sort option in Excel.
+<br>Microsoft Excel will give you a warning. Select <u>Expand</u> as shown below.
+<br><img src="tree_excel_warning.JPG">
+<br>You will have filenames in order plus full path on each.
+<br>I HOPE THIS HELPS!
+<br>
+
+
+
+</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+</table>
+
+</form name="forms[0]">
+
+</body>
+</html>
+
+

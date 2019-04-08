@@ -1,0 +1,271 @@
+<!--
+    This code is issued under the GNU General Public License, 
+    version 3, 29 June 2007.
+
+    The DLC-MODS Workbook provides a series of web pages to help you 
+    generate a MODS metadata record that follows the Digital Library 
+    Federation Implementation Guidelines for Shareable MODS Records, 
+    as described in the DLF Aquifer Guidlines November 2006.  These 
+    Guidelines and the specific MODS Profile are documented on the 
+    MODS Profile Page of the DLC-MODS Workbook.
+
+    Copyright (C) 2007 
+    Christine Haygood Deane 
+    University of Tennessee Libraries
+    Digital Library Center
+ 
+
+    This program is free software: you can redistribute it and/or modify    
+    it under the terms of the GNU General Public License as published by    
+    the Free Software Foundation, version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see http://www.gnu.org/licenses/
+-->
+
+<html>
+<head>
+<title>
+readme
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+<script language=javascript src="vv_functions.js"></script>
+<script language=javascript src="vv_functions_radio.js"></script>
+<script language=javascript src="vv_validation.js"></script>
+
+
+
+</head>
+<script>
+parent.adb_background_color="#d0d0d0";
+parent.adb_project_name= 'The University of Tennessee Libraries<br>Digital Library Center<br>DLC-MODS Workbook 1.2<br> '; 
+</script>
+
+<script>document.write('<body bgcolor="'+parent.adb_background_color+'" >');</script>
+
+<font face="arial" size="3">
+<center><font face="arial">
+<h2> <script> document.write(parent.adb_project_name); </script>
+ Programmer Documentation</h2>
+<script>
+
+//var adb_project_id  = 'WB1.2'; 
+if ( typeof(parent.adb_project_id) != "undefined")  { 
+	document.write('<p><a href="page_userdoc.htm" target="_blank">Printer Friendly User Documentation</a>');
+	}
+</script>
+</center>
+<script>
+
+</script>
+
+
+<p>
+<table class="bgINNer"  border="0" cellpadding="2" cellspacing="1" width="98%">
+<tr class="bgstandard"><td colspan="3">
+
+&nbsp;
+</td></tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+<tr class="bgstandard" >
+<td colspan="3"><font face="arial" size="2" color="000000" ><b></u> &nbsp; </td>
+</tr>
+
+<tr class="bgstandard">
+<td colspan="3" align="center">
+<table border="1" cellpadding="4" cellspacing="0" bgcolor="ffffff" width="92%">
+<tr><td><font face="arial" size="3" color="000000" >
+<b>Installation</b><br>
+The DLC-MODS Workbook is a set of files in one directory <b>WB</b>
+<br>Put WB/* whereever you like.
+<br>To use locally on WINDOWS with Inetpub, put WB in C:\Inetpub\wwwroot\WB
+<br>To use locally on WINDOWS with Tomcat, put WB in the webapps directory of your TOMCAT_HOME
+<br>To use on linux, put WB under any public_html/ directory
+<br>To use on linux with apache/tomcat, put WB in the webapps directory of your TOMCAT_HOME
+<br>In discussion below, I will refer to files as WB/filename.
+</td></tr>
+<tr><td><font face="arial" size="3" color="000000" >
+<b>Before you begin...</b><br>
+This workbook requires the use of popup windows.  Please <u>turn off your popup blocker</u> now.
+</td></tr>
+<tr><td><font face="arial" size="3" color="000000" >
+<b>Debug and No Debug</b><br>
+The typical user will access these pages using the <b>no debug</b> option. 
+<br>To look under the covers and develop your own code, use the <b>debug</b> option.
+<br><b>no debug</b> Link to <u>WB/workbook.htm</u>
+<br><b>debug</b> Link to <u>WB/workbook_debug.htm</u>
+<br>The difference between debug and no debug is the definition of the frameset.
+
+</td></tr>
+<tr><td><font face="arial" size="3" color="000000" >
+<b>The no debug frameset</b><br>
+<pre>
+&lt;frameset cols="160,*"  border="0" name="P">
+        &lt;frame name="T" src="page_links_static.htm" >
+        &lt;frameset rows="0,0,*" >
+                &lt;frame name="U" src="page_10_upper.htm"  >
+                &lt;frame name="L" src="page_11_lower.htm" >
+                &lt;frame name="D" src="page_welcome.htm" scrolling="yes">
+        &lt;/frameset>
+&lt;/frameset>
+</pre>
+</td></tr>
+<tr><td><font face="arial" size="3" color="000000" >
+<b>The debug frameset</b><br>
+<pre>
+&lt;frameset cols="160,*"  border="01" name="P">
+        &lt;frame name="T" src="page_links_debug_static.htm" >
+        &lt;frameset rows="150,15,*" >
+                &lt;frame name="U" src="page_10_upper.htm"  >
+                &lt;frame name="L" src="page_11_lower.htm" >
+                &lt;frame name="D" src="page_welcome.htm" scrolling="yes">
+        &lt;/frameset>
+&lt;/frameset>
+</pre>
+</td></tr>
+<tr><td><font face="arial" size="3" color="000000" >
+<b>The Upper Frame</b><br>
+This is page_10_upper.htm, loaded once when you first load the WB/workbook.htm page.
+<br>It is for storage and contains two forms, UF and U2.
+<br>parent.U.document.UF -- for storage of input from tag pages
+<br>parent.U.document.U2 -- for storage of input from reload page
+</td></tr>
+<tr><td><font face="arial" size="3" color="000000" >
+<b>The Lower Frame</b><br>
+This is page_11_lower.htm, loaded once when you first load the WB/workbook.htm page.
+<br>parent.L.your_function_name_goes_here
+<br>This page includes all functions, arrays, and anything else that can be called a constant.
+<br>This page includes the "welcome" alert, which does not appear until everything else is loaded.
+<br>The alert prevents users from clicking on any side links before the Lower Frame is finished loaded.
+<br>Because all these functions are loaded at the beginning, they are immediately available to display pages.
+</td></tr>
+<tr><td><font face="arial" size="3" color="000000" >
+<b>The Display Frame</b><br>
+This is every page that can be accessed from the Link Frame.
+<br>Welcome, Contents, Begin, Documentation, <titleInfo>, etc.
+<br>When the display page contains an input form, it is always named DF.
+<br>For every parent.D.document.DF.name there exists parent.U.document.UF.name.
+</td></tr>
+<tr><td><font face="arial" size="3" color="000000" >
+<b>The Link Frame</b><br>
+This frame contains the link table running down the left side of the page.
+<br>parent.T
+<br>When this first loads, the filename contains the word static.
+<br>After you click on a link, the filename contains the word active.
+<br>no debug - WB/page_links_static.htm ==>> WB/page_links_active.htm
+<br>debug - WB/page_links_debug_static.htm ==>> WB/page_links_debug_active.htm
+<br>This was so I could highlight the name of the page in the Display Frame.
+</td></tr>
+<tr><td><font face="arial" size="3" color="000000" >
+<b>How the frames work together to build the output</b><br>
+Use the debug option.
+<br>Select <u>&lt;titleInfo>&lt;name></u> on the link page.
+<br>Enter required (yellow input boxes) data, click the <u>Save and View MODS Tags</u> button.
+<br>You will see the tags you created for the <u>&lt;titleInfo>&lt;name></u> with input in red.
+<br>If you enlarge the upper frame, you will see the input boxes for <u>&lt;titleInfo>&lt;name></u> filled in.
+<br>The next time you visit this input page, your values are preserved, because they are loaded from the upper frame.
+<br>So each time you save, values are tossed from the display frame to the upper frame.
+<br>And each time you reload the page, values are loaded from upper frame to display frame.
+<br>The final page submits values from the upper frame to build the output.
+<br>All tags for all pages are built in the file WB/vv_compose_tags.js.
+</td></tr>
+<tr><td><font face="arial" size="3" color="000000" >
+<b>Reloading Data </b><br>
+If you have an incomplete file or a file you wish to revise, you can use reload.
+<br>Open the XML file with notepad.
+<br>Cut and paste into the input box on the Reload Page.
+<br>Push the <u>Process Data in Text Area</u> button.
+<br>This dumps your field data into the upper frame. ( view in debug option )
+<br>Start revising your data.
+<br>This is handy if you haven't finshed your whole file by the end of the day
+<br>or if you are reviewing data and finding errors.
+<br>The input data is parsed and processed in WB/vv_process_tags.js.
+</td></tr>
+<tr><td><font face="arial" size="3" color="000000" >
+<b>Final Page</b><br>
+xxx
+</td></tr>
+<tr><td><font face="arial" size="3" color="000000" >
+<b>Final Page</b><br>
+xxx
+</td></tr>
+<tr><td><font face="arial" size="3" color="000000" >
+<b>Final Page</b><br>
+xxx
+</td></tr>
+<tr><td><font face="arial" size="3" color="000000" >
+<b>Final Page</b><br>
+xxx
+</td></tr>
+
+<tr><td><font face="arial" size="3" color="000000" >
+<b>Reload Page</b><br>
+xxx
+
+</td></tr></table>
+</td>
+</tr>
+
+
+
+
+<tr class="bgstandard">
+<td colspan="3">&nbsp</td>
+</tr>
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+
+
+
+
+<tr class="bgstandard"><td colspan="3" align="center">
+&nbsp;&nbsp;
+
+</td></tr>
+
+</table>
+
+
+
+
+
+
+
+
+
+<center><font face="arial">
+<h2> 
+<br> DLC-MODS Workbook
+</h2>
+</center>
+<script>
+
+
+
+
+
+
+
+/////chdchdchd
+
+
+
+
+
+</script>
+	
+
+
+</body>
+</html>
+

@@ -1,0 +1,399 @@
+note_081029.txt
+
+DUPLICATE FILES OF CONCERN
+0073_000050_000201_0000.xml
+0015_000077_000206_0000.xml
+0015_000077_000207_0000.xml
+0014_000052_000209_0000.xml
+
+
+[root@store1 vvImport]# ls */*/xml/0014_000052_000209*
+080201/02/xml/0014_000052_000209_0000.xml
+
+[root@store1 vvImport]# ls */*/xml/0073_000050_000201*
+071205_proc/01/xml/0073_000050_000201_0000.xml
+080202/00/xml/0073_000050_000201_0000.xml
+
+[root@store1 vvImport]# ls */*/xml/0015_000077_000206*
+080416/03/xml/0015_000077_000206_0000.xml
+080417/00/xml/0015_000077_000206_0000.xml
+
+[root@store1 vvImport]# ls */*/xml/0015_000077_000207*
+080416/03/xml/0015_000077_000207_0000.xml
+080417/00/xml/0015_000077_000207_0000.xml
+
+Examining the differences for 0015_000077_000206* and 0015_000077_000207*
+The jpgs and xml files match.
+The 080417/00/ is online
+The 080416/03/ is not online but has transcription.
+
+
+
+
+0014_000052_000209_0000.xml was worked in two places:
+   /d1/workarea/dlxs/text/tel/done/mods/notext/mods/
+   /d1/workarea/dlxs/text/tel/ocr/mods/
+080201/02/xml/0014_000052_000209_0000.xml ------------only one on store1
+The online behavior is correct when you search for "0014_000052_000209
+
+I think the notext version is "up"
+
+[root@diglib2 tel]# ls -l done/mods/notext/mods/0014_000052_000209*
+-rw-r--r--  1 diglib diglib 3742 Sep 11 11:02
+done/mods/notext/mods/0014_000052_000209_0000.xml
+
+
+
+
+0073_000050_000201_0000.xml was worked in two places:
+   /d1/workarea/dlxs/image/tel/multiples/done/mods/
+   /d1/workarea/dlxs/image/tel/singles/done/mods/
+
+
+0015_000077_000206_0000.xml was worked in two places:
+   /d1/workarea/dlxs/text/tel/typed/mods/
+   /d1/workarea/dlxs/image/tel/singles/done/mods/
+
+
+0015_000077_000207_0000.xml was worked in two places:
+   /d1/workarea/dlxs/text/tel/typed/mods/
+   /d1/workarea/dlxs/image/tel/singles/done/mods/
+=======================================================================
+
+After further examination:
+	1. none of the duplicates overwrites anything.
+	2. it will take longer than one day to "fix" any single one of these
+	3. **0015_000077_000206_0000.xml online as singles okay
+	4. **0015_000077_000207_0000.xml online as singles okay
+	5. **0014_000052_000209_0000.xml is online as textclass/notext okay
+	6. *0073_000050_000201_0000.xml is online from singles and doubles okay
+
+	**files are in the current import and will be pulled to avoid duplicates
+	* both versions of 0073_000050_000201_0001.jpg display okay
+	  this is a data integrity problem that requires full investigation
+
+
+Because 0015_000077_000206_0000.xml  and 0015_000077_000207_0000.xml are
+in the current upload, the simple solution for them is to pull out of 
+current upload for later fix.
+
+0014_000052_000209_0000.xml is "up" as textclass notext on diglib2.
+It is in the current upload as 080201/02/xml/0014_000052_000209_0000.xml
+The simple solution for this is to pull out of current upload for later fix.
+
+0073_000050_000201_0000.xml has two different digital objects in two different
+directories online.  IGNORE AND FIX LATER.
+
+-----------------
+email 081029 11:66
+
+Hi Melanie and Bridger -
+
+DUPLICATE FILES OF CONCERN
+0073_000050_000201_0000.xml
+0015_000077_000206_0000.xml
+0015_000077_000207_0000.xml
+0014_000052_000209_0000.xml
+
+After further examination:
+        1. none of the duplicates overwrites anything.
+        2. it will take longer than one day to "fix" any single one of these
+        3. **0015_000077_000206_0000.xml online as singles okay LEAVE IN PLACE
+        4. **0015_000077_000207_0000.xml online as singles okay LEAVE IN PLACE
+        5. **0014_000052_000209_0000.xml is online as textclass/notext okay
+LEAVE IN PLACE
+        6. *0073_000050_000201_0000.xml is online from singles and doubles
+okay LEAVE IN PLACE
+
+        **files are in the current import and will be pulled to avoid
+duplicates
+        * both versions of 0073_000050_000201_0001.jpg display okay
+          this is a data integrity problem that requires full investigation
+
+
+We will fix all of these things in the future.  
+
+For now, I will follow the simple resolution shown above.
+-------------------------------
+
+To that end, I have written the program pull.py 
+( found in vvProcess/step_92_pull/pull.py)
+
+This program moves the files from input directory to output directory
+including all instances of the base in the subdirectories.
+
+For example: python pull.py 080416/03 03 0015_000077_000206
+Takes care of moving 0015_000077_000206 family of files from
+080416/03 to 081029_chd_pull/03
+
+
+
+[root@store1 step_80]# python pull.py 080416/03 03 0015_000077_000206
+/bin/mv /area2/volvoices2008/vvImport/080416/03/JPEG/0015_000077_000206*
+/area2/volvoices2008/vvImport/081029_chd_pull/03/JPEG/
+/bin/mv /area2/volvoices2008/vvImport/080416/03/minithumbs/0015_000077_000206*
+/area2/volvoices2008/vvImport/081029_chd_pull/03/minithumbs/
+/bin/mv /area2/volvoices2008/vvImport/080416/03/Receive0/0015_000077_000206*
+/area2/volvoices2008/vvImport/081029_chd_pull/03/Receive0/
+/bin/mv /area2/volvoices2008/vvImport/080416/03/thumbs/0015_000077_000206*
+/area2/volvoices2008/vvImport/081029_chd_pull/03/thumbs/
+/bin/mv /area2/volvoices2008/vvImport/080416/03/tif/0015_000077_000206*
+/area2/volvoices2008/vvImport/081029_chd_pull/03/tif/
+/bin/mv /area2/volvoices2008/vvImport/080416/03/txt/0015_000077_000206*
+/area2/volvoices2008/vvImport/081029_chd_pull/03/txt/
+/bin/mv /area2/volvoices2008/vvImport/080416/03/xml/0015_000077_000206*
+/area2/volvoices2008/vvImport/081029_chd_pull/03/xml/
+
+
+
+I applied this program to pull file families for
+
+0015_000077_000206_0000.xml
+0015_000077_000207_0000.xml
+0014_000052_000209_0000.xml
+
+out of the current input batch.
+
+=====================================
+
+The no mods:topic problem appeared again.
+
+I wrote a python script to insert 
+
+<mods:subject>
+<mods:topic>Tennessee History</mods:topic>
+</mods:subject>
+
+into the correct position in the file, applied to all directories.
+
+When checking the no mods:topic was fixed, found 
+
+0012_000570_000318_0000.xml  080416  03
+    No recordContentSource
+    No recordCreationDate
+
+I fixed this one by hand since there was only one.
+
+==============================================
+
+running derivatives3.pl from msdos command line:
+
+R:\volvoices2008\scripts>perl derivatives3.pl
+This script will check files, including necessary derivatives,
+for readiness to submit for online delivery.
+For each batch you are working,
+please enter the number next to the directory name,
+ then hit enter.
+
+If more than one batch, enter each number on a new line.
+  Hit enter twice when done.
+
+1    070514_proc
+2    080303
+3    070510_proc
+4    temp
+5    docs
+6    080107
+7    070817_proc
+8    070101_proc
+9    070327_proc
+10    070404_proc
+11    070511_proc
+12    080201
+13    080416
+14    010101_hold_TnoX_XpriorT
+15    080812
+16    080901
+17    071115_proc
+18    CORRECTIONS_PROBLEMS
+19    080909_chd_pull
+20    080813
+21    071205_proc
+22    071215_chd_test
+23    080108
+24    080418
+25    080812_TDH_still-being-processed
+26    080202
+27    080320_reworkedMODSonly
+28    080417
+29    080204
+30    080445_chd_test
+31    080444_chd_test
+32    vvPro
+33    081029_chd_pull
+
+6
+12
+13
+15
+
+ I will work this directory: ..\vvImport\080107\
+ I will work this directory: ..\vvImport\080201\
+ I will work this directory: ..\vvImport\080416\
+ I will work this directory: ..\vvImport\080812\
+
+    IS THIS CORRECT?  Please enter Y (for yes) or N (for no) and hit enter
+Y
+Yes?  Then here we go.....
+
+
+ ALL DONE!
+    Please check ..\results\derivatives3_20081029162708.txt for results.
+Thank  you!!!!  Bye!
+
+R:\volvoices2008\scripts>
+
+RESULTS:
+
+ checking ..\vvImport\02\ for Receive0
+                working  ..\vvImport\080107\02\Receive0\  
+NO VALID TEXT 0022_000051_000209_0001
+NO VALID TEXT 0039_000051_000216_0001
+NO VALID TEXT 0077_000050_000206_0002
+NO VALID TEXT 0093_000050_000200_0007
+NO VALID TEXT 0093_000053_000202_0004
+NO VALID TEXT 0105_000050_000200_0001
+  *********************** done with ..\vvImport\080107\02\Receive0\
+********************
+ checking ..\vvImport\080107\02\Receive0\04\ for Receive0
+                working  ..\vvImport\080107\04\Receive0\  
+  *********************** done with ..\vvImport\080107\04\Receive0\
+********************
+ checking ..\vvImport\080107\04\Receive0\02\ for Receive0
+                working  ..\vvImport\080201\02\Receive0\  
+NO VALID TEXT 0056_000050_000210_0001
+NO VALID TEXT 0072_000050_000200_0003
+NO VALID TEXT 0072_000050_000205_0007
+NO VALID TEXT 0072_000050_000205_0008
+NO VALID TEXT 0072_000050_000205_0030
+NO VALID TEXT 0072_000050_000205_0033
+NO VALID TEXT 0072_000052_000200_0013
+NO VALID TEXT 0072_000052_000200_0014
+NO VALID TEXT 0073_000050_000242_0001
+NO VALID TEXT 0080_000050_000200_0006
+NO VALID TEXT 0080_000050_000206_0007
+NO VALID TEXT 0087_000051_000201_0003
+NO VALID TEXT 0100_000050_000200_0001
+NO VALID TEXT 0100_000050_000200_0002
+NO VALID TEXT 0100_000050_000200_0011
+NO VALID TEXT 0100_000050_000201_0001
+NO VALID TEXT 0100_000050_000202_0003
+NO VALID TEXT 0100_000050_000203_0001
+NO VALID TEXT 0100_000050_000203_0028
+NO VALID TEXT 0100_000050_000203_0035
+NO VALID TEXT 0079_000050_000207_0001
+NO VALID TEXT 0079_000050_000207_0032
+  *********************** done with ..\vvImport\080201\02\Receive0\
+********************
+ checking ..\vvImport\080201\02\Receive0\03\ for Receive0
+                working  ..\vvImport\080201\03\Receive0\  
+  *********************** done with ..\vvImport\080201\03\Receive0\
+********************
+ checking ..\vvImport\080201\03\Receive0\04\ for Receive0
+                working  ..\vvImport\080201\04\Receive0\  
+  *********************** done with ..\vvImport\080201\04\Receive0\
+********************
+ checking ..\vvImport\080201\04\Receive0\03\ for Receive0
+                working  ..\vvImport\080416\03\Receive0\  
+  *********************** done with ..\vvImport\080416\03\Receive0\
+********************
+ checking ..\vvImport\080416\03\Receive0\02\ for Receive0
+                working  ..\vvImport\080812\02\Receive0\  
+  *********************** done with ..\vvImport\080812\02\Receive0\
+********************
+ checking ..\vvImport\080812\02\Receive0\04\ for Receive0
+                working  ..\vvImport\080812\04\Receive0\  
+  *********************** done with ..\vvImport\080812\04\Receive0\
+********************
+
+
+ ALL DONE!  928 checked.  IF NO ERRORS displayed, UPLOAD TO DIGLIB2.  
+OTHERWISE, repair the problems indicated and rerun the script.
+   Thanks!! 
+======================================
+
+The NO VALID TEXT messages due to  the content contributors making 
+an empty file to represent a blank page.
+
+Bridger is adding the text [BLANK PAGE] to fix these files.
+
+Thank you Bridger!!!!!
+======================================
+still need to run derivatives 3 again.
+======================================
+
+
+Looking at the locserv database, y2008 table
+
+
+
+SELECT DISTINCT (
+substring( dt, 0, 10 ) 
+)
+FROM `y2008` 
+WHERE 1 
+ORDER BY dt DESC 
+LIMIT 0 , 30 
+
+RESULTS:
+  
+( substring( dt, 1, 10 ) )  
+2008-10-25 
+2008-10-24 
+2008-10-10 
+2008-10-08 
+2008-04-09 
+2008-04-08 
+2008-04-07 
+2008-04-01 
+2008-03-19 
+2008-03-18 
+2008-01-15 
+2008-01-14 
+2008-01-09 
+
+The files we want to keep were imported before 2008-10-24
+
+
+SELECT * 
+FROM `y2008` 
+WHERE DT > '2008-10-11'
+LIMIT 0 , 30 
+
+RETURNS 930 rows.
+
+--------
+looking at linkfiles
+
+last line in /done/xlinkfile/linkfile_before_081020
+
+0012_000070_000248_0000  http://idserver.utk.edu/?id=200800000001676
+
+
+This copy of linkfile made October 6, 2008.
+Copied on Oct 18 2008 to done/xlinkfile/
+
+
+TEXTCLASS
+done/xlinkfile/linkfile_before_081020
+This linkfile is being made before the text class imports on Oct 20 2008.
+This text class import occurred on October 24, 2008.
+See linkfile_after_081024
+
+
+MULTIPLES
+0106_000054_000206_0000  http://idserver.utk.edu/?id=200800000001753
+
+done/xlinkfile/linkfile_after_080812
+This copy of linkfile made after loading 080812/00 and 080812/01
+
+
+
+SINGLES
+0107_000050_000222_0000  http://idserver.utk.edu/?id=200800000001745
+
+
+done/xlinkfile/linkfile_after_080812
+This copy made after loading 080812/00 and 080812/01
+
+OBVIOUSLY I need to rename something so these names are not ambiguous

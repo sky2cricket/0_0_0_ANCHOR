@@ -1,0 +1,1982 @@
+#!/usr/bin/perl
+use locale;
+use DBI;
+
+# modsICsearchOai
+# this version for single images with metadata record
+
+# to transform MODS xml files
+# into image class files AND to bib class files AND to search class files
+# jody DeRidder  10/03/06
+
+#updated 3/30/07 for modsSearch3.dtd, Melanie's version 11 MODS +
+
+
+# assigns pid and puts it in file, storing this link in 
+# paul's locserve database on diglib  (after testing)
+
+$count =0;
+$coll = "vvz";
+$COLL = "VVZ";
+$collname = "The Growth of Democracy in Tennessee: A Grassroots Approach to Volunteer Voices";
+$collurl = "http://idserver.utk.edu/?id=200600000001199";
+$indir = "/d1/workarea/dlxs/image/tel/singles/mods/";
+$icdir = "/d1/workarea/dlxs/image/tel/singles/ic/"; #where to put ic files
+$bibdir = "/d1/workarea/dlxs/image/tel/singles/modsbib/"; #where to put bib files
+$newmods = "/d1/workarea/dlxs/image/tel/singles/newmods/"; #where to put changed mods files
+$srchdir = "/d1/workarea/dlxs/image/tel/singles/search/"; #where to put search files
+$linkfile = "/d1/workarea/dlxs/image/tel/singles/linkfile";
+#$FApidfile = "/d1/workarea/dlxs/ead/pids";
+$mydate = &getDate;
+$myrights = "For current rights information, please visit: http://idserver.utk.edu/?id=200600000001200";
+
+open(LINKFILE, $linkfile) or die "can't open $linkfile\n";
+while ($line = <LINKFILE>){
+  chomp ($line);
+  if ($line =~ /(.*?)  (http.*?)$/){
+     $pids{$1} = $2;
+     }
+   }
+close(LINKFILE);
+
+# if we have the MS number online, we want to link to that also.
+# existing pids are in /d1/workarea/dlxs/ead/pids
+# and the MS number is currently 4 numbers left padded with zeros.
+#these will only apply to institution 12
+#open(LINKFILE, $FApidfile) or die "can't open $linkfile\n";
+#while ($line = <LINKFILE>){
+#  chomp ($line);
+#  if ($line =~ /(.*?)  *(http.*?)$/){
+#     $fapids{$1} = $2;
+#     }
+#   }
+#close(LINKFILE);
+
+# get the categories for this stuff, to match up subjects coded in
+$spccats = "/d1/workarea/dlxs/text/spc/categories";
+$vvcats = "/d1/workarea/dlxs/text/tel/categories";  # use this for VV
+open (CATS, $spccats) or die "can't open $spccats\n";
+while ($line = <CATS>){
+  chomp($line);
+  if ($line =~ /(.*?)  *(.*)/){
+     $spccats{$1} = $2;
+     }
+  }
+close(CATS);
+open (CATS, $vvcats) or die "can't open $vvcats\n";
+while ($line = <CATS>){
+  chomp($line);
+  if ($line =~ /^([A-Z]\.\d+)   *(.*)/){
+     $vvcats{$1} = $2;
+     }
+  }
+close(CATS);
+ 
+#@sorted = sort keys(%vvcats);
+#foreach (@sorted){ print $_."  ".$vvcats{$_}."\n";}
+#exit;
+
+
+
+#pid stuff
+$hostname = "diglib.lib.utk.edu";
+$port = "3306";
+$database = "locserve";
+$user = "dlxsadm";
+$password ="eva39";
+$collink = "http://idserver.utk.edu/?id=200600000001199";  # to combined search interface for all VV collections
+
+$dbh = DBI->connect("DBI:mysql:$database:$hostname:$port",
+      $user, $password) or die "can't connect to database: ",$DBI::errstr,"\n";
+  
+$h->{PrintError} = 1;
+$h->{RaiseError} = 1;
+       
+$sth = $dbh->prepare(" select max(id) as id from y".$myyear)
+    or print "Can't get a count! Kill me and call for help!! : ",$dbh->errstr(),"\n";
+$sth->execute()
+    or die "Can't execute SQL statement: ", $sth->errstr(),"\n";
+$lastone = $sth->fetchrow_array(); 
+warn "Problem in fetchrow_array(): ",$sth->errstr(),"\n" if $sth->err();
+$sth->finish();
+print "last entry in y".$myyear." table was $lastone.\n";
+
+
+#  FOR REPAIR ONLY!  REMOVE!!!
+#$lastone = 1214;
+
+$rec_footer = "                        </d>
+                </i>
+        </entry>
+";
+
+# use this for rights to make them all match
+#CHANGE THIS!!
+
+#$rights="Digital Image Copyright (c) 2006. The University of Tennessee Libraries.  All Rights Reserved. Permission to use, copy, modify, and distribute these materials for educational, research, and not-for-profit purposes, without fee and without a signed licensing agreement, is hereby granted, provided that the above copyright notice and this paragraph appear in all copies, modifications, and distributions.  For commercial license to use, or for more information, contact the holding institution as identified in the record.";
+
+
+$linkfile = ">>/d1/workarea/dlxs/image/tel/singles/linkfile";
+open (LINKFILE, $linkfile) or die "can't open $linkfile to write\n";
+
+opendir(INDIR, $indir) or die "can't open $indir\n";
+while ($name = readdir(INDIR)){
+  print "looking at $name\n";
+  if ($name =~ /^(.*)\.xml/i){  
+     $filenum = $1;
+
+# what is the base number?  and is this institution 12?  (link to FA)
+     undef $basenum;
+     undef $inst;
+     if ($filenum =~ /^((\d{4})_\d{6}_\d{6})_\d{4}/){
+        $basenum = $1;
+        $inst = $2 + 0;
+        }
+     else{ print "FILENUM BAD:  $filenum\n";}
+   #  print "BASENUM $basenum and institution $inst\n";
+     undef $URL;
+     if ($pids{$filenum}){
+        $URL = $pids{$filenum};
+        }
+     else{ print "NEWFILE:  $filenum\n";}
+
+
+     #outfiles
+     $bibfile = ">".$bibdir.$filenum;
+     $searchfile = ">".$srchdir.$filenum;
+     $remods = ">".$newmods.$filenum.".xml";
+     $icfile = ">".$icdir.$filenum;
+  
+      undef @searchbib;
+      undef @modsbib;
+   # following are used for vv categories that need specific labels
+      undef @a; undef @b; undef @c; undef @d;
+ 
+      undef @icSub;
+      undef @all;
+      $sortdate = "";
+      $abstract = "";
+      $county="";$origin="";$physloc="";$partof="";
+      $creator="";$description="";$subject="";$title="";
+      $mypub="";$format="";$type="";$language="";
+      $date="";$source=""; $genre="";
+      $typeRes=""; $mannum="";$detail="";$form="";
+      $filename="";
+      undef @relation;
+
+      $fn = "";$col = "";$val = "";$icdescrip = "";$prettydate="";$temporal="";
+      undef @geog;  undef @name; undef @genre_sub; undef @timePeriod; undef @topic;  
+      undef @extent;
+      $category = "";
+      undef @oai_descrip;
+      undef @description;
+      undef @category;
+      undef @subjects;
+      $combine = "";
+ # use the following for searchbib, organization of incoming subjects by type
+ # rather than by authority.  Do not put catcoded values here;  they want those separate now
+     undef @name_sub;
+     undef @topic_sub;
+     undef @geo_sub;
+     undef @genre_sub;
+     undef @temporal_sub;
+     undef @occup_sub;
+
+
+     undef (@spccatrefs);  #put category codes here for canned searches; hide in online metadata
+     undef (@vvcatrefs);
+     undef $bigline;
+     undef @collect;
+
+
+     $digitalColl = $collname.":  $collink";
+
+
+     open (IN,"<:encoding(iso-8859-1)", $indir."/".$name) or die "can't open $name\n";
+     #open (IN, $indir."/".$name) or die "can't open $name\n";
+     #print "$name\n";
+
+     while ($line = <IN>){
+       chomp ($line);
+       $line =~ s/\r/ /;  #no word return carriage calls
+
+#substitutions for Cricket entries, or theirs
+# image class does NOT like encodings.
+#  but we also cannot have >< in the files  -- error check here
+
+#Greater-than sign:       &#x003E;      octal &#062;
+       if ($line =~ /\&\#x003E\;/ || $line =~ /\&\#062\;/){
+           print "ERROR $name: [>]:  $line\n";
+           $line =~ s/\&\#x003E\;/\&gt\;/g;
+           $line =~ s/\&\#062\;/\&gt\;/g;
+           }
+
+#Less-than sign:          &#x003C;      octal &#060;
+       if ( $line =~ /\&\#x003C\;/ || $line =~ /\&\#060\;/){
+           print "ERROR $name: [<]:  $line\n"; 
+           $line =~ s/\&\#x003C\;/\&lt\;/g;
+           $line =~ s/\&\#060\;/\&lt\;/g;
+           }
+
+           
+#Apostrophe:              &#x0027;      octal &#039;
+      $line =~ s/\&\#x0027\;/'/g;
+      $line =~ s/\&\#039\;/'/g;
+#Neutral quotation mark:  &#x0022;      octal &#034;
+      $line =~ s/\&\#x0022\;/"/g;
+      $line =~ s/\&\#034\;/"/g;
+# left double quote
+      $line =~ s/\&\#x201c\;/"/gi;
+# right double quote
+      $line =~ s/\&\#x201d\;/"/gi;
+# emdash
+      $line =~ s/\&\#x2014\;/\-\-/gi;
+#right single quotation mark
+      $line =~ s/\&\#x2019\;/'/gi;
+# endash --
+      $line =~ s/\&\#x2013\;/\-\-/gi;
+
+
+
+
+#Ampersand:               &#x0026;      octal &#038;
+      $line =~ s/\&\#x0026\;/and/g;
+      $line =~ s/\&\#038\;/and/g;
+
+# now the TEI type encodings
+
+       $line =~ s/\&apos\;/'/g;  #apostrophe
+       $line =~ s/\&quot\;/"/g;  #quote
+       $line =~ s/\&unquot\;/"/g;  #quote
+       $line =~ s/\&amp\; /and /g;   # ampersands become 'and'
+       $line =~ s/\& /and /g;        # altered to test support for unicode hex
+
+#substitutions for Cricket entries, or theirs
+#translate above ones back for preservation xml?
+
+# also take out word encodings from cut and paste
+        $line =~ s,\342\200\231,',g;   # if you hexdump the file, in place of an apostrophe
+                              # you will see in the word line: 342 200 231
+                              # hexdump -cox filename > output
+                              # gives octal, hex, and characters
+                              # or you can just hexdump -c and look for those goofy things
+       $line =~ s,\303\242\342\202,\-,g;
+       $line =~ s,\254\342\200\234,\-,g;
+
+       $line =~  s,\342\200\230,',g;
+       $line =~  s,\342\200\235,",g;
+       $line =~  s,\342\200\234,",g;
+       $line =~  s,\342\200\233,\-\-,g;
+       $line =~  s,\342\200\224,\-\-,g;
+       $line =~  s,\342\200\223,\-\-,g;
+       $line =~  s,\342\200\246,\-,g;
+       $line =~  s,â\200\223,\-\-,g;
+       $line =~  s,\305\223,ce,g;
+       $line =~  s,\357\277\275,\',g;
+       $line =~  s,\015, ,gs;                
+       $line =~  s,\011, ,gs;
+       $line =~  s,\020, ,gs;
+       $line =~  s,\202, ,gs;
+       $line =~  s,\222, ,gs;
+       $line =~  s,\302\240, ,g;
+       $line =~  s,\302, ,g;
+       $line =~  s,\240, ,g;
+       $line =~  s,\xE2, ,g;
+
+
+# also correct for Cricket's spacing issues
+       $line =~ s/< /</g;   # no spaces between tags and elements
+       $line =~ s/ >/>/g;    # same thing, end of tag
+
+ # and the url encodings.
+       $line =~ s/%3A/\:/ig;
+       $line =~ s/%3B/\;/ig;
+       $line =~ s/%E2%80%9C/"/ig;
+       $line =~ s/%E2%80%99/'/ig;
+       $line =~ s/%E2%80%9D/"/ig;
+       $line =~ s/%E2%80%9E/"/ig;
+       $line =~ s/%E2%80%93/\-\-/ig;
+       $line =~ s/%0D%0A/ /ig;
+
+       $line =~ s/  +/ /g;    # turns all multiple spaces into single ones
+
+
+
+# hacks
+# apostrophes
+       $line =~ s/s[^a-zA-Z0-9 \-\,\.\!\"\'\;\:\)\(\]\[\>\<\=\/\\\? ]/s'/g;
+       $line =~ s/[^a-zA-Z0-9 \-\,\.\!\"\'\;\:\)\(\]\[\>\<\=\/\\\? ]s/'s/g;
+       $line =~ s/<mods:topic>Civilian Conservation Corps \(U\.S\.\).*?Facilities/<mods:topic>Civilian Conservation Corps \U\.S\.\) \-\- Facilities/;
+       $line =~ s/<mods:topic>Women \-\- Suffrage.*?Tennessee/<mods:topic>Women \-\- Suffrage \-\- Tennessee/;
+       $line =~ s/<mods:topic>African Americans.*?Tennessee/<mods:topic>African Americans \-\- Tennessee/;
+       $line =~ s/<mods:topic>Country musicians âennessee -- Photographs</mods:topic>  Country musicians \-\- Tennessee/;
+
+       $line =~ s/^.*?<\?xml/<\?xml/;            
+       push (@collect,$line);
+       }
+     close(IN);
+
+    
+#  need pid before writing this.
+     $lastone ++;
+    # pid stuff
+
+         # image file number ends in 1, not zero.
+    ($imagenum = $filenum) =~ s,0$,1,g;
+
+# HERE!!  CHANGE THIS TO DIGLIB WHEN WE ARE READY TO START GOING LIVE
+
+#modify this for the collection being processed!
+   # $reallink = "http://diglib.lib.utk.edu/cgi/i/image/image-idx?c=vvz;view=entry;subview=detail;cc=vvv;entryid=x-".$filenum.";viewid=1;";
+   # $rellink = "../../i/image/image-idx?q1=".$filenum.";c=vvz;view=entry;subview=detail;cc=vvv;entryid=x-".$filenum.";viewid=1;";
+    $reallink = "http://diglib.lib.utk.edu/cgi/i/image/image-idx?c=vvz;view=entry;subview=detail;cc=vvz;entryid=x-".$filenum.";";
+     $rellink = "../../i/image/image-idx?c=vvz;view=entry;subview=detail;cc=vvz;entryid=x-".$filenum.";";
+
+    $thumblink = "http://diglib.lib.utk.edu/thumbs/vv/".$imagenum.".jpg";
+
+    if ($URL){ $id = $URL;}
+    else{
+   #  $reallink = "http://diglib.lib.utk.edu/cgi/t/text/text-idx?c=spct;cc=spct;rgn=main;view=text;idno=".$filenum;
+    
+          $num = sprintf("%11s", $lastone);
+          $num=~ tr/ /0/;
+          $mynum = $dbh->quote ($num);
+          $mylink = $dbh->quote ($reallink);
+          $myhist = $dbh->quote ("$reallink\n");
+#HERE!! uncomment these out when we're ready to go live
+          $sth = $dbh->prepare("insert into y".$myyear." values($mynum, $mylink, NULL,$myhist )");
+          $sth->execute()
+          or die "Can't execute SQL statement: ", $sth->errstr(),"\n";
+          $sth->finish();
+
+          $newlink = "http://idserver.utk.edu/?id=$myyear$num";
+          print LINKFILE "$filenum  $newlink\n";
+
+       $URL = $newlink;
+       }
+    #undef $/;
+
+   # here, start the searchbib and modsbib;  after this, we're ready for title, then author
+     push (@searchbib, '<A ID="'.$filenum.'" DT="'.$mydate.'" WEBLINK="'.$rellink.'" THUMBLINK="'.$thumblink.'" DELIVERY="IC">
+ <B> ');
+     push (@modsbib, '<A ID="'.$filenum.'" DT="'.$mydate.'">
+  <B> ');
+
+
+# before we forget, let's correct the MODS, and write the new MODS file
+    # get catrefs here
+     undef @newcollect;
+# HERE!  if we do not find these fields we need to add them!!!!
+     undef $founduri;
+     undef $foundurl;
+     undef $scheme;
+     undef $profileDate;
+     undef $fileCreationDate;
+     undef $valid;
+    
+     undef $msnum;
+     undef $othernum;
+     undef $othernumtype;
+     undef $fatitle;
+     undef $fadetail;
+
+     open (NEWMODS, $remods) or die "can't open $remods\n";
+     foreach $working (@collect){  # this is line by line, working through the file
+        chomp $working;
+        
+
+
+# KEEP THE PROFILE VERSION IN THE NEW FILE!!!
+          if ($working =~ /released (.*?) by Melanie Feltner-Reichert/){
+              $profileDate = $1;
+              }
+          elsif ($working =~ /<!\-\- *Timestamp: *(.*?) *\-\->/){
+              $fileCreationDate = $1;
+              }
+          if ($working =~ /PAGE VALIDATION :1:1:1:1:1:1:1:/){
+             $valid = "yes";
+             }
+                 
+
+# county tag also, from VV cats: <mods:location type="county">C.47</mods:location>
+
+  # first, the categories.  Translate into subjects, store the catrefs to hide in metadata
+
+#HERE, separate out vv categories from spc categories.
+# DO NOT GATHER  vv stuff for dc:subject or display for spc files, after getting codes
+# so change later section
+
+  # if they are vv categories, in SPC, translate the mods:note county tag, but for the others
+  # just grab the search codes to hide in the online metadata for canned searches.
+  # We are NOT hiding the codes for SPC categories
+               #  for canned searches
+
+       if ($working =~ /(.*?<mods:physicalLocation *type="county">) *([^<]+) *(<\/mods:physicalLocation>.*)/i){
+ #      #if ($working =~ /(.*?<mods:note *displayLabel="County">) *([^<]+) *(<\/mods:note>.*)/i)
+         if ($vvcats{$2}){
+           $working = $1.$vvcats{$2}.$3;
+   #       undef $found;              # make sure we don't have the county twice.
+#NO!!  We do NOT want the LOCCD in the vvcatrefs.
+#  those wind up as subjects.
+     #      foreach (@vvcatrefs){
+      #         if ($_ eq $2){ $found = 1;}
+       #        }
+        #   if (!$found){push (@vvcatrefs, $2);}
+           } #if they use the vv code, translate it.
+         }
+
+      
+       if ($working =~ /.*?<mods:physicalLocation *type="collection"> *([^<]+) *<\/mods:physicalLocation>.*/i){
+           $fatitle = $1;
+           }
+ 
+       if ($working =~ /.*?<mods:physicalLocation *type="collection"> *([^<]+) *<\/mods:physicalLocation>.*/i){
+           $fadetail = $1;
+           }
+
+       if ($working =~ /<mods:subject *authority="vv">/i){
+         %categories = %vvcats;
+         $scheme = "vv";
+     #    print "working vv categories\n";
+         }
+       elsif ($working =~ /<mods:subject *authority="spc">/i){
+         %categories = %spccats;
+     #    print "working spc categories\n";
+         $scheme = "spc";
+         }
+
+
+# this only picks up a single category per field.
+       elsif (($working =~ /(^.*?<mods:topic>) *([A-Z]{1}\.[0-9]{1,2}) *(<\/mods:topic>.*)/i) ||
+           ($working =~ /(^.*?<mods:temporal>) *([A-Z]{1}\.[0-9]{1,2}) *(<\/mods:temporal>.*)/i)){
+          $start = $1;
+          $acat = $2;
+          $end = $3;
+
+
+          if ($categories{$acat}){
+             $working = $start.$categories{$acat}.".".$end;
+             if ($scheme eq "vv"){
+                push (@vvcatrefs, $acat);
+                if ($acat =~ /A/){ push (@a, $categories{$acat});}
+                elsif ($acat =~ /B/){ push (@b, $categories{$acat});}
+                elsif ($acat =~ /D/){ push (@d, $categories{$acat});}
+                }
+       #  print "CODE $refcode  ".$vvcats{$refcode}."\n";
+             else{push (@spccatrefs, $acat);}
+             }
+          else{ print "CATREF ERROR: TRANSLATE ME!! $acat\n";}
+          }
+        elsif ($working =~ /(^.*?<mods:geographic>) *([A-Z]{1}\.[0-9]{1,3}) *(<\/mods:geographic>.*)/i){
+          $start = $1;
+          $acat = $2;
+          $end = $3;
+     #     print "GEOGRAPHIC:  $working\n";
+
+
+          if ($categories{$acat}){
+             $working = $start."Tennessee -- ".$categories{$acat}.".".$end;
+             if ($scheme eq "vv"){
+                undef $found;              # make sure we don't have the county twice.
+                foreach (@vvcatrefs){
+                  if ($_ eq $acat){ $found = 1;}
+                  }
+                if (!$found){push (@vvcatrefs, $acat);}
+                push (@c, $categories{$acat});
+                }
+             else{push (@spccatrefs, $acat);}
+             }
+          else{ print "CATREF ERROR: TRANSLATE ME!! $acat\n";}
+          }
+        # end of working through that subject authority.  Change categories.
+       elsif ($working =~ /<\/mods:subject>/i){
+         undef %categories;
+         }
+
+#  now, take specific contact info out of the rights statement
+    # this won't work, not all on one line
+        elsif ($working =~ /(^.*?<mods:accessCondition *type="useAndReproduction">)([^<]*)(<\/mods:accessCondition>.*)/i){
+            $start = $1;
+            $oldrights = $2;
+            $end = $3;
+            $working = $start.$myrights.$end;
+            }
+
+# we will insert rights. None in these test files anyway
+ #       elsif ($working =~ /(.*? TN).*?(<\/mods:accessCondition>)/i){
+ #           $working = $1.".".$2;
+ #           }
+
+#look for EAD number here for UT special collections
+# if value is "none", remove the tag
+          elsif ($working =~ /mods:physicalLocation type="([^"]*Number)">(.*?)<\/mods:physicalLocation/){
+              $type = $1;
+              $anum = $2;
+              if ($anum =~ /none/i){next;}
+              if ($type =~ /manuscriptNumber/){
+                $msnum = $anum;
+                $msnum =~ s/ms//i;
+                $msnum =~ s/\-//i;
+                $msnum =~ s/\.//i;
+                }
+              else{
+                 $othernum = $anum;
+                 $othernumtype = $type;
+                 }  # maybe use this later to create relatedItem?
+              }
+         
+                 
+          #insert related item for finding aid if we have a URL.
+
+
+           elsif ($working =~ /(^.*?<mods:identifier *type="uri">)([^<]*)(<\/mods:identifier>.*)/i){
+  #        elsif ($working =~ /(^.*?<mods:location *type="uri">)([^<]*)(<\/mods:location>.*)/i)
+    #       $founduri = 1;
+           $working = $1.$URL.$3;
+           }  
+
+# no finding aid links here
+  #       elsif ($working =~ /<mods:relatedItem *type="isReferencedBy" *>/){
+   #        $falink = 1;
+#           }
+
+         elsif ($working =~ /<\/mods:relatedItem>/i){
+           undef $falink;
+           }
+# don't replace the finding aid MS number with the object PID.
+        elsif ($working =~ /(^.*?<mods:url>)([^<]*)(<\/mods:url>.*)/i){
+    #        $foundurl = 1;
+            $working = $1.$URL.$3;
+           }
+
+# change this for VV, to add in tif files in relatedItem, and add in URL, URI
+# and whatever else....
+
+# spc needs URI added
+ #       elsif ($working =~ /<\/mods:mods>/i){
+ #         if (!founduri){
+ #              print "ERROR:  no URL!\n";
+  #            push (@newcollect, '        <mods:identifier type="uri">'.$URL.'</mods:identifier>');
+  #            print NEWMODS '        <mods:identifier type="uri">'.$URL.'</mods:identifier>';
+ #             }
+#          }
+
+
+# jody added 8/21/07 for duplicate "digital images" entry and multiples for single
+    $working =~ s,digital images *digital images,digital images,g;
+    $working =~ s,1 *digital *images,1 digital image,;
+    $working =~ s,image; 1;,image; ,;
+    $working =~ s,image; 1<,image,;
+
+        if ($working){ push (@newcollect, $working);}
+        }
+
+# do not print yet.  See if this is institution 12;  if there is an msnum;  if there is not, check the
+# database for one, and normalize.  If there is an msnum, check to see if we have an 
+# FApid for it.  If there is one, add in a mods:related item before writing to file.
+#oops, we need a collection name.
+#bib output:   <REL T="isReferencedBy" DL="Finding Aid" U="http://idserver.utk.edu/?id=200600000001205">From Pi Beta Phi to Arrowmont Photographic Collection</REL>
+
+# work out this part later.  
+# note inst 12 files, separate them out after creating search files and modsbib;
+#    we will want to alter the search files for inclusion in spc-bib and spcd-bib;
+#    (adding relatedItem isReferencedBy for finding aid link
+#   and we will want them in the spc OAI, not the vv one.  
+#  the altered version will also be the preservation MODS -- a copy of which will
+#  need to go into the METS file for DAITSS.  
+       if ($inst == 12){
+           push (@spcfiles, $name);
+           }
+# also, get title of FA from /d1/workarea/dlxs/ead/FA_pids_title  
+     #     if (! $msnum){
+      #       #do database call here, look for one, normalize it
+       #      print "$filenum has no msnum.  Othernum? $othernumtype $othernum\n";
+        #     }
+     #     if ($msnum){
+      #       # do we have a collection title?
+       #      if ($fatitle){
+        #         print "Finding Aid title is $fatitle for $msnum\n";
+         #        }
+#             elsif ($fadetail){
+ #                print "using detail instead for FA title:  $detail for $msnum\n";
+  #               $fatitle = $fadetail;
+   #              }
+    #         else{ "NO FA TITLE!!!  WHAT DO I DO???\n";}
+     #        # look for fapid here in hash array already collected
+             
+             # if found, put it in the related item.
+      #       }
+       #   }
+
+     foreach (@newcollect){ 
+       print NEWMODS $_."\n";
+       }
+     close (NEWMODS);
+    # if (! $foundurl){ print "ERROR: needs URL added\n";}
+    if (!$valid){ print "ERROR STOP!  $name is NOT VALID!!\n";}
+
+   
+    
+#exit;
+
+    # here, creating a single line for parsing out stuff
+     $bigline = join("", @newcollect);
+     $bigline =~ s,\t,,g;  #remove tabs
+     $bigline =~ s,\n,,g;   #newlines
+     $bigline =~ s,\r,,g;   #returns
+     $bigline =~ s,  *, ,g;  #remove extra spaces
+     $bigline =~ s,<!--.*?-->,,g;  #take out comments
+
+     undef $modsversion;
+     # put this in <VER ID="3.1" MD="MODS"> in searchbib, so I can recreate header for MODS
+     if ($bigline =~ / ID="MODS" version="([^"]+)" xmlns:/i){
+       $modsversion = $1;
+       }
+
+     $bigline =~ s,<\?xml.*?xsd">,,;  #glop at the front
+    # print "$bigline\n\n";
+
+     # now pull out dc and mods display info
+     
+     undef @title;
+     if ($bigline =~ s/(.*?)<mods:titleInfo>(.*?)<\/mods:titleInfo>(.*)//i){
+       $working = $2;
+       $bigline = $1.$3;
+       while ($working =~ /<mods:title>([^<]+)<\/mods:title>(.*)/){
+         $check = $1;
+         $working = $2;
+         
+         if ($check =~ /$basenum/){
+           print "ERROR:  title contains filename:  $check\n";
+           }
+         push (@title, $check);
+         }
+       }
+     if (length($title[0]) < 3) { print "ERROR:  $file has no title\n";}
+     foreach (@title){
+        push(@modsbib, "    <K>$_</K>");
+        push(@searchbib, "    <K>$_</K>");
+        }
+
+# need to collect subjects before working authors, because they both contain mods:name, mods:namepart
+# hold these values and insert them into modsbib and searchbib at the proper time.
+
+     undef $subjectBlob;
+     if ($bigline  =~ /^(.*?)(<mods:subject[^>]*>.*<\/mods:subject>)(.*?)$/i){
+        $subjectBlob = $2;
+        $bigline = $1.$3;
+        }
+ # there may be names in the subjects, so do this after subjects
+# now, we need 3 forms of names from this:
+#   1) image class, where we need concatenated names (lastname, first)  and their roles
+#   2) search, where we need concatenated names, authorities, types, biog notes, dates
+#       (so people don't have to use Boolean searches to hunt for a full name)
+#   3) modsbib, where we need separated names and all the other data
+
+# use this one for image class
+     undef @creator;
+# use this one for search
+     undef @searchCreator;
+# use this one for modsbib
+     undef @bibCreator;
+
+
+ #note:  this may contain more than one name field.
+     while ($bigline =~ s/(.*?)<mods:name([^>]*)>(.*?)<\/mods:name>(.*)//i){
+        $att = $2;
+        $working = $3;
+        $bigline = $1.$4;
+        undef $roleauth;
+        undef $role;
+        undef $thisoneSearch;
+        undef $thisoneBib;
+        undef $thisoneIC;
+        undef $nameStarted;
+        undef $corporate;
+        if ($att){
+           if ($att =~ /type="(personal)"/i){
+              $thisoneSearch .= '    <L T="'.$1.'"';
+               }
+           elsif ($att =~ /type="(corporate)"/i){
+              $thisoneSearch .= '    <CONT';
+              $corporate = "yes";
+               }
+
+           if ($att =~ /authority="([^"]+)"/i){
+               $thisoneSearch .= ' A="'.$1.'"';
+               }
+          # else {print "ERROR:  what is this name attribute?  $att\n";}
+           }
+        else{$thisoneSearch = "    <L";}  #may be unknown
+        $thisoneSearch .= ">";  #we're inside the L tag now, looking for subtags.
+
+        $thisoneBib = $thisoneSearch;  # now we start to part ways
+        undef @theseNames;
+        while ($working =~ /<mods:namePart(.*?)>([^<]+)<\/mods:namePart>(.*)/i){
+             $att = $1;
+             $thisone = $2;
+             $working = $3; 
+# no commas, please, between name parts
+             if ($thisone =~ /^ *\, *(.*)$/){
+                 $thisone = $1;
+                 }
+             if ($thisone =~ /^(.*?)\, *$/){
+                 $thisone = $2;
+                 }
+# I'm going to assume these come in order:  family, given, date  -- that could be wrong.
+             if ($att =~ /type="(.*?)"/){
+                if ($corporate){
+                   $thisoneBib .= '<NP T="'.$1.'">'.$thisone.'</NP>';
+                    }
+                else{
+                   $thisoneBib .= '<CNP T="'.$1.'">'.$thisone.'</CNP>';
+                   }
+                }
+             else {
+                 if ($corporate){
+                   $thisoneBib .= "<NP>$thisone</NP>";   
+                   }
+                 else{
+                    $thisoneBib .= "<CNP>$thisone</CNP>";
+                    }
+                 }
+             if (!$nameStarted){
+                if ($corporate){
+                   $thisoneSearch .= "<NP>$thisone";
+                   }
+                else{
+                   $thisoneSearch .= "<CNP>$thisone";
+                   }
+                if (!( $thisone =~ /unknown/i)){ # don't display in ic
+                   $thisoneIC = $thisone;
+                    }
+
+                $nameStarted = "yes";
+                }
+             else{  # we're inside the namepart tag on search, inside the name on IC
+                if ($att =~ /type="given"/){    # put before last name on search, IC
+                  $thisoneSearch =~ s/CNP>(.*)/CNP>$thisone $1/;
+                  if (!( $thisone =~ /unknown/i)){ # don't display in ic
+                    $thisoneIC = $thisone." ".$thisoneIC;
+                     }
+
+                  }
+                else{ # we don't want this date in IC, we do want it in bib/search
+                   $thisoneSearch .= ", $thisone";
+                   }
+                }
+             }
+         # done with nameParts;  close tag on thisoneSearch;
+         if ($corporate){
+            $thisoneSearch .= "</NP>";
+            }
+         else{ 
+            $thisoneSearch .= "</CNP>";
+            }
+         if ($working =~ /<mods:description>(.*?)<\/mods:description>/i){
+           $thisoneSearch .= "<CBI>$1</CBI>";
+           $thisoneBib .= "<CBI>$1</CBI>";
+           }
+ #allowin only one role here.
+         if ($working =~ /<mods:roleTerm([^>]*)>([^<]+)<\/mods:roleTerm>(.*)/i){
+             $role  = $2;   #use this as label somewhere? "author"
+             $att = $1;
+             $working = $3;
+
+             if ((!($role =~ /other/i)) && ($thisoneIC)){
+                $thisoneIC .= ", $role";
+                 }
+
+# only using auth attribute here on role
+             if ($att =~ /authority="([^"]+)"/i){
+               if ($corporate){
+                  $thisoneSearch .= '<RL A="'.$1.'">'.$role.'</RL>';
+                  $thisoneBib .= '<RL A="'.$1.'">'.$role.'</RL>';
+                   }
+               else{
+                  $thisoneSearch .= '<CRL A="'.$1.'">'.$role.'</CRL>';
+                  $thisoneBib .= '<CRL A="'.$1.'">'.$role.'</CRL>';
+                  }
+               }
+             else {
+               if ($corporate){
+                  $thisoneSearch .= '<RL>'.$role.'</RL>';
+                  $thisoneBib .= '<RL>'.$role.'</RL>';
+                  }
+               else{
+                  $thisoneSearch .= '<CRL>'.$role.'</CRL>';
+                  $thisoneBib .= '<CRL>'.$role.'</CRL>';
+                  }
+               }
+
+             }
+
+  # close tags, and put on arrays
+          if ($corporate){
+            $thisoneSearch .= "</CONT>";
+            $thisoneBib .= "</CONT>";
+            }
+          else{
+            $thisoneSearch .= "</L>";
+            $thisoneBib .= "</L>";
+             }
+          if ($thisoneIC){push (@creator, $thisoneIC);}
+
+          push (@bibCreator, $thisoneBib);
+          push (@searchCreator, $thisoneSearch);
+          push (@modsbib, $thisoneBib);
+          push (@searchbib, $thisoneSearch);
+          }
+
+    push (@modsbib, "  </B>
+  <C>");
+    push (@searchbib, "  </B>
+  <C>");
+
+
+ if ($bigline =~ /(.*?)<mods:recordInfo>(.*?)<\/mods:recordInfo>(.*)/i){
+     $working = $2;
+     $bigline = $1.$3;
+     if ($working =~ /<mods:recordContentSource>([^<]+)<\/mods:recordContentSource>/i){
+       push (@modsbib, '    <R>
+      <AD MT="recordContentSource" DL="Digitization Center">'.$1.'</AD>
+    </R>');
+       push (@searchbib, '    <R>      
+      <AD MT="recordContentSource" DL="Digitization Center">'.$1.'</AD>
+    </R>');
+       }
+
+# ENCODING MANDATORY
+     if ($working =~ /<mods:recordCreationDate *encoding="([^"]+)">([^<]+)<\/mods:recordCreationDate>/i){
+       push (@modsbib, '    <DT MT="recordCreationDate" E="'.$1.'">'.$2.'</DT>');
+       push (@searchbib, '    <DT MT="recordCreationDate" E="'.$1.'">'.$2.'</DT>');
+       }
+
+     if ($working =~ /<mods:languageTerm *type="([^"]+)" *authority="([^"]+)" *>([^<]+)<\/mods:languageTerm>/i){
+       push (@modsbib, '    <CLANG PT="languageOfCataloging" A="'.$2.'" T="'.$1.'">'.$3.'</CLANG>'); 
+       push (@searchbib, '    <CLANG PT="languageOfCataloging" A="'.$2.'" T="'.$1.'">'.$3.'</CLANG>');
+       }
+# attributes in reverse order
+     elsif ($working =~ /<mods:languageTerm *authority="([^"]+)" *type="([^"]+)" *>([^<]+)<\/mods:languageTerm>/i){
+       push (@modsbib, '    <CLANG PT="languageOfCataloging" A="'.$1.'" T="'.$2.'">'.$3.'</CLANG>');
+       push (@searchbib, '    <CLANG PT="languageOfCataloging" A="'.$1.'" T="'.$2.'">'.$3.'</CLANG>');
+       }
+
+     }
+   
+   push (@modsbib, "  </C>");
+   push (@searchbib, "  </C>");
+
+#next:  publisher, place of origin, all those dates
+
+     undef @date;
+    # need to combine start and end dates for searchbib
+     undef $startdate;
+     undef $enddate;
+     undef $enddatetag;
+     #undef %pttype;
+     undef %datequal;
+     undef %datecode;
+     if ($bigline =~ /(.*?)<mods:originInfo>(.*?)<\/mods:originInfo>(.*)/i){
+        #print "in originInfo\n";
+        $working = $2;
+        $bigline = $1.$3;
+        push (@modsbib, "  <E>");
+        push (@searchbib, "  <E>");
+
+
+        if ($working =~ /<mods:publisher>([^<]+)<\/mods:publisher>/){
+           $mypub = $1;
+           push (@modsbib, "    <T>$1</T>");
+           push (@searchbib, "    <T>$1</T>");
+           }
+        if ($working =~ /(.*?)<mods:placeTerm([^>]*)>([^<]*)<\/mods:placeTerm>(.*)/i){
+          #do what with this attribute?
+          $pt = $3;
+          $att = $2;
+          $working = $1.$4;
+           push (@modsbib, '    <U PT="originInfo" MT="placeTerm">'.$3.'</U>');
+           push (@searchbib, '    <U PT="originInfo" MT="placeTerm">'.$3.'</U>');
+          #if ($att){ if ($att =~ /type="([^"]+)"/){$pttype{$pt} = $1;}}
+          }
+        
+
+# this is not working!!!  HERE
+        while ($working =~ /(.*?)<mods:date([^ ]*)( [^>]*)?>([^<]+)<\/mods:date[^>]*>(.*)/i){
+   # it's possible there will be other dates?
+# if so, rewrite the searchbib section to accomodate this
+           $date = $4;
+           $att = $3;
+           $tag = $2;
+          # print "date$2  att $3  $4\n";
+           undef $thistag;
+           undef $keydate;
+           $working = $1.$5;
+           if (!($date =~ /\w/)){ print " $filenum contains empty $date\n"; next;}  # skip if only spaces, no information
+           push (@date, $4);
+
+           if ($att =~ /keyDate="yes"/i){
+             $thistag = '<YR MT="date'.$tag.'"';
+             $keydate = "yes";
+           #  $datekey{$date} = $1;
+             }
+           else{
+             $thistag =  '<DT MT="date'.$tag.'"';
+             }
+
+           if ($att =~ /encoding="([^"]+)"/i){
+             $thistag .= ' E="'.$1.'"';
+             }
+
+           if ($att =~ /qualifier="([^"]+)"/i){
+             $thistag .= ' Q="'.$1.'"';
+             }
+           if ($att =~ /point="([^"]+)"/i){
+             $thistag .= ' P="'.$1.'"';
+             }
+           if ($keydate){
+              $thistag .= ">$date</YR>";
+              $prettydate = &morph($date);
+
+              }
+           else{
+              $thistag .= ">$date</DT>";
+              }
+         
+           push (@modsbib, "    ".$thistag);
+           if ($thistag =~ / P="end">(.*?)</){
+             $enddate = $1;
+             $enddatetag = $thistag;
+             }
+           elsif ($thistag =~ / P="start">/){
+             $startdate = $thistag;
+             } 
+           else{ push (@searchbib, "    ".$thistag);}
+
+           }
+
+# if start and end date, combine for search display. 
+
+        if ($startdate && $enddate){
+           $startdate =~ s/ P="start"//;   #no longer just start
+           $startdate =~ s/(<\/.*)/ \- $enddate$1/;  # add in space hyphen end date
+           push (@searchbib, "    ".$startdate);
+           }
+        elsif ($startdate){
+           push (@searchbib, "    ".$startdate);
+           }
+        elsif ($enddate){
+           push (@searchbib, $enddatetag);
+           }
+
+        
+        push (@modsbib, "    <X>$myrights</X>
+  </E>
+  <G>");
+
+        push (@searchbib, "    <X>$myrights</X>
+  </E>
+  <G>");
+        }
+     else{  #no originInfo, but we need rights link
+         push (@modsbib, '  <E>
+    <X MT="accessCondition" T="useAndReproduction">$myrights</X>
+  </E>
+  <G>');
+        push (@searchbib, '  <E>
+    <X MT="accessCondition" T="useAndReproduction">$myrights</X>
+  </E>
+  <G>');
+        }
+
+#next is description and notes. inside <G>
+# since we are putting our digital publisher note in here, we KNOW there will 
+#   be a <G>
+
+     undef @description;
+     if  ($bigline =~ /(.*?)<mods:abstract>([^<]+)<\/mods:abstract>(.*)/i){
+       push (@description, $2);
+       $bigline = $1.$3;
+       push (@modsbib, '    <DESC MT="abstract">'.$2.'</DESC>');
+       push (@searchbib, '    <DESC MT="abstract">'.$2.'</DESC>');
+       }
+
+# the following puts ALL notes on the top level, to dc:description
+# MODIFY THIS IF WE START GETTING SUBNOTES, and add in PT value for parent tag
+
+#capture attribute type and attribute value, and put in dc:description.
+# it will wind up being a top-level mods:note on mods reconstruction
+# this ONLY captures a single attribute and its value.
+     while ($bigline =~ /(.*?)<mods:note([^>]*)>([^<]+)<\/mods:note>(.*)/i){
+       $att = $2;
+       $note = $3;
+       #print " NOTE:  att: $2,  val: $3\n";
+       $bigline = $1.$4;
+# translate "type" to "displayLabel", per preferences of DLF MODS
+       if ($att =~ / type="([^"]+)"/i){
+          push (@modsbib, '    <AA MT="note" DL="'.$1.'">'.$note.'</AA>');
+          push (@searchbib, '    <AA MT="note" DL="'.$1.'">'.$note.'</AA>');
+          }
+       }
+     push (@modsbib, '    <AA MT="note" DL="Statement of Responsibility">The University of Tennessee Libraries (Knoxville, Tennessee) is the digital publisher.</AA>
+  </G>
+  <I2>');
+      push (@searchbib, '    <AA MT="note" DL="Statement of Responsibility">The University of Tennessee Libraries (Knoxville, Tennessee) is the digital publisher.</AA>
+  </G>
+  <I2>');
+
+
+# next is subjects.  We MUST have subjects.  CATCODES follow, to hold category codes.
+# in searchbib, subjects are organized by type;  do this after parsing all.
+# in modsbib, subjects are organized by authority.... do this one as we go.
+
+   undef @topic_sub;
+   undef @genre_sub;
+   undef @temporal_sub;
+   undef @name_sub;
+   undef @geo_sub;
+   undef @occup_sub;
+
+      
+   while ($subjectBlob =~ /(.*?)<mods:subject([^>]*)>(.*?)<\/mods:subject>(.*)/i){
+       $subjectBlob = $1.$4;
+       $working = $3;
+       $att = $2;
+       undef $subauth;
+#  do NOT include vv categories in spc subjects.
+       if ($att =~ /authority="([^"]*)"/){
+          $subauth = $1;
+          if ($subauth eq "vv" || $subauth eq "spc"){
+            push (@modsbib, '    <SG A="local">');
+            }
+          else{
+            push (@modsbib, '    <SG A="'.$subauth.'">');
+            }
+          }
+       else{ 
+          push (@modsbib, '    <SG>');
+        #  print "ERROR:  no attribute for subject:\n $working\n\n";
+          }
+
+        while ($working =~ /(.*?)<mods:topic>([^<]+)<\/mods:topic>(.*)/i){
+          if ($subauth ne "vv"){push (@topic_sub, $2);}
+          push (@modsbib, "      <SUTOP>$2</SUTOP>");
+          push (@subjects, $2);
+          $working = $1.$3;
+          }
+        while ($working =~ /(.*?)<mods:temporal>([^<]+)<\/mods:temporal>(.*)/i){
+          if ($subauth ne "vv"){push (@temporal_sub, $2);}
+          push (@modsbib, "      <SUTEMP>$2</SUTEMP>");
+          push (@subjects, $2);
+          $working = $1.$3;
+          }
+        while ($working =~ /(.*?)<mods:geographic>([^<]+)<\/mods:geographic>(.*)/i){
+          if ($subauth ne "vv"){push (@geo_sub, $2);}
+          push (@modsbib, "      <SUGEOG>$2</SUGEOG>");
+          push (@subjects, $2);
+          $working = $1.$3;
+          }
+
+        if ($working =~ /(.*?)<mods:genre>([^<]+)<\/mods:genre>(.*)/i){
+          push (@genre_sub, $2);
+          push (@modsbib, "      <SUGENRE>$2</SUGENRE>");
+          push (@subjects, $2);
+          $working = $1.$3;
+          }
+
+# note:  this does NOT pick up dates associated with this name, or other info
+        while ($working =~ /(.*?)<mods:namePart *>([^<]+)<\/mods:namePart>(.*)/i){
+          push (@name_sub, $2);
+          push (@modsbib, "      <SUNAME>$2</SUNAME>");
+          push (@subjects, $2);
+          $working = $1.$3;
+          $working =~ s,<\/?mods:name>,,gi;
+          }
+
+#HERE!  I do NOT have a place for mods:occupation in the search stuff
+        while ($working =~ /(.*?)<mods:occupation>([^<]+)<\/mods:occupation>(.*)/i){
+          push (@occup_sub, $2);
+          push (@modsbib, "      <SUOCC>$2</SUOCC>");
+          push (@subjects, $2);
+          $working = $1.$3;
+          }
+
+       if ($working =~ /<mods:/){
+         print "ERROR!  More subjects to process! \n$working\n";
+         }
+       push (@modsbib, "    </SG>");
+       }
+
+# now for searchbib
+# modifying this 5/9/07 to separate out VV catcode values.
+# they want those displayed separately now.
+# codes are in @vvcatrefs, values are in $categories{$ref}
+# at this point, the only ways I can know what is theirs is to match it up to a value
+# in $vvcats.  The only alternative is to go back and have 2 sets of info when I 
+# am replacing the codes in the newmods. But then I would not have the subjects
+# for ic and mods bib.  This sucks.
+
+# I've added periods to most of these subjects.
+
+       #  print "CODE $refcode  ".$vvcats{$refcode}."\n";
+        
+      if (@a){ #historical eras:  temporal
+        push (@searchbib, '    <SG T="vv_era">');
+        foreach $refcode (@a){
+           push (@searchbib, '      <SUTEMP>'.$refcode.'</SUTEMP>');
+           }
+         push (@searchbib, "    </SG>");
+         }
+
+#problem:  VV category D contains some of the same values as
+#          SPC category B.  We don't want the spc ones in here.
+#          But we do want the vv ones in here.
+# values that may be the same are:
+# Education
+# Government and Politics
+# Native Americans
+# Religion
+# Women
+# and similar is:  African-Americans (VV) versus African Americans (SPC)
+
+      if (@b){  # VV historical themes
+         push (@searchbib, '    <SG T="vv_theme">');
+         foreach $refcode (@b){
+            push (@searchbib, '      <SUTOP>'.$refcode.'</SUTOP>'); 
+            }
+         push (@searchbib, "    </SG>");
+         }
+      
+      if (@d){ #VV subject areas 
+         push (@searchbib, '    <SG T="vv_sub">');
+         foreach $refcode (@d){
+            push (@searchbib, '      <SUTOP>'.$refcode.'</SUTOP>');
+            }
+         push (@searchbib, "    </SG>");
+         }
+
+       if (@c){  # counties
+         push (@searchbib, '    <SG T="vv_co">');
+         foreach $refcode (@c){
+            push (@searchbib, '      <SUGEOG>'.$refcode.'</SUGEOG>');
+            }
+         push (@searchbib, "    </SG>");
+         }
+         
+
+     if (@topic_sub){
+        push (@searchbib, '    <SG T="topic">');
+        foreach (@topic_sub){
+           push (@searchbib, '      <SUTOP>'.$_.'</SUTOP>');
+           }
+        push (@searchbib, "    </SG>");
+        }
+     if (@temporal_sub){
+        push (@searchbib, '    <SG T="temporal">');
+        foreach (@temporal_sub){
+           push (@searchbib, '      <SUTEMP>'.$_.'</SUTEMP>');
+           }
+        push (@searchbib, "    </SG>");
+        }
+     if (@geo_sub){
+       push (@searchbib, '    <SG T="geographic">');
+       foreach (@geo_sub){
+          push (@searchbib, '      <SUGEOG>'.$_.'</SUGEOG>');
+          }
+        push (@searchbib, "    </SG>");
+        }
+     if (@name_sub){
+       push (@searchbib, '    <SG T="name">');
+       foreach (@name_sub){
+          push (@searchbib, '      <SUNAME>'.$_.'</SUNAME>');
+          }
+        push (@searchbib, "    </SG>");
+        }
+     if (@genre_sub){
+        push (@searchbib, '    <SG T="genre">');
+        foreach(@genre_sub){
+           push (@searchbib, '      <SUGENRE>'.$_.'</SUGENRE>');
+           }
+        push (@searchbib, "    </SG>");
+        }
+     if (@occup_sub){
+       push (@searchbib, '    <SG T="occupation">');
+       foreach(@occup_sub){
+         push (@searchbib, '      <SUOCCUP>'.$_.'</SUOCCUP>');
+         }
+       push (@searchbib, "    </SG>");
+       }
+    foreach (@vvcatrefs){ push (@searchbib, '    <CATCODE A="vv">'.$_.'</CATCODE>');}
+    foreach (@spccatrefs){ push (@searchbib, '    <CATCODE A="spc">'.$_.'</CATCODE>');}
+
+    push (@searchbib, "  </I2>");
+    push (@modsbib, "  </I2>");
+
+
+# next is the identifiers...  modsbib gets the filename too.  Do we want it in search?
+    push (@modsbib, '  <W T="local" MT="identifier" DL="TU:DLC:Filename">'.$filenum.'</W>');
+    push (@modsbib, '  <W T="uri" MT="identifier">'.$URL.'</W>');
+    push (@searchbib, '  <W T="local" MT="identifier" DL="TU:DLC:Filename">'.$filenum.'</W>');
+    push (@searchbib, '  <W T="uri" MT="identifier">'.$URL.'</W>');
+   
+# now... physical location stuff
+
+# here's the order they come in:
+#<mods:location>^M
+#<mods:physicalLocation type="repository">Tennessee State Library and Archives</mods:physicalLocation>^M
+# then detail
+#<mods:physicalLocation type="city">Nashville</mods:physicalLocation>^M
+#<mods:physicalLocation type="state">TN</mods:physicalLocation>^M
+#<mods:physicalLocation type="county">C.19</mods:physicalLocation>^M
+#<mods:physicalLocation type="collection">Governor Isham G. Harris Papers, 1857-1862</mods:physicalLocation>^M
+#<mods:physicalLocation type="otherIdentificationNumber">GP-19</mods:physicalLocation>^M
+#<mods:url>Jody</mods:url>^M
+#</mods:location>^M
+
+#here's the order they go out (in bib) (ha!)
+# collection
+#    Number
+# repository
+# detail
+# Number (if there is no collection)
+# county
+# county code
+# all other LOC values (city, state)
+# url
+
+#HERE:  not picking this up -- why???
+      undef $opencoll;
+      undef %location;
+      undef %morelocation;
+      if ($bigline =~ /(.*?)<mods:location>(.*?)<\/mods:location>(.*)/i){
+          $bigline = $1.$3;
+          $working = $2;
+          undef $opencoll;
+          push (@searchbib, "  <J>");
+          push (@modsbib, "  <J>");
+
+          while ($working =~ /(.*?)<mods:physicalLocation *type="([^"]+)" *>([^<]+)<\/mods:physicalLocation>(.*)/i){
+            $type = $2;
+            $val = $3;
+            $location{$type} = $val;
+            $working = $1.$4;
+            $att = $2;
+ #separate out the collection and the number
+# how do I know collection comes before number?  How do I know it comes at all?
+
+            if ($type =~ /collection/i){
+              push (@searchbib, '     <COLLS>
+      <COLL>
+          <COLLNAME PT="location" MT="physicalLocation" T="collection">'.$val.'</COLLNAME>');
+               push (@modsbib, '    <COLLS>
+      <COLL>
+          <COLLNAME PT="location" MT="physicalLocation" T="collection">'.$val.'</COLLNAME>');
+              $opencoll = "yes";
+              }
+
+# note that this will place number inside COLL only if it comes after collection name.
+# otherwise, it will wind up with other physical location info. 
+            elsif ($type =~ /Number/ && $opencoll){
+             
+              push (@modsbib, '          <LOCID T="'.$type.'">'.$val.'</LOCID>');
+              push (@searchbib, '          <LOCID T="'.$type.'">'.$val.'</LOCID>');
+              }
+            else{ 
+              $morelocation{$type} = $val;
+              }
+           } 
+        if ($opencoll){
+           push (@searchbib, '      </COLL>
+    </COLLS>');
+           push (@modsbib, '      </COLL>
+    </COLLS>');
+           }
+
+#needed to close coll.  Now the rest of the location stuff
+# repository
+# detail
+# Number (if there is no collection)
+# county
+# county code
+# all other LOC values (city, state)
+# url
+
+       while (($type, $val) = each %morelocation){
+
+  #translate the county if needed, for vv
+           if ($type =~ /repository/i){
+               push (@modsbib, "    <REP>$val</REP>");
+               push (@searchbib, "    <REP>$val</REP>");
+               }
+            elsif ($type =~ /detail/i){
+               push (@modsbib, "    <LOCD>$val</LOCD>");
+               push (@searchbib, "    <LOCD>$val</LOCD>");
+               }
+            elsif ($type =~ /Number/i){
+              push (@modsbib, '    <LOCID T="'.$type.'">'.$val.'</LOCID>');
+              push (@searchbib, '    <LOCID T="'.$type.'">'.$val.'</LOCID>');
+              }
+            elsif ($type =~ /county/i){
+              if ($vvcats{$val}){
+                    # this is a code, not a county.
+                 push (@modsbib, "    <LOCCO>".$vvcats{$val}."</LOCCO>");
+                 push (@searchbib, "    <LOCCO>".$vvcats{$val}."</LOCCO>");
+                 push (@modsbib, "    <LOCCD>$val</LOCCD>");
+                 push (@searchbib, "    <LOCCD>$val</LOCCD>");
+                 $val = $vvcats{$val};
+                 }
+               else{  # they gave me a county name
+                      # if it matches (exactly) one on my list, 
+                      # extract the code from the hash and put it in for searching
+                  undef $code;
+                  while (($vvcode, $vvcounty) = each(%vvcats)){
+                    if ($val eq $vvcounty){  $code = $vvcode;}
+                    }
+                  if ($code){
+                     push (@modsbib, "    <LOCCD>".$code."</LOCCD>");
+                     push (@searchbib, "    <LOCCD>".$code."</LOCCD>");
+                     }
+                  push (@modsbib, "    <LOCCO>$val</LOCCO>");
+                  push (@searchbib, "    <LOCCO>$val</LOCCO>");
+                  }
+               }
+
+            else{
+               push (@modsbib, '    <LOC T="'.$type.'">'.$val.'</LOC>');
+               push (@searchbib, '    <LOC T="'.$type.'">'.$val.'</LOC>');
+               }
+
+            }
+
+      #mods:url should be here also.  Did I put the URL in it?  surely I did.
+          push (@searchbib, "    <URL>$URL</URL>");
+          push (@modsbib, "    <URL>$URL</URL>");
+
+          push (@searchbib, "  </J>");
+          push (@modsbib, "  </J>");
+
+          }
+       else{ print "ERROR:  no physical location!\n";}
+
+# next is formats:  form, internetMediaType,digitalOrigin, extent  -- all in physicalDescription
+
+
+     undef @form;
+     #undef $formquality;
+     undef $digorigin;
+     undef $extent;
+     undef @media;  # for searchbib
+
+     if ($bigline =~ /(.*?)<mods:physicalDescription>(.*?)<\/mods:physicalDescription>(.*)/i){
+        $working = $2;
+        $bigline = $1.$3;
+        while ($working =~ /(.*?)<mods:internetMediaType>([^<]+)<\/mods:internetMediaType>(.*)/i){
+          $working = $1.$3;
+          push (@searchbib, '  <FMT MT="internetMediaType">'.$2.'</FMT>');
+          push (@modsbib, '  <FMT MT="internetMediaType">'.$2.'</FMT>');
+          push (@media, $2);
+          }
+        while ($working =~ s/<mods:form([^>]*)>([^<]+)<\/mods:form>//i){
+          $form = $2;
+          $tag = '  <FMT MT="form"';
+          push (@form, $2);
+          $att = $1;
+          if ($att =~ /type="([^"]+)"/i){
+            $tag .= ' T="'.$1.'"';
+            }
+
+          if ($att =~ /authority="([^"]+)"/i){
+            $tag .= ' A="'.$1.'"';
+            }
+          push (@searchbib, $tag.">$form</FMT>");
+          push (@modsbib, $tag.">$form</FMT>");
+          }
+        if ($working =~ s/<mods:digitalOrigin>([^<]+)<\/mods:digitalOrigin>//i){
+          $digorigin = $1;
+          push (@searchbib, '  <FMT MT="digitalOrigin">'.$1.'</FMT>');
+          push (@modsbib, '  <FMT MT="digitalOrigin">'.$1.'</FMT>');
+          }
+
+       if ($working =~ s/<mods:extent>([^<]+)<\/mods:extent>//i){
+          $extent = $1;
+          $extent =~ s/digital images digital images/digital images/;  #workbook error
+          $extent =~ s/; undefined//;  # cs error
+          push (@searchbib, '  <FMT MT="extent">'.$extent.'</FMT>');
+          push (@modsbib, '  <FMT MT="extent">'.$extent.'</FMT>');
+
+          }
+        
+# looks like she took this out
+    #    if ($working =~ /<mods:reformattingQuality>([^<]+)<\/mods:reformattingQuality>/i){
+    #      $formquality = $1;
+    #      }
+
+        }
+
+# next, language
+  #   print "BEFORE LANGUAGE:  have this:\n$bigline\n\n";
+
+     undef $lang;
+if ($bigline =~ /(.*?)<mods:language> *<mods:languageTerm *type="([^"]+)" *authority="([^"]+)" *>([^<]+)<\/mods:languageTerm> *<\/mods:language>(.*)/i){
+$lang = $4;
+$bigline = $1.$5;
+push (@searchbib, '  <LANG A="'.$3.'" T="'.$2.'">'.$4.'</LANG>');
+push (@modsbib, '  <LANG A="'.$3.'" T="'.$2.'">'.$4.'</LANG>');
+}
+else{ print "ERROR: did NOT GET LANGUAGE\n";}
+
+
+# then type:  typeOfResource -- may be multiple --- and genre
+# only use @type here if we decide to put this in image class
+     undef @type;
+     undef $manuscript;
+     while ($bigline =~ /(.*?)<mods:typeOfResource([^>]*)>([^<]+)<\/mods:typeOfResource>(.*)/i){
+       push(@type, $3);
+       push (@searchbib, '  <TYPE MT="typeOfResource">'.$3.'</TYPE>');
+       push (@modsbib, '  <TYPE MT="typeOfResource">'.$3.'</TYPE>');
+       $bigline = $1.$4;
+       }
+
+     if ($bigline =~ /(.*?)<mods:genre(.*?)>([^<]+)<\/mods:genre>(.*)/i){
+          $genre = $3;
+          $att = $2;
+          $bigline = $1.$4;
+          if ($att =~ /authority="(.*)"/){
+             push (@searchbib, '  <TYPE MT="genre" A="'.$1.'">'.$genre.'</TYPE>');
+             push (@modsbib, '  <TYPE MT="genre" A="'.$1.'">'.$genre.'</TYPE>');
+             }
+          else{
+             push (@searchbib, '  <TYPE MT="genre">'.$genre.'</TYPE>');
+             push (@modsbib, '  <TYPE MT="genre">'.$genre.'</TYPE>');
+             }
+          }
+       
+
+
+
+#lastly, relatedItem
+# we want the digital collection as host-- these incoming files should only list constituents
+# if we have the MS number online, we want to link to that also.
+# existing pids are in /d1/workarea/dlxs/ead/pids
+# and the MS number is currently 4 numbers left padded with zeros.
+
+
+     push (@searchbib, '  <REL T="host" DL="Digital Collection" U="http://idserver.utk.edu/?id=200600000001199">The Growth of Democracy in Tennessee: A Grassroots Approach to Volunteer Voices</REL>');
+     push (@modsbib, '  <REL T="host" DL="Digital Collection" U="http://idserver.utk.edu/?id=200600000001199">The Growth of Democracy in Tennessee: A Grassroots Approach to Volunteer Voices</REL>');
+
+# the database call to check for manuscript number is this:
+# select idn, idndes from item where fbname="0016_000050_000227"  
+#  where the last is the idnumber without the _0000 on the end
+# idndes can be
+#  manuscriptNumber          |
+#| otherIdentificationNumber |
+#| callNumber                |
+#| accessionNumber           |
+#| archiveNumber    
+# null
+#  and the MS numbers in idn need normalization.
+# if there's ms or MS with or without a hyphen, remove them.
+# the rest -- forget it.
+
+
+# COME BACK HERE!!! GOT TO HERE!
+# do the following for spc files later
+#  need to go back and get information from physicalLocation for
+# collection name, number, detail, and put it in here.
+# also, do a database call to find out if this baby has a manuscript number
+# if it does, find its persistent URL, and enter it, 
+# both in IC and in Search and in modsbib
+
+     undef @source;
+     undef @subfiles;  #for filenames of component parts, such as tifs
+     undef $att;
+
+     while ($bigline =~ /(.*?)<mods:relatedItem([^>]*)>(.*?)<\/mods:relatedItem>(.*)/i){
+        $working = $3;
+        $att = $2;
+        $bigline = $1.$4;
+
+# HERE:  capture partof, ms number,and detail, etc, and put in relation
+# HERE:  this will change.  You will eventually pull this out of mods:physicalLocation type="detail"
+#        if ($att =~ /type="host"/i){
+ #         if ($working =~ /<mods:title>([^<]+)<\/mods:title>/){
+  #           $partof = $1;
+   #          $location{"detail"} = $partof;
+    #         }
+
+     #     if ($working =~ /<mods:note type="manuscriptNumber">([^<]+)<\/mods:note>/){
+      #       $msnum = $1;
+       #      if ($partof){ $$location{"detail"} .= ", Manuscript Number $msnum";}
+        #     else{ $location{"detail"} = "Manuscript Number $msnum";}
+         #    }
+
+#          if ($detail && $location{"detail"}){
+ #             $location{"detail"} .= ", $detail";
+  #            }
+
+   #       elsif ($detail){ $location{"detail"} = $detail;}
+    #      }
+       # print "in relatedItem\n att=$att\n  working=\n$working\n\n";
+#others that may come in would be type="host" for parent resource
+# type="consitituent" for parts of this one, and
+# type="series", if this is part of a named series
+
+        if ($att =~ /type="constituent"/i){
+           while ($working =~ /(.*?)<mods:identifier [^>]*type="local" *>([^<]*)<\/mods:identifier>(.*)/i){
+              $working = $1.$3;
+              $afile = $2;
+              $afile =~ s/\..*//;
+              push (@searchbib, '  <REL T="constituent" N="'.$afile.'" NT="local"></REL>');
+              push (@modsbib, '  <REL T="constituent" N="'.$afile.'" NT="local"></REL>');
+              push (@subfiles, $afile);
+              }
+           if ($working =~ /\w/){ print "ERROR did not capture this for constituent:  $working\n";}
+           }
+
+        }
+
+      # here, add this digital collection as related item.
+#      push (@searchbib, '  <REL T="host" DL="Digital Collection" NT="local" U="'.$collurl.'">'.$collname.'</REL>');
+#      push (@modsbib, '  <REL T="host" DL="Digital Collection" NT="local" U="'.$collurl.'">'.$collname.'</REL>');
+
+
+       
+     
+       
+       
+     if ($bigline){ print "NOT CAPTURED YET:\n$bigline\n\n";}
+       
+    undef $source;  
+#    if ($rights){;}# print "rights: $rights\n";   #but use $myrights instead;  enter it in preservation
+#    else{print "ERROR:  no rights!\n";}
+#    if ($county){print "county: $county\n";}
+#     if ($collid_type){
+#        print "as host: $collid_type  $coll_id  $coll_title\n";
+#        $source = "$coll_title, $collid_type $coll_id";
+#        }
+#     elsif($analog_idtype){
+#        print "as analog: $analog_idtype  $analog_id $analog_title\n";
+#        $source = "$analog_title, $analog_idtype $analog_id";
+#        }
+ #    else{ print "NO HOST OR ANALOG INFO FOR SOURCE!\n";}
+#     if ($phys_location){print "located at: $phys_location\n";}
+#     foreach (@subfiles){ print "Contains: $_\n";}
+#     if ($citation) {print "Preferred citation:  $citation\n";}
+#     if ($whereInside){
+#        print "whereInside analog: $whereInside\n";
+#        if ($source){ 
+#          $source = $source.", $whereInside";
+#          }
+#        else{ $source = $whereInside;}
+#        }
+#     foreach (@title){ print "title:  $_\n";}
+ #    foreach (@creator){ print $creatorRole{$_}.":  $_\n";}
+ #    foreach (@date){ print "date: $_\n";}
+ #    foreach (@placeterm){ print "placeterm:  $_\n";}
+ #    foreach (@format){ print "format: $_\n";}
+ #    foreach (@description){print "description:  $_\n";}
+  #   print "form: $form of $formquality quality\n";
+  #   print "digital origin:  $digorigin\n";
+  #   print "extent: $extent\n";
+  #   print "type:  $type\n";
+  #   print "genre:  $genre\n";
+  #   foreach (@subjects){ print "subject:  $_\n";}
+
+
+
+# I replaced the rights statement in the metadata with one that does NOT have specific contact info
+# such as zip code and phone number, email, website.  Do this with TEI also.
+# $nolinkRights
+# alter software to add on link:  "For current contact information, visit http..."
+# in TEI display.  In MODS online display, and OAI use $myrights.
+
+# we also want to write bib  (pattern after Cochran)
+
+#  $pub = "University of Tennessee Libraries, Knoxville, Tennessee";
+  if (!$format){  $format= "image/jpeg";}
+  if (! $mytype){ $mytype= "Image";}
+  if (!$format){  $format= "image/jpeg";}
+  if (! $mytype){ $type= "Image";}
+  if (!$title){ $title = "No Caption";}
+ #    if (!$creator){ $creator = "Cochran, William Cox 1848-1936";}
+
+
+
+
+  undef @all;
+  undef $all;
+
+  push (@modsbib, "</A>");
+  open (BIB, $bibfile) or die "can't open $bibfile\n";
+  foreach (@modsbib){
+     # diacritic changes here for bib class
+      s/\&\#x00FC\;/\[uuml\]/ig;
+      s/\&\#x00E4\;/\[auml\]/ig;
+
+     print BIB $_."\n";
+     }
+   close (BIB);
+      
+
+# we also want to write search engine metadata (very similar)
+#   -- if you ran teisplit, the text files for this are in $textfiles directory, just cat the
+#      search metadata on the front end.
+       
+   $text = $textfiles.$filenum.".txt";
+#   undef @text;
+   if (-e $text){
+     open (TEXT, $text) or die "can't open $text\n";
+     while ($line = <TEXT>){
+        chomp ($line);
+        push (@searchbib, $line);
+        }
+     close (TEXT);
+     }   
+   push (@searchbib, "</A>");
+
+#HERE:  write searchbib files
+       
+  open (SEARCH, $searchfile) or die "can't open $searchfile:  $!\n";
+  foreach (@searchbib){
+     # diacritic changes here for bib class
+    s/\&\#x00FC\;/\[uuml\]/ig;
+    s/\&\#x00E4\;/\[auml\]/ig;
+    print SEARCH $_."\n";
+    }
+  close (SEARCH); 
+   
+#for VV, we also want to write image class metadata, if it's an image. (pattern after Cochran)
+
+    open (IC, $icfile) or die "can't write to $icfile\n";
+         
+   #   exit; 
+
+
+
+#HERE:  alter this!
+
+     undef $topic;
+     undef $timePeriod;
+     undef $names;
+     undef $geographic;
+     undef $genre_sub;
+     undef $occup;
+     undef $subjects;
+
+#note:  have not yet managed occupation as a subject, or possibly others
+ # separate multiple field values with semicolons
+     if (@topic_sub){$topic = join("; ", @topic_sub);}
+     if (@temporal_sub){$timePeriod = join("; ", @temporal_sub);}
+     if (@name_sub){$names =  join("; ",@name_sub);}
+     if (@geo_sub){$geographic = join("; ", @geo_sub);}
+     if (@genre_sub){$genre_sub =  join("; ",@genre_sub);}
+     if (@occup_sub){$occup =  join("; ",@occup_sub);}
+
+#these are hidden fields for searching
+     if (@vvcatrefs){$category = join("; ",@vvcatrefs);}
+     if (@subjects){ $subjects = join("; ",@subjects);}
+    
+     if (@form){ $form = join("; ",@form);}
+     if (@media){ $media = join("; ",@media);}
+
+     undef $title;
+     $title =   join("; ",@title);
+
+     undef $creator;
+     if ((scalar (@creator)) > 1){
+       foreach $c (@creator){
+         if ($creator){
+            $creator .= ";  ";
+            }
+         $creator.= $c;
+         }
+       }
+     else{ $creator = @creator[0];}
+
+     undef $description;
+     undef $notes;
+     if (@description){ $description =  join("; ",@description);}
+     if (%descnote){
+        while (($type, $val) = each(%descnote)){
+           if ($notes){ $notes .= ";  ";}
+           $notes .= $type.":  ".$val;
+           }
+        } 
+
+     $origin  = join("; ",@placeterm);
+     undef $physloc;
+     if ($location{"repository"}){
+        $physloc = $location{"repository"};
+        }
+     if ($location{"city"}){
+        if ($physloc){ $physloc .= ", ";}
+        $physloc .= $location{"city"};
+        }
+     if ($location{"state"}){
+        if ($physloc){ $physloc .= ", ";}
+        $physloc .= $location{"state"};
+        }
+
+
+
+    # print " Here's what we got:\n";
+  #   print "title: $title\ncreator: $creator\nfilenum: $filenum\n";
+  #   print "SUBJECT: $subjects\n\n"; 
+
+     # image file number ends in 1, not zero.
+    ($imagenum = $filenum) =~ s,0$,1,g;
+
+
+         $begin_rec = '        <entry entryid="X-'.$filenum.'" collid="MC'.$COLL.'" ca="'.$coll.'">
+            <entryauth mallow="WORLD">
+                <i ientryid="'.$COLL.'-X-'.$filenum.']'.$filenum.'" ientryidv="'.$COLL.'-X-'.$filenum.'-1" iid="1" it="1">
+                        <istruct isentryid="S-'.$COLL.'-X-'.$filenum.']'.$filenum.'" isentryidv="S-'.$COLL.'-X-'.$filenum.'-1" stid="0" face="FRONT" stty="SUMM" x="1" y="1" mt="IMAGE" ms="P" m="'.$imagenum.'">'.$imagenum.'</istruct>
+                        <d>
+';
+
+
+# collecting entire xml file for text blob in database
+   while (@all){pop(@all);}
+   $all = "";
+   push (@all, $begin_rec);
+
+
+  if ($title){
+     push (@all, '                            <c cn="'.$COLL.'.ti" cm="DLXS.ma DC.ti" ca="IC.vi" >'.$title.'</c>
+');
+     }
+    
+  if ($creator){
+     push (@all, '                            <c cn="'.$COLL.'.cr" cm="DC.cr DLXS.ma">'.$creator.'</c>
+');
+     }
+
+  if ($description){
+     push (@all, '                            <c cn="'.$COLL.'.de" cm="DC.de">'.$description.'</c>
+');
+     }
+   if ($notes){
+     push (@all, '                            <c cn="'.$COLL.'.no" cm="DC.de">'.$notes.'</c>
+');
+     }
+
+
+   if ($subjects){
+      push (@all, '                            <c cn="'.$COLL.'.su" cm="IC.misc">'.$subjects.'</c>
+');
+      }
+ 
+   if ($topic){
+     push (@all, '                            <c cn="'.$COLL.'.to" cm="DC.su">'.$topic.'</c>
+');
+     }
+
+   if ($timePeriod){
+     push (@all, '                            <c cn="'.$COLL.'.tp" cm="DC.su">'.$timePeriod.'</c>
+');
+     }
+   if ($names){
+     push (@all, '                            <c cn="'.$COLL.'.na" cm="DC.su">'.$names.'</c>
+');
+     }
+
+   if ($geographic){
+     push (@all, '                            <c cn="'.$COLL.'.gg" cm="DC.su">'.$geographic.'</c>
+');
+     }
+
+   if ($genre_sub){
+     push (@all, '                            <c cn="'.$COLL.'.sg" cm="DC.su">'.$genre_sub.'</c>
+');
+     }
+   if ($occup){
+     push (@all, '                            <c cn="'.$COLL.'.oc" cm="DC.su">'.$occup.'</c>
+');
+     }
+
+   if ($category){
+       push (@all, '                            <c cn="'.$COLL.'.ca" cm="IC.misc">'. $category.'</c>
+');
+       }
+
+
+# need:  Extent (ex), Genre (ge), Type of Resource (tp)
+#        Place of Origin (or), Part Of (po), Manuscript Number (mn)
+#        Detail (dt), County (ct), Media Type (fo), Form (fm)
+#        Physical Location (pl) -- combine repository, city and state here
+#  can probably leave out language, type ... what else?
+# put detail into Part of.  Manuscript number too.
+
+   if ($extent){
+      push (@all, '                            <c cn="'.$COLL.'.ex" cm="DC.fo">'. $extent.'</c>
+');
+       }
+
+    if ($origin){
+       push (@all, '                            <c cn="'.$COLL.'.or" cm="IC.misc">'. $origin.'</c>
+');
+       }
+
+    if ($ge){
+      push (@all, '                            <c cn="'.$COLL.'.ge" cm="DC.fo">'. $genre.'</c>
+');
+       }
+
+    if ($form){
+       push (@all, '                            <c cn="'.$COLL.'.fm" cm="DC.fo">'. $form.'</c>
+');
+       }
+    if ($media){
+       push (@all, '                            <c cn="'.$COLL.'.fo" cm="DC.fo">'. $media.'</c>
+');
+       }
+
+
+     if ($location{"detail"}){
+       push (@all, '                            <c cn="'.$COLL.'.po" cm="IC.misc">'. $location{"detail"}.'</c>
+');
+       }
+
+     if ($physloc){
+       push (@all, '                            <c cn="'.$COLL.'.pl" cm="IC.misc">'. $physloc.'</c>
+');
+       }
+
+     if ($county){
+       push (@all, '                            <c cn="'.$COLL.'.ct" cm="IC.misc">'. $county.'</c>
+');
+       }
+
+
+ 
+  push (@all, '                            <c cn="'.$COLL.'.cid" cm="IC.misc" ca="IC.fn">'. $filenum.'</c>
+');
+  
+
+  if ($pub){
+       push (@all, '                            <c cn="'.$COLL.'.pu" cm="DC.pu">'.$pub.'</c>
+');
+       }
+    push (@all, '                            <c cn="'.$COLL.'.col" cm="DC.re">'.$digitalColl.'</c>
+');
+
+   if ($prettydate){
+      push (@all, '                            <c cn="'.$COLL.'.da" cm="DC.da">'.$prettydate.'</c>
+');
+     }
+   if ($sortdate){
+     push (@all, '                            <c cn="'.$COLL.'.sd" cm="IC.misc">'.$sortdate.'</c>
+');
+     }
+
+
+    push (@all,  '                            <c cn="'.$COLL.'.ri" cm="DC.ri">'.$myrights.'</c>
+');
+   push (@all, $rec_footer);
+   $all = join ('', @all);
+# diacritic changes here for image class
+   $all =~ s/\&\#x00FC\;/\&uuml\;/ig;
+   $all  =~ s/\&\#x00E4\;/\&auml\;/ig;
+
+#   print " here's my blob:\n".$all."\n";   print " writing to file $newname\n";
+#   print "ok?\n";
+#   $ans = <STDIN>;
+   print IC $all;
+   close (IC);
+
+
+   while (@all){pop (@all);}
+
+   } # end xml file
+ } # end of looking at this file in directory 
+ 
+close(LINKFILE);
+    
+$dbh->disconnect() or warn "Disconnection failed: $DBI::errstr\n";
+
+if (@spcfiles){
+   print "SEPARATE OUT THESE FOR PRESERVATION CHANGES AND OAI:\n";
+   foreach (@spcfiles){ print "   $_\n";}
+   } 
+
+
+sub morph{                # changes dates to seachable format
+   $dat = $_[0];
+   $prettydate = "";
+   $day = ""; $mo=""; $yr="";
+
+   if ($dat =~ /(\d{4})-(\d{2})-(\d{2})/){
+      $yr = $1; $mo = $2; $day = $3; $sortdate = "$yr $mo $day";
+      }
+   elsif ($dat =~ /(\d{4})\/(\d{2})\/(\d{2})/){
+      $yr = $1; $mo = $2; $day = $3; $sortdate = "$yr $mo $day";
+      }
+
+   elsif ($dat =~ /(\d{2})-(\d{2})-(\d{4})/){
+      $yr = $3; $mo = $1; $day = $2; $sortdate = "$yr $mo $day";
+      }
+   elsif ($dat =~ /(\d{2})\/(\d{2})\/(\d{4})/){
+      $yr = $3; $mo = $1; $day = $2; $sortdate = "$yr $mo $day";
+      } 
+    elsif ($dat =~ /(\d{4})-(\d{2})/){
+      $yr = $1; $mo = $2; $sortdate = "$yr $mo 00";
+      }
+   elsif ($dat =~ /\d{4}/){ $yr = $dat; $sortdate= "$dat 00 00";} 
+   else { $sortdate = "0000 00 00"; return "";}
+   
+ #  print "yr: $yr, mo: $mo, day: $day\n";
+   if ($day =~ /0(\d)/){ $day = $1; if ($day eq "0"){$day = "";}}
+ #  print "day: $day\n";
+   if ($mo eq "00"){$mo ="";}
+   elsif ($mo eq "01"){$mo = "January";}
+   elsif ($mo eq "02"){$mo = "February";}
+   elsif ($mo eq "03"){$mo = "March";}
+   elsif ($mo eq "04"){$mo = "April";}
+   elsif ($mo eq "05"){$mo = "May";}
+   elsif ($mo eq "06"){$mo = "June";}
+   elsif ($mo eq "07"){$mo = "July";}
+   elsif ($mo eq "08"){$mo = "August";}
+   elsif ($mo eq "09"){$mo = "September";}
+   elsif ($mo eq "10"){$mo = "October";}
+   elsif ($mo eq "11"){$mo = "November";}
+   elsif ($mo eq "12"){$mo = "December";}
+   else {$mo = "";}
+ #  print "mo: $mo\n";
+   if (($day ne "") && ($mo ne "") && ($yr ne "")){ return ("$mo $day, $yr");}
+   elsif (($mo ne "") && ($yr ne "")){ return ("$mo, $yr");}
+   elsif ($yr){ return $yr; }
+   else { print "how did I get here?  $dat\n";}
+   $dat;
+   }
+ 
+    
+
+sub getDate{
+@when = split(/ +/, `date -u`);
+
+($mymonth, $myday, $time, $myyear) = (@when)[1,2,3,5];
+($hour, $min, $sec) = split (':', $time);
+chop($myyear);  #lose the newline
+
+if ($myday < 10){ $myday = "0".$myday;}
+
+if ($mymonth eq "Jan"){$mymonth = "01";}
+elsif ($mymonth eq "Feb"){$mymonth = "02";}
+elsif ($mymonth eq "Mar"){$mymonth = "03";}
+elsif ($mymonth eq "Apr"){$mymonth = "04";}
+elsif ($mymonth eq "May"){$mymonth = "05";}
+elsif ($mymonth eq "Jun"){$mymonth = "06";}
+elsif ($mymonth eq "Jul"){$mymonth = "07";}
+elsif ($mymonth eq "Aug"){$mymonth = "08";}
+elsif ($mymonth eq "Sep"){$mymonth = "09";}
+elsif ($mymonth eq "Oct"){$mymonth = "10";}
+elsif ($mymonth eq "Nov"){$mymonth = "11";}
+else{$mymonth = "12";}
+
+$mydate = $myyear."-".$mymonth."-".$myday;
+$mydate;
+}
+
+
+
+

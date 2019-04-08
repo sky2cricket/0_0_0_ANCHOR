@@ -1,0 +1,46 @@
+
+[root@diglib2 image]# cd /d1/dlxs/idx/v
+[root@diglib2 v]# ls
+vvb  vvi  vvo  vvs-bib  vvs-mods  vvt  vvz  vvzBack
+[root@diglib2 v]# ls vvz
+image.blank.dd  image.cfg  image.dd  image.idx  image.inp  image.rgn  Makefile  tags.txt
+[root@diglib2 v]# /bin/rm vvz/*
+[root@diglib2 v]# rmdir vvz
+[root@diglib2 v]# cd /d1/dlxs/bin/i/image
+[root@diglib2 image]# ls
+A2.txt  B2.txt  C5.txt                          idb.bak             old
+A3.txt  B.txt   clean.newlines.inplace.pl       idb.bk              setupcollindex
+A4.txt  C0.txt  firestar_xpat_images_steps.txt  idb_chd             tab2html.pl
+A5.txt  C1.txt  getoneline.pl                   imageprep
+A6.txt  C2.txt  html2tab.pl                     imageprep.cfg
+AH.txt  C3.txt  idb                             localimageprep.cfg
+A.txt   C4.txt  idb.20070327jd                  makefieldbrowse.pl
+[root@diglib2 image]# setupcollindex v/vvz
+using /d1/dlxs.
+setting up /d1/dlxs/idx for v/vvz
+done.
+setting up /d1/dlxs/obj up for v/vvz
+done.
+[root@diglib2 image]# 
+[root@diglib2 image]# cd /d1/dlxs/idx/v/vvz
+[root@diglib2 vvz]# ls
+image.blank.dd  image.cfg  image.inp  Makefile  tags.txt
+echo "working..."
+working...
+rm -f ./image.ffc
+rm -f ./image.ffi
+rm -f ./image.ffw
+rm -f ./image.idx
+rm -f ./image.maps.*
+rm -f ./image.mfs
+rm -f ./image*.rgn
+rm -f ./image.str
+rm -f ./image.dd
+rm -f ../../../obj/v/vvz/image.sgm
+cat ../../../obj/v/vvz/ic.*.norm.sgm > ../../../obj/v/vvz/image.sgm
+cp ./image.blank.dd ./image.dd
+xpatbld -D ./image.dd
+multirgn -f -D ./image.dd -t ./tags.txt
+[root@diglib2 vvz]# ls
+image.blank.dd  image.cfg  image.dd  image.idx  image.inp  image.rgn  Makefile  tags.txt
+

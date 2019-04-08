@@ -1,0 +1,26 @@
+<html>
+<body>
+<pre>
+&lt;?xml version="1.0"?> 
+&lt;xsl:stylesheet version="1.0" 
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+    &lt;xsl:template match="my_href">
+	my_href 2p_temp0
+	&lt;br />
+	We are using: 2p_temp0.xml and 
+	&lt;b>&lt;xsl:apply-templates />&lt;/b>
+	&lt;br />
+   &lt;/xsl:template>
+
+    &lt;xsl:template match="my_href2">
+	&lt;xsl:apply-templates />
+   &lt;/xsl:template>
+
+  &lt;xsl:template match="person">&lt;br />A Person&lt;/xsl:template>
+
+&lt;/xsl:stylesheet>
+&lt;!-- 2p_temp0.xml match_person.xsl-->
+</pre>
+</body>
+</html>

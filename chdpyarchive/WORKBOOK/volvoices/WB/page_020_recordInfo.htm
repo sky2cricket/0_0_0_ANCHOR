@@ -1,0 +1,333 @@
+<!--
+    This code is issued under the GNU General Public License, 
+    version 3, 29 June 2007.
+
+    The DLC-MODS Workbook provides a series of web pages to help you 
+    generate a MODS metadata record that follows the Digital Library 
+    Federation Implementation Guidelines for Shareable MODS Records, 
+    as described in the DLF Aquifer Guidlines November 2006.  These 
+    Guidelines and the specific MODS Profile are documented on the 
+    MODS Profile Page of the DLC-MODS Workbook.
+
+    Copyright (C) 2007 
+    Christine Haygood Deane 
+    University of Tennessee Libraries
+    Digital Library Center
+ 
+
+    This program is free software: you can redistribute it and/or modify    
+    it under the terms of the GNU General Public License as published by    
+    the Free Software Foundation, version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see http://www.gnu.org/licenses/
+-->
+
+<html>
+<head>
+<title>
+recordInfo
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+<script>
+parent.L.thisDocument = parent.D.document;
+
+
+function clearPage() { 
+        if (!confirm("All data entered for this page will be cleared.\n\nDo you wish to continue?")) {return};
+        parent.U.document.UF.re_block_list.value = "";
+        parent.L.update_block_iteration("recordInfo","0");
+        parent.L.update_page_validation('recordInfo','o');
+        parent.D.location.replace("page_020_recordInfo.htm");
+        return;
+}//end function
+
+
+
+</script>
+
+</head>
+
+<script> document.write('<body onload="load_DF_form();"  bgcolor="'+parent.adb_background_color+'" >'); </script>
+
+
+<font face="arial" size="3">
+<center><font face="arial">
+<h3><script> document.write(parent.adb_project_name); </script>
+&lt;recordInfo></h3>
+</center>
+
+<form name="DF"  action="">
+
+<table class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="ddeeff">
+<tr class="bgstandard"><td colspan="3"><font face="arial" size="2">
+<li>Summary of Requirements for &lt;recordInfo>
+<br>The DLF/Aquifer Implementation Guidelines for Shareable MODS Records require the use of one &lt;recordInfo> element with the subelement &lt;languageOfCataloging> to record the language of the text in the MODS record. &lt;recordInfo> is not repeatable. (page 93)
+<hr style="width:50%">
+<li>Per the Levels of Adoption Document Level 4: one &lt;recordInfo> element with the subelement &lt;languageOfCataloging> to record the language of the text in the MODS record 
+<li>Per the Levels of Adoption Document Level 4: @authority attributes in general 
+<hr style="width:50%">
+<li>Required Fields have yellow-highlighted input box. 
+</td></tr>
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>MODS LABEL</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+<font face="arial">
+
+
+<!-- sentiinel_00.value = number of elements in a recordInfo_block
+     sentinel_00.name signals that the set(s) of recordInfo_block elements starts with next element -->
+<input type="hidden" name="sentinel_00" value="0">
+
+<tr class="bgstandard">
+<td class="label13nou">Record Information</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td class="label13u">
+Record Content Source
+</td>
+<td><font face="arial" size="1">&nbsp;
+<select name="dyn_rcs_authority" size="1" style="color:#000080; font-weight:bold;">
+<option value="_zero">none</option>
+<option value="marcorg">MARC (marcorg)</option>
+<option value="oclcorg">OCLC (oclcorg)</option>
+</select>&nbsp;&nbsp;&nbsp;
+<input type="text" name="dyn_record_content_source" value="" size="56"
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; xwidth:300px; background:#ffffff"
+>
+&nbsp;&nbsp;<font face="arial" size="1">
+<br>&nbsp;&nbsp;authority(recommended)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Digitization center, institution, group, or individual responsible for creating the record.
+<br>&nbsp;&nbsp;MARC Authority Codes: <a href="http://www.loc.gov/marc/organizations/org-search.php" target="_blank">http://www.loc.gov/marc/organizations/org-search.php</a>
+<br>&nbsp;&nbsp;OCLC Authority Codes: <a href="http://www.oclc.org/contacts/libraries/" target="_blank">http://www.oclc.org/contacts/libraries/</a>
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+
+<tr class="bgstandard">
+<td class="label13u">
+Record Origin
+</td>
+<td>&nbsp;<textarea name="dyn_record_info_origin" cols="50" rows="4" style="color:#000080; font-weight:bold"></textarea> 
+&nbsp;&nbsp;<font face="arial" size="1">
+<br>&nbsp;Description of origin or provenance of the record. Recommended by Aquifer.  
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13u">
+Record Creation Date<br>yyyy-mm-dd
+</td>
+<td>&nbsp;<input type="text" name="dyn_record_creation_date" value="" size="36" READONLY
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:300px; background:#ffffff"
+>
+&nbsp;<input type="button" name="Bdyn_record_creation_date" value="Select Date" 
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:121px"
+onclick="parent.L.selectOneOptionDate(this,'600','700')">
+&nbsp;<input type="button" name="Cdyn_record_creation_date" value="Clear" 
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:100px"
+ onclick="parent.L.clearDateNoQual(this)" >
+<font face='arial' size='1'><br>&nbsp;Date this form is completed.
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td class="label13u">
+Language of Cataloging
+</td>
+<td>&nbsp;<input type="text" name="dyn_language_of_cataloging" value="eng" size="2" class="requirednw" READONLY
+>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;<input type="text" name="dyn_language_of_cataloging_display" value="English" xsize="36" READONLY class="required300w" 
+>
+&nbsp;<input type="button" name="Bdyn_language_of_cataloging" value="Select Language" class="button120w"
+onclick="parent.L.selectOneOption(this,'400','600')" >
+&nbsp;<input type="button" name="Cdyn_language_of_cataloging" value="Clear"  class="button80w"
+onclick="parent.L.clearSelection(this,2)" >
+&nbsp;&nbsp;<font face="arial" size="1"><br>&nbsp;&nbsp;iso639-2 Code
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ Description for Language. Enter values by clicking the Select Language Button.
+<br>&nbsp;&nbsp;Values are from <a href="http://www.loc.gov/standards/iso639-2/php/code_list.php" target="_blank">http://www.loc.gov/standards/iso639-2/php/code_list.php</a>.
+</td>
+<td>&nbsp</td>
+</tr>
+
+<!-- sentiinel_01.value = 0 , verify end
+     sentinel_01.name signals that the set(s) of recordInfo_block elements ends here -->
+<input type="hidden" name="sentinel_01" value="0">
+<input type="hidden" name="re_block_list" value="">
+
+<tr class="bgstandard">
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+
+
+
+
+<tr class="bgstandard"><td colspan="3" align="center">
+&nbsp;&nbsp;
+
+<input type="button" name="B2" value="Save Data and View MODS TAGS" class="buttonnw" onclick="buildModsTags(1)">
+
+&nbsp;&nbsp;
+<input type="button" name="Bclear" value="Clear Data and Restart this Page" class="buttonnw" onclick="clearPage();">
+
+
+
+
+</td></tr>
+
+<tr class="bgstandard" >
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+</table>
+
+
+
+
+
+
+
+</form name="forms[0]">
+
+<center><font face="arial">
+<h3><script> document.write(parent.adb_project_name); </script></h3>
+</center>
+
+
+<script>
+
+
+function load_UF_form() {
+
+parent.U.document.UF.re_block_list.value = document.DF.re_block_list.value;
+
+return;
+}
+
+
+function load_DF_form() {
+
+document.DF.re_block_list.value = parent.U.document.UF.re_block_list.value;
+parent.L.populate_DF_webform_from_UF_blocklist("re_block_list");
+
+return;
+
+}//end function load_DF_form() 
+
+
+function buildModsTags(N) {
+
+document.DF.re_block_list.value = parent.L.populate_DF_blocklist_from_DF_webform("re_block_list");
+//alert("document.DF.re_block_list.value=\n"+document.DF.re_block_list.value);
+
+////do this first so current values are loaded regardless of validation status
+load_UF_form();
+
+var num = new Number();
+    num = N;
+
+if (num == 11) {return;} //no validation required.
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+//before writing MODS TAGS, make sure all required fields are populated
+//checkAllRequired... true  validation sets validation status to O  -- complete
+//checkAllRequired... false validation sets validation status to o  -- incomplete
+
+if (!parent.L.checkAllRequiredElements_Page_recordInfo() ) {
+	parent.L.update_page_validation('recordInfo','o');
+	return;
+}
+parent.L.update_page_validation('recordInfo','O');
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+
+if (num == 10) {
+        alert("Values have been saved.");
+        return;
+        }
+
+
+var aps= new Array();
+var aps= new Array();
+var hps= new Array();
+var cps= new Array();
+    
+    hps = parent.L.buildTagsArray_header(num);
+    aps = parent.L.buildTagsArray_recordInfo(num);
+    cps = parent.L.buildTagsArray_closer(num);
+
+
+//=================================================
+
+document.write('<input type="button" name="BBACK" onclick="javascript: history.back()" value="BACK"><P>');
+document.write('<font face="Elephant" size="3" color="a00000">'+parent.adb_project_name+' &lt;recordInfo><p></font>');
+//PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+document.write(parent.adb_workbook_version+'<p>');
+document.write( "This is the generated xml script.  Values you entered are highlighted in red.<HR>");
+
+//document.write('< ? xml version="1.0"  ? > \r\n'); 
+///document.write("Content-Type: text/xml ")
+
+
+
+for (i=0;i<hps.length;i++) {
+	var vps = new String(hps[i]);
+ 	document.write("<br>"+vps);
+	}
+
+
+
+for (i=0;i<aps.length;i++) {
+	var vps = new String(aps[i]);
+	document.write("<br>"+vps);
+	}
+
+
+
+for (i=0;i<cps.length;i++) {
+	var vps = new String(cps[i]);
+	document.write("<br>"+vps);
+
+	}
+
+
+
+}//end function
+
+
+
+
+</script>
+	
+<script language=javascript src="elements.js"></script>
+<script>elements();</script>
+
+
+</body>
+</html>
+

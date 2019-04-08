@@ -1,0 +1,436 @@
+
+081031
+
+Halloween data purge on diglib2.
+
+
+Counts made on 081031
+
+BEFORE PURGE
+
+
+FCT.py The directory done/tei/notext     contains 408 files.
+
+FCT.py The directory tei/notext  contains 556 files.
+
+FCT.py The directory tei/notextPrev      contains 555 files.
+
+FCT.py The directory tei_output/notext   contains 560 files.
+
+>> end python binUtil/FCT.py done/tei/notext tei/notext tei/notextPrev tei_output/notext
+
+
+FCT.py The directory done/tei/ocr        contains 389 files.
+
+FCT.py The directory tei/ocr     contains 628 files.
+
+FCT.py The directory tei/ocrPrev         contains 628 files.
+
+FCT.py The directory tei_output/ocr      contains 631 files.
+
+>> end python binUtil/FCT.py done/tei/ocr tei/ocr tei/ocrPrev tei_output/ocr
+
+
+FCT.py The directory done/tei/typed      contains 250 files.
+
+FCT.py The directory tei/typed   contains 774 files.
+
+FCT.py The directory tei/typedPrev       contains 774 files.
+
+FCT.py The directory tei_output/typed    contains 776 files.
+
+>> end python binUtil/FCT.py done/tei/typed tei/typed tei/typedPrev
+>> tei_output/typed
+
+FCT.py The directory done/modsbib        contains 980 files.
+
+FCT.py The directory modsbib     contains 765 files.
+
+FCT.py The directory done/search         contains 981 files.
+
+FCT.py The directory search      contains 931 files.
+
+FCT.py The directory done/newmods        contains 3 files.
+
+FCT.py The directory newmods     contains 3 files.
+
+>> end python binUtil/FCT.py done/modsbib modsbib done/search search  done/newmods newmods
+
+
+FCT.py The directory done/mods/notext/mods       contains 343 files.
+
+FCT.py The directory notext/mods         contains 167 files.
+
+FCT.py The directory done/mods/ocr/mods  contains 387 files.
+
+FCT.py The directory ocr/mods    contains 242 files.
+
+FCT.py The directory done/mods/typed/mods        contains 250 files.
+
+FCT.py The directory typed/mods  contains 525 files.
+
+>> end python binUtil/FCT.py done/mods/notext/mods notext/mods done/mods/ocr/mods ocr/mods done/mods/typed/mods typed/mods
+
+FCT.py The directory done/newmods/notext         contains 343 files.
+
+FCT.py The directory newmods/notext      contains 123 files.
+
+FCT.py The directory done/newmods/ocr    contains 387 files.
+
+FCT.py The directory newmods/ocr         contains 238 files.
+
+FCT.py The directory done/newmods/typed  contains 250 files.
+
+FCT.py The directory newmods/typed       contains 404 files.
+
+>> end python binUtil/FCT.py done/newmods/notext newmods/notext  done/newmods/ocr newmods/ocr done/newmods/typed newmods/typed
+
+
+There are some directores that end up in the file count ( r1, r2, iso, etc )
+
+
+
+
+Because I am a chicken:
+
+[root@diglib2 tei]# mkdir notextPrevBack
+[root@diglib2 tei]# mkdir ocrPrevBack
+[root@diglib2 tei]# mkdir typedPrevBack
+[root@diglib2 tei]# mv notextPrev/* notextPrevBack/
+[root@diglib2 tei]# mv ocrPrev/*    ocrPrevBack/
+[root@diglib2 tei]# mv typedPrev/*  typedPrevBack/
+[root@diglib2 tei]# 
+
+
+-----------------------------------------------------------------------
+These files MUST be removed from done/tei NOW.
+They came from initial import of 080812-00-01-01music-02-04 done in
+September.
+
+ls -lt done/tei/notext - all others have oct 3 timestamp
+
+all these are from  080812/04/xml
+-rwxr-xr-x  1 root root 3559 Oct 23 12:29 0104_000050_000202_0000.xml
+-rwxr-xr-x  1 root root 3692 Oct 23 12:29 0104_000050_000205_0000.xml
+-rwxr-xr-x  1 root root 3512 Oct 23 12:29 0104_000050_000206_0000.xml
+-rwxr-xr-x  1 root root 4102 Oct 23 12:29 0104_000050_000207_0000.xml
+-rwxr-xr-x  1 root root 3652 Oct 23 12:29 0104_000050_000208_0000.xml
+-rwxr-xr-x  1 root root 3815 Oct 23 12:29 0104_000050_000210_0000.xml
+-rwxr-xr-x  1 root root 3990 Oct 23 12:29 0104_000050_000211_0000.xml
+-rwxr-xr-x  1 root root 3500 Oct 23 12:29 0104_000050_000213_0000.xml
+-rwxr-xr-x  1 root root 3852 Oct 23 12:29 0106_000053_000200_0000.xml
+-rwxr-xr-x  1 root root 3381 Oct 23 12:29 0106_000053_000202_0000.xml
+-rwxr-xr-x  1 root root 3367 Oct 23 12:29 0106_000053_000203_0000.xml
+-rwxr-xr-x  1 root root 3704 Oct 23 12:29 0109_000050_000200_0000.xml
+-rwxr-xr-x  1 root root 3556 Oct 23 12:29 0109_000050_000201_0000.xml
+-rwxr-xr-x  1 root root 3747 Oct 23 12:29 0109_000050_000202_0000.xml
+-rwxr-xr-x  1 root root 3721 Oct 23 12:29 0109_000050_000203_0000.xml
+-rwxr-xr-x  1 root root 3903 Oct 23 12:29 0109_000050_000204_0000.xml
+-rwxr-xr-x  1 root root 3900 Oct 23 12:29 0109_000050_000206_0000.xml
+-rwxr-xr-x  1 root root 3503 Oct 23 12:29 0109_000050_000207_0000.xml
+-rwxr-xr-x  1 root root 3414 Oct 23 12:29 0109_000050_000208_0000.xml
+
+ls -lt done/tei/ocr -  all have may14 or sep 15 time stample 
+
+all these are from 080812/02/xml
+-rw-r--r--  1 diglib diglib   3935 Sep 15 12:39 0084_000050_000202_0000.xml
+-rw-r--r--  1 diglib diglib   3802 Sep 15 12:39 0084_000050_000204_0000.xml
+
+ls -lt done/tei/typed - all have may 14 timestamp
+
+REMOVAL:
+[root@diglib2 tel]# /bin/rm done/tei/ocr/0084_000050_000202_0000.xml
+[root@diglib2 tel]# /bin/rm done/tei/ocr/0084_000050_000204_0000.xml
+[root@diglib2 tel]# /bin/rm done/tei/notext/0104_000050_000202_0000.xml
+[root@diglib2 tel]# /bin/rm done/tei/notext/0104_000050_000205_0000.xml
+[root@diglib2 tel]# /bin/rm done/tei/notext/0104_000050_000206_0000.xml
+[root@diglib2 tel]# /bin/rm done/tei/notext/0104_000050_000207_0000.xml
+[root@diglib2 tel]# /bin/rm done/tei/notext/0104_000050_000208_0000.xml
+[root@diglib2 tel]# /bin/rm done/tei/notext/0104_000050_000210_0000.xml
+[root@diglib2 tel]# /bin/rm done/tei/notext/0104_000050_000211_0000.xml
+[root@diglib2 tel]# /bin/rm done/tei/notext/0104_000050_000213_0000.xml
+[root@diglib2 tel]# /bin/rm done/tei/notext/0106_000053_000200_0000.xml
+[root@diglib2 tel]# /bin/rm done/tei/notext/0106_000053_000202_0000.xml
+[root@diglib2 tel]# /bin/rm done/tei/notext/0106_000053_000203_0000.xml
+[root@diglib2 tel]# /bin/rm done/tei/notext/0109_000050_000200_0000.xml
+[root@diglib2 tel]# /bin/rm done/tei/notext/0109_000050_000201_0000.xml
+[root@diglib2 tel]# /bin/rm done/tei/notext/0109_000050_000202_0000.xml
+[root@diglib2 tel]# /bin/rm done/tei/notext/0109_000050_000203_0000.xml
+[root@diglib2 tel]# /bin/rm done/tei/notext/0109_000050_000204_0000.xml
+[root@diglib2 tel]# /bin/rm done/tei/notext/0109_000050_000206_0000.xml
+[root@diglib2 tel]# /bin/rm done/tei/notext/0109_000050_000207_0000.xml
+[root@diglib2 tel]# /bin/rm done/tei/notext/0109_000050_000208_0000.xml
+
+---------------------------------------------------------------------------
+
+all this work being done in /d1/workarea/text/tel
+
+newmods/notext/*	Oct 24 timestamp
+newmods/ocr/*		Oct 24 timestamp
+newmods/typed/*		Oct 24 timestamp
+
+done/newmods/notext/*	Sep 11 timestamp
+done/newmods/ocr/*	Sep 11 timestamp
+done/newmods/typed/*	Sep 11 timestamp
+
+modsbib/*		Oct 24, 26, and Oct 31 timestamp
+search/*		Oct 24, 26, and Oct 31 timestamp
+
+
+done/modsbib/*		Sep 11 timestamp
+done/search/*		Sep 11 timestamp
+one anomaly in done/search/*
+-rw-r--r--  1 diglib diglib  12322 Sep  6  2007 done/search/0012_000085_000201_0000
+The initial record appears for this file on both diglib2 and diglib, but for
+both servers, the view document link brings up an error.  Need to look at the
+pageview.dat and the dlxs pageview table for this one.
+
+
+tei_output/notext/*	Oct 26 timestamp
+tei_output/ocr/*	Oct 26 timestamp
+tei_output/typed/*	Oct 26 timestamp	
+
+tei/notext/*		Oct 26 timestamp
+tei/ocr/*		Oct 26 timestamp
+tei/typed/*		Oct 26 timestamp	
+
+done/tei/notext/*	Oct  3 timestamp
+done/tei/ocr/*		May 14 timestamp
+done/tei/typed/*	May 14 timestamp	
+
+notext/mods/*		Oct 22, 23, 24, and Oct 26 timestamp
+ocr/mods/* 		Oct 22, 23, 26, and Oct 31 timestamp
+typed/mods/* 		Oct 22, 23, 24, 25, 26, and Oct 31 timestamp
+
+(all Oct 31 timestamps due to today's testing of nsgmls python programs)
+
+Timestamps okay to purge.
+
+LINKFILES
+
+/d1/workarea/dlxs/image/tel/singles/linkfile
+the last line:
+0015_000077_000206_0000  http://idserver.utk.edu/?id=200800000002552
+
+
+/d1/workarea/dlxs/image/tel/multiples/linkfile
+the last line:
+0018_000054_000338_0000  http://idserver.utk.edu/?id=200800000002685
+
+
+
+
+/d1/workarea/dlxs/txt/tel/done/xlinkfile/linkfile_before_081020
+the last data line, followed by comments:
+
+0012_000070_000248_0000  http://idserver.utk.edu/?id=200800000001676
+
+
+This copy of linkfile made October 6, 2008.
+Copied on Oct 18 2008 to done/xlinkfile/
+
+/d1/workarea/dlxs/text/tel/done/xlinkfile/linkfile_before_081020
+This linkfile is being made before the text class imports on Oct 20 2008.
+This text class import occurred on October 24, 2008.
+See linkfile_after_081024
+
+/d1/workarea/dlxs/text/tel/done/xlinkfile/linkfile_before_purge_081031.txt
+
+last data line followed by comments
+0101_000052_000203_0000  http://idserver.utk.edu/?id=200800000003616
+
+
+done/xlinkfile/linkfile_before_purge_081031.txt
+This linkfile was copied prior to file purge on 081031.
+
+These two lines occur together in the linkfile
+0012_000070_000248_0000 http://idserver.utk.edu/?id=200800000001676....keep
+0110_000050_000209_0000 http://idserver.utk.edu/?id=200800000002686....remove
+
+
+Now compare locserv.y2008 table with link file values. 
+Don't want to nuke singles or multiples.
+
+
+Looking at locserv.y2008 table
+
+DELETE FROM `y2008` where id > 2690
+
+You get the alert:
+---------------------------
+Microsoft Internet Explorer
+---------------------------
+Do you really want to  :
+DELETE FROM `y2008` WHERE id > 2690
+---------------------------
+OK   Cancel   
+---------------------------
+
+Click OK
+
+This leaves 5 records with date 2008-10-24 
+and then date 2008-10-10 starts -- the ones I want to keep.
+
+Delete using the php gui
+
+DONE.
+
+The highest id in the locserv.y2008 table is 2685, the one for highest
+multiples record
+
+
+Now take care of linkfile:
+
+edit /d1/workarea/dlxs/text/tel/linkfile
+copy the edited file to 
+/d1/workarea/dlxs/text/tel/done/xlinkfile/linkfile_purged_081031.txt 
+
+last dataline and comments from linkfile_purged_081031.txt
+
+0012_000070_000248_0000  http://idserver.utk.edu/?id=200800000001676
+
+
+
+/d1/workarea/dlxs/text/tel/done/xlinkfile/linkfile_purged_081031.txt 
+ 
+ /done/xlinkfile/linkfile_purged_081031.txt
+
+This linkfile has been purged of lines created by the failed import of text
+class.  It is ready for the next import.
+
+THE PURGE OF FILES
+
+[root@diglib2 tel]# ls tei_output
+notext  ocr  typed
+[root@diglib2 tel]# /bin/rm tei_output/*/*
+[root@diglib2 tel]# ls tei
+grep_4notext  notextCurr  notextPrev      ocr      ocrCurrTest  ocrPBTest
+ocrPrevBack  typedCurr      typedPB      typedPrev
+notext        notextPB    notextPrevBack  ocrCurr  ocrPB        ocrPrev
+typed        typedCurrTest  typedPBTest  typedPrevBack
+[root@diglib2 tel]# /bin/rm tei/notext/*
+[root@diglib2 tel]# /bin/rm tei/notextCurr/*
+/bin/rm: cannot remove `tei/notextCurr/*': No such file or directory
+[root@diglib2 tel]# /bin/rm tei/notextPB/*
+/bin/rm: cannot remove `tei/notextPB/*': No such file or directory
+[root@diglib2 tel]# /bin/rm tei/notextPrev/*
+/bin/rm: cannot remove `tei/notextPrev/*': No such file or directory
+[root@diglib2 tel]# /bin/rm tei/ocr/*
+[root@diglib2 tel]# /bin/rm tei/ocrCurr/*
+/bin/rm: cannot remove `tei/ocrCurr/*': No such file or directory
+[root@diglib2 tel]# /bin/rm tei/ocrPB/*
+/bin/rm: cannot remove `tei/ocrPB/*': No such file or directory
+[root@diglib2 tel]# /bin/rm tei/ocrPrev/*
+/bin/rm: cannot remove `tei/ocrPrev/*': No such file or directory
+[root@diglib2 tel]# /bin/rm tei/typed/*
+[root@diglib2 tel]# /bin/rm tei/typedCurr/*
+/bin/rm: cannot remove `tei/typedCurr/*': No such file or directory
+[root@diglib2 tel]# /bin/rm tei/typedPB/*
+/bin/rm: cannot remove `tei/typedPB/*': No such file or directory
+[root@diglib2 tel]# /bin/rm tei/typedPrev/*
+/bin/rm: cannot remove `tei/typedPrev/*': No such file or directory
+[root@diglib2 tel]# /bin/rm modsbib/*
+[root@diglib2 tel]# /bin/rm search/*
+[root@diglib2 tel]# /bin/rm newmods/*/*
+[root@diglib2 tel]# /bin/rm notext/mods/*
+/bin/rm: cannot remove `notext/mods/iso': Is a directory
+[root@diglib2 tel]# /bin/rm ocr/mods/*
+/bin/rm: cannot remove `ocr/mods/iso': Is a directory
+[root@diglib2 tel]# /bin/rm typed/mods/*
+/bin/rm: cannot remove `typed/mods/iso': Is a directory
+
+CONFIRM THAT iso directories are empty
+[root@diglib2 tel]# ls */mods/iso/
+notext/mods/iso/:
+
+ocr/mods/iso/:
+
+typed/mods/iso/:
+
+
+
+DO FCT FILE COUNTS AGAIN.
+
+AFTER THE PURGE:
+
+
+
+
+FCT.py The directory done/tei/notext     contains 389 files.
+
+FCT.py The directory tei/notext  contains 0 files.
+
+FCT.py The directory tei/notextPrev      contains 0 files.
+
+FCT.py The directory tei_output/notext   contains 0 files.
+
+>> end python binUtil/FCT.py done/tei/notext tei/notext tei/notextPrev
+>> tei_output/notext
+
+
+FCT.py The directory done/tei/ocr        contains 387 files.
+
+FCT.py The directory tei/ocr     contains 0 files.
+
+FCT.py The directory tei/ocrPrev         contains 0 files.
+
+FCT.py The directory tei_output/ocr      contains 0 files.
+
+>> end python binUtil/FCT.py done/tei/ocr tei/ocr tei/ocrPrev tei_output/ocr
+
+
+FCT.py The directory done/tei/typed      contains 250 files.
+
+FCT.py The directory tei/typed   contains 0 files.
+
+FCT.py The directory tei/typedPrev       contains 0 files.
+
+FCT.py The directory tei_output/typed    contains 0 files.
+
+>> end python binUtil/FCT.py done/tei/typed tei/typed tei/typedPrev
+>> tei_output/typed
+
+
+FCT.py The directory done/modsbib        contains 980 files.
+
+FCT.py The directory modsbib     contains 0 files.
+
+FCT.py The directory done/search         contains 981 files.
+
+FCT.py The directory search      contains 0 files.
+
+>> end python binUtil/FCT.py done/modsbib modsbib done/search search
+
+
+
+FCT.py The directory done/mods/notext/mods       contains 343 files.
+
+FCT.py The directory notext/mods         contains 1 files. (iso directory)
+
+FCT.py The directory done/mods/ocr/mods  contains 387 files.
+
+FCT.py The directory ocr/mods    contains 1 files. (iso directory)
+
+FCT.py The directory done/mods/typed/mods        contains 250 files.
+
+FCT.py The directory typed/mods  contains 1 files. (iso directory)
+
+>> end python binUtil/FCT.py done/mods/notext/mods notext/mods
+>> done/mods/ocr/mods ocr/mods done/mods/typed/mods typed/mods
+
+
+FCT.py The directory done/newmods/notext         contains 343 files.
+
+FCT.py The directory newmods/notext      contains 0 files.
+
+FCT.py The directory done/newmods/ocr    contains 387 files.
+
+FCT.py The directory newmods/ocr         contains 0 files.
+
+FCT.py The directory done/newmods/typed  contains 250 files.
+
+FCT.py The directory newmods/typed       contains 0 files.
+
+>> end python binUtil/FCT.py done/newmods/notext newmods/notext
+>> done/newmods/ocr newmods/ocr done/newmods/typed newmods/typed
+

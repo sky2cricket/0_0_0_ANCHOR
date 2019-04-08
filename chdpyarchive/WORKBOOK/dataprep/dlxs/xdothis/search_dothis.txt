@@ -1,0 +1,152 @@
+/d1/workarea/dlxs/search/dothis
+
+FOR NEW FILES:
+-------------
+put thumbs in /d1/dlxs/web/thumbs/   (height 120)
+make files match current samples and dtd
+put finished files in together directory
+
+for bib:
+#cat open samples/together/*  close > search-bib.xml
+cat open testmods2/* ../ead/newsearch/* close > search-bib.xml
+
+cp search-bib.xml /d1/dlxs/prep/s/search-bib/.
+cd /d1/dlxs/prep/s/search-bib/
+run
+   transform
+cp search-bib.xml ../../../obj/s/search-bib/.
+cd ../../../idx/s/search-bib/
+run
+   make all
+make release to production and check
+=========================================
+chd note 081001
+
+This note about instructions on step_005g.htm
+image copy alreay done 081001
+for all inst search display 
+THE COMMAND BELOW NEEDS CHANGE, all image derivatives start out on diglib store1-area2
+scp minithumbs/* diglib@diglib.lib.utk.edu:/d1/dlxs/web/thumbs/vv/.
+
+
+=========================================
+chd note 081001
+put finished files in together directory
+What is the together directory?
+
+[root@diglib2 s]# pwd
+/d1/dlxs/prep/s
+[root@diglib2 s]# ls
+samplefa  sampleic  sampletc  search-bib  search-bib.dtd  search-bib.xml
+search-mods  shld  shld-bib  spc  spc-bib  spcd-bib  spct  spct-bib
+[root@diglib2 s]# 
+
+=========================================
+chd note 081001
+[root@diglib2 search]# pwd
+/d1/workarea/dlxs/search
+[root@diglib2 search]# ls -lt
+total 9456
+drwxr-xr-x   2 diglib diglib    4096 Sep 29 13:58 modsbib
+drwxr-xr-x   2 diglib diglib    4096 Sep 29 13:38 newmods
+-rwxr-xr-x   1 diglib diglib   10083 Sep 29 13:35 bibDTDchanges
+drwxr-xr-x   2 diglib diglib    4096 Sep 29 13:22 testmods2
+-rwxr-xr-x   1 diglib diglib   28658 May 22 12:21 modsSearch3.dtd
+-rwxr-xr-x   1 diglib diglib   27178 May 22 09:26 modsSearch3.dtd.preMaps
+-rwxr-xr-x   1 diglib diglib     546 Apr  8 10:19 dothis
+drwxr-xr-x  16 diglib diglib    4096 Mar 20  2008 spc
+-rwxr-xr-x   1 diglib diglib   15511 Mar  3  2008 ModsToBib
+-rwxr-xr-x   1 diglib diglib   13889 Mar  3  2008 BibToMods
+-rwxr-xr-x   1 diglib diglib    3687 Nov  8  2007
+Old_New_Filenames_00_Priority.txt
+-rwxr-xr-x   1 diglib diglib     523 Nov  8  2007
+Old_New_filenames_05_Priority.txt
+-rwxr-xr-x   1 diglib diglib    6459 Apr  5  2007
+0099_000033_000044_0000_reload.xml
+-rwxr-xr-x   1 diglib diglib   47985 Feb  5  2007 search-bib.xml
+drwxr-xr-x   2 diglib diglib    4096 Feb  5  2007 textfiles
+-rwxr-xr-x   1 diglib diglib   26504 Feb  1  2007 hextest
+-rwxr-xr-x   1 diglib diglib     933 Feb  1  2007 hexmess
+drwxr-xr-x   2 diglib diglib    4096 Feb  1  2007 search
+-rwxr-xr-x   1 diglib diglib   75824 Feb  1  2007 here
+-rwxr-xr-x   1 diglib diglib   11270 Feb  1  2007 search-mods.xml
+-rwxr-xr-x   1 diglib diglib   24444 Feb  1  2007 modsSearch2.dtd
+-rwxr-xr-x   1 diglib diglib      76 Feb  1  2007 openmods
+-rwxr-xr-x   1 diglib diglib     200 Jan 30  2007 DBCALLS
+-rwxr-xr-x   1 diglib diglib      94 Jan 30  2007 JODYLOOK
+-rwxr-xr-x   1 diglib diglib     601 Jan 29  2007 CHARS
+-rwxr-xr-x   1 diglib diglib 9064488 Jan 12  2007 search-bib.xml.bk
+-rwxr-xr-x   1 diglib diglib   25231 Jan 11  2007 modsSearch2.dtd.prel
+-rwxr-xr-x   1 diglib diglib   23528 Jan 11  2007 modsSearch2.dtd.20061221jd
+-rwxr-xr-x   1 diglib diglib    2055 Dec 18  2006 NOTE
+-rwxr-xr-x   1 diglib diglib     199 Dec 14  2006 changingStuff
+-rwxr-xr-x   1 diglib diglib   16161 Dec 14  2006 modsSearch2.dtd_nested
+-rwxr-xr-x   1 diglib diglib      75 Dec 12  2006 open
+-rwxr-xr-x   1 diglib diglib   16587 Dec 11  2006 modsSearch2.dtd.bk
+-rwxr-xr-x   1 diglib diglib    4294 Dec  4  2006 template10_nocomments.xml
+-rwxr-xr-x   1 diglib diglib   14824 Dec  4  2006 modsSearch.dtd
+-rwxr-xr-x   1 diglib diglib   13620 Nov 27  2006 templateVV10.xml
+-rwxr-xr-x   1 diglib diglib   25491 Aug 15  2006 search.dtd
+drwxr-xr-x  10 diglib diglib    4096 Jun 30  2006 arrow
+-rwxr-xr-x   1 diglib diglib   24725 Jun 23  2006 search.dtd.bk
+-rwxr-xr-x   1 diglib diglib    3226 May 30  2006 ocrgather
+drwxr-xr-x   7 diglib diglib    4096 May 23  2006 samples
+-rwxr-xr-x   1 diglib diglib      17 May 18  2006 close
+-rwxr-xr-x   1 diglib diglib    1961 May 18  2006 teisplit
+-rwxr-xr-x   1 diglib diglib     648 May 17  2006 removetags
+drwxr-xr-x   2 diglib diglib    4096 May 17  2006 icons
+-rwxr-xr-x   1 diglib diglib      26 May 12  2006 crosswalks
+
+
+
+=========================================
+chd note 081001
+
+NO CHANGES TO THIS DIR SINCE FEB 5 2007 
+[root@diglib2 search]# cd /d1/dlxs/prep/s/search-bib/
+[root@diglib2 search-bib]# ls -lt
+total 384
+-rw-r--r--  1 diglib diglib  7731 Feb  5  2007 search-bib.extra.dd
+-rw-r--r--  1 diglib diglib 28645 Feb  5  2007 search-bib.prepost.dd
+-rw-r--r--  1 diglib diglib  6323 Feb  5  2007 search-bib.presgml.dd
+-rw-r--r--  1 diglib diglib     0 Feb  5  2007 search-bib.errors
+-rw-r--r--  1 diglib diglib 46793 Feb  5  2007 search-bib.xml
+-rw-r--r--  1 diglib diglib  6451 Feb  2  2007 search-bib.single.blank.dd
+-rw-r--r--  1 diglib diglib  4510 Feb  2  2007 search-bib.extra.srch
+-rw-r--r--  1 diglib diglib  4937 Feb  2  2007 search-bib.extra.srch.20070201
+-rw-r--r--  1 diglib diglib 24444 Feb  1  2007 modsSearch2.dtd
+-rw-r--r--  1 diglib diglib 23557 Jan 25  2007 modsSearch2.dtd.2006
+-rwx------  1 diglib diglib   278 Jan 11  2007 transform
+-rw-r--r--  1 diglib diglib  4761 Dec 21  2006 search-bib.sgm
+-rw-r--r--  1 diglib diglib  2818 Dec 13  2006 search-bib.extra.srch.bk3
+-rw-r--r--  1 diglib diglib 16161 Dec 13  2006 modsSearch2.dtd.comments
+-rw-r--r--  1 diglib diglib  4386 Dec 12  2006 search-bib.extra.search
+-rw-r--r--  1 diglib diglib  5797 Dec 12  2006 search-bib.extra.search.old
+-rw-r--r--  1 diglib diglib 62038 Dec 12  2006 search-bib.xml.bk
+-rw-r--r--  1 diglib diglib 34640 Sep 14  2006 modsSearch.dtd
+-rw-r--r--  1 diglib diglib 24725 Jun 23  2006 search.dtd
+-rw-r--r--  1 diglib diglib  2618 Jun 15  2006 search-bib.extra.srch.bk2
+-rw-r--r--  1 diglib diglib  1917 Jun 14  2006 search-bib.extra.srch.bk
+-rw-r--r--  1 diglib diglib 24411 Jun 14  2006 search.dtd.bk
+-rw-r--r--  1 diglib diglib  2443 May 25  2006 tdh.extra.srch
+-rwxr-xr-x  1 diglib diglib   446 May 24  2006 inc.extra.dd.pl
+
+=========================================
+chd note 081001
+
+--LOOK AT THE LIST OF FILES IN newmods/
+These are deprecated files and should NEVER be used
+Processing Search is deferred until this is straightened out.
+
+[root@diglib2 search]# pwd
+/d1/workarea/dlxs/search
+
+
+[root@diglib2 search]# ls newmods
+0012_000033_000044_0000.xml  0012_000060_000201_0000.xml
+0014_000057_000207_0000.xml
+0012_000051_000201_0000.xml  0012_000061_000200_0000.xml
+0015_000013_000010_0000r.xml
+0012_000057_000200_0000.xml  0014_000055_000201_0000.xml
+0015_000013_000010_0000.xml
+

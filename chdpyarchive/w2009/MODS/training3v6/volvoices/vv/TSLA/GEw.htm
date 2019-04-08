@@ -1,0 +1,183 @@
+<html>
+<head>
+<title>vv_popupCA</title>
+
+<link href="../vv_workbook.css" type="text/css" rel="stylesheet">
+
+
+
+
+<script language="javascript">
+
+var select_id= new String();
+function get_select_id() {
+
+var str = new String();
+    str = parent.location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  parent.window.opener.location.href="+parent.window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=get_select_id();
+
+
+
+var strSelect_GE_A = new String('');
+
+strSelect_GE_A = '<select name="aaa"  size="24" style="font-size:10px"> \r\n'
+	+'<option  selected>No Value Selected</option> \r\n'	
+
+
+
+
+
+
+
+
+	+'<option>WALDEN RIDGE (TENN.)</option>  \r\n'
+	+'<option>WALDEN RIDGE (TENN.) - HISTORY</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.)</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - CENSUS, 1820</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - CENSUS, 1830</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - CENSUS, 1840</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - CENSUS, 1850</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - CENSUS, 1860</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - CENSUS, 1870</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - CENSUS, 1910</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - CHURCH HISTORY - SOURCES</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - GENEALOGY - PERIODICALS</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - HISTORY - PERIODICALS</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - LAND RECORDS</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - PICTORIAL WORKS</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+	+'<option>WARRIORS PATH STATE PARK (TENN.)</option>  \r\n'
+	+'<option>WARTBURG (TENN.) - HISTORY</option>  \r\n'
+	+'<option>WARTBURG (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>WARTRACE (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>WARTRACE (TENN.) - HISTORY, LOCAL</option>  \r\n'
+	+'<option>WARTRACE (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>WASHINGTON COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>WASHINGTON COUNTY (TENN.) - CENSUS, 1830</option>  \r\n'
+	+'<option>WASHINGTON COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>WASHINGTON COUNTY (TENN.) - CHURCHES</option>  \r\n'
+	+'<option>WASHINGTON COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>WASHINGTON COUNTY (TENN.) - GENEALOGY - INDEXES</option>  \r\n'
+	+'<option>WASHINGTON COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>WASHINGTON COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>WASHINGTON COUNTY (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>WASHINGTON COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>WASHINGTON COUNTY (TENN.) - PHOTOGRAPHS</option>  \r\n'
+	+'<option>WASHINGTON COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>WATAUGA LAKE REGION (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>WATAUGA LAKE REGION (TENN.) - HISTORY</option>  \r\n'
+	+'<option>WATAUGA RESERVOIR REGION (TENN.) - POETRY</option>  \r\n'
+	+'<option>WATAUGA RIVER (N.C. AND TENN.) - MAPS</option>  \r\n'
+	+'<option>WATERTOWN (TENN.) - HISTORY</option>  \r\n'
+	+'<option>WATERTOWN (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>WATTS BAR DAM (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>WATTS BAR RESERVOIR (TENN.)</option>  \r\n'
+	+'<option>WATTS BAR RESERVOIR (TENN.) - STATISTICS</option>  \r\n'
+	+'<option>WAVERLY (TENN.)</option>  \r\n'
+	+'<option>WAVERLY (TENN.) - COMMERCE - HISTORY - 20TH CENTURY - SOURCES</option>  \r\n'
+	+'<option>WAVERLY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>WAVERLY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>WAYNE COUNTY (TENN.)</option>  \r\n'
+	+'<option>WAYNE COUNTY (TENN.) - ANTIQUITIES</option>  \r\n'
+	+'<option>(NO X, Y, OR Z AVAILABLE)</option>  \r\n'
+
++'</select> \r\n';
+	
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+<body class="background">
+
+
+
+
+<form name="FormOne" >
+
+
+<div name="SS" id="SS">
+<script>
+document.write(
+
+	 '<table border="1" cellpadding="4" cellspacing="0"  width="90%">\r\n'
+	+'<tr><td  bgcolor="ddeeff">\r\n'
+	///+'vv_functions.htm called by '+select_id+' <br>\r\n'
+	+'<b>Select Geographic Subject W-X-Y-Z </b> \r\n'
+	+'</td></tr><tr><td bgcolor="ddeeff"> \r\n' 
+	+ strSelect_GE_A
+
+	+'</td></tr></table> \r\n'
+	///+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+</script>
+	
+</div>
+
+<input type="button" onclick="showSelection();" name="B1" value="Geographic Name">
+
+</form>
+
+<script>
+
+
+
+                  
+
+function showSelection() {
+
+val = new String();
+
+for ( i=0; i< document.FormOne.aaa.length; i++ ) {
+
+if ( document.FormOne.aaa[i].selected == true ) {
+  	val = document.FormOne.aaa[i].text;
+	break;
+	}
+else { val = "you never selected anything"; 
+	}
+
+}
+////////////////////////alert ("You selected " +val);
+
+switch ( select_id ) {
+
+case  "subject_geographic_lcsh_01" :
+	parent.window.opener.document.forms[0].subject_geographic_lcsh_01.value=val;
+	parent.window.close();
+	break;
+
+case  "subject_geographic_lcsh_02" :
+	parent.window.opener.document.forms[0].subject_geographic_lcsh_02.value=val;
+	parent.window.close();
+	break;
+
+}//end switch
+
+}///end function
+</script>
+

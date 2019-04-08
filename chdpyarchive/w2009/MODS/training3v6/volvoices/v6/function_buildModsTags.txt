@@ -1,0 +1,126 @@
+//from page_begin_b.htm
+//model for other pages
+
+//at top
+<script language=javascript src="vv_build_mods_utility.js"></script>
+<script language=javascript src="vv_load_UF_DF_strings.js"></script>
+<script language=javascript src="vv_formvardebug.js"></script>
+
+
+//buttons in html code
+
+<!--- this button gives html display -->
+<input type="button" name="B_TAGS1" value="Save and View MODS TAGS(1)"
+onclick="buildModsTags(1);" class="buttonnw">
+
+<!--- this button gives xml download txt file when you do view source -->
+<input type="button" name="B_TAGS0" value="Save and View MODS TAGS(0)"
+onclick="buildModsTags(0);" class="buttonnw">
+
+//inside javascript tags below:
+<script>
+
+function buildModsTags(N) {
+
+//alert("RELOAD_SWITCH: "+parent.U.document.UF.RELOAD_SWITCH.value);
+	
+
+
+
+////do this first so current values are loaded regardless of validation status
+load_UF_form();
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+var num = new Number();
+    num = N;
+    //num = 1;//get rid of save only button
+//num=downloadTypeN  [0 for download; 1 for html display]
+
+
+
+//var aps= new Array();
+var hps= new Array(); //header
+var cps= new Array(); //closer
+
+//downloadTypeN  [0 for download of text; 1 for html display]
+//strN "01","02"..."06"
+//function buildTagsArray_page_01(downloadTypeN,strN)
+
+
+    hps = buildTagsArray_header(num);
+    cps = buildTagsArray_closer(num);
+
+
+   
+
+//=================================================
+
+// document.DF.XMLFILENAME.value;
+
+document.write('<input type="button" name="BBACK" onclick="javascript: history.back()" value="BACK">');
+if (num==1){
+document.write('<p><font face="Elephant" size="3" color="a00000">'+parent.adb_project_name+' Workbook, page_begin_b.htm<p></font>');
+//PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+//document.write( "This is the generated xml script.  Values you entered are highlighted in red.<HR>");
+document.write('Save your final file to: <font face="Elephant" size="3" color="a00000">'
++parent.U.document.UF.XMLFILENAME.value+'</font><p>');
+document.write('<font face="Elephant" size="3" color="a00000">PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+		+"This is the generated xml script.  Values you entered are highlighted in red."
+		+"<br>oNI = num ="+num
+		+"<HR>");
+}else
+if(num==0){
+document.write("\r\n\r\nClick on View Source to see a text version of the generated xml file.");
+
+}
+
+
+//document.write('< ? xml version="1.0"  ? > \r\n'); 
+///document.write("Content-Type: text/xml ")
+
+
+/**/
+var btag = new String("<BR>"); //html display
+if (num==0){btag="";} //text
+document.write(btag+"\n\n<!-- Generated XML below the cutline.\n\n---------------------------------------------->\n\n");
+
+
+for (i=0;i<hps.length;i++) {
+	var vps = new String(hps[i]);
+	//if (!confirm("vps.length="+vps.length))return;
+	if (vps.length>4) {
+		document.write(btag+vps);
+		}
+	}
+
+
+for (i=0;i<cps.length;i++) {
+	var vps = new String(cps[i]);
+	//if (!confirm("vps.length="+vps.length))return;
+	document.write(btag+vps);
+
+	}
+/**/
+
+if(num==1){
+document.write('<p>&nbsp;<p><input type="button" name="BBACK2" onclick="javascript: history.back()" value="BACK"><P>');
+}
+}//end function
+
+
+
+formvardebug();
+
+
+
+
+
+
+</script>
+	
+
+
+</body>
+</html>
+

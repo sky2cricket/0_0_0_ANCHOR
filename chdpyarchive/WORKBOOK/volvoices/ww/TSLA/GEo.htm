@@ -1,0 +1,218 @@
+<html>
+<head>
+<title>vv_popupCA</title>
+
+<link href="../vv_workbook.css" type="text/css" rel="stylesheet">
+
+
+
+
+<script language="javascript">
+
+var select_id= new String();
+function get_select_id() {
+
+var str = new String();
+    str = parent.location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  parent.window.opener.location.href="+parent.window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=get_select_id();
+
+
+
+var strSelect_GE_A = new String('');
+
+strSelect_GE_A = '<select name="aaa"  size="24" style="font-size:10px"> \r\n'
+	+'<option  selected>No Value Selected</option> \r\n'	
+
+
+
+
+
+
+
+
+
+	+'<option>OAK RIDGE (TENN.)</option>  \r\n'
+	+'<option>OAK RIDGE (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>OAK RIDGE (TENN.) - DESCRIPTION AND TRAVEL</option>  \r\n'
+	+'<option>OAK RIDGE (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>OAK RIDGE (TENN.) - ECONOMIC CONDITIONS</option>  \r\n'
+	+'<option>OAK RIDGE (TENN.) - HISTORY</option>  \r\n'
+	+'<option>OAK RIDGE (TENN.) - HISTORY - PICTORIAL WORKS</option>  \r\n'
+	+'<option>OAK RIDGE (TENN.) - LIBRARIES</option>  \r\n'
+	+'<option>OAK RIDGE (TENN.) - MAPS</option>  \r\n'
+	+'<option>OAK RIDGE (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>OAK RIDGE (TENN.) - POLITICS AND GOVERNMENT</option>  \r\n'
+	+'<option>OAK RIDGE (TENN.) - SOCIAL CONDITIONS</option>  \r\n'
+	+'<option>OAK RIDGE (TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+	+'<option>OAKDALE (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>OAKDALE (TENN.) - SOCIAL CONDITIONS</option>  \r\n'
+	+'<option>OBED RIVER WATERSHED (TENN.) - DESCRIPTION AND TRAVEL - GUIDEBOOKS</option>  \r\n'
+	+'<option>OBION (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>OBION (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>OBION COUNTY (TENN.) - ANTIQUITIES</option>  \r\n'
+	+'<option>OBION COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>OBION COUNTY (TENN.) - CENSUS, 1850</option>  \r\n'
+	+'<option>OBION COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>OBION COUNTY (TENN.) - DESCRIPTION AND TRAVEL</option>  \r\n'
+	+'<option>OBION COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>OBION COUNTY (TENN.) - GENEALOGY - PERIODICALS</option>  \r\n'
+	+'<option>OBION COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>OBION COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>OBION COUNTY (TENN.) - HISTORY - CIVIL WAR, 1861-1865</option>  \r\n'
+	+'<option>OBION COUNTY (TENN.) - HISTORY - PERIODICALS</option>  \r\n'
+	+'<option>OBION COUNTY (TENN.) - HISTORY - PICTORIAL WORKS</option>  \r\n'
+	+'<option>OBION COUNTY (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>OBION COUNTY (TENN.) - MAPS, MANUSCRIPT</option>  \r\n'
+	+'<option>OBION COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>OBION COUNTY (TENN.) - PICTORIAL WORKS</option>  \r\n'
+	+'<option>OBION COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>OBION COUNTY (TENN.) - PUBLIC WORKS</option>  \r\n'
+	+'<option>OBION COUNTY (TENN.) - SOCIETIES, ETC. - PERIODICALS</option>  \r\n'
+	+'<option>OBION COUNTY (TENN.) - TRANSPORTATION - HISTORY</option>  \r\n'
+	+'<option>OBION RIVER (TENN.)</option>  \r\n'
+	+'<option>OBION RIVER (TENN.) - ECOLOGY</option>  \r\n'
+	+'<option>OBION RIVER WATERSHED (TENN.)</option>  \r\n'
+	+'<option>OBION-FORKED DEER RIVER WATERSHED (TENN.)</option>  \r\n'
+	+'<option>OCCUPATIONS - TENNESSEE</option>  \r\n'
+	+'<option>OCOEE DISTRICT (TENN.)</option>  \r\n'
+	+'<option>OCOEE RIVER (GA. AND TENN.)</option>  \r\n'
+	+'<option>OLD HICKORY (TENN.)</option>  \r\n'
+	+'<option>OLD HICKORY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>OLD HICKORY (TENN.) - HISTORY - CHRONOLOGY</option>  \r\n'
+	+'<option>OLD HICKORY (TENN.) - INDUSTRY</option>  \r\n'
+	+'<option>OLD HICKORY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>OLD HICKORY LAKE (TENN.)</option>  \r\n'
+	+'<option>OLD SALEM CEMETERY (MADISON COUNTY, TENN.)</option>  \r\n'
+	+'<option>OLD STONE FORT (MANCHESTER, TENN.)</option>  \r\n'
+	+'<option>OLD STONE FORT STATE PARK (TENN.)</option>  \r\n'
+	+'<option>OLD STONE FORT STATE PARK (TENN.) (PROPOSED)</option>  \r\n'
+	+'<option>OLIVER SPRINGS (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>OLIVER SPRINGS (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>OLIVER SPRINGS (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>OLIVER SPRINGS (TENN.) - HISTORY</option>  \r\n'
+	+'<option>OLIVER SPRINGS (TENN.) - MAPS</option>  \r\n'
+	+'<option>OLIVER SPRINGS (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>OLIVER SPRINGS (TENN.) - POLITICS AND GOVERNMENT</option>  \r\n'
+	+'<option>ONEIDA (TENN.)</option>  \r\n'
+	+'<option>ONEIDA (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>ONEIDA (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>ONEIDA (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>ONEIDA (TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+	+'<option>ONEIDA (TENN.) - STREETS</option>  \r\n'
+	+'<option>OOLTEWAH (TENN.) - MAPS</option>  \r\n'
+	+'<option>OOLTEWAH (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>ORLINDA (TENN.) - HISTORY</option>  \r\n'
+	+'<option>OSBURN FARM (WILLIAMSON COUNTY, TENN.)</option>  \r\n'
+	+'<option>OVERTON COUNTY (TENN.)</option>  \r\n'
+	+'<option>OVERTON COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>OVERTON COUNTY (TENN.) - CENSUS, 1820</option>  \r\n'
+	+'<option>OVERTON COUNTY (TENN.) - CENSUS, 1870</option>  \r\n'
+	+'<option>OVERTON COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>OVERTON COUNTY (TENN.) - CENSUS, 1900</option>  \r\n'
+	+'<option>OVERTON COUNTY (TENN.) - CENSUS, 1910</option>  \r\n'
+	+'<option>OVERTON COUNTY (TENN.) - CENSUS, 1930</option>  \r\n'
+	+'<option>OVERTON COUNTY (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>OVERTON COUNTY (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>OVERTON COUNTY (TENN.) - ECONOMIC POLICY</option>  \r\n'
+	+'<option>OVERTON COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>OVERTON COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>OVERTON COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>OVERTON COUNTY (TENN.) - HISTORY - CIVIL WAR, 1861-1865</option>  \r\n'
+	+'<option>OVERTON COUNTY (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>OVERTON COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>OVERTON COUNTY (TENN.) - PICTORIAL WORKS</option>  \r\n'
+	+'<option>OVERTON COUNTY (TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+	+'<option>OVERTON PARK (MEMPHIS, TENN.) - HISTORY - PICTORIAL WORKS</option>  \r\n'
+	+'<option>OVOCA STATE PARK (TULLAHOMA, TENN.) (PROPOSED)</option>  \r\n'
+
++'</select> \r\n';
+	
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+<body class="background">
+
+
+
+
+<form name="FormOne" >
+
+
+<div name="SS" id="SS">
+<script>
+document.write(
+
+	 '<table border="1" cellpadding="4" cellspacing="0"  width="90%">\r\n'
+	+'<tr><td  bgcolor="ddeeff">\r\n'
+	///+'vv_functions.htm called by '+select_id+' <br>\r\n'
+	+'<b>Select Geographic Subject O </b> \r\n'
+	+'</td></tr><tr><td bgcolor="ddeeff"> \r\n' 
+	+ strSelect_GE_A
+
+	+'</td></tr></table> \r\n'
+	///+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+</script>
+	
+</div>
+
+<input type="button" onclick="showSelection();" name="B1" value="Geographic Name">
+
+</form>
+
+<script>
+
+
+
+                  
+
+function showSelection() {
+
+val = new String();
+
+for ( i=0; i< document.FormOne.aaa.length; i++ ) {
+
+if ( document.FormOne.aaa[i].selected == true ) {
+  	val = document.FormOne.aaa[i].text;
+	break;
+	}
+else { val = "you never selected anything"; 
+	}
+
+}
+////////////////////////alert ("You selected " +val);
+
+switch ( select_id ) {
+
+case  "subject_geographic_lcsh_01" :
+	parent.window.opener.document.forms[0].subject_geographic_lcsh_01.value=val;
+	parent.window.close();
+	break;
+
+case  "subject_geographic_lcsh_02" :
+	parent.window.opener.document.forms[0].subject_geographic_lcsh_02.value=val;
+	parent.window.close();
+	break;
+
+}//end switch
+
+}///end function
+</script>
+

@@ -1,0 +1,259 @@
+<html>
+<head>
+<title>page_lower.htm</title>
+<script language="javascript">
+//page_lower.htm loaded once, never reloaded
+
+///code is a string
+///desc is a string
+function dataCouple ( code, desc ) {
+	this.code = code;
+	this.desc = desc;
+	}
+
+///get the desc for the code
+///aCoupleArray - array of dataCouple objects
+function getDesc ( aCoupleArray, code ){
+
+var j =0;
+for ( j=0; j<aCoupleArray.length; j++) {
+	if (aCoupleArray[j].code == code ) {
+		return(aCoupleArray[j].desc);
+		}
+	}
+//if no match is found, return empty string
+return("");
+}//end function getDesc( aCoupleArray, code )
+
+function getSelectList ( aCoupleArray, indexOfSelected ) {
+
+var n = new Number(indexOfSelected);
+var r = new String(" ");
+var s = new String("");
+
+for (j=0; j<aCoupleArray.length; j++ ) {
+	if ( j != n ) {
+	s = '<option value="'+aCoupleArray.code+'">'+aCoupleArray.desc+'</option>\r\n';
+	}else{
+	s = '<option value="'+aCoupleArray.code+'" selected>'+aCoupleArray.desc+'</option>\r\n';
+	}
+	r += s;
+}//end for
+
+return(r);
+}//end getSelectList
+
+
+
+
+aVVtopic = new Array(//create the aVVtopic array of dataCouple objects
+ new dataCouple("0", "No value selected")
+,new dataCouple("A.1","1. Frontier migration/experiments in representative democracy, encounters with Native Americans")
+,new dataCouple("A.2","2. Jacksonian democracy and Tennessee\'s leadership role in the Early Republic")  
+,new dataCouple("A.3","3. Anti-democracy impulses: Slavery, free people of color, and Removal of Native Americans ")
+,new dataCouple("A.4","4. Debate over slavery, the Secession Crisis, and the Civil War: Tennessee as a uniquely divided border state")
+,new dataCouple("A.5","5. Reconstruction and the freedmen: appearance of hitherto undocumented people in legal records; the fastening of sharecropping on the countryside")
+,new dataCouple("A.6","6. Taxation and the narrowing of the franchise: \"Jim Crow\" laws and the poll tax")
+,new dataCouple("A.7","7. Utopian Impulses of the 19th century such as Nashoba, Ruskin, and Rugby ")     
+,new dataCouple("A.8","8. New South period and the industrialization of Tennessee")
+,new dataCouple("A.9","9. Women\'s Suffrage and Tennessee\'s pivotal role in passage of 19th Amendment") 
+,new dataCouple("A.10","10. Boss Crump, prohibition, and machine politics in Tennessee")
+,new dataCouple("A.11","11. Scopes trial, rise of fundamentalism, and public education")
+,new dataCouple("A.12","12. Tennessee Valley Authority and \"grass roots democracy\"")
+,new dataCouple("A.13","13. Oak Ridge and WWII effort in Tennessee")
+,new dataCouple("A.14","14. Civil Rights movement in Tennessee")
+,new dataCouple("A.15","15. Modern times in Tennessee")
+)//end aVVtopic
+
+      
+
+aVVbroadtopic = new Array(//create the aVVbroadtopic array of dataCouple objects
+ new dataCouple('D.1','1. African-Americans')
+,new dataCouple('D.2','2. Architecture')
+,new dataCouple('D.3','3. Arts and Literature')
+,new dataCouple('D.4','4. Children and Childhood')
+,new dataCouple('D.5','5. Civil and Human Rights')
+,new dataCouple('D.6','6. Education')
+,new dataCouple('D.7','7. Family Life and Gender Relations')
+,new dataCouple('D.8','8. Farming and Agriculture')
+,new dataCouple('D.9','9. Frontier Settlement and Migration')
+,new dataCouple('D.10','10. Government and Politics')
+,new dataCouple('D.11','11. Health and Medicine')
+,new dataCouple('D.12','12. Immigrants and Immigration') 
+,new dataCouple('D.13','13. Law and Legal Documents')
+,new dataCouple('D.14','14. Music and Performing Arts')
+,new dataCouple('D.15','15. Native Americans')
+,new dataCouple('D.16','16. Nature and the Environment')
+,new dataCouple('D.17','17. Popular Culture and Folklife')
+,new dataCouple('D.18','18. Religion')
+,new dataCouple('D.19','19. Science and Technology')
+,new dataCouple('D.20','20. Social Reform')
+,new dataCouple('D.21','21. Sports and Recreation')
+,new dataCouple('D.22','22. Trade, Business and Industry')
+,new dataCouple('D.23','23. Transportation and Internal Improvements')
+,new dataCouple('D.24','24. Wars and Military')
+,new dataCouple('D.25','25. Women')
+)//end aVVbroadtopic
+
+aVVcounty = new Array(//create the aVVcounty array of dataCouple objects
+ new dataCouple('0','None Selected')
+,new dataCouple('C.1','1. Anderson County')
+,new dataCouple('C.2','2. Bedford County')
+,new dataCouple('C.3','3. Benton County')
+,new dataCouple('C.4','4. Bledsoe County')
+,new dataCouple('C.5','5. Blount County')
+,new dataCouple('C.6','6. Bradley County')
+,new dataCouple('C.7','7. Campbell County')
+,new dataCouple('C.8','8. Cannon County')
+,new dataCouple('C.9','9. Carroll County')
+,new dataCouple('C.10','10. Carter County')
+,new dataCouple('C.11','11. Cheatham County')
+,new dataCouple('C.12','12. Chester County')
+,new dataCouple('C.13','13. Claiborne County')
+,new dataCouple('C.14','14. Clay County')
+,new dataCouple('C.15','15. Cocke County')
+,new dataCouple('C.16','16. Coffee County')
+,new dataCouple('C.17','17. Crockett County')
+,new dataCouple('C.18','18. Cumberland County')
+,new dataCouple('C.19','19. Davidson County')
+,new dataCouple('C.20','20. Decatur County')
+,new dataCouple('C.21','21. Dekalb County')
+,new dataCouple('C.22','22. Dickson County')
+,new dataCouple('C.23','23. Dyer County')
+,new dataCouple('C.24','24. Fayette County')
+,new dataCouple('C.25','25. Fentress County')
+,new dataCouple('C.26','26. Franklin County')
+,new dataCouple('C.27','27. Gibson County')
+,new dataCouple('C.28','28. Giles County')
+,new dataCouple('C.29','29. Grainger County')
+,new dataCouple('C.30','30. Greene County')
+,new dataCouple('C.31','31. Grundy County')
+,new dataCouple('C.32','32. Hamblen County')
+,new dataCouple('C.33','33. Hamilton County')
+,new dataCouple('C.34','34. Hancock County')
+,new dataCouple('C.35','35. Hardeman County')
+,new dataCouple('C.36','36. Hardin County')
+,new dataCouple('C.37','37. Hawkins County')
+,new dataCouple('C.38','38. Haywood County')
+,new dataCouple('C.39','39. Henderson County')
+,new dataCouple('C.40','40. Henry County')
+,new dataCouple('C.41','41. Hickman County')
+,new dataCouple('C.42','42. Houston County')
+,new dataCouple('C.43','43. Humphreys County')
+,new dataCouple('C.44','44. Jackson County')
+,new dataCouple('C.45','45. Jefferson County')
+,new dataCouple('C.46','46. Johnson County')
+,new dataCouple('C.47','47. Knox County')
+,new dataCouple('C.48','48. Lake County')
+,new dataCouple('C.49','49. Lauderdale County')
+,new dataCouple('C.50','50. Lawrence County')
+,new dataCouple('C.51','51. Lewis County')
+,new dataCouple('C.52','52. Lincoln County')
+,new dataCouple('C.53','53. Loudon County')
+,new dataCouple('C.54','54. Macon County')
+,new dataCouple('C.55','55. Madison County')
+,new dataCouple('C.56','56. Marion County')
+,new dataCouple('C.57','57. Marshall County')
+,new dataCouple('C.58','58. Maury County')
+,new dataCouple('C.59','59. McMinn County')
+,new dataCouple('C.60','60. McNairy County')
+,new dataCouple('C.61','61. Meigs County')
+,new dataCouple('C.62','62. Monroe County')
+,new dataCouple('C.63','63. Montgomery County')
+,new dataCouple('C.64','64. Moore County')
+,new dataCouple('C.65','65. Morgan County')
+,new dataCouple('C.66','66. Obion County')
+,new dataCouple('C.67','67. Overton County')
+,new dataCouple('C.68','68. Perry County')
+,new dataCouple('C.69','69. Pickett County')
+,new dataCouple('C.70','70. Polk County')
+,new dataCouple('C.71','71. Putnam County')
+,new dataCouple('C.72','72. Rhea County')
+,new dataCouple('C.73','73. Roane County')
+,new dataCouple('C.74','74. Robertson County')
+,new dataCouple('C.75','75. Rutherford County')
+,new dataCouple('C.76','76. Scott County')
+,new dataCouple('C.77','77. Sequatchie County')
+,new dataCouple('C.78','78. Sevier County')
+,new dataCouple('C.79','79. Shelby County')
+,new dataCouple('C.80','80. Smith County')
+,new dataCouple('C.81','81. Stewart County')
+,new dataCouple('C.82','82. Sullivan County')
+,new dataCouple('C.83','83. Sumner County')
+,new dataCouple('C.84','84. Tipton County')
+,new dataCouple('C.85','85. Trousdale County')
+,new dataCouple('C.86','86. Unicoi County')
+,new dataCouple('C.87','87. Union County')
+,new dataCouple('C.88','88. Van Buren County')
+,new dataCouple('C.89','89. Warren County')
+,new dataCouple('C.90','90. Washington County')
+,new dataCouple('C.91','91. Wayne County')
+,new dataCouple('C.92','92. Weakley County')
+,new dataCouple('C.93','93. White County')
+,new dataCouple('C.94','94. Williamson County')
+,new dataCouple('C.95','95. Wilson County')
+)//end aVVcounty
+
+
+aVVtemporal = new Array(//create the aVVtemporal array of dataCouple objects
+ new dataCouple('0','None Selected')
+,new dataCouple('B.1','1. Three Worlds Meet(Beginnings to 1660)')
+,new dataCouple('B.2','2. Colonization and Settlement(1585-1763)')
+,new dataCouple('B.3','3. Revolution and the New Nation (1754-1820)')
+,new dataCouple('B.4','4. Expansion and Reform (1801-1877)')
+,new dataCouple('B.5','5. Civil War and Reconstruction (1850-1877)')
+,new dataCouple('B.6','6. The Development of the Industrial United States(1870-1900)')
+,new dataCouple('B.7','7. The Emergence of Modern America(1890-1930)')
+,new dataCouple('B.8','8. The Great Depression and World War II(1929-1970)')
+,new dataCouple('B.9','9. Postwar United States (1945-1970)')
+,new dataCouple('B.10','10. Contemporary United States (1968-Present )')
+)//end aVVtemporal
+
+
+aSPCtopic = new Array(//create the aSPCtopic array of dataCouple objects
+ new dataCouple('B.1','1. African-Americans')
+,new dataCouple('B.2','2. Education')
+,new dataCouple('B.3','3. Government and Politics')
+,new dataCouple('B.4','4. Knoxville')
+,new dataCouple('B.5','5. Native Americans')
+,new dataCouple('B.6','6. Oak Ridge')
+,new dataCouple('B.7','7. Religion')
+,new dataCouple('B.8','8. Smoky Mountains')
+,new dataCouple('B.9','9. Tennessee Authors')
+,new dataCouple('B.10','10. TVA')
+,new dataCouple('B.11','11. University Archives')
+,new dataCouple('B.12','12. Women')
+)//end aSPCtopic
+
+
+aLanguage = new Array(//create the aLanguage array of dataCouple objects
+ new dataCouple('chr','Cherokee')
+,new dataCouple('chi','Chinese')
+,new dataCouple('eng','English')
+,new dataCouple('fra','French')
+,new dataCouple('ger','German')
+,new dataCouple('gre','Greek')
+,new dataCouple('heb','Hebrew')
+,new dataCouple('ita','Italian')
+,new dataCouple('jpn','Japanese')
+,new dataCouple('lat','Latin')
+,new dataCouple('por','Portuguese')
+,new dataCouple('rus','Russian')
+,new dataCouple('spa','Spanish')
+,new dataCouple('yid','Yiddish')
+,new dataCouple('zxx','No linguistic content')
+)//end aLanguage
+
+
+
+
+
+
+
+
+
+</script>
+</head>
+<body bgcolor="ffddee">
+</body>
+</html>

@@ -1,0 +1,130 @@
+<html>
+<head>
+<title>vv_popupCA</title>
+
+
+
+
+
+<script language="javascript">
+
+var select_id= new String();
+function get_select_id() {
+
+var str = new String();
+    str = location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  window.opener.location.href="+window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=get_select_id();
+
+
+
+var strSelect_PN_A = new String('');
+
+
+strSelect_PN_A = '<select name="aaa"  size="24" style="font-size:10px"> \r\n'
+	+'<option value="0" selected>No value selected</option> \r\n'
+		
+	+'<option >A. GRINGO</option>\r\n'
+	+'<option >AARON, DAVID</option>\r\n'
+	+'<option >ABBEY, EDWIN AUSTIN, - 1852-1911</option>\r\n'
+	+'<option >ABBEY, SETH - DIARIES</option>\r\n'
+	+'<option >ABBOT, WILLIAM RICHARDSON, - 1839-1916</option>\r\n'
+	+'<option >ABBOTT FAMILY</option>\r\n'
+	+'<option >GUZMAN REYNOSO, ABIMAEL, - 1934-</option>\r\n'
+	+'<option >GUZY, GARY SCHOENHOLTZ, - 1958-</option>\r\n'
+	+'<option >GWARTNEY FAMILY</option>\r\n'
+	+'<option >GWIN, WILLIAM MCKENDREE, - 1805-1885</option>\r\n'
+	+'<option >GWINNETT, BUTTON, - 1735-1777</option>\r\n'
+	+'<option >GWYDIR FAMILY</option>\r\n'
+	+'<option >GWYN FAMILY</option>\r\n'
+	+'<option >GWYN, NELL, - 1650-1687</option>\r\n'
+
++'</select> \r\n';
+	
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+<body >
+
+
+
+
+<form name="FormOne" >
+
+
+<div name="SS" id="SS">
+<script>
+document.write(
+
+	 '<table border="1" cellpadding="4" cellspacing="0" width="90%">\r\n'
+	+'<tr><td>\r\n'
+	///+'vv_functions.htm called by '+select_id+' <br>\r\n'
+	+'<b>Select Personal Name  </b> \r\n'
+	+'</td></tr><tr><td> \r\n' 
+	+ strSelect_PN_A
+
+	+'</td></tr></table> \r\n'
+	///+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+</script>
+	
+</div>
+
+<input type="button" onclick="showSelection();" name="B1" value="Personal Name">
+
+</form>
+
+<script>
+
+
+
+                  
+
+function showSelection() {
+
+val = new String();
+
+for ( i=0; i< document.FormOne.aaa.length; i++ ) {
+
+if ( document.FormOne.aaa[i].selected == true ) {
+  	val = document.FormOne.aaa[i].text;
+	break;
+	}
+else { val = "you never selected anything"; 
+	}
+
+}
+////////////////////////alert ("You selected " +val);
+
+switch ( select_id ) {
+
+case  "subject_name_lcsh_01" :
+	window.opener.document.forms[0].subject_name_lcsh_01.value=val;
+	window.close();
+	break;
+
+case  "subject_name_lcsh_02" :
+	window.opener.document.forms[0].subject_name_lcsh_02.value=val;
+	window.close();
+	break;
+}//end switch
+
+}///end function
+</script>
+

@@ -1,0 +1,35 @@
+<html>
+<head>
+<title>Collection Map Files (Finding Aids)</title>
+
+<link href="../../dlxsdocs.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="pageTitle">Collection Map Files (Finding Aids)</div><h1>Creating
+and Modifying the Map File</h1>
+<p>This document describes what we call <i>maps</i> or <i>map files</i>. Map
+   files contain mapped items where one term or name for the item is mapped to
+   another term or name. For example, a term used by an HTML form to refer to
+   a searchable region (e.g., &quot;entire finding aid&quot;) can be mapped to
+   an XPAT searchable region (e.g., EAD).</p>
+<p>Currently, the format of the map files is SGML and each collection map file
+   conforms to a simple DTD (other ways of mapping terms, such as a database
+   where one could map from one column's data to another are possible and have
+   been considered for implementation). The map is read into a <a href="../../program/libmodules.html#terminologymapper">TerminologyMapper</a> object
+   during the running of the middleware after which the CGI program can at any
+   time request of the object the mappings for terms. Each mapped item and its
+   various terms are contained within a &lt;MAPPING&gt; element.</p>
+<p>An example map file for the sample finding aids collection can be found at <tt>$DLXSROOT/misc/f/findaid/maps/samplefa.map</tt>.
+   Rather than modifying this file, a new map file should be created for each
+   collection. </p>
+<p>Each mapping element in a map file consists of the following:</p>
+<dl> <dt><tt>label</tt></dt><dd>This element determines what will display in
+the user's browser when constructing searches. It must match the value used in
+the <a href="../../collmeta/collmgr.html">collmgr</a>. </dd><dt><tt>synthetic</tt></dt><dd>This
+contains the variable name as it is used in the cgi.</dd><dt><tt>native</tt></dt><dd>The &quot;native&quot; element
+provides an appropriate XPAT search that the system will use to discover the
+appropriate content. The search may be simple (e.g., <tt>region EADID</tt>) or
+complex (e.g., <tt>((region DID within region ARCHDESC) not within region DSC)</tt>) </dd><dt><tt>nativeregionname</tt></dt><dd>The
+element name itself, as it is indexed, without terms used in the XPAT search.</dd></dl>
+</body>
+</html>

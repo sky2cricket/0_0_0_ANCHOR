@@ -1,0 +1,156 @@
+
+
+<html><head><title>Manpage of MFSBLD</title>
+<link href="../../dlxsdocs.css" rel="stylesheet" type="text/css"> </head><body>
+<h1>MFSBLD</h1>
+Section: User Commands  (1)<br>Updated: November 2000<br><a href="#index">Index</a>
+<a href="http://localhost/cgi-bin/man/man2html">Return to Main Contents</a><hr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="lbAB">&nbsp;</a>
+<h2>NAME</h2>
+
+<b>mfsbld</b> - XPAT Multi-File/Filter Support (MFS) system FileMap builder
+<a name="lbAC">&nbsp;</a>
+<h2>SYNOPSIS</h2>
+
+<b>mfsbld</b>
+[
+-v
+]
+[
+-s
+]
+[
+-t
+]
+[
+-o &quot; text_file&quot;
+]
+-D
+<i>data_dictionary</i>
+<a name="lbAD">&nbsp;</a>
+<h2>DESCRIPTION</h2>
+
+<b>mfsbld</b> reads the MFS specifications in the <i>data_dictionary</i> and
+generates the MFS FileMap for that database.  The FileMap is a
+directory of all the files that make up the database and
+is a core component of each MFS database.  The <i>data_dictionary</i> must be an
+MFS Data Dictionary (i.e., it's `Text' section must contain an `MfsFiles' section).
+Refer to the <i>Database Administration Guide</i> and the <b><a href="http://localhost/cgi-bin/man/man2html?5+mfs">mfs</a></b>(5) man page for further details.
+<p>
+
+<b>mfsbld</b> builds the following three FileMap files:
+<dl compact><dt><dd>
+<dl compact>
+<dt>-<dd>
+The FileMap file itself (with a `.fmp' extension)
+<dt>-<dd>
+The Filter List file (with a `.lmp' extension)
+<dt>-<dd>
+The Compiled FileMap file (with a `.xmp' extension)
+</dl>
+</dl>
+
+<a name="lbAE">&nbsp;</a>
+<h2>OPTIONS</h2>
+
+The following options are available:
+<dl compact>
+<dt><b>-v</b>
+
+<dd>
+Specify verbose mode.  This option tells <b>mfsbld</b> to print out progress
+messages to the standard output, as it is building the FileMap.
+By default, <b>mfsbld</b> works silently, only printing a message if
+an error occurs.
+<dt><b>-s</b>
+
+<dd>
+Specify sort mode.  This option tells <b>mfsbld</b> to sort the entries
+in the FileMap in alphabetical order by the file paths.  By
+default, <b>mfsbld</b> adds the
+file entries into the FileMap in the order the files appear in the
+directories.
+<dt><b>-t</b>
+
+<dd>
+Generate a user meta-data template file.  This option tells
+<b>mfsbld</b> to generate the template file for the user meta-data, instead
+of building the FileMap files.  The template file
+has the extension `<tt>.dat</tt>'.  Refer to the <b><a href="http://localhost/cgi-bin/man/man2html?5+mfs">mfs</a></b>(5) man
+page for a description of this file's format, as well as
+a description of how to enter
+the actual user meta-data into the template file.  Note that
+you only need a user meta-data file if you are incorporating user
+meta-data into the FileMap.  Also note that the `<tt>.dat</tt>'
+file file must be generated and prepared before the FileMap
+files are built.  When you run <b>mfsbld</b> without the <b>-t</b> option, it
+will automatically look for the template file in the same place
+as the other three FileMap files (as specified by the `FileMap'
+section of the Data Dictionary).  If it finds the file, it will automatically
+incorporate its contents into the FileMap.
+<dt><dd>
+<b>NOTE:</b> You usually do not run <b>mfsbld</b> by hand.  Instead, you usually
+run <b>dbbuild</b>, which in turn calls <b>mfsbld</b> and all the other index-building programs.
+Refer to the <b><a href="http://localhost/cgi-bin/man/man2html?1+dbbuild">dbbuild</a></b>(1) man page for more details.
+<dt><b>-o</b><i> text_file</i>
+
+<dd>
+Generate an output text file.  This option tells <b>mfsbld</b> to generate
+the virtual text of the entire database at the time it generates the
+FileMap files, and write this text to <i>text_file</i>.
+This option is normally used by <b>dbbuild</b> (see the <b><a href="http://localhost/cgi-bin/man/man2html?1+dbbuild">dbbuild</a></b>(1) man page for
+more details).
+</dl>
+<a name="lbAF">&nbsp;</a>
+<h2>INTEGRITY CHECK</h2>
+
+<b>mfsbld</b> will store some FileMap integrity check values inside the `.xmp'
+file to ensure that the three FileMap files are always consistent with each
+other.  <b>It is important NOT TO EDIT FileMap files directly</b>.  If
+you edit these files, you will get an error message from <b>xpat</b> when 
+you try to search the database.  If this happens, you will have to either
+restore the unmodified FileMap files, or rebuild the database index
+files (refer to the <i>Database Administration Guide</i> for details of this process).
+<a name="lbAG">&nbsp;</a>
+<h2>SEE ALSO</h2>
+
+<b><a href="http://localhost/cgi-bin/man/man2html?5+data_dict">data_dict</a></b>(5), <b><a href="http://localhost/cgi-bin/man/man2html?5+mfs">mfs</a></b>(5), <b><a href="http://localhost/cgi-bin/man/man2html?1+dbbuild">dbbuild</a></b>(1)
+<p>
+
+<hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">NAME</a><dd>
+<dt><a href="#lbAC">SYNOPSIS</a><dd>
+<dt><a href="#lbAD">DESCRIPTION</a><dd>
+<dt><a href="#lbAE">OPTIONS</a><dd>
+<dt><a href="#lbAF">INTEGRITY CHECK</a><dd>
+<dt><a href="#lbAG">SEE ALSO</a><dd>
+</dl>
+<hr>
+This document was created by
+<a href="http://localhost/cgi-bin/man/man2html">man2html</a>,
+using the manual pages.<br>
+Time: 18:03:38 GMT, March 26, 2001
+</body>
+</html>

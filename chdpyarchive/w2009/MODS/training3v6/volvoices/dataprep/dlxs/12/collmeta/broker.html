@@ -1,0 +1,214 @@
+<html>
+<head>
+<title>broker:  An OAI-compliant metadata server</title>
+
+
+
+ <link href="../dlxsdocs.css" rel="stylesheet" type="text/css">
+</head>         <body>
+<div class="pageTitle">An OAI/CGM-compliant Metadata Server: broker20</div>
+		
+			<h1>Overview and Contents</h1>
+			<p>
+				<b>broker20</b> is the CGI program that produces XML responses to OAI verbs as dictated by version 2.0 of the OAI protocol. Setting up broker20 will allow service providers to access and harvest metadata about your collections, for the purpose of aggregating and making this metadata, and consequently the collections, more broadly available to the public.</p>
+			<p>
+				<b>broker20</b> also produces responses to CGM verbs as dictated by  the <a href="http://www.library.cornell.edu/mathbooks/">CGM Protocol</a>, a protocol for distributed searching.   This protocol was developed by the University of Michigan, Cornell University, and Göttingen University with support provided by the National Science Foundation.  Working from the roots of the DIENST protocol developed at Cornell and the then-emergent OAI protocols, the project team focused on creating a new protocol--dubbed CGM, for "Cornell, Göttingen, Michigan"--that was consistent with OAI, borrowed from DIENST, and added mechanisms for full text searching.</p>
+			<p>
+				<b>Contents</b>:</p>
+			<ul>
+				<li>
+					<a href="#verbs">OAI Verbs</a>
+				</li>
+				<li>
+					<a href="#sets">OAI Sets</a>
+				</li>
+				<li>
+					<a href="#cgm">The CGM Protocol</a>
+				</li>
+			</ul>
+		
+		
+			<h1>
+				<a name="verbs"/>OAI Verbs</h1>
+			
+				<p>Setting up broker20 involves understanding the six verbs behind the OAI protocol.  To learn more about the OAI protocol, see <a href="http://www.openarchives.org/">http://www.openarchives.org/</a>.</p>
+				<ul>
+					<li>
+						<a href="#identify">Identify</a>
+					</li>
+					<li>
+						<a href="#listsets">ListSets</a>
+					</li>
+					<li>
+						<a href="#listmetadataformats">ListMetadataFormats</a>
+					</li>
+					<li>
+						<a href="#listidentifiers">ListIdentfiers</a>
+					</li>
+					<li>
+						<a href="#getrecord">GetRecord</a>
+					</li>
+					<li>
+						<a href="#listrecords">ListRecords</a>
+					</li>
+				</ul>
+			
+			
+				<h2>
+					<a name="identify"/>Identify</h2>
+				<p>This verb identifies the provider (i.e., you). The response of this verb is created based on the following parameters that reside in $DLXSROOT/cgi/b/broker20/<i>broker20.cfg</i>, and that are configurable when the dlxs middleware is <a href="../installation/index.html">installed</a>:</p>
+				<p>
+					<tt>$gRepositoryID</tt> : for DLPS, the value is <i>lib.umich.edu</i>.  Note that this must be a domain name.
+				</p>
+				<p>
+					<tt>$gRepositoryName</tt> : for DLPS, the value is <i>The University of Michigan. University Library. Digital Library Production Service.</i>
+				</p>
+				<p>
+					<tt>$BaseUrl</tt> : for DLPS, the value is <i>http://www.hti.umich.edu/cgi/b/broker20/broker20</i>
+				</p>
+				<p>
+					<tt>$AdminEmail</tt> : for DLPS, the value is <i>dlps-broker@umich.edu</i>
+				</p>
+				<p>
+					<tt>$EarliestDateStamp</tt> : for DLPS, the value is <i>2000-08-17</i>.  Enter the ealiest date stamp for your institution.
+				</p>
+				<p>
+					<tt>$DeletedRecord</tt> : for DLPS, the value is <i>NO</i>.  This flag indicates the manner in which the repository supports the notion of deleted records. Legitimate values are no, transient, or persistent. In the preparation of bib data, we don’t keep track of deleted records, that’s why it’s set to no.  
+				</p>
+				<p>
+					<tt>$Granularity</tt> : for DLPS, the value is <i>YYYY-MM-DD’</i>.  This is the resolution of the datestamp for your repository.  The legitimate values are YYYY-MM-DD and YYYY-MM-DDThh:mm:ssZ with meanings as defined in ISO8601.  The default value is the granularity used  in the preparation of bib data.
+				</p>
+				<p>
+					<tt>$SampleID</tt> : for DLPS, the value is <i>oai:lib.umich.edu:YEATS-YC023</i>, with YEATS-YC023 being a record id from the yeats collection.
+				</p>
+			
+			
+				<h2>
+					<a name="listsets"/>ListSets</h2>
+				<p>
+					<i>ListSets</i> will list the sets in your repository. broker20 views sets as  bib collections in groups that have OAI access privileges. Therefore, if you create a group using  <i>collmgr</i> (see <a href="collmgr.html">documentation for collmgr</a> for  specific steps to do this), and you set the OAI parameter for that group to  be <tt>Y</tt> or <tt>y</tt>,  you will see each of the collections in the group listed as a set when this verb is issued to <i>broker20</i>.</p>
+				<p>Because the setSpec values, which broker20 builds using the values collid and groupid, need to be alphanumeric according to the OAI protocol, all groupid and collid values need to be alphanumeric.  Here at DLPS we had collids ending in <tt>-bib</tt>, so <i>broker20</i> will remove the hyphens to make them OAI compliant, and when a set with bib at the end is requested using the OAI protocol, it is translated to ‘-bib’ so we can access it internally. So we are limited to not using collids with bib at the end unless they are preceded by a hyphen if we want to make it OAI enabled.  So for example, a collid of yeats-bib can be used and <i>broker20</i> can handle it, but a collid like yeatsbib should not be used.</p>
+				<p>Set information  is used as an optional input by <i>ListIdentifiers</i> and <i>ListRecords</i>. </p>
+			
+			
+				<h2>
+					<a name="listmetadataformats"/>ListMetadataFormats</h2>
+				<p>
+					<i>ListMetadataFormats</i> responds with a list of all the formats supported  by <i>broker20</i>. Currently, it responds with: <tt>oai_dc</tt>  (Dublin Core) for a valid identifier passed in, and <tt>oai_dc</tt>  if there are any records in the repository.  DLXS's BibClass format is also supported as an output format.</p>
+			
+			
+				<h2>
+					<a name="listidentifiers"/>ListIdentifiers</h2>
+				<p>This verb will list the identifiers,i.e., the unique record locators, in the repository. If a set is not specified,  it will list all the identifiers in groups that have been made OAI enabled. If  a set is specified, it will generate a list of identifiers for the requested set.</p>
+			
+			
+				<h2>
+					<a name="getrecord"/>GetRecord</h2>
+				<p>
+					<i>GetRecord</i> will return a single record for the identifier requested,  in the metadata format requested.</p>
+			
+			
+				<h2>
+					<a name="listrecords"/>ListRecords</h2>
+				<p>This verb works very much like <i>GetRecord</i>, but instead of returning one record, it creates a list of  records based on the input parameters.  This is the verb the harvesters will use to harvest your collections.</p>
+				<p>Something of interest to point out here is that in broker20 there is a routine that converts bib class data to Dublin Core data for this verb and the GetRecord verb and in the case where the bib data is bad (missing closing K tag, for example), the record will not be output, but an entry into a log file in /l1/cgi/b/broker20 by the name of ErrorLogFor_broker20 will be made.  In the log file you will find the time the error took place, the id of the record, and  a copy of the record with the problem.  You  may want to create a CRON script to clean this log file periodically and perhaps to notify you if there are entries.</p>
+				<p>Here are UM where we have over 130,000 records, and we have never had a bad record (so far).  If you run your bib data through an xml validator and it validates, you should never get an entry in this error log.</p>
+			
+		
+		
+			<h1>
+				<a name="sets"/>OAI Sets</h1>
+			<p>In order for <i>broker20</i> to work, you need to create a group or groups made  up of collections that you wish harvesters to gather via <i>broker20</i>. You  can do this through <a href="collmgr.html">
+					<i>collmgr</i>
+				</a>. Be sure to set  the OAI parameter to <tt>Y</tt> or <tt>y</tt>  for these groups. Most institutions will probably only create one group with  the collections they feel a harvester should have access to, but there are cases  where you want one harvester to harvest one group, and another to harvest another.  In these cases you could create multiple groups and notify the harvester of  the group they may be interested in. When they run their harvester, they will  run them against that group. </p>
+			<p>To put collections online, you should follow the procedures to get <a href="../class/bib/index.html">BibClass</a> collections online,  since <i>broker20</i> works against Bib Class collections.  Also, remember to add the collection(s) to the AUTH system giving <i>broker20</i> access to it.</p>
+			<p>All searches for data are done with <a href="http://docs.umdl.umich.edu/xpat/xpat-index.html">XPAT</a>.</p>
+			<p>OAI is Unicode compliant, and in the <i>broker20</i> cgi, there are routines for converting character entity references used by DLPS to XML numeric character entity reference values based on the Unicode equivalent for that character. If your institution has character entity references that are not included in the list that the release version of <i>broker20</i> uses, you will need to add them to the <i>broker20</i> code with the appropriate Unicode values. You will need to add the conversion in the routine <i>ConvertStandardCharEnt</i>
+			</p>
+			<p>There is another routine, <i>ConvertCollectionChars</i>, that converts Latin-1 characters (x0a1 to x0ff) and a few other characters from ISO-8859-* into their Unicode equivalents also represented as XML numeric character entity references. You may need to add  conversions in this routine if your records contain any characters from these ISO encoding not currently handled by <i>broker20</i>.</p>
+			<p>In instances where a character entity reference does not have an obvious Unicode equivalent, the character entity reference is unchanged in the output. For example, if there is no obvious Unicode mapping for <tt>&amp;abc;</tt>, <i>broker20</i> will output <tt>&#38;abc;</tt>.  The user interface will simple display this string.</p>
+			<p>
+					When you complete your installation and testing of broker20 at your institution, you will want to register your <i>broker20</i> with OAI at their website <a href="http://www.openarchives.org/">http://www.openarchives.org/data/registerasprovider.html</a>.  This is the place to register to let harvesters know you are available for harvesting. But before registering there, you should try registering it at the  <a href="http://oai.dlib.vt.edu/cgi-bin/Explorer/oai2.0/testoai">unofficial website</a> which is great for testing.  This site will run your broker20 through a series of test, and once it passes the tests you will be prompted to register.  Select ‘Test and Add an archive to this list’ to test and add your broke20.</p>
+		
+		
+			<h1>
+				<a name="cgm"/>The CGM Protocol</h1>
+			<p>broker complies with the cgm protocol, i.e., broker will respond to the verbs described in the <a href="http://www.library.cornell.edu/mathbooks/">CGM Protocol documentation</a>. This is means that if you setup broker correctly,  other institutions can search text collections at your institution, and of course you can search other intitutions collections that have set up broker. So say for instance you have a text class collection of chemistry books and another institution has a different collection of chemistry books, these two collections could be searched from one institution's website with the tools provided with DLXS release 11 (broker, and the subclass of TextClass CgmTC.pm). The following sections describe in more details what needs to be done to get something like this to work.</p>
+			<ul>
+				<li>
+					<a href="#accesscode">Getting an access code.</a>
+				</li>
+				<li>
+					<a href="#brokeranddb">Settingup broker20 and configuring the database.</a>
+				</li>
+				<li>
+					<a href="#cgmdb">Setting up the cgm database</a>
+				</li>
+				<li>
+					<a href="#subresident">Subclassing your resident collection</a>
+				</li>
+				<li>
+					<a href="#cronjob">Setting up a cron job</a>
+				</li>
+			</ul>
+		
+		
+			<h1>
+				<a name="accesscode"/>Getting an access code</h1>
+			<p>In order for pageviewer to make a Dissemination request for pages from a remote repository, it needs to provide that repository with an access code when it issues a Disseminate request; therefore, you will need to create an access code for your pageviewer to use.   If you are accessing a remote repository that uses DLXS, you  can run the broker20_access url from your institution (for example, at UM this would be <a href="http://hti.umich.edu/cgi/b/broker20/broker20_access">http://hti.umich.edu/cgi/b/broker20/broker20_access</a>), and enter the IP address of the server where pageviewer resides, and an access code will be provided.  If you are accessing an institution that does not use DLXS you will have to contact them to find out if they are using an access code and if so what it should be.  You will then need to enter these access codes in textclass.cfg in the hash gCgmAccessCode.</p>
+			<h1>
+				<a name="brokeranddb"/>Setting up broker and configuring the database</h1>
+			<p>So say you want to make some collections available to anther institution for searching, what do you need to do? All you need to do is go into the file broker20.cfg, and add the collids of the collections you want to make available to the array @gSupportedSets. The one limitation on this is that the collection be a level 1 collection. broker will not work with collections of higher levels. </p>
+			<p>Now what does the other institution have to do now to get access to these collections? Well, if they have DLXS release 11 they need to make entries in the collection manager for these collection, and then make these collections part of a group(s).  I want to point out that the CGM protocol does not presently support NOT and PROXIMITY searching, and so DLXS release 11 has been configured so that if a "CGM" collection is part of a group, then these operation are not presented to the user. This is in line with our philosophy of presenting a UI with functionality available to all the collections. These cgm collections are never listened in the all collection group. They only show up in the group pages.</p>
+			<p>Here are the fields that should be filled in in the collmgr for cgm collections. All other fields should be left blank.</p>
+			<ul>
+				<li>Collection ID -This should be the collid as listed by the other institution in their broker20</li>
+				<li>collname -The name of the collection</li>
+				<li>homesite -This should be the exact URL to the collection's homesite</li>
+				<li>host - This should be the url to the broker20 of that collection. For example, if you were accessing a collection here at UM you would place http://hti.umich.edu/cgi/b/broker20/broker20 in this field</li>
+				<li>webdir - Place in here the webdir of the other collection in the group that resides at your institution</li>
+				<li>map - Place in here the map file used by the other collection in the group that resides at your institution</li>
+				<li>subclassmodule - This should take on the value TextClass/CgmTC</li>
+				<li>appmodule - This should take on the value TextApp</li>
+				<li>querylanguage - This should take on the value cgm</li>
+				<li>rendering - This should take on the value perl</li>
+				<li>perlpifillermodule - This should take on the value TextAppPerlPIFiller</li>
+				<li>xsltpifillermodule - This should take on the value TextAppXsltPIFiller</li>
+				<li>primarytitle - This should take on the value of collname prefixed by text. For example, text:Collection Name</li>
+				<li>secondarytitle - This should take on the value default</li>
+				<li>qtytext - Find out what this value should be by contacting the other institution</li>
+				<li>defaultpgeview - Find out what the other instruction is making available. If they are a DLXS user this could take on the value of pdf, image, or text, which ever you prefer</li>
+				<li>pageviewimageformat - This should take on the value of gif</li>
+				<li>tcumodule - This should take on the value of TextClassUtils</li>
+				<li>pvappmodule - This should take on the value of PVApp/CgmPVApp</li>
+				<li>pageviewmodule - This should take on the value of PageView/CgmPV</li>
+				<li>printondemand - This should take on the value no</li>
+				<li>sortflds - Place in here the same values as you have in the collection that resides at your institution</li>
+				<li>termsearch - This should be full text, and it should also be full text for your resident collection</li>
+				<li>regionsearch - This should take on two values: pages, works, and these should be the values for your resident collection</li>
+				<li>bibsearch - This should be the bibliographic regions you want to search. The CGM protocol supports the following regions: title, idno, author, pubtype, subject, language, citation, mainheader, published, and publisher</li>
+				<li>pageviewselectvalues - This should be a list of the formats you wish to make available through pageveiwer. The possible values are pdf, iamge, and text</li>
+			</ul>
+			<h1>
+				<a name="cgmdb"/>Setting up the cgm database</h1>
+			<p>The subclass of TextClass that these types of collections will use is CgmTC.pm. This subclass uses a MySQL database, and therefore needs the database set up. To do this you will need to create a database by the name of cgm, and a user to the databse with SELECT, INSERT, UPDATE, and DELETE priviledges. You can then go ahead and create the necessary tables in the CGM database used by this subclass. There is a file in /l1/bin/b/broker20/ called CreateAndPopulateCGMTables. You can use this file to create the tables needed for the CgmTC.pm subclass to work. You can use the following command to execute the file: mysql -u root -p &lt; CreateAndPopulateCGMTables.txt</p>
+			<p>There are two perl files that connect to the database, and they are: CgmTC.pm and BBItemTCForCGM.pm. You will need to go into these two files and update the following variables:</p>
+			<ul>
+				<li>DatabaseName</li>
+				<li>UserName</li>
+				<li>Password</li>
+				<li>Datasource</li>
+			</ul>
+			<h1>
+				<a name="subresident"/>Subclassing your resident collection</h1>
+			<p>There is one additional change that will have to be made in order to have your DLXS text class interface function properly and that is that you will have to create a subclass of your resident collection. The DLXS has logic in it that is used remove the NOT and PROXIMITY search options if a cgm collecting is part of a group. Most of this logic is in TextApp.pm, but there is one situation where this decision is made in the TextClass code, and that is why this needs to be done. The routine that needs to change is FilterResultsForBasicToc. Copy the one in UmhistmathTC.pm to the subclass of your resident collection, and remember to update your collmgr entry for subclassmodule to indicate this.
+
+</p>
+			<h1>
+				<a name="cronjob"/>Setting up a cron job</h1>
+			<p>The final thing that needs to be mentioned is that a cron job needs to be setup to clean up the tables in the cgm database. We have a perl script that gets called every two hours that does this for us. It lives in /l1/bin/b/broker20 and its called Purge_CGM_Database. This script removes all entries from these tables that are older than two hours.</p>
+			<p/>
+		
+	</body>
+
+</html>

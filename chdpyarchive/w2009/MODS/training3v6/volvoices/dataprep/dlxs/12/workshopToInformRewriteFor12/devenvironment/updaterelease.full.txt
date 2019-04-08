@@ -1,0 +1,33 @@
+#!/l/local/bin/perl
+
+use strict;
+
+my $DLXSROOT = '/l1';
+
+my @cannonicalDirs  = ( 
+                       'bin',
+                       'cgi',
+                       'lib',
+                       'misc',
+                       'idx',
+                       'obj',
+                       'prep',
+                       'web',
+                      );
+
+
+chdir "$DLXSROOT";
+
+my $modules = join( ' ', @cannonicalDirs );
+my $command = "cvs -r update -d -R $modules";
+
+if ( $ARGV[0] eq 'filter' )
+{
+    print `$command  2>&1 | egrep -v '(^[?]|cvs update:)'`;
+}
+else
+{
+    `$command`;
+}
+
+

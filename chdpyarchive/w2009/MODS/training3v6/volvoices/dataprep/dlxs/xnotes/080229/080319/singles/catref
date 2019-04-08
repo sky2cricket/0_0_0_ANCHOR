@@ -1,0 +1,51 @@
+#!/usr/bin/perl
+
+#catref
+# replace catRef targets in TEI with
+# actual category references from the category list online
+# (in categories file)
+#  $input_change =~ s,<catRef target="A.3 B.1"/>,<catRef>".$cols[$i]."</catRef>";
+
+# 7/18/06, jody DeRidder
+
+$basedir = "/d1/workarea/dlxs/text/spc/";
+$cats = $basedir."categories";
+$teidir = $basedir."oldTEI/";
+$outdir = $basedir."TEI/";
+
+open (CATS, $cats) or die "can't open $cats\n";
+while ($line = <CATS>){
+  chomp($line);
+  if ($line =~ /(.*?)  (.*)/){
+     $categories{$1} = $2;
+     }
+  }
+close(CATS);
+
+opendir (INDIR, $teidir) or die "can't open $teidir\n";
+while ($file = readdir(INDIR)){
+   if ($file =~ /(.*\.xml)/){
+      open (OUT, ">".$outdir.$file) or die "can't open outfile $file\n";
+      open (IN, $teidir.$file) or die "can't open infile $file\n";
+      while ($line = <IN>){
+         chomp($line);
+         if ($line =~ /<catRef target="([^"]*)"/i){
+            $working = $1;
+            @ids = split (" ",$working);
+            foreach (@ids){ print "$file:  $_\n";}
+            foreach $id (@ids){
+              if ($categories{$id}){
+                 print OUT "     <catRef>".$categories{$id}."</catRef>\n";
+                 }
+              else{ print "ERROR: $id not defined\n";}
+              }
+            }
+          else{ print OUT $line."\n";}
+          }
+       close(IN);
+       close(OUT);
+       } 
+    }
+close (INDIR);
+
+       

@@ -1,0 +1,651 @@
+<html>
+<head>
+<title>XPAT Database Maintenance</title>
+
+
+
+
+
+
+
+<link href="../dlxsdocs.css" rel="stylesheet" type="text/css"> </head>         <body>
+<div class="pageTitle">3	 XPAT DATABASE MAINTENANCE</div>
+<h1>3.1	 INTRODUCTION</h1>
+<p><b>[Editor's note: This text is in the process of being adapted from the original Open Text manual, chapter 14 in the DBA section. References to sections with a "14" prefix are internal to this document. The original document has a heavy emphasis on MFS index building, which has not yet been corrected, and on "dbbuild", which DLXS does not support or recommend. This text was drawn from OCR, and so many errors exist, and figures are typically no longer meaningful.]</b></p>
+<p>This chapter discusses the xpatmaint program that provides update capability for XPAT databases. This chapter is divided into four sections. <i>Section 14.1</i> introduces the
+xpatmaint database maintenance
+program; <i>Section 14.2</i> illustrates the various update operations that
+xpatmaint <i>can</i> perform, using
+a simple database; <i>Section 14.3</i> discusses xpatmaint<i>'s</i> operational
+characteristics and statistics; and <i>Section
+14.4</i> describes how to install and use the Customer Interaction Database, an example of a complex record-oriented
+database that is supplied with all DLXS XPAT software distributions.</p>
+
+<h1>3.2	 OVERVIEW</h1>
+<p><i>The xpatmaint</i> utility is a database maintenance
+program that provides facilities for adding text to, and deleting text from, XPAT databases. The xpatmaint program
+<b>adds</b> text to XPAT databases by appending
+a relatively small piece of text (called the <i>append text)</i> to the end of
+a main database. It <b>deletes</b> text
+from XPAT databases by deleting any sections of the main database that are no
+longer needed (called <i>deletion
+regions).</i></p>
+<p><i>The</i> xpatmaint utility performs an <b>update</b>
+by updating the text file, then the Main Index file, the Region Subindex files, Fast Find index files and Fast Region
+index files. Most of these XPAT database files
+are updated in-place. For this reason, updates are batch oriented. Finally,
+xpatmaint uses an algorithm that
+efficiently computes the exact modifications that it has to perform on each
+file. This algorithm is faster than
+updating the text file manually and completely rebuilding the XPAT database with each of the index building tools - <i>xpatbld,
+multirgn, xpatrgn, xpatfr, xpatffi,</i> and x<i>patffw.</i></p>
+<p><i>Figure 14-1: DLXS XPAT database Maintenance Components</i></p>
+<p>modify</p>
+<p>uallua  a in</p>
+<p>database that requires maintenance and the Append DB is the small amount text that is to be merged into the main database. The New Text consists of the newly arrived text and the modified text from the main database. The modified deletion the ppenerates delete regions that are appended to the Deletion Reions f ie. After the New Text has been accumulated to a certain size, various build commands, such as <i>dbbui</i><i>ld,</i>can turn the New Text into the Append DB. After the preparation of input</p>
+<p>input</p>
+<p><b>merged \</b> I xpatmaint</p>
+<p>add</p>
+<p>the figure above is completes various component be used to merge xpatmaint<i>he</i> Main DB, the Delete Regions file database that requires mainland the Append DB
+into a new Main DB, which reflects that is to be mergedupdates. into the main database. The New Text consists
+of the newly arrived text and the modified text from the main database. The modified text from the Main DB generates
+delete regions that are appended to the
+Deletion Regions file. After the New Text has been accumulated to a certain
+size, various build commands, such as <i>dbbuild5O,</i>can turn the New Text into the Append DB. After the preparation of the Append DB is completed, xpatmaint can
+be used to merge the Main DB, the Delete Regions file and the Append DB into a new Main DB, which reflects all the
+updates.</p>
+
+<h1>3.3	 A SIMPLE EXAMPLE</h1>
+<p>Suppose we have a sample text file, called 'main'. Assume 'main' contains the following text:</p>
+<p>&lt;p&gt;This is line l&lt;/p&gt;</p>
+<p>&lt;p&gt;This is line 2&lt;/p&gt;</p>
+<p>This text contains two short paragraphs, each surrounded by &lt;p&gt; and &lt; /p&gt; tags. Because xpatmaint uses the start and end positions of the regions it updates, the following
+lines identify the start and end positions
+of the two paragraphs of our sample text. These positions will be used in the rest of the example.</p>
+<p>&lt;p&gt;This is line l&lt;/p&gt;</p>
+<p><b>1x</b> <b>22</b></p>
+<p>&lt;p&gt;This is line 2&lt;/p&gt;</p>
+<p><b>23</b> <b>44</b></p>
+<p>Note:  The end locations (22 and 44) actually point to the newline characters that follow the two &lt; / p&gt; tags. The available database maintenance operations are <i>update, add, and delete</i> and are discussed in <i>Sections - ,</i> respectively.</p>
+<h2>3.3.1	 Updating a region of text</h2>
+<p>Suppose we wish to update the second line in the 'main' database - the line between locations 23 and 44 inclusive. This is done in two operations: adding the new text and deleting the old text. The new text will be in an append file, which we will call 'append', and will consist of the following line:</p>
+<p>&lt;p&gt;This is the new and improved line 2&lt;/p&gt;</p>
+<p>In order to specify the portion of the main text to delete, we must have a deletion region file, which we will call 'del'. This <b>file</b> contains one line for each region of the
+'main' database that is to be deleted.
+Since we only wish to delete one line, the 'del' file will only contain the
+following line:</p>
+<p>23 44</p>
+<p><i>patmaint</i> requires that both the 'main' file and the
+'append' file have complete XPAT databases built
+on them. This includes an associated DD ('.dd') file and a Main Index ('.
+idx') file. If the 'main' or 'append'
+files have regions specified, the region ('.-gn') files are also considered
+part of a complete XPAT database.</p>
+<p>To perform the actual update operation, the xpatmaint program is invoked as follows:</p>
+<p>% xpatmaint -D main.dd -d del -a append.dd</p>
+<p>In this mode, xpatmaint will work quietly. This means that it will not display any information regarding what it is doing. Should you choose to view what xpatmaint does as <b>it
+</b>works, you can add a '-v' option to
+the command line shown above. The '- ' option turns "verbose" (or descriptive) mode on. After the update operation is complete, the main file will look
+like the following:</p>
+<p>&lt;p&gt;This is line l&lt;/p&gt;</p>
+<p>&lt;p&gt;This is the new and improved line 2&lt;/p&gt;</p>
+
+<h2>3.3.2	 Adding a region of text</h2>
+<p>In this scenario, we take the original 'main' database and append the 'append' file to the end of it. However, unlike the first scenario, we do not want to delete any portion of the 'main' text. To achieve this result, we invoke xpatmaint without the delete option. This means that no text will be deleted. The following command will perform the desired action:</p>
+<p>% xpatmaint -D main.dd -a append.dd</p>
+<p>After the update operation is complete, the main file will look like this:</p>
+<p>&lt;p&gt;This is line l&lt;/p&gt;</p>
+<p>&lt;p&gt;This is line 2&lt;/p&gt;</p>
+<p>&lt;p&gt;This is the new and improved line 2&lt;/p&gt;</p>
+
+<h2>3.3.3	 Removing a region of text</h2>
+<p>This next scenario will demonstrate how to delete a line of text from the main database without adding any new text. The xpatmaint program always requires an append option. Therefore, to delete text without adding any text, we must create an empty append database, which we will call 'empty_append'. This database essentially consists of an empty text file, along with a DD that refers to it. This DD only needs a Text segment and an Indices segment. The Text segment should refer to the empty text. The Indices segment only needs to be present for xpatmaint to recognize the DD as a valid DD; it doesn't need to refer to an actual index file (since xpatmaint doesn't use the append database's index). We then use the same setup as before, except that the append database specification is 'emptyappend. dd':</p>
+<p>% xpatmaint -D main.dd -d del -a empty_append.dd</p>
+<p>After the completion of the update operation, the main file will contain only the following:</p>
+<p>&lt;p&gt;This is line l&lt;p&gt;</p>
+
+
+<h1>3.4	 OPERATIONAL CHARACTERISTICS AND CONSIDERATIONS</h1>
+<h2>3.4.1	 Operation Assumptions</h2>
+<p><i>The xpatmaint</i> program uses an algorithm that
+efficiently computes the exact modifications that it has to perform on each file. This algorithm is faster than
+updating the text file manually and completely
+rebuilding the XPAT database. However, there are assumptions about the
+characteristics of the main database and
+the append database:</p>
+<ol>
+<li>The size of the main database is relatively larger than the append database.</li>
+<li>The append text can fit into main memory.</li>
+<li>The main database and the append database are valid databases and all the reference files are accessible for reading and writing.</li>
+<li>The delete regions from the main database are relatively close together.</li>
+<li>The delete regions are not overlapping.</li>
+<li>The append database's text is re-indexed using the main database's Character Mappings and Index Point definitions.</li>
+<li>Disk space is available for the new copy of the Fast Find index files. Since the Fast Find indices are not rolled-over in place, a new copy will be constructed. After the construction is complete, the new copy of Fast Find index files will replace the original Fast Find index files.</li>
+<li>The merging of Fast Find indices is determined by the main database's DD file. If the main database's DD file refers to the Fast Find indices, the append database's Fast Find indices will be constructed and merged with the main database's Fast Find indices; otherwise, the merging of Fast Find indices is skipped.</li>
+<li>The reconstruction of Fast Region indices are determined both by the main database DD and the append database DD. If both DDs specified the same region to be constructed for the Fast Region index, only the main DD specification will be used.</li>
+<li>The <i>xpatrfr</i> program is executable from the local directory
+where xpatmaint is running.</li>
+</ol>
+
+<h2>3.4.2	 Detailed Operation</h2>
+<p><i>If xpatmaint</i><i>S5</i>is given a main database and an append database, it will add the append
+text to the end of the given main text If
+deletion regions are specified to xpatmaint<i>,</i> the corresponding regions
+will be deleted from the main text. In
+either case, xpatmaint updates the Main Index, the Region Subindices, the Fast Find indices and the Fast
+Region indices. The update operation involves six
+steps:</p>
+<ol>
+<li>The append database's text is added to the end of the main database's text file.</li>
+<li>The append database's text is re-indexed (using the main database's Character Mappings and Index Point definitions) and that index is merged with the main database's Main Index.</li>
+<li>The Region Subindices of the append database are merged with those of the main database. The regions from the two databases are matched up by region name. Any region from the append database that has the same name as a region from the main database is merged into the corresponding region file of the main database. Any region from the append database whose name does not match any region name of the main database is placed at the end of the main database's region ('.rgn') file. If the main database does not already have a '.rgn' file, then one is created first.</li>
+<li>The Fast Find indices of the append database are merged with those of the main database. This step will occur only when the main database contains the Fast Find index ('.ffi') and ('.ffc') files.</li>
+<li>The Word List index of the append database are merged with those of the main database. This step will occur only when the main database contains the Word List index ('.ffw') file.</li>
+<li>The Fast Region indices are rebuilt as defined by the append database or the main database. The old Fast Region index ('. fri') file will be deleted and a new one will be created.</li>
+</ol>
+<p>After the above six steps have been performed, the main database's DD file is updated. <i>The
+xpatmaint</i> program physically modifies various files of the main database
+(the text file, the Main Index file, the
+Region Subindex files, the Fast Find index files and the Fast Region index
+files). Thus, at certain periods of
+xpatmaint execution, the database may be inconsistent and must be off- line. Refer to <i>Section</i> for more
+information on when the database must be off-line and when it can be on-line.</p>
+<p>Another point to note regarding xpatmaint<i>'s</i> mode of
+operation involves crash recovery. While
+xpatmaint is modifying the various index files of the main
+database, the database can be considered corrupted
+from a user's point of view. If xpatmaint is aborted before it has
+finished modifying all the files (e.g.,
+accidentally or due to a machine crash), the database will be left in a
+corrupted state and will not be usable. As
+such, it is important to BACK UP YOUR DATABASE BEFORE RUNNING xpatmaint!</p>
+
+<h2>3.4.3	 Preparation for the Append Database</h2>
+<p><i>patmaint</i> is generally used to perform regular
+additions of new text to an existing database and to delete some regions from the old text. Performing the addition
+operation generally works as follows:</p>
+<ol>
+<li>the new text is placed into a file in a directory that is separate from the main database.</li>
+<li>the xpatbld program is used to create a Main Index for the new text.</li>
+<li>the <i>multirgn, xpatrgn, sgmlrgn</i> programs, or a custom region building program, are run to create the Region Subindex files for the new text.</li>
+<li>the <i>xpatfr</i> program is used to create the Fast Region indices.</li>
+</ol>
+<p>The above operations are usually placed in a script file to automate the process. The Customer Interaction Database <i>(Section 14.4)</i> provides a good example of how a system of shell
+scripts can be used to automate the
+process.</p>
+<p><b>Note:</b>  Since xpatmaint re-indexes the append
+file during the update operation, the use of xpatbld in Step 2 above is only to provide a valid DD file for
+the append database. The index that it produces is
+superfluous and is never used by xpatmaint<i>.</i> As such, the index
+need not be built with the same character
+mappings or index point specifications as the main database. At present, there
+is no option for xpatbld to fake
+the index-building step and simply produce a valid DD. However, the time taken to build the index can be eliminated by having
+the index-building script simply build an initial DD file from a pre-generated template in place of running xpatbld in Step 2.</p>
+<p>The new text does not need to construct the Fast Find indices because xpatmaint will use the main database DD to determine whether these indices are required. If the main database contains these . - indices, the Fast Find indices for the new text will be automatically generated in main memory and prepared to be merged.</p>
+<p>The Fast Region indices will be rebuilt either as defined in the main database or in the append database after both databases have been merged. Therefore, if the main database contains the definition for the Fast Regions, the same Fast Region is not required to be constructed for the new text.</p>
+<p>There is one important point to note about building the append database. The entries in the append database's DD that specify the various files in the database should contain full pathnames. This is necessary because the main database's DD usually has relative file pathnames (to allow the main database to be easily relocated in the file system without requiring changes to the DD). Because of this, xpatmaint is usually run from the main database's directory. As such, full pathnames are necessary in the append database's DD to provide unambiguous references to its various files from anywhere in the file system (in particular, from the main database's directory).</p>
+
+<h2>3.4.4	 Deletion Regions file</h2>
+<p><i>The</i> xpatmaint program requires a deletion
+regions file to specify the portions of the main text that are to be removed. The deletion regions file
+consists of one or more lines. Each line corresponds to a separate deletion region and contains two
+numbers. These numbers are the 1-based positions of the first character and the last character in the region that is to
+be deleted (' I-based' means that the first character
+in the file is at position 1, and not position 0). The region positions must be
+monotonically increasing and no region
+should overlap another region. Some typical entries in the deletion regions file would be:</p>
+<p>120 345</p>
+<p>790 930</p>
+<p>3502 5607</p>
+<p>The above file would specify the deletion regions: start at 120, end at 345; start at 790, end at 930; and start at 3502, end at 5607, inclusively. The positions are monotonically increasing and no regions are intersecting. Violating the former specification rules will produce unpredictable results.</p>
+
+<h2>3.4.5	 Partial Execution Options</h2>
+<p><i>The xpatmaint</i> program consists of five major stages.
+The first stage consists of a full scan of the main
+text to generate the index update directives. The second stage consists of an
+in-place update of the main text and the
+Main Index, using the update directives produced in the first stage. The update of the main text involves physically appending
+the append database's text to the end of the main
+database's text file, and deleting the sections of text specified in the
+deletion regions file. The third stage
+consists of merging the append database's region files with those of the main
+database. The fourth stage consists of
+merging the Fast Find indices from the main database and the append database. Finally, the fifth stage consists of
+rebuilding all the defined Fast Region indices from both the main database and the append database. For each stage, there
+are different index files that are being
+read and updated. The following table summarizes the operations:</p>
+<p><b>Fi</b>le</p>
+<p><b>Fil</b>e Read  F<b>i</b>le Updated R  emoved</p>
+<p>Stag<b>e</b> <b>Operations</b>  <b>Befor</b>e  <b>or Gen</b>erat<b>ed</b>   Aer</p>
+<p><b>After</b></p>
+<p>1 scanning the main  data  pmt_dir  none</p>
+<p>database and   dictionary'</p>
+<p>generating the  appndxt</p>
+<p>update directives</p>
+<p>main text</p>
+<p>2 rolling over text file   main text, main text, none</p>
+<p>and rolling over Main  main index, main index,</p>
+<p>Index.</p>
+<p>pmtdir   pmt_svdir</p>
+<p>3 rolling over Region region indices  region indices, pmt_dir</p>
+<p>__|  | Subindiccs      |data dictionary</p>
+<p>4 merging Fast Find  fast find  fast find indices, pmt_sv_dir</p>
+<p>indices and Word List  indices,  data dictionary</p>
+<p>indices   <i>pmtsv dir</i></p>
+<p>5 rebuilding Fast   none fast region none</p>
+<p>Region indices     index,</p>
+<p>data dictionary ,l</p>
+<p>During the first stage of xpatmaint<i>,</i> users can still
+search the database since the main and append database
+text files are only scanned, not physically changed. However, the main database
+must be taken off-line for the 2nd to 5th
+stages. The first stage generally takes much longer to run than the other stages. As such, it is sometimes
+convenient to have stage I run while users are using the database (e.g. as a low-priority process during the day), and
+then run stages 2 to 5 afterwards (e.g. at night).
+This policy can be implemented using the partial execution options to xpatmaint. <i>If xpatmaint</i> is run with only the '- 1'
+option specified, it will only perform stage I and will write the index update directives into a file called
+'pmt_dir' in the current directory. When the time
+comes to perform stages 2 to 5, xpatmaint can be executed with
+the '- 2', '- 3', '-4' and '- 5' options
+specified. The xpatmaint program will then read the update directives
+from the 'pmt_dir' file and update the
+index and region indices. If stage 4 is required, the 'pmtsv_dir' directives file will be created during stage 2 processing.
+It is required to have 'pmt_sv_dir' directives to
+update the Fast Find indices. Stage 5 does not need any directives.</p>
+<p>There is another benefit from these options. Even if no partial execution options are specified, xpatmaint still writes the update directives to the 'pmt_dir' file after it has finished stage 1. The 'pmtdir' directives file is only removed after stage 3 completes. Should a machine crash occur after stage 2, it is only necessary to restore the index and region files before re-running xpatmaint with the '- 2' and '- 3' options specified. Should a machine crash occur during stage 3, only the region files would need to be restored before re-running xpatmaint with the '- 3' option specified. After stage 2 is successfully completed, the 'pmtsv_dir' directive files will be created. As long as the 'pmc_sv_dir' is created successfully, if the machine crashes during stage 4, only the fast find index files would need to be restored before re-running xpatmaint with the '-4' option .. specified.</p>
+<p>Stage 5 will completely rebuild all Fast Region indices specified either in the main database or in the append database. Therefore, no file is needed to be restored before re-running xpatmaint with the '-5' option specified.</p>
+
+<h2>3.4.6	 Update Processing Statistics</h2>
+<p>The following times are the execution characteristics of xpatmaint running on a Sun SPARCstation 2. Before the first stage begins, a setup stage is performed. The time required to perform the setup is related to the size of the append text. The setup stage for a 1 MB append text typically requires about 20 seconds. Refer to the Stage Operation Summary table in the previous section for description of various stages.</p>
+<p>During <b>stage 1</b>, the
+scan rate for the main text is logarithmic in the size of the append text but
+tends to level off when the size of
+the append text file exceeds 2 MB. Using the '- o' optimization option, a typical scan rate for a I MB append text file
+is 140 KB/sec. So, stage I requires time equal to the size of the main text divided by the effective scan rate. Stage 2 merges the append index with the main
+index. The rate at which this stage progresses varies with the relative sizes of the main and append texts. When the
+append text is 10% the size of the main
+text, the processing rate is typically 300 KB/sec.</p>
+<p><b>Stage 2</b> requires time equal to the size of the main index (not the main index) divided by the
+effective processing rate.</p>
+<p><b>Stage 3</b> merges the append region files with the main
+region files. The time required to do this depends
+on the total size of all the region files from both databases but a typical processing
+rate is 400 KB/sec.</p>
+<p><b>Stage 4</b> merges the append fast find index files with
+the main fast find index files. The time required to do this depends on the
+size of the fast find index files and the number of delete regions.</p>
+<p><b>Stage 5</b> rebuilds all fast region indices. The time
+required will be the same as the time required to run <i>xpatfr</i> independently
+on each fast region.</p>
+<p>When all the above stages (except stage 4 and stage 5) are combined, the overall processing rate for the addition of an append text that is 1 % the size of the main text, on a Sun SPARCstation 2, is approximately 120 KB/sec. If stage 4 is including, the speed will be approximately 40 KB/sec. In addition, if stage 5 is included, the speed will be further decreased in proportion to the number of fast regions needed to be rebuilt.</p>
+<p>For example, if there is a 500 Mbyte main database and a 5 Mbyte append database, the time required to merge them together is approximately 1.2 hours. If stage 4 is also required to update the Fast Find indices, the time required to merge them together is approximately 3.6 hours. On the other hand, the complete rebuilding of the Main index alone by using xpatbld<i>,</i> will require approximately 58 hours to reconstruct. The time for using
+xpatmaint is dramatically faster than rebuilding the indices.</p>
+
+<h2>3.4.7	 Monitoring the Execution and Collecting Time Statistics</h2>
+<p>For different databases, the time characteristics vary depending on the previously described parameters, such as the size of the main database and the number of delete regions. Therefore, it is always a good practice to keep track of your specific database time statistics. The verbose '-v' option and the logfile '- -1' option can be used to monitor and record the xpatmaint execution. Time statistics will be reported at each stage. A typical xpatmaint execution with verbose mode turned on will generate the following output:</p>
+<p>% xpatmaint -v -o -1 logfile -D main.dd -d del -a app.dd</p>
+<p>** xpatmaint version 5.x.x (incr: xxxx)</p>
+<p>** user_name Sat Oct 1 08:06:16 1994</p>
+<p>Setting up big database (main.dd) for merging</p>
+<p>Setting up small database (app.dd) for merging ...</p>
+<p>Setting up update records for merging ...</p>
+<p>Perform stage #1 merging</p>
+<p>* Setup took (1.8000) cpu seconds</p>
+<p>* Index 10840 points</p>
+<p>Scanning the big text .</p>
+<p>* Scan took (25.6666) cpu seconds (115.8265 K/sec)</p>
+<p>Computing the delete text ...</p>
+<p>* Compute deletes took (0.1333333) cpu seconds</p>
+<p>Perform stage #2 merging ...</p>
+<p>Rolling over text file (main.txt) .</p>
+<p>5% 10% 15% 20% 25% 30% 35% 40% 45% 50% 55% 60% 65% ...90% 95% 100%</p>
+<p>* Rolling over text took (1.6333) cpu seconds (1847.2320 K/sec)</p>
+<p>Rolling over index file (main.idx) ...</p>
+<p>5% 10% 15% 20% 25% 30% 35% 40% 45% 50% 55% 60% 65% ...90% 95% 100%</p>
+<p>* Rolling over index took (5.7166) cpu seconds (389.2368 K/sec)</p>
+<p>Perform stage #3 merging ...</p>
+<p>Rolling over regions ...</p>
+<p>Merging region   (Entry ) into (main.rgn)</p>
+<p>Rolling over region file (main.rgn) ...</p>
+<p>5% 10% 15% 20% 25% 30% 35% 40% 45% 50% 55% 60% 65% ...90% 95% 100%</p>
+<p>* Rolling over index took (2.0000) cpu seconds (444.9765 K/sec)</p>
+<p>Perform stage #4 merging ...</p>
+<p>Rolling over Fast-Find index ...</p>
+<p>* Rolling over Fast-Find index took (15.7500) cpu seconds</p>
+<p>Rolling over word-list index ...</p>
+<p>* Rolling over word-list index took (16.5666) cpu seconds</p>
+<p>Perform stage #5 merging .</p>
+<p>Rebuilding Fast-Region ...</p>
+<p>Rebuilding region (Entry   ) Fast-Region file (Entry. fri)</p>
+<p>* Rebuilding Fast-Region took (0) cpu seconds</p>
+<p>* Total time (69.0999) cpu seconds (43.0228 K/sec)</p>
+<p>*** user_name Sat Oct 1 08:08:59 1994</p>
+<p>The time statistics are reported in the form of'took (xx. xxxx) cpu seconds'. If the file size is measurable, the relative speed for size per second is reported as ' (xxx. xxxx K/sec) '.It is not only useful for collecting time statistics. The various files, which have been updated, are clearly reported in the output. Any trouble can be spotted easily if a problem occurred. For example, the file cannot be accessed or the disk is full. Knowing the stage where the problem occurred is important for restarting xpatmaint with the partial execution option (refer to <i>Section for</i> details).</p>
+<p><b>Note:</b>  If the problem can not be resolved, the error
+can be more precisely described with the logfile output. In the previous example, the logging messages are stored in 'log
+file' specified by the '-1' option. The
+logfile output is exactly the same as the verbose mode output.</p>
+
+
+<h1>3.5	 CUSTOMER INTERACTION DATABASE EXAMPLE</h1>
+<p>This section describes a sample application based on the xpatmaint database maintenance utility. As described in the preceding sections, xpatmaint provides maintenance capabilities for XPAT databases via the deletion and addition of regions of text. By using xpatmaint<i>,</i> these deletions and additions can be performed in-place, without re-indexing the
+entire text database. While xpatmaint can
+be used in a stand-alone environment for database maintenance, it can also be used as a building block for more complex
+systems. This section describes such a system. This
+system uses a number of Unix shell scripts and a few small programs
+written in C to provide a "record-oriented"
+database system. The system has been implemented using Unix shell scripts in order to be readily modifiable and adaptable by
+developers and integrators. The source code for the
+C language portions of this sample application are also provided in the
+distribution.</p>
+<p>This documentation first describes the system characteristics for this sample xpatmaint application. It then describes a fictitious database which will be used throughout the remainder of this section. It then describes the directory layout and installation procedures for this sample xpatmaint application. The remainder of this section focuses on providing information which will help developers and integrators to modify the collection of scripts that make up this system, to suit their needs. This discussion describes the various database operations in terms of their functionality and their implementation as shell scripts. Each shell script is also heavily commented with descriptions of its implementation and rationale.</p>
+<h2>3.5.1	 Record-Oriented Databases and xpatmaint</h2>
+<p>When used as a stand-alone program, xpatmaint deletes specified regions from the database, and appends new text to the end of the database. In this sample application we will use xpatmaint for the bulk addition, deletion, and modification of the regions in a database.</p>
+<p>Since xpatmaint can delete records from, and add records to a database, it can be used in a situation requiring the modification of a region. To modify a region, the text of the region must first be retrieved from the XPAT database and must be modified. Then xpatmaint is used to delete the old region from the database and append the new, modified version of the region to the end of the database.</p>
+<p>In this sample application we elaborate on the point of using the xpatmaint add/delete function as a modify function and construct a more complex application. We assume that the database we are working with is a "record-oriented" database. By "record-oriented" we mean that there is a single type of region (field, element) which spans the entire database. We refer to this spanning region as a record. For example, in an encyclopedia the record may be an Entry; in a newspaper database it may be a Story; and in a document database the record may be a Document. In all of these cases, all of the text searches in the database are contained within the record: there is no text outside a record. However, there are several records.</p>
+<p>With this record-oriented database in mind, our example system allows a record in the database to be "checked out", modified and "checked in" to the database. The process of "checking out a record" involves storing the location of the record being checked out, copying the text of the record to a temporary file, marking the record for deletion and providing the text of the record for editing. Once that text has been modified, it is "checked in" by putting the new modified version of the record in a spool area. This spool area holds all the modified pieces of text that have to be reincorporated into the main database. At regular intervals, all the pieces of text in this spool area are reintegrated into the main database. :</p>
+<p>This sample application also provides a locking mechanism which ensures that once a record is checked out for modification it cannot be modified by another user. As with all of the other functionality in this sample application, the locking mechanism is implemented as Unix shell scripts to allow modification by developers.</p>
+<p>In order to provide an example which addresses a slightly more complex application environment, the database in this example is a record-oriented database with three types of records. All of the text in the database is guaranteed to fall within one of these three record types.</p>
+<p>The sample application also has a concept of database views. Checked in texts are accumulated in a spool area. An "update" task is periodically initiated to add these texts to the database and to delete the previous copies of these records from the database. This update operation does not get performed on the original database. Instead, a copy of the original database is made and the update is performed on the copy; the original database is left as-is. In this manner, snapshots of the database are available as they were before applying a new batch of updates. These copies of the database are referred to as "views" in the shell scripts and in the following descriptions.</p>
+
+<h2>3.5.2	 Example Database Structure</h2>
+<p>The fictitious application scenario for this sample text database is a system that tracks bug reports, engineering change requests and customers for a software company. Throughout the remainder of the documentation it is referred to as the Customer Interaction Database (CID). It is designed to track the three different parts of the integrated system using three different record types:</p>
+<ol>
+ <li>Customer record</li>
+ <li>Software record</li>
+ <li>Report record</li>
+</ol>
+<p>The Customer record keeps track of information about different customers. This includes such components as the customer's name, company, address, phone number and fax numbers. The Software record is used internally to track information about software products. This information includes things like the current product version, the author, when it was last updated, which documents describe how it works, and its name. The Report record is used to track software bugs reported by customers. It contains references to both the Customer and Software records, such as the CustomerID and the SoftwareiD, as well as who the bug is assigned to, and what the current status is. As such, it ties the other two record types together.</p>
+<p>This gives users of the CID the ability to add and modify bug reports about different software products, as required. So, for instance, when a new bug is reported, a new Report record is added, with the Status field set to Open. When the bug is fixed, that Report record is edited and the Status field is set to Closed. In addition, the cause of the bug and the steps that were taken to overcome it are also recorded. Using these tools and techniques, software bugs and fixes can be tracked.</p>
+
+<h2>3.5.3	 Setting up the CID</h2>
+<p>Before discussing the various operations provided by the CID (Customer Interaction Database), we will discuss the layout of the directories for the CID applications and describe the procedures for installing the CID sample application.</p>
+<h3>3.5.3.1	 System Layout</h3>
+<p>The proper operation of the Customer Interaction Database sample application assumes a particular directory layout for both the shell scripts and the databases that are being modified. Changes to the default configuration can be made by changing the values in the System Configuration Section of the CID's main makefile. Throughout this section, references made to variables in all-caps (e.g. MAIN_ID) are references to variables defined in the System Configuration Section of that makefile.</p>
+<h4>3.5.3.1.1	 The System Directory</h4>
+<p>This is the highest level directory in the tree, and all database operations are performed from here. This is also the directory where the files not related to a particular view of the CID are stored. These view-independent files fall into the following four groups:</p>
+<ol>
+ <li>Files related to the different record types,</li>
+ <li>Files related to the text that will be appended to the database,</li>
+ <li>Log file for the append operation,</li>
+ <li>Files with the '.id' extension.</li>
+</ol>
+<p>For the<b> first group, </b>an
+empty record file must be given for each record type. The record file names have the form <b><i>'database_name.</i></b>rec' (they have this name because the CID database as a whole can be viewed as three separate databases (one for
+each record type) that just happen to all exist in the same database file. The <b>second
+group </b>of files are used when the next update operation is performed. <b>The third
+group </b>consists of a log file for the
+append operation. The <b>fourth group </b>of files helps maintain the
+version number of the most up-to-date view of the database. It corresponds to
+which database
+directory the search process should use. The different views of the database
+themselves are stored in the
+different Database Directories.</p>
+
+<h4>3.5.3.1.2	 Append Text Files</h4>
+<p>This group of files resides in the System directory. They are used to keep track of what information is to be added and deleted from the main database when the next update operation is performed. There are four files in this group:</p>
+<ol>
+ <li>Append text file</li>
+ <li>Add file</li>
+ <li>Delete file</li>
+ <li>Lock file</li>
+</ol>
+<p>The append text file contains the actual text that will be appended to the database. The add file ('.add') is used to track the movement of append text during multiple edit operations. Each line of the add file has two sets of regions. The first set corresponds to a region of the main database. The second set corresponds to the region of the append text that will replace the region in the main database.</p>
+<p>The delete file (' .del') contains a list of regions that will be deleted from the main database. This list corresponds to the first two columns of the add file  .-</p>
+<p>The lock file ('.lok') is used to ensure that only one application can update the append file at any one time. When the lock file has a size greater than zero, no other application is allowed to modify the append text.</p>
+<p>The append text, add file, delete file and lock file are all maintained by the system. They are used to track the state of the append text before an update operation is performed.</p>
+
+<h4>3.5.3.1.3	 The Database Directories</h4>
+<p>These directories contain the files that make up each view of the Customer Interaction Database. As described above, whenever the database is updated, a copy of the most recent version is made and the current set of updates is applied to the copy instead of the original. By performing updates in this way, users who are searching the most recent version of the database when the update is performed can continue searching that version without any interruption. Note, however, that one aspect of functionality does change after an update.</p>
+<p>Consider a user who starts a search session on the CID. When that session starts, the system automatically starts searching the most recent version. However, after an update is performed, that version is no longer the most recent version. Since the system will only check out records from the most recent version, that user will no longer be able to check records out of the version of the database that he or she is searching, after the update has been performed.</p>
+<p>Multiple views of the database are also maintained to aid in database recovery in the case of corruption due to uncommon events, such as power failures.</p>
+<p>Each view of the database consists of a standard XPAT database along with two auxiliary files. The XPAT database consists of the Main Index ('.idx') file, the Region Subindex ('.rgn') file, and the DD ('.dd') file. The first auxiliary file is the <i>xpat</i>initialization ('.ini') file. It contains the <i>xpat</i> command to declare the Default Region for
+the database. The second auxiliary file is the <i>PatMotif5O</i> control ('.pat') file. It tells <i>PatMotif50</i>such things as what database to search on, where the help file is, which Routing to use and which
+CheckOut program to use.</p>
+
+
+<h3>3.5.3.2	 Customer Interaction Database Installation</h3>
+<p>Installation is divided into two parts. The first part <i>(Section
+)</i> will describe how to install the programs
+that the database system will use, as well as some related control files. The
+second <b>part</b><b> </b><i>(Section )</i> will
+describe how to set up the database, which is a three step process: configuration, setup, and testing. Each of
+these will be explained in turn.</p>
+
+<h3>3.5.3.3	 Program Installation</h3>
+<p>To prepare your system for the Database Installation process described below, you must first install the programs that the CID uses. You must also prepare some files in the system directory. Before installing the software, you must ensure that the CIDBIN environment variable points to the directory where you want the program files installed. To install the programs, go to the distribution directory and type:</p>
+<p>make</p>
+<p>This will install the programs that will carry out the database operations. Next, copy the file named 'make. cid' in the distribution directory to the file named 'makef ile' in the system directory. The 'make f ile' provides the mechanism through which the CID programs are invoked.</p>
+<p>Next, prepare a DD file and a <i>PatMotif50</i> control ('.
+pat') file. Users who are not familiar with this process
+should refer to <i>Section 2.</i> <i>1.1</i> of this guide, and the <i>PatMotif5O</i>Appendix in the <i>Database</i> <i>Administration
+Reference Guide)</i> for details on how to create these files. Please note that the <i>PatMotif5O</i> control
+file must contain the following line in order for the Checkout and Edit functions to work:</p>
+<p>&lt;CheckOutProg&gt;make edit CID=O&lt;/CheckOutProg&gt;</p>
+<p>The 'O' in the above line should be replaced by the number you specify on the 'MAIN_ID' line of the 'make f i 1 e' in the system directory. Please refer to the comments in that file for a description of this field. Also, the DD must have the following line somewhere within the first set of '&lt;Index&gt;' and '&lt; / Index&gt;' tags. Without this line, you will not be able to perform searches.</p>
+<p>&lt;InitFile&gt;Main. ini&lt;/InitFile&gt;</p>
+<p>The <b><i>'</i></b><b><i>Main</i></b><b><i>'</i></b> in
+the above line should be replaced by the name you specify on the 'MAIN_DB' line
+of the 'make f ile'. Refer to the comments
+in that file for a description of this field.</p>
+<p>Next, copy the DD and the <i>PatMotif</i><i>50</i> control files to the system directory,
+ensuring that they have '.<b>save'</b>
+extensions. For example, if the 'MAINDB' line of the 'make file' in the system directory has the name 'Main', then the DD file
+would be called 'Main. dd. save' and the <i>PatMotif50</i>control file would be called 'Main. pat . save'. You have now installed the programs that the database system
+will use, as well as some necessary control
+files. We now proceed to the next step of database setup.</p>
+
+<h3>3.5.3.4	 Database Installation</h3>
+<p>The database installation process requires three steps. First, edit the 'makef i e' to configure the system to your needs. This requires adding the names of the regions which form the different types of records to the 'ALL_DB' line of the 'makef ile'. Second, run the setup process. This will create all the necessary files and directories. Third, test that the setup that was configured actually works as expected. This section will go through each step in the installation process, explaining in detail what is required.Configuration</p>
+<p>The names of all the record types that are to be used in the database must be added to the 'ALL_DB' line of the 'make f i 1 e'. A tagged record file for each record type must also be provided. Examples of these tagged record files are given in the system directory of the sample CID application. Please note that the names of the files used to store each record must have a '.rec' extension. Refer to the documentation in the 'makef i 1 e' itself for more details. Please note that under most circumstances, further customization beyond this simple step is not necessary.</p>
+<h4>3.5.3.4.1	 Setup</h4>
+<p>The setup process will create all the necessary files and directories for your database. To begin the process, simply enter the following command from the system directory:</p>
+<p>make setup</p>
+<p>Should the setup process fail to complete (e.g., because incorrect configuration information was specified in the 'makefile'), entering,</p>
+<p>make clean_all</p>
+<p>will remove any files that were created. Any required changes can then be made before restarting the setup process.</p>
+
+<h4>3.5.3.4.2	 Testing</h4>
+<p>The testing process will ensure that the system is functioning properly by testing each function individually. The sixteen steps follow:</p>
+<ol>
+ <li>Add a new record using a particular schema by typing (where 'record_name' is the name of one of the record types defined in the 'makefile'):</li>
+</ol>
+<p>make add DB=record_name</p>
+<p>1.	 Commit the addition of the new record by typing:     </p>
+<p>make update</p>
+<p>2.	 3. Test that the search process is working by typing the following. (Note:  If you are not familiar with <i>PatMotif50,</i> please
+refer to the <i>PatMotif Tutorial</i> to help you
+complete steps (4) and (5).)</p>
+<p>make search</p>
+<p>3.	 Search for a string that you know exists in the record you added.</p>
+<p>4.	 Use <i>PatMotifSO's</i> checkout facility to edit the record
+(supply dummy values for the filename and
+comment when <i>PatMotifSO</i> asks).</p>
+<p><i>5.	</i>Quit <i>PatMotif50.</i></p>
+<p>6.	 Commit the new changes you made to the record by typing:</p>
+<p>make update</p>
+<p>7.	 Search for a string that you know exists in the changes you made to the record - the search should return at least one hit.</p>
+<p>8.	 Test the recover operation by typing the following. This should recover the previous version of the database.</p>
+<p>make recover</p>
+<p>9.	 Test that the recover operation recovered to a previous version of the database by typing,</p>
+<p>make search</p>
+<p>10.	 Search for a string that you know existed only in the later version of the database - no hits should be returned.</p>
+<p>11.	 Test that the reset operation works by typing,</p>
+<p>make reset</p>
+<p>12.	 Test that the reset operation did not change the contents of the database by typing,</p>
+<p>make search</p>
+<p>13.	 Search for a string that you know existed previously - you should have exactly the same number of hits.</p>
+<p>14.	 Remove the test database by typing,</p>
+<p>make clean_all</p>
+<p>15.	 Reinitialize the system for operation by typing,</p>
+<p>make setup</p>
+<p>Should the testing process fail at any point, please review your schema files and any other configuration modifications you made and attempt the setup and testing process again.</p>
+
+
+
+<h2>3.5.4	 Database Operations</h2>
+<p>In this section we describe each of the functions supported by the CID sample application. As we mentioned earlier, the CID system is constructed by using Unix shell scripts and a few small filters written in C, for which source code is provided. Each description will cover the script which must be invoked to execute the operation, and the various scripts which are in turn executed by the high level script. While describing these operations, an emphasis is placed on conveying the logic of the operations, their interrelationships and the scripts which perform each step of the operation. Each database operation description is followed by a brief description of the corresponding script. The details on how each script performs its functions are described with comments within the scripts - themselves.</p>
+<p>There are nine types of database operations (listed below) that are used to manipulate the Customer Interaction Database. The function of each of these operations will be described here in terms of the data flow and shell scripts that are called.</p>
+<ol>
+ <li>Setting up the database</li>
+ <li>Adding a record</li>
+ <li>Searching a database</li>
+ <li>Editing a record</li>
+ <li>Committing database changes</li>
+ <li>Recovering a previous database view</li>
+ <li>Resetting the database view numbers</li>
+ <li>Ignoring the current update information</li>
+ <li>Completely removing the database</li>
+</ol>
+<h3>3.5.4.1	 Setting Up The Database</h3>
+<p>(calls: &lt;nothing&gt;)</p>
+<ol>
+<li>The setup operation creates the initial database directory and initializes the necessary database files i in the system directory. All the operations arc performed from the make ile itself, so no other scripts are called. The setup operation is initiated by issuing the 'make setup' command in the system directory.</li>
+<li>The first step in the initialization process is to create the starting database directory. The directory name will always end with the number specified by the MAIN_ID definition in the makefile. This number corresponds to the initial view number of the database. The '.id' file, which keeps track of the most up-to-date view number of the database, is initialized to point to this starting database directory.</li>
+<li>The default <i>PatMotifSO</i> control ('.pat') file and the DD file are then updated to point to the initial view of the database and are placed in the starting database directory. An empty database is then created and the xpatbld index builder is run over the empty text.</li>
+<li>The final stage of the initialization process is to remove old lock files and files related to the append text, and to create new, empty append text files. There are four of these: the append text file, the add file, the delete file, and the lock file. The append text file itself contains the actual text to be appended to the database. The add ('.add') file tracks which records in the main database are to be replaced by records in the append text database. The delete (' . del') file tracks which records are to be deleted from the main database. It is used by the xpatmaint program. The lock ('.ok') file is used for record locking. All four files are in ASCII form and are easily viewable.</li>
+</ol>
+<p>When the setup process is complete, any database that has already been created can be placed in the database directory. All further operations will then be run against this database instead of the empty initial database.</p>
+
+<h3>3.5.4.2	 Adding A Record</h3>
+<p>(calls: cid_add)</p>
+<ol>
+<li>The add operation adds a record to the append text file. Any additions that exist in the append text file are only added to the main database when the update command is issued. The add command calls only the c i d_add script.</li>
+<li>if the 'make 'add' operation is invoked without any arguments then a record of the default type (controlled by the DEFAULT_DB line in the makef ile) is added to the database. The add command can optionally have an extra command line argument to specify the record type. The format of the add command then becomes, 'make add DB=record_type'.</li>
+<li>The first step in adding a new record is to wait for the lock on the specified record type to come free and then grab the lock. Next, a suitable temporary filename is found and a copy of the tagged record template ('.rec') file for the specified record type is copied to the temporary file. The record lock is then released. If an automatic update script (' . scr') is present for the specified record type, that script is called to update the contents of the temporary file. The first place the add script will look for the '.scr' file is the current directory, followed by the executables directory specified in the makefile. The first script found will be executed. These automatic update scripts can be used to automatically fill in certain fields of new records. Please refer to the '.scr' files in the distribution directory for examples of how these scripts can be put to effective use.</li>
+<li>After the automatic update script has been run with the temporary file as input, the user is given the opportunity to edit the file. When the editing process is complete, the user is asked whether the record should in fact be added. If the record is to be added, the 'cid_add' script waits for the Append text lock to come free and then grabs the lock itself. The new record is then appended to the Append text, and then the lock is released. A message informing the user that the new record has been added is then issued. If the user does not wish to add the record, a message is displayed stating that the record was not added.</li>
+<li>The temporary file is then removed and the script ends.</li>
+</ol>
+
+<h3>3.5.4.3	 Searching a Database</h3>
+<p>(calls: cid_search)</p>
+<ol>
+<li>The search operation simply calls the 'cid_search' script with the name of the main database directory and the main database.</li>
+<li>The 'cidsearch' program retrieves the most current database view number from the 'id' file and invokes Pat.Motif50 with the control file from that view of the database.</li>
+</ol>
+
+<h3>3.5.4.4	 Editing a Record</h3>
+<p>(calls: 'ci dedit', which calls: 'cid_get_region_name', 'cidr eg', 'cid_int',</p>
+<p>'cidintadd', 'cid_grep', 'cid_intmov', 'cid_trim', 'cid_size', 'cid_intupd',</p>
+<p>' id_intdel')</p>
+<ol>
+<li>The edit operation is used to edit records that are already a part of the main database. The checkout facility of <i>PatMotifSO</i> is
+used to check out the appropriate records from the database and allow the user to edit them. This is also the reason for the following line in the <i>PatMotif50</i> control ('.pat') file:<br/>
+<tt>&lt;CheckOutProg&gt;make edit CID=O&lt;/CheckOutProg&gt;</tt></li>
+<li>The edit script first ensures that the correct number of parameters were passed to it by the makefile. If this is not the case, then the edit function exits with an error message. Otherwise, some initial setup is performed, consisting of giving the parameters useful variable names and creating two new variables. The first variable, 'MID', is the view number of the most recent view of the database. The other variable, 'MAINDB', is the path name of the main database, relative to the system directory.</li>
+<li>The view number passed by the checkout process is then compared to the current view number. If the view number passed by the checkout process is less than the current view number, the user is trying to edit a record from an old view of the database, which is not allowed. An appropriate error message is then printed and the edit script terminates. If the view numbers are the same, then the edit script continues.</li>
+<li>The 'cid_edit' script then creates a tagged checkout file. The 'cid_get_region_name' program is then called to extract the record name from the checkout file. This program is a Lex script that looks for the &lt;RegionName&gt; tag in the checkout file and prints out its contents.</li>
+<li>Another piece of information that is extracted from the checkout file is the region of the main database that is actually checked out. To get this information, the 'cid_reg' program is called. The 'cidreg' program is also a Lex script. It looks for the &lt;Start&gt; and &lt;End&gt; fields in the checkout file and prints out their contents.</li>
+<li>The 'cid_int' program is called to determine if a specified region intersects any regions given in a file. The first region is either taken from standard input or from the command line. It is then checked against the regions of the ASCII regions file. A return code of '0' indicates that the regions do not intersect. A return code of '1' indicates that two regions are exactly the same. If the regions overlap, a return code of '2' is given.</li>
+<li>The 'cidint' program is also used to determine the value of two variables. The first variable, the delete code, is used to determine whether a record has previously been checked out of the main database. The checked out region is checked against the regions of the main database that are to be deleted when the xpatmaint program is next run. If the record is to be deleted from the main database, a new record must exist somewhere in the append text The second variable, the lock code, determines whether the record is still being edited by someone else. The checked-out region is checked against the regions in the append text lock file.</li>
+<li>The lock code is used in the next step of the edit script. If the lock code is '1', then someone is already editing the desired record, and a message to this effect is returned to the user before the script exits. If the lock code is '2', then the database is corrupted because regions are overlapping. The only lock code value that will allow the edit process to continue is '0'.</li>
+<li>If the lock code is 'O', then the start and end points for the checked-out region are added to the append text lock file. The reason for this will be explained below.</li>
+<li>The next step is to determine a temporary name for the file that will contain the record. The database name and the smallest unused number are concatenated along with a '.tmp' extension to create the temporary file name.</li>
+<li>The delete code (determined above) is now used to determine what action to take. If the delete code is '1', then the region has already been edited, so the newest form of the record should be retrieved from the append text, not the main database. If the delete code is '0' then the region has not yet been edited, so the record should be retrieved from the main database. A delete code of '2' means that the database is corrupted and a message to this effect is returned to the user before the edit script exits.</li>
+<li>In the case where the delete code is '', the record to be edited must first be retrieved from the append text. The first step of this process is to call the 'cid_intadd' program with the name of the append text ('.add') file to determine the location of the record within the append text file. The 'cid_intadd' program, like all the 'cidint' programs, takes the checked-out region either on the command line or from standard input. The format of the '.add' file is two regions per line. The first region corresponds to the region of the record in the main database. The second region corresponds to the record within the append text.</li>
+<li>The checked-out region, which corresponds to the region in the main database, is checked against the first region in the '.add' file. If they match, the corresponding append text region is retained. The entire '.add' file is checked and the last match, considered to be the most recent, is retained. The retained regions are then printed out when the program exits.</li>
+<li>The 'cidgrep' program is called next to retrieve the region from the append text file. The 'cid_grep' program seeks to the correct location in the file and prints out the contents of the region. The edit script redirects this output to the previously determined temporary file.</li>
+<li>The user then edits the record. When this is done, the edit script waits for the append text lock file to come free and then locks the lock-file. The location of the record within the append text is then redetermined in case it changed since the last time the '.add' file was examined. This location is then given to the 'cid_intmov' program on standard input along with the name of the '.add' file on the command line. The 'cid_intmov' program first opens its own temporary file. t then determines the size of the region it has been given and then reads through the '.add' file line by line. All regions of the append file whose start and end are less than the start of the given region are written without modification to the temporary file. All regions of the append file that have a starting position higher than the end position of the given region have their start and end positions decremented by the size of the given region before being written to the temporary file. When the whole of -the given file has been read, the files are closed and the temporary file is renamed to the original. This step has the effect of subtracting the given region from the '.add' file. Now the actual text of the record must be deleted from the append text itself.</li>
+<li>The 'cid_trim' program removes a region of text from a file. It takes the region to be removed from the command line. It then creates a temporary file and copies all the text before the start of the region and all the text after the end of the region to the temporary file. As a final step, it renames the temporary file to the name of the original file. In this stage of the edit script, the 'cid_trim' program is called with the name of the append text file. This has the effect of removing the old copy of the edited record from the append text file.</li>
+<li>Before appending the new copy of the record to the append text file, it is necessary to determine the new region of the append text file that the record will occupy. This can be done by calling the 'cid_s i ze' program with the name of the append text file before and after the new record is appended to it. The 'cid_size' simply returns the size of the given file. This is sufficient because the new record will be appended to the append text.</li>
+<li>After appending the text, the next step is to update the '.add' file. To do this, the 'cid_intupd' program is called with the region of the main database that the record originally occupied, as well as the region that it now occupies in the append text file (determined in the last step). The 'cidintupd' program opens a temporary file to which it will write the new region information. It then scans the '.add' file until it finds the first line in which the given main database region matches the '.add' file main database region. The '.add' file is then rewound, and each line up to the line determined above is printed to the temporary file. The new values are then substituted for ones where the above determined match was found. Then all the following lines are echoed to the temporary file. As a last step, the temporary file is renamed to that of the original '.add' file. This step has the effect of updating the '.add' file with the new values for the region of the append file that corresponds to the record in the main database.</li>
+<li>The record is now ready to be edited by someone else, so the region corresponding to the record's position in the main database must be removed from the append lock file. This is done by calling the 'cid_intdel' program with the name of the lock file. This program echoes all regions that do not match the given region to a temporary file. This temporary file is then renamed to the original file.</li>
+<li>The final step in the edit process is to remove the temporary edit file and then the database lock file. The steps taken when the delete code is zero are very similar to those when the delete code is one, with the exception that the record is retrieved from the main database instead of the append text.</li>
+</ol>
+
+<h3>3.5.4.5	 Committing Database Changes</h3>
+<p>(calls: 'cid_update', which calls: 'cid_size', 'cid_multiregion')</p>
+<ol>
+<li>The update operation is used to commit new records and edited records to the main database. New records and records that have been checked out and edited are placed in the append text file. In order for these new records to be searchable, they must be added to the main database. This action is called committing the records and is achieved by issuing the 'make update' command.</li>
+<li>The 'make update' command calls the 'cid_update' script with a number of parameters, including the names of the region building program to use and the xpatmaint program.</li>
+<li>The 'cidupdate' script first determines if it has been passed the correct number of parameters. If it has not, a usage message is printed before the script exits. If the correct number of parameters are present, each parameter is assigned a meaningful variable name.</li>
+<li>The next step is to ensure that there are no regions of the append text file currently being edited. This is done by determining if the append text lock file has a size greater than zero. If it does, some regions are still being edited, so a message to that effect is printed and the update script exits.</li>
+<li>If the append text lock file is empty, there are no regions of the append text that are currently being edited, so the update process can proceed. If the size of the append text is zero, there is nothing to add, so a message to this effect is displayed and the script exits. If there are records to append to the database, the update script must wait for the update permission lock to come free before the update script can close the lock itself and begin its real work.</li>
+<li>The first step in creating a new view of the database is to retrieve the current view number of the database from the '.id' file and increment it (note, however, that the number in the '.id' file is not updated until the new database is complete). The contents of the directory corresponding to the current view of the database are then copied to the directory that corresponds to the new view.</li>
+<li>The next step is to update all the view numbers in the various database files in the new database view directory to reflect the new view number.</li>
+<li>Next, the specified region building program is applied to the append text to generate region indices. If the region builder fails to complete properly, an appropriate error message is generated before the update permission lock is removed and the script terminates.</li>
+<li><i>patmaint</i> is then called to add the new records and delete the old ones from the new view of the database. Again, <i>if</i> xpatmaint fails to complete properly, an appropriate error message is generated before the update permission lock is removed and the script terminates. Otherwise, the update process begins its final stage. Now that the append text has been added to the database, the files related to the append text can be erased and new empty ones can be created. The view number contained in the '.id' file is then updated to reflect the new view of the database and the update permission lock is removed before the script exits. The new view of the database is now searchable.</li>
+</ol>
+
+<h3>3.5.4.6	 Recovering a Previous Database View</h3>
+<p>(calls: 'cid_recover')</p>
+<ol>
+<li>As with the other scripts, the first thing the 'cid_recover' script does is to determine whether it has been passed the correct number of parameters. If the correct number are not present, then a usage message is printed out before the script exits. Otherwise, the parameters are assigned meaningful variable names to be used in the rest of the script.</li>
+<li>The recover script first overwrites the update permission lock with its own lock, ensuring that no other update operation can take place.</li>
+<li>The current view number is then retrieved from the '.id' file, and placed in a variable. Another variable ('NEW_ID') is assigned the value of the current view number, incremented by one. The next step to be taken by the recover script is determined by the existence or non-existence of a database directory corresponding to the new view number.</li>
+<li>If this new view directory exists, it is assumed to be corrupted. The user is then asked whether the corrupted view should be deleted. If the user wants the corrupted view to be deleted, the script removes the corrupted view and then the update permission lock, and exits.</li>
+<li>If the new view directory does not exist, the recover operation assumes that the user wishes to recover to some yet to be determined previous view number. The user is first informed that all current append text will be lost and asked whether the operation should proceed. If the user chooses not to proceed, an appropriate message is displayed before the script exits. Otherwise the recovery process continues.</li>
+<li>Next, the script displays the list of current views and asks the user to which view number the database is to be recovered. For each of the views that exist after the view to be recovered, the user is asked whether that view should be removed or kept. If the user chooses to have the view removed, it is removed. Otherwise, a '.save' extension is added to the view directory's name to save the view.</li>
+<li>When the recovery to a previous view is complete, all files related to the append text are removed and new empty ones are created. All record locks are also removed. The view number to which the recover operation recovered is then written to the '.id' file and the user informed of this new view number.</li>
+<li>The last step of the recover operation is to remove the update permission lock before exiting.</li>
+</ol>
+
+<h3>3.5.4.7	 Resetting the Database View Numbers</h3>
+<p>(calls: 'cid_reset' which calls 'cid_size')</p>
+<ol>
+<li>The reset process renumbers the database views and removes any unwanted views. It differs from the recover command in that the recover command rolls back the view of the database because the more current view is assumed to be corrupted. The reset command is designed to remove old views of the database.</li>
+<li>The'make reset' command calls the 'cidreset' script with a number of parameters, two of which are 'RESET_COUNT' and 'BATCH' mode. As explained elsewhere in this documentation, the values of these two parameters control the behaviour of this script.</li>
+<li>The standard checking of parameters and their assignment to useful variable names is the first step of the reset script's work. The append text lock file is then checked to see if it is greater than zero bytes in size. If it is, then there must be regions of the append text still checked out. An appropriate message is then displayed before the script exits.</li>
+<li>If the append text lock file is empty, the reset script proceeds to waiting for the update permission lock to come free. The reset script then locks the update permission lock and continues. The current view number is retrieved from the '.id' file. Using this number and the 'RESET_COUNT', the view numbers to be reset to ('NEW_ID') and deleted or saved ('OLDESTID') are calculated.</li>
+<li>If 'RESET_COUNT' is too high or if the old and new view numbers are equal, then an appropriate error message is generated before the script exits. The next step of the reset operation is determined by the value of the 'BATCH' variable.</li>
+<li>If 'BATCH' is set to 'SAVE', then all the view directories before the 'RESET_COUNT' most recent changes are saved with '.save' extensions. The 'RESET_COUNT' most recent views are then renumbered starting from the view number called 'MAIN_ID' in the makefile.</li>
+<li>In the case where the 'BATCH' variable is set to 'NOSAVE' the view directories before the 'RESET_COUNT' most recent changes are deleted instead of saved. The view rcnumbering then takes place as above.</li>
+<li>When the 'BATCH' variable has a value of 'NOBATCH', the user is asked for each view directory before the 'RESET_COUNT' most recent changes, whether or not the directory is to be deleted or saved, and the appropriate action is taken.</li>
+<li>The next step is to copy the contents of the most recent view directory to the appropriately renumbered view directory. The '.id' file is then updated to point to this new view directory and the old view directory is deleted. A message is then given to the user stating that the database numbers have been reset.</li>
+<li>The final step is to remove the update permission lock before the reset script exits.</li>
+</ol>
+
+<h3>3.5.4.8	 Ignoring the Current Update Information</h3>
+<p>(calls: &lt;nothing&gt;)</p>
+<p>The 'make clean' command removes the append text files and creates new empty ones. This has the effect of ignoring the current update information. This operation is completely controlled from the make f i e. Before the operation is carried out, the user is asked whether the clean process should actually take place. If the user says 'no', the user is informed that the operation was not carried out and the process ends. Otherwise, the cleaning process is carried out as described above and the user is informed when the process completes.</p>
+
+<h3>3.5.4.9	 Completely Removing the Database</h3>
+<p>(calls: &lt;nothing&gt;)</p>
+<p><b>WARNING:</b> This operation will completely remove ALL
+databases and files related to this application.
+This should only be performed if you are absolutely certain that the database environment is to be completely removed.</p>
+<p>The 'make cleanall' operation completely removes all databases and all files related to the Customer Interaction Database environment. Before the operation is carried out, the user is asked whether the clean process should actually take place. If the user says no, the user is informed that the operation was not carried out and process ends. Otherwise, the cleaning process is carried out as described above and the user informed when the process completes.</p>
+
+
+<h2>3.5.5	 Appendix</h2>
+<h3>3.5.5.1	 Database Reset Parameters:</h3>
+<p>RESETCOUNT:</p>
+<p>This tells the system how many views of the database should be kept after the reset operation. For instance, if you had six views of the database and wished to keep the most recent three, you would set RESET_COUNT equal to 3. The default number is I and is set in the makefile. This parameter can be set on the command line, in the environment, or in the make f i le, in descending order.</p>
+<p>BATCH:</p>
+<p>This tells the system whether you want to have the reset operation run in batch or interactive mode. In interactive mode, you will be asked whether you wish to save old views of the database in . save' directories or have them deleted. This question will be asked for each view of the database. There are two sub-modes to batch mode. The first, save mode, will save old views of the database in '.save' directories. This is equivalent to replying 'yes' to whether you wish to save an old view in interactive mode. The second batch mode, nosave mode, will remove all but the RESET_COUNT most recent database views and will renumber these starting from MAIN_ID. This is equivalent to answering no every time in interactive mode.</p>
+<ul>
+<li>To set save batch mode, set BATCH equal to SAVE.</li>
+<li>To set nosave batch mode, set BATCH equal to NOSAVE.</li>
+<li>To set interactive mode, set BATCH equal to NOBATCH.</li>
+</ul>
+<p>This parameter can be set on the command line, in the environment, or in the makefile, in order of descending precedence. The default is NOBATCH and is set in the makefile.</p>
+<p>Example: Setting the BATCH Parameter:</p>
+<p>No matter which of the following methods you use, the value you specify for the BATCH parameter will be used whenever the 'make reset' command is issued. The methods shown here can also be used for the RESET_COUNT parameter.</p>
+
+<h3>3.5.5.2	 Makefile</h3>
+<p>To set the BATCH parameter in the make f i le, use your editor to edit the makef i 1 e. Move to the following line of the System Configuration Section:</p>
+<p>BATCH = NOBATCH</p>
+<p>To change the setting of the BATCH parameter, simply edit the right side of the equals sign from NOBATCH to whatever value you want.</p>
+
+<h3>3.5.5.3	 Command Line</h3>
+<p>Setting the BATCH parameter on the command line can be done as follows:</p>
+<p>make reset BATCH=NOBATCH</p>
+<p>Again, you can change the parameter setting by changing the value to the right of the equals sign.</p>
+
+<h3>3.5.5.4	 Bourne Shell</h3>
+<p>Setting the BATCH parameter in the environment when you are using the Bourne Shell can be done with the following commands:</p>
+<p>export BATCH</p>
+<p>BATCH=NOBATCH</p>
+<p>You can change the setting of the parameter by changing the value to the right of the equals sign in the second line above.</p>
+
+<h3>3.5.5.5	 C Shell</h3>
+<p>To set the BATCH parameter in the environment when using the C Shell, issue the following command:</p>
+<p>setenv BATCH NOBATCH</p>
+<p>This will set the BATCH parameter to a value of NOBATCH in your C Shell environment.</p>
+
+
+
+</body>
+
+</html>

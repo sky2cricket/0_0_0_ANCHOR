@@ -1,0 +1,66 @@
+<html>
+<head>
+<title>regions (man page) - XPAT region file format</title>
+
+
+
+ </head>         <body>
+<div class="pageTitle">regions - XPAT region file format (man page)</div>
+<h1><a name="description"></a>DESCRIPTION</h1>
+<p>Regions are delimited portions of a text database.  They can be used in <b>xpat</b> to restrict queries to certain parts of the text and to perform structural manipulation operations. The regions may be either pre-computed and stored in a <b>regions</b> file or defined during a <b>xpat</b> session and exported to a <b>regions</b> from within the <b>xpat</b>
+session.
+The pre-computed region files are usually created with 
+region builders such as <b>xpatrgn</b>, <b>multirgn</b>, and <b>sgmlrgn</b>.
+Both types of <b>regions</b> files have the same format.</p>
+<p>The <b><a href="">xpat_export</a></b>(5) man page describes all of the file formats that can be exported from <b>xpat</b>. The portions of that man page concerning the <b>regions</b> file format are duplicated here.</p>
+<p>Each region file consists of a 512 byte header followed by a set pointer pairs. In the following discussion, the term ``pointer'' refers to a 4 byte integer whose value is a 0-based byte offset into the text.</p>
+<p>The file header is 512 bytes long and is defined by the following `C' structure.</p>
+<p><b>Note</b>: longs are assumed to be four bytes and chars are assumed to be one byte.</p> <pre>   struct   {
+    long        file_type;
+    long        swapped;
+    long        reserved1;
+    long        reserved2;
+    long        reserved3;
+    long        version_number;
+    long        compressed;
+    long        download_check;
+    char        reserved[512 - 8 * sizeof(long)];
+  }
+</pre>
+
+<p>file_type indicates the type of data exported by <b>xpat</b>. <b>regions</b> files have a file_type value of 1, indicating that the data consist of pairs of pointers. The first pointer in each pair is the byte offset of the beginning of a region.  The second pointer is the byte offset of the last byte of
+the region.  Viewing the pairs as an array,
+the following relationships must hold true for each
+even value of i (0, 2, 4, ...):</p>
+<p>          p[i+0] &lt;= p[i+1] &lt; p[i+2] &lt;= p[i+3]</p>
+<p>The swapped field is used to determine if the file was written on a machine architecture which swaps the bytes with respect to the architecture on which the file is being read.  When the file is written, <tt>swapped</tt> should contain the value 0x01020304. </p>
+<p>The reserved1, reserved2, and reserved3 fields are reserved for DLXS use.  reserved1 should have the value 0x00000001.  reserved2 and reserved3 should have the value 0x00000000.</p>
+<p>The version_number field contains the version number of the program that created the file.  The decimal format of this number is <b>MMmmss</b>, where <b>MM</b> is the major version number, <b>mm</b> is the minor version number, and <b>ss</b> is the sub-version number.  For instance, for DLXS XPAT, the decimal form of this number is 050000.</p> 
+<p>The compressed field identifies whether the file is compressed or not.  A value of 0 indicates an uncompressed file, while a non-zero value indicates a compressed file.  The actual non-zero value specifies the compression method used (different compression methods may be used to compress different files).  All files are currently uncompressed so this value should always be set to 0.</p>
+<p>The download_check field is used to detect index files that were transferred between Unix and DOS machines using text (ASCII) transfers instead of binary transfers.  Most programs that transfer data between Unix and DOS machines allow for both binary and text transfers. Binary transfers copy the data as-is without any transformations.  In
+contrast, text transfers translate the line-ending characters to the
+convention used on the target machine (CR/LF for DOS, LF for Unix).  If
+an index file is transferred using a text transfer it will become corrupted. 
+The download_check field detects these corruptions by
+containing the value 0x0a0d0a00.  If a binary transfer is used, this
+value will remain unchanged; if a text transfer is used, this value
+will be changed (and the changed value will be
+different for Unix-to-DOS transfers and DOS-to-Unix transfers).  Please
+note that if a text transfer was used, a DOS-TO-UNIX or UNIX-TO-DOS
+conversion program may not accurately restore the transferred file to the
+original binary file.  Instead, you must re-transfer the file using a
+binary transfer.  Also note that, for backwards-compatibility, the
+value 0x00000000 is also an accepted value (but it will not be
+changed by text transfers).</p>
+<p>The remaining bytes in the 512 byte header are reserved for future DLXS use and are normally set to 0x00. </p>  <h1><a name="seealso"></a>SEE ALSO</h1>
+<p><b><a href="xpat.1.html">xpat</a></b>(1), <b>xpatrgn</b>(1), <b><a href="multirgn.1.html">multirgn</a></b>(1), <b><a href="sgmlrgn.1.html">sgmlrgn</a></b>(1)</p>
+
+<h1>Index</h1>
+<ul>
+<li><a href="#description">DESCRIPTION</a></li>
+<li><a href="#seealso">SEE ALSO</a></li>
+</ul>
+
+</body>
+
+</html>

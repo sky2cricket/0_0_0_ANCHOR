@@ -1,0 +1,690 @@
+<!-- added elements FMT and LANG, removed Y, 3/7/02 KLH -->
+<!-- added element TYPE, changed elements FMT and LANG, 4/18/02 KLH -->
+<!-- changed element GROUP, 4/23/02 KLH -->
+<!-- added element NORM, 6/25/02 KLH -->
+<!-- added element INST with attribute A, 10/16/02 KLH -->
+<!-- added element REL with attribute A, fixed Z, added attributes for L, FMT, TYPE, LANG, 03/03/03 KLH -->
+
+<!-- each bibliographic database consists of entries -->
+
+<!ELEMENT BIBDB o o	(GROUP)+>
+<!ELEMENT GROUP o o (A+)>
+
+<!-- record element, called "A", is based on TEI "biblFull" -->
+
+<!-- A = RECORD -->
+<!ELEMENT A - -		(B, C?, D*, E?, F?, G*, H*, I2?, J?, FMT?, LANG?, TYPE?, INST?, REL*)>
+<!-- B = TITLESTMT -->
+<!ELEMENT B - -		((K)*,(L|M|N|O|Q|R)*)>
+<!-- C = EDITIONSTMT -->
+<!ELEMENT C - -		((S,(R)*)|(P)+)>
+<!-- D = EXTENT -->
+<!ELEMENT D - -		(#PCDATA)>
+<!-- E = PUBLICATIONSTMT -->
+<!ELEMENT E - -		(((T?, U?) | AG), V?, W*, X?, YR*)+>
+<!-- F = SERIESSTMT -->
+<!ELEMENT F - -		(K+, Z?)> <!-- added cite (i.e., Z) for serial ref, jpw -->
+<!-- G = NOTESSTMT -->
+<!ELEMENT G - -		((AA)+)>
+<!-- H = SOURCEDESC -->
+<!ELEMENT H - -		(P|AB)+>
+<!-- I2 = TEXTCLASS -->
+<!ELEMENT I2 - -	(SG*,KW*)>
+<!-- J = HLDGSTMT -->
+<!ELEMENT J - -		(LOC*,URL*,COLLS?)>
+<!-- K = TITLE -->
+<!ELEMENT K - - 	(#PCDATA|I|GRK|SUB|SUP)*>
+<!-- L = AUTHOR -->
+<!ELEMENT L - - 	(#PCDATA)>
+<!-- M = EDITOR -->
+<!ELEMENT M - - 	(#PCDATA)>
+<!-- N = SPONSOR -->
+<!ELEMENT N - - 	(#PCDATA)>
+<!-- O = FUNDER -->
+<!ELEMENT O - - 	(#PCDATA)>
+<!-- P = P -->
+<!ELEMENT P - - 	(#PCDATA|I|SUP)*>
+<!-- Q = PRINCIPAL -->
+<!ELEMENT Q - - 	(#PCDATA)>
+<!-- R = RESPSTMT -->
+<!ELEMENT R - -		(AD,AE)>
+<!-- S = EDITION -->
+<!ELEMENT S - - 	(#PCDATA|I)*>
+<!-- T = PUBLISHER -->
+<!ELEMENT T - - 	(#PCDATA|I)*>
+<!-- U = PUBPLACE -->
+<!ELEMENT U - - 	(#PCDATA)>
+<!-- V = ADDRESS -->
+<!ELEMENT V - -     (#PCDATA|VV)*>
+<!-- VV = STREET AND CONTACT INFO FOR ETHNIC DIRECTORY -->
+<!ELEMENT VV - -    (ST*, PH*, FX*, EM*, URL*)>
+<!-- ST = STREET -->
+<!ELEMENT ST - -    (#PCDATA)>
+<!-- PH = PHONE -->
+<!ELEMENT PH - -    (#PCDATA)>
+<!-- FX = FAX -->
+<!ELEMENT FX - -    (#PCDATA)>
+<!-- EM = EMAIL -->
+<!ELEMENT EM - -    (#PCDATA)>
+<!-- W = IDNO -->
+<!ELEMENT W - - 	(#PCDATA|SUP)*>
+<!-- X = AVAILABILITY -->
+<!ELEMENT X - -		(#PCDATA|P)*>
+<!-- Z = CITE -->
+<!ELEMENT Z - -		((P)|(YR?, VO?, IS?, PG?))>
+<!-- AA = NOTE -->
+<!ELEMENT AA - -	(#PCDATA|P|I|SUB|SUP)*>
+<!-- AB = BIBL -->
+<!ELEMENT AB - -    (#PCDATA|K|L|S|N|M|AH|T|U|P|B|D|E|F|C|G|I2)*>
+<!-- AD = NAME -->
+<!ELEMENT AD - -	(#PCDATA)>
+<!-- AE = RESP -->
+<!ELEMENT AE - -	(#PCDATA)>
+<!-- AF = TERM -->
+<!ELEMENT AF - -	(#PCDATA|I)*>
+<!-- AG = IMPRINT -->
+<!ELEMENT AG - -    (#PCDATA)>
+<!-- AH = BIBLSCOPE -->
+<!ELEMENT AH - -    (#PCDATA|I)*>
+<!-- IS = ISSUE -->
+<!ELEMENT IS - -	(#PCDATA)>
+<!-- I = ITALIC -->
+<!ELEMENT I - - 	(#PCDATA)>
+<!-- KW = KEYWORD-->
+<!ELEMENT KW - -    (AF)+>
+<!-- PG = PAGE -->
+<!ELEMENT PG - -	(#PCDATA)>
+<!-- SG = SUBGRP -->
+<!ELEMENT SG - -	(SU)*> <!-- SU/SG from BAS; keep and map to keyword/term? -->
+<!-- SU = SUBJECT from BAS -->
+<!ELEMENT SU - -	(#PCDATA)> 
+<!-- SUB = SUBSCRIPT -->
+<!ELEMENT SUB - -	(#PCDATA)> 
+<!-- SUP = SUPERSCRIPT -->
+<!ELEMENT SUP - -	(#PCDATA)> 
+<!-- VO = VOLUME -->
+<!ELEMENT VO - -	(#PCDATA)>
+<!-- YR = YEAR -->
+<!ELEMENT YR - -	(#PCDATA)>
+<!-- LOC = LOCATION -->
+<!ELEMENT LOC - -   (#PCDATA|I)*>
+<!-- URL = URL -->
+<!ELEMENT URL - -   (#PCDATA|I)*>
+<!-- GRK = GREEK -->
+<!ELEMENT GRK - -   (#PCDATA|I)*>
+<!-- COLLS = COLLECTIONS -->
+<!ELEMENT COLLS - - (COLL)+>
+<!ELEMENT COLL o o  (#PCDATA)> 
+<!-- FMT = format, e.g., HTML, MPEG, JPEG, WAV --> 
+<!ELEMENT FMT - -   (#PCDATA)>
+<!-- LANG = languages of the digital object -->
+<!ELEMENT LANG - -  (#PCDATA)>
+<!-- TYPE = type, e.g., image, audio, book, article --> 
+<!ELEMENT TYPE - -  (#PCDATA)>
+<!-- NORM = normalized TYPE values -->  
+<!ELEMENT NORM - -  (#PCDATA)> 
+<!-- INST = institution -->  
+<!ELEMENT INST - -  (#PCDATA)> 
+<!-- REL  = reference to related resource -->
+<!ELEMENT REL - -   (#PCDATA|URL)*> 
+
+<!-- TYPE attribute is A in all of these cases -->
+
+<!ATTLIST GROUP NAME CDATA #IMPLIED>
+<!ATTLIST A	    A (A|B|C|D) "A"
+                ID ID #REQUIRED 
+                DT CDATA #REQUIRED > <!-- DT att was "REC.DT" -->
+<!ATTLIST V	    A CDATA #IMPLIED>
+<!ATTLIST W	    A CDATA #IMPLIED>
+<!ATTLIST AA	A CDATA #IMPLIED>
+<!ATTLIST KW	A CDATA #IMPLIED>
+<!ATTLIST K	    A CDATA #IMPLIED>
+<!ATTLIST L	    A CDATA #IMPLIED>
+<!ATTLIST SU	A (COUNTRY|1|2|3|4) "1">
+<!ATTLIST YR	A CDATA #IMPLIED>
+<!ATTLIST LOC	A CDATA #IMPLIED>
+<!ATTLIST FMT   A CDATA #IMPLIED>
+<!ATTLIST LANG  A CDATA #IMPLIED>
+<!ATTLIST TYPE  A CDATA #IMPLIED>
+<!ATTLIST INST  A CDATA #IMPLIED>
+<!ATTLIST REL   A CDATA #IMPLIED>
+
+<!-- to convert ISOlat1 to 8-bit values -->
+
+<!ENTITY aacute  SDATA "&#225;">
+<!ENTITY Aacute  SDATA "&#193;">
+<!ENTITY acirc   SDATA "&#226;">
+<!ENTITY Acirc   SDATA "&#194;">
+<!ENTITY agrave  SDATA "&#224;">
+<!ENTITY Agrave  SDATA "&#192;">
+<!ENTITY aring   SDATA "&#229;">
+<!ENTITY Aring   SDATA "&#197;">
+<!ENTITY atilde  SDATA "&#227;">
+<!ENTITY Atilde  SDATA "&#195;">
+<!ENTITY auml    SDATA "&#228;">
+<!ENTITY Auml    SDATA "&#196;">
+<!ENTITY aelig   SDATA "&#230;">
+<!ENTITY AElig   SDATA "&#198;">
+<!ENTITY ccedil  SDATA "&#231;">
+<!ENTITY Ccedil  SDATA "&#199;">
+<!ENTITY eth     SDATA "&#240;">
+<!ENTITY ETH     SDATA "&#208;">
+<!ENTITY eacute  SDATA "&#233;">
+<!ENTITY Eacute  SDATA "&#201;">
+<!ENTITY ecirc   SDATA "&#234;">
+<!ENTITY Ecirc   SDATA "&#202;">
+<!ENTITY egrave  SDATA "&#232;">
+<!ENTITY Egrave  SDATA "&#200;">
+<!ENTITY euml    SDATA "&#235;">
+<!ENTITY Euml    SDATA "&#203;">
+<!ENTITY iacute  SDATA "&#237;">
+<!ENTITY Iacute  SDATA "&#205;">
+<!ENTITY icirc   SDATA "&#238;">
+<!ENTITY Icirc   SDATA "&#206;">
+<!ENTITY igrave  SDATA "&#236;">
+<!ENTITY Igrave  SDATA "&#204;">
+<!ENTITY iuml    SDATA "&#239;">
+<!ENTITY Iuml    SDATA "&#207;">
+<!ENTITY ntilde  SDATA "&#241;">
+<!ENTITY Ntilde  SDATA "&#209;">
+<!ENTITY oacute  SDATA "&#243;">
+<!ENTITY Oacute  SDATA "&#211;">
+<!ENTITY ocirc   SDATA "&#244;">
+<!ENTITY Ocirc   SDATA "&#212;">
+<!ENTITY ograve  SDATA "&#242;">
+<!ENTITY Ograve  SDATA "&#210;">
+<!ENTITY oslash  SDATA "&#248;">
+<!ENTITY Oslash  SDATA "&#216;">
+<!ENTITY otilde  SDATA "&#245;">
+<!ENTITY Otilde  SDATA "&#213;">
+<!ENTITY ouml    SDATA "&#246;">
+<!ENTITY Ouml    SDATA "&#214;">
+<!ENTITY szlig   SDATA "&#223;">
+<!ENTITY thorn   SDATA "&#254;">
+<!ENTITY THORN   SDATA "&#222;">
+<!ENTITY uacute  SDATA "&#250;">
+<!ENTITY Uacute  SDATA "&#218;">
+<!ENTITY ucirc   SDATA "&#251;">
+<!ENTITY Ucirc   SDATA "&#219;">
+<!ENTITY ugrave  SDATA "&#249;">
+<!ENTITY Ugrave  SDATA "&#217;">
+<!ENTITY uuml    SDATA "&#252;">
+<!ENTITY Uuml    SDATA "&#220;">
+<!ENTITY yacute  SDATA "&#253;">
+<!ENTITY Yacute  SDATA "&#221;">
+<!ENTITY yuml    SDATA "&#255;">
+
+<!-- to convert ISOlat2 to displayable; should
+     ultimately be replaced by UNICODE -->
+     
+<!ENTITY abreve   SDATA "a">
+<!ENTITY Abreve   SDATA "A">
+<!ENTITY amacr   SDATA "a">
+<!ENTITY Amacr   SDATA "A">
+<!ENTITY aogon   SDATA "a">
+<!ENTITY Aogon   SDATA "A">
+<!ENTITY cacute   SDATA "c">
+<!ENTITY Cacute   SDATA "C">
+<!ENTITY ccaron   SDATA "c">
+<!ENTITY Ccaron   SDATA "C">
+<!ENTITY ccirc   SDATA "c">
+<!ENTITY Ccirc   SDATA "C">
+<!ENTITY cdot   SDATA "c">
+<!ENTITY Cdot   SDATA "C">
+<!ENTITY dcaron   SDATA "d">
+<!ENTITY Dcaron   SDATA "D">
+<!ENTITY dstrok   SDATA "d">
+<!ENTITY Dstrok   SDATA "D">
+<!ENTITY ecaron   SDATA "e">
+<!ENTITY Ecaron   SDATA "E">
+<!ENTITY edot   SDATA "e">
+<!ENTITY Edot   SDATA "E">
+<!ENTITY emacr   SDATA "e">
+<!ENTITY Emacr   SDATA "E">
+<!ENTITY eogon   SDATA "e">
+<!ENTITY Eogon   SDATA "E">
+<!ENTITY gacute   SDATA "g">
+<!ENTITY gbreve   SDATA "g">
+<!ENTITY Gbreve   SDATA "G">
+<!ENTITY Gcedil   SDATA "G">
+<!ENTITY gcirc   SDATA "g">
+<!ENTITY Gcirc   SDATA "G">
+<!ENTITY gdot   SDATA "g">
+<!ENTITY Gdot   SDATA "G">
+<!ENTITY hcirc   SDATA "h">
+<!ENTITY Hcirc   SDATA "H">
+<!ENTITY hstrok   SDATA "h">
+<!ENTITY Hstrok   SDATA "H">
+<!ENTITY Idot   SDATA "I">
+<!ENTITY Imacr   SDATA "I">
+<!ENTITY imacr   SDATA "i">
+<!ENTITY ijlig   SDATA "ij">
+<!ENTITY IJlig   SDATA "IJ">
+<!ENTITY inodot   SDATA "i">
+<!ENTITY iogon   SDATA "i">
+<!ENTITY Iogon   SDATA "I">
+<!ENTITY itilde   SDATA "i">
+<!ENTITY Itilde   SDATA "I">
+<!ENTITY jcirc   SDATA "j">
+<!ENTITY Jcirc   SDATA "J">
+<!ENTITY kcedil   SDATA "k">
+<!ENTITY Kcedil   SDATA "K">
+<!ENTITY kgreen   SDATA "k">
+<!ENTITY lacute   SDATA "l">
+<!ENTITY Lacute   SDATA "L">
+<!ENTITY lcaron   SDATA "l">
+<!ENTITY Lcaron   SDATA "L">
+<!ENTITY lcedil   SDATA "l">
+<!ENTITY Lcedil   SDATA "L">
+<!ENTITY lmidot   SDATA "l">
+<!ENTITY Lmidot   SDATA "L">
+<!ENTITY lstrok   SDATA "l">
+<!ENTITY Lstrok   SDATA "L">
+<!ENTITY nacute   SDATA "n">
+<!ENTITY Nacute   SDATA "N">
+<!ENTITY nmacr  SDATA "nmacr">
+<!ENTITY eng   SDATA "&eng;">
+<!ENTITY ENG   SDATA "&ENG;">
+<!ENTITY napos   SDATA "n">
+<!ENTITY ncaron   SDATA "n">
+<!ENTITY Ncaron   SDATA "N">
+<!ENTITY ncedil   SDATA "n">
+<!ENTITY Ncedil   SDATA "N">
+<!ENTITY adblac  SDATA "a">
+<!ENTITY odblac   SDATA "o">
+<!ENTITY Odblac   SDATA "O">
+<!ENTITY Omacr   SDATA "O">
+<!ENTITY omacr   SDATA "o">
+<!ENTITY oelig   SDATA "oe">
+<!ENTITY OElig   SDATA "OE">
+<!ENTITY racute   SDATA "r">
+<!ENTITY Racute   SDATA "R">
+<!ENTITY rcaron   SDATA "r">
+<!ENTITY Rcaron   SDATA "R">
+<!ENTITY rcedil   SDATA "r">
+<!ENTITY Rcedil   SDATA "R">
+<!ENTITY sacute   SDATA "s">
+<!ENTITY Sacute   SDATA "S">
+<!ENTITY scaron   SDATA "s">
+<!ENTITY Scaron   SDATA "S">
+<!ENTITY scedil   SDATA "s">
+<!ENTITY Scedil   SDATA "S">
+<!ENTITY scirc   SDATA "s">
+<!ENTITY Scirc   SDATA "S">
+<!ENTITY tcaron   SDATA "t">
+<!ENTITY Tcaron   SDATA "T">
+<!ENTITY tcedil   SDATA "t">
+<!ENTITY Tcedil   SDATA "T">
+<!ENTITY tstrok   SDATA "t">
+<!ENTITY Tstrok   SDATA "T">
+<!ENTITY ubreve   SDATA "u">
+<!ENTITY Ubreve   SDATA "U">
+<!ENTITY udblac   SDATA "u">
+<!ENTITY Udblac   SDATA "U">
+<!ENTITY umacr   SDATA "u">
+<!ENTITY Umacr   SDATA "U">
+<!ENTITY uogon   SDATA "u">
+<!ENTITY Uogon   SDATA "U">
+<!ENTITY uring   SDATA "u">
+<!ENTITY Uring   SDATA "U">
+<!ENTITY utilde   SDATA "u">
+<!ENTITY Utilde   SDATA "U">
+<!ENTITY wcirc   SDATA "w">
+<!ENTITY Wcirc   SDATA "W">
+<!ENTITY ycirc   SDATA "y">
+<!ENTITY Ycirc   SDATA "Y">
+<!ENTITY Yuml   SDATA "Y">
+<!ENTITY zacute   SDATA "z">
+<!ENTITY Zacute   SDATA "Z">
+<!ENTITY zcaron   SDATA "z">
+<!ENTITY Zcaron   SDATA "Z">
+<!ENTITY zdot   SDATA "z">
+<!ENTITY Zdot   SDATA "Z">
+
+<!-- to convert ISOnum to displayable/indexable;
+     should ultimately be converted to UNICODE -->
+
+<!ENTITY lt   SDATA "&lt;">
+<!ENTITY gt   SDATA "&gt;">
+<!ENTITY pound   SDATA "&pound;">
+<!ENTITY amp   SDATA "&amp;">
+<!ENTITY ast   SDATA "&ast;">
+<!ENTITY deg   SDATA "&deg;">
+<!ENTITY sect   SDATA "&sect;">
+<!ENTITY para   SDATA "&para;">
+<!ENTITY middot   SDATA "&middot;">
+<!ENTITY quot   SDATA "&quot;">
+<!ENTITY hyphen   SDATA "-">
+<!ENTITY lsquo   SDATA "'">
+<!ENTITY rsquo   SDATA "'">
+<!ENTITY ldquo  ' SDATA "'>
+<!ENTITY rdquo  ' SDATA "'>
+<!ENTITY nbsp   SDATA "&nbsp;">
+<!ENTITY iexcl   SDATA "!">
+<!ENTITY laquo   SDATA "&laquo;">
+<!ENTITY raquo   SDATA "&raquo;">
+
+<!-- to convert ISOpub to displayable/indexable; should
+     ultimately be converted to UNICODE -->
+     
+<!ENTITY mdash   SDATA "--">
+<!ENTITY ndash   SDATA "--">
+<!ENTITY dash   SDATA "-">
+<!ENTITY blank   SDATA "__________">
+<!ENTITY hellip   SDATA "...">
+<!ENTITY dagger   SDATA "&dagger;">
+<!ENTITY Dagger   SDATA "&Dagger;">
+<!ENTITY cross   SDATA "+">
+
+<!-- C-H remainder -->
+
+<!ENTITY ygrave  SDATA "y">
+<!ENTITY Abar  SDATA "A">       
+<!ENTITY Obar  SDATA "O">
+<!ENTITY abar  SDATA "a">       
+<!ENTITY ebar  SDATA "e">       
+<!ENTITY ibar  SDATA "i">       
+<!ENTITY obar  SDATA "o">
+<!ENTITY ubar  SDATA "u">       
+<!ENTITY Ebreve  SDATA "E">
+<!ENTITY Sbreve  SDATA "S">
+<!ENTITY cbreve  SDATA "c">
+<!ENTITY ebreve  SDATA "e">
+<!ENTITY obreve  SDATA "o">    
+<!ENTITY rbreve  SDATA "r">
+<!ENTITY sbreve  SDATA "s">
+<!ENTITY zbreve  SDATA "z">
+<!ENTITY ashort  SDATA "a">
+<!ENTITY ishort  SDATA "i">
+<!ENTITY oshort  SDATA "o">
+<!ENTITY ushort  SDATA "u">
+<!ENTITY dollar  SDATA "$">
+<!ENTITY equals  SDATA "=">
+<!ENTITY frac12  SDATA "1/2">
+<!ENTITY frac13  SDATA "1/3">
+<!ENTITY frac14  SDATA "1/4">
+<!ENTITY frac18  SDATA "1/8">
+<!ENTITY frac34  SDATA "3/4">
+<!ENTITY frac38  SDATA "3/8">
+<!ENTITY frac78  SDATA "7/8">
+<!ENTITY minus  SDATA "-">
+<!ENTITY plus  SDATA "+">
+<!ENTITY fslash  SDATA "/">
+<!ENTITY z  SDATA ": ">
+<!ENTITY colgr   SDATA "&#183;">
+<!ENTITY qugr    SDATA ";">
+<!ENTITY hyphgr  SDATA "-">
+<!ENTITY aposgr  SDATA "&#162;">
+<!ENTITY agr    SDATA "a">
+<!ENTITY bgr    SDATA "b">
+<!ENTITY ggr    SDATA "g">
+<!ENTITY dgr    SDATA "d">
+<!ENTITY egr    SDATA "e">
+<!ENTITY zgr    SDATA "z">
+<!ENTITY eegr   SDATA "h">
+<!ENTITY thgr   SDATA "q">
+<!ENTITY igr    SDATA "i">
+<!ENTITY isubgr  SDATA "i">
+<!ENTITY kgr    SDATA "k">
+<!ENTITY ktigr  SDATA "k">
+<!ENTITY lgr    SDATA "l">
+<!ENTITY mgr    SDATA "m">
+<!ENTITY ngr    SDATA "n">
+<!ENTITY xgr    SDATA "c">
+<!ENTITY ogr    SDATA "o">
+<!ENTITY pgr    SDATA "p">
+<!ENTITY rgr    SDATA "r">
+<!ENTITY sgr    SDATA "s">
+<!ENTITY sfgr   SDATA "V">
+<!ENTITY slungr   SDATA "s">
+<!ENTITY naugr    SDATA "st">
+<!ENTITY tgr    SDATA "t">
+<!ENTITY ugr    SDATA "u">     
+<!ENTITY phgr   SDATA "f">
+<!ENTITY khgr   SDATA "x">
+<!ENTITY psgr   SDATA "y">
+<!ENTITY ohgr   SDATA "w">
+<!ENTITY Agr    SDATA "A">
+<!ENTITY Bgr    SDATA "B">
+<!ENTITY Ggr    SDATA "G">
+<!ENTITY Dgr    SDATA "D">
+<!ENTITY Egr    SDATA "E">
+<!ENTITY Zgr    SDATA "Z">
+<!ENTITY EEgr   SDATA "H">
+<!ENTITY THgr   SDATA "Q">
+<!ENTITY Igr    SDATA "I">
+<!ENTITY Kgr    SDATA "K">
+<!ENTITY Lgr    SDATA "L">
+<!ENTITY Mgr    SDATA "M">
+<!ENTITY Ngr    SDATA "N">
+<!ENTITY Xgr    SDATA "C">
+<!ENTITY Ogr    SDATA "O">
+<!ENTITY Pgr    SDATA "P">
+<!ENTITY Rgr    SDATA "R">
+<!ENTITY Sgr    SDATA "S">
+<!ENTITY Slungr   SDATA "S">
+<!ENTITY Tgr    SDATA "T">
+<!ENTITY Ugr    SDATA "U">
+<!ENTITY PHgr   SDATA "F">
+<!ENTITY KHgr   SDATA "X">
+<!ENTITY PSgr   SDATA "Y">
+<!ENTITY OHgr   SDATA "W">
+<!ENTITY sbAgr  SDATA "A">
+<!ENTITY rbAgr  SDATA "A">
+<!ENTITY sbAacgr  SDATA "A">
+<!ENTITY rbAacgr  SDATA "A">
+<!ENTITY sbAgvgr  SDATA "A">
+<!ENTITY rbAgvgr  SDATA "A">
+<!ENTITY sbAtigr  SDATA "A">
+<!ENTITY rbAtigr  SDATA "A">
+<!ENTITY Aacgr  SDATA "A">
+<!ENTITY Agvgr  SDATA "A">
+<!ENTITY Atigr  SDATA "A">
+<!ENTITY aacgr  SDATA "a">
+<!ENTITY agvgr  SDATA "a">
+<!ENTITY atigr  SDATA "a">
+<!ENTITY adiagr  SDATA "a">
+<!ENTITY adiagvgr  SDATA "a">
+<!ENTITY aacdiagr  SDATA "a">
+<!ENTITY adiatigr  SDATA "a">
+<!ENTITY sbagr  SDATA "a">
+<!ENTITY rbagr  SDATA "a">
+<!ENTITY sbaacgr  SDATA "a">
+<!ENTITY rbaacgr  SDATA "a">
+<!ENTITY sbagvgr  SDATA "a">
+<!ENTITY rbagvgr  SDATA "a">
+<!ENTITY sbatigr  SDATA "a">
+<!ENTITY rbatigr  SDATA "a">
+<!ENTITY sbEgr  SDATA "E">
+<!ENTITY rbEgr  SDATA "E">
+<!ENTITY sbEacgr  SDATA "E">
+<!ENTITY rbEacgr  SDATA "E">
+<!ENTITY sbEgvgr  SDATA "E">
+<!ENTITY rbEgvgr  SDATA "E">
+<!ENTITY sbEtigr  SDATA "E">
+<!ENTITY rbEtigr  SDATA "E">
+<!ENTITY Eacgr  SDATA "E">
+<!ENTITY Egvgr  SDATA "E">
+<!ENTITY Etigr  SDATA "E">
+<!ENTITY eacgr  SDATA "e">
+<!ENTITY egvgr  SDATA "e">
+<!ENTITY etigr  SDATA "e">
+<!ENTITY sbegr  SDATA "e">
+<!ENTITY rbegr  SDATA "e">
+<!ENTITY sbeacgr  SDATA "e">
+<!ENTITY rbeacgr  SDATA "e">
+<!ENTITY sbegvgr  SDATA "e">
+<!ENTITY rbegvgr  SDATA "e">
+<!ENTITY sbetigr  SDATA "e">
+<!ENTITY rbetigr  SDATA "e">
+<!ENTITY sbEEgr  SDATA "H">
+<!ENTITY rbEEgr  SDATA "H">
+<!ENTITY sbEEacgr  SDATA "H">
+<!ENTITY rbEEacgr  SDATA "H">
+<!ENTITY sbEEgvgr  SDATA "H">
+<!ENTITY rbEEgvgr  SDATA "H">
+<!ENTITY sbEEtigr  SDATA "H">
+<!ENTITY rbEEtigr  SDATA "H">
+<!ENTITY EEacgr  SDATA "H">
+<!ENTITY EEgvgr  SDATA "H">
+<!ENTITY EEtigr   SDATA "H">
+<!ENTITY eeacgr  SDATA "h">
+<!ENTITY eegvgr  SDATA "h">
+<!ENTITY eetigr  SDATA "h">
+<!ENTITY sbeegr  SDATA "h">
+<!ENTITY rbeegr  SDATA "h">
+<!ENTITY sbeeacgr  SDATA "h">
+<!ENTITY rbeeacgr  SDATA "h">
+<!ENTITY sbeegvgr  SDATA "h">
+<!ENTITY rbeegvgr  SDATA "h">
+<!ENTITY sbeetigr  SDATA "h">
+<!ENTITY rbeetigr  SDATA "h">
+<!ENTITY sbIgr  SDATA "I">
+<!ENTITY rbIgr  SDATA "I">
+<!ENTITY sbIacgr  SDATA "I">
+<!ENTITY rbIacgr  SDATA "I">
+<!ENTITY sbIdiagr  SDATA "I">
+<!ENTITY sbIgvgr  SDATA "I">
+<!ENTITY rbIgvgr  SDATA "I">
+<!ENTITY sbItigr  SDATA "I">
+<!ENTITY rbItigr  SDATA "I">
+<!ENTITY Iacgr  SDATA "I">
+<!ENTITY Igvgr  SDATA "I">
+<!ENTITY Itigr  SDATA "I">
+<!ENTITY iacgr  SDATA "i">
+<!ENTITY igvgr  SDATA "i">
+<!ENTITY itigr  SDATA "i">
+<!ENTITY idiagr  SDATA "i">
+<!ENTITY iacdiagr  SDATA "i">
+<!ENTITY idiagvgr  SDATA "i">
+<!ENTITY idiatigr  SDATA "i">
+<!ENTITY sbigr  SDATA "i">
+<!ENTITY rbigr  SDATA "i">
+<!ENTITY sbiacgr  SDATA "i">
+<!ENTITY rbiacgr  SDATA "i">
+<!ENTITY sbigvgr  SDATA "i">
+<!ENTITY rbigvgr  SDATA "i">
+<!ENTITY sbitigr  SDATA "i">
+<!ENTITY rbitigr  SDATA "i">
+<!ENTITY sbOgr  SDATA "O">
+<!ENTITY rbOgr  SDATA "O">
+<!ENTITY sbOacgr  SDATA "O">
+<!ENTITY rbOacgr  SDATA "O">
+<!ENTITY sbOgvgr  SDATA "O">
+<!ENTITY rbOgvgr  SDATA "O">
+<!ENTITY sbOtigr  SDATA "O">
+<!ENTITY rbOtigr  SDATA "O">
+<!ENTITY Oacgr  SDATA "O">
+<!ENTITY Ogvgr  SDATA "O">
+<!ENTITY Otigr  SDATA "O">
+<!ENTITY oacgr  SDATA "o">
+<!ENTITY ogvgr  SDATA "o">
+<!ENTITY otigr  SDATA "o">
+<!ENTITY sbogr  SDATA "o">
+<!ENTITY rbogr  SDATA "o">
+<!ENTITY sboacgr  SDATA "o">
+<!ENTITY rboacgr  SDATA "o">
+<!ENTITY sbogvgr  SDATA "o">
+<!ENTITY rbogvgr  SDATA "o">
+<!ENTITY sbotigr  SDATA "o">
+<!ENTITY rbotigr  SDATA "o">
+<!ENTITY sbUgr  SDATA "U">
+<!ENTITY rbUgr  SDATA "U">
+<!ENTITY sbUacgr  SDATA "U">
+<!ENTITY rbUacgr  SDATA "U">
+<!ENTITY sbUgvgr  SDATA "U">
+<!ENTITY rbUgvgr  SDATA "U">
+<!ENTITY sbUtigr  SDATA "U">
+<!ENTITY rbUtigr  SDATA "U">
+<!ENTITY Uacgr  SDATA "U">
+<!ENTITY Ugvgr  SDATA "U">
+<!ENTITY Utigr  SDATA "U">
+<!ENTITY uacgr  SDATA "u">
+<!ENTITY ugvgr  SDATA "u">
+<!ENTITY utigr  SDATA "u">
+<!ENTITY udiagr  SDATA "u">
+<!ENTITY uacdiagr  SDATA "u">
+<!ENTITY udiagvgr  SDATA "u">
+<!ENTITY udiatigr  SDATA "u">
+<!ENTITY sbugr  SDATA "u">
+<!ENTITY rbugr  SDATA "u">
+<!ENTITY sbuacgr  SDATA "u">
+<!ENTITY rbuacgr  SDATA "u">
+<!ENTITY sbugvgr  SDATA "u">
+<!ENTITY rbugvgr  SDATA "u">
+<!ENTITY sbutigr  SDATA "u">
+<!ENTITY rbutigr  SDATA "u">
+<!ENTITY sbOHgr  SDATA "W">
+<!ENTITY rbOHgr  SDATA "W">
+<!ENTITY sbOHacgr  SDATA "W">
+<!ENTITY rbOHacgr  SDATA "W">
+<!ENTITY sbOHgvgr  SDATA "W">
+<!ENTITY rbOHgvgr  SDATA "W">
+<!ENTITY sbOHtigr  SDATA "W">
+<!ENTITY rbOHtigr  SDATA "W">
+<!ENTITY OHacgr  SDATA "W">
+<!ENTITY OHgvgr  SDATA "W">
+<!ENTITY OHtigr  SDATA "W">
+<!ENTITY ohacgr  SDATA "w">
+<!ENTITY ohgvgr  SDATA "w">
+<!ENTITY ohtigr  SDATA "w">
+<!ENTITY ohmacrgr  SDATA "w">
+<!ENTITY sbohgr  SDATA "w">
+<!ENTITY rbohgr  SDATA "w">
+<!ENTITY sbohacgr  SDATA "w">
+<!ENTITY rbohacgr  SDATA "w">
+<!ENTITY sbohgvgr  SDATA "w">
+<!ENTITY rbohgvgr  SDATA "w">
+<!ENTITY sbohtigr  SDATA "w">
+<!ENTITY rbohtigr  SDATA "w">
+<!ENTITY sbrgr  SDATA "r">
+<!ENTITY rbrgr  SDATA "r">
+<!ENTITY sbRgr   SDATA "R">
+<!ENTITY rbRgr  SDATA "R">
+<!ENTITY sb  SDATA "">
+<!ENTITY rb  SDATA "">
+<!ENTITY minus  SDATA "-">
+<!ENTITY copy  SDATA "&copy;">
+
+<!-- end of C-H remainder -->
+
+<!-- some MARC entities -->
+
+<!ENTITY scriptl  SDATA "&scriptl;">
+<!ENTITY iquest  SDATA "&iquest;">
+<!ENTITY softsign  SDATA "&softsign;">
+<!ENTITY phono  SDATA "&phono;">
+<!ENTITY punder  SDATA "&punder;">
+<!ENTITY sunder  SDATA "&sunder;">
+<!ENTITY dunder  SDATA "&dunder;">
+<!ENTITY munder  SDATA "&munder;">
+<!ENTITY aunder  SDATA "&aunder;">
+<!ENTITY iunder  SDATA "&iunder;">
+<!ENTITY lunder  SDATA "&lunder;">
+<!ENTITY eunder  SDATA "&eunder;">
+<!ENTITY ounder  SDATA "&ounder;">
+<!ENTITY vunder  SDATA "&vunder;">
+<!ENTITY nunder  SDATA "&nunder;">
+<!ENTITY mllhring  SDATA "&mllhring;">
+<!ENTITY mlrhring  SDATA "&mlrhring;">
+<!ENTITY sharp  SDATA "&sharp;">
+<!ENTITY fring  SDATA "&fring;">
+<!ENTITY Fring  SDATA "&Fring;">
+<!ENTITY ostrok  SDATA "&ostrok;">
+<!ENTITY Uhorn  SDATA "&Uhorn;">
+<!ENTITY uhorn  SDATA "&uhorn;">
+<!ENTITY pmacr  SDATA "&pmacr;">
+<!ENTITY Pmacr  SDATA "&Pmacr;">
+<!ENTITY illig  SDATA "&illig;">
+<!ENTITY arlig  SDATA "&arlig;">
+<!ENTITY ibreve  SDATA "&ibreve;">
+<!ENTITY kdblunder  SDATA "&kdblunder;">
+<!ENTITY hardsign SDATA "&hardsign;">
+<!ENTITY cdotb SDATA "&cdotb;">
+<!ENTITY hdotb SDATA "&hdotb;">
+<!ENTITY ccommab SDATA "&ccommab;">
+<!ENTITY Drcommaa SDATA "&Drcommaa;">
+<!ENTITY zgrave SDATA "&zgrave;">
+<!ENTITY Cgrave SDATA "&Cgrave;">
+<!ENTITY Pgrave SDATA "&Pgrave;">
+<!ENTITY buml   SDATA "&buml;">

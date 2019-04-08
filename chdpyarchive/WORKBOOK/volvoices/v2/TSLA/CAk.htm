@@ -1,0 +1,172 @@
+<html>
+<head>
+<title>vv_popupCA</title>
+
+<link href="../vv_workbook.css" type="text/css" rel="stylesheet">
+<script language=javascript src="../vv_functions_tsla.js"></script>
+
+
+
+
+<script language="javascript">
+
+var select_id= new String();
+function get_select_id() {
+
+var str = new String();
+    str = parent.location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  parent.window.opener.location.href="+parent.window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=get_select_id();
+
+
+
+var strSelect_PN_A = new String('');
+
+
+strSelect_PN_A = '<select name="aaa"  size="24" style="font-size:10px"> \r\n'
+	+'<option value="0" selected>No value selected</option> \r\n'
+		
+
+
+
+
+
+	+'<option>KAYNE AVENUE MISSIONARY BAPTIST CHURCH (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>KENTUCKY-TENNESSEE SYNOD</option>  \r\n'
+	+'<option>KINGSPORT HIGH SCHOOL (KINGSPORT, TENN.)</option>  \r\n'
+	+'<option>KNIGHTS OF PYTHIAS (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>KNIGHTS TEMPLAR (MASONIC ORDER) - GRAND COMMANDERY (TENN.)</option>  \r\n'
+	+'<option>KNIGHTS TEMPLAR (MASONIC ORDER) - NASHVILLE COMMANDERY NO. 1 (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>KNOX COUNTY DISTRICT ASSOCIATION OF BAPTISTS (TENN.)</option>  \r\n'
+	+'<option>KNOXVILLE CITY SCHOOLS (KNOXVILLE, TENN.)</option>  \r\n'
+	+'<option>KNOXVILLE GENERAL HOSPITAL (KNOXVILLE, TENN.)</option>  \r\n'
+	+'<option>KU-KLUX KLAN (1866-1869) - TENNESSEE</option>  \r\n'
+	+'<option>KYKER FUNERAL HOME (HARRIMAN, TENN.)</option>  \r\n'
+	+'<option>KYKER FUNERAL HOME (MADISONVILLE, TENN.)</option>  \r\n'
+	+'<option>KYKER FUNERAL HOME (SWEETWATER, TENN.)</option>  \r\n'
+	+'<option>L. B. HARWELL DRY GOODS (FRIENDSHIP, TENN.)</option>  \r\n'
+	+'<option>LA GUARDO BAPTIST CHURCH (WILSON COUNTY, TENN.)</option>  \r\n'
+	+'<option>LADIES MEMORIAL ASSOCIATION (KNOXVILLE, TENN.)</option>  \r\n'
+	+'<option>LADIES\' UNION LEAGUE (MEMPHIS, TENN.)</option>  \r\n'
+	+'<option>LAKE PROVIDENCE MISSIONARY BAPTIST CHURCH (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>LAKE VIEW BAPTIST CHURCH (CAMPBELL COUNTY, TENN.)</option>  \r\n'
+	+'<option>LAMBUTH COLLEGE (JACKSON, TENN.)</option>  \r\n'
+	+'<option>LAMBUTH UNIVERSITY (JACKSON, TENN.)</option>  \r\n'
+	+'<option>LASCASSAS BAPTIST CHURCH (TENN.)</option>  \r\n'
+	+'<option>LASTING HOPE CUMBERLAND PRESBYTERIAN CHURCH (CARTER\'S CREEK, TENN.)</option>  \r\n'
+	+'<option>LAWYERS INVOLVED FOR TENNESSEE</option>  \r\n'
+	+'<option>LEACH CEMETERY (LAKE CITY, TENN.)</option>  \r\n'
+	+'<option>LEAGUE OF WOMEN VOTERS OF TENNESSEE</option>  \r\n'
+	+'<option>LEBANON CUMBERLAND PRESBYTERIAN CHURCH (MT. HOREB, TENN.)</option>  \r\n'
+	+'<option>LEBANON METHODIST CHURCH (CROCKETT COUNTY, TENN.)</option>  \r\n'
+	+'<option>LEBANON PRESBYTERIAN CHURCH (KNOX COUNTY, TENN.)</option>  \r\n'
+	+'<option>LEBANON PRESBYTERIAN CHURCH (KNOXVILLE, TENN.)</option>  \r\n'
+	+'<option>LEWISBURG PRESBYTERIAN CHURCH (LEWISBURG, TENN.)</option>  \r\n'
+	+'<option>LIBERTY BAPTIST CHURCH (HUMPHREYS COUNTY, TENN.)</option>  \r\n'
+	+'<option>LIBERTY CHURCH (MCNAIRY COUNTY, TENN.)</option>  \r\n'
+	+'<option>LIBERTY CUMBERLAND PRESBYTERIAN CHURCH (WARREN COUNTY, TENN.)</option>  \r\n'
+	+'<option>LIBERTY MILLS (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>LIBERTY SCHOOL (MCEWEN, TENN.)</option>  \r\n'
+	+'<option>LIBERTY SCHOOL (MCNAIRY COUNTY, TENN.)</option>  \r\n'
+	+'<option>LIFE AND CASUALTY INSURANCE COMPANY OF TENNESSEE</option>  \r\n'
+	+'<option>LINCOLN PARK SCHOOL (KNOX COUNTY, TENN.)</option>  \r\n'
+	+'<option>LITTLE CEDAR LICK BAPTIST CHURCH (WILSON COUNTY, TENN.)</option>  \r\n'
+	+'<option>LITTLE FLAT CREEK BAPTIST CHURCH (KNOX COUNTY, TENN.)</option>  \r\n'
+	+'<option>LITTLE HARPETH PRESBYTERIAN CHURCH (WILLIAMSON COUNTY, TENN.)</option>  \r\n'
+	+'<option>LITTLE RIVER LUMBER COMPANY (BLOUNT COUNTY, TENN.)</option>  \r\n'
+	+'<option>LOCAL 20 (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>LONGFIELD BAPTIST CHURCH (LAKE CITY, TENN.)</option>  \r\n'
+	+'<option>LOST STATE HISTORICAL COMMISSION (TENN.)</option>  \r\n'
+	+'<option>LOWENSTEIN HOUSE (MEMPHIS, TENN.)</option>  \r\n'
+	+'<option>LUFTY BAPTIST CHURCH (TENN.)</option>  \r\n'
+
++'</select> \r\n';
+	
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+<body class="background">
+
+
+
+
+<form name="FormOne" >
+
+
+<div name="SS" id="SS">
+<script>
+document.write(
+
+	 '<table border="1" cellpadding="4" cellspacing="0"  width="90%">\r\n'
+	+'<tr><td  bgcolor="ddeeff">\r\n'
+	///+'vv_functions.htm called by '+select_id+' <br>\r\n'
+	+'<b>Select Corporate Author K-L</b> \r\n'
+	+'</td></tr><tr><td bgcolor="ddeeff"> \r\n' 
+	+ strSelect_PN_A
+
+	+'</td></tr></table> \r\n'
+	///+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+</script>
+	
+</div>
+
+<input type="button" onclick="showSelection();" name="B1" value="Corporate Author">
+
+</form>
+
+<script>
+
+
+
+                  
+
+function showSelection() {
+
+val = new String();
+
+for ( i=0; i< document.FormOne.aaa.length; i++ ) {
+
+if ( document.FormOne.aaa[i].selected == true ) {
+  	val = document.FormOne.aaa[i].text;
+	break;
+	}
+else { val = "you never selected anything"; 
+	}
+
+}
+////////////////////////alert ("You selected " +val);
+val=reformatCa(val);
+
+switch ( select_id ) {
+
+case  "subject_name_lcsh_01" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_01.value=val;
+	parent.window.close();
+	break;
+
+case  "subject_name_lcsh_02" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_02.value=val;
+	parent.window.close();
+	break;
+}//end switch
+
+}///end function
+</script>
+

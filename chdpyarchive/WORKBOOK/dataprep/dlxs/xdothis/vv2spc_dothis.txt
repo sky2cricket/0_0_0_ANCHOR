@@ -1,0 +1,79 @@
+/d1/workarea/dlxs/vv2spc/dothis
+
+go to spc dir in each of these, and run 
+getEadnum > eadnum
+analyze 
+
+(EADnum writes eadnum, which analyze then analyzes); 
+ if the corresponding EAD has been worked,
+      getEADnum will add childFileNum MSnum momFileNum Momlink to LinksToMom to be used in correcting files
+ if it has not:
+      if the EAD num is listed in the adminDB, it will write a list of childfiles that need to be linked to the
+        non-existent EAD, into NeedEads (so students will know to create the EAD)
+      else:  will write list of childfiles to LookForEad, to find out if a finding aid exists (or will exist -- someone
+        needs to hunt for these, if they are not listed in NoEADok)
+
+ getEADnum also checks to see if this filename has been added into the parent EAD yet (needing to be turned into a link)
+      if so, writes this filenam with its PID to KidsReadyToBeLinked (to use in my fixing the EAD)
+      if not, writes this to AddKidsToEad  for students to use in adding filename to EAD
+      if child file is already linked, we need to update InfoTrack to indicate that Mom links to the child 
+        (not yet automated)
+
+
+
+ then:
+   run addMSnum to update the mods records.  new ones are written to modsWithMS.
+   run NewPids to correct PIDS in everything so far
+ 
+Have not yet written scripts to update the modssearch, bib, ic, and TEI.
+Need to make sure that these are the versions used to create the preservation metadata for these files.
+
+
+cat ../image/tel/multiples/spc/addEadToDbase ../image/tel/singles/spc/addEadToDbase ../text/tel/spc/add
+EadToDbase > addEadToDbase
+cat ../image/tel/multiples/spc/addEadToFile ../image/tel/singles/spc/addEadToFile ../text/tel/spc/addEadToFile > addEadToFile
+cat ../image/tel/multiples/spc/linkEad ../image/tel/singles/spc/linkEad ../text/tel/spc/linkEad > linkEad
+cat ../image/tel/multiples/spc/noEad ../image/tel/singles/spc/noEad ../text/tel/spc/noEad > noEad
+cat ../image/tel/multiples/spc/workEad ../image/tel/singles/spc/workEad ../text/tel/spc/workEad > workEad
+
+
+send Erin Lawrimore the list of noEad, linkEad, workEad
+( put the numbers together first;  and put on store1:/area2/PROJECTS/access_project4/FA/NeedLinks
+add EADs to files in those where you can.  (those noEads which correctly have no ead are in noEadOk
+add EAD links to files where you can
+correct database for those where you can.
+
+listDbase2  makes Coll2Ead, a matchup of collection number (from filename) to ead number.
+If any errors, get them corrected.
+noEADok contains the list of file for which no EAD needs to exist so far.
+
+copy files from directories to incoming directories.
+run: getFiles  - it will read workEad to get list of Eads yet to be created;  
+     files that use these will be put in HoldForEad directories
+     other files will be put in incoming directories;  once they have relItem added, they will go into ready directories
+
+
+makeMomBaby uses Coll2Ead and lists of pids and files in text/tel/spc/mods and image/tel/singles/spc/mods and 
+      image/tel/multiples/spc/mods to make a complete matchup list for updating eads with constitutent links and
+     for updating constituent files with ead links.  Mom2Baby and  BabyToMom.
+
+Next, need scripts to fill in the relatedItem into the constituent files. 
+for this, scp "gatheredMetadata" into ../ead directory, for coll titles
+From scholar.lib.utk.edu:../d1/dlxs12/prep/f/fa/wgetStuff/gatheredMetadata
+
+run moveNoEadFiles
+run addRelItem
+then check the files.  If okay, then these are ready for prime time.
+  cp ready/modsbib/* ../bib/mods/spc/vvxml/.
+  cp ready/search/* ../bib/search/vvxml/.
+  cp ready/mods/* ../bib/mods/spc/preservation/.
+
+ then move them all into the ./done subdirectories, and rename incoming directory to a dated subdir of ./done,
+  recreating incoming directories for new files.
+ 
+Don't release child items to SPC search and OAI until the EADs are at least up....
+Hold all files waiting for EAD to be created.
+when they come ready, alter addRelItem to do the new ones only.
+
+
+

@@ -1,0 +1,303 @@
+<html>
+<head>
+<title>vv_popupCA</title>
+
+<link href="../vv_workbook.css" type="text/css" rel="stylesheet">
+
+
+
+
+<script language="javascript">
+
+var select_id= new String();
+function get_select_id() {
+
+var str = new String();
+    str = parent.location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  parent.window.opener.location.href="+parent.window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=get_select_id();
+
+
+
+var strSelect_GE_A = new String('');
+
+strSelect_GE_A = '<select name="aaa"  size="24" style="font-size:10px"> \r\n'
+	+'<option  selected>No Value Selected</option> \r\n'	
+
+
+
+
+
+
+
+
+	+'<option>FAIRFIELD (TENN.) - HISTORY</option>  \r\n'
+	+'<option>FAIRMOUNT FEMALE COLLEGE (MONTEAGLE, TENN.) - HISTORY</option>  \r\n'
+	+'<option>FAIRVIEW (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>FALCON (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>FALL CREEK FALLS STATE PARK (TENN.)</option>  \r\n'
+	+'<option>FALL CREEK FALLS STATE PARK (TENN.) - GUIDEBOOKS</option>  \r\n'
+	+'<option>FARM (SUMMERTOWN, TENN.)</option>  \r\n'
+	+'<option>FARRAGUT (TENN.) - HISTORY</option>  \r\n'
+	+'<option>FARRAGUT (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>FAYETTE COUNTY (TENN.)</option>  \r\n'
+	+'<option>FAYETTE COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>FAYETTE COUNTY (TENN.) - CENSUS, 1850</option>  \r\n'
+	+'<option>FAYETTE COUNTY (TENN.) - CENSUS, 1880 - INDEXES</option>  \r\n'
+	+'<option>FAYETTE COUNTY (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>FAYETTE COUNTY (TENN.) - ECONOMIC CONDITIONS</option>  \r\n'
+	+'<option>FAYETTE COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>FAYETTE COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>FAYETTE COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>FAYETTE COUNTY (TENN.) - MAPS</option>  \r\n'
+	+'<option>FAYETTE COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>FAYETTE COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>FAYETTE COUNTY (TENN.) - RACE RELATIONS</option>  \r\n'
+	+'<option>FAYETTE COUNTY (TENN.) - SOCIAL CONDITIONS</option>  \r\n'
+	+'<option>FAYETTEVILLE (TENN.) - CHURCH HISTORY - SOURCES</option>  \r\n'
+	+'<option>FAYETTEVILLE (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>FAYETTEVILLE (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>FAYETTEVILLE (TENN.) - HISTORY</option>  \r\n'
+	+'<option>FAYETTEVILLE (TENN.) - HISTORY - PICTORIAL WORKS</option>  \r\n'
+	+'<option>FAYETTEVILLE (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>FAYETTEVILLE (TENN.) - SOCIAL LIFE AND CUSTOMS - 19TH CENTURY</option>  \r\n'
+	+'<option>FAYETTEVILLE (TENN.) - STREETS</option>  \r\n'
+	+'<option>FENTRESS COUNTY (TENN.)</option>  \r\n'
+	+'<option>FENTRESS COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>FENTRESS COUNTY (TENN.) - CENSUS, 1820</option>  \r\n'
+	+'<option>FENTRESS COUNTY (TENN.) - CENSUS, 1830</option>  \r\n'
+	+'<option>FENTRESS COUNTY (TENN.) - CENSUS, 1840</option>  \r\n'
+	+'<option>FENTRESS COUNTY (TENN.) - CENSUS, 1850</option>  \r\n'
+	+'<option>FENTRESS COUNTY (TENN.) - CENSUS, 1860</option>  \r\n'
+	+'<option>FENTRESS COUNTY (TENN.) - CENSUS, 1870</option>  \r\n'
+	+'<option>FENTRESS COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>FENTRESS COUNTY (TENN.) - CENSUS, 1890</option>  \r\n'
+	+'<option>FENTRESS COUNTY (TENN.) - CENSUS, 1900</option>  \r\n'
+	+'<option>FENTRESS COUNTY (TENN.) - CENSUS, 1910</option>  \r\n'
+	+'<option>FENTRESS COUNTY (TENN.) - CENSUS, 1920</option>  \r\n'
+	+'<option>FENTRESS COUNTY (TENN.) - COMMERCE - HISTORY - SOURCES</option>  \r\n'
+	+'<option>FENTRESS COUNTY (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>FENTRESS COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>FENTRESS COUNTY (TENN.) - GENEALOGY - PERIODICALS</option>  \r\n'
+	+'<option>FENTRESS COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>FENTRESS COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>FENTRESS COUNTY (TENN.) - HISTORY - PERIODICALS</option>  \r\n'
+	+'<option>FENTRESS COUNTY (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>FENTRESS COUNTY (TENN.) - HISTORY, LOCAL</option>  \r\n'
+	+'<option>FENTRESS COUNTY (TENN.) - MAPS</option>  \r\n'
+	+'<option>FENTRESS COUNTY (TENN.) - MAPS, MANUSCRIPT</option>  \r\n'
+	+'<option>FENTRESS COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>FENTRESS COUNTY (TENN.) - PICTORIAL WORKS</option>  \r\n'
+	+'<option>FENTRESS COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>FENTRESS COUNTY (TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+	+'<option>FERN LAKE (KY. AND TENN.)</option>  \r\n'
+	+'<option>FERN LAKE WATERSHED (KY. AND TENN.)</option>  \r\n'
+	+'<option>FIERY GIZZARD STATE NATURAL AREA (TENN.)</option>  \r\n'
+	+'<option>FIRE-DEPARTMENTS - TENNESSEE - KNOXVILLE - PICTORIAL WORKS</option>  \r\n'
+	+'<option>FISHES - TENNESSEE</option>  \r\n'
+	+'<option>FLAT CREEK (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>FLAT CREEK (TENN.) - HISTORY</option>  \r\n'
+	+'<option>FLATROCK (DAVIDSON COUNTY, TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>FLINTVILLE (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>FLINTVILLE (TENN.) - HISTORY</option>  \r\n'
+	+'<option>FLINTVILLE (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>FOOTHILLS PARKWAY (TENN.) - ENVIRONMENTAL ASPECTS</option>  \r\n'
+	+'<option>FORBUS SITE (TENN.)</option>  \r\n'
+	+'<option>FOREST HEIGHTS (KNOXVILLE, TENN.) - DESCRIPTION AND TRAVEL</option>  \r\n'
+	+'<option>FOREST HEIGHTS (KNOXVILLE, TENN.) - HISTORY</option>  \r\n'
+	+'<option>FOREST HILLS (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>FOREST HILLS (NASHVILLE, TENN.) - BUILDINGS, STRUCTURES, ETC.</option>  \r\n'
+	+'<option>FORKED DEER RIVER (TENN.)</option>  \r\n'
+	+'<option>FORKED DEER RIVER (TENN.) - ECOLOGY</option>  \r\n'
+	+'<option>FORKED DEER RIVER VALLEY (TENN.) - FLOODPLAINS</option>  \r\n'
+	+'<option>FORKED DEER RIVER WATERSHED (TENN.)</option>  \r\n'
+	+'<option>FORT BLOUNT (TENN.) - ANTIQUITIES</option>  \r\n'
+	+'<option>FORT BLOUNT (TENN.) - HISTORY</option>  \r\n'
+	+'<option>FORT CAMPBELL (KY. AND TENN.)</option>  \r\n'
+	+'<option>FORT DONELSON (TENN.)</option>  \r\n'
+	+'<option>FORT DONELSON (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>FORT DONELSON NATIONAL BATTLEFIELD (TENN.)</option>  \r\n'
+	+'<option>FORT GRANGER (FRANKLIN, TENN.) - HISTORY</option>  \r\n'
+	+'<option>FORT LOUDOUN (MONROE COUNTY, TENN.)</option>  \r\n'
+	+'<option>FORT LOUDOUN (MONROE COUNTY, TENN.) - HISTORY</option>  \r\n'
+	+'<option>FORT LOUDOUN (MONROE COUNTY, TENN.) - PERIODICALS</option>  \r\n'
+	+'<option>FORT LOUDOUN (TENN.)</option>  \r\n'
+	+'<option>FORT LOUDOUN LAKE (TENN.)</option>  \r\n'
+	+'<option>FORT LOUDOUN LAKE (TENN.) - MAPS</option>  \r\n'
+	+'<option>FORT LOUDOUN LAKE (TENN.) - STATISTICS</option>  \r\n'
+	+'<option>FORT LOUDOUN STATE HISTORIC AREA (TENN.)</option>  \r\n'
+	+'<option>FORT LOUDOUN STATE HISTORIC AREA (TENN.) - CONSERVATION AND RESTORATION - PERIODICALS</option>  \r\n'
+	+'<option>FORT NASH (TENN.)</option>  \r\n'
+	+'<option>FORT NASHBOROUGH (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>FORT NEGLEY (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>FORT PATRICK HENRY (TENN.)</option>  \r\n'
+	+'<option>FORT PATRICK HENRY RESERVOIR (TENN.)</option>  \r\n'
+	+'<option>FORT PICKERING (TENN.) - MAPS</option>  \r\n'
+	+'<option>FORT PICKERING (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>FORT PILLOW STATE PARK (TENN.) - ANTIQUITIES</option>  \r\n'
+	+'<option>FORT PULASKI,  BATTLE OF, TENN., 1862</option>  \r\n'
+	+'<option>FORT SOUTHWEST POINT (TENN.)</option>  \r\n'
+	+'<option>FORT SOUTHWEST POINT SITE (TENN.)</option>  \r\n'
+	+'<option>FORTRESS ROSECRANS (MURFREESBORO, TENN.) - MAPS, MANUSCRIPT</option>  \r\n'
+	+'<option>FOSTERVILLE (TENN.) - HISTORY</option>  \r\n'
+	+'<option>FOUNTAIN CITY (TENN.) - BIOGRAPHY - PICTORIAL WORKS</option>  \r\n'
+	+'<option>FOUNTAIN CITY (TENN.) - BUILDINGS, STRUCTURES, ETC. - PICTORIAL WORKS</option>  \r\n'
+	+'<option>FOUNTAIN CITY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>FOUNTAIN CITY (TENN.) - HISTORY - PICTORIAL WORKS</option>  \r\n'
+	+'<option>FOUNTAIN CITY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>FRANKLIN (TENN.)</option>  \r\n'
+	+'<option>FRANKLIN (TENN.) - CENTENNIAL CELEBRATIONS, ETC.</option>  \r\n'
+	+'<option>FRANKLIN (TENN.) - CHARTERS</option>  \r\n'
+	+'<option>FRANKLIN (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>FRANKLIN (TENN.) - CHURCH HISTORY - 19TH CENTURY - SOURCES</option>  \r\n'
+	+'<option>FRANKLIN (TENN.) - CHURCH HISTORY - SOURCES</option>  \r\n'
+	+'<option>FRANKLIN (TENN.) - DESCRIPTION AND TRAVEL</option>  \r\n'
+	+'<option>FRANKLIN (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>FRANKLIN (TENN.) - HISTORY</option>  \r\n'
+	+'<option>FRANKLIN (TENN.) - HISTORY - CALENDARS</option>  \r\n'
+	+'<option>FRANKLIN (TENN.) - HISTORY - CIVIL WAR, 1861-1865</option>  \r\n'
+	+'<option>FRANKLIN (TENN.) - HISTORY - PERIODICALS</option>  \r\n'
+	+'<option>FRANKLIN (TENN.) - HISTORY - PICTORIAL WORKS</option>  \r\n'
+	+'<option>FRANKLIN (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>FRANKLIN (TENN.) - MAPS</option>  \r\n'
+	+'<option>FRANKLIN (TENN.) - MAPS, MANUSCRIPT</option>  \r\n'
+	+'<option>FRANKLIN (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>FRANKLIN (TENN.) - PICTORIAL WORKS</option>  \r\n'
+	+'<option>FRANKLIN (TENN.) - SOCIAL LIFE AND CUSTOMS - 19TH CENTURY</option>  \r\n'
+	+'<option>FRANKLIN (TENN.) - SOCIAL LIFE AND CUSTOMS - PICTORIAL WORKS</option>  \r\n'
+	+'<option>FRANKLIN (TENN.) - STREETS</option>  \r\n'
+	+'<option>FRANKLIN COUNTY (TENN.)</option>  \r\n'
+	+'<option>FRANKLIN COUNTY (TENN.) - ANTIQUITIES</option>  \r\n'
+	+'<option>FRANKLIN COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>FRANKLIN COUNTY (TENN.) - BIOGRAPHY - INDEXES</option>  \r\n'
+	+'<option>FRANKLIN COUNTY (TENN.) - CENSUS, 1820</option>  \r\n'
+	+'<option>FRANKLIN COUNTY (TENN.) - CENSUS, 1840</option>  \r\n'
+	+'<option>FRANKLIN COUNTY (TENN.) - CENSUS, 1850</option>  \r\n'
+	+'<option>FRANKLIN COUNTY (TENN.) - CENSUS, 1860</option>  \r\n'
+	+'<option>FRANKLIN COUNTY (TENN.) - CENSUS, 1870</option>  \r\n'
+	+'<option>FRANKLIN COUNTY (TENN.) - CENSUS, 1900 - INDEXES</option>  \r\n'
+	+'<option>FRANKLIN COUNTY (TENN.) - CENTENNIAL CELEBRATIONS, ETC.</option>  \r\n'
+	+'<option>FRANKLIN COUNTY (TENN.) - DESCRIPTION AND TRAVEL</option>  \r\n'
+	+'<option>FRANKLIN COUNTY (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>FRANKLIN COUNTY (TENN.) - ECONOMIC POLICY</option>  \r\n'
+	+'<option>FRANKLIN COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>FRANKLIN COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>FRANKLIN COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>FRANKLIN COUNTY (TENN.) - HISTORY - CIVIL WAR, 1861-1865</option>  \r\n'
+	+'<option>FRANKLIN COUNTY (TENN.) - HISTORY - INDEXES</option>  \r\n'
+	+'<option>FRANKLIN COUNTY (TENN.) - HISTORY - PERIODICALS</option>  \r\n'
+	+'<option>FRANKLIN COUNTY (TENN.) - MAPS</option>  \r\n'
+	+'<option>FRANKLIN COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>FRANKLIN COUNTY (TENN.) - PICTORIAL WORKS</option>  \r\n'
+	+'<option>FRANKLIN COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>FRANKLIN PIKE (DAVIDSON COUNTY, TENN.) - HISTORY</option>  \r\n'
+	+'<option>FRANKLIN STATE FOREST (TENN.)</option>  \r\n'
+	+'<option>FRANKLIN STATE FOREST (TENN.) - MAPS</option>  \r\n'
+	+'<option>FRANKLIN, BATTLE OF, FRANKLIN, TENN., 1864 - FICTION</option>  \r\n'
+	+'<option>FRAYSER (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>FREE HILL (TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+	+'<option>FREE STATE (TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+	+'<option>FRENCH BROAD RIVER (N.C. AND TENN.) - PICTORIAL WORKS</option>  \r\n'
+	+'<option>FRENCH BROAD RIVER REGION (N.C. AND TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>FRENCH BROAD RIVER VALLEY (N.C. AND TENN.) - MAPS</option>  \r\n'
+	+'<option>FRENCH LICK/SULPHUR DELL SITE (TENN.)</option>  \r\n'
+	+'<option>FRIENDSHIP (CROCKETT COUNTY, TENN. : TOWN) - BIOGRAPHY</option>  \r\n'
+	+'<option>FRIENDSHIP (DYER COUNTY, TENN. : TOWN) - BIOGRAPHY</option>  \r\n'
+	+'<option>FRIENDSHIP (TENN.) - COMMERCE - 19TH CENTURY - SOURCES</option>  \r\n'
+	+'<option>FRIENDSHIP (TENN.) - HISTORY</option>  \r\n'
+	+'<option>FRIENDSHIP (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>FRIENDSVILLE (TENN.) - HISTORY</option>  \r\n'
+	+'<option>FRONTIER AND PIONEER LIFE - TENNESSEE, EAST</option>  \r\n'
+	+'<option>FROZEN HEAD STATE PARK (TENN.)</option>  \r\n'
+	+'<option>FULMER SITE (TENN.)</option>  \r\n'
+
++'</select> \r\n';
+	
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+<body class="background">
+
+
+
+
+<form name="FormOne" >
+
+
+<div name="SS" id="SS">
+<script>
+document.write(
+
+	 '<table border="1" cellpadding="4" cellspacing="0"  width="90%">\r\n'
+	+'<tr><td  bgcolor="ddeeff">\r\n'
+	///+'vv_functions.htm called by '+select_id+' <br>\r\n'
+	+'<b>Select Geographic Subject F </b> \r\n'
+	+'</td></tr><tr><td bgcolor="ddeeff"> \r\n' 
+	+ strSelect_GE_A
+
+	+'</td></tr></table> \r\n'
+	///+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+</script>
+	
+</div>
+
+<input type="button" onclick="showSelection();" name="B1" value="Geographic Name">
+
+</form>
+
+<script>
+
+
+
+                  
+
+function showSelection() {
+
+val = new String();
+
+for ( i=0; i< document.FormOne.aaa.length; i++ ) {
+
+if ( document.FormOne.aaa[i].selected == true ) {
+  	val = document.FormOne.aaa[i].text;
+	break;
+	}
+else { val = "you never selected anything"; 
+	}
+
+}
+////////////////////////alert ("You selected " +val);
+
+switch ( select_id ) {
+
+case  "subject_geographic_lcsh_01" :
+	parent.window.opener.document.forms[0].subject_geographic_lcsh_01.value=val;
+	parent.window.close();
+	break;
+
+case  "subject_geographic_lcsh_02" :
+	parent.window.opener.document.forms[0].subject_geographic_lcsh_02.value=val;
+	parent.window.close();
+	break;
+
+}//end switch
+
+}///end function
+</script>
+

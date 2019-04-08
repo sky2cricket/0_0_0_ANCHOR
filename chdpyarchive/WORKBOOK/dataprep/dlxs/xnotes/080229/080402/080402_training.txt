@@ -1,0 +1,335 @@
+080402_training.txt
+
+software for modsICsearchOai tells how to create persistant urls.
+
+explanation at #pid stuff
+
+linkfile - shows purls already created for this collection
+
+
+locserv database on diglib
+https://diglib.lib.utk.edu/pxmxap/index.php?db=locserve&token=4c526a8e714492fc085ce4f14f632c92
+
+persistant url not anything to do with oai identifier
+
+url for oai
+http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=GetRecord&metadataPrefix=mods&identifier=oai%3Adiglib2.lib.utk.edu%3A0012_000053_000200_0000
+
+
+<identifier>oai:diglib2.lib.utk.edu:0012_000053_000200_0000</identifier>  this is oai identifier tag
+
+
+oai:diglib2.lib.utk.edu:
+comes from broker20 software based on what is in cofigureation file
+
+0012_000053_000200_0000
+comes from the filename
+
+mods identifiers
+  <identifier type="local">TU:DLC:Filename:0012_000053_000200_0000</identifier> 
+  <identifier type="uri">http://idserver.utk.edu/?id=200700000001691</identifier> 
+
+
+TU:DLC:Filename:0012_000053_000200_0000
+filename identifier
+
+http://idserver.utk.edu/?id=200700000001691
+pid (persistant url)
+
+----------------------
+NOW LOOK AT broker20 software
+
+-------------------------
+
+configuration: broker20.cfg
+
+broker20
+does diacritics
+[root@diglib2 broker20]# pwd
+/d1/dlxs/cgi/b/broker20
+------------------------------------
+This is where working search and linking for oai and marc.
+
+All online finding aids have been worked into new marc records.
+New stuff coming in must be kept separate until you have
+done all the work including making new marc records.
+
+
+match-up-newnames-oldnames
+in each collection there is a list
+also in infotrack
+
+[root@diglib2 ead]# pwd
+/d1/workarea/dlxs/ead
+
+view allInfo - for ead finding aids,ONLY
+
+this is for manuscript finding aids (also look in info track)
+filename - manuscriptNumber - oaiIdentifier - persistantID
+
+[root@diglib2 AR_SERIES]# pwd
+/d1/workarea/dlxs/ead/AR_SERIES
+
+this is for archive finding aids
+allInfo in this dir same as above
+
+----------------------------
+
+vvz is single images
+vvs-bib is search
+vvs-mods is oai
+
+-----------------------------
+
+Which scripts manage vvz, vvs-bib, vvs-mods 
+
+vvz
+[root@diglib2 AR_SERIES]# cd /d1/dlxs/web/v/vvz
+[root@diglib2 vvz]# ls
+bbdel.tpl         bbthumbfull.tpl     entry.tpl.orig    js               searchgroup.tpl
+bbentry_orig.tpl  bbthumbnail.tpl     fieldinfo.txt     login-image.php  search.tpl
+bbentry.tpl       collinfo.tpl        graphics          my_index.tpl     sh.html
+bbname.tpl        css                 groups.tpl        noresults.tpl    thumbfull.tpl
+bbopen.tpl        entryinfo.txt       index.tpl         old_search.tpl   thumbnail.tpl
+bbreslist.tpl     entry.tpl           index.tpl.060427  orig_groups.tpl  tips.tpl
+bbslideentry.tpl  entry.tpl.20070830  info.txt          reslist.tpl
+[root@diglib2 vvz]# 
+
+BROWSER: http://diglib2.lib.utk.edu/cgi/i/image/image-idx
+
+BROWSER: http://diglib2.lib.utk.edu/cgi/i/image/image-idx?xc=1;page=searchgroup;sid=62d234aadea2e9f26dbc8c96047124e9;g=vvv
+this is to search all images:  vvz single vvi multiple
+
+http://diglib2.lib.utk.edu/cgi/i/image/image-idx?c=vvz;page=index;sid=62d234aadea2e9f26dbc8c96047124e9;g=vvv --- single images
+http://diglib2.lib.utk.edu/cgi/i/image/image-idx?c=vvi;page=index;sid=62d234aadea2e9f26dbc8c96047124e9;g=vvv --- multiple images
+
+vvb -  blank text (notext) 04
+vvd - group of text
+
+
+http://diglib2.lib.utk.edu/cgi/t/text/text-idx/
+http://diglib2.lib.utk.edu/cgi/t/text/text-idx?page=browsecolls&sid=6c7c2c69eaa60ee33f5af0a169eea8c2 -- all text collections
+http://diglib2.lib.utk.edu/cgi/t/text/text-idx?sid=6c7c2c69eaa60ee33f5af0a169eea8c2;xg=1;page=simpleext;g=vvd -- vvd 3 vv text collections
+
+vvi group of image collections
+http://diglib2.lib.utk.edu/cgi/i/image/image-idx 
+http://diglib2.lib.utk.edu/cgi/i/image/image-idx?c=vvz;page=index;sid=62d234aadea2e9f26dbc8c96047124e9;g=vvv - c=vvz single
+http://diglib2.lib.utk.edu/cgi/i/image/image-idx?c=vvi;page=index;sid=62d234aadea2e9f26dbc8c96047124e9;g=vvv  - c=vvi multiples
+
+templates for all
+[root@diglib2 v]# ls
+backup.vvs  backup.vvs-bib  voltaire  vv  vvb  vvd  vvi  vvo  vvs  vvs-mods  vvt  vvv  vvz
+[root@diglib2 v]# pwd
+/d1/dlxs/web/v
+[root@diglib2 v]# 
+
+
+http://diglib2.lib.utk.edu/cgi/i/image/image-idx
+templates for this page are in /d1/dlxs/web/i/image
+
+[root@diglib2 image]# ls
+bbdel.tpl         bbslideentry.tpl  entry.tpl      js               searchgroup.tpl
+bbentry_orig.tpl  bbthumbfull.tpl   fieldinfo.txt  login-image.php  search.tpl
+bbentry.tpl       bbthumbnail.tpl   graphics       metsentry.tpl    thumbfull.tpl
+bbname.tpl        collinfo.tpl      groups.tpl     noresults.tpl    thumbnail.tpl
+bbopen.tpl        css               index.tpl      orig_groups.tpl  tips.tpl
+bbreslist.tpl     entryinfo.txt     info.txt       reslist.tpl
+[root@diglib2 image]# pwd
+/d1/dlxs/web/i/image
+[root@diglib2 image]# 
+
+===================
+http://diglib2.lib.utk.edu/cgi/i/image/image-idx?xc=1;page=searchgroup;sid=62d234aadea2e9f26dbc8c96047124e9;g=vvv
+
+templates for this page and its searches are in /d1/dlxs/web/v/vvv
+
+[root@diglib2 vvv]# ls
+bbdel.tpl         bbthumbfull.tpl  fieldinfo.txt     login-image.php  search.tpl
+bbentry_orig.tpl  bbthumbnail.tpl  graphics          my_index.tpl     sh.html
+bbentry.tpl       collinfo.tpl     groups.tpl        noresults.tpl    thumbfull.tpl
+bbname.tpl        css              index.tpl         old_search.tpl   thumbnail.tpl
+bbopen.tpl        entryinfo.txt    index.tpl.060427  orig_groups.tpl  tips.tpl
+bbreslist.tpl     entry.tpl        info.txt          reslist.tpl
+bbslideentry.tpl  entry.tpl.orig   js                searchgroup.tpl
+[root@diglib2 vvv]# pwd
+/d1/dlxs/web/v/vvv
+[root@diglib2 vvv]# 
+
+
+http://diglib2.lib.utk.edu/cgi/i/image/image-idx?c=vvz;page=index;sid=62d234aadea2e9f26dbc8c96047124e9;g=vvv
+templates for this page and its searches are in v/vvz
+
+[root@diglib2 vvz]# pwd
+/d1/dlxs/web/v/vvz
+[root@diglib2 vvz]# ls
+bbdel.tpl         bbthumbfull.tpl     entry.tpl.orig    js               searchgroup.tpl
+bbentry_orig.tpl  bbthumbnail.tpl     fieldinfo.txt     login-image.php  search.tpl
+bbentry.tpl       collinfo.tpl        graphics          my_index.tpl     sh.html
+bbname.tpl        css                 groups.tpl        noresults.tpl    thumbfull.tpl
+bbopen.tpl        entryinfo.txt       index.tpl         old_search.tpl   thumbnail.tpl
+bbreslist.tpl     entry.tpl           index.tpl.060427  orig_groups.tpl  tips.tpl
+bbslideentry.tpl  entry.tpl.20070830  info.txt          reslist.tpl
+[root@diglib2 vvz]# 
+
+
+-------the above are templates for display------------------------
+
+---------below are cgi for delivery---------------------------------
+build index, release to production
+cgi delivers it to display  on web per request
+
+[root@diglib2 vvz]# pwd
+/d1/dlxs/web/v/vvz
+[root@diglib2 vvz]# ls
+bbdel.tpl         bbthumbfull.tpl     entry.tpl.orig    js               searchgroup.tpl
+bbentry_orig.tpl  bbthumbnail.tpl     fieldinfo.txt     login-image.php  search.tpl
+bbentry.tpl       collinfo.tpl        graphics          my_index.tpl     sh.html
+bbname.tpl        css                 groups.tpl        noresults.tpl    thumbfull.tpl
+bbopen.tpl        entryinfo.txt       index.tpl         old_search.tpl   thumbnail.tpl
+bbreslist.tpl     entry.tpl           index.tpl.060427  orig_groups.tpl  tips.tpl
+bbslideentry.tpl  entry.tpl.20070830  info.txt          reslist.tpl
+[root@diglib2 vvz]# pwd
+/d1/dlxs/web/v/vvz
+[root@diglib2 vvz]# cd ../../../cgi
+[root@diglib2 cgi]# ls
+a  b  c  f  i  t  x
+[root@diglib2 cgi]# cd i/image
+[root@diglib2 image]# ls
+a                       collstats-idx        ImageClass              olderVersions
+A.txt                   createbookbagdb.txt  imageclass.cfg          queries
+authcoll                getimage-idx         ImageClassUtils         Searchbuild.pm
+AUTHZD_COLL             getthumbnail-idx     ImageClassUtils.pm      Sid2.pm
+Collectionmaps-last.pm  ICLocalUtils.pm      image-idx               Sidget2.pm
+Collectionmaps-new.pm   ImageApp             largeBOOK.GIF           WPAcrew_crop5.png
+Collectionmaps.pm       ImageApp.pm          makeCollectionmaps-idx
+[root@diglib2 image]# 
+
+
+this directory specific to image class
+
+all share software in lib class
+[root@diglib2 image]# ls ../../../lib
+ApplicationResult.pm  CollsInfo.pm            LibGlobals.cfg       SearchHistory.pm
+BookBag.cfg           CollsInfo.pm.20080130   LibVersion.pm        SearchSet.pm
+BookBag.cfg.20080201  DbUtils.pm              lockfile             TerminologyMapper.pm
+BookBagItem           DevUtils.pm             ObjectFactory.pm     ww2.cfg
+BookBagItem.pm        DlpsSession.cfg         olderVersions        WW.pm
+BookBag.pm            DlpsSession.pm          ProcIns.pm           XPat.pm
+BookBag.pm.20080131   DlpsSession.pm.keepsid  ProcIns.pm.20080320  XPatResult.pm
+BookBag.pm.20080201   DlpsUtils.pm            QueryFactory.pm      XPatResultSet.pm
+CioFactory.pm         DLXSApp.pm              RemoteConnect.pm
+CioWrapper.pm         GroupsInfo.pm           roman_numeral.pm
+[root@ diglib2 image]# 
+
+[root@diglib2 image]# ls
+a                       collstats-idx        ImageClass              olderVersions
+A.txt                   createbookbagdb.txt  imageclass.cfg          queries
+authcoll                getimage-idx         ImageClassUtils         Searchbuild.pm
+AUTHZD_COLL             getthumbnail-idx     ImageClassUtils.pm      Sid2.pm
+Collectionmaps-last.pm  ICLocalUtils.pm      image-idx               Sidget2.pm
+Collectionmaps-new.pm   ImageApp             largeBOOK.GIF           WPAcrew_crop5.png
+Collectionmaps.pm       ImageApp.pm          makeCollectionmaps-idx
+
+EVERYTHING THAT GETS DELIVERED AS IMAGES IS IN ImageClass Directory,
+which contains custom code to disambiguate.
+
+grep "vvz" * returns among others
+ImageClassUtils.pm:  elsif (($which eq "vvz") || ($which eq "vvi") || ($which eq "vvv")){
+
+METS display for arrowmont scrapbooks
+
+[root@diglib2 image]# grep "arri" * | more
+[root@diglib2 image]# grep "mets" * | more
+There may be some things in LIB section
+
+Main changes in LIB are for restricted collections.
+
+All "mets" added by Jody custom code
+==================
+
+yesterday put up search in vvs-bib
+put up oai in vvs-mods
+
+web templates for these templates under
+web/v/vvs-bib  --->vvs
+web/v/vvs-mods
+
+
+[root@diglib2 vvs]# pwd
+/d1/dlxs/web/v/vvs
+[root@diglib2 vvs]# ls
+bbagemail.tpl          browse.tpl    index.tpl      olderVersions           simple.tpl
+bbaglist.tpl           collpick.tpl  index.tpl.bk   pageheadernavbar.chunk  window.js
+bibclass.css           global.tpl    login-bib.php  reslist.tpl
+bibclass-specific.css  graphics      longfmt.tpl    searchhistory.tpl
+boolean.tpl            help.html     NOTE           search.js
+[root@diglib2 vvs]# 
+LOOK AT CGI FOR BIB
+[root@diglib2 dlxs]# ls
+bin  CDROM-10-install  cgi  idx  img  lib  misc  obj  prep  web
+[root@diglib2 dlxs]# cd cgi/b/bib
+[root@diglib2 bib]# ls
+AUTHZD_COLL         BibApp.pm     BibClass.pm       bibperm        RLSNOTES.txt
+AUTHZD_COLL_sample  BibClass      BibClassUtils.pm  olderVersions  ToChangeSort
+BibApp              bibclass.cfg  bib-idx           queries
+[root@diglib2 bib]# 
+This is the main bib class directory.
+
+[root@diglib2 bib]# ls BibApp
+ARBibApp.pm   BasBibApp.pm      FABibApp.pm    README               SPCBibApp.pm
+ARRBA.pm      BibpermBibApp.pm  GisBibApp.pm   repositoryNames.pl   VVSBibApp.pm
+ARRBibApp.pm  EMNBA.pm          OaiBibApp.pm   SEARCHBibApp.pm      VVSBibApp.pm.20080120
+ARRMODSBA.pm  ETDBibApp.pm      olderVersions  SEARCHMODSBibApp.pm
+[root@diglib2 bib]# view BibApp/VVSBibApp.pm
+[root@diglib2 bib]# ls BibClass
+AclsBC.pm     EGYBC.pm       MarymBC.pm         SHLDBC.pm      VVI.pm
+AfiBC.pm      EMNBC.pm       MCCBC.pm           SPCBC.pm       VVO.pm
+AmannBC.pm    EprosedBC.pm   MCCRBC.pm          SPCTBC.pm      VVS.pm
+Ampo20BC.pm   ETDBC.pm       MPMBC.pm           TDHBC.pm       VVS.pm.20070828
+AmverseBC.pm  ETDBC.pm.bak   NytBC.pm           TemplateBC.pm  VVS.pm.20070904
+ARBC.pm       EthnicBC.pm    OaiBC.pm           TesoBC.pm      VVS.pm.20080120
+ARRMODS.pm    FABC.pm        OecBC.pm           UALBC.pm       VVT.pm
+ARR.pm        FgdcBC.pm      olderVersions      UALRBC.pm      VVZ.pm
+ARRT.pm       fgdc.cfg       oldHarvBC.pm       UHTBC.pm       WCCBC.pm
+BasBC.pm      FrtrialsBC.pm  PalmersTimesBC.pm  UKYBC.pm       WingBC.pm
+BmpBC.pm      GARBC.pm       README             UmrBC.pm       WttBC.pm
+Daap20BC.pm   harvBC.pm      RTHBC.pm           UTCATBC.pm     YeatsBC.pm
+DlfBC.pm      IcpsrBC.pm     SEARCHBC.pm        VoltaireBC.pm
+DlfcollBC.pm  JEIBC.pm       SEARCHMODSBC.pm    VVB.pm
+[root@diglib2 bib]# vi BibClass/VVS.pm
+ view BibClass/ETDBC.pm
+
+===================
+DDI EML metadata
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+also  need templates for bib class templates and cgi
+
+

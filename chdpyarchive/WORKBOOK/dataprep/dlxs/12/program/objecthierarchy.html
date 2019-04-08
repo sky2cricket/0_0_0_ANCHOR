@@ -1,0 +1,132 @@
+<html>
+<head>
+<title>DLXS Object Class Hierarchy</title>
+
+
+
+ <link href="../dlxsdocs.css" rel="stylesheet" type="text/css">
+</head>         <body>
+<div class="pageTitle">DLXS Object Class Hierarchy</div>
+
+
+<p>These are some of the main class hierarchies that play a large role in the running
+of the DLXS Middleware. Note: "class" here is used in the sense of object oriented programming,
+not in the sense of document classes.</p>
+<ul>
+  <li>DLXSApp: this is the top-level object of the Application Class hierarchy,
+   of which TextApp, ImageApp, FindaidApp, BibApp, and PVApp are all 
+   subclasses.</li>
+  <li>DLXSClass: this is the top-level object of the Document Class hierarchy, 
+  of which FullTextClass, BibClass are all subclasses. TextClass and FindaidClass
+   are subclasses of FullTextClass.</li>
+  <li>PIFiller:  this is the top-level object of the PIFiller Class hierarchy,
+  which is responsible for replacing Processing Instructions that have to do with application
+   level logic. PerlPIFiller and XsltPIFiller are subclasses of this top-level object.
+    There are further subclasses of these for each type of
+	 App.</li>
+  <li>BookBagItem: this is the top-level object of the BookBagItem Class hierarchy. There
+  may be subclasses for each of the different "document" types, since each type has
+  different type of bibliographic data stored for its items.</li>
+  
+  </ul>
+
+
+<h2>Subclasses of DLXSApp</h2>
+<p>Here is an outline view of the subclasses of DLXSApp. For a graphical view, see 
+	<a href="./graphics/AppClass.gif" target="graphic">diagram of the Application Class hierarchy</a>)</p>
+<ul>
+	<li>$DLXSROOT/lib/DLXSApp/FullTextApp.pm
+		<ul>
+			<li>$DLXSROOT/cgi/t/text/TextApp.pm
+				<ul>
+			   		<li>$DLXSROOT/cgi/t/text/TextApp/CollaApp.pm</li>
+	   				<li>$DLXSROOT/cgi/t/text/TextApp/CollbApp.pm</li>
+	   				<li>etc.</li>
+  				</ul>
+			</li>
+	  		<li>$DLXSROOT/cgi/f/findaid/FindaidApp.pm</li>
+  		</ul>
+	</li>
+	<li>$DLXSROOT/cgi/b/bib/BibApp.pm</li>
+	<li>$DLXSROOT/cgi/i/image/ImageApp.pm</li>
+</ul>
+
+
+
+<h2>Subclasses of DLXSClass</h2>
+<p>Major subclasses of this represent different types of "document" classes, e.g., Text,
+Findaid, Bib. Further subclases of this afford the overriding
+certain data and behavior. For example, some collections
+contain symbols needing filtering that most collections do not have or require
+XPAT searches to be done to differing depths of encoded levels.</p>
+<p>Here is an outline view of the subclasses of DLXSClass.
+ For a graphical view, see <a href="./graphics/ClassClass.gif" target="graphic">diagram
+    of the Document Class hierarchy</a>)</p>
+
+<ul>
+	<li>$DLXSROOT/lib/DLXSClass/FullTextClass.pm
+		<ul>
+			<li>$DLXSROOT/cgi/t/text/TextClass.pm
+				<ul>
+      				<li>$DLXSROOT/cgi/t/text/TextClass/BosniaTC.pm</li>
+      				<li>$DLXSROOT/cgi/t/text/TextClass/TesoTC.pm</li>
+					<li>etc.</li>
+  				</ul>
+			</li>
+  			<li>$DLXSROOT/cgi/f/findaid/FindaidClass.pm
+				<ul>
+      				<li>$DLXSROOT/cgi/f/findaid/FindaidClass/BhlFC.pm</li>
+					<li>etc.</li>
+  				</ul>
+			</li>
+  		</ul>
+	</li>
+	<li>$DLXSROOT/cgi/b/bib/BibClass.pm
+		<ul>
+      		<li>$DLXSROOT/cgi/b/bib/BibClass/BasBC.pm</li>
+      		<li>etc.</li>
+  		</ul>
+	</li>
+	<li>Note: Image Class does not use an object called ImageClass.</li>	
+</ul>
+
+
+
+
+<h2>Subclasses of PIFiller</h2>
+<p>Here is an outline view of the subclasses of PIFiller. For a graphical view,  see
+ <a href="./graphics/PIFillerClass.gif" target="graphic">diagram of the PIFiller class hierarchy</a>)</p>
+<ul>
+	<li>$DLXSROOT/lib/PerlPIFiller.pm
+		<ul>
+			<li>$DLXSROOT/cgi/t/text/TextAppPerlPIFiller.pm</li>
+	  		<li>$DLXSROOT/cgi/f/findaid/FindaidAppPerlPIFiller.pm</li>
+  		</ul>
+	</li>
+	<li>$DLXSROOT/lib/XsltPIFiller.pm
+		<ul>
+			<li>Not currently working; needs to be fleshed out: $DLXSROOT/cgi/t/text/TextAppXsltPIFiller.pm</li>
+		</ul>
+	</li>
+</ul>
+
+
+
+<h2>Subclasses of BookBagItem</h2>
+<p>Here is an outline view of the subclasses of BookBagItem.</p>
+<ul>
+	<li>$DLXSROOT/lib/BookBagItem/BBItemTC.pm</li>
+	<li>$DLXSROOT/lib/BookBagItem/BBItemFC.pm</li>
+	<li>$DLXSROOT/lib/BookBagItem/BBItemBC.pm</li>
+	<li>Note: ImageClass uses a different mechanism for its version of Bookbag/Portfolio.</li>
+</ul>
+
+
+<br />
+<br />
+<br />
+
+
+</body>
+
+</html>

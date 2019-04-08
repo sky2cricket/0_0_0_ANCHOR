@@ -1,0 +1,25 @@
+From: Deridder, Jody L
+Sent: Thursday, March 20, 2008 4:42 PM
+To: Deane, Christine Haygood
+Subject: DLXS text class FAILURE of pageviewer to find image
+
+The /d1/dlxs/web/t/text/gifcvtdir MUST belong to user apache!
+ The software runs as the apache user, and copies images from the obj  subdirectories to this location.  The delivered html page obtains its image from this web directory.
+   
+When this problem appears, files that already have images in the web directory will work properly, so it seems that only some text pages are not available.  Check permissions!!  
+Repair instructions:
+ 
+cd  /d1/dlxs/web/t/text
+chown apache *
+cd gifcvtdir
+chown apache *
+chown apache */*
+
+Jody DeRidder
+Digital Library Center
+University of Tennessee Libraries
+Knoxville, Tennessee 37996
+865.974.4796
+jo@utk.edu
+ 
+

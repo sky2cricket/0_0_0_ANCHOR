@@ -1,0 +1,77 @@
+<html>
+<head>
+<title>Findaid Class Processing Instructions</title>
+<link href="../../dlxsdocs.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="pageTitle">Findaid Class Processing Instructions (PIs)</div>
+<p>Processing Instructions
+   (PIs) are used in FindaidClass XML templates. They are replaced by the running
+   cgi with valid XML, sometimes a simple string (e.g., a URL, or a text string),
+   sometimes with a complex  node of XML elements. (For more information about
+      PIs, see <a href="../../ui/index.html#templates"> XML Templates / Processing
+   Instructions.</a>)</p>
+<p>For example the PI <span class="command">&lt;?BOOKBAG_LINK_XML?&gt; </span>is
+   replaced by the cgi with a URL such as<br>
+<span class="command">http://hostname/cgi/f/findaid/findaid-idx?c=collection;cc=collection;q1=xyz;rgn=Entire%20Finding%20Aid;page=bbaglist</span></p>
+<p>The PI <span class="command">&lt;?RESULTS?&gt;</span> is replaced by the cgi with something like</p>
+<p class="markupsnip">&lt;Item&gt;<br>
+&lt;did&gt;<br>
+&lt;origination&gt;<br>
+&lt;corpname source=&quot;lcnaf&quot; encodinganalog=&quot;110&quot;&gt;<br>
+A. Alfred Taubman College of Architecture and Urban Planning<br>
+&lt;/corpname&gt;<br>
+&lt;/origination&gt;<br>
+&lt;unittitle encodinganalog=&quot;245&quot;&gt;<br>
+A. Alfred Taubman College of Architecture and Urban Planning (University of Michigan),
+records<br>
+&lt;unitdate type=&quot;inclusive&quot; era=&quot;ce&quot; calendar=&quot;gregorian&quot; encodinganalog=&quot;245$f&quot;&gt;1878-1999&lt;/unitdate&gt;<br>
+&lt;/unittitle&gt;<br>
+&lt;physdesc&gt;<br>
+&lt;extent encodinganalog=&quot;300&quot;&gt;<br>
+54.5 linear feet, 1 oversized box, and 1 flat file drawer.<br>
+&lt;/extent&gt;<br>
+&lt;/physdesc&gt;<br>
+&lt;abstract&gt;<br>
+Teaching and research unit of the University of Michigan established in 1906
+as a part of the Department of Engineering and as an independent college in 1931.
+Records include dean's administrative files and correspondence, committee minutes,
+background files and reports relating to accreditation, topical files, faculty
+portraits and other photographs, and architectural drawings. There is some material
+relating to alumnus Raoul Wallenberg and various programs honoring him.<br>
+&lt;/abstract&gt;<br>
+&lt;unitid type=&quot;call number&quot; countrycode=&quot;us&quot; repositorycode=&quot;MiU-H&quot; encodinganalog=&quot;099&quot;&gt;8782
+Bimu C181;2&lt;/unitid&gt;<br>
+&lt;langmaterial&gt;<br>
+The materials are in <br>
+&lt;language langcode=&quot;eng&quot; encodinganalog=&quot;041&quot;&gt;English.&lt;/language&gt;<br>
+&lt;/langmaterial&gt;<br>
+&lt;repository&gt;<br>
+&lt;corpname encodinganalog=&quot;852&quot;&gt;<br>
+&lt;subarea&gt;Bentley Historical Library&lt;/subarea&gt;<br>
+University of Michigan<br>
+&lt;/corpname&gt;<br>
+&lt;extptr linktype=&quot;simple&quot; href=&quot;bhladd&quot; show=&quot;embed&quot; actuate=&quot;onload&quot;/&gt;<br>
+&lt;/repository&gt;<br>
+&lt;/did&gt;<br>
+&lt;HitSummary&gt;<br>
+&lt;HitCount&gt;1&lt;/HitCount&gt;<br>
+&lt;HitRegion&gt;Entire Finding Aid&lt;/HitRegion&gt;<br>
+&lt;/HitSummary&gt;<br>
+&lt;KwicLink&gt;http://pagliere.dev.umdl.umich.edu/cgi/f/findaid/findaid-idx?c=bhlead;cc=bhlead;type=simple;rgn=Entire%20Finding%20Aid;q1=duderstadt;debug=xml;view=reslist;subview=detail;sort=occur;didno=umich-bhl-8782<br>
+&lt;/KwicLink&gt;<br>
+&lt;OutlineLink&gt;http://pagliere.dev.umdl.umich.edu/cgi/f/findaid/findaid-idx?c=bhlead;cc=bhlead;type=simple;rgn=Entire%20Finding%20Aid;q1=duderstadt;debug=xml;view=reslist;subview=standard;sort=occur;start=1;size=25;didno=umich-bhl-8782<br>
+&lt;/OutlineLink&gt;<br>
+&lt;FileSize&gt;376&lt;/FileSize&gt;<br>
+&lt;ViewEntireTextLink&gt;http://pagliere.dev.umdl.umich.edu/cgi/f/findaid/findaid-idx?c=bhlead;cc=bhlead;q1=duderstadt;rgn=Entire%20Finding%20Aid;debug=xml;page=viewtextnote;didno=umich-bhl-8782<br>
+&lt;/ViewEntireTextLink&gt;<br>
+&lt;BookbagAddHref&gt;http://pagliere.dev.umdl.umich.edu/cgi/f/findaid/findaid-idx?c=bhlead;cc=bhlead;q1=duderstadt;rgn=Entire%20Finding%20Aid;debug=xml;bbidno=umich-bhl-8782;bbc=bhlead;bbaction=add<br>
+&lt;/BookbagAddHref&gt;<br>
+&lt;/Item&gt;<br>
+&lt;Item&gt;<br>
+...<br>
+&lt;/Item&gt;<br>
+...</p>
+<p>&nbsp;</p>
+</body>
+</html>

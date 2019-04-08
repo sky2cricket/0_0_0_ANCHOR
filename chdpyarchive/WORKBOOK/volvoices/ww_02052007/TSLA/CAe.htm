@@ -1,0 +1,159 @@
+<html>
+<head>
+<title>vv_popupCA</title>
+
+<link href="../vv_workbook.css" type="text/css" rel="stylesheet">
+
+
+
+
+<script language="javascript">
+
+var select_id= new String();
+function get_select_id() {
+
+var str = new String();
+    str = parent.location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  parent.window.opener.location.href="+parent.window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=get_select_id();
+
+
+
+var strSelect_PN_A = new String('');
+
+
+strSelect_PN_A = '<select name="aaa"  size="24" style="font-size:10px"> \r\n'
+	+'<option value="0" selected>No value selected</option> \r\n'
+		
+
+
+
+
+
+
+	+'<option>E.I. DU PONT DE NEMOURS & COMPANY (OLD HICKORY, TENN.)</option>  \r\n'
+	+'<option>EAST END UNITED METHODIST CHURCH (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>EAST HIGH SCHOOL (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>EAST MAIN CHURCH OF CHRIST (MURFREESBORO, TENN.)</option>  \r\n'
+	+'<option>EAST TENNESSEE AND VIRGINIA RAILROAD COMPANY</option>  \r\n'
+	+'<option>EAST TENNESSEE AND WESTERN NORTH CAROLINA RAILROAD</option>  \r\n'
+	+'<option>EAST TENNESSEE ASSOCIATION OF BAPTISTS</option>  \r\n'
+	+'<option>EAST TENNESSEE COLLEGE</option>  \r\n'
+	+'<option>EAST TENNESSEE DEVELOPMENT DISTRICT</option>  \r\n'
+	+'<option>EAST TENNESSEE GENERAL ASSOCIATION OF BAPTISTS</option>  \r\n'
+	+'<option>EAST TENNESSEE HISTORICAL CENTER (KNOXVILLE, TENN.)</option>  \r\n'
+	+'<option>EAST TENNESSEE HISTORICAL SOCIETY</option>  \r\n'
+	+'<option>EAST TENNESSEE LIBRARY ASSOCIATION</option>  \r\n'
+	+'<option>EAST TENNESSEE NATIONAL BANK</option>  \r\n'
+	+'<option>EAST TENNESSEE STATE NORMAL SCHOOL</option>  \r\n'
+	+'<option>EAST TENNESSEE STATE TEACHERS COLLEGE</option>  \r\n'
+	+'<option>EAST TENNESSEE STATE UNIVERSITY</option>  \r\n'
+	+'<option>EAST TENNESSEE STATE UNIVERSITY - QUILLEN-DISHNER COLLEGE OF MEDICINE - HISTORY</option>  \r\n'
+	+'<option>EAST TENNESSEE STATE UNIVERSITY - WOMEN\'S RESOURCE CENTER</option>  \r\n'
+	+'<option>EAST TENNESSEE UNIVERSITY (KNOXVILLE)</option>  \r\n'
+	+'<option>EAST TENNESSEE, VIRGINIA, AND GEORGIA RAILROAD COMPANY</option>  \r\n'
+	+'<option>EASTERN STATE HOSPITAL (TENN.)</option>  \r\n'
+	+'<option>EBENEZER CUMBERLAND PRESBYTERIAN CHURCH (MADISON COUNTY, TENN.)</option>  \r\n'
+	+'<option>EBENEZER PRESBYTERIAN CHURCH (COLUMBIA, TENN.)</option>  \r\n'
+	+'<option>EDGEFIELD BAPTIST CHURCH (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>EDGEFIELD SCHOOL (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>EDWARD BYRNE MEMORIAL GRANT PROGRAM (TENN.)</option>  \r\n'
+	+'<option>ELK FORK ACADEMY (ROBERTSON COUNTY, TENN.)</option>  \r\n'
+	+'<option>ELLISON FUNERAL HOME (JELLICO, TENN.)</option>  \r\n'
+	+'<option>ELMWOOD CEMETERY (MEMPHIS, TENN.)</option>  \r\n'
+	+'<option>EMERALD-HODGSON HOSPITAL (SEWANEE, TENN.)</option>  \r\n'
+	+'<option>EMMANUEL SCHOOL OF RELIGION (JOHNSON CITY, TENN.)</option>  \r\n'
+	+'<option>ENON PRIMITIVE BAPTIST CHURCH (UNIONVILLE, TENN.)</option>  \r\n'
+	+'<option>EPISCOPAL CHURCH - DIOCESE OF TENNESSEE</option>  \r\n'
+	+'<option>EPISCOPAL CHURCH OF WEST TENNESSEE</option>  \r\n'
+
+
++'</select> \r\n';
+	
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+<body class="background">
+
+
+
+
+<form name="FormOne" >
+
+
+<div name="SS" id="SS">
+<script>
+document.write(
+
+	 '<table border="1" cellpadding="4" cellspacing="0"  width="90%">\r\n'
+	+'<tr><td  bgcolor="ddeeff">\r\n'
+	///+'vv_functions.htm called by '+select_id+' <br>\r\n'
+	+'<b>Select Corporate Author E</b> \r\n'
+	+'</td></tr><tr><td bgcolor="ddeeff"> \r\n' 
+	+ strSelect_PN_A
+
+	+'</td></tr></table> \r\n'
+	///+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+</script>
+	
+</div>
+
+<input type="button" onclick="showSelection();" name="B1" value="Corporate Author">
+
+</form>
+
+<script>
+
+
+
+                  
+
+function showSelection() {
+
+val = new String();
+
+for ( i=0; i< document.FormOne.aaa.length; i++ ) {
+
+if ( document.FormOne.aaa[i].selected == true ) {
+  	val = document.FormOne.aaa[i].text;
+	break;
+	}
+else { val = "you never selected anything"; 
+	}
+
+}
+////////////////////////alert ("You selected " +val);
+
+switch ( select_id ) {
+
+case  "subject_name_lcsh_01" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_01.value=val;
+	parent.window.close();
+	break;
+
+case  "subject_name_lcsh_02" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_02.value=val;
+	parent.window.close();
+	break;
+}//end switch
+
+}///end function
+</script>
+

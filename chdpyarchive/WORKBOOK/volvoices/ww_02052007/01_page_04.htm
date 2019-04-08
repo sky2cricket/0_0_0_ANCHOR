@@ -1,0 +1,879 @@
+
+<html>
+<head>
+<title>
+page_04
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+<script language=javascript src="vv_functions.js"></script>
+<script language=javascript src="vv_functions_radio.js"></script>
+<script language=javascript src="vv_validation.js"></script>
+<script language=javascript src="vv_build_tags.js"></script>
+
+
+
+</head>
+
+
+<script> document.write('<body onload="load_DF_form();"  bgcolor="'+parent.adb_background_color+'" >'); </script>
+<font face="arial" size="3">
+<center><font face="arial">
+<h2><script> document.write(parent.adb_project_name); </script>
+ Workbook Page 4</h2>
+</center>
+
+<script>
+///Civil War Salt Peter Mining None, LCNAF, ULAN. 
+
+</script>
+
+<form name="DF"  action="new.xml">
+
+
+<table class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" >
+<tr class="bgstandard"><td colspan="3">
+
+Required Fields are <u>underlined</u>.
+Non-Required Fields are not underlined.
+</td></tr>
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>MODS LABEL</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+<font face="arial">
+
+
+<tr class="greenrow"><td colspan="3" ><font face="arial" size="3" color="ffffff">
+<b>LCSH: Library of Congress Subject Headings - All are optional.</td></tr>
+<tr class="bgstandard"><td colspan="3" ><font face="arial" size="3" >
+The Subject represents the primary topic(s) upon which a work is focused.
+<br>When using Library of Congress Subject Headings, separate each facet with double dashes, leaving a space on both sides of the double dashes.
+<br>Example: Baseball -- Tennessee -- Knoxville (NOT Baseball--Tennessee--Knoxville)
+</td></tr>
+<tr class="greenrow" ><td height="08" colspan="3"></td></tr>
+<tr class="bgstandard">
+<td colspan="3">Topical: Subject terms that do not fit into the three categories listed below (geographic, temporal, name).
+</td></tr>
+<tr class="bgstandard">
+<td class="label10nou">
+Topical 1
+</td>
+<td>&nbsp;<input type="text" name="subject_topic_lcsh_01" value="" size="2"  class="notrequired300w"
+
+xstyle="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:300px; background:#ffffaa"
+>
+<font face='arial' size='1'>
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label10nou">
+Topical 2
+</td>
+<td>&nbsp;<input type="text" name="subject_topic_lcsh_02" value="Write something in for LCSH topic 3" size="2"  
+class="notrequired300w"
+xstyle="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:300px"
+><font face='arial' size='1'>  
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td class="label10nou">
+Topical 3
+</td>
+<td>&nbsp;<input type="text" name="subject_topic_lcsh_03" value="Write something in for LCSH topic 3" size="2" 
+class="notrequired300w" 
+xstyle="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:300px"
+><font face='arial' size='1'>  
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="greenrow"  xbgcolor="004400"><td height="08" colspan="3"></td></tr>
+<tr class="bgstandard">
+<td colspan="3">Name: A name used as a subject.</td></tr>
+
+<tr class="bgstandard">
+<td class="label10nou">
+Name 1
+</td>
+<td>&nbsp;<input type="text" name="subject_name_lcsh_01" value="Code"  size="72" 
+class="notrequired300w">
+
+&nbsp;<input type="button" name="Asubject_name_lcsh_01" value="Pers. Name" 
+class="buttonnw"
+onclick="selectPN(this,'600','540')">
+
+
+&nbsp;<input type="button" name="Bsubject_name_lcsh_01" value="Corp. Author" 
+class="buttonnw"
+onclick="selectCA(this,'700','540')">
+&nbsp;<input type="button" name="Csubject_name_lcsh_01" value="Clear" 
+class="buttonnw"
+onclick="clearSelection(this,1)">
+
+<font face="arial" size="1" color="000000" >
+<br>
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td class="label10nou">
+Name 2
+</td>
+<td>&nbsp;<input type="text" name="subject_name_lcsh_02" value="Code"  size="72" 
+class="notrequired300w">
+
+&nbsp;<input type="button" name="Asubject_name_lcsh_02" value="Pers. Name" 
+class="buttonnw"
+onclick="selectPN(this,'600','540')">
+
+
+&nbsp;<input type="button" name="Bsubject_name_lcsh_02" value="Corp. Author" 
+class="buttonnw"
+onclick="selectCA(this,'700','540')">
+
+
+&nbsp;<input type="button" name="Csubject_name_lcsh_02" value="Clear" 
+class="buttonnw"
+onclick="clearSelection(this,1)">
+
+<font face="arial" size="1" color="000000" >
+<br>
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="greenrow"  xbgcolor="004400"><td height="08" colspan="3"></td></tr>
+<tr class="bgstandard">
+<td colspan="3"> Geographic: Geographic subject terms.  </td></tr>
+
+<tr class="bgstandard">
+<td class="label10nou">
+Geographic 1
+</td>
+<td>&nbsp;<input type="text" name="subject_geographic_lcsh_01" value="" size="2" 
+class="notrequired300w"
+>
+&nbsp;<input type="hidden" name="subject_geographic_lcsh_01_display" value="Description" size="36"  
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:252px"
+>
+
+&nbsp;<input type="button" name="Bsubject_geographic_lcsh_01" value="LCSH Geographic" 
+class="button120w"
+onclick="selectGEO(this,'600','540')">
+&nbsp;<input type="button" name="Csubject_geographic_lcsh_01" value="Clear" 
+class="buttonnw" onclick="clearSelection(this,2)">
+<font face="arial" size="1" color="000000" >
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label10nou">
+Geographic 2
+</td>
+<td>&nbsp;<input type="text" name="subject_geographic_lcsh_02" value="Code" size="2"  
+class="notrequired300w">
+&nbsp;<input type="hidden" name="subject_geographic_lcsh_02_display" value="Description" size="36"  
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:252px"
+>
+
+&nbsp;<input type="button" name="Bsubject_geographic_lcsh_02" value="LCSH Geographic" 
+class="button120w"
+onclick="selectGEO(this,'600','540')">
+&nbsp;<input type="button" name="Csubject_geographic_lcsh_02" value="Clear" 
+class="buttonnw"
+onclick="clearSelection(this,2)">
+<font face="arial" size="1" color="000000" >
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="greenrow"  xbgcolor="004400"><td height="08" colspan="3"></td></tr>
+<tr class="bgstandard">
+<td colspan="3"> Temporal: Chronological subject terms or temporal coverage.  </td></tr>
+
+
+<tr class="bgstandard">
+<td class="label10nou">
+Temporal 1
+</td>
+<td>&nbsp;<input type="text" name="subject_temporal_lcsh_01" value="" size="2"  
+class="notrequired300w">
+<font face='arial' size='1'> Chronological subject terms.  
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label10nou">
+Temporal 2
+</td>
+<td>&nbsp;<input type="text" name="subject_temporal_lcsh_02" value="" size="2"  
+class="notrequired300w">
+<font face='arial' size='1'> Chronological subject terms.  
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+
+
+<tr class="greenrow"><td colspan="3" ><font face="arial" size="3" color="ffffff">
+<b>TGM: Thesaurus of Graphic Materials Subject Headings - This is optional.</td></tr>
+
+<tr class="bgstandard"><td colspan="3">
+Recommended to use TGM Controlled Vocabulary:
+&nbsp;& nbsp;&nbsp;<a href="http://www.loc.gov/lexico/servlet/lexico?usr=pub&op=sessioncheck&db=TGM_I" target="_blank">TGM Search Page</a>
+&nbsp;&nbsp;&nbsp;<a href="http://www.loc.gov/rr/print/tgm1/" target="_blank">TGM Home Page</a> <br>( You may need to load TGM Home Page first to make TGM Search page function correctly. )
+</td></tr>
+
+<tr class="bgstandard">
+<td class="label10nou">
+Topical 1
+</td>
+<td>&nbsp;<input type="text" name="subject_topic_tgm_01" value="" size="2" 
+class="notrequired300w">
+<font face='arial' size='1'>
+
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td class="label10nou">
+Topical 2
+</td>
+<td>&nbsp;<input type="text" name="subject_topic_tgm_02" value="" size="2" 
+class="notrequired300w">
+<font face='arial' size='1'>
+
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label10nou">
+Topical 3
+</td>
+<td>&nbsp;<input type="text" name="subject_topic_tgm_03" value="" size="2" 
+class="notrequired300w">
+<font face='arial' size='1'>
+
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="greenrow"><td colspan="3" ><font face="arial" size="3" color="ffffff">
+<b>VV: Volunteer Voices Subject Headings</td></tr>
+
+<tr class="bgstandard"><td colspan="3">Volunteer Voices Subject Terms are unique to the Volunteer Voices
+collection.  <br>Only one Temporal term is required.  All other subject terms are optional.
+
+</td></tr>
+
+<tr class="greenrow"  xbgcolor="004400"><td height="08" colspan="3"></td></tr>
+<tr class="bgstandard">
+<td colspan="3"> Volunteer Voices Curriculum Topics  </td></tr>
+
+<tr class="bgstandard">
+<td class="label10nou">
+Topical 1
+</td>
+<td>&nbsp;<input type="text" name="subject_topic_vv_01" value="Code" size="2" READONLY 
+class="notrequirednw">
+&nbsp;<input type="text" name="subject_topic_vv_01_display" value="Description" size="72" READONLY 
+class="notrequired300w">
+&nbsp;<input type="button" name="Bsubject_topic_vv_01" value="Select" 
+class="button120w"
+onclick="selectOneOption(this,'1000','600')">
+&nbsp;<input type="button" name="Csubject_topic_vv_01" value="Clear" 
+class="button100w"
+onclick="clearSelection(this,2)">
+
+<font face="arial" size="1" color="000000" >
+<br>Category, Description for 1 of 15 topics.  
+
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label10nou">
+Topical 2
+</td>
+<td>&nbsp;<input type="text" name="subject_topic_vv_02" value="" size="2" READONLY 
+class="notrequirednw">
+&nbsp;<input type="text" name="subject_topic_vv_02_display" value="" size="72" READONLY 
+class="notrequired300w">
+&nbsp;<input type="button" name="Bsubject_topic_vv_02" value="Select" 
+class="button120w"
+onclick="selectOneOption(this,'1000','600')">
+&nbsp;<input type="button" name="Csubject_topic_vv_02" value="Clear" 
+class="button100w"
+onclick="clearSelection(this,2)">
+
+<font face="arial" size="1" color="000000" >
+<br>Category, Description for 1 of 15 topics. 
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="greenrow"  xbgcolor="004400"><td height="08" colspan="3"></td></tr>
+<tr class="bgstandard">
+<td colspan="3"> Volunteer Voices Broad Topics  </td></tr>
+
+<tr class="bgstandard">
+<td class="label10nou">
+Category 1<br>
+</td>
+<td>&nbsp;<input type="text" name="subject_topic_vv_03" value="" size="2" READONLY 
+class="notrequirednw">
+&nbsp;<input type="text" name="subject_topic_vv_03_display" value="" size="72" READONLY 
+class="notrequired300w">
+&nbsp;<input type="button" name="Bsubject_topic_vv_03" value="Select" 
+class="button120w"
+onclick="selectOneOption(this,'400','600')">
+&nbsp;<input type="button" name="Csubject_topic_vv_03" value="Clear" 
+class="button100w"
+onclick="clearSelection(this,2)">
+
+<font face="arial" size="1" color="000000" >
+<br>Category, Description for 1 of 25 topics. 
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label10nou">
+Category 2<br>
+</td>
+<td>&nbsp;<input type="text" name="subject_topic_vv_04" value="" size="2" READONLY 
+class="notrequirednw">
+&nbsp;<input type="text" name="subject_topic_vv_04_display" value="" size="72" READONLY 
+class="notrequired300w">
+&nbsp;<input type="button" name="Bsubject_topic_vv_04" value="Select" 
+class="button120w"
+onclick="selectOneOption(this,'400','600')">
+&nbsp;<input type="button" name="Csubject_topic_vv_04" value="Clear" 
+class="button100w"
+onclick="clearSelection(this,2)">
+
+<font face="arial" size="1" color="000000" >
+<br>Category, Description for 1 of 25 topics. 
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td class="label10nou">
+Category 3<br>
+</td>
+<td>&nbsp;<input type="text" name="subject_topic_vv_05" value="" size="2" READONLY 
+class="notrequirednw">
+&nbsp;<input type="text" name="subject_topic_vv_05_display" value="" size="72" READONLY 
+class="notrequired300w">
+&nbsp;<input type="button" name="Bsubject_topic_vv_05" value="Select" 
+class="button120w"
+onclick="selectOneOption(this,'400','600')">
+&nbsp;<input type="button" name="Csubject_topic_vv_05" value="Clear" 
+class="button100w"
+onclick="clearSelection(this,2)">
+
+<font face="arial" size="1" color="000000" >
+<br>Category, Description for 1 of 25 topics. 
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="greenrow"  xbgcolor="004400"><td height="08" colspan="3"></td></tr>
+<tr class="bgstandard">
+<td colspan="3"> Tennessee Counties as Subjects  </td></tr>
+<tr class="bgstandard">
+<td class="label10nou">
+Geographic 1
+</td>
+<td>&nbsp;<input type="text" name="subject_geographic_vv_01" value="Code" size="2" READONLY 
+class="notrequirednw">
+&nbsp;<input type="text" name="subject_geographic_vv_01_display" value="Description" size="36" READONLY 
+class="notrequired300w">
+
+&nbsp;<input type="button" name="Bsubject_geographic_vv_01" value="Select County" 
+class="button120w"
+onclick="selectOneOption(this,'600','400')">
+&nbsp;<input type="button" name="Csubject_geographic_vv_01" value="Clear" 
+class="button100w"
+onclick="clearSelection(this,2)">
+<font face="arial" size="1" color="000000" >
+<br>Code, Description for 1 95 Tennessee Counties.
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label10nou">
+Geographic 2
+</td>
+<td>&nbsp;<input type="text" name="subject_geographic_vv_02" value="Code" size="2" READONLY 
+class="notrequirednw">
+&nbsp;<input type="text" name="subject_geographic_vv_02_display" value="Description" size="36" READONLY 
+class="notrequired300w">
+
+&nbsp;<input type="button" name="Bsubject_geographic_vv_02" value="Select County" 
+class="button120w"
+onclick="selectOneOption(this,'600','400')">
+&nbsp;<input type="button" name="Csubject_geographic_vv_02" value="Clear" 
+class="button100w"
+onclick="clearSelection(this,2)">
+<font face="arial" size="1" color="000000" >
+<br>Code, Description for 1 95 Tennessee Counties.
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="greenrow"  xbgcolor="004400"><td height="08" colspan="3"></td></tr>
+<tr class="bgstandard">
+<td colspan="3"> Tennessee History as Subject  </td></tr>
+
+<tr class="bgstandard">
+<td class="label10nou">
+Temporal 1</u>
+</td>
+<td>&nbsp;<input type="text" name="subject_temporal_vv_01" value="" size="2" 
+class="requirednw">
+&nbsp;<input type="text" name="subject_temporal_vv_01_display" value="" size="72" READONLY 
+class="required300w">
+&nbsp;<input type="button" name="Bsubject_temporal_vv_01" value="Select" 
+class="button120w"
+onclick="selectOneOption(this,'600','400')">
+&nbsp;<input type="button" name="Csubject_temporal_vv_01" value="Clear" 
+class="button100w"
+onclick="clearSelection(this,2)">
+<font face="arial" size="1" color="000000" ><br>Category, Description for 1 of 10 time periods.
+The first temporal topic is required.
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+<!-----------------------per Tiffanie Conner drop second temporal field------------------------
+<tr class="bgstandard">
+<td class="label10nou">
+Temporal 2
+</td>
+<td>&nbsp;<input type="text" name="subject_temporal_vv_02" value="Code" size="2" READONLY
+class="notrequirednw">
+&nbsp;<input type="text" name="subject_temporal_vv_02_display" value="" size="72" READONLY 
+class="notrequired300w">
+&nbsp;<input type="button" name="Bsubject_temporal_vv_02" value="Select" 
+class="button120w"
+onclick="selectOneOption(this,'600','400')">
+&nbsp;<input type="button" name="Csubject_temporal_vv_02" value="Clear" 
+class="button100w"
+onclick="clearSelection(this,2)">
+<font face="arial" size="1" color="000000" ><br>Category, Description for 1 of 10 time periods.
+
+</td>
+<td>&nbsp</td>
+</tr>
+---------------------------------------------------------------------------------------------->
+
+<script>
+if ( parent.adb_institution_id == "0012" ) {
+var a600 = new String("450");
+var a400 = new String("400");
+document.write('<tr class="greenrow">\r\n'
++'<td colspan="3" ><font face="arial" size="3" color="ffffff"> \r\n'
++'<b>SPC: Special Collections Subject Headings</td></tr> \r\n'
++'<tr class="bgstandard"><td colspan="3">Special Collections Subject Terms are unique to the University \r\n'
++'of Tennessee Libraries Special Collections. \r\n'
++'<br>Not Required, but Strongly Recommended. \r\n'
++'</td></tr> \r\n'
++'<tr class="greenrow"  ><td height="08" colspan="3"></td></tr> \r\n'
++'<tr class="bgstandard"> \r\n'
++'<td colspan="3"> Special Collections Topical Categories  </td></tr> \r\n'
++'<tr class="bgstandard"> \r\n'
++'<td class="label10nou"> \r\n'
++'Topical 1 \r\n'
++'</td> \r\n'
++'<td>&nbsp;<input type="text" name="subject_topic_spc_01" value="Code" size="2" READONLY class="notrequirednw"> \r\n'
++'&nbsp;<input type="text" name="subject_topic_spc_01_display" value="Description" size="72" READONLY class="notrequired300w"> \r\n'
++'&nbsp;<input type="button" name="Bsubject_topic_spc_01" value="Select" class="button120w" \r\n'
++'onclick="selectOneOption(this,a400,a600)"> \r\n'
++'&nbsp;<input type="button" name="Csubject_topic_spc_01" value="Clear" class="button100w" +'+'onclick="clearSelection(this,2)"> \r\n'
++'<font face="arial" size="1" color="000000" > \r\n'
++'<br>Category, Description for 1 of 12 topics. \r\n'
++'</td> \r\n'
++'<td>&nbsp</td> \r\n'
++'</tr> \r\n'
++'<tr class="bgstandard"> \r\n'
++'<td class="label10nou"> \r\n'
++'Topical 2 \r\n'
++'</td> \r\n'
++'<td>&nbsp;<input type="text" name="subject_topic_spc_02" value="Code" size="2" READONLY class="notrequirednw"> \r\n'
++'&nbsp;<input type="text" name="subject_topic_spc_02_display" value="Description" size="72" READONLY class="notrequired300w"> \r\n'
++'&nbsp;<input type="button" name="Bsubject_topic_spc_02" value="Select" class="button120w" \r\n'
++'onclick="selectOneOption(this,a400,a600)"> \r\n'
++'&nbsp;<input type="button" name="Csubject_topic_spc_02" value="Clear" class="button100w" +'+'onclick="clearSelection(this,2)"> \r\n'
++'<font face="arial" size="1" color="000000" > \r\n'
++'<br>Category, Description for 1 of 12 topics. \r\n'
++'</td> \r\n'
++'<td>&nbsp</td> \r\n'
++'</tr> \r\n'
++'<tr class="bgstandard"> \r\n'
++'<td class="label10nou"> \r\n'
++'Topical 3 \r\n'
++'</td> \r\n'
++'<td>&nbsp;<input type="text" name="subject_topic_spc_03" value="Code" size="2" READONLY class="notrequirednw"> \r\n'
++'&nbsp;<input type="text" name="subject_topic_spc_03_display" value="Description" size="72" READONLY class="notrequired300w"> \r\n'
++'&nbsp;<input type="button" name="Bsubject_topic_spc_03" value="Select" class="button120w" \r\n'
++'onclick="selectOneOption(this,a400,a600)"> \r\n'
++'&nbsp;<input type="button" name="Csubject_topic_spc_03" value="Clear" class="button100w" +'+'onclick="clearSelection(this,2)"> \r\n'
++'<font face="arial" size="1" color="000000" > \r\n'
++'<br>Category, Description for 1 of 12 topics. \r\n'
++'</td> \r\n'
++'<td>&nbsp</td> \r\n'
++'</tr> \r\n'
+);
+}else{
+//hidden values for spc_01, spc_02, spc_03 for volunteer voices 
+document.write(' <input type="hidden" name="subject_topic_spc_01" value=""> \r\n' 
+ 	+' <input type="hidden" name="subject_topic_spc_02" value=""> \r\n' 
+ 	+' <input type="hidden" name="subject_topic_spc_03" value=""> \r\n' 
+	);
+}
+</script>
+
+<tr class="greenrow"><td colspan="3" ><font face="arial" size="3" color="ffffff">
+<b>Keyword Subject Headings</td></tr>
+
+<tr class="bgstandard"><td colspan="3">
+Use keyword fields to enter subject terms that are not drawn from any of the above-referenced subject lists: <br>Library of Congress Subject Headings, Thesaurus of Graphic Materials,  Volunteer Voices.
+
+
+
+</td></tr>
+
+
+<tr class="bgstandard">
+<td class="label10nou">
+Topical 
+</td>
+<td>&nbsp;<input type="text" name="subject_topic_none_01_desc" value="" size="72" 
+class="notrequired300w">
+&nbsp;
+<font face="arial" size="1" color="000000" >
+<br>Description for Topical Subject. Free text description.
+
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label10nou">
+Name 
+</td>
+<td>&nbsp;<input type="text" name="subject_name_none_01_desc" value="" size="72" 
+class="notrequired300w">
+&nbsp;
+<font face="arial" size="1" color="000000" >
+<br>Description for Topical Subject. Free text description.
+
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label10nou">
+Geographic 
+</td>
+<td>&nbsp;<input type="text" name="subject_geographic_none_01" value="" size="36" 
+class="notrequired300w">
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label10nou">
+Temporal
+</td>
+<td>&nbsp;<input type="text" name="subject_temporal_none_01_desc" value="" size="72"
+class="notrequired300w"> 
+&nbsp;
+
+<font face="arial" size="1" color="000000" >
+<br>Description for temporal subject. Free text description
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td>&nbsp</td><td>&nbsp;</td><td>&nbsp;</td>
+</tr>
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+<tr class="bgstandard"><td colspan="3" align="center">
+&nbsp;&nbsp;
+<input type="button" name="B_UF" value="Save" class="buttonnw" onclick="buildModsTags(10);">
+<!---input type="button" name="B_DF" value="Reset"  class="buttonnw" onclick="load_DF_form();"--->
+
+<input type="button" name="B2" 
+value="Save Data and View MODS TAGS" class="buttonnw"
+onclick="buildModsTags(1)">
+
+
+</td></tr>
+
+</table>
+
+
+
+
+
+
+
+</form name="forms[0]">
+
+
+<center><font face="arial">
+<h2><script> document.write(parent.adb_project_name); </script>
+ Workbook Page 4</h2>
+</center>
+
+<hr>
+<script>
+
+
+/////chdchdchd
+
+
+function load_UF_form() {
+
+
+parent.U.document.UF.subject_topic_lcsh_01.value = document.DF.subject_topic_lcsh_01.value
+parent.U.document.UF.subject_topic_lcsh_02.value = document.DF.subject_topic_lcsh_02.value
+parent.U.document.UF.subject_topic_lcsh_03.value = document.DF.subject_topic_lcsh_03.value
+parent.U.document.UF.subject_name_lcsh_01.value = document.DF.subject_name_lcsh_01.value
+parent.U.document.UF.subject_name_lcsh_02.value = document.DF.subject_name_lcsh_02.value
+parent.U.document.UF.subject_geographic_lcsh_01.value = document.DF.subject_geographic_lcsh_01.value
+parent.U.document.UF.subject_geographic_lcsh_01_display.value = document.DF.subject_geographic_lcsh_01_display.value
+parent.U.document.UF.subject_geographic_lcsh_02.value = document.DF.subject_geographic_lcsh_02.value
+parent.U.document.UF.subject_geographic_lcsh_02_display.value = document.DF.subject_geographic_lcsh_02_display 
+parent.U.document.UF.subject_temporal_lcsh_01.value = document.DF.subject_temporal_lcsh_01.value 
+parent.U.document.UF.subject_temporal_lcsh_02.value = document.DF.subject_temporal_lcsh_02.value
+
+parent.U.document.UF.subject_topic_tgm_01.value = document.DF.subject_topic_tgm_01.value
+parent.U.document.UF.subject_topic_tgm_02.value = document.DF.subject_topic_tgm_02.value
+parent.U.document.UF.subject_topic_tgm_03.value = document.DF.subject_topic_tgm_03.value
+
+parent.U.document.UF.subject_topic_vv_01.value = document.DF.subject_topic_vv_01.value
+parent.U.document.UF.subject_topic_vv_01_display.value = document.DF.subject_topic_vv_01_display.value
+parent.U.document.UF.subject_topic_vv_02.value = document.DF.subject_topic_vv_02.value
+parent.U.document.UF.subject_topic_vv_02_display.value = document.DF.subject_topic_vv_02_display.value
+parent.U.document.UF.subject_topic_vv_03.value = document.DF.subject_topic_vv_03.value
+parent.U.document.UF.subject_topic_vv_03_display.value = document.DF.subject_topic_vv_03_display.value
+parent.U.document.UF.subject_topic_vv_04.value = document.DF.subject_topic_vv_04.value
+parent.U.document.UF.subject_topic_vv_04_display.value = document.DF.subject_topic_vv_04_display.value
+parent.U.document.UF.subject_topic_vv_05.value = document.DF.subject_topic_vv_05.value
+parent.U.document.UF.subject_topic_vv_05_display.value = document.DF.subject_topic_vv_05_display.value
+parent.U.document.UF.subject_geographic_vv_01.value = document.DF.subject_geographic_vv_01.value
+parent.U.document.UF.subject_geographic_vv_01_display.value = document.DF.subject_geographic_vv_01_display.value
+parent.U.document.UF.subject_geographic_vv_02.value = document.DF.subject_geographic_vv_02.value 
+parent.U.document.UF.subject_geographic_vv_02_display.value = document.DF.subject_geographic_vv_02_display.value
+parent.U.document.UF.subject_temporal_vv_01.value  = document.DF.subject_temporal_vv_01.value
+parent.U.document.UF.subject_temporal_vv_01_display.value  = document.DF.subject_temporal_vv_01_display.value
+//parent.U.document.UF.subject_temporal_vv_02.value  = document.DF.subject_temporal_vv_02.value
+//parent.U.document.UF.subject_temporal_vv_02_display.value  = document.DF.subject_temporal_vv_02_display.value
+
+
+if ( parent.adb_institution_id == "0012" ) {
+parent.U.document.UF.subject_topic_spc_01.value = document.DF.subject_topic_spc_01.value
+parent.U.document.UF.subject_topic_spc_01_display.value = document.DF.subject_topic_spc_01_display.value
+parent.U.document.UF.subject_topic_spc_02.value = document.DF.subject_topic_spc_02.value
+parent.U.document.UF.subject_topic_spc_02_display.value = document.DF.subject_topic_spc_02_display.value
+parent.U.document.UF.subject_topic_spc_03.value = document.DF.subject_topic_spc_03.value
+parent.U.document.UF.subject_topic_spc_03_display.value = document.DF.subject_topic_spc_03_display.value
+}
+
+parent.U.document.UF.subject_topic_none_01_desc.value  = document.DF.subject_topic_none_01_desc.value
+parent.U.document.UF.subject_name_none_01_desc.value  = document.DF.subject_name_none_01_desc.value
+parent.U.document.UF.subject_geographic_none_01.value  = document.DF.subject_geographic_none_01.value
+parent.U.document.UF.subject_temporal_none_01_desc.value  = document.DF.subject_temporal_none_01_desc.value
+
+
+
+return;
+}
+
+function load_DF_form() {
+
+
+document.DF.subject_topic_lcsh_01.value = parent.U.document.UF.subject_topic_lcsh_01.value
+document.DF.subject_topic_lcsh_02.value = parent.U.document.UF.subject_topic_lcsh_02.value
+document.DF.subject_topic_lcsh_03.value = parent.U.document.UF.subject_topic_lcsh_03.value
+document.DF.subject_name_lcsh_01.value = parent.U.document.UF.subject_name_lcsh_01.value
+document.DF.subject_name_lcsh_02.value = parent.U.document.UF.subject_name_lcsh_02.value
+document.DF.subject_geographic_lcsh_01.value = parent.U.document.UF.subject_geographic_lcsh_01.value
+document.DF.subject_geographic_lcsh_01_display.value = parent.U.document.UF.subject_geographic_lcsh_01_display.value
+document.DF.subject_geographic_lcsh_02.value = parent.U.document.UF.subject_geographic_lcsh_02.value
+document.DF.subject_geographic_lcsh_02_display.value = parent.U.document.UF.subject_geographic_lcsh_02_display 
+document.DF.subject_temporal_lcsh_01.value = parent.U.document.UF.subject_temporal_lcsh_01.value 
+document.DF.subject_temporal_lcsh_02.value = parent.U.document.UF.subject_temporal_lcsh_02.value
+
+document.DF.subject_topic_tgm_01.value = parent.U.document.UF.subject_topic_tgm_01.value
+document.DF.subject_topic_tgm_02.value = parent.U.document.UF.subject_topic_tgm_02.value
+document.DF.subject_topic_tgm_03.value = parent.U.document.UF.subject_topic_tgm_03.value
+
+document.DF.subject_topic_vv_01.value = parent.U.document.UF.subject_topic_vv_01.value
+document.DF.subject_topic_vv_01_display.value = parent.U.document.UF.subject_topic_vv_01_display.value
+document.DF.subject_topic_vv_02.value = parent.U.document.UF.subject_topic_vv_02.value
+document.DF.subject_topic_vv_02_display.value = parent.U.document.UF.subject_topic_vv_02_display.value
+document.DF.subject_topic_vv_03.value = parent.U.document.UF.subject_topic_vv_03.value
+document.DF.subject_topic_vv_03_display.value = parent.U.document.UF.subject_topic_vv_03_display.value
+document.DF.subject_topic_vv_04.value = parent.U.document.UF.subject_topic_vv_04.value
+document.DF.subject_topic_vv_04_display.value = parent.U.document.UF.subject_topic_vv_04_display.value
+document.DF.subject_topic_vv_05.value = parent.U.document.UF.subject_topic_vv_05.value
+document.DF.subject_topic_vv_05_display.value = parent.U.document.UF.subject_topic_vv_05_display.value
+document.DF.subject_geographic_vv_01.value = parent.U.document.UF.subject_geographic_vv_01.value
+document.DF.subject_geographic_vv_01_display.value = parent.U.document.UF.subject_geographic_vv_01_display.value
+document.DF.subject_geographic_vv_02.value = parent.U.document.UF.subject_geographic_vv_02.value 
+document.DF.subject_geographic_vv_02_display.value = parent.U.document.UF.subject_geographic_vv_02_display.value
+document.DF.subject_temporal_vv_01.value  = parent.U.document.UF.subject_temporal_vv_01.value
+document.DF.subject_temporal_vv_01_display.value  = parent.U.document.UF.subject_temporal_vv_01_display.value
+//document.DF.subject_temporal_vv_02.value  = parent.U.document.UF.subject_temporal_vv_02.value
+//document.DF.subject_temporal_vv_02_display.value  = parent.U.document.UF.subject_temporal_vv_02_display.value
+
+
+if ( parent.adb_institution_id == "0012" ) {
+document.DF.subject_topic_spc_01.value = parent.U.document.UF.subject_topic_spc_01.value
+document.DF.subject_topic_spc_01_display.value = parent.U.document.UF.subject_topic_spc_01_display.value
+document.DF.subject_topic_spc_02.value = parent.U.document.UF.subject_topic_spc_02.value
+document.DF.subject_topic_spc_02_display.value = parent.U.document.UF.subject_topic_spc_02_display.value
+document.DF.subject_topic_spc_03.value = parent.U.document.UF.subject_topic_spc_03.value
+document.DF.subject_topic_spc_03_display.value = parent.U.document.UF.subject_topic_spc_03_display.value
+}
+
+
+
+document.DF.subject_topic_none_01_desc.value = parent.U.document.UF.subject_topic_none_01_desc.value
+document.DF.subject_name_none_01_desc.value = parent.U.document.UF.subject_name_none_01_desc.value
+document.DF.subject_geographic_none_01.value = parent.U.document.UF.subject_geographic_none_01.value
+document.DF.subject_temporal_none_01_desc.value = parent.U.document.UF.subject_temporal_none_01_desc.value
+
+
+return;
+}
+
+
+function buildModsTags(N) {
+
+////do this first so current values are loaded regardless of validation status
+load_UF_form();
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+//before writing MODS TAGS, make sure all required fields are populated
+//checkAllRequired... true  validation sets validation status to 1  -- complete
+//checkAllRequired... false validation sets validation status to 0  -- incomplete
+
+if (!checkAllRequiredElements_Page_04() ) return;
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+var num = new Number();
+    num = N;
+
+if (num == 10) {
+        alert("Values have been saved.");
+        return;
+        }
+
+
+var aps= new Array();
+var hps= new Array();
+var cps= new Array();
+    
+    hps = buildTagsArray_header(num);
+    aps = buildTagsArray_page_04(num);
+    cps = buildTagsArray_closer(num);
+
+//=================================================
+
+document.write('<input type="button" name="BBACK" onclick="javascript: history.back()" value="BACK"><P>');
+document.write('<font face="Elephant" size="3" color="a00000">'+parent.adb_project_name+' Workbook, Page 4<p></font>');
+//PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+document.write( "This is the generated xml script.  Values you entered are highlighted in red.<HR>");
+
+//document.write('< ? xml version="1.0"  ? > \r\n'); 
+///document.write("Content-Type: text/xml ")
+
+
+
+for (i=0;i<hps.length;i++) {
+	var vps = new String(hps[i]);
+ 	document.write("<br>"+vps);
+	}
+
+
+
+for (i=0;i<aps.length;i++) {
+	var vps = new String(aps[i]);
+	document.write("<br>"+vps);
+	}
+
+
+
+for (i=0;i<cps.length;i++) {
+	var vps = new String(cps[i]);
+	document.write("<br>"+vps);
+	}
+
+
+
+
+}//end function
+
+
+
+
+///fdg();//funnction in vv_validation.js
+</script>
+	
+
+
+</body>
+</html>
+

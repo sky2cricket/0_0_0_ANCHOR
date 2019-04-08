@@ -1,0 +1,63 @@
+#!/l/local/bin/perl
+
+my $CVS = 'cvs';
+
+if ( scalar( @ARGV ) < 1 )
+{
+  print "Usage: makedlxsroot userid\n";
+  exit;
+}
+
+my $whoami = $ARGV[0];
+
+my $whoamiReally = $ENV{LOGNAME};
+
+if ( $whoamiReally ne $whoami )
+{
+    print "Script only works for $whoamiReally\n";
+    exit;
+}
+
+my $DLXSROOT = "/l1/dev/$whoami";
+
+if ( ! -e "$DLXSROOT" )
+{
+    print "\tMaking directory: $DLXSROOT ...\n";
+    `/bin/mkdir -m 2775 -p $DLXSROOT > /dev/null`;
+}
+else
+{
+    print "\tDirectory exists: $DLXSROOT ...\n";
+}
+
+chdir( "$DLXSROOT" );
+
+my @cannonical = ( 'bin', 'cgi', 'lib', 'misc', 'prep', 'src', 'web' );
+my $coDirs = join( ' ', @cannonical );
+
+
+print "\tPerforming cvs checkout for: $coDirs ...\n";
+
+`$CVS checkout -d . $coDirs`;
+
+print "\n\tSymlinking /l1/web/t/text/gifcvtdir under $DLXSROOT/web/t/text ...\n";
+
+chdir( "$DLXSROOT/web/t/text" );
+
+`ln -s ../../../../../web/t/text/gifcvtdir > /dev/null`;
+
+chdir( "$DLXSROOT/bin/symlinks" );
+
+print "\tSymlinking binaries (xpat, etc.) $DLXSROOT/bin/symlinks ...\n";
+
+`ln -s /l/local/bin/c42pdf > /dev/null`;
+`ln -s /l/local/bin/mrsid_retrieve > /dev/null`;
+`ln -s /l/local/bin/perl > /dev/null`;
+`ln -s /l/local/bin/tif2web > /dev/null`;
+`ln -s /l/local/bin/xpat > /dev/null`;
+`ln -s /l/local/bin/xpatu > /dev/null`;
+`ln -s /l/local/bin/kdu_expand > /dev/null`;
+`ln -s /l/local/bin/cjpeg > /dev/null`;
+
+print "\n\nDone.\n";
+

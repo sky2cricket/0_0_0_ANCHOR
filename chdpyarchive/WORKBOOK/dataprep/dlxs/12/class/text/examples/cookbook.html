@@ -1,0 +1,93 @@
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.75 [en] (WinNT; U) [Netscape]">
+   <title>A very brief XSLT cookbook</title>
+<link href="../../../dlxsdocs.css" rel="stylesheet" type="text/css"> </head>         <body>
+<h2><a name="top">A very brief XSLT cookbook</a></h2>
+<p>Note: The <i>children </i>of a node refers to the text within an element
+as well as any nodes within it. Consider this snippet:
+<blockquote><b><font face="Courier New, Courier, mono"><font size=-1>&lt;LG></font></font></b>
+<br><b><font face="Courier New, Courier, mono"><font size=-1>&nbsp;&nbsp;&nbsp;
+&lt;FIRSTL></font></font></b>
+<br><b><font face="Courier New, Courier, mono"><font size=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Let us go then, you and I,</font></font></b>
+<br><b><font face="Courier New, Courier, mono"><font size=-1>&nbsp;&nbsp;&nbsp;
+&lt;/FIRSTL></font></font></b>
+<br><b><font face="Courier New, Courier, mono"><font size=-1>&nbsp;&nbsp;&nbsp;
+When the evening is spread out against the sky...</font></font></b>
+<br><b><font face="Courier New, Courier, mono"><font size=-1>&lt;/LG></font></font></b>
+<p>The children of <b><tt>LG</tt></b> are the <b><tt>FIRSTL</tt></b> element
+and the text <b><tt>"When the evening is spread out against the sky..."</tt></b></blockquote>
+
+<p><br>Now, some basic recipes.
+<ul>
+<li>
+Drop <font face="Courier New, Courier, mono"><font size=-1>FIRSTL</font></font>
+element and its children:</li>
+</ul>
+
+<ul><b><tt>&lt;xsl:template match="FIRSTL"/></tt></b>
+<br>&nbsp;
+<br>&nbsp;
+<li>
+Keep FIRSTL and its children, drop attributes:</li>
+
+<p><br><b><tt>&lt;xsl:template match="FIRSTL"></tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp; &lt;FIRSTL></tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:apply-templates/></tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp; &lt;/FIRSTL></tt></b>
+<br><b><tt>&lt;/xsl:template></tt></b>
+<br>&nbsp;
+<br>&nbsp;
+<li>
+Keep children of FIRSTL but drop the element tags:</li>
+
+<p><br><b><tt>&lt;xsl:template match="FIRSTL"></tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp; &lt;xsl:apply-templates/></tt></b>
+<br><b><tt>&lt;/xsl:template></tt></b>
+<br>&nbsp;
+<br>&nbsp;
+<li>
+Keep FIRSTL, its attributes, and its children:</li>
+
+<p><br><b><tt>&lt;xsl:template match="FIRSTL"></tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp; &lt;FIRSTL></tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:copy-of select="@*"/></tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:apply-templates/></tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp; &lt;/FIRSTL></tt></b>
+<br><b><tt>&lt;/xsl:template></tt></b>
+<br>&nbsp;
+<br>&nbsp;
+<li>
+Keep NAME and TYPE attributes of NOTE element; change R attribute to REND
+if present:</li>
+
+<p><br><b><tt>&lt;xsl:template match="NOTE"></tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp; &lt;NOTE></tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:copy-of select="@NAME"/></tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:copy-of select="@TYPE"/></tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:apply-templates/></tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsl:if test="@R"></tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;xsl:attribute name="REND"></tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;xsl:value-of select="R"/></tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/xsl:attribute></tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/xsl:if></tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp; &lt;/NOTE></tt></b>
+<br><b><tt>&lt;/xsl:template></tt></b>
+<br>&nbsp;
+<br>&nbsp;
+<li>
+To match only those DEDICAT elements appearing within the POEM element,
+use this wrapper around your template:</li>
+
+<p><br><b><tt>&lt;xsl:template match="DEDICAT[ancestor::POEM]"></tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp; [transformations here]</tt></b>
+<br><b><tt>&lt;/xsl:template></tt></b></ul>
+
+<p>&nbsp;</p>
+</body>
+</html>

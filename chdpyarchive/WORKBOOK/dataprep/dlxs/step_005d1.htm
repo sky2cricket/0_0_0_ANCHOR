@@ -1,0 +1,116 @@
+<html>
+<head>
+<script language=javascript src="links/vv_functions_links.js"></script>
+<title>
+step 5c
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+</head>
+<!-- body  class="bg_aabbcc" -->
+<body bgcolor="aabbcc">
+<font face="arial" size="3">
+<center><font face="arial">
+<script>//document.write(dlxs_vv_header);</script>
+<p>
+</center>
+<table  class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="99aabb">
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+<tr class="bgstandardwhite" ><td colspan="3" align="left" class="step">
+<pre>
+step_005d1.htm
+processing 00 files - /d1/workarea/dlxs/image/tel/singles
+=========================================================
+SUMMARY
+cat vvzHeader ic/* done/ic/* footer > ic.vvz.unnorm.sgm
+cp ic.vvz.unnorm.sgm /d1/dlxs/prep/v/vvz/.
+>>>causes check of overwrite, answer y: 
+>>>cp: overwrite `/d1/dlxs/prep/v/vvz/./ic.vvz.unnorm.sgm'? y
+cd /d1/dlxs/prep/v/vvz
+rm /d1/dlxs/prep/v/vvz/ic.vvz.norm.sgm
+
+AFTER RM WARNING ANSWER Y, go to /dl/workarea/dlxs/image/singles dir
+
+cd /d1/workarea/dlxs/image/tel/singles
+cp thumbs/* /d1/dlxs/img/v/vvz/thumb/
+cp jpegs/* /d1/dlxs/img/v/vvz/large/
+
+END SUMMARY
+=========================================================
+processing 00 files - /d1/workarea/dlxs/image/tel/singles
+ic setup using <a href="xfiles/00_vvz/ic_0031_000050_000203_0000.txt"
+target="_blank">ic/0031_000050_000203_0000</a> as an example
+
+Relevant files in this directory.
+ic/*
+done/ic/*
+ic.vvz.unnorm.sgm
+footer
+vvzheader
+
+
+When you run modsICsearchOai >nameYourRedirect.txt the input is
+mods/* .................Workbook Mods for 0031_000050_000203 picked up by pickupTime <a href="xfiles/00_vvz/mods_0031_000050_000203_0000.xml.txt" target="_blank">0031_000050_000203_0000.xml</a>
+The output is 
+ic/* ...................file for 0031_000050_000203 in image class format <a href="xfiles/00_vvz/ic_0031_000050_000203_0000.txt" target="_blank">0031_000050_000203_0000</a>
+
+
+The ic files are used to create the unnormalized sgml file for image class.
+View the header, the footer, and the very short example of ic.vvz.unnorm.sgm below.
+<a href="xfiles/00_vvz/vvzheader.txt" target="_blank">vvzheader</a>
+<a href="xfiles/00_vvz/vvzfooter.txt" target="_blank">footer</a>
+<a href="xfiles/00_vvz/vvshort.txt" target="_blank">ic.vvz.unnorm.sgm(short)</a>
+
+
+The command to create the unnormalized sgml file for image class is shown below.
+cat vvzHeader ic/* done/ic/* footer > ic.vvz.unnorm.sgm
+
+Note:  The final filename (ic.vvz.unnorm.sgm) contains a designator for type/class, here vvz.  
+       This designator should be all lower case letters.
+       For example: if your type/class is UTKgsm, change it to utkgsm.
+
+       This type/class designator is also used to name the directory ( here vvz )
+       So for the vvz example we have the directory
+		/d1/dlxs/prep/v/vvz
+       This contains the files
+		ic.vvz.norm.sgm
+		ic.vvz.unnorm.sgm
+
+These two files (ic.vvz.norm.sgm and ic.vvz.unnorm.sgm) will be replaced.
+
+The new ic.vvz.unnorm.sgm file is copied to the /d1/dlxs/prep/v/vvz/ directory and overwrites the current version.
+The current version of ic.vvz.norm.sgm is removed from the /d1/dlxs/prep/v/vvz/ directory.
+
+In the next step (ic setup), the normalized sgm file (ic.vvz.norm.sgm) will be built by the program 
+/d1/dlxs/bin/i/image/idb
+
+The thumbs are copied to   /d1/dlxs/img/v/vvz/thumb/ directory.
+The jpgs are copied to     /d1/dlxs/img/v/vvz/large/ directory.
+There is a third directory /d1/dlxs/img/v/vvz/index/ that contains index information for images.
+
+Summary of commands:
+
+cat vvzHeader ic/* done/ic/* footer > ic.vvz.unnorm.sgm
+cp ic.vvz.unnorm.sgm /d1/dlxs/prep/v/vvz/.
+>>>causes check of overwrite, answer y: 
+>>>cp: overwrite `/d1/dlxs/prep/v/vvz/./ic.vvz.unnorm.sgm'? y
+cd /d1/dlxs/prep/v/vvz
+rm /d1/dlxs/prep/v/vvz/ic.vvz.norm.sgm
+>>>causes check of removal, answer y: 
+>>>rm: remove regular file `/d1/dlxs/prep/v/vvz/ic.vvz.norm.sgm'? y
+>>>this file is replaced in next step page 5d ic setup
+
+Then go back to where this started to copy thumbs and jpgs.
+cd /d1/workarea/dlxs/image/tel/singles
+cp thumbs/* /d1/dlxs/img/v/vvz/thumb/
+cp jpegs/* /d1/dlxs/img/v/vvz/large/
+
+
+The next step is image class setup.
+</pre>
+</font>
+</td></tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+</table>
+
+

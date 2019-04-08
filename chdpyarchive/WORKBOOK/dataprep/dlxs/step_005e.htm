@@ -1,0 +1,124 @@
+<html>
+<head>
+<script language=javascript src="links/vv_functions_links.js"></script>
+<title>
+char_check
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+</head>
+<!-- body  class="bg_aabbcc" -->
+<body bgcolor="aabbcc">
+<font face="arial" size="3">
+<center><font face="arial">
+<script>//document.write(dlxs_vv_header);</script>
+<p>
+</center>
+<table  class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="99aabb">
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+<tr class="bgstandardwhite" ><td colspan="3" align="left" class="step">
+<pre>
+step_005e.htm
+Image class release to production.
+
+Now you are ready for imageclass release to production.
+
+<a href="http://diglib2.lib.utk.edu/cgi/c/collmgr/collmgr?type=%24TYPE&class=image&submit=release" target = "_blank">http://diglib2.lib.utk.edu/cgi/c/collmgr/collmgr?type=%24TYPE&class=image&submit=release</a>
+
+<!--- uname: dlxsadm - pword: eva39 --->
+
+go to browser vvi multiples and see if your files are there.
+<a href="http://diglib2.lib.utk.edu/cgi/i/image/image-idx?c=vvi" target="_blank">http://diglib2.lib.utk.edu/cgi/i/image/image-idx?c=vvi</a>
+
+go to browser for vvz singles and see if your files are there.
+<a href="http://diglib2.lib.utk.edu/cgi/i/image/image-idx?c=vvz" target="_blank">http://diglib2.lib.utk.edu/cgi/i/image/image-idx?c=vvz</a>
+http://diglib2.lib.utk.edu/cgi/i/image/image-idx?c=vvz;page=index;sid=62d234aadea2e9f26dbc8c96047124e9;g=vvv
+
+
+
+
+  ***In the case that a digital object item is changed from
+	one class to another, there have to be corresponding changes in purls
+	1.  There is one link file for each class.
+		vvz-00 /d1/workarea/dlxs/image/tel/singles/linkfile
+		vvi-01 /d1/workarea/dlxs/image/tel/multiples/linkfile
+		vvt-03, vvo-02, vvb04, /d1/workarea/dlxs/text/tel/linkfile
+ 
+	2. When a digital object goes from one class to another, you have to
+		a. Find original persistant id in the first link file - 
+		b. copy this to the new appropriate link file
+		c. need to go to locServe database on diglib and change the link by hand
+		d. locServe has redirects in it for purls create correct url
+
+	3. Examine the persistant id in weblink= at top of search/*.xml file
+
+	c. modsICsearchOai inserts new purl into locserv database
+
+
+   When you run modsICsearchOai >checkme
+   this creates 
+	ic/*
+	modsbib/*
+	newmods/*
+	search/*
+
+
+b.  fixSubjects - this process now done at /d1/workarea/dlxs/bib/mods/vv
+	# fixSubjects
+	# repairs the MODS and the modsbib (not the search)
+	# so that each subject is contained in its own &lt;subject auth= tag.
+	# also, for LCSH ones, splits them out on the "--" value.
+	# if the  value contains "century" or numbers (dashes?), label it temporal
+	# if the value contains only "Tennessee" or "United States" and spaces,
+	#    label it geographic
+	# otherwise, the first value keeps its current tag, and all following 
+	# values (that don't meet those specs) get labeled topic, and stay within the
+	# same subject tag.
+
+c. hexmess - use only if software breaks when you normalize
+	#hexmess
+	#hexdumps files and checks the hexdump for bad characters.
+	# outputs list of characters that must be removed or replaced.
+	# use to test OCR files in particular
+
+<!---------------------------------
+other things to do, including special handling for special collectios
+this came from the "dothis" file in /d1/workarea/dlxs/image/tel/singles
+
+
+separate out the newmods from institution 0012 and put in spc directory.
+/bin/mv newmods/0012* spc/mods/.
+
+for bib class:
+/bin/mv  modsbib/0012* spc/modsbib/.
+/bin/cp modsbib/* /d1/workarea/dlxs/bib/mods/vv/xml
+
+
+for search:
+/bin/cp search/0012* spc/modssearch/.
+/bin/cp search/* /d1/workarea/dlxs/bib/search/vv/xml/
+
+You will go there to put all the search and mods files from different directories up.
+scp minithumbs/* diglib@diglib.lib.utk.edu:/d1/dlxs/web/thumbs/vv/.
+(need these for search display)
+
+run fixSubjects
+
+(more about fixSubjects in MODS dir where we will be making preservation versions)
+
+do NOT run infotrack on these yet, as we need to relate them to their EADs,
+and alter them for crosslinking.
+
+hopefully you have all new dlc files in one directory alone.
+point infotrack at this directory and run it, to put info on files into
+InfoTrack database.  then copy new stuff to store1.
+-->
+
+
+</pre>
+</font>
+</td></tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+</table>
+
+

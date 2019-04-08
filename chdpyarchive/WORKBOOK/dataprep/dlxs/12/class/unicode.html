@@ -1,0 +1,247 @@
+<html>
+<head>
+<title>DLXS Unicode Data Preparation and Online Presentation Issues</title>
+
+
+
+ <link href="../dlxsdocs.css" rel="stylesheet" type="text/css">
+ <style type="text/css">
+<!--
+.style5 {font-size: 14px}
+-->
+ </style>
+</head>         <body>
+<div class="pageTitle">DLXS Unicode Data Preparation and Online Presentation Issues</div>
+    
+      
+        <h2>Introduction</h2>
+        <p>This document describes in some detail the issues involved in
+  Unicode data preparation and indexing, middleware configuration,
+  template issues and user input.  In its data preparation and
+  indexing aspect, it is mainly applicable to TextClass, BibClass and
+  FindaidClass. With respect to the remaining issues, it relates to
+  all the classes.</p>
+
+        <p>For non-unicode specific information on data preparation
+        for individual classes, check the following links:</p>
+
+        <ul>
+          <li><a href="text/prep.html">Text Class</a></li>
+          <li><a href="image/index.html">Image Class</a></li>
+          <li><a href="bib/transforming.html">Bib Class</a></li>
+          <li><a href="findaid/prep.html">Findaid Class</a></li>
+        </ul>
+      
+
+      
+        <h2>About Unicode</h2>
+        <p>The authoritative source for information about Unicode is the <a href="http://www.unicode.org">Unicode Consortium</a>.  You will find the complete standard and lots of helpful links to other sources of information on Unicode. </p>
+        <p>First some definitions.  A <i>Character Repertoire</i> is a collection of abstract characters independent of how they look when printed.   A <i>Coded Character Set</i> is an assignment of a unique number to each character in a Character Repertoire.  The ISO/IEC 10646 Coded Character Set assigns a unique number to virtually every character in in all the world's alphabets.  These numbers are called <i>Code Points</i>.  Unicode is a standard built on top of ISO/IEC 10646 that, in addition to specifying the assignment of number to character, deals with things like collation, bi-directionality, normalization and, most importantly, encoding.  A <i>Character Encoding Scheme</i> (encoding) specifies how the number that stands for a character is stored in a file or in computer memory.  </p>
+        <p>There are many Character Encoding Schemes defined by the Unicode Standard but the one of interest to us is called UTF-8.  The UTF-8 encoding of the Unicode Coded Character Set is the preferred encoding for Unicode on the Web.  It is a multi-byte encoding meaning that it may use from 1 to 6 bytes to encode the Unicode Code Point (number) of a given character.  UTF-8 and US-ASCII (0-7F hex) are identical. Above 7F, 2 or more bytes are required to encode the number assigned to a Unicode character.  With Unicode it is possible for one document to contain characters from many different alphabets and to treat them uniformly for search purposes.</p>
+      
+
+      
+        <h2>DLXS Background</h2>
+        <p>Prior to release 12, DLXS depended on a variety of mechanisms to handle non-ASCII character data.  These included:
+        <ul>
+
+          <li>The use of SGML character entity references (CERs) such as
+          &amp;Acirc; in the data. These were mapped to single
+          character gif images to display certain characters
+          unavailable in typical browser fonts.  The problem with this
+          mechanism was that unless the user is knowledgeable enough to
+          type the actual 7 character sequence "&amp;Acirc;" instead
+          of A, for example, their search fails. <br /></li>
+
+          <li>The replacement of CERs with the corresponding
+          ISO-8859-1 encoded character.  By mapping this (typically)
+          accented character to its unaccented ASCII equivalent, DLXS
+          could and still can find words that contain either the accented or
+          unaccented form of the character.  This works fine but, as
+          noted in the introduction, limits the document to a single
+          encoding such as Latin1. In a single document one can cover
+          German+Polish with Latin2 or German+Turkish with Latin5 but
+          there is no single-byte encoding to properly mix German+Russian, for
+          instance. </li>
+
+          <li>Making certain uppercase letters in the user's input
+          stand for certain characters like Thorn or Eth and
+          "stealing" unused 8bit values to replace these CERs in the
+          data during conversion.  This was a very cumbersome process
+          involving custom programming and involved use of mapping in
+          XPAT indexing and searching. </li>
+        </ul>
+        These mechanisms are not required if the data is in Unicode especially now that Unicode fonts are widely available in the current generation of web browsers.</P>
+
+      
+        <h2>Platform Requirements</h2>
+        <p> It is necessary use the latest software versions recommended in <a href="../intro/sysreq.html">DLXS System Requirements</a>.
+          </p>
+        <p>There a a few terminal emulators that handle UTF-8 encoded Unicode reasonably well:
+        <ul>
+          <li>xterm run as <tt><br>
+              <span class="style5">xterm -u8 -fn '-misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1'</span></tt>  <br>
+          If running under Windows you need Version 8 of Hummingbird Exceed X
+          Server, at least.</li>
+          <li>Natively, under Windows <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty">PuTTY</a> is
+            good. Under PuTTY Preferences->Translation select UTF-8.  </li>
+        </ul>
+      </P>
+      
+
+      
+        <h2>Data Conversion</h2>
+        <p> If your data does not come to you in Unicode UTF-8 encoded XML,
+  conversion is necessary.  A typical conversion might be as
+  follows.  Note that you may only need to perform just one of (A) or (B) depending on what form your data takes.  That is, non-ASCII characters in your data may be represented by entities or encoded directly in, for instance, ISO-8859-1.  It is possible that both steps (A) and (B) may be required. </p>
+        <p>A useful reference to Unicode characters is the file <tt>UnicodeData.txt</tt> available from the <a href="http://www.unicode.org">Unicode Consortium</a> and delivered with Perl 5.8 under, for example, <tt>PERLROOT/perl/lib/5.8.3/unicore/</tt>. </p>
+
+        
+          <h3>(A) Convert the data to the Unicode UTF-8 encoding </h3>
+          <p>Use the <tt>iconv</tt> program.  The following example on Linux assumes your
+data is initially encoded in ISO-8859-1/Latin1:
+          <blockquote><tt>iconv -c -f ISO-8859-1 -t UTF-8 -o outfile infile </tt></blockquote>
+        </P>
+          <p>Use the Perl Unicode.pm module in a script like the following:
+          <blockquote><tt>#!/l/local/bin/perl -w<br />
+                            use strict;<br />
+                            use Unicode::MapUTF8 qw(to_utf8);<br />
+                            while( &lt;&gt; ) {<br />
+                            print to_utf8({ -string => $_, -charset => 'ISO-8859-1' }); }<br />
+                       </tt>
+          </blockquote></P>
+          <p>Use a program like XMLSpy to read in your file and write it out UTF-8 encoded.</p>
+        
+
+        
+          <h3>(B) Convert numeric character references (NCRs) and SGML character entity references (CERs) to Unicode UTF-8 encoded characters </h3>
+          <p></p>
+          <p>Since your ultimate goal is to have UTF-8 encoded XML encoded recall that XML has 5 predefined CERs which you do not need to convert and which the utilities described below do not touch.  They are &amp;amp;, &amp;lt;, &amp;gt;, &amp;apos; and &amp;quot;.</p>
+          <p>Programs such as <b>XMLSpy</b> or <b>osx</b> may do the needed conversions for you but vary in their handling of SGML SDATA and NDATA entities.  In some cases you may benefit from use of the following two utilities in addition..  </p>
+          <p>For NCRs, i.e. references of the form &amp;#DDDD; where D is a decimal digit or &amp;#xXXXX; where X is a hexadecimal digit, you can use the DLXS utility program <tt>DLXSROOT/bin/t/text/ncr2utf8</tt> run as: <blockquote><tt>ncr2utf8 inputfile > outputfile</tt></blockquote> </P>
+          <p>For CERs, e.g. references like &amp;Aring;, you may need to analyze the references present in your data.  The program  <tt>DLXSROOT/bin/t/text/findEntities.pl</tt> will generate a list of CERs in your data. </p>
+          <p>It is likely that most or even all CERs in your data will come from one of the ISO Character Entity Sets: ISOamsa, ISOamsb, ISOamsc, ISOamsn, ISOamso, ISOamsr, ISOcyr1, ISOcyr2, ISOgrk1, ISOgrk2, ISOgrk3, ISOgrk4, ISOlat1, ISOlat2, ISOmfrk, ISOnum, ISOpub, ISOtech, MMLalias or MMLextra. You can use <tt>DLXSROOT/bin/t/text/isocer2utf8</tt> run as: <blockquote><tt>isocer2utf8 inputfile > outputfile</tt></blockquote> to translate these CERs directly to UTF-8. Running <tt>findEntities.pl</tt> after this will identify any CERs outside these ISO sets. </P>
+          <p>Another option is to use an SGML parser like <tt>onsgmls</tt> together with Character Entity Declarations that substitute the Unicode NCR for the CER in the parsed output followed by a run of <tt>ncr2utf8</tt> to complete the conversion. </p>
+        
+
+        <p>Note that If you started with SGML, you may need to touch up the SGML to make it (and its DTD) XML compliant if you rely solely on the small utility programs supplied with the DLXS release.  This process is outside the scope of this document (but see <tt>DLXSROOT/misc/sgml/textclass.stripped.xml.dtd</tt> for an example of the XML version of textclass.dtd).   At this point you should have UTF-8 encoded XML data ready to index.  </p>
+      
+
+      
+        <h2>Indexing</h2>
+        <p> Refer to files in <tt>DLXSROOT/prep/s/sampletc_utf8</tt> and <tt>DLXSROOT/bin/s/sampletc_utf8</tt> for the following discussion. </p>
+        <p> DLXS delivers a <tt>Makefile</tt> to take you through the process of building the main XPAT index and the fabricated region indexes.  The process is very similar for Latin1 encoded SGML data and UTF-8 encoded XML data. This process is outlined in <a href="text/indexing.html">TextClass Indexing</a>. The main difference between the non-Unicode <tt>Makefile</tt> and the Unicode <tt>Makefile</tt> is that <b>xpatbldu</b>, <b>xpatu</b> and <b>xmlrgn</b> are used instead of <b>xpatbld</b>, <b>xpat</b> and <b>sgmlrgn</b>.</p>
+        <p>Be sure your XML data file begins with the XML declaration: <blockquote><b>&lt;?xml version="1.0" encoding="UTF-8"?&gt;</b></blockquote>. Without this declaration, xmlrgn will not build correct region indexes.</P>
+        <p>The most important input to the indexing process is the XPAT Data Dictionary.  If your data spans several languages, especially those languages with non-Latin alphabets, you will need to configure a Data Dictionary that takes this into account.  The <tt>sampletc_utf8.blank.dd</tt> can be used as a starting point and with some editing is sufficient for Latin based languages. There are two sections in the Data Dictionary that need attention: the Index Points and the Mappings.</p>
+        <p>Once these sections in the Data Dictionary have been configured the indexing process can proceed via the <tt>Makefile</tt>.  Note that if you have XML element or attribute <i>names</i> that contain non-ASCII characters in your document you should use <b>multirgn</b> to generate the region indexes due to a limitation in <b>xmlrgn</b>.  It is expected that this case is rare.</p>
+      
+        <h3>Index Point specification</h3>
+<p>This specification tells XPAT what points in the data to index.  Typically, XPAT is directed to index and search beginning at an alphabetic character following a blank space, i.e. a word.   Here is the Index Point specification section of the <tt>sampletc_utf8.blank.dd</tt> in <tt>prep</tt>:
+<pre>   &lt;IndexPoints&gt;
+        &lt;IndexPt&gt; &amp;printable.&lt;/IndexPt&gt;
+        &lt;IndexPt&gt;&amp;printable.-&lt;/IndexPt&gt;
+        &lt;IndexPt&gt;-&amp;printable.&lt;/IndexPt&gt;
+        &lt;IndexPt&gt;&amp;printable.&amp;lt.&lt;/IndexPt&gt;
+        &lt;IndexPt&gt;&amp;printable.&amp;amp.&lt;/IndexPt&gt;
+        &lt;IndexPt&gt; &amp;Latin.&lt;/IndexPt&gt;
+        &lt;IndexPt&gt;&amp;Latin.-&lt;/IndexPt&gt;
+        &lt;IndexPt&gt;-&amp;Latin.&lt;/IndexPt&gt;
+        &lt;IndexPt&gt;&amp;Latin.&amp;lt.&lt;/IndexPt&gt;
+        &lt;IndexPt&gt;&amp;Latin.&amp;amp.&lt;/IndexPt&gt;
+        &lt;IndexPt&gt; &amp;Greek.&lt;/IndexPt&gt;
+        &lt;IndexPt&gt;&amp;Greek.-&lt;/IndexPt&gt;
+        &lt;IndexPt&gt;-&amp;Greek.&lt;/IndexPt&gt;
+        &lt;IndexPt&gt;&amp;Greek.&amp;lt.&lt;/IndexPt&gt;
+        &lt;IndexPt&gt;&amp;Greek.&amp;amp.&lt;/IndexPt&gt;
+      &lt;/IndexPoints&gt;
+</pre>
+The <tt>sampletc_utf8.xml</tt> data file contains characters from the Latin and Greek alphabets. Index points are defined for the characters from each of those alphabets using XPAT Unicode metacharacters like "&amp;Latin." and "&amp;Greek.". These metacharacters group Unicode characters into "blocks" which correspond roughly to alphabets. The document <a href="../xpat/datadict.html#sec1.4.2">The XPAT Data Dictionary</a> has a list of these Unicode metacharacters together with the characters that belong to each block (about midway through the section).   If your character data is Latin-based it will probably suffice to simply remove the Greek elements from <tt>sampletc_utf8.blank.dd</tt>.  </P>
+          <p>It is not advisable to create a Data Dictionary that specifies <i>all</i> the blocks so as to create s "universal" Data Dictionary.  This would impose a performance and memory penalty on XPAT at runtime.
+ </p>
+<p>Not all languages have a concept of upper and lower case.</p>
+<p>Languages such as Chinese do not separate "words" with spaces.  This presents a problem for XPAT.  A partial solution is to specify <i>every character</i> to be an index point:
+<pre>&lt;IndexPt&gt;&amp;Hangul.&amp;Hangul.&lt;/IndexPt&gt;
+</pre> This would result in an index 4 times the size of the data and a large runtime memory requirement for the XPAT index point table and as of this writing should be considered experimental.  There is a probability of false hits but that should decrease as the length of the query increases. </P>
+<p></p>
+<p></p>
+      
+      
+        <h3>Mappings specification</h3>
+<p>Case insensitivity makes it easier for users to enter query terms. This is implemented in the Mappings section by mapping uppercase characters to their lowercase equivalent.  Keyboards in the United States usually do not have keys for the accented characters used in European languages.  These accented characters are mapped to their unaccented forms in the Mappings section.  This allows search and retrieval whether the character appears accented or unaccented in the data.   Apropos of Unicode, here is a part of the Mappings section devoted to mapping uppercase Greek to lowercase:<pre> <mappings>
+        ...
+        &lt;Map&gt;&lt;From&gt;U+0391&lt;/From&gt;&lt;To&gt;U+03B1&lt;/To&gt;&lt;/Map&gt;
+        &lt;Map&gt;&lt;From&gt;U+0392&lt;/From&gt;&lt;To&gt;U+03B2&lt;/To&gt;&lt;/Map&gt;
+        &lt;Map&gt;&lt;From&gt;U+0393&lt;/From&gt;&lt;To&gt;U+03B3&lt;/To&gt;&lt;/Map&gt;
+        &lt;Map&gt;&lt;From&gt;U+0394&lt;/From&gt;&lt;To&gt;U+03B4&lt;/To&gt;&lt;/Map&gt;
+        &lt;Map&gt;&lt;From&gt;U+0395&lt;/From&gt;&lt;To&gt;U+03B5&lt;/To&gt;&lt;/Map&gt;
+        ...
+      </mappings>
+</pre>
+          Note that the Greek characters are specified using the "U+" Unicode notation.  The number following the "U+" is the Unicode Code Point for the character expressed in hexadecimal notation.  From this one can see that the Data Dictionary can be built entirely form ASCII characters.  It is not necessary to have a UTF-8 enabled editor.  The XPAT Unicode implementation currently accepts values up to U+FFFF (65535).  This covers all the characters defined in Unicode Plane 0 also referred to as the Basic Multilingual Plane.  </P>
+          <p>While there are characters in higher planes they are relatively rare and this XPAT limitation is not expected to present an obstacle to indexing your Unicode-based texts.  Should the need arise XPAT can be extended to use a full 32 bit word internally.  As there is little need for this currently it is more memory efficient to use a 16 bit word to store characters in memory.</p>  
+          <p>You will need to analyze your texts to decide what sort of mapping may be useful to your target audiences.  There are many issues to consider.  Input mechanisms dominate these considerations.
+          <ul>
+            <li>Do your your users have Western European keyboards?  It is not necessary to map accented to unaccented characters, though it is harmless to do so for users that do not have such keyboards.  The accented characters are indexed and accepted as input and can be retrieved from the text.</li>
+            <li>Do your target users have Input Method Editors readily available and know how to use them to enter non-Latin characters?</li>
+            <li>Do your users have antiquated browsers with poor font support for Unicode? </li>
+          </ul>
+        </P>
+          <p>DLXS is exploring the addition of a configurable javascript popup virtual keyboard to allow users to enter characters from alphabets for which they lack a physical keyboard.</p>
+        
+      
+      
+      
+        <h2>Collmgr Fields / Configuration</h2>
+        <p>To put your data online you will naturally need to define a collection in the collection database using Collmgr.  There are two differences between a non-Unicode collection and a Unicode collection.  Currently there is no support for a Unicode Wordwheel.  Leave the <tt>wwappmodule</tt>, <tt>wwdd</tt>, <tt>wwrealms</tt> and <tt>wwrealmseng</tt> blank.  </p>
+        <p>To configure a Unicode collection set the <tt>locale</tt> field to a UTF-8 locale value such as <tt>en_US.UTF-8</tt>. You can get a list of locale values recognized by your Unix system by typing <tt>locale -a</tt> at the shell prompt. A UTF-8 locale setting affects several areas of functionality in the middleware.
+        <ul>
+          <li>The middleware will use <b>xpatu</b> search engine to search the collection data.   This implies that the data was indexed by <b>xpatbldu</b> and <b>xmlrgn/multirgn</b>. This does not apply to ImageClass which is migrating to MySQL searching.  DLXS release 11 was the first release offering xpatu and xpatbldu.  </li>
+          <li>The middleware will expect user input to be UTF-8 encoded. More on this below.</li>
+          <li>The middleware will send to charset=UTF-8 to the browser when outputting processed HTML templates.  This will cause the browser to interpret the output from the middleware as UTF-8 and select a Unicode font for display purposes.  Browsers lacking a Unicode font will display characters in a garbled manner that includes the hollow rectangular box for some characters.</li>
+          <li>Perl's internal UTF-8 flag is set on string data in the middleware to handle multi-byte characters.</li>
+        </ul>  
+      </P>
+      
+      
+      
+        <h2>Templates</h2>
+        <p>At the present time a large number of HTML templates have a &lt;META&gt; tag with charset=iso-8859-1.  These templates must continue to work for data from non-Unicode collections while at the same time supporting Unicode data. Rather than adding a PI to all these templates or duplicating them we have chosen to process them automatically on output from the middleware.  The middleware changes occurrences of charset=iso-8859-1 (if present) to charset=UTF-8 when outputting processed HTML templates.  Templates intended to support Unicode character data should have the &lt;META&gt; tag with charset=iso-8859-1 (&lt;meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"&gt;) in their headers. The upshot of this is that since all templates probably conform to this requirement already no changes should be needed.</p>
+      
+      
+      
+        <h2>Unicode, User Input and Form Submission</h2>
+        <p>The encoding of user input to HTML forms is a complex area not made any easier by browser bugs and standards that do not address the problem fully.  The best discussion of this topic is by <a href="http://ppewww.ph.gla.ac.uk/~flavell/charset/form-i18n.html">A.J.Flavell</a>. Basically the problem is that there is no reliable way for the browser to convey to the middleware what encoding is in effect for the data entered into a form by the user.  Quoting Mr. Flavell:
+        <blockquote>In practice, browsers normally display the contents of text fields according to the character coding (charset) that applies for the HTML page as a whole; and when it submits the text fields they are effectively in this same coding. Thus if the server sent out the (page containing the) form with a definite charset specification, it could normally assume that the submitted data can be interpreted in accordance with the same charset. <b>There are however anomalies of various kinds</b>, some of which have been seen and understood by the author of this note, some of which have been seen and not understood, and some of which are only anecdotal at the moment. <br /><br />
+
+In addition to these considerations, some users may be typing-in or pasting-in text from an application that uses their local character coding (practical examples being macRoman on a Mac; or MS-DOS CP850 being copied out of a DOS window on an MS Windows PC), into a text field of a document that used the author's - different - character coding (let's say for the simplest example, iso-8859-1): the user might then submit the form, disregarding that what they are seeing in the text area is not what they intended to send. [...]
+        </blockquote>
+        
+        
+        Given this state of affairs we can see that user data entry is not 100% reliable.  Nonetheless, it is reasonable to assume the following in a page send by the middleware with charset=UTF-8:
+        <ul>
+          <li>Users typing at a plain old US keyboard are generating ASCII codes which are by default UTF-8.  So If a text contains a mixture of non-Latin or accented Latin characters <i>and</i> character data from the ASCII character set (UTF-8 single-byte-encoded Unicode characters) it has the potential to be searched effectively from an ASCII keyboard.</li> 
+          <li>Users copying from DLXS results in their browser window and pasting back into a DLXS search form are generating the UTF-8 encoded data expected by the middleware. </li>
+          <li>Users typing input via an Input Method Editor (IME) will generate UTF-8 data as expected by the middleware. </li>
+          <li>Users entering search strings via a javascript virtual keyboard will generate UTF-8 encoded data.</li>
+          <li>Users typing from national keyboards <i>may</i> enter UTF-8 if their system is properly configured. </li>
+        </ul>  
+        Beyond these assertions it is impossible to generalize about how copying and pasting characters from arbitrary sources into an input field might be expected to behave.</P>
+
+      
+      
+      
+      
+        <h2>Current Limitations in DLXS Middleware (Release 12)</h2>
+        <p>The middleware supports collections with different character encodings in single collection mode and in <b>cross-collection mode</b>.  However the encodings are limited to Unicode UTF-8 and ISO8859-1 (Latin1).  </p>
+<p>Any user input that is not valid UTF-8 is assumed to be Latin1 encoded.  This input is transcoded to UTF-8 under this assumption.  Because ASCII is, by default, UTF-8, input is not changed and XPAT Latin1-based collection queries will proceed successfully if the data dictionary maps accented character to their unaccented base character.  A Latin1 XPAT search result is converted to UTF-8 to enable the data to pass through the XML/XSLT parsers on output and to display correctly in the web template which is set to charset=UTF-8.  This creates a minor deficiency if the user copies a string of accented characters from the results back into the search form.  The characters are now UTF-8 encoded and will not be found in a Latin1 encoded collection.</p>
+
+<br />
+<br />
+<br />
+<br />
+
+      
+    
+  </body>
+
+</html>

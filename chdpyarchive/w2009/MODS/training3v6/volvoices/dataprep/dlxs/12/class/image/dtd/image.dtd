@@ -1,0 +1,143 @@
+<!-- DTD for UM DLXS Image Class --> 
+<!-- John Weise   (jweise@umich.edu)  1.1b7  October 30  1997 -->
+<!-- Dave Detlefs (dhd@umich.edu)     1.1b8  November 13 1997 -->
+<!-- Dave Detlefs (dhd@umich.edu)     1.1b9  February 17 1998 -->
+<!-- Alan Pagliere (pagliere@umich.edu)  2.0  August 10, 1998 -->
+<!-- John Weise (jweise@umich.edu)	2.0  August 10,1998 -->
+<!-- John Weise (jweise@umich.edu)      3.0  June 2, 1999 -->
+<!-- John Weise (jweise@umich.edu) October 24, 2000 -->
+<!-- John Weise (jweise@umich.edu) October 30, 2002 -->
+<!-- John Weise (jweise@umich.edu) November 8, 2002 -->
+
+<!-- University of Michigan -->
+<!-- Digital Library Production Service -->
+<!-- Image Services -->
+<!-- Digital Library Extension Service -->
+<!-- dlxs-help@umich.edu -->
+
+<!-- Copyright (c) 1999, 2000 The Regents of the University of Michigan -->
+
+<!--     A flexible DTD for accomodating a wide variety of 
+	 data categories that describe and reference media files. 
+	 This DTD alone is usable for all media collections.        -->
+
+
+<!ELEMENT coll		- - (gen , entry+)>
+
+<!-- id = unique collection id -->
+<!-- cn = wordy collection name -->
+<!-- abbr = unique collection abbreviation -->
+
+<!ATTLIST coll		id		ID	#REQUIRED
+			cn		CDATA	#REQUIRED
+			abbr		CDATA   #REQUIRED>
+
+<!-- general knowledge -->
+<!ELEMENT gen		- - (rules?, progr?, data*, date?, admin+, meta+, base+)>  
+
+<!-- reference to the configuration file used -->
+<!ELEMENT rules		- o                     EMPTY>    
+<!ATTLIST rules		fileref		CDATA	#REQUIRED>   
+
+<!-- reference to the program that generated the sgml -->
+<!ELEMENT progr		- o                     EMPTY>    
+<!ATTLIST progr		fileref		CDATA	#REQUIRED>
+
+<!-- data input to the program that generated the sgml -->
+<!ELEMENT data		- o                     EMPTY>    
+<!ATTLIST data		fileref		CDATA	#REQUIRED>
+
+<!-- reference to the program that generated the sgml -->
+<!ELEMENT date		- o                     EMPTY>    
+<!ATTLIST date		datestamp		CDATA	#REQUIRED>
+
+<!-- names and abbrevations of administrative metadata fields -->
+<!ELEMENT admin         - - (#PCDATA)>                    
+<!ATTLIST admin          name            ID      #REQUIRED>
+
+<!-- names and abbrevations of cross coll metadata fields -->
+<!ELEMENT meta		- - (#PCDATA)>                    
+<!ATTLIST meta		name		ID	#REQUIRED>
+
+<!-- names and abbreviations of coll specific metatdate fields -->
+<!ELEMENT base		- - (#PCDATA)>                    
+<!ATTLIST base		name		ID	#REQUIRED>
+
+<!ELEMENT entry		- - (entryauth, ( i | ino )* )>
+
+<!-- unique collection id, again-->
+<!-- unique record id -->
+<!-- unique collection abbreviation, again -->
+
+<!ATTLIST entry		collid		IDREFS		#REQUIRED  
+			entryid		ID		#REQUIRED	
+                        ca              CDATA           #REQUIRED>       
+                                               
+<!-- used for object level auth -->                    
+<!ELEMENT entryauth     - o             EMPTY> 
+<!ATTLIST entryauth     mallow 	CDATA     #REQUIRED>
+
+<!-- an item, there's one for every image or record -->
+<!ELEMENT i     	- - (istruct, d, dno?)> 
+
+<!ATTLIST i             ientryid        CDATA           #REQUIRED
+                        ientryidv       CDATA           #IMPLIED
+                        iid             CDATA           #REQUIRED
+                        it              CDATA           #REQUIRED>
+
+<!-- a non-searchable item, optional-->
+<!ELEMENT ino     	- - (istruct, d, dno?)> 
+
+<!ATTLIST ino           ientryid        CDATA           #REQUIRED
+                        ientryidv       CDATA           #IMPLIED
+                        iid             CDATA           #REQUIRED
+                        it              CDATA           #REQUIRED>
+
+<!ELEMENT istruct       - - (#PCDATA | br | p )*>
+
+<!-- ientryid = unique item id -->
+<!-- stid = structural id -->
+<!-- stty = structural type -->
+<!-- x = structural x location -->
+<!-- y = structural y location -->
+<!-- face = structural face e.g, "front" -->
+<!-- mt = type of media -->
+<!-- me = filename extension of online media -->
+<!-- mo = filename extension "original" (i.e., as specified in metadata)-->
+<!-- m = media filename (without extension) -->
+<!-- ms = media status (present/not on disk) -->
+
+<!ATTLIST istruct	isentryid       CDATA           #REQUIRED
+                        isentryidv      CDATA           #IMPLIED
+                        stid		CDATA		#REQUIRED    
+                        face            CDATA           #REQUIRED    
+                        stty		CDATA           #REQUIRED
+			x               CDATA           #REQUIRED    
+                        y               CDATA           #REQUIRED    
+                        mt              CDATA           #REQUIRED
+                        me              CDATA           #REQUIRED
+                        mo              CDATA           #REQUIRED
+                        ms              (N | P) P
+                        m               CDATA           #REQUIRED>
+
+<!ELEMENT d             - - (c+)>  <!-- description -->
+<!ELEMENT dno           - - (c+)>  <!-- description -->
+
+<!ELEMENT c     	- - (#PCDATA | br | p )*> <!-- category/field -->
+
+    <!-- cn = coll specifc collection name abbr -->
+    <!-- cm = metadata mapping -->
+    <!-- ca = administrative metadata mapping -->
+
+<!ATTLIST c	                        cn		IDREF	#IMPLIED  
+					cm		IDREFS	#IMPLIED  
+                                        ca              IDREFS  #IMPLIED> 
+
+<!ELEMENT br            - o EMPTY>
+<!ELEMENT p             - o EMPTY>
+
+<!-- End Of DLXS Image Class DTD -->
+
+
+
+

@@ -1,0 +1,688 @@
+<html>
+<head>
+<title>XPAT index builder for XPAT databases (man page)</title>
+
+
+
+ </head>         <body>
+<div class="pageTitle">XPAT index builder for XPAT databases (man page)</div>
+
+<h1>XPATBLD</h1>
+Section: User Commands  (1)<br /><a href="#index">Index</a>
+<a name="lbAB"></a>
+<h2>NAME</h2>
+<p>
+
+<b>xpatbld</b> - XPAT index builder for <b>xpat</b> databases
+</p>
+
+<a name="lbAC"></a>
+<h2>SYNOPSIS</h2>
+<p>
+
+<b>xpatbld</b>
+[<b>-v</b>]
+
+[<b>-r</b>]
+
+[<b>-m</b>
+
+<i>memory</i>
+<b>k</b> | <b>K</b>
+|
+<b>m</b> | <b>M</b>
+] 
+[<b>-d</b>
+
+<i>region_name</i>]
+
+[<b>-i</b>
+
+<i>int_filename</i>]
+
+[<b>-s</b>
+
+<i>merge_filename</i>]
+
+[<b>-t</b>
+
+<i>text_filename</i>
+
+[<b>-o</b>
+
+<i>out_filename</i>]
+
+[<b>-c</b>
+
+<b>none</b> | <b>basic</b> | <b>isolatin</b> | <b>sgml</b> ] ] |
+[<b>-D</b>
+
+<i>data_dictionary</i>
+[<b>-I</b>
+
+<i>index_name</i>]
+
+]
+
+[<b>-p</b>
+
+
+<i>index_point_filename</i>]
+
+</p>
+<p>
+
+</p>
+
+<p>
+
+<b>xpatbldu</b>
+[<b>-v</b>]
+
+[<b>-r</b>]
+
+[<b>-m</b>
+
+<i>memory</i>
+<b>k</b> | <b>K</b>
+|
+<b>m</b> | <b>M</b>
+] 
+[<b>-d</b>
+
+<i>region_name</i>]
+
+[<b>-i</b>
+
+<i>int_filename</i>]
+
+[<b>-s</b>
+
+<i>merge_filename</i>]
+
+[<b>-t</b>
+
+<i>text_filename</i>
+
+[<b>-o</b>
+
+<i>out_filename</i>]
+
+[<b>-D</b>
+
+<i>data_dictionary</i>
+[<b>-I</b>
+
+<i>index_name</i>]
+
+]
+
+[<b>-p</b>
+
+
+<i>index_point_filename</i>]
+
+</p>
+<p>
+
+</p>
+
+<a name="lbAD"></a>
+<h2>DESCRIPTION</h2>
+<p>
+
+<b>xpatbld</b> builds a Main index for either the text <i>text_filename</i> or
+the text declared in <i>data_dictionary</i>.
+When a <i>text_filename</i> is specified, an index is created
+with the default set of character mappings and index points.  The default is
+<b>sgml</b>, which is explained below.  An alternate set of character mappings
+and index point specifications may be selected with the <b>-c</b> option.
+When a <i>data_dictionary</i> is specified, an index is created for the text specified in the Data Dictionary
+(see <b>data_dict</b>(5) for more details on the Data Dictionary). The default for <b>xpatbldu</b> is hard-coded to support  XML  and  US-ASCII  with punctuation  and  non-printing characters mapped to space.  This simple default is used in lieu of command line options given the wide range of possible alphabets available under Unicode.
+</p>
+<p> In general, the following material applies equally to <b>xpatbld</b> and <b>xpatbldu</b>. An exception for xpatbldu is noted  in  the  memory  requirements section. 
+</p>
+<p>
+If the <b>-I</b> option is also specified when a <i>data_dictionary</i> is specified,
+information from the index named <i>index_name</i>
+will be used for character mappings, index points, and other index related
+information.  If <b>-I</b>
+is not used, then information from the first index in the Data Dictionary
+is used.  If <i>index_name</i> does not exist in the Data Dictionary, 
+it is treated as if it was not specified.
+</p>
+<p>
+Index building is a two phase process.  In the first phase, 
+<b>xpatbld</b> divides the entire text into blocks, and indexes each block.  It then
+writes the index for each block to a separate intermediate file.  The amount of
+memory allocated to <b>xpatbld</b> determines the size of the block of text that is
+indexed.  If the memory allocation is sufficient the entire text is indexed in
+one pass.
+If the memory allocation is not sufficient to index the entire text, then the
+first phase is divided into several passes.  After each pass, <b>xpatbld</b> calculates
+how to merge the index just created with all the previously written
+intermediate indices.  <b>xpatbld</b> then writes a file of merge instructions for the
+newly created partial index.
+When the entire text has been processed in this manner,
+the second phase begins.
+</p>
+<p>
+In the second phase, the intermediate files are transformed into the final
+format and are re-written.
+These files are then merged according to the information in the
+merge instruction files to produce a final index file.
+</p>
+<p>
+The names of both the final index file and the intermediate files can be
+controlled using the
+<b>-o</b>, <b>-i</b>, and <b>-s</b>
+options.  At the end of a successful index build all intermediate and
+merge instruction files are automatically removed.
+</p>
+
+<a name="lbAE"></a>
+<h2>OPTIONS</h2>
+<p>
+
+<dl>
+<dt><b>-v</b></dt><dd>
+verbose - produce some additional messages concerning the execution of <b>xpatbld</b>.
+</dd><dt><b>-r</b></dt><dd>
+restart - use the log file to restart <b>xpatbld</b>.  <b>xpatbld</b> restarts after the last
+checkpoint in the <i>.log</i> file.  See the <b>Usage Notes</b> section of this
+man page for a discussion of restarting.
+</dd><dt><b>-m</b> <i>memory</i> [ <b>k</b> | <b>K</b> | <b>m</b> | <b>M</b> ]</dt><dd>
+memory size - use <i>memory</i> <b>k</b>ilobytes or <b>m</b>egabytes of physical
+memory for building the index.  A larger memory allocation results in faster
+indexing.  The default memory allocation is 500 KB, of which
+400 KB are used for internal buffers, leaving 100 KB for indexing.
+See the <i>Database Administration Guide</i> and the discussion on ``Memory Usage'', below, for more details.
+</dd><dt><b>-d</b><i> region_name</i>
+
+</dt><dd>
+region - build an index over only the region of text indicated by 
+<i>region_name</i>.  See <b>xpatrgn</b>(1), <b>multirgn</b>(1), <b>sgmlrgn</b>(1), <b>data_dict</b>(5) and <b>regions</b>(5) for more
+information on regions.  <i>region_name</i> must be specified in the Data Dictionary.
+</dd><dt><b>-i</b> <i>int_filename</i></dt><dd>
+intermediate filename - name the intermediate files 
+<i>int_filename</i> <b>.iN</b>,
+where <b>N</b> is an integer pass number.
+The amount of disk space used by the partial index files is equal to 
+the size of the final index file.  The amount of disk space used for the
+merge instruction files is an additional 1/4 the size of the final
+index.  See the
+<b>-s</b> option for more details on the merge region files.
+The <b>-i</b> option allows the partial index files 
+to be placed on a different disk, if necessary.  In the second phase of 
+<b>xpatbld</b>, each intermediate file is rewritten using the name 
+<i>int_filename</i><b>.tN.</b>
+
+If the 
+<b>-i</b>
+option is not specified, 
+<i>int_filename</i> is set to <i>out_filename.</i>
+
+</dd><dt><b>-p</b><i> index_point_filename</i>
+
+</dt><dd>
+
+index point filename - use the index points produced by another index builder.
+The normal index point specification used by <b>xpatbld</b> is two characters in length
+and satisfies most needs.  However, some specialized databases may require a
+more complicated index point specification.  In these cases, a specialized
+index builder is programmed and run over the text, producing a file containing
+the four-byte, zero-based offsets of index points into the text.
+Using the <b>-p</b> option, <b>xpatbld</b> can be made to use the
+index point file created by such a specialized index builder.
+
+</dd><dt><b>-s</b><i> merge_filename</i>
+
+</dt><dd>
+merge filename - name the merge instruction files 
+<i>merge_filename</i><b>.mN</b>
+
+where
+<b>N</b>
+is an integer pass number.  The total size of these files will be about 1/4
+the size of the final index.  The 
+<b>-s</b>
+option allows the merge files to be put on a different disk, if necessary.
+If the <b>-s</b> option is not used, <i>merge_filename</i>
+is set to the value of <i>out_filename.</i>
+</dd><dt><b>-t</b><i> text_filename</i>
+
+</dt><dd>
+text filename - specify the name of the text file to index.
+This option cannot be used in conjunction with the <b>-D</b> option.
+The default character mapping (<b>sgml</b>) is used unless an alternate set
+is selected with the <b>-c</b> option.
+</dd><dt><b>-o</b><i> out_filename</i>
+
+</dt><dd>
+output filename - 
+name the output files 
+<i>out_filename</i><b>.idx</b>
+
+<br />(indexfile)and
+<i>out_filename</i><b>.dd</b>
+
+<br />(DataDictionary).
+The <b>-o</b> option can only be used in conjunction with the <b>-t</b>
+option.  If <i>out_filename</i> is not specified, the default name `<b>out</b>'
+is used.
+</dd><dt><b>-c</b> [ <b>none</b> | <b>basic</b> | <b>isolatin</b> | <b>sgml</b> ]</dt><dd>
+character mapping - specify the character mapping to use.
+<b>none</b> specifies that no character mappings are to be used.
+<b>basic</b> maps upper case characters to
+lower case, and maps backspaces, newlines, tabs, punctuation 
+and special characters to blank.  
+<b>isolatin</b> is similar to <b>basic</b> but includes the extended characters
+of the ISO character set. 
+<b>sgml</b> (the default) is similar to <b>isolatin</b>
+but has character mappings and index points tailored to SMGL-style tags.
+<b>xpatbld</b> writes the character mapping to the new Data Dictionary file for subsequent 
+modifications by the user.  To avoid overwriting any existing character
+mapping specifications, this option can only be used with the <b>-t</b>
+option.
+</dd><dt><b>-D</b><i> <i>data_dictionary</i></i>
+
+</dt><dd>
+Data Dictionary - index the text specified in <i>data_dictionary</i>.
+Use the character mappings and index points specified in 
+<i>index_name</i> (specified with the <b>-I</b> option) or the defaults if 
+<i>index_name</i> is not specified.  The
+<b>-D</b> option may not be used in conjunction with the <b>-t</b> option.
+</dd><dt><b>-I</b><i> index_name</i>
+
+</dt><dd>
+index name - index the text using the character mappings and
+index points specified in
+the index section of the Data Dictionary named
+<i>index_name</i>.  If this option is not used then the first
+specified index in the Data Dictionary is used.
+See <b>data_dict</b>(5) for more information on the Data Dictionary.
+</dd></dl>
+</P>
+
+<a name="lbAF"></a>
+<h2>EXAMPLES</h2>
+<p>
+
+The following is a sample <b>xpatbld</b> run:
+</p>
+<p>
+<pre>
+xpatbld -v -m 12m -i /u1/data -s /u2/data -D data.dd
+</pre>
+
+</P>
+<p>
+This will build an index on the text specified in the Data Dictionary file 
+named data.dd.
+It will use 12 megabytes of physical memory to do the index building.
+Intermediate index files will be written to the directory /u1, merge
+instruction files will be written to the directory /u2, and the final
+index, the log file, and the Data Dictionary will be written to the
+directory containing the Data Dictionary.  Each of the files written will have the file
+name prefix data.
+<b>xpatbld</b> will write verbose output to standard output (stdout) concerning 
+each pass of each phase in the index building process.
+If the above <b>xpatbld</b> command is stopped before completing, it may be restarted
+with the command:
+</p>
+<p>
+<pre>
+<tt>xpatbld -v -r -m 12m -i /u1/data -s /u2/data -D data.dd</tt>
+</pre>
+
+</P>
+
+<a name="lbAG"></a>
+<h2>USAGE NOTES</h2>
+<p>
+
+</p>
+<p>
+<b>General Operation</b>
+
+</p>
+<p>
+
+<b>xpatbld</b> indexes texts in three phases.  In the first phase, it breaks
+up the text into chunks that will fit into memory.  It then creates an
+intermediate partial index file for each chunk.  These intermediate
+partial index files have the suffixes `.i1', `.i2',
+`.i3', and so on.  It
+also creates a ``merge instruction'' file for each intermediate partial
+index file.  These merge instruction files have the suffixes,
+`.m1', `.m2', `.m3', and so on.
+</p>
+<p>
+
+In the second phase, <b>xpatbld</b> replaces the intermediate partial index files by
+final partial index files.  These final partial index files have the
+suffixes `.t1', `.t2', `.t3', and so on.  As
+<b>xpatbld</b> creates each one, it removes the corresponding intermediate partial
+index file.
+</p>
+<p>
+
+In the third phase, the merge instruction files are used to merge the
+final partial index files into a final Main Index (`.idx') file.  When
+<b>xpatbld</b> has finished writing the Main Index file it removes all the
+partial index files and the merge files.
+</p>
+<p>
+
+Because of the complex nature of the algorithm, it is important to
+carefully calculate how much memory and disk space to allocate to
+<b>xpatbld</b> when it builds a Main Index.  Accurate index building time
+calculations are also useful to help plan the index building process of
+large databases.  The following sections will discuss those three topics.
+</p>
+<p>
+<b>Memory Usage</b>
+
+</p>
+<p>
+
+In general, the more memory available to <b>xpatbld</b>, the faster it will
+run.  However, it is important that the memory that you tell <b>xpatbld</b>
+to use is the available physical memory.  The available physical memory
+is the total physical memory (RAM) installed in the machine, minus the
+amount of <i>RAM</i> used by the operating system and any other processes
+running on the machine (note that this is different from the amount
+of virtual memory that these processes may require).  The amount of
+memory the operating system uses varies
+widely from machine to machine.  On smaller machines (with 4 MB of RAM
+or less) the operating system may take up 2 MB or less, while on larger
+machines (64 MB of RAM or more) it can use 8 MB or more (due to the
+various buffers and other space that the kernel uses to manage the
+larger configuration).
+</p>
+<p>
+
+<b>xpatbld</b> uses the memory you allocate as follows.  First, it uses
+400 KB for internal buffers.  It then divides the remainder into two
+pieces and uses one piece to load chunks of text and the other piece to
+build partial indices on those chunks.  This means that the number of
+chunks that <b>xpatbld</b> divides the text into is equal to the total size
+of the text times 2, divided by the amount of memory you allocated
+(minus 400K).  This also means that the maximum amount of memory that
+<b>xpatbld</b> needs is twice the size of the text, plus 400 KB.
+</p>
+<p>
+
+For example, say the text is 500 MB and you tell <b>xpatbld</b> to use 60 MB
+of memory, it will divide the text into (500 MB * 2 / (60 MB - 0.4 MB))
+= 16.8 chunks (or 17 chunks, rounded to the next whole number).  It
+also means that the maximum amount of physical memory that <b>xpatbld</b>
+would need to index that text is 500 MB*2+0.4 MB=1000.4 MB (or around
+a gigabyte).
+</p>
+<p> Note that <b>xpatbldu</b> uses UCS-2 encoding internally  and  so  requires  2 bytes  to  store  each  character rather than 1 byte for <b>xpatbld</b>.  This doubles the memory requirement for the piece of  memory  used  to  load chunks of text. 
+</p>
+<p>
+
+Note that in MFS databases, the size of the text in the above
+calculation is the size of the <i>filtered</i> text.  This amount is usually
+considerably less than the total size of all the files in the database
+because each file contains a significant amount of word processor overhead.
+</p>
+<p>
+
+It is usually well worth monitoring <b>xpatbld</b> for pagefault activity as
+it processes the first few chunks.  You should restart with less memory
+(if there is a lot of pagefault activity) or more memory (if there is
+no pagefault activity).  The ideal memory specification is just under
+the point where pagefaults begin.  This is especially important when
+you are building an index on a large text file (e.g., where the size of
+the text file is 10 times or more the size of available physical
+memory).  In such cases, if too much or too little memory is allocated,
+<b>xpatbld</b> will take MUCH longer than necessary. You can monitor
+<b>xpatbld</b>'s performance using the <b>vmstat</b>(8) and <b>sar</b>(8) programs (at least
+one of which should be available on every type of Unix
+operating system).
+</p>
+<p>
+<b>Disk Usage</b>
+
+</p>
+<p>
+
+The size of the Main Index file, in relation to the size of the text,
+varies depending on the indexing parameters used to build the index. 
+There are two broad categories of indices: word indices and the
+character indices.  A word index has an index point at the beginning of
+every word, while a character index has an index point at every
+character.    The size of the Main Index file, in bytes, is four times
+the number of index points in the text, plus 512 bytes for the file
+header.  The Main Index file for a typical word index on English text
+is around 75% the size of the text.  In contrast, the Main Index file
+for a character index is roughly 4 times the size of the text.  Most
+databases have word indices built on them.
+</p>
+<p>
+
+While these guidelines characterize the size of the Main Index once it
+has been built, <b>xpatbld</b> requires more disk space than the final index
+size, while it is building the index.  This extra space is required for
+the partial index files and the merge instruction files.  For a large
+index it is important that the required disk space be calculated properly.
+</p>
+<p>
+
+The intermediate partial indices and the final partial indices will
+each total the size of the final complete index.  However, because
+the final indices replace the intermediate ones, only the space equal
+to the size of the final index is needed for them.  The merge
+instruction files will total about 1/4 the size of the final index. 
+And enough space is needed for the final index.  These components add
+up to 2 1/ 4 times the size of the Main Index file, or roughly 170% the
+size of the text, for word indices.
+</p>
+<p>
+
+<b>Disk space trick:</b>  In an extremely tight situation it is possible to
+build a word index using about 1 1/ 4 the size of the final index.  The
+trick is to allow <b>xpatbld</b> to proceed until ALL the final partial indices
+have been built.  At this point <b>xpatbld</b> will start writing the
+final complete index file (you can tell when this happens by regularly
+listing the contents of the directory where the final `.idx' file will
+reside and waiting until that file is created and starts to grow). 
+When <b>xpatbld</b> starts writing the final index, all of the information
+for index building is in the partial indices and the merge files; the
+text is no longer needed.  If the text is backed up on tape, it may be
+removed while <b>xpatbld</b> writes the final complete index.  After <b>xpatbld</b>
+has finished creating the final index file, it will automatically
+remove all the partial index files.  There will then be room to restore
+the text.
+</p>
+<p>
+
+Disk space available on a network may be used to store the 
+merge instruction files, which are written and then read only once,
+or the final index, which is written only once.  The text and the
+intermediate index files are used very heavily and should be on the
+same machine that <b>xpatbld</b> is running on.
+</p>
+<p>
+<b>Timing Calculation</b>
+
+</p>
+<p>
+
+In a large <b>xpatbld</b> run it is useful to be able to estimate how long
+the complete index build will take.  You can use the following method
+to compute this estimate.
+</p>
+<p>
+
+As described above, <b>xpatbld</b> breaks the text up into chunks that will
+fit into approximately half of the allocated memory.  You can estimate
+the exact number of chunks more accurately while <b>xpatbld</b> is running by
+inspecting the contents of the log file (which has a `.log' extension).
+That file records exactly how many characters are processed in each
+chunk.  The number of characters in the various chunks will not be
+exactly the same, but should all be relatively close to some average
+value.  The total number of chunks is then the size of the text divided
+by the average chunk size.
+</p>
+<p>
+
+Once you have determined the number of chunks, you can move on to
+determine the times for the various steps in the operation.  As
+mentioned above, <b>xpatbld</b> works by first building the partial index
+file for each chunk and then building the merge file.  The partial
+index files all take approximately the same amount of time to build. 
+However, the process of calculating the merge files takes longer with
+each successive chunk.  The merge file calculation for a given chunk
+involves (<i>n</i> - 1) separate steps, where <i>n</i> is the chunk number.
+Those steps all
+take approximately the same amount of time.
+</p>
+<p>
+
+You can determine the time it takes to build the index for each chunk,
+and the time for each separate merge step by looking at the timestamps
+on the `.iN' and `.mN' files.  The following table
+provides an example
+of the first three chunks of a typical build:
+</p>
+<p>
+
+
+<b><tt></tt>File<tt></tt>Timestamp<tt></tt>Elapsed Time</b><br />
+<br />
+
+<tt></tt>demo.i1<tt></tt>10:13<tt></tt>   -<br />
+<br />
+
+<tt></tt>demo.m1<tt></tt>10:13<tt></tt>0 mins<br />
+<br />
+
+<tt></tt>demo.i2<tt></tt>10:18<tt></tt>5 mins<br />
+<br />
+
+<tt></tt>demo.m2<tt></tt>10:21<tt></tt>3 mins<br />
+<br />
+
+<tt></tt>demo.i3<tt></tt>10:26<tt></tt>5 mins<br />
+<br />
+
+<tt></tt>demo.m3<tt></tt>10:33<tt></tt>7 mins<br />
+</p>
+<p>
+In the above example, each partial index file appears to take around 5
+minutes to build, while each step in the merge file calculation appears
+to take around 3.5 minutes (from the sequence: 0 mins, 3 mins, 7 mins).
+</p>
+<p>
+
+The total time for the complete index build can be determined by the
+following formula.  If there are <i>n</i> chunks, then there are <i>n</i>
+Phase 1 indexing operations, <i>n</i> * (<i>n</i> - 1) / 2 Phase I
+merge steps, <i>n</i> Phase 2 indexing passes
+and one Phase 3 merge operation.  The Phase 1 and Phase 2 indexing
+steps all take approximately the same amount of time (5 minutes in the
+above example).  The time for the Phase 3 merge phase is insignificant
+with respect to the total time of the other passes, so it is not
+included in the overall calculation.  The total time is then given by
+the formula, 
+</p>
+<p>
+<center>
+2 * <i>I</i> * <i>n</i> + <i>M</i> * <i>n</i> * (<i>n</i> - 1) / 2<br />
+</center>
+
+</p>
+<p>
+</p>
+<p>
+
+where <i>I</i> is the indexing time and <i>M</i> is the merge step
+time.  In our
+example, <i>n</i> is 11, I is 5 minutes and <i>M</i> is 3.5 minutes, so the total
+time estimate is 302.5 minutes, or around 5 hours.
+</p>
+<p>
+<b>Restarting</b>
+
+</p>
+<p>
+
+<b>xpatbld</b> may be stopped at any time.  <b>xpatbld</b> can then be restarted
+with the <b>-r</b> option.  The restart
+will be from the last ``checkpoint'' written to the log file.  Checkpoints
+are written after each intermediate index file is written, after all
+merging has been calculated for an index file, and after each
+final index file is written.
+When restarting, the memory allocation (specified with the -m option) must be
+the same as for the initial run.
+The <b>-o</b>, <b>-i</b>, and <b>-s</b> 
+options may be changed provided that all files related
+to the option are moved to the new new name and location.  
+The <b>-o</b> option affects the `.log' file.
+The `.idx' and `.dd' files, also affected by the <b>-o</b> option,
+are completely rewritten by a restart.
+The <b>-s</b> option may be changed provided that the 
+`.mN' files are moved.  The <b>-i</b>
+option may be changed provided that the `.iN' and `.tN'
+files are moved.
+</p>
+
+<a name="lbAH"></a>
+<h2>FILES</h2>
+<p>
+
+
+
+<i>data_dictionary</i><b>.dd</b>             Data Dictionary file
+<br />
+
+<i>int_filename</i><b>.i</b>[0-9]+        partial index files built by Phase I
+<br />
+
+<i>merge_filename</i><b>.m</b>[0-9]+      merge instruction files built by Phase I
+<br />
+
+<i>int_filename</i><b>.t</b>[0-9]+        partial index files built by Phase II
+<br />
+
+<i>out_filename</i><b>.idx</b>            output index file
+<br />
+
+<i>out_filename</i><b>.log</b>            log file        
+</p>
+
+<a name="lbAI"></a>
+<h2>SEE ALSO</h2>
+<p>
+
+<b><a href="xpat.1.html">xpat</a></b>(1), <b><a href="data_dict.5.html">data_dictionary</a></b>(5)
+</p>
+<p>
+
+
+</p>
+
+<a name="index"></a><h2>Index</h2>
+<p>
+<dl>
+<dt><a href="#lbAB">NAME</a></dt><dd>
+</dd><dt><a href="#lbAC">SYNOPSIS</a></dt><dd>
+</dd><dt><a href="#lbAD">DESCRIPTION</a></dt><dd>
+</dd><dt><a href="#lbAE">OPTIONS</a></dt><dd>
+</dd><dt><a href="#lbAF">EXAMPLES</a></dt><dd>
+</dd><dt><a href="#lbAG">USAGE NOTES</a></dt><dd>
+</dd><dt><a href="#lbAH">FILES</a></dt><dd>
+</dd><dt><a href="#lbAI">SEE ALSO</a></dt><dd>
+</dd></dl>
+
+</P>
+
+
+</body>
+
+
+</html>

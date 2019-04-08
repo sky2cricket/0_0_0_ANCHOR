@@ -1,0 +1,783 @@
+<!--
+    This code is issued under the GNU General Public License, 
+    version 3, 29 June 2007.
+
+    The DLC-MODS Workbook provides a series of web pages to help you 
+    generate a MODS metadata record that follows the Digital Library 
+    Federation Implementation Guidelines for Shareable MODS Records, 
+    as described in the DLF Aquifer Guidlines November 2006.  These 
+    Guidelines and the specific MODS Profile are documented on the 
+    MODS Profile Page of the DLC-MODS Workbook.
+
+    Copyright (C) 2007 
+    Christine Haygood Deane 
+    University of Tennessee Libraries
+    Digital Library Center
+ 
+
+    This program is free software: you can redistribute it and/or modify    
+    it under the terms of the GNU General Public License as published by    
+    the Free Software Foundation, version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see http://www.gnu.org/licenses/
+-->
+
+<html>
+<head>
+<title>
+page_13_review
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+<script language=javascript src="vv_compose_tags.js"></script>
+
+</head>
+
+<script> document.write('<body  bgcolor="'+parent.adb_background_color+'" >'); </script>
+<font face="arial" size="3">
+<center><font face="arial">
+<h3><script> document.write(parent.adb_project_name); </script>
+ Review Page </h3>
+</center>
+
+<form name="DF"  action="new.xml">
+
+<table class="bgINNER"  border="1" cellpadding="2" cellspacing="1" width="98%" xbgcolor="ddeeff">
+<tr class="greenrow"><td colspan="3">
+<font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+<tr class="bgstandard"><td colspan="3">
+The Review Page:
+<li> provides a quick display of your work before saving the xml file to a local directory
+<li> shows what information has already been saved
+<li> is display only and causes no changes
+<p>While creating a single MODS record, you may visit this page as often as you like to check your work.
+<p>Check Required Fields.
+<li>On all input pages of the workbook, the input boxes and dropdowns  with a yellow background are for REQUIRED fields.  
+<li>On the Review Page, REQUIRED fields appear in rows with a yellow background.
+<p>Check Content.
+<li>You are in the best position to know what should be entered into the workbook for the item you are describing.
+<li>If you find something amiss, this is the time to return to the input page, enter a correction, save, and review again.
+</td></tr>
+<tr class="bgstandard"><td colspan="3">
+&nbsp;
+</td></tr>
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" width="35%"><b>&lt;header> generated comments</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+<font face="arial">
+
+
+<tr class="bgstandard">
+<td class="label13nou">
+Block Iteration
+</td>
+<td>
+&nbsp;How many times a block within a page is repeated.<br>
+&nbsp;<script>
+var temp = new String(parent.U.document.UF.VVcomment_05.value);
+    temp = temp.replace(/</,"&lt;");
+document.write(temp);
+</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou">
+Page Validation
+</td>
+<td>
+&nbsp;Page Status: Complete - uppercase; Incomplete - lowercase;<br>
+&nbsp;<script>
+var strVVcomment_04 = new String(parent.U.document.UF.VVcomment_04.value);
+    strVVcomment_04 = strVVcomment_04.substring(1);
+    strVVcomment_04 = "&lt;"+strVVcomment_04;
+    document.write(strVVcomment_04);
+</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou" colspan="1">
+Validation and Iteration by page
+</td>
+<td>
+<table border = "1" cellpadding="2" cellspacing="0" >
+<tr><td>Page</td><td>Page Validation Value</td><td>Block Iteration Value</td></tr>
+
+<tr><td>&lt;header></td>
+<td><script>document.write(parent.L.get_page_validation("header"))</script></td>
+<td><script>document.write(parent.L.get_block_iteration("header"))</script></td></tr>
+<tr><td>&lt;titleInfo></td>
+<td><script>document.write(parent.L.get_page_validation("titleInfo"))</script></td>
+<td><script>document.write(parent.L.get_block_iteration("titleInfo"))</script></td></tr>
+<tr><td>&lt;name></td>
+<td><script>document.write(parent.L.get_page_validation("name"))</script></td>
+<td><script>document.write(parent.L.get_block_iteration("name"))</script></td></tr>
+<tr><td>&lt;typeOfResource></td>
+<td><script>document.write(parent.L.get_page_validation("typeOfResource"))</script></td>
+<td><script>document.write(parent.L.get_block_iteration("typeOfResource"))</script></td></tr>
+<tr><td>&lt;genre></td>
+<td><script>document.write(parent.L.get_page_validation("genre"))</script></td>
+<td><script>document.write(parent.L.get_block_iteration("genre"))</script></td></tr>
+<tr><td>&lt;originInfo></td>
+<td><script>document.write(parent.L.get_page_validation("originInfo"))</script></td>
+<td><script>document.write(parent.L.get_block_iteration("originInfo"))</script></td></tr>
+<tr><td>&lt;language></td>
+<td><script>document.write(parent.L.get_page_validation("language"))</script></td>
+<td><script>document.write(parent.L.get_block_iteration("language"))</script></td></tr>
+<tr><td>&lt;physicalDescription>&nbsp;&nbsp;&nbsp;</td>
+<td><script>document.write(parent.L.get_page_validation("physicalDescription"))</script></td>
+<td><script>document.write(parent.L.get_block_iteration("physicalDescription"))</script></td></tr>
+<tr><td>&lt;abstract></td>
+<td><script>document.write(parent.L.get_page_validation("abstract"))</script></td>
+<td><script>document.write(parent.L.get_block_iteration("abstract"))</script></td></tr>
+<tr><td>&lt;subject></td>
+<td><script>document.write(parent.L.get_page_validation("subject"))</script></td>
+<td><script>document.write(parent.L.get_block_iteration("subject"))</script></td></tr>
+<tr><td>&lt;relatedItem></td>
+<td><script>document.write(parent.L.get_page_validation("relatedItem"))</script></td>
+<td><script>document.write(parent.L.get_block_iteration("relatedItem"))</script></td></tr>
+<tr><td>&lt;identifier></td>
+<td><script>document.write(parent.L.get_page_validation("identifier"))</script></td>
+<td><script>document.write(parent.L.get_block_iteration("identifier"))</script></td></tr>
+<tr><td>&lt;location></td>
+<td><script>document.write(parent.L.get_page_validation("location"))</script></td>
+<td><script>document.write(parent.L.get_block_iteration("location"))</script></td></tr>
+<tr><td>&lt;accessCondition></td>
+<td><script>document.write(parent.L.get_page_validation("accessCondition"))</script></td>
+<td><script>document.write(parent.L.get_block_iteration("accessCondition"))</script></td></tr>
+<tr><td>&lt;recordInfo></td>
+<td><script>document.write(parent.L.get_page_validation("recordInfo"))</script></td>
+<td><script>document.write(parent.L.get_block_iteration("recordInfo"))</script></td></tr>
+
+
+</table>
+</td>
+<td>&nbsp</td>
+</tr>
+<tr class="bgstandard"><td colspan="3"> &nbsp; </td></tr>
+
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>&lt;header> input</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+
+<tr class="bgffffcc">
+<td class="label13nou">
+Content Contributor
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.contributorName.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgffffcc">
+<td class="label13nou">
+Institution
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.institutionName.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgffffcc">
+<td class="label13nou">
+XML File Name
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.XMLoutput.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard"><td colspan="3"> &nbsp; </td></tr>
+
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>&lt;titleInfo> input</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+
+
+<script>
+var s = new String(parent.U.document.UF.ti_block_list.value);
+var M = new Array();
+    M = s.split(parent.U.split_token);
+var Mmsg = new String("Mmsg:");
+for (i=0;i<M.length;i++) {
+	Mmsg += "\n M["+i+"]="+M[i];
+	if (M[i]=="empty_string") M[i]= "&nbsp;"
+        if (M[i]=="_zero") M[i]="none selected";
+	}
+//alert(Mmsg);
+var m =0;//counter for M
+var j =0;//display
+var numBlocks = parent.L.get_block_iteration('titleInfo');
+for (i=0;i<numBlocks;i++) {
+j=i+1;
+document.write(
+ ' <tr class="bgstandard"> <td class="label13nou"> Title Block # '+j+'</td> <td> &nbsp; </td> <td>&nbsp</td> </tr> \r\n'
++' <tr class="bgstandard"> <td class="label13nou"> Display Label </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr>\r\n' 
++' <tr class="bgstandard"> <td class="label13nou"> Type/Authority </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr>\r\n' 
++' <tr class="bgstandard"> <td class="label13nou"> Title Non-Sort </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr>\r\n' 
++' <tr class="bgffffcc"> <td class="label13nou"> Title </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr> \r\n'
++' <tr class="bgstandard"> <td class="label13nou"> Sub Title </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr> \r\n'
++' <tr class="bgstandard"> <td class="label13nou"> Title Part Number </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr> \r\n'
++' <tr class="bgstandard"> <td class="label13nou"> Title Part Name </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr> \r\n'
++'<tr class="greenrow"> <td height="08" colspan="3"></td></tr>'
+);
+}//end for
+</script>
+
+<tr class="bgstandard"><td colspan="3"> &nbsp; </td></tr>
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>&lt;name> input</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+
+<script>
+var s = new String(parent.U.document.UF.name_block_list.value);
+var M = new Array();
+    M = s.split(parent.U.split_token);
+var Mmsg = new String("name Mmsg:");
+for (i=0;i<M.length;i++) {
+	Mmsg += "\n M["+i+"]="+M[i];
+	if (M[i]=="empty_string") M[i]= "&nbsp;"
+        if (M[i]=="_zero") M[i]="none selected";
+	}
+//alert(Mmsg);
+var m =0;//counter for M
+var j =0;//display
+var numBlocks = parent.L.get_block_iteration('name');
+for (i=0;i<numBlocks;i++) {
+j=i+1;
+document.write(
+ ' <tr class="bgstandard"> <td class="label13nou"> Name Block # '+j+'</td> <td> &nbsp; </td> <td>&nbsp</td> </tr> \r\n'
++' <tr class="bgstandard"> <td class="label13nou"> Name Type </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr>\r\n' 
++' <tr class="bgstandard"> <td class="label13nou"> Name Authority </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr>\r\n' 
++' <tr class="bgstandard"> <td class="label13nou"> Last/Corporate Name </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr>\r\n' 
++' <tr class="bgffffcc"> <td class="label13nou"> Given Name </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr> \r\n'
++' <tr class="bgstandard"> <td class="label13nou"> Terms Of Address </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr> \r\n'
++' <tr class="bgstandard"> <td class="label13nou"> Role </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr> \r\n'
++' <tr class="bgstandard"> <td class="label13nou"> Year of Birth </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr> \r\n'
++' <tr class="bgstandard"> <td class="label13nou"> Year of Death </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr> \r\n'
++'<tr class="greenrow"> <td height="08" colspan="3"></td></tr>'
+); m++;//end name block thing
+}//end for
+</script>
+
+
+
+
+
+<tr class="bgstandard"><td colspan="3"> &nbsp; </td></tr>
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>&lt;typeOfResource> input</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+
+<tr class="bgffffcc">
+<td class="label13nou">
+Type of Resource 
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.type_of_resource_all.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard"><td colspan="3"> &nbsp; </td></tr>
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>&lt;genre> input</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+
+<script>
+var s = new String(parent.U.document.UF.gt_block_list.value);
+var M = new Array();
+    M = s.split(parent.U.split_token);
+var Mmsg = new String("Mmsg:");
+for (i=0;i<M.length;i++) {
+	Mmsg += "\n M["+i+"]="+M[i];
+	if (M[i]=="empty_string") M[i]= "&nbsp;"
+        if (M[i]=="_zero") M[i]="none selected";
+	}
+//alert(Mmsg);
+var m =0;//counter for M
+var j =0;//display
+var numBlocks = 1;// parent.L.get_block_iteration('genre');
+for (i=0;i<numBlocks;i++) {
+j=i+1;
+document.write(
+ ' <tr class="bgstandard"> <td class="label13nou"> Genre Terms </td> <td> &nbsp; </td> <td>&nbsp</td> </tr> \r\n'
++' <tr class="bgstandard"> <td class="label13nou"> Authority AAT (aat)  </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr>\r\n' 
++' <tr class="bgstandard"> <td class="label13nou"> Authority Chenhall (nmh) </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr>\r\n' 
++' <tr class="bgstandard"> <td class="label13nou"> Authority MARC (marcgt) </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr>\r\n' 
++'<tr class="greenrow"> <td height="08" colspan="3"></td></tr>'
+);
+}//end for
+</script>
+
+
+
+<tr class="bgstandard"><td colspan="3"> &nbsp; </td></tr>
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>&lt;originInfo> input</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+
+<script>
+var s = new String(parent.U.document.UF.oi_block_list.value);
+var M = new Array();
+    M = s.split(parent.U.split_token);
+var Mmsg = new String("Mmsg:");
+for (i=0;i<M.length;i++) {
+	Mmsg += "\n M["+i+"]="+M[i];
+	if (M[i]=="empty_string") M[i]= "&nbsp;"
+        if (M[i]=="_zero") M[i]="none selected";
+	}
+//alert(Mmsg);
+var m =0;//counter for M
+var j =0;//display
+var numBlocks = parent.L.get_block_iteration('originInfo');
+for (i=0;i<numBlocks;i++) {
+j=i+1;
+document.write(
+ ' <tr class="bgstandard"> <td class="label13nou"> Origin Information</td> <td> &nbsp; </td> <td>&nbsp</td> </tr> \r\n'
++' <tr class="bgstandard"> <td class="label13nou"> Single Date of Creation </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr>\r\n' 
++' <tr class="bgstandard"> <td class="label13nou"> Single Date of Creation Qualifier </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr>\r\n' 
++' <tr class="bgstandard"> <td class="label13nou"> Begin Date of Creation </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr>\r\n' 
++' <tr class="bgstandard"> <td class="label13nou"> Begin Date of Creation Qualifier </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr>\r\n' 
++' <tr class="bgstandard"> <td class="label13nou"> End Date of Creation </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr>\r\n' 
++' <tr class="bgstandard"> <td class="label13nou"> End Date of Creation Qualifier </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr>\r\n' 
++' <tr class="bgstandard"> <td class="label13nou"> Place of Creation Authority </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr>\r\n' 
++' <tr class="bgstandard"> <td class="label13nou"> Place of Creation </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr>\r\n' 
++' <tr class="bgffffcc"> <td class="label13nou"> Publisher Name/Address </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr> \r\n'
++' <tr class="bgstandard"> <td class="label13nou"> Date of Publication </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr>\r\n' 
++' <tr class="bgstandard"> <td class="label13nou"> Date of Publication Qualifier </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr>\r\n' 
++'<tr class="greenrow"> <td height="08" colspan="3"></td></tr>'
+);
+}//end for
+</script>
+
+
+
+<tr class="bgstandard"><td colspan="3">
+&nbsp;
+</td></tr>
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>&lt;language> input</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+
+<script>
+var s = new String(parent.U.document.UF.la_block_list.value);
+var M = new Array();
+    M = s.split(parent.U.split_token);
+var Mmsg = new String("Mmsg:");
+for (i=0;i<M.length;i++) {
+	Mmsg += "\n M["+i+"]="+M[i];
+	if (M[i]=="empty_string") M[i]= "&nbsp;"
+        if (M[i]=="_zero") M[i]="none selected";
+	}
+//alert(Mmsg);
+var m =0;//counter for M
+var j =0;//display
+var numBlocks = parent.L.get_block_iteration('language');
+for (i=0;i<numBlocks;i++) {
+j=i+1;
+document.write(
+ ' <tr class="bgstandard"> <td class="label13nou"> Language Code # '+j+'</td> <td> &nbsp;'+M[m++]+'</td> <td>&nbsp</td> </tr> \r\n'
++' <tr class="bgstandard"> <td class="label13nou"> Language Text # '+j+'</td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr>\r\n' 
++'<tr class="greenrow"> <td height="08" colspan="3"></td></tr>'
+);
+}//end for
+</script>
+
+<tr class="bgstandard"><td colspan="3"> &nbsp; </td></tr>
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>&lt;physicalDescription> input</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+
+<script>
+var s = new String(parent.U.document.UF.pd_block_list.value);
+var M = new Array();
+    M = s.split(parent.U.split_token);
+var Mmsg = new String("Mmsg:");
+for (i=0;i<M.length;i++) {
+	Mmsg += "\n M["+i+"]="+M[i];
+	if (M[i]=="empty_string") M[i]= "&nbsp;"
+        if (M[i]=="_zero") M[i]="none selected";
+	}
+//alert(Mmsg);
+var m =0;//counter for M
+var j =0;//display
+var numBlocks = parent.L.get_block_iteration('physicalDescription');
+for (i=0;i<numBlocks;i++) {
+j=i+1;
+document.write(
+ ' <tr class="bgstandard"> <td class="label13nou"> Physical Description</td> <td> &nbsp; </td> <td>&nbsp</td> </tr> \r\n'
++' <tr class="bgstandard"> <td class="label13nou"> Digital Origin </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr>\r\n' 
++' <tr class="bgstandard"> <td class="label13nou"> Technique Authority </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr>\r\n' 
++' <tr class="bgstandard"> <td class="label13nou"> Technique </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr>\r\n' 
++' <tr class="bgstandard"> <td class="label13nou"> Medium Authority </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr>\r\n' 
++' <tr class="bgstandard"> <td class="label13nou"> Medium </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr>\r\n' 
++' <tr class="bgffffcc"> <td class="label13nou">Internet Media Type </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr> \r\n'
++' <tr class="bgstandard"> <td class="label13nou"> Physical Description Extent </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr> \r\n'
++' <tr class="bgstandard"> <td class="label13nou"> Note </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr> \r\n'
++'<tr class="greenrow"> <td height="08" colspan="3"></td></tr>'
+);
+}//end for
+</script>
+
+
+
+<tr class="bgstandard"><td colspan="3"> &nbsp; </td></tr>
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>&lt;abstract> input</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+
+<script>
+var s = new String(parent.U.document.UF.ab_block_list.value);
+var M = new Array();
+    M = s.split(parent.U.split_token);
+var Mmsg = new String("Mmsg:");
+for (i=0;i<M.length;i++) {
+	Mmsg += "\n M["+i+"]="+M[i];
+	if (M[i]=="empty_string") M[i]= "&nbsp;"
+        if (M[i]=="_zero") M[i]="none selected";
+	}
+//alert(Mmsg);
+var m =0;//counter for M
+var j =0;//display
+var numBlocks = parent.L.get_block_iteration('abstract');
+for (i=0;i<numBlocks;i++) {
+j=i+1;
+document.write(
+ ' <tr class="bgstandard"> <td class="label13nou"> Abstract # '+j+' </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr>\r\n' 
++'<tr class="greenrow"> <td height="08" colspan="3"></td></tr>'
+);
+}//end for
+</script>
+
+<tr class="bgstandard"><td colspan="3"> &nbsp; </td></tr>
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>&lt;subject> input</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+
+<script>
+var s = new String(parent.U.document.UF.subject_block_list.value);
+var M = new Array();
+    M = s.split(parent.U.split_token);
+var Mmsg = new String("Mmsg:");
+for (i=0;i<M.length;i++) {
+	Mmsg += "\n M["+i+"]="+M[i];
+	if (M[i]=="empty_string") M[i]= "&nbsp;"
+        if (M[i]=="_zero") M[i]="none selected";
+	M[i] = M[i].replace(/</g,"<br>&lt;");
+	M[i] = M[i].replace(/<br>/, ""); //replace first one only
+	}
+//alert(Mmsg);
+var m =0;//counter for M
+var j =0;//display
+var numBlocks = parent.L.get_block_iteration('subject');
+for (i=0;i<numBlocks;i++) {
+j=i+1;
+document.write(
+ ' <tr class="bgstandard"> <td class="label13nou"> Subject Authority # '+j+'</td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr>\r\n' 
++' <tr class="bgstandard"> <td class="label13nou"> Subject Tags # '+j+' </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr>\r\n' 
++' <tr class="bgstandard"> <td class="label13nou"> Subject Close # '+j+'</td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr>\r\n' 
++'<tr class="greenrow"> <td height="08" colspan="3"></td></tr>'
+);
+}//end for
+</script>
+
+
+
+
+<tr class="bgstandard"><td colspan="3">
+&nbsp;
+</td></tr>
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>&lt;relatedItem> input</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+
+<script>
+var s = new String(parent.U.document.UF.ri_block_list.value);
+var M = new Array();
+    M = s.split(parent.U.split_token);
+var Mmsg = new String("Mmsg:");
+for (i=0;i<M.length;i++) {
+	Mmsg += "\n M["+i+"]="+M[i];
+	if (M[i]=="empty_string") M[i]= "&nbsp;"
+        if (M[i]=="_zero") M[i]="none selected";
+	}
+//alert(Mmsg);
+var m =0;//counter for M
+var j =0;//display
+var numBlocks = parent.L.get_block_iteration('relatedItem');
+for (i=0;i<numBlocks;i++) {
+j=i+1;
+document.write(
+ ' <tr class="bgstandard"> <td class="label13nou"> Related Item Block # '+j+'</td> <td> &nbsp; </td> <td>&nbsp</td> </tr> \r\n'
++' <tr class="bgstandard"> <td class="label13nou"> Display Label </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr>\r\n' 
++' <tr class="bgstandard"> <td class="label13nou"> Type </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr>\r\n' 
++' <tr class="bgffffcc"> <td class="label13nou"> URL </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr>\r\n' 
++'<tr class="greenrow"> <td height="08" colspan="3"></td></tr>'
+);m++; //end block thing
+}//end for
+</script>
+
+
+
+<tr class="bgstandard"><td colspan="3">
+&nbsp;
+</td></tr>
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>&lt;identifier> input</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+
+<script>
+var s = new String(parent.U.document.UF.id_block_list.value);
+var M = new Array();
+    M = s.split(parent.U.split_token);
+var Mmsg = new String("Mmsg:");
+for (i=0;i<M.length;i++) {
+	Mmsg += "\n M["+i+"]="+M[i];
+	if (M[i]=="empty_string") M[i]= "&nbsp;"
+        if (M[i]=="_zero") M[i]="none selected";
+	}
+//alert(Mmsg);
+var m =0;//counter for M
+var j =0;//display
+var numBlocks = parent.L.get_block_iteration('identifier');
+for (i=0;i<numBlocks;i++) {
+j=i+1;
+document.write(
+ ' <tr class="bgstandard"> <td class="label13nou"> Identifier Block # '+j+'</td> <td> &nbsp; </td> <td>&nbsp</td> </tr> \r\n'
++' <tr class="bgstandard"> <td class="label13nou"> Display Label </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr>\r\n' 
++' <tr class="bgstandard"> <td class="label13nou"> Invalid </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr>\r\n' 
++' <tr class="bgffffcc"> <td class="label13nou"> Type </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr>\r\n' 
++' <tr class="bgffffcc"> <td class="label13nou"> Identifier </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr> \r\n'
++'<tr class="greenrow"> <td height="08" colspan="3"></td></tr>'
+);m++; //end block thing
+}//end for
+</script>
+
+<tr class="bgstandard"><td colspan="3">
+&nbsp;
+</td></tr>
+
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>&lt;location> input</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+
+<script>
+var s = new String(parent.U.document.UF.lu_block_list.value);
+var M = new Array();
+    M = s.split(parent.U.split_token);
+var Mmsg = new String("Mmsg:");
+for (i=0;i<M.length;i++) {
+	Mmsg += "\n M["+i+"]="+M[i];
+	if (M[i]=="empty_string") M[i]= "&nbsp;"
+        if (M[i]=="_zero") M[i]="none selected";
+	}
+//alert(Mmsg);
+var m =0;//counter for M
+var j =0;//display
+var my_class = new String("");
+var my_usage = new String("");
+
+var numBlocks = parent.L.get_block_iteration('location');
+for (i=0;i<numBlocks;i++) {
+if (i==0)  { 
+	my_class = "bgffffcc"; 
+	my_usage ="usage=\"primary\" ";
+}else{ 
+	my_class = "bgstandard"; 
+	my_usage = "";
+}
+
+j=i+1;
+document.write(
+ ' <tr class="bgstandard"> <td class="label13nou"> Location URL Block # '+j+'</td> <td> &nbsp; </td> <td>&nbsp</td> </tr> \r\n'
++' <tr class="bgstandard"> <td class="label13nou"> Access </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr>\r\n' 
++' <tr class="'+my_class+'"> <td class="label13nou"> Location URL '+my_usage+'</td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr>\r\n' 
++'<tr class="greenrow"> <td height="08" colspan="3"></td></tr>'
+);
+}//end for
+</script>
+
+<tr class="bgstandard"><td colspan="3">
+&nbsp;
+</td></tr>
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>&lt;accessCondition> input</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+
+<script>
+var s = new String(parent.U.document.UF.ac_block_list.value);
+var M = new Array();
+    M = s.split(parent.U.split_token);
+var Mmsg = new String("Mmsg:");
+for (i=0;i<M.length;i++) {
+	Mmsg += "\n M["+i+"]="+M[i];
+	if (M[i]=="empty_string") M[i]= "&nbsp;"
+        if (M[i]=="_zero") M[i]="none selected";
+	}
+//alert(Mmsg);
+var m =0;//counter for M
+var j =0;//display
+var numBlocks = parent.L.get_block_iteration('accessCondition');
+for (i=0;i<numBlocks;i++) {
+j=i+1;
+document.write(
+ ' <tr class="bgstandard"> <td class="label13nou"> Access Condition Block # '+j+'</td> <td> &nbsp; </td> <td>&nbsp</td> </tr> \r\n'
++' <tr class="bgstandard"> <td class="label13nou"> Type </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr>\r\n' 
++' <tr class="bgstandard"> <td class="label13nou"> Access Condition URL </td> <td> &nbsp;'+M[m++]+' </td> <td>&nbsp</td> </tr>\r\n' 
++'<tr class="greenrow"> <td height="08" colspan="3"></td></tr>'
+);
+}//end for
+</script>
+
+<tr class="bgstandard"><td colspan="3">
+&nbsp;
+</td></tr>
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>&lt;recordInfo> input</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+
+<script>
+var s = new String(parent.U.document.UF.re_block_list.value);
+var M = new Array();
+    M = s.split(parent.U.split_token);
+var authStr = new String("");
+if (M[0]=="_zero") {
+	authStr="none";
+}else{
+	authStr=M[0];
+}
+</script>
+<tr class="bgstandard">
+<td class="label13nou">
+Record Content Source Authority
+</td>
+<td>
+&nbsp;<script>document.write(authStr)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou">
+Record Content Source
+</td>
+<td>
+&nbsp;<script>document.write(M[1])</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou">
+Record Origin 
+</td>
+<td>
+&nbsp;<script>document.write(M[2])</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou">
+Record Creation Date
+</td>
+<td>
+&nbsp;<script>document.write(M[3])</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgffffcc">
+<td class="label13nou">
+Language of Cataloging Code
+</td>
+<td>
+&nbsp;<script>document.write(M[4])</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgffffcc">
+<td class="label13nou">
+Language of Cataloging
+</td>
+<td>
+&nbsp;<script>document.write(M[5])</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard"><td colspan="3">
+&nbsp;
+</td></tr>
+<tr class="greenrow"><td colspan="3">
+<font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+
+</table>
+
+
+
+
+
+
+
+</form name="forms[0]">
+
+<center><font face="arial">
+<h3><script> document.write(parent.adb_project_name); </script></h3>
+</center>
+
+</body>
+</html>
+
+
+

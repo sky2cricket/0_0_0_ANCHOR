@@ -1,0 +1,124 @@
+<html>
+<head>
+<script language=javascript src="links/vv_functions_links.js"></script>
+<title>
+char_check
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+</head>
+<!-- body  class="bg_aabbcc" -->
+<body bgcolor="aabbcc">
+<font face="arial" size="3">
+<center><font face="arial">
+<script>//document.write(dlxs_vv_header);</script>
+<p>
+</center>
+<table  class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="99aabb">
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+<tr class="bgstandardwhite" ><td colspan="3" align="left" class="step">
+<pre>
+step_006a.htm
+SUMMARY of processing 01 files in /d1/workarea/dlxs/image/tel/multiples
+
+command> ls /d1/workarea/dlxs/image/tel/multiples
+A2.txt       countfiles2  ic                    modsICsearchOaiMusic_080408  spc
+A.txt        done         ic.vvi.unnorm.sgm     newmods                      test
+categories   dothis       infotrack             NOTE                         text
+catref       entry        jpegs                 olderVersions                textMusic
+checkme      fieldtest    linkfile              open                         thumbs
+checkme.txt  fixSubjects  minithumbs            opensearch                   vviHeader
+close        footer       mods                  preservation
+cochran      hexmess      modsbib               problems
+countfiles   hextest      modsICsearchOaiMusic  search
+
+SCRIPTS TO RUN
+
+1.  command> modsICsearchOaiMusic >nameYourRedirect.txt
+
+2.  command> cat vviHeader ic/* done/ic/* footer > ic.vvi.unnorm.sgm
+3.  command> cp ic.vvi.unnorm.sgm /d1/dlxs/prep/v/vvi/.
+4.  command> rm /d1/dlxs/prep/v/vvi/ic.vvi.norm.sgm
+5.  command> cp thumbs/* /d1/dlxs/img/v/vvi/thumb/
+6.  command> cp jpegs/* /d1/dlxs/img/v/vvi/large/
+
+The next step is image class setup.
+
+Then..........
+separate out the newmods from institution 0012 and put in spc directory.
+7.  command> /bin/mv newmods/0012* spc/mods/.
+
+for bib class:
+8.  command> /bin/mv  modsbib/0012* spc/modsbib/.
+9.  command> /bin/cp modsbib/* /d1/workarea/dlxs/bib/mods/vv/xml
+
+
+for search:
+10. command> /bin/cp search/0012* spc/modssearch/.
+11. command> /bin/cp search/* /d1/workarea/dlxs/bib/search/vv/xml/
+
+You will go there to put all the search and mods files from different directories up.
+12. command> scp minithumbs/* diglib@diglib.lib.utk.edu:/d1/dlxs/web/thumbs/vv/.
+(need these for search display)
+
+
+
+
+
+
+   When you run modsICsearchOai >nameYourRedirect
+   this creates 
+	ic/*
+	modsbib/*
+	newmods/*
+	search/*
+
+search/0031_000050_000203_0000 first line (note, no file extension)
+&lt;A ID="0031_000050_000203_0000" DT="2008-04-01"
+WEBLINK="../../i/image/image-idx?c=vvz;view=entry;subview=detail;cc=vvz;entryid=x-0031_000050_000203_0000;" 
+THUMBLINK="http://diglib.lib.utk.edu/thumbs/vv/0031_000050_000203_0001.jpg" DELIVERY="IC">
+
+
+modsbib/0031_000050_000203_0000 first line (note, no file extension)
+&lt;A ID="0031_000050_000203_0000" DT="2008-04-01">
+
+newmods/0031_000050_000203_0000.xml last line (note, xml file extension)
+&lt;!-- DISPLAY BATCH: 080303 BUCKET: 00 NAME: 0031_000050_000203_0000.xml DATESTAMP: 2008041133113 -->
+
+ic/0031_000050_000203_0000 first line (note, no file extension)
+&lt;entry entryid="X-0031_000050_000203_0000" collid="MCVVZ" ca="vvz">
+
+
+Now Place the ic/* files into the unnormalized sgml file.
+
+cat vvzHeader ic/* done/ic/* footer > ic.vvz.unnorm.sgm
+cp ic.vvz.unnorm.sgm /d1/dlxs/prep/v/vvz/.
+rm /d1/dlxs/prep/v/vvz/ic.vvz.norm.sgm
+cp thumbs/* /d1/dlxs/img/v/vvz/thumb/
+cp jpegs/* /d1/dlxs/img/v/vvz/large/
+
+If there are problems with the ic/* files, these will show up in
+the next step and you will have to come back to this directory
+(/d1/workarea/dlxs/image/tel/singles) to fix things.
+
+Today's fix was due to a probmel in /d1/workarea/dlxs/image/tel/multiples.
+	a. Revise /d1/dlxs/misc/sgml/image.dtd
+	   	by adding the line
+	   	&lt;!ENTITY amp   SDATA "&#0x0026;">
+           	to take car of &amp; in an 01 file
+	b. Modify /d1/workarea/dlxs/image/tel/singles/modsICsearchOai
+		to reflect the change in the dtd
+	c. Modify /d1/workarea/dlxs/image/tel/multiples/modsICsearchOaiMusic
+		to reflect the change in the dtd
+	  	
+
+The next step is image class setup
+
+
+</pre>
+</font>
+</td></tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+</table>
+
+

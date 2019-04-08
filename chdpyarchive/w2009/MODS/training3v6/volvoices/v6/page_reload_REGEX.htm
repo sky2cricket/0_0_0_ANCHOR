@@ -1,0 +1,230 @@
+
+<html>
+<head>
+<title>
+REGEX page_reload_REGEX.htm
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+<!-- script language=javascript src="./vv_regex.js"></script -->
+<script>
+//    vv_reload_page_begin.js
+//    vv_reload_page_01.js
+//    vv_reload_page_02.js
+//    vv_reload_page_03.js
+//    vv_reload_page_04.js
+//    vv_reload_page_05.js
+//    vv_reload_page_06.js
+</script>
+<script language=javascript src="ipage_reload/vv_reload_util.js"></script>
+<script language=javascript src="ipage_reload/vv_reload_page_begin.js"></script>
+<script language=javascript src="ipage_reload/vv_reload_page_01.js"></script>
+<script language=javascript src="ipage_reload/vv_reload_page_02.js"></script>
+
+
+</head>
+
+<script>
+//document.write('<body   bgcolor="'+parent.adb_background_color+'" >');
+document.write('<body   bgcolor="ddccbb" >');
+
+</script>
+
+<font face="arial" size="3">
+<center><font face="arial">
+
+<h2> <script> 
+//document.write(parent.adb_project_name); 
+document.write('w2009 standalone'); 
+</script>
+ Workbook Reload REGEX Page</h2>
+</center>
+
+<script>
+
+//global variables defined in vv_decompose_tags.js
+///var xmlAll = new String();
+///var xmlCursor = 0;
+///var localCursor = 0;
+
+function load_new_data(){
+alert("function load_new_data()");
+if(!confirm("parent.U.document.UF.reset()")) return;
+	parent.U.document.UF.reset();
+	parent.U.document.UF.RELOAD_SWITCH.value="yes";
+if(!confirm("look before formvar load"))return;
+
+//reset TODAY  values
+var today_verbose = new String(Date());
+var today_numeric = new String(parent.U.get_today_numeric());
+parent.U.document.UF.today_verbose.value = today_verbose;
+parent.U.document.UF.today_numeric.value = today_numeric;
+parent.U.document.UF.record_creation_date.value = today_numeric; //page_06
+
+alert("page_reload_REGEX.htm:\nfunction load_new_data()"
+	+"\ntoday_verbose="+today_verbose
+	+"\ntoday_numeric="+today_numeric
+	+"\nparent.U.document.UF.RELOAD_SWITCH.value="+parent.U.document.UF.RELOAD_SWITCH.value
+	);
+
+
+}//end function load_new_data()
+
+function clearData() {
+document.forms[0].chomp.value = "";
+//parent.U.document.UF.reset();
+return;
+}
+
+
+
+</script>
+
+<form name="DF"  action="">
+
+
+<!---table border="1" cellpadding="2" cellspacing="0" width="98%" bgcolor="ddeeff"--->
+<table  class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="99aabb">
+
+<tr class="bgstandard" ><td colspan="3">
+<a href="http://diglib.lib.utk.edu/~cdeane/w2009/MODS/training3v6/volvoices/v6/page_reload_REGEX.htm#new_buttons">new_buttons</a>&nbsp;
+<br>
+<a href="http://diglib.lib.utk.edu/~cdeane/WORKBOOK/dataprep/dlxs/index.htm" target="_blank">dataprep</a><br>
+w2009 v6 page_reload_REGEX.htm -- 
+<a href="./RELOAD/mods_examples/0012_000033_000044_0000.xml.txt" target="_blank">text xml example</a>
+&nbsp;&nbsp;&nbsp;<a href="./RELOAD/mods_examples/0012_000033_000044_0000.txt.txt" target="_blank">text text example</a>
+&nbsp;&nbsp;&nbsp;<a href="./RELOAD/mods_examples/mods_name.txt" target="_blank">mods_name.txt</a>
+&nbsp;&nbsp;&nbsp;<a href="./RELOAD/mods_examples/mods_all.txt" target="_blank">mods_all.txt</a>
+&nbsp;&nbsp;&nbsp;<a href="./RELOAD/mods_examples/old_wb_page_01.txt" target="_blank">old wb mods_name.txt</a><br>
+this page is at: <br><b>http://diglib.lib.utk.edu/~cdeane/w2009/MODS/training3v6/volvoices/v6/page_reload_REGEX.htm</b><br>
+OLD WORKBOOK AT: &nbsp; <a href="http://diglib.lib.utk.edu/~cdeane/WORKBOOK/training3v6.php" target="_blank">http://diglib.lib.utk.edu/~cdeane/WORKBOOK/training3v6.php</a><br>
+DEV W2009 WORKBOOK AT: &nbsp; <a href="http://diglib.lib.utk.edu/~cdeane/w2009/MODS/training3v6/training3v6_GET.php?admindb_data=0037_000052_000200&adb_fullname=Cricket_w2009&test=test_w2009" target="_blank">http://diglib.lib.utk.edu/~cdeane/w2009/MODS/training3v6/training3v6_GET.php?admindb_data=0037_000052_000200&adb_fullname=Cricket_w2009&test=test_w2009</a><br>
+<hr>
+<a href="https://diglib.lib.utk.edu/tennshare/tel2/admdb/" target="_blank">https://diglib.lib.utk.edu/tennshare/tel2/admdb/</a> admin db
+<hr>
+<a href="http://diglib.lib.utk.edu/~cdeane/w2009/MODS/training3v6/volvoices/v6/online_docs/DLFMODS_ImplementationGuidelines.pdf" target="_blank">DLFMODS_ImplementationGuidelines.pdf</a>
+<br>
+<a href="http://diglib.lib.utk.edu/cgi/b/bib/bib-idx?c=vvs-bib&cc=vvs-bib" target="_blank">vv search diglib 00-01-02-03-04</a>
+<hr>
+Database. 
+<br><a href="https://dlc.lib.utk.edu/web/pxmxap/" target="_blank">dlc</a>
+https://dlc.lib.utk.edu/web/pxmxap/ 
+<br><a href="https://diglib.lib.utk.edu/pxmxap/" target="_blank">diglib</a>
+https://diglib.lib.utk.edu/pxmxap/ 
+<br><a href="https://diglib2.lib.utk.edu/pxmxap/" target="_blank">diglib2</a> 
+https://diglib2.lib.utk.edu/pxmxap/ 
+<hr>
+
+The purpose of this page is to upload an existing XML file from C:\Scan or C:Reworked directory.
+<br>So the file can be updated using the Volunteer Voices Workbook.
+<p>Cut and paste the entire xml workbook file into the text area below.
+<p><font face="arial" size="2">
+<script>
+//var base = new String(parent.adb_admindb_data);
+var   base = new String("test");
+document.write("You have generated this workbook from Admin DB location: "+base);
+document.write("<br>Your filename for reload should be: "+base+"_0000.xml");
+document.write("<br>If not, return to the Admin DB and generate the workbook that matches your filename."); 
+//document.write("<br>parent.L.location.href="+parent.L.location.href);
+document.write("<br>page_lower.htm has a javascript src include for vv_decompose_tags.js");
+document.write("<br>vv_decompose_tags contains the function testData3(NUM)");
+document.write("<br>The bChomp button (Process Data in TextArea) calls testData3(1) in vv_decompose.js");
+document.write("<br>The bChompb button calls testData4(1) in vv_decompose.js");
+document.write("<p>&lt;mods:name>J Smith&lt;/mods:name>");
+document.write("<br>&lt;mods:name type=\"personal\" authority=\"ULAN\">J Smith&lt;/mods:name>");
+document.write("<br>&lt;mods:name type=\"personal\" authority=\"ULAN\">J >  Smith&lt;/mods:name>");
+document.write("<br>page_reload_REGEX.htm");
+</script>
+</font>
+</td></tr>
+
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+<tr class="bgstandard" ><td colspan="1" class="label12u">
+Reload<br>Data
+</td><td class="value10nou">
+<!-- textarea: document.DF.chomp.value<br-->
+<textarea name="chomp"
+onblur="load_new_data()"
+rows="8" cols="80"></textarea>
+<br>
+
+&nbsp;</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<!---
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+<tr class="greenrow"><td colspan="3" ><font face="arial" size="3" color="ffffff"><a name="new_buttons">new buttons</font></td></tr>
+--->
+
+<tr class="bgstandard" ><td colspan="3" align="left"><font face="arial" size="1">
+new_buttons </font><a name="new_buttons">
+
+<!--
+<input type="button" name ="Regex06" onclick='tag_data_display_06("mods:name type=\"personal\" authority=\"ULAN\"");' value="regex06">&nbsp;
+<input type="button" name ="Regex07" onclick='tag_data_display_07("mods:name type=\"personal\" authority=\"ULAN\"");' value="regex07">&nbsp;
+-->
+<input type="button" name ="Regex06" onclick='tag_data_display_header();' value="pbegin_00">&nbsp;
+<input type="button" name ="Regex08" onclick='tag_data_display_08("mods:name type=\"personal\" authority=\"ULAN\"");' value="p01_08">&nbsp;
+<input type="button" name ="Regex_p02" onclick='reload_page_02();' value="reload_p02">&nbsp;
+
+<input type="button" name ="Regex09" 
+xonclick="javascript:ToggleFeedbackForm();" 
+onclick='tag_data_display_09("mods:name type=\"personal\" authority=\"ULAN\"");' value="regex09">&nbsp;
+</td></tr>
+
+<tr class="bgstandard" ><td colspan="3" align="left">
+<!---
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+--->
+
+<input type="button" name ="bChomp" onclick="parent.L.testData3(1);" value="Process Data in TextArea">
+&nbsp;
+<input type="button" name ="bChompb" onclick="parent.L.testData4(1);" value="Process bChompb">
+&nbsp;
+&nbsp;
+<input type="button" name ="bClear" onclick="clearData();" value="Clear TextArea">
+&nbsp;
+&nbsp;
+&nbsp;
+
+
+</td></tr>
+
+
+<tr class="bgstandard" >
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+
+
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+
+
+</table>
+
+
+
+
+
+
+
+</form name="forms[0]">
+
+
+	
+
+
+</body>
+</html>
+

@@ -1,0 +1,63 @@
+
+2 output files are created for each input file 
+by running /d1/dlxs/bin/i/image/imageprep vvi
+
+The example below is for 0018_000054_000232
+which is a digital object containing four images to display.
+
+Note that each pair of files ( .jpg and .inf ) are in different index directories.
+
+
+
+[root@diglib2 vvi]# ls index/*/*/*/0018_000054_000232*
+index/0/0/1/0018_000054_000232_0001.inf
+index/0/0/1/0018_000054_000232_0001.jpg
+index/0/0/2/0018_000054_000232_0002.inf
+index/0/0/2/0018_000054_000232_0002.jpg
+index/0/0/3/0018_000054_000232_0003.inf
+index/0/0/3/0018_000054_000232_0003.jpg
+index/0/0/4/0018_000054_000232_0004.inf
+index/0/0/4/0018_000054_000232_0004.jpg
+
+
+Looking at jpg files,  note each one is a link to same-named jpg in thumb directory.
+
+[root@diglib2 vvi]# ls -l index/*/*/*/0018_000054_000232*.jpg
+index/0/0/1/0018_000054_000232_0001.jpg -> ../../../../thumb/0018_000054_000232_0001.jpg
+index/0/0/2/0018_000054_000232_0002.jpg -> ../../../../thumb/0018_000054_000232_0002.jpg
+index/0/0/3/0018_000054_000232_0003.jpg -> ../../../../thumb/0018_000054_000232_0003.jpg
+index/0/0/4/0018_000054_000232_0004.jpg -> ../../../../thumb/0018_000054_000232_0004.jpg
+
+Looking at inf files, note each inf file contains only two lines, 
+one descibing the same name file in the large directory and
+one describing the same name link file in the image directory. 
+File contents shown below the cutline.
+ 
+[root@diglib2 vvi]# ls index/*/*/*/0018_000054_000232*.inf
+index/0/0/1/0018_000054_000232_0001.inf
+index/0/0/2/0018_000054_000232_0002.inf
+index/0/0/3/0018_000054_000232_0003.inf
+index/0/0/4/0018_000054_000232_0004.inf
+
+
+
+===============================================
+
+0018_000054_000232_0001.inf
+<F F="JPG" C="0" D="600">large/0018_000054_000232_0001.jpg</F>
+<T M="image/jpg" F="JPG" C="0">/0/0/1/0018_000054_000232_0001.jpg</T>
+
+
+0018_000054_000232_0002.inf
+<F F="JPG" C="0" D="600">large/0018_000054_000232_0002.jpg</F>
+<T M="image/jpg" F="JPG" C="0">/0/0/2/0018_000054_000232_0002.jpg</T>
+
+0018_000054_000232_0003.inf
+<F F="JPG" C="0" D="600">large/0018_000054_000232_0003.jpg</F>
+<T M="image/jpg" F="JPG" C="0">/0/0/3/0018_000054_000232_0003.jpg</T>
+
+0018_000054_000232_0004.inf
+<F F="JPG" C="0" D="600">large/0018_000054_000232_0004.jpg</F>
+<T M="image/jpg" F="JPG" C="0">/0/0/4/0018_000054_000232_0004.jpg</T>
+
+

@@ -1,0 +1,196 @@
+<html>
+<head>
+<script language=javascript src="links/vv_functions_links.js"></script>
+<title>
+char_check
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+</head>
+<!-- body  class="bg_aabbcc" -->
+<body bgcolor="aabbcc">
+<font face="arial" size="3">
+<center><font face="arial">
+<script>//document.write(dlxs_vv_header);</script>
+<p>
+</center>
+<table  class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="99aabb">
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+<tr class="bgstandardwhite" ><td colspan="3" align="left" class="step">
+<pre>
+step_005g.htm
+processing 00 files in /d1/workarea/dlxs/bib/search/vv/
+
+================================
+SUMMARY for step_005g.htm
+
+
+AFTER IMAGE CLASS SETUP
+
+cd /d1/workarea/dlxs/image/tel/singles
+
+
+for 0012 files bib class
+	/bin/mv  modsbib/0012* spc/modsbib/.
+for non-0012 files  bib class
+	/bin/cp modsbib/* /d1/workarea/dlxs/bib/mods/vv/xml/
+
+for 0012 files search class
+	/bin/cp search/0012* spc/modssearch/.
+for all files search class
+	/bin/cp search/* /d1/workarea/dlxs/bib/search/vv/xml/
+
+
+for all inst search display 
+NEEDS CHANGE, all image derivatives are already on diglib store1-area2
+	scp minithumbs/* diglib@diglib.lib.utk.edu:/d1/dlxs/web/thumbs/vv/.
+
+(info below from /d1/workarea/dlxs/bib/mods/vv/dothis)
+
+cd /d1/workarea/dlxs/bib/mods/vv
+	perl badfiles >look_date.txt                           
+
+IF FIND BADFILES, CORRECT 
+
+
+fixSubjectsBib
+cat openbib newSubxml/* closebib >  vvs-mods.xml
+cp vvs-mods.xml /d1/dlxs/prep/v/vvs-mods/.
+
+AFTER OVERWRITE WARNING ANSWER Y
+
+cd /d1/dlxs/prep/v/vvs-mods/
+perl transform
+cp vvs-mods.xml /d1/dlxs/obj/v/vvs-mods/
+
+
+AFTER OVERWRITE WARNING ANSWER Y
+cd /d1/dlxs/idx/v/vvs-mods
+ make all
+
+
+make sure it's in the httpd conf directory, restart if adding
+release to production
+test in OAI
+
+cd /d1/workarea/dlxs/bib/mods/vv
+perl fixPreserveSubjectsBib
+perl OAI_modsbibToPresMods
+
+
+
+************from /d1/workarea/dlxs/bib/mods/vv/dothis************************
+fixPreserveSubjectsBib    (takes files from xml, fixes subjects and category
+                           attributes  and puts them in newPresSubxml)
+OAI_modsbibToPresMods     (takes files from newPresSubxml, outputs
+                             preservation mods with unicode in DLCpres)
+
+MODS files to be preserved are now in DLCpres.  Move with preservation TEI to join
+tiffs on preservation server.
+
+OAI_modsbibToMods and OAI_modsbibToDC are for testing the broker output of the bib
+records in mods and bib, writing the results to OAIDC and DLCnewSub
+
+fixSubjects takes MODS from DLC and repairs the subjects and puts the files in DLCnewSub
+(older script not currently in use).
+*******************************************************************************
+
+================================
+
+
+
+[root@diglib2 vv]# ls /d1/workarea/dlxs/bib/search/vv/
+closesearch  opensearch  vvs-bib.xml  vvs-mods.xml  xml
+
+.....................................................
+1. copy non-0012 files from singles directory to /d1/workarea/dlxs/bib/mods/vv/xml
+	command> cp /d1/workarea/dlxs/image/tel/singles/modsbib/*  /d1/workarea/dlxs/bib/mods/vv/xml/
+
+
+
+
+
+
+
+after image class setup.
+
+Then..........
+separate out the newmods from institution 0012 and put in spc directory.
+7.  command> /bin/mv newmods/0012* spc/mods/.
+
+for bib class:
+8.  command> /bin/mv  modsbib/0012* spc/modsbib/.
+9.  command> /bin/cp modsbib/* /d1/workarea/dlxs/bib/mods/vv/xml
+
+
+for search:
+10. command> /bin/cp search/0012* spc/modssearch/.
+11. command> /bin/cp search/* /d1/workarea/dlxs/bib/search/vv/xml/
+
+You will go there to put all the search and mods files from different directories up.
+12. command> scp minithumbs/* diglib@diglib.lib.utk.edu:/d1/dlxs/web/thumbs/vv/.
+(need these for search display)
+
+----------------end of this page, notes for next----------------
+see SUMMARY for deleted lines about changing class
+
+
+b.  fixSubjects - this process now done at /d1/workarea/dlxs/bib/mods/vv
+	# fixSubjects
+	# repairs the MODS and the modsbib (not the search)
+	# so that each subject is contained in its own &lt;subject auth= tag.
+	# also, for LCSH ones, splits them out on the "--" value.
+	# if the  value contains "century" or numbers (dashes?), label it temporal
+	# if the value contains only "Tennessee" or "United States" and spaces,
+	#    label it geographic
+	# otherwise, the first value keeps its current tag, and all following 
+	# values (that don't meet those specs) get labeled topic, and stay within the
+	# same subject tag.
+
+c. hexmess - use only if software breaks when you normalize
+	#hexmess
+	#hexdumps files and checks the hexdump for bad characters.
+	# outputs list of characters that must be removed or replaced.
+	# use to test OCR files in particular
+
+<!---------------------------------
+other things to do, including special handling for special collectios
+this came from the "dothis" file in /d1/workarea/dlxs/image/tel/singles
+
+
+separate out the newmods from institution 0012 and put in spc directory.
+/bin/mv newmods/0012* spc/mods/.
+
+for bib class:
+/bin/mv  modsbib/0012* spc/modsbib/.
+/bin/cp modsbib/* /d1/workarea/dlxs/bib/mods/vv/xml
+
+
+for search:
+/bin/cp search/0012* spc/modssearch/.
+/bin/cp search/* /d1/workarea/dlxs/bib/search/vv/xml/
+
+You will go there to put all the search and mods files from different directories up.
+scp minithumbs/* diglib@diglib.lib.utk.edu:/d1/dlxs/web/thumbs/vv/.
+(need these for search display)
+
+run fixSubjects
+
+(more about fixSubjects in MODS dir where we will be making preservation versions)
+
+do NOT run infotrack on these yet, as we need to relate them to their EADs,
+and alter them for crosslinking.
+
+hopefully you have all new dlc files in one directory alone.
+point infotrack at this directory and run it, to put info on files into
+InfoTrack database.  then copy new stuff to store1.
+-->
+
+
+</pre>
+</font>
+</td></tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+</table>
+
+

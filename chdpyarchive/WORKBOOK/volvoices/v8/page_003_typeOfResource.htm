@@ -1,0 +1,250 @@
+<!--
+    This code is issued under the GNU General Public License, 
+    version 3, 29 June 2007.
+
+    The DLC-MODS Workbook provides a series of web pages to help you 
+    generate a MODS metadata record that follows the Digital Library 
+    Federation Implementation Guidelines for Shareable MODS Records, 
+    as described in the DLF Aquifer Guidlines November 2006.  These 
+    Guidelines and the specific MODS Profile are documented on the 
+    MODS Profile Page of the DLC-MODS Workbook.
+
+    Copyright (C) 2007 
+    Christine Haygood Deane 
+    University of Tennessee Libraries
+    Digital Library Center
+ 
+
+    This program is free software: you can redistribute it and/or modify    
+    it under the terms of the GNU General Public License as published by    
+    the Free Software Foundation, version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see http://www.gnu.org/licenses/
+-->
+
+<html>
+<head>
+<title>
+typeOfResource
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+<script>
+parent.L.thisDocument = parent.D.document;
+
+
+function clearPage() {
+        if (!confirm("All data entered for this page will be cleared.\n\nDo you wish to continue?")) {return};
+        parent.U.document.UF.type_of_resource_all.value = "";
+        parent.L.update_block_iteration("typeOfResource","0");
+        parent.L.update_page_validation('typeOfResource','d');
+        parent.D.location.replace("page_003_typeOfResource.htm");
+        return;
+}//end function
+
+
+
+</script>
+
+</head>
+
+<script> document.write('<body onload="load_DF_form();"  bgcolor="'+parent.adb_background_color+'" >'); </script>
+
+<font face="arial" size="3">
+<center><font face="arial">
+<h3><script> document.write(parent.adb_project_name); </script>
+&lt;typeOfResource></h3>
+</center>
+
+<form name="DF"  >
+
+<table class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" >
+<tr class="bgstandard"><td colspan="3">
+Per Levels of Adoption Document: At least one &lt;typeOfResource> element is required.
+</td></tr>
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>MODS LABEL</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+<font face="arial">
+
+<!-- sentiinel_00.value = number of elements in a typeOfResource_block
+     sentinel_00.name signals that the set(s) of typeOfResource_block elements starts with next element -->
+<input type="hidden" name="sentinel_00" value="0">
+
+<tr class="bgstandard" >
+<td class="label13u">
+Type of Resource <br>(select all that apply)
+</td>
+<td>&nbsp;<textarea name="type_of_resource_all" cols="50" rows="4" style="color:#000080; font-weight:bold"></textarea> 
+<br>
+<input type="button" name="Btype_of_resource_all" value="Select" class="button120w"
+onclick="parent.L.selectOneOption(this,'600','400')">
+<input type="button" name="Ctype_of_resource_all" value="Clear" class="button80w"
+onclick="parent.L.clearSelection(this,1)">
+<font face="arial" size="1" color="000000" ><br>Category, Description for Type of Resource.
+Enter up to 3 values by clicking the Select button. <br>Values are from MODS Type of Resource vocabulary at 
+<a href="http://www.loc.gov/standards/mods/v3/mods-userguide-elements.html#typeofresource" target="_blank">
+http://www.loc.gov/standards/mods/v3/mods-userguide-elements.html#typeofresource</a>.
+
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+<!-- sentiinel_01.value = 0 , verify end
+     sentinel_01.name signals that the set(s) of typeOfResource_block elements ends here -->
+<input type="hidden" name="sentinel_01" value="0">
+
+
+
+<tr class="bgstandard">
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+
+
+
+
+<tr class="bgstandard"><td colspan="3" align="center">
+&nbsp;&nbsp;
+
+<input type="button" name="B2" value="Save Data and View MODS TAGS" class="buttonnw" onclick="buildModsTags(1)">
+
+&nbsp;&nbsp;
+<input type="button" name="Bclear" value="Clear Data and Restart this Page" class="buttonnw" onclick="clearPage();">
+
+
+</td></tr>
+
+<tr class="bgstandard" >
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+</table>
+
+
+
+
+
+</form name="forms[0]">
+
+
+<center><font face="arial">
+<h3>
+<script> document.write(parent.adb_project_name); </script>
+</h3>
+</center>
+
+<script>
+
+
+
+function load_UF_form() {
+parent.U.document.UF.type_of_resource_all.value = document.DF.type_of_resource_all.value;
+return;
+}
+
+function load_DF_form() {
+document.DF.type_of_resource_all.value = parent.U.document.UF.type_of_resource_all.value;
+return;
+}
+
+
+
+function buildModsTags(N) {
+
+
+////do this first so current values are loaded regardless of validation status
+load_UF_form();
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+//before writing MODS TAGS, make sure all required fields are populated
+//checkAllRequired... true  validation sets validation status to D  -- complete
+//checkAllRequired... false validation sets validation status to d  -- incomplete
+
+if (!parent.L.checkAllRequiredElements_Page_typeOfResource() ) {
+	parent.L.update_page_validation('typeOfResource','d');
+	return;
+}
+parent.L.update_page_validation('typeOfResource','D');
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+var num = new Number();
+    num = N;
+
+if (num == 10) { 
+	alert("Values have been saved.");
+	return;
+	}
+
+var aps= new Array();
+var hps= new Array();
+var cps= new Array();
+    
+    hps = parent.L.buildTagsArray_header(num);
+    aps = parent.L.buildTagsArray_typeOfResource(num);
+    cps = parent.L.buildTagsArray_closer(num);
+//=================================================
+
+document.write('<input type="button" name="BBACK" onclick="javascript: history.back()" value="BACK"><P>');
+document.write('<font face="Elephant" size="3" color="a00000">'+parent.adb_project_name+' &lt;typeOfResource><p></font>');
+//PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+//document.write('<font face="Elephant" size="3" color="a00000">PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+document.write(parent.adb_workbook_version+'<p>'
+		+"This is the generated xml script.  Values you entered are highlighted in red."
+		+"<HR>");
+//document.write( "This is the generated xml script.  Values you entered are highlighted in red.<HR>");
+
+//document.write('< ? xml version="1.0"  ? > \r\n'); 
+///document.write("Content-Type: text/xml ")
+
+
+
+for (i=0;i<hps.length;i++) {
+	var vps = new String(hps[i]);
+ 	document.write("<br>"+vps);
+	}
+
+
+
+for (i=0;i<aps.length;i++) {
+	var vps = new String(aps[i]);
+	document.write("<br>"+vps);
+	}
+
+
+
+for (i=0;i<cps.length;i++) {
+	var vps = new String(cps[i]);
+	document.write("<br>"+vps);
+	}
+
+
+
+}//end function
+
+
+
+</script>
+	
+<script language=javascript src="elements.js"></script>
+<script>elements();</script>
+
+
+</body>
+</html>
+

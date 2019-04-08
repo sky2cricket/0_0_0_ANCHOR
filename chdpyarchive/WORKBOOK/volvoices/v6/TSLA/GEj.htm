@@ -1,0 +1,260 @@
+<html>
+<head>
+<title>vv_popupGE</title>
+
+<link href="../vv_workbook.css" type="text/css" rel="stylesheet">
+<script language=javascript src="../vv_functions_tsla.js"></script>
+
+
+
+
+<script language="javascript">
+
+var select_id= new String();
+function get_select_id() {
+
+var str = new String();
+    str = parent.location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  parent.window.opener.location.href="+parent.window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=get_select_id();
+
+
+
+var strSelect_GE_A = new String('');
+
+strSelect_GE_A = '<select name="aaa"  size="24" style="font-size:10px"> \r\n'
+	+'<option  selected>No Value Selected</option> \r\n'	
+
+
+
+
+
+
+	+'<option>ICEHOUSE BOTTOM SITE (TENN.)</option>  \r\n'
+	+'<option>IDDINS SITE (TENN.)</option>  \r\n'
+	+'<option>INDIANS OF NORTH AMERICA - TENNESSEE</option>  \r\n'
+	+'<option>INDUSTRIES - TENNESSEE</option>  \r\n'
+	+'<option>INGLEWOOD (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>INHERITANCE AND TRANSFER TAX - TENNESSEE</option>  \r\n'
+	+'<option>IRON CITY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>IRON CITY (TENN.) - MAPS</option>  \r\n'
+	+'<option>J. PERCY PRIEST RESERVOIR (TENN.)</option>  \r\n'
+	+'<option>J. PERCY PRIEST RESERVOIR (TENN.) - MAPS</option>  \r\n'
+	+'<option>JACKSBORO (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>JACKSBORO (TENN.) - FLOODS</option>  \r\n'
+	+'<option>JACKSBORO (TENN.) - HISTORY</option>  \r\n'
+	+'<option>JACKSBORO (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>JACKSON (TENN.)</option>  \r\n'
+	+'<option>JACKSON (TENN.) - BARS, SALOONS, ETC.</option>  \r\n'
+	+'<option>JACKSON (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>JACKSON (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>JACKSON (TENN.) - ECONOMIC CONDITIONS</option>  \r\n'
+	+'<option>JACKSON (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>JACKSON (TENN.) - HISTORY</option>  \r\n'
+	+'<option>JACKSON (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>JACKSON (TENN.) - INDUSTRY</option>  \r\n'
+	+'<option>JACKSON (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>JACKSON (TENN.) - SOCIAL CONDITIONS</option>  \r\n'
+	+'<option>JACKSON (TENN.) - SOCIAL LIFE AND CUSTOMS - 19TH CENTURY</option>  \r\n'
+	+'<option>JACKSON (TENN.) - STREETS</option>  \r\n'
+	+'<option>JACKSON COUNTY (TENN.) - ANTIQUITIES</option>  \r\n'
+	+'<option>JACKSON COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>JACKSON COUNTY (TENN.) - CENSUS, 1820</option>  \r\n'
+	+'<option>JACKSON COUNTY (TENN.) - CENSUS, 1850</option>  \r\n'
+	+'<option>JACKSON COUNTY (TENN.) - CENSUS, 1860</option>  \r\n'
+	+'<option>JACKSON COUNTY (TENN.) - CENSUS, 1870</option>  \r\n'
+	+'<option>JACKSON COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>JACKSON COUNTY (TENN.) - CENSUS, 1910</option>  \r\n'
+	+'<option>JACKSON COUNTY (TENN.) - CENSUS, 1930</option>  \r\n'
+	+'<option>JACKSON COUNTY (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>JACKSON COUNTY (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>JACKSON COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>JACKSON COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>JACKSON COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>JACKSON COUNTY (TENN.) - HISTORY - CIVIL WAR, 1861-1865 - SOURCES</option>  \r\n'
+	+'<option>JACKSON COUNTY (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>JACKSON COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>JACKSON COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>JACKSON COUNTY (TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+	+'<option>JAMES COUNTY (TENN.)</option>  \r\n'
+	+'<option>JAMES COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>JAMES COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>JAMES COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>JAMES COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>JAMES COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>JAMESTOWN (TENN.)</option>  \r\n'
+	+'<option>JAMESTOWN (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>JAMESTOWN (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>JAMESTOWN (TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+	+'<option>JAMESTOWN (TENN.) - STREETS</option>  \r\n'
+	+'<option>JAPAN - RELATIONS - TENNESSEE</option>  \r\n'
+	+'<option>JASPER (TENN.) - HISTORY</option>  \r\n'
+	+'<option>JASPER (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>JEFFERSON CITY (TENN.)</option>  \r\n'
+	+'<option>JEFFERSON CITY (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>JEFFERSON CITY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>JEFFERSON CITY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>JEFFERSON CITY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>JEFFERSON CITY (TENN.) - PICTORIAL WORKS</option>  \r\n'
+	+'<option>JEFFERSON CITY (TENN.) - STREETS</option>  \r\n'
+	+'<option>JEFFERSON COUNTY (TENN.)</option>  \r\n'
+	+'<option>JEFFERSON COUNTY (TENN.) - ADMINISTRATIVE AND POLITICAL DIVISIONS - MAPS</option>  \r\n'
+	+'<option>JEFFERSON COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>JEFFERSON COUNTY (TENN.) - BOUNDARIES</option>  \r\n'
+	+'<option>JEFFERSON COUNTY (TENN.) - CENSUS, 1840</option>  \r\n'
+	+'<option>JEFFERSON COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>JEFFERSON COUNTY (TENN.) - CHURCH HISTORY - SOURCES</option>  \r\n'
+	+'<option>JEFFERSON COUNTY (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>JEFFERSON COUNTY (TENN.) - ECONOMIC CONDITIONS</option>  \r\n'
+	+'<option>JEFFERSON COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>JEFFERSON COUNTY (TENN.) - GENEALOGY - HANDBOOKS, MANUALS, ETC.</option>  \r\n'
+	+'<option>JEFFERSON COUNTY (TENN.) - GENEALOGY - PERIODICALS</option>  \r\n'
+	+'<option>JEFFERSON COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>JEFFERSON COUNTY (TENN.) - GENEALOGY - SOURCES - INDEXES</option>  \r\n'
+	+'<option>JEFFERSON COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>JEFFERSON COUNTY (TENN.) - HISTORY - CIVIL WAR, 1861-1865 - CLAIMS</option>  \r\n'
+	+'<option>JEFFERSON COUNTY (TENN.) - HISTORY - CIVIL WAR, 1861-1865 - REGISTERS</option>  \r\n'
+	+'<option>JEFFERSON COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>JEFFERSON COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>JEFFERSON COUNTY (TENN.) - SOCIAL CONDITIONS</option>  \r\n'
+	+'<option>JEFFERSON COUNTY (TENN.) - SURVEYS</option>  \r\n'
+	+'<option>JEFFERSON STREET BRIDGE (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>JELLICO (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>JERNIGAN II SITE (TENN.)</option>  \r\n'
+	+'<option>JESUS CREEK (TENN. : IMAGINARY PLACE) - FICTION</option>  \r\n'
+	+'<option>JEWS - TENNESSEE - NASHVILLE</option>  \r\n'
+	+'<option>JOHNSON CITY (TENN.)</option>  \r\n'
+	+'<option>JOHNSON CITY (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>JOHNSON CITY (TENN.) - CITY PLANNING</option>  \r\n'
+	+'<option>JOHNSON CITY (TENN.) - DESCRIPTION AND TRAVEL</option>  \r\n'
+	+'<option>JOHNSON CITY (TENN.) - DESCRIPTION AND TRAVEL - TOURS</option>  \r\n'
+	+'<option>JOHNSON CITY (TENN.) - DESCRIPTION AND TRAVEL - VIEWS</option>  \r\n'
+	+'<option>JOHNSON CITY (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>JOHNSON CITY (TENN.) - ECONOMIC CONDITIONS</option>  \r\n'
+	+'<option>JOHNSON CITY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>JOHNSON CITY (TENN.) - HISTORY - PICTORIAL WORKS</option>  \r\n'
+	+'<option>JOHNSON CITY (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>JOHNSON CITY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>JOHNSON CITY (TENN.) - RECORDS AND CORRESPONDENCE</option>  \r\n'
+	+'<option>JOHNSON CITY (TENN.) - STREETS</option>  \r\n'
+	+'<option>JOHNSON CITY (TENN.) - TOURS</option>  \r\n'
+	+'<option>JOHNSON COUNTY (TENN.)</option>  \r\n'
+	+'<option>JOHNSON COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>JOHNSON COUNTY (TENN.) - CENSUS, 1860</option>  \r\n'
+	+'<option>JOHNSON COUNTY (TENN.) - CENSUS, 1870</option>  \r\n'
+	+'<option>JOHNSON COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>JOHNSON COUNTY (TENN.) - CENSUS, 1900</option>  \r\n'
+	+'<option>JOHNSON COUNTY (TENN.) - CENSUS, 1910</option>  \r\n'
+	+'<option>JOHNSON COUNTY (TENN.) - CENSUS, 1920</option>  \r\n'
+	+'<option>JOHNSON COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>JOHNSON COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>JOHNSON COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>JOHNSON COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>JOHNSON COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>JOHNSON COUNTY (TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+	+'<option>JOHNSON COUNTY (TENN.) - SOCIAL LIFE AND CUSTOMS - ANECDOTES</option>  \r\n'
+	+'<option>JOHNSON COUNTY (TENN.) - SOURCES - GENEALOGY</option>  \r\n'
+	+'<option>JOHNSONVILLE (TENN.) - HISTORY</option>  \r\n'
+	+'<option>JOHNSONVILLE STATE HISTORIC AREA (TENN.)</option>  \r\n'
+	+'<option>JONES COUNTY (TENN.) - MAPS</option>  \r\n'
+	+'<option>JONESBOROUGH (TENN.) - DESCRIPTION AND TRAVEL - VIEWS</option>  \r\n'
+	+'<option>JONESBOROUGH (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>JONESBOROUGH (TENN.) - FLOODS</option>  \r\n'
+	+'<option>JONESBOROUGH (TENN.) - HISTORY</option>  \r\n'
+	+'<option>JONESBOROUGH (TENN.) - HISTORY - PERIODICALS</option>  \r\n'
+	+'<option>JONESBOROUGH (TENN.) - HISTORY - PICTORIAL WORKS</option>  \r\n'
+	+'<option>JONESBOROUGH (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>JONESBOROUGH (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>JONESBOROUGH (TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+
++'</select> \r\n';
+	
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+<body class="background">
+
+
+
+
+<form name="FormOne" >
+
+
+<div name="SS" id="SS">
+<script>
+document.write(
+
+	 '<table border="1" cellpadding="4" cellspacing="0"  width="90%">\r\n'
+	+'<tr><td  bgcolor="ddeeff">\r\n'
+	///+'vv_functions.htm called by '+select_id+' <br>\r\n'
+	+'<b>Select Geographic Subject I-J </b> \r\n'
+	+'</td></tr><tr><td bgcolor="ddeeff"> \r\n' 
+	+ strSelect_GE_A
+
+	+'</td></tr></table> \r\n'
+	///+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+</script>
+	
+</div>
+
+<input type="button" onclick="showSelection();" name="B1" value="Geographic Name">
+
+</form>
+
+<script>
+
+
+
+                  
+
+function showSelection() {
+
+val = new String();
+
+for ( i=0; i< document.FormOne.aaa.length; i++ ) {
+
+if ( document.FormOne.aaa[i].selected == true ) {
+  	val = document.FormOne.aaa[i].text;
+	break;
+	}
+else { val = "you never selected anything"; 
+	}
+
+}
+////////////////////////alert ("You selected " +val);
+val=reformatGeo(val);
+
+switch ( select_id ) {
+
+case  "subject_geographic_lcsh_01" :
+	parent.window.opener.document.forms[0].subject_geographic_lcsh_01.value=val;
+	parent.window.close();
+	break;
+
+case  "subject_geographic_lcsh_02" :
+	parent.window.opener.document.forms[0].subject_geographic_lcsh_02.value=val;
+	parent.window.close();
+	break;
+
+}//end switch
+
+}///end function
+</script>
+

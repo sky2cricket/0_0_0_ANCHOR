@@ -1,0 +1,410 @@
+
+
+<html><head><title>Manpage of XPATMAINT</title>
+<link href="../../dlxsdocs.css" rel="stylesheet" type="text/css"> </head><body>
+<h1>XPATMAINT</h1>
+Section: User Commands  (1)<br>Updated: November 2000<br><a href="#index">Index</a>
+<a href="http://localhost/cgi-bin/man/man2html">Return to Main Contents</a><hr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="lbAB">&nbsp;</a>
+<h2>NAME</h2>
+
+<b>xpatmaint</b> - XPAT text DBMS maintenance utility
+<br>
+
+<a name="lbAC">&nbsp;</a>
+<h2>SYNOPSIS</h2>
+
+<p>
+
+<b>xpatmaint</b>
+[ <b>-v</b> ]
+[ <b>-o</b> ]
+[ <b>-l</b> <i>log_file</i> ]
+[ <b>-1</b> ]
+[ <b>-2</b> ]
+[ <b>-3</b> ]
+[ <b>-4</b> ]
+[ <b>-5</b> ]
+[ <b>-d</b> <i>delete_file</i> ]
+<b>-D</b> <i>main</i>_<i>data_dictionary</i>
+<b>-a</b> <i>append</i>_<i>data_dictionary</i>
+<a name="lbAD">&nbsp;</a>
+<h2>DESCRIPTION</h2>
+
+<p>
+
+<b>xpatmaint</b> uses a five-stage, off-line process to merge the <i>append</i> database with the
+<i>main</i> database.  If a <i>delete_file</i> is specified, <b>xpatmaint</b> will also delete
+portions of the <i>main</i> database.
+The first stage consists of a full scan of the <i>main</i> text to generate index
+update directives.  The second stage consists of
+an in-place update of the <i>main</i> text and the <i>main</i> index,
+using the update directives produced in the first stage.
+Also during the second stage,
+the <i>append</i> text is physically appended to the end of the <i>main</i> text and
+any specified deletion portions are physically removed from the <i>main</i> text.
+The third stage consists of merging the region indices of the <i>append</i> database
+with the region indices of the <i>main</i> database.  The region indices of the <i>main</i>
+database are also updated to reflect the deleted portions of text.
+The forth stage consists of merging the fast find indices from the <i>main</i> database
+with the <i>append</i> database.
+The fifth stage rebuilds the fast region indices either used by <i>main</i> database
+or <i>append</i> database.
+The final step updates the Data Dictionary for the <i>main</i> database.
+<a name="lbAE">&nbsp;</a>
+<h2>OPTIONS </h2>
+
+<dl compact>
+<dt><b>-v</b><dd>
+verbose - report progress through the stages of execution.  If <b>-v</b> is not
+specified, <b>xpatmaint</b> works quietly.
+<dt><b>-o</b><dd>
+optimize - use optimization mode.
+This option increases the speed with which the <i>main</i> text is scanned by
+using a special speedup algorithm.  This algorithm increases
+the amount of core memory allocated during the first stage.
+This option should always be used if core memory is not an issue.
+<dt><b>-l</b> <i>log_file</i><dd>
+log - log progress through the stages of execution.
+This option is similar in nature to the <b>-v</b> option, except that the output
+is placed in a file.  <b>xpatmaint</b> will append log information if the specified
+<i>log_file</i> already exists.
+This makes the <i>log_file</i> useful as an audit trail for updates to the <i>main</i>
+database.
+<dt><b>-1</b> [ <b>-2</b> [ <b>-3</b> [ <b>-4</b> [ <b>-5</b> ] ] ] ]<dd>
+<dt><b>-2</b> [ <b>-3</b> [ <b>-4</b> [ <b>-5</b> ] ] ]<dd>
+<dt><b>-3</b> [ <b>-4</b> [ <b>-5</b> ] ]<dd>
+<dt><b>-4</b> [ <b>-5</b> ]<dd>
+<dt><b>-5</b><dd>
+partial execution options - specify partial execution.
+<b>xpatmaint</b> can be started or re-started at any stage using these options.  For more
+details, refer to the <b>Description</b> section above,
+and the <b>Partial Execution Options</b> section, below.
+<dt><b>-d</b> <i>delete_file</i><dd>
+deletion portions file - specify the portions of the <i>main</i>
+text to be deleted.  For more details,
+refer to the <b>Deletion Regions File</b> section, below.
+</dl>
+<a name="lbAF">&nbsp;</a>
+<h2>NOTES</h2>
+
+As mentioned above, <b>xpatmaint</b> physically modifies various files of the <i>main</i> database
+during its 2nd to 5th stages.
+Two requirements result from this method of operation.
+The first requirement is to ensure that the database is backed
+up before <b>xpatmaint</b> is run.  A backup is necessary because <b>xpatmaint</b> will leave the
+database in an invalid state if it terminates abnormally during an update
+operation.  In such cases, the database can be restored from backup and the
+update can then be re-started.  See the section on 
+<b>Partial Execution Options</b> section, below, for more details on re-starting
+an update.
+<p>
+The second requirement is that the database be off-line (i.e. with nobody
+searching it) while stages 2 to 5 are being performed.  This requirement
+exists because the database is in an invalid state during these stages.  See
+the section on
+<b>Partial Execution Options</b> section, below, for more details on running
+the various stages separately.
+<p>
+<b>xpatmaint</b> is usually run from the directory containing the <i>main</i> database.  Because of
+this, file specifications in the <i>append</i>_<i>data_dictionary</i> should have full pathnames so they can
+be located from anywhere in the file system, particularly from the <i>main</i>
+database's directory.
+<p>
+For regions having the same name in both the <i>main</i>_<i>data_dictionary</i> and the <i>append</i>_<i>data_dictionary</i>, the
+region information from the <i>append</i> database is merged into the corresponding
+region file in the <i>main</i> database.  Any region from the <i>append</i> database, whose name
+does not match a region name in the <i>main</i> database, is placed at the end of
+the <i>main</i> database's `.rgn' file.  If the <i>main</i> database does not already have
+a `.rgn' file, then one is created.
+<p>
+The index file in the <i>append</i> database is not used by <b>xpatmaint</b>.  Instead, <b>xpatmaint</b> 
+rebuilds the index for
+the <i>append</i> database using the index specifications in the <i>main</i>_<i>data_dictionary</i> before the index
+merging takes place.
+<a name="lbAG">&nbsp;</a>
+<h2>PARTIAL EXECUTION OPTIONS</h2>
+
+During the first stage of <b>xpatmaint</b>, users can still search the database since the
+<i>main</i> and <i>append</i> database text files are only scanned, not physically changed.
+However, the <i>main</i> database must be taken off-line for the 2nd to 5th stages.
+The first stage generally takes much longer to run than the other stages.
+As such, 
+it is sometimes convenient to have stage 1 run while users are using the
+database (e.g. as a low-priority process during the day), and then run
+stages 2 to 5 afterwards (e.g. at night).  This policy can be 
+implemented using the partial execution options to <b>xpatmaint</b>.
+<p>
+If <b>xpatmaint</b> is run with only the <b>-1</b> option specified, it will
+only perform stage 1 and will write the index update directives into a file
+called <i>pmt_dir</i> in the current directory.  When the time
+comes to perform stages 2 to 5, <b>xpatmaint</b> can be executed with the
+<b>-2</b>, <b>-3</b>, <b>-4</b> and <b>-5</b>
+options specified.  <b>xpatmaint</b> will then read the update directives
+from the <i>pmt_dir</i> file and update the index and region indices.
+If stage 4 is required, the <i>pmt_sv_dir</i> directives file
+will be created during stage 2 processing.
+It is required to have <i>pmt_sv_dir</i> directives to
+to update the fast find index. The stage 5 does not need any directives.
+<p>
+There is another benefit from these options.  Even if no partial
+execution options are specified, <b>xpatmaint</b> still writes the update directives to the
+<i>pmt_dir</i> file after it has finished stage 1.
+The <i>pmt_dir</i> directives file is only removed after stage 3 completes.
+Should a machine crash occur after stage 2, it is only necessary to restore
+the index and region files before re-running <b>xpatmaint</b> with the 
+<b>-2</b> and <b>-3</b> options specified.
+Should a machine crash occur during stage 3, only the region files would need
+to be restored before re-running <b>xpatmaint</b> with the <b>-3</b> option specified.
+<p>
+After stage 2 is successfully completed, the <i>pmt_sv_dir</i> directive files
+will be created. As long as the <i>pmt_sv_dir</i> is created successful,
+the machine crash occur during stage 4, only the fast find index files would
+need to be restored before re-running <b>xpatmaint</b> with the <b>-4</b> option specified.
+<p>
+The stage 5 will completely rebuild all fast regions specified either in
+<i>main</i> database or in <i>append</i> database. Therefore, no file is needed to be restored
+before re-running <b>xpatmaint</b> with the <b>-5</b> option specified.
+<p>
+<a name="lbAH">&nbsp;</a>
+<h2>DELETION PORTIONS FILE</h2>
+
+The deletion portions file specifies the portions of the <i>main</i> database
+that are to be removed.
+The portions are specified by
+pairs of start and end positions and these positions are inclusive.
+The positions must be monotonically increasing and must not overlap.
+Each pair of positions must be on a separate line.  Positions are 
+1-based offsets into the text.
+This means that the first character of the file is at position 1.  For example,
+<dl compact><dt><dd>
+<pre>
+
+122 345
+790 930
+3507 5603
+
+</pre>
+
+</dl>
+
+Text between offsets 122 and 345, 790 and 930, and 3507 and 5603 in the
+<i>main</i> database will be deleted.
+Note that the positions are monotonically increasing and do not overlap.
+<p>
+<a name="lbAI">&nbsp;</a>
+<h2>DISK REQUIREMENTS</h2>
+
+In addition to the disk space necessary for the <i>main</i> and <i>append</i> databases,
+<b>xpatmaint</b> requires disk space equal to the size of the <i>append</i> database text, index
+(built using the index specifications from the <i>main</i>_<i>data_dictionary</i>), and region files.
+Disk space for the <i>pmt_dir</i> update directives file must also be
+available.  The size of this file is directly proportional to the number
+of deletion portions plus approximately the size of the <i>append</i> text.  300 bytes are
+required for each portion of text to be deleted.  For example, 10 deletions
+will increase the size of the directives file by 3 KB.
+<p>
+<a name="lbAJ">&nbsp;</a>
+<h2>MEMORY REQUIREMENTS</h2>
+
+<b>xpatmaint</b> has the following memory requirements:
+<br>
+
+1) approximately 5 times the size of the <i>append</i> text.  Note,
+however, that only 3 times the
+size of the <i>append</i> text need be available in core at a time - the rest may be
+swapped out in virtual memory.
+<br>
+
+2) 500 bytes per deletion portion.
+<br>
+
+3) 32K of buffer space.
+<p>
+<a name="lbAK">&nbsp;</a>
+<h2>EXECUTION TIME</h2>
+
+The following times are the execution characteristics of <b>xpatmaint</b> running on a Sun
+SPARCstation 2.  Before the first stage begins, a setup stage is performed.
+The time required to perform the setup is related to the size of the <i>append</i> text.
+The setup stage for a 1 MB <i>append</i> text typically requires about 20 seconds.
+<p>
+During stage 1, the scan rate for the <i>main</i> text is logarithmic in the size of
+the <i>append</i> text but tends to level off when the size of the <i>append</i> text exceeds 2 MB.
+Using the <b>-o</b> optimization option, a typical scan rate for a 1 MB <i>append</i> text
+is 140 KB/sec.  So, stage 1 requires time equal to the size of the <i>main</i> text
+divided by the effective scan rate.
+<p>
+Stage 2 merges the <i>append</i> index with the <i>main</i> index.  The rate at which this stage
+progresses varies with the relative sizes of the <i>main</i> and <i>append</i> texts.  When
+the <i>append</i> text is 10% the size of the <i>main</i> text, the processing rate is typically
+300 KB/sec.  Stage 2 requires time equal to the size of the <i>main</i> index (not the
+<i>main</i> index) divided by the effective processing rate.
+<p>
+Stage 3 merges the <i>append</i> region files with the <i>main</i> region files.  The time
+required to do this depends on the total size of all the region files from
+both databases but a typical processing rate is 400 KB/sec.
+<p>
+Stage 4 merges the <i>append</i> fast find index files with the <i>main</i> fast find index files.
+The time required to do this depends on the size of
+the fast find index files and the number of deleted text regions.
+<p>
+Stage 5 rebuilds the <i>append</i> fast region indices. The time required will be the
+same as the time required to run <b>xpatfr</b> independently on each fast regions.
+<p>
+When all the above stages (excepted stage 4 and stage 5) are combined,
+the overall processing rate
+for the addition of an append text that is 1% the size of the main text,
+on a Sun SPARCstation 2 is approximately 120 KB/sec in the size of the
+main text.
+If including stage 4, the speed will be approximately 40 KB/sec.
+In addition, if including stage 5,
+the speed will be futher decreased by the number of fast regions
+need to be rebuilt.
+<p>
+<br>
+
+<a name="lbAL">&nbsp;</a>
+<h2>EXAMPLE</h2>
+
+<p>
+
+This example assumes that the <i>main</i> database is in the directory
+/usr/database/main.  The database consists of the text (main_db),
+the index (main_db.idx), the Data Dictionary (main_db.dd), and two region files
+(main_db.rgn and custom.rgn).  There is also a deletion portions file
+called main_delete.
+<p>
+The <i>append</i> text is 500 KB in size and is in the file
+/usr/database/new_data/new.  The first step in merging the <i>append</i> text with
+the <i>main</i> database is to build an <i>append</i> database.  This is done by going to the
+/usr/database/new_data directory and running <b>xpatbld</b>.  <b>xpatbld</b> is given 1200
+KB of memory to use - enough to index the 500 KB of text.
+In the following steps,
+note the use of full pathnames in the various file specifications:
+<p>
+
+<dl compact><dt><dd>
+<pre>
+<tt>% cd /usr/database/new_data
+% xpatbld -m 1200k -t /usr/database/new_data/new \
+    -o /usr/database/new_data/new</tt>
+</pre>
+
+</dl>
+
+<p>
+
+The region indices are built next, using a combination of <b>multirgn</b> and <b>xpatrgn</b>.  It is
+assumed that a descriptive tagnames file with a `.tag' extension has been 
+created for use by <b>multirgn</b>.  It is further assumed that the pattern for the
+region called <i>Custom</i>, to be created using <b>xpatrgn</b>, is in the file
+custom.ptn and that the <b>xpatrgn</b> generated region pointers will be placed
+into a file called custom.rgn.  Note that while this example uses <b>multirgn</b> and
+<b>xpatrgn</b>, <b>sgmlrgn</b> can also be used to create region files.
+<p>
+
+<dl compact><dt><dd>
+<pre>
+<tt>% multirgn -f new.dd tagnames.d
+% xpatrgn new.dd \
+   /usr/database/new_data/custom.rgn Custom &lt; custom.ptn</tt>
+</pre>
+
+</dl>
+
+<p>
+
+The <i>append</i> database can now be merged with the <i>main</i> database.  The databases are
+merged by going to the <i>main</i> database's directory and running <b>xpatmaint</b>.
+<p>
+
+<dl compact><dt><dd>
+<pre>
+<tt>% cd /usr/database/main
+% xpatmaint -v -o -D main_db.dd -d main_delete \
+                -a /usr/database/new_data/new.dd
+          .
+          .
+      (various progress messages from xpatmaint)
+          .
+          .
+      **** xpatmaint completed ****
+%</tt>
+</pre>
+
+</dl>
+
+<p>
+
+At this point, the <i>append</i> text has been added to the <i>main</i> database's text file
+(main_db), an index has been built on the new text and has been merged
+with the <i>main</i> database's index.  The regions in the <i>append</i> database's new.rgn
+file have been merged with the regions in the <i>main</i> database's
+main_db.rgn file.  The
+regions in the <i>append</i> database's custom.rgn file have been merged with the
+regions in the <i>main</i> database's custom.rgn file,
+and the <i>main</i> database's Data Dictionary (main_db.dd) file has
+been updated to reflect the new state of the database.  Note that the region
+files are merged by region name,
+and not on the basis of the region files themselves.
+<p>
+FINAL NOTE: For <b>xpatmaint</b> to run properly, it is important
+that the region indices
+created for the append database are proper <b>xpat</b> region indices.  
+The validity of region files created by <b>multirgn</b>, <b>sgmlrgn</b>, or <b>xpatrgn</b> 
+can be assumed.  However, if a custom program is used
+to create the region files, then care should be taken to ensure that
+faulty data does not produce incorrect region indices.
+<a name="lbAM">&nbsp;</a>
+<h2>SEE ALSO </h2>
+
+<b><a href="http://localhost/cgi-bin/man/man2html?1+xpat">xpat</a></b>(1), <b><a href="http://localhost/cgi-bin/man/man2html?1+xpatbld">xpatbld</a></b>(1), <b><a href="http://localhost/cgi-bin/man/man2html?1+xpatrgn">xpatrgn</a></b>(1), <b><a href="http://localhost/cgi-bin/man/man2html?1+xpatfr">xpatfr</a></b>(1), <b><a href="http://localhost/cgi-bin/man/man2html?1+multirgn">multirgn</a></b>(1), <b><a href="http://localhost/cgi-bin/man/man2html?1+sgmlrgn">sgmlrgn</a></b>(1), <b><a href="http://localhost/cgi-bin/man/man2html?5+regions">regions</a></b>(5), <b><a href="http://localhost/cgi-bin/man/man2html?5+data_dict">data_dict</a></b>(5)
+<p>
+
+<hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">NAME</a><dd>
+<dt><a href="#lbAC">SYNOPSIS</a><dd>
+<dt><a href="#lbAD">DESCRIPTION</a><dd>
+<dt><a href="#lbAE">OPTIONS </a><dd>
+<dt><a href="#lbAF">NOTES</a><dd>
+<dt><a href="#lbAG">PARTIAL EXECUTION OPTIONS</a><dd>
+<dt><a href="#lbAH">DELETION PORTIONS FILE</a><dd>
+<dt><a href="#lbAI">DISK REQUIREMENTS</a><dd>
+<dt><a href="#lbAJ">MEMORY REQUIREMENTS</a><dd>
+<dt><a href="#lbAK">EXECUTION TIME</a><dd>
+<dt><a href="#lbAL">EXAMPLE</a><dd>
+<dt><a href="#lbAM">SEE ALSO </a><dd>
+</dl>
+<hr>
+This document was created by
+<a href="http://localhost/cgi-bin/man/man2html">man2html</a>,
+using the manual pages.<br>
+Time: 18:03:38 GMT, March 26, 2001
+</body>
+</html>

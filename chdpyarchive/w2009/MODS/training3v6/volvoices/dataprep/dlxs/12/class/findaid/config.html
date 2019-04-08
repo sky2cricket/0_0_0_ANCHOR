@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>Configuring the Middleware (Finding Aids)</title>
+<link href="../../dlxsdocs.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="pageTitle">Configuring the Middleware (Finding Aids)</div>
+<p>This documentation provides general guidance about where changes need to be
+   made in the finding aids CGI. It does not go into great detail as this class
+   will be moved into alignment with the true classes in the summer of 2002.
+   The alignment will move things that currently require configuration (like
+   the location of XPAT data dictionaries) from perl data structures to more
+   easily managed database fields. </p>
+<p>In the directory <tt>$DLXSROOT/cgi/f/findaid</tt> you will find two pieces
+   of middleware: <tt>findaid-idx</tt> and <tt>findaid-idx.vars.cfg</tt>. The
+   first is the main program; the second contains configurations particular to
+   your collection and environment. The basic work of getting your collection
+   to "appear" online is done in the <tt>findaid-idx.vars.cfg</tt>; the more
+   difficult and unpredictable work of getting the EAD SGML to filter attractively
+   into HTML is done in the <tt>findaid-idx</tt>. This document will deal primarily
+   with the <tt>findaid-idx.vars.cfg</tt>. In this draft, only variables you
+   are likely to change will be addressed.</p>
+<dl><dt>$gHost</dt><dd>Machine name of the host for the finding aids collection.</dd><dt>$gInfoLink</dt><dd>mailto:
+link for the bottom of results templates; change only text between the curly
+braces.</dd><dt>$gEnableDaoResolution</dt><dd>0 or 1 = no or yes; used to resolve
+IDs in Digital Archival Object (DAO) elements into links to some other URL.</dd><dt>$gIdResolver</dt><dd>Where
+to locate the middleware that provides the resolution of DAO IDs into URLs.</dd><dt>$gDaoIdPrefix</dt><dd>String
+to be inserted prior to the ID value to ensure uniqueness across collections.</dd><dt>$gPatExec</dt><dd>Path
+to the XPAT executable.</dd><dt>%gTermMapperFiles</dt><dd>Where to locate the
+term mapper for the collection; for example, <tt>'samplefa' =&gt; $DLXSROOT_data
+. '/misc/f/findaid/maps' . $userpath . '/' . 'scl-ead.map',</tt></dd><dt>%gCDepth</dt><dd>List
+of COMPONENT elements to the "deepest" level; for example, <tt>'samplefa' =&gt; [
+'C01', 'C02', 'C03', 'C04' ],</tt></dd><dt>%gFilterTitleRegExp</dt><dd>How to
+filter what you have identified in the {coll}.extra.srch and collection map as
+the main title.</dd><dt>%gCollTitles</dt><dd>The title for the collection, as
+it appears in templates.</dd><dt>%gDataDicts</dt><dd>Location of the collection's
+XPAT data dictionary.</dd><dt>%gDataDictToColl</dt><dd>Mapping collection abbreviations
+to data dictionaries (for multi-indexed collections -- this funtionality is not
+currently deployed).</dd><dt>%gCollToDataDict</dt><dd>Mapping collection abbreviations
+to data dictionaries (for multi-indexed collections -- this funtionality is not
+currently deployed).</dd><dt>%gDataDictsPerColl</dt><dd>Mapping collection abbreviations
+to data dictionaries (for multi-indexed collections -- this funtionality is not
+currently deployed).</dd><dt>$gOtVersion</dt><dd>XPAT version you have installed
+.</dd><dt>%gBanners</dt><dd>The heading for the splash page; can contain a link
+to a graphical banner.</dd></dl>
+<p>One area where you will want to change <tt>findaid-idx</tt> is in the filtering
+   of the FRONTMATTER of the finding aid. At present, there is a if/elseif/else
+   relationship that accounts only for named collections (bhl, scl, samplefa).
+   You will want to add your collection, and at first choose one of the existing
+   filters to test functionality. Customization in the perl code, primarily in
+   the form of regular expressioin substitutions, to support your local practice
+   will no doubt be required.</p>
+<p>The URL to test your collection, once installed, is <tt>http://hostname/cgi/f/findaid/findaid-idx?c=collid</tt> </p>
+</body>
+</html>

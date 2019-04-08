@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>Middleware Overview</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="../styles.css" type="text/css">
+</head>
+<body bgcolor="#FFFFFF" class="mainpalette">
+<h3>Middleware Overview</h3><ul>
+  <li>Object Oriented Perl CGI programs</li><li>Set of DLPS-written Perl applications that also use: 
+    <ul>
+      <li>DLPS-written class, subclass and library modules</li><li>Perl modules found 
+        in the standard distribution (information on <a href="../installation/index.html#reqperlmodules">current Perl version</a> in installation notes)</li><li><a href="../installation/additionalperlmodules.html">Additional Perl modules</a> 
+        freely available through <a href="http://www.cpan.org/" target="external">CPAN</a></li>
+        <li>XML files with Processing Instructions (PIs) for dynamic content</li>
+        <li>XSL files for transforming the XML into HTML </li>
+    </ul>
+  </li><li>Interacts, through <a href="http://www.perl.com/pub/a/1999/10/DBI.html" target="external">DBI</a>, 
+    with various DLXS-related <a href="collmgr.html">databases</a></li><li>Basic flow of middleware: 
+    <ul>
+      <li>Take user input for search</li><li>Fork off an <a href="xpatoverview.html">XPAT</a> process</li><li>Creates as many XPAT queries as needed to retrieve results</li>
+      <li>Gather up XML results returned from XPAT</li>
+      <li>Substitutes into XML files' PIs the data returned from XPAT plus other
+        dynamic data (e.g., database information, URLs the cgi has built)</li>
+      <li>Starts up an XSLT transformation process and runs the XML through a
+         virtual XSL stytesheet (built up from XSL imports), creating HTML output </li>
+      <li>Through the above modules and databases, the middleware keeps track of collection 
+    and user information (either through a session object or a database): 
+         <ul>
+            <li>search history</li>
+            <li>bookbag / portfolio</li>
+            <li>collection information needed for single collection or cross-collection 
+              searching and display behavior</li>
+         </ul>
+      </li>
+      </ul>
+    </li>
+    <li>Other points to note
+       <ul>
+          <li>Image Class can use metadata either stored in XML and retrieved
+             via XPAT or stored in and retrieved from MySQL</li>
+          <li>Pageviewing in TextClass is handled through a separate CGI
+             program which interacts with the Pageview table (in the dlxs database)
+             of page metadata and which uses image conversion software to convert
+                 archived TIFF files into GIF or PDF formats on the fly, or stored
+            PDFs, jpgs, JPEG2000, etc. </li>
+          <li>WordWheel cgi also available for use in TextClass collections </li>
+       </ul>
+    </li>
+    </ul>
+</body>
+</html>

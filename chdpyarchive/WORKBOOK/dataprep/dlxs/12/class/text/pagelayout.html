@@ -1,0 +1,70 @@
+<html>
+<head>
+<title>Text Class General Page Layout and Color</title>
+ <link href="../../dlxsdocs.css" rel="stylesheet" type="text/css">
+</head>        
+ <body>
+<div class="pageTitle">Text Class general page layout and color</div>
+        
+            <p>Default page delivery in Text Class is done via class-level XSL
+               stylesheets that are shared by all instances of the class, though
+               the middleware also supports collection-specific XSL stylesheets
+               for any or all page-based behavior within the class. All default
+               Text Class stylesheets are based on the same layout approach,
+               building tables (along with transparent spacer gifs) for
+               all positioning and general color or graphic appearance. General
+               layout of the XSLT-generated HTML is shown in <strong>Figure
+               1
+                </strong>, which shows top-level tables with borders showing,
+                and using the color scheme for the <em>Voltaire &eacute;lectronique</em> collection.
+                All table cells for header and navigation bar content at this
+                level have default values for the
+                <code>bgcolor</code> attribute for browsers that are not CSS-capable.
+                Each header and navigation cell also has a default CSS class
+                value and default background image specified in the<code> background</code> attribute.
+                The background colors created by class and gif allow for flexibility
+                to change appearances for different collections based on the
+                same XSL. For more on specifiying individual collection
+                appearance, see <a href="#tcIndCollChars">Specifying individual
+                collection characteristics</a>.</p>
+            <table border="0" cellpadding="0" cellspacing="2">
+                <tbody>
+                    <tr>
+                        <td>
+                            <img alt="gen-layout.gif" height="368" src="graphics/gen-layout.gif" width="450"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Figure 1 </strong>: top-level table structure of a typical page.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br/>
+            <p>
+                <strong>Figure 2 </strong> shows the simple search page for The
+                American Verse collection as it appears normally. Navigation
+                bar labels, page text header markup (not header text content,
+                e.g., &quot;Basic Search&quot;), instruction text and
+                footer text are included in the XSL, and thus identical across
+                all collections. All other content is specified per collection
+                by <a href="pis.html">processing instructions</a>.</p>
+            <p/>
+            <p/>
+            <table border="0" cellpadding="0" cellspacing="2">
+                <tbody>
+                    <tr>
+                        <td>
+                           <img src="graphics/amversesearch.gif" alt="amversesearch.gif" style="border: 1px solid 000000"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Figure 2 </strong>: Search page for American Verse.</td>
+                    </tr>
+                </tbody>
+            </table>
+        
+</body>
+
+</html>

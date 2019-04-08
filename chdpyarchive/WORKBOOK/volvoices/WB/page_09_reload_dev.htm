@@ -1,0 +1,270 @@
+<!--
+    This code is issued under the GNU General Public License, 
+    version 3, 29 June 2007.
+
+    The DLC-MODS Workbook provides a series of web pages to help you 
+    generate a MODS metadata record that follows the Digital Library 
+    Federation Implementation Guidelines for Shareable MODS Records, 
+    as described in the DLF Aquifer Guidlines November 2006.  These 
+    Guidelines and the specific MODS Profile are documented on the 
+    MODS Profile Page of the DLC-MODS Workbook.
+
+    Copyright (C) 2007 
+    Christine Haygood Deane 
+    University of Tennessee Libraries
+    Digital Library Center
+ 
+
+    This program is free software: you can redistribute it and/or modify    
+    it under the terms of the GNU General Public License as published by    
+    the Free Software Foundation, version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see http://www.gnu.org/licenses/
+-->
+
+<html>
+<head>
+<title>
+page_reload
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+
+
+
+</head>
+
+<script>document.write('<body   bgcolor="'+parent.adb_background_color+'" >');</script>
+
+<font face="arial" size="3">
+<center><font face="arial">
+
+<h2> <script> document.write(parent.adb_project_name); </script>
+ Reload Page DEV</h2>
+</center>
+
+<script>
+parent.reload_dev = true;
+
+function clearData() {
+document.forms[0].chomp.value = "";
+parent.U.document.UF.reset();
+return;
+}
+
+function loadTestData() {
+document.forms[0].chomp.value=document.forms[0].chomp2.value;
+return;
+}
+
+</script>
+
+<form name="DF"  action="new.xml">
+
+
+<!---table border="1" cellpadding="2" cellspacing="0" width="98%" bgcolor="ddeeff"--->
+<table  class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="99aabb">
+
+<tr class="bgstandard" ><td colspan="3">
+The purpose of this page is to upload an existing XML file created by the workbook.
+<br>So the file can be updated using the DLC-MODS Workbook.
+<p>Open the xml file with notepad and then cut and paste the entire file into the text area below.
+<p><font face="arial" size="2">
+<script>
+</script>
+</font>
+</td></tr>
+
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+<tr class="bgstandard" ><td colspan="3" align="left">
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+
+<input type="button" name ="bChompA" onclick="ingestData()"   value="Process Data in TextArea">
+&nbsp;
+&nbsp;
+<input type="button" name ="bClearA" onclick="clearData();" value="Clear TextArea">
+&nbsp;
+&nbsp;
+&nbsp;
+<input type="button" name ="bLoadA" onclick="loadTestData();" value="Load Test File">
+</td></tr>
+<tr class="bgstandard" >
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard" ><td colspan="1" class="label12u">
+Reload<br>Data
+</td><td class="value10nou">
+textarea: document.DF.chomp <br>
+<textarea name="chomp" rows="10" cols="80"></textarea>
+<input type="hidden" name="chomp2" value='<?xml version="1.0" encoding="UTF-8" ?> 
+<mods:mods xmlns:mods="http://www.loc.gov/mods/v3" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.loc.gov/mods/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-2.xsd" ID="MODS" version="3.2">
+<!-- DLC-MODS Workbook version 1.2 released 6 November 2007 by University Of Tennessee Libraries Digital Library Center: Melanie Feltner-Reichert, Metadata Librarian, and Christine Haygood Deane, Software Developer --> 
+<!-- CONTENT CONTRIBUTOR: Cricket Deane --> 
+<!-- INSTITUTION: University of Tennessee at Knoxville --> 
+<!-- RECORD CREATION DATE: Wed Oct 24 10:20:26 EDT 2007 --> 
+<!-- RECORD RELOAD DATE: Wed Oct 24 12:00:15 EDT 2007 --> 
+<!-- FILENAME: theLastMoonshiner.xml --> 
+<!-- BLOCK ITERATION :1:2:2:1:1:1:1:1:1:1:1:3:1:1:1: --> 
+<!-- PAGE VALIDATION :A:B:C:D:E:F:G:H:I:J:K:L:M:N:O: --> 
+<mods:titleInfo displayLabel="demonstration only" type="alternative"> 
+<mods:nonSort>The</mods:nonSort> 
+<mods:title>Last Moonshiner</mods:title> 
+<mods:subTitle>( the life of Fenway Thigpen )</mods:subTitle> 
+<mods:partNumber>Part Number ONE</mods:partNumber> 
+<mods:partName>(first series of articles on Thigpen)</mods:partName> 
+</mods:titleInfo> 
+<mods:titleInfo displayLabel="demonstration only" type="abbreviated" authority="dnlm"> 
+<mods:nonSort>The</mods:nonSort> 
+<mods:title>History of Moonshine Motors</mods:title> 
+<mods:subTitle>(from moonshine to used cars to County Commissioner)</mods:subTitle> 
+<mods:partNumber>Part Number TWO</mods:partNumber> 
+<mods:partName>(second series of articles on Thigpen)</mods:partName> 
+</mods:titleInfo> 
+<mods:name type="personal" authority="LCNAF"> 
+<mods:namePart type="family">Smith</mods:namePart> 
+<mods:namePart type="given">John J.</mods:namePart> 
+<mods:namePart type="termsOfAddress">Dr.</mods:namePart> 
+<mods:namePart type="date">1950-</mods:namePart> 
+<mods:role> 
+<mods:roleTerm authority="marcrelator" type="text">Author</mods:roleTerm> 
+</mods:role> 
+</mods:name> 
+<mods:name type="personal" authority="empty_string"> 
+<mods:namePart type="family">Jones</mods:namePart> 
+<mods:namePart type="given">T. J. (Tank)</mods:namePart> 
+<mods:namePart type="termsOfAddress">Mr.</mods:namePart> 
+<mods:namePart type="date">1941-</mods:namePart> 
+<mods:role> 
+<mods:roleTerm authority="marcrelator" type="text">Author</mods:roleTerm> 
+<mods:roleTerm authority="marcrelator" type="text">Publisher</mods:roleTerm> 
+<mods:roleTerm authority="marcrelator" type="text">Sponsor</mods:roleTerm> 
+</mods:role> 
+</mods:name> 
+<mods:typeOfResource>text;still image</mods:typeOfResource> 
+<mods:genre authority="marcgt">fiction</mods:genre> 
+<mods:genre authority="other">genre test</mods:genre>  
+
+<mods:originInfo> 
+<mods:dateCreated qualifier="approximate" keyDate="yes" encoding="w3cdtf" point="start">2002-07-01</mods:dateCreated> 
+<mods:dateCreated qualifier="approximate" encoding="w3cdtf" point="end">2005-11-30</mods:dateCreated> 
+<mods:dateIssued qualifier="approximate" encoding="w3cdtf">2001</mods:dateIssued> 
+<mods:place> 
+<mods:placeTerm type="text" authority="marccountry">United States </mods:placeTerm> 
+</mods:place> 
+<mods:publisher>Knoxville News-Journal, Knoxville, TN </mods:publisher> 
+</mods:originInfo> 
+<mods:language> 
+<mods:languageTerm type="code" authority="iso639-2b">eng</mods:languageTerm> 
+<mods:languageTerm type="text" >English</mods:languageTerm> 
+</mods:language> 
+<mods:physicalDescription> 
+<mods:form type="technique" authority="aat">digital images</mods:form> 
+<mods:form type="medium">electronic imaging </mods:form> 
+<mods:internetMediaType>image/jpeg</mods:internetMediaType> 
+<mods:extent>200 pages of text; 200 color photographs</mods:extent> 
+<mods:note>This book was originally published as a series of articles in the Knoxville News-Journal over the course of a year. Further research into bibliographic data was added during the next 3 years to make the book more comprehensive. Unfortunately, Mr. Thigpens lawyer prevented the author from completing the interviews. But because of the relationship the author had built up with Mr. Thigpen, he offered to continue sending cigarettes and other amenities to Mr. Thigpen at Brushy Mountain and there is hope of future conversations.
+</mods:note> 
+<mods:digitalOrigin>reformatted digital</mods:digitalOrigin> 
+</mods:physicalDescription> 
+<mods:abstract>This is a mostly fictional account of the life and times of Fenway Thigpen and his many business ventures and political ventures.   The history of Moonshine Motors (a father and son endeavor) is presented in full. The entire panorama of events leading up to Mr. Thigpens arrest has been omitted from the book due to ongoing court proceedings.</mods:abstract> 
+
+<mods:subject authority="aat">
+<mods:topic>Fenway Thigpen</mods:topic> 
+<mods:topic>moonshine</mods:topic> 
+<mods:topic>used cars</mods:topic> 
+<mods:topic>County Commissioner</mods:topic>
+</mods:subject>
+<mods:relatedItem displayLabel="Knoxville News-Journal " type="isReferencedBy" xlink:href="http://knoxnews.com/" /> 
+<mods:identifier displayLabel="Fenways blog" type="uri">http://www.FenwaysBlogAboutFBIentrapment.com</mods:identifier> 
+<mods:identifier displayLabel="Thigpen Fund" type="uri">http://www.helpPayThigpensLawyers.com</mods:identifier> 
+<mods:identifier displayLabel="Thigpen Buisiness" type="uri">http://www.MoonshineMotors.com</mods:identifier> 
+<mods:location> 
+<mods:url usage="primary display" access="raw object">http://diglib.lib.utk.edu</mods:url> 
+</mods:location> 
+<mods:recordInfo> 
+<mods:recordContentSource authority="marcorg">UTK Digital Library Center</mods:recordContentSource> 
+<mods:recordOrigin>UTK Digital Library Center</mods:recordOrigin> 
+<mods:recordCreationDate encoding="w3cdtf">2007-10-24</mods:recordCreationDate> 
+<mods:languageOfCataloging> 
+<mods:languageTerm type="code" authority="iso639-2b">eng</mods:languageTerm> 
+<mods:languageTerm type="text" >English</mods:languageTerm> 
+</mods:languageOfCataloging> 
+</mods:recordInfo> 
+</mods:mods>'>
+<br>
+&nbsp;</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+<tr class="bgstandard" ><td colspan="3" align="left">
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+
+<input type="button" name ="bChomp" onclick="ingestData()"   value="Process Data in TextArea">
+&nbsp;
+&nbsp;
+<input type="button" name ="bClear" onclick="clearData();" value="Clear TextArea">
+&nbsp;
+&nbsp;
+&nbsp;
+<input type="button" name ="bLoad" onclick="loadTestData();" value="Load Test File">
+</td></tr>
+
+
+<tr class="bgstandard" >
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+<tr class="bgstandard" >
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+
+</table>
+
+<h2> <script> document.write(parent.adb_project_name); </script></h2>
+
+</form name="forms[0]">
+<script>
+function ingestData() {
+//alert("ingestData");
+parent.U.document.UF.reset();
+parent.U.document.U2.reset();
+///if(!confirm("Continue?")){return;}
+
+parent.U.document.U2.chomp.value = document.DF.chomp.value;
+
+//alert("got to here page_09_reload_dev.htm");
+//parent.L.endSuccess("calling endSuccess from the reload_dev page");
+parent.L.orig_parseData();
+
+//parent.L.processData();
+//alert("Processing data input is complete.")
+//alert("parent.L.processData called with page_09_reload_dev.htm");
+
+}//end function ingestData
+</script>
+
+</body>
+</html>
+
+

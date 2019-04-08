@@ -1,0 +1,387 @@
+
+<html>
+<head>
+<title>
+page_01
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+<script language=javascript src="vv_functions.js"></script>
+<script language=javascript src="vv_functions_radio.js"></script>
+<script language=javascript src="vv_validation.js"></script>
+
+<script>
+
+
+// Only let numbers in the  Year field, max length=4
+function testInput(event,sbox,Nlen) {
+var e = event;
+var KS; //keystroke value
+var rmc = 2; //right mouse click IE
+   // KS the keystroke entered
+  if ( typeof(e.which) != 'undefined' ) {//netscape
+	KS = e.which; 
+  	rmc = 3; //right mouse click netscape
+   }else { 
+	KS = e.keyCode; 
+   }
+//alert("kStroke = " + KS +"\nsbox.value.length="+sbox.value.length);
+
+var LEN = new Number(Nlen);
+    LEN = LEN -1;
+   if (sbox.value.length >LEN ) { 
+	alert("You may not type more than "+Nlen+" digits for this input."); 
+	return false; 
+	} 
+
+
+   if ((KS > 47) && (KS < 58)) { return true;} //integer
+   if (KS == 8) return true; // Backspace
+   if (KS == 9) return true; // Tab
+   ////if (KS == 32) return true; //whitespace
+
+   alert("Only integer numbers are allowed in this field.");
+
+   return false;
+}
+
+
+function enterValues() {
+
+var strFull = new String();
+
+
+if ( document.forms[0].XMLmaster_01.value.length != 4 ) {
+	alert("You must enter 4 digits for the Instition Number. ")
+	document.forms[0].XMLmaster_01.value="";
+	document.forms[0].XMLmaster_01.focus();
+	return;
+	}
+
+
+if ( document.forms[0].XMLmaster_02.value.length != 6 ) {
+	alert("You must enter 6 digits for the Collection Number. ")
+	document.forms[0].XMLmaster_02.value="";
+	document.forms[0].XMLmaster_02.focus();
+	return;
+	}
+
+if ( document.forms[0].XMLmaster_03.value.length != 6 ) {
+	alert("You must enter 6 digits for the Item Number. ")
+	document.forms[0].XMLmaster_03.value="";
+	document.forms[0].XMLmaster_03.focus();
+	return;
+	}
+strFull =   document.forms[0].XMLmaster_01.value + "_"; 
+strFull +=  document.forms[0].XMLmaster_02.value + "_";
+strFull +=  document.forms[0].XMLmaster_03.value + "_";
+
+document.forms[0].XMLBASE.value=strFull;
+if (!confirm ("Institution: "+document.forms[0].XMLmaster_01.value
+	+"\nCollection: "+document.forms[0].XMLmaster_02.value
+	+"\nItem: "+document.forms[0].XMLmaster_03.value
+	+"\nBase File Name="+document.forms[0].XMLBASE.value
+	+"\nFull Name: "+document.forms[0].FULLNAME.value
+	+"\nusername: "+document.forms[0].USERNAME.value
+	+"\n\nGo to the Begin Page now?"
+	)) return;
+
+
+parent.adb_institutionid=document.forms[0].XMLmaster_01.value;
+parent.adb_admdb_data=strFull;
+parent.admindb_data=strFull;
+parent.adb_project_name="page_welcome_training2: Training";
+parent.adb_username = document.forms[0].USERNAME.value;
+parent.adb_fullname = document.forms[0].FULLNAME.value;
+
+//alert(parent.adb_admdb_data)
+//document.forms[0].submit();
+parent.U.document.UF.XMLmaster_01.value = document.DF.XMLmaster_01.value;
+parent.U.document.UF.XMLmaster_02.value = document.DF.XMLmaster_02.value;
+parent.U.document.UF.XMLmaster_03.value = document.DF.XMLmaster_03.value;
+//parent.U.document.UF.XMLmaster_04.value = document.DF.XMLmaster_04.value;
+//parent.U.document.UF.XMLmaster_05.value = document.DF.XMLmaster_05.value;
+parent.U.document.UF.XMLBASE.value = document.DF.XMLBASE.value;
+
+document.location.href = "page_begin.htm";
+
+}//end function enterValues
+
+function enterValuesAlt() {
+
+
+document.forms[0].XMLBASE.value=document.forms[0].XMLBASEALT.value;
+parent.U.document.UF.XMLBASE.value = document.DF.XMLBASE.value;
+parent.U.document.UF.XMLPATH.value = document.DF.XMLPATHALT.value;
+parent.U.document.UF.XMLPATHFULL.value = document.DF.XMLPATHALT.value;
+parent.U.document.UF.numConstituentsTIFF.value = document.DF.numConstituentsTIFF.value;
+parent.U.document.UF.validate_page_begin.value = "1";
+
+
+alert("enterValuesAlt");
+
+}//end function
+
+
+
+function alt_generate_file_list_tiff() {
+
+var str = new String();
+var msg = new String();
+
+var N = 0;
+    N = Number(document.forms[0].numConstituentsTIFF.value );
+
+var base = document.forms[0].XMLBASE.value ;
+
+var append = new String();
+var j=0, chop=0;
+
+for ( i=0; i<N; i++ ) {
+	j= i+1;
+	append = "0000"+String(j);
+	chop = append.length -4;
+	append=append.substring(chop);
+	///alert("tiff file: "+base+append);
+	str += ","+base+append;
+	msg += ",\n"+base+append;
+}
+
+str = str.substring(1);
+msg = msg.substring(1);
+parent.U.document.UF.file_list_tiff.value=str;
+
+alert("alt_generate_file_list_tiff\n str="+msg);
+
+
+//return str;
+
+
+
+}//end function alt_generate_file_list_tiff() 
+
+
+function load_DF_form() {
+
+
+
+}//end function
+
+</script>
+
+</head>
+
+
+<script>document.write('<body bgcolor="'+parent.adb_background_color+'" onload="load_DF_form()" >');</script>
+<font face="arial" size="3">
+<center><font face="arial">
+<h2> <script> document.write(parent.adb_project_name); </script>
+ Workbook Welcome Page </h2>
+</center>
+
+<script>
+///Civil War Salt Peter Mining None, LCNAF, ULAN. 
+
+
+
+//document.write("test php<hr>parent.mytest="+parent.mytest+"<HR>");
+
+document.write("parent.parent.new_frame="+parent.parent.new_frame+"<hr>");
+
+</script>
+
+<form name="DF"  >
+
+<table class="bgINNer"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="ddeeff">
+<tr class="bgstandard"><td colspan="3">
+
+Dear Content Contributors,
+
+Thank you for....
+
+</td></tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+
+
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Institution
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="8" name="XMLmaster_01"  
+value="0012"
+onKeypress="return testInput(event,this,4)"
+xonKeypress="return digits_only_rule(event,this)" > Please enter 4 digits.
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+<form >
+Collection
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="8" name="XMLmaster_02"  
+value="000033"
+onKeypress="return testInput(event,this,6)"
+xonKeypress="return digits_only_rule(event,this)" > Please enter 6 digits.
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Item
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="8" name="XMLmaster_03"  
+value="000044"
+onKeypress="return testInput(event,this,6)"
+xonKeypress="return digits_only_rule(event,this)" > Please enter 6 digits.
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Full Name
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="30" name="FULLNAME"  
+value="default_fullname"
+> Please enter your name.
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Full Name
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="30" name="USERNAME"  
+value="default_username"
+> Please enter your username.
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Institution
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="button" value="Please Click to Submit" name="B1" onclick="enterValues()" > 
+&nbsp;&nbsp;<input type="button" value="Please Click to Submit ALT" name="B2" onclick="enterValuesAlt()" > 
+&nbsp;&nbsp;<input type="button" value="Please Click to see constituent files" name="B3" onclick="alt_generate_file_list_tiff()" > 
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Base File Name
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="20" name="XMLBASE" READONLY> This value will be in the correct format for the Workbook.
+<input type="hidden" name="XMLmaster_04" value="0000">
+<input type="hidden" name="XMLmaster_05" value=".xml">
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Base File Name Alt
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="20" name="XMLBASEALT" xREADONLY> This value will be in the correct format for the Workbook.
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+File Path Alt
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="40" name="XMLPATHALT" xREADONLY value="C:\"> This value will be in the correct format for the Workbook.
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+# Constituent Files Alt
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="20" name="numConstituentsTIFF" xREADONLY> This value will be in the correct format for the Workbook.
+<input type="hidden" name="XMLmaster_04" value="0000">
+<input type="hidden" name="XMLmaster_05" value=".xml">
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+
+
+
+
+<tr class="bgstandard"><td colspan="3" align="center">
+&nbsp;&nbsp;
+
+</td></tr>
+
+</table>
+
+
+</form name="forms[0]">
+
+
+
+<center><font face="arial">
+<h2> <script> document.write(parent.adb_project_name); </script>
+ Workbook Welcome Page </h2>
+</center>
+<hr>
+<script>
+
+
+/////chdchdchd
+
+
+
+
+
+</script>
+	
+
+
+</body>
+</html>
+

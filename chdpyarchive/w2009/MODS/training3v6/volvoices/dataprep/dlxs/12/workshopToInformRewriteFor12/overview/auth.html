@@ -1,0 +1,51 @@
+<html>
+
+<head>
+
+<title>Authentication/Authorization System Overview</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<link rel="stylesheet" href="../styles.css" type="text/css">
+
+</head>
+
+<body bgcolor="#FFFFFF" class="mainpalette">
+
+<h3>Authentication/Authorization System Overview</h3>
+
+<ul>
+
+  <li>Our own home grown Apache module 
+
+    <ul>
+
+      <li>Passes a string, a colon-separated list of collections, authorized
+         to user, as an environment 
+
+        variable (<span class="unixcommand">AUTHZD_COLL</span>), to the middleware/CGI program</li>
+
+    </ul>
+
+  </li>
+
+  <li>Lacking this system or another sophisticated system, the <span class="unixcommand">AUTHZD_COLL</span> environment 
+
+    variable can be set in a virtual host block in the Apache <i class="unixcommand">httpd.conf</i> 
+
+    configuration file</li>
+
+  <li>Read an <a href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/intro/auth.html" target="external">Overview 
+
+    of the DLXS Authentication and Authorization</a></li>
+
+  <li>Detailed information about the <a href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/ancil/authsystem.html" target="external">DLXS 
+
+    Authentication and Authorization System</a> itself</li>
+
+</ul>
+
+</body>
+
+</html>
+

@@ -1,0 +1,341 @@
+<!--
+    This code is issued under the GNU General Public License, 
+    version 3, 29 June 2007.
+
+    The DLC-MODS Workbook provides a series of web pages to help you 
+    generate a MODS metadata record that follows the Digital Library 
+    Federation Implementation Guidelines for Shareable MODS Records, 
+    as described in the DLF Aquifer Guidlines November 2006.  These 
+    Guidelines and the specific MODS Profile are documented on the 
+    MODS Profile Page of the DLC-MODS Workbook.
+
+    Copyright (C) 2007 
+    Christine Haygood Deane 
+    University of Tennessee Libraries
+    Digital Library Center
+ 
+
+    This program is free software: you can redistribute it and/or modify    
+    it under the terms of the GNU General Public License as published by    
+    the Free Software Foundation, version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see http://www.gnu.org/licenses/
+-->
+
+<html>
+<head>
+<title>
+identifier
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+<script>
+var split_token=parent.U.split_token;
+parent.L.thisDocument = parent.D.document;
+
+function addOneIdentifierBlock() {
+//alert("addOneIdentifierBlock");
+if (!confirm("You have chosen to add one Identifier Block.\n\nDo you wish to continue?")){return;} 
+buildModsTags(11);
+parent.L.update_block_iteration("identifier","1");
+parent.D.location.replace("page_015_identifier.htm");
+}//end function
+
+
+function subtractOneIdentifierBlock() {
+if (parent.L.get_block_iteration("identifier")==1 ) {
+	alert("Identifier Block #1 may not be removed.");
+	return;
+	}
+if (!confirm("You have chosen to remove one Identifier Block.\n\nDo you wish to continue?")){return;} 
+parent.L.update_block_iteration("identifier","-1");
+parent.D.location.replace("page_015_identifier.htm");
+}//end function
+
+function clearPage() { 
+        if (!confirm("All data entered for this page will be cleared.\n\nDo you wish to continue?")) {return};
+        parent.U.document.UF.id_block_list.value = "";
+        parent.L.update_block_iteration("identifier","0");
+        parent.L.update_page_validation('identifier','l');
+        parent.D.location.replace("page_015_identifier.htm");
+        return;
+}//end function
+
+</script>
+
+</head>
+
+<script>document.write('<body onload="load_DF_form();"  bgcolor="'+parent.adb_background_color+'" >');</script>
+
+<font face="arial" size="3">
+<center><font face="arial">
+<h3> <script> document.write(parent.adb_project_name); </script>
+&lt;identifier></h3>
+</center>
+
+<form name="DF"  action="new.xml" onload="load_DF_form()"  >
+
+<table class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="ddeeff">
+<tr class="bgstandard"><td colspan="5">
+Required Fields have yellow-highlighted input box. 
+</td></tr>
+
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>MODS LABEL</td>
+<td colspan="4"><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+</tr>
+
+<!-- sentiinel_00.value = number of elements in an identifier_block
+     sentinel_00.name signals that the set(s) of identifier_block elements starts with next element -->
+<input type="hidden" name="sentinel_00" value="0">
+
+<script>
+
+
+//The Number of Identifiers is set to 1 on the Begin Page, then incremented/decremented here
+//This number is in the Block Iteration string.
+
+
+//var numID = parent.U.document.UF.numIdentifiers.value;
+var numID = new Number( parent.L.get_block_iteration("identifier"));
+
+var str_id_block_list = new String(parent.U.document.forms[0].id_block_list.value);
+
+var aid_block = new Array();
+    aid_block = str_id_block_list.split("split_token");
+
+
+var jj=0;
+
+for(j=0;j<numID; j++) {
+
+jj=j+1;
+document.write('<tr class="bgstandard"> \r\n'
++'<td class="label12u" width="15%" > \r\n'
++'Identifier # '+jj+'</td> \r\n'
++'<td class="value12u" width="15%" valign="top">&nbsp;<input type="text" name="dyn_identDisplayLabel_0'+j+'" size="20" value="" style="color:#000080; font-weight:bold">'
++'<br><font face="arial" size="1">&nbsp;Display Label (optional)</font></td>'
++'<td class="value12u" valign="top">&nbsp;'
++'<select name="dyn_identInvalid_0'+j+'" size="1" style="color:#000080; font-weight:bold">\r\n'
++'<option value="no" selected>invalid = no</option>\r\n'
++'<option value="yes">invalid = yes</option>\r\n'
++'</select>'
++'<br><font face="arial" size="1">&nbsp;invalid=yes for &nbsp;&nbsp;deprecated id</font></td>\r\n'
++'<td class="value12u" width="15%" valign="top">&nbsp;'
++'<select name="dyn_identType_0'+j+'" size="1" style="background:#ffffaa; color:#000080; font-weight:bold">'
++'<option value="_zero" selected>none selected</option>'
++'<option value="ARK" >Archival Res Key (ARK)</option>'
++'<option value="doi" >Digital Res Id (doi)</option>'
++'<option value="hdl" >Handle (hdl)</option>'
++'<option value="uri" >Uniform Res Id (uri)</option>'
++'<option value="isbn" >Internat Std Book # (isbn)</option>'
++'<option value="ismn" >Internat Std Music # (ismn)</option>'
++'<option value="isrc" >Intnat Std Rec Code (isrc)</option>'
++'<option value="issue num" >issue number</option>'
++'<option value="istc" >Internat Std Text Code (istc)</option>'
++'<option value="lccn" >LOC Control # (lccn) </option>'
++'<option value="matrix number"  >matrix number</option>'
++'<option value="music plate"  >music plate</option>'
++'<option value="music publisher" >music publisher</option>'
++'<option value="sici" >Serial Item & Contr Id (sici)</option>'
++'<option value="stock number" >stock number</option>'
++'<option value="upc" >Univ Prod Code (upc)</option>'
++'</select>'
++'<br><font face="arial" size="1">&nbsp;Type (required)</font></td>'
++'<td class="value12u" valign="top">'
++'&nbsp;<input type="text" name="dyn_identifier_0'+j+'" value="" size="72"  \r\n'
++'class="required300w"  >  \r\n'
++'<font face="arial" size="1">&nbsp;Identifier (required) Must be a valid Identifier for its type</font></td>'
++'<input type="hidden" name="dyn_identifierEND_ID_BLOCK_0'+j+'" value="END_ID_BLOCK_0'+j+'">'
++'</td> \r\n'
+//+'<td>&nbsp</td> \r\n'
++'</tr> \r\n'
++'<tr class="greenrow"><td colspan="5" height="08"></td></tr>\r\n' 
+);
+
+
+
+
+}//end for loop
+
+
+</script>
+
+<!-- sentinel_01.value = 0 , verify end
+     sentinel_01.name signals that the set(s) of identifier_block elements ends here -->
+<input type="hidden" name="sentinel_01" value="0">
+<input type="hidden" name="id_block_list" value=""> 
+
+<tr class="bgstandard">
+<td>&nbsp;</td><td colspan="3">&nbsp</td><td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13u">Add or Remove<br>One Identifier</td><td colspan="4">&nbsp;
+<input type="button" name="AddOneIdBlock" 
+value="Add One Identifier" class="buttonnw" onClick="addOneIdentifierBlock();">
+<input type="button" name="SubtractOneIdBlock" 
+value="Remove One Identifier" class="buttonnw" onClick="subtractOneIdentifierBlock();">
+
+</td><td>&nbsp;</td>
+</tr>
+
+<tr class="greenrow"><td colspan="5" >&nbsp;</td></tr>
+
+
+
+
+<tr class="bgstandard"><td colspan="5" align="center">
+&nbsp;&nbsp;
+<input type="button" name="B2" value="Save Data and View MODS TAGS" class="buttonnw" onclick="buildModsTags(1)">
+
+&nbsp;&nbsp;
+<input type="button" name="Bclear" value="Clear Data and Restart this Page" class="buttonnw" onclick="clearPage();">
+
+
+
+</td></tr>
+<tr class="bgstandard" >
+<td>&nbsp</td><td colspan="3">&nbsp</td><td>&nbsp</td>
+</tr>
+
+</table>
+
+
+
+</form name="forms[0]">
+
+<center><font face="arial">
+<h3> <script> document.write(parent.adb_project_name); </script></h3>
+</center>
+
+
+<script>
+
+
+function load_UF_form() {
+//alert("load_UF_form");
+
+parent.U.document.forms[0].id_block_list.value = document.DF.id_block_list.value;
+
+return;
+}
+
+
+
+function load_DF_form() {//page 05 gets info from page_upper
+
+parent.L.populate_DF_webform_from_UF_blocklist("id_block_list");
+
+
+if ( parent.U.document.UF.id_block_list == "") {
+	return;
+	}
+
+return;
+}
+
+
+function buildModsTags(N) {
+
+document.DF.id_block_list.value = parent.L.populate_DF_blocklist_from_DF_webform("id_block_list");
+
+////do this first so current values are loaded regardless of validation status
+load_UF_form();
+
+var num = new Number();
+    num = N;
+
+if (num == 11) {return;} //no validation required.
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+//before writing MODS TAGS, make sure all required fields are populated
+//checkAllRequired... true  validation sets validation status to L  -- complete
+//checkAllRequired... false validation sets validation status to l  -- incomplete
+
+if (!parent.L.checkAllRequiredElements_identifier() ) {
+	parent.L.update_page_validation('identifier','l');
+	return;
+}
+parent.L.update_page_validation('identifier','L');
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+if (num == 10) {
+        alert("Values have been saved.");
+        return;
+        }
+
+
+
+var abreak = new String("");
+if (num != "0" && num!=10 ) {
+	abreak = "<BR>";
+	}
+
+load_UF_form();
+
+var aps= new Array();
+var aps= new Array();
+var hps= new Array();
+var cps= new Array();
+    
+    hps = parent.L.buildTagsArray_header(num);
+    aps = parent.L.buildTagsArray_identifier(num);
+    cps = parent.L.buildTagsArray_closer(num);
+
+//=================================================
+
+document.write('<input type="button" name="BBACK" onclick="javascript: history.back()" value="BACK"><P>');
+document.write('<font face="Elephant" size="3" color="a00000">'+parent.adb_project_name+' &lt;identifier><p></font>');
+//PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+//document.write('<font face="Elephant" size="3" color="a00000">PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+document.write(parent.adb_workbook_version+'<p>'
+		+"This is the generated xml script.  Values you entered are highlighted in red."
+		+"<HR>");
+//document.write( "This is the generated xml script.  Values you entered are highlighted in red.<HR>");
+
+///document.write('< ? xml version="1.0"  ? > \r\n'); 
+///document.write("Content-Type: text/xml ")
+
+
+
+for (i=0;i<hps.length;i++) {
+	var vps = new String(hps[i]);
+ 	document.write(abreak+vps);
+	}
+
+
+
+for (i=0;i<aps.length;i++) {
+	var vps = new String(aps[i]);
+	document.write(abreak+vps);
+	}
+
+
+
+for (i=0;i<cps.length;i++) {
+	var vps = new String(cps[i]);
+	document.write(abreak+vps);
+	}
+
+
+}//end function
+
+
+</script>
+	
+<script language=javascript src="elements.js"></script>
+<script>elements();</script>
+
+</body>
+</html>

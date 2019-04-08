@@ -1,0 +1,138 @@
+
+from step_005f.htm 
+
+bin/cp /d1/workarea/dlxs/image/tel/singles/modsbib/*  /d1/workarea/dlxs/bib/mods/vv/xml/
+perl fixSubjectsBib
+cat openbib newSubxml/* closebib > vvs-mods.xml 
+cp vvs-mods.xml /d1/dlxs/prep/v/vvs-mods/
+
+AFTER ANSWERING Y TO OVERWRITE WARNING MOVE TO PREP DIRECTORY
+cd /d1/dlxs/prep/v/vvs-mods/
+perl transform
+cp vvs-mods.xml /d1/dlxs/obj/v/vvs-mods/
+
+AFTER ANSWERING Y TO OVERWRITE WARNING MOVE TO INDEX DIRECTORY
+cd /d1/dlxs/idx/v/vvs-mods
+make all
+\
+
+
+[root@diglib2 vv]# ls -l xml_0012* | more
+total 1952
+-rw-r--r--  1 root root 3484 Oct  9 18:00 0012_000051_000201_0000
+-rw-r--r--  1 root root 3870 Oct  9 18:00 0012_000052_000201_0000
+-rw-r--r--  1 root root 3804 Oct  9 18:00 0012_000052_000202_0000
+-rw-r--r--  1 root root 5261 Oct  9 18:00 0012_000052_000203_0000
+-rw-r--r--  1 root root 3558 Oct  9 18:00 0012_000053_000200_0000
+-rw-r--r--  1 root root 2951 Oct  9 18:00 0012_000053_000201_0000
+-rw-r--r--  1 root root 3563 Oct  9 18:00 0012_000053_000202_0000
+-rw-r--r--  1 root root 2810 Oct  9 18:00 0012_000053_000203_0000
+-rw-r--r--  1 root root 3017 Oct  9 18:00 0012_000053_000204_0000
+-rw-r--r--  1 root root 3892 Oct  9 18:00 0012_000053_000205_0000
+-rw-r--r--  1 root root 3199 Oct  9 18:00 0012_000053_000206_0000
+-rw-r--r--  1 root root 3668 Oct  9 18:00 0012_000053_000207_0000
+-rw-r--r--  1 root root 3084 Oct  9 18:00 0012_000053_000208_0000
+-rw-r--r--  1 root root 3200 Oct  9 18:00 0012_000053_000209_0000
+-rw-r--r--  1 root root 2947 Oct  9 18:00 0012_000053_000210_0000
+-rw-r--r--  1 root root 3064 Oct  9 18:00 0012_000053_000211_0000
+-rw-r--r--  1 root root 3253 Oct  9 18:00 0012_000053_000212_0000
+-rw-r--r--  1 root root 3035 Oct  9 18:00 0012_000053_000213_0000
+-rw-r--r--  1 root root 3376 Oct  9 18:00 0012_000053_000214_0000
+-rw-r--r--  1 root root 3655 Oct  9 18:00 0012_000053_000215_0000
+-rw-r--r--  1 root root 3087 Oct  9 18:00 0012_000053_000216_0000
+-rw-r--r--  1 root root 3060 Oct  9 18:00 0012_000053_000217_0000
+-rw-r--r--  1 root root 3181 Oct  9 18:00 0012_000053_000218_0000
+-rw-r--r--  1 root root 3285 Oct  9 18:00 0012_000053_000219_0000
+-rw-r--r--  1 root root 3061 Oct  9 18:00 0012_000053_000221_0000
+-rw-r--r--  1 root root 3946 Oct  9 18:00 0012_000053_000222_0000
+-rw-r--r--  1 root root 3205 Oct  9 18:00 0012_000053_000223_0000
+-rw-r--r--  1 root root 3673 Oct  9 18:00 0012_000053_000224_0000
+-rw-r--r--  1 root root 3349 Oct  9 18:00 0012_000053_000225_0000
+-rw-r--r--  1 root root 3118 Oct  9 18:00 0012_000053_000226_0000
+
+
+
+[root@diglib2 vv]# ls -l spc | more
+total 1684
+-rw-r--r--  1 diglib diglib 3558 Feb 20  2008 0012_000053_000200_0000
+-rw-r--r--  1 diglib diglib 2951 Feb 20  2008 0012_000053_000201_0000
+-rw-r--r--  1 diglib diglib 3563 Feb 20  2008 0012_000053_000202_0000
+-rw-r--r--  1 diglib diglib 2810 Feb 20  2008 0012_000053_000203_0000
+-rw-r--r--  1 diglib diglib 3017 Feb 20  2008 0012_000053_000204_0000
+-rw-r--r--  1 diglib diglib 3892 Feb 20  2008 0012_000053_000205_0000
+-rw-r--r--  1 diglib diglib 3199 Feb 20  2008 0012_000053_000206_0000
+-rw-r--r--  1 diglib diglib 3668 Feb 20  2008 0012_000053_000207_0000
+-rw-r--r--  1 diglib diglib 3084 Feb 20  2008 0012_000053_000208_0000
+-rw-r--r--  1 diglib diglib 3201 Feb 20  2008 0012_000053_000209_0000
+-rw-r--r--  1 diglib diglib 2947 Feb 20  2008 0012_000053_000210_0000
+-rw-r--r--  1 diglib diglib 3064 Feb 20  2008 0012_000053_000211_0000
+-rw-r--r--  1 diglib diglib 3253 Feb 20  2008 0012_000053_000212_0000
+-rw-r--r--  1 diglib diglib 3036 Feb 20  2008 0012_000053_000213_0000
+-rw-r--r--  1 diglib diglib 3376 Feb 20  2008 0012_000053_000214_0000
+-rw-r--r--  1 diglib diglib 3655 Feb 20  2008 0012_000053_000215_0000
+-rw-r--r--  1 diglib diglib 3087 Feb 20  2008 0012_000053_000216_0000
+-rw-r--r--  1 diglib diglib 3060 Feb 20  2008 0012_000053_000217_0000
+-rw-r--r--  1 diglib diglib 3181 Feb 20  2008 0012_000053_000218_0000
+-rw-r--r--  1 diglib diglib 3285 Feb 20  2008 0012_000053_000219_0000
+-rw-r--r--  1 diglib diglib 3061 Feb 20  2008 0012_000053_000221_0000
+-rw-r--r--  1 diglib diglib 3946 Feb 20  2008 0012_000053_000222_0000
+-rw-r--r--  1 diglib diglib 3205 Feb 20  2008 0012_000053_000223_0000
+-rw-r--r--  1 diglib diglib 3673 Feb 20  2008 0012_000053_000224_0000
+-rw-r--r--  1 diglib diglib 3349 Feb 20  2008 0012_000053_000225_0000
+-rw-r--r--  1 diglib diglib 3118 Feb 20  2008 0012_000053_000226_0000
+-rw-r--r--  1 diglib diglib 4733 Feb 20  2008 0012_000053_000227_0000
+-rw-r--r--  1 diglib diglib 3323 Feb 20  2008 0012_000053_000229_0000
+-rw-r--r--  1 diglib diglib 2956 Feb 20  2008 0012_000053_000230_0000
+-rw-r--r--  1 diglib diglib 3294 Feb 20  2008 0012_000053_000231_0000
+
+
+ls /d1/workarea/dlxs/image/tel/multiples/done/mods/0014_000052_000204_0000.xml 
+ls /d1/workarea/dlxs/image/tel/multiples/done/modsbib/0014_000052_000204_0000.xml 
+vi /d1/workarea/dlxs/image/tel/multiples/done/modsbib/0014_000052_000204_0000
+
+ls /d1/workarea/dlxs/bib/mods/vv/xml/0066_000052_000201_0000.xml
+ls /d1/workarea/dlxs/image/tel/multiples/mods/0066_000052_000201_0000.xml
+
+
+0038_000050_000209_0000.xml from /d1/workarea/dlxs/image/tel/singles/done/mods/
+ls /d1/workarea/dlxs/image/tel/singles/done/mods/0038_000050_000209_0000.xml
+vi /d1/workarea/dlxs/image/tel/singles/done/modsbib/0038_000050_000209_0000
+
+0046_000050_000284_0000.xml from /d1/workarea/dlxs/image/tel/singles/mods/
+ls /d1/workarea/dlxs/image/tel/singles/mods/0046_000050_000284_0000.xml
+
+/bin/cp /d1/workarea/dlxs/image/tel/singles/modsbib/* xml/
+/bin/cp /d1/workarea/dlxs/image/tel/singles/done/modsbib/* xml/
+
+/bin/cp /d1/workarea/dlxs/image/tel/multiples/modsbib/* xml/
+/bin/cp /d1/workarea/dlxs/image/tel/multiples/done/modsbib/* xml/
+
+-------------------------------------------------------------------------------
+
+[root@diglib2 vv]# /bin/cp /d1/workarea/dlxs/image/tel/singles/mods/* xml/
+[root@diglib2 vv]# /bin/cp /d1/workarea/dlxs/image/tel/singles/done/mods/* xml/
+[root@diglib2 vv]# 
+[root@diglib2 vv]# /bin/cp /d1/workarea/dlxs/image/tel/multiples/mods/* xml/
+[root@diglib2 vv]# /bin/cp /d1/workarea/dlxs/image/tel/multiples/done/mods/* xml/
+
+
+-----------------get rid of newSubxml/0012*
+[root@diglib2 vv]# mkdir newSubxml_0012
+[root@diglib2 vv]# mv newSubxml/0012* newSubxml_0012/
+
+
+grep "<CBI>" newSubxml/*
+0015_000066_000200_0000
+
+grep -c "<RL" newSubxml/* | more
+
+0014_000050_000210_0000:1
+0014_000052_000200_0000:1
+
+cat openbib newSubxml/0015_000066_000200_0000 newSubxml/0014_000052_000200_0000 closebib > mni-vvs-mods.xml
+/bin/cp mini-vvs-mods.xml /d1/dlxs/prep/v/vvs-mods/  
+
+
+
+
+

@@ -1,0 +1,194 @@
+
+<html>
+<head>
+<title>
+page_reload
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+<script language=javascript src="./vv_regex.js"></script>
+
+<script>
+
+function xtag_data_display(tname){
+
+var t= new String(document.DF.chomp.value);
+var s= new String();
+
+//alert("vv_regex.js\ntag_data_display\ntext area data:\n"+t+"\ntname:\n"+tname);
+//alert("vv_regex.js\ntag_data_display\ntext area data:\n"+t);
+
+alert("before replace, t=\n"+t);//result: <mods:name>J Smith</mods:name>
+
+s=t.replace(/<[^>],*/gi,"");
+}// end function tag_data_display(tname)
+
+</script>
+
+
+</head>
+
+<script>
+//document.write('<body   bgcolor="'+parent.adb_background_color+'" >');
+document.write('<body   bgcolor="ddccbb" >');
+
+</script>
+
+<font face="arial" size="3">
+<center><font face="arial">
+
+<h2> <script> 
+//document.write(parent.adb_project_name); 
+document.write('w2009 standalone'); 
+</script>
+ Workbook Reload REGEX Page</h2>
+</center>
+
+<script>
+
+//global variables defined in vv_decompose_tags.js
+///var xmlAll = new String();
+///var xmlCursor = 0;
+///var localCursor = 0;
+
+
+function clearData() {
+document.forms[0].chomp.value = "";
+//parent.U.document.UF.reset();
+return;
+}
+
+
+
+</script>
+
+<form name="DF"  action="">
+
+
+<!---table border="1" cellpadding="2" cellspacing="0" width="98%" bgcolor="ddeeff"--->
+<table  class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="99aabb">
+
+<tr class="bgstandard" ><td colspan="3">
+w2009 v6 page_reload_REGEX.htm -- <a href="./RELOAD/mods_examples/0012_000033_000044_0000.xml.txt" target="_blank">text example</a><br>
+this page is at: <br><b>http://diglib.lib.utk.edu/~cdeane/w2009/MODS/training3v6/volvoices/v6/page_reload_REGEX.htm</b><br>
+The purpose of this page is to upload an existing XML file from C:\Scan or C:Reworked directory.
+<br>So the file can be updated using the Volunteer Voices Workbook.
+<p>Cut and paste the entire xml workbook file into the text area below.
+<p><font face="arial" size="2">
+<script>
+//var base = new String(parent.adb_admindb_data);
+var   base = new String("test");
+document.write("You have generated this workbook from Admin DB location: "+base);
+document.write("<br>Your filename for reload should be: "+base+"_0000.xml");
+document.write("<br>If not, return to the Admin DB and generate the workbook that matches your filename."); 
+//document.write("<br>parent.L.location.href="+parent.L.location.href);
+document.write("<br>page_lower.htm has a javascript src include for vv_decompose_tags.js");
+document.write("<br>vv_decompose_tags contains the function testData3(NUM)");
+document.write("<br>The bChomp button (Process Data in TextArea) calls testData3(1) in vv_decompose.js");
+document.write("<br>The bChompb button calls testData4(1) in vv_decompose.js");
+document.write("<p>&lt;mods:name>J Smith&lt;/mods:name>");
+document.write("<br>&lt;mods:name type=\"personal\" authority=\"ULAN\">J Smith&lt;/mods:name>");
+document.write("<br>&lt;mods:name type=\"personal\" authority=\"ULAN\">J >  Smith&lt;/mods:name>");
+document.write("<br>page_reload_REGEX.htm");
+</script>
+</font>
+</td></tr>
+
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+<tr class="bgstandard" ><td colspan="1" class="label12u">
+Reload<br>Data
+</td><td class="value10nou">
+<!-- textarea: document.DF.chomp.value<br-->
+<textarea name="chomp"
+rows="8" cols="80"></textarea>
+<br>
+
+&nbsp;</td>
+
+<td>&nbsp;</td>
+</tr>
+
+
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+
+
+
+
+
+<tr class="greenrow"><td colspan="3" ><font face="arial" size="3" color="ffffff">new buttons</font></td></tr>
+
+
+
+<tr class="bgstandard" ><td colspan="3" align="left">
+<input type="button" name ="Regex00" onclick='tag_data_display("mods:name");' value="regex00">&nbsp;
+<input type="button" name ="Regex01" onclick='tag_data_display_01("mods:name type=\"personal\"");' value="regex01">&nbsp;
+
+<input type="button" name ="Regex01a" onclick='tag_data_display_01("mods:name type=\"personal\" authority=\"ULAN\"");' value="regex01a">&nbsp;
+<input type="button" name ="Regex02" onclick='tag_data_display_02("mods:name type=\"personal\" authority=\"ULAN\"");' value="regex02">&nbsp;
+
+<input type="button" name ="Regex03" onclick='tag_data_display_03("mods:name type=\"personal\" authority=\"ULAN\"");' value="regex03">&nbsp;
+
+<input type="button" name ="Regex04" onclick='tag_data_display_04("mods:name type=\"personal\" authority=\"ULAN\"");' value="regex04">&nbsp;
+
+<input type="button" name ="Regex05" onclick='tag_data_display_05("mods:name type=\"personal\" authority=\"ULAN\"");' value="regex05">&nbsp;
+
+<input type="button" name ="Regex06" onclick='tag_data_display_06("mods:name type=\"personal\" authority=\"ULAN\"");' value="regex06">&nbsp;
+
+</td></tr>
+
+<tr class="bgstandard" ><td colspan="3" align="left">
+<!---
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+--->
+
+<input type="button" name ="bChomp" onclick="parent.L.testData3(1);" value="Process Data in TextArea">
+&nbsp;
+<input type="button" name ="bChompb" onclick="parent.L.testData4(1);" value="Process bChompb">
+&nbsp;
+&nbsp;
+<input type="button" name ="bClear" onclick="clearData();" value="Clear TextArea">
+&nbsp;
+&nbsp;
+&nbsp;
+
+
+</td></tr>
+
+
+<tr class="bgstandard" >
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+
+
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+
+
+</table>
+
+
+
+
+
+
+
+</form name="forms[0]">
+
+
+	
+
+
+</body>
+</html>
+

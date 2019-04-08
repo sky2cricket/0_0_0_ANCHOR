@@ -1,0 +1,53 @@
+<html>
+<head>
+<script language=javascript src="links/vv_functions_links.js"></script>
+<title>
+char_check
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+</head>
+<!-- body  class="bg_aabbcc" -->
+<body bgcolor="aabbcc">
+<font face="arial" size="3">
+<center><font face="arial">
+<script>//document.write(dlxs_vv_header);</script>
+<p>
+</center>
+<table  class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="99aabb">
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+<tr class="bgstandardwhite" ><td colspan="3" align="left" class="step">
+<pre>
+step_001.htm
+STEP ONE - Prepare files for file ingestion:
+a. Correct file format
+b. Convert out-of-range characters to ascii readable entities.
+
+The directory to work in will be inside
+store1/area2/volvoices/vvImport
+
+=======================================================
+STEP TWO - make sure the two servers ( diglib, diglib2 ) can communicate
+
+1.  logon to diglib2 as self
+2.  sudo su to be root
+3.  determine if virtual directory diglib/store1-area2 is mounted on diglib2
+
+	The virtual directory is at /d1/store1-area2
+	>> cd /d1
+	>> ls store1-area2
+
+	if not mounted, message:  
+	ls: store1-area2: No such file or directory
+
+	to mount store1-area2, run script
+	>> perl /d1/mnt-store1-area2
+
+=======================================================
+</pre>
+</font>
+</td></tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+</table>
+
+

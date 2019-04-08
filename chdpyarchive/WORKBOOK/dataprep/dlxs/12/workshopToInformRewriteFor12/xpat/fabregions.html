@@ -1,0 +1,69 @@
+<html>
+<head>
+<title>XPat Details</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="../styles.css" type="TEXT/CSS">
+</head>
+<body bgcolor="#FFFFFF" leftmargin="10" topmargin="10" marginwidth="10" marginheight="10" class="mainpalette">
+<h3 align="center">Fabricated regions (examples from Text Class)</h3>
+<div class="level1"> 
+  <p>When you use XPAT in combination with xmlrgn or sgmlrgn and a DTD, or multirgn 
+    and a tags file, you are identifying the elements and attributes in the DTD 
+    or tags file as &quot;regions,&quot; containers of content rather like fields 
+    in a database. These separate regions are built into the regions file (<em>collid.rgn</em>) 
+    and are identified in the data dictionary (<em>collid.dd</em>). This is what 
+    happens when you run sgmlrgn and/or xmlrgn. </p>
+  <p>However, sometimes the things you want to identify collectively aren't so 
+    handily identified as elements in the DTD. For example, suppose you want to 
+    search within specific features of a book, such as a chapter, that can occur 
+    at different heirarchical levels in different volumes. Also, the element isn't 
+    even called CHAPTER; it's a numbered division with a type attribute telling 
+    you that it's a chapter. </p>
+  <p>In order to fabricate a region containing all the divisions in books that 
+    are chapters, for example you can first find all the regions with a query: 
+  </p>
+  <pre class="unixcommand">(region DIV1 incl 
+(region &quot;DIV1-T&quot; incl &quot;type=chapter&quot;))+ (region DIV2 incl 
+(region &quot;DIV2-T&quot; incl &quot;type=chapter&quot;))</pre>
+  <p>You could do a more complex search based on treating attributes as regions 
+    instead of text strings, which is functionally the same:</p>
+  <pre class="unixcommand">(region DIV1 
+incl (region &quot;DIV1-T&quot; incl (region &quot;A-TYPE&quot; incl chapter)))+ 
+(region DIV2 incl (region &quot;DIV2-T&quot; incl (region &quot;A-TYPE&quot; incl 
+chapter)))</pre>
+  <p>In fact, you can even create a region </p>
+  <p>Finally, once you have a query that produces the results you want, create 
+    a file for export, export it, and sync it:</p>
+  <pre class="unixcommand">{exportfile &quot;$DLXSROOT/idx/c/collid/chapter.rgn&quot;} 
+export ~sync &quot;chapter&quot; </pre>
+  <p>Why fabricate regions? Why not just put these queries in the map file and 
+    call them chapters? While you could, it's probably worth your time to build 
+    these succinctly-named and precompiled regions; query errors are more easily 
+    identified in the index building than in the CGI, and XPAT searches can be 
+    simpler and quicker for terms within the prebuilt regions. </p>
+  <p>Fabricated regions within Text Class can be found in the <em>extra.srch</em> 
+    file for the sample collection at <tt class="unixcommand">$DLXSROOT/prep/s/sampletc/sampletc.extra.srch</tt> 
+    . As with any other elements used in the interface for a given collection, 
+    fabricated regions used must also be represented in the collmgr entry and 
+    the map file for that collection. </p>
+</div>
+<div class="level1">
+  <h3>Fabricated regions required in Text Class</h3>
+  <ul>
+    <li>main 
+    <li>mainheader
+    <li> maintitle
+    <li> div1head 
+  </ul>
+</div>
+<div class="level1">
+  <h3>Fabricated regions commonly found in Text Class</h3>
+  <ul>
+    <li>mainauthor
+    <li> maindate page (for collections with page images) 
+    <li>id (for collections with a number of different IDNO elements)
+    <li> divxhead (for collections nested below DIV1) 
+  </ul>
+</div>
+</body>
+</html>

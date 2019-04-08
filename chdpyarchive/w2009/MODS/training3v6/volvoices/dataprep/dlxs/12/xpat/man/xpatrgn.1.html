@@ -1,0 +1,248 @@
+
+
+<html><head><title>Manpage of XPATRGN</title>
+<link href="../../dlxsdocs.css" rel="stylesheet" type="text/css"> </head><body>
+<h1>XPATRGN</h1>
+Section: User Commands  (1)<br>Updated: November 2000<br><a href="#index">Index</a>
+<a href="http://localhost/cgi-bin/man/man2html">Return to Main Contents</a><hr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="lbAB">&nbsp;</a>
+<h2>NAME</h2>
+
+<b>xpatrgn</b> - XPAT region file builder
+<a name="lbAC">&nbsp;</a>
+<h2>SYNOPSIS</h2>
+
+<b>xpatrgn</b> [ <b>-v</b> ] [ <b>-d</b> <i>region_description</i> ]
+[ <b>-r</b> <i>region_name</i> ] [ <b>-p</b> <i>patterns_file</i> ]
+<b>-o</b> <i>region_file</i>
+<b>-D</b> <i>data_dictionary</i>
+<a name="lbAD">&nbsp;</a>
+<h2>DESCRIPTION</h2>
+
+<b>xpatrgn</b> builds the <i>region_file</i> for the database specified
+by <i>data_dictionary</i>, using the patterns specified in the <i>patterns-file</i>.
+<b>xpatrgn</b> also updates the `Region' section for <i>region_name</i> in the
+<i>data_dictionary</i>.  If <i>region_name</i> is not specified on the command
+line, then <b>xpatrgn</b> uses the prefix of the <i>region_file</i> as the region name.
+If the <b>-p</b> option is not specified, <b>xpatrgn</b> expects the region
+patterns on its standard input (e.g., from previous programs
+in a pipeline).
+After the region is built, it is referred to in <b>xpat</b> as <i>region_name</i>.
+Refer to the <b><a href="http://localhost/cgi-bin/man/man2html?5+regions">regions</a></b>(5) man page for more information on the format of
+the <i>region_file</i> that <b>xpatrgn</b> produces.
+<p>
+
+The region patterns in the <i>patterns_file</i>
+consist of pairs of starting and ending strings, one pair per line.
+<b>xpatrgn</b> will search for occurrences of these string pairs in the text 
+and record their offsets in <i>region_file</i>.
+Once a starting string has been found, <b>xpatrgn</b>
+will search for the first occurrence of the corresponding ending string in
+order to end the region.  Nested occurrences are ignored.
+Regions begin on the first character of the starting string and end on the
+last character of the ending string.  These positions may be modified
+by adding or subtracting an integer value, as shown in the example below.
+If the ending string of any pair is not given in the input, <b>xpatrgn</b> will
+begin regions on occurrences of the starting string, and will end the
+regions on the character
+before the first character of the next region.
+If the end of the text is reached in the middle of a region,
+the program will record the location of the last character in the text 
+as the end position of the last region.
+<p>
+
+<b>Note</b>: this algorithm is different than that used by <b>xpat</b>
+to make regions during a search session.  Consider the text,
+<p>
+
+
+<pre>
+    ( a b ( c d ) ( d e f
+</pre>
+
+
+<p>
+
+and the region pattern,
+<p>
+
+
+<pre>
+     &quot;(&quot; &quot;)&quot;
+</pre>
+
+
+(i.e., build regions between the `(' and `)' characters).
+<b>xpatrgn</b> would build the regions as `( a b ( c d )' and
+` ( d e f'.  <b>xpat</b>, on the other hand, would find all
+the matches which could start a region and all the matches
+which could end a region.  It would then take the nearest pairs.  
+For the above text, <b>xpat</b> would record the single region,
+` ( c d )'.  It would <i>not</i> record a region for
+either `( a b ', or `( d e f'.
+<p>
+
+The special character sequences `\^' and `\$'
+will match the first and last characters in the text, respectively.
+<a name="lbAE">&nbsp;</a>
+<h2>OPTIONS</h2>
+
+<dl compact>
+<dt><b>-v</b><dd>
+Specify verbose mode.  This option tells <b>xpatrgn</b> to print progress
+messages to the standard output, as it builds the index.  By default,
+<b>xpatrgn</b> works silently.
+<dt><b>-d</b> <i>description_text</i><dd>
+Specify the region description.  Each `Region' section in the Data Dictionary
+contains a `Desc' field.  This field contains
+a description of the region (which is used in Help
+screens in user interfaces, among other things).  <b>xpatrgn</b> will place the
+<i>description_text</i> in the `Desc' for the region <b>xpatrgn</b> is
+building.
+Note that if this text consists of more than one word (the normal case),
+it should be surrounded by quotes.
+<dt><b>-r</b> <i>region_name</i><dd>
+Specify the region name.  By default, <b>xpatrgn</b> uses the prefix of the
+<i>region_file</i> as the region name.  This option is useful if
+the region name and the region filename are different.  Note
+that if <i>region_name</i> contains spaces, you should surround
+it with quotes.
+<dt><b>-p</b> <i>patterns_file</i><dd>
+Specify the region patterns file.  By default, <b>xpatrgn</b> expect the patterns
+on the standard input.
+</dl>
+<a name="lbAF">&nbsp;</a>
+<h2>EXAMPLES</h2>
+
+The input pattern,
+<p>
+
+<pre>
+      &quot;\n&quot;
+</pre>
+
+<p>
+
+creates regions that are located between newline characters.
+Note that these regions will start at each newline character and
+there will be no region created for the first line
+(the text before the first newline).
+<p>
+
+The input pattern,
+<p>
+
+<pre>
+      &quot;\^&quot;
+      &quot;\n&quot; + 1
+</pre>
+
+<p>
+
+creates a region for each line in the file, starting on the first
+character in each line.  This pattern will also include
+the first line in the file.
+<p>
+
+The input pattern,
+<p>
+
+<pre>
+     &quot;&lt;Headline&gt;&quot; +10 &quot;&lt;/Headline&gt;&quot; -11
+</pre>
+
+<p>
+
+creates regions between `&lt;Headline&gt;' and `&lt;/Headline&gt;'
+tags, except that the actual regions begin on the first letter
+after the `&lt;Headline&gt;' tag, and end on the last letter before
+the `&lt;/Headline&gt;' tag.  This is different from the actions
+of <b>multirgn</b>, which includes the tags.
+<p>
+
+The command,
+<p>
+
+<pre>
+     xpatrgn -p my_patrns.ptn -o Patrn1.rgn -D text.dd
+</pre>
+
+<p>
+
+builds a region for the database specified by the Data Dictionary, `text.dd'.
+It uses the patterns specified in `my_ptrns.ptn' and puts
+the index in the file `Patrn1.rgn'.  It names the region,
+`Patrn1'.
+<p>
+
+The command,
+<p>
+
+<pre>
+     xpatrgn -v -d &quot;This is my pattern&quot; -r &quot;My Pattern&quot; -p my_patrns.ptn
+     -o MyPat.rgn -D data.dd
+</pre>
+
+<p>
+
+builds a region for the database specified by the Data Dictionary, `data.dd'.
+<b>xpatrgn</b> will print progress messages as it builds the index.  It will
+record the description, `This is my pattern' in the Data Dictionary entry
+for the region it builds.  It will name the region, `My Pattern'.
+It will get the patterns from the file, `my_patrns.ptn'.  Finally,
+it will place the index in the file, `MyPat.rgn'.
+<p>
+
+The command,
+<p>
+
+<pre>
+     ptrn_prog | xpatrgn -o Patrn1.rgn -D text.dd
+</pre>
+
+<p>
+
+builds a region called `Patrn1' for the database specified by
+`text.dd'.  It will put the index in the file, `Patrn1.rgn'.
+<a name="lbAG">&nbsp;</a>
+<h2>SEE ALSO</h2>
+
+<b><a href="http://localhost/cgi-bin/man/man2html?1+xpat">xpat</a></b>(1), <b><a href="http://localhost/cgi-bin/man/man2html?1+multirgn">multirgn</a></b>(1), <b><a href="http://localhost/cgi-bin/man/man2html?5+regions">regions</a></b>(5), <b><a href="http://localhost/cgi-bin/man/man2html?5+data_dict">data_dict</a></b>(5)
+<p>
+
+<hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">NAME</a><dd>
+<dt><a href="#lbAC">SYNOPSIS</a><dd>
+<dt><a href="#lbAD">DESCRIPTION</a><dd>
+<dt><a href="#lbAE">OPTIONS</a><dd>
+<dt><a href="#lbAF">EXAMPLES</a><dd>
+<dt><a href="#lbAG">SEE ALSO</a><dd>
+</dl>
+<hr>
+This document was created by
+<a href="http://localhost/cgi-bin/man/man2html">man2html</a>,
+using the manual pages.<br>
+Time: 18:03:38 GMT, March 26, 2001
+</body>
+</html>

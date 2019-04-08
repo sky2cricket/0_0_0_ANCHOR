@@ -1,0 +1,1367 @@
+<html>
+<head>
+<title>page_lower.htm</title>
+<script language="javascript">
+//page_lower.htm loaded once, never reloaded
+//the arrays on this page are CONSTANTS
+
+//The purpose of this page is to simplify code maintainence.
+//All of the popups from vv_popupLists.htm have select boxes.
+//These are built from predefined arrays by the functions
+//          getSelectList
+//          getSelectList2
+
+//The code/desc values from these select boxes are
+//populated into text inputs on workbook pages.
+//Only the code values are saved to the final xml output.
+
+//In the reload process, the file vv_deocompose_tags.js 
+//derives the desc values from the code values using the function
+//          getDesc
+
+
+//If any array value has to be changed or added or deleted, it is done here once.
+//This will take care of changes for popupLists and for reload.
+
+
+///========================================================================
+///The dataTuple object is the fundamental unit of all arrays on this page.
+///code is a string
+///desc is a string
+function dataTuple ( code, desc ) {
+	this.code = code;
+	this.desc = desc;
+	}
+
+///========================================================================
+///get the desc for the code
+///aTupleArray - array of dataTuple objects
+function getDesc ( aTupleArray, code ){
+
+var j =0;
+for ( j=0; j<aTupleArray.length; j++) {
+	if (aTupleArray[j].code == code ) {
+		return(aTupleArray[j].desc);
+		}
+	}//end for
+//if no match is found, return empty string
+return("");
+}//end function getDesc( aTupleArray, code )
+
+///========================================================================
+///get the code for the desc
+///aTupleArray - array of dataTuple objects
+function getCode ( aTupleArray, desc ){
+
+var j =0;
+for ( j=0; j<aTupleArray.length; j++) {
+	if (aTupleArray[j].desc == desc ) {
+		return(aTupleArray[j].code);
+		}
+	}//end for
+//if no match is found, return empty string
+return("");
+}//end function getCode( aTupleArray, code )
+
+///========================================================================
+///get the county code from the desc and parent.adb_instcounty
+///aTupleArray - array of dataTuple objects
+///This is used on page 6
+function getCountyCode ( aTupleArray, adb_instcounty ){
+
+
+var CountyName = new String(adb_instcounty);
+var countyDesc = new String();
+var j =0;
+for ( j=0; j<aTupleArray.length; j++) {
+	countyDesc = aTupleArray[j].desc;
+	if (countyDesc.indexOf(CountyName) > -1 ) {
+		return(aTupleArray[j].code);
+		}
+	}//end for
+//if no match is found, return empty string
+return("");
+}//end function getCountyCode( aTupleArray, adb_instcounty )
+
+///========================================================================
+function getSelectList ( aTupleArray, indexOfSelected ) {
+
+var n = new Number(indexOfSelected);
+var r = new String(" ");
+var s = new String("");
+
+for (j=0; j<aTupleArray.length; j++ ) {
+	if ( j != n ) {
+	s = '<option value="'+aTupleArray[j].code+'">'+aTupleArray[j].desc+'</option>\r\n';
+	}else{
+	s = '<option value="'+aTupleArray[j].code+'" selected>'+aTupleArray[j].desc+'</option>\r\n';
+	}
+	r += s;
+}//end for
+
+return(r);
+}//end getSelectList
+
+
+///========================================================================
+function getSelectList2 ( aTupleArray, strSelected ) {
+
+var item = new String(strSelected);
+var r = new String(" ");
+var s = new String("");
+
+for (j=0; j<aTupleArray.length; j++ ) {
+	if ( aTupleArray[j].desc != item  ) { 
+		s = '<option value="'+aTupleArray[j].code+'">'+aTupleArray[j].desc+'</option>\r\n';
+	}else{
+		s = '<option value="'+aTupleArray[j].code+'" selected>'+aTupleArray[j].desc+'</option>\r\n';
+	}
+	r += s;
+}//end for
+
+return(r);
+}//end getSelectList2
+
+///========================================================================
+
+
+///========================================================================
+///just to make parsing easier
+function getNameData(str) {
+
+var s = new String(str);
+if (s.length > 0) {
+    s = s.substring(s.indexOf(">"));
+    s = s.substring(1);
+    s = s.substring(0, s.indexOf("<"));
+    }
+return(s);
+}
+
+///========================================================================
+///just to make parsing easier
+function getDateQualifier(str) {
+
+var s = new String(str);
+if (s.length == 0) return ("");
+if (s.indexOf('qualifier="')== -1) return("none");
+    s = s.substring(s.indexOf('qualifier="'));
+    s = s.substring(11);
+    s = s.substring(0, s.indexOf('"'));
+return(s);
+}
+
+///========================================================================
+///just to make parsing easier
+function getAuthority(str) {
+
+var s = new String(str);
+if (s.length > 0) {
+    s = s.substring(s.indexOf('authority="'));
+    s = s.substring(11);
+    s = s.substring(0, s.indexOf('"'));
+    }
+return(s);
+}
+
+///========================================================================
+///just to make parsing easier
+function getType(str) {
+
+var s = new String(str);
+if (s.length > 0) {
+    s = s.substring(s.indexOf('type="'));
+    s = s.substring(6);
+    s = s.substring(0, s.indexOf('"'));
+    }
+return(s);
+}
+
+///========================================================================
+function process_title(str){
+var s = new String(str);
+s = s.substring(s.indexOf("mods:title>"));
+s = getNameData(s);
+parent.U.document.UF.title.value=s;
+return;
+}
+///========================================================================
+function process_name(str,N){
+
+var s = new String(str);
+var radioStop = new String("parent.U.document.UF.creator_radio_0"+N+"[0].checked=true;");
+//alert("radioStop=\n\n"+radioStop);
+
+//this can only happen for name_02 and name_03
+    if ( s.length == 0 ) {
+	eval(radioStop);
+	return;
+	}
+
+    s = s.replace(/<mods:/g,":::<mods:"); 
+var a = new Array();
+    a = s.split(":::");
+
+//alert("N="+N+"\n\nstr=\n"+str);
+
+var b1 = new String(a[1]);//entity id required
+var b2 = new String(a[2]);//lastname required
+var b3 = new String();//given name
+var b4 = new String();//vital dates
+var b5 = new String();//name description
+var b6 = new String();//role required for name_01
+
+
+for ( i=0;i<a.length;i++) {
+	//alert("a["+i+"]="+a[i]);
+	if ( a[i].indexOf('type="given"')>-1 )      b3 = a[i];
+	if ( a[i].indexOf('type="date"')>-1)        b4 = a[i];
+	if ( a[i].indexOf('mods:description') >-1)  b5 = a[i];
+	if ( a[i].indexOf('authority="marcrelator"')>-1) b6 = a[i];
+	}
+
+
+//everything but the name-type radio buttons are amenable to eval 
+//because the name-type arrays are not same for name_01, name_02, name_03
+
+		if (b1.indexOf(authority='"LCNAF"') > -1 ) {
+			eval('parent.U.document.UF.name_authority_0'+N+'.value = "LCNAF"');
+			eval('parent.U.document.UF.name_authority_0'+N+'_radio[1].checked= true');
+		}else if(b1.indexOf(authority='"ULAN"') > -1 ) {
+			eval('parent.U.document.UF.name_authority_0'+N+'.value = "ULAN"');
+			eval('parent.U.document.UF.name_authority_0'+N+'_radio[2].checked= true');
+		}else {
+			eval('parent.U.document.UF.name_authority_01.value = "NONE"');
+			eval('parent.U.document.UF.name_authority_0'+N+'_radio[0].checked= true');
+		}
+				
+
+		if (b1.indexOf('type="personal"')> -1 ) {
+			///given name, vital dates only allowed for personal name
+			if (b3.length>0){
+				b3 = getNameData(b3);
+				var ng_01 = new Array(); 
+				ng_01 = b3.split(" ");
+        			if (ng_01[0] != "undefined" ) {eval( 'parent.U.document.UF.creator_firstname_0'+N+'.value  = ng_01[0];'); }
+        			if (ng_01[1] != "undefined" ) {eval( 'parent.U.document.UF.creator_middlename_0'+N+'.value = ng_01[1];'); }
+        			}
+			if (b4.length>0){
+				b4 = getNameData(b4);
+        			var db_01 = new Array; 
+				db_01 = b4.split("-");
+        			if (db_01[0] != "undefined" ) { eval('parent.U.document.UF.creator_dob_0'+N+'.value = db_01[0];'); }
+        			if (db_01[1] != "undefined" ) { eval('parent.U.document.UF.creator_dod_0'+N+'.value = db_01[1];'); }
+        			}
+		}
+
+		eval('parent.U.document.UF.creator_lastname_0'+N+'.value = getNameData(b2);');
+		eval('parent.U.document.UF.creator_description_0'+N+'.value = getNameData(b5);');
+		eval('parent.U.document.UF.creator_role_0'+N+'.value = getNameData(b6);');
+
+
+//alert("process_name("+str+","+N+")" +"\n b1 = "+b1 +"\n b2 = "+b2 +"\n b3 = "+b3 +"\n b4 = "+b4 +"\n b5 = "+b5 +"\n b6 = "+b6);
+
+switch (N) {
+	case 1://name_01
+				
+		if (b1.indexOf('type="personal"')> -1 ) {
+			parent.U.document.UF.creator_radio_01[0].checked = true;
+		}else if (b1.indexOf('type="corporate"')>-1 ) {
+			parent.U.document.UF.creator_radio_01[1].checked = true;
+		}else if (b2.indexOf('>unknown<')>-1 ) {
+			parent.U.document.UF.creator_radio_01[2].checked = true;
+		}else if (b2.indexOf('>anonymous<')>-1 ) {
+			parent.U.document.UF.creator_radio_01[2].checked = true;
+		}
+		
+	break;
+	case 2://name_02
+				
+		if (b1.indexOf('type="personal"')> -1 ) {
+			parent.U.document.UF.creator_radio_02[1].checked = true;
+		}else if (b1.indexOf('type="corporate"')>-1 ) {
+			parent.U.document.UF.creator_radio_02[2].checked = true;
+		}
+
+	break;
+	case 3://name_03
+		if (b1.indexOf('type="personal"')> -1 ) {
+			parent.U.document.UF.creator_radio_03[1].checked = true;
+		}else if (b1.indexOf('type="corporate"')>-1 ) {
+			parent.U.document.UF.creator_radio_03[2].checked = true;
+		}
+				
+	break;
+}//end switch
+
+return;
+}// function process_name(N)
+
+///========================================================================
+function process_originInfo(str) {
+
+//alert("process_originInfo str:\n"+str);
+var s = new String(str);
+    if ( s.length == 0 ) { return (""); }
+    s = s.replace(/<mods:/g,":::<mods:"); 
+var a = new Array();
+    a = s.split(":::");
+
+
+
+var b1 = new String(a[1]);//entity id required
+var b2 = new String(""); //dateCreated
+var b3 = new String(""); //dateRange begin
+var b4 = new String(""); //dateRange end
+var b5 = new String(""); //place of origin
+var b6 = new String(""); //dateIssued
+var b7 = new String(""); //publisher
+
+for ( i=0;i<a.length;i++) {
+	//alert("a["+i+"]="+a[i]);
+	if ( a[i].indexOf('mods:dateCreated')>-1 && a[i].indexOf('point=') == -1 )          b2 = a[i];
+	if ( a[i].indexOf('mods:dateCreated')>-1 && a[i].indexOf('point="start"') > -1 )    b3 = a[i];
+	if ( a[i].indexOf('mods:dateCreated')>-1 && a[i].indexOf('point="end"') > -1 )      b4 = a[i];
+	if ( a[i].indexOf('mods:placeTerm')>-1  )                                           b5 = a[i];
+	if ( a[i].indexOf('mods:dateIssued')>-1 )                                           b6 = a[i];
+	if ( a[i].indexOf('mods:publisher')>-1  )         				    b7 = a[i];
+	}
+
+
+//alert("process_name("+str+")" +"\n b1 = "+b1 +"\n b2 = "+b2 +"\n b3 = "+b3 +"\n b4 = "+b4 +"\n b5 = "+b5 +"\n b6 = "+b6+"\nb7="+b7);
+
+parent.U.document.UF.date_created.value = getNameData(b2);
+parent.U.document.UF.date_createdQ.value = getDateQualifier(b2);
+parent.U.document.UF.date_created_begin.value = getNameData(b3);
+parent.U.document.UF.date_created_beginQ.value = getDateQualifier(b3);
+parent.U.document.UF.date_created_end.value = getNameData(b4);
+parent.U.document.UF.date_created_endQ.value = getDateQualifier(b4);
+parent.U.document.UF.place_of_origin.value = getNameData(b5)
+parent.U.document.UF.date_issued.value = getNameData(b6);
+parent.U.document.UF.date_issuedQ.value = getDateQualifier(b6);
+
+var pub = getNameData(b7);
+if ( pub.length > 0 ) {//there is data for publisher name, addr
+	var pubIndex = pub.indexOf(",");//first comma, ignore others
+	if ( pubIndex > -1 ) {
+		parent.U.document.UF.publisher_name.value = pub.substring(0,pubIndex);
+        	pubIndex+=2;
+		parent.U.document.UF.publisher_address.value = pub.substring(pubIndex);
+	}else {
+		parent.U.document.UF.publisher_name.value = pub;
+	}
+	parent.U.document.UF.publisher_name_radio[0].checked = true;
+}else{//no publisher name, set radio button
+	parent.U.document.UF.publisher_name_radio[1].checked = true;
+}
+
+///what to do
+///create an array a from ::: split like in name
+///create string vars like b1,b2,etc like in name
+///divide and conquer
+
+///why rewrite decompose? 
+///this code is based on mods elements and can be used as little units
+///for  next workbook
+
+///this is a design strategy thing
+
+return;
+
+}//end function process_originInfo
+
+
+///========================================================================
+function process_language(str) {
+
+//alert("process_language str:\n"+str);
+var s = new String(str);
+    if ( s.length == 0 ) { return (""); }
+
+    s = s.replace(/<mods:/g,":::<mods:"); 
+var a = new Array();
+    a = s.split(":::");
+
+var b1 = new String(a[1]);//entity id required
+var b2 = new String(a[2]); //mods:languageTerm
+
+//alert("process_language(str)\nstr=\n"+str+"\nb1="+b1+"\nb2="+b2)
+
+parent.U.document.UF.language.value= getNameData(b2);
+parent.U.document.UF.language_display.value = getDesc(aLanguage,parent.U.document.UF.language.value);
+
+}//end function process_language
+
+///========================================================================
+function process_typeOfResource(str,N) {
+
+//alert("process_typeOfResource str:\n"+str+"\nN="+N);
+var s = new String(str);
+if ( s.length == 0 ) return;
+
+eval( 'parent.U.document.UF.type_of_resource_0'+N+'.value = "'+getNameData(s)+'";');
+
+return;
+
+}//end function process_typeOfResource
+
+///========================================================================
+function process_genre(str) {
+
+//alert("process_genre str:\n"+str);
+var s = new String(str);
+if ( s.length == 0 ) return;
+
+parent.U.document.UF.mods_genre_authority.value = getAuthority(s);
+parent.U.document.UF.mods_genre.value = getNameData(s);
+
+switch(parent.U.document.UF.mods_genre_authority.value){
+	case "aat": 
+		parent.U.document.UF.mods_genre_radio[0].checked = true;
+	break;
+	case "nmc":
+		parent.U.document.UF.mods_genre_radio[1].checked = true;
+	break;
+	case "marcgt":
+		parent.U.document.UF.mods_genre_radio[2].checked = true;
+	break;
+}//end switch
+return;
+}//end function process_genre
+
+
+///========================================================================
+function process_physicalDescription(str) {
+
+//alert("process_physicalDescription str:\n"+str);
+var s = new String(str);
+
+    s = s.replace(/<mods:/g,":::<mods:"); 
+var a = new Array();
+    a = s.split(":::");
+
+var b1 = new String(a[1]);//entity id required
+var b2 = new String('');//mods:form type="technique" museum technique
+var b3 = new String('');//mods:form type="medium" museum medium
+var b4 = new String('');//mods:digital origin -fixed -do nothing
+var b5 = new String('');//mods:internetMediaType -fixed -do nothing
+var b6 = new String('');//extent
+
+for(i=2;i<a.length;i++) {
+
+if (a[i].indexOf('type="technique"')> -1 )      b2=a[i];
+if (a[i].indexOf('type="medium"')> -1 )         b3=a[i];
+if (a[i].indexOf('mods:digitalOrigin')> -1 )    b4=a[i];
+if (a[i].indexOf('mods:internetMediaType')>-1 ) b5=a[i];
+if (a[i].indexOf('mods:extent')>-1)             b6=a[i];
+}
+
+parent.U.document.UF.museum_form_type_technique.value =getNameData(b2);
+parent.U.document.UF.museum_form_type_medium.value    =getNameData(b3);
+
+b6 = getNameData(b6);
+if (b6.length>0) {
+     var db_01 = new Array; 
+     db_01 = b6.split(";");
+     if (db_01[0] != "undefined" ) { parent.U.document.UF.extent_pages.value = db_01[0]; }
+     if (db_01[1] != "undefined" ) { parent.U.document.UF.extent_number_of_objects.value = db_01[1]; }
+     if (db_01[2] != "undefined" ) { parent.U.document.UF.extent_dimensions.value = db_01[2]; }
+    }
+
+
+return;
+}//end function process_physicalDescription
+
+///========================================================================
+function process_abstract(str) {
+
+//alert("process_abstract str:\n"+str);
+var s = new String(str);
+    if ( s.length == 0 ) { return (""); }
+
+parent.U.document.UF.abstract.value= getNameData(s);
+
+}//end function process_abstract
+
+
+///========================================================================
+function process_subject_lcsh(str) {
+
+//alert("process_subject_lcsh str:\n"+str);
+var s = new String(str);
+
+    s = s.replace(/<mods:/g,":::<mods:"); 
+var a = new Array();
+    a = s.split(":::");
+
+
+//var b1 = new String(a[1]);//entity id required
+
+var btop = new Array();
+var bgeo = new Array();
+var bnam = new Array();
+var btem = new Array();
+
+btop[0] = new String('');//topic 1
+btop[1] = new String('');//topic 2
+btop[2] = new String('');//topic 3
+bgeo[0] = new String('');//geo 1
+bgeo[1] = new String('');//geo 2
+bnam[0] = new String('');//mods:name - wrapper
+bnam[1] = new String('');//name 1
+bnam[2] = new String('');//mods:name - wrapper
+bnam[3] = new String('');//name 2
+btem[0] = new String('');//temporal 1
+btem[1] = new String('');//temporal 2
+
+var btopIndex=0;
+var bgeoIndex=0;
+var bnamIndex=0;
+var btemIndex=0;
+
+
+for(i=0;i<a.length;i++) {
+//alert('a['+i+']='+a[i]);
+
+if ( a[i].indexOf('mods:topic')>-1)      btop[btopIndex++]=a[i];
+if ( a[i].indexOf('mods:geographic')>-1) bgeo[bgeoIndex++]=a[i];
+if ( a[i].indexOf('mods:name')>-1)       bnam[bnamIndex++]=a[i];
+if ( a[i].indexOf('mods:temporal')>-1)   btem[btemIndex++]=a[i];
+}
+
+parent.U.document.UF.subject_topic_lcsh_01.value = getNameData(btop[0]);
+parent.U.document.UF.subject_topic_lcsh_02.value = getNameData(btop[1]);
+parent.U.document.UF.subject_topic_lcsh_03.value = getNameData(btop[2]);
+
+
+parent.U.document.UF.subject_name_lcsh_01.value = getNameData(bnam[1]);
+parent.U.document.UF.subject_name_lcsh_02.value = getNameData(bnam[3]);
+
+
+parent.U.document.UF.subject_geographic_lcsh_01.value = getNameData(bgeo[0]);
+parent.U.document.UF.subject_geographic_lcsh_02.value = getNameData(bgeo[1]);
+
+parent.U.document.UF.subject_temporal_lcsh_01.value = getNameData(btem[0]);
+parent.U.document.UF.subject_temporal_lcsh_02.value = getNameData(btem[1]);
+
+return;
+}//end function process_subject_lcsh(str) 
+
+
+///========================================================================
+function process_subject_tgm(str) {
+
+//alert("process_subject_tgm str:\n"+str);
+var s = new String(str);
+
+    s = s.replace(/<mods:/g,":::<mods:"); 
+var a = new Array();
+    a = s.split(":::");
+
+var b1 = new String(a[1]);//entity id required
+var b2 = new String('');//tgm topic 1
+var b3 = new String('');//tgm topic 2
+var b4 = new String('');//tgm topic 3
+
+for(i=0;i<a.length;i++) {
+//alert('a['+i+']='+a[i]);
+
+}
+
+parent.U.document.UF.subject_topic_tgm_01.value = getNameData(a[2]);
+parent.U.document.UF.subject_topic_tgm_02.value = getNameData(a[3]);
+parent.U.document.UF.subject_topic_tgm_03.value = getNameData(a[4]);
+
+
+}//end function process_subject_tgm(str) 
+
+///========================================================================
+function process_subject_vv(str) {
+
+
+//alert("process_subject_vv str:\n"+str);
+var s = new String(str);
+
+    s = s.replace(/<mods:/g,":::<mods:"); 
+var a = new Array();
+    a = s.split(":::");
+
+//var b1 = new String(a[1]);//entity id required
+
+var btopB = new Array();
+var btopD = new Array();
+var bgeo = new Array();
+var btem = new Array();
+btopB[0] = new String('');//topic B1
+btopB[1] = new String('');//topic B2
+btopD[0] = new String('');//topic D1
+btopD[1] = new String('');//topic D2
+btopD[2] = new String('');//topic D3
+bgeo[0] = new String('');//geo 1
+bgeo[1] = new String('');//geo 2
+btem[0] = new String('');//temporal 1
+//btem[1] = new String('');//temporal 2
+var btopBIndex=0;
+var btopDIndex=0;
+var bgeoIndex=0;
+var btemIndex=0;
+
+for(i=0;i<a.length;i++) {
+//alert('a['+i+']='+a[i]);
+if ( a[i].indexOf('mods:temporal')>-1 ) btem[btemIndex++]=a[i];
+if ( a[i].indexOf('mods:topic')>-1 && a[i].indexOf("D.") == -1) btopB[btopBIndex++] = a[i];
+if ( a[i].indexOf('mods:topic')>-1 && a[i].indexOf("D.")  > -1) btopD[btopDIndex++] = a[i];
+if ( a[i].indexOf('mods:geographic')>-1 ) bgeo[bgeoIndex++]=a[i];
+}
+
+
+//fixT0, fixB0, fixB1 take care of A<==>B problem in early data
+var fixT0 = new String(getNameData(btem[0]));
+    //if ( fixT0.indexOf ("B.")> -1 ) { fixT0 = "A"+fixT0.substring(1); }
+    fixT0 = "A"+fixT0.substring(1); 
+parent.U.document.UF.subject_temporal_vv_01.value = fixT0;
+parent.U.document.UF.subject_temporal_vv_01_display.value = getDesc(aVVtemporal,parent.U.document.UF.subject_temporal_vv_01.value);
+
+var fixB0 = new String(getNameData(btopB[0]));
+    //if ( fixB0.indexOf ("A.")> -1 ) { fixB0 = "B"+fixB0.substring(1); }
+    fixB0 = "B"+fixB0.substring(1); 
+parent.U.document.UF.subject_topic_vv_01.value = fixB0;
+parent.U.document.UF.subject_topic_vv_01_display.value = getDesc(aVVtopic,parent.U.document.UF.subject_topic_vv_01.value);
+
+var fixB1 = new String(getNameData(btopB[1]));
+    //if ( fixB1.indexOf ("A.")> -1 ) { fixB1 = "B"+fixB1.substring(1); }
+    fixB1 = "B"+fixB1.substring(1); 
+parent.U.document.UF.subject_topic_vv_02.value = fixB1; 
+parent.U.document.UF.subject_topic_vv_02_display.value = getDesc(aVVtopic,parent.U.document.UF.subject_topic_vv_02.value);
+
+
+parent.U.document.UF.subject_topic_vv_03.value = getNameData(btopD[0]);
+parent.U.document.UF.subject_topic_vv_03_display.value = getDesc(aVVbroadtopic,parent.U.document.UF.subject_topic_vv_03.value);
+
+parent.U.document.UF.subject_topic_vv_04.value = getNameData(btopD[1]);
+parent.U.document.UF.subject_topic_vv_04_display.value = getDesc(aVVbroadtopic,parent.U.document.UF.subject_topic_vv_04.value);
+
+parent.U.document.UF.subject_topic_vv_05.value = getNameData(btopD[2]);
+parent.U.document.UF.subject_topic_vv_05_display.value = "eee";
+parent.U.document.UF.subject_topic_vv_05_display.value = getDesc(aVVbroadtopic,parent.U.document.UF.subject_topic_vv_05.value);
+
+
+parent.U.document.UF.subject_geographic_vv_01.value = getNameData(bgeo[0]);
+parent.U.document.UF.subject_geographic_vv_01_display.value = getDesc(aVVcounty,parent.U.document.UF.subject_geographic_vv_01.value);
+
+parent.U.document.UF.subject_geographic_vv_02.value = getNameData(bgeo[1]);
+parent.U.document.UF.subject_geographic_vv_02_display.value = getDesc(aVVcounty,parent.U.document.UF.subject_geographic_vv_02.value);
+
+
+
+return;
+
+}//end function process_subject_vv(str) 
+
+///========================================================================
+function process_subject_spc(str) {
+
+//alert("process_subject_spc str:\n"+str);
+var s = new String(str);
+
+    s = s.replace(/<mods:/g,":::<mods:"); 
+var a = new Array();
+    a = s.split(":::");
+
+var b = new Array();
+//var b1 = new String(a[1]);//entity id required
+b[0] = new String('');//spc topic 1
+b[1] = new String('');//spc topic 2
+b[2] = new String('');//spc topic 3
+var bIndex =0;
+
+for(i=0;i<a.length;i++) {
+//alert('a['+i+']='+a[i]);
+if (a[i].indexOf('mods:topic')>-1) b[bIndex++]=a[i];
+}
+
+parent.U.document.UF.subject_topic_spc_01.value = getNameData(b[0]);
+parent.U.document.UF.subject_topic_spc_01_display.value = getDesc(aSPCtopic,parent.U.document.UF.subject_topic_spc_01.value);
+parent.U.document.UF.subject_topic_spc_02.value = getNameData(b[1]);
+parent.U.document.UF.subject_topic_spc_02_display.value = getDesc(aSPCtopic,parent.U.document.UF.subject_topic_spc_02.value);
+parent.U.document.UF.subject_topic_spc_03.value = getNameData(b[2]);
+parent.U.document.UF.subject_topic_spc_03_display.value = getDesc(aSPCtopic,parent.U.document.UF.subject_topic_spc_03.value);
+
+return;
+}//end function process_subject_spc(str) 
+
+
+///========================================================================
+function process_subject_none(str) {
+
+//alert("process_subject_none str:\n"+str);
+var s = new String(str);
+
+    s = s.replace(/<mods:/g,":::<mods:"); 
+var a = new Array();
+    a = s.split(":::");
+
+var b = new Array();
+//var b1 = new String(a[1]);//entity id required
+b[0] = new String('');// key topic 1
+b[1] = new String('');// key name 
+b[2] = new String('');// key geo
+b[3] = new String('');// key temporal 
+
+for(i=0;i<a.length;i++) {
+//alert('a['+i+']='+a[i]);
+if ( a[i].indexOf('mods:topic')      > -1 ) b[0] = a[i];
+if ( a[i].indexOf('mods:namePart')   > -1 ) b[1] = a[i];
+if ( a[i].indexOf('mods:geographic') > -1 ) b[2] = a[i];
+if ( a[i].indexOf('mods:temporal')   > -1 ) b[3] = a[i];
+}
+
+parent.U.document.UF.subject_topic_none_01_desc.value    = getNameData(b[0]);
+parent.U.document.UF.subject_name_none_01_desc.value     = getNameData(b[1]);
+parent.U.document.UF.subject_geographic_none_01.value    = getNameData(b[2]);
+parent.U.document.UF.subject_temporal_none_01_desc.value = getNameData(b[3]);
+return;
+
+}//end function process_subject_none(str) 
+
+
+///========================================================================
+function process_location(str) {
+
+//alert("process_location str:\n"+str);
+var s = new String(str);
+
+    s = s.replace(/<mods:/g,":::<mods:"); 
+var a = new Array();
+    a = s.split(":::");
+
+var b1 = new String(''); // repository
+var b2 = new String(''); // city
+var b3 = new String(''); // state
+var b4 = new String(''); // county
+var b5 = new String(''); // collection name
+var b6 = new String(''); // collection_id_number 
+var NT = new String(''); // collection_id_number_type
+var b7 = new String(''); // detail 
+//var b8 = new String(''); // url
+
+
+
+for(i=0;i<a.length;i++) {
+//alert('a['+i+']='+a[i]);
+if ( a[i].indexOf('type="repository"')> -1 ) b1 = a[i];
+if ( a[i].indexOf('type="city"')      > -1 ) b2 = a[i];
+if ( a[i].indexOf('type="state"')     > -1 ) b3 = a[i];
+if ( a[i].indexOf('type="county"')    > -1 ) b4 = a[i];     
+if ( a[i].indexOf('type="collection"')> -1 ) b5 = a[i];
+if ( a[i].indexOf('Number"')          > -1 ) b6 = a[i];
+if ( a[i].indexOf('type="detail"')    > -1 ) b7 = a[i];
+//if ( a[i].indexOf('mods:url')         > -1 ) b8 = a[i];//not passed
+}
+
+parent.U.document.UF.physical_location_repository.value     = getNameData(b1);
+parent.U.document.UF.physical_location_city.value           = getNameData(b2);
+parent.U.document.UF.physical_location_state.value          = getNameData(b3);
+parent.U.document.UF.physical_location_county.value         = getNameData(b4);
+parent.U.document.UF.physical_location_county_display.value = getDesc(aVVcounty,parent.U.document.UF.physical_location_county.value);
+parent.U.document.UF.collection_id_name.value               = getNameData(b5);
+parent.U.document.UF.collection_id_number.value             = getNameData(b6);
+NT = getType(b6);
+var ii = getCode(aCollection_id_num_type,NT);
+//alert("collection_id_number_type="+NT+"\nii="+ii);
+parent.U.document.UF.collection_id_num_type[ii].selected = true;
+parent.U.document.UF.physical_location_detail.value         = getNameData(b7);
+	
+return;
+}//end function process_location(str)
+
+
+///========================================================================
+function process_note(str) {
+
+//alert("process_note str:\n"+str);
+var s = new String(str);
+    if ( s.length == 0 ) { return (""); }
+
+parent.U.document.UF.museum_credit_line.value= getNameData(s);
+
+return;
+
+}//end function process_note
+
+
+///========================================================================
+function process_recordInfo(str) {
+
+//alert("process_recordInfo str:\n"+str);
+var s = new String(str);
+
+    s = s.replace(/<mods:/g,":::<mods:"); 
+var a = new Array();
+    a = s.split(":::");
+
+var b1 = new String(''); // record_content_source (contribution institution)
+var b2 = new String(''); // record_creation_date
+
+for(i=0;i<a.length;i++) {
+alert('a['+i+']='+a[i]);
+if ( a[i].indexOf('mods:recordContentSource')> -1 ) b1 = a[i];
+if ( a[i].indexOf('mods:recordCreationDate')      > -1 ) b2 = a[i];
+}
+
+parent.U.document.UF.record_content_source.value = getNameData(b1);
+parent.U.document.UF.record_creation_date.value  = getNameData(b2);
+
+return;
+}///end function process_recordInfo(str)
+
+
+
+///========================================================================
+///return array index of selected radio button
+function getIndexOfRadioButtonChecked(aTuppleArray,strDisplayVal) {
+
+var v = new String(strDisplayVal);
+var c = 0;  //which button is checked.
+
+for (j=0; j<aTuppleArray.length; j++ ) {
+	if ( aTuppleArray[j].desc == v ) return (j);
+	}
+return(c);
+}//end function getIndexOfRadioButtonChecked
+
+
+///========================================================================
+///========================================================================
+///========================================================================
+
+
+aVVtopic = new Array(//create the aVVtopic array of dataTuple objects
+ new dataTuple("0", "No value selected ccc")
+,new dataTuple("B.1","1. Frontier migration/experiments in representative democracy, encounters with Native Americans")
+,new dataTuple("B.2","2. Jacksonian democracy and Tennessee\'s leadership role in the Early Republic")  
+,new dataTuple("B.3","3. Anti-democracy impulses: Slavery, free people of color, and Removal of Native Americans ")
+,new dataTuple("B.4","4. Debate over slavery, the Secession Crisis, and the Civil War: Tennessee as a uniquely divided border state")
+,new dataTuple("B.5","5. Reconstruction and the freedmen: appearance of hitherto undocumented people in legal records; the fastening of sharecropping on the countryside")
+,new dataTuple("B.6","6. Taxation and the narrowing of the franchise: \"Jim Crow\" laws and the poll tax")
+,new dataTuple("B.7","7. Utopian Impulses of the 19th century such as Nashoba, Ruskin, and Rugby ")     
+,new dataTuple("B.8","8. New South period and the industrialization of Tennessee")
+,new dataTuple("B.9","9. Women\'s Suffrage and Tennessee\'s pivotal role in passage of 19th Amendment") 
+,new dataTuple("B.10","10. Boss Crump, prohibition, and machine politics in Tennessee")
+,new dataTuple("B.11","11. Scopes trial, rise of fundamentalism, and public education")
+,new dataTuple("B.12","12. Tennessee Valley Authority and \"grass roots democracy\"")
+,new dataTuple("B.13","13. Oak Ridge and WWII effort in Tennessee")
+,new dataTuple("B.14","14. Civil Rights movement in Tennessee")
+,new dataTuple("B.15","15. Modern times in Tennessee")
+)//end aVVtopic
+
+      
+
+aVVbroadtopic = new Array(//create the aVVbroadtopic array of dataTuple objects
+ new dataTuple('D.1','1. African-Americans')
+,new dataTuple('D.2','2. Architecture')
+,new dataTuple('D.3','3. Arts and Literature')
+,new dataTuple('D.4','4. Children and Childhood')
+,new dataTuple('D.5','5. Civil and Human Rights')
+,new dataTuple('D.6','6. Education')
+,new dataTuple('D.7','7. Family Life and Gender Relations')
+,new dataTuple('D.8','8. Farming and Agriculture')
+,new dataTuple('D.9','9. Frontier Settlement and Migration')
+,new dataTuple('D.10','10. Government and Politics')
+,new dataTuple('D.11','11. Health and Medicine')
+,new dataTuple('D.12','12. Immigrants and Immigration') 
+,new dataTuple('D.13','13. Law and Legal Documents')
+,new dataTuple('D.14','14. Music and Performing Arts')
+,new dataTuple('D.15','15. Native Americans')
+,new dataTuple('D.16','16. Nature and the Environment')
+,new dataTuple('D.17','17. Popular Culture and Folklife')
+,new dataTuple('D.18','18. Religion')
+,new dataTuple('D.19','19. Science and Technology')
+,new dataTuple('D.20','20. Social Reform')
+,new dataTuple('D.21','21. Sports and Recreation')
+,new dataTuple('D.22','22. Trade, Business and Industry')
+,new dataTuple('D.23','23. Transportation and Internal Improvements')
+,new dataTuple('D.24','24. Wars and Military')
+,new dataTuple('D.25','25. Women')
+)//end aVVbroadtopic
+
+aVVcounty = new Array(//create the aVVcounty array of dataTuple objects
+ new dataTuple('0','None Selected')
+,new dataTuple('C.1','1. Anderson County')
+,new dataTuple('C.2','2. Bedford County')
+,new dataTuple('C.3','3. Benton County')
+,new dataTuple('C.4','4. Bledsoe County')
+,new dataTuple('C.5','5. Blount County')
+,new dataTuple('C.6','6. Bradley County')
+,new dataTuple('C.7','7. Campbell County')
+,new dataTuple('C.8','8. Cannon County')
+,new dataTuple('C.9','9. Carroll County')
+,new dataTuple('C.10','10. Carter County')
+,new dataTuple('C.11','11. Cheatham County')
+,new dataTuple('C.12','12. Chester County')
+,new dataTuple('C.13','13. Claiborne County')
+,new dataTuple('C.14','14. Clay County')
+,new dataTuple('C.15','15. Cocke County')
+,new dataTuple('C.16','16. Coffee County')
+,new dataTuple('C.17','17. Crockett County')
+,new dataTuple('C.18','18. Cumberland County')
+,new dataTuple('C.19','19. Davidson County')
+,new dataTuple('C.20','20. Decatur County')
+,new dataTuple('C.21','21. Dekalb County')
+,new dataTuple('C.22','22. Dickson County')
+,new dataTuple('C.23','23. Dyer County')
+,new dataTuple('C.24','24. Fayette County')
+,new dataTuple('C.25','25. Fentress County')
+,new dataTuple('C.26','26. Franklin County')
+,new dataTuple('C.27','27. Gibson County')
+,new dataTuple('C.28','28. Giles County')
+,new dataTuple('C.29','29. Grainger County')
+,new dataTuple('C.30','30. Greene County')
+,new dataTuple('C.31','31. Grundy County')
+,new dataTuple('C.32','32. Hamblen County')
+,new dataTuple('C.33','33. Hamilton County')
+,new dataTuple('C.34','34. Hancock County')
+,new dataTuple('C.35','35. Hardeman County')
+,new dataTuple('C.36','36. Hardin County')
+,new dataTuple('C.37','37. Hawkins County')
+,new dataTuple('C.38','38. Haywood County')
+,new dataTuple('C.39','39. Henderson County')
+,new dataTuple('C.40','40. Henry County')
+,new dataTuple('C.41','41. Hickman County')
+,new dataTuple('C.42','42. Houston County')
+,new dataTuple('C.43','43. Humphreys County')
+,new dataTuple('C.44','44. Jackson County')
+,new dataTuple('C.45','45. Jefferson County')
+,new dataTuple('C.46','46. Johnson County')
+,new dataTuple('C.47','47. Knox County')
+,new dataTuple('C.48','48. Lake County')
+,new dataTuple('C.49','49. Lauderdale County')
+,new dataTuple('C.50','50. Lawrence County')
+,new dataTuple('C.51','51. Lewis County')
+,new dataTuple('C.52','52. Lincoln County')
+,new dataTuple('C.53','53. Loudon County')
+,new dataTuple('C.54','54. Macon County')
+,new dataTuple('C.55','55. Madison County')
+,new dataTuple('C.56','56. Marion County')
+,new dataTuple('C.57','57. Marshall County')
+,new dataTuple('C.58','58. Maury County')
+,new dataTuple('C.59','59. McMinn County')
+,new dataTuple('C.60','60. McNairy County')
+,new dataTuple('C.61','61. Meigs County')
+,new dataTuple('C.62','62. Monroe County')
+,new dataTuple('C.63','63. Montgomery County')
+,new dataTuple('C.64','64. Moore County')
+,new dataTuple('C.65','65. Morgan County')
+,new dataTuple('C.66','66. Obion County')
+,new dataTuple('C.67','67. Overton County')
+,new dataTuple('C.68','68. Perry County')
+,new dataTuple('C.69','69. Pickett County')
+,new dataTuple('C.70','70. Polk County')
+,new dataTuple('C.71','71. Putnam County')
+,new dataTuple('C.72','72. Rhea County')
+,new dataTuple('C.73','73. Roane County')
+,new dataTuple('C.74','74. Robertson County')
+,new dataTuple('C.75','75. Rutherford County')
+,new dataTuple('C.76','76. Scott County')
+,new dataTuple('C.77','77. Sequatchie County')
+,new dataTuple('C.78','78. Sevier County')
+,new dataTuple('C.79','79. Shelby County')
+,new dataTuple('C.80','80. Smith County')
+,new dataTuple('C.81','81. Stewart County')
+,new dataTuple('C.82','82. Sullivan County')
+,new dataTuple('C.83','83. Sumner County')
+,new dataTuple('C.84','84. Tipton County')
+,new dataTuple('C.85','85. Trousdale County')
+,new dataTuple('C.86','86. Unicoi County')
+,new dataTuple('C.87','87. Union County')
+,new dataTuple('C.88','88. Van Buren County')
+,new dataTuple('C.89','89. Warren County')
+,new dataTuple('C.90','90. Washington County')
+,new dataTuple('C.91','91. Wayne County')
+,new dataTuple('C.92','92. Weakley County')
+,new dataTuple('C.93','93. White County')
+,new dataTuple('C.94','94. Williamson County')
+,new dataTuple('C.95','95. Wilson County')
+)//end aVVcounty
+
+
+aVVtemporal = new Array(//create the aVVtemporal array of dataTuple objects
+ new dataTuple('0','None Selected')
+,new dataTuple('A.1','1. Three Worlds Meet(Beginnings to 1660)')
+,new dataTuple('A.2','2. Colonization and Settlement(1585-1763)')
+,new dataTuple('A.3','3. Revolution and the New Nation (1754-1820)')
+,new dataTuple('A.4','4. Expansion and Reform (1801-1877)')
+,new dataTuple('A.5','5. Civil War and Reconstruction (1850-1877)')
+,new dataTuple('A.6','6. The Development of the Industrial United States(1870-1900)')
+,new dataTuple('A.7','7. The Emergence of Modern America(1890-1930)')
+,new dataTuple('A.8','8. The Great Depression and World War II(1929-1970)')
+,new dataTuple('A.9','9. Postwar United States (1945-1970)')
+,new dataTuple('A.10','10. Contemporary United States (1968-Present )')
+)//end aVVtemporal
+
+
+aSPCtopic = new Array(//create the aSPCtopic array of dataTuple objects
+ new dataTuple('B.1','1. African-Americans')
+,new dataTuple('B.2','2. Education')
+,new dataTuple('B.3','3. Government and Politics')
+,new dataTuple('B.4','4. Knoxville')
+,new dataTuple('B.5','5. Native Americans')
+,new dataTuple('B.6','6. Oak Ridge')
+,new dataTuple('B.7','7. Religion')
+,new dataTuple('B.8','8. Smoky Mountains')
+,new dataTuple('B.9','9. Tennessee Authors')
+,new dataTuple('B.10','10. TVA')
+,new dataTuple('B.11','11. University Archives')
+,new dataTuple('B.12','12. Women')
+)//end aSPCtopic
+
+
+aLanguage = new Array(//create the aLanguage array of dataTuple objects
+ new dataTuple('chr','Cherokee')
+,new dataTuple('chi','Chinese')
+,new dataTuple('eng','English')
+,new dataTuple('fra','French')
+,new dataTuple('ger','German')
+,new dataTuple('gre','Greek')
+,new dataTuple('heb','Hebrew')
+,new dataTuple('ita','Italian')
+,new dataTuple('jpn','Japanese')
+,new dataTuple('lat','Latin')
+,new dataTuple('por','Portuguese')
+,new dataTuple('rus','Russian')
+,new dataTuple('spa','Spanish')
+,new dataTuple('yid','Yiddish')
+,new dataTuple('zxx','No linguistic content')
+)//end aLanguage
+
+
+
+aGenre = new Array(//create the aGenre array of dataTuple objects
+ new dataTuple('abstract or summary','abstract or summary')
+,new dataTuple('art original','art original')
+,new dataTuple('art reproduction','art reproduction')
+,new dataTuple('atlas','atlas')
+,new dataTuple('autobiography','autobiography')
+,new dataTuple('bibliography','bibliography')
+,new dataTuple('biography','biography')
+,new dataTuple('book','book')
+,new dataTuple('catalog','catalog')
+,new dataTuple('chart','chart')
+,new dataTuple('comic strip','comic strip')
+,new dataTuple('conference publication','conference publication')
+,new dataTuple('database','database')
+,new dataTuple('dictionary','dictionary')
+,new dataTuple('diorama','diorama')
+,new dataTuple('directory','directory')
+,new dataTuple('discography','discography')
+,new dataTuple('drama','drama')
+,new dataTuple('encyclopedia','encyclopedia')
+,new dataTuple('essay','essay')
+,new dataTuple('festschrift','festschrift')
+,new dataTuple('fiction','fiction')
+,new dataTuple('filmography','filmography')
+,new dataTuple('filmstrip','filmstrip')
+,new dataTuple('flash card','flash card')
+,new dataTuple('folktale','folktale')
+,new dataTuple('font','font')
+,new dataTuple('game','game')
+,new dataTuple('government publication','government publication')
+,new dataTuple('graphic','graphic')
+,new dataTuple('globe','globe')
+,new dataTuple('handbook','handbook')
+,new dataTuple('history','history')
+,new dataTuple('humor, satire','humor, satire')
+,new dataTuple('index','index')
+,new dataTuple('instruction','instruction')
+,new dataTuple('interview','interview')
+,new dataTuple('kit','kit')
+,new dataTuple('language instruction','language instruction')
+,new dataTuple('law report or digest','law report or digest')
+,new dataTuple('legal article','legal article')
+,new dataTuple('legal case and case notes','legal case and case notes')
+,new dataTuple('legislation','legislation')
+,new dataTuple('letter','letter')
+,new dataTuple('loose-leaf','loose-leaf')
+,new dataTuple('map','map')
+,new dataTuple('memoir','memoir')
+,new dataTuple('microscope slide','microscope slide')
+,new dataTuple('model','model')
+,new dataTuple('motion picture','motion picture')
+,new dataTuple('multivolume monograph','multivolume monograph')
+,new dataTuple('newspaper','newspaper')
+,new dataTuple('novel','novel')
+,new dataTuple('numeric data','numeric data')
+,new dataTuple('online system or service','online system or service')
+,new dataTuple('patent','patent')
+,new dataTuple('periodical','periodical')
+,new dataTuple('picture','picture')
+,new dataTuple('poetry','poetry')
+,new dataTuple('programmed text','programmed text')
+,new dataTuple('realia','realia')
+,new dataTuple('rehearsal','rehearsal')
+,new dataTuple('remote sensing image','remote sensing image')
+,new dataTuple('reporting','reporting')
+,new dataTuple('review','review')
+,new dataTuple('series','series')
+,new dataTuple('short story','short story')
+,new dataTuple('slide','slide')
+,new dataTuple('sound','sound')
+,new dataTuple('speech','speech')
+,new dataTuple('statistics','statistics')
+,new dataTuple('survey of literature','survey of literature')
+,new dataTuple('technical drawing','technical drawing')
+,new dataTuple('technical report','technical report')
+,new dataTuple('theses','theses')
+,new dataTuple('toy','toy')
+,new dataTuple('transparency','transparency')
+,new dataTuple('treaty','treaty')
+,new dataTuple('videorecording','videorecording')
+,new dataTuple('web site','web site')
+)//end aGenre
+
+
+
+aRole = new Array(//create the aRole array of dataTuple objects
+ new dataTuple('Actor','Actor')
+,new dataTuple('Adapter','Adapter')
+,new dataTuple('Author of afterword, colophon, etc.','Author of afterword, colophon, etc.')
+,new dataTuple('Annotator','Annotator')
+,new dataTuple('Bibliographic antecedent','Bibliographic antecedent')
+,new dataTuple('Applicant','Applicant')
+,new dataTuple('Author in quotations or text abstracts','Author in quotations or text abstracts')
+,new dataTuple('Architect','Architect')
+,new dataTuple('Arranger','Arranger')
+,new dataTuple('Artist','Artist')
+,new dataTuple('Assignee','Assignee')
+,new dataTuple('Associated name','Associated name')
+,new dataTuple('Attributed name','Attributed name')
+,new dataTuple('Auctioneer','Auctioneer')
+,new dataTuple('Author of dialog','Author of dialog')
+,new dataTuple('Author of introduction','Author of introduction')
+,new dataTuple('Author of screenplay','Author of screenplay')
+,new dataTuple('Author','Author')
+,new dataTuple('Binding designer','Binding designer')
+,new dataTuple('Bookjacket designer','Bookjacket designer')
+,new dataTuple('Book designer','Book designer')
+,new dataTuple('Book producer','Book producer')
+,new dataTuple('Binder','Binder')
+,new dataTuple('Bookplate designer','Bookplate designer')
+,new dataTuple('Bookseller','Bookseller')
+,new dataTuple('Conceptor','Conceptor')
+,new dataTuple('Choreographer','Choreographer')
+,new dataTuple('Collaborator','Collaborator')
+,new dataTuple('Client','Client')
+,new dataTuple('Calligrapher','Calligrapher')
+,new dataTuple('Collotyper','Collotyper')
+,new dataTuple('Commentator','Commentator')
+,new dataTuple('Composer','Composer')
+,new dataTuple('Compositor','Compositor')
+,new dataTuple('Conductor','Conductor')
+,new dataTuple('Censor','Censor')
+,new dataTuple('Contestant-appellee','Contestant-appellee')
+,new dataTuple('Collector','Collector')
+,new dataTuple('Compiler','Compiler')
+,new dataTuple('Contestant','Contestant')
+,new dataTuple('Contestant-appellant','Contestant-appellant')
+,new dataTuple('Copyright claimant','Copyright claimant')
+,new dataTuple('Complainant-appellee','Complainant-appellee')
+,new dataTuple('Copyright holder','Copyright holder')
+,new dataTuple('Complainant','Complainant')
+,new dataTuple('Complainant-appellant','Complainant-appellant')
+,new dataTuple('Creator','Creator')
+,new dataTuple('Correspondent','Correspondent')
+,new dataTuple('Corrector','Corrector')
+,new dataTuple('Consultant','Consultant')
+,new dataTuple('Consultant to a project','Consultant to a project')
+,new dataTuple('Costume designer','Costume designer')
+,new dataTuple('Contributor','Contributor')
+,new dataTuple('Contestee-appellee','Contestee-appellee')
+,new dataTuple('Cartographer','Cartographer')
+,new dataTuple('Contractor','Contractor')
+,new dataTuple('Contestee','Contestee')
+,new dataTuple('Contestee-appellant','Contestee-appellant')
+,new dataTuple('Curator','Curator')
+,new dataTuple('Commentator for written text','Commentator for written text')
+,new dataTuple('Defendant','Defendant')
+,new dataTuple('Defendant-appellee','Defendant-appellee')
+,new dataTuple('Defendant-appellant','Defendant-appellant')
+,new dataTuple('Degree grantor','Degree grantor')
+,new dataTuple('Dissertant','Dissertant')
+,new dataTuple('Delineator','Delineator')
+,new dataTuple('Dancer','Dancer')
+,new dataTuple('Donor','Donor')
+,new dataTuple('Depositor','Depositor')
+,new dataTuple('Draftsman','Draftsman')
+,new dataTuple('Director','Director')
+,new dataTuple('Designer','Designer')
+,new dataTuple('Distributor','Distributor')
+,new dataTuple('Dedicatee','Dedicatee')
+,new dataTuple('Dedicator','Dedicator')
+,new dataTuple('Dubious author','Dubious author')
+,new dataTuple('Editor','Editor')
+,new dataTuple('Engraver','Engraver')
+,new dataTuple('Electrotyper','Electrotyper')
+,new dataTuple('Engineer','Engineer')
+,new dataTuple('Etcher','Etcher')
+,new dataTuple('Expert','Expert')
+,new dataTuple('Facsimilist','Facsimilist')
+,new dataTuple('Film editor','Film editor')
+,new dataTuple('Former owner','Former owner')
+,new dataTuple('Funder','Funder')
+,new dataTuple('Forger','Forger')
+,new dataTuple('Graphic technician','Graphic technician')
+,new dataTuple('Honoree','Honoree')
+,new dataTuple('Host','Host')
+,new dataTuple('Illustrator','Illustrator')
+,new dataTuple('Illuminator','Illuminator')
+,new dataTuple('Inscriber','Inscriber')
+,new dataTuple('Inventor','Inventor')
+,new dataTuple('Instrumentalist','Instrumentalist')
+,new dataTuple('Interviewee','Interviewee')
+,new dataTuple('Interviewer','Interviewer')
+,new dataTuple('Librettist','Librettist')
+,new dataTuple('Libelee-appellee','Libelee-appellee')
+,new dataTuple('Libelee','Libelee')
+,new dataTuple('Lender','Lender')
+,new dataTuple('Libelee-appellant','Libelee-appellant')
+,new dataTuple('Libelant-appellee','Libelant-appellee')
+,new dataTuple('Libelant','Libelant')
+,new dataTuple('Libelant-appellant','Libelant-appellant')
+,new dataTuple('Landscape architect','Landscape architect')
+,new dataTuple('Licensee','Licensee')
+,new dataTuple('Licensor','Licensor')
+,new dataTuple('Lithographer','Lithographer')
+,new dataTuple('Lyricist','Lyricist')
+,new dataTuple('Metadata contact','Metadata contact')
+,new dataTuple('Moderator','Moderator')
+,new dataTuple('Monitor','Monitor')
+,new dataTuple('Metal-engraver','Metal-engraver')
+,new dataTuple('Musician','Musician')
+,new dataTuple('Narrator','Narrator')
+,new dataTuple('Opponent','Opponent')
+,new dataTuple('Originator','Originator')
+,new dataTuple('Organizer of meeting','Organizer of meeting')
+,new dataTuple('Other','Other')
+,new dataTuple('Owner','Owner')
+,new dataTuple('Patron','Patron')
+,new dataTuple('Publishing director','Publishing director')
+,new dataTuple('Publisher','Publisher')
+,new dataTuple('Proofreader','Proofreader')
+,new dataTuple('Photographer','Photographer')
+,new dataTuple('Platemaker','Platemaker')
+,new dataTuple('Printer of plates','Printer of plates')
+,new dataTuple('Papermaker','Papermaker')
+,new dataTuple('Process contact','Process contact')
+,new dataTuple('Production personnel','Production personnel')
+,new dataTuple('Performer','Performer')
+,new dataTuple('Programmer','Programmer')
+,new dataTuple('Producer','Producer')
+,new dataTuple('Printer','Printer')
+,new dataTuple('Patent applicant','Patent applicant')
+,new dataTuple('Plaintiff-appellee','Plaintiff-appellee')
+,new dataTuple('Plaintiff','Plaintiff')
+,new dataTuple('Patent holder','Patent holder')
+,new dataTuple('Plaintiff-appellant','Plaintiff-appellant')
+,new dataTuple('Rubricator','Rubricator')
+,new dataTuple('Recording engineer','Recording engineer')
+,new dataTuple('Recipient','Recipient')
+,new dataTuple('Redactor','Redactor')
+,new dataTuple('Renderer','Renderer')
+,new dataTuple('Researcher','Researcher')
+,new dataTuple('Reviewer','Reviewer')
+,new dataTuple('Respondent-appellee','Respondent-appellee')
+,new dataTuple('Respondent','Respondent')
+,new dataTuple('Respondent-appellant','Respondent-appellant')
+,new dataTuple('Research team head','Research team head')
+,new dataTuple('Research team member','Research team member')
+,new dataTuple('Scientific advisor','Scientific advisor')
+,new dataTuple('Scenarist','Scenarist')
+,new dataTuple('Scribe','Scribe')
+,new dataTuple('Sculptor','Sculptor')
+,new dataTuple('Secretary','Secretary')
+,new dataTuple('Signer','Signer')
+,new dataTuple('Singer','Singer')
+,new dataTuple('Speaker','Speaker')
+,new dataTuple('Sponsor','Sponsor')
+,new dataTuple('Surveyor','Surveyor')
+,new dataTuple('Standards body','Standards body')
+,new dataTuple('Stereotyper','Stereotyper')
+,new dataTuple('Thesis advisor','Thesis advisor')
+,new dataTuple('Transcriber','Transcriber')
+,new dataTuple('Translator','Translator')
+,new dataTuple('Type designer','Type designer')
+,new dataTuple('Typographer','Typographer')
+,new dataTuple('Vocalist','Vocalist')
+,new dataTuple('Writer of accompanying material','Writer of accompanying material')
+,new dataTuple('Woodcutter','Woodcutter')
+,new dataTuple('Wood-engraver','Wood-engraver')
+,new dataTuple('Witness','Witness')
+)//end aRole
+
+
+aResource = new Array(//create the aResource array of dataTuple objects
+ new dataTuple('text','text')
+,new dataTuple('cartographic','cartographic')
+,new dataTuple('notated music','notated music')
+,new dataTuple('sound recording','sound recording')
+,new dataTuple('sound recording-musical','sound recording-musical')
+,new dataTuple('sound recording-nonmusical','sound recording-nonmusical')
+,new dataTuple('still image','still image')
+,new dataTuple('moving image','moving image')
+,new dataTuple('three dimensional object','three dimensional object')
+,new dataTuple('software, multimedia','software, multimedia')
+)//end aResource
+
+aNameAuthority = new Array (//create the aNameAuthority array of dataTuple objects
+ new dataTuple(0,"NONE")
+,new dataTuple(1,"LCNAF")
+,new dataTuple(2,"ULAN")
+);
+
+
+aCollection_id_num_type = new Array (//create the aCollection_id_num_type array
+ new dataTuple(0,"none selected")
+,new dataTuple(1,"manuscriptNumber")
+,new dataTuple(2,"archiveNumber")
+,new dataTuple(3,"callNumber")
+,new dataTuple(4,"accessionNumber")
+,new dataTuple(5,"otherIdentificationNumber")
+);
+
+
+/*
+aCreatorRadio_01 = new Array (//create the aCreatorRadio_01 array of dataTuple objects
+ new dataTuple(0,"personal")
+,new dataTuple(1,"corporate")
+,new dataTuple(2,"unknown")
+,new dataTuple(3,"anonymous")
+);
+
+aCreatorRadio = new Array (//create the aCreatorRadio array for name_02 and name _03
+ new dataTuple(0,"none")
+,new dataTuple(1,"personal")
+,new dataTuple(2,"corporate")
+);
+
+*/
+
+
+var allMarcChoices = new String();
+    allMarcChoices ="|abstract or summary|art original|art reproduction|atlas|autobiography|bibliography|biography|book|catalog|chart|comic strip|conference publication|database|dictionary|diorama|directory|discography|drama|encyclopedia|essay|festschrift|abstract or summary|art original|art reproduction|atlas|autobiography|bibliography|biography|book|catalog|chart|comic strip|conference publication|database|dictionary|diorama|directory|discography|drama|encyclopedia|essay|festschrift|fiction|filmography|filmstrip|flash card|folktale|font|game|government publication|graphic|globe|handbook|history |humor, satire|index |instruction|interview|kit|language instruction|law report or digest|legal article|legal case and case notes|legislation|letter|loose-leaf|map|memoir|microscope slide |model|motion picture|multivolume monograph|newspaper|novel|numeric data|online system or service|patent|periodical|picture |poetry|programmed text|realia|rehearsal|remote sensing image|reporting|review|series|short story|slide|sound|speech|statistics|survey of literature|technical drawing|technical report|theses|toy|transparency|treaty|videorecording|web site|";
+
+
+///=========================reload vs. original================
+///When Process Data in Text Area Page on Reload Page is clicked,
+///RELOAD is set to true;
+var RELOAD = false;
+
+</script>
+</head>
+<body bgcolor="ffddee">
+<font face="arial" size="1">
+<script>
+document.write("document.location.href="+document.location.href);
+</script>
+</font>
+</body>
+</html>

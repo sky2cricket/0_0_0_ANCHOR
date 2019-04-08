@@ -1,0 +1,726 @@
+<html>
+<head>
+<title>Converting Collections to  Text Class</title>
+    
+
+
+
+
+
+
+<link href="../../dlxsdocs.css" rel="stylesheet" type="text/css"> </head>         <body>
+<div class="pageTitle">
+    Converting collections to Text Class
+  </div>
+    
+      <h1><a name="TOP">Overview:</a></h1>
+      <p>The task is to conform an SGML-encoded collection to the Text Class DTD while preserving and enhancing the structure of the source files as much as possible.</p>
+      <table border="1" cellpadding="6" width="90%">
+        <tbody>
+          <tr>
+            <td>
+          <table width="100%"><tbody>
+                  <tr>
+                    <td><b><a href="#STEP1">Step 1</a></b></td>
+                    <td><b>Convert non-XML-compliant character entities using <tt>sgml2xml.pl</tt></b></td>
+                  </tr>
+                  <tr>
+                    <td><b><a href="#STEP2">Step 2</a></b></td>
+                    <td>
+                  <b>Convert source files to XML using <tt>sx</tt>
+                  </b>
+                </td>
+                  </tr>
+                  <tr>
+                    <td>
+                  <b>
+                    <a href="#STEP3A">Step 3a</a>
+                  </b>
+                </td>
+                    <td>
+                  <b>Generate a quick-and-dirty overview of element use in source files
+using <tt>xpatgen.pl</tt>
+                  </b>
+                </td>
+                  </tr>
+                  <tr>
+                    <td>
+                  <b>
+                    <a href="#STEP3B">Step 3b</a>
+                  </b>
+                </td>
+                    <td>
+                  <b>Get a summary of elements and corresponding attributes in vendor DTD using <tt>dtdparse.pl</tt>
+                  </b>
+                </td>
+                  </tr>
+                  <tr>
+                    <td>
+                  <b>
+                    <a href="#STEP4">Step 4</a>
+                  </b>
+                </td>
+                    <td>
+                  <b>Develop XSLT script for conforming source files to Text Class DTD</b>
+                </td>
+                  </tr>
+                  <tr>
+                    <td>
+                  <b>
+                    <a href="#STEP5">Step 5</a>
+                  </b>
+                </td>
+                    <td>
+                  <b>Transform source files</b>
+                </td>
+                  </tr>
+                  <tr>
+                    <td>
+                  <b>
+                    <a href="#STEP6A">Step 6a</a>
+                  </b>
+                </td>
+                    <td>
+                  <b>Convert transformed files back to SGML using <tt>xml2sgml.pl</tt>
+                  </b>
+                </td>
+                  </tr>
+                  <tr>
+                    <td>
+                  <b>
+                    <a href="#STEP6B">Step 6b</a>
+                  </b>
+                </td>
+                    <td>
+                  <b>Validate transformed files against Text Class DTD using <tt>nsgmls</tt>
+                  </b>
+                </td>
+                  </tr>
+                  <tr>
+                    <td><b><a href="indexing.html">External link</a></b></td>
+                    <td>Index collection</td>
+                  </tr>
+                  <tr>
+                    <td>
+                  <b>
+                    <a href="#STEP6C">Step 6c</a>
+                  </b>
+                </td>
+                    <td>
+                  <b>Check integrity of transformed files: examine element counts using
+<tt>xpatgen.pl</tt>
+                  </b>
+                </td>
+                  </tr>
+                </tbody></table>
+          </td>
+          </tr>
+        </tbody></table>
+      <br/>
+      <table border="1" cellpadding="6" width="90%"><tbody>
+          <tr>
+            <td>
+            <h1>Typographic conventions:</h1>
+            <ul>
+                <li>
+Files, commands, and URLs appear in this <b>
+                  <tt>bold fixed width font</tt>
+                </b>.</li>
+                <li>
+Generic arguments and variables are in
+<i>
+                  <b>
+                    <tt>BOLD FIXED WIDTH ALL CAPS ITALICS</tt>
+                  </b>.</i>
+              </li>
+              </ul>
+          </td>
+          </tr>
+        </tbody></table>
+      <p>When batch-processing source files, copy them after each step (placing them in a well-named directory) so that expensive steps don't have to be
+re-executed to recover an earlier state. Example directory names: 0raw, 1sgml2xml, 2sx, 3xslt, 4xml2sgml.  An overview of helpful tools for this conversion is available <a href="examples/tools.html">here</a>.</p>
+      <h1><a name="STEP1"/>1. Convert non-XML-compliant character entities using <a href="examples/sgml2xml.pl.txt">sgml2xml.pl</a></h1>
+      <blockquote>
+        <p>Usage:</p>
+        <blockquote><p><b>
+            <tt>perl sgml2xml.pl <i>SOURCEFILE</i>
+            </tt>
+          </b></p>
+        </blockquote>
+        <p>E.g., for the first source file in the collection Early English Prose Fiction (EEPF)</p>
+        <blockquote><p><b>
+            <tt>perl sgml2xml.pl eepf01.pgp</tt>
+          </b>
+        </p></blockquote>
+        <p>The script does an in-place modification of the sourcefile, so that the output file is the same as the input file. Thus it's advisable to
+save the original source files, copy them into a directory for processing (e.g., one called sgml2xml) and run the script on the copied files.
+This way, you still have a copy of the source files in their original state.</p>
+        <table border="1" cellpadding="6" width="90%"><tbody>
+            <tr>
+              <td><p>What's going on here?</p>
+XML only allows limited use of character entities in the form <b>
+              <tt>&amp;entityname;</tt>
+            </b>
+. An example of a non-compliant entity is <b>
+              <tt>&amp;hyphen;</tt>
+            </b>
+. The script <b>
+              <tt>sgml2xml.pl</tt>
+            </b> handles such entities by converting
+the initial ampersand to <b>
+              <tt>&amp;amp;</tt>
+            </b>. For example:
+<blockquote>
+                  <p><b>
+                <tt>&amp;mdash;</tt>
+              </b> becomes <b>
+                <tt>&amp;amp;mdash;</tt>
+              </b>
+              <br/>
+              <b>
+                <tt>&amp;amp;</tt>
+              </b> becomes <b>
+                <tt>&amp;amp;amp;</tt>
+              </b>
+            </p></blockquote>
+This preserves character entity information without using non-XML-compliant entities. Later in this conversion process, character entities will
+be recovered by globally converting <b>
+              <tt>&amp;amp;</tt>
+            </b> back to the
+<b>
+              <tt>&amp;</tt>
+            </b>
+character.
+<p>See <a href="http://www.w3.org/TR/2000/REC-xml-20001006.html#syntax">section
+2.4 of the XML specification</a> for more information on the use of character
+entities in XML.</p>
+          </td>
+            </tr>
+          </tbody></table></blockquote>
+      <h1>
+        <a name="STEP2"/>2. <b>Convert source files to XML using <a href="http://www.jclark.com/sp/sx.htm">sx</a>
+        </b>
+      </h1>
+      <blockquote><p>Usage:</p>
+        <blockquote><p>
+          <b>
+            <tt>sx -x <i>XML_OUTPUT_OPTION</i> -b <i>ENCODING</i> -E
+<i>MAXERRORS</i>
+-f <i>ERROR_OUTPUTFILE</i> doctype <i>SOURCEFILE</i> &gt;
+<i>OUTPUTFILE.XML</i>
+            </tt>
+          </b>
+        </p></blockquote>
+        <p>...where <b>
+          <tt>doctype</tt>
+        </b>
+        is a file in the form:</p>
+        <blockquote><p>
+          <b>
+            <tt>&lt;!DOCTYPE <i>TOP_LEVEL_TAGNAME</i> SYSTEM "<i>ABSOLUTE_DTD_PATH</i>"[</tt>
+          </b>
+          <br/>
+          <b>
+            <tt>&lt;!ENTITY % entrefs SYSTEM "<i>ABSOLUTE_CHARENTS_PATH</i>"&gt;</tt>
+          </b>
+          <br/>
+          <b>
+            <tt>%entrefs;</tt>
+          </b>
+          <br/>
+          <b>
+            <tt>]&gt;</tt>
+          </b>
+        </p></blockquote>
+        <p>The top-level tag name should be the top level tag of the source file.
+<br/>E.g.:</p>
+        <blockquote><p>
+          <b>
+            <tt>sx -x no-nl-in-tag -x empty -b iso-8859-1 -E 500 -f
+eepf01.errs doctype eepf01.pgp &gt; eepf01.xml</tt>
+          </b>
+        </p></blockquote>
+        <p>...where the file <b>
+          <tt>doctype</tt>
+        </b> contains:</p>
+        <blockquote><p>
+          <b>
+            <tt>&lt;!DOCTYPE EEPFGRP SYSTEM "/dlxs/prep/e/eepf/conversion/eepf.dtd"[</tt>
+  </b>
+    <br/>
+  <b>
+            <tt>&lt;!ENTITY % entrefs SYSTEM "/dlxs/prep/e/eepf/charents.frag"&gt;</tt>
+          </b>
+<br/>
+          <b>
+            <tt>%entrefs;</tt>
+          </b>
+          <br/>
+          <b>
+            <tt>]&gt;</tt>
+          </b>
+        </p></blockquote>
+<p>More information about sx is available <a href="http://www.jclark.com/sp/sx.htm">here</a>
+at James Clark's site.<br/>
+More information on <b>
+          <tt>charents.frag</tt>
+        </b> files is <a href="examples/charents.html">here</a>.<br/><br/></p>
+        <table border="1" cellpadding="6" width="90%"><tbody>
+          <tr>
+            <td>What's going on here?
+<ul>
+                <li>
+XML requires a declaration at the top of the document, such as <b>
+                    <tt>&lt;?xml
+version="1.0"?&gt;</tt>
+                  </b>. Sx inserts this declaration.</li>
+                <li>
+XML does not permit SGML-style empty tags. Sx converts empty tags
+such as <b>
+                    <tt>&lt;BR&gt;</tt>
+                  </b> to <b>
+                    <tt>&lt;BR/&gt;</tt>
+                  </b>.</li>
+                <li>Sx converts lowercase tags to uppercase, eliminating any problems due
+to XML's case-sensitivity.</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody></table>
+      </blockquote>
+      <h1>
+        <a name="STEP3A"/>3a. <b>Generate a quick-and-dirty overview of element
+use in the collection using <a href="examples/xpatgen.pl.txt">xpatgen.pl</a>
+        </b>
+      </h1>
+      <blockquote><p>This step generates a list of each element in the DTD and the
+number of times it appears in the collection. This can be useful for revealing
+that an element is not used at all in a collection, meaning that the XSLT
+script (see step 4) does not have to handle it. This step is also
+required in order to be able to compare, in step 6b, the counts of elements
+in the collection before and after XSLT transformation. The collection
+must be Xpat-searchable for this step.</p>
+<p>
+          <b>
+            <tt>xpatgen.pl</tt>
+          </b> requires installation of the Perl module
+SGML::DTD by Earl Hood. See <a href="http://www.oac.uci.edu/indiv/ehood/perlSGML/doc/html/SGML..DTD.html">http://www.nacs.uci.edu/indiv/ehood/perlSGML/doc/html/SGML..DTD.html</a> for more information on the module.</p>
+        <p>Create a file of queries based on the DTD by running the script <b>
+            <tt>
+              <a href="examples/xpatgen.pl.txt">xpatgen.pl</a>
+            </tt>
+          </b>
+        </p>
+        <p>Usage:</p>
+        <blockquote><p><b>
+            <tt>perl xpatgen.pl <i>FILENAME.DTD </i>&gt; <i>XPATQUERYFILENAME.XPT</i>
+            </tt>
+          </b></p>
+        </blockquote>
+        <p>
+          <br/>The file will contain a query for each element in the form:</p>
+          <blockquote>
+            <p><tt><b>region <i>ELEMENT1</i></b>
+            </tt><br/>
+            <tt><b>region <i>ELEMENT2...</i></b>
+            </tt></p>
+          </blockquote>
+        <p>For example:</p>
+          <blockquote>
+              <p><tt><b>perl xpatgen.pl eepf.dtd &gt; eepf.xpt</b></tt></p>
+          </blockquote>
+        <p>Run the Xpat queries</p>
+          <blockquote>
+            <p><tt><b>xpat <i>DATA_DICTIONARY_PATH.DD</i> &lt; <i>XPATQUERIES.XPT
+&gt; RESULTS.XPT</i></b>
+            </tt></p>
+          </blockquote>
+        <p>For example:</p>
+          <blockquote>
+            <p><tt><b>xpat eepf.dd &lt; /dlxs/prep/e/eepf/conversion/eepf.xpt &gt; eepf.xpt.out</b></tt></p>
+          </blockquote>
+        <p>This runs the Xpat queries in <b>
+          <tt>eepf.xpt</tt>
+        </b> on the data
+dictionary for EEPF and saves the results of those queries in <b>
+          <tt>eepf.xpt.out</tt>
+        </b>.
+The output will look something like this:</p>
+<blockquote>
+          <p>
+            <b>
+              <tt>&gt;&gt; 1: 100 matches</tt>
+            </b>
+          </p>
+          <p>
+            <b>
+              <tt>&gt;&gt; 2: 3 matches</tt>
+            </b>
+          </p>
+          <p>
+            <b>
+              <tt>&gt;&gt; 3: 10 matches</tt>
+            </b>
+          </p>
+          <p>
+            <b>
+              <tt>...</tt>
+            </b>
+          </p>
+        </blockquote>
+        <p>If an element is not used in a collection, Xpat will return, for
+example:</p>
+        <blockquote>
+            <p><tt><b>&gt;&gt; No information for region COPYR in the data dictionary.</b></tt></p>
+        </blockquote>
+        <p>Eliminate blank lines from the results file using Excel or Word. Then paste it into column B of an Excel spreadsheet, lined up with elements from the query file in column A. Columns A and B should have the same number of rows. <b>Save this spreadsheet for use in step 6b.</b></p></blockquote>
+      <h1>
+        <a name="STEP3B"/>3b. Get a summary of elements and corresponding attributes
+in vendor DTD using <a href="examples/dtdparse.pl.txt">dtdparse.pl</a>
+      </h1>
+      <blockquote><p>This summary puts information from the source DTD into a more
+human-readable form, showing the attributes that may be used for each element.
+The summary is helpful in making sure all attributes are accounted for
+in the XSLT script.<br/><br/>Requires Earl Hood's Perl module SGML::DTD. See <a href="http://www.oac.uci.edu/indiv/ehood/perlSGML/doc/html/SGML..DTD.html">http://www.nacs.uci.edu/indiv/ehood/perlSGML/doc/html/SGML..DTD.html</a>
+for more information.</p>
+        <p>Usage:</p>
+        <blockquote><p>
+          <b>
+            <tt>perl dtdparse.pl <i>SOURCE.DTD</i> &gt; <i>OUTPUTFILENAME</i>
+            </tt>
+          </b>
+        </p></blockquote>
+<p>For example:</p>
+<blockquote><p>
+          <b>
+            <tt>perl dtdparse.pl eepf.dtd &gt; eepf.dtd.summ</tt>
+          </b>
+        </p></blockquote>
+      <p>Sample output:</p>
+<blockquote>
+          <pre><b><tt>[Element]</tt></b>
+<b><tt>     [Attribute]</tt></b>
+<b><tt>date</tt></b>
+<b><tt>     align</tt></b>
+<b><tt>     lang</tt></b>
+<b><tt>     pn</tt></b>
+<b><tt>     quote</tt></b>
+<b><tt>     r</tt></b>
+<b><tt>dates</tt></b>
+<b><tt>     born</tt></b>
+<b><tt>     died</tt></b>
+<b><tt>desc</tt></b>
+<b><tt>...</tt></b></pre>
+        </blockquote></blockquote>
+      <h1>
+        <a name="STEP4"/>4. Develop XSLT script for conforming source files to Text Class DTD</h1>
+      <blockquote>
+        <p>The <a href="examples/textclass.dtd.txt">Text Class DTD</a> uses elements and attributes as defined in the
+<a href="http://www.hti.umich.edu/t/tei/">TEI Guidelines</a>.</p>
+        <p>All attributes in the Text Class DTD may belong to any of its elements,
+with the following two exceptions:</p>
+        <ul>
+          <li>
+The only attributes of the element <b>
+              <tt>DATES</tt>
+            </b> are <b>
+              <tt>BORN</tt>
+            </b>,
+<b>
+              <tt>DIED</tt>
+            </b>,
+and <b>
+              <tt>CERT</tt>
+            </b>.</li>
+          <li>
+            <b>
+              <tt>COLL</tt>
+            </b>, the top-level element, has no attributes.</li>
+        </ul>
+        <p>The task is now to <b>plan the transformation of vendor source files
+to Text Class, preserving and enhancing the structure and semantics of
+the source files as much as possible</b>. Editorial notes on selection
+and encoding of the source text should be preserved. Tags and content
+that exist only for the publisher's internal use may be dropped.</p>
+        <p>This will be an iterative process:</p>
+        <ul>
+          <li>
+Refer to the vendor's printed guide to understand the meaning of tags in
+the source files. Refer to the <a href="http://www.hti.umich.edu/t/tei/">TEI
+Guidelines</a> to understand the usage of Text Class tags.</li>
+          <li>
+The grid view in XML Spy is extremely helpful for visualizing the structure
+of a well-formed XML document (but it's slow for very large documents).
+Using the Projects feature of XML Spy, you can make a project for the collection
+you are working on and keep all your XML source files (produced in steps
+1 and 2) in the appropriate folder.</li>
+          <li>
+Configure XML Spy so that it can transform individual documents.
+This makes it easy to quickly check on whether XSLT is behaving the way
+you want it to. But for batch processing, it's more efficient to
+run the transformations either on the server or using the DOS command prompt.</li>
+          <li>
+Do directed Xpat searching to check on how elements are used in the original
+collection markup. Xpat documentation is available <a href="http://docs.umdl.umich.edu/dlxs/xpat/xpat-index.html">here</a>.
+See also some tips on Xpat searching <a href="examples/tools.html">here</a>.</li>
+          <li>
+Make sure all relevant elements and attributes used in the source files
+are accounted for. Take on elements in the first pass and attributes
+in a second pass.</li>
+        </ul>
+        <p>
+          Edit XSLT scripts in XML Spy. We provide a brief XSLT
+<a href="examples/cookbook.html">cookbook</a> showing common transformations.</p>
+        <p>The distinction between <b>push</b> and <b>pull</b> approaches in XSLT
+is an important one:</p>
+        <ul>
+          <li>
+            <b>Pulling</b> is when Xpath expressions (which refer to a node or nodes
+in an XML document) selectively pull information out of the XML document.
+This method, often used to restructure or reformat data, is convenient
+for creating the tightly constrained header used in Text Class.</li>
+          <li>
+            <b>Pushing</b> is when certain parts of the document are pushed through
+a set of templates. This approach, better suited to preserving the
+structure of the source document, is usually preferred for processing the
+main body of texts.</li>
+        </ul>
+        <p>
+          For your reference, here is the <a href="examples/eepf.xsl">XSLT script</a>
+used to transform Early English Prose Fiction, a Chadwyck-Healey collection
+of medium complexity.</p>
+        <p>The <a href="http://www.w3.org/TR/xslt">XSLT specification</a> is available
+at the W3C site.</p>
+        <p>
+          <i>XSLT Programmer's Reference</i> by Michael Kay (available from <a href="http://www.wrox.com">Wrox</a>) is a helpful reference book.</p>
+      </blockquote>
+      <h1>
+        <a name="STEP5"/>5. Transform source files</h1>
+      <blockquote><p>Download <a href="http://saxon.sourceforge.net/">Saxon by Michael Kay</a> and follow installation instructions (Saxon is in Java; Instant
+Saxon can be installed and executed on a Windows box). If Instant Saxon sends an error message that it needs the Java Virtual Machine, download
+and install Internet Explorer from Microsoft (even if you already have Explorer installed), making sure that the Virtual Machine is bundled with
+it.</p>
+<p>There are two ways to run transformations in batches. Using Instant Saxon on a Windows box is somewhat faster; however this ties up your machine.
+If transformations are run on the server, other work can be done on the local machine.</p>
+        <p>1) Using Saxon installed on a server:</p>
+        <blockquote>
+          <p><b>
+            <tt>java com.icl.saxon.StyleSheet <i>SOURCE.XML STYLE.XSL
+</i>&gt;
+<i>OUTPUTFILE.XML</i>
+            </tt>
+          </b>
+          <br/>(For batch processing, use <b>
+            <tt>foreach</tt>
+          </b> command.)</p></blockquote>
+<p>2) Using Instant Saxon from the DOS command prompt in the form:</p>
+<blockquote><p>
+          <b>
+            <tt>saxon <i>SOURCE.XML STYLESHEET.XSL </i>&gt; <i>OUTPUTFILE.XML</i>
+            </tt>
+          </b>
+          <br/>You need to be in a directory containing the Instant Saxon <b>
+            <tt>.exe</tt>
+          </b>
+file when running this command.
+<br/>(For batch processing, make a file with one command for each source
+file, separated by newlines. Then run the command file using the
+<b>
+            <tt>sh</tt>
+          </b>
+command in Cygwin.)</p></blockquote>
+      </blockquote>
+      <h1>
+        <a name="STEP6A"/>6a. <b>Convert transformed files back to SGML using
+<a href="examples/xml2sgml.pl.txt">xml2sgml.pl</a>
+        </b>
+      </h1>
+      <blockquote>
+        <table border="1" cellpadding="6" width="90%"><tbody>
+          <tr>
+            <td>What's going on here?
+<ul>
+                <li>
+The script strips off the XML declaration at the top of the file.</li>
+                <li>
+The <b>
+                    <tt>COLL</tt>
+                  </b> element, if present, is removed.</li>
+                <li>
+                  <b>
+                    <tt>&amp;amp;</tt>
+                  </b> is converted back to <b>
+                    <tt>&amp;</tt>
+                  </b>, restoring
+SGML character entities.</li>
+                <li>
+By definition, non-empty elements in the Text Class DTD require a closing
+tag. Empty elements in XML files will be in the form <b>
+                    <tt>&lt;ELEMENT/&gt;</tt>
+                  </b>
+(not valid in SGML). This script should be written to transform any
+such elements to the form <b>
+                    <tt>&lt;ELEMENT&gt;&lt;/ELEMENT&gt;</tt>
+                  </b>.</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody></table>
+        <p>If in the next step <b>
+            <tt>nsgmls</tt>
+          </b> points to invalid empty tags,
+add those tags to the <b>
+            <tt>xml2sgml.pl</tt>
+          </b> script. Re-run
+the transformation on files as they were following step 5 (<b><tt>xml2sgml.pl</tt></b> cannot be run twice on the same file -- ampersands will be lost).</p>
+      </blockquote>
+      <h1>
+        <a name="STEP6B"/>6b. Validate transformed files against Text Class
+DTD using <a href="http://www.jclark.com/sp/nsgmls.htm">nsgmls</a>
+      </h1>
+      <blockquote><p>This tool by James Clark checks that the XSLT-transformed documents
+conform to the Text Class DTD.</p>
+<p>Usage:</p>
+<blockquote><p>
+            <b>
+              <tt>nsgmls -s -f <i>FILENAME</i>.<i>ERRS</i> doctype <i>FILENAME</i>
+              </tt>
+            </b>
+            <br/>(Use <b>
+              <tt>foreach</tt>
+            </b> for batch processing.)</p></blockquote>
+      </blockquote>
+      <blockquote><p>For example:</p>
+<blockquote><p>
+          <b>
+            <tt>nsgmls -s -f eepf01.xml.errs doctype eepf01.xml</tt>
+          </b>
+        </p></blockquote>
+<p>Any errors will be recorded in the <b>
+          <tt>.errs</tt>
+        </b> files. If
+a <b>
+          <tt>.errs</tt>
+        </b> file is zero bytes in size, the corresponding file
+is valid. Once all files are validated, delete the <b>
+          <tt>.errs</tt>
+        </b>
+files.</p>
+<p>Add <b>
+            <tt>&lt;COLL&gt;</tt>
+          </b> to the beginning of the first file and
+a <b>
+            <tt>&lt;/COLL&gt;</tt>
+          </b> to the end of the last file in the directory
+list. If the files are too big to do this using a text editor (e.g.,
+xemacs), you can do it by making files containing only "<b>
+            <tt>&lt;COLL&gt;</tt>
+          </b>"
+and "<b>
+            <tt>&lt;/COLL&gt;</tt>
+          </b>" and using the <b>
+            <tt>cat</tt>
+          </b> command
+to join them to the first and last files in the proper place.</p>
+        <p>Now <b>
+            <tt>cat</tt>
+          </b> all files together:</p>
+        <blockquote><p>
+          <b>
+            <tt>cat *.xml &gt; <i>COLL</i>.sgm</tt>
+          </b>
+        </p></blockquote>
+<p>For good measure, check the well-formedness of this large file using <b>
+          <tt>nsgmls</tt>
+        </b>
+in the form:</p>
+<blockquote><p>
+          <b>
+            <tt>nsgmls -s -f <i>COLL</i>.errs doctype <i>COLL</i>.sgm</tt>
+          </b>
+        </p></blockquote>
+<p>The error file should be empty. Move the <b>
+          <tt>.sgm</tt>
+        </b> file
+to the <b>
+          <tt>obj</tt>
+        </b> directory, or whatever directory you are using
+to store the collection object:</p>
+<blockquote><p>
+          <b>
+            <tt>mv <i>COLL</i>.sgm /l1/obj/<i>C</i>/<i>COLL</i>
+            </tt>
+          </b>
+        </p></blockquote>
+<p>For example:</p>
+<blockquote><p>
+          <b>
+            <tt>cat *.xml &gt; eepf.sgm</tt>
+          </b>
+          <br/>
+          <b>
+            <tt>mv eepf.sgm /l1/obj/e/eepf</tt>
+          </b>
+        </p></blockquote>
+<p>There is another, critical step for checking the integrity of the transformations you have run, but the collection must first be indexed. Documentation
+on indexing is in the next section. Go
+to that section now and index the files you have transformed. Once
+that's done, continue from 6c.</p></blockquote>
+      <h1>
+        <a name="STEP6C"/>6c. <b>Check integrity of transformed files: examine
+element counts using
+<a href="examples/xpatgen.pl.txt">xpatgen.pl</a>
+        </b>
+      </h1>
+      <blockquote><p>Open the spreadsheet created in step 3a. Label the worksheet
+containing the query summary "source files". Then go to a new worksheet
+within the same file. Label the worksheet "Text Class".</p>
+<p>Run the script <b>
+            <tt>xpatgen.pl</tt>
+          </b> once again, this time on the
+Text Class DTD:</p>
+        <blockquote><p>
+          <b>
+            <tt>perl xpatgen.pl <i>TEXTCLASS.DTD </i>&gt; <i>XPAT_QUERY_FILENAME.XPT</i>
+            </tt>
+          </b>
+        </p></blockquote>
+<p>This creates a file of Xpat queries which can then be run <b>on the files
+just transformed and indexed </b>using a command in the form:</p>
+<blockquote><p>
+          <b>
+            <tt>xpat <i>COLL.DD</i> &lt; <i>XPAT_QUERY_FILENAME.XPT
+&gt; RESULTS.XPT</i>
+            </tt>
+          </b>
+        </p></blockquote>
+<p>As in step 3a, copy the queries and place them in column A of the new worksheet.
+Then copy the results file, eliminate blank lines, and paste them into
+column B of the new worksheet. There should be the same number of
+rows in columns A and B.</p>
+<p>You may wish to print out the two worksheets (source files and Text
+Class) for side-by-side comparison.</p>
+        <ul>
+          <li>
+Check that the counts of tags are the same before and after transformation
+when expected. Particularly important elements to check are lines
+(often L), FIGURE, and PB.</li>
+          <li>
+If you are consolidating two elements in the source collection into one
+Text Class element, check that the sum of counts in the source collection
+equals the count of the Text Class tag (e.g., when TRAILER and CONCLUDE
+are both transformed to TRAILER)</li>
+          <li>
+Note that when an element is nested within the same element (e.g., P within
+NOTE within P), the Xpat count will only be of the number of P's at the
+outermost level. To get a count of P's that are nested at the first
+level within outer P's, run "region P1" in Xpat. For P's within that
+second level of P's, run "region P2". Note that all the P tags are
+just P tags in the markup itself, but Xpat indexes them with numbers to
+keep track of any nesting.</li>
+        </ul>
+      </blockquote>
+    
+  </body>
+
+</html>

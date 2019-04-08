@@ -1,0 +1,53 @@
+<html>
+<head>
+<title>DLXS Database Upgrade Utility</title>
+
+
+
+
+
+
+
+<link href="../dlxsdocs.css" rel="stylesheet" type="text/css"> </head>         <body>
+<div class="pageTitle">dbmove (DB Move) utility</div>
+		
+			<h1>Overview</h1>
+			<p>
+				<b>dbmove</b> is used to move a dlxs database from one type of database engine to another. Currently, it supports moving the dlxs database from CSV to MySQL, or from MySQL to CSV. At DLPS, we also use it to create a database for release to customers of dlxs.</p>
+		
+		
+			<h1>Moving a database from CSV to MySQL</h1>
+			<p>If moving from the CSV database to MySQL, make sure that:</p>
+			<ul>
+				<li> there is a <i>dlxs</i> database in MySQL</li>
+				<li>that there is a user <i>dlxsadm</i> for that database that uses the password used by the dbmove script.</li>
+				<li>that user dlxsadm has administrative privileges over that database (since that user will need to create tables and index them)</li>
+			</ul>
+			<p>You can then issue the command <code>dbmove -s CSV -t MySQL</code>
+			</p>
+		
+			<p>If you are using dbmove from version 12 of DLXS, make sure you have version 5 of the dabase before you try to use dbmove to move your CSV database to MySQL.  dbmove in DLXS version 12 will not move CSV database version 4 or smaller to MySQL.  This is because in version 12 of DLXS dbmove was changed to create a utf8 MySQL database prior to moving the database from CSV to MySQL.  This presents a problem when moving CSV databases of version 4 or smaller, since some of the tables contain keys that exceeded the size limit in a utf8 MySQL database, therefore, you will get errors when moving databases version 4 or smaller.</p>
+		
+			<h1>Moving a database from MySQL to CSV</h1>
+			<p>If moving from a MySQL database to CSV, make sure that there are no files in the $DLXSROOT/misc/db directory, and that the dbmove script has permissions to write to that directory. Since the MySQL database contains tables with potentially enormous amounts of data, like the sessions, and Pageview tables, the dbmove script will not permit you to move the entire MySQL database to CSV.  You can use the  "-r all" switch to indicate that only collmgr tables with userid <i>dlxsadm</i>, and <i>production</i> should be moved; and that nothing is moved from the PageviewFig, BookBagDB, and sessions tables.  Certain sample ids from the Pageview table are moved.  The command to issue is then:</p>
+			<pre>
+	dbmove -r all -s MySQL -t CSV
+</pre>
+		
+		
+			<h1>Creating a release database</h1>
+			<p>
+				<b>NOTE: This type of functionality is really only for DLPS</b>. It is used to create the release CSV directory that becomes part of the DLXS deliverable. It will contain a sample of DLPS collections and groups with userid <i>dlxsadm</i>, and <i>production</i> (see discussion on <a href="collmgr.html">collmgr</a> for an explanation of these users). In order to execute this, you need to enter the following command: <code>dbmove -r [all | release | workshop ] -s MySQL -t CSV</code>. The -r switch indicates that we only want to place rows in the CSV tables with userid dlxsadm, or production, and the values <i>all</i>, <i>release</i>, and <i>workshop</i> mean the following:</p>
+			<ul>
+				<li>
+					<i>all</i> means move all the collections into a CSV database with these userids.</li>
+				<li>
+					<i>release</i> means move only the collections we want to release to serve as a set of sample collections with these user ids.</li>
+				<li>
+					<i>workshop</i> means move only the collections we will be using in the workshop into a CSV database with these user ids.</li>
+			</ul>
+			<p>In addition to these collections, the CSV database created will contain a few sample ids in the Pageview table.  The PageviewFig, BookBagDB, and sessions tables will be created, but will contain no data.</p>
+		
+	</body>
+
+</html>

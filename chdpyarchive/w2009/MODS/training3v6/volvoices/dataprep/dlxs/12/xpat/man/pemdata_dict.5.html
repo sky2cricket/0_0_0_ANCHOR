@@ -1,0 +1,231 @@
+
+
+<html><head><title>Manpage of PEMDATA_DICT</title>
+<link href="../../dlxsdocs.css" rel="stylesheet" type="text/css"> </head><body>
+<h1>PEMDATA_DICT</h1>
+Section: File Formats (5)<br>Updated: November 2000<br><a href="#index">Index</a>
+<a href="http://localhost/cgi-bin/man/man2html">Return to Main Contents</a><hr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="lbAB">&nbsp;</a>
+<h2>NAME</h2>
+
+<b>pem_data_dictionary</b> - XPAT Data Dictionary file format for <b>pem</b> databases
+<a name="lbAC">&nbsp;</a>
+<h2>DESCRIPTION</h2>
+
+Each <b>pem</b> database has a Data Dictionary containing information to 
+<br>
+
+- specify the hosts on which the databases are located
+<br>
+
+- specify the databases to use
+<br>
+
+- specify the locations of relevant files, such as the thesaurus and
+initialization files
+<p>
+A <b>pem</b> Data Dictionary is made up of several sections.
+Each section is delimited by ``tags'' - short labels enclosed by angle
+brackets: ``&lt;'' and ``&gt;''.  For example, information about each
+host is preceeded by a &lt;Host&gt; start tag and is followed by a &lt;/Host&gt;
+end tag.  The slash (``/'') character is used to distinguish between end
+tags and start tags.
+<p>
+The following is an example <b>pem</b> Data Dictionary.  Each of the sections used is explained
+after the example.  Note that the sections, subsections, and fields are
+all enclosed by tags.  
+<a name="lbAD">&nbsp;</a>
+<h2>EXAMPLE</h2>
+
+This <b>pem</b> Data Dictionary will search four different databases.
+Three of these databases are on a host with the name textrine
+and one database is on a host with the name context.
+<pre>
+
+
+&lt;InitFile&gt;/usr/ot/pem/initfile&lt;/InitFile&gt;
+&lt;Thesaurus&gt;/usr/ot/pem/thesaurus&lt;/Thesaurus&gt;
+&lt;Host&gt;
+    &lt;Name&gt;textrine&lt;/Name&gt;
+
+    &lt;PatHandler&gt;/usr/xpat/bin/XPatHandler&lt;/PatHandler&gt;
+    &lt;File&gt;
+        &lt;Name&gt;/usr/xpat/business/bus.dd&lt;/Name&gt;
+        &lt;Label&gt;bus&lt;/Label&gt;
+        &lt;Program&gt;/usr/xpat/bin/xpat&lt;/Program&gt;
+    &lt;/File&gt;
+    &lt;File&gt;
+        &lt;Name&gt;/usr/xpat/cps/cps.dd&lt;/Name&gt;
+        &lt;Label&gt;cps&lt;/Label&gt;
+        &lt;Program&gt;/usr/xpat/bin/xpat&lt;/Program&gt;
+    &lt;/File&gt;
+    &lt;File&gt;
+        &lt;Name&gt;/usr/xpat/lis/lis.dd&lt;/Name&gt;
+        &lt;Label&gt;lis&lt;/Label&gt;
+        &lt;Program&gt;/usr/xpat/bin/xpat&lt;/Program&gt;
+    &lt;/File&gt;
+&lt;/Host&gt;
+&lt;Host&gt;
+    &lt;Name&gt;context&lt;/Name&gt;
+    &lt;File&gt;
+        &lt;Name&gt;/usr/xpat/ubs/ubs.dd&lt;/Name&gt;
+        &lt;Label&gt;ubs&lt;/Label&gt;
+        &lt;Program&gt;/usr/xpat/bin/xpat&lt;/Program&gt;
+    &lt;/File&gt;
+&lt;/Host&gt;
+</pre>
+
+
+<p>
+<a name="lbAE">&nbsp;</a>
+<h2>InitFile FIELD</h2>
+
+The InitFile field is enclosed by &lt;InitFile&gt; and &lt;/InitFile&gt;
+tags. It contains the name of the file which is read by <b>pem</b> during
+initialization.  Any legal <b>pem</b> command may be contained in the initialization
+file.
+<p>
+<a name="lbAF">&nbsp;</a>
+<h2>Thesaurus FIELD</h2>
+
+The Thesaurus field is enclosed by &lt;Thesaurus&gt; and &lt;/Thesaurus&gt;
+tags. It contains the name of the file with thesaurus definitions.  The format
+of this file is described in the <b>thesaurus</b> section of the <i>XPat Reference Manual and Tutorial</i>.
+<p>
+<a name="lbAG">&nbsp;</a>
+<h2>Host SECTION</h2>
+
+The Host section is enclosed by &lt;Host&gt; and &lt;/Host&gt;
+tags.  It contains a number of subsections which describe a
+host and the database(s) that are to be used on that host. There can
+be more than one host section, but there is usually only
+one host section per physical host.
+<p>
+<a name="lbAH">&nbsp;</a>
+<h2>Name FIELD</h2>
+
+The Name field is enclosed by &lt;Name&gt; tags and
+contains the name of the host on which the databases are located. 
+There may be only one Name field per Host section.
+<p>
+<a name="lbAI">&nbsp;</a>
+<h2>User FIELD</h2>
+
+The User field is contained between &lt;User&gt; tags.  It
+specifies the userid to use on the host specified by the Name
+field.  This user is known as the `target user'.  For
+<b>pem</b> to work properly, each <b>pem</b> user on the initiating machine
+must be able to <b><a href="http://localhost/cgi-bin/man/man2html?1+rsh">rsh</a></b>(1) to the machine specified in the Name
+field, under the target user's account and without a password.  This
+means that either the target user's `.rhosts' file or the
+target machine's `/etc/hosts.equiv' file must be set up to
+allow this.  There may be only one User field per Host
+section.  If no target user is specified, the current user's userid is used.
+<p>
+
+<a name="lbAJ">&nbsp;</a>
+<h2>PatHandler FIELD</h2>
+
+
+The PatHandler field is enclosed by &lt;PatHandler&gt;
+tags and contains the name of the program that handles communication
+between <b>pem</b> and the various underlying <b>xpat</b> processes.
+There must be one and only one PatHandler field per Host section.
+
+<p>
+<a name="lbAK">&nbsp;</a>
+<h2>File SUBSECTION</h2>
+
+The File subsection is contained within <tt>&lt;File&gt;</tt> and <tt>&lt;/File&gt;</tt>
+tags.  It specifies all the information for one underlying database.
+It contains subsections which describe the <b>xpat</b> Data Dictionary to use,
+the <b>xpat</b> program, the label to use, and which index to use in the Data Dictionary.
+There may be more than one File subsection per Host section.
+<p>
+<a name="lbAL">&nbsp;</a>
+<h2>Name FIELD</h2>
+
+The Name field is enclosed by &lt;Name&gt; and &lt;/Name&gt; tags.  It
+specifies the <b>xpat</b> Data Dictionary or <b>pem</b> Data Dictionary for this database.
+There may be only one Name field per File subsection.
+<p>
+<a name="lbAM">&nbsp;</a>
+<h2>Index FIELD</h2>
+
+The Index field is enclosed by &lt;Index&gt; and &lt;/Index&gt; tags.  It
+specifies the index to use.  The specified index must be
+declared in the database's Data Dictionary.
+There may be only one Index field per File subsection.
+If no index is specified, the first index in the Data Dictionary is used.
+<p>
+<a name="lbAN">&nbsp;</a>
+<h2>Label FIELD</h2>
+
+The Label field is enclosed by &lt;Label&gt; tags.
+There may be only one Label field per File subsection.  This field must contain
+only alphanumerics, and begin with an alphabetic character.
+All labels within a single <b>pem</b> Data Dictionary must be unique.
+<p>
+<a name="lbAO">&nbsp;</a>
+<h2>Program FIELD</h2>
+
+The Program field is enclosed by &lt;Program&gt; tags.  It
+contains the name of the program that <b>pem</b> will execute.
+Generally, this will be <b>xpat</b>, but may be
+another instance of <b>pem</b>.
+There may be only one Program field per File subsection.
+<a name="lbAP">&nbsp;</a>
+<h2>SEE ALSO</h2>
+
+<b><a href="http://localhost/cgi-bin/man/man2html?1+xpat">xpat</a></b>(1), <b><a href="http://localhost/cgi-bin/man/man2html?1+xpatbld">xpatbld</a></b>(1), <b><a href="http://localhost/cgi-bin/man/man2html?1+xpatrgn">xpatrgn</a></b>(1), <b><a href="http://localhost/cgi-bin/man/man2html?1+multirgn">multirgn</a></b>(1), <b><a href="http://localhost/cgi-bin/man/man2html?5+pemdata_dict">pemdata_dict</a></b>(5),
+<b><a href="http://localhost/cgi-bin/man/man2html?5+xpat_export">xpat_export</a></b>(5), <b><a href="http://localhost/cgi-bin/man/man2html?5+regions">regions</a></b>(5)
+<p>
+
+<hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">NAME</a><dd>
+<dt><a href="#lbAC">DESCRIPTION</a><dd>
+<dt><a href="#lbAD">EXAMPLE</a><dd>
+<dt><a href="#lbAE">InitFile FIELD</a><dd>
+<dt><a href="#lbAF">Thesaurus FIELD</a><dd>
+<dt><a href="#lbAG">Host SECTION</a><dd>
+<dt><a href="#lbAH">Name FIELD</a><dd>
+<dt><a href="#lbAI">User FIELD</a><dd>
+<dt><a href="#lbAJ">PatHandler FIELD</a><dd>
+<dt><a href="#lbAK">File SUBSECTION</a><dd>
+<dt><a href="#lbAL">Name FIELD</a><dd>
+<dt><a href="#lbAM">Index FIELD</a><dd>
+<dt><a href="#lbAN">Label FIELD</a><dd>
+<dt><a href="#lbAO">Program FIELD</a><dd>
+<dt><a href="#lbAP">SEE ALSO</a><dd>
+</dl>
+<hr>
+This document was created by
+<a href="http://localhost/cgi-bin/man/man2html">man2html</a>,
+using the manual pages.<br>
+Time: 18:03:38 GMT, March 26, 2001
+</body>
+</html>

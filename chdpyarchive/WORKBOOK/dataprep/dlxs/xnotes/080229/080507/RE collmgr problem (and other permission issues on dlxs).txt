@@ -1,0 +1,48 @@
+From: Deridder, Jody L
+Sent: Wednesday, May 07, 2008 10:30 AM
+To: Cummins, Paul B
+Cc: Deane, Christine Haygood; jody@jodyderidder.com
+Subject: RE: collmgr problem (and other permission issues on dlxs)
+
+I don't know why, but if diglib owns the lib directory and the lockfile directory below it, it works fine.
+
+What we had was this:
+[root@diglib2 collmgr]# ls -lai /d1/dlxs/lib/lockfile/ total 8
+8290343 drwxrwxrwx    2 root     root         4096 Apr 29 14:22 .
+8994817 drwxrwxr-x    6 125112   1089         4096 May  7 10:01 ..
+8290318 -rw-rw-rw-    1 apache   apache          0 Apr 29 14:22 dbexist
+
+I don't know who 125112 is, but root owned the lockfile directory. Apache had written the lockfile but then the directory permissions changed, and it couldn't get back in to remove it.
+
+I removed that old lockfile (dbexist) and changed the ownership of both directories to diglib (that's what is working on diglib) and it freed up.
+
+--jody
+
+
+-----Original Message-----
+From: Paul Cummins [mailto:pc37@utk.edu]
+Sent: Wednesday, May 07, 2008 10:23 AM
+To: Deridder, Jody L
+Subject: Re: collmgr problem (and other permission issues on dlxs)
+
+ah, ok.   What permissions need to be on the lockfile directory?
+
+
+Deridder, Jody L wrote:
+> I think I fixed collmgr.  The problem had to do with permissions on 
+> the /d1/dlxs/lib directory and subdirectories -- the cgi script 
+> /d1/dlxs/cgi/c/collmgr/collmgr  couldn't remove the lockfile 
+> /d1/dlxs/lib/lockfile/dbexist
+> 
+> I think it's okay now.
+> 
+> We recently had other permission problems with dlxs -- when the 
+> /d1/dlxs/web/t/text directory was changed to ownership diglib, then 
+> apache couldn't write the images to gifcvtdir in that directory -- so 
+> page images wouldn't show up.
+> 
+> We need to remember these things for future errors of this sort!
+> Thank you!!
+> 
+
+   yes, absolutely!

@@ -1,0 +1,170 @@
+<html>
+<head>
+<title>Text Class XSL</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="../styles.css" type="text/css">
+</head>
+<body bgcolor="#FFFFFF" leftmargin="10" topmargin="10" marginwidth="10" marginheight="10" class="mainpalette">
+<h2>Text Class XSL</h2>
+<table width="90%"  border="1" cellspacing="0" cellpadding="5">
+  <caption align="bottom" style="text-align:left">
+  <span style="font-weight: bold"> Table 1</span>
+  </caption>
+  <tr>
+    <td width="25%">Filename</td>
+    <td width="75%">Description</td>
+  </tr>
+  <tr>
+    <td colspan="2"><strong>Main top-level stylesheets </strong>(all work in
+      consort with xml files of the same name) </td>
+  </tr>
+  <tr>
+    <td width="25%">bookbag.xsl</td>
+    <td width="75%">Main stylesheet for building the bookbag holdings list, and
+      for displaying the email bookbag contents form. </td>
+  </tr>
+  <tr>
+    <td width="25%">browse.xsl</td>
+    <td width="75%">Main stylesheet for displaying dynamic browsing contents,
+      listed according to a variety of sort keys. </td>
+  </tr>
+  <tr>
+    <td width="25%">browsecolls.xsl</td>
+    <td width="75%">Stylesheet for displaying contents of multiple collection
+      groups, for a cross collection interface. </td>
+  </tr>
+  <tr>
+    <td width="25%">clipviewer.xsl</td>
+    <td width="75%">Works with viewer.xsl for displaying page-image based newspaper
+      article clips. </td>
+  </tr>
+  <tr>
+    <td width="25%">header.xsl</td>
+    <td width="75%">Main stylesheet for displaying item bibliographic header
+      and toc displays. Works primarily with header utils. </td>
+  </tr>
+  <tr>
+    <td width="25%">pageviewer.xsl</td>
+    <td width="75%">Works with viewer.xsl for displaying page-image based monographs
+      or journals. </td>
+  </tr>
+  <tr>
+    <td width="25%">reslist.xsl</td>
+    <td width="75%">Main stylesheet for displaying search results. </td>
+  </tr>
+  <tr>
+    <td width="25%">searchhistory.xsl</td>
+    <td width="75%">Main stylesheet for displaying the search history.</td>
+  </tr>
+  <tr>
+    <td width="25%">search.xsl</td>
+    <td width="75%">Main stylesheet for displaying all search pages, for both
+      individual and cross collection contexts. </td>
+  </tr>
+  <tr>
+    <td width="25%">text.xsl</td>
+    <td width="75%">Main stylesheet for displaying encoded texts. </td>
+  </tr>
+  <tr>
+    <td width="25%">viewer.xsl</td>
+    <td width="75%">Common stylesheet --and the primary work horse-- for buidling
+      the pageviewer and clipviewer displays.</td>
+  </tr>
+  <tr>
+    <td width="25%">ww.xsl</td>
+    <td width="75%">Main stylesheet for displaying the word index search forms. </td>
+  </tr>
+  <tr>
+    <td colspan="2"><strong>Global stylesheets incorporated in every page </strong></td>
+  </tr>
+  <tr>
+    <td width="25%">bookbagitemsstring.xsl</td>
+    <td width="75%">This stylesheet is responsible for the content of the string
+      indicating the current number of items in the bookbag. In release 11, this
+      number was provided via a PI in navheader.chnk file. In Release 12, the
+      content is provided in a separate file referenced by an IFRAME element.</td>
+  </tr>
+  <tr>
+    <td width="25%">footer.import.xsl</td>
+    <td width="75%">This stylesheet contains template rules for displaying the
+      footer portion of the page. </td>
+  </tr>
+  <tr>
+    <td width="25%">globalvariables.xsl</td>
+    <td width="75%">A stylesheet that primarily declares xsl global variables
+      that are utilized by other stylesheets for conditional information. </td>
+  </tr>
+  <tr>
+    <td width="25%">htmlhead.xsl</td>
+    <td width="75%">This stylesheet provides just the html head portion of the
+      resulting page. </td>
+  </tr>
+  <tr>
+    <td width="25%">navbarutils.xsl</td>
+    <td width="75%">This stylesheet works in consort with the navheader.xsl file
+      and contains primarily utility templates for building navigation bar 'tabs.'</td>
+  </tr>
+  <tr>
+    <td width="25%">navheader.xsl</td>
+    <td width="75%">This stylesheet, along with navbarutils.xsl, provides the
+      header portion of each page. This stylesheet is the primary component,
+      along with the collection specific CSS stylesheet, for effecting collection
+      look and feel. </td>
+  </tr>
+  <tr>
+    <td colspan="2"><strong>Other subsidiary stylesheets </strong></td>
+  </tr>
+  <tr>
+    <td width="25%">bbagcount.xsl</td>
+    <td width="75%"></td>
+  </tr>
+  <tr>
+    <td width="25%">bbagdownloadoutput.xsl</td>
+    <td width="75%"></td>
+  </tr>
+  <tr>
+    <td width="25%">bbagemailoutput.xsl</td>
+    <td width="75%"></td>
+  </tr>
+  <tr>
+    <td width="25%">restricteditem.xsl</td>
+    <td width="75%"></td>
+  </tr>
+  <tr>
+    <td>results.xsl</td>
+    <td>This stylesheet does most of the heavy lifting for search results--especially
+      the scoped head and breadcrumb head displays--and also is a utility stylesheet
+      for header toc displays, and for text.xsl displays (since these displays
+      also utilize the scoped heads display methods). </td>
+  </tr>
+  <tr>
+    <td width="25%">searchforms.xsl</td>
+    <td width="75%">This stylesheet, utilized by search.xsl, builds all search
+      forms and replaces all search form chnk files from previous releases. Create
+      local versions of this stylesheet to customize certain options in search
+      forms. </td>
+  </tr>
+  <tr>
+    <td width="25%">text.components.xsl</td>
+    <td width="75%">This stylesheet contains most of the template rules for filtering
+      source XML nodes to html. </td>
+  </tr>
+  <tr>
+    <td width="25%">headerutils.xsl</td>
+    <td width="75%">This stylesheet contains template rules for rendering all
+      forms of bibliographic information to a variety of displays, including
+      header, results, text, browse and pageviewer. </td>
+  </tr>
+  <tr>
+    <td width="25%">viewer.utils.xsl</td>
+    <td width="75%">Utility file for the pageviewer and clipviewer displays </td>
+  </tr>
+  <tr>
+    <td width="25%">viewtextnote.xsl</td>
+    <td width="75%">Provides the warning message and link to the viewing the
+      entire item as encoded text. </td>
+  </tr>
+</table>
+<p>&nbsp; </p>
+</body>
+</html>

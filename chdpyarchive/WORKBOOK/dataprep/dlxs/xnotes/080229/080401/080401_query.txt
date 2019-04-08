@@ -1,0 +1,18 @@
+SELECT * 
+FROM `items` 
+WHERE newid LIKE '00%_000%_000%_0%'
+returns 1044 rows
+
+
+SELECT * 
+FROM `items` 
+WHERE newid LIKE '0012_%'
+returns 1558 rows
+
+
+SELECT * 
+FROM `items` 
+WHERE newid LIKE '00%'
+AND newid NOT LIKE '0012_%'
+returns 0 rows
+

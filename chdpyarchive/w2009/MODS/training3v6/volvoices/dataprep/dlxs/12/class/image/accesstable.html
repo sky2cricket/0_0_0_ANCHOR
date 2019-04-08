@@ -1,0 +1,186 @@
+<html>
+<head>
+<title>Image Class Access Control Summary and Examples Table</title>
+
+
+
+
+
+ <link href="../../dlxsdocs.css" rel="stylesheet" type="text/css"></head>         <body>
+<div class="pageTitle">Image Class Access Control Summary and Examples Table</div>
+
+<p><a href="http://images.umdl.umich.edu/">Image Services</a><br/>
+<a href="http://www.umdl.umich.edu/">Digital Library Production
+Service</a><br/>
+University of Michigan<br/>
+<a href="http://www.umdl.umich.edu/dlxs/">Digital Library eXtension
+Service </a><br/>
+<a href="mailto:dlxs-help@umich.edu">dlxs-help@umich.edu</a></p>
+
+
+
+
+<p>It is important to also read the following documentation:</p>
+<ul>
+<li><a href="/intro/auth.html">DLXS Authentication and Authorization</a> </li>   
+  <li><a href="accesscontrol.html">Image Class Access Control </a></li>
+   
+   
+  <li><a href="datatransform.html">Image Class Data Transformation</a>, especially the section on <a href="datatransform.html#CollectionLevelInformation">Collection 
+    Level Information</a></li>
+</ul>
+
+<p>The following table represents all of the possible combinations of access
+  control  for the Image Class of DLXS 12.</p>
+
+<table border="1">
+  <tbody> 
+  <tr> 
+    <th> 
+      <p>Descriptive Data</p>
+    </th>
+    <th> 
+      <p>Thumbnail Images</p>
+    </th>
+    <th> 
+      <p>Images (larger than thumbnail)</p>
+    </th>
+    <th> 
+      <p>CollMgr entryauth field or Collection Info Field 3 Value</p>
+    </th>
+    <th> 
+      <p>Entry Auth Field (DLXS_ea) Needed In Record(1)</p>
+    </th>
+    <th> 
+      <p>Environment Variable (add collid to this var)</p>
+    </th>
+    </tr>
+  <tr> 
+    <td> 
+      <p>Unrestricted Access</p>
+    </td>
+    <td> 
+      <p>Unrestricted Access</p>
+    </td>
+    <td> 
+      <p>Unrestricted Access</p>
+    </td>
+    <td> 
+      <p>WORLD</p>
+    </td>
+    <td> 
+      <p>No</p>
+    </td>
+    <td> 
+      <p>PUBLIC_COLL</p>
+    </td>
+    </tr>
+  <tr> 
+    <td> 
+      <p>Unrestricted Access</p>
+    </td>
+    <td> 
+      <p>Unrestricted Access</p>
+    </td>
+    <td> 
+      <p>Restricted</p>
+    </td>
+    <td> 
+      <p>COLLID</p>
+    </td>
+    <td> 
+      <p>No</p>
+    </td>
+    <td> 
+      <p>PUBLIC_COLL</p>
+    </td>
+    </tr>
+  <tr> 
+    <td> 
+      <p>Unrestricted Access</p>
+    </td>
+    <td> 
+      <p>Unrestricted Access</p>
+    </td>
+    <td> 
+      <p>Mixed</p>
+    </td>
+    <td> 
+      <p>COLLID (this will be overridden by values found in the records Entry
+         Auth Field (DLXS_ea).</p>
+    </td>
+    <td> 
+      <p>Yes</p>
+      <p>Value of field mapped to   DLXS_ea  must be "WORLD" for records
+        with images (larger than thumbnail) that should not be restricted.</p>
+      <p>Value of field mapped to DLXS_ea must be "No Access" for records with
+        images (larger than thumbnail) that should not be viewable by anyone.</p>
+      <p>Other  values will result in restricted access for the 
+        records images (larger than thumbnail).</p>
+    </td>
+    <td> 
+      <p>PUBLIC_COLL</p>
+    </td>
+    </tr>
+  <tr>
+    <td><p>Restricted</p></td>
+    <td><p>Restricted</p></td>
+    <td><p>Mixed</p></td>
+    <td><p>COLLID (this will be overridden by values found in the records Entry
+        Auth Field (DLXS_ea).</p></td>
+    <td><p>Yes</p>
+        <p>Value of field mapped to DLXS_ea must be "No Access" for records with
+          images (larger than thumbnail) that should not be viewable by anyone.</p>
+        <p>Other values will results in the image being restricted to authorized
+          users (larger
+          than thumbnail).</p></td>
+    <td><p>AUTHZD_COLL</p></td>
+  </tr>
+  <tr> 
+    <td> 
+      <p>Restricted(2)</p>
+    </td>
+    <td> 
+      <p>Restricted</p>
+    </td>
+    <td> 
+      <p>Restricted</p>
+    </td>
+    <td> 
+      <p>COLLID</p>
+    </td>
+    <td> 
+      <p>No</p>
+    </td>
+    <td> 
+      <p>AUTHZD_COLL</p>
+    </td>
+    </tr>
+  <tr>
+    <td>Unrestricted</td>
+    <td>Unrestricted</td>
+    <td>No Access </td>
+    <td>No Access </td>
+    <td>No</td>
+    <td>PUBLIC_COLL</td>
+  </tr>
+  <tr>
+    <td>Restricted</td>
+    <td>Restricted</td>
+    <td>No Access</td>
+    <td>No Access</td>
+    <td>No</td>
+    <td>AUTHZD_COLL</td>
+  </tr>
+  </tbody> 
+</table>
+
+
+<p>(1) Meaning, there needs to be a field in each source data record.</p>
+<p>(2) Restricted in all cases means restricted to authorized users. </p>
+<p><br/>
+</p>
+
+</body>
+
+</html>

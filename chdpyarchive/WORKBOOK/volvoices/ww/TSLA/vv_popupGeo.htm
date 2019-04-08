@@ -1,0 +1,127 @@
+<html>
+<head>
+<title>vv_popupCA</title>
+
+
+
+
+
+<script language="javascript">
+
+var select_id= new String();
+function get_select_id() {
+
+var str = new String();
+    str = location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  window.opener.location.href="+window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=get_select_id();
+
+
+
+var strSelect_GEO_A = new String('');
+
+
+strSelect_GEO_A = '<select name="aaa"  size="24" style="font-size:10px"> \r\n'
+	+'<option  selected>No Value Selected</option> \r\n'	
+	+'<option >AARON SHELTON SITE (TENN.)</option> \r\n'
+	+'<option >ADAMS (TENN.) - GENEALOGY</option> \r\n'
+	+'<option >ADAMS (TENN.) - HISTORY</option> \r\n'
+	+'<option >ADAMS (TENN.) - NEWSPAPERS</option> \r\n'
+	+'<option >WOLF CREEK (TENN.) - HISTORY</option> \r\n'
+	+'<option >WOLF CREEK (TENN.) - MANUFACTURING</option> \r\n'
+	+'<option >WONDER CAVE (TENN.) - PHOTOGRAPHS</option> \r\n'
+	+'<option >WOODBURY (TENN.) - BIOGRAPHY</option> \r\n'
+	+'<option >WOODBURY (TENN.) - HISTORY</option> \r\n'
+	+'<option >WOODBURY (TENN.) - NEWSPAPERS</option> \r\n'
+	+'<option >WOODBURY (TENN.) - PHOTOGRAPHS</option> \r\n'
+	+'<option >WOODS LAKE (TENN.)</option> \r\n'
+	+'<option >WYNNEWOOD (CASTALIAN SPRINGS, TENN.)</option> \r\n'
++'</select> \r\n';		
+
+
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+<body >
+
+
+
+
+<form name="FormOne" >
+
+
+<div name="SS" id="SS">
+<script>
+document.write(
+
+	 '<table border="1" cellpadding="4" cellspacing="0" width="90%">\r\n'
+	+'<tr><td>\r\n'
+	///+'vv_functions.htm called by '+select_id+' <br>\r\n'
+	+'<b>Select Geographic Subject  </b> \r\n'
+	+'</td></tr><tr><td> \r\n' 
+	+ strSelect_GEO_A
+	+'</td></tr></table> \r\n'
+	///+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+</script>
+	
+</div>
+
+<input type="button" onclick="showSelection();" name="B1" value="Geographic Subject">
+
+</form>
+
+<script>
+
+
+
+                  
+
+function showSelection() {
+
+val = new String();
+
+for ( i=0; i< document.FormOne.aaa.length; i++ ) {
+
+if ( document.FormOne.aaa[i].selected == true ) {
+  	val = document.FormOne.aaa[i].text;
+	break;
+	}
+else { val = "you never selected anything"; 
+	}
+
+}
+////////////////////////alert ("You selected " +val);
+
+switch ( select_id ) {
+
+case  "subject_geographic_lcsh_01" :
+	window.opener.document.forms[0].subject_geographic_lcsh_01.value=val;
+	window.close();
+	break;
+
+case  "subject_geographic_lcsh_02" :
+	window.opener.document.forms[0].subject_geographic_lcsh_02.value=val;
+	window.close();
+	break;
+}//end switch
+
+}///end function
+</script>
+

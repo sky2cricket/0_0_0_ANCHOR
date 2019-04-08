@@ -1,0 +1,49 @@
+
+[root@diglib2 image]# ls /d1/dlxs/idx/v/vvi/
+image.blank.dd  image.cfg  image.dd  image.idx  image.inp  image.rgn  Makefile  tags.txt
+[root@diglib2 image]# /bin/rm /d1/dlxs/idx/v/vvi/*
+[root@diglib2 image]# rmdir /d1/dlxs/idx/v/vvi
+[root@diglib2 image]#  /d1/dlxs/bin/i/image/setupcollindex v/vvi
+using /d1/dlxs.
+setting up /d1/dlxs/idx for v/vvi
+done.
+setting up /d1/dlxs/obj up for v/vvi
+done.
+[root@diglib2 image]# cd /d1/dlxs/idx/v/vvi
+[root@diglib2 vvi]# ls
+image.blank.dd  image.cfg  image.inp  Makefile  tags.txt
+[root@diglib2 vvi]# make all
+echo "working..."
+working...
+rm -f ./image.ffcl
+make: rm: Command not found
+make: *** [clear] Error 127
+
+chd: I commented out all of the rm because they were giving errors
+due to attempts to rm non-existent files.
+
+chd: my bad.  This make all was run when the rm command had dropped off diglib2,
+so the "non-existent file" was rm.  I will re-run all of this with tagging.
+
+
+[root@diglib2 vvi]# make all
+echo "working..."
+working...
+#rm -f ./image.ffc
+#rm -f ./image.ffi
+#rm -f ./image.ffw
+#rm -f ./image.idx
+#rm -f ./image.maps.*
+#rm -f ./image.mfs
+#rm -f ./image*.rgn
+#rm -f ./image.str
+#rm -f ./image.dd
+#rm -f ../../../obj/v/vvi/image.sgm
+cat ../../../obj/v/vvi/ic.*.norm.sgm > ../../../obj/v/vvi/image.sgm
+cp ./image.blank.dd ./image.dd
+xpatbld -D ./image.dd
+multirgn -f -D ./image.dd -t ./tags.txt
+[root@diglib2 vvi]# 
+[root@diglib2 vvi]# ls
+image.blank.dd  image.cfg  image.dd  image.idx  image.inp  image.rgn  Makefile  tags.txt
+

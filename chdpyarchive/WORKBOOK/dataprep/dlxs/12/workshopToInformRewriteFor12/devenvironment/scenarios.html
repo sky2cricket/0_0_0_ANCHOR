@@ -1,0 +1,119 @@
+<html>
+  <head>
+    <title>DLPS DLXS Development Environment Scenarios</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+      <link rel="stylesheet" href="../styles.css" type="TEXT/CSS"> 
+    </head>
+  
+  <body bgcolor="#FFFFFF" leftmargin="10" topmargin="10" marginwidth="10" marginheight="10" class="mainpalette"> 
+    <h2><a name="top"></a>DLPS DLXS Development Environment Scenarios </h2>
+    <p>Here are various scenarios to illustrate how we use CVS, multiple rows
+      in the dlxs database, multiple servers (development, production and data
+      prep machines), and rdist to manage all aspects of code development, deployment
+      and release. Follow along with <a href="DevEnvironmentDiagram.jpg" target="examples">this
+      diagram</a> in a separate window.</p>
+    <p>As you read through the scenarios, keep in mind the following about the
+       development environment at DLPS: </p>
+    <ul>
+       <li>each developer has their <span class="unixcommand">$DLXSROOT</span> set
+                to <span class="unixcommand">/l1/dev/username/</span> by their login
+                script.</li>
+       <li>each developer has their virtual host Apache configuration set the <span class="unixcommand">$DLXSROOT</span> environment
+                      variable for use in the browser</li>
+       <li>all machines have XPat installed</li> 
+       <li>all machines have the dlxs daemon running to allow remote access to
+          XPat indexes and data\</li>
+       <li>each developer has their own row in the dlxs database for each collection
+          and group which is their own personal, alterable &quot;copy&quot; of the &quot;release&quot;
+          (dlxsadm) and &quot;production&quot; rows. </li>
+    </ul>
+    <p>Scenarios:</p>
+    <ul>
+       <li><a href="#scenario1">Scenario 1: one developer changing code, testing,
+          and committing changes </a></li>
+       <li><a href="#scenario2">Scenario 2: updating a developer's code with
+          the latest changes </a></li>
+       <li><a href="#scenario3">Scenario 3: data update, testing of new
+          data and move to production </a></li>
+       <li><a href="#scenario4">Scenario 4: updating the &quot;release&quot; directory
+          to test multiple developers' changes </a></li>
+       <li><a href="#scenario5">Scenario 5: moving latest code to production </a></li>
+       <li><a href="#scenario6">Scenario 6: tagging and releasing a DLXS
+             Release </a></li>
+    </ul>
+    <p>&nbsp;</p>
+    <h3><a name="scenario1" id="scenario1"></a> 
+      <span class="sectionheader">Scenario 1: one developer changing code, testing,
+      and committing changes </span></h3>
+    <p>Developer <span class="unixcommand">pagliere</span> works on a file in
+       his own sandbox or &quot;dev space&quot;, <span class="unixcommand">/l1/dev/pagliere/cgi/t/text/TextClass.pm</span>.
+       Since his virtual host <span class="unixcommand">http://pagliere.dev.umdl.umich.edu/</span> sets
+       his <span class="unixcommand">$DLXSROOT</span>       to <span class="unixcommand">/l1/dev/pagliere</span>,
+       all his middleware uses modules such as <span class="unixcommand">/l1/dev/pagliere/cgi/t/text/TextClass.pm</span>       and
+       /<span class="unixcommand">l1/dev/pagliere/lib/DlpsUtils.pm</span>, etc.
+       He tests his code. He decides it is self-consisitent and working. He runs
+       <span class="unixcommand">cvs commit</span> or the DLPS script <span class="unixcommand">commitme
+       pagliere text</span> or uses his <em>xemacs
+       cvs-mode</em> to commit his changes to the repository. </p>
+    <p>The next time other developers cvs update their own dev spaces (see <a href="#scenario2">Scenario
+       2</a>), they will have <span class="unixcommand">pagliere's</span> code merged
+       into theirs. </p>
+    <h3><a name="scenario2" id="scenario2"></a> <span class="sectionheader">Scenario
+    2: updating a developer's code with the latest changes</span></h3>
+    <p>Developer <span class="unixcommand">pfarber</span> runs <span class="unixcommand">cvs
+          update</span> or
+       the DLPS script <span class="unixcommand">updateme pfarber all</span> or
+       uses xemacs in cvs-mode to cvs update code in his own dev
+       space. All changes that were committed to the repository are merged into
+       <span class="unixcommand">pfarber's</span> code.</p>
+    <h3><a name="scenario3" id="scenario3"></a> <span class="sectionheader">Scenario
+    3: data update, testing of new data and move to production</span></h3>
+    <p>Developer <span class="unixcommand">sooty</span> receives new data for
+       a collection. She deposits it in the <span class="unixcommand">/l1/prep/c/coll</span> on
+       the data prep machine. She adjusts all her prep scripts, runs them, and
+       creates new data files in <span class="unixcommand">/l1/obj/c/coll</span>       and
+       corresponding indexes in <span class="unixcommand">/l1/idx/c/coll</span>.
+       She opens <span class="unixcommand">collmgr</span>, and changes her own
+       row in the dlxs database so that the <em>host</em> field points to the
+       development machine. When she runs her code, through the browser or the
+       debugger, all requests for data via XPat will go to the development machine
+       and its new data.</p>
+    <p>When she is satisfied that the new data is working correctly, she <span class="unixcommand">rdist</span>s
+       the <span class="unixcommand">/l1/obj/c/coll</span> and <span class="unixcommand">/l1/idx/c/coll</span> directories
+       over to the production machine (and, if necessary, to the development
+       machine). She changes the value of the host field back to the production
+       machine, if she desires. </p>
+    <h3><a name="scenario4" id="scenario4"></a>Scenario 4: updating the &quot;release&quot; directory
+             to test multiple developers' changes</h3>
+    <p>Several developers have been working on different parts of the code, merging
+       (via <span class="unixcommand">cvs update</span> and <span class="unixcommand">cvs
+       commit</span>) their code with the repository's latest/ever-changing
+       code. One developer runs a DLPS script called <span class="unixcommand">updaterelease</span>.
+       which <span class="unixcommand">cvs updates</span> the so-called <em>release</em> directories,<span class="unixcommand"> /l1/cgi/</span>
+       and <span class="unixcommand">/l1/lib/</span>
+       and <span class="unixcommand">/l1/web</span> and <span class="unixcommand">/l1/lib</span>,
+       etc. General testing is done by everyone in the <em>release</em> area. </p>
+    <h3><a name="scenario5" id="scenario5"></a>Scenario 5: moving latest code
+    to production </h3>
+    <p>After the release area's code is tested and felt to be working properly,
+       a <em>build production package </em> script is run which gathers up the
+       latest versions of all the (<span class="unixcommand">/l1/cgi/</span>
+       and <span class="unixcommand">/l1/lib/</span>
+       and <span class="unixcommand">/l1/web</span> and <span class="unixcommand">/l1/lib</span>,
+       etc.) and <span class="unixcommand">rdist</span>s it all to the production
+       machine.</p>
+ 
+  <h3><a name="scenario6" id="scenario6"></a>Scenario 6: tagging and releasing a DLXS
+             Release </h3>
+    <p>After code has been running for a certain length of time in production
+       and it is decided to release to the DLXS community an official DLXS Middleware
+       Release, a <em>build       release package </em> script
+       is run which gathers up the latest versions of all the (<span class="unixcommand">/l1/cgi/</span> and <span class="unixcommand">/l1/lib/</span> and <span class="unixcommand">/l1/web</span> and <span class="unixcommand">/l1/lib</span>,
+    etc.), cvs tags it all and places it in a particular directory on the development
+       machine so that it can all be burned to CD.</p>
+
+  <!-- #BeginLibraryItem "/Library/back to top.lbi" -->
+    <a href="#top"><i>Back to top</i></a> <!-- #EndLibraryItem --> 
+
+  </body>
+</html>

@@ -1,0 +1,116 @@
+<html>
+<head>
+<title>DLXS daemons: installing and configuring</title>
+
+
+
+
+
+
+
+<link href="../dlxsdocs.css" rel="stylesheet" type="text/css"> </head>         <body>
+<div class="pageTitle">DLXS daemon: installing and configuring</div>
+
+<p>DLXS provides network software which allows middleware on one server to transparently search and display content
+hosted on another. This tool, called a daemon, can be used for a variety of purposes:
+<ul>
+<li>to distribute resources across servers to balance load</li>
+<li>to bridge together resources hosted by different departments on separate servers</li>
+<li>to locate data on a remote or more tightly-secured server while running middleware on a server where staff have
+login access</li>
+<li>(in theory) to provide inter-institutional repositories of content (some institutions are indeed currently
+experimenting with such a model)</li>
+</ul>
+</P>
+<p>If you don't plan on doing any of these things, you don't need to install this tool. If you think this sounds
+interesting and you might want to do it in the future, you can wait until then to install.</p>
+<p>If you want to use the DLXS daemon, it makes sense to install it last because
+<ul>
+<li>it has the same <a href="sysreq.html">requirements</a> as the DLXS middleware, and</li>
+<li>it's not useful until the middleware is up and running anyway.</li>
+</ul>
+</P>
+
+
+<h1>Installing the DLXS daemon</h1>
+<p>The DLXS daemon uses configuration files to store site-specific information. The configuration files
+are in the <code>etc</code> directory of the dlxsd distribution.</p>
+<ol>
+<li>Make the following modifications to <code>access.conf</code> to specify up to 60 access control parameters.
+<ol>
+<li>Add lines to specify allowable domains.  For example,
+<pre>  allow .umich.edu</pre>
+allows access from any machine in the <code>umich.edu</code> domain, while
+<pre>  allow .umdl.umich.edu</pre>
+is more restrictive, allowing access only from the <code>umdl.umich.edu</code> domain, and
+<pre>  allow .umich.edu
+  allow .cornell.edu</pre>
+permits access from machines at both Cornell and Michigan.</li>
+<li>Add lines to <i>refuse</i> access from specific domains.  For example,
+<pre>  deny .hackers.org</pre></li>
+</ol>
+</li>
+<li>Make the following modifications to <code>verbs.conf</code> to specify how middleware will invoke utilities
+through the daemon.
+<ol>
+<li>Adapt the existing lines with the proper paths to DLXS required software for built-in page viewing functions.
+For example,
+<pre>  TIF2GIF /usr/local/bin/tif2web -G -N $1 -g $2 $3 -o $4 $5
+  TIF2PDF /usr/local/bin/c42pdf  -o $1 REST_OF_ARGS
+  TIF2PNG /usr/local/bin/tif2web -P -N $1 -g $2 $3 -o $4 $5
+  XPAT /usr/local/bin/xpat $1 -q -s $2
+  DELIVERFILE /bin/cp $1 $2</pre>
+</li>
+<li><p>If needed, add lines with new verbs and customized command strings to support extensions you make to DLXS
+middleware. For example,
+<pre>  HACKME /bin/mailx -s HereYouGo $1 &lt; /etc/passwd</pre>
+The <i>positional parameter</i> <code>$1</code> (you can have up to <code>$9</code>) and the special parameter REST_OF_ARGS
+shown in the previous example above are used to pass arguments from the middleware to the daemon. They are named in the
+order supplied (<code>$1</code>, <code>$2</code>, etc.) and are substituted as placed in the command string.</P>
+<p><b>Important note:</b> Clearly, providing the ability for remote execution of commands without authentication makes for
+huge potential security holes. The "HACKME" example configuration, above, is a ridiculously reckless example of the 
+<b>danger this service can
+pose if configured improperly</b>. (It emails an extremely sensitive UNIX file to a random recipient.) The daemon provides
+some protection against this by not allowing certain characters in the arguments (to prevent <i>poisoning</i>), but <b>care should
+be taken</b> that this tool is not used in such a way as to introduce security risks into your environment.</p>
+</li>
+</ol>
+</li>
+</ol>
+<p>You can recompile the DLXS daemon if you do not wish to use the binary distribution for your platform, or if you
+are attempting to run DLXS on a platform other than Linux or Solaris. For further instructions on building the DLXS daemon,
+consult the file <code>README</code> in the <code>src</code> directory of the DLXS daemon source distribution.</p>
+
+
+<h1>Configuring the Internet services daemon (inetd) to use the DLXS daemon</h1>
+<ol>
+<li>Add the line below to the <code>/etc/inetd.conf</code> (Linux) or <code>/etc/inet/inetd.conf</code> (Solaris)
+file, as appropriate. For example:
+<pre>
+   dlxsd     stream tcp nowait nobody /usr/local/dlxsd/bin/dlxsd    /usr/local/dlxsd/bin/dlxsd
+</pre>
+<p>Notes:
+<ul>
+<li>The user ("<code>nobody</code>" in the example above) should be consistent with the userid under which
+the web server runs.</li>
+<li>The path to <code>dlxsd</code> should be consistent with where you have installed the binary.</li>
+</ul>
+</P>
+</li>
+<li>Add the line below to the <code>/etc/services</code> (Linux) or <code>/etc/inet/services</code> (Solaris) file,
+as appropriate.  For example:
+<pre>
+   dlxsd      620/tcp  # dlxsd server daemon
+</pre>We recommend using port 620, but if you need to use a different port number, you will need to change the value
+in the <code>port</code> column in your <code>colldb</code> for each class. For information on the
+<code>colldb</code>, please see the online help in the
+<a href="/collmeta/collmgr.html">Collection Manager</a> utility.</li>
+<li>Signal inetd to use the new configuration, typically by issuing the command <code>kill -HUP <i>pid</i> </code>where
+<i>pid</i> is the process ID of the inetd daemon.</li>
+</ol>
+
+</body>
+
+                            
+
+</html>

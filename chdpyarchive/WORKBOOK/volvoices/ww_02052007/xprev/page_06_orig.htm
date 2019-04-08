@@ -1,0 +1,414 @@
+
+<html>
+<head>
+<title>
+page_06
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+<script language=javascript src="vv_functions.js"></script>
+<script language=javascript src="vv_functions_radio.js"></script>
+<script language=javascript src="vv_validation.js"></script>
+<script language=javascript src="vv_build_tags.js"></script>
+
+
+
+</head>
+
+<script> document.write('<body onload="load_DF_form();"  bgcolor="'+parent.adb_background_color+'" >'); </script>
+
+
+<font face="arial" size="3">
+<center><font face="arial">
+<h2><script> document.write(parent.adb_project_name); </script>
+ Workbook Page 6</h2>
+</center>
+
+<script>
+///Civil War Salt Peter Mining None, LCNAF, ULAN. 
+
+
+
+
+
+</script>
+
+<form name="DF"  action="new.xml">
+
+<table class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="ddeeff">
+<tr class="bgstandard"><td colspan="3">
+
+Required Fields are <u>underlined</u>.
+Non-Required Fields are not underlined.
+</td></tr>
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>MODS LABEL</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+<font face="arial">
+
+
+
+
+<tr class="bgstandard">
+<td class="label13u">
+Physical Location: Repository
+</td>
+<td>&nbsp;<input type="text" name="physical_location_repository" value="Special Collections, Hoskins Library. Knoxville, TN." size="36" 
+class="required300w"
+>
+&nbsp;&nbsp;<font face="arial" size="1">Name of repository (library, archive, museum) in which resource resides.
+<br>For example: Special Collections, Hoskins Library. Knoxville, TN.
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13u">
+Physical Location: Detail
+</td>
+<td>&nbsp;<input type="text" name="physical_location_detail" value="manuscript collection name, number, series, box, folder" size="36" 
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:300px"
+>
+&nbsp;&nbsp;<font face="arial" size="1">
+Additional detail to help find the resource in the home repository.  
+<br>For instance, a call number or box/folder number in a particular archival collection. 
+<br>Examples:  (1) Catherine Wiley Collection, Box 2, Folder 3. (2) M339. F3
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13u">
+Physical Location: City
+</td>
+<td>&nbsp;<input type="text" name="physical_location_city" value="Knoxville" size="36" 
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:300px; background:#ffffaa"
+>
+&nbsp;&nbsp;<font face="arial" size="1">City in which the home repository is located.
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13u">
+Physical Location: State
+</td>
+<td>&nbsp;<input type="text" name="physical_location_state" value="Tennessee" size="36" 
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:300px; background:#ffffaa"
+>
+&nbsp;&nbsp;<font face="arial" size="1">State in which the home repository is located.
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td class="label13u">
+Physical Location: County
+</td>
+<td>&nbsp;<input type="text" name="physical_location_county" value="Code" size="2" READONLY
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:40px; background:#ffffaa"
+>
+&nbsp;<input type="text" name="physical_location_county_display" value="Description" size="36" READONLY 
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:252px; background:#ffffaa"
+>
+
+
+&nbsp;<input type="button" name="Bphysical_location_county" value="Select County" 
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:121px"
+onclick="selectOneOption(this,'600','400')">
+&nbsp;<input type="button" name="Cphysical_location_county" value="Clear" 
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:100px"
+onclick="clearSelection(this,2)">
+
+
+<font face="arial" size="1" color="000000" >
+
+<br>Code, Description for 1 95 Tennessee Counties. County in which the home repository is located.
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+
+
+<!---Placeholder fields<br>museum_accession_number<br>museum_credit_line
+ tags built on this page, but input boxes on museum page------------->
+
+<input type="hidden" name="museum_accession_number" value="">
+<input type="hidden" name="museum_credit_line" value="">
+
+</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td class="label13u">
+Record Content Source
+</td>
+<td>&nbsp;<input type="text" name="record_content_source" value="digitization center" size="36" 
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:300px; background:#ffffaa"
+>
+&nbsp;&nbsp;<font face="arial" size="1">
+Digitization center, institution, group, or individual responsible for creating the record.
+<br>This data is for administrative purposes only.  Will not display to the general public.
+<br>For administrative purposes only; will not display in public record.  <br>Example:
+Hoskins Library, Special Collections, University of Tennessee.
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td class="label13u">
+Record Creation Date<br>yyyy-mm-dd
+</td>
+<td>&nbsp;<input type="text" name="record_creation_date" value="2006-09-05" size="36" READONLY
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:300px; background:#ffffaa"
+>
+&nbsp;<input type="button" name="Brecord_creation_date" value="Select Date" 
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:121px"
+onclick="selectOneOptionDate(this,'600','700')">
+&nbsp;<input type="button" name="Crecord_creation_date" value="Clear" 
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:100px"
+ onclick="clearDateNoQual(this)" >
+<font face='arial' size='1'> Date this form is completed.
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+<!--- Placeholder  Fields language_of_cataloging <br>language_of_cataloging_display
+language of cat Locked as eng, English--->
+
+<input type="hidden" name="language_of_cataloging" value="eng">
+<input type="hidden" name="language_of_cataloging_display" value="English" >
+
+
+
+<tr class="bgstandard">
+<td  class="label13u">
+Use and Reproduction
+</td>
+<td>&nbsp;
+<b>
+<a href="http://diglib.lib.utk.edu/dlc/rights/vv.html" target="_blank">Click here for more information</a>.
+<input type="hidden" name="use_and_reproduction" value='<a href="http://idserver.utk.edu/?id=200600000001200" target="_blank">Use and Reproduction</a>'>
+<!-------------------------------
+<textarea name="use_and_reproduction" 
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; xwidth:300px; background:#ffffaa"
+
+cols="60" rows="8" READONLY>
+This work is the property of the University of Tennessee Libraries, Knoxville, TN. It may be used freely by individuals for research, teaching, and personal use as long as this statement of availability is included in the text. For all other use contact Special Collections Library, University of Tennessee, Knoxville, TN.
+</textarea>
+&nbsp;&nbsp;<font face="arial" size="1">
+------------------------------>
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+
+
+
+
+<tr class="bgstandard"><td colspan="3" align="center">
+&nbsp;&nbsp;
+<input type="button" name="B_UF" value="Save" class="buttonnw" onclick="buildModsTags(10);">
+<!---input type="button" name="B_DF" value="Reset"  class="buttonnw" onclick="load_DF_form();"--->
+
+<input type="button" name="B2" 
+value="Save Data and View MODS TAGS" class="buttonnw"
+onclick="buildModsTags(1)">
+
+
+</td></tr>
+
+</table>
+
+
+
+
+
+
+
+</form name="forms[0]">
+
+<center><font face="arial">
+<h2><script> document.write(parent.adb_project_name); </script>
+ Workbook Page 6</h2>
+</center>
+
+
+<hr>
+<script>
+
+
+
+
+
+
+
+/////chdchdchd
+
+
+
+
+
+function load_UF_form() {
+
+parent.U.document.UF.physical_location_repository.value = document.DF.physical_location_repository.value
+parent.U.document.UF.physical_location_detail.value = document.DF.physical_location_detail.value
+parent.U.document.UF.physical_location_city.value = document.DF.physical_location_city.value
+parent.U.document.UF.physical_location_state.value = document.DF.physical_location_state.value 
+parent.U.document.UF.physical_location_county.value = document.DF.physical_location_county.value
+parent.U.document.UF.physical_location_county_display.value = document.DF.physical_location_county_display.value
+parent.U.document.UF.museum_accession_number.value = document.DF.museum_accession_number.value
+parent.U.document.UF.museum_credit_line.value = document.DF.museum_credit_line.value 
+parent.U.document.UF.record_content_source.value = document.DF.record_content_source.value
+parent.U.document.UF.record_creation_date.value = document.DF.record_creation_date.value
+parent.U.document.UF.language_of_cataloging.value = document.DF.language_of_cataloging.value
+parent.U.document.UF.language_of_cataloging_display.value = document.DF.language_of_cataloging_display.value
+parent.U.document.UF.use_and_reproduction.value = document.DF.use_and_reproduction.value
+
+
+
+return;
+}
+
+function load_DF_form() {
+
+document.DF.physical_location_repository.value = parent.U.document.UF.physical_location_repository.value
+document.DF.physical_location_detail.value = parent.U.document.UF.physical_location_detail.value
+document.DF.physical_location_city.value = parent.U.document.UF.physical_location_city.value
+document.DF.physical_location_state.value = parent.U.document.UF.physical_location_state.value 
+document.DF.physical_location_county.value = parent.U.document.UF.physical_location_county.value
+document.DF.physical_location_county_display.value = parent.U.document.UF.physical_location_county_display.value
+document.DF.record_content_source.value = parent.U.document.UF.record_content_source.value
+
+
+//first time load only
+if ( parent.adb_institution_id == "0012" && parent.U.document.UF.physical_location_repository.value == "") {
+	document.DF.physical_location_repository.value = 'University of Tennessee Special Collections Library'; 
+	document.DF.physical_location_detail.value = 'James D. Hoskins Library, Room 200 '; 
+	document.DF.physical_location_city.value = 'Knoxville';
+	document.DF.physical_location_state.value = 'Tennessee , 37996-4006';
+	document.DF.physical_location_county.value = 'C.47';
+	document.DF.physical_location_county_display.value = 'Knox County'; 
+	document.DF.record_content_source.value = 'University of Tennessee Special Collections Library'; 
+	}
+
+
+document.DF.museum_accession_number.value = parent.U.document.UF.museum_accession_number.value
+document.DF.museum_credit_line.value = parent.U.document.UF.museum_credit_line.value 
+document.DF.record_creation_date.value = parent.U.document.UF.record_creation_date.value
+document.DF.language_of_cataloging.value = parent.U.document.UF.language_of_cataloging.value
+document.DF.language_of_cataloging_display.value = parent.U.document.UF.language_of_cataloging_display.value
+
+
+return;
+}
+
+
+
+function buildModsTags(N) {
+
+////do this first so current values are loaded regardless of validation status
+load_UF_form();
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+//before writing MODS TAGS, make sure all required fields are populated
+//checkAllRequired... true  validation sets validation status to 1  -- complete
+//checkAllRequired... false validation sets validation status to 0  -- incomplete
+
+if (!checkAllRequiredElements_Page_06() ) return;
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+var num = new Number();
+    num = N;
+
+if (num == 10) {
+        alert("Values have been saved.");
+        return;
+        }
+
+
+var aps= new Array();
+var aps= new Array();
+var hps= new Array();
+var cps= new Array();
+    
+    hps = buildTagsArray_header(num);
+    aps = buildTagsArray_page_06(num);
+    cps = buildTagsArray_closer(num);
+
+
+//=================================================
+
+document.write('<input type="button" name="BBACK" onclick="javascript: history.back()" value="BACK"><P>');
+document.write('<font face="Elephant" size="3" color="a00000">'+parent.adb_project_name+' Workbook, Page 6<p></font>');
+//PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+document.write( "This is the generated xml script.  Values you entered are highlighted in red.<HR>");
+document.write('<input type="button" name="BBACK" onclick="javascript: history.back()" value="BACK"><P>');
+document.write('<font face="Elephant" size="3" color="a00000">'+parent.adb_project_name+' Workbook, Page 6<p></font>');
+//PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+document.write( "This is the generated xml script.  Values you entered are highlighted in red.<HR>");
+
+//document.write('< ? xml version="1.0"  ? > \r\n'); 
+///document.write("Content-Type: text/xml ")
+
+
+
+for (i=0;i<hps.length;i++) {
+	var vps = new String(hps[i]);
+ 	document.write("<br>"+vps);
+	}
+
+
+
+for (i=0;i<aps.length;i++) {
+	var vps = new String(aps[i]);
+	document.write("<br>"+vps);
+	}
+
+
+
+for (i=0;i<cps.length;i++) {
+	var vps = new String(cps[i]);
+	document.write("<br>"+vps);
+
+	}
+
+
+
+}//end function
+
+
+
+
+///fdg();//funnction in vv_validation.js
+
+
+
+</script>
+	
+
+
+</body>
+</html>
+

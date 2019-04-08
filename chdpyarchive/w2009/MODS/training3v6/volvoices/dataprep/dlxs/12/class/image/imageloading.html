@@ -1,0 +1,419 @@
+<html>
+<head>
+<title>Image Class Image Loading for Online Delivery</title>
+
+
+
+
+
+ <link href="../../dlxsdocs.css" rel="stylesheet" type="text/css">
+</head>         <body>
+<h1>Image Class Image Loading for Online Delivery</h1>
+
+
+<p><a href="mailto:dlxs-help@umich.edu">dlxs-help@umich.edu</a></p>
+
+<h1>Introduction</h1>
+
+<p>This describes the where and how for loading images to the production server 
+  for online delivery via the Image Class. Not covered is the the generation of Image Files for use with Image Class. 
+  Image Class supports a wide variety of media formats, including specialized support for JPEG2000 and MrSID images.</p>
+
+<p>The basic steps here include loading image files on the production
+server into a prescribed (though flexible) directory structure and then executing a
+program called "imageprep" which builds a collection specific index
+directory of references to all of the collections image files.
+The index directory is used by the Image Class CGI&#0160;middleware,
+and by the data transformation software (idb), as a consistent means of
+locating the image files of a collection.</p>
+
+<p>Image Class is configured by default to handle specific directory structures and filenaming conventions. 
+The directory structures and conventions are configurable to support a wide variety of situations.
+Image Class is not limited to images. Many media formats can be delivered.
+</p>
+
+<p>Image Loading
+takes place prior to the loading of data records, except in cases where a
+database does not have digital image files.</p>
+
+
+
+<h2>Software Used</h2>
+
+<ul>
+   <li>imageprep (Perl script; provided and required)</li>
+   <li>kdu_expand for JPEG2000 files (provided and optional)</li>
+   <li>mrsid_retrieve for MrSID files (provided and optional)</li>
+</ul>
+
+
+<h2>Process Outline</h2>
+
+<ol>
+   <li>Load image files.</li>
+   
+   <li>Use the "imageprep" program to make an index directory to the
+   image files.</li>
+</ol>
+
+
+
+
+
+
+<h1>Load Image Files</h1>
+
+
+<h2>Formats</h2>
+
+
+   <p>Image Class supports by default the following formats, but is configurable to handle others: 
+ <ul>
+        <li>Thumbnails: JPG, PNG, GIF.</li>
+	<li>Large Images: JPG, JP2 (JPEG2000), <a href="http:www.lizardtech.com">MrSID</a></li>
+ </ul>
+</P>
+
+
+
+<h2><a name="Filenaming"></a>Filenaming</h2>
+
+<p>Please refer to the <a href="imagefilenaming.html">Image Class Image File 
+  Naming</a> document for the details.</p>
+
+<p>By default, Image Class allows the following filename
+   extensions, but is configurable to handle others: </p>
+<ul>
+<li>Thumbnails: jpg, JPG, sid, SID, png, PNG, gif, GIF</li>
+<li>Large Images: jpg, JPG, jp2, JP2, sid, SID</li>
+</ul>
+
+<p>It is best/easiest if filenames are unique within a collection. If they are
+  not, the subdirectory path can be used to force uniqueness. To enable this
+  function, edit the file at $DLXSROOT/bin/i/image/localimageprep.cfg adding
+  the following code to the "COLL SPECIFIC OVERRIDES/ADDITIONS" section</p>
+<pre>
+if ($coll eq 'collid')
+  {
+    $gLoadedName = 'loaded';
+  }
+</pre>   
+
+<p>Be sure to replace "collid" with the collection's ID!</p>
+
+
+
+
+
+<h2>Location</h2>
+
+<p>Image files must be stored using the following collection level directory convention:</p>
+
+<ul>
+   <li>$DLXSDATAROOT/img/c/collid</li>
+   
+   <li>collid is the unique alphabetic abbreviation of the
+   collection name.</li>
+</ul>
+
+<p>For example, the unique collid for the collection "French
+Architecture" is "sampleic", in which case the image file directory
+is...</p>
+
+<pre>$DLXSDATAROOT/img/s/sampleic</pre>
+
+<p>The software assumes that every image has a thumbnail image and a
+larger display image.</p>
+
+<p>Within the collection directory, images should be stored in the
+following locations.</p>
+
+<ul>
+   <li>The directory name "index" is reserved for building an index
+   directory of symlinks for all images for the collection. Do not
+   use "index"&#0160;for storing actual image files. The index directory is created automatically.</li>
+
+	<li>Thumbnail images corresponding with large JPEG2000 images must be in a directory or directories named 'thumbjp2'.</li>   
+
+   <li>All other thumbnail images must be in a directory or
+   directories named "thumb".</li>
+   
+   <li>All JPEG2000 file must be in a directory or directories named "jp2".</li>
+   
+   <li>All SID format images may be anywhere in the collection
+   directory, though not in the "index" directory.</li>
+   
+   <li>All JPEG, non-thumbnail, larger, images may be anywhere in the
+   collection directory, though not in the "index" directory.
+   </li>
+   
+   <li>Image files may be within multiple levels of sub-directories.</li>
+   
+   <p>To clarify with an example, the Image Class middleware assumes that all
+   JPEG files in directories named "thumbjp2" and within the<tt> $DLXSROOT/img/c/collid</tt> structure
+   are thumbnails to  be displayed in association with JPEG2000 images (stored
+   in "jp2" directories. All JPEG
+   images not in thumb directories are assumed to be single
+   resolution images for large display.</p>
+   
+   <p>Example:</p>
+   
+   <p>The "sampleic" collection can again be used as a simple example.
+   <tt>$DLXSROOT/img/s/sampleic</tt> has the following directories...</p>
+   
+   <p><tt>drwxrwxr-x 4 jweise dlps 512 Feb 15 14:37 index<br/>
+   drwxrwxr-x 2 jweise dlps 2048 Feb 15 13:30 sid<br/>
+   drwxrwxr-x 2 jweise dlps 2048 Jun 8 1998 thumb</tt></p>
+   
+   <p><tt>$DLXSROOT/img/s/sampleic/sid </tt>contains all of the SID format,
+   multiple resolution, files for the collection.</p>
+   
+   <p><tt>$DLXSROOT/img/s/sampleic/thumb </tt>contains all of the JPEG format,
+   thumbnail size, files for the collection.</p>
+   
+   <p>The sampleic collection does not have any large JPEG files
+   since it relies on SID files for large display.</p>
+   
+   <p>The flexibility of structure within the collection specific image
+   directory is intentional and supports the variety of directory
+   structures that are typically encountered.</p>
+
+
+   
+   <p>For example, at Michigan, we find it useful to load the
+   image files on the production server in a structure that reflects
+   the CD that the master image files are stored on. A single
+   collection can easily have dozens of CDs worth of master image
+   data (typically TIFF format files). In the process of
+   generating SID and JPEG files, we maintain at least the name
+   of the CD in the name of the directory that the SID and JPEG
+   images are kept in.</p>
+   
+   <ul>
+      <li>Master CDs:;
+      
+      <ul>
+         <li><tt>CD0001</tt>
+         
+         <ul>
+            <li><tt>image001.TIF<br/>
+            image002.TIF<br/>
+            ...<br/>
+            image050.TIF</tt></li>
+         </ul>
+         
+         <p><tt>...</tt></p>
+         
+         <p><tt>CD0005</tt></p>
+         
+         <ul>
+            <li><tt>image201.TIF<br/>
+            image202.TIF<br/>
+            ...<br/>
+            image250.TIF</tt></li>
+         </ul>
+         </li>
+      </ul>
+      
+      <p>Image directories (that are loaded to the production
+      server in the $DLXSROOT/img/c/collid directory)</p>
+      
+      <ul>
+         <li><tt>CD0001</tt>
+         
+         <ul>
+            <li><tt>sid</tt>
+            
+            <ul>
+               <li><tt>image001.SID<br/>
+               image002.SID<br/>
+               ...<br/>
+               image050.SID</tt></li>
+            </ul>
+            
+            <p><tt>thumb</tt></p>
+            
+            <ul>
+               <li><tt>image001.JPG<br/>
+               image002.JPG<br/>
+               ...<br/>
+               image050.JPG</tt></li>
+            </ul>
+            </li>
+         </ul>
+         
+         <p><tt>...</tt></p>
+         
+         <p><tt>CD0005</tt></p>
+         
+         <ul>
+            <li><tt>sid</tt>
+            
+            <ul>
+               <li><tt>image201.SID<br/>
+               image202.SID<br/>
+               ...<br/>
+               image250.SID</tt></li>
+            </ul>
+            
+            <p><tt>thumb</tt></p>
+            
+            <ul>
+               <li><tt>image201.JPG<br/>
+               image202.JPG<br/>
+               ...<br/>
+               image250.JPG</tt></li>
+            </ul>
+            </li>
+         </ul>
+         </li>
+      </ul>
+      </li>
+   </ul>
+   
+   <p>It is fine for the images to be loaded in this type of
+   hierarchical structure. When the "imageprep" program (discussed
+   below) creates the index directory, it recursively parses
+   directories to find all image files.</p>
+</ul>
+
+
+
+
+
+
+<h1>Set Permissions for Image Files</h1>
+
+<blockquote><p>Image files need to be readable by the web server, which
+   often runs as user "nobody".</p>
+   
+   <p>Image directories should be 775 and image files should be 664.
+   The "imageprep"&#0160;program will attempt to properly set all
+   permissions for all image directories and files. However, if the
+   user excecuting "imageprep" does not have the necessary
+   permissions to change the mode of the directories and files, the
+   "imageprep" program will not be successful in its attempt, and
+   will generate a message reporting this is the case.</p>
+   
+   <p>Alternatively, the chmod command can be used to set
+   permissions. There are ways to modify files in batch with UNIX
+   commands, but this topic is beyond the scope of this document.</p>
+   
+   <p>chmod 775 $DLXSROOT/img/m/musart/sid</p>
+   
+   <p>chmod 664 abc.sid</p>
+</blockquote>
+
+
+
+<h1>Make Index Directory of Image Files</h1>
+
+<p>The Image Class middleware (the CGI) expects to find in the index directory references to the actual image files. The index directory is generated automatically by the imageprep program. For each set of similarly named image files (e.g., JPEG thumbnail and large SID) a .inf file is created. For each thumbnail a symlink is also created. 
+</p>
+
+<p>Advantages of the index directory are:</p>
+
+<ul>
+   <li>it allows filename extensions to be normalized in the symlink
+   names (consistently all caps, for example)</li>
+   
+   <li>it provides a consistent structure for the middleware to locate images</li>
+   
+   <li>the directory structure for storing the actual image files can accomodate a wide variety of situations</li>
+
+</ul>
+
+
+<p>A program is provided called "imageprep" that recursively locates
+image files in a collection's image directory and builds .inf files and symlinks.
+  It also capitalizes all filename extensions it creates within the idnex directory. 
+</p>
+
+<p>It is typically invoked on the command line as follows...</p>
+
+<pre>$DLXSROOT/bin/i/image/imageprep collid</pre>
+
+<p>For example:</p>
+
+<pre>$DLXSROOT/bin/i/image/imageprep sampleic</pre>
+
+
+<p>Each time the "imageprep" program is executed for a collection,
+a completely new index directory is generated. To minimize downtime the new index directory is created in a directory called "indexprep". At the end of execution imageprep moves the current index directory out of the way and the new index directory in to place. The old index directory is then automatically deleted. </p>
+
+
+<p>If an image filename is not unique, only the <strong>newest</strong> instance that
+is encountered will be included in the index directory.</p>
+<h4>Additional Command Line Options for imageprep </h4>
+<p><em>table</em></p>
+<p> the table arg is also optional. if &quot;table&quot; is included in the command, filenames will be put into a mysql table named collid_filenames.
+if such a table already exists, it is first dropped. imageprep does not use the filenames table in anyway, and at this time
+it is not required for other data prep steps. it simply may be useful
+in certain situations.</p>
+<p><em>nosymlinks</em></p>
+<p>the nosymlinks argument is optional. 
+  if nosymlinks = &quot;nosymlinks&quot;, thumbnail images will be copied to
+  the 
+  index directory. Normally symlinks are made from the index directory 
+  to the location of the actual thumbnail image file. 
+  this functionality has been added specifically to make it possible to 
+  distribute Image Class sample data without needing to run imageprep 
+as part of installation.</p>
+<p>&nbsp;</p>
+<h1>Advanced Customization</h1>
+<p>Image Class can be configured to support a wide variety of directory and filenaming conventions. This configuration is done in the 
+<tt>$DLXSROOT/bin/i/image/localimageprep.cfg</tt> file. Copy the %gTypeHash, and @gTypeComarisonOrder definitions from imageprep.cfg to localimageprep.cfg and 
+modify it to support local conventions</p>
+<p>It is even possible to add support for multiple image sizes for a single image in a non-MrSID format such as JPEG. That is, you could have small, medium, 
+and large JPEG images for a single item and have them all be available to the user in the interface. Michigan has done this for the 
+<a href="http://images.umdl.umich.edu/a/apis">APIS</a> (Papyrus) collection where there is a mix of MrSID and JPEGs at multiple sizes (Though the examples are few and far between. In fact I can't find one at the moment.) Zooming is not possible without MrSID, but the user may select from the multiple sizes.</p>
+
+<p>Below is the %gTypeHash Michigan added to localimageprep.cfg to handle the APIS collection. The hash holds for each type of image an array of regular expressions used to match image files. For APIS, thumbnail images must either be JPEG files in a "thumb" directory or GIF files with "-tn" preceding the extension. SID images are also allowed and can reside anywhere. JPEGs that aren't thumbnails are assumed to be large image files and are given the label "1200", which is a somewhat arbitrary estimation of the maximum pixel dimension of the file. JPEGs with "-50" preceding the extension are labelled as large JPEGs with maximum pixel dimensions of 600. It does not matter too much what the labels are as long as they cause the images to sort properly by size in the user interface.</p>
+
+<p>The @gTypeComparison order array is important because it specifies an order of precedence for identifying images. In this case "thumb" is checked first, and if the filename matches one of the "thumb" regular expressions, it is not tested against the other types (i.e,. sid, 600, 1200).</p>
+
+
+<pre>
+if ($coll eq 'apis')
+  {
+    %gTypeHash =
+      (
+       'image:::dynamic:-:thumb' => [
+                                     '/thumb/([^/]+)\\.(jpg)',
+                                     '/thumb/([^/]+)\\.(JPG)',
+                                    ],
+       'image:::fixed:-:thumb' => [
+                                   '/([^/]+)-tn\\.(gif)',
+                                   '/([^/]+)-tn\\.(GIF)',
+                                  ],
+
+       'image:::dynamic:-:sid' =>   ['/([^/]+)\\.(sid)', '/([^/]+)\\.(SID)'],
+       'image:::fixed:-:600' =>   ['/([^/]+)-50\\.(jpg)', '/([^/]+)-50\\.(JPG)'],
+       'image:::fixed:-:1200' =>  ['/([^/]+)\\.(jpg)', '/([^/]+)\\.(JPG)'],
+      );
+    @gTypeComparisonOrder = ('image:::dynamic:-:thumb','image:::fixed:-:thumb', '
+image:::fixed:-:600','image:::fixed:-:1200','image:::dynamic:-:sid');
+  }
+
+</pre>
+
+<p>Contact <a href="mailto:dlxs-help@umich.edu">dlxs-help@umich.edu</a> if you need assistance with this advanced topic.</p>
+
+
+
+
+<h1>Conclusion</h1>
+
+<p>If all has gone well, at this point you should have the image
+files loaded, symlinks generated, and permissions properly set. This
+is all you have to do to the image files. The database transformation
+process will be able to locate the image files, as will the CGI
+middleware.</p>
+
+
+
+
+
+</body>
+
+</html>

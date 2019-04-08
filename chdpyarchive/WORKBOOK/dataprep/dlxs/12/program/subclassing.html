@@ -1,0 +1,198 @@
+<html>
+<head>
+<title>Subclassing DLXS Class Modules</title>
+
+
+
+
+
+
+
+<link href="../dlxsdocs.css" rel="stylesheet" type="text/css"> </head>         <body>
+<div class="pageTitle">DLPS Classes</div>
+         
+            <h1>Subclassing in TextClass</h1>
+            <p>DLXS middleware is written in Object-Oriented Perl. There are superclasses 
+      (or base classes) of objects that have basic member data and run generally applicable 
+	  methods. Collection specific tailoring can be accomplished 
+      for collections that require different behavior . Many look and feel issues 
+      can be handled by collection HTML specific templates.</p>
+            <p>However, different searching or different display, will require  some 
+      Perl code modification. This is accomplished through subclassing.</p>
+            <p>This section will cover how to make a collection specific subclass of TextClass.pm 
+      so that we can change some SGML to HTML filtering.</p>
+  
+  
+  
+         
+            <p>The general idea is the following:</p>
+   
+            <ol>
+               <li>Make a subclass of TextClass.pm. By convention we name TextClass subclasses  
+      based on the collection id. For the purposes of this discussion, if your 
+      collection id is "digbooks", the subclass module would be called "DigbooksTC.pm". 
+      This file should be in the $DLXSROOT/cgi/t/text/TextClass subdirectory. </li>
+               <li>
+      The subclass module needs to have certain Perl code  early on 
+         that makes this file a subclass of TextClass.pm. See below. 
+   </li>
+               <li>
+      
+         In the collmgr, enter "TextClass/DigbooksTC" in the subclassmodule 
+         field. This will tell the middleware to  use the code in this module 
+         when possible for this collection.
+   </li>
+            </ol>
+
+            <p>The easiest way to create a TextClass subclass module is to copy  an 
+      existing subclass module. The simplest version is SampleTC.pm.</p>
+            <p>-------------</p>
+
+         
+            
+
+         
+            <pre>package SampleTC;
+   BEGIN
+   {
+       # enable strict under development
+       if ( $ENV{'DLPS_DEV'} )
+       {
+           require &quot;strict.pm&quot;;
+           strict::import();
+       }
+   }
+   use TextClass ();
+   use TextClassUtils ();
+   use DlpsUtils qw( :DEFAULT );
+
+   use Foo;     # Remove this line or change to "use" other subclass needed modules
+
+   # Subclass of TextClass.pm module
+   use vars qw( @ISA );   
+   @ISA = qw( TextClass );
+   
+   
+   ## **********************************************************************
+   ## this is a subclass of TextClass
+   ## for different search and filtering behavior.  
+   ## The intent with &quot;Sample&quot; is to provide a template to guide subclass
+   ## creation
+   # ----------------------------------------------------------------------
+   # NAME      : new (Defaults to BaseClass::new
+   # PURPOSE   : create new SampleTC object
+   #
+   # CALLED BY : main
+   # CALLS     : SampleTC-&gt;_initialize
+   # INPUT     : see TextClass::_initialize
+   # RETURNS   : 
+   # NOTES     :
+   # ----------------------------------------------------------------------
+   # ----------------------------------------------------------------------
+   # NAME      : _initialize
+   # PURPOSE   : create structure for TextClass object
+   # CALLED BY : new
+   # CALLS     :
+   # INPUT     : see new
+   # RETURNS   :
+   # NOTES     :
+   # ----------------------------------------------------------------------
+   sub _initialize
+   {
+       my $self = shift;
+       $self-&gt;SUPER::_initialize( @_ );
+   }
+   ## ----------------------------------------------------------------------
+   1;
+   </pre>
+         
+         
+            <p>After copying the file, you will need to change the package name to match 
+      the collection. In the example case,</p>
+            <pre>package DigbooksTC;</pre>
+            <p>You can replace &quot;use Foo;&quot; with any "use&quot; statements you 
+      might need, that the base class (TextClass.pm) doesn't already "use.&quot;</p>
+            <p>The code that refers to the @ISA array is needed to tell Perl what base 
+      class this module <i>is a</i> subclass of. This does not need changing.</p>
+            <p>Now, any method that you create here that has the same name as a method 
+      in the base class (TextClass.pm) will be run instead of the method in the 
+      base class.</p>
+            <p>Any method you create here that does not exist in the base class can also 
+      be run by the middleware when dealing with this collection. </p>
+            <p>Of course, when writing methods, the first parameter passed in, implicitly, 
+      is the object itself. So, "$self = shift;" should always be the first line 
+      in any class's method.</p>
+            <p>Finally, at any time, you can call "$self-&gt;SUPER::NameOfMethodInBaseClass( 
+      )". This will run the method that is defined in the base class. Often it 
+      is convenient to create a method by the same name as the base class's method, 
+      run the SUPER's version of it and then add some more code. Or vice versa; 
+      that is, run some code and then call SUPER's method.</p>
+            <p>Here is an example of method overriding from  NietzscheTC.pm. You can 
+      see that the TextFilter method is short. First it runs another method called 
+      FilterMilestones (one that exists only in this subclass, not in the base 
+      class code) and then runs SUPER's version of TextFilter. In this case, it 
+      was important to modify the SGML to be filtered (in $sRef) before the usual 
+      filtering was done. In other cases, one might want to run the superclass's
+	  filtering first and then change something in that result, in which case, 
+	  	SUPER::TextFilter would be called before the other subclass-specific
+		filtering.</p>
+ 
+         
+            <pre>
+   # ----------------------------------------------------------------------
+   # NAME         : TextFilter
+   # PURPOSE      :
+   #              :
+   # CALLED BY    : ScopedResultsFilter
+   # CALLS        : SUPER, and other methods if needed, be they
+   #              : in superclass or in this subclass
+   # INPUT        : $sRef (reference to search result string
+   # RETURNS      : $results (filtered)
+   # GLOBALS      : NONE
+   # SIDE-EFFECTS : NONE
+   # NOTES        : 
+   # ----------------------------------------------------------------------
+   sub TextFilter
+   {
+       my $self = shift;
+       my ( $sRef, $collid, $idno, $cgi, $dso, $iel ) = @_;
+
+       # &amp;FilterMilestones( $sRef );   # example of call to any other methods needed
+
+       my $results = $self-&gt;SUPER::TextFilter( @_ );
+       return $results;
+   }
+   # ----------------------------------------------------------------------
+   # NAME         : FilterMilestones
+   # PURPOSE      :
+   #
+   # CALLED BY    : SubClass::TextFilter
+   # CALLS        :
+   # INPUT        :
+   # RETURNS      :
+   # GLOBALS      :
+   # SIDE-EFFECTS :
+   # NOTES        : To filter this collection's very specific MILESTONE tag
+   #              :        syntax, e.g.:
+   #              : &lt;MILESTONE UNIT=&quot;Aphorism&quot; ED=&quot;kgw&quot; N=&quot;III-3.9&quot;&gt; &lt;MILESTONE 
+   #              : UNIT=&quot;Aphorism&quot; ED=&quot;ksa&quot; N=&quot;7.13&quot;&gt;
+   # ----------------------------------------------------------------------
+   sub FilterMilestones
+   {
+       my $sRef = shift;
+       # ignore/remove all &quot;page&quot; type MILESTONEs
+       $$sRef =~ s|&lt;MILESTONE UNIT=\&quot;page\&quot;.*?&gt;||gs;
+       # handle other types
+       $$sRef =~ s|&lt;MILESTONE UNIT=\&quot;.*?\&quot; ED=\&quot;(.*?)\&quot; N=\&quot;(.*?)\&quot;&gt;|&lt;br&gt;\n\[$1 ed\., $2\]|gs;
+   }
+   </pre>
+   
+   <p>Remember that, for this collection to use this subclassed code, you
+   need to update the <i>subclassmodule</i> field for this collection's entry
+    in the <a href="../collmeta/collmgr-fields.html">Collection Manager</a>.</p>
+   
+   
+         
+      </body>
+   
+</html>

@@ -1,0 +1,66 @@
+
+<html>
+<head>
+<title>frame</title>
+
+<script language='javascript'>
+var dlc_software_id ="University of Tennesse Libraries Digital Library Center Workbook Version 1.0";
+var mytest='';
+var admindb_data='';
+var check_test = '';
+//===============12142006=============================
+var adb_test_itemdescr = "";
+
+var adb_username = parent.adb_username;
+var adb_fullname = parent.adb_fullname;
+var adb_instname = parent.adb_instname;
+var adb_instadd =  parent.adb_instadd;
+var adb_instcity = parent.adb_instcity;
+var adb_instcounty = parent.adb_instcounty;
+var adb_inststate = parent.adb_inststate;
+var adb_instzip = parent.adb_instzip;
+var adb_collidn = parent.adb_collidn;
+var adb_collidndes = parent.adb_collidndes;
+var adb_collname = parent.adb_collname;
+var adb_colldes = parent.adb_colldes;
+var adb_collextent = parent.adb_collextent;
+var adb_itempname = parent.adb_itempname;
+var adb_itemfbname = parent.adb_itemfname;
+var adb_itemtitle = parent.adb_title;
+var adb_itemdate = parent.adb_itemdate;
+var adb_itemdescr = parent.adb_itemdescr;
+var adb_itemtype = parent.adb_itemtype;
+var adb_itemgenre = parent.adb_itemgenre;
+var adb_itemdim = parent.adb_itemdim;
+var adb_itemrights = parent.adb_itemrights;
+var adb_itemlocation = parent.adb_itemlocation;
+var adb_admindb_data = parent.adb_admindb_data;
+var adb_itemcreator = parent.adb_itemcreator;
+var adb_institution_id = new String (adb_admindb_data);
+    adb_institution_id = adb_institution_id.substring(0,4);
+var adb_institution_id = new String('0012');
+var adb_project_name  = 'Training_v6';
+var adb_project_id  = 'VV';
+var adb_background_class = 'backgroundVV';
+var adb_background_color = '#99aabb';
+if ( adb_institution_id == '0012' ) {
+                //adb_project_name = 'Special Collections'; //Training
+                adb_project_id = 'SC';
+                adb_background_color = '#d0d0d0';
+                adb_background_class = 'backgroundSC';
+                }
+//=====================================================
+
+</script>
+
+</head>
+
+<frameset cols="90,*"  border="01" >
+        <frame name="T" src="page_links_training2.htm" >
+        <frameset rows="150,15,*" >
+                <frame name="U" src="page_upper.htm"  >
+                <frame name="L" src="page_lower.htm" >
+                <frame name="D" src="page_reload.htm" scrolling="yes">
+        </frameset>
+</frameset>
+

@@ -1,0 +1,438 @@
+<!--
+    This code is issued under the GNU General Public License, 
+    version 3, 29 June 2007.
+
+    The DLC-MODS Workbook provides a series of web pages to help you 
+    generate a MODS metadata record that follows the Digital Library 
+    Federation Implementation Guidelines for Shareable MODS Records, 
+    as described in the DLF Aquifer Guidlines November 2006.  These 
+    Guidelines and the specific MODS Profile are documented on the 
+    MODS Profile Page of the DLC-MODS Workbook.
+
+    Copyright (C) 2007 
+    Christine Haygood Deane 
+    University of Tennessee Libraries
+    Digital Library Center
+ 
+
+    This program is free software: you can redistribute it and/or modify    
+    it under the terms of the GNU General Public License as published by    
+    the Free Software Foundation, version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see http://www.gnu.org/licenses/
+-->
+
+<html>
+<head>
+<title>
+page_begin
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+<script language=javascript src="vv_compose_tags.js"></script>
+
+
+<script>
+
+var DATE = new Date();
+
+</script>
+
+
+</head>
+
+<script>document.write('<body onload="load_DF_form();"  bgcolor="'+parent.adb_background_color+'" >');</script>
+
+<font face="arial" size="3">
+<center><font face="arial">
+<h2> <script> document.write(parent.adb_project_name); </script>
+ Begin Page </h2>
+</center>
+
+<script>
+///Civil War Salt Peter Mining None, LCNAF, ULAN. 
+
+
+
+</script>
+
+<form name="DF"  action="new.xml">
+
+<input type="hidden" name="VVcomment_01" value="">
+<input type="hidden" name="VVcomment_02" value="">
+<input type="hidden" name="VVcomment_02a" value="">
+<input type="hidden" name="VVcomment_02b" value="">
+<input type="hidden" name="VVcomment_02c" value="">
+<input type="hidden" name="VVcomment_02d" value="">
+<input type="hidden" name="VVcomment_03" value="">
+<input type="hidden" name="VVcomment_03c" value="">
+<input type="hidden" name="VVcomment_03p" value="">
+<input type="hidden" name="VVcomment_03d" value="">
+<input type="hidden" name="VVcomment_04" value="">
+<input type ="hidden" name="numRelatedItems"  value="1">
+<input type ="hidden" name="numIdentifiers"   value="1">
+<input type ="hidden" name="numSubjectBlocks" value="1">
+<input type ="hidden" name="numPersonalNames" value="1">
+<input type ="hidden" name="numCorporateNames" value="1">
+
+<table class="bgINNER" border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="ddeeff">
+<tr class="bgstandard"><td colspan="3">
+
+All fields on this page are required.
+<br>All of this information appears in the block of comments at the beginning of the xml file.
+
+<br>&nbsp;
+
+</td></tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+<tr class="bgstandard"><td colspan="1" class="label0nou">
+&nbsp;
+</td><td class="value10nou">
+&nbsp;
+</td>
+<td>&nbsp;</td>
+</tr>
+
+<tr class="bgstandard"><td colspan="1" class="label12u">
+Content Contributor
+</td><td class="value10nou">
+<input type ="text" name="contributorName" value="" class="required300w" > &nbsp;
+<br>This name goes into the comment block and gives credit to the person who did the work.</td>
+<td>&nbsp;</td>
+</tr>
+
+<tr class="bgstandard"><td colspan="1" class="label12u">
+Institution
+</td><td class="value10nou">
+<input type ="text" name="institutionName" value="UTK" class="required300w" > &nbsp;
+<br>This name goes into the comment block and gives credit to the institution which supports this  work.</td>
+<td>&nbsp;</td>
+</tr>
+
+
+
+<tr class="bgstandard"><td colspan="1" class="label12u">
+XML File Name
+</td><td class="value10nou">
+<input type ="text" name="XMLmaster_simple" value="test.xml" class="required300w"
+ > &nbsp;&nbsp;&nbsp;
+<br>On Page 7 the workbook will name the download file the name you enter here.
+</td>
+<td>&nbsp;</td>
+</tr>
+
+
+<tr class="bgstandard"> <td>&nbsp</td><td>&nbsp</td><td>&nbsp</td> </tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+<tr class="bgstandard"><td colspan="3" align="center">
+&nbsp;&nbsp;
+<input type="button" name="B_UF" value="Save" onclick="buildModsTags(10);" class="buttonnw">
+&nbsp;&nbsp;&nbsp;
+<input type="button" name="B2" value="Save Data and View MODS TAGS" class="buttonnw"  onclick="buildModsTags(1)">
+&nbsp;&nbsp;&nbsp;
+<input type="button" name="B_DF" value="Clear" onclick="clearForm()" class="buttonnw">
+</td></tr>
+
+
+<tr class="bgstandard"> <td>&nbsp</td><td>&nbsp</td><td>&nbsp</td> </tr>
+<tr class="bgstandard"> <td>&nbsp</td><td>&nbsp</td><td>&nbsp</td> </tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+</table>
+
+</form name="DF">
+
+
+<center><font face="arial">
+<h2> <script> document.write(parent.adb_project_name); </script> </h2>
+</center>
+
+<script>
+
+function clearForm() {
+    var strPath = "C:\\";
+    document.DF.contributorName.value = "";
+    document.DF.institutionName.value = "";
+    //document.DF.XMLBASE.value = "";
+    document.DF.XMLmaster_simple.value = "";
+    //document.DF.XMLPATH_simple.value = strPath;
+    document.DF.numRelatedItems.value="1" ;
+    document.DF.numIdentifiers.value="1" ;
+    document.DF.numSubjectBlocks.value="1" ;
+}
+
+
+function buildModsTags(N) {
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+//before writing MODS TAGS, make sure all required fields are populated
+//checkAllRequired... true  validation sets validation status to 1  -- complete
+//checkAllRequired... false validation sets validation status to 0  -- incomplete
+
+parent.U.document.UF.validate_page_begin.value="0"; //no caching from previous value
+parent.U.document.UF.validate_page_05.value="0"; //no caching from previous value
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+var strMsg = new String(" ");
+
+var strTest = new String();
+
+    strTest = document.DF.contributorName.value;
+    strTest = strTest.replace(/ /gi,"");
+if ( document.DF.contributorName.value == "" || strTest.length == 0) {
+	strMsg += "You must enter a value for Contributor Name.\n\n";
+	}
+
+
+    strTest = document.DF.institutionName.value;
+    strTest = strTest.replace(/ /gi,"");
+if ( document.DF.institutionName.value == "" || strTest.length == 0) {
+	strMsg += "You must enter a value for Institution Name.\n\n";
+	}
+
+if ( document.DF.XMLmaster_simple.value == "" ) {
+	strMsg += "You must enter a value for XML File Name.";
+}else{
+    strTest = document.DF.XMLmaster_simple.value;
+    strTest = strTest.replace(/.xml/gi,"");
+    strTest += ".xml";
+    document.DF.XMLmaster_simple.value = strTest;
+}
+
+if ( document.DF.numRelatedItems.value == "" ) {
+	document.DF.numRelatedItems.value = "1";
+	}
+if ( document.DF.numIdentifiers.value == "" ) {
+	document.DF.numIdentifiers.value = "1";
+	}
+
+if ( document.DF.numSubjectBlocks.value == "" ) {
+	document.DF.numSubjectBlocks.value = "1";
+	}
+
+if ( strMsg.length > 1 ) {
+	strMsg = strMsg.substring(1);
+	alert(strMsg);
+	return;
+} 
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+//Validation complete
+parent.U.document.UF.validate_page_begin.value="1"; //pass
+parent.U.document.UF.validate_page_05.value="1"; //pass
+parent.L.update_page_validation(0,1);
+parent.L.update_page_validation(5,1);
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+parent.adb_fullname = document.forms[0].contributorName.value;
+parent.adb_instname = document.forms[0].institutionName.value;
+
+load_UF_form();
+
+var num = new Number();
+    num = N;
+
+if (num == 10) { return; } //save only, no display
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+var hps= new Array();
+    hps = buildTagsArray_header(num);
+//=================================================
+
+document.write('<input type="button" name="BBACK" onclick="javascript: history.back()" value="BACK"><P>');
+document.write('<font face="Elephant" size="3" color="a00000">'+parent.adb_project_name+' Workbook, Begin Page<p></font>');
+document.write('<font face="Elephant" size="3" color="a00000">PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY (N='+N+')</font><p>'
+                +"This is the generated xml script."
+                +"<HR>");
+
+for (i=0;i<hps.length;i++) {
+        var vps = new String(hps[i]);
+        document.write("<br>"+vps);
+        }
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+}///end function
+
+function load_UF_form() {
+
+//parent.U.document.UF.file_list_tiff.value=generate_file_list_tiff() ;
+parent.U.document.UF.VVcomment_02.value= "<!-- NUMBER_OF_RELATED_ITEMS: "+document.forms[0].numRelatedItems.value + ": --> \r\n";
+
+
+var backslash = new String("/");  //formerly "\\" for ms backslash
+var d = new Date();
+
+var strComment_01  = new String();
+var strComment_02  = new String();
+var strComment_02a = new String();
+var strComment_02b = new String();
+var strComment_02c = new String();
+var strComment_02d = new String();
+var strComment_03  = new String();
+var strComment_03c = new String();
+var strComment_03p = new String();
+var strComment_03d = new String();
+var strComment_04  = new String();
+
+	
+
+strComment_01 = "<!-- FILENAME: "+document.forms[0].XMLmaster_simple.value+"  --> \r\n";
+
+if ( parent.U.document.UF.VVcomment_03.value.indexOf("RELOAD") == -1 ) {
+  	strComment_02  = "<!-- NUMBER_OF_RELATED_ITEMS: "+document.forms[0].numRelatedItems.value + ": --> \r\n";
+  	strComment_02a = "<!-- NUMBER_OF_IDENTIFIERS: "+document.forms[0].numIdentifiers.value + ": --> \r\n";
+  	strComment_02b = "<!-- NUMBER_OF_SUBJECT_BLOCKS: "+document.forms[0].numSubjectBlocks.value + ": --> \r\n";
+  	strComment_02c = "<!-- NUMBER_OF_PERSONAL_NAMES: "+document.forms[0].numPersonalNames.value + ": --> \r\n";
+  	strComment_02c = "<!-- NUMBER_OF_CORPORATE_NAMES: "+document.forms[0].numCorporateNames.value + ": --> \r\n";
+    	strComment_03  = "<!-- Reload: none -->\r\n";
+    	strComment_03c = "<!-- Content Contributor:  "+parent.adb_fullname +" --> \r\n";
+    	strComment_03p = "<!-- Institution:  "+parent.adb_instname +" --> \r\n";
+    	strComment_03d = "<!-- Record Creation Date:  "+d +" --> \r\n";
+    	strComment_04  = "<!-- PAGE VALIDATION :1:0:0:0:0:1:0: --> "; //validation complete before load_UF_form is called
+}else{
+   	strComment_02   = parent.U.document.UF.VVcomment_02.value;
+   	strComment_02a  = parent.U.document.UF.VVcomment_02a.value;
+   	strComment_02b  = parent.U.document.UF.VVcomment_02b.value;
+   	strComment_02c  = parent.U.document.UF.VVcomment_02c.value;
+   	strComment_02d  = parent.U.document.UF.VVcomment_02d.value;
+	strComment_03   = parent.U.document.UF.VVcomment_03.value;
+	strComment_03c  = parent.U.document.UF.VVcomment_03c.value;
+    	strComment_03p  = parent.U.document.UF.VVcomment_03p.value;
+    	strComment_03d  = parent.U.document.UF.VVcomment_03d.value;
+    	strComment_04   = parent.U.document.UF.VVcomment_04.value;
+}
+
+    document.DF.VVcomment_01.value   = strComment_01;
+    document.DF.VVcomment_02.value   = strComment_02;
+    document.DF.VVcomment_02a.value  = strComment_02a;
+    document.DF.VVcomment_02b.value  = strComment_02b;
+    document.DF.VVcomment_02c.value  = strComment_02c;
+    document.DF.VVcomment_02d.value  = strComment_02d;
+    document.DF.VVcomment_03.value   = strComment_03;
+    document.DF.VVcomment_03c.value  = strComment_03c;
+    document.DF.VVcomment_03p.value  = strComment_03p;
+    document.DF.VVcomment_03d.value  = strComment_03d;
+    document.DF.VVcomment_04.value   = strComment_04;
+  
+///parent.U.document.reload();
+//////alert("load_UF_form()");
+parent.U.document.UF.VVcomment_01.value = document.DF.VVcomment_01.value;
+parent.U.document.UF.VVcomment_02.value = document.DF.VVcomment_02.value;
+parent.U.document.UF.VVcomment_02a.value = document.DF.VVcomment_02a.value;
+parent.U.document.UF.VVcomment_02b.value = document.DF.VVcomment_02b.value;
+parent.U.document.UF.VVcomment_02c.value = document.DF.VVcomment_02c.value;
+parent.U.document.UF.VVcomment_02d.value = document.DF.VVcomment_02d.value;
+parent.U.document.UF.VVcomment_03.value = document.DF.VVcomment_03.value;
+parent.U.document.UF.VVcomment_03c.value = document.DF.VVcomment_03c.value;
+parent.U.document.UF.VVcomment_03p.value = document.DF.VVcomment_03p.value;
+parent.U.document.UF.VVcomment_03d.value = document.DF.VVcomment_03d.value;
+parent.U.document.UF.VVcomment_04.value = document.DF.VVcomment_04.value;
+
+
+
+parent.U.document.UF.contributorName.value = document.DF.contributorName.value; 
+parent.U.document.UF.institutionName.value = document.DF.institutionName.value; 
+
+parent.U.document.UF.XMLmaster_simple.value = document.DF.XMLmaster_simple.value ;
+//parent.U.document.UF.XMLPATH_simple.value = document.DF.XMLPATH_simple.value ;
+//parent.U.document.UF.XMLBASE.value = document.DF.XMLBASE.value;
+//parent.U.document.UF.XMLPATH.value = document.DF.XMLPATH.value;
+//parent.U.document.UF.XMLPATHFULL.value = document.DF.XMLPATHFULL.value;
+parent.U.document.UF.numRelatedItems.value = document.DF.numRelatedItems.value;
+parent.U.document.UF.numIdentifiers.value = document.DF.numIdentifiers.value;
+parent.U.document.UF.numSubjectBlocks.value = document.DF.numSubjectBlocks.value;
+
+
+
+alert ("FILENAME Values have been saved."
+	+"\n\n When you have completed the workbook, \n you will save your xmlfile to \n\n "
+	+document.forms[0].XMLmaster_simple.value
+	+"\n\n The workbook will  create a self-identifier within the file with the same name.\n\n"
+	+document.forms[0].XMLmaster_simple.value 
+	+"\n\n If this is not the desired name, please correct now."
+	);
+
+
+
+}//end function load_UF_form(N)
+
+function load_DF_form(num) {
+
+
+var NUM = 0;
+
+if ( typeof(num) != 'undefined') NUM = num;
+
+////////alert("load_DF_form()");
+document.DF.VVcomment_01.value = parent.U.document.UF.VVcomment_01.value ;
+document.DF.VVcomment_02.value = parent.U.document.UF.VVcomment_02.value ;
+document.DF.VVcomment_02a.value = parent.U.document.UF.VVcomment_02a.value ;
+document.DF.VVcomment_02b.value = parent.U.document.UF.VVcomment_02b.value ;
+document.DF.VVcomment_02c.value = "1";///parent.U.document.UF.VVcomment_02c.value ; //numPersonalNames
+document.DF.VVcomment_02d.value = "1";///parent.U.document.UF.VVcomment_02c.value ; //numCorporateNames
+document.DF.VVcomment_03.value = parent.U.document.UF.VVcomment_03.value ;
+document.DF.VVcomment_03c.value = parent.U.document.UF.VVcomment_03c.value ;
+document.DF.VVcomment_03d.value = parent.U.document.UF.VVcomment_03d.value ;
+document.DF.VVcomment_04.value = parent.U.document.UF.VVcomment_04.value ;
+
+document.DF.contributorName.value = parent.adb_fullname;
+document.DF.institutionName.value = parent.adb_instname;
+
+document.DF.XMLmaster_simple.value = "test.xml";/// parent.U.document.UF.XMLmaster_simple.value ;
+//document.DF.XMLPATH_simple.value = parent.U.document.UF.XMLPATH_simple.value ;
+//document.DF.XMLBASE.value = parent.U.document.UF.XMLBASE.value ;
+//document.DF.XMLPATH.value = parent.U.document.UF.XMLPATH.value ;
+//document.DF.XMLPATHFULL.value = parent.U.document.UF.XMLPATHFULL.value ;
+
+document.DF.numRelatedItems.value = parent.U.document.UF.numRelatedItems.value ;
+document.DF.numIdentifiers.value = parent.U.document.UF.numIdentifiers.value ;
+document.DF.numSubjectBlocks.value = parent.U.document.UF.numSubjectBlocks.value ;
+
+var backslash = new String("/");  //formerly "\\" for ms backslash
+
+if (NUM == 2) { 
+	alert("Values have been reset."
+	+"\n\n When you have completed the workbook, \n you will save your xmlfile to \n\n "
+	+document.forms[0].XMLmaster_simple.value 
+	+"\n\n The workbook will create a self-identifier within the file with the same name.\n\n"
+	+document.forms[0].XMLmaster_simple.value 
+	+"\n\n If this is not the correct filename, please correct now."
+	);
+}
+
+return;
+}
+
+
+
+
+</script>
+	
+
+
+</body>
+</html>
+

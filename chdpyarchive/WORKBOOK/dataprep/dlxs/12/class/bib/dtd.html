@@ -1,0 +1,25 @@
+<html>
+<head>
+<title>The Bibliographic Class DTD</title>
+
+
+
+ <link href="../../dlxsdocs.css" rel="stylesheet" type="text/css">
+</head>         <body>
+<div class="pageTitle">The Bibliographic Class DTD</div>
+
+<p>The DTD for the Bibliographic Class (<a href="bib.dtd"><tt>bib.dtd</tt></a>) was designed to achieve several goals simultaneously:</p>
+<ul>
+<li><b>Succinctness and simplicity</b>:<ul>
+<li>The <tt>bib.dtd</tt> uses short element and attribute names.  Large collections like the index to the London Times (several gigabytes, more than 10 million records) will balloon in size without either minimization or other strategies to reduce markup overhead.</li>
+<li>Similarly, because the Bibliographic Class is not attempting to replace complex bibliographic systems like those based on MARC, the DTD does not provide the encoder with a large tag set and the ability to support complex representations of bibliographic information.</li>
+<li>Likewise, it does not offer mechanisms like indexing skip characters, sort values, etc.</li></ul></li>
+<li><b>Maximizing precision</b>:  Because "precision" is integral to bibliographic retrieval, especially with millions of records, the <tt>bib.dtd</tt> has a fairly "tight" data model.  By contrast to data models like Dublin Core, it frequently constrains which fields may or must be used, and what sort of information is in those fields.</li>
+<li><b>Accommodating pre-existing structures</b>:  It was essential that the Bibliographic Class support mapping of other descriptive metadata into its data model.  Consequently, the <tt>bib.dtd</tt> accommodates all fields and content in Chadwyck-Healey bibliographic databases, many key MARC fields, core information in the TEI header, and <i>typical</i> bibliographic information found in local database projects.</li>
+</ul>
+<p>The Bibliographic Class was intended for simple applications and was not intended to replace large, complex representations of bibligraphic information (e.g., the MARC record).  We will continue to work with others to modify and extend the DTD, but must work to keep the principles outlined above as determining characteristics.  Similarly, we will consider replacing the <tt>bib.dtd</tt> with another, more standard DTD should it accomplish the ends set out with the <tt>bib.dtd</tt>.</p>
+<p>We have created a <a href="bib-tree.txt">simple tree structure</a> of <tt>bib.dtd</tt>, to see at a glance where elements can be placed.</p>
+
+</body>
+
+</html>

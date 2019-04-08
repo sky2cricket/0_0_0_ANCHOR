@@ -1,0 +1,217 @@
+<html>
+<head>
+<title>vv_popupCA</title>
+
+<link href="../vv_workbook.css" type="text/css" rel="stylesheet">
+
+
+
+
+<script language="javascript">
+
+var select_id= new String();
+function get_select_id() {
+
+var str = new String();
+    str = parent.location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  parent.window.opener.location.href="+parent.window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=get_select_id();
+
+
+
+var strSelect_PN_A = new String('');
+
+
+strSelect_PN_A = '<select name="aaa"  size="24" style="font-size:10px"> \r\n'
+	+'<option value="0" selected>No value selected</option> \r\n'
+		
+
+	+'<option>X, MALCOLM, - 1925-1965</option>  \r\n'
+	+'<option>YADIN FAMILY</option>  \r\n'
+	+'<option>YANCEY FAMILY</option>  \r\n'
+	+'<option>YANCEY, ROBERT DAVIS, - 1855-1931</option>  \r\n'
+	+'<option>YANCEY, WILLIAM LOWNDES, - 1814-1863</option>  \r\n'
+	+'<option>YANCONISH FAMILY</option>  \r\n'
+	+'<option>YANDELL, DAVID WENDELL, - 1826-1898</option>  \r\n'
+	+'<option>YARBOROUGH FAMILY</option>  \r\n'
+	+'<option>YARBROUGH FAMILY</option>  \r\n'
+	+'<option>YARDLEY, HERBERT O. - (HERBERT OSBORN), - 1889-1958</option>  \r\n'
+	+'<option>YATES FAMILY</option>  \r\n'
+	+'<option>YATES, JOHN, - 1779-1851</option>  \r\n'
+	+'<option>YATES, M. T. - (MATTHEW TYSON), - 1819-1888</option>  \r\n'
+	+'<option>YATES, MARTHA (MORGAN) - MRS., - 1777?-1869</option>  \r\n'
+	+'<option>YATES, RICHARD, - FL. 1834</option>  \r\n'
+	+'<option>YATES, WILLIAM, - 1772-1868</option>  \r\n'
+	+'<option>YAWS FAMILY</option>  \r\n'
+	+'<option>YEAGER, JAMES MARTIN, - 1857-</option>  \r\n'
+	+'<option>YEAMAN, WILLIAM POPE, - 1832-1904</option>  \r\n'
+	+'<option>YEAROUT FAMILY</option>  \r\n'
+	+'<option>YEATMAN FAMILY</option>  \r\n'
+	+'<option>YEATMAN, ANGELICA CHARLOTTE, - D. 1849</option>  \r\n'
+	+'<option>YEATMAN, NANCY MCDEARMAN, - 1914-</option>  \r\n'
+	+'<option>YEATMAN, TREZEVANT PLAYER, - 1914-</option>  \r\n'
+	+'<option>YEATS, W. B. - (WILLIAM BUTLER), - 1865-1939</option>  \r\n'
+	+'<option>YEISER FAMILY</option>  \r\n'
+	+'<option>YEISLEY FAMILY</option>  \r\n'
+	+'<option>YELL FAMILY</option>  \r\n'
+	+'<option>YELL, ARCHIBALD, - 1797-1847</option>  \r\n'
+	+'<option>YELLEN, JANET L. - (JANET LOUISE), - 1946-</option>  \r\n'
+	+'<option>YELLOW OWL, ANTHONY WM., - 1961- </option>  \r\n'
+	+'<option>YENDELL FAMILY</option>  \r\n'
+	+'<option>YERXA, RUFUS H.</option>  \r\n'
+	+'<option>YINGLING FAMILY</option>  \r\n'
+	+'<option>YINGLING, CHRISTIAN, - D. 1758</option>  \r\n'
+	+'<option>YOCUM FAMILY</option>  \r\n'
+	+'<option>YOKLEY FAMILY</option>  \r\n'
+	+'<option>YORK FAMILY</option>  \r\n'
+	+'<option>YORK, - CA. 1775-CA. 1815</option>  \r\n'
+	+'<option>YORK, ALVIN CULLUM, - 1887-1964</option>  \r\n'
+	+'<option>YORK, JOHN, - 1820-1909</option>  \r\n'
+	+'<option>YORK, MEREDITH</option>  \r\n'
+	+'<option>YORK, SAMUEL D.</option>  \r\n'
+	+'<option>YORK, WILLIAM, - FL. 1840</option>  \r\n'
+	+'<option>YOST FAMILY</option>  \r\n'
+	+'<option>YOUMANS FAMILY</option>  \r\n'
+	+'<option>YOUMANS, EDWARD LIVINGSTON, - 1821-1887</option>  \r\n'
+	+'<option>YOUNG FAMILY</option>  \r\n'
+	+'<option>YOUNG, BRIGHAM, - 1801-1877</option>  \r\n'
+	+'<option>YOUNG, D. K. - (DAVID K.)</option>  \r\n'
+	+'<option>YOUNG, DAVID, - 1774-1856</option>  \r\n'
+	+'<option>YOUNG, EWING, - D. 1841</option>  \r\n'
+	+'<option>YOUNG, KATHARINE CHOATE PAUL, - B. 1860</option>  \r\n'
+	+'<option>YOUNG, LOT D., - B. 1842</option>  \r\n'
+	+'<option>YOUNG, MILTON RUBEN, - 1897-1983</option>  \r\n'
+	+'<option>YOUNG, PIERCE MANNING BUTLER, - 1836-1896</option>  \r\n'
+	+'<option>YOUNG, PLUMMER BERNARD, - D. 1962</option>  \r\n'
+	+'<option>YOUNG, WILLIE PAULINE</option>  \r\n'
+	+'<option>YOUNGBLOOD FAMILY</option>  \r\n'
+	+'<option>YOUNGBLOOD, KNEELAND CONNER, - 1955-</option>  \r\n'
+	+'<option>YOUNGER, COLE, - 1844-1916</option>  \r\n'
+	+'<option>YOUNGER, HENRY WASHINGTON, - D.1862</option>  \r\n'
+	+'<option>YOUNGER, JAMES, - 1848-1902</option>  \r\n'
+	+'<option>YOUNGER, JOHN, - 1850-1874</option>  \r\n'
+	+'<option>YOUNGER, ROBERT EWING</option>  \r\n'
+	+'<option>YOUNT FAMILY</option>  \r\n'
+	+'<option>YOUS, J. S.</option>  \r\n'
+	+'<option>YOW FAMILY</option>  \r\n'
+	+'<option>YOWELL FAMILY</option>  \r\n'
+	+'<option>YULE FAMILY</option>  \r\n'
+	+'<option>YUN, CHI-HO, - 1865-1945 </option>  \r\n'
+	+'<option>ZACHARY FAMILY</option>  \r\n'
+	+'<option>ZAHARIAS, BABE DIDRIKSON, - 1911-1956</option>  \r\n'
+	+'<option>ZAVALA, LORENZO DE, - 1788-1836</option>  \r\n'
+	+'<option>ZECCA FAMILY</option>  \r\n'
+	+'<option>ZECH FAMILY</option>  \r\n'
+	+'<option>ZELLER FAMILY</option>  \r\n'
+	+'<option>ZENOBIA, - QUEEN OF PALMYRA</option>  \r\n'
+	+'<option>ZERHOUNI, ELIAS A.</option>  \r\n'
+	+'<option>ZETTY FAMILY</option>  \r\n'
+	+'<option>ZHIRINOVSKII, VLADIMIR, - 1946-</option>  \r\n'
+	+'<option>ZHONDETSKAYA, OLGA D., - 1911-</option>  \r\n'
+	+'<option>ZIEGLER FAMILY</option>  \r\n'
+	+'<option>ZIEGLER, PHILIP, - B. 1734</option>  \r\n'
+	+'<option>ZIMMERMAN FAMILY</option>  \r\n'
+	+'<option>ZIMMERMANN, ALFRED, - 1859-1925</option>  \r\n'
+	+'<option>ZINICON FAMILY</option>  \r\n'
+	+'<option>ZINK FAMILY</option>  \r\n'
+	+'<option>ZINK, GOTTLIEB, - D. 1802</option>  \r\n'
+	+'<option>ZIRKLE FAMILY</option>  \r\n'
+	+'<option>ZOELLICK, ROBERT B.</option>  \r\n'
+	+'<option>ZOLLICOFFER FAMILY</option>  \r\n'
+	+'<option>ZOLLICOFFER, FELIX KIRK, - 1812-1862</option>  \r\n'
+	+'<option>ZORINSKY, EDWARD</option>  \r\n'
+	+'<option>ZORNES FAMILY</option>  \r\n'
+	+'<option>ZUBLY, JOHN JOACHIM, - 1724-1781</option>  \r\n'
+	+'<option>ZUKOR, ADOLPH, - 1873-</option>  \r\n'
+	+'<option>ZWINGLI FAMILY</option>  \r\n'
+	+'<option>ZWINGLI, ULRICH, - 1484-1531</option>  \r\n'
+
++'</select> \r\n';
+	
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+<body class="background">
+
+
+
+
+<form name="FormOne" >
+
+
+<div name="SS" id="SS">
+<script>
+document.write(
+
+	 '<table border="1" cellpadding="4" cellspacing="0"  width="90%">\r\n'
+	+'<tr><td  bgcolor="ddeeff">\r\n'
+	///+'vv_functions.htm called by '+select_id+' <br>\r\n'
+	+'<b>Select Personal Name X-Y-Z</b> \r\n'
+	+'</td></tr><tr><td bgcolor="ddeeff"> \r\n' 
+	+ strSelect_PN_A
+
+	+'</td></tr></table> \r\n'
+	///+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+</script>
+	
+</div>
+
+<input type="button" onclick="showSelection();" name="B1" value="Personal Name">
+
+</form>
+
+<script>
+
+
+
+                  
+
+function showSelection() {
+
+val = new String();
+
+for ( i=0; i< document.FormOne.aaa.length; i++ ) {
+
+if ( document.FormOne.aaa[i].selected == true ) {
+  	val = document.FormOne.aaa[i].text;
+	break;
+	}
+else { val = "you never selected anything"; 
+	}
+
+}
+////////////////////////alert ("You selected " +val);
+
+switch ( select_id ) {
+
+case  "subject_name_lcsh_01" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_01.value=val;
+	parent.window.close();
+	break;
+
+case  "subject_name_lcsh_02" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_02.value=val;
+	parent.window.close();
+	break;
+}//end switch
+
+}///end function
+</script>
+

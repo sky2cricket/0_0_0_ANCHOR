@@ -1,0 +1,495 @@
+080306_training
+
+Everything below is to do with cleaning out directories before pickup
+
+[cdeane@diglib2 cdeane]$ sudo su
+[root@diglib2 cdeane]# cd /d1/workarea/telfiles
+bash: cd: /d1/workarea/telfiles: No such file or directory
+[root@diglib2 cdeane]# cd
+[root@diglib2 root]# cd d1/workarea/
+bash: cd: d1/workarea/: No such file or directory
+[root@diglib2 root]# cd /d1/workarea
+[root@diglib2 workarea]# ls
+cya  dlxs  namechange  tests  umatic  uploads  wiley  xtf
+[root@diglib2 workarea]# cd dlxs
+[root@diglib2 dlxs]# ls
+bib  countfiles  ead  image  mail  mets  oai  search  tdh  telfiles  text  vv2spc  ww
+[root@diglib2 dlxs]# cd telfiles
+[root@diglib2 telfiles]# pwd
+/d1/workarea/dlxs/telfiles
+[root@diglib2 telfiles]# 
+[root@diglib2 telfiles]# ls
+BeforePickup    done        duplicates_xml  forWindows  logs               onedirDerivatives_size  problems  testfiles
+check_incoming  dothis      fieldtest       jpglist     olderVersions      pickuplog               results   tiflist
+dedupe          duplicates  filemess        listFiles   onedirDerivatives  pickupTime              scripts   totalSoFar
+[root@diglib2 telfiles]# 
+pickupTime picks up directories
+
+dothis contains order of ops
+
+one of the steps-
+the commands in:
+BeforePickup
+  are to clean out the directories where you will be depositing materials, putting
+older (already processed) files into the subdirectories where they will be needed.
+They will need to be modified to move 0012* files into an SPC subdirectory in each
+area, for preprocessing for inclusion in SPC.  The OAI and preservation copies of
+these files will belong to SPC, and should NOT be in VV.
+
+   # MODIFY THIS TO COPY ALL files beginning with 0012 to the SPC subdirectory, in
+   #  to appropriate directories, AND all 0012 preservation copies get MOVED there.
+   # then, copy all to done directories (except jpegs, thumbs, minithumbs) and delete from
+   # top level directory, to prepare for incoming new files.
+
+
+cd /d1/workarea/dlxs/text/tel
+ cp -r notext/* done/mods/notext/.   alternative:  /bin/cp -r notext/*
+/bin/rm notext/*/*
+
+1063  /bin/cp -r notext/*
+ 1064  /bin/rm notext/*/* ---this command failed because too many files so did one dir at a time
+ 1065  cd notext
+ 1066  ls
+ 1067  /bin/rm jpegs/*
+ 1068  /bin/rm minithumbs/*
+ 1069  /bin/rm mods/*
+ 1070  /bin/rm thumbs/*
+
+[root@diglib2 thumbs]# diff -r mods  ../../done/mods/notext/mods
+
+[root@diglib2 thumbs]# /bin/mv  mods/* ../../done/mods/notext/mods
+[root@diglib2 thumbs]# pwd
+/d1/workarea/dlxs/text/tel/notext/thumbs
+[root@diglib2 thumbs]# ls
+jpegs  minithumbs  mods
+[root@diglib2 thumbs]# 
+[root@diglib2 thumbs]# /bin/rm -r *
+[root@diglib2 notext]# ls
+jpegs  minithumbs  mods  thumbs
+[root@diglib2 notext]# ls *
+jpegs:
+
+minithumbs:
+
+mods:
+
+thumbs:
+[root@diglib2 notext]# 
+
+
+cp -r ocr/* done/mods/ocr/.
+/bin/rm ocr/*/*
+
+[root@diglib2 tel]# ls
+BadColl      chkid          fieldtest        hextest    modsTC           ocr            preservation  specify         testfiles
+badocr       clean          fixSubjects.old  howmany    modsTC.20080227  octal          preserveTEI   tei             transform
+batchedOut   countfiles     fixthese         infotrack  modsTC_unicode   olderVersions  problems      teiHead         translate
+categories   crossmappings  hexhere          linkfile   newmods          onechar        rebatch       teiHeadNoText   ttout.txt
+charTest.pl  dirty          hexmess          look       nohup.out        onechar_noBOM  search        teiHeadOcrText  typed
+checkme      done           hexstuff         lookhere   NOTE             onefile        simplify      teiTail         validate
+chkfiles     dothis         hexstuff2        modsbib    notext           output         spc           test            what
+[root@diglib2 tel]# ls ocr
+cleantext  jpegs  minithumbs  mods  text  text_fixme  thumbs
+[root@diglib2 tel]# cd ocr
+[root@diglib2 ocr]# ls
+cleantext  jpegs  minithumbs  mods  text  text_fixme  thumbs
+[root@diglib2 ocr]# cd ..
+[root@diglib2 tel]# ls done/mods/ocr/
+
+
+[root@diglib2 tel]# diff -r ocr/mods done/mods/ocr/mods
+no duplicate filenames
+[root@diglib2 tel]# /bin/cp ocr/* done/mods/ocr/
+
+[root@diglib2 tel]# diff -r done/mods/ocr  done/mods/ocr/mods
+
+Only in done/mods/ocr: 0012_000053_000228_0000.xml
+Only in done/mods/ocr: 0012_000059_000201_0000.xml
+Only in done/mods/ocr: 0012_000065_000200_0000.xml
+Only in done/mods/ocr: 0012_000070_000356_0000.xml
+Only in done/mods/ocr: 0012_000070_000359_0000.xml
+Only in done/mods/ocr: 0012_000086_000201_0000.xml
+Only in done/mods/ocr: 0014_000056_000201_0000.xml
+Only in done/mods/ocr: 0030_000051_000202_0000.xml
+Only in done/mods/ocr: 0030_000051_000203_0000.xml
+Only in done/mods/ocr: 0030_000051_000204_0000.xml
+Only in done/mods/ocr: 0030_000051_000206_0000.xml
+Only in done/mods/ocr: 0030_000051_000207_0000.xml
+Only in done/mods/ocr: 0030_000051_000208_0000.xml
+Only in done/mods/ocr: 0039_000051_000208_0000.xml
+Only in done/mods/ocr: 0044_000050_000212_0000.xml
+Only in done/mods/ocr: cleantext
+Only in done/mods/ocr: jpegs
+Only in done/mods/ocr: minithumbs
+Only in done/mods/ocr: mods
+Only in done/mods/ocr: text
+
+[root@diglib2 tel]# !d | more
+diff -r ocr/mods done/mods/ocr | more
+[root@diglib2 tel]# /bin/cp ocr/* done/mods/ocr/
+/bin/cp: omitting directory `ocr/cleantext'
+/bin/cp: omitting directory `ocr/jpegs'
+/bin/cp: omitting directory `ocr/minithumbs'
+/bin/cp: omitting directory `ocr/mods'
+/bin/cp: omitting directory `ocr/text'
+/bin/cp: omitting directory `ocr/text_fixme'
+/bin/cp: omitting directory `ocr/thumbs'
+[root@diglib2 tel]# ls ocr
+cleantext  jpegs  minithumbs  mods  text  text_fixme  thumbs
+[root@diglib2 tel]# /bin/cp -r ocr/* done/mods/ocr/
+[root@diglib2 ocr]# ls
+cleantext  jpegs  minithumbs  mods  text  text_fixme  thumbs
+[root@diglib2 ocr]# /bin/rm  */*
+bash: /bin/rm: Argument list too long
+[root@diglib2 ocr]# 
+do /bin/rm on each dirc
+
+below is out of order
+[root@diglib2 tel]# cd done/mods/ocr
+[root@diglib2 ocr]# ls
+0012_000051_000201_0000.xml  0012_000123_000203_0000.xml  0014_000052_000226_0000.xml  0016_000050_000212_0000.xml
+0012_000052_000201_0000.xml  0012_000123_000204_0000.xml  0014_000052_000227_0000.xml  0023_000053_000201_0000.xml
+0012_000052_000202_0000.xml  0012_000136_000200_0000.xml  0014_000052_000228_0000.xml  0023_000059_000222_0000.xml
+0012_000052_000203_0000.xml  0012_000143_000200_0000.xml  0014_000052_000229_0000.xml  0024_000050_000200_0000.xml
+0012_000053_000228_0000.xml  0012_000150_000200_0000.xml  0014_000056_000200_0000.xml  0024_000050_000201_0000.xml
+0012_000059_000201_0000.xml  0014_000050_000200_0000.xml  0014_000056_000201_0000.xml  0024_000055_000202_0000.xml
+0012_000062_000200_0000.xml  0014_000050_000201_0000.xml  0015_000050_000214_0000.xml  0024_000055_000203_0000.xml
+0012_000062_000201_0000.xml  0014_000050_000202_0000.xml  0015_000050_000215_0000.xml  0027_000051_000200_0000.xml
+0012_000062_000202_0000.xml  0014_000050_000203_0000.xml  0015_000050_000216_0000.xml  0029_000050_000200_0000.xml
+0012_000065_000200_0000.xml  0014_000050_000204_0000.xml  0015_000050_000217_0000.xml  0029_000050_000201_0000.xml
+0012_000070_000356_0000.xml  0014_000050_000205_0000.xml  0015_000050_000218_0000.xml  0030_000051_000202_0000.xml
+0012_000070_000359_0000.xml  0014_000050_000206_0000.xml  0015_000050_000219_0000.xml  0030_000051_000203_0000.xml
+0012_000086_000200_0000.xml  0014_000050_000207_0000.xml  0015_000050_000220_0000.xml  0030_000051_000204_0000.xml
+0012_000086_000201_0000.xml  0014_000050_000208_0000.xml  0015_000051_000202_0000.xml  0030_000051_000206_0000.xml
+0012_000086_000203_0000.xml  0014_000050_000209_0000.xml  0015_000051_000203_0000.xml  0030_000051_000207_0000.xml
+0012_000086_000204_0000.xml  0014_000050_000210_0000.xml  0015_000051_000204_0000.xml  0030_000051_000208_0000.xml
+0012_000086_000205_0000.xml  0014_000050_000215_0000.xml  0015_000051_000205_0000.xml  0038_000051_000200_0000.xml
+0012_000086_000206_0000.xml  0014_000050_000216_0000.xml  0015_000051_000206_0000.xml  0038_000051_000201_0000.xml
+0012_000086_000209_0000.xml  0014_000050_000217_0000.xml  0015_000051_000207_0000.xml  0038_000051_000202_0000.xml
+0012_000086_000210_0000.xml  0014_000050_000218_0000.xml  0015_000051_000208_0000.xml  0038_000051_000203_0000.xml
+0012_000086_000211_0000.xml  0014_000051_000225_0000.xml  0015_000051_000209_0000.xml  0038_000051_000204_0000.xml
+0012_000086_000212_0000.xml  0014_000052_000200_0000.xml  0015_000051_000210_0000.xml  0039_000051_000201_0000.xml
+0012_000086_000213_0000.xml  0014_000052_000201_0000.xml  0015_000054_000200_0000.xml  0039_000051_000202_0000.xml
+0012_000086_000214_0000.xml  0014_000052_000202_0000.xml  0015_000054_000201_0000.xml  0039_000051_000203_0000.xml
+0012_000095_000203_0000.xml  0014_000052_000203_0000.xml  0015_000054_000203_0000.xml  0039_000051_000204_0000.xml
+0012_000095_000204_0000.xml  0014_000052_000205_0000.xml  0015_000054_000204_0000.xml  0039_000051_000205_0000.xml
+0012_000095_000205_0000.xml  0014_000052_000206_0000.xml  0015_000055_000200_0000.xml  0039_000051_000206_0000.xml
+0012_000095_000206_0000.xml  0014_000052_000208_0000.xml  0015_000057_000200_0000.xml  0039_000051_000207_0000.xml
+0012_000095_000209_0000.xml  0014_000052_000210_0000.xml  0015_000057_000208_0000.xml  0039_000051_000208_0000.xml
+0012_000103_000210_0000.xml  0014_000052_000211_0000.xml  0015_000057_000209_0000.xml  0039_000051_000209_0000.xml
+0012_000105_000204_0000.xml  0014_000052_000212_0000.xml  0015_000058_000202_0000.xml  0039_000051_000210_0000.xml
+0012_000111_000200_0000.xml  0014_000052_000214_0000.xml  0015_000060_000200_0000.xml  0039_000051_000211_0000.xml
+0012_000111_000201_0000.xml  0014_000052_000215_0000.xml  0015_000060_000201_0000.xml  0039_000051_000212_0000.xml
+0012_000111_000202_0000.xml  0014_000052_000216_0000.xml  0015_000060_000202_0000.xml  0040_000050_000200_0000.xml
+0012_000111_000203_0000.xml  0014_000052_000217_0000.xml  0015_000060_000229_0000.xml  0040_000050_000201_0000.xml
+0012_000112_000200_0000.xml  0014_000052_000218_0000.xml  0015_000062_000202_0000.xml  0040_000050_000202_0000.xml
+0012_000112_000201_0000.xml  0014_000052_000219_0000.xml  0015_000062_000203_0000.xml  0044_000050_000212_0000.xml
+0012_000112_000202_0000.xml  0014_000052_000220_0000.xml  0015_000062_000204_0000.xml  cleantext
+0012_000112_000203_0000.xml  0014_000052_000221_0000.xml  0015_000062_000205_0000.xml  jpegs
+0012_000112_000204_0000.xml  0014_000052_000222_0000.xml  0015_000062_000206_0000.xml  minithumbs
+0012_000123_000200_0000.xml  0014_000052_000223_0000.xml  0015_000065_000200_0000.xml  mods
+0012_000123_000201_0000.xml  0014_000052_000224_0000.xml  0015_000065_000202_0000.xml  text
+0012_000123_000202_0000.xml  0014_000052_000225_0000.xml  0015_000065_000203_0000.xml
+
+
+[root@diglib2 ocr]# /bin/mv *.xml mods/
+
+
+TYPED
+[root@diglib2 tel]# ls
+BadColl      chkid          fieldtest        hextest    modsTC           ocr            preservation  specify         testfiles
+badocr       clean          fixSubjects.old  howmany    modsTC.20080227  octal          preserveTEI   tei             transform
+batchedOut   countfiles     fixthese         infotrack  modsTC_unicode   olderVersions  problems      teiHead         translate
+categories   crossmappings  hexhere          linkfile   newmods          onechar        rebatch       teiHeadNoText   ttout.txt
+charTest.pl  dirty          hexmess          look       nohup.out        onechar_noBOM  search        teiHeadOcrText  typed
+checkme      done           hexstuff         lookhere   NOTE             onefile        simplify      teiTail         validate
+chkfiles     dothis         hexstuff2        modsbib    notext           output         spc           test            what
+[root@diglib2 tel]# cd typed
+[root@diglib2 typed]# ls
+badtext  cleantext  jpegs  minithumbs  mods  text  thumbs
+[root@diglib2 typed]# ls ../done/mods/typed
+0012_000053_000244_0000.xml  0012_000053_000249_0000.xml  0012_000126_000200_0000.xml  0012_000133_000200_0000.xml  badtext     text
+0012_000053_000245_0000.xml  0012_000061_000204_0000.xml  0012_000130_000200_0000.xml  0012_000134_000200_0000.xml  cleantext
+0012_000053_000246_0000.xml  0012_000098_000200_0000.xml  0012_000131_000200_0000.xml  0012_000139_000200_0000.xml  jpegs
+0012_000053_000247_0000.xml  0012_000099_000200_0000.xml  0012_000131_000201_0000.xml  0015_000053_000202_0000.xml  minithumbs
+0012_000053_000248_0000.xml  0012_000122_000205_0000.xml  0012_000132_000200_0000.xml  0015_000053_000221_0000.xml  mods
+[root@diglib2 typed]# cd ../done/mods/typed
+[root@diglib2 typed]# ls
+0012_000053_000244_0000.xml  0012_000053_000249_0000.xml  0012_000126_000200_0000.xml  0012_000133_000200_0000.xml  badtext     text
+0012_000053_000245_0000.xml  0012_000061_000204_0000.xml  0012_000130_000200_0000.xml  0012_000134_000200_0000.xml  cleantext
+0012_000053_000246_0000.xml  0012_000098_000200_0000.xml  0012_000131_000200_0000.xml  0012_000139_000200_0000.xml  jpegs
+0012_000053_000247_0000.xml  0012_000099_000200_0000.xml  0012_000131_000201_0000.xml  0015_000053_000202_0000.xml  minithumbs
+0012_000053_000248_0000.xml  0012_000122_000205_0000.xml  0012_000132_000200_0000.xml  0015_000053_000221_0000.xml  mods
+[root@diglib2 typed]# mv *.xml mods/
+[root@diglib2 typed]# mv *.xml mods/
+mv: overwrite `mods/0012_000053_000244_0000.xml'? 
+[root@diglib2 typed]# diff -r . mods/ | more
+Only in .: 0012_000061_000204_0000.xml
+Only in .: 0012_000099_000200_0000.xml
+Only in .: 0012_000131_000200_0000.xml
+Only in .: 0012_000131_000201_0000.xml
+Only in .: badtext
+Only in .: cleantext
+Only in .: jpegs
+Only in .: minithumbs
+Only in .: mods
+Only in .: text
+[root@diglib2 typed]# /bin/mv *.xml mods/
+[root@diglib2 typed]# 
+[root@diglib2 typed]# pwd
+/d1/workarea/dlxs/text/tel/done/mods/typed
+[root@diglib2 typed]# cd ../../..
+[root@diglib2 tel]# ls typed
+badtext  cleantext  jpegs  minithumbs  mods  text  thumbs
+[root@diglib2 tel]# diff -r typed/mods/* done/mods/typed/mods/*
+[root@diglib2 tel]# diff -r typed/mods/* done/mods/typed/mods/* |more
+diff: extra operand `typed/mods/0012_000053_000202_0000.xml'
+diff: Try `diff --help' for more information.
+[root@diglib2 tel]# diff -r typed/mods  done/mods/typed/mods | more
+NO DUPLICATES WITH CHANGES
+
+[root@diglib2 tel]# /bin/cp -r typed/* done/mods/typed/
+[root@diglib2 typed]# ls
+badtext  cleantext  jpegs  minithumbs  mods  text  thumbs
+[root@diglib2 typed]# /bin/rm */*
+[root@diglib2 typed]# ls */*
+ls: */*: No such file or directory
+[root@diglib2 typed]# ls *
+badtext:
+
+cleantext:
+
+jpegs:
+
+minithumbs:
+
+mods:
+
+text:
+
+thumbs:
+[root@diglib2 typed]# 
+
+
+
+ cp -r typed/* done/mods/typed/.
+ /bin/rm typed/*/*
+----------------END TYPED
+
+
+===========start skip============
+This has been reworked elsewhere
+cp -r newmods/* done/newmods/.
+/bin/rm newmods/*/*
+ mv search/* done/search/.--jody did
+ mv modsbib/* done/modsbib/.--jody did
+cp -r preservation/* done/preservation/. --jody did --- these area tei
+/bin/rm preservation/*/*
+============end skip============
+
+friday
+
+[root@diglib2 tel]# ls preservation/*
+preservation/notext:
+
+preservation/ocr:
+
+preservation/typed:
+
+[root@diglib2 tel]# ls done/preservation
+notext  ocr  typed
+[root@diglib2 tel]# ls done/preservation/*
+many files
+
+[root@diglib2 tel]# ls newmods
+notext  ocr  typed
+
+These are xml files for 02, 03, 04
+
+[root@diglib2 tel]# /bin/mv newmods/notext/* done/newmods/notext/
+[root@diglib2 tel]# /bin/mv newmods/ocr/*    done/newmods/ocr/
+[root@diglib2 tel]# /bin/mv newmods/typed/*  done/newmods/typed/
+
+
+
+
+=======================================
+
+[root@diglib2 tel]# ls
+BadColl      chkid          fieldtest        hextest    modsTC           ocr            preservation  specify         testfiles
+badocr       clean          fixSubjects.old  howmany    modsTC.20080227  octal          preserveTEI   tei             transform
+batchedOut   countfiles     fixthese         infotrack  modsTC_unicode   olderVersions  problems      teiHead         translate
+categories   crossmappings  hexhere          linkfile   newmods          onechar        rebatch       teiHeadNoText   ttout.txt
+charTest.pl  dirty          hexmess          look       nohup.out        onechar_noBOM  search        teiHeadOcrText  typed
+checkme      done           hexstuff         lookhere   NOTE             onefile        simplify      teiTail         validate
+chkfiles     dothis         hexstuff2        modsbib    notext           output         spc           test            what
+[root@diglib2 tel]# cd ..
+[root@diglib2 text]# cd ..
+[root@diglib2 dlxs]# cd image
+[root@diglib2 image]# ls
+arrowmont  gsm  roth  spc  steps  tel
+[root@diglib2 image]# cd tel
+[root@diglib2 tel]# ls
+multiples  singles
+[root@diglib2 tel]# 
+
+
+IMAGES SINGLE
+[root@diglib2 tel]# ls
+multiples  singles
+[root@diglib2 tel]# cd singles
+[root@diglib2 singles]# pwd
+/d1/workarea/dlxs/image/tel/singles
+[root@diglib2 singles]# ls
+15_60_227char  countfiles    entry        hexmess            jpegs        modsICsearchOai             newmods       problems   translate
+15_60_227hex   countfiles2   fieldtest    hextest            linkfile     modsICsearchOai.20070509    NOTE          search     vvs-bib.xml
+categories     done          fixSubjects  httpEncodings      linkfile.bk  modsICsearchOai.20070510    open          spc        vvz-bib.sgm
+catref         dothis        footer       ic                 minithumbs   modsICsearchOai.20070605    opensearch    testfiles  vvzHeader
+checkme        dothisbib     here         ic.vvz.unnorm.sgm  mods         modsICsearchOai.20080114jd  output        thumbs     vvz-mods.xml
+close          dothissearch  hex          infotrack          modsbib      modsICsearchOai.bk          preservation  titles
+[root@diglib2 singles]# 
+
+[root@diglib2 singles]# /bin/rm jpegs/*
+[root@diglib2 singles]# /bin/rm minithumbs/*
+[root@diglib2 singles]# /bin/rm thumbs/*
+[root@diglib2 singles]# 
+
+[root@diglib2 singles]# ls
+15_60_227char  countfiles    entry        hexmess            jpegs        modsICsearchOai             newmods       problems   translate
+15_60_227hex   countfiles2   fieldtest    hextest            linkfile     modsICsearchOai.20070509    NOTE          search     vvs-bib.xml
+categories     done          fixSubjects  httpEncodings      linkfile.bk  modsICsearchOai.20070510    open          spc        vvz-bib.sgm
+catref         dothis        footer       ic                 minithumbs   modsICsearchOai.20070605    opensearch    testfiles  vvzHeader
+checkme        dothisbib     here         ic.vvz.unnorm.sgm  mods         modsICsearchOai.20080114jd  output        thumbs     vvz-mods.xml
+close          dothissearch  hex          infotrack          modsbib      modsICsearchOai.bk          preservation  titles
+[root@diglib2 singles]# diff search/ done/search/ | more
+[root@diglib2 singles]# /bin/mv search/* done/search/
+[root@diglib2 singles]# diff modsbib done/modsbib/
+[root@diglib2 singles]# /bin/mv modsbib/* done/modsbib/
+[root@diglib2 singles]# diff newmods done/newmods | more
+[root@diglib2 singles]#  /bin/mv newmods/* done/newmods/
+[root@diglib2 singles]# diff mods done/mods | more
+[root@diglib2 singles]#  /bin/mv mods/* done/mods/
+[root@diglib2 singles]# diff ic done/ic | more
+[root@diglib2 singles]#  /bin/mv ic/* done/ic/
+
+
+cd /d1/workarea/dlxs/image/singles
+ /bin/rm jpegs/*
+ /bin/rm thumbs/*
+ /bin/rm minithumbs/*
+ mv preservation/* done/preservation/.*********being done elsewhere**********
+ mv search/* done/search/.----------------------dlxs
+mv modsbib/* done/modsbib/. -----------------oai
+ mv newmods/* done/newmods/. ------------workbook with purls, rights statement,  full length subjects (Civil War and Reconstruction (1850-1877). instead of B.3, etc)
+ mv mods/* done/mods/.------------workbook unchanged
+mv ic/* done/ic/.--------------------image class encoding
+
+[root@diglib2 singles]# pwd
+/d1/workarea/dlxs/image/tel/singles
+[root@diglib2 singles]# cd ../multiples/
+[root@diglib2 multiples]# pwd
+/d1/workarea/dlxs/image/tel/multiples
+
+
+IMAGES MULTIPLE
+
+[root@diglib2 multiples]# /bin/rm jpegs/*
+[root@diglib2 multiples]# /bin/rm minithumbs/*
+[root@diglib2 multiples]# /bin/rm thumbs/*
+
+[root@diglib2 multiples]# ls
+categories   dothis         hexmess            linkfile.bk                 modsICsearchOai.20070605       newmods       spc
+catref       dothisbib      hextest            makebib                     modsICsearchOai.20071216       NOTE          testfiles
+checkme      entry          ic                 miniMusic                   modsICsearchOai.bk             open          textMusic
+close        fake_linkfile  ic.vvi.unnorm.sgm  minithumbs                  modsICsearchOaiMusic           opensearch    thumbs
+cochran      fieldtest      infotrack          mocsICsearchOai.20070605b   modsICsearchOaiMusic.20080120  preservation  thumbsMusic
+countfiles   fixSubjects    jpegs              mods                        modsICsearchOaiMusic.20080123  problems      vviHeader
+countfiles2  footer         jpegsMusic         modsbib                     modsICsearchOaiMusic.20080131  problem_xml   what
+done         hex            linkfile           modsICsearchOai.20070510jd  modsMusic                      search
+[root@diglib2 multiples]# 
+
+[root@diglib2 multiples]# diff search done/search | more 
+[root@diglib2 multiples]#  /bin/mv search/* done/search/
+[root@diglib2 multiples]# diff modsbib  done/modsbib | more
+[root@diglib2 multiples]#  /bin/mv  modsbib/* done/modsbib/
+[root@diglib2 multiples]# diff newmods  done/newmods | more
+[root@diglib2 multiples]# /bin/mv  newmods/* done/newmods/
+[root@diglib2 multiples]# diff mods  done/mods | more
+[root@diglib2 multiples]# /bin/mv  mods/* done/mods/
+[root@diglib2 multiples]# diff ic  done/ic | more
+[root@diglib2 multiples]# /bin/mv ic/* done/ic/
+
+[root@diglib2 multiples]# diff modsMusic/ done/mods | more
+[root@diglib2 multiples]# mkdir done/modsMusic
+[root@diglib2 multiples]# ls modsMusic/
+0018_000050_000214_0000.xml  0018_000053_000204_0000.xml  0018_000054_000205_0000.xml  0018_000054_000212_0000.xml
+0018_000050_000215_0000.xml  0018_000053_000205_0000.xml  0018_000054_000206_0000.xml  0018_000054_000213_0000.xml
+0018_000051_000202_0000.xml  0018_000054_000202_0000.xml  0018_000054_000207_0000.xml  0018_000054_000215_0000.xml
+0018_000053_000200_0000.xml  0018_000054_000203_0000.xml  0018_000054_000209_0000.xml  0018_000054_000218_0000.xml
+0018_000053_000203_0000.xml  0018_000054_000204_0000.xml  0018_000054_000211_0000.xml  0018_000054_000219_0000.xml
+[root@diglib2 multiples]# /bin/mv  modsMusic/* done/modsMusic/
+
+
+cd /d1/workarea/dlxs/image/multiples
+ /bin/rm jpegs/*
+ /bin/rm thumbs/*
+ /bin/rm minithumbs/*
+ mv preservation/* done/preservation/.*********being done elsewhere**********
+ mv search/* done/search/.
+mv modsbib/* done/modsbib/.
+ mv newmods/* done/newmods/.
+ mv mods/* done/mods/.
+mv ic/* done/ic/.
+
+
+USE cp THEN rm for safety, in case something goes down
+during cp step.  IMAFGES are just mv, because these are derivatives.:qc
+
+
+FRIDAY
+
+[root@diglib2 multiples]# cd done
+[root@diglib2 done]# ls
+ic  mods  modsbib  modsMusic  newmods  preservation  search
+[root@diglib2 done]# mkdir textMusic
+[root@diglib2 done]# cd ..
+[root@diglib2 multiples]# ls
+categories     footer             mocsICsearchOai.20070605b      open
+catref         hex                mods                           opensearch
+checkme        hexmess            modsbib                        preservation
+close          hextest            modsICsearchOai.20070510jd     problems
+cochran        ic                 modsICsearchOai.20070605       problem_xml
+countfiles     ic.vvi.unnorm.sgm  modsICsearchOai.20071216       search
+countfiles2    infotrack          modsICsearchOai.bk             spc
+done           jpegs              modsICsearchOaiMusic           testfiles
+dothis         jpegsMusic         modsICsearchOaiMusic.20080120  textMusic
+dothisbib      linkfile           modsICsearchOaiMusic.20080123  thumbs
+entry          linkfile.bk        modsICsearchOaiMusic.20080131  thumbsMusic
+fake_linkfile  makebib            modsMusic                      vviHeader
+fieldtest      miniMusic          newmods                        what
+fixSubjects    minithumbs         NOTE
+[root@diglib2 multiples]# ls textMusic/
+0018_000050_000214_0001.txt  0018_000054_000202_0001.txt  0018_000054_000211_0001.txt
+0018_000050_000215_0001.txt  0018_000054_000203_0001.txt  0018_000054_000212_0001.txt
+0018_000051_000202_0001.txt  0018_000054_000204_0001.txt  0018_000054_000213_0001.txt
+0018_000053_000200_0001.txt  0018_000054_000205_0001.txt  0018_000054_000215_0001.txt
+0018_000053_000203_0001.txt  0018_000054_000206_0001.txt  0018_000054_000218_0001.txt
+0018_000053_000204_0001.txt  0018_000054_000207_0001.txt  0018_000054_000219_0001.txt
+0018_000053_000205_0001.txt  0018_000054_000209_0001.txt
+[root@diglib2 multiples]# ls done/textMusic
+[root@diglib2 multiples]# /bin/mv  textMusic/* done/textMusic/
+[root@diglib2 multiples]# ls done/textMusic/
+0018_000050_000214_0001.txt  0018_000054_000202_0001.txt  0018_000054_000211_0001.txt
+0018_000050_000215_0001.txt  0018_000054_000203_0001.txt  0018_000054_000212_0001.txt
+0018_000051_000202_0001.txt  0018_000054_000204_0001.txt  0018_000054_000213_0001.txt
+0018_000053_000200_0001.txt  0018_000054_000205_0001.txt  0018_000054_000215_0001.txt
+0018_000053_000203_0001.txt  0018_000054_000206_0001.txt  0018_000054_000218_0001.txt
+0018_000053_000204_0001.txt  0018_000054_000207_0001.txt  0018_000054_000219_0001.txt
+0018_000053_000205_0001.txt  0018_000054_000209_0001.txt
+[root@diglib2 multiples]# 
+[root@diglib2 multiples]# /bin/rm miniMusic/*
+[root@diglib2 multiples]# /bin/rm thumbsMusic/*
+[root@diglib2 multiples]# /bin/rm jpegsMusic/*
+[root@diglib2 multiples]# 
+
+

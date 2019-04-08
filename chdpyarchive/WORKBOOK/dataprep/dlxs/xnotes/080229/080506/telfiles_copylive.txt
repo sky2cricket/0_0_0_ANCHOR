@@ -1,0 +1,143 @@
+
+#/d1/workarea/dlxs/telfiles/CopyLive
+These are the instructions for copying updated vol voices collections from diglib2 to diglib.
+If any copies fail, go to the corresponding directory on diglib and chown diglib * (and */*,
+*/*/*, etc.) then try again.  The target directory must be writable by diglib.
+AFTER EACH COPY, ENTER DIGLIB PASSWORD
+1) copy over any CGI scripts which changed, and put them into the appropriate directory.
+  for example:
+     cd  /d1/dlxs/cgi/b/bib/BibClass  
+     scp VVS.pm diglib@diglib.lib.utk.edu:/d1/dlxs/cgi/b/bib/BibClass/.
+    (enter diglib password)   
+     cd /d1/dlxs/cgi/b/bib/BibApp
+     scp VVSBibApp.pm diglib@diglib.lib.utk.edu:/d1/dlxs/cgi/b/bib/BibApp/.
+     (enter diglib password)
+    Same type of thing goes for any cgi scripts in image, text, bib, or broker20  (OAI).
+    cgi/b/bib, cgi/t/text, cgi/i/image, cgi/b/broker20
+2) copy over any dtd or map changes.
+   for example:
+      cd /d1/dlxs/misc/sgml
+      scp bib.dtd diglib@diglib.lib.utk.edu:/d1/dlxs/misc/sgml/.
+  
+      cd /d1/dlxs/misc/b/bib/maps
+      scp vvs-bib.map diglib@diglib.lib.utk.edu:/d1/dlxs/misc/b/bib/maps/.
+  
+(maps for image are in misc/i/image/maps, maps for text are in misc/t/text/maps)
+3) copy over any web directory changes.  Do NOT copy over if no change, or not ready to go live.
+  (remember Tiffani has been changing the web/v/vvs directory, and one of the images that USED to
+   be in the image/ directory there is no longer showing up on related pages.  She erased it or changed
+   the name.)
+  for example:
+   cd  /d1/dlxs/web/v/vvi
+   scp -r * diglib@diglib.lib.utk.edu:/d1/dlxs/web/v/vvi/.
+   (enter diglib password)
+   vvs-bib and vvs-mods web directory is /web/v/vvs
+   vvi is /web/v/vvi
+   vvz is /web/v/vvz
+   combined images is web/v/vvv
+   vvt is /web/v/vvt
+   vvo is /web/v/vvo
+   vvb is /web/v/vvb
+   combined text is web/v/vvd
+4)  copy over delivery-critical directories for changed collections.
+    Leave out instructions for any collection which did NOT change:
+VVI:
+  cd /d1/dlxs/img/v/vvi
+  scp -r * diglib@diglib.lib.utk.edu:/d1/dlxs/img/v/vvi/.
+  cd /d1/dlxs/obj/v/vvi
+  scp -r * diglib@diglib.lib.utk.edu:/d1/dlxs/obj/v/vvi/.
+  cd /d1/dlxs/idx/v/vvi
+  scp -r * diglib@diglib.lib.utk.edu:/d1/dlxs/idx/v/vvi/.
+VVZ:
+  cd /d1/dlxs/img/v/vvz
+  scp -r * diglib@diglib.lib.utk.edu:/d1/dlxs/img/v/vvz/.
+  cd /d1/dlxs/obj/v/vvz
+  scp -r * diglib@diglib.lib.utk.edu:/d1/dlxs/obj/v/vvz/.
+  cd /d1/dlxs/idx/v/vvz
+  scp -r * diglib@diglib.lib.utk.edu:/d1/dlxs/idx/v/vvz/.
+VVO:
+  cd /d1/dlxs/prep/v/vvo
+  scp -r * diglib@diglib.lib.utk.edu:/d1/dlxs/prep/v/vvo/.
+  cd /d1/dlxs/obj/v/vvo
+  scp -r * diglib@diglib.lib.utk.edu:/d1/dlxs/obj/v/vvo/.
+  cd /d1/dlxs/idx/v/vvo
+  scp -r * diglib@diglib.lib.utk.edu:/d1/dlxs/idx/v/vvo/.
+VVT:
+  cd /d1/dlxs/prep/v/vvt
+  scp -r * diglib@diglib.lib.utk.edu:/d1/dlxs/prep/v/vvt/.
+  cd /d1/dlxs/obj/v/vvt
+  scp -r * diglib@diglib.lib.utk.edu:/d1/dlxs/obj/v/vvt/.
+  cd /d1/dlxs/idx/v/vvt
+  scp -r * diglib@diglib.lib.utk.edu:/d1/dlxs/idx/v/vvt/.
+VVB:
+  cd /d1/dlxs/prep/v/vvb
+  scp -r * diglib@diglib.lib.utk.edu:/d1/dlxs/prep/v/vvb/.
+  cd /d1/dlxs/obj/v/vvb
+  scp -r * diglib@diglib.lib.utk.edu:/d1/dlxs/obj/v/vvb/.
+  cd /d1/dlxs/idx/v/vvb
+  scp -r * diglib@diglib.lib.utk.edu:/d1/dlxs/idx/v/vvb/.
+VVS-BIB:
+  cd /d1/dlxs/obj/v/vvs-bib
+  scp -r * diglib@diglib.lib.utk.edu:/d1/dlxs/obj/v/vvs-bib/.
+  cd /d1/dlxs/idx/v/vvs-bib
+  scp -r * diglib@diglib.lib.utk.edu:/d1/dlxs/idx/v/vvs-bib/.
+VVS-MODS:
+  cd /d1/dlxs/obj/v/vvs-mods
+  scp -r * diglib@diglib.lib.utk.edu:/d1/dlxs/obj/v/vvs-mods/.
+  cd /d1/dlxs/idx/v/vvs-mods
+  scp -r * diglib@diglib.lib.utk.edu:/d1/dlxs/idx/v/vvs-mods/.
+5) IF you copied over any image collections,
+   cd /d1/dlxs/cgi/i/image
+   scp Collectionmaps-* diglib@diglib.lib.utk.edu:/d1/dlxs/cgi/i/image/.
+
+5a) get the minithumbs
+   cd /d1/workarea/dlxs/image/tel/singles
+   scp minithumbs/*.jpg diglib@diglib.lib.utk.edu:/d1/dlxs/web/thumbs/vv/
+
+   cd /d1/workarea/dlxs/image/tel/multiples
+   scp minithumbs/*.jpg diglib@diglib.lib.utk.edu:/d1/dlxs/web/thumbs/vv/
+
+   cd /d1/workarea/dlxs/text/tel/ocr
+   scp minithumbs/*.jpg diglib@diglib.lib.utk.edu:/d1/dlxs/web/thumbs/vv/
+
+   cd /d1/workarea/dlxs/text/tel/typed
+   scp minithumbs/*.jpg diglib@diglib.lib.utk.edu:/d1/dlxs/web/thumbs/vv/
+
+   cd /d1/workarea/dlxs/text/tel/notext
+   scp minithumbs/*.jpg diglib@diglib.lib.utk.edu:/d1/dlxs/web/thumbs/vv/
+
+
+6)  Back up databases on both servers.
+   on diglib:
+     cd /var/lib/mysql
+         (use yesterday's date below, and your username, but be root when you do it)
+         (use yesterday's date below, and your username, but be root when you do it)
+     sudo su
+     mysqldump -u (yourname) -p dlxs > /d1/backups/dlxs_20080504.sql
+     ls /d1/backups    and look to make sure it's there
+  
+   on diglib2:
+     cd /var/lib/mysql
+         (use today's date below, and your username, but be root when you do it)
+     sudo su
+     mysqldump -u (yourname) -p dlxs > /d1/backups/dlxs_20080505.sql
+     ls /d1/backups    and look to make sure it's there
+     scp /d1/backups/dlxs_20080505.sql diglib@diglib.lib.utk.edu:/d1/backups/.
+  
+      
+7) Drop database on diglib and restore with new version
+     go to diglib
+     ls /d1/backups   and look for TODAY's backup from diglib2 (make sure it's there)
+     sudo su
+     mysqladmin -u (yourname) -p drop dlxs
+     y
+     mysqladmin -u (yourname) -p create dlxs
+       Use TODAYs' backup to restore:  substitute date in below to match new file
+     mysql -u (yourname) -p dlxs < /d1/backups/dlxs_20080505.sql
+  
+8)  test to make sure everything is copacetic.
+
+copacetic means "very satisfactory"
+
+octothorpe means........
+

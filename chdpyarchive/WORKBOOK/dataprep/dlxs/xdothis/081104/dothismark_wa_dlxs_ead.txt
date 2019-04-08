@@ -1,0 +1,13 @@
+go into directory you're working
+grep -c "<subject" | grep ":0"
+
+take out any that have no subjects.
+run checkfields >> undated
+check the undated file for errors.  If NO DATE, remove those files and send them back for work.
+take care of other errors.
+
+
+do NOT run mods2mrk-- they decided to stuff the subjects all in 653 fields.  
+  # this puts aleph sequential records into a datestamped marc record.
+
+instead, run fa2mrk.

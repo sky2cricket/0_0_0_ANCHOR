@@ -1,0 +1,1062 @@
+<html>
+<head>
+<title>Image Class - Mapping Image Structures</title>
+
+
+
+
+
+ <link href="../../dlxsdocs.css" rel="stylesheet" type="text/css">
+ <style type="text/css">
+<!--
+.style1 {color: #009900}
+.style2 {color: #CC0000}
+.style5 {color: #000000}
+.style9 {font-size: 14px}
+-->
+ </style>
+</head>         <body>
+<div class="pageTitle">Image Class - Mapping Image Structures</div>
+
+<p>&nbsp;</p>
+<p>Most often each record of a database has a single digital image associated
+   with it. In such situations, configuration is relatively simple and described
+  fully in the data preparation documentation. It is important to read the general
+  data preparation documenation first before proceeding with more complicated
+  structures.</p>
+<p><strong>MySQL: </strong><a href="mysql.html">ImageClass Data Loading: MySQL</a></p>
+<p><strong>XPat:</strong> <a href="datatransform.html">Image
+       Class Data Transformation</a> </p>
+<p>The instructions in this document
+     are for less common situations. When  a record has multiple images
+  associated with it, for example, several views of an sculpture. Each of the
+  views might be of equal standing, or, perhaps there is one that alone does
+  a reasonable job of summarizing the object, while the others provide valuable
+  details difficult to see in the summary. These are just a couple of the possible
+  structural configurations one might encounter.</p>
+<p>The key factors for the accurate representation of image
+structures in the Iimage Class are:</p>
+
+<ul>
+   <li>Representation of the relationship between image filenames and associated
+     image captions within the fields of a record.</li>
+   
+   <li>Mapping of the fields for Image Class ingest.</li>
+</ul>
+
+<p>Note that structures apply to entire collections and cannot vary per record.</p>
+
+<h2>Definitions</h2>
+
+<p>A<b>filename field</b> is a field of a database that
+contains image (or other media) filenames and nothing else. A filename
+  field may have any number of repetitions.</p>
+
+<p>A <b>caption field</b> is a field of a database that
+contains  text that typically describes the image in a
+very specific way. For example, "View of steeple from the north." A
+record with multiple image filenames will often have a corresponding
+caption for each. </p>
+
+<p>A record with a filename field that has 5 repetitions will
+often have a <b>corresponding</b> image caption field with 5
+repetitions. The values in each are synchronized.</p>
+
+<table border="2" cellpadding="5" cellspacing="0">
+<tbody>
+   <tr>
+      <th>
+         <p >Image Filename Field</p>
+      </th>
+      <td>
+         <p>image01.tif</p>
+      </td>
+      <td>
+         <p>image02.tif</p>
+      </td>
+      <td>
+         <p>image03.tif</p>
+      </td>
+      <td>
+         <p>image04.tif</p>
+      </td>
+      <td>
+         <p>image05.tif</p>
+      </td>
+   </tr>
+   <tr>
+      <th>
+         <p >Image Caption Field</p>
+      </th>
+      <td>
+         <p>View from the north</p>
+      </td>
+      <td>
+         <p>View from the south</p>
+      </td>
+      <td>
+         <p>View from the east</p>
+      </td>
+      <td>
+         <p>View from the west</p>
+      </td>
+      <td>
+         <p>View from the sky</p>
+      </td>
+   </tr>
+</tbody>
+</table>
+
+
+<p>A  record may also have multiple  filename <strong>fields</strong>, and
+multiple image caption <strong>fields</strong>. Together they might represent a
+hierarchical structure.</p>
+
+<table border="2" cellpadding="5" cellspacing="0">
+<tbody>
+   <tr>
+      <td>
+         <table border="2" cellpadding="5" cellspacing="0">
+         <tbody>
+            <tr>
+               <th>
+                  <p >Image Filename Field 1</p>
+               </th>
+               <td>
+                  <p>image01.tif</p>
+               </td>
+            </tr>
+            <tr>
+               <th>
+                  <p >Image Caption Field 1</p>
+               </th>
+               <td>
+                  <p>Front view of sculpture (overview)</p>
+               </td>
+            </tr>
+	    </tbody>
+         </table>
+         <br>
+         <table border="2" cellpadding="5" cellspacing="0">
+	    <tbody>
+            <tr>
+               <th>
+                  <p >Image Filename Field 2</p>
+               </th>
+               <td>
+                  <p>imageF.tif</p>
+               </td>
+               <td>
+                  <p>imageB.tif</p>
+               </td>
+               <td>
+                  <p>imageR.tif</p>
+               </td>
+               <td>
+                  <p>imageL.tif</p>
+               </td>
+            </tr>
+            <tr>
+               <th>
+                  <p>Image Caption Field 2</p>
+               </th>
+               <td>
+                  <p>Front view of sculpture (detail)</p>
+               </td>
+               <td>
+                  <p>Back of sculpture</p>
+               </td>
+               <td>
+                  <p>Right side of sculpture</p>
+               </td>
+               <td>
+                  <p>Left side of Sculpture</p>
+               </td>
+            </tr>
+	    </tbody>
+         </table>
+
+      </td>
+   </tr>
+</tbody>
+</table>
+
+
+<p>To get an idea of a more complicated example, look at the this
+<a href="http://images.umdl.umich.edu/cgi/i/image/image-idx?evl=other-views;view=entry;subview=detail;entryid=x-2881;viewid=658R.BMP;c=apis;cc=apis;corig=apis;lasttype=boolean;lastview=thumbnail">example</a> from
+the <strong>Advanced
+Papyrological Information System</strong> at
+the University of Michigan. </p>
+
+<p><b>Administrative metadata field mappings</b> are used to identify
+filename and caption fields for the
+purpose of loading data. In addition to the very basic mappings <b>IC_fn</b>
+and <b>IC_vi </b>there is  a complex set of mappings
+that can be used to represent complex structures. Generically the new
+mappings are referred to as <b>IC_fn*</b> and <b>IC_vi*</b> (the
+"*" suggests a longer, more complex, mapping).</p>
+
+<p>A <b>structure</b> is a group filename and 
+caption fields that together make
+up a structure. A record can have more than one structure. This
+<a href="http://images.umdl.umich.edu/cgi/i/image/image-idx?evl=other-views;lasttype=boolean;view=entry;subview=detail;cc=apis;entryid=X-2544;viewid=1;sstrt=1521;hits=2083;q1=bmp;op2=And;op3=And;rgn1=All+Categories;rgn2=All+Categories;rgn3=All+Categories;c=apis;thsz=12;txsz=100;slsz=1">papyrus
+example</a> has two structures. The first structure ties all of the
+&quot;front&quot; views together, and the second ties all of the &quot;back&quot; views
+together. This causes the structural display online of thumbnail
+images to flow from front summary images to front detail to back
+summary to back detail. This flow can be changed through configuration.</p>
+
+
+<h2>Rules</h2>
+<ol>
+   <li>A record may have many filename fields, which may have repetitions.</li>
+   
+   <li>Each  filename field must be mapped to <b>only one</b>
+   administrative metadata  filename mapping (IC_fn,
+   IC_fn-st).</li>
+   
+   <li>A record may have many caption fields, and the
+   fields may have repetitions.</li>
+   
+   <li>Each  caption field may be mapped with any number of
+   administrative metadata  caption mappings (IC_vi,
+   IC_vi-st).</li>
+   
+   <li>Each  caption field mapped to plain IC_vi will be associated
+   with all image filename fields mapped to IC_fn (but not fields
+   mapped to IC_fn-st).</li>
+   
+   <li>Fields mapped to IC_vi or IC_vi-st may have one or more
+   repetitions, which may be independent of the number of repetitions
+   in the associated IC_fn or IC_fn-st mapped field. </li>
+   
+   <li>If the  filename field has repetitions but the
+   corresponding image caption field does not, then the single value
+   of the image caption field is associated with each of the
+   repetitions of the image filename field.</li>
+   
+   <li>Structures can only be specified at the collection level. It
+   is not currently possible to have the structure change per
+   record.</li>
+</ol>
+
+
+
+<h2>Syntax</h2>
+
+<p>Simple situations (one image per record) can be handled with a simple 
+  mapping of the  filename field to "IC_fn" and the caption field to "IC_vi" 
+  <a href="datatransform.html#RecordNumber4">as described</a> in the transformation
+   documentation.</p>
+
+<p>More complex situations rely on the structural mappings so far
+referred to as IC_fn* and IC_vi*. These are not the actual
+mappings, they are only generic and simplified representations to aid
+discussion. The actual mappings consist of a base (IC_fn and IC_vi)
+plus four attributes. <b>When structural mappings are used, all four
+attributes are required to have values.</b></p>
+
+<p><b>The base:</b>&#0160;IC_fn and IC_vi</p>
+
+<p><b><em>Type</em> Attribute</b></p>
+
+<table border="2" cellpadding="5" cellspacing="0">
+<tbody>
+   <tr>
+      <th>
+         <p><em>Type</em> Attribute Value</p>
+      </th>
+      <th>
+         <p>Description</p>
+      </th>
+   </tr>
+   <tr>
+      <td>
+         <p>type="summ"</p>
+      </td>
+      <td>
+         <p><em><strong>summary</strong></em></p>
+         <p>For fields that represent images that summarize all the
+           images of the record or are otherwiser representative of the entire
+      record.</p></td>
+   </tr>
+   <tr>
+      <td>
+         <p>type="det"</p>
+      </td>
+      <td>
+         <p><em><strong>detail</strong></em></p>
+         <p>For fields that represent images that provide greater
+           detail or extended view than what is depicted in the
+      summary images.</p></td>
+   </tr>
+</tbody>
+</table>
+
+
+<p><b>Face Attribute</b></p>
+
+<table border="2" cellpadding="5" cellspacing="0">
+<tbody>
+   <tr>
+      <th>
+         <p>Face Attribute Value</p>
+      </th>
+      <th>
+         <p>Description</p>
+      </th>
+   </tr>
+   <tr>
+      <td>
+         <p>face="front"</p>
+      </td>
+      <td>
+         <p>For fields that represent images that provide views of
+         the front.</p>
+      </td>
+   </tr>
+   <tr>
+      <td>
+         <p>face=" back"</p>
+      </td>
+      <td>
+         <p>For fields that represent images that provide views of
+         the back.</p>
+      </td>
+   </tr>
+   <tr>
+      <td>
+         <p>face=" right"</p>
+      </td>
+      <td>
+         <p>For fields that represent images that provide views of
+         the right.</p>
+      </td>
+   </tr>
+   <tr>
+      <td>
+         <p>face=" left"</p>
+      </td>
+      <td>
+         <p>For fields that represent images that provide views of
+         the left.</p>
+      </td>
+   </tr>
+   <tr>
+      <td>
+         <p>face=" top"</p>
+      </td>
+      <td>
+         <p>For fields that represent images that provide views of
+         the top.</p>
+      </td>
+   </tr>
+   <tr>
+      <td>
+         <p>face=" bottom"</p>
+      </td>
+      <td>
+         <p>For fields that represent images that provide views of
+         the bottom.</p>
+      </td>
+   </tr>
+</tbody></table>
+
+
+<p><b>Structural ID (STID) Attribute</b></p>
+
+<p>stid=1 .. N </p>
+
+<p>Each structure must be given a numeric ID. Be sure to read the
+definition of structure given above. Structural IDs can be assigned
+somewhat arbitrarily, though there needs to be at least one.</p>
+
+<p><b>Y Attribute</b></p>
+
+<p>y=1 .. N</p>
+
+<p>Sometimes the images of a record represent cells of a two dimensional matrix,
+  which can also be thought of as a table or tiles. The Y attribute, together
+  with the  X attribute, allow for a matrix of images to be stored
+  in the data.</p>
+<p><b>X Attribute (not configurable)</b></p>
+<p>The fifth attribute, &quot;X&quot;, is not configurable. It is calculated as the data
+  is loaded based on the number of repetitions.</p>
+<p>&nbsp;</p>
+<p>Database systems typically only offer the ability to have field repetitions
+  in one dimension. That is, a 1xN field of repetitions can be built. To simulate
+  a two dimensional matrix involves working with multiple repeating fields where
+  each repetition represents a column (X) and each field a row (Y).</p>
+<p>The Y attribute must be specified in the configuration file. The X attribute,
+  on the other hand,  is calculuated automatically at the time of loading and
+   depends on the number of repetitions there are. A good example is
+  <a href="http://images.umdl.umich.edu/cgi/i/image/image-idx?evl=other-views;view=entry;subview=detail;entryid=x-2881;viewid=658R.BMP;c=apis;cc=apis;corig=apis;lasttype=boolean;lastview=thumbnail">this
+  papyrus example</a>.</p> 
+
+<table border="2" cellpadding="5" cellspacing="0">
+<tbody>
+   <tr>
+      <th colspan="2">
+         <p>These two discrete fields can be combined to
+         form a two dimensional matrix. </p>
+      </th>
+   </tr>
+   <tr>
+      <td>
+         <p>Image Filename Field 1 (2 repetitions) </p>
+      </td>
+      <td>
+         <table border="2" cellpadding="5" cellspacing="0">
+<tbody>         
+   <tr>
+               <td>
+                  <p>X=1, Y=1</p>
+               </td>
+               <td>
+                  <p>X=2, Y=1</p>
+               </td>
+            </tr>
+</tbody>
+         </table>
+        
+      </td>
+   </tr>
+   <tr>
+      <td>
+         <p>Image Filename Field 2 (2 repetitions)</p>
+      </td>
+      <td>
+         <table border="2" cellpadding="5" cellspacing="0">
+<tbody>         
+   <tr>
+               <td>
+                  <p>X=1, Y=2</p>
+               </td>
+               <td>
+                  <p>X=2, Y=2</p>
+               </td>
+            </tr>
+</tbody>
+         </table>
+        
+      </td>
+   </tr>
+</tbody>
+</table>
+
+
+<p><b>Combining the Base with the Attributes</b></p>
+
+<p>All attributes are required in all cases and the components must
+be joined with a period (".") as demonstrated below.</p>
+
+<p>For an image filename field: 
+<br/>
+IC_fn-type=summ.face=front.stid=1.y=1</p><p>For the caption field that corresponds with the above filename field: 
+<br/>
+IC_vi-type=summ.face=front.stid=1.y=1</p>
+<p><strong>Configuring the Fields</strong></p>
+<p>Once the structural attributes are determined the mappings for the filename
+  and caption fields are entered into CollMgr (MySQL) or the collection configuration
+   (XPat). Mapping is handled similarly to all other field mapping, the only
+  difference being the long length of structural attributes. </p>
+<p>In Collmgr the example above looks like...</p>
+<p>IC_fn-type=summ.face=front.stid=1.y=1:::filenamefield<br>
+IC_vi-type=summ.face=front.stid=1.y=1:::captionfield</p>
+<p>(filenamefield and captionfield need to be actual fields)</p>
+<h2>Examples</h2>
+
+<h3>University of Michigan, <a href="http://images.umdl.umich.edu/b/bhl/">Bentley
+Historical Library</a>.</h3>
+
+<p>View an <a href="http://images.umdl.umich.edu/cgi/i/image/image-idx?lasttype=simple;view=entry;subview=detail;cc=bhl;entryid=X-bl000037;viewid=1;sstrt=604;hits=1152;q1=Bentley;rgn1=All+Categories;c=bhl;med=1;thsz=12;txsz=50;slsz=1">example record</a> online.</p>
+
+ <table border="2" cellpadding="5" cellspacing="0">
+<tbody>
+	    <tr>
+      <td>
+         <p>Image Filename Fields per Record</p>
+      </td>
+      <td>
+         <p>1</p>
+      </td>
+   </tr>
+   <tr>
+      <td>
+         <p>Image Filename Field Repetitions</p>
+      </td>
+      <td>
+         <p>1</p>
+      </td>
+   </tr>
+   <tr>
+      <td>
+         <p>Image Caption Fields per Record</p>
+      </td>
+      <td>
+         <p>1</p>
+      </td>
+   </tr>
+   <tr>
+      <td>
+         <p>Image Caption Field Repetitions</p>
+      </td>
+      <td>
+         <p>1</p>
+      </td>
+   </tr>
+</tbody>
+</table>
+
+
+ <p>&nbsp;</p>
+<table border="2" cellpadding="5" cellspacing="0">
+<tbody>
+   <tr>
+      <th>
+         <p>Field Name</p>
+      </th>
+      <th>
+         <p>Field Type</p>
+      </th>
+      <th>Repetitions</th>
+      <th>
+         <p>Administrative Metadata Mapping</p>
+      </th>
+      <th>Collmgr admin_field_maps </th>
+   </tr>
+   <tr>
+      <td>
+         <p>Item Number (bhl_itno)</p>
+      </td>
+      <td>
+         <p class="style1">Filename</p>
+      </td>
+      <td>1</td>
+      <td>
+         <p>IC_fn</p>
+      </td>
+      <td>IC_fn:::bhl_itno</td>
+   </tr>
+   <tr>
+      <td>
+         <p>Item Title (bhl_it)</p>
+      </td>
+      <td>
+         <p class="style2">Caption</p>
+      </td>
+      <td>1</td>
+      <td>
+         <p>IC_vi</p>
+      </td>
+      <td>IC_vi:::bhl_it</td>
+   </tr>
+</tbody>
+</table>
+
+
+
+<p>How it looks in Collmgr <strong>admin_field_maps</strong>...</p>
+<pre>IC_fn:::bhl_itno<br>IC_vi:::bhl_it</pre>
+<h3>University of Michigan, <a href="http://images.umdl.umich.edu/m/musart/">Museum
+of Art</a>.</h3>
+
+<p>View an <a href="http://images.umdl.umich.edu/cgi/i/image/image-idx?lasttype=simple;view=entry;subview=detail;cc=musart;entryid=X-1942.6;viewid=12;sstrt=1;hits=1;q1=Processional+Cross;rgn1=All+Categories;c=musart;thsz=12;txsz=50;slsz=1"> example record</a> online.</p>
+
+
+ <table border="2" cellpadding="5" cellspacing="0">
+<tbody>
+   <tr>
+     <td><strong>Field Name</strong></td>
+      <td>
+         <p><strong>Field Type </strong></p>
+      </td>
+      <td>
+         <p><strong>Repetitions</strong></p>
+      </td>
+      <td><strong>Administrative Metadata Mapping</strong></td>
+    </tr>
+   <tr>
+     <td>ShortName (musart_sn) </td>
+      <td>
+         <p class="style1">Filename</p>
+      </td>
+      <td>
+         <p>1</p>
+      </td>
+      <td>IC_fn-type=summ.face=front.stid=1.y=1</td>
+    </tr>
+   <tr>
+     <td>Details (musart_rim)</td>
+      <td>
+         <p class="style1">Filename</p>
+      </td>
+      <td>
+         <p>20</p>
+      </td>
+      <td>IC_fn-type=det.face=front.stid=2.y=1</td>
+    </tr>
+   <tr>
+     <td>Title (musart_ti) </td>
+      <td>
+         <p class="style2">Caption</p>
+      </td>
+      <td>
+         <p>1</p>
+      </td>
+      <td>IC_vi-type=summ.face=front.stid=1.y=1</td>
+    </tr>
+   <tr>
+     <td>Details_caption (musart_rimc) </td>
+      <td>
+         <p class="style2">Caption</p>
+      </td>
+      <td>
+         <p>20</p>
+      </td>
+      <td>IC_vi-type=det.face=front.stid=2.y=1</td>
+    </tr>
+</tbody>
+</table>
+
+
+
+
+ <p>How it looks in CollMgr <strong>admin_field_maps</strong>...</p>
+ <pre>ic_vi:::musart_ti
+ic_fn-type=summ.face=unspec.stid=1.y=1:::musart_sn
+ic_fn-type=det.face=unspec.stid=2.y=1:::musart_rim
+ic_vi-type=det.face=unspec.stid=2.y=1:::musart_rimc
+    </pre>
+<h3>University of Michigan, <a href="http://images.umdl.umich.edu/a/apis/">Advanced Papyrological Information System</a></h3>
+
+<p>View the <a href="http://images.umdl.umich.edu/cgi/i/image/image-idx?evl=other-views;lasttype=boolean;view=entry;subview=detail;cc=apis;entryid=X-2544;viewid=1;sstrt=1521;hits=2083;q1=bmp;op2=And;op3=And;rgn1=All+Categories;rgn2=All+Categories;rgn3=All+Categories;c=apis;thsz=12;txsz=100;slsz=1">example
+    record</a> online. Note that the apis structure has the potential to have
+    a large number of images, but the example record happens to only have 6.</p>
+<table border="2" cellpadding="5" cellspacing="0">
+  <tbody>
+    <tr>
+      <td><strong>Field Name</strong></td>
+      <td><p><strong>Field Type </strong></p></td>
+      <td><p><strong>Repetitions</strong></p></td>
+      <td><strong>Administrative Metadata Mapping</strong></td>
+    </tr>
+    <tr>
+      <td>Full SizeFront R1 (apis_fsfr1)</td>
+      <td><p class="style1">Filename</p>
+      </td>
+      <td><p>2</p></td>
+      <td>ic_fn-type=summ.face=front.stid=1.y=1</td>
+    </tr>
+    <tr>
+      <td><p>Full SizeFront R1 (apis_fsfr1)<br>
+          <span class="style9">Inventory Number (apis_inv)<br>
+Section/Side (apis_ss)</span></p>
+      </td>
+      <td><span class="style2">Caption</span></td>
+      <td>2</td>
+      <td>ic_vi-type=summ.face=front.stid=1.y=1<br>        </td>
+    </tr>
+    <tr>
+      <td>Full SizeFront R2 (apis_fsfr2)</td>
+      <td><span class="style1">Filename</span></td>
+      <td>2</td>
+      <td>ic_fn-type=<span class="style5">summ</span>.face=front.stid=1.y=2</td>
+    </tr>
+    <tr>
+      <td>Full SizeFront R2 (apis_fsfr2)<br>
+        <span class="style9">Inventory Number (apis_inv)<br>
+Section/Side (apis_ss)</span></td>
+      <td><span class="style2">Caption</span></td>
+      <td>2</td>
+      <td><p>ic_vi-type=summ.face=front.stid=1.y=2</p>
+      </td>
+    </tr>
+    <tr>
+      <td>Full SizeFront R3 (apis_fsfr3)</td>
+      <td><span class="style1">Filename</span></td>
+      <td>2</td>
+      <td>ic_fn-type=summ.face=front.stid=1.y=3</td>
+    </tr>
+    <tr>
+      <td>Full SizeFront R3 (apis_fsfr3)<br>
+        <span class="style9">Inventory Number (apis_inv)<br>
+Section/Side (apis_ss)</span></td>
+      <td><span class="style2">Caption</span></td>
+      <td>2</td>
+      <td>ic_vi-type=summ.face=front.stid=1.y=3</td>
+    </tr>
+    <tr>
+      <td>Full SizeFront R4 (apis_fsfr4)</td>
+      <td><span class="style1">Filename</span></td>
+      <td>2</td>
+      <td>ic_fn-type=summ.face=front.stid=1.y=4</td>
+    </tr>
+    <tr>
+      <td>Full SizeFront R4 (apis_fsfr4)<br>
+        <span class="style9">Inventory Number (apis_inv)<br>
+Section/Side (apis_ss)</span></td>
+      <td><span class="style2">Caption</span></td>
+      <td>2</td>
+      <td>ic_vi-type=summ.face=front.stid=1.y=4</td>
+    </tr>
+    <tr>
+      <td>_600DPIFront R1 (apis_600fr1)</td>
+      <td><span class="style1">Filename</span></td>
+      <td>8</td>
+      <td>ic_fn-type=det.face=front.stid=1.y=1</td>
+    </tr>
+    <tr>
+      <td>_600DPIFront R1 (apis_600fr1)<br>
+        <span class="style9">Inventory Number (apis_inv)<br>
+Section/Side (apis_ss)</span></td>
+      <td><span class="style2">Caption</span></td>
+      <td>8</td>
+      <td>ic_vi-type=det.face=front.stid=1.y=1</td>
+    </tr>
+    <tr>
+      <td>_600DPIFront R2 (apis_600fr2)</td>
+      <td><span class="style1">Filename</span></td>
+      <td>8</td>
+      <td>ic_fn-type=det.face=front.stid=1.y=2</td>
+    </tr>
+    <tr>
+      <td><p>_600DPIFront R2 (apis_600fr2)<br>
+        <span class="style9">Inventory Number (apis_inv)<br>
+  Section/Side (apis_ss)</span></p>
+      </td>
+      <td><span class="style2">Caption</span></td>
+      <td>8</td>
+      <td>ic_vi-type=det.face=front.stid=1.y=2</td>
+    </tr>
+    <tr>
+      <td>_600DPIFront R3 (apis_600fr3)</td>
+      <td><span class="style1">Filename</span></td>
+      <td>8</td>
+      <td>ic_fn-type=det.face=front.stid=1.y=3</td>
+    </tr>
+    <tr>
+      <td><p>_600DPIFront R3 (apis_600fr3)<br><span class="style9">Inventory Number (apis_inv)<br>
+  Section/Side (apis_ss)</span></p></td>
+      <td><span class="style2">Caption</span></td>
+      <td>8</td>
+      <td><p>ic_vi-type=det.face=front.stid=1.y=3</p>
+      </td>
+    </tr>
+    <tr>
+      <td>_600DPIFront R4 (apis_600fr4)</td>
+      <td><span class="style1">Filename</span></td>
+      <td>8</td>
+      <td>ic_fn-type=det.face=front.stid=1.y=4</td>
+    </tr>
+    <tr>
+      <td>_600DPIFront R4 (apis_600fr4)<br>
+        <span class="style9">Inventory Number (apis_inv)<br>
+Section/Side (apis_ss)</span></td>
+      <td><span class="style2">Caption</span></td>
+      <td>8</td>
+      <td><p>ic_vi-type=det.face=front.stid=1.y=4</p>
+      </td>
+    </tr>
+    <tr>
+      <td>_600DPIFront R5 (apis_600fr5)</td>
+      <td><span class="style1">Filename</span></td>
+      <td>8</td>
+      <td>ic_fn-type=det.face=front.stid=1.y=5</td>
+    </tr>
+    <tr>
+      <td><p>_600DPIFront R5 (apis_600fr5)<br><span class="style9">Inventory Number (apis_inv)<br>
+Section/Side (apis_ss)</span></p></td>
+      <td><span class="style2">Caption</span></td>
+      <td>8</td>
+      <td>ic_vi-type=det.face=front.stid=1.y=5</td>
+    </tr>
+    <tr>
+      <td>_600DPIFront R6 (apis_600fr6)</td>
+      <td><span class="style1">Filename</span></td>
+      <td>8</td>
+      <td>ic_fn-type=det.face=front.stid=1.y=6</td>
+    </tr>
+    <tr>
+      <td><p>_600DPIFront R6 (apis_600fr6)<br><span class="style9">Inventory Number (apis_inv)<br>
+Section/Side (apis_ss)</span></p></td>
+      <td><span class="style2">Caption</span></td>
+      <td>8</td>
+      <td>ic_vi-type=det.face=front.stid=1.y=6</td>
+    </tr>
+    <tr>
+      <td>_600DPIFront R7 (apis_600fr7)</td>
+      <td><span class="style1">Filename</span></td>
+      <td>8</td>
+      <td>ic_fn-type=det.face=front.stid=1.y=7</td>
+    </tr>
+    <tr>
+      <td><p>_600DPIFront R7 (apis_600fr7)<br><span class="style9">Inventory Number (apis_inv)<br>
+Section/Side (apis_ss)</span></p></td>
+      <td><span class="style2">Caption</span></td>
+      <td>8</td>
+      <td>ic_vi-type=det.face=front.stid=1.y=7</td>
+    </tr>
+    <tr>
+      <td>_600DPIFront R8 (apis_600fr8)</td>
+      <td><span class="style1">Filename</span></td>
+      <td>8</td>
+      <td>ic_fn-type=det.face=front.stid=1.y=8</td>
+    </tr>
+    <tr>
+      <td>_600DPIFront R8 (apis_600fr8)<br>
+        <span class="style9">Inventory Number (apis_inv)<br>
+Section/Side (apis_ss)</span></td>
+      <td><span class="style2">Caption</span></td>
+      <td>8</td>
+      <td><p>ic_vi-type=det.face=front.stid=1.y=8</p>
+      </td>
+    </tr>
+    <tr>
+      <td>Full SizeBack R1 (apis_fsbr1)</td>
+      <td><span class="style1">Filename</span></td>
+      <td>2</td>
+      <td>ic_fn-type=summ.face=back.stid=2.y=1</td>
+    </tr>
+    <tr>
+      <td><p>Full SizeBack R1 (apis_fsbr1)<br>
+        <span class="style9">Inventory Number (apis_inv)<br>
+Section/Side (apis_ss)</span></p>
+      </td>
+      <td><span class="style2">Caption</span></td>
+      <td>2</td>
+      <td>ic_vi-type=summ.face=back.stid=2.y=1</td>
+    </tr>
+    <tr>
+      <td>Full SizeBack R2 (apis_fsbr2)</td>
+      <td><span class="style1">Filename</span></td>
+      <td>2</td>
+      <td>ic_fn-type=summ.face=back.stid=2.y=2</td>
+    </tr>
+    <tr>
+      <td>Full SizeBack R2 (apis_fsbr2)<br>
+        <span class="style9">Inventory Number (apis_inv)<br>
+Section/Side (apis_ss)</span></td>
+      <td><span class="style2">Caption</span></td>
+      <td>2</td>
+      <td><p>ic_vi-type=summ.face=back.stid=2.y=2</p>
+      </td>
+    </tr>
+    <tr>
+      <td>Full SizeBack R3 (apis_fsbr3)</td>
+      <td><span class="style1">Filename</span></td>
+      <td>2</td>
+      <td>ic_fn-type=summ.face=back.stid=2.y=3</td>
+    </tr>
+    <tr>
+      <td><p>Full SizeBack R3 (apis_fsbr3)<br>
+        <span class="style9">Inventory Number (apis_inv)<br>
+Section/Side (apis_ss)</span></p>
+      </td>
+      <td><span class="style2">Caption</span></td>
+      <td>2</td>
+      <td><p>ic_vi-type=summ.face=back.stid=2.y=3</p>
+      </td>
+    </tr>
+    <tr>
+      <td>Full SizeBack R4 (apis_fsbr4)</td>
+      <td><span class="style1">Filename</span></td>
+      <td>2</td>
+      <td>ic_fn-type=summ.face=back.stid=2.y=4</td>
+    </tr>
+    <tr>
+      <td><p>Full SizeBack R4 (apis_fsbr4)<br>
+        <span class="style9">Inventory Number (apis_inv)<br>
+Section/Side (apis_ss)</span></p>
+      </td>
+      <td><span class="style2">Caption</span></td>
+      <td>2</td>
+      <td><p>ic_vi-type=summ.face=back.stid=2.y=4</p>
+      </td>
+    </tr>
+    <tr>
+      <td>_600DPIBack R1 (apis_600br1)</td>
+      <td><span class="style1">Filename</span></td>
+      <td>8</td>
+      <td>ic_fn-type=det.face=back.stid=1.y=1</td>
+    </tr>
+    <tr>
+      <td><p>_600DPIBack R1 (apis_600br1)<br>
+        <span class="style9">Inventory Number (apis_inv)<br>
+  Section/Side (apis_ss)</span></p>
+      </td>
+      <td><span class="style2">Caption</span></td>
+      <td>8</td>
+      <td>ic_vi-type=det.face=back.stid=1.y=1</td>
+    </tr>
+    <tr>
+      <td>_600DPIBack R2 (apis_600br2)</td>
+      <td><span class="style1">Filename</span></td>
+      <td>8</td>
+      <td>ic_fn-type=det.face=back.stid=1.y=2</td>
+    </tr>
+    <tr>
+      <td>_600DPIBack R2 (apis_600br2)</td>
+      <td><span class="style2">Caption</span></td>
+      <td>8</td>
+      <td><p>ic_vi-type=det.face=back.stid=1.y=2</p>
+      </td>
+    </tr>
+    <tr>
+      <td>_600DPIBack R2 (apis_600br3)</td>
+      <td><span class="style1">Filename</span></td>
+      <td>8</td>
+      <td>ic_fn-type=det.face=back.stid=1.y=3</td>
+    </tr>
+    <tr>
+      <td><p>_600DPIBack R2 (apis_600br3)<br>
+        <span class="style9">Inventory Number (apis_inv)<br>
+Section/Side (apis_ss)</span></p>
+      </td>
+      <td><span class="style2">Caption</span></td>
+      <td>8</td>
+      <td><p>ic_vi-type=det.face=back.stid=1.y=3</p>
+      </td>
+    </tr>
+    <tr>
+      <td>_600DPIBack R2 (apis_600br4)</td>
+      <td><span class="style1">Filename</span></td>
+      <td>8</td>
+      <td>ic_fn-type=det.face=back.stid=1.y=4</td>
+    </tr>
+    <tr>
+      <td><p>_600DPIBack R2 (apis_600br4)<br>
+        <span class="style9">Inventory Number (apis_inv)<br>
+Section/Side (apis_ss)</span></p>
+      </td>
+      <td><span class="style2">Caption</span></td>
+      <td>8</td>
+      <td>ic_vi-type=det.face=back.stid=1.y=4</td>
+    </tr>
+    <tr>
+      <td>_600DPIBack R2 (apis_600br5)</td>
+      <td><span class="style1">Filename</span></td>
+      <td>8</td>
+      <td>ic_fn-type=det.face=back.stid=1.y=5</td>
+    </tr>
+    <tr>
+      <td>_600DPIBack R2 (apis_600br5)</td>
+      <td><span class="style2">Caption</span></td>
+      <td>8</td>
+      <td>ic_vi-type=det.face=back.stid=1.y=5</td>
+    </tr>
+    <tr>
+      <td>_600DPIBack R2 (apis_600br6)</td>
+      <td><span class="style1">Filename</span></td>
+      <td>8</td>
+      <td>ic_fn-type=det.face=back.stid=1.y=6</td>
+    </tr>
+    <tr>
+      <td>_600DPIBack R2 (apis_600br6)</td>
+      <td><span class="style2">Caption</span></td>
+      <td>8</td>
+      <td><p>ic_vi-type=det.face=back.stid=1.y=6</p>
+      </td>
+    </tr>
+    <tr>
+      <td>_600DPIBack R2 (apis_600br7)</td>
+      <td><span class="style1">Filename</span></td>
+      <td>8</td>
+      <td>ic_fn-type=det.face=back.stid=1.y=7</td>
+    </tr>
+    <tr>
+      <td>_600DPIBack R2 (apis_600br7)</td>
+      <td><span class="style2">Caption</span></td>
+      <td>8</td>
+      <td><p>ic_vi-type=det.face=back.stid=1.y=7</p>
+      </td>
+    </tr>
+    <tr>
+      <td>_600DPIBack R2 (apis_600br8)</td>
+      <td><span class="style1">Filename</span></td>
+      <td>8</td>
+      <td>ic_fn-type=det.face=back.stid=1.y=8</td>
+    </tr>
+    <tr>
+      <td><p>_600DPIBack R2 (apis_600br8)<br>
+        <span class="style9">Inventory Number (apis_inv)<br>
+Section/Side (apis_ss)</span></p>
+      </td>
+      <td><span class="style2">Caption</span></td>
+      <td>8</td>
+      <td>ic_vi-type=det.face=back.stid=1.y=8</td>
+    </tr>
+    <tr>
+      <td>alternativeImages (apis_alt)</td>
+      <td><span class="style1">Filename</span></td>
+      <td>1</td>
+      <td>ic_fn-type=det.face=unspec.stid=3.y=1</td>
+    </tr>
+    <tr>
+      <td>alternativeImages (apis_alt)<br>
+        <span class="style9">Inventory Number (apis_inv)<br>
+Section/Side (apis_ss)</span></td>
+      <td><span class="style1"><span class="style2">Caption</span></span></td>
+      <td>1</td>
+      <td><p>ic_vi-type=det.face=unspec.stid=3.y=1</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p>How it looks in CollMgr <strong>admin_field_maps</strong>...</p>
+<pre>ic_fn-type=summ.face=front.stid=1.y=1:::apis_fsfr1
+   ic_fn-type=summ.face=front.stid=1.y=2:::apis_fsfr2
+   ic_fn-type=summ.face=front.stid=1.y=3:::apis_fsfr3
+   ic_fn-type=summ.face=front.stid=1.y=4:::apis_fsfr4
+   ic_vi-type=summ.face=front.stid=1.y=1:::apis_fsfr1 apis_inv apis_inv apis_ss
+   ic_vi-type=summ.face=front.stid=1.y=2:::apis_fsfr2 apis_inv apis_ss
+   ic_vi-type=summ.face=front.stid=1.y=3:::apis_fsfr3 apis_inv apis_ss
+   ic_vi-type=summ.face=front.stid=1.y=4:::apis_fsfr4 apis_inv apis_ss
+   ic_fn-type=det.face=front.stid=1.y=1:::apis_600fr1
+   ic_fn-type=det.face=front.stid=1.y=2:::apis_600fr2
+   ic_fn-type=det.face=front.stid=1.y=3:::apis_600fr3
+   ic_fn-type=det.face=front.stid=1.y=4:::apis_600fr4
+   ic_fn-type=det.face=front.stid=1.y=5:::apis_600fr5
+   ic_fn-type=det.face=front.stid=1.y=6:::apis_600fr6
+   ic_fn-type=det.face=front.stid=1.y=7:::apis_600fr7
+   ic_fn-type=det.face=front.stid=1.y=8:::apis_600fr8
+   ic_vi-type=det.face=front.stid=1.y=1:::apis_600fr1 apis_inv apis_ss
+   ic_vi-type=det.face=front.stid=1.y=2:::apis_600fr2 apis_inv apis_ss
+   ic_vi-type=det.face=front.stid=1.y=3:::apis_600fr3 apis_inv apis_ss
+   ic_vi-type=det.face=front.stid=1.y=4:::apis_600fr4 apis_inv apis_ss
+   ic_vi-type=det.face=front.stid=1.y=5:::apis_600fr5 apis_inv apis_ss
+   ic_vi-type=det.face=front.stid=1.y=6:::apis_600fr6 apis_inv apis_ss
+   ic_vi-type=det.face=front.stid=1.y=7:::apis_600fr7 apis_inv apis_ss
+   ic_vi-type=det.face=front.stid=1.y=8:::apis_600fr8 apis_inv apis_ss
+   ic_fn-type=summ.face=back.stid=2.y=1:::apis_fsbr1
+   ic_fn-type=summ.face=back.stid=2.y=2:::apis_fsbr2
+   ic_fn-type=summ.face=back.stid=2.y=3:::apis_fsbr3
+   ic_fn-type=summ.face=back.stid=2.y=4:::apis_fsbr4
+   ic_vi-type=summ.face=back.stid=2.y=1:::apis_fsbr1 apis_inv apis_ss
+   ic_vi-type=summ.face=back.stid=2.y=2:::apis_fsbr2 apis_inv apis_ss
+   ic_vi-type=summ.face=back.stid=2.y=3:::apis_fsbr3 apis_inv apis_ss
+   ic_vi-type=summ.face=back.stid=2.y=4:::apis_fsbr4 apis_inv apis_ss
+   ic_fn-type=det.face=back.stid=2.y=1:::apis_600br1
+   ic_fn-type=det.face=back.stid=2.y=2:::apis_600br2
+   ic_fn-type=det.face=back.stid=2.y=3:::apis_600br3
+   ic_fn-type=det.face=back.stid=2.y=4:::apis_600br4
+   ic_fn-type=det.face=back.stid=2.y=5:::apis_600br5
+   ic_fn-type=det.face=back.stid=2.y=6:::apis_600br6
+   ic_fn-type=det.face=back.stid=2.y=7:::apis_600br7
+   ic_fn-type=det.face=back.stid=2.y=8:::apis_600br8
+   ic_vi-type=det.face=back.stid=2.y=1:::apis_600br1 apis_inv apis_ss
+   ic_vi-type=det.face=back.stid=2.y=2:::apis_600br2 apis_inv apis_ss
+   ic_vi-type=det.face=back.stid=2.y=3:::apis_600br3 apis_inv apis_ss
+   ic_vi-type=det.face=back.stid=2.y=4:::apis_600br4 apis_inv apis_ss
+   ic_vi-type=det.face=back.stid=2.y=5:::apis_600br5 apis_inv apis_ss
+   ic_vi-type=det.face=back.stid=2.y=6:::apis_600br6 apis_inv apis_ss
+   ic_vi-type=det.face=back.stid=2.y=7:::apis_600br7 apis_inv apis_ss
+   ic_vi-type=det.face=back.stid=2.y=8:::apis_600br8 apis_inv apis_ss
+   ic_fn-type=det.face=unspec.stid=3.y=1:::apis_alt
+ ic_vi-type=det.face=unspec.stid=3.y=1:::apis_alt apis_inv apis_ss</pre>
+<br>
+<p>dlxs-help@umich.edu</p>
+
+</body>
+
+</html>

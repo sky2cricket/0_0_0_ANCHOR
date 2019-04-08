@@ -1,0 +1,344 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Broker</title>
+  
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+ 
+  <link rel="stylesheet" href="../styles.css">
+</head>
+ <body class="mainpalette">
+       
+<h2>Broker</h2>
+  
+<h3><a name="understanding_broker"></a>Understanding Broker</h3>
+  
+<p>Broker20 (we'll just refer to it as Broker) is an application that takes
+BibClass collection data and makes it available to be harvested by other
+institutions using the <a href="http://www.openarchives.org/"
+ target="external">OAI</a> (Open Archives Initiative) protocol.</p>
+  
+<p>The benefit of this is that you can share your collection resources with
+a wider audience. For instance, we have created and maintain <a
+ href="http://www.oaister.org/" target="external">OAIster</a>, which harvests
+collection data from a large variety of institutions, and we make that data
+available to any interested end-user for searching.</p>
+  
+<h3><a name="verbs_broker"></a>OAI Verbs</h3>
+  
+<p>The OAI protocol looks for particular pieces of information associated
+with the Broker as it's been installed. These "verbs" are essentially metadata
+about your collections and your institution, which you configure during installation
+of DLXS 10.</p>
+  
+<p>The examples show the CGI parameters that get sent to the Broker base
+URL.</p>
+  
+<p class="unixcommand"><strong>Identify</strong></p>
+  
+<p>This verb is used to retrieve information about a collection. When you
+install DLXS 10, some of the values you enter during configuration will be
+made available to the Identify verb.</p>
+  
+<p><i>Example</i>:<br>
+ <a
+ href="http://www.hti.umich.edu/cgi/b/broker20/broker20?verb=Identify"
+ target="sample">http://www.hti.umich.edu/cgi/b/broker20/broker20?verb=Identify</a></p>
+  
+<p class="unixcommand"><strong>ListMetadataFormats</strong></p>
+  
+<p>This verb is used to retrieve the metadata formats available from a repository.
+You must make your records available in simple Dublin Core, but can include
+other metadata formats as you wish.</p>
+  
+<p><i>Example</i>:<br>
+ <a
+ href="http://www.hti.umich.edu/cgi/b/broker20/broker20?verb=ListMetadataFormats"
+ target="sample">http://www.hti.umich.edu/cgi/b/broker20/broker20?verb=ListMetadataFormats</a></p>
+  
+<p class="unixcommand"><strong>ListSets</strong></p>
+  
+<p>This verb is used to retrieve the set structure of a collection, which
+is useful for selective harvesting. Sets can be organized in any manner you
+wish, e.g., subject, format, chronology.</p>
+  
+<p><i>Example</i>:<br>
+ <a
+ href="http://www.hti.umich.edu/cgi/b/broker20/broker20?verb=ListSets"
+ target="sample">http://www.hti.umich.edu/cgi/b/broker20/broker20?verb=ListSets</a></p>
+  
+<p class="unixcommand"><strong>ListIdentifiers</strong></p>
+  
+<p>This verb is an abbreviated form of ListRecords (see below), retrieving
+only headers rather than records. It requires the metadataPrefix (i.e., see
+the ListMetadataFormats verb) and, optionally, the set information (i.e.,
+see the ListSets verb).</p>
+  
+<p><i>Example</i>:<br>
+ <a
+ href="http://www.hti.umich.edu/cgi/b/broker20/broker20?verb=ListIdentifiers&amp;metadataPrefix=oai_dc&amp;set=oaiall:freeicbib"
+ target="sample">http://www.hti.umich.edu/cgi/b/broker20/broker20?verb=ListIdentifiers&amp;metadataPrefix=oai_dc&amp;set=oaiall:freeicbib</a></p>
+  
+<p class="unixcommand"><strong>ListRecords</strong></p>
+  
+<p>This verb lists the records from a collection. It requires the metadataPrefix
+(i.e., see the ListMetadataFormats verb) and, optionally, the set information
+(i.e., see the ListSets verb).</p>
+  
+<p><i>Example</i>:<br>
+ <a
+ href="http://www.hti.umich.edu/cgi/b/broker20/broker20?verb=ListRecords&amp;metadataPrefix=oai_dc&amp;set=oaiall:freeicbib"
+ target="sample">http://www.hti.umich.edu/cgi/b/broker20/broker20?verb=ListRecords&amp;metadataPrefix=oai_dc&amp;set=oaiall:freeicbib</a></p>
+  
+<p class="unixcommand"><strong>GetRecord</strong></p>
+  
+<p>This verb is used to retrieve an individual collection record. It requires
+the metadataPrefix (i.e., see the ListMetadataFormats verb) and the identifier
+(i.e., see the Identify verb).</p>
+  
+<p><i>Example</i>:<br>
+ <a
+ href="http://www.hti.umich.edu/cgi/b/broker20/broker20?verb=GetRecord&amp;metadataPrefix=oai_dc&amp;identifier=oai:lib.umich.edu:BAC7121.0001.001"
+ target="sample">http://www.hti.umich.edu/cgi/b/broker20/broker20?verb=GetRecord&amp;metadataPrefix=oai_dc&amp;identifier=oai:lib.umich.edu:BAC7121.0001.001</a></p>
+  
+<p>You can use these verbs to test your collection (we'll use the term repository
+from now on) as it has been served up through Broker. Any errors in your
+configuration will show up in one of these verbs.</p>
+  
+<h3><a name="install_broker"></a>Installing Broker</h3>
+  
+<p><strong>1</strong>. There are a series of parameters that are configured
+during the installation of DLXS 10. These parameters live in the /$DLXSROOT/cgi/b/broker20/broker20.cfg
+file. If after installation you need to change any of these parameters, you
+can make the changes to this file directly, or you can run the install script
+again. The install script will remember the entries you made previously.</p>
+  
+<p>The parameters are the following:</p>
+  
+<ul>
+ <li>$gRepositoryID: This must be a domain name, e.g., for the University
+of Michigan Libraries it is "lib.umich.edu". </li>
+  <li>$gRepositoryName: This is a description of your institution, e.g.,
+for the University of Michigan Libraries it is "The University of Michigan.
+University Library. Digital Library Production Service". </li>
+  <li>$BaseUrl: This is the URL from which Broker will be accessed by harvesters,
+e.g., for the University of Michigan Libraries it is "http://www.hti.umich.edu/cgi/b/broker20/broker20". 
+  </li>
+  <li>$AdminEmail: This is a contact email, e.g., for the University of Michigan
+Libraries it is "dlps-broker@umich.edu". </li>
+  <li>$EarliestDateStamp: You should know what the earliest datestamp is
+for the repository you're making available, e.g., for the University of Michigan
+Libraries this is "2000-08-17". </li>
+  <li>$DeletedRecord: Use the default value of "no". This flag indicates
+the manner in which the repository supports the notion of deleted records.
+Legitimate values are "no", "transient", or "persistent". In the preparation
+of BibClass data, we don't keep track of deleted records, which is why the
+default is "no". The following are the definitions of the legitimate values
+as per the OAI protocol:  
+    <ul>
+ <li><i>no</i>: The repository does not maintain information about deleted
+records. A repository that indicates this level of support must not reveal
+a deleted status in any response. </li>
+      <li><i>transient</i>: The repository does not guarantee that a list
+of deleted records is maintained persistently or consistently. A repository
+that indicates this level of support may reveal a deleted status for records.
+ </li>
+      <li><i>persistent</i>: The repository maintains information about deleted
+records with no time limit. A repository that indicates this level of support
+must persistently keep track of the full history of deletions and consistently
+reveal the status of a deleted record over time.    </li>
+    </ul>
+ </li>
+  <li>$Granularity: Use the default value of "YYYY-MM-DD". This is the resolution
+of the datestamp for your repository. The legitimate values are "YYYY-MM-DD"
+and "YYYY-MM-DDThh:mm:ssZ" with meanings as defined in ISO8601. The default
+value is the granularity used in the preparation of BibClass data. </li>
+  <li>$SampleID: This is a sample record identification. It should look like
+"oai:gRepositoryID:[valid record ID]", e.g., for the University of Michigan
+Libraries the value is "oai:lib.umich.edu:YEATS-YC023". Use an example record
+for your institution. </li>
+</ul>
+  
+<p><strong>2</strong>. Naturally, you'll need to have repository records
+that have been prepared and indexed in BibClass.</p>
+  
+<p><strong>3</strong>. Verify that the /$DLXSROOT/local/apache/conf/httpd.conf
+file contains the following lines:</p>
+  
+<pre>&lt;Directory "$DLXSROOT/cgi/b/broker20"&gt;<br>   SetEnv AUTHZD_COLL ":samplebc:"<br>   SetEnv PUBLIC_COLL ":"<br>&lt;/Directory&gt;<br></pre>
+  
+<p>This will give Broker access to the sample BibClass collection, samplebc.
+  Enter the value of $DLXSROOT, don't leave it as "$DLXSROOT". You will want
+to list all the BibClass collections as you make them available, so that
+Broker will have access to them.</p>
+  
+<p><strong>4</strong>. Go into collmgr and create individual entries for
+the BibClass collections you want Broker to access. Then create a group selecting
+these collections and enter "Y" in the OAI field. Each collection in the
+group will be treated as a set, and will look like "groupid:collid" in Broker,
+e.g., "oaiall:freeicbib". Note that the set can only by alpha-numeric, so
+use alpha-numeric values for your groupids and collids. At the University
+of Michigan Libraries we have some collids with "-bib" in them, and for this
+Broker does some special processing in which it converts the "-bib" to "bib"
+when creating OAI responses. When a set with "bib" is requested using the
+OAI protocol, it is translated to "-bib" so we can access it internally.
+So, it's probably best if you don't create any collids with "bib" in them,
+as it will confuse Broker.</p>
+  
+<p><strong>5</strong>. If all of these steps are done correctly Broker should
+work. You can test it with your browser by trying a few verbs: (these are
+University of Michigan specific)</p>
+  
+<p><a href="http://hti.umich.edu/cgi/b/broker20/broker20?verb=Identify"
+ target="sample">http://hti.umich.edu/cgi/b/broker20/broker20?verb=Identify</a><br>
+ <a href="http://hti.umich.edu/cgi/b/broker20/broker20?verb=ListSets"
+ target="sample">http://hti.umich.edu/cgi/b/broker20/broker20?verb=ListSets</a><br>
+ <a
+ href="http://hti.umich.edu/cgi/b/broker20/broker20?verb=ListRecords;metadataPrefix=oai_dc"
+ target="sample">http://hti.umich.edu/cgi/b/broker20/broker20?verb=ListRecords;metadataPrefix=oai_dc</a></p>
+  
+<p><strong>6</strong>. It's a good idea to go register your Broker in two
+places so that harvesters will know that you have records available.</p>
+  
+<p><a href="http://oai.dlib.vt.edu/cgi-bin/Explorer/oai2.0/testoai"
+ target="external">http://oai.dlib.vt.edu/cgi-bin/Explorer/oai2.0/testoai</a>:
+This is an unofficial repository explorer, which is great for testing. This
+site will run your Broker through a series of tests, and once it passes the
+tests you will be prompted to register.  Select "Test and Add an archive
+to this list".</p>
+  
+<p><a href="http://www.openarchives.org/data/registerasprovider.html"
+ target="external">http://www.openarchives.org/data/registerasprovider.html</a>:
+This is the official web site. At the bottom of this page you will see a
+place where you can register your Broker. The registration folks will send
+you an email letting you know if your Broker passed all the tests and was
+registered. If broker fails any test they will let you know which ones.</p>
+  
+<h3><a name="info_broker"></a>Important Broker Information</h3>
+  
+<ol>
+ <li>
+    <p>The routine "ConvertStandarCharEnt" converts standard character entity
+references to their corresponding Unicode character reference values in order
+to be UTF-8 compliant. For example, "&amp;gamma;" is converted to "&amp;#915;"
+for output.  </p>
+  </li>
+  <li>
+    <p>The routine "ConvertSpecialCharEnt" converts those character entity
+references which are displayed with GIF files to their corresponding Unicode
+character reference values. </p>
+  </li>
+  <li>
+    <p>The routine "ConvertCollectionChars" converts Latin 1 characters and
+a couple of special math characters used in one of our own collections, since
+the protocol is based on UTF-8, and so characters like &eacute; are outside
+its scope. </p>
+  </li>
+  <li>
+    <p>In the event that there are  character entity references for which
+the conversion routines in broker cannot find the corresponding Unicode values,
+Broker will output the encoding for the ampersand and then the remaining
+string. For example, if Broker were to come accross a string like "&amp;abc;",
+it will output "&amp;#38;abc;". </p>
+  </li>
+  <li>
+    <p>Broker is used at the University of Michigan Libraries to implement
+the CGM (Cornell, G&ouml;ettingen, Michigan) protocol, so it contains code
+that supports the verbs used in that protocol. &nbsp;Visist the<a
+ href="http://www.library.cornell.edu/mathbooks/"> CGM</a> site to learn
+more.</p>
+  </li>
+  <li>
+    <p>The routine "GetRecordFilt" converts a BibClass record to a Dublin
+Core record. The way this routine works is that it loops through a BibClass
+record looking for the tags noted below, e.g., for example &lt;K&gt;&lt;/K&gt;.
+If there is a case in which the BibClass data is bad, e.g., missing a &lt;/K&gt;,
+the record will not be output, but an entry will be placed into a log file
+in /$DLXSROOT/cgi/b/broker20/ErrorLogFor_broker20. In the log file you will
+find the time the error took place, the ID of the record, and a copy of the
+record with the problem. You may want to create a CRON job to clean this
+log file periodically and to notify you if there are entries. If you run
+your BibClass data through an XML validator and it validates, you should
+never get an entry in this error log. The mapping from BibClass to Dublin
+Core is as follows: (and can be modified for your Broker as you see fit)	
+    <table border="1" cellpadding="5">
+ <tbody>
+        <tr>
+ <td><strong>BibClass Elements</strong></td>
+ <td><strong>Dublin Core Elements</strong></td>
+ </tr>
+ <tr>
+ <td>K</td>
+ <td>dc:title</td>
+ </tr>
+ <tr>
+ <td>L</td>
+ <td>dc:creator</td>
+ </tr>
+ <tr>
+ <td>SU</td>
+ <td>dc:subject</td>
+ </tr>
+ <tr>
+ <td>AF</td>
+ <td>dc:subject</td>
+ </tr>
+ <tr>
+ <td>AA</td>
+ <td>dc:description</td>
+ </tr>
+ <tr>
+ <td>T</td>
+ <td>dc:publisher</td>
+ </tr>
+ <tr>
+ <td>M</td>
+ <td>dc:contributor</td>
+ </tr>
+ <tr>
+ <td>F</td>
+ <td>dc:description</td>
+ </tr>
+ <tr>
+ <td>YR</td>
+ <td>dc:date</td>
+ </tr>
+ <tr>
+ <td>X</td>
+ <td>dc:rights</td>
+ </tr>
+ <tr>
+ <td>URL</td>
+ <td>dc:identifier</td>
+ </tr>
+ <tr>
+ <td>FMT</td>
+ <td>dc:format</td>
+ </tr>
+ <tr>
+ <td>LANG</td>
+ <td>dc:language</td>
+ </tr>
+ <tr>
+ <td>TYPE</td>
+ <td>dc:type</td>
+ </tr>
+ <tr>
+ <td>H</td>
+ <td>dc:source</td>
+ </tr>
+ 
+      </tbody>
+    </table>
+  <p></p>
+  </li>
+</ol>
+   <br>
+<p>
+      Finally, &nbsp;check out our <a href="http://www.oaister.org/o/oaister/" target="external">OAISTER</a>
+page which makes records harvested through the OAI protocol available.
+Also, read about DLXS <a href="../bibclass/index.html">BibClass</a>.
+</p>
+</body>
+</html>

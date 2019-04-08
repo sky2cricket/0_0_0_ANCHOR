@@ -1,0 +1,59 @@
+print 'fix_one_dir_simple.py: open dir, read each file, do regexp stuff, write new file to dir/replace'
+print 'usage: python fix_one_dir.py in_directory_name out_directory_name'
+# >>> python fix_one_dir.py bad_ocr replace
+#assumes you have subdirectory replace, does not check dir existence yet
+#the most difficult part of python for me is you have to tab over for two lines at end of block
+#see comments #end if, #end while
+#sort of like a makefile
+
+#from: Store1/area2/volvoices2008/vvImport/071215_chd_test/pytest
+#this file is named: fix_one_dir_simple.py
+
+
+#This takes txt files makes the following changes
+#	apostrophe -> &#0027;
+#	ampersand  -> &#0026;
+
+import os, sys, codecs
+dname=sys.argv[1]
+gname=sys.argv[1]+"/"+sys.argv[2];
+#print 'argv[0]='+sys.argv[0]+ '    argv[1]='+sys.argv[1]+'     argv[2]='+sys.argv[2]+'\n\n'
+#print 'gname='+gname+'\n\n'
+
+d= os.listdir(dname) #get list of files in directory named dname
+print d             #sanity check
+#print 'd[0]='+d[0] # more sanity checks
+#print 'd[1]='+d[1]
+#print 'd[2]='+d[2]
+#print 'd[3]='+d[3]
+LEN = len(d)
+print LEN
+i=0;
+while(i<LEN):
+	fname = dname+'/'+d[i]
+	if (os.path.isfile(fname)):
+		rname = gname+'/'+d[i]
+		sys.stdout = open(rname,'w') #redirect sys.stdout to rname
+		F=open(fname)
+		t=file.read(F)
+
+		#two step replacements because other replacements may already be there
+		t=t.replace("'","&apos;",100) #need to see xml
+		t=t.replace("&apos;","&#x0027;",100) #need to see xml
+
+		t=t.replace("&","&amp;",100) #need to see xml - just clobbered &#0027;
+		t=t.replace("&amp;#","&#",100) #fix &#0027;
+		t=t.replace("&amp;","&#x0026;",100) #need to see xml
+
+                print t
+		F.close()
+		
+		
+		#end if 
+	i=i+1
+	
+	
+	#end while	
+	
+#print '\n\n the end\n\n'
+

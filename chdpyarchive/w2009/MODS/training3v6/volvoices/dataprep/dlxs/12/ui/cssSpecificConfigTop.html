@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>using textclass-specific.css</title>
+<script type="text/javascript" language="javascript">
+ns4 = (document.layers)? true:false;
+ie4 = (document.all)? true:false;
+var omniweb = false; 
+var ns = false; 
+var ie = false; 
+var platform = ""; 
+
+function openInfoWindow(theURL,winName) 
+{
+  var infoWindow = 0;
+  var winavailheight = screen.availHeight;
+  var winavailwidth = screen.availWidth;
+  var winY = winavailheight - ( winavailheight - 50 );
+  var winX = ( winavailwidth - 375 ); 
+  var winparams = "";
+  
+  if (ie4)
+  {
+    winparams = 'scrollbars=yes,resizable=yes,location=no,width=350,left='+winX+',top='+winY;
+  }
+  else
+  {
+    winparams = 'scrollbars=yes,resizable=yes,location=no,width=350,screenX='+winX+',screenY='+winY;
+  }
+  
+  if ( infoWindow && !infoWindow.closed )
+  {
+    infoWindow.focus();  
+  }
+  else
+  {
+    infoWindow = window.open( '', winName, winparams );
+    infoWindow.focus( );    
+  }
+  
+  infoWindow.document.location.href = theURL;
+}
+
+
+
+function gotoTerm(hashref)
+{
+  var fileRef = 'cssSpecificConfigBottom.html#'+hashref;
+  // top.frames.ref.location.href = fileRef;
+  top.frames.ref.location.hash = hashref;
+}
+
+</script>
+<style type="text/css">
+<!--
+body {
+	background-color: #FFFFFF;
+}
+-->
+</style></head>
+
+<body>
+<div align="center"><img src="graphics/ncoswHdr.gif" width="683" height="115" border="0" usemap="#Map" />
+  <map name="MapMap4" id="Map5">
+  	<area shape="rect" coords="419,74,436,96" href="javascript:gotoTerm('navcolor')" />
+  	</map>  
+  <map name="MapMap3" id="Map4">
+  	<area shape="rect" coords="480,96,497,118" href="javascript:gotoTerm('body')" />
+  	</map>  
+  <map name="MapMap" id="Map2">
+  	<area shape="rect" coords="480,96,497,118" href="javascript:gotoTerm('body')" />
+  	</map>
+  <map name="MapMap2" id="Map3">
+  	<area shape="rect" coords="480,96,497,118" href="javascript:gotoTerm('body')" />
+  	</map>  
+  <map name="Map" id="Map">
+  	<area shape="rect" coords="335,-1,352,21" href="javascript:gotoTerm('hdrcolor')" />
+  	<area shape="rect" coords="462,19,479,41" href="javascript:gotoTerm('globnava')" />
+  	<area shape="rect" coords="529,29,546,51" href="javascript:gotoTerm('bbagcountstring')" />
+  	<area shape="rect" coords="562,40,579,62" href="javascript:gotoTerm('bbagitemstringbody')" />
+  	<area shape="rect" coords="419,74,436,96" href="javascript:gotoTerm('navcolor')" />
+  	<area shape="rect" coords="479,95,496,117" href="javascript:gotoTerm('body')" />
+    <area shape="rect" coords="59,79,76,101" href="javascript:gotoTerm('mainnavcell')" />
+    <area shape="rect" coords="126,77,144,98" href="javascript:gotoTerm('navlinks')" />
+    <area shape="rect" coords="181,77,200,99" href="javascript:gotoTerm('anav')" />
+  </map>
+</div>
+</body>
+</html>

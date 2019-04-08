@@ -1,0 +1,37 @@
+<html>
+<head>
+<title>DLXS Collection Metadata</title>
+
+
+
+ <link href="../dlxsdocs.css" rel="stylesheet" type="text/css">
+</head>         <body>
+<div class="pageTitle">DLXS Collection Metadata</div>
+
+<p><a href="maps.html">Maps</a>  and <a href="colldatabases.html">DLXS Metadata Database files</a> (especially, the collection information and the collection groups related information) insert a layer of abstraction between the middleware and the XPAT search engine and one between the middleware and the data itself, respectively.</p>
+<ul>
+<li> <b><a href="maps.html">Maps</a></b> are text files, with SGML markup, that link certain labels with values used by the middleware. For example, the phrase "Full text," seen in an HTML pull-down on a search page can be associated with a particular SGML region in the XPAT indexed data. For information about the structure, configuration and uses of map files, click <a href="maps.html">here</a>.</li>
+
+<li><a href="colldatabases.html"><b>Metadata Database</b></a>: This database, which can reside in a CSV, MySQL, or Oracle database, contains metadata about the collection data you intend to deliver via the DLXS middleware. Some examples of metadata stored in this database are: collection id, collection name, host for the collection data, which collections belong to which groups, what SGML regions in the data are available for searching in the simple search page, etc. For information about the structure, configuration and uses of the database files, click  <a href="colldatabases.html">here</a>.</li>
+
+<li><a href="broker.html"><b>Broker</b></a>: This CGI program produces XML responses to OAI requests from OAI service providers who harvest collection metadata. For more information on the OAI protocol, see: <a href="http://www.openarchives.org/">http://www.openarchives.org/</a>.</li>
+
+<li><b><a href="collmgr.html">Collection Manager</a></b>: This CGI program, delivered as part of the DLXS installation, is used by collection managers to enter and edit information in the metadata database. </li>
+
+<li><b><a href="dbmove.html">DB Move (dbmove)</a></b>: This Perl program is used to move a dlxs database from one type of database store to another.</li>
+
+<li><b><a href="dbconv.html">DB Convert (dbconv)</a></b>: This Perl program is used to merge the data in the legacy (before release #8 of DLXS) groups and collections information tab-delimited files into CSV tables described in the <a href="collmgr.html">collection manager documentation</a> section.</li>
+
+<li><b><a href="upgrade.html">DB Upgrade (e.g.,
+upgrade_1_2)</a></b>: This Perl program (included in DLXS software beginning with
+Release #9) is used to convert your current metadata into a new
+database structure whenever a new DLXS middleware release requires
+such a conversion.</li>
+
+
+</ul>
+
+</body>
+
+
+</html>

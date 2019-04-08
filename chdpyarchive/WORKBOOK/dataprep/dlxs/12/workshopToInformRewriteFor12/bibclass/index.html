@@ -1,0 +1,173 @@
+  <html>
+    <head>
+      <title>BibClass</title>
+      <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+        <link rel="stylesheet" href="../styles.css">
+    </head>
+    <body class="mainpalette">
+      
+<h2>BibClass</h2>
+
+<h3><a name="bibclass_overview"></a>BibClass Overview</h3> 
+
+<p>All current BibClass documentation is at <a href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/bib/bib-index.html" target="sample">http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/bib/bib-index.html</a> and
+   will be updated after the workshop based on feedback we get from it.</p>
+
+<p>BibClass was not intended to replace robust, large-scale bibliographic systems like the library catalog, but to accomplish resource discovery across a large body of bibliographic information managed outside of large integrated library systems.</p>
+
+<p>It was built for succinctness and simplicity, and also is quite flexible in terms of how existing bibliographic structures can be mapped to it. Elements can be used to accommodate outlying existing elements by re-arranging the <a href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/bib/bib.map" target="sample">map file</a>.</p>
+
+<h3><a name="bibclass_DTD"></a>BibClass DTD</h3>
+
+<p>The current DTD lives at <a href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/bib/bib.dtd" target="sample">http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/bib/bib.dtd</a>. The following is a brief overview of the BibClass DTD elements using a <a href="bibsample.html" target="sample">sample University of Michigan collection record</a>.</p>
+
+<dl>
+<dt>
+<pre>&lt;<b>BIBDB</b>>&lt;<b>GROUP</b>>&lt;<b>COLL</b>>umr&lt;/<b>COLL</b>></pre>
+<dd>These elements are intended as containers for the bibliographic data. We use them to designate collections of data.
+
+<dt>
+<pre>&lt;<b>A</b> A="A" ID="AAB8128" DT="2000-08-22"></pre>
+<dd>The &lt;A> element can be defined as the record itself. The most commonly used attributes are ID (i.e., the main record identifier) and DT (i.e., the date of record creation).
+
+<dt>
+<pre>
+&lt;<b>B</b>>
+&lt;<b>K</b>>Factors affecting innovation in water quality management: 
+implementation of the 1968 Michigan clean water bond issue; / 
+by Steven L. Yaffee [and] Jonathan W. Bulkley.&lt;/<b>K</b>>
+&lt;<b>L</b>>Yaffee, Steven L.&lt;/<b>L</b>>
+&lt;<b>L</b>>Bulkley, Jonathan W., joint author.&lt;/<b>L</b>>
+&lt;/<b>B</b>>
+</pre>
+<dd>The &lt;B> element contains the main title and main authors of the bibliographic resource. Other elements that may be contained in &lt;B> are &lt;M> (editor), &lt;N> (sponsor), &lt;O> (funder) and &lt;Q> (principal responsibility).
+
+<dt>
+<pre>&lt;<b>D</b>>xii, 233 p. ; illus. ; 28 cm.&lt;/<b>D</b>></pre>
+<dd>The &lt;D> element indicates the dimensions of the physical resource.
+
+<dt>
+<pre>
+&lt;<b>E</b>>
+&lt;<b>U</b>>Ann Arbor,&lt;/<b>U</b>>
+&lt;<b>T</b>>University of Michigan,&lt;/<b>T</b>>
+&lt;<b>YR</b>>1973.&lt;/<b>YR</b>>
+&lt;<b>W</b> A="NOTIS">AAB8128&lt;/<b>W</b>>
+&lt;<b>W</b> A="CALLNO">UMR4246&lt;/<b>W</b>>
+&lt;<b>X</b>>These pages may be freely searched and displayed. Permission must 
+be received for subsequent distribution in print or electronically. 
+Please contact umdl-info@umich.edu for more information.&lt;/<b>X</b>>
+&lt;/<b>E</b>>
+</pre>
+<dd>The &lt;E> element contains the publication information of the resource, including the publisher name (&lt;U>), location (&lt;T>) and date of publication (&lt;YR>). It also contains the record identifiers (&lt;W>) associated with the resource and any rights information (&lt;X>).
+
+<dt>
+<pre>
+&lt;<b>G</b>> 
+&lt;<b>AA</b>>Completion report. OWRR project no. A-054-MICH, grant no. 14-31-0001-3522.&lt;/<b>AA</b>>
+&lt;<b>AA</b>>Thesis (M.A.)--University of Michigan.&lt;/<b>AA</b>>
+&lt;<b>AA</b>>Bibliography: p. 226-233.&lt;/<b>AA</b>>
+&lt;/<b>G</b>>
+</pre>
+<dd>The &lt;AA> element contains notes or abstracts that describe the resource. This can be a catch-all element for existing bibliographic structures that are hard to place anywhere else.
+
+<dt>
+<pre>
+&lt;<b>I2</b>>&lt;<b>SG</b>>
+&lt;<b>SU</b> A="1">Water quality management -- Michigan.&lt;/<b>SU</b>>
+&lt;<b>SU</b> A="1">Water quality management -- Costs -- Michigan&lt;/<b>SU</b>>
+&lt;/<b>SG</b>>&lt;/<b>I2</b>>
+</pre>
+<dd>The &lt;SU> element contains keywords or subject descriptors. The &lt;KW> element can be used for more specific or controlled keywords.
+
+<dt>
+<pre>
+&lt;<b>J</b>>
+&lt;<b>URL</b>>http://www.hti.umich.edu/cgi/t/text/text-idx?c=umr&idno=AAB8128.0001.001&lt;/<b>URL</b>>
+&lt;/<b>J</b>>
+</pre>
+<dd>The &lt;URL> element contains the link to the actual resource, whether that is the image, full text, or further description of the resource.
+
+<dt>
+<pre>
+&lt;<b>FMT</b>>sgml&lt;/<b>FMT</b>>
+&lt;<b>LANG</b>>eng&lt;/<b>LANG</b>>
+&lt;<b>TYPE</b>>text&lt;/<b>TYPE</b>>
+</pre>
+<dd>These elements describe the format (e.g., SGML, HTML, JPEG), the language (e.g., English, Hindu, German), and the type (e.g., conference paper, text, archive) of the resource, respectively.
+
+</dl>
+
+<p>Other important elements not listed in the sample record include  the &lt;F> (series statement) and &lt;H> (source description) elements.</p>
+
+<p>For those interested in the hierarchy of BibClass, we've put together a <a href="bibclass_hierarchy.html" target="sample">hierarchical cheat sheet</a> of sorts, which will be better updated after the workshop.</p>
+
+<p>And, for indexing BibClass data, you may want to use our "<a href="bibclass_cookbook_v7.doc" target="sample">cookbook</a>," which currently is (quite) University of Michigan specific, but will also be updated after the workshop.</p>        
+
+<hr>
+    
+<ul>
+        <li><b>BibClass Middleware Components</b> </li>
+          <ul>
+            <li>bib-idx, bibclass.cfg, specific.functions.cfg, default.functions.cfg</li>
+            <li>colldb, groups, <i>maps</i></li>
+            <li>SGML and XPat index</li>
+            <li>HTML templates</li>
+
+          </ul>
+        
+  <li><b>BibClass URL Parameters</b> </li>
+          <ul>
+            <li>Collection parameters: c, cc, g, bbc</li>
+            <li>Search types: type=simple|boolean</li>
+            <li>Pages: page=simple|boolean page=collpick page=history </li>
+            
+    <li>Query parameters: q1, q2, ..., rgn1, rgn2, ..., op2, op3, ..., date1, 
+      date2</li>
+            <li>Views: view=reslist</li>
+          <li>Actions: bbaction=add|remove|download|email</li>
+          <li>Session ID: sid=106eb945036468c97458ee38d21186a0</li>
+
+          
+          <li>BibClass-specific: fmt=short|long, sort=A-Z|Descending|Ascending, </li>
+
+
+          </ul>
+        <li><b>Objects, modules used</b></li>
+        <ul>
+          <li>Authorization</li>
+          
+    <li>CollsInfo, GroupsInfo, XPat, XPatResult, XPatResultSet, SearchHistory, 
+      Bookbag, DlpsSession, LibVersion</li>
+          <li>CGI, Apache::Session</li>
+        </ul>
+        
+  <li><b><a href="BibClassFlow.gif" target="sample">Flowchart</a></b> to show 
+    decision tree for search, filtering, etc.</li> 
+        <li><b>BibClass Functionality</b> 
+          <ul>
+            <li>simple searches, grabs and displays results</li>
+            <li>BookBag, BookBagItem/BBItemBC, SearchHistory, sessions</li>
+          </ul>
+        </li>
+        <li><b>Configuration</b> 
+          <ul>
+            <li>colldb, groups, bib.cfg, BookBag.cfg, DlpsSession.cfg</li>
+          </ul>
+        </li>
+        <li><b>Filtering</b> 
+          <ul>
+            <li>Hands on: add or make change to a filtering subroutine to one of the 
+              collections</li>
+          </ul>
+        </li>
+        <li><b>HTML Templates </b> 
+          <ul>
+            <li>customization: fallback mechanism to collection specific, group specific 
+              or class general templates</li>
+          </ul>
+        </li>
+    </ul>
+    </body>
+  </html>
+  

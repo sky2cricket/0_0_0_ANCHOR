@@ -1,0 +1,61 @@
+
+page_001_titleInfo.htm
+
+function addOneTitleInfoBlock() {
+function subtractOneTitleInfoBlock() {
+
+<form name="DF">
+<input type="hidden" name="sentinel_00" value="0">
+
+var numTI = new Number( parent.L.get_block_iteration("titleInfo"));
+for (i=0;i<numTI;i++) {
+document.write ( dyn_things )
+}
+
+<input type="hidden" name="sentinel_01" value="0">
+
+button - addOne
+button - subtractOne
+
+
+<textarea name="ti_block_list" rows="8" cols="20" ></textarea> ti_block_list
+
+
+button - Save Data and View MODS TAGS
+
+</form name="DF">
+
+
+function load_UF_form() {
+parent.U.document.UF.ti_block_list.value = document.DF.ti_block_list.value;
+}
+
+functon load_DF_form() {
+parent.L.populate_DF_webform_from_UF_blocklist("ti_block_list");
+}
+
+
+function buildModsTags(N) {
+
+document.DF.ti_block_list.value = parent.L.populate_DF_blocklist_from_DF_webform("ti_block_list");
+load_UF_form();
+
+
+//validation
+if (!parent.L.checkAllRequiredElements_Page_titleInfo() ) {
+parent.L.update_page_validation('titleInfo','b');
+alert("got to here 4");
+return;
+}/**/
+parent.L.update_page_validation('titleInfo','B');
+
+
+hps = parent.L.buildTagsArray_header(num);
+aps = parent.L.buildTagsArray_titleInfo(num);
+cps = parent.L.buildTagsArray_closer(num);
+
+document.write(tag things)
+
+}
+
+elements();

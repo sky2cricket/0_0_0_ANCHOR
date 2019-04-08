@@ -1,0 +1,50 @@
+/d1/workarea/dlxs/text/spc/dothisbib
+
+for spc
+run oneliners to clean up the MODS
+run teisplit to make text files for searchbib
+run makebib
+check files
+
+go make the finding aids that need links
+put them online, and copy the new PID file back to this server
+then come back and run makebib again to add the finding aid links into these
+check files
+run infotrack
+
+cp search/* ../../search/spc/tei/.
+cd ../../search/spc
+cp ../../ead/search/* fa/.
+and process search collections (with and without FA -- spc and spcd) 
+
+come back and put up bib records
+cat openbib bib/* closebib > spct-bib.sgm
+cp spct-bib.sgm /d1/dlxs/prep/s/spct-bib/.
+cd /d1/dlxs/prep/s/spct-bib   
+  do bib class stuff
+
+copy stuff to store1
+
+--------------------------------------------- old below  ----
+
+put files in clean tei directory (done ones go in donetei)
+make sure bib directory is clean (done ones go in donebib)
+note that tdhbib in donebib directory contains all the bib files
+taken from the OAI database (/home/firestar/xpat/bib/oai/tdh directory)
+
+NOTE:  DO NOT run all from scratch, unless you change the script
+to use the PIDs already assigned for each file.  DO NOT double-assign
+pids.
+
+
+run teiX2bib
+check new files in bib
+cat done/open bib/* donebib/* done/close > tdh-bib.sgm
+cp tdh-bib.sgm /d1/dlxs/prep/t/tdh-bib/.
+
+run infotrack!!!!  make sure it is pointed at new bib directory
+mv bib/* donebib/.
+mv tei/* donetei/.
+follow bib class instructions
+
+

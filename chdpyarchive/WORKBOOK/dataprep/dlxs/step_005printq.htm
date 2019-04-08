@@ -1,0 +1,350 @@
+
+<html>
+<head>
+<title>step_005q</title>
+</head>
+<body>
+<font face="arial" size="2">
+step_005q.htm
+<br>http://diglib.lib.utk.edu/~cdeane/WORKBOOK/dataprep/dlxs/step_005q.htm
+<br><a href="http://diglib.lib.utk.edu/~cdeane/WORKBOOK/dataprep/dlxs/step_005q.htm"
+target="_blank">step_005q new window</a>
+<br>singles 00 and multiples 01
+<hr>
+The very first step is run  /d1/workarea/dlxs/telfiles/pickupTime which loads all directories.
+<p>&nbsp;
+<table border="1" cellpadding="4" cellspacing="0" width="660">
+<tr>
+<td valign="top" width="2%">&nbsp;</td>
+<td valign="top" width="49%">singles</td>
+<td valign="top" width="49%">multiples</td>
+</tr>
+<tr>
+<td valign="top"><font face="arial" size="2">&nbsp;</td>
+<td valign="top"><font face="arial" size="2">cd /d1/workarea/dlxs/image/tel/singles/</td>
+<td valign="top"><font face="arial" size="2">cd /d1/workarea/dlxs/image/tel/multiples</td>
+</tr>
+<tr>
+<td valign="top"><font face="arial" size="2">&nbsp;</td>
+<td valign="top"><font face="arial" size="2">move all done files to done
+<br>&nbsp;
+<br>mv ic/* done/ic/*
+<br>mv mods/* done/mods/*
+<br>mv modsbib/* done/modsbib/*
+<br>mv newmods/* done/newmods/*
+<br>mv preservation/* done/preservation/*
+<br>mv search/* done/search/*
+</td>
+<td valign="top"><font face="arial" size="2">move all done files to done
+<br>&nbsp;
+<br>mv ic/* done/ic/*
+<br>mv mods/* done/mods/*
+<br>mv modsbib/* done/modsbib/*
+<br>mv newmods/* done/newmods/*
+<br>mv preservation/* done/preservation/*
+<br>mv search/* done/search/*
+<br>mv text/*   done/text/*
+</td>
+</tr>
+<tr>
+<td valign="top"><font face="arial" size="2">&nbsp;</td>
+<td valign="top" colspan="2"><font face="arial" size="2">At this point file validation on vvImport files is assumed to be complete.
+<br>"For those who understand, no explanation is needed.
+<br>&nbsp;For those who do not understand, no explanation is possible."
+<br>(quote from David R. Kamerschen, Ph.D. - Professor of Economics - University of Georgia)
+</td>
+</tr>
+
+<tr>
+<td valign="top"><font face="arial" size="2">&nbsp;</td>
+<td valign="top"><font face="arial" size="2">Before running pickupTime <br>which adds rows to linkfile and locserv.y2008 table
+<br>&nbsp;
+<br>make a copy of linkfile before you start load batch yymmdd
+<br>cp linkfile done/xlinkfile/linkfile_before_yymmdd
+<br>at the end, make a copy of linkfile after you load batch yymmdd
+<br>cp linkfile done/xlinkfile/linkfile_after_yymmdd
+<br>put appropriate comments at the bottom of the files
+<br>This is your record in case of rollback
+<br>This can be used to reset the locserv.y2008 table
+</td>
+<td valign="top"><font face="arial" size="2">Before running pickupTime <br>which adds rows to linkfile and locserv.y2008 table
+<br>&nbsp;
+<br>make a copy of linkfile before you start load batch yymmdd
+<br>cp linkfile done/xlinkfile/linkfile_before_yymmdd
+<br>at the end, make a copy of linkfile after you load batch yymmdd
+<br>cp linkfile done/xlinkfile/linkfile_after_yymmdd
+<br>put appropriate comments at the bottom of the files
+<br>This is your record in case of rollback
+<br>This can be used to reset the locserv.y2008 table
+</td>
+</tr>
+<tr>
+<td valign="top"><font face="arial" size="2">&nbsp;</td>
+<td valign="top" colspan="2"><font face="arial" size="2">run /d1/workarea/dlxs/telfiles/pickupTime 
+which loads all directories
+<br>cd  /d1/workarea/dlxs/telfiles/
+<br>perl pickupTime (cannot redirect, is interactive) capture screenshot >A_date.txt
+<br>examine A_date.txt for errors
+</td>
+</tr>
+<tr>
+<td valign="top"><font face="arial" size="2">&nbsp;</td>
+<td valign="top"><font face="arial" size="2">cd /d1/workarea/dlxs/image/tel/singles
+<br> mods/* contains workbook xml (Receive0/*.xml) loaded by pickupTime
+<br> check these files for rogue characters
+<br> grep "%" mods/*
+<br> grep "x0" mods/* | more (This will be hex entities 
+<br>which must be changed to entities in <u>/d1/dlxs/misc/sgml/image.dtd</u> )
+</td>
+<td valign="top"><font face="arial" size="2">cd /d1/workarea/dlxs/image/tel/multiples
+<br> mods/* contains workbook xml (Receive0/*.xml) loaded by pickupTime
+<br> check these files for rogue characters
+<br> grep "%" mods/*
+<br> grep "x0" mods/* | more (This will be hex entities 
+<br>which must be changed to entities in <u>/d1/dlxs/misc/sgml/image.dtd</u> )
+</td>
+</tr>
+
+<tr>
+<td valign="top"><font face="arial" size="2">&nbsp;</td>
+<td valign="top"><font face="arial" size="2"> modsICsearchOai transforms mods/* input for 5 output directories
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ic/*
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; modsbib/*
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; newmods/*
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; preservation/* (this is under transition)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; search/*
+<br>perl modsICsearchOai >checkme_date.txt
+<br>check checkme for "ERROR"
+<br>grep x0 ic/* (hexes which must be changed to entities in /d1/dlxs/misc/sgml/image.dtd</td>
+<td valign="top"><font face="arial" size="2"> modsICsearchOaiMusic transforms mods/* input for 6 output directories
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ic/*
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; modsbib/*
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; newmods/*
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; preservation/* (this is under transition)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; search/*
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; text/*
+<br>perl modsICsearchOaiMusic >checkme_date.txt
+<br>check checkme for "ERROR"
+<br>grep x0 ic/* (hexes which must be changed to entities in /d1/dlxs/misc/sgml/image.dtd</td>
+</td>
+</tr>
+
+<tr>
+<td valign="top"><font face="arial" size="2">&nbsp;</td>
+<td valign="top"><font face="arial" size="2">create ic.vvz.unnorm.sgm for prep/v/vvz directory
+<br>&nbsp;
+<br>cd /d1/workarea/dlxs/image/tel/singles
+<br>cat vvzHeader ic/* done/ic/* footer > ic.vvz.unnorm.sgm
+<br>/bin/cp ic.vvz.unnorm.sgm /d1/dlxs/prep/v/vvz/.
+<br>/bin/rm /d1/dlxs/prep/v/vvz/ic.vvz.norm.sgm
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(ic.vvz.norm.sgm will be replaced by running idb in next step)
+</td>
+<td valign="top"><font face="arial" size="2">create ic.vvi.unnorm.sgm for prep/v/vvi directory
+<br>&nbsp;
+<br>cd /d1/workarea/dlxs/image/tel/multiples
+<br>cat vviHeader ic/* done/ic/* footer > ic.vvi.unnorm.sgm
+<br>/bin/cp ic.vvi.unnorm.sgm /d1/dlxs/prep/v/vvi/.
+<br>/bin/rm /d1/dlxs/prep/v/vvi/ic.vvi.norm.sgm
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(ic.vvi.norm.sgm will be replaced by running idb in next step)
+</td>
+</tr>
+
+<tr>
+<td valign="top"><font face="arial" size="2">&nbsp;</td>
+<td valign="top"><font face="arial" size="2">singles image class setup
+<br>&nbsp;
+<br>/d1/dlxs/bin/i/image/imageprep vvz  > imgprep_date.txt
+<br>/d1/dlxs/bin/i/image/idb norm vvz
+<br>/bin/rm /d1/dlxs/idx/v/vvz/*
+<br>/bin/rmdir /d1/dlxs/idx/v/vvz
+<br>/d1/dlxs/bin/i/image/setupcollindex v/vvz
+<br>cd /d1/dlxs/idx/v/vvz/
+<br>make all
+</td>
+<td valign="top"><font face="arial" size="2">multiples image class setup
+<br>&nbsp;
+<br>cd /d1/workarea/dlxs/image/tel/multiples
+<br>perl /d1/dlxs/bin/i/image/idb norm vvi
+<br>perl /d1/dlxs/bin/i/image/imageprep vvi > imgprep_date.txt
+<br>/bin/rm /d1/dlxs/idx/v/vvi/*
+<br>/bin/rmdir /d1/dlxs/idx/v/vvi 
+<br>/d1/dlxs/bin/i/image/setupcollindex v/vvi
+<br>cd /d1/dlxs/idx/v/vvi  
+<br>make all
+</td>
+</tr>
+
+<tr>
+<td valign="top"><font face="arial" size="2">&nbsp;</td>
+<td valign="top"><font face="arial" size="2">singles copying jpgs
+<br>&nbsp;
+<br>cd /d1/workarea/dlxs/image/tel/singles
+<br>/bin/cp thumbs/* /d1/dlxs/img/v/vvz/thumb/ 
+<br>/bin/cp jpegs/* /d1/dlxs/img/v/vvz/large/
+</td>
+<td valign="top"><font face="arial" size="2">multiples copying jpgs
+<br>&nbsp;
+<br>cd /d1/workarea/dlxs/image/tel/multiples
+<br>/bin/cp thumbs/* /d1/dlxs/img/v/vvi/thumb/ 
+<br>/bin/cp jpegs/* /d1/dlxs/img/v/vvi/large/
+</td>
+</tr>
+
+<tr>
+<td valign="top"><font face="arial" size="2">&nbsp;</td>
+<td valign="top" colspan="2"><font face="arial" size="2"> original instructions for copying minithumbs (singles and multiples)
+<br>&nbsp;
+<br>scp&nbsp;minithumbs/*&nbsp;diglib@diglib.lib.utk.edu:/d1/dlxs/web/thumbs/vv/. 
+<br>Reality check........................
+<br>minithumbs start from a directory in store1/area2/volvoices2008/vvImport
+<br>store1 is on diglib
+<br>better strategy 
+<br>cp minithumbs/* /d1/dlxs/web/thumbs/vv/
+</td>
+</tr>
+<tr>
+<td valign="top"><font face="arial" size="2">&nbsp;</td>
+<td valign="top" colspan="2"><font face="arial" size="2">a word about permissions (be sure to thank Paul!)
+<br>&nbsp;
+<br>From: Paul Cummins 
+<br>To: Deane, Christine Haygood
+<br>Subject: gifcvt dir
+<br>&nbsp;
+<br> cd /d1/dlxs/web/t/text/
+<br>&nbsp;
+<br> chown -R apache.apache gifcvtdir
+<br>&nbsp;
+<br> That is the directory it caches the image files in.
+<br>It gets cleared out every once in a while, but helps speed up the display.
+</td>
+</tr>
+
+<tr>
+<td valign="top"><font face="arial" size="2">&nbsp;</td>
+<td valign="top" colspan="2"><font face="arial" size="2">singles and multiples
+<br>&nbsp;
+<br>image class release to production
+<br><a href="http://diglib2.lib.utk.edu/cgi/c/collmgr/collmgr?type=%24TYPE&class=image&submit=release" target="_blank">http://diglib2.lib.utk.edu/cgi/c/collmgr/collmgr?type=%24TYPE&class=image&submit=release</a>
+
+<br>&nbsp;
+<br>go to browser for vvz singles and see if your files are there.
+<br><a href="http://diglib2.lib.utk.edu/cgi/i/image/image-idx?c=vvz" target="_blank">http://diglib2.lib.utk.edu/cgi/i/image/image-idx?c=vvz</a>
+
+<br>&nbsp;
+<br>go to browser for vvi multiples and see if your files are there.
+<br><a href="http://diglib2.lib.utk.edu/cgi/i/image/image-idx?c=vvi" target="_blank">http://diglib2.lib.utk.edu/cgi/i/image/image-idx?c=vvi</a>
+
+</td>
+</tr>
+
+<tr>
+<td valign="top"><font face="arial" size="2">&nbsp;</td>
+<td valign="top"><font face="arial" size="2">singles bib class setup
+<br>&nbsp;
+<br>cd /d1/workarea/dlxs/image/tel/singles
+<br>for 0012 files
+<br>/bin/mv newmods/0012* spc/mods/
+<br>/bin/mv  modsbib/0012* spc/modsbib/
+<br>/bin/cp search/0012* spc/modssearch/
+<br>&nbsp;
+<br>attend to processing non-0012 files
+<br>/bin/cp modsbib/*  /d1/workarea/dlxs/bib/mods/vv/xml/
+</td>
+<td valign="top"><font face="arial" size="2">multiples bib class setup 
+<br>&nbsp;
+<br>cd /d1/workarea/dlxs/image/tel/multiples
+
+<br>for 0012 files
+<br>/bin/mv newmods/0012* spc/mods/
+<br>/bin/mv  modsbib/0012* spc/modsbib/
+<br>/bin/cp search/0012* spc/modssearch/
+<br>&nbsp;
+<br>attend to processing non-0012 files
+<br>/bin/cp modsbib/*  /d1/workarea/dlxs/bib/mods/vv/xml/
+</td>
+</tr>
+
+<tr>
+<td valign="top"><font face="arial" size="2">&nbsp;</td>
+<td valign="top" colspan="2"><font face="arial" size="2">singles and multiples convergence set up bib class
+<br>&nbsp;
+<br> <u>REF: /d1/workarea/dlxs/bib/mods/dothis</u>
+<br> <u>REF: /d1/workarea/dlxs/bib/mods/vv/dothis</u>
+<br>cd /d1/workarea/dlxs/bib/mods/vv/
+<br>perl badfiles >look_date.txt     
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IF FIND BADFILES, CORRECT 
+<br>&nbsp;
+
+
+<br>bin/cp modsbib/*  /d1/workarea/dlxs/bib/mods/vv/xml/
+<br>perl fixSubjectsBib
+<br>cat openbib newSubxml/* closebib > vvs-mods.xml 
+<br>cp vvs-mods.xml /d1/dlxs/prep/v/vvs-mods/
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ANSWER Y TO OVERWRITE WARNING
+
+<br>&nbsp;
+<br>cd /d1/dlxs/prep/v/vvs-mods/
+<br>perl transform
+<br>cp vvs-mods.xml /d1/dlxs/obj/v/vvs-mods/
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ANSWER Y TO OVERWRITE WARNING
+
+<br>&nbsp;
+<br>cd /d1/dlxs/idx/v/vvs-mods
+<br>make all
+<br>(make a release to production:  bib class)
+<hr>
+
+<br>If this is a new collection, make sure it is in the httpd conf directory, restart if adding
+
+<br>Now you are ready for a release to production for BIB CLASS
+<br><a href="http://diglib2.lib.utk.edu/cgi/c/collmgr/collmgr/" target="_blank">Select Release to Production, Bib Class</a>
+
+<br> Test in OAI display 
+<br><a href="http://diglib2.lib.utk.edu/cgi/b/broker20/broker20/?verb=GetRecord&metadataPrefix=mods&identifier=oai:diglib2.lib.utk.edu:0031_000050_000203_0000" target="_blank">test oai on diglib2</a>
+
+<br>(in the url, replace 0031_000050_000203_0000 with one from the new batch)
+<hr>
+PRESERVATION AND OAI
+<br>vas iss das?
+<br>cd /d1/workarea/dlxs/bib/mods/vv
+<br>perl fixPreserveSubjectsBib
+<br>perl OAI_modsbibToPresMods
+
+</td>
+</tr>
+
+<tr>
+<td valign="top"><font face="arial" size="2">&nbsp;</td>
+<td valign="top" colspan="2"><font face="arial" size="2">the end</td>
+</tr>
+
+
+</table>
+
+
+<hr>
+
+
+
+<!--
+
+<tr>
+<td valign="top"><font face="arial" size="2">&nbsp;</td>
+<td valign="top"><font face="arial" size="2">singles</td>
+<td valign="top"><font face="arial" size="2">multiples</td>
+</tr>
+
+<tr>
+<td valign="top"><font face="arial" size="2">&nbsp;</td>
+<td valign="top" colspan="2"><font face="arial" size="2">singles and multiples</td>
+</tr>
+
+-->
+
+
+
+
+
+</font>
+</body>
+</html>

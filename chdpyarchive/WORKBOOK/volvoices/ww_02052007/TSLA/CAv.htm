@@ -1,0 +1,183 @@
+<html>
+<head>
+<title>vv_popupCA</title>
+
+<link href="../vv_workbook.css" type="text/css" rel="stylesheet">
+
+
+
+
+<script language="javascript">
+
+var select_id= new String();
+function get_select_id() {
+
+var str = new String();
+    str = parent.location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  parent.window.opener.location.href="+parent.window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=get_select_id();
+
+
+
+var strSelect_PN_A = new String('');
+
+
+strSelect_PN_A = '<select name="aaa"  size="24" style="font-size:10px"> \r\n'
+	+'<option value="0" selected>No value selected</option> \r\n'
+		
+
+	+'<option>VALLEY VIEW BAPTIST CHURCH (SEVIER COUNTY, TENN.)</option>  \r\n'
+	+'<option>VETERANS ADMINISTRATION HOSPITAL (MEMPHIS, TENN.)</option>  \r\n'
+	+'<option>VETERANS ADMINISTRATION HOSPITAL (MOUNTAIN HOME, TENN.)</option>  \r\n'
+	+'<option>VETERANS OF WORLD WAR I OF THE U.S.A - DEPT. OF TENNESSEE</option>  \r\n'
+	+'<option>VIRGINIA, TENNESSEE AND GEORGIA AIR LINE</option>  \r\n'
+	+'<option>WALDEN UNIVERSITY (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>WARD SEMINARY (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>WARD-BELMONT COLLEGE (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>WARD-BELMONT SCHOOL (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>WARREN COUNTY HISTORICAL SOCIETY (TENN.)</option>  \r\n'
+	+'<option>WASHINGTON COLLEGE (WASHINGTON COUNTY, TENN.)</option>  \r\n'
+	+'<option>WAVERLY M.E. CHURCH (WAVERLY, TENN.)</option>  \r\n'
+	+'<option>WAYNE COUNTY HISTORICAL SOCIETY (WAYNE COUNTY, TENN.)</option>  \r\n'
+	+'<option>WDIA (RADIO STATION : MEMPHIS, TENN.)</option>  \r\n'
+	+'<option>WEBB SCHOOL (BELL BUCKLE, TENN.)</option>  \r\n'
+	+'<option>WEBB SCHOOL (CULLEOKA, TENN.)</option>  \r\n'
+	+'<option>WESLEY CHAPEL CEMETERY (PIKEVILLE, TENN.)</option>  \r\n'
+	+'<option>WESSYNGTON (ROBERTSON COUNTY, TENN.)</option>  \r\n'
+	+'<option>WEST END METHODIST CHURCH (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>WEST FUNERAL HOME (ONEIDA, TENN.)</option>  \r\n'
+	+'<option>WEST JACKSON BAPTIST CHURCH (JACKSON, TENN.)</option>  \r\n'
+	+'<option>WEST TENNESSEE EDUCATIONAL CONGRESS</option>  \r\n'
+	+'<option>WEST TENNESSEE HISTORICAL SOCIETY</option>  \r\n'
+	+'<option>WEST TENNESSEE STRAWBERRY FESTIVAL</option>  \r\n'
+	+'<option>WEST TENNESSEE TRIBUTARIES PROJECT</option>  \r\n'
+	+'<option>WESTERN MENTAL HEALTH INSTITUTE (BOLIVAR, TENN.)</option>  \r\n'
+	+'<option>WESTERN STATE HOSPITAL (TENN.)</option>  \r\n'
+	+'<option>WESTMINSTER PRESBYTERIAN CHURCH (HAMBLEN COUNTY, TENN.)</option>  \r\n'
+	+'<option>WESTMINSTER PRESBYTERIAN CHURCH (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>WESTMORELAND METHODIST CHURCH (TENN.)</option>  \r\n'
+	+'<option>WESTVIEW HIGH SCHOOL (WEAKLEY COUNTY, TENN.)</option>  \r\n'
+	+'<option>WHIG PARTY (TENN.)</option>  \r\n'
+	+'<option>WHIG PARTY (U.S.) - TENNESSEE</option>  \r\n'
+	+'<option>WHITE PINE PRESBYTERIAN CHURCH (JEFFERSON COUNTY, TENN.)</option>  \r\n'
+	+'<option>WILLIAM BLOUNT MANSION (KNOXVILLE, TENN.)</option>  \r\n'
+	+'<option>WILLIAMS CHAPEL CHURCH OF CHRIST (CARROLL COUNTY, TENN.)</option>  \r\n'
+	+'<option>WILLIAMSON COUNTY (TENN.) DISTRICT SCHOOL</option>  \r\n'
+	+'<option>WILLIAMSON MEDICAL CENTER (FRANKLIN, TENN.)</option>  \r\n'
+	+'<option>WILSON CREEK PRIMITIVE BAPTIST CHURCH (WILLIAMSON COUNTY, TENN.)</option>  \r\n'
+	+'<option>WIRT COLLEGE (SUMNER COUNTY, TENN.)</option>  \r\n'
+	+'<option>WNPT (TELEVISION STATION : NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>WOLF CREEK BAPTIST CHURCH (SPRING CITY, TENN.)</option>  \r\n'
+	+'<option>WOMAN\'S MISSIONARY SOCIETY OF BETHLEHEM METHODIST CHURCH (LEBANON, TENN.)</option>  \r\n'
+	+'<option>WOMEN\'S MISSION HOME (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>WOODLAND PRESBYTERIAN CHURCH (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>WOODLAND STREET PRESBYTERIAN CHURCH (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>WOODMONT PRESBYTERIAN CHURCH, INDEPENDENT (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>WOODMONT SCHOOL (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>WORKS PROGRESS ADMINISTRATION (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>YOUNG DEMOCRATIC CLUBS OF TENNESSEE</option>  \r\n'
+	+'<option>YOUNG MEN\'S CHRISTIAN ASSOCIATION (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>YOUNG MEN\'S HEBREW ASSOCIATION OF NASHVILLE, TENNESSEE</option>  \r\n'
+	+'<option>YOUNG WOMEN\'S CHRISTIAN ASSOCIATION (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>YOUTH BUILDERS (GREENEVILLE, TENN.)</option>  \r\n'
+	+'<option>YOUTH INCORPORATED (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>YWCA OF NASHVILLE (TENN.)</option>  \r\n'
+	+'<option>ZIBART BROS. (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>ZIEGLER FUNERAL HOME (ATHENS, TENN.)</option>  \r\n'
+	+'<option>ZION CHURCH (MAURY COUNTY, TENN.)</option>  \r\n'
+	+'<option>ZION CUMBERLAND PRESBYTERIAN CHURCH (MAURY COUNTY, TENN.)</option>  \r\n'
+	+'<option>ZION EPISCOPAL CHURCH (BROWNSVILLE, TENN.)</option>  \r\n'
+	+'<option>ZION HILL BAPTIST CHURCH (MCMINN COUNTY, TENN.)</option>  \r\n'
+	+'<option>ZION PRESBYTERIAN CHURCH (MAURY COUNTY, TENN.)</option>  \r\n'
+
+
+
++'</select> \r\n';
+	
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+<body class="background">
+
+
+
+
+<form name="FormOne" >
+
+
+<div name="SS" id="SS">
+<script>
+document.write(
+
+	 '<table border="1" cellpadding="4" cellspacing="0"  width="90%">\r\n'
+	+'<tr><td  bgcolor="ddeeff">\r\n'
+	///+'vv_functions.htm called by '+select_id+' <br>\r\n'
+	+'<b>Select Corporate Author V-W-X-Y-Z</b> \r\n'
+	+'</td></tr><tr><td bgcolor="ddeeff"> \r\n' 
+	+ strSelect_PN_A
+
+	+'</td></tr></table> \r\n'
+	///+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+</script>
+	
+</div>
+
+<input type="button" onclick="showSelection();" name="B1" value="Corporate Author">
+
+</form>
+
+<script>
+
+
+
+                  
+
+function showSelection() {
+
+val = new String();
+
+for ( i=0; i< document.FormOne.aaa.length; i++ ) {
+
+if ( document.FormOne.aaa[i].selected == true ) {
+  	val = document.FormOne.aaa[i].text;
+	break;
+	}
+else { val = "you never selected anything"; 
+	}
+
+}
+////////////////////////alert ("You selected " +val);
+
+switch ( select_id ) {
+
+case  "subject_name_lcsh_01" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_01.value=val;
+	parent.window.close();
+	break;
+
+case  "subject_name_lcsh_02" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_02.value=val;
+	parent.window.close();
+	break;
+}//end switch
+
+}///end function
+</script>
+

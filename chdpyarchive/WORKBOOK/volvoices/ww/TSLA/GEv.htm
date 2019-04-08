@@ -1,0 +1,145 @@
+<html>
+<head>
+<title>vv_popupCA</title>
+
+<link href="../vv_workbook.css" type="text/css" rel="stylesheet">
+
+
+
+
+<script language="javascript">
+
+var select_id= new String();
+function get_select_id() {
+
+var str = new String();
+    str = parent.location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  parent.window.opener.location.href="+parent.window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=get_select_id();
+
+
+
+var strSelect_GE_A = new String('');
+
+strSelect_GE_A = '<select name="aaa"  size="24" style="font-size:10px"> \r\n'
+	+'<option  selected>No Value Selected</option> \r\n'	
+
+	+'<option>VALLEY HOME (TENN.)</option>  \r\n'
+	+'<option>VAN BUREN COUNTY (TENN.)</option>  \r\n'
+	+'<option>VAN BUREN COUNTY (TENN.) - ANTIQUITIES</option>  \r\n'
+	+'<option>VAN BUREN COUNTY (TENN.) - CENSUS, 1850</option>  \r\n'
+	+'<option>VAN BUREN COUNTY (TENN.) - CENSUS, 1860</option>  \r\n'
+	+'<option>VAN BUREN COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>VAN BUREN COUNTY (TENN.) - CENSUS, 1930</option>  \r\n'
+	+'<option>VAN BUREN COUNTY (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>VAN BUREN COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>VAN BUREN COUNTY (TENN.) - GENEALOGY - PERIODICALS</option>  \r\n'
+	+'<option>VAN BUREN COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>VAN BUREN COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>VAN BUREN COUNTY (TENN.) - HISTORY - PERIODICALS</option>  \r\n'
+	+'<option>VAN BUREN COUNTY (TENN.) - MAPS</option>  \r\n'
+	+'<option>VAN BUREN COUNTY (TENN.) - MAPS, MANUSCRIPT</option>  \r\n'
+	+'<option>VAN BUREN COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>VAN BUREN COUNTY (TENN.) - PICTORIAL WORKS</option>  \r\n'
+	+'<option>VAN BUREN COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>VERSAILLES (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>VERSAILLES (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>VERSAILLES (TENN.) - HISTORY</option>  \r\n'
+	+'<option>VESTAL (KNOXVILLE, TENN.)</option>  \r\n'
+	+'<option>VICTIMS OF CRIMES - SERVICES FOR - TENNESSEE</option>  \r\n'
+	+'<option>VIETNAMESE CONFLICT, 1961-1975 - VETERANS - TENNESSEE - SCOTT COUNTY</option>  \r\n'
+	+'<option>VIRGINIA - BOUNDARIES - TENNESSEE</option>  \r\n'
+	+'<option>VONORE (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>VONORE (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>VONORE (TENN.) - HISTORY</option>  \r\n'
+
++'</select> \r\n';
+	
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+<body class="background">
+
+
+
+
+<form name="FormOne" >
+
+
+<div name="SS" id="SS">
+<script>
+document.write(
+
+	 '<table border="1" cellpadding="4" cellspacing="0"  width="90%">\r\n'
+	+'<tr><td  bgcolor="ddeeff">\r\n'
+	///+'vv_functions.htm called by '+select_id+' <br>\r\n'
+	+'<b>Select Geographic Subject V </b> \r\n'
+	+'</td></tr><tr><td bgcolor="ddeeff"> \r\n' 
+	+ strSelect_GE_A
+
+	+'</td></tr></table> \r\n'
+	///+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+</script>
+	
+</div>
+
+<input type="button" onclick="showSelection();" name="B1" value="Geographic Name">
+
+</form>
+
+<script>
+
+
+
+                  
+
+function showSelection() {
+
+val = new String();
+
+for ( i=0; i< document.FormOne.aaa.length; i++ ) {
+
+if ( document.FormOne.aaa[i].selected == true ) {
+  	val = document.FormOne.aaa[i].text;
+	break;
+	}
+else { val = "you never selected anything"; 
+	}
+
+}
+////////////////////////alert ("You selected " +val);
+
+switch ( select_id ) {
+
+case  "subject_geographic_lcsh_01" :
+	parent.window.opener.document.forms[0].subject_geographic_lcsh_01.value=val;
+	parent.window.close();
+	break;
+
+case  "subject_geographic_lcsh_02" :
+	parent.window.opener.document.forms[0].subject_geographic_lcsh_02.value=val;
+	parent.window.close();
+	break;
+
+}//end switch
+
+}///end function
+</script>
+

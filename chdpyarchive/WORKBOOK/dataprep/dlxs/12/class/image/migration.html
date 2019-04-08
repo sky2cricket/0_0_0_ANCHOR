@@ -1,0 +1,87 @@
+<html>
+<head>
+<title>Migration to Image Class Version 2</title>
+
+
+
+
+
+ <link href="../../dlxsdocs.css" rel="stylesheet" type="text/css"></head>         <body>
+<div class="pageTitle">Migration of Image Class to DLXS 11</div>
+
+
+
+ 
+<h2><a name="Overview"></a>Summary of Middleware Changes That Affect Data Preparation</h2>
+
+<ul>
+  <li>Read the <a href="/intro/index.html">DLXS, Getting Started</a> documentation, and this document, completely, before proceeding.</li>
+</ul>
+
+<p>Image Class is backward compatible with DLXS 10 collection metadata and image file <strong>index</strong> directories. When updating a collection, 
+it is important to know that collection metadata and the index directory for a collection should be released in synchronized fashion. 
+Reprocessed descriptive metadata are not compatible with old index dir. Collections with only MrSID files and JPEG thumbnails are the exception.</p>
+
+
+
+<ul><li>MySQL is supported in addition to XPAT for searching collection metadata.</li>
+<li>JPEG2000 is supported in addition to MrSID. Behavior is identical. JPEG2000 command line compression/decompression utilities are provided.</li>
+<li>Configuration of field abbreviations and labels, as well as the mapping of fields for cross-collection searching, is now done in Collmgr. 
+Collectionmaps.pm and makeCollectionmaps-idx are no lnger used.</li>
+<li>The form of field abbreviations has changed. "dots" are no longer allowed. SGML may continue to have dots, no need to redo data.
+As field abbreviations are migrated to Collmgr they must have "dots" converted to underscores.</li>
+<li>The Collmgr field "dfltsrchflds" now must include an abbreviation in the form "collid_all" to enable searching of the entire record. 
+This field should be mapped to ic_all in the field_xcoll_maps Collmgr field for full record searching in across collections.</li>
+<li>MySQL table structure for Portfolios has changed for increased data stability.</li>
+<li>Media support has been improved. Practically any form of media (QuickTime, Flash, MP3) can be included in Image Class. Level of support varies. Configuration of imageprep has changed significantly.</li>
+</ul>
+
+
+ 
+<h2><a name="basicmigration"></a>Basic Image Class Collection Migration to DLXS 11</h2>
+
+<p>To migrate Image Class collection from DLXS 10 to DLXS 11 the following must be done at a minimum.</p>
+<ul><li>Field labels for each <b>collection</b> must be configured in Collmgr.</li>
+<li>Field labels for each <b>group</b> must be configured in Collmgr.</li>
+<li>Field abbreviations embedded within locally customized web templates must have "dots" changed to underscores.</li>
+<li>If Portfolio functionality has been in use, the Portfolio table must be upgraded.</li></ul>
+
+
+ 
+<h3><a name="details"></a>Making the Collmgr Changes</h3>
+
+<p>Very significant changes have been made to the form and format of Image Class data in the Collection Database (Collmgr). 
+Collectionmaps.pm and the makeCollectionmaps-idx script are no longer used. Metadata field configrations are done in Collmgr.</p>
+
+<ul>
+
+<li>The "dot" character is no longer allowed in field abbreviations. All "dot" characters must be converted to underscore
+in the following Collmgr fields: <b>sortflds, dfltentryflds, dfltresentryflds, dfltsrchflds, thumbnailresflds, thumbfullresflds, reslistresflds</b>.</li>
+<li>Three new fields have been added for metadata field configuration: <b>field_labels</b>, 
+<strong>field_xcoll_maps</strong> (cross collection field mappings), <strong>field_adminmaps</strong> (ID and filename field mappings). See the help text in Collmgr for more info.</li>
+
+</ul>
+<p>Two scripts have been provided to facilitate these tasks. </p>
+<p><b>usage: getFlds.pl collid</b>: Extracts field abbrevs and labels from existing SGML file and writes the output to files (collid_field_labels.txt, collid_field_xcoll_maps.txt) in the collection's prep directory. 
+The output is formatted for use in collmgr. 
+</p>
+
+<p><b>usage: putFlds.pl collid</b>: Inserts output of getFlds.pl into appropriate Collmgr record. putFlds.pl also converts "dot" characters to underscore
+ in the following Collmgr fields: dfltentryflds, dfltresentryflds, dfltsrchflds, thumbnailresflds, thumbfullresflds, reslistresflds. </p>
+ <p><b>Note:</b> Missing from this list is "sortFlds", 
+ which must have "dot" characters converted manually (for good but not memorable reasons). putFlds.pl depends on value of DLPS_DEV environment variable in shell to decide whether
+ to write to "release" ( DLPS_DEV = 1 ) or "production" (DLPS_DEV not set) Collmgr row.</p>
+ 
+
+
+
+
+
+
+
+
+
+ 
+</body>
+
+</html>

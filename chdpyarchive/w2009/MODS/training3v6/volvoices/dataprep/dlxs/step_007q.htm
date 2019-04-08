@@ -1,0 +1,141 @@
+<html>
+<head>
+<title>step_007q</title>
+</head>
+<body>
+<font face="arial" size="3">
+step_007q.htm
+<br>http://diglib.lib.utk.edu/~cdeane/WORKBOOK/dataprep/dlxs/step_007q.htm
+<br><a href="http://diglib.lib.utk.edu/~cdeane/WORKBOOK/dataprep/dlxs/step_007q.htm"
+target="_blank">step_007q new window</a> (table width="100%")&nbsp;&nbsp;&nbsp; 
+<br>need analog for 7q:
+<a href="http://diglib.lib.utk.edu/~cdeane/WORKBOOK/dataprep/dlxs/step_007_q_print.htm" target="_blank">step_007q print</a> (table width="660")
+<p><u>TEXTCLASS initial import and validation</u>
+<hr>
+The very first step is run  /d1/workarea/dlxs/telfiles/pickupTime which loads all directories.
+<p>&nbsp;
+<table border="1" cellpadding="4" cellspacing="0" width="100%">
+<tr>
+<td valign="top" width="3%">&nbsp;</td>
+<td valign="top" width="32%">notext vvb</td>
+<td valign="top" width="32%">ocr vvo</td>
+<td valign="top" width="32%">typed vvt</td>
+</tr>
+<tr>
+<td valign="top" width="3%">&nbsp;</td>
+<td valign="top" colspan="3">
+cd /d1/workarea/dlxs/telfiles
+<br>perl  pickupTimeDirTest
+<p>
+The above program reports on target directories for pickupTime.
+<br>
+Make sure you have cleaned everything out.
+<p>
+cd /d1/workarea/dlxs/telfiles
+<br>perl  pickupTime
+<p>
+The above program picks up validated files from store1/area2/volvoices/vvImport/
+<p>
+I would like to run: <u>perl pickupTime > A081103.txt</u> to have a record of actions
+<br>Unfortunately, this program starts out with command line interaction and prevents making the record directly.  Read the screen capture: <a href="xfiles/step_007q/pickupTime_transcript.txt" target="_blank">pickupTime transcript</a>
+<p>
+<a href="xfiles/step_007q/pickupTime_results.txt" target="_blank">file counts after pickupTime</a>
+</td>
+</tr>
+<tr>
+<td valign="top" width="3%">&nbsp;</td>
+<td valign="top" colspan="3">
+cd /d1/workarea/dlxs/text/tel
+<br>perl modsTCerrorTest  > checkme_081103.txt
+<p>
+The above program is the same as modsTC, but does not write output to the linkfile or to the locserv.y2008 table.  This means that if something is bad, you can pull it out and not have to modify the linkfile or the locserv.y2008 table.  You can do redirect of screen to checkme file.
+<p>
+modsTCerrorTest takes input xml files
+<br>&nbsp;&nbsp;&nbsp;notext/mods
+<br>&nbsp;&nbsp;&nbsp;ocr/mods
+<br>&nbsp;&nbsp;&nbsp;typed/mods
+<p>and transforms these to modsTC output files
+<br>&nbsp;&nbsp;&nbsp;modsbib
+<br>&nbsp;&nbsp;&nbsp;search
+<br>&nbsp;&nbsp;&nbsp;tei/notext
+<br>&nbsp;&nbsp;&nbsp;tei/ocr
+<br>&nbsp;&nbsp;&nbsp;tei/typed
+
+<p>The error test took 10 minutes to complete.
+<br>Looking at the checkme file:
+<br>&nbsp;&nbsp;&nbsp;First change "ERROR    NO PAGES" to "NO PAGES",
+then search for ERROR.
+<br>This time no ERROR was found. (The no pages error is bogus.)
+<p>
+<a href="xfiles/step_007q/fct_before_after_modsTCerrorTest.txt" target="_blank">file counts for output directories before and after running modsTCerrorTest</a>
+</td>
+</tr>
+<tr>
+<td valign="top" width="3%">&nbsp;</td>
+<td valign="top" colspan="3">
+VALIDATE modsbib files
+<p>
+cd /d1/workarea/dlxs/text/tel/chd_nsgmls/py_modsbib
+<br>python nsgmls_modsbib.py ../../modsbib r1
+<p>
+<br>#given command line python nsgmls_modsbib.py ../../modsbib r1 
+<br>#The nsgmls command we build in this file is:
+<br>#nsgmls -s -f error_file                 input_file 
+<br>#nsgmls -s -f ../../modsbib/r1/Efilename ../../modsbib/temp_nsgmls 
+<br># where r1/Efilename has same name as original file in modsbib
+<br>#       temp_nsgmls is a copy of modsbib/filename
+<br>#       using wrappers openbib, closebib
+<br>#       using modsSearch3.dtd to validate against
+<br><a href="xfiles/step_007q/val_modsbib_search.txt" target="_blank">view validation</a>
+</td>
+</tr>
+
+<tr>
+<td valign="top" width="3%">&nbsp;</td>
+<td valign="top" colspan="3">
+VALIDATE search files
+<p>
+cd /d1/workarea/dlxs/text/tel/chd_nsgmls/py_search
+<br>python nsgmls_search.py ../../search r1
+<p>
+<br>#given command line python nsgmls_search.py ../../search r1 
+<br>#The nsgmls command we build in this file is:
+<br>#nsgmls -s -f error_file                 input_file 
+<br>#nsgmls -s -f ../../search/r1/Efilename ../../search/temp_nsgmls 
+<br># where r1/Efilename has same name as original file in modsbib
+<br>#       temp_nsgmls is a copy of search/filename
+<br>#       using wrappers opensearch, closesearch
+<br>#       using modsSearch3.dtd to validate against
+<br><a href="xfiles/step_007q/val_modsbib_search.txt" target="_blank">view validation</a>
+</td>
+</tr>
+
+<!---
+<tr>
+<td valign="top" width="3%">&nbsp;</td>
+<td valign="top" colspan="3">
+VALIDATE tei files
+<p>
+cd /d1/workarea/dlxs/text/tel/chd_nsgmls/py_tei
+<br>python nsgmls_tei_vbb.py ../../tei/notext r1
+<p>
+<br>#given command line python nsgmls_modsbib.py ../../modsbib r1 
+<br>#The nsgmls command we build in this file is:
+<br>#nsgmls -s -f error_file                 input_file 
+<br>#nsgmls -s -f ../../modsbib/r1/Efilename ../../modsbib/temp_nsgmls 
+<br># where r1/Efilename has same name as original file in modsbib
+<br>#       temp_nsgmls is a copy of modsbib/filename
+<br>#       using wrappers openbib, closebib
+<br>#       using modsSearch3.dtd to validate against
+</td>
+</tr>
+--->
+
+
+
+
+
+
+</table>
+</body>
+</html>

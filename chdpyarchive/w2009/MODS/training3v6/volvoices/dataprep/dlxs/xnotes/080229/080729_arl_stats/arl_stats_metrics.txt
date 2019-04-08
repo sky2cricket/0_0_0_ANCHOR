@@ -1,0 +1,87 @@
+
+using php on dlc, database chdTest
+
+CREATE TABLE IF NOT EXISTS `metrics_all` (
+ `collid` char(10) NOT NULL default ''
+,`category` char(10)
+,`local_hit` int(11)
+,`away_hit` int(11)
+,`all_hit` int(11)
+,`local_srch` int(11)
+,`away_srch` int(11)
+,`all_srch` int(11)
+,`local_user` int(11)
+,`away_user` int(11)
+,`all_user` int(11)
+,`local_brws` int(11)
+,`away_brws` int(11)
+,`all_brws` int(11)
+,`month_year` char(16)
+,`month` int(11)
+,`year` int(11)
+, `time_stamp` timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP
+,`uid` int(11) NOT NULL auto_increment
+, PRIMARY KEY ( `uid` ) 
+)ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+Your SQL query has been executed successfully (Query took 0.0979 sec)
+CREATE TABLE IF NOT EXISTS `metrics_all` (
+`collid` char( 10 ) NOT NULL default '',
+`category` char( 10 ) ,
+`local_hit` int( 11 ) ,
+`away_hit` int( 11 ) ,
+`all_hit` int( 11 ) ,
+`local_srch` int( 11 ) ,
+`away_srch` int( 11 ) ,
+`all_srch` int( 11 ) ,
+`local_user` int( 11 ) ,
+`away_user` int( 11 ) ,
+`all_user` int( 11 ) ,
+`local_brws` int( 11 ) ,
+`away_brws` int( 11 ) ,
+`all_brws` int( 11 ) ,
+`month_year` char( 16 ) ,
+`month` int( 11 ) ,
+`year` int( 11 ) ,
+`time_stamp` timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP ,
+`uid` int( 11 ) NOT NULL AUTO_INCREMENT ,
+PRIMARY KEY ( `uid` ) 
+) ENGINE = MYISAM DEFAULT CHARSET = latin1 AUTO_INCREMENT =1;
+
+DROP TABLE `metrics_all` 
+
+-----------------------------------
+USING IMPORT WIZARD
+
+Select file with Browse
+charset utf-8
+partial import yes
+Number of rows to skip : 1
+FORMAT OF IMPORTED FILE CSV
+Fields terminated by , comma
+Fields enclosed by - blank
+fields escaped by default \
+fields terminated by default auto
+column names:
+collid,category,local_hit,away_hit,all_hit,local_srch,away_srch,all_srch,local_user,away_user,all_user,local_brws,away_brws,all_brws,month_years
+---------------------------------------------------
+
+UPDATE `metrics_all` 
+SET `month_year` = 'Apr2004' WHERE `month_year` is null
+
+Affected rows: 51 (Query took 0.0006 sec)
+-------------------------------------------------------------------
+Apr2005
+INSERT INTO `metrics_all` (`category`, `local_hit`, `away_hit`, `all_hit`, `local_srch`, `away_srch`, `all_srch`, `local_user`, `away_user`, `all_user`, `local_brws`, `away_brws`, `all_brws`) VALUES ('image', '44893', '2555', '47448', '35', '389', '424', '69', '1161', '1230', '42', '21', '63')# Affected rows: 1
+INSERT INTO `metrics_all` (`category`, `local_hit`, `away_hit`, `all_hit`, `local_srch`, `away_srch`, `all_srch`, `local_user`, `away_user`, `all_user`, `local_brws`, `away_brws`, `all_brws`) VALUES ('image', '782', '892', '1674', '0', '31', '31', '16', '279', '295', '2', '0', '2')# Affected rows: 1
+INSERT INTO `metrics_all` (`category`, `local_hit`, `away_hit`, `all_hit`, `local_srch`, `away_srch`, `all_srch`, `local_user`, `away_user`, `all_user`, `local_brws`, `away_brws`, `all_brws`) VALUES ('text', '43', '7579', '7622', '78', '1861', '1939', '32', '1476', '1508', '14', '4140', '4154')# Affected rows: 1
+INSERT INTO `metrics_all` (`category`, `local_hit`,[...]  
+
+Import has been successfully finished, 33 queries executed
+UPDATE `metrics_all` 
+SET `month_year` = 'Apr2005' WHERE `month_year` is null
+Affected rows: 33 (Query took 0.0005 sec)
+---------------------------------------------------------------------------
+
+metrics_all_01
+Import has been successfully finished, 2002 queries executed.

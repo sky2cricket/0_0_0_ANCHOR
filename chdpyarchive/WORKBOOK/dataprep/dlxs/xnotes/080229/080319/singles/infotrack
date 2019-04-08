@@ -1,0 +1,61 @@
+#!/usr/bin/perl
+
+use DBI;
+
+# this nees to be updated to be the correct directory and collection
+# also, needs to check first to see if this record is already listed as an SPC file
+# to avoide entry twice.
+# if it IS entered, add this PID as an alternate one, and add this coll after the existing one listed
+# in the coll column.
+
+# jody DeRidder, 3/12/08
+
+$dir = "/home/firestar/xpat/images/cochran/dlc";
+opendir (DIR, $dir) or die "can't open $dir\n";
+$cat = "image";
+$collid = "wcc";
+
+$user = "dlxsadm";
+$password ="eva39";
+
+$dbh = DBI->connect ("dbi:mysql:InfoTrack", $user, $password)
+   or die "Can't connect to Mysql database: ",$DBI::errstr,"\n";
+
+$h->{PrintError} = 1;
+$h->{RaiseError} = 1;
+
+$cat = $dbh->quote($cat);
+$collid = $dbh->quote($collid);
+
+
+while ($file = readdir(DIR)){
+  if (!($file =~ /^\./)){  #don't get dot files
+    $pid = "";
+    $orig = $file;
+    $theirs = $file;
+    $file = $dir."/".$file;
+    open (FILE, $file) or die "can't open $file\n";    
+    undef $/;
+    $line = <FILE>;
+#    print "looking at $line\n\n";
+      if ($line =~ /<dc:identifier> *http:\/\/idserver\.utk\.edu\/\?id=(.*) *<\/dc:identifier>/){
+         $pid = $1;
+#         print "$pid for $file\n";
+          }
+    close (FILE);
+    if (!$pid){ die "no pid for $file\n";}
+
+    $pid = $dbh->quote($pid);
+    $orig =  $dbh->quote($orig);
+    $theirs = $dbh->quote($theirs);
+    $sth = $dbh->prepare("insert into items values ($pid, $orig, $theirs,NULL,NULL, $collid, NULL, $cat)");
+    $sth->execute()
+    or die "Can't put in $pid for $orig: ", $sth->errstr(),"\n";
+    $sth->finish();
+ 
+    }
+  }
+closedir(DIR);
+$dbh->disconnect() or warn "Disconnection failed: $DBI::errstr\n";
+
+

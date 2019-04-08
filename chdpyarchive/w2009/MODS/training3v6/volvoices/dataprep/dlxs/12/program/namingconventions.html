@@ -1,0 +1,148 @@
+<html>
+<head>
+<title>DLXS Middleware Naming Conventions</title>
+
+
+
+ <link href="../dlxsdocs.css" rel="stylesheet" type="text/css">
+</head>         <body>
+<div class="pageTitle">DLXS Middleware Naming Conventions</div>
+
+<p>Several naming conventions have evolved in the writing of the DLXS Middleware. Being familiar with them
+will help when looking at and possibly making changes to the Middleware code.</p>
+<ul>
+  <li>Subclass module names</li>
+  <li>Variable names for most common object instantiations</li>
+  <li>Method names</li>
+</ul>
+
+
+<h2>Subclass Module Names</h2>
+<p>Subclass modules generally carry some portion, even if abbreviated, of the name of
+its superclass ancestry. For example, the top-level <tt>DLXSClass.pm</tt> is subclassed by <tt>BibClass.pm</tt>
+ and <tt>FullTextClass.pm</tt>.
+The latter is in turn subclassed by <tt>TextClass.pm</tt> and <tt>FindaidClass.pm</tt>. When 
+<tt>TextClass.pm</tt> needs to be subclassed for
+a particular collection, the collection id is used,
+with the first letter capitalized, followed by "TC" to represent "TextClass". So,  in the case of
+"Making of America", whose collection id is "moa", the collection subclass would be called <tt>MoaTC.pm</tt>.</p>
+<p>See the <a href="objecthierarchy.html">DLXS Object Hierarchies</a>.</p>
+
+
+
+<h2>Variable names for most common object instantiations</h2>
+<p>Many DLXS Middleware-specific objects are created and used during the running of the CGI progam.
+When an object is "new-ed up" or instantiated in Perl, a variable which is "blessed" as an object of
+the class in question, is created. A convention has evolved for the naming of the variable by the 
+calling code. Most of the variables have three-letter names (though a few have names of more than three letters).
+The most common ones are listed below. On the left is the object (from the module/Class name). On the right, a typical
+name for the variable that holds the reference to the object.
+</p>
+<p>Being a bit familier with these object names should ease the task of looking through code.
+</p>
+
+<table border="1" cellpadding="5">
+<tbody>
+<tr>
+<td><b>Class name</b></td>
+<td><b>variable name</b></td>
+</tr>
+<tr>
+	<td>CollsInfo object</td>
+	<td>$cio</td>
+</tr>
+<tr>
+	<td>GroupInfo object</td>
+	<td>$gio</td>
+</tr>
+<tr>
+	<td>ProcIns object</td>
+	<td>$pio</td>
+</tr>
+<tr>
+	<td>DlpsSession object</td>
+	<td>$dso</td>
+</tr>
+<tr>
+	<td>ApplicationResult object</td>
+	<td>$aro</td>
+</tr>
+<tr>
+	<td>XPat object</td>
+	<td>$xpat</td>
+</tr>
+<tr>
+	<td>XPatResult object</td>
+	<td>$xro</td>
+</tr>
+<tr>
+	<td>SearchSet object</td>
+	<td>$xro</td>
+</tr>
+<tr>
+	<td>SearchHistory object</td>
+	<td>$sho</td>
+</tr>
+<tr>
+	<td>DLXSApp object</td>
+	<td>$app</td>
+</tr>
+<tr>
+	<td>TextClass object</td>
+	<td>$tco</td>
+</tr>
+<tr>
+	<td>BibClass object</td>
+	<td>$bco</td>
+</tr>
+<tr>
+	<td>FindaidClass object</td>
+	<td>$fco</td>
+</tr>
+<tr>
+	<td>Bookbag object</td>
+	<td>$bbo</td>
+</tr>
+<tr>
+	<td>BookBagItem object</td>
+	<td>$bbi</td>
+</tr>
+<tr>
+	<td>QueryFactory object</td>
+	<td>$qf</td>
+</tr>
+<tr>
+	<td>TerminologyMapper object</td>
+	<td>$tm</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+<h2>Method Names</h2>
+<p>DLXS Programmers try to give methods names that are as self-documenting as possible.
+Names are written in proper case; one string with no spaces, in which the words are marked only with
+a capital letter.
+</p>
+<p>Examples include:
+<ul>
+<li>GetMainSearches</li>
+<li>Layer1ResultFormatter</li>
+<li>BuildKwicLink</li>
+<li>BuildViewEntireTextLink</li>
+</ul>
+</P>
+
+
+
+<br />
+<br />
+<br />
+<br />
+
+
+</body>
+
+</html>

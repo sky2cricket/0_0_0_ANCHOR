@@ -1,0 +1,76 @@
+<html>
+<head>
+<script language=javascript src="links/vv_functions_links.js"></script>
+<title>
+char_check
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+</head>
+<!-- body  class="bg_aabbcc" -->
+<body bgcolor="aabbcc">
+<font face="arial" size="3">
+<center><font face="arial">
+<script>//document.write(dlxs_vv_header);</script>
+<p>
+</center>
+<table  class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="99aabb">
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+<tr class="bgstandardwhite" ><td colspan="3" align="left" class="step">
+<pre>
+step_006a.htm
+SUMMARY of processing 01 files in /d1/workarea/dlxs/image/tel/multiples
+
+command> ls /d1/workarea/dlxs/image/tel/multiples
+A2.txt       countfiles2  ic                    modsICsearchOaiMusic_080408  spc
+A.txt        done         ic.vvi.unnorm.sgm     newmods                      test
+categories   dothis       infotrack             NOTE                         text
+catref       entry        jpegs                 olderVersions                textMusic
+checkme      fieldtest    linkfile              open                         thumbs
+checkme.txt  fixSubjects  minithumbs            opensearch                   vviHeader
+close        footer       mods                  preservation
+cochran      hexmess      modsbib               problems
+countfiles   hextest      modsICsearchOaiMusic  search
+
+SCRIPTS TO RUN
+
+1.  command> modsICsearchOaiMusic >nameYourRedirect.txt
+
+2.  command> cat vviHeader ic/* done/ic/* footer > ic.vvi.unnorm.sgm
+3.  command> cp ic.vvi.unnorm.sgm /d1/dlxs/prep/v/vvi/.
+4.  command> rm /d1/dlxs/prep/v/vvi/ic.vvi.norm.sgm
+
+Copy image files for idx processing in ic setup (image prep)/
+
+5.  command> cp thumbs/* /d1/dlxs/img/v/vvi/thumb/
+6.  command> cp jpegs/*  /d1/dlxs/img/v/vvi/large/
+
+Copy image files for search display.
+7.  command> scp minithumbs/* diglib@diglib.lib.utk.edu:/d1/dlxs/web/thumbs/vv/.
+
+The next step is image class setup.
+
+Then..........
+Copy 0012 files for separate processing for bib setup and search setup.
+The reason for this segregation is ....................?
+
+8.  command> /bin/mv  newmods/0012* spc/mods/
+9.  command> /bin/mv  modsbib/0012* spc/modsbib/
+10. command> /bin/cp  search/0012*  spc/modssearch/
+
+For bib class
+11. command> /bin/cp modsbib/* /d1/workarea/dlxs/bib/mods/vv/xml
+
+For search class
+12. command> /bin/cp search/* /d1/workarea/dlxs/bib/search/vv/xml/
+
+
+
+
+</pre>
+</font>
+</td></tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+</table>
+
+

@@ -1,0 +1,339 @@
+<html>
+<head>
+<title>vv_popupGE</title>
+
+<link href="../vv_workbook.css" type="text/css" rel="stylesheet">
+<script language=javascript src="../vv_functions_tsla.js"></script>
+
+
+
+
+<script language="javascript">
+
+var select_id= new String();
+function get_select_id() {
+
+var str = new String();
+    str = parent.location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  parent.window.opener.location.href="+parent.window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=get_select_id();
+
+
+
+var strSelect_GE_A = new String('');
+
+strSelect_GE_A = '<select name="aaa"  size="24" style="font-size:10px"> \r\n'
+	+'<option  selected>No Value Selected</option> \r\n'	
+
+
+
+
+
+
+
+	+'<option>GAINESBORO (TENN.) - FLOODS</option>  \r\n'
+	+'<option>GAINESBORO (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>GAINESBORO (TENN.) - HISTORY</option>  \r\n'
+	+'<option>GAINESBORO (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>GAINESBORO (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>GALLATIN (TENN.)</option>  \r\n'
+	+'<option>GALLATIN (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>GALLATIN (TENN.) - BUILDINGS, STRUCTURES, ETC.</option>  \r\n'
+	+'<option>GALLATIN (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>GALLATIN (TENN.) - HISTORY</option>  \r\n'
+	+'<option>GALLATIN (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>GALLATIN (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>GALLATIN (TENN.) - PICTORIAL WORKS</option>  \r\n'
+	+'<option>GALLATIN (TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+	+'<option>GALLATIN (TENN.) - SOCIAL LIFE AND CUSTOMS - 19TH CENTURY</option>  \r\n'
+	+'<option>GANIER SITE (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>GATLINBURG (TENN.)</option>  \r\n'
+	+'<option>GATLINBURG (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>GATLINBURG (TENN.) - GUIDEBOOKS</option>  \r\n'
+	+'<option>GATLINBURG (TENN.) - HISTORY</option>  \r\n'
+	+'<option>GATLINBURG (TENN.) - HISTORY - PICTORIAL WORKS</option>  \r\n'
+	+'<option>GATLINBURG (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>GATLINBURG (TENN.) - PERIODICALS</option>  \r\n'
+	+'<option>GATLINBURG (TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+	+'<option>GATLINBURG REGION (TENN.) - GUIDEBOOKS</option>  \r\n'
+	+'<option>GEOLOGY - TENNESSEE</option>  \r\n'
+	+'<option>GEORGIA - BOUNDARIES - TENNESSEE - MAPS, MANUSCRIPT</option>  \r\n'
+	+'<option>GERMANTOWN (TENN.) - BIOGRAPHY - PICTORIAL WORKS</option>  \r\n'
+	+'<option>GERMANTOWN (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>GERMANTOWN (TENN.) - HISTORY - PICTORIAL WORKS</option>  \r\n'
+	+'<option>GERMANTOWN (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>GERMANTOWN (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>GERMANTOWN (TENN.) - POLITICS AND GOVERNMENT</option>  \r\n'
+	+'<option>GERMANTOWN (TENN.) - SOCIAL LIFE AND CUSTOMS - PICTORIAL WORKS</option>  \r\n'
+	+'<option>GIBSON COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>GIBSON COUNTY (TENN.) - CENSUS</option>  \r\n'
+	+'<option>GIBSON COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>GIBSON COUNTY (TENN.) - CENTENNIAL CELEBRATIONS, ETC.</option>  \r\n'
+	+'<option>GIBSON COUNTY (TENN.) - CHURCH HISTORY - SOURCES</option>  \r\n'
+	+'<option>GIBSON COUNTY (TENN.) - DRAMA</option>  \r\n'
+	+'<option>GIBSON COUNTY (TENN.) - ECONOMIC CONDITIONS</option>  \r\n'
+	+'<option>GIBSON COUNTY (TENN.) - ECONOMIC POLICY</option>  \r\n'
+	+'<option>GIBSON COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>GIBSON COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>GIBSON COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>GIBSON COUNTY (TENN.) - HISTORY - PICTORIAL WORKS</option>  \r\n'
+	+'<option>GIBSON COUNTY (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>GIBSON COUNTY (TENN.) - HISTORY, MILITARY</option>  \r\n'
+	+'<option>GIBSON COUNTY (TENN.) - LAND GRANTS</option>  \r\n'
+	+'<option>GIBSON COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>GIBSON COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>GIBSON COUNTY (TENN.) - SOCIAL CONDITIONS</option>  \r\n'
+	+'<option>GIBSON COUNTY (TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+	+'<option>GILES (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>GILES COUNTY (TENN.)</option>  \r\n'
+	+'<option>GILES COUNTY (TENN.) - ANTIQUITIES</option>  \r\n'
+	+'<option>GILES COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>GILES COUNTY (TENN.) - BUILDINGS, STRUCTURES, ETC.</option>  \r\n'
+	+'<option>GILES COUNTY (TENN.) - CENSUS, 1820</option>  \r\n'
+	+'<option>GILES COUNTY (TENN.) - CENSUS, 1850</option>  \r\n'
+	+'<option>GILES COUNTY (TENN.) - CENSUS, 1860</option>  \r\n'
+	+'<option>GILES COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>GILES COUNTY (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>GILES COUNTY (TENN.) - DESCRIPTION AND TRAVEL</option>  \r\n'
+	+'<option>GILES COUNTY (TENN.) - DESCRIPTION AND TRAVEL - VIEWS</option>  \r\n'
+	+'<option>GILES COUNTY (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>GILES COUNTY (TENN.) - ECONOMIC CONDITIONS</option>  \r\n'
+	+'<option>GILES COUNTY (TENN.) - ECONOMIC CONDITIONS - 19TH CENTURY</option>  \r\n'
+	+'<option>GILES COUNTY (TENN.) - ECONOMIC POLICY</option>  \r\n'
+	+'<option>GILES COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>GILES COUNTY (TENN.) - GENEALOGY - PERIODICALS</option>  \r\n'
+	+'<option>GILES COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>GILES COUNTY (TENN.) - GENEALOGY - SOURCES - INDEXES</option>  \r\n'
+	+'<option>GILES COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>GILES COUNTY (TENN.) - HISTORY - 19TH CENTURY - SOURCES</option>  \r\n'
+	+'<option>GILES COUNTY (TENN.) - HISTORY - CIVIL WAR, 1861-1865</option>  \r\n'
+	+'<option>GILES COUNTY (TENN.) - HISTORY - PERIODICALS</option>  \r\n'
+	+'<option>GILES COUNTY (TENN.) - HISTORY - PICTORIAL WORKS</option>  \r\n'
+	+'<option>GILES COUNTY (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>GILES COUNTY (TENN.) - HISTORY - VETERANS - CIVIL WAR, 1861-1865 - REGISTERS</option>  \r\n'
+	+'<option>GILES COUNTY (TENN.) - HISTORY, LOCAL</option>  \r\n'
+	+'<option>GILES COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>GILES COUNTY (TENN.) - PICTORIAL WORKS</option>  \r\n'
+	+'<option>GILES COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>GILES COUNTY (TENN.) - TOURS</option>  \r\n'
+	+'<option>GLEASON (TENN.) - CHARTERS</option>  \r\n'
+	+'<option>GLEN MARY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>GOODLETTSVILLE (TENN.)</option>  \r\n'
+	+'<option>GOODLETTSVILLE (TENN.) - ANTIQUITIES</option>  \r\n'
+	+'<option>GOODLETTSVILLE (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>GOODLETTSVILLE (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>GOODLETTSVILLE (TENN.) - HISTORY</option>  \r\n'
+	+'<option>GOODLETTSVILLE (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>GORDONTOWN SITE (TENN.)</option>  \r\n'
+	+'<option>GOVERNMENT PROPERTY - TENNESSEE</option>  \r\n'
+	+'<option>GOVERNMENT PUBLICATIONS - TENNESSEE</option>  \r\n'
+	+'<option>GRAINGER COUNTY (TENN.)</option>  \r\n'
+	+'<option>GRAINGER COUNTY (TENN.) - CENSUS, 1810</option>  \r\n'
+	+'<option>GRAINGER COUNTY (TENN.) - CENSUS, 1830</option>  \r\n'
+	+'<option>GRAINGER COUNTY (TENN.) - CENSUS, 1850</option>  \r\n'
+	+'<option>GRAINGER COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>GRAINGER COUNTY (TENN.) - CENSUS, 1980</option>  \r\n'
+	+'<option>GRAINGER COUNTY (TENN.) - ECONOMIC CONDITIONS</option>  \r\n'
+	+'<option>GRAINGER COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>GRAINGER COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>GRAINGER COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>GRAINGER COUNTY (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>GRAINGER COUNTY (TENN.) - MAPS</option>  \r\n'
+	+'<option>GRAINGER COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>GRAINGER COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>GRAINGER COUNTY (TENN.) - POPULATION</option>  \r\n'
+	+'<option>GRANVILLE (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>GRANVILLE (TENN.) - HISTORY</option>  \r\n'
+	+'<option>GRASSY COVE (TENN.)</option>  \r\n'
+	+'<option>GREAT COVE (UNICOI COUNTY, TENN.) - HISTORY, LOCAL</option>  \r\n'
+	+'<option>GREAT FALLS DAM (ROCK ISLAND, TENN.)</option>  \r\n'
+	+'<option>GREAT FALLS RESERVOIR (TENN.)</option>  \r\n'
+	+'<option>GREAT SMOKY MOUNTAINS (N.C. AND TENN.)</option>  \r\n'
+	+'<option>GREAT SMOKY MOUNTAINS (N.C. AND TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>GREAT SMOKY MOUNTAINS (N.C. AND TENN.) - BIOGRAPHY - ANECDOTES</option>  \r\n'
+	+'<option>GREAT SMOKY MOUNTAINS (N.C. AND TENN.) - DESCRIPTION AND TRAVEL</option>  \r\n'
+	+'<option>GREAT SMOKY MOUNTAINS (N.C. AND TENN.) - DESCRIPTION AND TRAVEL - VIEWS</option>  \r\n'
+	+'<option>GREAT SMOKY MOUNTAINS (N.C. AND TENN.) - DICTIONARIES</option>  \r\n'
+	+'<option>GREAT SMOKY MOUNTAINS (N.C. AND TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>GREAT SMOKY MOUNTAINS (N.C. AND TENN.) - FICTION</option>  \r\n'
+	+'<option>GREAT SMOKY MOUNTAINS (N.C. AND TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>GREAT SMOKY MOUNTAINS (N.C. AND TENN.) - GENEALOGY - PERIODICALS</option>  \r\n'
+	+'<option>GREAT SMOKY MOUNTAINS (N.C. AND TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>GREAT SMOKY MOUNTAINS (N.C. AND TENN.) - GUIDEBOOKS</option>  \r\n'
+	+'<option>GREAT SMOKY MOUNTAINS (N.C. AND TENN.) - HISTORY</option>  \r\n'
+	+'<option>GREAT SMOKY MOUNTAINS (N.C. AND TENN.) - HISTORY - ANECDOTES</option>  \r\n'
+	+'<option>GREAT SMOKY MOUNTAINS (N.C. AND TENN.) - HISTORY - PERIODICALS</option>  \r\n'
+	+'<option>GREAT SMOKY MOUNTAINS (N.C. AND TENN.) - HISTORY - PICTORIAL WORKS</option>  \r\n'
+	+'<option>GREAT SMOKY MOUNTAINS (N.C. AND TENN.) - JUVENILE LITERATURE</option>  \r\n'
+	+'<option>GREAT SMOKY MOUNTAINS (N.C. AND TENN.) - PERIODICALS</option>  \r\n'
+	+'<option>GREAT SMOKY MOUNTAINS (N.C. AND TENN.) - PICTORIAL WORKS</option>  \r\n'
+	+'<option>GREAT SMOKY MOUNTAINS (N.C. AND TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+	+'<option>GREAT SMOKY MOUNTAINS (N.C. AND TENN.) - SOCIAL LIFE AND CUSTOMS - ANECDOTES</option>  \r\n'
+	+'<option>GREAT SMOKY MOUNTAINS (N.C. AND TENN.) - SOCIAL LIFE AND CUSTOMS - PICTORIAL WORKS</option>  \r\n'
+	+'<option>GREAT SMOKY MOUNTAINS NATIONAL PARK (N.C. AND TENN.)</option>  \r\n'
+	+'<option>GREAT SMOKY MOUNTAINS NATIONAL PARK (N.C. AND TENN.) - DESCRIPTION AND TRAVEL</option>  \r\n'
+	+'<option>GREAT SMOKY MOUNTAINS NATIONAL PARK (N.C. AND TENN.) - ENVIRONMENTAL CONDITIONS</option>  \r\n'
+	+'<option>GREAT SMOKY MOUNTAINS NATIONAL PARK (N.C. AND TENN.) - FICTION</option>  \r\n'
+	+'<option>GREAT SMOKY MOUNTAINS NATIONAL PARK (N.C. AND TENN.) - GUIDEBOOKS</option>  \r\n'
+	+'<option>GREAT SMOKY MOUNTAINS NATIONAL PARK (N.C. AND TENN.) - HISTORY</option>  \r\n'
+	+'<option>GREAT SMOKY MOUNTAINS NATIONAL PARK (N.C. AND TENN.) - MAPS</option>  \r\n'
+	+'<option>GREAT SMOKY MOUNTAINS NATIONAL PARK (N.C. AND TENN.) - MAPS, TOPOGRAPHIC</option>  \r\n'
+	+'<option>GREAT SMOKY MOUNTAINS NATIONAL PARK (N.C. AND TENN.) - PICTORIAL WORKS</option>  \r\n'
+	+'<option>GREAT SMOKY MOUNTAINS REGION (N.C. AND TENN.) - DESCRIPTION AND TRAVEL</option>  \r\n'
+	+'<option>GREAT SMOKY MOUNTAINS REGION (N.C. AND TENN.) - FICTION</option>  \r\n'
+	+'<option>GREAT SMOKY MOUNTAINS REGION (N.C. AND TENN.) - GUIDEBOOKS</option>  \r\n'
+	+'<option>GREAT SMOKY MOUNTAINS REGION (N.C. AND TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+	+'<option>GREEN HILL (TENN.) - HISTORY</option>  \r\n'
+	+'<option>GREENBACK (TENN.) - HISTORY</option>  \r\n'
+	+'<option>GREENBRIER (SEVIER COUNTY, TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>GREENBRIER (SEVIER COUNTY, TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>GREENBRIER (SEVIER COUNTY, TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+	+'<option>GREENBRIER (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>GREENBRIER (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>GREENBRIER (TENN.) - HISTORY</option>  \r\n'
+	+'<option>GREENBRIER (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>GREENE COUNTY (TENN.) - ANTIQUITIES</option>  \r\n'
+	+'<option>GREENE COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>GREENE COUNTY (TENN.) - CENSUS, 1920 - INDEXES</option>  \r\n'
+	+'<option>GREENE COUNTY (TENN.) - CENTENNIAL CELEBRATIONS, ETC.</option>  \r\n'
+	+'<option>GREENE COUNTY (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>GREENE COUNTY (TENN.) - DESCRIPTION AND TRAVEL</option>  \r\n'
+	+'<option>GREENE COUNTY (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>GREENE COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>GREENE COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>GREENE COUNTY (TENN.) - GENEALOGY - SOURCES - INDEXES</option>  \r\n'
+	+'<option>GREENE COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>GREENE COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>GREENE COUNTY (TENN.) - PHOTOGRAPHS</option>  \r\n'
+	+'<option>GREENE COUNTY (TENN.) - PICTORIAL WORKS</option>  \r\n'
+	+'<option>GREENE COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>GREENEVILLE (TENN.)</option>  \r\n'
+	+'<option>GREENEVILLE (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>GREENEVILLE (TENN.) - CHURCHES</option>  \r\n'
+	+'<option>GREENEVILLE (TENN.) - DESCRIPTION AND TRAVEL - GUIDEBOOKS</option>  \r\n'
+	+'<option>GREENEVILLE (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>GREENEVILLE (TENN.) - HISTORY</option>  \r\n'
+	+'<option>GREENEVILLE (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>GREENEVILLE (TENN.) - PICTORIAL WORKS</option>  \r\n'
+	+'<option>GREENEVILLE (TENN.) - POLITICS AND GOVERNMENT</option>  \r\n'
+	+'<option>GREENEVILLE (TENN.) - PUBLIC SCHOOLS</option>  \r\n'
+	+'<option>GREENFIELD (TENN.) - HISTORY</option>  \r\n'
+	+'<option>GREENFIELD (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>GROUNDWATER - LAW AND LEGISLATION - TENNESSEE</option>  \r\n'
+	+'<option>GRUETLI (TENN.)</option>  \r\n'
+	+'<option>GRUETLI (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>GRUETLI (TENN.) - HISTORY</option>  \r\n'
+	+'<option>GRUETLI-LAAGER (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>GRUETLI-LAAGER (TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+	+'<option>GRUNDY COUNTY (TENN.)</option>  \r\n'
+	+'<option>GRUNDY COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>GRUNDY COUNTY (TENN.) - CENSUS</option>  \r\n'
+	+'<option>GRUNDY COUNTY (TENN.) - CENSUS, 1850</option>  \r\n'
+	+'<option>GRUNDY COUNTY (TENN.) - CENSUS, 1860</option>  \r\n'
+	+'<option>GRUNDY COUNTY (TENN.) - CENSUS, 1870</option>  \r\n'
+	+'<option>GRUNDY COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>GRUNDY COUNTY (TENN.) - CENSUS, 1900</option>  \r\n'
+	+'<option>GRUNDY COUNTY (TENN.) - CENSUS, 1910</option>  \r\n'
+	+'<option>GRUNDY COUNTY (TENN.) - FICTION</option>  \r\n'
+	+'<option>GRUNDY COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>GRUNDY COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>GRUNDY COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>GRUNDY COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>GRUNDY COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>GRUNDY COUNTY (TENN.) - SOCIAL CONDITIONS</option>  \r\n'
+	+'<option>GRUNDY COUNTY (TENN.) - STATISTICS, VITAL</option>  \r\n'
+	+'<option>GRUNDY STATE FOREST (TENN.)</option>  \r\n'
+	+'<option>GUNTERSVILLE LAKE (ALA. AND TENN.)</option>  \r\n'
+	+'<option>GUNTERSVILLE RESERVOIR (TENN.)</option>  \r\n'
+
++'</select> \r\n';
+	
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+<body class="background">
+
+
+
+
+<form name="FormOne" >
+
+
+<div name="SS" id="SS">
+<script>
+document.write(
+
+	 '<table border="1" cellpadding="4" cellspacing="0"  width="90%">\r\n'
+	+'<tr><td  bgcolor="ddeeff">\r\n'
+	///+'vv_functions.htm called by '+select_id+' <br>\r\n'
+	+'<b>Select Geographic Subject G </b> \r\n'
+	+'</td></tr><tr><td bgcolor="ddeeff"> \r\n' 
+	+ strSelect_GE_A
+
+	+'</td></tr></table> \r\n'
+	///+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+</script>
+	
+</div>
+
+<input type="button" onclick="showSelection();" name="B1" value="Geographic Name">
+
+</form>
+
+<script>
+
+
+
+                  
+
+function showSelection() {
+
+val = new String();
+
+for ( i=0; i< document.FormOne.aaa.length; i++ ) {
+
+if ( document.FormOne.aaa[i].selected == true ) {
+  	val = document.FormOne.aaa[i].text;
+	break;
+	}
+else { val = "you never selected anything"; 
+	}
+
+}
+////////////////////////alert ("You selected " +val);
+val=reformatGeo(val);
+
+switch ( select_id ) {
+
+case  "subject_geographic_lcsh_01" :
+	parent.window.opener.document.forms[0].subject_geographic_lcsh_01.value=val;
+	parent.window.close();
+	break;
+
+case  "subject_geographic_lcsh_02" :
+	parent.window.opener.document.forms[0].subject_geographic_lcsh_02.value=val;
+	parent.window.close();
+	break;
+
+}//end switch
+
+}///end function
+</script>
+

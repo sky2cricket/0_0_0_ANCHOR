@@ -1,0 +1,94 @@
+<html>
+<head>
+<script language=javascript src="links/vv_functions_links.js"></script>
+<title>
+char_check
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+</head>
+<!-- body  class="bg_aabbcc" -->
+<body bgcolor="aabbcc">
+<font face="arial" size="3">
+<center><font face="arial">
+<script>//document.write(dlxs_vv_header);</script>
+<p>
+</center>
+<table  class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="99aabb">
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+<tr class="bgstandardwhite" ><td colspan="3" align="left" class="step">
+<pre>
+step_007n.htm
+(using 0022_000060_000204 files as an example)
+
+vvImport/batch/02/ocr          to /d1/workarea/dlxs/text/tel/ocr/text/
+
+processing 02 files - /d1/workarea/dlxs/text/tel/ocr
+
+Transform the tei files.
+
+	command> perl transform
+	<a href="xfiles/textclass/transform_screencap.txt" target="_blank">screen capture</a>
+
+	What just happened?  I ran transform on a single file to show the changes.
+	transform takes the input file <a href="xfiles/02_vvo/0022_000060_000204/tei_ocr_0022_000060_000204_0000.htm" target="_blank">tei/ocr/0022_000060_000204_0000.xml</a> 
+
+	and creates two output files:
+		<a href="xfiles/02_vvo/0022_000060_000204/output_ocr_0022_000060_000204_0000.htm" target="_blank">output/ocr/0022_000060_000204_0000.xml</a>
+		<a href="xfiles/02_vvo/0022_000060_000204/output_0022_000060_000204_0000_vvo.htm" target="_blank">output/ocr/vvo.xml</a>
+
+	The output files have tei tags converted to DLPSTEXTCLASS tags used by DLXS.
+	Whitespace is stripped out to compress the files.
+	Characters that are illegal in xml are changed to html entities.
+	Most out of range characters are changed to html entities.
+
+	The vvo.xml file wraps the xml file(s) in &lt;COLL> and &lt;/COLL> tags.
+	Here there is just one xml file inside the wrapper.
+	In the production version, all the xml files are catted together and
+	wrapped inside &lt;COLL> and &lt;/COLL> tags.
+
+Then run the validate command for vvo in this directory.
+	command> nsgmls -s -f ./output/ocr/vvo.errors /d1/dlxs/prep/v/vvo/vvo.inp output/ocr/vvo.xml
+Check for validation errors.
+	command> check ./output/arrt.errors 
+	command> ls output/ocr/vvo.errors
+
+	
+If there are no errors, the vvo.xml file is copied to the <u>object</u> directory.
+	command> /bin/cp output/ocr/vvo.xml /d1/dlxs/obj/v/vvo/
+
+
+The next script to run is convert, which is in the /d1/dlxs/bin/v/vvo directory.
+	command> cd /d1/dlxs/bin/v/vvo
+	command> make convert
+
+	What happens?
+	The makefile causes the perl program <a href="tools/prog/isolat128bit.pl.txt" target="_blank">isolat128bit.pl</a> to be executed.  
+	This program takes care of any remaining out of range characters 
+	that were not caught by transform.  
+
+In the same directory (/d1/dlxs/bin/v/vvo) open up the file <a href="tools/prog/vvo_make_nodefy.txt" target="_blank">make_nodefy (vvo)</a> and run the commands from the command line.
+
+	command> ./tei2text /d1/dlxs/obj/v/vvo/vvo.xml /d1/dlxs/obj/v/vvo/
+	command> ./nodefy /d1/dlxs/obj/v/vvo/vvo.xml
+	command> mv  /d1/dlxs/obj/v/vvo/vvo.xml.noded  /d1/dlxs/obj/v/vvo/vvo.xml
+	warning about overwrite, answer yes
+	mv: overwrite `/d1/dlxs/obj/v/vvo/vvo.xml'? y
+
+
+	What happens?
+	The original vvo.xml ( <a href="xfiles/02_vvo/0022_000060_000204/output_0022_000060_000204_0000_vvo.htm" target="_blank">/d1/workarea/dlxs/text/tel/output/ocr/vvo.xml</a>) was copied
+	to the <u>object</u> directory to the name <a href="xfiles/02_vvo/0022_000060_000204/output_0022_000060_000204_0000_vvo.htm" target="_blank">/d1/dlxs/obj/v/vvo/vvo.xml</a>
+
+	After running the nodefy commands, the file <a href="xfiles/02_vvo/0022_000060_000204/after_nodefy_0022_000060_000204_0000_vvo.htm" target="_blank">/d1/dlxs/obj/v/vvo/vvo.xml</a> is changed to a noded format.
+
+
+</pre>
+</font>
+</td></tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+</table>
+</body>
+</html>
+
+

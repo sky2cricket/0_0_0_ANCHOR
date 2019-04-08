@@ -1,0 +1,162 @@
+<!DOCTYPE mappings [
+<!element mappings o o (mapping)+ >
+<!element mapping - - (label?, synthetic?, native?, nativeregionname?) >
+<!element label - - (#PCDATA) >
+<!element synthetic - - (#PCDATA) >
+<!element native - - (#PCDATA) >
+<!element nativeregionname - - (#PCDATA) >
+]>
+
+<!-- Default TermMapper mapfile for bibclass -->
+
+<mappings>
+  <!-- operator mapping -->
+  <mapping><label>And</label><synthetic>AND</synthetic><native>^</native></mapping>
+  <mapping><label>Or</label><synthetic>OR</synthetic><native>+</native></mapping>
+  <mapping><label>Not</label><synthetic>NOT</synthetic><native>-</native></mapping>
+  <mapping><label>Within</label><synthetic>CONTAINED WITHIN</synthetic><native>within</native></mapping>
+  <mapping><label>Including</label><synthetic>INCLUDING</synthetic><native>incl</native></mapping>
+  <mapping><label>Near</label><synthetic>NEAR</synthetic><native>near</native></mapping>
+  <mapping><label>Followed By</label><synthetic>FOLLOWED BY</synthetic><native>fby</native></mapping>
+  <mapping><label>Not Near</label><synthetic>NOT NEAR</synthetic><native>not near</native></mapping>
+  <mapping><label>Not Followed By</label><synthetic>NOT FOLLOWED BY</synthetic><native>not fby</native></mapping>
+  <mapping><label>and</label><synthetic>AND</synthetic><native>^</native></mapping>
+  <mapping><label>or</label><synthetic>OR</synthetic><native>+</native></mapping>
+  <mapping><label>not</label><synthetic>NOT</synthetic><native>-</native></mapping>
+  <mapping><label>within</label><synthetic>CONTAINED WITHIN</synthetic><native>within</native></mapping>
+  <mapping><label>including</label><synthetic>INCLUDING</synthetic><native>incl</native></mapping>
+  <mapping><label>near</label><synthetic>NEAR</synthetic><native>near</native></mapping>
+  <mapping><label>followed by</label><synthetic>FOLLOWED BY</synthetic><native>fby</native></mapping>
+  <mapping><label>not near</label><synthetic>NOT NEAR</synthetic><native>not near</native></mapping>
+  <mapping><label>not followed by</label><synthetic>NOT FOLLOWED BY</synthetic><native>not fby</native></mapping>
+  
+  <!-- region mapping -->
+  
+  <!-- required for Terminology Mapper -->
+  <mapping>
+    <label>ITEM</label>
+    <synthetic>ITEM</synthetic>
+    <native>region A</native>
+    <nativeregionname>A</nativeregionname>
+    <summarylabel>record</summarylabel>
+  </mapping>
+  
+  <!-- standard fields/regions -->
+  <mapping>
+    <label>author</label>
+    <synthetic>AUTHOR</synthetic>
+    <native>region L</native>
+    <nativeregionname>L</nativeregionname>
+    <summarylabel>au</summarylabel>
+  </mapping>
+  
+  <mapping>
+    <label>title</label>
+    <synthetic>TITLE</synthetic>
+    <native>region K</native>
+    <nativeregionname>K</nativeregionname>
+    <summarylabel>title</summarylabel>
+  </mapping>
+  
+  <mapping>
+    <label>entire record</label>
+    <synthetic>KEYWORD</synthetic>
+    <native>region A</native>
+    <nativeregionname>A</nativeregionname>
+    <summarylabel>kw</summarylabel>
+  </mapping>
+  
+  <mapping>
+    <label>publisher</label>
+    <synthetic>PUBLISHER</synthetic>
+    <native>region T</native>
+    <nativeregionname>T</nativeregionname>
+    <summarylabel>publisher</summarylabel>
+  </mapping>
+  
+  <mapping>
+    <label>place of publication</label>
+    <synthetic>PUBPLACE</synthetic>
+    <native>region U</native>
+    <nativeregionname>U</nativeregionname>
+    <summarylabel>publ</summarylabel>
+  </mapping>
+  
+  <mapping>
+    <label>year</label>
+    <synthetic>YEAR</synthetic>
+    <native>region YR</native>
+    <nativeregionname>YR</nativeregionname>
+    <summarylabel>yr</summarylabel>
+  </mapping>
+  
+  <mapping>
+    <label>series</label>
+    <synthetic>SUBJECT</synthetic>
+    <native>region SU</native>
+    <nativeregionname>SU</nativeregionname>
+    <summarylabel>series</summarylabel>
+  </mapping>
+
+  <mapping> 
+    <label>notes</label> 
+    <synthetic>NOTES</synthetic> 
+    <native>region AA</native> 
+    <nativeregionname>AA</nativeregionname> 
+    <summarylabel>notes</summarylabel> 
+  </mapping> 
+
+  <mapping>  
+    <label>collection</label>  
+    <synthetic>COLLECTION</synthetic>  
+    <native>region COLL</native>  
+    <nativeregionname>COLL</nativeregionname>  
+    <summarylabel>collection</summarylabel>  
+  </mapping> 
+
+  <mapping>   
+    <label>format</label>   
+    <synthetic>FORMAT</synthetic>   
+    <native>region FMT</native>   
+    <nativeregionname>FMT</nativeregionname>   
+    <summarylabel>format</summarylabel>   
+  </mapping> 
+
+  <mapping>   
+    <label>language</label>   
+    <synthetic>LANGUAGE</synthetic>   
+    <native>region LANG</native>   
+    <nativeregionname>LANG</nativeregionname>   
+    <summarylabel>language</summarylabel>   
+  </mapping> 
+
+  <mapping>   
+    <label>type</label>   
+    <synthetic>TYPE</synthetic>   
+    <native>region TYPE</native>   
+    <nativeregionname>TYPE</nativeregionname>   
+    <summarylabel>type</summarylabel>   
+  </mapping> 
+
+  <mapping>
+    <label>id</label>
+    <synthetic>ID</synthetic>
+    <native>region "A-ID"</native>
+    <nativeregionname>A-ID</nativeregionname>
+    <summarylabel>id</summarylabel>
+  </mapping>
+
+  <mapping>
+    <label>recdate</label>
+    <synthetic>recdate</synthetic>
+    <native>region "A-DT"</native>
+    <nativeregionname>A-DT</nativeregionname>
+    <summarylabel>recdate</summarylabel>
+  </mapping>
+
+<!-- end of standard mappings -->
+
+<!-- things that are specific to collection -->
+<!-- end of things that are specific to collection -->
+
+</mappings>

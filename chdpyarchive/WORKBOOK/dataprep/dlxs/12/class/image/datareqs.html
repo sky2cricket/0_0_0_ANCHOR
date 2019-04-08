@@ -1,0 +1,175 @@
+<html>
+<head>
+<title>Image Class Data Requirements</title>
+
+
+
+
+
+ <link href="../../dlxsdocs.css" rel="stylesheet" type="text/css"></head>         <body>
+<div class="pageTitle">Image Class Data Requirements</div>
+
+
+<p>
+<a href="mailto:dlxs-help@umich.edu">dlxs-help@umich.edu</a>
+</p>
+
+
+<p>Each collection used in the Image Services system must have a
+unique abbreviation. The abbreviation is used in many places in the
+system.</p>
+
+<p>Examples:</p>
+
+<table border="1">
+<tbody>
+   <tr>
+      <td>
+         <p>Unique (across all classes) collection abbreviation (lowercase alphabetic
+         characters, only)</p>
+      </td>
+      <td>
+         <p>Long collection name</p>
+      </td>
+   </tr>
+   <tr>
+      <td>
+         <p>musart</p>
+      </td>
+      <td>
+         <p>Museum of Art</p>
+      </td>
+   </tr>
+   <tr>
+      <td>
+         <p>scl</p>
+      </td>
+      <td>
+         <p>Special Collections Library</p>
+      </td>
+   </tr>
+   <tr>
+      <td>
+         <p>sampleic</p>
+      </td>
+      <td>
+         <p>French Architecture</p>
+      </td>
+   </tr>
+</tbody>
+</table>
+
+<p>Each record must minimally have fields of the following
+<b>type</b>:</p>
+
+<table border="1">
+<tbody>
+   <tr>
+      <td>
+         <p>Identifier</p>
+      </td>
+      <td>
+         <p>Unique identification of the record within the collection</p>
+      </td>
+   </tr>
+   <tr>
+      <td>
+         <p>Image Filename(s)</p>
+      </td>
+      <td>
+         <p>The image filename including (master) filename extension. This may
+         be a repeating field. (Not required if there are no images)</p>
+      </td>
+   </tr>
+   <tr>
+      <td>
+         <p>Image Caption(s)</p>
+      </td>
+      <td>
+         <p>Describes the specific view depicted in the image file.
+         If the Image Filename field is repeating, then the Image
+         Caption field(s) may be repeating also (though it is not a requirement). There may be
+         multiple image caption fields. In many cases, and especially
+         when there is only one image file per record, many or all of
+         the fields of the record might be considered
+         "caption"&#0160;fields. In such a case it usually works best
+         to consider only the fields that describe the view depicted
+         in the image to be caption fields. For example, a good
+         caption field would be one that has data similar to "view
+         from the south"&#0160;or "verso"&#0160;or "aerial view".</p>
+      </td>
+   </tr>
+</tbody>
+</table>
+
+<p>Remember, this document is about minimal requirements. Please read <a href="imagestructures.html">Image Class - Mapping Image Structures</a> for full coverage of image file topics.</p>
+
+
+<h2>Identifiers</h2>
+
+<p>Requirements for identifiers loosened up with DLXS 10. 
+The Image Class DTD was changed to allow a wider range of characters in IDs.
+Previously there were significant limitations on
+the characters that are allowed within SGML IDs. Unique record IDs in
+image databases can take many different forms and include many
+different characters. Even though a wider range of chanracters are allowed, 
+the provided script ("idb") for preparing Image Class data continues
+to filter illegal SGML ID characters into legal logical
+representations of the character in order to ensure legal SGML IDs. 
+This practice has continued in order to maintain backward compatability for
+databases that pre-existed the change.</p>
+<p>Image Class uses the right square bracket "]" as a delimeter within ids
+which are a concatenation of the record ID and the image filename (when present).
+Other use of the square bracket in IDs and filenames is therefore problematic.
+</p>
+
+
+<h2>About Images</h2>
+
+<p>A database does not have to have digital images associated with
+it. It is acceptable for a database to not have an Image Filename
+field.</p>
+
+<p>Any given record in a database may have 0, 1 or multiple image
+files associated with it.</p> 
+
+
+
+
+
+<h2>Other Fields</h2>
+
+<p>Typically there are many other fields in a database. This is allowed.</p>
+
+
+<h2>Field Names</h2>
+
+<p>Each field is given an abbreviation and label in Image Class. The abbreviation must be a legal MySQL field name. 
+The label can contain ASCII Latin 1 characters.</p>
+
+
+<h2>Multiple Uses</h2>
+
+<p>In some cases a field has potential to serve multiple
+requirements. In the most extreme example, a database might have just
+one field, "ID". The ID might also be the Image Filename, and the
+Image Caption. Of course this would not likely be very useful for
+searching, but it makes the point. The more common example is where
+image files are named by accession number. It is acceptable for a
+single field to serve more than one of the minimal field
+requirements, however it is absolutely critical for there to be no
+ambiguity in the use of the field for multiple purposes. For example,
+if data in an accession number field are to be used for filenames as
+well, then the actual image files must be named exactly as the
+accession numbers. Use of IDs as filenames is becoming less feasible as 
+Image Class gains support for new media formats. It is a good idea to have separate ID and image filename fields, and theimage filenames should include extensions. The extension should match the master image file format, which may be different than the format used on the server.</p>
+
+
+<h2><a href="../unicode.html">Character Sets</a></h2>
+
+<p>All data must be Unicode UTF8 encoded as of DXS release 12. </p>
+
+
+</body>
+
+</html>

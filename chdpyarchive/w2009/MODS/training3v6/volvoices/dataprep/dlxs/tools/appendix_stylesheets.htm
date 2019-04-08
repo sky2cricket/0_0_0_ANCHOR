@@ -1,0 +1,131 @@
+<html>
+<head><title>xslt appendix</title></head>
+<body>
+Copied from:
+<a href="http://www.sciencedirect.com/science?_ob=ArticleURL&_udi=B6V9K-4BHV71S-3&_user=422010&_rdoc=1&_fmt=&_orig=search&_sort=d&view=c&_acct=C000019958&_version=1&_urlVersion=0&_userid=422010&md5=6ae360f5c2f52d3b1de1299a6b455b78#bib31" target="_blank">http://www.sciencedirect.com/science?_ob=ArticleURL&_udi=B6V9K-4BHV71S-3&_user=422010&_rdoc=1&_fmt=&_orig=search&_sort=d&view=c&_acct=C000019958&_version=1&_urlVersion=0&_userid=422010&md5=6ae360f5c2f52d3b1de1299a6b455b78#bib31</a>
+<p>
+<pre>
+Appendix A. XSL stylesheets.
+
+A.1 ISO 19115 -> DC stylesheet.
+
+&lt;?xml version="1.0" encoding="ISO-8859-1" ?>
+
+&lt;xsl:stylesheet
+	version="1.0" xmlns:xsl ="http://www.w3.org/1999/XSL/Transform"
+	xmlns:rdf="http://www.w3.org/2000/02/22-rdf-syntax-ns#"
+	xlmns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	xlmns:dc=http://purl.org/dc/elements/1.1"
+	xlmns:dcterms="http://purl.org/dc/terms"
+	xlmns:iso19115="http://www.isotc211.org/iso19115/"
+	xlmns:xsi="http:w3.org/2001/XMLSchema-instance">
+&lt;xsl: output method="xml" indent="yes" encoding="ISO-8859-1" />
+...
+	&lt;xsl:templat match="/">
+		&lt;xsl:apply-templates select="iso19115:MD_Metadata" />
+	&lt;/xsl:template>
+	&lt;xsl:template match="iso19115:MD_Metadata">
+		&lt;xsl:element name="rdf:RDF">
+	&lt;!-- CONVERSION OF TITLE ELEMENT: for each occurrence of attribute
+	title in CI_Citation entity, a DC:TITLE occurrence will be generated. -->
+		&lt;xsl:for-each select="./iso19115:_MD_Identification/citation/title">
+			&lt;xsl:element name="dc:title">
+				&lt;xsl:value-of select="normalize-space(.)" />
+			&lt;/xsl:element>
+		&lt;/xsl:for-each>
+...
+	&lt;!-- CONVERSION OF CREATOR ELEMENT: Each occurrence of MD_Metadata.identificationInfo
+	.pointOfContact (CI_ResponsibleParty entity with role="originator") must be mapped
+	to a single value of DC:CREATOR. If the CI_ResponsibleParty has been correctly
+	completed, organisationName or individualName or positionName must contain a non null 
+	value.  The value of these attributes (in the order previously mentioned) will be
+	used to create a DC:CREATOR element. -->
+		&lt;xsl:for-each select="./iso19115:_MD_Identification/pointOfContact">
+		    &lt;xsl:if test="normalize-space(./role/CI_RoleCode_CodeList)='originator'">
+			&lt;xsl:element name="dc:creator">
+				&lt;xsl:choose>
+					&lt;xsl:when test="./organisationName" >
+					  	&lt;xsl:value-of select="./organisationName" />
+					&lt;/xsl:when> 
+					&lt;xsl:when test="./individualName" >
+					  	&lt;xsl:value-of select="./individualName" />
+					&lt;/xsl:when> 
+					&lt;xsl:when test="./positionName" >
+					  	&lt;xsl:value-of select="./positionName" />
+					&lt;/xsl:when> 
+					&lt;xsl:otherwise>&lt;!-- This should never happen. -->
+					&lt;/xsl:otherwise>
+				&lt;/xsl:choose>
+			&lt;/xsl:element>
+		     &lt;/xsl:if>
+		&lt;/xsl:for-each>
+		...
+		&lt;/xsl:element>
+	&lt;/xsl:element>
+&lt;/xsl:template>
+&lt;xsl:stylesheet>
+
+
+
+A.2 DC-> ISO 19115 stylesheet
+
+&lt;?xml version="1.0" encoding="ISO-8859-1" ?>
+
+&lt;xsl:stylesheet
+        version="1.0" xmlns:xsl ="http://www.w3.org/1999/XSL/Transform"
+        xmlns:rdf="http://www.w3.org/2000/02/22-rdf-syntax-ns#"
+        xlmns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+        xlmns:dc=http://purl.org/dc/elements/1.1"
+        xlmns:dcterms="http://purl.org/dc/terms"
+        xlmns:iso19115="http://www.isotc211.org/iso19115/"
+        xlmns:xsi="http:w3.org/2001/XMLSchema-instance">
+&lt;xsl: output method="xml" indent="yes" encoding="ISO-8859-1" />
+...
+&lt;xsl:template match="rdf:RDF">
+	&lt;xsl:if test="rdf:Description">
+		&lt;xsl:element name="iso19115:MD_Metadata">
+		    &lt;xsl:element name="iso19115:_MD_Identification">
+			&lt;xsl:attribute name="xsi:type">iso19115:MD_DataIdentificationType&lt;/xsl:attribute>
+			    &lt;xsl:element name="citation">
+	&lt;!-- CONVERSION OF TITLE ELEMENT: The title attribute is mandatory within CI_Citation
+	entity.  If there is no value for DC:TITLE, "Default Title" will be generated. -->
+		&lt;xsl:choose>
+		    &lt;xsl:when test=".rdf:Description/dc:title">
+			&lt;xsl:element name="title">
+				&lt;xsl:value-of select="./rdf:Description/dc:title" />
+			&lt;/xsl:element>
+		    &lt;/xsl:when>
+		    &lt;xsl:otherwise>
+			&lt;xsl:text>Default Title&lt;/xsl:text>
+		    &lt;/xsl:otherwise>
+		&lt;/xsl:choose>
+	...
+	&lt;/xsl:element> &lt;!-- citation -->
+	...
+	&lt;!-- CONVERSION OF CREATOR ELEMENT: This element is optional in both standards. For
+	each occurrence of DC:CREATOR, a new pointOfContact will be created.  The text of 
+	DC:CREATOR will correspond to the CI_ResponsibleParty.organizationName attribute. -->
+		&lt;xsl:for-each slelect="./rdf:Description/dc:creator">
+			&lt;xsl:element name="pointOfContact">
+			    &lt;xsl:element name="role">
+				&lt;xsl:element name="CI_RoleCode_CodeList">
+					&lt;xsl:text>originator&lt;/xsl:text>
+				&lt;/xsl:element>
+			    &lt;/xsl:element>
+			    &lt;xsl:element name="organizationName">
+				&lt;xsl:value-of select="." />
+			    &lt;/xsl:element>
+			&lt;/xsl:element>
+		&lt;/xsl:for-each>
+		...
+	&lt;/xsl:if>&lt;!-- of: &lt;xsl:if test="rdf:Description-->
+	...
+&lt;/xsl:template>
+&lt;/xsl:stylesheet>
+		
+
+	
+
+</pre>
+</body>
+</html>

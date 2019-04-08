@@ -1,0 +1,83 @@
+
+NAMEPREFIX = bhlead
+FIRSTLETTERSUBDIR = b
+
+# --------------------------------------------------
+OBJDIR = /l1/obj/$(FIRSTLETTERSUBDIR)/$(NAMEPREFIX)/
+IDXDIR = /l1/idx/$(FIRSTLETTERSUBDIR)/$(NAMEPREFIX)/
+PREPDIR = /l1/prep/$(FIRSTLETTERSUBDIR)/$(NAMEPREFIX)/
+DATADIR = /l1/prep/b/$(NAMEPREFIX)/data/
+
+COLLBINDIR = /l1/bin/$(FIRSTLETTERSUBDIR)/$(NAMEPREFIX)/
+BINDIR = /l1/bin/t/text/
+
+XMLFILE = $(OBJDIR)$(NAMEPREFIX).xml
+
+# --------------------------------------------------
+XMLDOCTYPE = $(PREPDIR)$(NAMEPREFIX).xml.inp
+# --------------------------------------------------
+XMLDECL = /l1/misc/sgml/xml.dcl
+# --------------------------------------------------
+XPATBINDIR = /l/local/xpat/bin/
+XPATBLD = $(XPATBINDIR)xpatbld
+XPATEXEC = $(XPATBINDIR)xpat
+SGMLRGN = $(XPATBINDIR)sgmlrgn
+MULTIRGN = $(XPATBINDIR)multirgn
+XMLRGN = $(XPATBINDIR)xmlrgn
+XPATBLD = $(XPATBINDIR)xpatbld
+
+VALIDATEEACHSCRIPT = $(PREPDIR)validateeach.csh
+
+### ----------------------------------------------------------------------
+### validate each file individually (easier to find errors that way)
+### errors are written to individual_file.err in the ./data dir, right
+### next to the xml files themselves
+validateeach:
+	$(VALIDATEEACHSCRIPT)
+
+
+all: prepdocs validate singledd xml post
+
+### !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+###       Now check .err files in data dir
+### !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+### ----------------------------------------------------------------------
+### fix up docs
+prepdocs:
+	$(COLLBINDIR)preparedocs.pl $(DATADIR) $(XMLFILE) $(PREPDIR)logfile.txt
+### ----------------------------------------------------------------------
+
+## ----------------------------------------------------------------------
+## validate one last time for luck
+validate:
+	onsgmls -wxml -s -f $(PREPDIR)$(NAMEPREFIX).errors $(XMLDECL) $(XMLDOCTYPE) $(XMLFILE)
+
+## ----------------------------------------------------------------------
+
+## ----------------------------------------------------------------------
+## have xpat index everything as a single file
+singledd:
+	cp $(PREPDIR)$(NAMEPREFIX).blank.dd $(IDXDIR)$(NAMEPREFIX).dd
+	$(XPATBLD) -m 256m -D $(IDXDIR)$(NAMEPREFIX).dd
+	cp $(IDXDIR)$(NAMEPREFIX).dd $(PREPDIR)$(NAMEPREFIX).presgml.dd
+## ----------------------------------------------------------------------
+
+## ----------------------------------------------------------------------
+## index the sgml using xmlrgn -- validates and indexes with SGML declaration.
+xml:
+	cp $(PREPDIR)$(NAMEPREFIX).presgml.dd $(IDXDIR)$(NAMEPREFIX).dd
+	$(XMLRGN) -D $(IDXDIR)$(NAMEPREFIX).dd $(XMLDECL) $(XMLDOCTYPE) $(XMLFILE)
+	cp $(IDXDIR)$(NAMEPREFIX).dd $(PREPDIR)$(NAMEPREFIX).prepost.dd
+## ----------------------------------------------------------------------
+
+
+## ----------------------------------------------------------------------
+post:
+	cp $(PREPDIR)$(NAMEPREFIX).prepost.dd $(IDXDIR)$(NAMEPREFIX).dd
+	touch $(IDXDIR)$(NAMEPREFIX).init
+	$(XPATEXEC) -q $(IDXDIR)$(NAMEPREFIX).dd < $(PREPDIR)$(NAMEPREFIX).extra.srch | $(BINDIR)output.dd.frag.pl $(IDXDIR) > $(PREPDIR)$(NAMEPREFIX).extra.dd
+	$(BINDIR)inc.extra.dd.pl $(PREPDIR)$(NAMEPREFIX).extra.dd $(IDXDIR)$(NAMEPREFIX).dd
+## ----------------------------------------------------------------------
+

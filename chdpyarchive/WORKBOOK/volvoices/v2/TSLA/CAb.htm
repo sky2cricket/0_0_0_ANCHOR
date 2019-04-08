@@ -1,0 +1,187 @@
+<html>
+<head>
+<title>vv_popupCA</title>
+
+<link href="../vv_workbook.css" type="text/css" rel="stylesheet">
+<script language=javascript src="../vv_functions_tsla.js"></script>
+
+
+
+
+<script language="javascript">
+
+var select_id= new String();
+function get_select_id() {
+
+var str = new String();
+    str = parent.location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  parent.window.opener.location.href="+parent.window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=get_select_id();
+
+
+
+var strSelect_PN_A = new String('');
+
+
+strSelect_PN_A = '<select name="aaa"  size="24" style="font-size:10px"> \r\n'
+	+'<option value="0" selected>No value selected</option> \r\n'
+		
+
+	+'<option>B\'NAI SHOLOM CONGREGATION, BLOUNTVILLE, TENNESSEE</option>  \r\n'
+	+'<option>BANK OF NASHVILLE (TENN.)</option>  \r\n'
+	+'<option>BANK OF TENNESSEE</option>  \r\n'
+	+'<option>BANK OF TENNESSEE, NASHVILLE</option>  \r\n'
+	+'<option>BANK OF TENNESSEE, ROGERSVILLE</option>  \r\n'
+	+'<option>BAPTIST CHURCH OF CHRIST AT BIG SPRING (MCMINN COUNTY, TENN.)</option>  \r\n'
+	+'<option>BAPTIST CONCORD ASSOCIATION OF MIDDLE TENNESSEE</option>  \r\n'
+	+'<option>BAPTIST HOSPITAL (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>BAPTIST STATE CONVENTION OF WEST TENNESSEE</option>  \r\n'
+	+'<option>BAR ASSOCIATION OF TENNESSEE</option>  \r\n'
+	+'<option>BARTLETT-ELLENDALE CEMETERY (SHELBY COUNTY, TENN.)</option>  \r\n'
+	+'<option>BATTLE GROUND ACADEMY (FRANKLIN, TENN.)</option>  \r\n'
+	+'<option>BEAN STATION TAVERN (TENN.)</option>  \r\n'
+	+'<option>BEAVER CREEK CHURCH (KNOX COUNTY, TENN.)</option>  \r\n'
+	+'<option>BEECH CUMBERLAND PRESBYTERIAN CHURCH (SUMNER COUNTY, TENN.)</option>  \r\n'
+	+'<option>BELLE MEADE COUNTRY CLUB (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>BELLE MEADE PLANTATION (TENN.)</option>  \r\n'
+	+'<option>BELLS CAMPGROUND CEMETERY (KNOX COUNTY, TENN.)</option>  \r\n'
+	+'<option>BELMONT (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>BELMONT CHURCH (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>BELMONT COLLEGE (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>BELMONT UNITED METHODIST CHURCH (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>BENNETT-MAY AND COMPANY (PULASKI, TENN.)</option>  \r\n'
+	+'<option>BENT CREEK BAPTIST CHURCH (HAMBLEN COUNTY, TENN.)</option>  \r\n'
+	+'<option>BETHBEREI PRESBYTERIAN CHURCH (MARSHALL CHURCH, TENN.) - HISTORY</option>  \r\n'
+	+'<option>BETHEL COLLEGE (MCKENZIE, TENN.)</option>  \r\n'
+	+'<option>BETHEL METHODIST CHURCH (MONTGOMERY COUNTY, TENN.)</option>  \r\n'
+	+'<option>BETHEL PRESBYTERIAN CHURCH (KINGSTON, TENN.)</option>  \r\n'
+	+'<option>BETHEL UNITED PRESBYTERIAN CHURCH (KINGSTON, TENN.)</option>  \r\n'
+	+'<option>BETHLEHEM BAPTIST CHURCH (HARDEMAN COUNTY, TENN.)</option>  \r\n'
+	+'<option>BETHLEHEM BAPTIST CHURCH (ROBERTSON COUNTY, TENN.)</option>  \r\n'
+	+'<option>BETHLEHEM UNITED METHODIST CHURCH (FRANKLIN, TENN.)</option>  \r\n'
+	+'<option>BIBLE TRAINING SCHOOL AND COLLEGE (SEVIERVILLE, TENN.) - PERIODICALS</option>  \r\n'
+	+'<option>BIG EMORY BAPTIST ASSOCIATION (TENN.)</option>  \r\n'
+	+'<option>BLACKMAN STOCK MEDICINE CO. (CHATTANOOGA, TENN.)</option>  \r\n'
+	+'<option>BLEDSOE FEMALE ACADEMY (SUMNER COUNTY, TENN.)</option>  \r\n'
+	+'<option>BLOUNT COUNTY GENEALOGICAL & HISTORICAL SOCIETY (BLOUNT COUNTY, TENN.)</option>  \r\n'
+	+'<option>BLUE GRASS SCHOOL (KNOX COUNTY, TENN.)</option>  \r\n'
+	+'<option>BLUEBIRD CAFE (RESTAURANT : NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>BLUFF FURNACE (CHATTANOOGA, TENN.)</option>  \r\n'
+	+'<option>BODINE ACADEMY (HUMPHREYS COUNTY, TENN.)</option>  \r\n'
+	+'<option>BOLIVAR CUMBERLAND PRESBYTERIAN CHURCH (BOLIVAR, TENN.)</option>  \r\n'
+	+'<option>BOLIVAR FEMALE ACADEMY (BOLIVAR, TENN.)</option>  \r\n'
+	+'<option>BOOM CAMP CLUB (WALLING, TENN.)</option>  \r\n'
+	+'<option>BORDWINE FUNERAL HOME (ETOWAH, TENN.)</option>  \r\n'
+	+'<option>BOSCOBEL COLLEGE (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>BOWEN-CAMPBELL HOUSE (GOODLETTSVILLE, TENN.)</option>  \r\n'
+	+'<option>BOY SCOUTS OF AMERICA - TROOP 27 (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>BRADEN UNITED METHODIST CHURCH (BRADEN, TENN.)</option>  \r\n'
+	+'<option>BRADFORD HIGH SCHOOL (BRADFORD, TENN.)</option>  \r\n'
+	+'<option>BRADLEY HIGH SCHOOL (CLEVELAND, TENN.)</option>  \r\n'
+	+'<option>BRAINERD MISSION (TENN.)</option>  \r\n'
+	+'<option>BRANHAM & HUGHES SCHOOL (SPRING HILL, TENN.)</option>  \r\n'
+	+'<option>BRENTWOOD LIBRARY (TENN.)</option>  \r\n'
+	+'<option>BRICEVILLE METHODIST EPISCOPAL CHURCH, SOUTH (BRICEVILLE, TENN.)</option>  \r\n'
+	+'<option>BRICEVILLE SCHOOL (BRICEVILLE, TENN.)</option>  \r\n'
+	+'<option>BROAD STREET UNITED METHODIST CHURCH (CLEVELAND, TENN.)</option>  \r\n'
+	+'<option>BROADMOOR CHURCH OF GOD (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>BROOKSIDE BAPTIST CHURCH (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>BRUSHY MOUNTAIN STATE PENITENTIARY (TENN.)</option>  \r\n'
+	+'<option>BUFFALO CUMBERLAND PRESBYTERIAN CHURCH (HUMPHREYS COUNTY, TENN.)</option>  \r\n'
+	+'<option>BUFFALO MALE AND FEMALE INSTITUTE (CARTER COUNTY, TENN.)</option>  \r\n'
+	+'<option>BULL RUN STEAM PLANT (CLINTON, TENN.)</option>  \r\n'
+	+'<option>BURRITT COLLEGE (SPENCER, TENN.)</option>  \r\n'
+	+'<option>BUSH MEETING HOUSE, METHODIST EPISCOPAL CHURCH, SOUTH (HARDEMAN COUNTY, TENN.)</option>  \r\n'
+	+'<option>BUSINESS AND PROFESSIONAL WOMEN&#039;S CLUBS OF TENNESSEE</option>  \r\n'
+
++'</select> \r\n';
+	
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+<body class="background">
+
+
+
+
+<form name="FormOne" >
+
+
+<div name="SS" id="SS">
+<script>
+document.write(
+
+	 '<table border="1" cellpadding="4" cellspacing="0"  width="90%">\r\n'
+	+'<tr><td  bgcolor="ddeeff">\r\n'
+	///+'vv_functions.htm called by '+select_id+' <br>\r\n'
+	+'<b>Select Corporate Author B</b> \r\n'
+	+'</td></tr><tr><td bgcolor="ddeeff"> \r\n' 
+	+ strSelect_PN_A
+
+	+'</td></tr></table> \r\n'
+	///+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+</script>
+	
+</div>
+
+<input type="button" onclick="showSelection();" name="B1" value="Corporate Author">
+
+</form>
+
+<script>
+
+
+
+                  
+
+function showSelection() {
+
+val = new String();
+
+for ( i=0; i< document.FormOne.aaa.length; i++ ) {
+
+if ( document.FormOne.aaa[i].selected == true ) {
+  	val = document.FormOne.aaa[i].text;
+	break;
+	}
+else { val = "you never selected anything"; 
+	}
+
+}
+////////////////////////alert ("You selected " +val);
+
+val=reformatCa(val);
+
+switch ( select_id ) {
+
+case  "subject_name_lcsh_01" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_01.value=val;
+	parent.window.close();
+	break;
+
+case  "subject_name_lcsh_02" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_02.value=val;
+	parent.window.close();
+	break;
+}//end switch
+
+}///end function
+</script>
+

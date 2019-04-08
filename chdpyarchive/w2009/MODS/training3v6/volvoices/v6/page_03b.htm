@@ -1,0 +1,469 @@
+
+<html>
+<head>
+<title>
+page_03
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+<!--script language=javascript src="vv_compose_tags.js"></script-->
+
+<script language=javascript src="vv_formvardebug.js"></script>
+<script language=javascript src="vv_build_mods_utility.js"></script>
+<script language=javascript src="ipage_03b/vv_build_mods_page_03.js"></script>
+<script language=javascript src="ipage_03b/vv_load_UF_DF_page_03b.js"></script>
+<script>
+
+/*
+<br>&nbsp;<input type="text" name="mods_genre_authority" value="chenhall" size="6" READONLY class="requirednw">
+<br><select name="mods_genre_select" size="30" onclick="select_mods_genre();">
+*/
+function select_mods_genre(){
+for(i=0;i<3;i++){
+	if (document.DF.mods_genre_select[i].selected==true){
+	    document.DF.mods_genre_authority.value=
+	    document.DF.mods_genre_select[i].value;
+	}
+}//end for
+
+
+}//end function select_mods_genre(){
+
+
+</script>
+
+
+
+</head>
+
+<script> document.write('<body onload="load_DF_form();"  bgcolor="'+parent.adb_background_color+'" >'); </script>
+
+<font face="arial" size="3">
+<center><font face="arial">
+<h2><script> document.write(parent.adb_project_name); </script>
+ Workbook Page 3 b </h2>
+</center>
+
+<script>
+///Civil War Salt Peter Mining None, LCNAF, ULAN. 
+
+
+
+</script>
+
+<form name="DF"  action="new.xml">
+
+<table class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="ddeeff">
+<tr class="bgstandard"><td colspan="3">
+
+Required Fields are <u>underlined</u>.
+Non-Required Fields are not underlined.
+</td></tr>
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>MODS LABEL</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+<font face="arial">
+
+
+
+<tr class="bgstandard">
+<td class="label13u">
+Language
+</td>
+<td>&nbsp;<input type="text" name="language" value="eng" size="2" class="requirednw" READONLY
+>
+&nbsp;<input type="text" name="language_display" value="English" xsize="36" READONLY class="required300w" 
+>
+&nbsp;<input type="button" name="Blanguage" value="Select Language" class="button120w"
+onclick="parent.L.selectOneOption(this,'400','600')" >
+&nbsp;<input type="button" name="Clanguage" value="Clear"  class="button80w"
+onclick="parent.L.clearSelection(this,2)" >
+&nbsp;&nbsp;<font face="arial" size="1"><br>iso639-2 Code, Description for Language. Enter values by clicking the Select Language Button.
+<br>Values are from <a href="http://www.loc.gov/standards/iso639-2/php/code_list.php" target="_blank">http://www.loc.gov/standards/iso639-2/php/code_list.php</a>.
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td class="label10nou">
+<font face="arial" size="2"><b><u>Resource Type Help</u></b></font>
+</td>
+<td><font face='arial' size='1'>&nbsp;Resource Type associated with this object as reported in the Admin DB.
+<br>&nbsp;Please use this as a guide in filling out the Type of Resource input boxes below.
+<br>&nbsp;<input type="text" name="item_type" value="" size="36" 
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:300px; "
+><font face='arial' size='1'>Type of resource from Admin DB. 
+</td>
+<td>&nbsp</td>
+
+
+
+<tr class="bgstandard" >
+<td class="label13u">
+Type of Resource <br># 1
+</td>
+<td>&nbsp;<input type="text" name="type_of_resource_01" value="" size="2" READONLY  class="required300w"
+>
+
+<input type="button" name="Btype_of_resource_01" value="Select" class="button120w"
+onclick="parent.L.selectOneOption(this,'600','400')">
+<input type="button" name="Ctype_of_resource_01" value="Clear" class="button80w"
+onclick="parent.L.clearSelection(this,1)">
+<font face="arial" size="1" color="000000" ><br>Category, Description for Type of Resource.
+Enter values by clicking the Select button. <br>Values are from MODS Type of Resource vocabulary at 
+<a href="http://www.loc.gov/standards/mods/v3/mods-userguide-elements.html#typeofresource" target="_blank">
+http://www.loc.gov/standards/mods/v3/mods-userguide-elements.html#typeofresource</a>.
+
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou">
+Type of Resource <br># 2
+</td>
+<td>&nbsp;<input type="text" name="type_of_resource_02" value="" size="2" READONLY  class="notrequired300w"
+>
+
+<input type="button" name="Btype_of_resource_02" value="Select" class="button120w"
+onclick="parent.L.selectOneOption(this,'600','400')">
+<input type="button" name="Ctype_of_resource_02" value="Clear" class="button80w"
+onclick="parent.L.clearSelection(this,1)">
+<font face="arial" size="1" color="000000" ><br>Category, Description for Type of Resource.
+Enter values by clicking the Select button. <br>Values are from MODS Type of Resource vocabulary at 
+<a href="http://www.loc.gov/standards/mods/v3/mods-userguide-elements.html#typeofresource" target="_blank">
+http://www.loc.gov/standards/mods/v3/mods-userguide-elements.html#typeofresource</a>.
+
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou">
+Type of Resource <br># 3
+</td>
+<td>&nbsp;<input type="text" name="type_of_resource_03" value="" size="2" READONLY  class="notrequired300w"
+>
+
+<input type="button" name="Btype_of_resource_03" value="Select" class="button120w"
+onclick="parent.L.selectOneOption(this,'600','400')">
+<input type="button" name="Ctype_of_resource_03" value="Clear" class="button80w"
+onclick="parent.L.clearSelection(this,1)">
+<font face="arial" size="1" color="000000" ><br>Category, Description for Type of Resource.
+Enter values by clicking the Select button. <br>Values are from MODS Type of Resource vocabulary at 
+<a href="http://www.loc.gov/standards/mods/v3/mods-userguide-elements.html#typeofresource" target="_blank">
+http://www.loc.gov/standards/mods/v3/mods-userguide-elements.html#typeofresource</a>.
+
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou">
+Genre Help 
+</td>
+<td><font face="arial" size="2">&nbsp; <b>>> <script> document.write(parent.adb_itemgenre); </script> <<</b>
+<br>&nbsp; </font><font face="arial" size="1">Genre Term from the Admin DB. 
+<br>&nbsp; </font><font face="arial" size="1">Please verify the correct authority for use of this term ( aat, Chenhall, MARC ) before entering it.
+<br>&nbsp; The link to aat takes you to a search page where you may enter the term.
+<br>&nbsp;<input type="text" name="item_genre" value="" size="36" READONLY
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:300px; "
+><font face='arial' size='1'>Type of genre from Admin DB. 
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13u">
+Genre
+</td>
+<td valign="top">&nbsp;<table border="00" cellpadding="0" cellspacing="0">
+<tr><td valign="top">
+<select name="mods_genre_select" size="3" onclick="select_mods_genre();">
+	<option value="aat">aat </option>
+	<option value="nmt">Chenhall</option>
+	<option value="marcgt">MARC</option>
+	</select>
+</td><td valign="top">&nbsp;
+<font face="arial" size="2">
+<b>aat</b> 
+</font><font face="arial" size="1">
+Please use <a href="http://www.getty.edu/research/conducting_research/vocabularies/aat/" target="_blank">aat vocabulary from Getty</a>
+<br>&nbsp;
+</font><font face="arial" size="2">
+<b>Chenhall</b> 
+</font><font face="arial" size="1">
+Please use the standard vocabulary for objects developed by <a href="http://www.amazon.com/Nomenclature-3-0-Museum-Cataloging-Classifying/dp/0759111936/ref=sr_1_1?ie=UTF8&s=books&qid=1264708769&sr=1-1" target="_blank">Dr. Robert Chenhall.</a>
+
+<br>&nbsp;
+</font><font face="arial" size="2">
+<b>MARC</b> 
+</font><font face="arial" size="1">
+Please select one term from the online MARC Genrelist with the button below.
+<br>&nbsp;
+MARC Genre Descriptions from <a href="http://www.loc.gov/marc/sourcecode/genre/genrelist.html" target="_blank">http://www.loc.gov/marc/sourcecode/genre/genrelist.html</a> MARC  Genrelist.
+</font>
+</td></tr></table>
+<br>&nbsp;<input type="text" name="mods_genre_authority" value="" size="6" READONLY class="requirednw">
+&nbsp;<input type="text" name="mods_genre" value="" size="2"  class="required300w" 
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+onKeyPress="return parent.L.mods_genre_rule(event, this)">
+<input type="button" name="Bmods_genre" value="Select" class="button80w"
+onclick="parent.L.selectOneOption(this,'400','500')">
+<input type="button" name="Cmods_genre" value="Clear" class="button80w"
+onclick="parent.L.clearSelection(this,1)">
+<font face="arial" size="1" color="000000" ><br>&nbsp;
+Authority &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Description. 
+
+<br>Characterizes the particular style, form, or content of resource.  Examples: letter, photograph, sculpture.
+
+<font face="arial" size="1" color="000000" > 
+<td>&nbsp</td>
+</tr>
+
+
+<!---------------HIDDEN FIELD------------------------------------------>
+<input type="hidden" name="digital_origin" value="reformatted digital" >
+
+<!----------------------------------------------------------------------
+<tr class="bgstandard">
+<td class="label13u">
+Digital Origin
+</td>
+<td>&nbsp;<input type="text" name="digital_origin" value="reformatted digital" size="36" READONLY 
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:300px; background:#ffffaa"
+>
+&nbsp;&nbsp;<font face="arial" size="1">< !   -- digitalOrigin required, not repeatable --    > should not display on form.
+</td>
+<td>&nbsp</td>
+</tr>
+------------------------------------------------------------------>
+<!---the tags for museum_form_type_technique and museum_form_type_medium 
+built on this page but inputs are on museum page
+<!------------------MUSEUM FIELDS technique, medium ----------------->
+<input type="hidden" name="museum_form_type_technique" value="">
+<input type="hidden" name="museum_form_type_medium" value="">
+
+
+
+<!---------------HIDDEN FIELD---required,repeatable--------------------------------------->
+<input type="hidden" name="internetmediatype" value="image/jpeg">
+
+
+<tr class="bgstandard">
+<td class="label13nou">
+Extent Help 
+</td>
+<td><font face="arial" size="2">&nbsp; <b>>> <script> document.write(parent.adb_collextent+", "+parent.adb_itemdim); </script> <<</b>
+<br>&nbsp; </font><font face="arial" size="1">Extent Term from the Admin DB. 
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label10nou">
+<font face="arial" size="2"><b><u>Extent</u></b></font><br>(# digital images) 
+</td>
+<td>&nbsp;<input type="text" name="extent_pages" value="" size="36" onKeyPress="return parent.L.digits_only_rule(event,this)"
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:300px; background:#ffffaa"
+><font face='arial' size='1'>Number digital images that comprise the resource.  Only digits allowed.
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label10nou">
+<font face="arial" size="2"><b><u>Extent</u></b></font><br>(# of physical objects) 
+</td>
+<td>&nbsp;<input type="text" name="extent_number_of_objects" value="" size="36" 
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:300px; background:#ffffaa"
+><font face='arial' size='1'>Number of physical objects that comprise the resource.  Examples: 2 photographs, 14 sketches, 5 posters,
+or 10 pages.
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td class="label10nou">
+<font face="arial" size="2"><b></u>Extent</u></b></font><br>(dimensions) 
+</td>
+<td>&nbsp;<input type="text" name="extent_dimensions" value="" size="36" 
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:300px; background:#ffffff"
+><font face='arial' size='1'>Physical dimensions of resource.  Example: 8 x 10 in
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label10nou">
+<font face="arial" size="2"><b>Abstract</b></font><br>1500 characters
+</td>
+<td class="value10nou" >&nbsp;
+<textarea name="mods_genre_abstract" cols="60" rows="8"  
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; xwidth:300px"
+cols="60" rows="8" 
+>
+</textarea>
+<font face='arial' size='1'><br>Short description of the content of the resource.  1500 characters or less.
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+
+
+
+
+<tr class="bgstandard">
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+<tr class="bgstandard"><td colspan="3" align="center">
+&nbsp;&nbsp;
+<!--- this button gives html display -->
+<input type="button" name="B_TAGS1" value="Save and View MODS TAGS(1)"
+onclick="buildModsTags(1);" class="buttonnw">
+<!--- this button gives xml download txt file when you do view source -->
+<input type="button" name="B_TAGS0" value="Save and View MODS TAGS(0)"
+onclick="buildModsTags(0);" class="buttonnw">
+</td></tr>
+
+
+</table>
+
+
+</form name="forms[0]">
+
+
+<center><font face="arial">
+<h2><script> document.write(parent.adb_project_name); </script>
+ Workbook Page 3 b </h2>
+</center>
+
+<hr>
+<script>
+
+/////chdchdchd
+
+
+function buildModsTags(N) {
+
+//form_filter();
+
+////do this first so current values are loaded regardless of validation status
+load_UF_form();
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+//before writing MODS TAGS, make sure all required fields are populated
+//checkAllRequired... true  validation sets validation status to 1  -- complete
+//checkAllRequired... false validation sets validation status to 0  -- incomplete
+
+if (!parent.L.checkAllRequiredElements_Page_03() ) {
+	parent.L.update_page_validation(3,0);
+	return;
+}
+parent.L.update_page_validation(3,1);
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+var num = new Number();
+    num = N;
+
+var aps= new Array();
+var hps= new Array();
+var cps= new Array();
+    
+    hps = buildTagsArray_header(num);
+    aps = buildTagsArray_page_03(num);
+    cps = buildTagsArray_closer(num);
+//=================================================
+
+document.write('<input type="button" name="BBACK" onclick="javascript: history.back()" value="BACK"><P>');
+
+if (num==1){
+document.write('<font face="Elephant" size="3" color="a00000">'+parent.adb_project_name+' Workbook, Page 3 b<p></font>');
+//PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+document.write('Save your final file to: <font face="Elephant" size="3" color="a00000">'
++parent.U.document.UF.XMLFILENAME.value+'</font><p>');
+
+document.write('<font face="Elephant" size="3" color="a00000">PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+		+"This is the generated xml script.  Values you entered are highlighted in red."
+                +"<br>oNI=0 -- text download"
+                +" -- oNI=1 -- html display"
+                +' -- oNI = num = <font face="Elephant" size="3" color="a00000">'+num+'</font>'
+		+"<HR>");
+}else
+if(num==0){
+document.write("\r\n\r\nClick on View Source to see a text version of the generated xml file.<p>");
+
+}
+
+//document.write('< ? xml version="1.0"  ? > \r\n'); 
+///document.write("Content-Type: text/xml ")
+
+var brtag = new String(BRTAG[num]);
+document.write(brtag+"\n\n<!-- Generated XML below the cutline.\n\n---------------------------------------------->\n\n");
+
+
+for (i=0;i<hps.length;i++) {
+	var vps = new String(hps[i]);
+ 	document.write(brtag+vps);
+	}
+
+
+
+for (i=0;i<aps.length;i++) {
+	var vps = new String(aps[i]);
+	document.write(brtag+vps);
+	}
+
+
+
+for (i=0;i<cps.length;i++) {
+	var vps = new String(cps[i]);
+	document.write(brtag+vps);
+	}
+
+
+
+}//end function
+
+
+formvardebug();
+
+</script>
+	
+
+
+</body>
+</html>
+

@@ -1,0 +1,122 @@
+<html>
+<head>
+<title>step_007vvb</title>
+</head>
+<body>
+<font face="arial" size="3">
+<b>step_007vvb.htm</b>
+<br><a href="step_007vvb.htm">007vvb</a>&nbsp; <a href="step_007vvo.htm">007vvo</a>&nbsp; <a href="step_007vvt.htm">007vvt</a>
+<br>http://diglib.lib.utk.edu/~cdeane/WORKBOOK/dataprep/dlxs/step_007vvb.htm
+<br><a href="http://diglib.lib.utk.edu/~cdeane/WORKBOOK/dataprep/dlxs/step_007vvb.htm"
+target="_blank">step_007vvb new window</a> (table width="100%")&nbsp;&nbsp;&nbsp; 
+<p><u>TEI files processed for pageviews</u>
+<hr>
+<p>&nbsp;
+<table border="1" cellpadding="4" cellspacing="0" width="100%">
+<tr>
+<td valign="top" width="3%">&nbsp;</td>
+<td valign="top" width="96%" colspan="3">04 notext vvb</td>
+</tr>
+
+<tr>
+<td valign="top" width="3%">&nbsp;</td>
+<td valign="top" colspan="3">
+<u>BIN</u>
+<br><u>TAKE CARE OF VVB FILES</u>
+<br><u>TEXTCLASS notext</u>
+<br><u>from dlpstextclass (in tei_output) to pageview to release</u>
+<p>&nbsp;
+<br><u>Assumes you have already done:</u>
+<li>Copy dlxstextclass tei combo files to /d1/dlxs/obj/v/vv* directories
+<li>Copy tei_ouptput/*/0*xml to subfiles
+<li>and everything else on <a href="step_007t.htm" target="_blank">step_007t</a>
+
+<p>DO COMBOS
+<br>&nbsp;&nbsp;&nbsp;  cd /d1/workarea/dlxs/text/tel
+<br>&nbsp;&nbsp;&nbsp; /bin/cp tei_output/notext/vvb.xml /d1/dlxs/obj/v/vvb/
+<br>&nbsp;&nbsp;&nbsp; /bin/cp tei_output/ocr/vvo.xml /d1/dlxs/obj/v/vvo/
+<br>&nbsp;&nbsp;&nbsp; /bin/cp tei_output/typed/vvt.xml /d1/dlxs/obj/v/vvt/
+<p>DO SUBFILES
+<br>&nbsp;&nbsp;&nbsp;  cd /d1/workarea/dlxs/text/tel
+<br>&nbsp;&nbsp;&nbsp; /bin/cp tei_output/notext/*0000.xml /d1/dlxs/prep/v/vvb/subfiles/ 
+<br>&nbsp;&nbsp;&nbsp; /bin/cp tei_output/ocr/*0000.xml /d1/dlxs/prep/v/vvo/subfiles/ 
+<br>&nbsp;&nbsp;&nbsp; /bin/cp tei_output/typed/*0000.xml /d1/dlxs/prep/v/vvt/subfiles/ 
+
+<p>&nbsp;
+<br><u>cd /d1/dlxs/bin/v/vvb</u> 
+<p>&nbsp;
+<br>&nbsp;&nbsp;&nbsp; cd /d1/dlxs/bin/v/vvb
+<br>&nbsp;&nbsp;&nbsp; make convert
+<br>&nbsp;&nbsp;&nbsp;
+<!--
+<br>&nbsp;&nbsp;&nbsp; (_make_ nodefy does not work, run the 3 commands from make nodefy)
+-->
+<br>&nbsp;&nbsp;&nbsp;
+
+<br>&nbsp;&nbsp;&nbsp; perl tei2text /d1/dlxs/obj/v/vvb/vvb.xml /d1/dlxs/obj/v/vvb/
+<br>&nbsp;&nbsp;&nbsp; perl nodefy /d1/dlxs/obj/v/vvb/vvb.xml
+<br>&nbsp;&nbsp;&nbsp; /bin/mv /d1/dlxs/obj/v/vvb/vvb.xml.noded  /d1/dlxs/obj/v/vvb/vvb.xml
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (The mv command must complete before next step.)
+<br>&nbsp;&nbsp;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; make norm
+<br>&nbsp;&nbsp;&nbsp; make validate 
+<br>&nbsp;&nbsp;&nbsp; ls -l /d1/dlxs/prep/v/vvb/vvb.errors
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (vvb.errors should have size 0 )
+<br>&nbsp;&nbsp;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (If you changed mappings or regions do next 3 steps.)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; If you change a single character you have to re-index. see contents of index for make index <a href="xfiles/step_007q/vvb_index.txt" target="_blank">here</a>.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To re-index, do commands below.
+<br>&nbsp;&nbsp;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; make singledd
+<br>&nbsp;&nbsp;&nbsp; make sgml
+<br>&nbsp;&nbsp;&nbsp; make post
+<br>&nbsp;&nbsp;&nbsp;
+<!--
+<br>&nbsp;&nbsp;&nbsp;NO PERL INDEX STEP
+-->
+<br>&nbsp;&nbsp;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; make pv_createxmldirs > Adate.txt
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; What happens when you run make pv_createxmldirs?
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  0. a ton of print-to-screen generated, redirect if desired
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  1. /d1/dlxs/obj/v/vvb/0* index directories created
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  2. including bad index directories due to legacy files
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  3. to remove bad, follow directions in <a href="xfiles/step_007q/vvb_remove_depr.txt" target="_blank">vvb remove_depr.txt</a>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+<br>&nbsp;&nbsp;&nbsp; cd /d1/dlxs/bin/v/vvb
+<br>&nbsp;&nbsp;&nbsp; make pv_makepageviewdata > Bdate.txt
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This command makes the pageview.dat files, which need help 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Again, a ton of print-to-screen generated, redirect if desired
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+<br>&nbsp;&nbsp;&nbsp;REPAIR PAGEVIEW.DAT FILES
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  cd /d1/dlxs/bin/util/pv
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  python pvchk.py vvb > vvb_output_1.txt
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  python pvfix.py vvb > vvb_output_2.txt
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  python pvchk.py vvb > vvb_output_3.txt
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  NOW view output files, vvb_output3.txt should have no errors 
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  6. If errors remain, you still have legacy directories that are messing things up.
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+<br>&nbsp;&nbsp;&nbsp;DO NOT PROCEED UNTIL ALL pageview.dat errors are gone
+<br>&nbsp;&nbsp;&nbsp;OR YOU MAY PUT BAD ROWS INTO THE dlxs.pageview table  
+<br>&nbsp;&nbsp;&nbsp;--------------------------------------------------------------------
+<br>&nbsp;&nbsp;&nbsp;---BUT IF YOU ALREADY HAVE GOOD ROWS in dlxs.pageview table
+<br>&nbsp;&nbsp;&nbsp;---STOP HERE-----------------------------------------------
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+<br>&nbsp;&nbsp;&nbsp; cd /d1/dlxs/bin/v/vvb
+<br>&nbsp;&nbsp;&nbsp; make pv_importpageviewdata > Cdate.txt
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Again, a ton of print-to-screen generated, redirect if desired
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+
+<br>&nbsp;&nbsp;&nbsp;
+<br>&nbsp;&nbsp;&nbsp; At this point, vvb files are ready for a textclass release to production.
+
+
+</td></tr></table>
+</body>
+</html>

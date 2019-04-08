@@ -1,0 +1,71 @@
+#!/usr/bin/perl
+
+$dir = "/home/firestar/xpat/images/roth/catmebib/";
+#$dir = "/home/firestar/xpat/images/museum/ualr/files/";
+#$dir = "/d1/wpa/ua/ReadyToGo/restricted/metadata/";
+#$dir = "/d1/dlxs/prep/t/tdh/";
+#$dir = "/home/firestar/xpat/images/museum/ualr/files/";
+#$dir = "/home/firestar/xpat/images/museum/utk/files/";
+#$dir = "/home/firestar/xpat/images/roth/dlc/";
+#$dir = "/d1/dlxs/img/r/rth/large/";
+$begin = 1;
+$end = 900;
+#$end = 389;
+#$end = 900;
+#$end = 1339;
+$startit = "roth";
+$endit = "";
+#$endit = ".xml";
+#$endit = ".jpg";
+$count = 0;
+
+#opendir (DIR, $dir) or die "can't open $dir\n";
+#while ($file = readdir(DIR)){
+ # if (!($file /^./)){
+ #  $file = s/\.jpg//;
+ #  push (@inthere, $file);
+ #  }
+ # }
+
+for ($i = $begin; $i <=$end; $i++){
+  $num = sprintf("%4s", $i);
+#  $num = sprintf("%5s", $i);
+#  $num = sprintf("%3s", $i); 
+  $num =~ tr/ /0/;
+#  print $num."\n";
+  $which = $dir.$startit.$num.$endit;
+#print $which."\n";
+  if (-e $which){
+    $count ++;
+    }
+  else {
+   if ($lastnum == $num -1){
+    #  print "lastnum: $lastnum;  num: $num\n";
+      $run = "yes"; $lastnum = $num;
+      }
+   elsif ($run eq "yes"){
+       push (@nogo, "$startit$start - ".$startit.$lastnum);
+       $start = $num;
+       $lastnum = $num;
+       $run = "no";
+       }
+   else{
+      $start = $num;
+      if ($lastnum){ push (@nogo, $startit.$lastnum);}
+      $lastnum = $num;
+      }
+    }
+  }
+if ($run eq "yes"){
+   push (@nogo, "$startit$start - ".$startit.$lastnum);
+   }
+else{
+  push (@nogo, $startit.$lastnum);
+  }
+
+
+print "there are $count files in $dir.";
+print "on checking $begin to $end, these files are missing:\n";
+foreach (@nogo){ print "$_\n"; }
+
+

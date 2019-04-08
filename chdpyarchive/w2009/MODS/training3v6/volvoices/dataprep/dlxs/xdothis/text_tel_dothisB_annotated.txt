@@ -1,0 +1,451 @@
+This file online as:
+http://diglib.lib.utk.edu/~cdeane/WORKBOOK/dataprep/dlxs/xdothis/text_tel_dothisB_annotated.txt
+
+
+
+/d1/workarea/dlxs/text/tel/dothis
+dothisB.txtls 
+
+SECOND:  Look for duplicates, that need to be reworked using existing pids... and removing old version
+1)put xml files in typed,ocr, notext mods folder, access images in jpgs folder
+2) chkfiles  # makes sure you have a jpeg for each one referenced
+     # also creates  file "howmany" that tells me how many pages I have for each one.
+#3)run chkid to make sure internal id matches file name
+#  and to verify you don't have 2 files with the same name
+4) run modsTC > checkme
+check checkme for "ERROR"
+grep % newmods/*/*
+grep x0 newmods/*/*
+grep x1 newmods/*/*
+grep x2 newmods/*/*
+hexmess
+
+4.5) copy done tei into tei directories if they're not there
+5) run transform on the new TEI-------------------------------------------ran 
+6) cat validate and run that command to validate---?
+7)check ./output/arrt.errors---------------------? 
+ ls -lai output/*/*errors
+
+
+This is what is in the file validate:
+ nsgmls -s -f ./output/typed/vvt.errors /d1/dlxs/prep/v/vvt/vvt.inp output/typed/vvt.xml
+ nsgmls -s -f ./output/ocr/vvo.errors /d1/dlxs/prep/v/vvo/vvo.inp output/ocr/vvo.xml
+ nsgmls -s -f ./output/notext/vvb.errors /d1/dlxs/prep/v/vvb/vvb.inp output/notext/vvb.xml
+
+
+I ran the above 3 commands , then checked for errors
+
+[root@diglib2 tel]#  nsgmls -s -f ./output/typed/vvt.errors /d1/dlxs/prep/v/vvt/vvt.inp output/typed/vvt.xml
+[root@diglib2 tel]#  nsgmls -s -f ./output/ocr/vvo.errors /d1/dlxs/prep/v/vvo/vvo.inp output/ocr/vvo.xml
+[root@diglib2 tel]#  nsgmls -s -f ./output/notext/vvb.errors /d1/dlxs/prep/v/vvb/vvb.inp output/notext/vvb.xml
+[root@diglib2 tel]# ls -l output/*/v*
+-rw-r--r--  1 root root       0 Sep 11 12:34 output/notext/vvb.errors
+-rw-r--r--  1 root root  926624 Sep 11 11:46 output/notext/vvb.xml
+-rw-r--r--  1 root root       0 Sep 11 12:34 output/ocr/vvo.errors
+-rw-r--r--  1 root root 4421437 Sep 11 11:46 output/ocr/vvo.xml
+-rw-r--r--  1 root root       0 Sep 11 12:34 output/typed/vvt.errors
+-rw-r--r--  1 root root 1345949 Sep 11 11:46 output/typed/vvt.xml
+
+
+
+
+9)For textclass:
+ /bin/cp output/typed/vvt.xml /d1/dlxs/obj/v/vvt/.
+ /bin/cp output/notext/vvb.xml /d1/dlxs/obj/v/vvb/.
+ /bin/cp output/ocr/vvo.xml /d1/dlxs/obj/v/vvo/.
+
+cp ocr/jpegs/* /d1/dlxs/obj/v/vvo/JPG/.
+cp typed/jpegs/* /d1/dlxs/obj/v/vvt/JPG/.
+cp notext/jpegs/* /d1/dlxs/obj/v/vvb/JPG/.
+
+AND copy the subfiles (constitutent xml files) to /d1/dlxs/prep/v/vv_/subfiles
+  /bin/cp output/typed/*0000.xml /d1/dlxs/prep/v/vvt/subfiles/.
+  /bin/cp output/ocr/*0000.xml /d1/dlxs/prep/v/vvo/subfiles/.
+  /bin/cp output/notext/*0000.xml /d1/dlxs/prep/v/vvb/subfiles/.
+
+All the above ran without incident except
+[root@diglib2 tel]# cp typed/jpegs/* /d1/dlxs/obj/v/vvt/JPG/.
+cp: cannot stat `typed/jpegs/*': No such file or directory
+This is because there is no 080812/03 directory.
+
+
+
+10) then go to /d1/dlxs/bin/v/vv_ and run:
+11) make convert
+12) make nodefy (not working. why?  instead:
+   cat make_nodefy
+   cut and paste those commands into commandline.)
+13) if you changed mappings or regions, do:
+  make singledd
+  make sgml
+  make post
+  WE DID NOT CHANGE MAPPINGS OR REGIONS
+14) index  -- this is a command in vvb, vvo, vvt
+
+
+
+[root@diglib2 tel]# cd /d1/dlxs/bin/v/
+[root@diglib2 v]# ls
+vvb  vvo  vvt
+
+
+10a) cd /d1/dlxs/bin/v/vvb
+
+make convert
+	[root@diglib2 vvb]# make convert
+	/d1/dlxs/bin/t/text/isolat128bit.pl /d1/dlxs/obj/v/vvb//*.xml
+
+RUN_commands_from_makenodefy
+
+./tei2text /d1/dlxs/obj/v/vvb/vvb.xml /d1/dlxs/obj/v/vvb/
+./nodefy /d1/dlxs/obj/v/vvb/vvb.xml
+mv  /d1/dlxs/obj/v/vvb/vvb.xml.noded  /d1/dlxs/obj/v/vvb/vvb.xml
+	warning about overwrite, answer yes
+	mv: overwrite `/d1/dlxs/obj/v/vvb/vvb.xml'? y
+perl index
+
+
+10b) cd /d1/dlxs/bin/v/vvo
+
+make convert
+	/d1/dlxs/bin/t/text/isolat128bit.pl /d1/dlxs/obj/v/vvo//*.xml
+
+RUN_commands_from_makenodefy
+./tei2text /d1/dlxs/obj/v/vvo/vvo.xml /d1/dlxs/obj/v/vvo/
+./nodefy /d1/dlxs/obj/v/vvo/vvo.xml
+mv  /d1/dlxs/obj/v/vvo/vvo.xml.noded  /d1/dlxs/obj/v/vvo/vvo.xml
+	warning about overwrite, answer yes
+	mv: overwrite `/d1/dlxs/obj/v/vvo/vvo.xml'? y
+perl index
+
+
+10c) cd /d1/dlxs/bin/v/vvt
+
+make convert
+	/d1/dlxs/bin/t/text/isolat128bit.pl /d1/dlxs/obj/v/vvt//*.xml
+
+RUN_commands_from_makenodefy
+./tei2text /d1/dlxs/obj/v/vvt/vvt.xml /d1/dlxs/obj/v/vvt/
+./nodefy /d1/dlxs/obj/v/vvt/vvt.xml
+mv  /d1/dlxs/obj/v/vvt/vvt.xml.noded  /d1/dlxs/obj/v/vvt/vvt.xml
+	warning about overwrite, answer yes
+	mv: overwrite `/d1/dlxs/obj/v/vvt/vvt.xml'? y
+perl index
+
+
+15) make a release to production----------------------------?
+http://diglib2.lib.utk.edu/cgi/c/collmgr/collmgr?type=%24TYPE&class=image&submit=release
+dlxsadm
+eva39
+
+look online
+
+make sure jpegs are in place-------------------------------?
+ls /d1/dlxs/obj/v/vvb/JPG/
+ls /d1/dlxs/obj/v/vvo/JPG/
+ls /d1/dlxs/obj/v/vvt/JPG/
+
+16)copy new xml/sgml into /d1/dlxs/prep/v/vv_ (needed for pageview)
+/bin/cp ../../../obj/v/vvb/vvb.xml ../../../prep/v/vvb/vvb.xml
+/bin/cp ../../../obj/v/vvt/vvt.xml ../../../prep/v/vvt/vvt.xml
+/bin/cp ../../../obj/v/vvo/vvo.xml ../../../prep/v/vvo/vvo.xml
+
+
+/bin/cp /d1/dlxs/obj/v/vvb/vvb.xml /d1/dlxs/prep/v/vvb/vvb.xml
+/bin/cp /d1/dlxs/obj/v/vvt/vvt.xml /d1/dlxs/prep/v/vvt/vvt.xml
+/bin/cp /d1/dlxs/obj/v/vvo/vvo.xml /d1/dlxs/prep/v/vvo/vvo.xml
+	
+17) run make pageview from each bin directory --------------------------?
+
+cd /d1/dlxs/bin/v/vvb
+make pageview 
+	test subdirectories
+	find each xml
+	identify parent for each jpg
+	last 2 lines:
+	processing /d1/dlxs/obj/v/vvb/v/v/b/pageview.dat...
+	processing /d1/dlxs/obj/v/vvb/v/v/b/vvbunnorm.xml/pageview.dat...
+
+
+cd /d1/dlxs/bin/v/vvo
+make pageview 
+	test subdirectories
+	find each xml
+	identify parent for each jpg
+	last 2 lines:
+	processing /d1/dlxs/obj/v/vvo/v/v/o/pageview.dat...
+	processing /d1/dlxs/obj/v/vvo/v/v/o/vvounnorm.xml/pageview.dat...
+
+cd /d1/dlxs/bin/v/vvt
+make pageview 
+	test subdirectories
+	find each xml
+	identify parent for each jpg
+	last 2 lines:
+	processing /d1/dlxs/obj/v/vvt/v/v/t/pageview.dat...
+	processing /d1/dlxs/obj/v/vvt/v/v/t/vvtunnorm.xml/pageview.dat...
+
+ 
+18) cd to idx/WW and run make all (wordwheel) for each collection
+ and go on with the textclass stuff
+( if you've set up browsing, run that software.)--------------------------------------?
+
+cd /d1/dlxs/bin/WW
+
+----------------------------------------------------------------
+This is the contents of file /d1/dlxs/bin/WW/README.wordwheel
+
+Wed Mar 21 16:11:46 2001 pfarber
+
+0) Copy /l1/bin/WW/sample.ww.blank.dd to
+   /l1/idx/c/coll/WW/coll.ww.blank.dd and edit.
+
+1) Copy /l1/bin/WW/sample.ww.inp to /l1/idx/c/coll/WW/coll.ww.inp and
+   add necessary character entity declarations
+
+2) Copy /l1/bin/WW/Makefile to /l1/idx/c/coll/idx/WW/Makefile and
+   edit.
+
+3) Copy makeWordWheelFiles.sample.cfg to
+   /l1/idx/c/coll/idx/WW/makeWordWheelFiles.cfg and edit.
+
+   a) NOTE: comment out the two variables $gCollectionHost and
+   $gCollectionHostPort if the collection datsa is local to the
+   machine on which you are making the wodwheel, otherwise supply the
+   remote machine name where the collection data resides.
+
+4) cd to /l1/idx/c/coll/WW and run:
+      % /l1/bin/WW/makeWordWheelFiles.pl makeWordWheelFiles.cfg
+
+   This will create coll.ww.unnorm.sgm in /l1/prep/c/coll/WW
+
+5) coll.ww.unnorm is normed (in /l1/obj/c/coll) and indexed by the
+   Makefile, thereby creating a XPat indexed wordwheel file for some
+   other middleware to use once it has "use"d WW.pm
+
+NOTE: Input to makeWordWheelFiles.pl as specified in the .cfg can
+consist of one _or_more_ .sgm files, e.g. single .sgm collections like
+voltaire or multiple .sgm "collections" like POR.
+
+NOTE: The config file can specify an array of dd files for collections
+that have multiple indexes.
+
+Currently these 2 mechanisms are mutually exclusive.  Either a single
+collection can have multiple dd files or a collection of multiple .sgm
+files must have a single index.
+
+-----------------------------------------------------------------
+All the wordwheel files have same stuff:
+vi /d1/dlxs/prep/c/coll/WW/*
+<COLL>
+<COLLNAME>colla</COLLNAME>
+<REALM>
+<REALMNAME>author</REALMNAME>
+</REALM>
+<REALM>
+<REALMNAME>full text</REALMNAME>
+</REALM>
+<REALM>
+<REALMNAME>title</REALMNAME>
+</REALM>
+</COLL>
+-----------------------------------------------------------------
+ls -l /d1/dlxs/prep/c/coll/WW
+total 12
+-rw-r--r--  1 root root 185 May  9  2003 colla.ww.unnorm.sgm
+-rw-r--r--  1 root root 185 May  9  2003 collb.ww.unnorm.sgm
+-rw-r--r--  1 root root 187 May  9  2003 tdh0210.ww.unnorm.sgm
+
+So they are all from 2003.
+
+I am skipping this part of step 18.  
+------------------------------------------------------------------
+------------------------------------------------------------------
+------------------------------------------------------------------
+------------------------------------------------------------------
+Test for 0012 things
+cd /d1/workarea/dlxs/text/tel
+ls newmods/ocr/0012*
+ls newmods/typed/0012*
+ls  newmods/notext/0012*
+
+[root@diglib2 tel]# cd /d1/workarea/dlxs/text/tel
+[root@diglib2 tel]# ls newmods/ocr/0012*
+ls: newmods/ocr/0012*: No such file or directory
+[root@diglib2 tel]# ls newmods/typed/0012*
+ls: newmods/typed/0012*: No such file or directory
+[root@diglib2 tel]# ls  newmods/notext/0012*
+ls: newmods/notext/0012*: No such file or directory
+
+
+
+for bib class:
+separate out the newmods from institution 0012 and put in spc directory.
+/bin/mv newmods/ocr/0012* spc/mods/ocr/.
+/bin/mv newmods/typed/0012* spc/mods/typed/.
+/bin/mv newmods/notext/0012* spc/mods/notext/.
+
+-----------------------------------------------------------------
+/bin/mv newmods/ocr/0012* spc/mods/ocr/.-----------------not  needed this time
+/bin/mv newmods/typed/0012* spc/mods/typed/.-----------not needed this time
+/bin/mv newmods/notext/0012* spc/mods/notext/.----------not needed this time
+-----------------------------------------------------------------
+
+
+copy modsbib and search files from 0012 there also, for changes.
+/bin/mv modsbib/0012* spc/modsbib/.
+/bin/cp search/0012* spc/modssearch/.
+/bin/cp modsbib/* /d1/workarea/dlxs/bib/mods/vv/xml
+
+-------------------------------------------------------------------
+/bin/mv modsbib/0012* spc/modsbib/.--------------------------------not needed this time
+/bin/cp search/0012* spc/modssearch/.-------------------------------not needed this time
+/bin/cp modsbib/* /d1/workarea/dlxs/bib/mods/vv/xml-------------needed always, ran okay
+--------------------------------------------------------------------
+
+
+for search:
+/bin/cp search/* /d1/workarea/dlxs/bib/search/vv/xml/
+You will go there to put all the search and mods files from different directories up.
+ chown diglib */minithumbs/*
+scp */minithumbs/*jpg  diglib@diglib.lib.utk.edu:/d1/dlxs/web/thumbs/vv/.
+	This was run entirely on diglib -- see below
+(need these for search display;  this will fail if the source and target directories and files
+are not owned by diglib)
+
+/bin/cp search/* /d1/workarea/dlxs/bib/search/vv/xml/-----------------------------ran okay
+-----------------------------------------------------------------------------------------------------
+for this little block about scp the minithumbs:
+
+The original minithumbs are on 
+diglib: store1/area2/volvoices2008/vvImport/080812/*/minithumbs/*
+and I did a copy from one directory on diglib to another directory on diglib
+I copied all of the minithumbs yesterday as root.
+
+check minithumbs on diglib /d1/dlxs/web/thumbs/vv/
+
+ls -l /d1/dlxs/web/thumbs/vv/ | more
+some ownerships are root.root
+
+cd /d1/dlxs/web/thumbs/vv
+
+as root run chown
+ chown diglib.diglib 0070_00005*
+ chown diglib.diglib 0098*
+ chown diglib.diglib 0104*
+ chown diglib.diglib 0107*
+ chown diglib.diglib 0109*
+ chown diglib.diglib 0106*
+
+-----------------------------------------------------------------------------------------------------
+
+
+AFTER COMPLETING ALL COLLECTIONS from this pickup, go to /d1/workarea/telfiles
+and run "listfiles" and send Cricket the resulting list.  It runs off the newmods
+directory.  This must be done BEFORE moving the newmods to spc/mods.
+do NOT run infotrack on these yet, as we need to relate them to their EADs,  
+and alter them for crosslinking.
+hopefully you have all new dlc files in one directory alone.
+point infotrack at this directory and run it, to put info on files into
+InfoTrack database.  then copy new stuff to store1.
+
+
+For preservation files: 
+For mods, run the scripts in the bib/mods/vv directory.
+For Tei, run preserveTEI
+-----------------------------------------------------------------------------------------------------------
+For mods, run the scripts in the bib/mods/vv directory.
+cd /d1/workarea/dlxs/bib/mods/vv
+
+
+scripts in /d1/workarea/dlxs/bib/mods/vv
+
+badfiles
+fixPreserveSubjectsBib
+fixSubjectsBib
+OAI_modsbibToDC
+OAI_modsbibToMods
+OAI_modsbibToPresMods
+ 
+-----------------------------------------------------------------------------------------
+file /d1/workarea/dlxs/bib/mods/vv/dothis
+
+run badfiles > look
+and look at "look" to find out if you have all the files you need,
+  and ONLY the files you need.  make corrections if necessary.
+	[root@diglib2 vv]# perl badfiles > look_080911.txt
+	FILES ARE MISSING
+
+
+fixSubjectsBib  (repairs subjects in xml directory, puts them in newSubxml)
+cat openbib newSubxml/* closebib >  vvs-mods.xml
+cp vvs-mods.xml /d1/dlxs/prep/v/vvs-mods/.
+
+cd /d1/dlxs/prep/v/vvs-mods/
+do bib class setup  (run transform, and copy xml to obj directory
+
+        comment added by chd 080403 to explain the line above
+        [root@diglib2 vvs-mods]# transform
+        [root@diglib2 vvs-mods]# cp vvs-mods.xml /d1/dlxs/obj/v/vvs-mods/
+        cp: overwrite `/d1/dlxs/obj/v/vvs-mods/vvs-mods.xml'? Y
+
+go to /d1/dlxs/idx/v/vvs-mods
+run: make all
+make sure it's in the httpd conf directory, restart if adding
+release to production
+
+test in OAI
+
+fixPreserveSubjectsBib    (takes files from xml, fixes subjects and category
+                           attributes  and puts them in newPresSubxml)
+OAI_modsbibToPresMods     (takes files from newPresSubxml, outputs
+                             preservation mods with unicode in DLCpres)
+
+MODS files to be preserved are now in DLCpres.  Move with preservation TEI to join
+tiffs on preservation server.
+
+OAI_modsbibToMods and OAI_modsbibToDC are for testing the broker output of the bib
+records in mods and bib, writing the results to OAIDC and DLCnewSub
+
+fixSubjects takes MODS from DLC and repairs the subjects and puts the files in DLCnewSub
+(older script not currently in use).
+
+-----------------------------------------------------------------------------------------------------------
+
+
+19) for search stuff:
+#put mini thumbs in /d1/dlxs/web/vv/thumbs/ 
+/bin/cp search/* /d1/workarea/dlxs/bib/search/vv/xml/.
+cd /d1/workarea/dlxs/bib/search/vv/
+cat opensearch xml/* closesearch >  vvs-bib.xml
+cp vvs-bib.xml /d1/dlxs/prep/v/vvs-bib/.
+cd /d1/dlxs/prep/v/vvs-bib/
+do bib class setup  (run transform, and copy xml to obj directory
+go to /d1/dlxs/idx/v/vvs-bib
+run: make all
+make sure it's in the httpd conf directory, restart if adding
+release to production
+
+20)  for modsbib to OAI:  (get all the modsbib from here, image singles & multiples)
+mv modsbib/0012* spc/modsbib/.  (we don't want the SPC files in VV OAI.  they go with their own.)
+/bin/cp modsbib/* /d1/workarea/dlxs/bib/mods/vv/xml/.
+cd /d1/workarea/dlxs/bib/mods/vv/
+fixSubjectsBib
+cat openbib newSubxml/* closebib >  vvs-mods.xml
+cp vvs-mods.xml /d1/dlxs/prep/v/vvs-mods/.
+cd /d1/dlxs/prep/v/vvs-mods/
+do bib class setup  (run transform, and copy xml to obj directory
+go to /d1/dlxs/idx/v/vvs-mods
+run: make all
+make sure it's in the httpd conf directory, restart if adding
+release to production
+
+21) test in OAI
+22) check everything
+23) run infotrack
+24) copy stuff to diglib
+25) copy stuff to store2
+26) move everything to ./done/
+
+
+

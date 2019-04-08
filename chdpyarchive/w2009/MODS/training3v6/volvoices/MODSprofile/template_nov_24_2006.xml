@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mods:mods xmlns:mods="http://www.loc.gov/mods/v3" xmlns:xlink="http://www.w3.org/1999/xlink" ID="MODS" version="3.2" xmlns="http://www.loc.gov/mods/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://diglib.lib.utk.edu/dlc/standards/mods/v3.2/v3_mods-3-2.xsd">
+	<!-- Volunteer Voices MODS profile released 24 November 2006 by Melanie Feltner-Reichert -->
+	<!-- titleInfo required, not repeatable -->
+	<mods:titleInfo>
+		<!-- title required, not repeatable -->
+		<mods:title>title</mods:title>
+		<!-- mods label: Title -->
+		<!-- dc:title -->
+		<!-- admin:itemTitle -->
+	</mods:titleInfo>
+	<!-- name type="corporate" not required, not repeatable -->
+	<mods:name type="corporate">
+		<mods:namePart type="family">lastName</mods:namePart>
+		<mods:namePart type="given">firstName</mods:namePart>
+		<mods:namePart type="date">date</mods:namePart>
+		<!-- chd: concatenate lastname, firstname middlename. date-of-birth-date-of-death.  Ex: Smith, Anna, Ms. 1882-1935 -->
+		<!-- mods label: Name -->
+		<!-- dc:creator -->
+		<!-- admin:itemCreator -->
+		<!-- description optional, not repeatable -->
+		<mods:description>description</mods:description>
+		<!-- free text description that distinguishes the name as unique, for instance: American artist, 19th century -->
+		<!-- mods label: Name description -->
+		<mods:role>
+			<!-- roleTerm required, not repeatable -->
+			<mods:roleTerm authority="marcrelator">role</mods:roleTerm>
+			<!-- mods label: Role-->
+			<!-- does not map to simple dc -->
+		</mods:role>
+	</mods:name>
+	<!-- name required, repeatable up to 3 times, combination of both personal and corporate -->
+	<mods:name type="personal" authority="authority"> 
+	<!-- authority attribute value may be one of the following: ulan or lcnaf.  if no authority is chosen, remove authority attribute -->
+		<mods:namePart type="family">lastName</mods:namePart>
+		<mods:namePart type="given">firstName</mods:namePart>
+		<mods:namePart type="date">date</mods:namePart>
+		<!-- mods label: Name -->
+		<!-- in mods record display, concatenate as shown: family, given middlename. date-of-birth-date-of-death.  Ex: Smith, Anna A. 1882-1935 -->
+		<!-- dc:creator -->
+		<!-- description optional, not repeatable -->
+		<mods:description>description</mods:description>
+		<!-- free text description that distinguishes the name as unique, for instance: American artist, 19th century -->
+		<!-- mods label: Name description -->
+		<mods:role>
+			<!-- roleTerm required, not repeatable -->
+			<mods:roleTerm authority="marcrelator">role</mods:roleTerm>
+			<!-- mods label: Role-->
+			<!-- does not map to simple dc -->
+		</mods:role>
+	</mods:name>
+	<!-- originInfo required, not repeatable -->
+	<mods:originInfo>
+		<!-- dateCreated required, not repeatable -->
+		<!-- Qualifier may be added to indicate uncertainty.  Accepted values are inferred, questionable, approximate -->
+		<!-- Date ranges may also be encoded if resource was created over a period of time.  See Metadata Guidelines for instructions. -->
+		<!-- chd: notice that keyDate="yes" attribute is illustrated on each date element below, but is only valid for ONE date element -->
+		<mods:dateCreated qualifier="approximate" encoding="w3cdtf" keyDate="yes">yyyy-mm-dd</mods:dateCreated>
+		<!-- add qualifier attribute to form, optional use; use only to qualify date supplied -->
+		<!-- mods label: Date Created-->
+		<!-- dc:date -->
+		<!-- admin:itemDate -->
+		<!-- place required if known, not repeatable -->
+		<!-- chd: if date given is a dateRange, enter start date and end date into two separate tags below -->
+		<mods:dateCreated qualifier="approximate" encoding="w3cdtf" point="start" keyDate="yes">yyyy-mm-dd</mods:dateCreated>
+		<mods:dateCreated qualifier="approximate" encoding="w3cdtf" point="end" keyDate="yes">yyyy-mm-dd</mods:dateCreated>
+		<mods:dateIssued qualifier="approximate" encoding="w3cdtf" keyDate="yes">yyyy</mods:dateIssued>
+		<mods:place>
+			<!-- placeTerm required if known, not repeatable -->
+			<mods:placeTerm>place</mods:placeTerm>
+			<!-- mods label: Place of Origin:-->
+			<!-- does not map to simple dc -->
+		</mods:place>
+		<!-- publisher required if resource was previously published, not repeatable -->
+		<mods:publisher>publisher</mods:publisher>
+		<!-- mods label: Publisher:-->
+		<!-- dc:publisher -->
+	</mods:originInfo>
+	<!-- language required if language is primary to understanding the resource, repeatable -->
+	<!-- if multiple languages are represented, encode each within its own language wrapper tag -->
+	<mods:language>
+		<!-- mods label: Language -->
+		<!-- mods display: Display language in text form, not code. Ex: Language: English -->
+		<mods:languageTerm type="code" authority="iso639-2b">eng</mods:languageTerm>
+	</mods:language>
+	<!-- typeOfResource required, repeatable up to 3 times -->
+	<!-- chd: remove mixed material from list of options in popup -->
+	<mods:typeOfResource>text</mods:typeOfResource>
+	<!-- mods label: Type -->
+	<!-- typeOfResource values controlled by MODS; however, remove mixed material from list of options.  See http://www.loc.gov/standards/mods/v3/mods-userguide-elements.html#typeofresource -->
+	<!-- dc:type -->
+	<!-- admin:itemType -->
+	<!-- mods:genre required, not repeatable -->
+	<mods:genre authority="authority">genre</mods:genre>
+	<!-- add genre element and authority attribute to form; authority choices will be aat and marcgenre -->
+	<!-- mods label: Genre -->
+	<!-- dc:type -->
+	<!-- physicalDescription required, not repeatable -->
+	<mods:physicalDescription>
+		<!-- form type="technique" not required, not repeatable -->
+		<mods:form type="technique" authority="aat">technique</mods:form>
+		<!-- mods label: Technique -->
+		<!-- dc:format -->
+		<!-- form type="medium" not required, not repeatable -->
+		<mods:form type="medium" authority="aat">medium</mods:form>
+		<!-- mods label: Medium -->
+		<!-- dc:format -->
+		<!-- digitalOrigin required, not repeatable -->
+		<mods:digitalOrigin>reformatted digital</mods:digitalOrigin>
+		<!-- don't display digitalOrigin in MODS record -->
+		<!-- not mapping digitalOrigin to dc -->
+		<!-- internetMediaType required, repeatable -->
+		<mods:internetMediaType>internetMediaType</mods:internetMediaType>
+		<!-- mods label: Format -->
+		<!-- dc:format -->
+		<!-- extent required, not repeatable; content from three input fields on form will be concatenated with semicolons -->
+		<mods:extent>extent</mods:extent>
+		<!-- extent will map from three different fields in form: extent of digital (number of digital images), extent of analog (page length or no. of objects), and physical dimensions, joined by a semicolon in XML output -->
+		<!-- mods label: Extent -->
+		<!-- prefaced with Extent: in dc:format -->
+		<!-- admin:itemDimensions -->
+	</mods:physicalDescription>
+	<!-- abstract optional, not repeatable -->
+	<mods:abstract>Free text description</mods:abstract>
+	<!-- mods label: Abstract -->
+	<!-- dc:description -->
+	<!-- admin:itemDescription -->
+	<!-- subject required,  repeatable -->
+	<!-- mods subject display note: list all like entries.  For instance, all topical entries (each on a new line) would follow a single Subject Topical for display. 
+	Example:
+	
+	Subject: Topical:    Topic1
+		        		     Topic2
+
+	*instead of*
+	
+	Subject: Topical:   Topic1
+	Subject: Topical:   Topic2
+	 -->
+	<!-- at least 1 topical subject of some kind is required: lcsh, tgm, vv or keyword/no authority -->
+	<mods:subject authority="lcsh">
+		<!-- topic required,  repeatable up to 3 times -->
+		<mods:topic>topic</mods:topic>
+		<!-- mods label: Subject: Topical -->
+		<!-- dc:subject -->
+		<!-- geographic optional,  repeatable  up to 2 times-->
+		<mods:geographic>geographic</mods:geographic>
+		<!-- mods label: Subject: Geographic -->
+		<!-- dc:subject -->
+		<!-- name optional,  repeatable up to 2 times-->
+		<mods:name>
+			<mods:namePart>name</mods:namePart>
+		</mods:name>
+		<!-- mods label: Subject: Name -->
+		<!-- dc:subject -->
+		<!-- temporal optional,  repeatable up to 2 times-->
+		<mods:temporal>temporal</mods:temporal>
+		<!-- mods label: Subject: Time Period -->
+		<!-- dc:subject -->
+	</mods:subject>
+	<mods:subject authority="tgm">
+		<!-- optional; may be repeated up to 3 times -->
+		<mods:topic>topic</mods:topic>
+		<!-- mods label: Subject: Topical -->
+		<!-- dc:subject -->
+	</mods:subject>
+	<!-- subject authority="vv" required, not repeatable-->
+	<!-- mods labels: Subject: Time Period 
+				Subject: Geographic
+				Subject: Topical
+	-->
+	<mods:subject authority="vv">
+		<!-- temporal required, repeatable up to two times -->
+		<mods:temporal>Code for 1 of 10 eras A.1-A.10</mods:temporal>
+		<!-- dc:subject -->
+		<!-- topical recommended, repeatable up to two times -->
+		<mods:topic>Code for 1 of 15 topics  -- B.1-B.15</mods:topic>
+		<!-- mods label: Subject: Topical -->
+		<!-- Choose codes from VV list: http://diglib.lib.utk.edu/dlc/categories/vv.xhtml -->
+		<!-- dc:subject -->
+		<!-- topical recommended, repeatable up to two times -->
+		<mods:topic>Code for new set of 25 broad categories</mods:topic>
+		<!-- mods label: Subject: Topical -->
+		<!-- Guessing codes will be added to VV list: http://diglib.lib.utk.edu/dlc/categories/vv.xhtml-->
+		<!-- dc:subject -->
+		<!-- geographic optional, repeatable up to two times-->
+		<mods:geographic>Code of county the resource is about</mods:geographic>
+		<!-- mods label: Subject: Geographic -->
+		<!-- Choose codes from VV list: http://diglib.lib.utk.edu/dlc/categories/vv.xhtml -->
+		<!-- dc:subject -->
+	</mods:subject>
+	<mods:relatedItem type="constituent">
+		<!-- This will not display in metadata record to end users.  Also not in simple DC for OAI.  -->
+		<!-- identifier required, repeatable -->
+		<mods:identifier type="local">file name</mods:identifier>
+	</mods:relatedItem>
+	<!-- identifier type="uri" required, not repeatable -->
+	<mods:identifier type="uri">uri</mods:identifier>
+	<!-- identifier type="accessionNumber" required if present, not repeatable; for use primarily in museum settings -->
+	<mods:identifier type="accessionNumber">accessionNumber</mods:identifier>
+	<!-- identical to location url -->
+	<!-- dc:identifier -->
+	<mods:location>
+		<!-- not mapping any physicalLocation data to dc -->
+		<!-- physicalLocation type="repository" required, not repeatable-->
+		<!-- value always the same -->
+		<!-- mods label: Physical Location: Repository. Concatenate with city, state as illustrated.
+		Example:
+		 Physical Location:  Repository: Special Collections, Hoskins Library. Knoxville, TN.    
+		 -->
+		<mods:physicalLocation type="repository">institution name</mods:physicalLocation>
+		<!-- admin:institutionName -->
+		<!-- physicalLocation type="detail" not required; use to enter additional infromation to direct the user to the resource within the home repository.  for instance, manuscript collection name, number, series, box, folder. additional examples are shelf number and call number-->
+		<!-- example:  Anna Catherine Wiley Sketches Collection, MS 1287, Series III, Box 1, Folder 1. -->
+		<mods:physicalLocation type="detail">enter detail to direct user to the resource</mods:physicalLocation>
+		<!-- mods label: Physical Location: Detail. 
+		Example:
+		 Physical Location:  Detail: Edward Summers Letter, MS 2714.  
+		 -->
+		<!-- physicalLocation type="city" required, not repeatable -->
+		<!-- value always the same -->
+		<mods:physicalLocation type="city">Knoxville</mods:physicalLocation>
+		<!-- admin:institutionCity -->
+		<mods:physicalLocation type="state">TN</mods:physicalLocation>
+		<!-- admin:institutionState -->
+		<!-- physicalLocation type="county" required, not repeatable -->
+		<mods:physicalLocation type="county">county</mods:physicalLocation>
+		<!-- url required, not repeatable -->
+		<!-- Choose county codes from VV list: http://diglib.lib.utk.edu/dlc/categories/vv.xhtml -->
+		<!-- *not* the county which the resource is *about*; this field is for the sole purpose of creating the interactive map for the website; would map to dc:description; however, do *not* map, as it would be misleading about the subject matter of the resource -->
+		<mods:url>link to digital resource</mods:url>
+		<!-- identical to identifier uri -->
+		<!-- dc:identifier -->
+	</mods:location>
+	<!-- mods:note type="museumCredits required if present, not repeatable; generally restricted to museum-derived materials -->
+	<mods:note type="museumCredits">museum credit line</mods:note>
+	<!-- add to form -->
+	<!-- recordInfo required,  not repeatable -->
+	<mods:recordInfo>
+		<!-- Administrative metadata. WIll not display in MODS record. Does not map to dc. -->
+		<!-- recordContentSource required, not repeatable -->
+		<mods:recordContentSource>digitization center</mods:recordContentSource>
+		<!-- recordCreationDate required, not repeatable -->
+		<mods:recordCreationDate encoding="w3cdtf">yyyy-mm-dd</mods:recordCreationDate>
+		<!-- languageOfCataloging required, not repeatable -->
+		<mods:languageOfCataloging>
+			<!-- languageTerm required, not repeatable -->
+			<mods:languageTerm type="code" authority="iso639-2b">eng</mods:languageTerm>
+		</mods:languageOfCataloging>
+	</mods:recordInfo>
+	<!-- accessCondition required, not repeatable -->
+	<mods:accessCondition type="useAndReproduction">What is this statement now??</mods:accessCondition>
+	<!-- mods label: Rights -->
+	<!-- dc:rights -->
+	<!-- possibly admin:itemRights, unless we go with a blanket rights statement for all objects in the database pertaining to the digital image rather than the analog -->
+</mods:mods>
+

@@ -1,0 +1,167 @@
+
+
+<html><head><title>Manpage of MFSMETA</title>
+<link href="../../dlxsdocs.css" rel="stylesheet" type="text/css"> </head><body>
+<h1>MFSMETA</h1>
+Section: User Commands  (1)<br>Updated: November 2000<br><a href="#index">Index</a>
+<a href="http://localhost/cgi-bin/man/man2html">Return to Main Contents</a><hr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="lbAB">&nbsp;</a>
+<h2>NAME</h2>
+
+<b>mfsmeta</b> - XPAT MFS structure file builder
+<a name="lbAC">&nbsp;</a>
+<h2>SYNOPSIS</h2>
+
+<b>mfsmeta</b>
+[
+-v
+]
+[
+-o &quot; meta_structure_file&quot;
+]
+-D
+<i>data_dictionary</i>
+<a name="lbAD">&nbsp;</a>
+<h2>DESCRIPTION</h2>
+
+<b>mfsmeta</b> builds an MFS structure file for the MFS database specified by <i>data_dictionary</i>.
+The MFS structure file is used by <b>multirgn</b> and <b>sgmlrgn</b> to restrict the region
+build operations to specific areas of the MFS database's virtual text.
+The generated <i>meta_structure_file</i> name will be
+automatically appended ('.str') extension.
+Refer to the <b><a href="http://localhost/cgi-bin/man/man2html?1+multirgn">multirgn</a></b>(1) and <b><a href="http://localhost/cgi-bin/man/man2html?1+sgmlrgn">sgmlrgn</a></b>(1) man pages
+for further details on how those programs use an MFS structure file.
+<a name="lbAE">&nbsp;</a>
+<h2>OPTIONS</h2>
+
+<dl compact>
+<dt>-v<dd>
+Turn verbose mode on.
+<dt>-o &quot; meta_structure_file&quot;<dd>
+Write the MFS structure information to the
+<i>meta_structure_file</i>.  By default, <b>mfsmeta</b>
+uses the data dictionary name and append ('.str') extension at the end
+as the <i>meta_structure_file</i> name.
+</dl>
+<a name="lbAF">&nbsp;</a>
+<h2>BACKGROUND</h2>
+
+The MFS system creates a ``virtual text'' from all the files in the
+database.  It does so by performing the following three steps on
+each file.  First, it filters out the actual text from
+each file.  Note that the files may be in several different
+word processor formats, so different filters may be needed for each
+different file type.  Second, it wraps special tagged `meta fields'
+around each of those filtered texts.  Third, it catenates all the
+`wrapped texts' together to form a single ``virtual text''.
+The index building programs then build all the indices on that
+virtual text.  Refer to the <b><a href="http://localhost/cgi-bin/man/man2html?5+mfs">mfs</a></b>(5) man page for further details on how
+the MFS system works.
+<p>
+
+The portion of the virtual text that corresponds to each file in the
+database consists of three basic sections:  The Meta-Header section,
+the Data section and the Meta-Trailer section.  These sections are
+shown in the following diagram:
+<p>
+<pre>
+<tt>
+  &lt;OTDoc&gt;&lt;OTMeta&gt;....&lt;/OTMeta&gt;&lt;OTData&gt;........&lt;/OTData&gt;&lt;/OTDoc&gt;
+  |--------- Meta-Header ------------|| Data ||- Meta-Trailer -|
+  ^                                   ^       ^                ^
+  start                               start   start            end
+  header                              data    trailer          pos
+</tt>
+</pre>
+
+<p>
+<p>
+
+The data in the Meta-Header and Meta-Trailer sections is highly
+structured and
+is uniform across all the files in the database.  In contrast, the
+data in the Data sections may have widely varying structure
+(if any exists at all), especially in databases that
+consists of several different file types.
+For this reason, it is sometimes desirable to build the regions for
+the entire database in several passes, restricting the build operations
+for each pass to either the Meta-Header and Meta-Trailer sections or the Data
+sections of specific file types.
+<p>
+
+<b>Note:</b>  The end position is usually one character after the
+&lt;/OTDoc&gt; tag.  This is because the virtual text for each file
+ends with a newline, which is considered to be the last character of
+the file.
+<a name="lbAG">&nbsp;</a>
+<h2>MFS STRUCTURE FILE FORMAT</h2>
+
+<pre>
+<tt>
+  &lt;OTMetaStruct&gt;
+    &lt;OTFile&gt;            file name
+    &lt;OTDefaultDataTag&gt;  default data tag name (default is 'OTData')
+    &lt;OTDisplayFmt&gt;      display format
+    &lt;OTStart&gt;           start header position
+    &lt;OTDataPos&gt;         start data position
+    &lt;OTTrailPos&gt;         start trailer position
+    &lt;OTEnd&gt;             end position for this file
+  &lt;/OTMetaStruct&gt;
+</tt>
+</pre>
+
+<p>
+<a name="lbAH">&nbsp;</a>
+<h2>INTEGRITY CHECK</h2>
+
+The first line of the MFS structure file is the MFS database name,
+enclosed by &lt;FileMap&gt; and &lt;/FileMap&gt; tags.
+This field contains the same name as the FileMap field in the Data Dictionary.
+All region builders will check for the MFS database name
+before trying to use the meta structure file for the given MFS database.
+<a name="lbAI">&nbsp;</a>
+<h2>SEE ALSO</h2>
+
+<b><a href="http://localhost/cgi-bin/man/man2html?1+multirgn">multirgn</a></b>(1), <b><a href="http://localhost/cgi-bin/man/man2html?1+sgmlrgn">sgmlrgn</a></b>(1), <b><a href="http://localhost/cgi-bin/man/man2html?5+mfsbld">mfsbld</a></b>(5), <b><a href="http://localhost/cgi-bin/man/man2html?5+mfs">mfs</a></b>(5)
+<p>
+
+<hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">NAME</a><dd>
+<dt><a href="#lbAC">SYNOPSIS</a><dd>
+<dt><a href="#lbAD">DESCRIPTION</a><dd>
+<dt><a href="#lbAE">OPTIONS</a><dd>
+<dt><a href="#lbAF">BACKGROUND</a><dd>
+<dt><a href="#lbAG">MFS STRUCTURE FILE FORMAT</a><dd>
+<dt><a href="#lbAH">INTEGRITY CHECK</a><dd>
+<dt><a href="#lbAI">SEE ALSO</a><dd>
+</dl>
+<hr>
+This document was created by
+<a href="http://localhost/cgi-bin/man/man2html">man2html</a>,
+using the manual pages.<br>
+Time: 18:03:38 GMT, March 26, 2001
+</body>
+</html>

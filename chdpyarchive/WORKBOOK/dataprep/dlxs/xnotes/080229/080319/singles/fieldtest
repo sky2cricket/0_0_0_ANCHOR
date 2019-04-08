@@ -1,0 +1,174 @@
+#!/usr/bin/perl
+
+# fieldtest
+# checks for values in required fields, for Melanie's MODS.
+# based on templateVV11_mf profile released 14 December 2006
+
+# jody DeRidder
+# 6/7/07
+
+$indir = "./mods/";
+$outdir = "./problems/";
+
+opendir (DIR, $indir) or die "can't open $indir\n";
+while ($file = readdir(DIR)){
+  if ($file =~ /\.xml/){
+    $infile = $indir.$file;
+    open (IN, $infile) or die "can't open $infile\n";
+    undef $batch;
+    undef $path;
+    undef $bucket;
+
+# for each file in error, we want to output:
+# filename, batch, bucket  (which has the bucket in it somewhere)
+#  list of errors
+# and then MOVE the file to ./problems/ so we don't process it.
+
+#Looking for these required fields:
+#1 title
+#1 dateCreated keyDate="yes"
+#1-3 typeOfResource
+#1 genre
+#1 digitalOrigin
+#1-many internetMediaType
+#1 extent
+#1 -3 topic
+#1-2 temporal
+#1-many relatedItem type="constituent" identifier
+#1 physical location type="repository"
+#   also city, state, county
+#1 recordContentSource
+#1 recordCreationDate
+#1 languageOfCataloging
+#1 access Condition
+
+# the following are also required, but I'm putting them in:
+#1 url
+#1 identifier
+
+  undef  $all;
+  undef @problems;
+  while ($line = <IN>){
+     chomp $line;
+     $line =~ s/\r/ /;   # no carriage returns from Word
+     $line =~ s/  +/ /g;    # turns all multiple spaces into single ones
+     $line =~ s/< /</g;   # no spaces between tags and elements
+     $line =~ s/ >/>/g;    # same thing, end of tag
+
+     if ($line =~ /BATCH_ID: (.*?) \-\-/){
+       $batch = $1;
+       }
+     elsif ($line =~ /FILENAME: (.*?) \-\-/){
+       $path = $1;   # this is usually C:\Scan\00\xml\0023_000052_000201_0000.xml 
+       if ($path =~ /\/(\d\d)\// || $path =~ /\\(\d\d)\\/){
+         $bucket = $1;
+         }
+       }
+     $all .= $line;
+     }
+  close(IN);
+  if (! $batch){ print "ERROR: NO BATCH $file\n";}
+  if (! $bucket){ print "ERROR: NO BUCKET $file\n";}
+ 
+# it's all in a single line now.
+# title?
+  if (!( $all =~ /<mods:title>[^<]*\w+[^<]*<\/mods:title>/i)){
+     push (@problems, "No Title\n");
+     }
+
+# dateCreated?
+  if (!( $all =~ /<mods:dateCreated[^>]*keyDate="yes"[^>]*>[^<]*\w+[^<]*<\/mods:dateCreated>/i)){
+     push (@problems, "No KeyDate\n");
+     }
+
+# typeOfResource?
+  if (!( $all =~ /<mods:typeOfResource>\s*\w+[^<]*<\/mods:typeOfResource>/i)){
+     push (@problems, "No typeOfResource\n");
+     }
+
+#digitalOrigin
+  if (!( $all =~ /<mods:digitalOrigin>\s*\w+[^<]*<\/mods:digitalOrigin>/i)){
+     push (@problems, "No digitalOrigin\n");
+     }
+
+#internetMediaType
+  if (!( $all =~ /<mods:internetMediaType>\s*\w+[^<]*<\/mods:internetMediaType>/i)){
+     push (@problems, "No internetMediaType\n");
+     }
+#extent
+  if (!( $all =~ /<mods:extent>\s*\w+[^<]*<\/mods:extent>/i)){
+     push (@problems, "No extent\n");
+     }
+#repository
+  if (!( $all =~ /<mods:physicalLocation type="repository">\s*\w+[^<]*<\/mods:physicalLocation>/i)){
+     push (@problems, 'No physicalLocation type="repository"'."\n");
+     }
+
+#city
+  if (!( $all =~ /<mods:physicalLocation type="city">\s*\w+[^<]*<\/mods:physicalLocation>/i)){
+     push (@problems, 'No physicalLocation type="city"'."\n");
+     }
+#state
+  if (!( $all =~ /<mods:physicalLocation type="state">\s*\w+[^<]*<\/mods:physicalLocation>/i)){
+     push (@problems, 'No physicalLocation type="state"'."\n");
+     }
+
+#county
+  if (!( $all =~ /<mods:physicalLocation type="county">\s*\w+[^<]*<\/mods:physicalLocation>/i)){
+     push (@problems, 'No physicalLocation type="county"'."\n");
+     }
+
+#recordContentSource
+  if (!( $all =~ /<mods:recordContentSource>\s*\w+[^<]*<\/mods:recordContentSource>/i)){
+     push (@problems, "No recordContentSource\n");
+     }
+
+#recordCreationDate
+  if (!( $all =~ /<mods:recordCreationDate[^>]*>\s*\w+[^<]*<\/mods:recordCreationDate>/i)){
+     push (@problems, "No recordCreationDate\n");
+     }
+
+#accessCondition
+  if (!( $all =~ /<mods:accessCondition type="useAndReproduction">\s*\w+[^<]*<\/mods:accessCondition>/i)){
+     push (@problems, "No accessCondition\n");
+     }
+
+
+#languageOfCataloging
+   if (!( $all =~ /<mods:languageOfCataloging>\s*<mods:languageTerm type="code" authority="iso639-2b">\s*\w+[^<]*<\/mods:languageTerm>/)){
+     push (@problems, "No languageOfCataloging\n");
+     }
+
+# subjects:  1 topic, 1 temporal minimal
+    undef $subjects;
+    if ($all =~ /.*?(<mods:subject.*<\/mods:subject>)/){
+      $subjects = $1;
+      if (!($subjects =~ /<mods:topic>\s*\w+[^<]*<\/mods:topic>/)){
+        push (@problems, "No topic subjects\n");
+        }
+      if (!($subjects =~ /<mods:temporal>\s*\w+[^<]*<\/mods:temporal>/)){
+        push (@problems, "No temporal subjects\n");
+        }
+
+      }
+    else{ push (@problems, "No subjects at all!\n");}
+
+#genre?  check AFTER subjects!  it might be in there
+  if (!( $all =~ /<mods:genre[^>]*>\s*\w+[^<]*<\/mods:genre>/i)){
+     push (@problems, "No genre\n");
+     }
+
+# constituents
+  if (!( $all =~ /<mods:relatedItem type="constituent">\s*<mods:identifier type="local">\s*\w+[^<]*<\/mods:identifier>/)){
+     push (@problems, "No constituent file identifiers\n");
+     }
+
+  if (@problems){
+    print "$file  $batch  $bucket\n";
+    foreach (@problems){ print "    $_";}
+    print "\n\n";
+    $outfile = $outdir.$file;
+    `mv $infile $outfile`;
+     }
+   }
+ }

@@ -1,0 +1,203 @@
+<html>
+<head>
+<title>vv_popupCA</title>
+
+<link href="../vv_workbook.css" type="text/css" rel="stylesheet">
+<script language=javascript src="../vv_functions_tsla.js"></script>
+
+
+
+
+<script language="javascript">
+
+var select_id= new String();
+function get_select_id() {
+
+var str = new String();
+    str = parent.location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  parent.window.opener.location.href="+parent.window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=get_select_id();
+
+
+
+var strSelect_PN_A = new String('');
+
+
+strSelect_PN_A = '<select name="aaa"  size="24" style="font-size:10px"> \r\n'
+	+'<option value="0" selected>No value selected</option> \r\n'
+		
+
+
+
+
+
+
+	
+	+'<option>UNDERWOOD CEMETERY (LAFAYETTE, TENN.)</option>  \r\n'
+	+'<option>UNION BANK OF TENNESSEE (NASHVILLE)</option>  \r\n'
+	+'<option>UNION CHURCH OF CHRIST (LEWIS COUNTY, TENN.)</option>  \r\n'
+	+'<option>UNION CONSOLIDATED MINING COMPANY OF TENNESSEE</option>  \r\n'
+	+'<option>UNION PRIMITIVE BAPTIST CHURCH (MARION COUNTY, TENN.)</option>  \r\n'
+	+'<option>UNION STATION (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>UNION UNIVERSITY (JACKSON, TENN.)</option>  \r\n'
+	+'<option>UNION VALLEY CUMBERLAND PRESBYTERIAN CHURCH (HARDIN COUNTY, TENN.)</option>  \r\n'
+	+'<option>UNITED CONFEDERATE VETERANS - TENNESSEE DIVISION - CONFEDERATE HISTORICAL ASSOCIATION, CAMP NO. 28, MEMPHIS</option>  \r\n'
+	+'<option>UNITED CONFEDERATE VETERANS - TENNESSEE DIVISION - FORBES BIVOUAC NO. 2.</option>  \r\n'
+	+'<option>UNITED CONFEDERATE VETERANS - TENNESSEE DIVISION - S. G. SHEPHERD CAMP NO. 941</option>  \r\n'
+	+'<option>UNITED DAUGHTERS OF THE CONFEDERACY - TENNESSEE DIVISION</option>  \r\n'
+	+'<option>UNITED DAUGHTERS OF THE CONFEDERACY - TENNESSEE DIVISION - NEELY CHAPTER (HARDEMAN COUNTY, TENN.)</option>  \r\n'
+	+'<option>UNITED GIVERS FUND (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>UNITED LUTHERAN CHURCH IN AMERICA - KENTUCKY-TENNESSEE SYNOD</option>  \r\n'
+	+'<option>UNITED METHODIST CHURCH (SAINT JOSEPH, TENN.)</option>  \r\n'
+	+'<option>UNITED METHODIST CHURCH (UNITED STATES) - TENNESSEE CONFERENCE</option>  \r\n'
+	+'<option>UNITED SISTERS OF TEMPERANCE - HISTORY - TENNESSEE</option>  \r\n'
+	+'<option>UNITED SPANISH WAR VETERANS - COLONEL WILLIAM C. SMITH CAMP NO. 20 (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>UNITED STATES - AGRICULTURAL STABILIZATION AND CONSERVATION COMMITTEE (TENNESSEE)</option>  \r\n'
+	+'<option>UNITED STATES - ARMY - TENNESSEE CAVALRY REGIMENT, 5TH</option>  \r\n'
+	+'<option>UNITED STATES - ARMY - TENNESSEE CAVALRY REGIMENT, 5TH (1862-1865)</option>  \r\n'
+	+'<option>UNITED STATES - ARMY - TENNESSEE CAVALRY REGIMENT, 6TH</option>  \r\n'
+	+'<option>UNITED STATES - ARMY - TENNESSEE CAVALRY REGIMENT, 6TH (1862-1865)</option>  \r\n'
+	+'<option>UNITED STATES - ARMY - TENNESSEE CAVALRY REGIMENT, 8TH (1863-1865)</option>  \r\n'
+	+'<option>UNITED STATES - ARMY - TENNESSEE CAVALRY REGIMENT, 8TH (1863-1865) - COMPANY A</option>  \r\n'
+	+'<option>UNITED STATES - ARMY - TENNESSEE CAVALRY REGIMENT, 9TH</option>  \r\n'
+	+'<option>UNITED STATES - ARMY - TENNESSEE INFANTRY REGIMENT, 18TH (1861-1865)</option>  \r\n'
+	+'<option>UNITED STATES - ARMY - TENNESSEE INFANTRY REGIMENT, 1ST</option>  \r\n'
+	+'<option>UNITED STATES - ARMY - TENNESSEE INFANTRY REGIMENT, 1ST (1846-1848)</option>  \r\n'
+	+'<option>UNITED STATES - ARMY - TENNESSEE INFANTRY REGIMENT, 1ST (1898-1899)</option>  \r\n'
+	+'<option>UNITED STATES - ARMY - TENNESSEE INFANTRY REGIMENT, 2ND (1846-1848)</option>  \r\n'
+	+'<option>UNITED STATES - ARMY - TENNESSEE INFANTRY REGIMENT, 2ND (1861-1865)</option>  \r\n'
+	+'<option>UNITED STATES - ARMY - TENNESSEE INFANTRY REGIMENT, 3RD (1861-1865)</option>  \r\n'
+	+'<option>UNITED STATES - ARMY - TENNESSEE INFANTRY REGIMENT, 48TH (1861-1865)</option>  \r\n'
+	+'<option>UNITED STATES - ARMY - TENNESSEE INFANTRY REGIMENT, 48TH (1863-1865)</option>  \r\n'
+	+'<option>UNITED STATES - ARMY - TENNESSEE INFANTRY REGIMENT, 49TH</option>  \r\n'
+	+'<option>UNITED STATES - ARMY - TENNESSEE INFANTRY REGIMENT, 4TH (1863-1865)</option>  \r\n'
+	+'<option>UNITED STATES - ARMY - TENNESSEE INFANTRY REGIMENT, 5TH (1862-1865)</option>  \r\n'
+	+'<option>UNITED STATES - ARMY - TENNESSEE INFANTRY REGIMENT, 6TH</option>  \r\n'
+	+'<option>UNITED STATES - ARMY - TENNESSEE INFANTRY REGIMENT, 9TH (1861-1865) - CO. H.</option>  \r\n'
+	+'<option>UNITED STATES - ARMY - TENNESSEE MOUNTED INFANTRY REGIMENT, 1ST</option>  \r\n'
+	+'<option>UNITED STATES - ARMY - TENNESSEE VOLUNTEER CAVALRY REGIMENT, 13TH (1862-1865)</option>  \r\n'
+	+'<option>UNITED STATES - ARMY - TENNESSEE VOLUNTEER CAVALRY, 2ND (1862-1865)</option>  \r\n'
+	+'<option>UNITED STATES - ARMY - TENNESSEE VOLUNTEER CAVALRY, 3RD (1862-1865)</option>  \r\n'
+	+'<option>UNITED STATES - DISTRICT COURT (TENNESSEE : EASTERN DISTRICT)</option>  \r\n'
+	+'<option>UNITED STATES - NATIONAL YOUTH ADMINISTRATION, TENNESSEE</option>  \r\n'
+	+'<option>UNITED STATES - POST OFFICE (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>UNITED STATES - WORKS PROGRESS ADMINISTRATION (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>UNITED STATES EMPLOYMENT SERVICE - TENNESSEE</option>  \r\n'
+	+'<option>UNIVERSITY OF TENNESSEE (KNOXVILLE CAMPUS)</option>  \r\n'
+	+'<option>UNIVERSITY OF TENNESSEE (KNOXVILLE CAMPUS) - AGRICULTURAL AND MECHANICAL COLLEGE</option>  \r\n'
+	+'<option>UNIVERSITY OF TENNESSEE (KNOXVILLE CAMPUS) - GRADUATE SCHOOL OF LIBRARY AND INFORMATION SCIENCE</option>  \r\n'
+	+'<option>UNIVERSITY OF TENNESSEE (SYSTEM)</option>  \r\n'
+	+'<option>UNIVERSITY OF TENNESSEE (SYSTEM) - BOARD OF DIRECTORS</option>  \r\n'
+	+'<option>UNIVERSITY OF TENNESSEE (SYSTEM) - CENTER FOR THE HEALTH SCIENCES - MENTAL HEALTH CENTER</option>  \r\n'
+	+'<option>UNIVERSITY OF TENNESSEE (SYSTEM) - MUNICIPAL TECHNICAL ADVISORY SERVICE</option>  \r\n'
+	+'<option>UNIVERSITY OF TENNESSEE (SYSTEM) - NATIONAL ALUMNI ASSOCIATION</option>  \r\n'
+	+'<option>UNIVERSITY OF TENNESSEE (SYSTEM) - SPACE INSTITUTE</option>  \r\n'
+	+'<option>UNIVERSITY OF TENNESSEE - CENTER FOR INDUSTRIAL SERVICES - WASTE REDUCTION ASSISTANCE PROGRAM</option>  \r\n'
+	+'<option>UNIVERSITY OF TENNESSEE AT CHATTANOOGA</option>  \r\n'
+	+'<option>UNIVERSITY OF TENNESSEE AT MARTIN</option>  \r\n'
+	+'<option>UNIVERSITY OF TENNESSEE AT NASHVILLE</option>  \r\n'
+	+'<option>UNIVERSITY OF TENNESSEE CENTER FOR THE HEALTH SCIENCES</option>  \r\n'
+	+'<option>UNIVERSITY OF TENNESSEE, KNOXVILLE</option>  \r\n'
+	+'<option>UNIVERSITY OF TENNESSEE, KNOXVILLE - AGRICULTURAL EXPERIMENT STATION</option>  \r\n'
+	+'<option>UNIVERSITY OF TENNESSEE, KNOXVILLE - BOARD OF TRUSTEES</option>  \r\n'
+	+'<option>UNIVERSITY OF TENNESSEE, KNOXVILLE - BUREAU OF PUBLIC ADMINISTRATION</option>  \r\n'
+	+'<option>UNIVERSITY OF TENNESSEE, KNOXVILLE - COLLEGE OF LAW</option>  \r\n'
+	+'<option>UNIVERSITY OF TENNESSEE, KNOXVILLE - COLLEGE OF VETERINARY MEDICINE</option>  \r\n'
+	+'<option>UNIVERSITY OF TENNESSEE, KNOXVILLE - COMPUTING CENTER</option>  \r\n'
+	+'<option>UNIVERSITY OF TENNESSEE, KNOXVILLE - INSTITUTE OF AGRICULTURE</option>  \r\n'
+	+'<option>UNIVERSITY OF TENNESSEE, KNOXVILLE - WATER RESOURCES RESEARCH CENTER</option>  \r\n'
+	+'<option>UNIVERSITY OF TENNESSEE, MEMPHIS - COLLEGE OF DENTISTRY</option>  \r\n'
+
+
+
+
++'</select> \r\n';
+	
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+<body class="background">
+
+
+
+
+<form name="FormOne" >
+
+
+<div name="SS" id="SS">
+<script>
+document.write(
+
+	 '<table border="1" cellpadding="4" cellspacing="0"  width="90%">\r\n'
+	+'<tr><td  bgcolor="ddeeff">\r\n'
+	///+'vv_functions.htm called by '+select_id+' <br>\r\n'
+	+'<b>Select Corporate Author U</b> \r\n'
+	+'</td></tr><tr><td bgcolor="ddeeff"> \r\n' 
+	+ strSelect_PN_A
+
+	+'</td></tr></table> \r\n'
+	///+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+</script>
+	
+</div>
+
+<input type="button" onclick="showSelection();" name="B1" value="Corporate Author">
+
+</form>
+
+<script>
+
+
+
+                  
+
+function showSelection() {
+
+val = new String();
+
+for ( i=0; i< document.FormOne.aaa.length; i++ ) {
+
+if ( document.FormOne.aaa[i].selected == true ) {
+  	val = document.FormOne.aaa[i].text;
+	break;
+	}
+else { val = "you never selected anything"; 
+	}
+
+}
+////////////////////////alert ("You selected " +val);
+val=reformatCa(val);
+
+switch ( select_id ) {
+
+case  "subject_name_lcsh_01" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_01.value=val;
+	parent.window.close();
+	break;
+
+case  "subject_name_lcsh_02" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_02.value=val;
+	parent.window.close();
+	break;
+}//end switch
+
+}///end function
+</script>
+

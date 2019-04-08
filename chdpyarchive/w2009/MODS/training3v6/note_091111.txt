@@ -1,0 +1,58 @@
+
+note_091111.txt
+
+The files in this directory were copied from 
+public_html/WORKBOOK/volvoices/v6
+and
+public_html/WORKBOOK/volvoices/v2
+and
+public_html/WORKBOOK/volvoices/v7
+
+possibly grab code from v8, v9, and other directories
+when I remember where everything is.
+
+in order to make a testbed analog to
+http://diglib.lib.utk.edu/~cdeane/WORKBOOK/training3v6.php
+
+without touching the original code.
+
+The goal of this endeavor is to
+	1.  Incorporate streaming audio mods for Marielle Veve
+	2.  Fix workbook code, especially reload
+
+Thoughout this endeavor,  the existing workbook code from
+http://diglib.lib.utk.edu/~cdeane/WORKBOOK/training3v6.php
+
+will be referred to as orig_WORKBOOK.
+
+The testbed will be referred to as new_mods_workbook.
+
+w2009 refers to both the MODS and DC workbooks.
+
+---------------------------
+copying directories
+
+pwd
+/home/cdeane/w2009/MODS/training3v6/volvoices
+
+
+cp -R ../../../../WORKBOOK/volvoices/v6/ .
+
+cp -R ../../../../WORKBOOK/volvoices/v2/ .
+
+cp -R ../../../../WORKBOOK/volvoices/v7/ .
+
+
+After copy
+
+ls
+v2  v6  v7
+===================================
+
+FRIDAY Nov 13 2009
+
+vv_workbook.php is a copy of the LIVE vv_workbook.php that pops up
+when you click the go-to-workbook button in the admin db.
+
+vv_workbook_display.php is the TEST vv_workbook.php to show what
+variables are passed in the cgi string.

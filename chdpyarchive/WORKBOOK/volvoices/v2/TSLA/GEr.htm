@@ -1,0 +1,337 @@
+<html>
+<head>
+<title>vv_popupGE</title>
+
+<link href="../vv_workbook.css" type="text/css" rel="stylesheet">
+<script language=javascript src="../vv_functions_tsla.js"></script>
+
+
+
+
+<script language="javascript">
+
+var select_id= new String();
+function get_select_id() {
+
+var str = new String();
+    str = parent.location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  parent.window.opener.location.href="+parent.window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=get_select_id();
+
+
+
+var strSelect_GE_A = new String('');
+
+strSelect_GE_A = '<select name="aaa"  size="24" style="font-size:10px"> \r\n'
+	+'<option  selected>No Value Selected</option> \r\n'	
+
+
+
+
+
+
+
+
+
+
+
+	+'<option>RADIO STATIONS - TENNESSEE - MEMPHIS</option>  \r\n'
+	+'<option>RADNOR LAKE (NASHVILLE, TENN.) - DESCRIPTION AND TRAVEL - VIEWS</option>  \r\n'
+	+'<option>RADNOR LAKE STATE NATURAL AREA (TENN.)</option>  \r\n'
+	+'<option>RALEIGH (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>RALEIGH (TENN.) - HISTORY</option>  \r\n'
+	+'<option>RALEIGH (TENN.) - MAPS</option>  \r\n'
+	+'<option>RAMER (TENN.)</option>  \r\n'
+	+'<option>RAMER (TENN.) - INDUSTRY</option>  \r\n'
+	+'<option>RANDOLPH (TENN.) - MAPS</option>  \r\n'
+	+'<option>RANDOLPH (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>RARE BOOKS - BIBLIOGRAPHY - TENNESSEE</option>  \r\n'
+	+'<option>RAUS (TENN.) - PHOTOGRAPHS</option>  \r\n'
+	+'<option>RED BANK (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>RED BOILING SPRINGS (TENN.) - HISTORY</option>  \r\n'
+	+'<option>RED BOILING SPRINGS (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>RED CLAY (TENN.)</option>  \r\n'
+	+'<option>RED RIVER VALLEY (TENN. AND KY.) - MAPS</option>  \r\n'
+	+'<option>REELFOOT LAKE (TENN.)</option>  \r\n'
+	+'<option>REELFOOT LAKE (TENN.) - HISTORY</option>  \r\n'
+	+'<option>REELFOOT LAKE (TENN.) - MANAGEMENT</option>  \r\n'
+	+'<option>REELFOOT LAKE (TENN.) - MAPS</option>  \r\n'
+	+'<option>REELFOOT LAKE (TENN.) - MAPS, MANUSCRIPT</option>  \r\n'
+	+'<option>REELFOOT LAKE (TENN.) - PERIODICALS</option>  \r\n'
+	+'<option>REELFOOT LAKE (TENN.) - PHOTOGRAPHS</option>  \r\n'
+	+'<option>REELFOOT LAKE REGION (TENN.) - HISTORY</option>  \r\n'
+	+'<option>REELFOOT LAKE STATE NATURAL AREA (TENN.)</option>  \r\n'
+	+'<option>REELFOOT LAKE STATE PARK (TENN.)</option>  \r\n'
+	+'<option>REGIONAL PLANNING - TENNESSEE, WEST</option>  \r\n'
+	+'<option>REGISTERS OF BIRTHS, ETC. - TENNESSEE</option>  \r\n'
+	+'<option>REGISTERS OF BIRTHS, ETC. - TENNESSEE - CARTER COUNTY</option>  \r\n'
+	+'<option>REGISTERS OF BIRTHS, ETC. - TENNESSEE - DECATUR COUNTY</option>  \r\n'
+	+'<option>REGISTERS OF BIRTHS, ETC. - TENNESSEE - DICKSON COUNTY</option>  \r\n'
+	+'<option>REGISTERS OF BIRTHS, ETC. - TENNESSEE - MACON COUNTY</option>  \r\n'
+	+'<option>REGISTERS OF BIRTHS, ETC. - TENNESSEE - MADISON COUNTY</option>  \r\n'
+	+'<option>REGISTERS OF BIRTHS, ETC. - TENNESSEE - MARION COUNTY</option>  \r\n'
+	+'<option>REGISTERS OF BIRTHS, ETC. - TENNESSEE - WHITE COUNTY - PERIODICALS</option>  \r\n'
+	+'<option>RHEA COUNTY (TENN.)</option>  \r\n'
+	+'<option>RHEA COUNTY (TENN.) - ANTIQUITIES</option>  \r\n'
+	+'<option>RHEA COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>RHEA COUNTY (TENN.) - CENSUS</option>  \r\n'
+	+'<option>RHEA COUNTY (TENN.) - CENSUS, 1850</option>  \r\n'
+	+'<option>RHEA COUNTY (TENN.) - CENSUS, 1860</option>  \r\n'
+	+'<option>RHEA COUNTY (TENN.) - CENSUS, 1870</option>  \r\n'
+	+'<option>RHEA COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>RHEA COUNTY (TENN.) - CENSUS, 1890</option>  \r\n'
+	+'<option>RHEA COUNTY (TENN.) - CENSUS, 1900</option>  \r\n'
+	+'<option>RHEA COUNTY (TENN.) - CENSUS, 1910</option>  \r\n'
+	+'<option>RHEA COUNTY (TENN.) - CENSUS, 1920</option>  \r\n'
+	+'<option>RHEA COUNTY (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>RHEA COUNTY (TENN.) - ECONOMIC CONDITIONS</option>  \r\n'
+	+'<option>RHEA COUNTY (TENN.) - ECONOMIC DEVELOPMENT - SOCIAL ASPECTS</option>  \r\n'
+	+'<option>RHEA COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>RHEA COUNTY (TENN.) - GENEALOGY - PERIODICALS</option>  \r\n'
+	+'<option>RHEA COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>RHEA COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>RHEA COUNTY (TENN.) - HISTORY - CIVIL WAR, 1861-1865</option>  \r\n'
+	+'<option>RHEA COUNTY (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>RHEA COUNTY (TENN.) - MAPS</option>  \r\n'
+	+'<option>RHEA COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>RHEA COUNTY (TENN.) - PHOTOGRAPHS</option>  \r\n'
+	+'<option>RHEA COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>RHEA COUNTY (TENN.) - SCHOOLS</option>  \r\n'
+	+'<option>RHEA SPRINGS (TENN.) - HISTORY</option>  \r\n'
+	+'<option>RHEA SPRINGS (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>RHEATOWN (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>RHEATOWN (TENN.) - HISTORY</option>  \r\n'
+	+'<option>RIDGECREST CEMETERY (JACKSON, TENN.)</option>  \r\n'
+	+'<option>RIDGELY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>RIDGELY (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>RIDGELY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>RIDGELY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>RIDGETOP (TENN.) - HISTORY</option>  \r\n'
+	+'<option>RIPLEY (TENN.)</option>  \r\n'
+	+'<option>RIPLEY (TENN.) - ECONOMIC CONDITIONS - 19TH CENTURY</option>  \r\n'
+	+'<option>RIPLEY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>RIVERSIDE CEMETERY (JACKSON, TENN.)</option>  \r\n'
+	+'<option>RIVERVIEW CEMETERY (CLARKSVILLE, TENN.)</option>  \r\n'
+	+'<option>RIVES (TENN.) - HISTORY</option>  \r\n'
+	+'<option>ROAN MOUNTAIN (N.C. AND TENN.)</option>  \r\n'
+	+'<option>ROAN MOUNTAIN (N.C. AND TENN.) - DESCRIPTION AND TRAVEL</option>  \r\n'
+	+'<option>ROAN MOUNTAIN (N.C. AND TENN.) - FICTION</option>  \r\n'
+	+'<option>ROAN MOUNTAIN (N.C. AND TENN.) - HISTORY</option>  \r\n'
+	+'<option>ROAN MOUNTAIN STATE PARK (TENN.)</option>  \r\n'
+	+'<option>ROANE COUNTY (TENN.)</option>  \r\n'
+	+'<option>ROANE COUNTY (TENN.) - ANTIQUITIES</option>  \r\n'
+	+'<option>ROANE COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>ROANE COUNTY (TENN.) - CENSUS, 1830</option>  \r\n'
+	+'<option>ROANE COUNTY (TENN.) - CENSUS, 1840</option>  \r\n'
+	+'<option>ROANE COUNTY (TENN.) - CENSUS, 1850</option>  \r\n'
+	+'<option>ROANE COUNTY (TENN.) - CENSUS, 1860</option>  \r\n'
+	+'<option>ROANE COUNTY (TENN.) - CENSUS, 1870</option>  \r\n'
+	+'<option>ROANE COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>ROANE COUNTY (TENN.) - CENSUS, 1900</option>  \r\n'
+	+'<option>ROANE COUNTY (TENN.) - CENSUS, 1910</option>  \r\n'
+	+'<option>ROANE COUNTY (TENN.) - CENSUS, 1920</option>  \r\n'
+	+'<option>ROANE COUNTY (TENN.) - CENSUS, 1930</option>  \r\n'
+	+'<option>ROANE COUNTY (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>ROANE COUNTY (TENN.) - CHURCH HISTORY - SOURCES</option>  \r\n'
+	+'<option>ROANE COUNTY (TENN.) - DESCRIPTION AND TRAVEL</option>  \r\n'
+	+'<option>ROANE COUNTY (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>ROANE COUNTY (TENN.) - ECONOMIC CONDITIONS</option>  \r\n'
+	+'<option>ROANE COUNTY (TENN.) - ECONOMIC CONDITIONS - HISTORY - 19TH CENTURY</option>  \r\n'
+	+'<option>ROANE COUNTY (TENN.) - ECONOMIC POLICY</option>  \r\n'
+	+'<option>ROANE COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>ROANE COUNTY (TENN.) - GENEALOGY - PERIODICALS</option>  \r\n'
+	+'<option>ROANE COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>ROANE COUNTY (TENN.) - GUIDEBOOKS</option>  \r\n'
+	+'<option>ROANE COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>ROANE COUNTY (TENN.) - HISTORY - MISCELLANEA</option>  \r\n'
+	+'<option>ROANE COUNTY (TENN.) - HISTORY - PICTORIAL WORKS</option>  \r\n'
+	+'<option>ROANE COUNTY (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>ROANE COUNTY (TENN.) - MILITIA</option>  \r\n'
+	+'<option>ROANE COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>ROANE COUNTY (TENN.) - PHOTOGRAPHS</option>  \r\n'
+	+'<option>ROANE COUNTY (TENN.) - PICTORIAL WORKS</option>  \r\n'
+	+'<option>ROANE COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>ROANE COUNTY (TENN.) - SOCIAL CONDITIONS</option>  \r\n'
+	+'<option>ROBERTSON COUNTY (TENN.)</option>  \r\n'
+	+'<option>ROBERTSON COUNTY (TENN.) - ANTIQUITIES</option>  \r\n'
+	+'<option>ROBERTSON COUNTY (TENN.) - BIBLIOGRAPHY</option>  \r\n'
+	+'<option>ROBERTSON COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>ROBERTSON COUNTY (TENN.) - CENSUS, 1820</option>  \r\n'
+	+'<option>ROBERTSON COUNTY (TENN.) - CENSUS, 1850</option>  \r\n'
+	+'<option>ROBERTSON COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>ROBERTSON COUNTY (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>ROBERTSON COUNTY (TENN.) - CHURCHES</option>  \r\n'
+	+'<option>ROBERTSON COUNTY (TENN.) - ECONOMIC POLICY</option>  \r\n'
+	+'<option>ROBERTSON COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>ROBERTSON COUNTY (TENN.) - GENEALOGY - PERIODICALS</option>  \r\n'
+	+'<option>ROBERTSON COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>ROBERTSON COUNTY (TENN.) - HISTORIC BUILDINGS</option>  \r\n'
+	+'<option>ROBERTSON COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>ROBERTSON COUNTY (TENN.) - HISTORY - PERIODICALS</option>  \r\n'
+	+'<option>ROBERTSON COUNTY (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>ROBERTSON COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>ROBERTSON COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>ROBERTSON COUNTY (TENN.) - PUBLIC WORKS</option>  \r\n'
+	+'<option>ROCK CASTLE (SUMNER COUNTY, TENN.)</option>  \r\n'
+	+'<option>ROCK CASTLE (SUMNER COUNTY, TENN.) - PERIODICALS</option>  \r\n'
+	+'<option>ROCK ISLAND (TENN.) - MAPS, MANUSCRIPT</option>  \r\n'
+	+'<option>ROCK ISLAND STATE PARK (TENN.)</option>  \r\n'
+	+'<option>ROCKWOOD (TENN.)</option>  \r\n'
+	+'<option>ROCKWOOD (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>ROCKWOOD (TENN.) - DESCRIPTION AND TRAVEL</option>  \r\n'
+	+'<option>ROCKWOOD (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>ROCKWOOD (TENN.) - HISTORY</option>  \r\n'
+	+'<option>ROCKWOOD (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>ROCKY MOUNT (PINEY FLATS, TENN.) - PERIODICALS</option>  \r\n'
+	+'<option>ROGERSVILLE (TENN.)</option>  \r\n'
+	+'<option>ROGERSVILLE (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>ROGERSVILLE (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>ROGERSVILLE (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>ROGERSVILLE (TENN.) - HISTORY</option>  \r\n'
+	+'<option>ROGERSVILLE (TENN.) - HISTORY - PICTORIAL WORKS</option>  \r\n'
+	+'<option>ROGERSVILLE (TENN.) - HISTORY, MILITARY - 19TH CENTURY</option>  \r\n'
+	+'<option>ROGERSVILLE (TENN.) - IMPRINTS</option>  \r\n'
+	+'<option>ROGERSVILLE (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>ROGERSVILLE (TENN.) - POLITICS AND GOVERNMENT</option>  \r\n'
+	+'<option>ROGERSVILLE (TENN.) - SOCIAL CONDITIONS - 19TH CENTURY</option>  \r\n'
+	+'<option>ROGERSVILLE (TENN.) - STREETS</option>  \r\n'
+	+'<option>ROPER\'S KNOB SITE (WILLIAMSON COUNTY, TENN.)</option>  \r\n'
+	+'<option>ROSE ISLAND SITE (TENN.)</option>  \r\n'
+	+'<option>ROSS\' LANDING (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>ROTHERWOOD (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>ROTHERWOOD (TENN.) - HISTORY</option>  \r\n'
+	+'<option>ROVER (TENN.) - HISTORY</option>  \r\n'
+	+'<option>RUGBY (TENN.)</option>  \r\n'
+	+'<option>RUGBY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>RUGBY (TENN.) - BUILDINGS</option>  \r\n'
+	+'<option>RUGBY (TENN.) - BUILDINGS, STRUCTURES, ETC.</option>  \r\n'
+	+'<option>RUGBY (TENN.) - DESCRIPTION AND TRAVEL</option>  \r\n'
+	+'<option>RUGBY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>RUGBY (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>RUGBY (TENN.) - HISTORY - SOURCES - BIBLIOGRAPHY - CATALOGS</option>  \r\n'
+	+'<option>RUGBY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>RUGBY (TENN.) - PHOTOGRAPHS</option>  \r\n'
+	+'<option>RUTHERFORD (TENN.) - DESCRIPTION AND TRAVEL</option>  \r\n'
+	+'<option>RUTHERFORD (TENN.) - HISTORY</option>  \r\n'
+	+'<option>RUTHERFORD (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>RUTHERFORD COUNTY (TENN.)</option>  \r\n'
+	+'<option>RUTHERFORD COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>RUTHERFORD COUNTY (TENN.) - CENSUS</option>  \r\n'
+	+'<option>RUTHERFORD COUNTY (TENN.) - CENSUS, 1810</option>  \r\n'
+	+'<option>RUTHERFORD COUNTY (TENN.) - CENSUS, 1820</option>  \r\n'
+	+'<option>RUTHERFORD COUNTY (TENN.) - CENSUS, 1840</option>  \r\n'
+	+'<option>RUTHERFORD COUNTY (TENN.) - CENSUS, 1850</option>  \r\n'
+	+'<option>RUTHERFORD COUNTY (TENN.) - CENSUS, 1860</option>  \r\n'
+	+'<option>RUTHERFORD COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>RUTHERFORD COUNTY (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>RUTHERFORD COUNTY (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>RUTHERFORD COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>RUTHERFORD COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>RUTHERFORD COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>RUTHERFORD COUNTY (TENN.) - HISTORY - CIVIL WAR, 1861-1865</option>  \r\n'
+	+'<option>RUTHERFORD COUNTY (TENN.) - HISTORY - INDEXES</option>  \r\n'
+	+'<option>RUTHERFORD COUNTY (TENN.) - HISTORY - PICTORIAL WORKS</option>  \r\n'
+	+'<option>RUTHERFORD COUNTY (TENN.) - HISTORY - SOCIETIES, ETC.</option>  \r\n'
+	+'<option>RUTHERFORD COUNTY (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>RUTHERFORD COUNTY (TENN.) - LOCAL HISTORY</option>  \r\n'
+	+'<option>RUTHERFORD COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>RUTHERFORD COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>RUTHERFORD COUNTY (TENN.) - SANITARY AFFAIRS</option>  \r\n'
+	+'<option>RUTHERFORD COUNTY (TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+	+'<option>RUTHERFORD REGION (TENN.) - DESCRIPTION AND TRAVEL</option>  \r\n'
+	+'<option>RUTHERFORD REGION (TENN.) - HISTORY</option>  \r\n'
+	+'<option>RUTHERFORD-KIZER SITE (TENN.)</option>  \r\n'
+	+'<option>RUTLEDGE (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>RYMAN HOUSE SITE (NASHVILLE, TENN.)</option>  \r\n'
+
++'</select> \r\n';
+	
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+<body class="background">
+
+
+
+
+<form name="FormOne" >
+
+
+<div name="SS" id="SS">
+<script>
+document.write(
+
+	 '<table border="1" cellpadding="4" cellspacing="0"  width="90%">\r\n'
+	+'<tr><td  bgcolor="ddeeff">\r\n'
+	///+'vv_functions.htm called by '+select_id+' <br>\r\n'
+	+'<b>Select Geographic Subject R </b> \r\n'
+	+'</td></tr><tr><td bgcolor="ddeeff"> \r\n' 
+	+ strSelect_GE_A
+
+	+'</td></tr></table> \r\n'
+	///+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+</script>
+	
+</div>
+
+<input type="button" onclick="showSelection();" name="B1" value="Geographic Name">
+
+</form>
+
+<script>
+
+
+
+                  
+
+function showSelection() {
+
+val = new String();
+
+for ( i=0; i< document.FormOne.aaa.length; i++ ) {
+
+if ( document.FormOne.aaa[i].selected == true ) {
+  	val = document.FormOne.aaa[i].text;
+	break;
+	}
+else { val = "you never selected anything"; 
+	}
+
+}
+////////////////////////alert ("You selected " +val);
+val=reformatGeo(val);
+
+switch ( select_id ) {
+
+case  "subject_geographic_lcsh_01" :
+	parent.window.opener.document.forms[0].subject_geographic_lcsh_01.value=val;
+	parent.window.close();
+	break;
+
+case  "subject_geographic_lcsh_02" :
+	parent.window.opener.document.forms[0].subject_geographic_lcsh_02.value=val;
+	parent.window.close();
+	break;
+
+}//end switch
+
+}///end function
+</script>
+

@@ -1,0 +1,127 @@
+OVERVIEW
+
+Comments on files in [root@store1 md5stuff]# pwd
+/home/firestar/md5stuff
+
+1.  Preservation on store2.lib.utk.edu  Run md5checksums to see if any 
+     changes occur.
+2.  Put results in checkscripts database
+3.  the file named checked shows all entries marked ok
+4.  the directory named checksums contains by dir name checksums for 
+	all files one directory at a time
+	for example:  the file named _area3_yearbook_1981_OCR
+	contains checksums for all files in: /area3/yearbook/1981/OCR/
+5.  the files dcheck, dched, newer_dcheck, old_dcheck contain md5checksums for files
+6.  NOTE - directions on what to do
+	If a filename will be changed, or file otherwise altered, and you know it --
+ 		remove the file directory name from dcheck (by hand)
+ 		remove the files and/or directories from chksums (by hand)
+	this should prevent a long list of errors the next time the
+	dirs software runs.
+
+7.  old_cronjobs - command line syntax
+8.  problems directory, contains one file, example of FAILED checksums
+9.  storesums - perl script, put checksum in md5sums database on diglib2
+10. test - perl script to write a single checksum file to checksum dir
+11. testing - a perl script
+	#testing
+	# jody, 11/03/03
+	#  this just to test changes to "dirs" script, before adding them in.
+	#  these changes are to verify checksums on checksum files before starting.
+	#  if one has changed, then there's reason to believe error messages after that,
+	#  from that directory, are in error....
+
+
+
+	
+=============================================
+[cdeane@store1 ~]$ sudo su
+[root@store1 cdeane]# cd ../firestar/md5stuff/
+[root@store1 md5stuff]# ls -l
+total 8216
+-rwxr-xr-x 1 firestar firestar    1438 Jul 27  2006 change
+-rw-r--r-- 1 firestar firestar 3143188 Apr  8  2007 checked
+drwxr-xr-x 2 firestar firestar  159744 Apr 15  2007 chksums
+-rw-r--r-- 1 root     root           2 Apr 18  2007 cronjobs
+-rw-r--r-- 1 firestar firestar  145901 Apr 12  2007 dcheck
+-rw-r--r-- 1 root     root      105379 Apr 15  2007 dchked
+-rwxr-xr-x 1 firestar firestar    9183 Apr 13  2007 dirs************program to run md5checksums
+-rwxr-xr-x 1 firestar firestar    7444 Jan 27  2006 dirs_012706jd
+-rwxr-xr-x 1 firestar firestar    8670 Apr 12  2007 dirs_20070412jd
+-rw-r--r-- 1 firestar firestar 4245748 Apr 15  2007 errors**********output from dirs
+-rw-r--r-- 1 firestar firestar     108 Apr 15  2007 message*********short output from dirs
+-rw-r--r-- 1 firestar firestar   35191 Jul 27  2006 newer_dcheck
+-rw------- 1 root     root      371535 Apr 13  2007 nohup.out*******output from >nohup dirs
+-rw-r--r-- 1 firestar firestar     256 Jun 20  2006 NOTE
+-rw-r--r-- 1 firestar firestar     253 Jul 27  2006 old_cronjobs
+-rw-r--r-- 1 firestar firestar   79924 Jul 21  2006 old_dcheck
+drwxr-xr-x 2 firestar firestar    4096 Jan 27  2006 problems
+-rwxr-xr-x 1 firestar firestar    4421 Apr 12  2007 storesums
+-rw-r--r-- 1 firestar firestar      44 Jul 23  2006 summessage
+-rwxr-xr-x 1 firestar firestar     999 Jan 27  2006 test
+-rwxrwxr-x 1 firestar firestar    1453 Jul 31  2006 testing
+
+
+
+=============================================
+[root@diglib2 singles]# pwd
+/d1/workarea/dlxs/image/tel/singles
+[root@diglib2 singles]# ls -l
+total 4256
+-rw-r--r--    1 root     root         4431 Jun 12  2007 	15_60_227char
+-rw-r--r--    1 root     root         4431 Jun 12  2007 	15_60_227hex
+-rw-r--r--    1 root     root          552 Oct  5  2006 	categories
+-rwxr-xr-x    1 root     root         1411 Oct  5  2006 	catref
+-rw-r--r--    1 root     root       172722 Jun 12  2007 	checkme
+-rw-r--r--    1 root     root           17 Oct  5  2006 	close
+-rwxr-xr-x    1 root     root         1668 Oct  5  2006 	countfiles
+-rwxr-xr-x    1 root     root          581 Aug 20  2007 	countfiles2
+drwxr-xr-x    8 root     root         4096 Aug 20  2007 	done
+-rw-r--r--    1 root     root         1474 Jan 14 15:46 	dothis
+-rw-r--r--    1 root     root          665 Oct  5  2006 	dothisbib
+-rw-r--r--    1 root     root         1006 Nov 15  2006 	dothissearch
+-rw-r--r--    1 root     root         2222 Oct  5  2006 	entry
+-rwxr-xr-x    1 root     root         5268 Dec 20 16:21 	fieldtest
+-rwxr-xr-x    1 root     root        10798 Aug  6  2007 	fixSubjects
+-rw-r--r--    1 root     root           12 Oct  5  2006 	footer
+-rw-r--r--    1 root     root        16208 Jun 12  2007 	here
+-rw-r--r--    1 root     root        19664 Jun  5  2007 	hex
+-rwxr-xr-x    1 root     root         1024 Jun  5  2007 	hexmess
+-rw-r--r--    1 root     root        17864 Aug 20  2007 	hextest
+-rw-r--r--    1 root     root          218 Jun  7  2007 	httpEncodings
+drwxr-xr-x    2 root     root        20480 Jan 14 16:14 	ic
+-rw-r--r--    1 root     root      2373589 Jan 22 13:21 	ic.vvz.unnorm.sgm
+-rwxr-xr-x    1 root     root         1353 Oct  5  2006 	infotrack
+drwxr-xr-x    2 root     root        24576 Jan 14 10:07 	jpegs
+-rw-r--r--    1 root     root        66654 Jan 14 16:14 	linkfile
+-rw-r--r--    1 root     root        17458 Jun  6  2007 	linkfile.bk
+drwxr-xr-x    2 root     root        24576 Jan 14 10:07 	minithumbs
+drwxr-xr-x    2 root     root        24576 Jan 22 10:45 	mods
+drwxr-xr-x    2 root     root        20480 Jan 23 10:38 	modsbib
+-rwxr-xr-x    1 root     root        69634 Jan 23 09:10 	modsICsearchOai
+-rwxr-xr-x    1 root     root        62256 May  9  2007 	modsICsearchOai.20070509
+-rwxr-xr-x    1 root     root        65759 May 10  2007 	modsICsearchOai.20070510
+-rwxr-xr-x    1 root     root        65923 Jun  5  2007 	modsICsearchOai.20070605
+-rwxr-xr-x    1 root     root        68998 Jan 14 15:40 	modsICsearchOai.20080114jd
+-rwxr-xr-x    1 root     root        67429 Apr 13  2007 	modsICsearchOai.bk
+drwxr-xr-x    2 root     root        24576 Jan 23 10:38 	newmods
+-rw-r--r--    1 root     root          471 Oct  5  2006 	NOTE
+-rw-r--r--    1 root     root           63 Oct  5  2006 	open
+-rw-r--r--    1 root     root           71 Oct  5  2006 	opensearch
+-rw-r--r--    1 root     root       145497 Jun  4  2007 	output
+drwxr-xr-x    2 root     root        16384 Dec 20 16:46 	preservation
+drwxr-xr-x    2 root     root         4096 Dec 20 16:21 	problems
+drwxr-xr-x    2 root     root        20480 Jan 23 10:39 	search
+drwxr-xr-x   11 root     root         4096 Dec 12 17:18 	spc
+drwxr-xr-x   10 root     root         4096 Jun  4  2007 	testfiles
+drwxr-xr-x    2 root     root        24576 Jan 14 10:07 	thumbs
+-rw-r--r--    1 root     root        47215 Jun  5  2007 	titles
+-rwx------    1 root     root         8063 Jun 12  2007 	translate
+-rw-r--r--    1 root     root        86208 Oct  5  2006 	vvs-bib.xml
+-rw-r--r--    1 root     root           80 Jun  4  2007 	vvz-bib.sgm
+-rw-r--r--    1 root     root         3303 Oct  5  2006 	vvzHeader
+-rw-r--r--    1 root     root       569311 Jun  4  2007 	vvz-mods.xml
+[root@diglib2 singles]# 
+
+
+The file modsICsearchOai takes mods workbook output and creates 4 kinds of files. 

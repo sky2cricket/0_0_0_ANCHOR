@@ -1,0 +1,37 @@
+<html>
+<head>
+<title>Preparation of Data for DLXS Indexing and Online Presentation</title>
+
+
+
+
+
+
+
+<link href="../dlxsdocs.css" rel="stylesheet" type="text/css"> </head>         <body>
+<div class="pageTitle">Preparing Data for DLXS Indexing and Online Presentation</div>
+
+<p>This document describes in general some of the issues involved in data preparation  for all classes. This document does not address XPAT indexing, a description  of which can be found in <a href="indexing.html">Indexing</a>.</p>
+<p>For specific information on data preparation for individual classes, check the following links:</p>
+<ul>
+<li><a href="../class/text/prep.html">Text Class</a></li>
+<li><a href="../class/image/index.html">Image Class</a></li>
+<li><a href="../class/bib/transforming.html">Bib Class</a></li>
+<li><a href="../class/findaid/prep.html">Finding Aids Class</a></li>
+<li><a href="../class/unicode.html">Unicode Issues</a></li>
+</ul>
+<p><b>General Information</b> </p>
+<ul>
+<li> <b>Data preparation environment</b>: You may or may not have a machine, separate from your production machine (server), on which to prepare data.  It is best to prepare data separate from any version of the collection that is in production and available to users. Unlike files in other directories in the DLXS file system (bin, obj, idx), everything in prep should be ultimately expendable in the production environment.</li>
+<li><b>Directories used in data preparation</b>: We suggest a directory structure such as the following.  <b>Note</b>: <i>$DLXSROOT</i> here refers to whatever path you have set up as the $DLXSROOT (see the <a href="../intro/dirstruct.html#dlxsrootenv">$DLXSROOT environment variable</a>). 
+<ul>
+<li>$DLXSROOT/prep/c/collid/ to contain 
+the data itself in its various versions as it is transformed from its original source structure into the structure needed for XPAT indexing and final delivery.</li>
+<li>$DLXSROOT/bin/c/collid/ to contain scripts and other files needed for processing the data (e.g., Perl scripts, Makefiles, XSLT stylesheets, etc.).</li>
+</ul>
+</li>
+</ul>
+<p>See <a href="http://docs.umdl.umich.edu/arch/general/directory-conventions.html">documentation on directory conventions</a> for more information on the overall DLXS directory structure.</p>
+</body>
+
+</html>

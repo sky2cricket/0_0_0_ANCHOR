@@ -1,0 +1,500 @@
+<html>
+<head>
+<title>Step-by-Step Installation of DLXS</title>
+
+
+
+ <link href="../dlxsdocs.css" rel="stylesheet" type="text/css">
+</head>         <body>
+<div class="pageTitle">DLXS Step by Step Installation</div>
+
+<h1><a name="installsteps"></a>Install steps</h1>
+<table border="1" width="75%" align="CENTER">
+<tr>
+<td>
+<p><b>Note</b>: Before starting, know that if for any reason the install is <b>unsuccessful</b>, you  may repeat the process. Simply delete the $DLXSROOT directory (if it has been created) and run <i>Installer</i> again.
+In order to do a <b>reconfiguration</b> of a successful install simply rerun <i>Installer</i> again and answer <b>R</b> when prompted to do an initial install versus a reconfiguration.</p>
+</td>
+</tr>
+</table>
+<p>You can choose to install 
+<ul>
+<li>Directly from the CD</li>
+<li>From a directory into which you have copied the installer and the gzipped middleware tarfiles</li>
+<li>From a directory where you have mounted the CDROM ISO image file</li>
+</ul>
+ If installing from the CD-ROM, enter the following:</P>
+<pre>
+    <b>% cd <i>/cdrom</i>
+    % perl <i>Installer.pl</i></b>
+</pre>
+<p>If installing from a directory on the hard drive into which you
+have copied the necessary files, enter the following:</p>
+<pre>
+    <b>% cd<i> tarfile-dir</i>
+    % perl <i>Installer.pl</i></b>
+</pre>
+
+<p>If installing from a directory (<i>somedir</i>) where you have mounted the ISO image file, enter the following (assuming release 11 files and Linux syntax):</p>
+<pre>
+    <b>% mount -o loop <i>dlxs_open_11.iso somedir</i>
+    % cd <i>somedir</i>
+    % perl <i>Installer.pl</i>
+    % umount <i>somedir</i></b>
+</pre>
+
+<p>The install program will run and prompt you to answer a number of questions. <b>Note: </b><i>Installer.pl</i> does not hard-code a Perl hash bang so be sure to run it as an argument to the Perl command line as shown above.</p>
+<p>What follows is an annotated version of the screen dialogue from an
+actual run of <i>Installer</i>. Because this installation was
+performed on a machine having all the necessary
+ <a href="index.html#binaries">binaries</a> 
+and <a href="index.html#reqperlmodules">Perl modules</a>
+ supplied, most of the answers can be supplied by just hitting
+[RETURN]. Installer interactions look like</p>
+
+ <pre>   this</pre>
+
+<p>while annotations for the purposes of this documentation look like
+      <i>this</i>.</p>
+<hr />
+<p>Beginning of annotated screen dialogue:</p>
+
+<pre>
+   Welcome to DLXS Installer.  Press 'q' at any time to quit
+       Compatible with DLXS Release 11.
+
+   Which platform are you using? (SunOS/Linux) [SunOS]
+</pre>
+
+<p><i>The preceding is a check to make sure the platform is supported.</i></p>
+
+<pre>Where is Perl installed? [/usr/bin/perl]</pre>
+<p><i>Enter the full path to perl. The default is from the 'which' command..</i></p>
+
+<pre>
+   Checking for Perl installation for required modules...
+   All required modules were found.
+</pre>
+
+<p><i>All required Perl modules were found. If any were missing or
+if any differed from the recommended versions, the Installer
+would have listed them. We recommend installing them beforehand. You
+may abort the install at this point (Ctrl-C) and restart it later.</i></p>
+
+<pre>
+   The next series of questions concerns where certain
+   required binaries are installed in your system.
+</pre>
+
+<p><i>Enter full paths to the binaries you choose to install based on the middleware classes you chose to install as directed. See <a href="index.html#binaries">Binaries</a>.</i></p>
+
+<pre>
+   Where is XPAT installed? [/l/local/bin/xpat] 
+
+   Do you want to use tif2web (required for TextClass page viewer)? [Y] 
+   Where is tif2web installed? [/l/local/bin/tif2web] 
+
+   Do you want to use c42pdf (required for TextClass page viewer)? [Y] 
+   Where is c42pdf installed? [/l/local/bin/c42pdf] 
+
+   Do you want to use MrSid (required for ImageClass)? [Y] 
+   Where is mrsid_retrieve installed? [/l/local/bin/mrsid_retrieve] 
+
+   Etc.
+
+        **********************************
+                I m p o r t a n t !
+        **********************************
+
+  The next question allows you to pick between performing a first-time
+  installation or reconfiguring an existing installation.
+
+  For a FIRST-TIME INSTALLATION you will be asked where to install DLXS.
+  You should supply a full path.  For example, if you choose
+  /l1/dlxs-release-11, the installer will:
+
+        (1) create an install directory named /l1/dlxs-release-11
+        (2) mark it with a timestamp
+        (3) extract the tarfiles into that directory.
+
+  The directory path you choose will be known as DLXSROOT.
+
+  This install directory is also inserted as a string into a number
+  of working and configuration example files.
+
+  For your webserver, the DLXSROOT variable and its value are written to
+  an example file called DLXSROOT/bin/installer/config-examples/httpd.conf.dlxs.
+
+  You may use that example configuration file to configure your Apache
+  server environment. Or you may define DLXSROOT for your server using
+  your own configuration.
+
+  For your Unix shell, you should set the DLXSROOT environment variable
+  to the path you choose so you can run various command line utilities
+  which depend on it.
+
+  For a RECONFIGURATION, you will be asked for the path you entered for
+  the FIRST-TIME INSTALLATION directory.  The directory must be one
+  containing a completed installation of DLXS Release 9.
+
+  Is this an I)nitial install or a R)econfiguration? (I/R) [I]
+
+  Where would you like to install DLXS? [//] /l1/dlxstest
+</pre>
+
+<p><i>This is where you specify DLXSROOT as explained above. Note the option to "re-configure". If you choose it, you will be prompted for the location of a completed installation. The installer will then make another pass over the installed middleware .cfg files allowing you to change values you entered during the initial installation or subsequent reconfigurations. You can do this as many times as necessary.</i></p>
+
+<pre>
+  Creating DLXSROOT...
+
+  Unpacking tarball...
+  Untarring all in /l/l1/INSTALL_CDROM into /l1/dlxstest...
+  Untarring /l/l1/INSTALL_CDROM/Broker20_v1-1-0_rel11.tar.gz...
+  Untarring /l/l1/INSTALL_CDROM/ImageClass_v3-0-0_rel11.tar.gz...
+  Untarring /l/l1/INSTALL_CDROM/BibClass_v3-1-0_rel11.tar.gz...
+  Untarring /l/l1/INSTALL_CDROM/Collmgr_v3-1-0_rel11.tar.gz...
+  Untarring /l/l1/INSTALL_CDROM/TextClass_v3-2-0_rel11.tar.gz...
+  Untarring /l/l1/INSTALL_CDROM/FindaidClass_v5-0-0_rel11.tar.gz...
+  Untarring /l/l1/INSTALL_CDROM/Lib_v3-2-0_rel11.tar.gz...
+  Untarring /l/l1/INSTALL_CDROM/XClass_v2-1-0_rel11.tar.gz...
+  Untarring /l/l1/INSTALL_CDROM/Dlxsdocs_v1-2-0_rel11.tar.gz...
+
+  Making symlinks...
+</pre>
+
+<p><i>Symlinks to the installed binaries are saved in $DLXSROOT/bin/symlinks so
+the middleware can find them easily and we can avoid many inline replacements at install-time. </i></p>
+
+<pre> 
+  Processing config-examples...
+      Processing replacements in /l1/dlxstest/bin/installer/config-examples/crontab.dlxs
+      Processing replacements in /l1/dlxstest/bin/installer/config-examples/httpd.conf.dlxs
+      Processing replacements in /l1/dlxstest/bin/installer/config-examples/httpd.conf.dlxs
+      Processing replacements in /l1/dlxstest/bin/installer/config-examples/httpd.conf.dlxs
+</pre>
+
+<p><i>Example files for the Apache server virtual host configuration and setting up cron jobs are automatically customized with your local settings and reside in $DLXSROOT/bin/installer/config-examples. </i></p>
+
+<pre>
+  Processing ImageClass index replacements...
+          Processing replacements in /l1/dlxstest/idx/s/sampleic/image.blank.dd
+          Processing replacements in /l1/dlxstest/idx/s/sampleic/image.dd
+          Processing replacements in /l1/dlxstest/idx/s/sampleic/image.cfg
+          Processing replacements in /l1/dlxstest/idx/s/sampleic/image.inp
+          Processing replacements in /l1/dlxstest/idx/w/workshopic/image.blank.dd
+          Processing replacements in /l1/dlxstest/idx/w/workshopic/image.dd
+          Processing replacements in /l1/dlxstest/idx/w/workshopic/image.cfg
+          Processing replacements in /l1/dlxstest/idx/w/workshopic/image.inp
+          Processing replacements in /l1/dlxstest/idx/i/image-blank/image.blank.dd
+          Processing replacements in /l1/dlxstest/idx/i/image-blank/image.cfg
+          Processing replacements in /l1/dlxstest/idx/i/image-blank/image.inp
+  
+  Processing ImageClass perl hashbangs...
+          Processing replacements in /l1/dlxstest/bin/i/image/convertBookBag.pl
+          Processing replacements in /l1/dlxstest/bin/i/image/getFlds.pl
+          Processing replacements in /l1/dlxstest/bin/i/image/getoneline.pl
+          Processing replacements in /l1/dlxstest/bin/i/image/html2tab.pl
+          Processing replacements in /l1/dlxstest/bin/i/image/icsgml2icmysql.pl
+          Processing replacements in /l1/dlxstest/bin/i/image/idb
+          Processing replacements in /l1/dlxstest/bin/i/image/imageprep
+          Processing replacements in /l1/dlxstest/bin/i/image/imagetobib.pl
+          Processing replacements in /l1/dlxstest/bin/i/image/makefieldbrowse.pl
+          Processing replacements in /l1/dlxstest/bin/i/image/putFlds.pl
+          Processing replacements in /l1/dlxstest/bin/i/image/tab2html.pl
+  ImageClass thumb symlinking...
+  </pre>
+
+<p><i>The preceding part of the script creates some needed directories
+and creates symlinks for image files.
+</i></p>
+
+<pre>
+Processing TextClass index replacements...
+        Processing replacements in /l1/dlxstest/idx/s/sampletc/sampletc.dd
+
+Processing TextClass WW sample index replacements...
+        Processing replacements in /l1/dlxstest/idx/s/sampletc/WW/makeWordWheelFiles.cfg
+        Processing replacements in /l1/dlxstest/idx/s/sampletc/WW/sampletc.ww.dd
+        Processing replacements in /l1/dlxstest/idx/s/sampletc/WW/sampletc.ww.inp
+        Processing replacements in /l1/dlxstest/idx/s/sampletc/WW/sampletc.ww.prepost.dd
+        Processing replacements in /l1/dlxstest/idx/s/sampletc/WW/sampletc.ww.presgml.dd
+
+Processing TextClass sample WW XPAT path and DLXSROOT...
+        Processing replacements in /l1/dlxstest/idx/s/sampletc/WW/makeWordWheelFiles.cfg
+        Processing replacements in /l1/dlxstest/idx/s/sampletc/WW/makeWordWheelFiles.cfg
+
+Processing TextClass /l1/dlxstest/bin/WW replacements...
+        Processing replacements in /l1/dlxstest/bin/WW/Makefile
+        Processing replacements in /l1/dlxstest/bin/WW/sample.ww.blank.dd
+        Processing replacements in /l1/dlxstest/bin/WW/sample.ww.inp
+        Processing replacements in /l1/dlxstest/bin/WW/makeWordWheelFiles.sample.cfg
+        Processing replacements in /l1/dlxstest/bin/WW/makeWordWheelFiles.sample.cfg
+        Processing replacements in /l1/dlxstest/bin/WW/makeWordWheelFiles.pl
+Processing BibClass index replacements...
+        Processing replacements in /l1/dlxstest/idx/s/samplebc/samplebc.dd
+
+Processing FindaidClass index replacements...
+        Processing replacements in /l1/dlxstest/idx/s/samplefa/samplefa.dd
+
+Processing FindaidClass Aids perl hashbangs...
+        Processing replacements in /l1/dlxstest/bin/f/findaid/catsourcefiles.pl
+        Processing replacements in /l1/dlxstest/bin/f/findaid/cleanfiles.pl
+        Processing replacements in /l1/dlxstest/bin/f/findaid/inc.extra.dd.pl
+        Processing replacements in /l1/dlxstest/bin/f/findaid/isolat128bit.pl
+        Processing replacements in /l1/dlxstest/bin/f/findaid/output.dd.frag.pl
+        Processing replacements in /l1/dlxstest/bin/f/findaid/validate.pl
+        Processing replacements in /l1/dlxstest/bin/s/samplefa/validate.pl
+
+Processing FindaidClass /l1/dlxstest... replacements...
+        Processing replacements in /l1/dlxstest/bin/s/samplefa/Makefile
+
+Processing miscellaneous bin utilities perl hashbangs...
+        Processing replacements in /l1/dlxstest/bin/managesessions.pl
+</pre>
+
+<p><i>The preceding section on replacements details string replacements in files that have hard-coded paths to Perl and to $DLXSROOT.</i></p>
+
+<pre>
+Processing database utilities perl hashbangs...
+        Processing replacements in /l1/dlxstest/bin/db/dbmove
+        Processing replacements in /l1/dlxstest/bin/db/dbconv
+        Processing replacements in /l1/dlxstest/bin/db/upgrade_1_2
+        Processing replacements in /l1/dlxstest/bin/db/upgrade_2_3
+        Processing replacements in /l1/dlxstest/bin/db/upgrade_3_4
+Making /l1/dlxstest/web/t/text/gifcvtdir for TextClass image cache
+Opening permissions to u+w g+w o+w on /l1/dlxstest/web/t/text/gifcvtdir
+Opening permissions to u+w g+w o+w on CSV database tables in /l1/dlxstest/misc/db
+        Processing replacements in /l1/dlxstest/bin/installer/README-postinstall
+</pre>
+
+<p><i>The preceding section on replacements details string replacements in
+files that have hard-coded paths to Perl and to $DLXSROOT. The
+gifcvtdir (used to hold derived images and pdf files) is created and
+permissions on it are set.</i></p>
+
+
+<p><i>Next the Middleware .cfg files Processing Begins ...</i></p>
+
+<pre>
+Configuring LibGlobals.cfg
+
+no authentication URL available: using Basic Auth
+</pre>
+<p><i>By default, we assume you do not have a URL to an authentication system at your site that is able to set the REMOTE_USER environment variable. We deliver an HTTP "Basic Auth" configuration in the virtual host example file $DLXSROOT/bin/installer/config-examples/ httpd.conf.dlxs file.</i></p>
+
+<pre>
+Select the Collection database type. Choose MySQL if using MySQL for Image Class searching.   (CSV/MySQL) [MySQL] CSV
+</pre>
+
+<p><i>Though the default shown is MySQL, to run "out of the box," choose CSV to use the sample database tables and collections.  If you choose CSV, and at some later time you wish to begin running under MySQL, run the <a href="../collmeta/dbmove.html"><b>dbmove</b></a> utility to transfer the contents of the supplied CSV database into MySQL.  If you have already set up MySQL and used the database conversion utility <b><a href="../collmeta/dbconv.html">dbconv</a></b> to populate it, choose MySQL.</i></p>
+
+<pre>
+Enter the virtual host of the idresolver cgi.
+ [images.umdl.umich.edu]
+</pre>
+
+<p><i>At DLPS we have a CGI that maps image IDs to URLs so ImageClass can serve images maintained outside the usual ImageClass img directories. Here, if you choose to use the DLXS idresolver cgi, enter the virtual host under which it will run.  Otherwise enter a blank.</i></p>
+
+<pre>
+  Enter your SMTP host [mail.umdl.umich.edu]
+
+  Enter the email address from which the generated (e.g. BookBag) mail
+      will be sent ["UMDL Mailer" &lt;umdl-help@umich.edu&gt;]
+
+  Enter your Help email HTML href [mailto:umdl-help@umich.edu]
+
+  Enter your Help email text string [umdl-help@umich.edu]
+</pre>
+
+<p><i>Your local email addresses that will appear in several of the HTML templates.</i></p>
+
+<pre>
+ Configuring DlpsSession.cfg
+
+ Select the session datastore type (CSV/MySQL) [CSV] 
+
+ Enter CSV session directory [/tmp/sessions] 
+
+ Enter CSV session lock directory [/tmp/sessionslock] 
+</pre>
+
+<p><i>Sessions can be maintained in CSV files or in a MySQL database. If in CSV, enter the directory and lock directory where session files live (<tt>sessions</tt> and <tt>sessionslock</tt>. These directories must exist and be write permitted to the UID of the web server and should be created post-install.</i></p>
+
+<pre>
+  Configuring BookBag.cfg
+</pre>
+
+<p><i>The mail host to use when mailing BookBag contents.</i></p>
+
+<pre>
+  Enter the email address from which the BookBag mail will be sent 
+   	["UMDL Mailer" &lt;umdl-help@umich.edu&gt;] 
+
+  Configuring collmgr.cfg (Collection Database Manager)
+
+  no logout URL: using Basic Auth
+</pre>
+
+<p><i>As explained above, the collmgr needs to have REMOTE_USER set by some mechanism. By default we supply HTTP "Basic Auth".</i></p>
+
+<pre>
+  Configuring dbconv.cfg
+
+  Configuring dbmove.cfg
+
+  Configuring textclass.cfg
+
+  Configuring PageView.cfg
+
+  Select the *Pageviewer* datastore type.
+
+  If you don't have page images but want to try sample data, 
+   	choose CSV (CSV/MySQL) [MySQL] 
+</pre>
+
+<p><i>A sample Pageview database table is supplied for the sampleic collection. For any significant application, CSV will not scale. If you just want to try the sampletc collection choose CSV. If you have a large scale collection of page images, choose MySQL.</i></p>
+
+<pre>
+  Configuring bibclass.cfg
+
+  Configuring imageclass.cfg
+
+Enter the image file server host name.
+If it is the same as the host serving image-idx, enter '/',
+otherwise enter e.g. imageserver.umdl.umich.edu   [/]
+
+Enter 1 if all MySQL content indexes are built with MySQL version 4.0.2 or newer. If not sure, enter 0 (zero). [1] 0
+</pre>
+
+<p><i>Imageclass may be configured to use a different machine to serve image data (i.e., as opposed to the machine running the middleware). Certain content metadata searches cannot be performed with older versions of MySQL.</i></p>
+
+<pre>
+  not using a development host
+
+  disabling Portfolios
+</pre>
+
+<p><i>The preceding status message indicated that ImageClass
+portfolio functionality is installed disabled by default.</i></p>
+
+<pre>
+  Configuring imageprep.cfg
+
+  disabling icv1.06 backward compatability in imageprep
+  Enter the path to mrsid_retrieve for imageprep [/l/local/bin/mrsid_retrieve]
+</pre>
+
+<p><i>For technical reasons related to how the Installer works the MrSID path needs to be supplied again here.</i></p>
+
+<pre>
+  Configuring broker20.cfg
+
+Enter OAI Repository ID [lib.umich.edu]
+Enter OAI repository name [The University of Michigan. University Library.  Digital Library Production Service.]
+Enter the broker base URL  [http://www.hti.umich.edu/cgi/b/broker20/broker20]
+Enter the broker email address [dlps-broker@umich.edu]
+Enter a UTCdatetime that is the guaranteed lower limit of all datestamps recording changes, modifications, or deletions in the repository [2000-08-17]
+Enter the manner in which the repository supports the notion of deleted records. Legitimate values are no, transient, or persistent [no]
+Enter resolution of the datestamp at for your repository.  The legitimate values are YYYY-MM-DD and YYYY-MM-DDThh:mm:ssZ with meanings as defined in ISO8601. [YYYY-MM-DD]
+Enter a sample OAI ID [oai:lib.umich.edu:YEATS-YC023]
+</pre>
+
+<p><i>broker20 is the CGI program that allows collections to be served using the OAI protocol.</i></p>
+
+<pre>
+
+  Done.
+
+  Please refer to /l1/dlxstest/bin/installer/README-postinstall
+  for post-installation directions.
+
+  Would you like to view the post-installation directions now? [Y]
+
+        ** NOTE: This installation was performed using version
+        11 of the DLXS Installer **
+
+       The middleware uses the DLXSROOT environment variable to locate
+       its pieces in the install tree.  To run various command line
+       utilities, make sure to set DLXSROOT environment variable for
+       your Unix shell.
+
+       For initial installations, if you chose MySQL for your
+       database, you will want to use /l1/dlxstest/bin/db/dbmove to move
+       the sample CSV database in /l1/dlxstest/misc/db into your MySQL
+       database before you try to run the sample data.
+
+       If your session database type is CSV, create the 'sessions' and
+       'sessionslock' subdirectories in the locations you specified when
+       configuring DlpsSession.cfg and permit them to the UID of the
+       webserver.
+
+       Database Upgrade:
+
+       For the following, please refer to the instructions at
+       http://docs.dlxs.org/collmeta/dlxs-collmetadata-index.xml
+       or browse to
+       /l1/dlxstest/web/d/dlxsdocs/collmeta/dlxs-collmetadata-index.xml.
+
+       If your current database is version 3 from release 10:
+       DLXS Release 11 uses a version 4 collection database.  Run
+       /l1/dlxstest/bin/db/upgrade_3_4 to convert your database to
+       version 4.
+
+       If your current database is version 2 from release 9:
+       Run /l1/dlxstest/bin/db/upgrade_2_3 to convert
+       your database to version 3 followed by the above step.
+
+       If your current database is version 1 from release 8:
+       Run /l1/dlxstest/bin/db/upgrade_1_2 to convert your database to
+       version 2 then follow the steps for subsequent releases above.
+
+       /l1/dlxstest/bin/installer/config-examples/httpd.conf.dlxs defines
+       Basic Authentication for an Apache server and thereby sets
+       REMOTE_USER. If you disable this, IMPORTANT NOTE: the collection
+       manager (collmgr) requires some form of authentication which
+       sets the REMOTE_USER environment variable for proper operation!
+
+       To use the Basic Authentication sample configuration you will
+       need to edit
+       /l1/dlxstest/bin/installer/config-examples/htpasswd.dlxs to supply
+       the encrypted form of the password you choose for the 'dlxsadm'
+       administrative user to run collmgr.  See documentation in
+       htpasswd.dlxs for instructions.
+
+       You may remove /tmp/main.cfg to restore the original default
+       Installer answers.  It is a copy of
+       /l1/dlxstest/bin/installer/main.cfg modified by the install
+       program to remember the answers you provide and, if present, is
+       favored over the original.
+
+       Optionally, change permissions on
+       /l1/dlxstest/web/t/text/gifcvtdir to make it accessible only to
+       the UID of the webserver.
+
+       Optionally, change permissions on files in /l1/dlxstest/misc/db
+       to make them accessible only to the UID of the webserver. In
+       any event, be sure the web server can read and write these
+       files, e.g. make sure they are 666, if their UID/GID is not
+       that of the web server user and group.
+
+       Set up cron jobs to run managesessions.pl and to clear the
+       gifcvtdir page viewer cache.
+
+</pre>
+
+<p><i>The installation is complete. Please follow the
+<a href="index.html#postinstallsteps">post install</a> notes.</i></p>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+</body>
+
+</html>

@@ -1,0 +1,266 @@
+
+<html>
+<head>
+<title>
+page_01
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+<script language=javascript src="vv_functions.js"></script>
+<script language=javascript src="vv_functions_radio.js"></script>
+<script language=javascript src="vv_validation.js"></script>
+
+<script>
+
+
+
+
+
+</script>
+
+
+</head>
+
+<script>document.write('<body onload="load_DF_form();"  bgcolor="'+parent.adb_background_color+'" >');</script>
+
+<!---body  class="background" onload = "load_DF_form();" bgcolor="bb8844"---><font face="arial" size="3">
+<center><font face="arial">
+<h2>Volunteer Voices Workbook Reload Page </h2>
+
+</center>
+
+<script>
+///Civil War Salt Peter Mining None, LCNAF, ULAN. 
+
+function chompData() {
+
+var xmlAll = new String(document.forms[0].chomp.value);
+alert(xmlAll);
+
+var index0 = xmlAll.indexOf("FILENAME:")+9;
+var index1 = xmlAll.indexOf(".xml -->")+4;
+
+var fullFileName = xmlAll.substring(index0,index1);
+alert(fullFileName); 
+
+var index2 = xmlAll.indexOf("NUMBER_OF_CONSTITUENT_FILES:") +28;
+var checkTiffs = xmlAll.substring(index2);
+var index3 = checkTiffs.indexOf("-->");
+var NumTiffs = checkTiffs.substring(0,index3);
+
+alert(NumTiffs);
+
+
+
+
+}//end function chompData()
+
+
+
+
+
+</script>
+
+<form name="DF"  action="new.xml">
+
+<input type="hidden" name="VVcomment_01" value="">
+<input type="hidden" name="VVcomment_02" value="">
+
+<!---table border="1" cellpadding="2" cellspacing="0" width="98%" bgcolor="ddeeff"--->
+<table  class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="99aabb">
+
+<tr class="bgstandard" ><td colspan="3">
+The purpose of this page is to upload an existing XML file from C:\Scan or C:Reworked directory.
+<br>So the file can be updated using the Volunteer Voices Workbook.
+<p>Enter preliminary input:  xml file name, directory, etc.
+<br>test file: C:\Scan\01\xml\0004_000003_000002_0000.xml
+</td></tr>
+<tr class="bgstandard" ><td colspan="3" bgcolor="004400">&nbsp;</td></tr>
+
+
+
+
+<tr class="bgstandard" ><td colspan="1" class="label12u">
+Chomp
+</td><td class="value10nou">
+textarea: document.DF.chomp.value<br>
+<textarea name="chomp"
+rows="20" cols="80"></textarea>
+<br>
+
+&nbsp;</td>
+
+<td>&nbsp;</td>
+</tr>
+
+
+
+<tr class="bgstandard" ><td colspan="3" bgcolor="004400">&nbsp;</td></tr>
+
+
+
+
+
+
+
+<tr class="bgstandard" ><td colspan="3" bgcolor="004400">&nbsp;</td></tr>
+
+
+
+
+<tr class="bgstandard" ><td colspan="3" align="center">
+&nbsp;&nbsp;
+
+<input type="button" name ="bChomp" onclick="chompData();" value="Process Data in TextArea">
+
+onclick="chompData()"
+</td></tr>
+
+
+<tr class="bgstandard" >
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+
+
+
+<tr class="bgstandard" ><td colspan="3" bgcolor="004400">&nbsp;</td></tr>
+
+
+
+
+</table>
+
+
+
+
+
+
+
+</form name="forms[0]">
+
+
+
+<hr>
+<script>
+
+
+function generate_file_list_tiff() {
+
+var str = new String();
+
+var N = 0;
+    N = Number(document.DF.numConstituentsTIFF.value );
+
+var base = document.DF.XMLBASE.value ;
+
+var append = new String();
+var j=0, chop=0;
+
+for ( i=0; i<N; i++ ) {
+	j= i+1;
+	append = "0000"+String(j);
+	chop = append.length -4;
+	append=append.substring(chop);
+	///alert("tiff file: "+base+append);
+	str += ","+base+append;
+}
+
+str = str.substring(1);
+
+
+return str;
+
+
+
+}//end function generate_file_list_tiff() 
+
+function xreset_directory_path() {
+	document.DF.selectXMLPATH[0].selected = true;
+	for (i=1; i<11; i++ ) {
+		document.DF.selectXMLPATH[i].selected = false;
+	}
+}//end function reset_directory_path()
+
+
+
+function load_UF_form(N) {
+
+var num = 0;
+if (N != 'undefined' ) {num=Number(N);}
+
+
+	
+
+
+
+var backslash = new String("\\");
+var d = new Date();
+
+var strComment_01 = new String();
+var strComment_02 = new String();
+
+	
+
+    strComment_01 = " <!-- FILENAME: "+document.forms[0].XMLPATHFULL.value+document.forms[0].XMLBASE.value+"0000.xml  --> \r\n";
+    strComment_02 =  " <!-- Created by Volunteer Voices Workbook " +d + " --> \r\n";
+
+    document.DF.VVcomment_01.value = strComment_01;
+    document.DF.VVcomment_02.value = strComment_02;
+  
+///parent.U.document.reload();
+//////alert("load_UF_form()");
+
+//parent.U.document.UF.file_to_upload.value = document.DF.file_to_upload.value;
+//parent.U.document.UF.VVcomment_01.value = document.DF.VVcomment_01.value;
+//parent.U.document.UF.VVcomment_02.value = document.DF.VVcomment_02.value;
+
+
+
+parent.U.document.UF.validate_page_begin.value="1";
+
+}
+
+function load_DF_form(num) {
+
+
+var NUM = 0;
+
+if ( typeof(num) != 'undefined') NUM = num;
+
+////////alert("load_DF_form()");
+
+///document.DF.file_to_upload.value = parent.U.document.UF.file_to_upload.value ;
+//document.DF.VVcomment_01.value = parent.U.document.UF.VVcomment_01.value ;
+//document.DF.VVcomment_02.value = parent.U.document.UF.VVcomment_02.value ;
+
+
+
+var backslash = new String("\\");
+
+
+
+return;
+}
+
+
+function UPLOAD() {
+//load_UF_form();
+alert("call server side function to upload the file.");
+
+
+}
+
+/////chdchdchd
+
+
+
+///formvardebug();
+
+</script>
+	
+
+
+</body>
+</html>
+

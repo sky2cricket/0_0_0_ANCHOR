@@ -1,0 +1,371 @@
+#! /usr/local/bin/perl
+require 5.003;
+use IPC::Open3;
+use File::Copy;
+use File::Basename;
+
+#--- - - - - - - -- -- - - - - - - - - -Is there a master dir to do? 
+
+$masterdir = qq{/l1/masters};
+
+do { 
+
+opendir MASTERDIR, $masterdir; 
+@dirs = grep -d, map "$masterdir/$_", readdir MASTERDIR;
+@dirs = grep !/\.$/, @dirs; #skim off the 'dot' directories
+@dirs = grep !/LOADING$/, @dirs;
+@dirs = grep !/PROCESSING$/,@dirs;
+@dirs = grep !/DONE$/,@dirs;
+closedir MASTERDIR;
+
+#print "$#dirs\n";
+
+if ($#dirs != -1) {
+    $cd_path = $dirs[0];
+} else {
+    print qq{No directories for processing found. Quitting.\n};
+    exit;
+}
+
+print "Chosen directory for processing is $cd_path\n";
+$cd_path_processing = $cd_path . qq{_PROCESSING};
+
+if (! -e '$cd_path_processing') {
+   my $cmd = qq{/bin/mv '$cd_path' '$cd_path_processing'}; 
+   print qq{Moving $cd_path to $cd_path_processing for processing.\n};
+   `$cmd`;
+} else { 
+   print qq{ERROR: $cd_path_processing already exists.\n};
+   exit;
+}
+        
+
+
+
+
+#- - - - -
+ $list_files_cmd = qq{/usr/local/isbin/fullpath-recursive-files.pl '$cd_path_processing'};
+ $convert = qq{/usr/local/bin/imagemagick/bin/convert};
+ $id = qq{/usr/local/bin/imagemagick/bin/identify};
+ $sidinfo = qq{/usr/local/bin/mrsid_info};
+# $sidcompress = qq{/usr/local/bin/mrsid_compress_Ltd_Solaris/mrsid_compress};
+ $sidretrieve = qq{/usr/local/bin/mrsid_retrieve};
+ $sidcompress = qq{/usr/local/bin/mrsid_compress_pro/mrsid_compress};
+ $lservrc = qq{/usr/local/bin/mrsid_compress_pro/lservrc};
+
+# -- -- - mrsid license file needs to be in working directory, duh
+# -- - - - -we'll delete it at the end of this show
+     copy($lservrc, "lservrc");copy($lservrc, "lservrc");
+# - -- - --
+
+#- - - - - - --- Profiles
+print "$cd_path_processing\n";
+@partsisparts = split /\//, $cd_path_processing;
+@piecesispieces = split /_/, @partsisparts[$#partsisparts];
+
+if ($#partsisparts != -1) { 
+    $profile = $piecesispieces[0];
+}
+
+if ($profile eq 'apis') {
+
+  #- - - - - -- -apis
+     $jpeg_large = 1;     #- - 1= make large jpegs
+     $gif_thumb  = 1;     #- - 1= make thumb gif
+     $overwrite = 0;
+     $sid = 0;
+     $jpeg_thumb = 0;
+
+  #- -- - - -- -
+} elsif (($profile eq 'harp') || ($profile eq 'palace')) {    #all eggs in one basket, other than apis
+
+  #- - - - - -- -harp
+     $sid  = 1;           #- - 1= make sids
+     $jpeg_thumb = 1;     #- - 1= make thumb jpeg
+
+     $sidsubdir = qq{/sid};
+     $jpeg_thumbsubdir = qq{/thumb};
+     $quality = 75; #for jpeg thumb compression
+     $overwrite = 0;
+
+     $blocksize = 1024; #for sid
+     $ratio = 10; # sid compression ratio
+     $temp = '/tmp'; #where mrsid compress makes temp files
+
+  #- -- - - -- -
+
+#} elsif ($profile eq 'bhl') {
+} else {    #all eggs in one basket, other than apis
+     $profile='default';
+     $sid  = 1;           #- - 1= make sids
+     $jpeg_thumb = 1;     #- - 1= make thumb jpeg
+
+     $sidsubdir = qq{/sid};
+     $jpeg_thumbsubdir = qq{/thumb};
+     $quality = 75; #for jpeg thumb compression
+     $overwrite = 0;
+
+     $blocksize = 1024; #for sid
+     $ratio = 20; # sid compression ratio
+     $temp = '/tmp'; #where mrsid compress makes temp files
+
+  #- -- - - -- -
+
+} #else {
+  #- -- - -- - - - default
+  #$nlev = 1; # actually derived later in code
+  #$blocksize = 1024;
+  #$ratio = 20;  
+  #$temp = '/tmp';
+  #- - - - - - - - -
+  #   $profile = 'default';
+#}
+print qq{Profile is $profile.\n};
+
+#- - -- - - - - - -  -- - - 
+
+#- - - - - - - - - - - - - - get just the current directory name w/o full path
+my ($cd_name, $rest_of_cd_path, $non_cd_exten) = fileparse($cd_path_processing, '\..*');
+
+
+#- - - - - - - - - - - - -- - - - -- -- -
+ $destdir = qq{/l1/derivs/$cd_name};
+ $destdir_post = qq{/l1/derivs/$cd_name};
+ $aliasdir = qq{/l1/derivs/index};
+ $reportdir = qq{/l1/reports/};
+ $reportname = qq{cd} . qq{$cd_name} . qq{_report};
+
+# - - - - -- - - - - - -- - - - - - - - -
+
+ print qq{Destination directory [$destdir]};
+ print qq{\nSub directory destination for sid images [$sidsubdir]};
+ print qq{\nSub directory destination for thumb images [$jpeg_thumbsubdir]};
+ print qq{\nAlias directory [$aliasdir]};
+ print qq{\nReport path and name [$reportdir$reportname]};
+ print qq{\n\n};
+
+# - - -- - - - - - - - - - - - - - - - - - - - - - - - -
+
+ if (! -d $destdir) {
+    print qq{$destdir not found.\n};
+    (mkdir $destdir, 0775) or die qq{Can't make $destdir\n};
+    print qq{$destdir has been created.\n};
+ }
+
+ $full_sidsubdir = $destdir . $sidsubdir;
+ if ((! -d $full_sidsubdir) && ($sid)) {
+    print qq{$full_sidsubdir not found.\n};
+    (mkdir $full_sidsubdir, 0775) or die qq{Can't make $full_sidsubdir\n};
+    print qq{$full_sidsubdir has been created.\n};
+ }
+
+ $full_jpeg_thumbsubdir = $destdir . $jpeg_thumbsubdir;
+ if ((! -d $full_jpeg_thumbsubdir) && ($jpeg_thumb)) {
+    print qq{$full_jpeg_thumbsubdir not found.\n};
+    (mkdir $full_jpeg_thumbsubdir, 0775) or die qq{Can't make $full_jpeg_thumbsubdir\n};
+    print qq{$full_jpeg_thumbsubdir has been created.\n};
+ }
+
+ if (! -d $aliasdir) {
+    print qq{$aliasdir not found.\n};
+    (mkdir $aliasdir, 0775) or die qq{Can't make $aliasdir\n};
+    print qq{$aliasdir has been created.\n};
+ }
+
+ if (! -d $reportdir) {
+    print qq{$reportdir not found.\n};
+    (mkdir $reportdir, 0775) or die qq{Can't make $reportdir\n};
+    print qq{$reportdir has been created.\n};
+ }
+
+#- - -- -- - - - - - - ok, process the images
+ 
+ ( open IMAGEFILES, "$list_files_cmd $cd_path_processing |" ) or
+                die "Error: could not list files with program \"$list_files_cmd $cd_path_processing\"\n\n";
+ $c = 1;
+ my $trouble = 'no';
+ while (<IMAGEFILES>) {
+    print qq{Count = $c\n};
+    $c++;
+    chop;
+    (-f) or next; #file is plain
+    if (! -B) {
+       print "Skipping. Not a binary file\n";
+       $c--;
+       next; #file is binary
+    }
+    $fullpath_image = $_;
+    ($base, $path, $exten) = fileparse($fullpath_image, '\..*');
+    $lc_exten = lc($exten);
+    if ($lc_exten ne '.tif') {
+       print qq{WARNING: The file extension is '$exten'. It is assumed this is a TIF file without an extension.\n\n};
+       $base .= $exten;
+       $exten = '';
+    }
+    #my $tmp_loc = qq{/tmp/$base$exten};
+
+
+    if ($profile eq "apis") {
+       if ($jpeg_large) {
+          $fulldest = qq{$destdir/$base.jpg};
+          $cmd = qq{$convert -quality 90 $fullpath_image JPEG:$fulldest; chmod 664 $fulldest};
+          if ( ($overwrite) || (! -e $fulldest) ) {
+             #&cacheit ($fullpath_image, $tmp_loc);
+             print qq{Gonna make that biggest jpeg.\n};
+             `$cmd`;
+          } else {
+             print qq{Skipping the existing $fulldest\n};
+          }
+
+          $fulldest = qq{$destdir/$base-50.jpg};
+          $cmd = qq{$convert -quality 90 -geometry 50% $fullpath_image JPEG:$fulldest; chmod 664 $fulldest};
+          if ( ($overwrite) || (! -e $fulldest) ) {
+             #&cacheit ($fullpath_image, $tmp_loc);
+             print qq{Making that 50% jpeg.\n};
+             `$cmd`;
+          } else {
+             print qq{Skipping the existing $fulldest\n};
+          }
+       }
+
+       if ($gif_thumb) {
+          $fulldest = qq{$destdir/$base-tn.gif};
+          $cmd = qq{$convert -geometry 100x100\\> $fullpath_image GIF:$fulldest; chmod 664 $fulldest};
+          if ( ($overwrite) || (! -e $fulldest) ) {
+             #&cacheit ($fullpath_image, $tmp_loc);
+             print qq{Gotta make a thumbnail.\n};
+             `$cmd`;
+          } else {
+             print qq{Skipping the existing $fulldest\n};
+          }
+       }
+ }
+
+ #if ($profile eq "bhl") {
+if ($profile ne "apis") {
+  
+       if ($sid) {
+          $fulldest = qq{$full_sidsubdir/$base.sid};
+          if ( ($overwrite) || (! -e '$fulldest') ) {
+             $cmd_id = qq{$id '$fullpath_image'};
+             print qq{ID that image for sid purposes.\n};
+             $r = `$cmd_id`;
+             @Tgoodthings = split(/ /,$r);
+             @Tres = split(/x/,$Tgoodthings[1]);
+             $Twidth = $Tres[0];
+             $Theight = $Tres[1];
+             if (($Theight - $Twidth) >= 0) {
+                $Tmax = $Theight;
+             } else {
+                $Tmax = $Twidth;
+             }
+             if (($Tmax > 0) && ($Tmax <= 800)) {
+                $nlev = 2;
+             } elsif (($Tmax > 800) && ($Tmax <= 1600)) {
+                $nlev = 3;
+             } elsif (($Tmax > 1600) && ($Tmax <= 3200)) {
+                $nlev = 4;
+             } elsif (($Tmax > 3200) && ($Tmax <= 6400)) {
+                $nlev = 5;
+             } else {
+                $nlev = 6;
+                print "max dimension out of range, usingnlev $nlev\n";
+             }
+             $cmd_sc = qq{$sidcompress -i '$fullpath_image' -o '$fulldest' -n $nlev -b $blocksize -c $ratio -t $temp; chmod 664 '$fulldest'};
+	     print qq{Gonna make a sid.\n};
+             `$cmd_sc`;
+             if (-e $fulldest) {
+                print qq{$fulldest now exists.\n};
+             } else {
+                print qq{$fulldest was not created!\n};
+                $trouble = 'yes';
+             }
+          } else {
+             print qq{Skipping the existing $fulldest\n};
+          }
+       }
+
+       if ($jpeg_thumb) {
+          $thumb_fulldest = qq{$destdir$jpeg_thumbsubdir/$base.jpg};
+          $thumbtemp = qq{/tmp/$base.jpg};
+          $th_nlev = $nlev-1;
+          $th_width = int($Twidth/(2**$th_nlev));
+          $th_height = int($Theight/(2**$th_nlev));
+          $th_x = int($Twidth/2);
+          $th_y = int($Theight/2);
+          $cmd1 = qq{$sidretrieve -i '$fulldest' -o '$thumbtemp' -s $th_nlev -w $th_width -h $th_height -x $th_x -y $th_y};
+          print qq{cmd1: $cmd1\n};
+          $cmd = qq{$convert -geometry 100x100\\> -quality $quality '$thumbtemp' JPG:'$thumb_fulldest';chmod 664 '$thumb_fulldest'};
+          print qq{cmd: $cmd\n};
+          if ( ($overwrite) || (! -e $thumb_fulldest) ) {
+             #&cacheit ($fullpath_image, $tmp_loc);
+             print qq{Gotta make a thumbnail.\n};
+             `$cmd1`;
+             `$cmd`;
+          } else {
+             print qq{Skipping the existing '$thumb_fulldest'\n};
+          }
+          if (-e $thumb_fulldest) {
+              print qq{Thumbnail image has been made.\n};
+          } else {
+              $trouble = 'yes';
+              print qq{Thumbnail image has not been made.\n};
+          }
+       }
+
+    
+       #&uncacheit ($tmp_loc);
+    }
+
+ }
+
+ close IMAGEFILES;
+#something not quite right with this mail command. 
+# if ($trouble eq 'no') {
+#    $mailcmd = qq{/bin/mailx -s "biscuit trouble report" dlps-is-imageproc\@umich.edu};
+#    `$mailcmd`;
+# }
+
+
+     
+#- - - - - --- -- - --
+
+
+print qq{Done processing $cd_path_processing.\n};
+$cd_path_done = $cd_path . qq{_DONE};
+print qq{Renaming master directory $cd_path_processing to $cd_path_done.\n}; 
+rename $cd_path_processing, $cd_path_done;
+#rmdir $cd_path_processing; #dir needs to be empty for this to work
+
+$destdir_post = $destdir;
+$destdir_post =~ s/_PROCESSING//; 
+print qq{Renaming destination directory $destdir to $destdir_post.\n};
+rename $destdir, $destdir_post;
+unlink "lservrc"; #mrsid license file
+print qq{Done processing $cd_path_processing.\n};
+print qq{Done. ----------------\n\n};
+
+} until ($#dirs == -1);
+exit;
+
+# - - - ---- - - -- - end of main part of program
+sub cacheit {
+    
+    my $fpi = shift; #full path master file to be cached
+    my $tmp_loc = shift; #desired temp loc for full dest image file
+
+    if (! -e $tmp_loc) {
+       print qq{cacheing $fpi to $tmp_loc.\n};
+       copy ($fpi, $tmp_loc);
+    } else {
+       print qq{$fpi already cached.\n};
+    }
+}
+
+sub uncacheit {
+    my $tmp_loc = shift;
+    unlink $tmp_loc;
+    print qq{removing $tmp_loc from cache.\n};
+}
+
+#- - - -- - - - - - - 

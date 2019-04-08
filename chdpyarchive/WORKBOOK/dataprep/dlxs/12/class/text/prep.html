@@ -1,0 +1,26 @@
+<html>
+<head>
+<title>Preparing Data for Text Class</title>
+
+
+
+
+
+
+
+<link href="../../dlxsdocs.css" rel="stylesheet" type="text/css"> </head>         <body>
+<div class="pageTitle">Preparing Data  for Index Building (Text Class)</div><h1>Setting up directories</h1><p>You will need to identify directories where you plan to store your SGML or XML source file, your index file (approximately 75% of the
+   size of your SGML source), your "region" files and other information such as data dictionaries, and files you use to prepare your data. We recommend you use the following
+   structure:</p><ul><li>Store specialized scripts for your collection and its Makefile in <tt>$DLXSROOT/bin/c/collid/</tt>where <tt>
+$DLXSROOT</tt> is the "tree" where you install all DLXS components, <tt>c</tt> is the first letter of the name of the collection you are indexing, and <tt>collid</tt> is the collection ID of the collection you are indexing.  For example, if your collection ID is "moa" and your DLXSROOT is "/l1", you will place the
+ Makefile in <tt>/l1/bin/m/moa/</tt>, e.g., <tt>/l1/bin/m/moa/Makefile</tt>.  See <a href="http://docs.umdl.umich.edu/arch/general/directory-conventions.html">directory conventions</a> for more information.</li><li>Store your source texts and any DTDs, doctype, and files for preparing your data in <tt>$DLXSROOT/prep/c/collid/</tt>.  Unlike the contents of other directories, everything in prep should be ultimately expendable in the production environment.</li><li>Store the finalized, concatenated SGML file for your text collection in <tt>$DLXSROOT/obj/c/collid/</tt> , e.g., <tt>/l1/obj/m/moa/moa.sgm</tt>.</li><li>Store index, region, data dictionary, and init files in <tt>$DLXSROOT/idx/c/collid/</tt>, e.g., <tt>/l1/idx/m/moa/moa.idx.</tt> See the <a href="../../xpat/index.html">XPAT documentation</a> for more on these types of files. </li></ul><p>The files that are located in <tt>$DLXSROOT/bin/s/sampletc</tt> and<tt>$DLXSROOT/prep/s/sampletc</tt>   should be copied into your collection directories and used to index your collection.  The following files may need to be editted so that the #! points to  your location of perl:</p><ul><li>$DLXSROOT/bin/t/text/isolat128bit.pl</li><li>$DLXSROOT/bin/t/text/output.dd.frag.pl
+</li><li>$DLXSROOT/bin/t/text/inc.extra.dd.pl
+</li><li>$DLXSROOT/bin/t/text/cleanfiles.pl</li><li>$DLXSROOT/bin/t/text/catsourcefiles.pl</li></ul><p>The following files will need to be edited to reflect your collection names and paths:</p><ul><li>$DLXSROOT/bin/s/sampletc/Makefile</li><li>$DLXSROOT/prep/s/sampletc/sampletc.blank.dd</li><li>$DLXSROOT/prep/s/sampletc/sampletc.extra.srch</li><li>
+$DLXSROOT/prep/s/sampletc/sampletc.inp</li></ul><h1>Preparing your data</h1><p>Within your prep directory, create a data subdirectory for your collection and copy the texts for your collection into it.  In our example collection for the Making of America, this would be <tt>$DLXSROOT/prep/m/moa/data/</tt>. Ensure that your converted documents validate against the TextClass DTD and conform to the <a href="docstruct.html">text structure document</a>.  Now you are ready for your final document preparation.</p><ol><li>You need to decide whether you wish to keep character entities (for example, &amp;eacute;) in your text files or replace them with their 8-bit ISO
+Latin 1 equivalent (for example, é). If you choose to do replace your character entities, you will be able to search for blessed, for example, and retrieve both blesséd and
+blessed, because the indexing process maps both of these characters to just e. Otherwise, you would have to search for bless&amp;eacute;d to
+retrieve the word with the diacritic. If you want to do convert your entities, use the<tt>make convert </tt> command in the Makefile stored at $DLXSROOT/bin/c/collid/Makefile. See also this <a href="../unicode.html">reference</a> on converting your data to Unicode.</li><li>Normalize the SGML files, which, if necessary, adjusts the
+SGML tagging so that it is consistent in terms of case and order of element attributes.  This may be run in a batch in the $DLXSROOT/prep/c/collid/data/ directory using the following shell command (this is for tcsh; different syntax may be appropriate in different shells):<br/><tt>foreach file (*.sgm)</tt><br/><tt>sgmlnorm $DLXSROOT/prep/s/sampletc/sampletc.text.inp $file &gt; $file.norm</tt><br/><tt>end</tt></li><li>Concatenate separate normalized files into one collection file.  If you do not care about the order in which the files will occur, this command will suffice: <tt>cat *.norm &gt; $DLXSROOT/bin/c/collid/collid.sgm</tt></li><li>Before indexing, check to see if node attributes have been applied when the
+documents were converted to Text Class -- they will appear in the DIV tags for each division and will look like this: &lt;DIV1
+NODE="AAN8938.0001.001:1"&gt;. If they have not, use the <tt>make nodefy</tt> command in the Makefile stored at $DLXSROOT/bin/c/collid/Makefile.  Node attributes are necessary for building reliable results lists in Text Class; the lack of nodes will result in an assertion error in the middleware.</li></ol></body>
+</html>

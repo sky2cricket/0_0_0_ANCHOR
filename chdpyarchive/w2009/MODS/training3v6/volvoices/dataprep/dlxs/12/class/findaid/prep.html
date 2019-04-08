@@ -1,0 +1,80 @@
+<html>
+<head>
+<title>Preparation for Index Building (Finding Aids)</title>
+<link href="../../dlxsdocs.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="pageTitle">Preparation for Index Building (Finding Aids)</div><h1>Setting
+up directories</h1>
+<p>You will need to identify directories where you plan to store your EAD2002
+   XML source file, your index file (approximately 75% of the size of your finding
+   aids), your "region" files and other information such as data dictionaries,
+   and files you use to prepare your data. We recommend you use the following
+   structure:</p>
+<ul>
+   <li>Store specialized scripts for your collection and its Makefile in <tt>$DLXSROOT/bin/{c}/{coll}/</tt> where <tt> $DLXSROOT</tt> is
+      the "tree" where you install all DLXS components, <tt>{c}</tt> is the first
+      letter of the name of the collection you are indexing, and <tt>{coll}</tt> is
+      the collection ID of the collection you are indexing. For example, if your
+      collection ID is "bhlead" and your DLXSROOT is "/l1", you will place the
+      Makefile in <tt>/l1/bin/b/bhlead/</tt> , e.g., <tt>/l1/bin/b/bhlead/Makefile</tt> .
+      See <a href="http://docs.umdl.umich.edu/arch/general/directory-conventions.html">directory
+      conventions</a> for more information.</li>
+   <li>Store your source finding aids in <tt>$DLXSROOT/prep/{c}/{coll}/data/</tt>.
+      The Makefile will find them here. </li>
+   <li>Store any DTDs, doctype, and files for preparing your data in <tt>$DLXSROOT/prep/{c}/{coll}/</tt>.
+      Unlike the contents of other directories, everything in prep should be
+      expendable when actually running the indexes.</li>
+   <li>After running all the targets in the Makefile, the finalized, concatenated
+      XML file for your finding aids collection will be created in <tt>$DLXSROOT/obj/{c}/{coll}/</tt> ,
+      e.g., <tt>/l1/obj/b/bhlead/bhlead.xml</tt> .</li>
+   <li>Store index, region, data dictionary, and init files in <tt>$DLXSROOT/idx/{c}/{coll}/</tt> ,
+      e.g., <tt>/l1/idx/b/bhlead/bhlead.idx</tt>. These will be updated as the
+      index related targets in the Makefile are run. See the <a href="../../xpat/index.html">XPAT
+      documentation</a> for more on these types of files. </li>
+</ul>
+<p>The files that are located in <tt>$DLXSROOT/bin/s/samplefa</tt> and <tt>$DLXSROOT/prep/s/samplefa</tt> can
+   be used as examples in preparing your finding aids and creating your indexes.
+   The following files may need to have the #! adjusted for your location of
+   perl:</p>
+<ul>
+   <li>$DLXSROOT/bin/f/findaid/output.dd.frag.pl </li>
+   <li>$DLXSROOT/bin/f/findaid/inc.extra.dd.pl </li>
+   <li>$DLXSROOT/bin/s/samplefa/prepdocs.pl (Note: prepdocs.pl is a Perl file
+      that processes the individual files in $DLXSROOT/prep/s/samplefa/data and
+      so should be looked at and edited as needed for whatever processing your
+      files need)</li>
+</ul>
+<p>The following files will need to be edited to reflect your collection names
+   and paths:</p>
+<ul>
+   <li>$DLXSROOT/bin/s/samplefa/Makefile</li>
+   <li>$DLXSROOT/prep/s/samplefa/samplefa.blank.dd</li>
+   <li>$DLXSROOT/prep/s/samplefa/samplefa.extra.srch</li>
+   <li>$DLXSROOT/prep/s/samplefa/samplefa.inp</li>
+</ul>
+<p>The following file will need to be edited to reflect the location of your
+   entity reference files:</p>
+<ul>
+   <li>$DLXSROOT/prep/s/samplefa/dlxsead2002.dtd</li>
+</ul>
+<h1>Preparing your data</h1>
+<p>In your prep directory, create a <tt>data</tt> subdirectory for your collection
+   and copy the finding aids for your collection into it. In our example collection,
+   which is a subset of the Bentley Historical Library's Finding Aids, this would
+   be <tt>$DLXSROOT/prep/s/samplefa/data/</tt>. Ensure that each has a unique
+   value in the eadid element. </p>
+<ul>
+   <li>At the command line, run <tt>make validateeach</tt>, which will check
+      each file individually in the data directory. Catching errors (which will
+      show up in *.errors files in the <tt>data</tt>subdirectory is much easier
+      than catching them later after the files are concatenated into a large
+      bundle of XML.</li>
+   <li>Check for error files in the <tt>data</tt>subdirectory and fix any parsing
+      errors in the culprit files.</li>
+   <li>Back at <tt>$DLXSROOT/bin/{c}/{coll}</tt>, run <tt>make prepdocs</tt>,
+      which process files and concatenate them into a single xml file in the <tt>$DLXSROOT/obj/{c}/{coll}/</tt> directory.</li>
+   <li>Continue to <a href="indexing.html">indexing your Finding Aids</a></li>
+</ul>
+</body>
+</html>

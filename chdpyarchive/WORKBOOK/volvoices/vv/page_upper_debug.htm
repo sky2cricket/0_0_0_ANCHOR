@@ -1,0 +1,304 @@
+
+<html>
+<head>
+<title>upper</title>
+
+<script>
+var parent_test="chd";
+
+function load_admindb_values() {
+
+var str_admindb_data = new String();
+    str_admindb_data = parent.admindb_data;
+
+document.forms[0].XMLmaster_01.value = str_admindb_data.substring(0,4);
+document.forms[0].XMLmaster_02.value = str_admindb_data.substring(5,11);
+document.forms[0].XMLmaster_03.value = str_admindb_data.substring(12);
+document.forms[0].XMLBASE.value = str_admindb_data+"_";
+
+}
+
+
+</script>
+<script language=javascript src="vv_compose_tags.js"></script>
+
+
+
+</head>
+<body onload="load_admindb_values()" >
+<script>
+document.write("test php<hr>parent.admindb_data="+parent.admindb_data+"<HR>");
+</script>
+<a href="page_upper.htm" target="D">page_upper.htm</a>
+<form name="UF" >
+<hr>
+<b>Page Validation Form Elements</b>
+<br><input type="text"  name="validate_page_final"  value="0" size="50"> validate_page_final, set to 1 for debug
+<br><input type="text"  name="validate_page_begin"  value="0" size="50"> validate_page_begin
+<br><input type="text"  name="validate_page_01"     value="0" size="50"> validate_page_01
+<br><input type="text"  name="validate_page_02"     value="0" size="50"> validate_page_02
+<br><input type="text"  name="validate_page_03"     value="0" size="50"> validate_page_03
+<br><input type="text"  name="validate_page_04"     value="0" size="50"> validate_page_04
+<br><input type="text"  name="validate_page_05"     value="1" size="50"> validate_page_05//no validation needed
+<br><input type="text"  name="validate_page_06"     value="0" size="50"> validate_page_06
+<br><input type="text"  name="validate_page_museum" value="1" size="50"> validate_page_museum//no validation needed
+
+
+
+
+<hr>
+<b>Begin Page Form Elements</b>
+<br><input type="radio" name="new_xmlfile_radio" value="Y" checked > new_xmlfile_radio Y
+<br><input type="radio" name="new_xmlfile_radio" value="N"  > new_xmlfile_radio N
+
+<br><input type="text"  name="VVcomment_01" value="" size="80"> VVcomment_01 filename 
+<br><input type="text"  name="VVcomment_02" value="" size="80"> VVcomment_02 date
+
+<br><input type="text"  name="XMLmaster_01" value="" size="50"> XML file name part 1
+<br><input type="text"  name="XMLmaster_02" value="" size="50"> XML file name part 2
+<br><input type="text"  name="XMLmaster_03" value="" size="50"> XML file name part 3
+<br><input type="text"  name="XMLmaster_04" value="0000" size="50"> XML file name part 4
+<br><input type="text"  name="XMLmaster_05" value=".xml" size="50"> XML file name part 5
+<br><input type="text"  name="XMLBASE" value="" size="50"> XMLBASE
+<br><select name="selectXMLPATH" 
+size ="5" >
+<option value="00" selected>C:\Span\00\  -- contains only one tif file per xml base file</option>
+<option value="01">C:\Span\01\  -- contains multiple tiff files for one xml base file</option>
+<option value="02">C:\Span\02\ -- contains one tiff and one txt file for one xml base file</option>
+<option value="03">C:\Span\03\ -- contains multiple tiff and one txt file for one xml base file</option>
+<option value="04">C:\Span\04\ -- contains multiple tiff and multiple txt files for one xml base file</option>
+</select>selectXMLPATH
+<br><input type="text"  name="XMLPATH" value="" size="50"> XMLPATH
+<br><input type="text"  name="XMLPATHFULL" value="" size="50"> XMLPATHFULL
+
+<br><input type="text"  name="numConstituentsTIFF" value="0" size="50" > number of constituent files TIFF
+
+<hr>
+<b>Page One Form Elements</b>
+
+<br><input type="text"  name="title" value="" size="50"> title
+
+
+<!---Page One Primary Name--->
+<br><input type="radio" name="name_authority_01_radio" value="N" checked > name authority none 1
+<br><input type="radio" name="name_authority_01_radio" value="L"  > name authority LCNAF 1
+<br><input type="radio" name="name_authority_01_radio" value="U"  > name authority ULAN 1
+<br><input type="text" name="name_authority_01" value="NONE"  > name authority 1
+<br><input type="radio" name="creator_radio_01" value="Y" checked > person name 1
+<br><input type="radio" name="creator_radio_01" value="C"   > corporate name  1
+<br><input type="radio" name="creator_radio_01" value="N"   > unknown 1
+<br><input type="radio" name="creator_radio_01" value="A"   > anonymous 1
+
+<br><input type="text"  name="creator_lastname_01" value="" size="50"> creator_lastname 1
+<br><input type="text"  name="creator_firstname_01" value="" size="50"> creator_firstname 1
+<br><input type="text"  name="creator_middlename_01" value="" size="50"> creator_middlename 1
+<br><input type="text"  name="creator_dob_01" value="" size="12" READONLY> creator_dob 1
+<br><input type="text"  name="creator_dod_01" value="" size="12"READONLY> creator_dod 1
+<br><input type="text"  name="creator_description_01" value="" size="50"> mods_description 1
+<br><input type="text"  name="creator_role_01" value="" size="50"> creator_role 1
+
+<!---Page One Second Name--->
+<br><input type="radio" name="name_authority_02_radio" value="N" checked > name authority none 2
+<br><input type="radio" name="name_authority_02_radio" value="L"  > name authority LCNAF 2
+<br><input type="radio" name="name_authority_02_radio" value="U"  > name authority ULAN 2
+<br><input type="text" name="name_authority_02" value="NONE"  > name authority  2
+<br><input type="radio" name="creator_radio_02" value="X" checked > NO TAGS 2
+<br><input type="radio" name="creator_radio_02" value="Y"   > person name 2
+<br><input type="radio" name="creator_radio_02" value="C"   > corporate name  2
+<br><input type="radio" name="creator_radio_02" value="A"   > unknown, anonymous not valid 2
+<br><input type="text"  name="creator_lastname_02" value="" size="50"> creator_lastname 2
+<br><input type="text"  name="creator_firstname_02" value="" size="50"> creator_firstname 2
+<br><input type="text"  name="creator_middlename_02" value="" size="50"> creator_middlename 2
+<br><input type="text"  name="creator_dob_02" value="" size="12" READONLY> creator_dob 2
+<br><input type="text"  name="creator_dod_02" value="" size="12"READONLY> creator_dod 2
+<br><input type="text"  name="creator_description_02" value="" size="50"> mods_description 2
+<br><input type="text"  name="creator_role_02" value="" size="50"> creator_role 2 
+
+<!---Page One Third Name--->
+<br><input type="radio" name="name_authority_03_radio" value="N" checked > name authority none 3
+<br><input type="radio" name="name_authority_03_radio" value="L"  > name authority LCNAF 3
+<br><input type="radio" name="name_authority_03_radio" value="U"  > name authority ULAN 3
+<br><input type="text" name="name_authority_03" value="NONE"  > name authority 3
+<br><input type="radio" name="creator_radio_03" value="X" checked > NO TAGS 3
+<br><input type="radio" name="creator_radio_03" value="Y"   > person name 3
+<br><input type="radio" name="creator_radio_03" value="C"   > corporate name 3
+<br><input type="radio" name="creator_radio_03" value="A"   > unknown, anonymous not valid 3
+<br><input type="text"  name="creator_lastname_03" value="" size="50"> creator_lastname 3
+<br><input type="text"  name="creator_firstname_03" value="" size="50"> creator_firstname 3
+<br><input type="text"  name="creator_middlename_03" value="" size="50"> creator_middlename 3
+<br><input type="text"  name="creator_dob_03" value="" size="12" READONLY> creator_dob 3
+<br><input type="text"  name="creator_dod_03" value="" size="12"READONLY> creator_dod 3
+<br><input type="text"  name="creator_description_03" value="" size="50"> mods_description 3
+<br><input type="text"  name="creator_role_03" value="" size="50"> creator_role 3
+
+<!--------------End Page One------------------------------------------------>
+
+<hr>
+<b>Page Two Form Elements</b>
+<br><input type="text" name="date_created" value=""> date_created
+<br><input type="text" name="date_createdQ" value=""> date_created qualifier
+<!---
+<br><input type="radio" name="date_created_radio" value="D"> date_created_radio D
+<br><input type="radio" name="date_created_radio" value="R"> date_created_radio R
+-------->
+<br><input type="text" name="date_created_begin" value=""> date_created_begin range
+<br><input type="text" name="date_created_beginQ" value=""> date_created_begin qualifier
+<br><input type="text" name="date_created_end" value=""> date_created_end range
+<br><input type="text" name="date_created_endQ" value=""> date_created_end qualifier
+
+
+<br><input type="radio" name="publisher_name_radio" value="Y"> publisher_name_radio Y
+<br><input type="radio" name="publisher_name_radio" value="N"> publisher_name_radio N
+<br><input type="text" name="publisher_name" value=""> publisher_name
+<br><input type="text" name="publisher_address" value=""> publisher_address
+
+<br><input type="text" name="date_issued" value=""> date_issued 
+<br><input type="text" name="date_issuedQ" value=""> date_issued qualifier
+
+<br><input type="text" name="place_of_origin" value=""> place_of_origin
+
+<!--------------End Page Two------------------------------------------------>
+
+
+
+<!--------------Start Page Three------------------------------------------------>
+
+<hr>
+<b>Page Three Form Elements</b>
+<br><input type="text" name="language" value="eng"> language code
+<br><input type="text" name="language_display" value="English"> language_display
+<br><input type="text" name="type_of_resource_01" value=""> type_of_resource_01
+<br><input type="text" name="type_of_resource_02" value=""> type_of_resource_02
+<br><input type="text" name="type_of_resource_03" value=""> type_of_resource_03
+
+<br><input type="radio" name="mods_genre_radio" checked value="a"  > aat
+<br><input type="radio" name="mods_genre_radio" value="c"  > chenhall
+<br><input type="radio" name="mods_genre_radio" value="m"  > MARC
+<br><input type="text" name="mods_genre_authority" value=""> which of the 3 above is chosen
+<br><input type="text" name="mods_genre" value=""> genre
+
+
+
+
+<br><input type="text" name="digital_origin" value="reformatted digital"> hidden digital_origin  FIXED VALUE
+<br><input type="text" name="museum_form_type_technique" value=""> form_type_technique <u>input box on museum page</u>
+<br><input type="text" name="museum_form_type_medium" value="">  form_type_medium <u>input box on museum page</u>
+<br><input type="text" name="internetmediatype"value="image/jpeg"  > hidden internet media type image/jpeg FIXED VALUE
+<br><input type="text" name="extent_pages" value=""  > extent_pages digits only
+<br><input type="text" name="extent_number_of_objects" value=""  > extent_number_of_objects
+<br><input type="text" name="extent_dimensions" value=""> which of the 3 above is chosen
+<br><textarea name="abstract"  cols="60" rows="4" ></textarea> abstract
+
+<!--------------End Page Three------------------------------------------------>
+
+
+
+<!--------------Start Page Four------------------------------------------------>
+
+<hr>
+<b>Page Four Form Elements</b>
+
+<br><input type="text" name="subject_topic_lcsh_01" value=""> lcsh topic 1
+<br><input type="text" name="subject_topic_lcsh_02" value=""> lcsh topic 2
+<br><input type="text" name="subject_topic_lcsh_03" value=""> lcsh topic 3
+
+<br><input type="text" name="subject_name_lcsh_01" value=""> lcsh name 1
+<br><input type="text" name="subject_name_lcsh_02" value=""> lcsh name 2
+
+<br><input type="text" name="subject_geographic_lcsh_01" value=""> lcsh geographic 1 code
+<br><input type="text" name="subject_geographic_lcsh_01_display" value=""> lcsh geographic 1 display
+<br><input type="text" name="subject_geographic_lcsh_02" value=""> lcsh geographic 2 code
+<br><input type="text" name="subject_geographic_lcsh_02_display" value=""> lcsh geographic 2 display
+
+<br><input type="text" name="subject_temporal_lcsh_01" value=""> lcsh temporal 1
+<br><input type="text" name="subject_temporal_lcsh_02" value=""> lcsh temporal 2
+
+<br><input type="text" name="subject_topic_tgm_01" value=""> tgm topic 1
+
+<br><input type="text" name="subject_topic_vv_01" value=""> vv topic 1 code
+<br><input type="text" name="subject_topic_vv_01_display" value=""> vv topic 1 display
+<br><input type="text" name="subject_topic_vv_02" value=""> vv topic  2 code
+<br><input type="text" name="subject_topic_vv_02_display" value=""> vv topic  2 display
+<br><input type="text" name="subject_topic_vv_03" value=""> vv topic 3 code
+<br><input type="text" name="subject_topic_vv_03_display" value=""> vv topic 3 display
+<br><input type="text" name="subject_topic_vv_04" value=""> vv topic  4 code
+<br><input type="text" name="subject_topic_vv_04_display" value=""> vv topic  4 display
+
+<br><input type="text" name="subject_geographic_vv_01" value=""> vv geographic 1 code
+<br><input type="text" name="subject_geographic_vv_01_display" value=""> vv geographic 1 display
+<br><input type="text" name="subject_geographic_vv_02" value=""> vv geographic 2 code
+<br><input type="text" name="subject_geographic_vv_02_display" value=""> vv geographic 2 display
+
+<br><input type="text" name="subject_temporal_vv_01" value=""> vv temporal 1 code
+<br><input type="text" name="subject_temporal_vv_01_display" value=""> vv temporal 1 display
+<br><input type="text" name="subject_temporal_vv_02" value=""> vv temporal 2 code
+<br><input type="text" name="subject_temporal_vv_02_display" value=""> vv temporal 2 display
+
+<br><input type="text" name="subject_topic_none_01_desc" value=""> no authority topic free text description
+<br><input type="text" name="subject_name_none_01_desc" value=""> no authority name free text description
+<br><input type="text" name="subject_geographic_none_01" value=""> no authority  geographic 1 code
+<br><input type="text" name="subject_temporal_none_01_desc" value=""> no authority temporal free text description
+
+<!--------------End Page Four------------------------------------------------>
+
+
+
+
+<!--------------Start Page Five------------------------------------------------>
+<hr>
+<b>Page Five Form Elements</b>
+
+
+<br><input type="text" name="file_list_tiff" value="" size="50"> file_list_tiff, comma delimited list
+
+<!--------------End Page Five------------------------------------------------>
+
+
+<!--------------Start Page Six------------------------------------------------>
+<hr>
+<b>Page Six Form Elements</b>
+
+<br><input type="text" name="physical_location_repository"  value="" >physical_location_repository
+<br><input type="text" name="physical_location_detail"  value="" >physical_location_detail
+<br><input type="text" name="physical_location_city"  value="" >physical_location_city
+<br><input type="text" name="physical_location_state"  value="" >physical_location_state
+<br><input type="text" name="physical_location_county"  value="" >physical_location_county
+<br><input type="text" name="physical_location_county_display"  value="" >physical_location_county_display
+<br><input type="text" name="museum_accession_number"  value="" >museum_accession_number <u>input box on museum page</u>
+<br><textarea name="museum_credit_line" cols="60" rows="4" ></textarea>museum_credit_line <u>input box on museum page</u>
+<br><input type="text" name="record_content_source"  value="" >record_content_source
+<br><input type="text" name="record_creation_date"  value="" >record_creation_date
+<br><input type="text" name="language_of_cataloging"  value="" >language_of_cataloging
+<br><input type="text" name="language_of_cataloging_display"  value="" >language_of_cataloging_display
+<br><input type="text" name="use_and_reproduction" value="<a href='http://diglib.lib.utk.edu/dlc/rights/vv.html' target='_blank'>Use and Reproduction</a>"> use_and_reproduction
+
+<!--------------End Page Six------------------------------------------------>
+
+
+<!--------------Start Page Museum----------------------------------------------->
+<hr>
+<b>Museum Page Form Elements</b>
+
+<br>museum_form_type_technique -- see page 3
+<br>museum_form_type_medium -- see page 3
+<br>museum_accession_number -- see page 6
+<br>museum_credit_line -- see page 6
+<br><b>virtual - never used</b>
+
+<!--------------End Page Museum------------------------------------------------>
+
+
+
+
+
+</form>
+
+<script>
+
+
+
+
+</script>
+</body>
+</head>
+

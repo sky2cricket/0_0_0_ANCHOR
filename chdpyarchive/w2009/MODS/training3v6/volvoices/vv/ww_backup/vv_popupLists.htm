@@ -1,0 +1,888 @@
+
+<%@ language="javascript"%>
+
+
+<HTML>
+<HEAD>
+<TITLE>vv_popupLists.htm</TITLE>
+
+
+
+<script>
+var select_id= new String();
+function get_select_id() {
+
+var str = new String();
+    str = location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  window.opener.location.href="+window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=get_select_id();
+
+
+
+</script>
+
+</HEAD>
+<BODY bgcolor="eeffee" >
+<!---
+<br><font face="elephant" size="3" color="a00000"><b>Draft Preliminary Copy</b></font>
+--->
+
+<script language="javascript">
+
+
+
+
+
+
+
+function popLang() {
+
+var valtext=new String();
+var valval = new String();
+for ( i=0; i<document.popupform.aaa.length;i++ ) {
+     if ( document.popupform.aaa[i].selected == true ) {
+	valtext = document.popupform.aaa[i].text;
+	valval = document.popupform.aaa[i].value;
+	}
+     }
+
+document.popupform.lang_code.value=valval;
+document.popupform.lang_desc.value=valtext;
+
+
+}///end function
+
+
+
+//this should take care of all of the popup windows where you click on something to select it
+
+function installSelectedValues(select_id){
+//alert("window.opener.location.href="+window.opener.location.href );
+
+
+
+if ( typeof(document.popupform.aaa) != 'undefined' ) {
+
+var valtext=new String();
+var valval = new String();
+for ( i=0; i<document.popupform.aaa.length;i++ ) {
+     if ( document.popupform.aaa[i].selected == true ) {
+	valtext = document.popupform.aaa[i].text;
+	valval = document.popupform.aaa[i].value;
+	}
+     }
+
+}/////end if
+           
+//alert("window.opener.document.forms[0]."+document.popupform.hidden_select_id.value+".value="+valval);
+//alert("window.opener.document.forms[0]."+document.popupform.hidden_select_id.value+"_display.value="+valtext);
+
+
+switch(document.popupform.hidden_select_id.value) {
+
+
+
+case  "subject_topic_vv_01" :
+	window.opener.document.forms[0].subject_topic_vv_01.value=valval;
+	window.opener.document.forms[0].subject_topic_vv_01_display.value = valtext;
+	window.close();
+	break;
+
+case  "subject_topic_vv_02" :
+	window.opener.document.forms[0].subject_topic_vv_02.value=valval;
+	window.opener.document.forms[0].subject_topic_vv_02_display.value = valtext;
+	window.close();
+	break;
+
+
+case  "subject_topic_vv_03" :
+	window.opener.document.forms[0].subject_topic_vv_03.value=valval;
+	window.opener.document.forms[0].subject_topic_vv_03_display.value = valtext;
+	window.close();
+	break;
+
+case  "subject_topic_vv_04" :
+	window.opener.document.forms[0].subject_topic_vv_04.value=valval;
+	window.opener.document.forms[0].subject_topic_vv_04_display.value = valtext;
+	window.close();
+	break;
+
+
+case  "subject_topic_vv_05" :
+	window.opener.document.forms[0].subject_topic_vv_05.value=valval;
+	window.opener.document.forms[0].subject_topic_vv_05_display.value = valtext;
+	window.close();
+	break;
+
+case "subject_temporal_vv_01" :
+	window.opener.document.forms[0].subject_temporal_vv_01.value=valval;
+	window.opener.document.forms[0].subject_temporal_vv_01_display.value = valtext;
+	window.close();
+	break;
+
+case "subject_temporal_vv_02" :
+	window.opener.document.forms[0].subject_temporal_vv_02.value=valval;
+	window.opener.document.forms[0].subject_temporal_vv_02_display.value = valtext;
+	window.close();
+	break;
+
+
+case  "subject_topic_spc_01" :
+	window.opener.document.forms[0].subject_topic_spc_01.value=valval;
+	window.opener.document.forms[0].subject_topic_spc_01_display.value = valtext;
+	window.close();
+	break;
+
+case  "subject_topic_spc_02" :
+	window.opener.document.forms[0].subject_topic_spc_02.value=valval;
+	window.opener.document.forms[0].subject_topic_spc_02_display.value = valtext;
+	window.close();
+	break;
+
+
+case  "subject_topic_spc_03" :
+	window.opener.document.forms[0].subject_topic_spc_03.value=valval;
+	window.opener.document.forms[0].subject_topic_spc_03_display.value = valtext;
+	window.close();
+	break;
+
+case "subject_geographic_lcsh_01" :
+	window.opener.document.forms[0].subject_geographic_lcsh_01.value=valval;
+        var h_valtext = new String();
+            h_valtext = valtext.substr(valtext.indexOf(".") );
+            h_valtext = h_valtext.substr(2);
+	window.opener.document.forms[0].subject_geographic_lcsh_01_display.value = h_valtext;
+	window.close();
+	break;
+
+case "subject_geographic_lcsh_02" :
+	window.opener.document.forms[0].subject_geographic_lcsh_02.value=valval;
+        var h_valtext = new String();
+            h_valtext = valtext.substr(valtext.indexOf(".") );
+            h_valtext = h_valtext.substr(2);
+	window.opener.document.forms[0].subject_geographic_lcsh_02_display.value = h_valtext;
+	window.close();
+	break;
+
+case "subject_geographic_vv_01" :
+	window.opener.document.forms[0].subject_geographic_vv_01.value=valval;
+        var h_valtext = new String();
+            h_valtext = valtext.substr(valtext.indexOf(".") );
+            h_valtext = h_valtext.substr(2);
+	window.opener.document.forms[0].subject_geographic_vv_01_display.value = h_valtext;
+	window.close();
+	break;
+
+case "subject_geographic_vv_02" :
+	window.opener.document.forms[0].subject_geographic_vv_02.value=valval;
+        var h_valtext = new String();
+            h_valtext = valtext.substr(valtext.indexOf(".") );
+            h_valtext = h_valtext.substr(2);
+	window.opener.document.forms[0].subject_geographic_vv_02_display.value = h_valtext;
+	window.close();
+	break;
+
+case "subject_geographic_none_01" :
+	window.opener.document.forms[0].subject_geographic_none_01.value=valval;
+        var h_valtext = new String();
+            h_valtext = valtext.substr(valtext.indexOf(".") );
+            h_valtext = h_valtext.substr(2);
+	window.opener.document.forms[0].subject_geographic_none_01_display.value = h_valtext;
+	window.close();
+	break;
+
+
+case "physical_location_county" :
+	window.opener.document.forms[0].physical_location_county.value=valval;
+        var h_valtext = new String();
+            h_valtext = valtext.substr(valtext.indexOf(".") );
+            h_valtext = h_valtext.substr(2);
+	window.opener.document.forms[0].physical_location_county_display.value = h_valtext;
+
+	window.close();
+	break;
+
+
+
+case "institution_county" :
+	window.opener.document.forms[0].institution_county.value=valval;
+	window.opener.document.forms[0].institution_county_display.value = valtext;
+        var h_valtext = new String();
+            h_valtext = valtext.substr(valtext.indexOf(".") );
+            h_valtext = h_valtext.substr(2);
+	window.opener.document.forms[0].Hinstitution_county_display.value = h_valtext;
+	window.close();
+	break;
+
+
+
+case "creator_role_01" :
+	window.opener.document.forms[0].creator_role_01.value=valval;
+	window.close();
+	break;
+case "creator_role_02" :
+	window.opener.document.forms[0].creator_role_02.value=valval;
+	window.close();
+	break;
+
+case "creator_role_03" :
+	window.opener.document.forms[0].creator_role_03.value=valval;
+	window.close();
+	break;
+
+
+case "language_of_cataloging" :
+	window.opener.document.forms[0].language_of_cataloging.value=document.popupform.lang_code.value;
+	window.opener.document.forms[0].language_of_cataloging_display.value = document.popupform.lang_desc.value;
+	window.close();
+	break;
+
+case "language" :
+	window.opener.document.forms[0].language.value=document.popupform.lang_code.value;
+	window.opener.document.forms[0].language_display.value = document.popupform.lang_desc.value;
+	window.close();
+	break;
+
+case "type_of_resource_01" :
+	window.opener.document.forms[0].type_of_resource_01.value=valval;
+	window.close();
+	break;
+
+case "type_of_resource_02" :
+	window.opener.document.forms[0].type_of_resource_02.value=valval;
+	window.close();
+	break;
+
+case "type_of_resource_03" :
+	window.opener.document.forms[0].type_of_resource_03.value=valval;
+	window.close();
+	break;
+
+
+case "mods_genre" :
+	//auto reset radio buttons and genre authority when click select button for marc
+	window.opener.document.forms[0].mods_genre_radio[0].checked = false;
+	window.opener.document.forms[0].mods_genre_radio[1].checked = false;
+	window.opener.document.forms[0].mods_genre_radio[2].checked = true;
+	window.opener.document.forms[0].mods_genre_authority.value = "marcgt";
+
+	window.opener.document.forms[0].mods_genre.value=valval;
+	///window.opener.document.forms[0].mods_genre_display.value = valtext;
+	window.close();
+	break;
+
+
+}///end switch
+///////////window.close();//this has to depend on validation of individual formvars in the case statements
+
+}///end function
+
+
+function cancelSelect(){
+window.close();
+}
+
+</script>
+<form name="popupform" >
+<script> 
+document.write("<!---select_id="+select_id+"---><hr>");
+if (   select_id == "subject_topical_4"     || select_id == "subject_topic_lcsh_01" 
+    || select_id == "subject_topic_lcsh_02" || select_id == "subject_topic_lcsh_03"
+    || select_id == "subject_topic_vv_01" || select_id == "subject_topic_vv_02"
+
+    || select_id == "subject_topic_tgm_01" ) { 
+document.write(
+	 '<font color="eeffee">vv_functions.htm called by '+select_id+' </font>\r\n'
+	+'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ddeeff">\r\n'
+	+'<tr><td>\r\n'
+	+'<b>Select 1 of 15 Topical Categories for Item </b> \r\n'
+	+'</td></tr><tr><td> \r\n' 
+	+'<select name="aaa"  size="16"> \r\n'
+	+'<option value="0" selected>No value selected</option> \r\n'
+	+'<option value="A.1">&nbsp;&nbsp;1. Frontier migration/experiments in representative democracy, encounters with Native Americans</option>\r\n'
+	+'<option value="A.2">&nbsp;&nbsp;2. Jacksonian democracy and Tennessee\'s leadership role in the Early Republic</option>\r\n'
+	+'<option value="A.3">&nbsp;&nbsp;3. Anti-democracy impulses: Slavery, free people of color, and Removal of Native Americans </option>\r\n'
+	+'<option value="A.4">&nbsp;&nbsp;4. Debate over slavery, the Secession Crisis, and the Civil War: Tennessee as a uniquely divided border state</option>\r\n'
+	+'<option value="A.5">&nbsp;&nbsp;5. Reconstruction and the freedmen: appearance of hitherto undocumented people in legal records; the fastening of sharecropping on the countryside</option>\r\n'
+	+'<option value="A.6">&nbsp;&nbsp;6. Taxation and the narrowing of the franchise: "Jim Crow" laws and the poll tax</option>\r\n'
+	+'<option value="A.7">&nbsp;&nbsp;7. Utopian Impulses of the 19th century such as Nashoba, Ruskin, and Rugby </option>\r\n'
+	+'<option value="A.8">&nbsp;&nbsp;8. New South period and the industrialization of Tennessee</option>\r\n'
+	+'<option value="A.9">&nbsp;&nbsp;9. Women\'s Suffrage and Tennessee\'s pivotal role in passage of 19th Amendment</option>\r\n'
+	+'<option value="A.10">10. Boss Crump, prohibition, and machine politics in Tennessee</option>\r\n'
+	+'<option value="A.11">11. Scopes trial, rise of fundamentalism, and public education</option>\r\n'
+	+'<option value="A.12">12. Tennessee Valley Authority and "grass roots democracy"</option>\r\n'
+	+'<option value="A.13">13. Oak Ridge and WWII effort in Tennessee </option>\r\n'
+	+'<option value="A.14">14. Civil Rights movement in Tennessee </option>\r\n'
+	+'<option value="A.15">15. Modern times in Tennessee </option>\r\n'
+	+'</select> \r\n'
+	+'</td></tr></table> \r\n'
+	+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+}else if (   select_id == "subject_topic_vv_03" || select_id == "subject_topic_vv_04"
+          || select_id == "subject_topic_vv_05"
+      ) {
+document.write(
+	 '<font color="eeffee">vv_functions.htm called by '+select_id+' </font>\r\n'
+        +'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ddeeff">\r\n'
+        +'<tr><td>\r\n'
+        +'<b>Select 1 of 25 Subject Categories for Item </b> \r\n'
+        +'</td></tr><tr><td> \r\n'
+        +'<select name="aaa"  size="25"> \r\n'
+        +'<option value="D.1">&nbsp;&nbsp;1. African-Americans</option> \r\n'
+        +'<option value="D.2">&nbsp;&nbsp;2. Architecture</option> \r\n'
+        +'<option value="D.3">&nbsp;&nbsp;3. Arts and Literature</option> \r\n'
+        +'<option value="D.4">&nbsp;&nbsp;4. Children and Childhood</option> \r\n'
+        +'<option value="D.5">&nbsp;&nbsp;5. Civil and Human Rights</option> \r\n'
+        +'<option value="D.6">&nbsp;&nbsp;6. Education</option> \r\n'
+        +'<option value="D.7">&nbsp;&nbsp;7. Family Life and Gender Relations</option> \r\n'
+        +'<option value="D.8">&nbsp;&nbsp;8. Farming and Agriculture</option> \r\n'
+        +'<option value="D.9">&nbsp;&nbsp;9. Frontier Settlement and Migration</option> \r\n'
+        +'<option value="D.10">10. Government and Politics</option> \r\n'
+        +'<option value="D.11">11. Health and Medicine</option> \r\n'
+        +'<option value="D.12">12. Immigrants and Immigration</option> \r\n' 
+        +'<option value="D.13">13. Law and Legal Documents</option> \r\n'
+        +'<option value="D.14">14. Music and Performing Arts</option> \r\n'
+        +'<option value="D.15">15. Native Americans</option> \r\n'
+        +'<option value="D.16">16. Nature and the Environment</option> \r\n'
+        +'<option value="D.17">17. Popular Culture and Folklife</option> \r\n'
+        +'<option value="D.18">18. Religion</option> \r\n'
+        +'<option value="D.19">19. Science and Technology</option> \r\n'
+        +'<option value="D.20">20. Social Reform</option> \r\n'
+        +'<option value="D.21">21. Sports and Recreation</option> \r\n'
+        +'<option value="D.22">22. Trade, Business and Industry</option> \r\n'
+        +'<option value="D.23">23. Transportation and Internal Improvements</option> \r\n'
+        +'<option value="D.24">24. Wars and Military</option> \r\n'
+        +'<option value="D.25">25. Women</option> \r\n'
+        +'</select> \r\n'
+        +'</td></tr></table> \r\n'
+        +'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+        );
+
+}else if (   select_id == "subject_topic_spc_01" || select_id == "subject_topic_spc_02"
+          || select_id == "subject_topic_spc_03"
+      ) {
+document.write(
+	 '<font color="eeffee">vv_functions.htm called by '+select_id+' </font>\r\n'
+        +'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ddeeff">\r\n'
+        +'<tr><td>\r\n'
+        +'<b>Select 1 of 12 SPC Topical Categories for Item </b> \r\n'
+        +'</td></tr><tr><td> \r\n'
+        +'<select name="aaa"  size="14"> \r\n'
+        +'<option value="B.1">&nbsp;&nbsp;1. African-Americans</option> \r\n'
+        +'<option value="B.2">&nbsp;&nbsp;2. Education</option> \r\n'
+        +'<option value="B.3">&nbsp;&nbsp;3. Government and Politics</option> \r\n'
+        +'<option value="B.4">&nbsp;&nbsp;4. Knoxville</option> \r\n'
+        +'<option value="B.5">&nbsp;&nbsp;5. Native Americans</option> \r\n'
+        +'<option value="B.6">&nbsp;&nbsp;6. Oak Ridge</option> \r\n'
+        +'<option value="B.7">&nbsp;&nbsp;7. Religion</option> \r\n'
+        +'<option value="B.8">&nbsp;&nbsp;8. Smoky Mountains</option> \r\n'
+        +'<option value="B.9">&nbsp;&nbsp;9. Tennessee Authors</option> \r\n'
+        +'<option value="B.10">10. TVA</option> \r\n'
+        +'<option value="B.11">11. University Archives</option> \r\n'
+        +'<option value="B.12">12. Women</option> \r\n'
+        +'</select> \r\n'
+        +'</td></tr></table> \r\n'
+        +'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+
+} else if (   select_id == "subject_time_period_01"   ||  select_id == "subject_time_period_02"
+           || select_id == "subject_temporal_lcsh_01" || select_id == "subject_temporal_lcsh_02"
+           || select_id == "subject_temporal_vv_01" || select_id == "subject_temporal_vv_02"
+
+	  ) { 
+
+document.write(
+	 '<font color="eeffee">vv_functions.htm called by '+select_id+' </font>\r\n'
+	+'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ddeeff">\r\n'
+	+'<tr><td>\r\n'
+	+'<b>Select 1 of 10 Temporal Categories</b> \r\n'
+	+'</td></tr><tr><td>  \r\n'
+	+'<select name="aaa" size="11"> \r\n'
+	+'<option value="0" selected>None Selected</option> \r\n'
+	+'<option value="B.1">&nbsp;&nbsp;1. Three Worlds Meet(Beginnings to 1660)</option> \r\n'
+	+'<option value="B.2">&nbsp;&nbsp;2. Colonization and Settlement(1585-1763)</option> \r\n'
+	+'<option value="B.3">&nbsp;&nbsp;3. Revolution and the New Nation (1754-1820)</option> \r\n'
+	+'<option value="B.4">&nbsp;&nbsp;4. Expansion and Reform (1801-1877)</option> \r\n'
+	+'<option value="B.5">&nbsp;&nbsp;5. Civil War and Reconstruction (1850-1877)</option> \r\n'
+	+'<option value="B.6">&nbsp;&nbsp;6. The Development of the Industrial United States(1870-1900)</option> \r\n'
+	+'<option value="B.7">&nbsp;&nbsp;7. The Emergence of Modern America(1890-1930)</option> \r\n'
+	+'<option value="B.8">&nbsp;&nbsp;8. The Great Depression and World War II(1929-1970)</option> \r\n'
+	+'<option value="B.9">&nbsp;&nbsp;9. Postwar United States (1945-1970)</option> \r\n'
+	+'<option value="B.10">10. Contemporary United States (1968-Present )</option> \r\n'
+	+'</select> \r\n'
+	+'</td></tr></table> \r\n'
+	+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+}
+
+else if (   select_id == "subject_geographic_county"  || select_id == "institution_county" 
+         || select_id == "subject_geographic_lcsh_01" || select_id == "subject_geographic_lcsh_02"
+         || select_id == "subject_geographic_vv_01"   || select_id == "subject_geographic_vv_02"
+	 || select_id == "physical_location_county"   || select_id == "subject_geographic_none_01"
+	) { 
+
+document.write(
+	 '<font color="eeffee">vv_functions.htm called by '+select_id+' </font>\r\n'
+	+'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ddeeff">\r\n'
+	+'<tr><td>\r\n'
+	+'<b>Select 1 Tennessee County for Subject: Geographic: (County)</b> \r\n'
+	+'</td></tr><tr><td>  \r\n'
+	+'<select name="aaa" size="11"> \r\n'
+	+'<option value="0" selected>None Selected</option> \r\n'
+	+'<option value="C.1">1. Anderson County</option>\r\n'
+	+'<option value="C.2">2. Bedford County</option>\r\n'
+	+'<option value="C.3">3. Benton County</option>\r\n'
+	+'<option value="C.4">4. Bledsoe County</option>\r\n'
+	+'<option value="C.5">5. Blount County</option>\r\n'
+	+'<option value="C.6">6. Bradley County</option>\r\n'
+	+'<option value="C.7">7. Campbell County</option>\r\n'
+	+'<option value="C.8">8. Cannon County</option>\r\n'
+	+'<option value="C.9">9. Carroll County</option>\r\n'
+	+'<option value="C.10">10. Carter County</option>\r\n'
+	+'<option value="C.11">11. Cheatham County</option>\r\n'
+	+'<option value="C.12">12. Chester County</option>\r\n'
+	+'<option value="C.13">13. Claiborne County</option>\r\n'
+	+'<option value="C.14">14. Clay County</option>\r\n'
+	+'<option value="C.15">15. Cocke County</option>\r\n'
+	+'<option value="C.16">16. Coffee County</option>\r\n'
+	+'<option value="C.17">17. Crockett County</option>\r\n'
+	+'<option value="C.18">18. Cumberland County</option>\r\n'
+	+'<option value="C.19">19. Davidson County</option>\r\n'
+	+'<option value="C.20">20. Decatur County</option>\r\n'
+	+'<option value="C.21">21. Dekalb County</option>\r\n'
+	+'<option value="C.22">22. Dickson County</option>\r\n'
+	+'<option value="C.23">23. Dyer County</option>\r\n'
+	+'<option value="C.24">24. Fayette County</option>\r\n'
+	+'<option value="C.25">25. Fentress County</option>\r\n'
+	+'<option value="C.26">26. Franklin County</option>\r\n'
+	+'<option value="C.27">27. Gibson County</option>\r\n'
+	+'<option value="C.28">28. Giles County</option>\r\n'
+	+'<option value="C.29">29. Grainger County</option>\r\n'
+	+'<option value="C.30">30. Greene County</option>\r\n'
+	+'<option value="C.31">31. Grundy County</option>\r\n'
+	+'<option value="C.32">32. Hamblen County</option>\r\n'
+	+'<option value="C.33">33. Hamilton County</option>\r\n'
+	+'<option value="C.34">34. Hancock County</option>\r\n'
+	+'<option value="C.35">35. Hardeman County</option>\r\n'
+	+'<option value="C.36">36. Hardin County</option>\r\n'
+	+'<option value="C.37">37. Hawkins County</option>\r\n'
+	+'<option value="C.38">38. Haywood County</option>\r\n'
+	+'<option value="C.39">39. Henderson County</option>\r\n'
+	+'<option value="C.40">40. Henry County</option>\r\n'
+	+'<option value="C.41">41. Hickman County</option>\r\n'
+	+'<option value="C.42">42. Houston County</option>\r\n'
+	+'<option value="C.43">43. Humphreys County</option>\r\n'
+	+'<option value="C.44">44. Jackson County</option>\r\n'
+	+'<option value="C.45">45. Jefferson County</option>\r\n'
+	+'<option value="C.46">46. Johnson County</option>\r\n'
+	+'<option value="C.47">47. Knox County</option>\r\n'
+	+'<option value="C.48">48. Lake County</option>\r\n'
+	+'<option value="C.49">49. Lauderdale County</option>\r\n'
+	+'<option value="C.50">50. Lawrence County</option>\r\n'
+	+'<option value="C.51">51. Lewis County</option>\r\n'
+	+'<option value="C.52">52. Lincoln County</option>\r\n'
+	+'<option value="C.53">53. Loudon County</option>\r\n'
+	+'<option value="C.54">54. Macon County</option>\r\n'
+	+'<option value="C.55">55. Madison County</option>\r\n'
+	+'<option value="C.56">56. Marion County</option>\r\n'
+	+'<option value="C.57">57. Marshall County</option>\r\n'
+	+'<option value="C.58">58. Maury County</option>\r\n'
+	+'<option value="C.59">59. McMinn County</option>\r\n'
+	+'<option value="C.60">60. McNairy County</option>\r\n'
+	+'<option value="C.61">61. Meigs County</option>\r\n'
+	+'<option value="C.62">62. Monroe County</option>\r\n'
+	+'<option value="C.63">63. Montgomery County</option>\r\n'
+	+'<option value="C.64">64. Moore County</option>\r\n'
+	+'<option value="C.65">65. Morgan County</option>\r\n'
+	+'<option value="C.66">66. Obion County</option>\r\n'
+	+'<option value="C.67">67. Overton County</option>\r\n'
+	+'<option value="C.68">68. Perry County</option>\r\n'
+	+'<option value="C.69">69. Pickett County</option>\r\n'
+	+'<option value="C.70">70. Polk County</option>\r\n'
+	+'<option value="C.71">71. Putnam County</option>\r\n'
+	+'<option value="C.72">72. Rhea County</option>\r\n'
+	+'<option value="C.73">73. Roane County</option>\r\n'
+	+'<option value="C.74">74. Robertson County</option>\r\n'
+	+'<option value="C.75">75. Rutherford County</option>\r\n'
+	+'<option value="C.76">76. Scott County</option>\r\n'
+	+'<option value="C.77">77. Sequatchie County</option>\r\n'
+	+'<option value="C.78">78. Sevier County</option>\r\n'
+	+'<option value="C.79">79. Shelby County</option>\r\n'
+	+'<option value="C.80">80. Smith County</option>\r\n'
+	+'<option value="C.81">81. Stewart County</option>\r\n'
+	+'<option value="C.82">82. Sullivan County</option>\r\n'
+	+'<option value="C.83">83. Sumner County</option>\r\n'
+	+'<option value="C.84">84. Tipton County</option>\r\n'
+	+'<option value="C.85">85. Trousdale County</option>\r\n'
+	+'<option value="C.86">86. Unicoi County</option>\r\n'
+	+'<option value="C.87">87. Union County</option>\r\n'
+	+'<option value="C.88">88. Van Buren County</option>\r\n'
+	+'<option value="C.89">89. Warren County</option>\r\n'
+	+'<option value="C.90">90. Washington County</option>\r\n'
+	+'<option value="C.91">91. Wayne County</option>\r\n'
+	+'<option value="C.92">92. Weakley County</option>\r\n'
+	+'<option value="C.93">93. White County</option>\r\n'
+	+'<option value="C.94">94. Williamson County</option>\r\n'
+	+'<option value="C.95">95. Wilson County</option>\r\n'
+
+	+'</select> \r\n'
+	+'</td></tr></table> \r\n'
+	+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+
+
+}else if (select_id == "type_of_resource_01" || select_id == "type_of_resource_02" || select_id == "type_of_resource_03" ) { 
+
+document.write(
+	 '<font color="eeffee">vv_functions.htm called by '+select_id+' </font>\r\n'
+	+'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ddeeff">\r\n'
+	+'<tr><td>\r\n'
+	+'<b>Select 1 Type of Resource: </b> \r\n'
+	+'</td></tr><tr><td>  \r\n'
+	+'<select name="aaa" size="11"> \r\n'
+	+'<option value="text">text</option> \r\n'
+	+'<option value="cartographic">cartographic</option> \r\n'
+	+'<option value="notated music">notated music</option> \r\n'
+	+'<option value="sound recording">sound recording</option> \r\n'
+	+'<option value="sound recording-musical">sound recording-musical</option> \r\n'
+	+'<option value="sound recording-nonmusical">sound recording-nonmusical</option> \r\n'
+	+'<option value="still image">still image</option> \r\n'
+	+'<option value="moving image">moving image</option> \r\n'
+	+'<option value="three dimensional object">three dimensional object</option> \r\n'
+	+'<option value="software, multimedia">software, multimedia</option> \r\n'
+	+'</select> \r\n'
+	+'</td></tr></table> \r\n'
+	+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+
+}else if (select_id == "language_of_cataloging" || select_id == "language" ) { 
+
+document.write(
+	 '<font color="eeffee">vv_functions.htm called by '+select_id+' </font>\r\n'
+	+'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ddeeff">\r\n'
+	+'<tr><td>\r\n'
+	+'<b>Select 1 Language: </b> \r\n'
+	+'</td></tr><tr><td>  \r\n'
+	+'<select name="aaa" size="15" onClick="popLang()"> \r\n'
+	+'<option value="chr">Cherokee</option>\r\n'
+	+'<option value="chi">Chinese</option>\r\n'
+	+'<option value="eng" selected>English</option>\r\n'
+	+'<option value="fra">French</option>\r\n'
+	+'<option value="ger">German</option>\r\n'
+	+'<option value="gre">Greek</option>\r\n'
+	+'<option value="heb">Hebrew</option>\r\n'
+	+'<option value="ita">Italian</option>\r\n'
+	+'<option value="jpn">Japanese</option>\r\n'
+	+'<option value="lat">Latin</option>\r\n'
+	+'<option value="por">Portuguese</option>\r\n'
+	+'<option value="rus">Russian</option>\r\n'
+	+'<option value="spa">Spanish</option>\r\n'
+	+'<option value="yid">Yiddish</option>\r\n'
+	+'<option value="zxx">No linguistic content</option>\r\n'
+	+'</select>\r\n'
+	+'<p> Select another <a href="http://www.loc.gov/standards/iso639-2/php/code_list.php" target="_blank">iso639-2 Code/Desc</a> not listed here.\r\n'
+	+'<p>Code: <input type="text" name="lang_code" value="eng" size="2">\r\n'
+	+'<br>Desc: <input type="text" name="lang_desc" value="English" size="20">\r\n'
+	+'</td></tr></table> \r\n'
+	+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+} else if (select_id == "mods_genre" ) {
+document.write(
+	 '<font color="eeffee">vv_functions.htm called by '+select_id+' </font>\r\n'
+	+'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ddeeff">\r\n'
+	+'<tr><td >\r\n'
+	+'<b>Select 1 Role: </b> \r\n'
+	+'</td></tr><tr><td>  \r\n'
+	+'<select name="aaa" size="15" > \r\n'
+	+'<option value="abstract or summary">abstract or summary</option> \r\n'
+	+'<option value="art original">art original</option> \r\n'
+	+'<option value="art reproduction">art reproduction</option> \r\n'
+	+'<option value="atlas">atlas</option> \r\n'
+	+'<option value="autobiography">autobiography</option> \r\n'
+	+'<option value="bibliography">bibliography</option> \r\n'
+	+'<option value="biography">biography</option> \r\n'
+	+'<option value="book">book</option> \r\n'
+	+'<option value="catalog">catalog</option> \r\n'
+	+'<option value="chart">chart</option> \r\n'
+	+'<option value="comic strip">comic strip</option> \r\n'
+	+'<option value="conference publication">conference publication</option> \r\n'
+	+'<option value="database">database</option> \r\n'
+	+'<option value="dictionary">dictionary</option> \r\n'
+	+'<option value="diorama">diorama</option> \r\n'
+	+'<option value="directory">directory</option> \r\n'
+	+'<option value="discography">discography</option> \r\n'
+	+'<option value="drama">drama</option> \r\n'
+	+'<option value="encyclopedia">encyclopedia</option> \r\n'
+	+'<option value="essay">essay</option> \r\n'
+	+'<option value="festschrift">festschrift</option> \r\n'
+	+'<option value="fiction">fiction</option> \r\n'
+	+'<option value="filmography">filmography</option> \r\n'
+	+'<option value="filmstrip">filmstrip</option> \r\n'
+	+'<option value="flash card">flash card</option> \r\n'
+	+'<option value="folktale">folktale</option> \r\n'
+	+'<option value="font">font</option> \r\n'
+	+'<option value="game">game</option> \r\n'
+	+'<option value="government publication">government publication</option> \r\n'
+	+'<option value="graphic">graphic</option> \r\n'
+	+'<option value="globe">globe</option> \r\n'
+	+'<option value="handbook">handbook</option> \r\n'
+	+'<option value="history">history</option> \r\n'
+	+'<option value="humor, satire">humor, satire</option> \r\n'
+	+'<option value="index">index</option> \r\n'
+	+'<option value="instruction">instruction</option> \r\n'
+	+'<option value="interview">interview</option> \r\n'
+	+'<option value="kit">kit</option> \r\n'
+	+'<option value="language instruction">language instruction</option> \r\n'
+	+'<option value="law report or digest">law report or digest</option> \r\n'
+	+'<option value="legal article">legal article</option> \r\n'
+	+'<option value="legal case and case notes">legal case and case notes</option> \r\n'
+	+'<option value="legislation">legislation</option> \r\n'
+	+'<option value="letter">letter</option> \r\n'
+	+'<option value="loose-leaf">loose-leaf</option> \r\n'
+	+'<option value="map">map</option> \r\n'
+	+'<option value="memoir">memoir</option> \r\n'
+	+'<option value="microscope slide">microscope slide</option> \r\n'
+	+'<option value="model">model</option> \r\n'
+	+'<option value="motion picture">motion picture</option> \r\n'
+	+'<option value="multivolume monograph">multivolume monograph</option> \r\n'
+	+'<option value="newspaper">newspaper</option> \r\n'
+	+'<option value="novel">novel</option> \r\n'
+	+'<option value="numeric data">numeric data</option> \r\n'
+	+'<option value="online system or service">online system or service</option> \r\n'
+	+'<option value="patent">patent</option> \r\n'
+	+'<option value="periodical">periodical</option> \r\n'
+	+'<option value="picture">picture</option> \r\n'
+	+'<option value="poetry">poetry</option> \r\n'
+	+'<option value="programmed text">programmed text</option> \r\n'
+	+'<option value="realia">realia</option> \r\n'
+	+'<option value="rehearsal">rehearsal</option> \r\n'
+	+'<option value="remote sensing image">remote sensing image</option> \r\n'
+	+'<option value="reporting">reporting</option> \r\n'
+	+'<option value="review">review</option> \r\n'
+	+'<option value="series">series</option> \r\n'
+	+'<option value="short story">short story</option> \r\n'
+	+'<option value="slide">slide</option> \r\n'
+	+'<option value="sound">sound</option> \r\n'
+	+'<option value="speech">speech</option> \r\n'
+	+'<option value="statistics">statistics</option> \r\n'
+	+'<option value="survey of literature">survey of literature</option> \r\n'
+	+'<option value="technical drawing">technical drawing</option> \r\n'
+	+'<option value="technical report">technical report</option> \r\n'
+	+'<option value="theses">theses</option> \r\n'
+	+'<option value="toy">toy</option> \r\n'
+	+'<option value="transparency">transparency</option> \r\n'
+	+'<option value="treaty">treaty</option> \r\n'
+	+'<option value="videorecording">videorecording</option> \r\n'
+	+'<option value="web site">web site</option> \r\n'
+	+'</select> \r\n'
+	+'</td></tr></table> \r\n'
+	+'&nbsp;&nbsp;Complete Genre Descriptions from <a href="http://www.loc.gov/marc/sourcecode/genre/genrelist.html " target="blank">MARK Genrelist</a>.<p> \r\n'
+	+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+} else if (select_id == "creator_role_01" ||select_id == "creator_role_02" || select_id == "creator_role_03") {
+document.write(
+	 '<font color="eeffee">vv_functions.htm called by '+select_id+' </font>\r\n'
+	+'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ddeeff">\r\n'
+	+'<tr><td>\r\n'
+	+'<b>Select 1 Role: </b> \r\n'
+	+'</td></tr><tr><td>  \r\n'
+	+'<select name="aaa" size="20" > \r\n'
+	+ '<option value="Actor">Actor</option> \r\n'
+	+ '<option value="Adapter">Adapter</option> \r\n'
+	+ '<option value="Author of afterword, colophon, etc.">Author of afterword, colophon, etc.</option> \r\n'
+	+ '<option value="Annotator">Annotator</option> \r\n'
+	+ '<option value="Bibliographic antecedent">Bibliographic antecedent</option> \r\n'
+	+ '<option value="Applicant">Applicant</option> \r\n'
+	+ '<option value="Author in quotations or text abstracts">Author in quotations or text abstracts</option> \r\n'
+	+ '<option value="Architect">Architect</option> \r\n'
+	+ '<option value="Arranger">Arranger</option> \r\n'
+	+ '<option value="Artist">Artist</option> \r\n'
+	+ '<option value="Assignee">Assignee</option> \r\n'
+	+ '<option value="Associated name">Associated name</option> \r\n'
+	+ '<option value="Attributed name">Attributed name</option> \r\n'
+	+ '<option value="Auctioneer">Auctioneer</option> \r\n'
+	+ '<option value="Author of dialog">Author of dialog</option> \r\n'
+	+ '<option value="Author of introduction">Author of introduction</option> \r\n'
+	+ '<option value="Author of screenplay">Author of screenplay</option> \r\n'
+	+ '<option value="Author">Author</option> \r\n'
+	+ '<option value="Binding designer">Binding designer</option> \r\n'
+	+ '<option value="Bookjacket designer">Bookjacket designer</option> \r\n'
+	+ '<option value="Book designer">Book designer</option> \r\n'
+	+ '<option value="Book producer">Book producer</option> \r\n'
+	+ '<option value="Binder">Binder</option> \r\n'
+	+ '<option value="Bookplate designer">Bookplate designer</option> \r\n'
+	+ '<option value="Bookseller">Bookseller</option> \r\n'
+	+ '<option value="Conceptor">Conceptor</option> \r\n'
+	+ '<option value="Choreographer">Choreographer</option> \r\n'
+	+ '<option value="Collaborator">Collaborator</option> \r\n'
+	+ '<option value="Client">Client</option> \r\n'
+	+ '<option value="Calligrapher">Calligrapher</option> \r\n'
+	+ '<option value="Collotyper">Collotyper</option> \r\n'
+	+ '<option value="Commentator">Commentator</option> \r\n'
+	+ '<option value="Composer">Composer</option> \r\n'
+	+ '<option value="Compositor">Compositor</option> \r\n'
+	+ '<option value="Conductor">Conductor</option> \r\n'
+	+ '<option value="Censor">Censor</option> \r\n'
+	+ '<option value="Contestant-appellee">Contestant-appellee</option> \r\n'
+	+ '<option value="Collector">Collector</option> \r\n'
+	+ '<option value="Compiler">Compiler</option> \r\n'
+	+ '<option value="Contestant">Contestant</option> \r\n'
+	+ '<option value="Contestant-appellant">Contestant-appellant</option> \r\n'
+	+ '<option value="Copyright claimant">Copyright claimant</option> \r\n'
+	+ '<option value="Complainant-appellee">Complainant-appellee</option> \r\n'
+	+ '<option value="Copyright holder">Copyright holder</option> \r\n'
+	+ '<option value="Complainant">Complainant</option> \r\n'
+	+ '<option value="Complainant-appellant">Complainant-appellant</option> \r\n'
+	+ '<option value="Creator">Creator</option> \r\n'
+	+ '<option value="Correspondent">Correspondent</option> \r\n'
+	+ '<option value="Corrector">Corrector</option> \r\n'
+	+ '<option value="Consultant">Consultant</option> \r\n'
+	+ '<option value="Consultant to a project">Consultant to a project</option> \r\n'
+	+ '<option value="Costume designer">Costume designer</option> \r\n'
+	+ '<option value="Contributor">Contributor</option> \r\n'
+	+ '<option value="Contestee-appellee">Contestee-appellee</option> \r\n'
+	+ '<option value="Cartographer">Cartographer</option> \r\n'
+	+ '<option value="Contractor">Contractor</option> \r\n'
+	+ '<option value="Contestee">Contestee</option> \r\n'
+	+ '<option value="Contestee-appellant">Contestee-appellant</option> \r\n'
+	+ '<option value="Curator">Curator</option> \r\n'
+	+ '<option value="Commentator for written text">Commentator for written text</option> \r\n'
+	+ '<option value="Defendant">Defendant</option> \r\n'
+	+ '<option value="Defendant-appellee">Defendant-appellee</option> \r\n'
+	+ '<option value="Defendant-appellant">Defendant-appellant</option> \r\n'
+	+ '<option value="Degree grantor">Degree grantor</option> \r\n'
+	+ '<option value="Dissertant">Dissertant</option> \r\n'
+	+ '<option value="Delineator">Delineator</option> \r\n'
+	+ '<option value="Dancer">Dancer</option> \r\n'
+	+ '<option value="Donor">Donor</option> \r\n'
+	+ '<option value="Depositor">Depositor</option> \r\n'
+	+ '<option value="Draftsman">Draftsman</option> \r\n'
+	+ '<option value="Director">Director</option> \r\n'
+	+ '<option value="Designer">Designer</option> \r\n'
+	+ '<option value="Distributor">Distributor</option> \r\n'
+	+ '<option value="Dedicatee">Dedicatee</option> \r\n'
+	+ '<option value="Dedicator">Dedicator</option> \r\n'
+	+ '<option value="Dubious author">Dubious author</option> \r\n'
+	+ '<option value="Editor">Editor</option> \r\n'
+	+ '<option value="Engraver">Engraver</option> \r\n'
+	+ '<option value="Electrotyper">Electrotyper</option> \r\n'
+	+ '<option value="Engineer">Engineer</option> \r\n'
+	+ '<option value="Etcher">Etcher</option> \r\n'
+	+ '<option value="Expert">Expert</option> \r\n'
+	+ '<option value="Facsimilist">Facsimilist</option> \r\n'
+	+ '<option value="Film editor">Film editor</option> \r\n'
+	+ '<option value="Former owner">Former owner</option> \r\n'
+	+ '<option value="Funder">Funder</option> \r\n'
+	+ '<option value="Forger">Forger</option> \r\n'
+	+ '<option value="Graphic technician">Graphic technician</option> \r\n'
+	+ '<option value="Honoree">Honoree</option> \r\n'
+	+ '<option value="Host">Host</option> \r\n'
+	+ '<option value="Illustrator">Illustrator</option> \r\n'
+	+ '<option value="Illuminator">Illuminator</option> \r\n'
+	+ '<option value="Inscriber">Inscriber</option> \r\n'
+	+ '<option value="Inventor">Inventor</option> \r\n'
+	+ '<option value="Instrumentalist">Instrumentalist</option> \r\n'
+	+ '<option value="Interviewee">Interviewee</option> \r\n'
+	+ '<option value="Interviewer">Interviewer</option> \r\n'
+	+ '<option value="Librettist">Librettist</option> \r\n'
+	+ '<option value="Libelee-appellee">Libelee-appellee</option> \r\n'
+	+ '<option value="Libelee">Libelee</option> \r\n'
+	+ '<option value="Lender">Lender</option> \r\n'
+	+ '<option value="Libelee-appellant">Libelee-appellant</option> \r\n'
+	+ '<option value="Libelant-appellee">Libelant-appellee</option> \r\n'
+	+ '<option value="Libelant">Libelant</option> \r\n'
+	+ '<option value="Libelant-appellant">Libelant-appellant</option> \r\n'
+	+ '<option value="Landscape architect">Landscape architect</option> \r\n'
+	+ '<option value="Licensee">Licensee</option> \r\n'
+	+ '<option value="Licensor">Licensor</option> \r\n'
+	+ '<option value="Lithographer">Lithographer</option> \r\n'
+	+ '<option value="Lyricist">Lyricist</option> \r\n'
+	+ '<option value="Metadata contact">Metadata contact</option> \r\n'
+	+ '<option value="Moderator">Moderator</option> \r\n'
+	+ '<option value="Monitor">Monitor</option> \r\n'
+	+ '<option value="Metal-engraver">Metal-engraver</option> \r\n'
+	+ '<option value="Musician">Musician</option> \r\n'
+	+ '<option value="Narrator">Narrator</option> \r\n'
+	+ '<option value="Opponent">Opponent</option> \r\n'
+	+ '<option value="Originator">Originator</option> \r\n'
+	+ '<option value="Organizer of meeting">Organizer of meeting</option> \r\n'
+	+ '<option value="Other">Other</option> \r\n'
+	+ '<option value="Owner">Owner</option> \r\n'
+	+ '<option value="Patron">Patron</option> \r\n'
+	+ '<option value="Publishing director">Publishing director</option> \r\n'
+	+ '<option value="Publisher">Publisher</option> \r\n'
+	+ '<option value="Proofreader">Proofreader</option> \r\n'
+	+ '<option value="Photographer">Photographer</option> \r\n'
+	+ '<option value="Platemaker">Platemaker</option> \r\n'
+	+ '<option value="Printer of plates">Printer of plates</option> \r\n'
+	+ '<option value="Papermaker">Papermaker</option> \r\n'
+	+ '<option value="Process contact">Process contact</option> \r\n'
+	+ '<option value="Production personnel">Production personnel</option> \r\n'
+	+ '<option value="Performer">Performer</option> \r\n'
+	+ '<option value="Programmer">Programmer</option> \r\n'
+	+ '<option value="Producer">Producer</option> \r\n'
+	+ '<option value="Printer">Printer</option> \r\n'
+	+ '<option value="Patent applicant">Patent applicant</option> \r\n'
+	+ '<option value="Plaintiff-appellee">Plaintiff-appellee</option> \r\n'
+	+ '<option value="Plaintiff">Plaintiff</option> \r\n'
+	+ '<option value="Patent holder">Patent holder</option> \r\n'
+	+ '<option value="Plaintiff-appellant">Plaintiff-appellant</option> \r\n'
+	+ '<option value="Rubricator">Rubricator</option> \r\n'
+	+ '<option value="Recording engineer">Recording engineer</option> \r\n'
+	+ '<option value="Recipient">Recipient</option> \r\n'
+	+ '<option value="Redactor">Redactor</option> \r\n'
+	+ '<option value="Renderer">Renderer</option> \r\n'
+	+ '<option value="Researcher">Researcher</option> \r\n'
+	+ '<option value="Reviewer">Reviewer</option> \r\n'
+	+ '<option value="Respondent-appellee">Respondent-appellee</option> \r\n'
+	+ '<option value="Respondent">Respondent</option> \r\n'
+	+ '<option value="Respondent-appellant">Respondent-appellant</option> \r\n'
+	+ '<option value="Research team head">Research team head</option> \r\n'
+	+ '<option value="Research team member">Research team member</option> \r\n'
+	+ '<option value="Scientific advisor">Scientific advisor</option> \r\n'
+	+ '<option value="Scenarist">Scenarist</option> \r\n'
+	+ '<option value="Scribe">Scribe</option> \r\n'
+	+ '<option value="Sculptor">Sculptor</option> \r\n'
+	+ '<option value="Secretary">Secretary</option> \r\n'
+	+ '<option value="Signer">Signer</option> \r\n'
+	+ '<option value="Singer">Singer</option> \r\n'
+	+ '<option value="Speaker">Speaker</option> \r\n'
+	+ '<option value="Sponsor">Sponsor</option> \r\n'
+	+ '<option value="Surveyor">Surveyor</option> \r\n'
+	+ '<option value="Standards body">Standards body</option> \r\n'
+	+ '<option value="Stereotyper">Stereotyper</option> \r\n'
+	+ '<option value="Thesis advisor">Thesis advisor</option> \r\n'
+	+ '<option value="Transcriber">Transcriber</option> \r\n'
+	+ '<option value="Translator">Translator</option> \r\n'
+	+ '<option value="Type designer">Type designer</option> \r\n'
+	+ '<option value="Typographer">Typographer</option> \r\n'
+	+ '<option value="Vocalist">Vocalist</option> \r\n'
+	+ '<option value="Writer of accompanying material">Writer of accompanying material</option> \r\n'
+	+ '<option value="Woodcutter">Woodcutter</option> \r\n'
+	+ '<option value="Wood-engraver">Wood-engraver</option> \r\n'
+	+ '<option value="Witness">Witness</option> \r\n'
+	+'</select> \r\n'
+	+'</td></tr></table> \r\n'
+	+'&nbsp;&nbsp;Complete Role Descriptions from <a href="http://www.loc.gov/marc/sourcecode/relator/relatorlist.html" target="blank">MARK Relatorlist</a>.<p> \r\n'
+	+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+}
+
+
+</script>
+<input type="button" name="B0" value="submit" onclick="installSelectedValues()">
+&nbsp;&nbsp;
+<input type="button" name="B0" value="cancel" onclick="cancelSelect()">
+</form>
+
+</BODY>
+</HTML>
+

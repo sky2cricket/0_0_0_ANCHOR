@@ -1,0 +1,164 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fswiss\fcharset0 Arial;}{\f1\froman\fcharset0 Times New Roman;}}
+{\colortbl ;\red0\green0\blue255;\red128\green0\blue0;}
+{\*\generator Msftedit 5.41.15.1507;}\viewkind4\uc1\pard\b\f0\fs20 Debug process for TDH error\b0 : (jody DeRidder, 3/24/08)\par
+\par
+\pard\sb100\sa100 http://diglib.lib.utk.edu/cgi/t/text/text-idx?sid=d2385943a031f6fd0cdaf0589b0ce17a&c=tdh&view=reslist&type=simple&q1=A%20Short%20Description%20of%20the%20Tennassee%20Government&rgn=collection\f1\fs24\par
+\pard\f0\fs20 Associated error message: Invalid search label="scopingpage"\par
+\par
+\b First, \b0 because it said there was an invalid search label, I first checked /d1/dlxs/misc/t/text/maps/tdh.map  to see if there is a search label for "scopingpage".  There's not one, so my next step was to find out what is being searched.  Is it only this file, or all of them?\par
+\par
+\b Second, \b0 I test to answer this question, to identify the scope of the problem.\par
+   Searching on "Tennassee" in full text provides 2 results. Results details on both work.  So the lack of a "scopingpage" search term in maps is NOT a problem.  The error as stated is misleading.\par
+\par
+\b Third:  \b0 I replace the sid=  parameters in the query with "debug=xpat"  (debug=all is also a good one), and look for which query caused problems.  I have a ton of debug statements that will output to help in debugging. \par
+\par
+The URL is now: \par
+\par
+http://diglib.lib.utk.edu/cgi/t/text/text-idx?type=simple;c=tdh;cc=tdh;debug=xpat;rgn=collection;q1=Tennassee;firstpubl1=1770;firstpubl2=2000;view=reslist;subview=detail;sort=occur;start=1;size=25;didno=sc067\par
+\par
+I find out where things crash in the software, but I still don't know the xpat query that crashed it:\par
+Stack trace:\par
+\par
+    * DlpsUtils::ASSERT called from line 1499 in package TDHTC in file TextClass/TDHTC.pm.\par
+    * Called by TDHTC::Layer2ResultFormatter from line 2552 in package TextApp in file TextApp.pm.\par
+    * Called by TextApp::FormatReslistDetailResult from line 2238 in package TextApp in file TextApp.pm.\par
+    * Called by TextApp::FormatReslistPage from line 1483 in package TextApp in file TextApp.pm.\par
+    * Called by TextApp::ReslistViewSearchesAndFilter from line 532 in package TextApp in file TextApp.pm.\par
+    * Called by TextApp::ProcessRequest from line 339 in package TextApp in file TextApp.pm.\par
+    * Called by TextApp::RunObjectMain from line 115 in package main in file /d1/dlxs/cgi/t/text/text-idx\par
+\par
+\b Fourth:\b0   I need more information. I replace the debug=xpat with debug=all.\par
+The URL is now:\par
+\par
+http://diglib.lib.utk.edu/cgi/t/text/text-idx?type=simple;c=tdh;cc=tdh;debug=all;rgn=collection;q1=Tennassee;firstpubl1=1770;firstpubl2=2000;view=reslist;subview=detail;sort=occur;start=1;size=25;didno=sc067\par
+\par
+\par
+use Edit->Find in page "SENDING TO XPAT"\par
+you find the queries are:\par
+\par
+SENDING TO XPAT: hitssearch = (((("Tennassee " + "Tennassee<")) within (region collection)));~sync "EndOfResults";     \par
+ SENDING TO XPAT: recordssearch = (region main incl *hitssearch);~sync "EndOfResults";\par
+SENDING TO XPAT: \{quieton\};pr.region.id region id within (region main incl *hitssearch);~sync "EndOfResults";\{quieton raw\};  \cf2  (\cf0\par
+SENDING TO XPAT: pr.region."EDITORIALDECL-T" (region "EDITORIALDECL-T" within (region mainheader within (region main incl (region id incl ("sc067 " + "sc067<")))));~sync "EndOfResults";\par
+SENDING TO XPAT: pr.region."mainheader" region "mainheader" incl ((region IDNO incl ("sc067 " + "sc067<")));~sync "EndOfResults";\par
+SENDING TO XPAT: detailhitsinitemsearch = *hitssearch within (region main incl (region IDNO incl ("sc067 " + "sc067<")));~sync "EndOfResults";\par
+SENDING TO XPAT: detailslicesearch = subset.1.25 *detailhitsinitemsearch;~sync "EndOfResults";\par
+SENDING TO XPAT: pr.200 shift.-100 *detailslicesearch;~sync "EndOfResults";\par
+SENDING TO XPAT: pr.region.page (region page within (region page incl *detailslicesearch)); ~sync "EndOfResults";\par
+ \par
+It crashes shortly after this, but not during a call to XPAT;  I can see from the output from the last XPAT query that the header of the TEI was the response.\par
+\par
+  searching on "scopingpage", I note that the crash comes after \par
+AddResultObject( XRO ): type=RSet, label=scopingpage\par
+(which is where the result was put into an array for processing)\par
+\par
+and that the crash happens when the script is iterating through that array of Processing Instructions (PI) in the ProcIns sub of the library (in /d1/dlxs/lib).  So, I know I need to find out why the value in the result object (for what the software is calling a scopingpage) is invalid, in line line 1499 in package TDHTC in file TextClass/TDHTC.pm. \par
+\par
+\b Fifth:\b0   I go look at the code, on diglib2.\par
+cd /d1/dlxs/cgi/t/text/TextClass\par
+cp TDHTC.pm TDHTC.pm.20080324  (make a backup;  i'll at least be putting in debugging statements, and possibly more).\par
+vi TDHTC.pm\par
+:1499             (take me to line 1499)\par
+the line here is:\par
+ASSERT( 0, qq\{Invalid search label="$sniffedLabel"\} );\par
+at the end of a list of if/else's.  The valid labels are:  'mainheadbibmonograph', 'mainheadbibseralissue', and 'mainheadbibserialarticle'.  There is not an option for a label called "scopingpage".\par
+\par
+\b Sixth:\b0\par
+So, I have a conundrum.  I could query DLXS-help and ask them what to do, but since they have moved on to later versions of DLXS, they probably won't even remember this bug, if indeed anyone ever found it.  And they probably don't have the old code around online either.  So my alternatives are to determine which of these formatting calls is valid, and redirect this to that call.\par
+   Since the TEI we are doing are monographs, and this is a header (from the xpat query output) it is very likely that 'mainheadbibmonograph' formatting will suffice.  So, to test this, I am adding a clause to that if statement.\par
+\par
+# jody adding scopingpage here to test, 3/24/08\par
+\par
+#    if ( $sniffedLabel eq 'mainheadbibmonograph' )\par
+ if (( $sniffedLabel eq 'mainheadbibmonograph' ) || ( $sniffedLabel eq 'scopingpage'))\par
+    \{\par
+        ( $result, $iel )\par
+            = $self->FormatMonographTypeItem( $rset, $cgi, $dso,\par
+                                              'detail', $sniffedLabel );\par
+    \}\par
+\par
+\par
+I save this:  :w (hit enter) and then test in a browser:\par
+\par
+http://diglib2.lib.utk.edu/cgi/t/text/text-idx?type=simple;c=tdh;cc=tdh;debug=all;rgn=collection;q1=Tennassee;firstpubl1=1770;firstpubl2=2000;view=reslist;subview=detail;sort=occur;start=1;size=25;didno=sc067\par
+\par
+and get a different error:\par
+\par
+Assertion failure (on diglib2.lib.utk.edu)\par
+\par
+Message: Invalid encoding level="4" for 'page' indent\par
+\par
+URL History (least recent to most recent):\par
+\par
+http://diglib2.lib.utk.edu/cgi/t/text/text-idx?type=simple;c=tdh;cc=tdh;debug=all;rgn=collection;q1=Tennassee;firstpubl1=1770;firstpubl2=2000;view=reslist;subview=detail;sort=occur;start=1;size=25;didno=sc067;sid=89f3c674b66fd7969c0c76928ddcc4d0\par
+\par
+Stack trace:\par
+\par
+    * DlpsUtils::ASSERT called from line 4459 in package TextClass in file TextClass.pm.\par
+\par
+Seventh:\par
+\par
+In another window, \par
+cd /d1/dlxs/cgi/t/text\par
+cp TextClass.pm TextClass.pm.20080324\par
+vi TextClass.pm\par
+:4459\par
+\par
+and find the ASSERT in this clause:\par
+   elsif ( $elementType eq 'scopingpage' )\par
+    \{\par
+        if ( $iel == 1 )\par
+        \{\par
+            # pages are the top level scoping element\par
+            $indentLevel = 1;\par
+        \}\par
+        elsif ( $iel == 2 )\par
+        \{\par
+            # pages always follow a div\par
+            $indentLevel = 2;\par
+        \}\par
+        else\par
+        \{\par
+            # pages are not scoping elements in 3/4\par
+            ASSERT( 0, qq\{Invalid encoding level="$iel" for 'page' indent\} );\par
+        \}\par
+    \}\par
+\par
+So... I can either go find an appropriate way to deliver the scoping page, or change the encoding level from 4 to 1 or 2.\par
+I'm going to try the latter, since this is only an indention level (display choice):\par
+# jody changing this to output anyway, 3/24/08\par
+            $indentLevel = 2;\par
+         #   ASSERT( 0, qq\{Invalid encoding level="$iel" for 'page' indent\} );\par
+save it (:w return)\par
+and test in browser again (hold down shift and refresh page)\par
+and -- IT WORKS!!\par
+\par
+\b Eighth:\b0   need to copy new versions of TextClass.pm and TDHTC.pm to diglib\par
+ scp TextClass.pm diglib@diglib.lib.utk.edu:/d1/dlxs/cgi/t/text/.\par
+cd TextClass \par
+scp TDHTC.pm diglib@diglib.lib.utk.edu:/d1/dlxs/cgi/t/text/TextClass/.\par
+diglib@diglib.lib.utk.edu's password: \par
+scp: /d1/dlxs/cgi/t/text/TextClass/./TDHTC.pm: Permission denied\par
+OOPS!  Bad permissions.  That directory on diglib must not belong to user diglib.\par
+\par
+\b  Ninth:\b0   open a window on diglib, \par
+cd /d1/dlxs/cgi/t/text/TextClass\par
+chown diglib *\par
+back on diglib2:\par
+scp TDHTC.pm diglib@diglib.lib.utk.edu:/d1/dlxs/cgi/t/text/TextClass/.\par
+\par
+This time it succeeded\par
+\par
+\b Tenth:\b0   test on diglib:\par
+http://diglib.lib.utk.edu/cgi/t/text/text-idx?type=simple;c=tdh;cc=tdh;rgn=collection;q1=Tennassee;firstpubl1=1770;firstpubl2=2000;view=reslist;subview=detail;sort=occur;start=1;size=25;didno=sc067\par
+\par
+Success.\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+}
+ 

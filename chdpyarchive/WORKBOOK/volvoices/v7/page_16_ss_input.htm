@@ -1,0 +1,624 @@
+<!--
+    This code is issued under the GNU General Public License, 
+    version 3, 29 June 2007.
+
+    The DLC-MODS Workbook provides a series of web pages to help you 
+    generate a MODS metadata record that follows the Digital Library 
+    Federation Implementation Guidelines for Shareable MODS Records, 
+    as described in the DLF Aquifer Guidlines November 2006.  These 
+    Guidelines and the specific MODS Profile are documented on the 
+    MODS Profile Page of the DLC-MODS Workbook.
+
+    Copyright (C) 2007 
+    Christine Haygood Deane 
+    University of Tennessee Libraries
+    Digital Library Center
+ 
+
+    This program is free software: you can redistribute it and/or modify    
+    it under the terms of the GNU General Public License as published by    
+    the Free Software Foundation, version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see http://www.gnu.org/licenses/
+-->
+
+<html>
+<head>
+<title>
+page_ss_input
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+<script language=javascript src="vv_functions.js"></script>
+<script language=javascript src="vv_functions_radio.js"></script>
+<script language=javascript src="vv_validation.js"></script>
+
+<script>
+
+
+function enterServerSideValues() {
+
+parent.U.document.UF.XMLBASE.value = document.DF.adb_itemfbname.value;
+/*
+parent.U.document.UF.XMLmaster_01.value  = parent.U.document.UF.XMLBASE.value.substr(0,4);
+parent.U.document.UF.XMLmaster_02.value  = parent.U.document.UF.XMLBASE.value.substr(5,6);
+parent.U.document.UF.XMLmaster_03.value  = parent.U.document.UF.XMLBASE.value.substr(12,6);
+*/
+parent.U.document.UF.XMLmaster_simple.value = parent.U.document.UF.XMLBASE.value +"0000.xml";
+
+
+parent.adb_username = document.forms[0].adb_username.value;
+
+parent.adb_fullname = document.forms[0].adb_fullname.value;
+parent.U.document.UF.contributorName.value= parent.adb_fullname;
+
+parent.adb_instname = document.forms[0].adb_instname.value;
+parent.U.document.UF.institutionName.value= parent.adb_instname;
+
+parent.adb_instaddr = document.forms[0].adb_instaddr.value;
+parent.adb_instcity = document.forms[0].adb_instcity.value;
+parent.adb_instcounty = document.forms[0].adb_instcounty.value;
+parent.adb_inststate = document.forms[0].adb_inststate.value;
+parent.adb_instzip = document.forms[0].adb_instzip.value;
+parent.adb_collidn = document.forms[0].adb_collidn.value;
+
+var collidnd = new String();
+
+for(i=0;i<6;i++ ) {
+   parent.U.document.UF.collection_id_num_type[i].selected = document.DF.collection_id_num_type[i].selected;
+   if (document.DF.collection_id_num_type[i].selected == true) {
+	parent.adb_collidndes = document.DF.collection_id_num_type[i].value;
+	}
+}
+
+///parent.adb_collidndes = document.forms[0].adb_collidndes.value;
+
+parent.adb_collname = document.forms[0].adb_collname.value;
+parent.adb_colldes = document.forms[0].adb_colldes.value;
+parent.adb_collextent = document.forms[0].adb_collextent.value;
+parent.adb_itemtempname = document.forms[0].adb_itemtempname.value;
+parent.adb_itemtitle = document.forms[0].adb_itemtitle.value;
+parent.adb_itemdate = document.forms[0].adb_itemdate.value;
+parent.adb_itemdescr = document.forms[0].adb_itemdescr.value;
+parent.adb_itemtype = document.forms[0].adb_itemtype.value;
+parent.adb_genre = document.forms[0].adb_genre.value;
+parent.adb_itemdim = document.forms[0].adb_itemdim.value;
+parent.adb_itemlocation = document.forms[0].adb_itemlocation.value;
+parent.adb_itemcreator = document.forms[0].adb_itemcreator.value;
+parent.adb_projectname = document.forms[0].adb_projectname.value;
+parent.adb_projectid = document.forms[0].adb_projectid.value;
+
+alert("enterServerSideValues() done");
+
+}//end function
+
+
+
+
+function goToBeginPage() {
+document.location.href = "page_00_begin_gen.htm";
+}
+
+function change_instname() {
+document.DF.adb_instname2.value = document.DF.adb_instname.value;
+return;
+}
+
+
+function load_DF_form() {
+//dummy function
+return;
+}//end function
+
+</script>
+
+</head>
+
+
+<script>document.write('<body bgcolor="'+parent.adb_background_color+'" onload="load_DF_form()" >');</script>
+<font face="arial" size="3">
+<center><font face="arial">
+<h2> <script> document.write(parent.adb_project_name); </script>
+ Server Side Input Page </h2>
+</center>
+
+<form name="DF"  >
+
+<table class="bgINNer"  border="0" cellpadding="2" cellspacing="1" width="98%" >
+<tr class="bgstandard"><td colspan="3">&nbsp;
+</td></tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+<tr class="bgstandard">
+<td colspan="3">The DLC-MODS Workbook is supported by a MySQL database designed and developed by
+our unsung hero Paul Cummins. 
+<hr>
+Because this database is  not available with this download, I am providing a Server Side Input page
+to allow you to see how the server side input affects the different pages in the workbook. <br>When you submit
+this form, it will create values in the parent frame, analogous to those values that would be posted from
+the database to the DLC-MODS Workbook.  
+<p>You can play with
+the values, see what goes where, and ultimately adapt this code to work with your own database.
+<p>I originally wrote this page for my own development needs. 
+
+
+
+ &nbsp</td>
+</tr>
+
+
+<tr class="bgstandard"> <td>&nbsp</td><td>&nbsp</td><td>&nbsp</td> </tr>
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+<tr class="bgstandard">
+<td valign="top"><font face="arial" size="2" color="000000" ><b></u>
+Server Side
+&nbsp;
+</td>
+<td>For standard processing, these variables are supplied by a database on our server.
+<br>Here they are entered as form variables to demonstrate how all the fields are filled in through each page of the workbook.
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="button" value="Enter Server Side Values" name="B2" onclick="enterServerSideValues()" > 
+&nbsp;&nbsp;&nbsp;<input type="button" value="Go to Begin Page" name="B1" onclick="goToBeginPage()" > 
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+<tr class="bgstandard"> <td>&nbsp</td><td>&nbsp</td><td>&nbsp</td> </tr>
+
+<tr class="greenrow"> <td height="08" colspan="3"></td></tr>
+<tr class="bgstandard"> <td><font face="arial" size="2" color="000000"><b>Page Begin</b></td><td>&nbsp</td><td>&nbsp</td> </tr>
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Project Name
+<br>parent.adb_project_name 
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="100" name="adb_project_name"  READONLY 
+value="The University of Tennessee Libraries Digital Library Center DLC-MODS Workbook 1.1"
+>The Project Name seen at the top of each page. 
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+<form >
+XMLBASE
+<br>parent.adb_itemfbname
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="30" name="adb_itemfbname"  
+value="0012_000060_000236_"
+>&nbsp;The <u>XMLBASE</u> is used to construct the <u>XMLmaster filename</u> for download and  the <u>Constituent filenames</u> on Page 5.
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Full Name
+<br>parent.adb_fullname
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="30" name="adb_fullname"  
+value="Cricket Deane"
+> Please enter your name. -- Begin Page, generated comments.
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+User Name
+<br>parent.adb_username
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="30" name="adb_username"  
+value="fake_username"
+> Please enter your username. -- Not displayed, server side validation.
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Institution Name
+<br>parent.adb_instname
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="60" name="adb_instname"  onchange="change_instname()"
+value="University of Tennessee Special Collections Library"
+> -- Begin Page, generated comments. Page 6, Contributing Institution
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard"> <td>&nbsp</td><td>&nbsp</td><td>&nbsp</td> </tr>
+<tr class="greenrow"> <td height="08" colspan="3"></td></tr>
+<tr class="bgstandard"> <td><font face="arial" size="2" color="000000"><b>Page One</b></td><td>&nbsp</td><td>&nbsp</td> </tr>
+
+
+<tr class="bgstandard">
+<td valign="top"><font face="arial" size="2" color="000000" ><b></u>
+Item Title
+<br>parent.adb_itemtitle
+&nbsp;
+</td>
+<td>&nbsp;
+<textarea cols="60" rows="5" name="adb_itemtitle"  
+>Letter, Gen. Andrew Jackson, the Hermitage, Nashville, Tenn., to J.G.M. Ramsey, Mecklenburg, near Knoxville, Tenn. 1823 June 14</textarea>
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Item Creator (the author)
+<br>parent.adb_itemcreator
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="60" name="adb_itemcreator"  
+value = "Gen. Andrew Jackson" > 
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard"> <td>&nbsp</td><td>&nbsp</td><td>&nbsp</td> </tr>
+<tr class="greenrow"> <td height="08" colspan="3"></td></tr>
+<tr class="bgstandard"> <td><font face="arial" size="2" color="000000"><b>Page Two</b></td><td>&nbsp</td><td>&nbsp</td> </tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Item Date
+<br>parent.adb_itemdate
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="60" name="adb_itemdate"  
+value = "1823-06-14"
+ > 
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard"> <td>&nbsp</td><td>&nbsp</td><td>&nbsp</td> </tr>
+<tr class="greenrow"> <td height="08" colspan="3"></td></tr>
+<tr class="bgstandard"> <td><font face="arial" size="2" color="000000"><b>Page Three</b></td><td>&nbsp</td><td>&nbsp</td> </tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Item Type (of resource)
+<br>parent.adb_itemtype
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="60" name="adb_itemtype"  value = "text" > 
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td valig="top"><font face="arial" size="2" color="000000" ><b></u>
+Item Genre
+<br>parent.adb_genre
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="60"  name="adb_genre"  
+value="letter">
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td valign="top"><font face="arial" size="2" color="000000" ><b></u>
+Genre Description (abstract)
+<br>parent.adb_itemdescr
+&nbsp;
+</td>
+<td>&nbsp;
+<textarea cols="60" rows="5" name="adb_itemdescr"  
+>1823 June 14 Gen. Andrew Jackson, the Hermitage, near Nashville, Tenn., to J.G.M. Ramsey, Mecklenburg, 
+near Knoxville, Tenn. In reply to Dr. Ramsey's request, explains that he was too young to take part in the Mecklenburg 
+Convention and that he can offer no further information on the subject.</textarea>
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Collection Extent
+<br>parent.adb_collextent
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="60" name="adb_collextent"  
+value = "3 boxes"
+ > -- Page 3, Extent Help display
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Item Dimensions
+<br>parent.adb_itemdim
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="60" name="adb_itemdim"  value = "optional" > 
+  -- Page 3, Extent Help display
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard"> <td>&nbsp</td><td>&nbsp</td><td>&nbsp</td> </tr>
+<tr class="greenrow"> <td height="08" colspan="3"></td></tr>
+<tr class="bgstandard"> <td><font face="arial" size="2" color="000000"><b>Page Six</b></td><td>&nbsp</td><td>&nbsp</td> </tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Contributing Institution
+<br>parent.adb_instname
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="60" name="adb_instname2"  READONLY 
+value="University of Tennessee Special Collections Library"
+> -- Begin Page, generated comments. Page 6, Contributing Institution
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Institution Address
+<br>parent.adb_instaddr
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="60" name="adb_instaddr"  
+value = "James D. Hoskins Library, Room 200"
+ > --  not displayed 
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Institution City
+<br>parent.adb_instcity
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="60" name="adb_instcity"  
+value = "Knoxville"
+ > -- Page 6, City
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Institution County
+<br>parent.adb_instcounty
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="60" name="adb_instcounty"  
+value = "Knox"
+ > -- Page 6, County
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Institution State
+<br>parent.adb_inststate
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="60" name="adb_inststate"  
+value = "Tennessee"
+> -- Page 6, State
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Institution Zip
+<br>parent.adb_instzip
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="60" name="adb_instzip"  
+value = "37996-4006"
+> --  not displayed
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Collection ID #
+<br>parent.adb_collidn
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="60" name="adb_collidn"  
+value = "253"
+ > -- Page 6, Collection ID Number
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td valign="top"><font face="arial" size="2" color="000000" ><b></u>
+Collection ID # Type
+<br>parent.adb_collidndes
+&nbsp;
+</td>
+<td>&nbsp;
+<br>&nbsp;&nbsp;<select size="6" name="collection_id_num_type">
+<option value="none" >none selected</option>
+<option value="manuscriptNumber" selected>Manuscript Number</option>
+<option value="archiveNumber">Archive Number</option>
+<option value="callNumber">Call Number</option>
+<option value="accessionNumber">Accession Number</option>
+<option value="otherIdentificationNumber">Other Identification Number</option>
+</select> -- Page 6, Collection ID Number Type <br> A string value is passed from the AdminDB and this value
+matches one of the option values in the dropdown list.<br>
+So here the value passed is "manuscriptNumber", the option text is Manuscript Number.
+<br>parent.adb_collidndes=<script>document.write(parent.adb_collidndes)</script>
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Collection Name 
+<br>parent.adb_collname
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="60" name="adb_collname"  
+value = "James Gettys McGready Ramsey Papers, 1790-1912"
+ > -- Page 6, Collection Name
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td valign="top"><font face="arial" size="2" color="000000" ><b></u>
+Collection Description
+<br>parent.adb_colldes
+&nbsp;
+</td>
+<td>&nbsp;
+<textarea cols="60" rows="8" name="adb_colldes"  
+>This collection consists primarily of correspondence and some official documents related to both the Ramsey family and J.G.M. Ramsey\'s historical research, including his research on the Mecklenburg Declaration. Ramsey was a physician, public servant, secessionist, religious leader, banker, railroad advocate, and scholar of early Tennessee history.</textarea>
+--  not displayed
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Item Temp Name
+<br>parent.adb_itemtempname
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="60" name="adb_itemtempname"  
+value = "temp"
+ > -- project identifier, not displayed
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Item Location
+<br>parent.adb_itemlocation
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="60" name="adb_itemlocation"  
+value = "details on location" > 
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Project Name
+<br>parent.adb_projectname
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="60" name="adb_projectname"  
+value = "DLC-MODS" > 
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Project ID 
+<br>parent.adb_projectid
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="60" name="adb_projectid"  
+value = "DLC" > 
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+
+
+
+
+<tr class="bgstandard"><td colspan="3" align="center">
+&nbsp;&nbsp;
+
+</td></tr>
+
+</table>
+
+
+</form name="forms[0]">
+
+
+
+<center><font face="arial">
+<h2> <script> document.write(parent.adb_project_name); </script>
+	
+
+
+</body>
+</html>
+

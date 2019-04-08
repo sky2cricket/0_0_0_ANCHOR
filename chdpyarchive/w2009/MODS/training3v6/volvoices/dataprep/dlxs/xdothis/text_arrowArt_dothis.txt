@@ -1,0 +1,80 @@
+/d1/workarea/dlxs/text/arrowArt
+
+rewrite arrow2tei and arrowTCocr and doublecheck everything
+
+1)put xml files in xml folder, access images in jpgs folder, ocr text in text folder
+2) chkfiles  # makes sure you have a jpeg & text for each one referenced;  creates "howmany" 
+  with list of filebases with number of pages for each
+
+3) run arrow2tei
+4) run transform on the new TEI
+5) cat validate and run that command to validate
+6)check ./output/arro.errors
+   
+   cp output/arro.xml /d1/dlxs/obj/a/arr/.
+   cp jpegs to /d1/dlxs/obj/a/arr/JPG
+
+10) then go to /d1/dlxs/bin/a/arro and run:
+11) make convert
+12) make nodefy
+13) if you changed mappings or regions, do:
+  make singledd
+  make sgml
+  make post
+14) index 
+15) make a release to production
+
+make sure jpegs are in place
+16)copy new xml/sgml into /d1/dlxs/prep/a/arro (needed for pageview)
+   cp ../../../obj/a/arro/arro.xml ../../../prep/a/arro/arro.xml
+AND   copy the subfiles (constitutent xml files) to /d1/dlxs/prep/a/arro/subfiles
+  cp output/*0000.xml /d1/dlxs/prep/a/arro/subfiles/.
+
+17) run make pageview
+
+21) check everything
+22)  put stuff in idx WW directory, and make all (for wordwheel)
+
+
+
+for search stuff:
+run  teisplit_ocr
+run  xml2mods
+run mods2search
+
+copy files to directories in /d1/workarea/dlxs/bib/.... and  work there for search and bib
+
+
+#put mini thumbs in /d1/dlxs/web/thumbs/arrowmont on diglib
+# 
+
+------------------------------------
+OLD
+
+cat ../arrow/opensearch ../arrow/search/* ../../image/arrowmont/arrp/search/* search/*  ../arrow/close > arr-bib.xml
+
+cp arr-bib.xml /d1/dlxs/prep/a/arr-bib/.
+
+cd /d1/dlxs/prep/a/arr-bib/
+do bib class setup  (run transform, and copy xml to obj directory
+go to /d1/dlxs/idx/a/arr-bib
+run: make all
+make sure it's in the httpd conf directory, restart if adding
+release to production
+
+For OAI:
+Need a script to change the header, and remove the text sections of the search files.
+Then 
+cat done/openbib bib/*  done/close > arr-mods.xml
+cp arr-mods.xml /d1/dlxs/prep/a/arr-mods/.
+do bibclass setup
+
+
+to check to make sure all are in bib, and all the bib are in text class,
+18) run chkbib
+24) copy stuff to diglib
+25) copy stuff to store1
+26) move everything to ./done/
+27) make sure metrics will cover this.
+28) update counts in list
+29) make sure collection is released to OAI, in UTBib

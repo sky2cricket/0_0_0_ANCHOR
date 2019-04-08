@@ -1,0 +1,71 @@
+080407_training.txt
+
+redo multiples, clean up singles
+
+===========================================
+
+
+http://diglib2.lib.utk.edu/cgi/i/image/image-idx/c=vvz to check if singles are okay
+
+singles -- vvv/vvz
+/d1/workarea/dlxs/image/tel/singles process singles in this direcotry
+
+/d1/workarea/dlxs/image/tel/singles/search -xml files for search
+/d1/workarea/dlxs/image/tel/singles/modsbib - xml files for oai
+/d1/workarea/dlxs/image/tel/singles/ic - xml files for display
+
+cp search/* d1/workarea/dlxs/bib/mods/vv/xml  ---------cp xml files to mods dir for oai
+
+cp modsbib/* d1/workarea/dlxs/bib/search/vv/xml  -------cp xml files to search dir for search
+
+FOR DISPLAY
+cat vvzHeader ic/* done/ic/* footer > ic.vvz.unnorm.sgm
+cp ic.vvz.unnorm.sgm /d1/dlxs/prep/v/vvz/
+
+
+singles seem to be okay.
+
+=================================================
+
+run  modsICsearchOaiMusic 
+This script checks linkfile for persistant url for xml base 0018_000054_000220 ect
+If find purl, move on
+If not find on list, create new purl and add to list.
+
+When items change from one class to another 
+There is one link file for vvz
+one for vvi, one for text ( vvt, vvo, vvb)
+So when a digital object goes from one class to another, you have to
+	a. Find original persistant id in the first link file - 
+		copy this to the new appropriate link file
+		need to go to locServe database on diglib and change the link by hand
+		locServe has redirects in it for purls
+			create correct url
+
+	b. see the persistant id in weblink= at top of search/*.xml file
+
+	c. modsICsearchOaiMusic inserts new purl into locserv database
+
+	
+
+
+
+
+[root@diglib2 multiples]# ls mods
+0018_000054_000220_0000.xml  0018_000054_000224_0000.xml  0018_000054_000232_0000.xml
+0018_000054_000221_0000.xml  0018_000054_000225_0000.xml  0018_000054_000235_0000.xml
+0018_000054_000223_0000.xml  0018_000054_000226_0000.xml
+
+
+01_music
+
+18 54 220
+18 54 221
+18 54 223
+18 54 226
+
+[root@diglib2 multiples]# ls text
+0018_000054_000220_0001.txt  0018_000054_000223_0001.txt
+0018_000054_000221_0001.txt  0018_000054_000226_0001.txt
+
+

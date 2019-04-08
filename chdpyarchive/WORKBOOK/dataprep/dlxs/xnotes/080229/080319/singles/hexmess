@@ -1,0 +1,36 @@
+#!/usr/bin/perl
+
+#hexmess
+#hexdumps files and checks the hexdump for bad characters.
+# outputs list of characters that must be removed or replaced.
+# use to test OCR files in particular
+
+# jody DeRidder, 2/1/07
+
+#$indir = "/d1/workarea/dlxs/search/textfiles/";
+$indir = "/d1/workarea/dlxs/image/tel/singles/newmods/";
+$testfile = "/d1/workarea/dlxs/image/tel/singles/hextest";
+
+opendir (INDIR, $indir) or die "can't open $indir\n";
+while ($file = readdir(INDIR)){
+   if ($file =~ /^\./){next;}
+   $infile = $indir.$file;
+   `hexdump -c $infile > $testfile`;
+    open (TEST, $testfile) or die "can't open $testfile\n";
+    while ($line = <TEST>){
+      while ($line =~ s/ ([0-9]{3})/HERE/){
+        $catch = $1;
+        undef $found;
+        print "$file:  $catch\n$line\n\n";
+        foreach $bad (@hexes){
+          if ($bad eq $catch){ $found = 1;}
+          }
+        if (!$found){ push (@hexes, $catch);} 
+        }
+      }
+    close(TEST);
+    }
+close(INDIR);
+
+@sorted = sort(@hexes);
+foreach (@sorted){ print "$_\n";}

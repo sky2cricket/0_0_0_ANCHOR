@@ -1,0 +1,148 @@
+## Touched up and set up on prep machine, kukicha.umdl
+
+NAMEPREFIX = vvb
+GROUPNAME = DLPSTEXTCLASS
+## GROUPNAME must be the same as the text following "sgml" in DisplayFmt in the *mfs.blank.dd file
+##        we have both the optional "wrapper" element and the
+##        element that encloses each separate sgm file
+##        e.g. "<DisplayFmt>sgml,DLPSTEXTCLASS,COLL</DisplayFmt>
+
+# --------------------------------------------------
+OBJDIR = /d1/dlxs/obj/v/vvb/
+IDXDIR = /d1/dlxs/idx/v/vvb/
+BINDIR = /d1/dlxs/bin/t/text/
+VVBBINDIR = /d1/dlxs/bin/v/vvb/
+PREPDIR = /d1/dlxs/prep/v/vvb/
+STUFFDIR = /d1/dlxs/misc/sgml/
+# --------------------------------------------------
+DOCTYPE = $(IDXDIR)vvb.inp
+SAMPLE = /d1/dlxs/prep/s/sampletc/sampletc.inp
+SAMPLEPREP = /d1/dlxs/prep/s/sampletc/
+# --------------------------------------------------
+XPATBINDIR = /usr/local/xpat/bin/
+XPATBLD = $(XPATBINDIR)xpatbld
+XPATEXEC = $(XPATBINDIR)xpat
+SGMLRGN = $(XPATBINDIR)sgmlrgn
+MFSBLD = $(XPATBINDIR)mfsbld
+MFSMETA = $(XPATBINDIR)mfsmeta
+MULTIRGN = $(XPATBINDIR)multirgn
+XPATBLD = $(XPATBINDIR)xpatbld
+XPATFFW = $(XPATBINDIR)xpatffw
+XPATFFI = $(XPATBINDIR)xpatffi
+
+
+## ----------------------------------------------------------------------
+## convert isolatin1 entities to 8-bit characters
+convert:
+        $(BINDIR)isolat128bit.pl $(OBJDIR)/*.xml
+## ----------------------------------------------------------------------
+
+## ----------------------------------------------------------------------
+## add nodes
+##disable chd 080923
+nodefy:
+#       ./tei2text $(OBJDIR)$(NAMEPREFIX).xml $(OBJDIR)
+#       ./nodefy $(OBJDIR)$(NAMEPREFIX).xml
+#       mv $(OBJDIR)$(NAMEPREFIX).xml.noded $(OBJDIR)$(NAMEPREFIX).xml
+
+## ----------------------------------------------------------------------
+norm:
+        sgmlnorm \
+        $(DOCTYPE) \
+        $(OBJDIR)$(NAMEPREFIX).xml  > $(OBJDIR)$(NAMEPREFIX).norm.xml
+        mv  $(OBJDIR)$(NAMEPREFIX).norm.xml $(OBJDIR)$(NAMEPREFIX).xml
+
+## ----------------------------------------------------------------------
+## make your collection-specific dtd - new version - narayan
+## changed dtdalyzer and stripped directory --jody
+dtd:
+        $(BINDIR)dtdalyzer.pl $(OBJDIR)$(NAMEPREFIX).xml > $(PREPDIR)attlist
+        cat $(STUFFDIR)textclass.stripped.dtd $(PREPDIR)attlist > $(PREPDIR)$(NAMEPREFIX).textclass.dtd
+## ----------------------------------------------------------------------
+
+## ----------------------------------------------------------------------
+## validate one last time for luck
+validate:
+        nsgmls -s -f $(PREPDIR)$(NAMEPREFIX).errors $(DOCTYPE) $(OBJDIR)$(NAMEPREFIX).xml
+## ----------------------------------------------------------------------
+validate1:
+        nsgmls -s -f $(SAMPLEPREP)sample.errors1 $(SAMPLE) /d1/dlxs/obj/s/sampletc/sampletctest.sgm
+## ----------------------------------------------------------------------
+## have xpat index everything as a single file.
+singledd:
+        cp $(PREPDIR)$(NAMEPREFIX).single.blank.dd $(IDXDIR)$(NAMEPREFIX).dd
+        $(XPATBLD) -m 256m -D $(IDXDIR)$(NAMEPREFIX).dd
+        cp $(IDXDIR)$(NAMEPREFIX).dd $(PREPDIR)$(NAMEPREFIX).presgml.dd
+## ----------------------------------------------------------------------
+
+
+## ----------------------------------------------------------------------
+## index the sgml using multirgn, which only does the tags or attributes you 
+## specify.  CANNOT be used when elements of the same name nest at any level.
+multi:
+        cp $(PREPDIR)$(NAMEPREFIX).presgml.dd $(IDXDIR)$(NAMEPREFIX).dd
+        $(MULTIRGN) -f -D $(IDXDIR)$(NAMEPREFIX).dd -t $(BINDIR)tc-regions.tags
+        cp $(IDXDIR)$(NAMEPREFIX).dd $(PREPDIR)$(NAMEPREFIX).prepost.dd
+## ----------------------------------------------------------------------
+
+## ----------------------------------------------------------------------
+## index the sgml using sgmlrgn -- validates and indexes structure.
+sgml:
+        cp $(PREPDIR)$(NAMEPREFIX).presgml.dd $(IDXDIR)$(NAMEPREFIX).dd
+        $(SGMLRGN) -m region -o $(IDXDIR)$(NAMEPREFIX) -D $(IDXDIR)$(NAMEPREFIX).dd $(DOCTYPE) $(OBJDIR)$(NAMEPREFIX).xml 
+        cp $(IDXDIR)$(NAMEPREFIX).dd $(PREPDIR)$(NAMEPREFIX).prepost.dd
+## ----------------------------------------------------------------------
+
+## ----------------------------------------------------------------------
+## have xpat index everything as individual files stored wherever.  Does word
+## and structure indexing both.
+mfsdd:
+        cp $(PREPDIR)$(NAMEPREFIX).mfs.blank.dd $(IDXDIR)$(NAMEPREFIX).dd
+        $(MFSBLD) -D $(IDXDIR)$(NAMEPREFIX).dd -o $(IDXDIR)$(NAMEPREFIX).mfs
+        $(MFSMETA) -o $(IDXDIR)$(NAMEPREFIX).str -D $(IDXDIR)$(NAMEPREFIX).dd
+        $(SGMLRGN) -m region -o $(IDXDIR)$(NAMEPREFIX) -M $(IDXDIR)$(NAMEPREFIX).str -G $(GROUPNAME) -D $(IDXDIR)$(NAMEPREFIX).dd $(IDXDIR)$(NAMEPREFIX).inp $(IDXDIR)$(NAMEPREFIX).dd
+        $(XPATBLD) -m 20m -D $(IDXDIR)$(NAMEPREFIX).dd
+        $(XPATFFW) -m 20m -o $(IDXDIR)$(NAMEPREFIX) -D $(IDXDIR)$(NAMEPREFIX).dd
+        $(XPATFFI) -m 20m -o $(IDXDIR)$(NAMEPREFIX) -D $(IDXDIR)$(NAMEPREFIX).dd
+        cp $(IDXDIR)$(NAMEPREFIX).dd $(PREPDIR)$(NAMEPREFIX).prepost.dd
+## ----------------------------------------------------------------------
+
+## ----------------------------------------------------------------------
+post:
+        cp $(PREPDIR)$(NAMEPREFIX).prepost.dd $(IDXDIR)$(NAMEPREFIX).dd
+        touch $(IDXDIR)$(NAMEPREFIX).init
+        $(XPATEXEC) -q $(IDXDIR)$(NAMEPREFIX).dd < $(PREPDIR)$(NAMEPREFIX).extra.srch | $(BINDIR)output.dd.frag.pl $(IDXDIR) > $(PREPDIR)$(NAMEPREFIX).extra.dd
+        $(BINDIR)inc.extra.dd.pl $(PREPDIR)$(NAMEPREFIX).extra.dd $(IDXDIR)$(NAMEPREFIX).dd
+## ----------------------------------------------------------------------
+
+pageview:
+        $(VVBBINDIR)createxmldirs.pl
+        $(VVBBINDIR)makepageviewdata.pl $(OBJDIR)
+        $(VVBBINDIR)importpageviewdata.pl -d $(OBJDIR)
+
+
+pageviewF:
+        $(VVBBINDIR)createxmldirs.pl
+        $(VVBBINDIR)makepageviewdata.pl $(OBJDIR)
+        $(VVBBINDIR)importpageviewdata.pl  -d $(OBJDIR)  -f
+
+pv_createxmldirs:
+        $(VVBBINDIR)createxmldirs.pl
+
+pv_makepageviewdata:
+        $(VVBBINDIR)makepageviewdata.pl $(OBJDIR)
+#AFTER RUNNING make pv_makepageviewdata
+#use /d1/dlxs/bin/util/pv programs to REPAIR the pageview.dat files
+#which are incorrect due to toasted indexing
+#THEN RUN make pv_importpageviewdata
+#to import corrected pageview.dat information to Pageview table
+
+pv_makepageviewdata_chd:
+        $(VVBBINDIR)makepageviewdata_chd_080925a.pl $(OBJDIR)
+
+pv_makepageviewdatapb:
+        $(VVBBINDIR)makepageviewdatapb.pl $(OBJDIR)
+
+
+pv_importpageviewdata:
+        $(VVBBINDIR)importpageviewdata.pl -d $(OBJDIR) -f

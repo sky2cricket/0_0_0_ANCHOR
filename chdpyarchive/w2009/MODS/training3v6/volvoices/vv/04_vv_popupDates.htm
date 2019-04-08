@@ -1,0 +1,690 @@
+
+<%@ language="javascript"%>
+
+
+<HTML>
+<HEAD>
+<TITLE>vv_popupDates.htm</TITLE>
+
+
+
+<script>
+var select_id= new String();
+function date_get_select_id() {
+
+var str = new String();
+    str = location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  window.opener.location.href="+window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=date_get_select_id();
+
+
+
+</script>
+
+</HEAD>
+<BODY bgcolor="eeffee" xonload="right(e)">
+
+<!---
+<br><font face="elephant" size="3" color="a00000"><b>Draft Preliminary Copy</b></font>
+--->
+
+<script language="javascript">
+
+
+function clearDate() {
+
+alert("select_id="+select_id);
+
+document.popupform.datestring.value="";
+
+}
+
+function getTheYear(sbox) {
+document.popupform.datestring.value = document.popupform.year.value;
+return;
+}
+
+
+
+function getTheDate(sbox,N) {
+
+///alert("getDate_sbox.name="+sbox.name+"\nsbox.value="+sbox.value);
+var d= new Date();
+var MONTH = d.getMonth();
+    MONTH = MONTH + 1;
+///alert("Today is: \nyear"+d.getFullYear()+"\ndayofmonth="+d.getDate()+"\nmonth="+MONTH);
+
+var iDate = 0
+   ,iMonth = 0
+   ,trueMonth =1
+   ,iYear =0
+   ;
+
+
+
+if ( N == "0" ) {//today's date
+
+	iDate= d.getDate()-1;///the index of the date number displayed in drop down box
+	rDate= d.getDate();///the real date number- the date number displayed in the drop down box
+	iMonth = d.getMonth();
+        trueMonth = iMonth +1;
+	iYear = d.getFullYear();
+
+	document.popupform.dayofmonth[iDate].selected=true;
+	document.popupform.month[iMonth].selected = true;
+	document.popupform.year.value = iYear;
+} else if (N=="1") {
+////////alert("getTheDate N=1");
+	for (i=0;i<31;i++ ) {
+		if ( document.popupform.dayofmonth[i].selected==true ) {
+		iDate=i;//the index of the date number displayed in the drop down box
+		rDate=i+1;//the real date number displayed in drop down box		
+		}
+	}
+
+	for (i=0;i<12;i++ ) {
+		if ( document.popupform.month[i].selected==true ) {
+		trueMonth=i+1;
+                
+		}
+	}
+
+	iYear = document.popupform.year.value;
+
+
+}
+
+
+
+var str_iDate= new String(rDate) ///use the date displayed in the list box, not the index of the date displayed in the listbox
+   ,str_iMonth = new String(trueMonth)
+   ,str_iYear = new String(iYear)	
+   ;
+
+if ( str_iDate.length ==1 ) str_iDate = "0"+str_iDate;
+if ( str_iMonth.length ==1 ) str_iMonth = "0"+str_iMonth;
+
+
+
+document.popupform.datestring.value = str_iYear+"-"+str_iMonth+"-"+str_iDate;
+
+
+}///end function
+
+
+function checkDate() {
+
+var strYear = new String(document.popupform.year.value);
+var strMonth = new String(document.popupform.month.value);
+var strMonthEnglish = new String();
+var strDayofmonth = new String(document.popupform.dayofmonth.value);
+var bLeap = false;
+
+for ( i=0; i<document.popupform.month.length;i++ ) {
+     if ( document.popupform.month[i].selected == true ) {
+	strMonthEnglish = document.popupform.month[i].text;
+	}
+     }
+
+//document.popupform.datestring.value="not available";////////////////"0000-00-00";
+if ( strYear.length < 4 && document.popupform.datestring.value == "") {
+
+	alert("You must enter a valid year.");
+	return;
+	}
+
+var iDate = new Number(strDayofmonth); 
+var iYear = new Number(strYear);
+
+//check for leapyear
+
+if ( iYear%4 == 0 ) bLeap= true;
+if ( iYear%100 == 0 ) bLeap = false;
+if ( iYear%400 == 0 ) bLeap = true;
+
+
+///alert ("strMonth="+strMonth+"\nbLeap="+bLeap);
+
+////////check february first, it is t he only one that depends on leap year
+var bGoodFebruary = true;
+
+if ( strMonth == '02' ) {
+	if (iDate <=28 ) {
+		bGoodFebruary = true;
+	}else if ( bLeap == true ) {
+ 		if (iDate <= 29 ) {
+		    bGoodFebruary = true;
+		}else {
+		    bGoodFebruary = false;
+                }
+	}else if ( bLeap == false ) {
+		if (iDate>28) {	
+		    bGoodFebruary = false;
+		}
+	}
+
+    	if (bGoodFebruary == true ) {
+		return;
+	}else {
+	    alert("February "+strDayofmonth+", "+strYear+" is not a valid date.");
+	    document.popupform.datestring.value="";
+	    return;
+	}
+
+}//////end check on february
+
+	
+
+///alert("strYear="+strYear+"\nstrMonth="+strMonth+"\nstrDayofmonth="+strDayofmonth);
+
+if (   strMonth == '01' 
+    || strMonth == '03'
+    || strMonth == '05'
+    || strMonth == '07'
+    || strMonth == '08'
+    || strMonth == '10'
+    || strMonth == '12'  ) {
+	//alert("impossible to make a mistake in Jan, Mar, May, July, Aug, Oct, Dec");
+	return;
+	}
+
+if ( iDate <=30) {
+	//alert("30 days hath september, april, june, and november...");
+	return;
+} else if ( iDate >30 ) {
+	alert( "Date: "+strMonthEnglish+" "+strDayofmonth+", "+strYear
+	+"\nThere are not 31 days in the selected month");
+	document.popupform.datestring.value="";
+	return;
+	}
+
+
+
+
+}//end function
+
+function clearYear() {
+document.popupform.year.value="";
+}//end function
+
+function noDateAvail() {
+
+document.popupform.datestring.value="not available";////////////////"0000-00-00";
+//document.popupform.datestring.value="0000-00-00";
+
+}///end function
+
+function noYearAvail() {
+
+document.popupform.datestring.value="not available";
+
+}///end function
+
+function PersonStillAlive() {
+
+document.popupform.datestring.value="living";
+
+}///end function
+
+function PersonDateNotAvail() {
+
+document.popupform.datestring.value="not available";
+
+}///end function
+
+function PersonCheckDataLengthMin(sbox,N) {
+var num = Number(N);
+var len = sbox.value.length;
+if (num > len ) {
+	alert("You must have "+N+" digits for the year.");
+	sbox.focus();
+	}
+}//end function
+
+
+
+function noMonthDayAvail() {
+	if ( document.popupform.year.value.length<4 ) {
+		alert("You must first enter a valid year.");
+		return;
+	}
+
+document.popupform.datestring.value =document.popupform.year.value;///////////////////+"-00-00";
+
+
+}//end function
+
+function noDayofmonthAvail() {
+
+	if ( document.popupform.year.value.length<4 ) {
+		alert("You must first enter a valid year.");
+		return;
+	}
+
+document.popupform.datestring.value =document.popupform.year.value+"-"+document.popupform.month.value;/////////////////////+"-00";
+
+}//end function
+
+///???
+
+// Only let numbers in the  Year field, max length=4
+function testYear(event,sbox) {
+var e = event;
+var KS; //keystroke value
+var rmc = 2; //right mouse click IE
+   // KS the keystroke entered
+  if ( typeof(e.which) != 'undefined' ) {//netscape
+	KS = e.which; 
+  	rmc = 3; //right mouse click netscape
+   }else { 
+	KS = e.keyCode; 
+   }
+//alert("kStroke = " + KS +"\nsbox.value.length="+sbox.value.length);
+
+   if (sbox.value.length >3 ) { 
+	alert("You may not type more than 4 digits for the year."); 
+	return false; 
+	} 
+
+   if ((KS > 47) && (KS < 58)) { return true;} //integer
+   if (KS == 8) return true; // Backspace
+   if (KS == 9) return true; // Tab
+   ////if (KS == 32) return true; //whitespace
+
+
+
+
+   alert("Only integer numbers are allowed in the Year field.");
+   return false;
+}
+
+
+function xxxpopLang() {
+
+var valtext=new String();
+var valval = new String();
+for ( i=0; i<document.popupform.aaa.length;i++ ) {
+     if ( document.popupform.aaa[i].selected == true ) {
+	valtext = document.popupform.aaa[i].text;
+	valval = document.popupform.aaa[i].value;
+	}
+     }
+
+document.popupform.lang_code.value=valval;
+document.popupform.lang_desc.value=valtext;
+
+
+}///end function
+
+
+
+//this should take care of all of the popup windows where you click on something to select it
+
+function installSelectedValuesDate(select_id){
+//alert("window.opener.location.href="+window.opener.location.href );
+
+
+
+if ( typeof(document.popupform.aaa) != 'undefined' ) {
+
+var valtext=new String();
+var valval = new String();
+for ( i=0; i<document.popupform.aaa.length;i++ ) {
+     if ( document.popupform.aaa[i].selected == true ) {
+	valtext = document.popupform.aaa[i].text;
+	valval = document.popupform.aaa[i].value;
+	}
+     }
+
+}/////end if
+           
+//alert("window.opener.document.forms[0]."+document.popupform.hidden_select_id.value+".value="+valval);
+//alert("window.opener.document.forms[0]."+document.popupform.hidden_select_id.value+"_display.value="+valtext);
+
+
+switch(document.popupform.hidden_select_id.value) {
+
+
+case "record_creation_date" :
+	checkDate();
+	if (document.popupform.datestring.value==""){alert("Please enter a valid date or click cancel.");return;}
+	window.opener.document.forms[0].record_creation_date.value=document.popupform.datestring.value;
+	window.close();
+
+	break;
+
+case "date_created"  :
+	checkDate();
+	if (document.popupform.datestring.value==""){alert("Please enter a valid date or click cancel.");return;}
+	window.opener.document.forms[0].date_created.value=document.popupform.datestring.value;
+	var strDateQ = new String("");//QUALIFIER CODE
+        for (i=0;i<document.popupform.dateQ.length;i++){
+		if ( document.popupform.dateQ[i].checked == true ) strDateQ=document.popupform.dateQ[i].value;
+		}
+	window.opener.document.forms[0].date_createdQ.value=strDateQ;
+
+	//adjust radio buttons and clear out creation date range values
+	window.opener.document.forms[0].date_created_radio[0].checked = true;
+	window.opener.document.forms[0].date_created_radio[1].checked = false;
+	window.opener.document.forms[0].date_created_begin.value="";
+	window.opener.document.forms[0].date_created_beginQ.value="";
+	window.opener.document.forms[0].date_created_end.value="";
+	window.opener.document.forms[0].date_created_endQ.value="";
+
+	window.close();
+	break; 
+
+case "date_created_begin"  :
+	checkDate();
+	if (document.popupform.datestring.value==""){alert("Please enter a valid date or click cancel.");return;}
+	window.opener.document.forms[0].date_created_begin.value=document.popupform.datestring.value;
+	var strDateQ = new String("");//QUALIFIER CODE
+        for (i=0;i<document.popupform.dateQ.length;i++){
+		if ( document.popupform.dateQ[i].checked == true ) strDateQ=document.popupform.dateQ[i].value;
+		}
+	window.opener.document.forms[0].date_created_beginQ.value=strDateQ;
+
+	//adjust radio buttons and clear out creation date values
+	window.opener.document.forms[0].date_created_radio[0].checked = false;
+	window.opener.document.forms[0].date_created_radio[1].checked = true;
+	window.opener.document.forms[0].date_created.value="";
+	window.opener.document.forms[0].date_createdQ.value="";
+
+	window.close();
+	break; ///date_created_begin
+
+
+case "date_created_end"  :
+	checkDate();
+	if (document.popupform.datestring.value==""){alert("Please enter a valid date or click cancel.");return;}
+	window.opener.document.forms[0].date_created_end.value=document.popupform.datestring.value;
+	var strDateQ = new String("");//QUALIFIER CODE
+        for (i=0;i<document.popupform.dateQ.length;i++){
+		if ( document.popupform.dateQ[i].checked == true ) strDateQ=document.popupform.dateQ[i].value;
+		}
+	window.opener.document.forms[0].date_created_endQ.value=strDateQ;
+
+
+	//adjust radio buttons and clear out creation date values
+	window.opener.document.forms[0].date_created_radio[0].checked = false;
+	window.opener.document.forms[0].date_created_radio[1].checked = true;
+	window.opener.document.forms[0].date_created.value="";
+	window.opener.document.forms[0].date_createdQ.value="";
+
+	window.close();
+	break; ///date_created_end
+
+case "date_issued"  :
+	///checkDate();
+	if (document.popupform.datestring.value==""){alert("Please enter a valid date or click cancel.");return;}
+	window.opener.document.forms[0].date_issued.value=document.popupform.datestring.value;
+	var strDateQ = new String("");//QUALIFIER CODE
+        for (i=0;i<document.popupform.dateQ.length;i++){
+		if ( document.popupform.dateQ[i].checked == true ) strDateQ=document.popupform.dateQ[i].value;
+		}
+	window.opener.document.forms[0].date_issuedQ.value=strDateQ;
+	window.close();
+	break; 
+
+
+case "creator_dob_01"  :
+	if (document.popupform.datestring.value==""){alert("Please enter a valid date or click cancel.");return;}
+	window.opener.document.forms[0].creator_dob_01.value=document.popupform.datestring.value;
+	window.close();
+	break;
+case "creator_dob_02"  :
+	if (document.popupform.datestring.value==""){alert("Please enter a valid date or click cancel.");return;}
+	window.opener.document.forms[0].creator_dob_02.value=document.popupform.datestring.value;
+	window.close();
+	break;
+case "creator_dob_03"  :
+	if (document.popupform.datestring.value==""){alert("Please enter a valid date or click cancel.");return;}
+	window.opener.document.forms[0].creator_dob_03.value=document.popupform.datestring.value;
+	window.close();
+	break;
+
+case "creator_dod_01"  :
+	if (document.popupform.datestring.value==""){alert("Please enter a valid date or click cancel.");return;}
+	window.opener.document.forms[0].creator_dod_01.value=document.popupform.datestring.value;
+ 	window.close();
+	break;
+case "creator_dod_02"  :
+	if (document.popupform.datestring.value==""){alert("Please enter a valid date or click cancel.");return;}
+	window.opener.document.forms[0].creator_dod_02.value=document.popupform.datestring.value;
+ 	window.close();
+	break;
+case "creator_dod_03"  :
+	if (document.popupform.datestring.value==""){alert("Please enter a valid date or click cancel.");return;}
+	window.opener.document.forms[0].creator_dod_03.value=document.popupform.datestring.value;
+ 	window.close();
+	break;
+
+
+}///end switch
+///////////window.close();//this has to depend on validation of individual formvars in the case statements
+
+}///end function
+
+
+function cancelSelectDate(){
+window.close();
+}
+
+</script>
+<form name="popupform" >
+<script> 
+document.write("<!---select_id="+select_id+"---><hr>");
+if ( select_id  == "record_creation_date" ||  select_id  == "date_created" 
+	  || select_id =="date_created_begin" || select_id == "date_created_end"
+    ) 
+{
+
+var msg1 = new String();
+var msg2 = new String();
+if ( select_id == "record_creation_date") {
+	msg1="<b>Please select a Creation Date for this record.</b>";
+	msg2="<b>Creation Date for this record:</b>";
+}else if ( select_id == "date_created" ){
+	msg1="<b>Please select a Date Created Date for this item.</b>";	
+	msg2="<b>Date Created Date for this item:</b>";
+}else if ( select_id == "date_created_begin" ) {
+	msg1="<b>Please select a Date Created Begin Range for this item.</b>";	
+	msg2="<b>Date Created Begin Range for this item:</b>";
+}else if ( select_id == "date_created_end" ) {
+	msg1="<b>Please select a Date Created End Range for this item.</b>";	
+	msg2="<b>Date Created End Range for this item:</b>";
+}
+document.write(
+	 '<font color="eeffee">vv_functions.htm called by '+select_id+'</font>\r\n'
+	+'<table border="1" cellpadding="4" cellspacing="0" width="90%" >\r\n'
+	+'<tr><td>\r\n'
+	+ msg1+' \r\n'
+	+'</td></tr><tr><td>  \r\n'
+	+'<table border="1" cellpadding="8" cellspacing="0" bgcolor="ddeeff">\r\n'
+	+'<tr><td valign="top" align="center"><p>Year (must be 4 digits)\r\n'
+	+'<br> <input type="text"  name="year" value=""  xonblur="checkDataLengthMin(this,4)" '
+	+'onKeypress="return testYear(event,this)">\r\n'
+	+'<p> <input type="button" name="clear_year" value="Clear \nYear" onclick="clearYear()">\r\n'
+	+'<p> <input type="button" name="noDate" value="No \nDate \nAvailable" onclick="noDateAvail()"></td>\r\n'
+	
+	+'<td><p>Month <br>\r\n'
+	+'<select name="month" size="12">\r\n'
+	+'	<option value="01" selected>January</option>\r\n'
+	+'	<option value="02" >February</option>\r\n'
+	+'	<option value="03" >March</option>\r\n'
+	+'	<option value="04" >April</option>\r\n'
+	+'	<option value="05" >May</option>\r\n'
+	+'	<option value="06" >June</option>\r\n'
+	+'	<option value="07" >July</option>\r\n'
+	+'	<option value="08" >August</option>\r\n'
+	+'	<option value="09" >September</option>\r\n'
+	+'	<option value="10" >October</option>\r\n'
+	+'	<option value="11" >November</option>\r\n'
+	+'	<option value="12" >December</option>\r\n'
+	+'</select>\r\n'
+	+'<p><input type="button" name="noMonDay" value="No \nMonth\nor Day\nAvailable" onclick="noMonthDayAvail()"></td>'
+	+'<td>Day of Month<br>\r\n'
+	+'<select name="dayofmonth" size="12" style="width:100px">\r\n'
+	+'	<option value="01" selected>1</option>\r\n'
+	+'	<option value="02" >2</option>\r\n'
+	+'	<option value="03" >3</option>\r\n'
+	+'	<option value="04" >4</option>\r\n'
+	+'	<option value="05" >5</option>\r\n'
+	+'	<option value="06" >6</option>\r\n'
+	+'	<option value="07" >7</option>\r\n'
+	+'	<option value="08" >8</option>\r\n'
+	+'	<option value="09" >9</option>\r\n'
+	+'	<option value="10" >10</option>\r\n'
+	+'	<option value="11" >11</option>\r\n'
+	+'	<option value="12" >12</option>\r\n'
+	+'	<option value="13" >13</option>\r\n'
+	+'	<option value="14" >14</option>\r\n'
+	+'	<option value="15" >15</option>\r\n'
+	+'	<option value="16" >16</option>\r\n'
+	+'	<option value="17" >17</option>\r\n'
+	+'	<option value="18" >18</option>\r\n'
+	+'	<option value="19" >19</option>\r\n'
+	+'	<option value="20" >20</option>\r\n'
+	+'	<option value="21" >21</option>\r\n'
+	+'	<option value="22" >22</option>\r\n'
+	+'	<option value="23" >23</option>\r\n'
+	+'	<option value="24" >24</option>\r\n'
+	+'	<option value="25" >25</option>\r\n'
+	+'	<option value="26" >26</option>\r\n'
+	+'	<option value="27" >27</option>\r\n'
+	+'	<option value="28" >28</option>\r\n'
+	+'	<option value="29" >29</option>\r\n'
+	+'	<option value="30" >30</option>\r\n'	
+	+'	<option value="31" >31</option>\r\n'			
+	+'</select>\r\n'
+	+'<p><input type="button" name="nodayofmonavail" value="No\nDay of\nMonth\nAvailable" onclick="noDayofmonthAvail()">\r\n'
+	+'</td>\r\n'
+	+'<td valign="top">Date Qualifier \r\n'
+	+'<table border="0" cellpadding="1" cellspacing="0"> \r\n'
+	+'<tr><td><input type="radio" name="dateQ" value="none" checked >&nbsp;<u>none</u></td></tr> \r\n'
+	+'<tr><td><input type="radio" name="dateQ" value="approximate"  >&nbsp;<u>approximate</u></td></tr> \r\n'
+	+'<tr><td><input type="radio" name="dateQ" value="inferred"  >&nbsp;<u>inferred</u></td></tr> \r\n'
+	+'<tr><td><input type="radio" name="dateQ" value="questionable"  >&nbsp;<u>questionable</u></td></tr> \r\n'
+	+'<tr><td><hr>Selecting <u>none</u> will result in No Date Qualifier being added to the Mods tag.  If you know the date, this is what you want.</td></tr> \r\n'
+	+'</td></tr></table>\r\n'
+	+'</td></tr><tr><td colspan="4">  \r\n'
+	+'<input type="button" name="B10" value="Enter Today\'s Date" onclick="getTheDate(this,0)" >\r\n'
+	+'&nbsp;&nbsp;<input type="button" name="B11" value="Enter New Date" onclick="getTheDate(this,1)" >\r\n'
+	+'&nbsp;&nbsp;<input type="button" name="B13" value="Clear Date" onclick="clearDate()">\r\n'
+
+	+'</td></tr><tr><td colspan="4">  \r\n'
+	+ msg2+' <input type="text" name="datestring" value="" READONLY> \r\n'
+	
+	+'</td></tr></table></table> \r\n'
+	+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+} else if (    select_id  == "creator_dob_01"   ||  select_id  == "creator_dod_01" 
+	   ||  select_id  == "creator_dob_02"   ||  select_id  == "creator_dod_02" 
+	   ||  select_id  == "creator_dob_03"   ||  select_id  == "creator_dod_03" 
+	) {
+var msg1 = new String();
+var msg2 = new String();
+if ( select_id ==  "creator_dob_01" || select_id == "creator_dob_02" || select_id == "creator_dob_03"){
+	msg1="<b>Please select a Year of Birth for this person.</b>";	
+	msg2="<b>Date of Birth for this person:</b>";
+}else if ( select_id == "creator_dod_01" || select_id == "creator_dod_02" || select_id == "creator_dod_03"){
+	msg1="<b>Please select a Year of Death for this person.</b>";	
+	msg2="<b>Date of Death for this person:</b>";
+}
+
+document.write(
+	 '<font color="eeffee">vv_functions.htm called by '+select_id+'</font>\r\n'
+	+'<table border="1" cellpadding="4" cellspacing="0" width="90%" >\r\n'
+	+'<tr><td>\r\n'
+	+ msg1+' \r\n'
+	+'</td></tr><tr><td>  \r\n'
+	+'<table border="1" cellpadding="8" cellspacing="0" bgcolor="ddeeff">\r\n'
+	+'<tr><td valign="top" align="center"><p>Year (must be 4 digits)\r\n'
+	+'<br> <input type="text"  name="year" value=""  onblur="PersonCheckDataLengthMin(this,4)" '
+	+'onKeypress="return testYear(event,this)">\r\n'
+	+'<p> <input type="button" name="clear_year" value=" Clear \nYear" onclick="clearYear()">\r\n'
+	+'<p> <input type="button" name="noDate" value="Person\nStill\nLiving" onclick="PersonStillAlive()"> \r\n'
+	+'<p> <input type="button" name="noDate" value="Date\nNot\nAvailable" onclick="PersonDateNotAvail()"> </td>\r\n'
+	+'</td></tr></table>\r\n'
+	+'</td></tr><tr><td colspan="4">  \r\n'
+	//+'<input type="button" name="B10" value="Enter Today\'s Date" onclick="getTheDate(this,0)" >\r\n'
+	+'&nbsp;&nbsp;<input type="button" name="B11" value="Enter Year Below" onclick="getTheYear(this)" >\r\n'
+	+'&nbsp;&nbsp;<input type="button" name="B13" value="Clear Year Below" onclick="clearDate()">\r\n'
+
+	+'</td></tr><tr><td colspan="4">  \r\n'
+	+ msg2+' <input type="text" name="datestring" value="" READONLY> \r\n'
+	
+	+'</td></tr></table></table> \r\n'
+	+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+}else if (    select_id  == "date_issued"   ) {
+var msg1 = new String();
+var msg2 = new String();
+if ( select_id == "date_issued" ) {
+	msg1="<b>Please select a Publication Year for this item.</b>";	
+	msg2="<b>Publication Year for this item:</b>";
+}
+
+document.write(
+	 '<font color="eeffee">vv_functions.htm called by '+select_id+'</font>\r\n'
+	+'<table border="1" cellpadding="4" cellspacing="0" width="90%" >\r\n'
+	+'<tr><td>\r\n'
+	+ msg1+' \r\n'
+	+'</td></tr><tr><td>  \r\n'
+	+'<table border="1" cellpadding="8" cellspacing="0" bgcolor="ddeeff">\r\n'
+	+'<tr><td valign="top" align="center"><p>Year (must be 4 digits)\r\n'
+	+'<br> <input type="text"  name="year" value=""  onblur="PersonCheckDataLengthMin(this,4)" '
+	+'onKeypress="return testYear(event,this)">\r\n'
+	+'<p> <input type="button" name="clear_year" value=" Clear \nYear" onclick="clearYear()">\r\n'
+	///+'<p> <input type="button" name="noDate" value="Person\nStill\nLiving" onclick="PersonStillAlive()"> \r\n'
+	+'<p> <input type="button" name="noDate" value="Date\nNot\nAvailable" onclick="PersonDateNotAvail()"> </td>\r\n'
+	
+	+'<td valign="top">Date Qualifier \r\n'
+	+'<table border="0" cellpadding="1" cellspacing="0"> \r\n'
+	+'<tr><td><input type="radio" name="dateQ" value="none" checked >&nbsp;<u>none</u></td></tr> \r\n'
+	+'<tr><td><input type="radio" name="dateQ" value="approximate"  >&nbsp;<u>approximate</u></td></tr> \r\n'
+	+'<tr><td><input type="radio" name="dateQ" value="inferred"  >&nbsp;<u>inferred</u></td></tr> \r\n'
+	+'<tr><td><input type="radio" name="dateQ" value="questionable"  >&nbsp;<u>questionable</u></td></tr> \r\n'
+	+'<tr><td><hr>Selecting <u>none</u> will result in No Date Qualifier being added to the Mods tag.  If you know the date, this is what you want.</td></tr> \r\n'
+	+'</td></tr>'
+
+
+	
+	+'</td></tr></table>\r\n'
+	+'</td></tr><tr><td colspan="4">  \r\n'
+	//+'<input type="button" name="B10" value="Enter Today\'s Date" onclick="getTheDate(this,0)" >\r\n'
+	+'&nbsp;&nbsp;<input type="button" name="B11" value="Enter Year Below" onclick="getTheYear(this)" >\r\n'
+	+'&nbsp;&nbsp;<input type="button" name="B13" value="Clear Year Below" onclick="clearDate()">\r\n'
+	+'</td></tr><tr><td colspan="4">  \r\n'
+	+ msg2+' <input type="text" name="datestring" value="" READONLY> \r\n'
+
+	+'</td></tr></table></table> \r\n'
+	+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+
+
+
+
+
+
+
+}////////////END ELSE
+
+
+</script>
+<input type="button" name="B0" value="submit" onclick="installSelectedValuesDate()">
+&nbsp;&nbsp;
+<input type="button" name="B0" value="cancel" onclick="cancelSelectDate()">
+</form>
+
+</BODY>
+</HTML>
+

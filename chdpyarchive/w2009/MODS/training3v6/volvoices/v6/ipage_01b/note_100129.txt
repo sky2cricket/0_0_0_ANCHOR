@@ -1,0 +1,27 @@
+page_01b.htm js function support
+
+page_lower.htm:<script language=javascript src="vv_name_functions.js"></script?\>
+
+contains: 
+function populate_name_fields2(N,ttype,W,H){}
+function selectOneOptionDate_for_popupNames(sbox,W,H){} 
+
+which are called by vv_popupNames window.
+
+The buttons to initiate that window are written by creator_show function
+in vv_functions_page_01.js and contain references as shown below.
+
+
+
+
+-bash-3.2$ grep "parent.L" vv_functions_page_01.js 
+        +'onclick="parent.L.populate_name_fields2('+nN+',1,700,600)"
+class="button120w">&nbsp; '
+        +'onclick="parent.L.populate_name_fields2('+nN+',2,700,600)"
+class="button140w">&nbsp; '
+        +'onclick="parent.L.populate_name_fields2('+nN+',3,700,600)"
+class="button120w">&nbsp; '
+        +' onmousedown="return parent.L.stopCutAndPaste(this,event)" '
+
+
+

@@ -1,0 +1,415 @@
+<!--
+    This code is issued under the GNU General Public License, 
+    version 3, 29 June 2007.
+
+    The DLC-MODS Workbook provides a series of web pages to help you 
+    generate a MODS metadata record that follows the Digital Library 
+    Federation Implementation Guidelines for Shareable MODS Records, 
+    as described in the DLF Aquifer Guidlines November 2006.  These 
+    Guidelines and the specific MODS Profile are documented on the 
+    MODS Profile Page of the DLC-MODS Workbook.
+
+    Copyright (C) 2007 
+    Christine Haygood Deane 
+    University of Tennessee Libraries
+    Digital Library Center
+ 
+
+    This program is free software: you can redistribute it and/or modify    
+    it under the terms of the GNU General Public License as published by    
+    the Free Software Foundation, version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see http://www.gnu.org/licenses/
+-->
+
+<html>
+<head>
+<title>
+originInfo
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+<script>
+parent.L.thisDocument = parent.D.document;
+</script>
+
+</head>
+
+
+<script> document.write('<body  onload="load_DF_form();"  bgcolor="'+parent.adb_background_color+'" >'); </script>
+
+
+<font face="arial" size="3">
+<center><font face="arial">
+<h2><script> document.write(parent.adb_project_name); </script>
+&lt;originInfo> </h2>
+</center>
+
+
+<form name="DF"  action="new.xml">
+
+
+
+<table class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="ddeeff">
+<tr class="bgstandard"><td colspan="3">
+There are no required fields on this page. 
+<br>Per the Levels of Compliance Document: If known, at least one &;t;originInfo> element 
+with at least one &lt;data> subelement from the recommended list.
+<br>If no data is entered to this page, no &;t;originInfo> tags will be created.
+</td></tr>
+<tr  class="greenrow">
+<td class="greencell">MODS LABEL</td>
+<td class="greencell">VALUE</td>
+<td class="greencell">&nbsp;</td>
+</tr>
+
+
+
+<tr class="bgstandard">
+<td class="label13nou" width="15%"><u>
+Date of Creation/qualfier</u>
+</td>
+<td valign="top"><table border="1" cellpadding="2" cellspacing="0">
+	<tr>
+	<td class="label13u">Single Date of Creation</td><td class="label13u">Creation Date Range</td>
+	<tr>
+	<td valign="top">
+	<input type="button" name="Bdate_created" value="Single" 
+	class="button40w"
+	onclick="parent.L.selectOneOptionDate(this,'600','700')">&nbsp;
+	<input type="text" name="date_created" value="" size="10"  class="notrequirednw" READONLY>
+	<input type="text" name = "date_createdQ" value="" size="10" class="notrequirednw" READONLY>
+	<input type="button" name="Cdate_created" value="Clear" 
+	class="button40w" onclick="parent.L.clearDate(this)">
+	</td>
+	<td valign="top">
+	<input type="button" name="Bdate_created_begin" value="Begin"
+	class="button40w"
+	onclick="parent.L.selectOneOptionDate(this,'600','700')">&nbsp;
+	<input type="text" name = "date_created_begin" value="" size="10"  class="notrequirednw" READONLY>
+	<input type="text" name = "date_created_beginQ" value="" size="10" class="notrequirednw" READONLY>
+	<input type="button" name="Cdate_created_begin" value="Clear"
+	class="button40w" onclick="parent.L.clearDate(this)">
+
+	<br><input type="button" name="Bdate_created_end" value="End" 
+	class="button40w"
+	onclick="parent.L.selectOneOptionDate(this,'600','700')">&nbsp;
+	<input type="text" name = "date_created_end" value="" size="10"  class="notrequirednw"
+	READONLY>
+	<input type="text" name = "date_created_endQ" value="" size="10" class="notrequirednw" READONLY>
+	<input type="button" name="Cdate_created_end" value="Clear" 
+	class="button40w"
+	onclick="parent.L.clearDate(this)">
+	</td>
+	</tr>
+</table>
+<font face="arial" size="1">
+&nbsp;You must enter a single date of creation or
+a creation begin date (first part of date range).
+<br>&nbsp;You may  not enter both.
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+
+<tr class="bgstandard">
+<td  class="label13u">
+Place of creation
+<br>authority 
+</td>
+<td>&nbsp;<select name="place_of_origin_authority">
+<option selected>none</option>
+<option>Marc Country : text</option>
+<option>Marc Country : code</option>
+<option>ISO3166 : text</option>
+<option>ISO3166 : code</option>
+</select>
+
+&nbsp;&nbsp;<font face="arial" size="1">References:
+&nbsp;&nbsp;<a href="http://www.loc.gov/marc/countries/" target="_blank">Marc Country</a>
+&nbsp;&nbsp;<a href="http://www.iso.ch/iso/en/prods-services/iso3166ma/index.html" target="_blank">ISO3166</a>
+<br>&nbsp;&nbsp;Please select the appropriate <u>Place authority : type</u> combination from the menu above.
+<br>&nbsp;&nbsp;Please enter reference information below.
+			</td>
+
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td  class="label13u">
+Place of Creation 
+</td>
+<td> &nbsp;<input type="text" name="place_of_origin" value="" size="36" class="notrequirednw"
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+>
+&nbsp;&nbsp;<font face="arial" size="1"> Place resource was created.
+			</td>
+
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+<tr class="greenrow">
+<td height="08" colspan="3"></td></tr>
+<tr class="bgstandard">
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td  class="label13u">
+Previously published?<br></font><face="arial" size="1" color="00000">
+</td>
+<td valign="top"><font face="arial" size="1">&nbsp;&nbsp;If this material has NOT been previously published, please leave publication fields blank.
+<br>&nbsp;&nbsp;If this material has been previously published, fill in as much information as available.
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b><u>
+Publisher Name
+</td>
+<td><font face="arial" size="1">&nbsp;
+<input type="text" name="publisher_name" value="" size="36" 
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+class="notrequirednw"> name : Name of entity that published or produced the resource.
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b><u>
+Publisher Address
+</td>
+<td><font face="arial" size="1">&nbsp;
+<input type="text" name="publisher_address" value="" size="36" 
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+class="notrequirednw"> address : Place resource was published.
+&nbsp;&nbsp;<font face="arial" size="1"> 
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13u">
+Publication Year</td>
+<td>&nbsp;
+<input type="button" name="Bdate_issued" value="Publication Year" 
+class="button180w"
+onclick="parent.L.selectOneOptionDate(this,'600','700')">&nbsp;
+<input type="text" name="date_issued" value="" size="10"  class="notrequirednw" READONLY>
+<input type="text" name = "date_issuedQ" value="" size="10" class="notrequirednw" READONLY>
+<input type="button" name="Cdate_issued" value="Clear Date" 
+class="button80w" onclick="parent.L.clearDate(this)">
+<font face='arial' size='1'>Year the resource was published.
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+
+<tr class="greenrow"><td colspan="3" class+"greencell">&nbsp;</td></tr>
+
+
+
+<tr class="bgstandard"><td colspan="3" align="center">
+&nbsp;&nbsp;
+<!--
+<input type="button" name="B_UF" value="Save" class="buttonnw" onclick="buildModsTags(10);">
+-->
+<!---input type="button" name="B_DF" value="Reset"  class="buttonnw" onclick="load_DF_form();"--->
+
+<input type="button" name="B2" 
+value="Save Data and View MODS TAGS" class="buttonnw"
+onclick="buildModsTags(1)">
+
+
+</td></tr>
+
+<tr class="bgstandard" >
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+</table>
+
+
+
+
+
+
+
+</form name="FormOne">
+
+<center><font face="arial">
+<h2><script> document.write(parent.adb_project_name); </script></h2>
+</center>
+
+
+<script>
+
+/////chdchdchd
+
+
+
+
+
+function load_UF_form() {
+
+parent.U.document.UF.date_created.value = document.DF.date_created.value;
+parent.U.document.UF.date_createdQ.value = document.DF.date_createdQ.value;
+parent.U.document.UF.date_created_begin.value = document.DF.date_created_begin.value;
+parent.U.document.UF.date_created_beginQ.value = document.DF.date_created_beginQ.value;
+parent.U.document.UF.date_created_end.value = document.DF.date_created_end.value;
+parent.U.document.UF.date_created_endQ.value = document.DF.date_created_endQ.value;
+
+
+parent.U.document.UF.publisher_name.value = document.DF.publisher_name.value;
+parent.U.document.UF.publisher_address.value = document.DF.publisher_address.value;
+parent.U.document.UF.date_issued.value = document.DF.date_issued.value;
+parent.U.document.UF.date_issuedQ.value = document.DF.date_issuedQ.value;
+parent.U.document.UF.place_of_origin.value = document.DF.place_of_origin.value;
+
+for (i=0;i<5;i++) {
+parent.U.document.UF.place_of_origin_authority[i].selected = document.DF.place_of_origin_authority[i].selected;
+}
+
+
+
+return;
+}
+
+function load_DF_form() {
+
+
+
+document.DF.date_created.value = parent.U.document.UF.date_created.value ;
+document.DF.date_createdQ.value = parent.U.document.UF.date_createdQ.value ;
+document.DF.date_created_begin.value = parent.U.document.UF.date_created_begin.value ;
+document.DF.date_created_beginQ.value = parent.U.document.UF.date_created_beginQ.value ;
+document.DF.date_created_end.value = parent.U.document.UF.date_created_end.value ;
+document.DF.date_created_endQ.value = parent.U.document.UF.date_created_endQ.value ;
+
+
+document.DF.publisher_name.value = parent.U.document.UF.publisher_name.value ;
+document.DF.publisher_address.value = parent.U.document.UF.publisher_address.value ;
+document.DF.date_issued.value = parent.U.document.UF.date_issued.value ;
+document.DF.date_issuedQ.value = parent.U.document.UF.date_issuedQ.value ;
+document.DF.place_of_origin.value = parent.U.document.UF.place_of_origin.value ;
+
+for (i=0;i<5;i++) {
+document.DF.place_of_origin_authority[i].selected = parent.U.document.UF.place_of_origin_authority[i].selected;
+}
+
+return;
+}
+
+
+
+function buildModsTags(N) {
+
+
+////do this first so current values are loaded regardless of validation status
+load_UF_form();
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+//before writing MODS TAGS, make sure all required fields are populated
+//checkAllRequired... true  validation sets validation status to F  -- complete
+//checkAllRequired... false validation sets validation status to f  -- incomplete
+
+if (!parent.L.checkAllRequiredElements_Page_originInfo() ) {
+	parent.L.update_page_validation('originInfo','f');
+	return;
+}
+parent.L.update_page_validation('originInfo','F');
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+var num = new Number();
+    num = N;
+
+if (num == 10) {
+        alert("Values have been saved.");
+        return;
+        }
+
+
+var aps= new Array();
+var hps= new Array();
+var cps= new Array();
+
+    hps = parent.L.buildTagsArray_header(num);
+    aps = parent.L.buildTagsArray_originInfo(num);
+    cps = parent.L.buildTagsArray_closer(num);
+
+
+
+
+//=================================================
+
+document.write('<input type="button" name="BBACK" onclick="javascript: history.back()" value="BACK"><P>');
+document.write('<font face="Elephant" size="3" color="a00000">'+parent.adb_project_name+' &lt;originInfo><p></font>');
+//PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+document.write('<font face="Elephant" size="3" color="a00000">PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+		+"This is the generated xml script.  Values you entered are highlighted in red."
+		+"<HR>");
+//document.write( "This is the generated xml script.  Values you entered are highlighted in red.<HR>");
+
+//document.write('< ? xml version="1.0"  ? > \r\n'); 
+///document.write("Content-Type: text/xml ")
+
+
+
+for (i=0;i<hps.length;i++) {
+	var vps = new String(hps[i]);
+ 	document.write("<br>"+vps);
+	}
+
+
+
+for (i=0;i<aps.length;i++) {
+	var vps = new String(aps[i]);
+	document.write("<br>"+vps);
+	}
+
+
+
+for (i=0;i<cps.length;i++) {
+	var vps = new String(cps[i]);
+	document.write("<br>"+vps);
+	}
+
+
+}//end function
+
+
+
+
+</script>
+	
+<script language=javascript src="fdg.js"></script>
+<script>fdg();</script>
+
+
+</body>
+</html>
+

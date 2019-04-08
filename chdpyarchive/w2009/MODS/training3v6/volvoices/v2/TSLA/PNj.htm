@@ -1,0 +1,425 @@
+<html>
+<head>
+<title>vv_popupPN</title>
+
+<link href="../vv_workbook.css" type="text/css" rel="stylesheet">
+<script language=javascript src="../vv_functions_tsla.js"></script>
+
+
+
+
+<script language="javascript">
+
+var select_id= new String();
+function get_select_id() {
+
+var str = new String();
+    str = parent.location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  parent.window.opener.location.href="+parent.window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=get_select_id();
+
+
+
+var strSelect_PN_A = new String('');
+
+
+strSelect_PN_A = '<select name="aaa"  size="24" style="font-size:10px"> \r\n'
+	+'<option value="0" selected>No value selected</option> \r\n'
+		
+
+
+
+
+	+'<option>JACK FAMILY</option>  \r\n'
+	+'<option>JACKMAN, JOHN S., - 1841-1912</option>  \r\n'
+	+'<option>JACKSON FAMILY</option>  \r\n'
+	+'<option>JACKSON, ANDREW, - 1767-1845</option>  \r\n'
+	+'<option>JACKSON, ANDREW, - 1809-1865</option>  \r\n'
+	+'<option>JACKSON, ANDREW, - 1834-1906</option>  \r\n'
+	+'<option>JACKSON, ASA, - 1792-1870</option>  \r\n'
+	+'<option>JACKSON, CLYDE OWEN</option>  \r\n'
+	+'<option>JACKSON, FRANCIS, - D. CA. 1845</option>  \r\n'
+	+'<option>JACKSON, HENRY M. - (HENRY MARTIN), - 1912-1983</option>  \r\n'
+	+'<option>JACKSON, HOWELL E. - (HOWELL EDMUNDS), - 1832-1895</option>  \r\n'
+	+'<option>JACKSON, HOWELL EDMUNDS, - 1832-1895</option>  \r\n'
+	+'<option>JACKSON, JAMES, - 1757-1806</option>  \r\n'
+	+'<option>JACKSON, JNO. C.</option>  \r\n'
+	+'<option>JACKSON, JOHN GEORGE, - 1777-1825</option>  \r\n'
+	+'<option>JACKSON, LAURA (RIDING), - 1901-</option>  \r\n'
+	+'<option>JACKSON, NANNIE STILLWELL</option>  \r\n'
+	+'<option>JACKSON, RACHEL, - 1767-1828</option>  \r\n'
+	+'<option>JACKSON, ROBERT F. - (ROBERT FENNER), - 1857-1933</option>  \r\n'
+	+'<option>JACKSON, ROBERT HOUGHWOUT, - 1892-1954</option>  \r\n'
+	+'<option>JACKSON, SARAH YORKE, - CA. 1809-CA. 1888</option>  \r\n'
+	+'<option>JACKSON, SELENE HARDING, - 1846-1892</option>  \r\n'
+	+'<option>JACKSON, SHIRLEY ANN, - 1946-</option>  \r\n'
+	+'<option>JACKSON, STONEWALL, - 1824-1863</option>  \r\n'
+	+'<option>JACKSON, THOMAS JOHATHAN, - 1824-1863</option>  \r\n'
+	+'<option>JACKSON, WILLIAM HENRY, - 1843-1942</option>  \r\n'
+	+'<option>JACKSON, WILLIAM HICKS, - 1835-1903</option>  \r\n'
+	+'<option>JACKSON, WILLIAM, - 1793-1844</option>  \r\n'
+	+'<option>JACKSON, WILLIAMS</option>  \r\n'
+	+'<option>JACOBI, MARY JO, - 1951-</option>  \r\n'
+	+'<option>JACOBS FAMILY</option>  \r\n'
+	+'<option>JACOBS, HARRIET A. - (HARRIET ANN), - 1813-1897</option>  \r\n'
+	+'<option>JACOBY FAMILY</option>  \r\n'
+	+'<option>JACOX FAMILY</option>  \r\n'
+	+'<option>JAEGER FAMILY</option>  \r\n'
+	+'<option>JAFFRAY FAMILY</option>  \r\n'
+	+'<option>JAHANGIR, - EMPEROR OF HINDUSTAN, - 1569-1627</option>  \r\n'
+	+'<option>JAMES - I, - KING OF ENGLAND, - 1566-1625</option>  \r\n'
+	+'<option>JAMES FAMILY</option>  \r\n'
+	+'<option>JAMES, - PRINCE OF WALES, - 1688-1766</option>  \r\n'
+	+'<option>JAMES, CHARLES ALBERT, - 1954-</option>  \r\n'
+	+'<option>JAMES, CHARLES E.</option>  \r\n'
+	+'<option>JAMES, DANIEL, - 1920-1978</option>  \r\n'
+	+'<option>JAMES, FRANK LOWBER, - 1841-1907</option>  \r\n'
+	+'<option>JAMES, FRANK, - 1844-1915</option>  \r\n'
+	+'<option>JAMES, HENRY, - 1843-1916</option>  \r\n'
+	+'<option>JAMES, JESSE, - 1847-1882</option>  \r\n'
+	+'<option>JAMES, KAY COLES</option>  \r\n'
+	+'<option>JAMES, MARQUIS, - 1891-1955</option>  \r\n'
+	+'<option>JAMES, ROBERT B., - 1908-</option>  \r\n'
+	+'<option>JAMES, WILLIAM</option>  \r\n'
+	+'<option>JAMES, WILLIAM, - 1842-1910</option>  \r\n'
+	+'<option>JAMESON FAMILY</option>  \r\n'
+	+'<option>JAMESON, J. FRANKLIN - (JOHN FRANKLIN), - 1859-1937</option>  \r\n'
+	+'<option>JAMESON, JAMES DOCKERAY, - 1949-</option>  \r\n'
+	+'<option>JAMI, - 1414-1492</option>  \r\n'
+	+'<option>JAMISON, JAMES CARSON, - 1830-1916</option>  \r\n'
+	+'<option>JAMISON, ROBERT DAVID, - 1838-1912</option>  \r\n'
+	+'<option>JANE SEYMOUR, - QUEEN CONSORT OF HENRY VIII, - 1509?-1537</option>  \r\n'
+	+'<option>JANES FAMILY</option>  \r\n'
+	+'<option>JANEWAY FAMILY</option>  \r\n'
+	+'<option>JANNEY FAMILY</option>  \r\n'
+	+'<option>JANUARY FAMILY</option>  \r\n'
+	+'<option>JANUARY, PETER FIELD, - 1756-1816</option>  \r\n'
+	+'<option>JAQUES, JAMES FRAZIER, - 1819-1898</option>  \r\n'
+	+'<option>JARBOE FAMILY</option>  \r\n'
+	+'<option>JARED FAMILY</option>  \r\n'
+	+'<option>JARNAGIN, EULA LEE, - 1877-</option>  \r\n'
+	+'<option>JARNAGIN, MARY WITT, - 1753-1829</option>  \r\n'
+	+'<option>JARNAGIN, THOMAS, - 1746-1802</option>  \r\n'
+	+'<option>JARRELL FAMILY</option>  \r\n'
+	+'<option>JARRELL, RANDALL, - 1914-1965</option>  \r\n'
+	+'<option>JARRETT FAMILY</option>  \r\n'
+	+'<option>JARVIE, JOHN, - 1844-1909</option>  \r\n'
+	+'<option>JARVIS FAMILY</option>  \r\n'
+	+'<option>JARVIS, CHARLES, - 1675?-1739</option>  \r\n'
+	+'<option>JARVIS, JOHN WESLEY, - 1780-1840</option>  \r\n'
+	+'<option>JARVIS, SARAH MATILDA REEVES, - 1818-1892</option>  \r\n'
+	+'<option>JARVIS, THOMAS JORDAN, - 1836-1915</option>  \r\n'
+	+'<option>JASPER, WILLIAM, - 1750-1779</option>  \r\n'
+	+'<option>JAUDON, PIERRE - B. 1618?</option>  \r\n'
+	+'<option>JAY FAMILY</option>  \r\n'
+	+'<option>JAY, JOHN, - 1745-1829</option>  \r\n'
+	+'<option>JAY, WILLIAM, - 1789-1858</option>  \r\n'
+	+'<option>JAY, WILLIAM, - 1792-1837</option>  \r\n'
+	+'<option>JAYNES, GREGORY</option>  \r\n'
+	+'<option>JEAN FAMILY</option>  \r\n'
+	+'<option>JEAN PAUL, - 1763-1825</option>  \r\n'
+	+'<option>JEANS FAMILY</option>  \r\n'
+	+'<option>JEFFERS FAMILY</option>  \r\n'
+	+'<option>JEFFERSON FAMILY</option>  \r\n'
+	+'<option>JEFFERSON, JOSEPH, - 1829-1905</option>  \r\n'
+	+'<option>JEFFERSON, MARTHA (WAYLES) SKELTON, - 1748-1782</option>  \r\n'
+	+'<option>JEFFERSON, RANDOLPH, - 1755-1815</option>  \r\n'
+	+'<option>JEFFERSON, THOMAS, - 1743-1826</option>  \r\n'
+	+'<option>JEFFRESS, CHARLES N.</option>  \r\n'
+	+'<option>JEFFREY, FRANCIS JEFFREY, - LORD, - 1773-1850</option>  \r\n'
+	+'<option>JEFFRIES FAMILY</option>  \r\n'
+	+'<option>JELKE FAMILY</option>  \r\n'
+	+'<option>JELLEY FAMILY</option>  \r\n'
+	+'<option>JENKINS FAMILY</option>  \r\n'
+	+'<option>JENKINS, AARON, - 1779-1875</option>  \r\n'
+	+'<option>JENKINS, BARBARA</option>  \r\n'
+	+'<option>JENKINS, PETER, - 1951-</option>  \r\n'
+	+'<option>JENKINS, RAY H., - 1897-</option>  \r\n'
+	+'<option>JENNINGS FAMILY</option>  \r\n'
+	+'<option>JENNINGS, JOHN, - 1620-1678/9</option>  \r\n'
+	+'<option>JENNINGS, ORTNA LEE</option>  \r\n'
+	+'<option>JENNINGS, WAYLON</option>  \r\n'
+	+'<option>JENNISON, CHARLES RAINSFORD, - 1834-1884</option>  \r\n'
+	+'<option>JENNY FAMILY</option>  \r\n'
+	+'<option>JENSEN, JENS, - 1860-1951</option>  \r\n'
+	+'<option>JENSEN, MERRILL</option>  \r\n'
+	+'<option>JERED FAMILY</option>  \r\n'
+	+'<option>JEREMIAH</option>  \r\n'
+	+'<option>JEREMIAH, DAVID ELMER, - 1934-</option>  \r\n'
+	+'<option>JERMAIN FAMILY</option>  \r\n'
+	+'<option>JERNAGIN, SPENCER</option>  \r\n'
+	+'<option>JERNIGAN FAMILY</option>  \r\n'
+	+'<option>JERNIGAN, ALBERT JEFFERSON, - 1836-1896</option>  \r\n'
+	+'<option>JEROME BONAPARTE, - KING OF WESTPHALIA, - 1784-1860</option>  \r\n'
+	+'<option>JEROME FAMILY</option>  \r\n'
+	+'<option>JEROME, JEROME K., - 1859-1927</option>  \r\n'
+	+'<option>JEROME, LEONARD, - 1818-1891</option>  \r\n'
+	+'<option>JERVIS, JOHN BLOOMFIELD, - 1795-1885</option>  \r\n'
+	+'<option>JESSE FAMILY</option>  \r\n'
+	+'<option>JESUP, THOMAS SIDNEY, - 1788-1860</option>  \r\n'
+	+'<option>JESUS CHRIST</option>  \r\n'
+	+'<option>JETER FAMILY</option>  \r\n'
+	+'<option>JETER, JEREMIAH BELL, - 1802-1880</option>  \r\n'
+	+'<option>JETT FAMILY</option>  \r\n'
+	+'<option>JEWELL FAMILY</option>  \r\n'
+	+'<option>JEWELL, BASIL H., - 1826-1868</option>  \r\n'
+	+'<option>JEWELL, RICHARD A.</option>  \r\n'
+	+'<option>JEWETT FAMILY</option>  \r\n'
+	+'<option>JILLSON, WILLARD ROUSE, - 1890-</option>  \r\n'
+	+'<option>JOAN, - OF ARC, SAINT, - 1412-1431</option>  \r\n'
+	+'<option>JOB, - A SLAVE</option>  \r\n'
+	+'<option>JOBE FAMILY</option>  \r\n'
+	+'<option>JOBE, ABRAHAM, - 1817-1906</option>  \r\n'
+	+'<option>JOBE, DEWITT, - D. 1864</option>  \r\n'
+	+'<option>JOGUES, ISAAC, - SAINT, - 1607-1646</option>  \r\n'
+	+'<option>JOHN HENRY</option>  \r\n'
+	+'<option>JOHN OF GOD, - SAINT, - 1495-1550</option>  \r\n'
+	+'<option>JOHN PAUL - II, - POPE, - 1920- </option>  \r\n'
+	+'<option>JOHN, - THE BAPTIST, SAINT</option>  \r\n'
+	+'<option>JOHN, PRESTER</option>  \r\n'
+	+'<option>JOHNS FAMILY</option>  \r\n'
+	+'<option>JOHNS, LIONEL SKIPWITH, - 1933-</option>  \r\n'
+	+'<option>JOHNSON FAMILY</option>  \r\n'
+	+'<option>JOHNSON, ALLEN FREDERICK, - 1960-</option>  \r\n'
+	+'<option>JOHNSON, ANDREW, - 1808-1875</option>  \r\n'
+	+'<option>JOHNSON, ANTHONY WAYNE, - 1796-1888</option>  \r\n'
+	+'<option>JOHNSON, ASHLEY SIDNEY, - 1857-1925</option>  \r\n'
+	+'<option>JOHNSON, BUSHROD RUST, - 1817-1880</option>  \r\n'
+	+'<option>JOHNSON, CAVE, - 1793-1866</option>  \r\n'
+	+'<option>JOHNSON, CHARLES SPURGEON, - 1893-1956</option>  \r\n'
+	+'<option>JOHNSON, EDWIN BOYD, - 1904-1968</option>  \r\n'
+	+'<option>JOHNSON, EMMA ELIZABETH (STRAWN) - MRS - D. 1927</option>  \r\n'
+	+'<option>JOHNSON, EMMA SANSOM, - 1847-1900</option>  \r\n'
+	+'<option>JOHNSON, F. F.</option>  \r\n'
+	+'<option>JOHNSON, FRANK MINIS, - 1918-</option>  \r\n'
+	+'<option>JOHNSON, GILBERT H., - 1905-1972</option>  \r\n'
+	+'<option>JOHNSON, GILBERT MOTIER LAFAYETTE, - 1837-1871</option>  \r\n'
+	+'<option>JOHNSON, GRAFTON, - 1864-</option>  \r\n'
+	+'<option>JOHNSON, HERSCHEL V. - (HERSCHEL VESPASIAN), - 1812-1880</option>  \r\n'
+	+'<option>JOHNSON, J. M.</option>  \r\n'
+	+'<option>JOHNSON, JACOB, - D. 1812</option>  \r\n'
+	+'<option>JOHNSON, JAMES EDWARD, - 1960-</option>  \r\n'
+	+'<option>JOHNSON, JAMES MARSH</option>  \r\n'
+	+'<option>JOHNSON, JAMES WELDON, - 1871-1938</option>  \r\n'
+	+'<option>JOHNSON, JANE, - B. 1820?</option>  \r\n'
+	+'<option>JOHNSON, JAY WITHINGTON, - 1943-</option>  \r\n'
+	+'<option>JOHNSON, JESSE J., - 1914-</option>  \r\n'
+	+'<option>JOHNSON, JOHN RAMSEY, - 1945-</option>  \r\n'
+	+'<option>JOHNSON, JOHN TRIMBLE, - 1788-1856</option>  \r\n'
+	+'<option>JOHNSON, JULIA A.</option>  \r\n'
+	+'<option>JOHNSON, LADY BIRD, - 1912-</option>  \r\n'
+	+'<option>JOHNSON, LLEWELLYN BANE, - 1865-1947</option>  \r\n'
+	+'<option>JOHNSON, LOULEE JONES</option>  \r\n'
+	+'<option>JOHNSON, LUCAS, - 1969-</option>  \r\n'
+	+'<option>JOHNSON, LYMAN T., - 1906-</option>  \r\n'
+	+'<option>JOHNSON, LYNDON B. - (LYNDON BAINES), - 1908-1973</option>  \r\n'
+	+'<option>JOHNSON, MARTIN, - 1884-1937</option>  \r\n'
+	+'<option>JOHNSON, MATTIE RUTH</option>  \r\n'
+	+'<option>JOHNSON, MELISSA</option>  \r\n'
+	+'<option>JOHNSON, PAUL E.</option>  \r\n'
+	+'<option>JOHNSON, REVERDY, - 1796-1876</option>  \r\n'
+	+'<option>JOHNSON, RICHARD M. - (RICHARD MENTOR), - 1781-1850</option>  \r\n'
+	+'<option>JOHNSON, ROBERT, - 1677-1735</option>  \r\n'
+	+'<option>JOHNSON, ROGER W., - 1934-</option>  \r\n'
+	+'<option>JOHNSON, SAMUEL, - 1696-1772</option>  \r\n'
+	+'<option>JOHNSON, SAMUEL, - 1709-1784</option>  \r\n'
+	+'<option>JOHNSON, SAMUEL, - FL. 1828</option>  \r\n'
+	+'<option>JOHNSON, THOMAS DICKSON, - B. 1842</option>  \r\n'
+	+'<option>JOHNSON, THOMAS, - 1802-1865</option>  \r\n'
+	+'<option>JOHNSON, WALLACE E., - 1901-</option>  \r\n'
+	+'<option>JOHNSON, WILLIAM, - 1771-1834</option>  \r\n'
+	+'<option>JOHNSON, WILLIAM, - 1809-1851</option>  \r\n'
+	+'<option>JOHNSON, WILLIAM, - SIR, - 1715-1774</option>  \r\n'
+	+'<option>JOHNSON-LANNEN, MERRILL L.</option>  \r\n'
+	+'<option>JOHNSTON FAMILY</option>  \r\n'
+	+'<option>JOHNSTON, ALBERT SIDNEY, - 1803-1862</option>  \r\n'
+	+'<option>JOHNSTON, CHARLES DUTTON, - 1876-1924</option>  \r\n'
+	+'<option>JOHNSTON, CHARLES WILLIAM, - 1858-</option>  \r\n'
+	+'<option>JOHNSTON, DENIS, - 1901-</option>  \r\n'
+	+'<option>JOHNSTON, ELIZABETH LICHTENSTEIN, - 1764-1848</option>  \r\n'
+	+'<option>JOHNSTON, FRANCES BENJAMIN, - 1864-1952</option>  \r\n'
+	+'<option>JOHNSTON, JAMES, - 1738-1808</option>  \r\n'
+	+'<option>JOHNSTON, JOSEPH E. - (JOSEPH EGGLESTON), - 1807-1891</option>  \r\n'
+	+'<option>JOHNSTON, JOSEPH, - FL. 1819-1821</option>  \r\n'
+	+'<option>JOHNSTON, LESLIE A,</option>  \r\n'
+	+'<option>JOHNSTON, SAMUEL, - 1733-1816</option>  \r\n'
+	+'<option>JOHNSTON, WILLIAM AGNEW, - 1848-1937</option>  \r\n'
+	+'<option>JOHNSTON, WILLIAM EDWARD, - 1823-1886</option>  \r\n'
+	+'<option>JOHNSTON, WILLIAM PRESTON, - 1831-1899</option>  \r\n'
+	+'<option>JOKAI, MOR, - 1825-1904</option>  \r\n'
+	+'<option>JOLLIFFE FAMILY</option>  \r\n'
+	+'<option>JONES FAMILY</option>  \r\n'
+	+'<option>JONES, - GRANDPA, - 1913-</option>  \r\n'
+	+'<option>JONES, - MOTHER, - 1843?-1930</option>  \r\n'
+	+'<option>JONES, ANSON, - 1798-1858</option>  \r\n'
+	+'<option>JONES, BESSIE, - 1902-</option>  \r\n'
+	+'<option>JONES, BIGNALL</option>  \r\n'
+	+'<option>JONES, BOBBY, - 1902-1971</option>  \r\n'
+	+'<option>JONES, CALVIN, - 1775-1846</option>  \r\n'
+	+'<option>JONES, CASEY, - 1863-1900</option>  \r\n'
+	+'<option>JONES, CHARLES COLCOCK, - 1804-1863</option>  \r\n'
+	+'<option>JONES, CLARA</option>  \r\n'
+	+'<option>JONES, DAISY BARNWELL, - 1903-</option>  \r\n'
+	+'<option>JONES, EVAN, - 1788-1873</option>  \r\n'
+	+'<option>JONES, FANNIE IRENE</option>  \r\n'
+	+'<option>JONES, G. C. - (GREEN C.), - 1913-</option>  \r\n'
+	+'<option>JONES, GEORGE WALLACE, - 1804-1896</option>  \r\n'
+	+'<option>JONES, GEORGE, - 1931-</option>  \r\n'
+	+'<option>JONES, GUILFORD</option>  \r\n'
+	+'<option>JONES, HENRY ARTHUR, - 1851-1929</option>  \r\n'
+	+'<option>JONES, J. B. - (JOHN BEAUCHAMP), - 1810-1866</option>  \r\n'
+	+'<option>JONES, JAMES C. - (JAMES CHAMBERLAIN), - 1809-1859</option>  \r\n'
+	+'<option>JONES, JAMES CLAYBOURN, - 1826-1914</option>  \r\n'
+	+'<option>JONES, JAMES W., - 1855-1934</option>  \r\n'
+	+'<option>JONES, JIM, - 1931-1978</option>  \r\n'
+	+'<option>JONES, JOHN</option>  \r\n'
+	+'<option>JONES, JOHN BUTTRICK, - 1824-1876</option>  \r\n'
+	+'<option>JONES, JOHN JAMES, - 1824-1898</option>  \r\n'
+	+'<option>JONES, JOHN PAUL, - 1747-1792</option>  \r\n'
+	+'<option>JONES, JOSEPH, - 1833-1896</option>  \r\n'
+	+'<option>JONES, KERRI-ANN, - 1954-</option>  \r\n'
+	+'<option>JONES, LEGRAND M., - B. 1817</option>  \r\n'
+	+'<option>JONES, MILES</option>  \r\n'
+	+'<option>JONES, MONTEZUMA, - 1822-1914</option>  \r\n'
+	+'<option>JONES, MORGAN, - FL. 1685</option>  \r\n'
+	+'<option>JONES, NOBLE WIMBERLY, - D. 1805</option>  \r\n'
+	+'<option>JONES, PAUL M. - (PAUL MCCONNELL), - 1867-1899</option>  \r\n'
+	+'<option>JONES, SAM P. - (SAM PORTER), - 1847-1906</option>  \r\n'
+	+'<option>JONES, SAMUEL, - 1857-1922</option>  \r\n'
+	+'<option>JONES, THOMAS L. - (THOMAS LAURENS), - 1819-1887</option>  \r\n'
+	+'<option>JONES, WALTER B., - 1913-1992</option>  \r\n'
+	+'<option>JONES, WILLIAM E., - 1824-1864</option>  \r\n'
+	+'<option>JONES, WILLIAM, - SIR, - 1746-1794</option>  \r\n'
+	+'<option>JOPLIN, SCOTT, - 1868-1917</option>  \r\n'
+	+'<option>JORDAN FAMILY</option>  \r\n'
+	+'<option>JORDAN, BARBARA, - 1936-</option>  \r\n'
+	+'<option>JORDAN, CLARENCE</option>  \r\n'
+	+'<option>JORDAN, CLARENCE LEONARD, - 1912-1969</option>  \r\n'
+	+'<option>JORDAN, DOROTHY (BLAND) - MRS - 1761-1816</option>  \r\n'
+	+'<option>JORDAN, LEWIS GARNETT, - 1854?-1939</option>  \r\n'
+	+'<option>JORGENSEN, ANN, - 1940-</option>  \r\n'
+	+'<option>JOSEPH - II, - HOLY ROMAN EMPEROR, - 1741-1790</option>  \r\n'
+	+'<option>JOSEPH, - (SON OF JACOB)</option>  \r\n'
+	+'<option>JOSEPH, - NEZ PERCE CHIEF, - 1840-1904</option>  \r\n'
+	+'<option>JOSEPH, - SAINT</option>  \r\n'
+	+'<option>JOSEPHINE, - EMPRESS CONSORT OF NAPOLEON I, - 1763-1814</option>  \r\n'
+	+'<option>JOSEY, ANITA MARIE, - 1960-</option>  \r\n'
+	+'<option>JOSSELYN FAMILY</option>  \r\n'
+	+'<option>JOUETT, MATTHEW HARRIS, - 1787-1827</option>  \r\n'
+	+'<option>JOUVET, LOUIS</option>  \r\n'
+	+'<option>JOY FAMILY</option>  \r\n'
+	+'<option>JOYCE, ISAAC WILSON, - 1836-1905</option>  \r\n'
+	+'<option>JOYCE, JAMES, - 1882-1941</option>  \r\n'
+	+'<option>JOYCE, WILLIAM, - 1906-1946</option>  \r\n'
+	+'<option>JOYNER FAMILY</option>  \r\n'
+	+'<option>JOYNES, EDWARD SOUTHEY, - 1834-1917</option>  \r\n'
+	+'<option>JUDD, NAOMI</option>  \r\n'
+	+'<option>JUDD, WYNONNA, - 1964-</option>  \r\n'
+	+'<option>JUDSON, - EMILY (CHUBBUCK) - 1817-1854</option>  \r\n'
+	+'<option>JUDSON, ADONIRAM, - 1788-1850</option>  \r\n'
+	+'<option>JUDSON, ANN HASSELTINE, - 1789-1826</option>  \r\n'
+	+'<option>JUDSON, EDWARD ZANE CARROLL, - 1822?-1886</option>  \r\n'
+	+'<option>JUENGER FAMILY</option>  \r\n'
+	+'<option>JUKE FAMILY</option>  \r\n'
+	+'<option>JULIAN FAMILY</option>  \r\n'
+	+'<option>JUMEL, MME. ELIZA (BOWEN) - 1775?-1805</option>  \r\n'
+	+'<option>JUMEL, STEPHEN, - 1755-1832</option>  \r\n'
+	+'<option>JUN, SO HYUN, - 1984-</option>  \r\n'
+	+'<option>JUNIUS, - PSEUD</option>  \r\n'
+	+'<option>JUNKINS, LOWELL LEE, - 1944-</option>  \r\n'
+	+'<option>JURRY FAMILY</option>  \r\n'
+	+'<option>JUSSERAND, J. J. - (JEAN JULES), - 1855-1932</option>  \r\n'
+	+'<option>JUSTI, HERMAN, - 1851-1909</option>  \r\n'
+	+'<option>JUSTICE FAMILY</option>  \r\n'
+	+'<option>JUSTISS, HOWARD HART</option>  \r\n'
+
++'</select> \r\n';
+	
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+<body class="background">
+
+
+
+
+<form name="FormOne" >
+
+
+<div name="SS" id="SS">
+<script>
+document.write(
+
+	 '<table border="1" cellpadding="4" cellspacing="0"  width="90%">\r\n'
+	+'<tr><td  bgcolor="ddeeff">\r\n'
+	///+'vv_functions.htm called by '+select_id+' <br>\r\n'
+	+'<b>Select Personal Name J</b> \r\n'
+	+'</td></tr><tr><td bgcolor="ddeeff"> \r\n' 
+	+ strSelect_PN_A
+
+	+'</td></tr></table> \r\n'
+	///+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+</script>
+	
+</div>
+
+<input type="button" onclick="showSelection();" name="B1" value="Personal Name">
+
+</form>
+
+<script>
+
+
+
+                  
+
+function showSelection() {
+
+val = new String();
+
+for ( i=0; i< document.FormOne.aaa.length; i++ ) {
+
+if ( document.FormOne.aaa[i].selected == true ) {
+  	val = document.FormOne.aaa[i].text;
+	break;
+	}
+else { val = "you never selected anything"; 
+	}
+
+}
+////////////////////////alert ("You selected " +val);
+val=reformatPn(val);
+
+switch ( select_id ) {
+
+case  "subject_name_lcsh_01" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_01.value=val;
+	parent.window.close();
+	break;
+
+case  "subject_name_lcsh_02" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_02.value=val;
+	parent.window.close();
+	break;
+}//end switch
+
+}///end function
+</script>
+

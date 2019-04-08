@@ -1,0 +1,54 @@
+#!/l/local/bin/perl -i
+
+# Each match must capture one and only one Text Class tag.  For example,
+# the regexp for catching P must not catch PB also or it will create a
+# spurious closed P tag, as in <PB/></P>.  The solution is to do it in
+# two passes: First, change P tags with attributes.  Then change ones
+# without atts.
+
+while (<>) {
+
+    ## Strip this stuff
+
+    s,<\?xml version=\"1.0\" encoding=\"iso-8859-1\"\?>,,g;
+    s,<COLL>,,g;
+    s,</COLL>,,g;
+
+
+    ## Empty elements
+
+    s,<CB([^/<]*?)/>,<CB$1>,g;
+    s,<GAP/>,<GAP>,g;
+    s,<LB([^/<]*?)/>,<LB$1>,g;
+    s,<PB([^/<]*?)/>,<PB$1>,g;
+
+
+    ## Closed elements
+
+    s,<BACK([^/<]*?)/>,<BACK$1></BACK>,g;
+    s,<CELL([^/<]*?)/>,<CELL$1></CELL>,g;
+    s,<FIGURE([^/<]*?)/>,<FIGURE$1></FIGURE>,g;
+    s,<HI1([^/<]*?)/>,<HI1$1></HI1>,g;
+    s,<FIGDESC([^/<]*?)/>,<FIGDESC$1></FIGDESC>,g;
+    s,<FOREIGN([^/<]*?)/>,<FOREIGN$1></FOREIGN>,g;
+    s,<ITEM([^/<]*?)/>,<ITEM$1></ITEM>,g;
+    s,<ROW([^/<]*?)/>,<ROW$1><CELL></CELL></ROW>,g;
+    s,<SPEAKER([^/<]*?)/>,<SPEAKER$1></SPEAKER>,g;
+    s,<STAGE([^/<]*?)/>,<STAGE$1></STAGE>,g;
+    s,<TITLE([^/<]*?)/>,<TITLE$1></TITLE>,g;
+    s,<TRAILER([^/<]*?)/>,<TRAILER$1></TRAILER>,g;
+
+    ## These closed elements have to be done in
+    ## two steps.  Otherwise the regexp would pick
+    ## up other tags beginning with L or P.
+
+    s,<HEAD ([^/<]*?)/>,<HEAD $1></HEAD>,g;
+    s,<HEAD/>,<HEAD></HEAD>,g;
+    s,<L ([^/<]*?)/>,<L $1></L>,g;
+    s,<L/>,<L></L>,g;
+    s,<P ([^/<]*?)/>,<P $1></P>,g;
+    s,<P/>,<P></P>,g;
+
+    s,&amp;,&,g;
+    print;
+}

@@ -1,0 +1,147 @@
+080228 oai
+open archives initiative
+
+openarchives.org
+
+
+oai records delivered out of bib class, need bib class dtd
+
+http://www.openarchives.org/OAI/openarchivesprotocol.html
+
+verbs for oai
+
+Identify
+ListSets
+ListMetadataFormas
+ListIdentifiers
+ListRecords
+GetRecord
+
+http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=Identify
+This is our identify response
+
+OAI xml
+
+http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=ListSets
+Sets available on this server
+
+
+http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=ListMetadataFormats
+http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=ListIdentifiers&metadataPrefix=mods
+http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=ListIdentifiers&resumptionToken=,2200-01-01,1800-01-01,mods,ar-mods,ar-mods.dd,0,
+http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=ListRecords&metadataPrefix=mods
+http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=GetRecord&identifier=oai:diglib2.lib.utk.edu:ar451&metadataPrefix=mods
+http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=GetRecord&identifier=oai:diglib2.lib.utk.edu:ar451&metadataPrefix=oai_dc
+
+http://re.cs.uct.ac.za/
+Repositior Explorer
+
+enter base url http://diglib.lib.utk.edu/cgi/b/broker20/broker20
+
+
+http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=GetRecord&metadataPrefix=mods&identifier=oai%3Adiglib2.lib.utk.edu%3A0012_000053_000200_0000
+Thies is the record as delivered by oai
+
+
+ssh diglib2.lib.utk.edu
+
+[root@diglib2 vv]# cd OAIDC
+[root@diglib2 OAIDC]# pwd
+/d1/workarea/dlxs/bib/mods/vv/OAIDC
+[root@diglib2 OAIDC]# 
+
+DLCpres - preservation version of mods files
+xml contains the oai delivery version
+
+[root@diglib2 DLCpres]# cd /d1/dlxs/prep/v/vvs-mods
+[root@diglib2 vvs-mods]# ls
+modsSearch3.dtd  vvs-mods.errors      vvs-mods.prepost.dd       vvs-mods.xml
+norm.xml         vvs-mods.extra.dd    vvs-mods.presgml.dd
+transform        vvs-mods.extra.srch  vvs-mods.single.blank.dd
+
+modsSearch3.dtd - supports current version mods3
+if this changes
+then the broker20 has to change, and the bibclass 
+this validates the dlxs bib class
+
+http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=GetRecord&metadataPrefix=mods&identifier=oai%3Adiglib2.lib.utk.edu%3A0012_000053_000200_0000
+
+http://diglib2.lib.utk.edu/cgi/b/bib/bib-idx/c=vvs-bib/
+
+http://diglib2.lib.utk.edu/cgi/b/bib/bib-idx?c=vvs-bib;cc=vvs-bib;sid=abf5e006bc801eac29969dc6315afffa;page=index search version contains full text version 
+http://diglib2.lib.utk.edu/cgi/b/bib/bib-idx?c=vvs-mods;cc=vvs-mods;sid=abf5e006bc801eac29969dc6315afffa;page=index second bib collection, 
+
+http://diglib2.lib.utk.edu/cgi/b/bib/bib-idx?type=simple&c=vvs-bib&cc=vvs-bib&q1=0012_000053_000200&rgn1=entire+record&cc=vvs-mods&view=reslist&sort=A-Z&page=reslist&start=1&size=25&fmt=long
+http://diglib2.lib.utk.edu/cgi/b/bib/bib-idx?type=simple&c=vvs-mods&sid=abf5e006bc801eac29969dc6315afffa&q1=0012_000053_000200&rgn1=entire+record&cc=vvs-mods&view=reslist&sort=A-Z&page=reslist&start=1&size=25&fmt=long
+
+
+
+Last login: Thu Feb 28 16:39:23 2008 from dlc02.lib.utk.edu
+[cdeane@diglib2 cdeane]$ sudo su
+[root@diglib2 cdeane]# cd /d1/workarea/dlxs/bib/
+[root@diglib2 bib]# ls
+mods  search
+[root@diglib2 bib]# cd search
+[root@diglib2 search]# pwd
+/d1/workarea/dlxs/bib/search
+[root@diglib2 search]# ls
+arrowmont  dothis  spc  vv
+[root@diglib2 search]# cd vv
+[root@diglib2 vv]# ls
+closesearch  opensearch  testfiles  vvs-bib.xml  xml
+[root@diglib2 vv]# cd xml
+[root@diglib2 xml]# vi 0012_000053_000200_0000 
+[root@diglib2 xml]# history 3
+ 1006  cd xml
+ 1007  vi 0012_000053_000200_0000  ------------encoded for oai, subjects are oai subjects, text searching supported
+ 1008  history 3
+[root@diglib2 xml]# 
+[root@diglib2 xml]# cd /d1/dlxs/cgi/b/broker20
+[root@diglib2 broker20]# ls
+ALTERENV             broker20.20070731  changeme              here
+broker20             broker20.20070905  dclistID              olderVersions
+broker20.20070520jd  broker20.20080130  dclistIDetd           PopulateDienstDB.txt
+broker20.20070611jd  broker20.20080211  ErrorLogFor_broker20  trouble
+broker20.20070720jd  broker20.cfg       getOAI
+[root@diglib2 broker20]# 
+
+broker20 is the script that generates the oai
+broker20.cfg has to be redone when there is changes
+
+test on diglib2 before moving to diglib
+
+[root@diglib2 b]# ls
+bib  broker20  mods_broker
+[root@diglib2 b]# cd bib
+[root@diglib2 bib]# ls
+AUTHZD_COLL         BibApp.pm.20080131    BibClass.pm.20070910  BibClassUtils.pm  RLSNOTES.txt
+AUTHZD_COLL_sample  BibClass              BibClass.pm.20080123  bib-idx           ToChangeSort
+BibApp              bibclass.cfg          BibClass.pm.20080129  bibperm
+BibApp.pm           BibClass.pm           BibClass.pm.20080130  olderVersions
+BibApp.pm.20080123  BibClass.pm.20070830  BibClass.pm.20080131  queries
+[root@diglib2 bib]# 
+
+
+[root@diglib2 bib]# ls BibApp
+ARBibApp.pm   BasBibApp.pm      FABibApp.pm    README               SPCBibApp.pm
+ARRBA.pm      BibpermBibApp.pm  GisBibApp.pm   repositoryNames.pl   VVSBibApp.pm
+ARRBibApp.pm  EMNBA.pm          OaiBibApp.pm   SEARCHBibApp.pm      VVSBibApp.pm.20080120
+ARRMODSBA.pm  ETDBibApp.pm      olderVersions  SEARCHMODSBibApp.pm
+[root@diglib2 bib]# ls BibClass
+AclsBC.pm     EGYBC.pm       MarymBC.pm         SHLDBC.pm      VVI.pm
+AfiBC.pm      EMNBC.pm       MCCBC.pm           SPCBC.pm       VVO.pm
+AmannBC.pm    EprosedBC.pm   MCCRBC.pm          SPCTBC.pm      VVS.pm
+Ampo20BC.pm   ETDBC.pm       MPMBC.pm           TDHBC.pm       VVS.pm.20070828
+AmverseBC.pm  ETDBC.pm.bak   NytBC.pm           TemplateBC.pm  VVS.pm.20070904
+ARBC.pm       EthnicBC.pm    OaiBC.pm           TesoBC.pm      VVS.pm.20080120
+ARRMODS.pm    FABC.pm        OecBC.pm           UALBC.pm       VVT.pm
+ARR.pm        FgdcBC.pm      olderVersions      UALRBC.pm      VVZ.pm
+ARRT.pm       fgdc.cfg       oldHarvBC.pm       UHTBC.pm       WCCBC.pm
+BasBC.pm      FrtrialsBC.pm  PalmersTimesBC.pm  UKYBC.pm       WingBC.pm
+BmpBC.pm      GARBC.pm       README             UmrBC.pm       WttBC.pm
+Daap20BC.pm   harvBC.pm      RTHBC.pm           UTCATBC.pm     YeatsBC.pm
+DlfBC.pm      IcpsrBC.pm     SEARCHBC.pm        VoltaireBC.pm
+DlfcollBC.pm  JEIBC.pm       SEARCHMODSBC.pm    VVB.pm
+[root@diglib2 bib]# 
+
+Collection specific sub classes

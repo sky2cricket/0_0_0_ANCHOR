@@ -1,0 +1,542 @@
+
+<html>
+<head>
+<title>
+page_begin
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+<!-- script language=javascript src="vv_compose_tags.js"></script -->
+<script language=javascript src="vv_build_mods_utility.js"></script>
+<script language=javascript src="vv_load_UF_DF_strings.js"></script>
+
+
+<script>
+//document.write("test php<hr>parent.mytest="+parent.mytest+"<HR>");
+//document.write("test php<hr>parent.admindb_data="+parent.admindb_data+"<HR>");
+
+var DATE = new Date();
+
+function xcheckFileName() {
+
+var filename= new String(" ");
+
+filename=document.forms[0].XMLmaster_01.value +"_"
+	+document.forms[0].XMLmaster_02.value +"_"
+	+document.forms[0].XMLmaster_03.value +"_"
+	+document.forms[0].XMLmaster_04.value 
+	+document.forms[0].XMLmaster_05.value ;
+
+
+if ( filename.length < 27 ) {
+	
+	alert("You have entered the filename:\n\n"+filename+"                 "
+	+"\n\nThere is something wrong with your filename, please try again."); 
+	return false;
+}else{
+	alert("You have entered the filename:\n\n"+filename+"                 "
+	+"\n\nThis is a well formed filename.");
+	return true;
+}
+
+}//end function
+
+
+function xcheckFileNameQuietly() {
+
+var filename= new String();
+
+filename=document.forms[0].XMLmaster_01.value +"_"
+	+document.forms[0].XMLmaster_02.value +"_"
+	+document.forms[0].XMLmaster_03.value +"_"
+	+document.forms[0].XMLmaster_04.value 
+	+document.forms[0].XMLmaster_05.value ;
+
+
+if ( filename.length < 27 ) {
+	alert("You have entered the filename:\n\n"+filename+"                 "
+	+"\n\nThere is something wrong with your filename, please try again."); 
+	return false;
+}else{
+	return true;
+}
+
+}//end function
+
+
+function xclearFileName(){
+document.forms[0].XMLmaster_01.value = "";
+document.forms[0].XMLmaster_02.value = "";
+document.forms[0].XMLmaster_03.value = "";
+
+}//end function
+
+
+function xcalculateXMLBASE() {
+
+var test = checkFileNameQuietly();
+
+if (!test ) {
+	document.forms[0].XMLBASE.value = "";
+	return;
+}
+
+
+var strXMLBASE = new String();
+
+strXMLBASE = document.forms[0].XMLmaster_01.value +"_"
+	+document.forms[0].XMLmaster_02.value +"_"
+	+document.forms[0].XMLmaster_03.value +"_";
+
+//////////alert("strXMLBASE.length="+strXMLBASE.length)
+
+if ( strXMLBASE.length < 19 ) {
+	var filename=document.forms[0].XMLmaster_01.value +"_"
+	+document.forms[0].XMLmaster_02.value +"_"
+	+document.forms[0].XMLmaster_03.value +"_"
+	+document.forms[0].XMLmaster_04.value 
+	+document.forms[0].XMLmaster_05.value ; 
+	alert("You have entered the filename:\n\n"+filename+"                 "
+	+"\n\nThere is something wrong with your filename, please try again."); 
+	document.forms[0].XMLBASE.value =  "";
+}else{
+
+document.forms[0].XMLBASE.value =  
+	 document.forms[0].XMLmaster_01.value +"_"
+	+document.forms[0].XMLmaster_02.value +"_"
+	+document.forms[0].XMLmaster_03.value +"_";
+}
+
+
+}//end  function
+
+
+//VVcomment_02 is readonly
+function changeNumConstits(){
+document.DF.VVcomment_02.value=document.DF.numConstituentsTIFF.value;
+}
+
+
+</script>
+
+
+</head>
+
+<script>document.write('<body onload="load_DF_form();"  bgcolor="'+parent.adb_background_color+'" >');</script>
+
+<font face="arial" size="3">
+<center><font face="arial">
+<h2> <script> document.write(parent.adb_project_name); </script>
+ Workbook Begin_b Page </h2>
+</center>
+
+<script>
+///Civil War Salt Peter Mining None, LCNAF, ULAN. 
+
+
+//alert("parent.L.RELOAD="+parent.L.RELOAD);
+
+
+</script>
+
+<form name="DF"  action="new.xml">
+
+<hr>Show hidden values<hr>
+<br><input type="text" name="VVcomment_01" value="" size="50" READONLY> VVcomment_01 filename
+<br><input type="text" name="VVcomment_02" value="" size="50" READONLY> VVcomment_02 num constits
+<br><input type="text" name="VVcomment_03b" value="" size="50" READONLY> VVcomment_03b first work date
+<br><input type="text" name="VVcomment_03d" value="" size="50" READONLY> VVcomment_03d most recent work date
+<br><input type="text" name="VVcomment_03r" value="" size="50" READONLY> VVcomment_03r reload yes/no
+<br><input type="text" name="VVcomment_03c" value="" size="50"> VVcomment_03c cataloger w
+<br><input type="text" name="VVcomment_03p" value="" size="50"> VVcomment_03p project w
+<br><input type="text" name="VVcomment_03i" value="" size="50"> VVcomment_03i institution w
+<br><input type="text" name="VVcomment_04" value="" size="50" READONLY> VVcomment_04 validation
+<hr>
+
+<table class="bgINNER" border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="ddeeff">
+<tr class="bgstandard"><td colspan="3">
+
+Enter preliminary input:  xml file name, directory, etc.
+
+</td></tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+
+<tr class="bgstandard"><td colspan="1" class="label12u">
+XML FILE NAME
+</td><td class="value10nou">
+Filename values must come from the Volunteer Voices Admin Database.
+<br>This value should not be changed.
+<BR><input type ="text" name="XMLFILENAME" value="" class="required300w" READONLY
+<!---
+The name of the master xml file. Click on *links* for help.
+--->
+</td>
+<td>&nbsp;</td>
+</tr>
+
+<tr class="bgstandard"><td colspan="1" class="label12u">
+XMLBASE
+</td><td class="value10nou">
+
+<BR><input type ="text" name="XMLBASE" value="" class="required300w" READONLY
+ > &nbsp;
+<BR>The value for XMLBASE comes from the Volunteer Voices Admin Database.
+<BR>XMLBASE relates the constituent files to the master XML file.
+<br>All constituent files <b>must</b> be named using XMLBASE as the first part of the name.
+<br>The consitutent file names will be generated on Page 5 of the Workbook.
+</td>
+
+
+<td>&nbsp;</td>
+</tr>
+<tr class="bgstandard"><td colspan="1" class="label12u">
+# Constituent Image Files <br>(# jpg files)
+</td><td class="value10nou">
+<input type ="text" name="numConstituentsTIFF" value="1" class="required60w" 
+onkeypress="return parent.L.digits_only_rule_max(event,this,4)"
+onblur="changeNumConstits()" >Constituent Image Files. Digits only. Only count .jpg files.</td>
+<td>&nbsp;</td>
+</tr>
+
+<tr class="bgstandard">
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+<tr class="bgstandard"><td colspan="3" align="center">
+&nbsp;&nbsp;
+
+<!--
+<input type="button" name="B_UF" value="Save FILENAME Values" onclick="load_UF_form();" class="buttonnw">
+-->
+
+<input type="button" name="B_TAGS" value="Save and View MODS TAGS"
+onclick="buildModsTags(1);" class="buttonnw">
+
+</td></tr>
+
+
+<tr class="bgstandard">
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+
+</table>
+</td>
+<td>&nbsp;</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+
+
+</table>
+
+
+
+
+
+
+
+</form name="forms[0]">
+
+
+<center><font face="arial">
+<h2> <script> document.write(parent.adb_project_name); </script>
+ Workbook Begin_b Page </h2>
+</center>
+
+<hr>
+<script>
+
+
+function generate_file_list_tiff() {
+
+var str = new String();
+
+var N = 0;
+    N = Number(document.DF.numConstituentsTIFF.value );
+
+var base = document.DF.XMLBASE.value ;
+var XMLFILENAME = new String();
+    XMLFILENAME = base + "0000.xml";
+
+var append = new String();
+var j=0, chop=0;
+
+for ( i=0; i<N; i++ ) {
+	j= i+1;
+	append = "0000"+String(j);
+	chop = append.length -4;
+	append=append.substring(chop);
+	///alert("tiff file: "+base+append);
+	str += ","+base+append;
+}
+
+str = str.substring(1);
+
+
+return str;
+
+
+
+}//end function generate_file_list_tiff() 
+
+
+function load_UF_form() {
+
+parent.U.document.UF.validate_page_begin.value="0"; //no caching from previous value
+parent.U.document.UF.validate_page_05.value="0"; //no caching from previous value
+
+if ( document.DF.XMLBASE.value == "" ) {
+	alert("You must enter a value for XMLBASE by clicking the Calculate XMLBASE button.");
+	return;
+	}
+
+
+if ( document.DF.numConstituentsTIFF.value == "0" || document.DF.numConstituentsTIFF.value == "" ) {
+	alert ("You have entered  0 or blank \nfor number of constituent files."
+	+"\n\nYou must have at least one constituent file to enter a record.");
+	return;
+} else {
+	parent.U.document.UF.file_list_tiff.value=generate_file_list_tiff() ;
+	parent.U.document.UF.VVcomment_02.value= "<!-- NUMBER_OF_CONSTITUENT_FILES: "+document.forms[0].numConstituentsTIFF.value + ": --> \r\n";
+	parent.U.document.UF.validate_page_begin.value="1"; //pass
+	parent.U.document.UF.validate_page_05.value="0"; //pass
+}
+	
+
+var backslash = new String("/");  //formerly "\\" for ms backslash
+var d = new Date();
+
+var strComment_01  = new String();//filename
+var strComment_02  = new String();//num constits
+var strComment_03  = new String();//not used
+var strComment_03b = new String();//begin work date
+var strComment_03d = new String();//most recent work date
+var strComment_03r = new String();//reload(yes/no) default no
+var strComment_03c = new String();//cataloger
+var strComment_03i = new String();//institution
+var strComment_03p = new String();//project
+var strComment_04  = new String();//validation string
+
+	
+
+strComment_01 = "<!-- FILENAME: "+document.forms[0].XMLBASE.value+"0000.xml  --> \r\n";
+
+if ( parent.U.document.UF.VVcomment_03b.value == parent.U.document.UF.VVcomment_03d.value){//reload=no
+  	strComment_02  = "<!-- NUMBER_OF_CONSTITUENT_FILES: "+document.forms[0].numConstituentsTIFF.value + ": --> \r\n";
+    	strComment_03  = "<!-- Reload: none -->\r\n";
+    	strComment_03c = "<!-- Content Contributor:  "+parent.adb_fullname +" --> \r\n";
+    	strComment_03p = "<!-- Project:  "+parent.adb_project_name +" --> \r\n";
+    	strComment_03i = "<!-- Institution:  "+parent.adb_instname +" --> \r\n";
+    	strComment_03b = "<!-- Begin Record Creation Date:  "+d +" --> \r\n";
+    	strComment_03d = "<!-- Most Recent Record Creation Date:  "+d +" --> \r\n";
+    	strComment_03r = "<!-- Reload (yes/no):  "+d +" --> \r\n";
+    	strComment_04  = "<!-- PAGE VALIDATION :0:0:0:0:0:0:0: --> ";
+}else{
+   	strComment_02  = parent.U.document.UF.VVcomment_02.value;
+	strComment_03b = parent.U.document.UF.VVcomment_03b.value;//begin work date
+    	strComment_03d = parent.U.document.UF.VVcomment_03d.value;//most recent work date
+    	strComment_03r = parent.U.document.UF.VVcomment_03r.value;//reload yes/no
+	strComment_03c = parent.U.document.UF.VVcomment_03c.value;//cataloger
+    	strComment_03i = parent.U.document.UF.VVcomment_03i.value;//institution
+    	strComment_03p = parent.U.document.UF.VVcomment_03p.value;//project
+    	strComment_04  = parent.U.document.UF.VVcomment_04.value;//validation string
+}
+
+    document.DF.VVcomment_01.value  = strComment_01;
+    document.DF.VVcomment_02.value  = strComment_02;
+    document.DF.VVcomment_03b.value  = strComment_03b;
+    document.DF.VVcomment_03d.value = strComment_03d;
+    document.DF.VVcomment_03r.value = strComment_03r;
+    document.DF.VVcomment_03c.value = strComment_03c;
+    document.DF.VVcomment_03p.value = strComment_03p;
+    document.DF.VVcomment_03i.value = strComment_03i;
+    document.DF.VVcomment_04.value  = strComment_04;
+  
+///parent.U.document.reload();
+//////alert("load_UF_form()");
+parent.U.document.UF.VVcomment_01.value = document.DF.VVcomment_01.value;
+parent.U.document.UF.VVcomment_02.value = document.DF.VVcomment_02.value;
+parent.U.document.UF.VVcomment_03b.value = document.DF.VVcomment_03b.value;
+parent.U.document.UF.VVcomment_03d.value = document.DF.VVcomment_03d.value;
+parent.U.document.UF.VVcomment_03r.value = document.DF.VVcomment_03r.value;
+parent.U.document.UF.VVcomment_03c.value = document.DF.VVcomment_03c.value;
+parent.U.document.UF.VVcomment_03p.value = document.DF.VVcomment_03p.value;
+parent.U.document.UF.VVcomment_03i.value = document.DF.VVcomment_03i.value;
+parent.U.document.UF.VVcomment_04.value = document.DF.VVcomment_04.value;
+
+/*
+parent.U.document.UF.XMLmaster_01.value = document.DF.XMLmaster_01.value;
+parent.U.document.UF.XMLmaster_02.value = document.DF.XMLmaster_02.value;
+parent.U.document.UF.XMLmaster_03.value = document.DF.XMLmaster_03.value;
+parent.U.document.UF.XMLmaster_04.value = document.DF.XMLmaster_04.value;
+parent.U.document.UF.XMLmaster_05.value = document.DF.XMLmaster_05.value;
+*/
+parent.U.document.UF.XMLBASE.value = document.DF.XMLBASE.value;
+parent.U.document.UF.XMLFILENAME.value = document.DF.XMLFILENAME.value;
+parent.U.document.UF.numConstituentsTIFF.value = document.DF.numConstituentsTIFF.value;
+
+//move this to load_DF_form()??????
+//eval(get_page_begin_b_load_UF_strings("_01"));
+
+alert("FILENAME Values have been saved."
+	+"\n\n When you have completed the workbook, \n you will save your xmlfile to \n\n "
+	+document.forms[0].XMLBASE.value+"0000.xml           "
+	+"\n\n Please make sure that you use this filename."
+	);
+
+
+parent.U.document.UF.validate_page_begin.value="1";
+parent.U.document.UF.validate_page_05.value="1";
+parent.L.update_page_validation(0,1);
+parent.L.update_page_validation(5,1);
+
+}
+
+function load_DF_form(num) {
+
+//load_UF_form(); basically a bad idea, depends on defs from current file.
+
+//eval(get_page_begin_b_load_UF_strings("_01"));
+
+var NUM = 0;
+
+if ( typeof(num) != 'undefined') NUM = num;
+
+////////alert("load_DF_form()");
+document.DF.VVcomment_01.value = parent.U.document.UF.VVcomment_01.value ;
+document.DF.VVcomment_02.value = parent.U.document.UF.VVcomment_02.value ;
+document.DF.VVcomment_03b.value = parent.U.document.UF.VVcomment_03b.value ;
+document.DF.VVcomment_03d.value = parent.U.document.UF.VVcomment_03d.value ;
+document.DF.VVcomment_03r.value = parent.U.document.UF.VVcomment_03r.value ;
+document.DF.VVcomment_03c.value = parent.U.document.UF.VVcomment_03c.value ;
+document.DF.VVcomment_03p.value = parent.U.document.UF.VVcomment_03p.value ;
+document.DF.VVcomment_03i.value = parent.U.document.UF.VVcomment_03i.value ;
+document.DF.VVcomment_04.value = parent.U.document.UF.VVcomment_04.value ;
+
+
+/*
+document.DF.XMLmaster_01.value = parent.U.document.UF.XMLmaster_01.value ;
+document.DF.XMLmaster_02.value = parent.U.document.UF.XMLmaster_02.value ;
+document.DF.XMLmaster_03.value = parent.U.document.UF.XMLmaster_03.value ;
+document.DF.XMLmaster_04.value = parent.U.document.UF.XMLmaster_04.value ;
+document.DF.XMLmaster_05.value = parent.U.document.UF.XMLmaster_05.value ;
+*/
+document.DF.XMLFILENAME.value = parent.U.document.UF.XMLFILENAME.value ;
+document.DF.XMLBASE.value = parent.U.document.UF.XMLBASE.value ;
+document.DF.numConstituentsTIFF.value = parent.U.document.UF.numConstituentsTIFF.value ;
+
+var backslash = new String("/");  //formerly "\\" for ms backslash
+
+if (NUM == 2) { 
+	alert("Values have been reset."
+	+"\n\n When you have completed the workbook, \n you will save your xmlfile to \n\n "
+	+document.forms[0].XMLBASE.value+"0000.xml           "
+	+"\n\n Please make sure that you use this filename."
+
+	);
+}
+
+return;
+}
+
+function buildModsTags(N) {
+
+
+////do this first so current values are loaded regardless of validation status
+load_UF_form();
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+var num = new Number();
+    num = N;
+    //num = 1;//get rid of save only button
+//num=downloadTypeN  [0 for download; 1 for html display]
+
+
+
+//var aps= new Array();
+var hps= new Array(); //header
+var cps= new Array(); //closer
+
+//downloadTypeN  [0 for download of text; 1 for html display]
+//strN "01","02"..."06"
+//function buildTagsArray_page_01(downloadTypeN,strN)
+
+
+    hps = buildTagsArray_header(num);
+    cps = buildTagsArray_closer(num);
+
+
+   
+
+//=================================================
+
+document.write('<input type="button" name="BBACK" onclick="javascript: history.back()" value="BACK"><P>');
+document.write('<font face="Elephant" size="3" color="a00000">'+parent.adb_project_name+' Workbook, page_begin_b.htm<p></font>');
+//PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+//document.write( "This is the generated xml script.  Values you entered are highlighted in red.<HR>");
+document.write('<font face="Elephant" size="3" color="a00000">PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+		+"This is the generated xml script.  Values you entered are highlighted in red."
+		+"<br>oNI = num ="+num
+		+"<HR>");
+
+//document.write('< ? xml version="1.0"  ? > \r\n'); 
+///document.write("Content-Type: text/xml ")
+
+
+document.write(hps);
+document.write(cps);
+
+/*
+for (i=0;i<hps.length;i++) {
+	var vps = new String(hps[i]);
+	//if (!confirm("vps.length="+vps.length))return;
+	if (vps.length>4) {
+		document.write("<br>"+vps);
+		}
+	}
+
+
+for (i=0;i<cps.length;i++) {
+	var vps = new String(cps[i]);
+	//if (!confirm("vps.length="+vps.length))return;
+	document.write("<br>"+vps);
+
+	}
+*/
+
+if(num==1){
+document.write('<p>&nbsp;<p><input type="button" name="BBACK2" onclick="javascript: history.back()" value="BACK"><P>');
+}
+}//end function
+
+
+
+formvardebug();
+
+
+
+
+
+
+</script>
+	
+
+
+</body>
+</html>
+

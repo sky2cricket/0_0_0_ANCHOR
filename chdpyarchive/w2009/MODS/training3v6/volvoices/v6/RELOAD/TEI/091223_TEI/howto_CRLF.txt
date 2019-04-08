@@ -1,0 +1,49 @@
+howto_CRLF.txt
+
+
+The tei file seems to contain microsoft CRLF characters to separate lines.
+
+In vi these appear as double-spaces.
+
+But when you download to notepad on my windows machine, it comes out as one long line
+in both notepad and word pad.
+
+If you open with MS Word, the CRLF line separators are correct,
+but the <xxx>...</xxx> is over interpreted.
+
+I think vi is interpreting CRLF as \n\n and ^@ things.
+
+This is a continuation of the war between microsoft and berkeley unix.
+
+================================================================
+
+How to get rid of double spacing in vi on the unix server:
+
+
+:%s />\n/>/
+
+
+How this works:
+
+There is a \n\n after each > character.
+But this makes the second \n go on the next line.
+
+If you require > in the replacement string, only the first \n gets replaced.
+
+The replacement below also works.
+
+:%s />\n/>/g
+
+
+The replacement
+
+:%s /\n\n/\n/ gives you one long line in vi with linebreaks ^@ between what used to be line breaks.
+
+The ^@ is the CR in the CRLF separator.
+
+So the actual replacement is
+
+:%s /CRLFCRLF/LF/  which leaves the second ^@ as debris.
+
+
+

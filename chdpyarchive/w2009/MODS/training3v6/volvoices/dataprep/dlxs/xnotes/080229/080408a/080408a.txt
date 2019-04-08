@@ -1,0 +1,124 @@
+[root@diglib2 sgml]# [wd
+bash: [wd: command not found
+[root@diglib2 sgml]# pwd
+/d1/dlxs/misc/sgml
+
+-----------------------
+[root@diglib2 image]# cd ../../../idx
+[root@diglib2 idx]# ls
+a  arrsMakefile  c  e  f  g  i  j  m  r  s  t  u  v  w
+[root@diglib2 idx]# ls v/vvi
+image.blank.dd  image.cfg  image.dd  image.idx  image.inp  image.rgn  Makefile  tags.txt
+[root@diglib2 idx]# cd v/
+[root@diglib2 v]# ls
+vvb  vvi  vvo  vvs-bib  vvs-mods  vvt  vvz  vvzBack
+[root@diglib2 v]# ls
+vvb  vvi  vvo  vvs-bib  vvs-mods  vvt  vvz  vvzBack
+[root@diglib2 v]# rm vvi/*
+rm: remove regular file `vvi/image.blank.dd'? y
+rm: remove regular file `vvi/image.cfg'? y
+rm: remove regular file `vvi/image.dd'? y
+rm: remove regular file `vvi/image.idx'? y
+rm: remove regular file `vvi/image.inp'? y
+rm: remove regular file `vvi/image.rgn'? y
+rm: remove regular file `vvi/Makefile'? y
+rm: remove regular file `vvi/tags.txt'? y
+[root@diglib2 v]# ls
+vvb  vvi  vvo  vvs-bib  vvs-mods  vvt  vvz  vvzBack
+[root@diglib2 v]# rmdir vvi
+[root@diglib2 v]# 
+[root@diglib2 dlxs]# ls
+bin  CDROM-10-install  cgi  idx  img  lib  misc  obj  prep  web
+[root@diglib2 dlxs]# cd bin/i/image
+[root@diglib2 image]# ls
+A2.txt  A.txt                           html2tab.pl     idb.bk              makefieldbrowse.pl
+A3.txt  clean.newlines.inplace.pl       idb             imageprep           old
+A4.txt  firestar_xpat_images_steps.txt  idb.20070327jd  imageprep.cfg       setupcollindex
+A5.txt  getoneline.pl    
+
+[root@diglib2 image]# setupcollindex v/vvi > A6.txt
+[root@diglib2 image]# ls ../../../idx/v/vvi
+image.blank.dd  image.cfg  image.inp  Makefile  tags.txt
+[root@diglib2 image]# cd ../../../idx/v/vvi
+[root@diglib2 vvi]# make all
+echo "working..."
+working...
+rm -f ./image.ffc
+rm -f ./image.ffi
+rm -f ./image.ffw
+rm -f ./image.idx
+rm -f ./image.maps.*
+rm -f ./image.mfs
+rm -f ./image*.rgn
+rm -f ./image.str
+rm -f ./image.dd
+rm -f ../../../obj/v/vvi/image.sgm
+cat ../../../obj/v/vvi/ic.*.norm.sgm > ../../../obj/v/vvi/image.sgm
+cp ./image.blank.dd ./image.dd
+xpatbld -D ./image.dd
+multirgn -f -D ./image.dd -t ./tags.txt
+[root@diglib2 vvi]# 
+  http://diglib2.lib.utk.edu/cgi/c/collmgr/collmgr?type=%24TYPE&class=image&submit=release
+image class release
+
+[root@diglib2 dlxs]# ls
+bin  CDROM-10-install  cgi  idx  img  lib  misc  obj  prep  web
+[root@diglib2 dlxs]# cd cgi/i/image
+[root@diglib2 image]# ls
+a                       collstats-idx        ImageClass              olderVersions
+A.txt                   createbookbagdb.txt  imageclass.cfg          queries
+authcoll                getimage-idx         ImageClassUtils         Searchbuild.pm
+AUTHZD_COLL             getthumbnail-idx     ImageClassUtils.pm      Sid2.pm
+Collectionmaps-last.pm  ICLocalUtils.pm      image-idx               Sidget2.pm
+Collectionmaps-new.pm   ImageApp             largeBOOK.GIF           WPAcrew_crop5.png
+Collectionmaps.pm       ImageApp.pm          makeCollectionmaps-idx
+[root@diglib2 image]# makeCollectionmaps-idx 
+
+
+http://diglib2.lib.utk.edu/cgi/i/image/image-idx?sid=7418d95c2c42690e4547747dcbee3e34;q1=0018_000054_000235;rgn1=All%20Categories;op2=And;rgn2=All%20Categories;xc=1;g=vvv;c=vvi;c=vvz;size=20&lasttype=boolean;view=entry;lastview=thumbnail;subview=detail;cc=vvi;entryid=x-0018_000054_000235_0000;viewid=0018_000054_000235_0001;start=1;resnum=1
+
+
+
+
+[root@diglib2 image]# pwd
+/d1/dlxs/cgi/i/image
+
+this contians scripts that are afffeted by adding new files
+
+
+
+[root@diglib2 v]# cd vvi --------------------------multiples
+[root@diglib2 vvi]# ls
+bbdel.tpl         bbthumbfull.tpl     entry.tpl.bk      info.txt         reslist.tpl
+bbentry_orig.tpl  bbthumbnail.tpl     entry.tpl.orig    js               searchgroup.tpl
+bbentry.tpl       collinfo.tpl        fieldinfo.txt     login-image.php  search.tpl
+bbname.tpl        css                 graphics          my_index.tpl     thumbfull.tpl
+bbopen.tpl        entryinfo.txt       groups.tpl        noresults.tpl    thumbnail.tpl
+bbreslist.tpl     entry.tpl           index.tpl         old_search.tpl   tips.tpl
+bbslideentry.tpl  entry.tpl.20070831  index.tpl.060427  orig_groups.tpl
+[root@diglib2 vvi]# ls vvv
+ls: vvv: No such file or directory
+[root@diglib2 vvi]# cd ../vvv ----------------------------group
+[root@diglib2 vvv]# l
+bash: l: command not found
+[root@diglib2 vvv]# ls
+bbdel.tpl         bbthumbfull.tpl  fieldinfo.txt     login-image.php  search.tpl
+bbentry_orig.tpl  bbthumbnail.tpl  graphics          my_index.tpl     sh.html
+bbentry.tpl       collinfo.tpl     groups.tpl        noresults.tpl    thumbfull.tpl
+bbname.tpl        css              index.tpl         old_search.tpl   thumbnail.tpl
+bbopen.tpl        entryinfo.txt    index.tpl.060427  orig_groups.tpl  tips.tpl
+bbreslist.tpl     entry.tpl        info.txt          reslist.tpl
+bbslideentry.tpl  entry.tpl.orig   js                searchgroup.tpl
+[root@diglib2 vvv]# 
+[root@diglib2 vvv]# ls ../vvz ---------------------------------singles
+bbdel.tpl         bbthumbfull.tpl     entry.tpl.orig    js               searchgroup.tpl
+bbentry_orig.tpl  bbthumbnail.tpl     fieldinfo.txt     login-image.php  search.tpl
+bbentry.tpl       collinfo.tpl        graphics          my_index.tpl     sh.html
+bbname.tpl        css                 groups.tpl        noresults.tpl    thumbfull.tpl
+bbopen.tpl        entryinfo.txt       index.tpl         old_search.tpl   thumbnail.tpl
+bbreslist.tpl     entry.tpl           index.tpl.060427  orig_groups.tpl  tips.tpl
+bbslideentry.tpl  entry.tpl.20070830  info.txt          reslist.tpl
+[root@diglib2 vvv]# 
+
+
+

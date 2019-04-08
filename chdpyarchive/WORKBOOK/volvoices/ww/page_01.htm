@@ -1,0 +1,778 @@
+
+<html>
+<head>
+<title>
+page_01
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+<script language=javascript src="vv_functions.js"></script>
+<script language=javascript src="vv_functions_radio.js"></script>
+<script language=javascript src="vv_validation.js"></script>
+<script language=javascript src="vv_compose_tags.js"></script>
+
+
+
+
+</head>
+
+<script>document.write('<body onload="load_DF_form();"  bgcolor="'+parent.adb_background_color+'" >');</script>
+
+<font face="arial" size="3">
+<center><font face="arial">
+<h2> <script> document.write(parent.adb_project_name); </script>
+ Workbook Page 1</h2>
+</center>
+
+<script>
+///Civil War Salt Peter Mining None, LCNAF, ULAN. 
+
+
+
+
+
+</script>
+
+
+
+<form name="DF"  action="new.xml">
+
+<table  class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="99aabb">
+<tr class="bgstandard" ><td colspan="3">
+
+Required Fields are <u>underlined</u>.
+Non-Required Fields are not underlined.
+</td></tr>
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>MODS LABEL</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+<tr class="bgstandard" >
+<td class="label13u">
+Title 
+</td>
+<td>&nbsp;
+
+<!---Civil War Salt Peter Mining--->
+<input type="text" name="title" value="" size="36" 
+class="required300w"
+>
+
+<font face='arial' size='1'>
+</td>
+<td>&nbsp</td>
+</tr>
+<tr class="greenrow">
+<td height="08" colspan="3"></td></tr>
+<tr class="bgstandard"  >
+<td colspan="3"><font face="arial" size="3">Three name and name attributes blocks allow for creation of
+up to 3 sets of mods:name tags.
+<br>The following Name Authorities are available:
+<li> LCNAF -- Complete Description at: <a href="http://authorities.loc.gov/" target="_blank">http://authorities.loc.gov/</a>
+<li> ULAN -- Complete Description at: <a href="http://www.getty.edu/research/conducting_research/vocabularies/ulan/" target="_blank">http://www.getty.edu/research/conducting_research/vocabularies/ulan/</a>
+</td><!---td>&nbsp;</td--->
+</tr>
+
+<tr class="greenrow">
+<td height="08" colspan="3"></td></tr>
+
+<tr class="bgstandard"  xbgcolor="bb8844">
+<td class="label13u">
+Primary Name Type
+</td>
+<td valign="top"><font face="arial" size="1">IS THE PRIMARY NAME ASSOCIATED WITH THE CREATION OF THIS RESOURCE KNOWN?
+<br>&nbsp;&nbsp;&nbsp;<input type="radio" name="creator_radio_01" value="Y" checked onclick="creator_radio_01_pop(this)">
+&nbsp;<u>personal</u> 
+&nbsp;If you select personal, you are required to fill in a Last Name/Corporate Name below. Name Parts (First name, Middle name, and Vital Dates) are recommended. 
+<br>&nbsp;&nbsp;&nbsp;<input type="radio" name="creator_radio_01" value="C" onclick="creator_radio_01_pop(this)">
+&nbsp;<u>corporate</u>  
+&nbsp;If you select corporate, you are required to fill in a Last Name/Corporate Name below.  Name Parts are not used.
+
+
+<br>&nbsp;&nbsp;&nbsp;<input type="radio" name="creator_radio_01" value="N" onclick="creator_radio_01_pop(this)">
+&nbsp;<u>unknown</u>  
+&nbsp;If you select unknown, the value <u><b>unknown</b></u> will be entered as the name.
+<br>&nbsp;&nbsp;&nbsp;<input type="radio" name="creator_radio_01" value="A" onclick="creator_radio_01_pop(this)">
+&nbsp;<u>anonymous</u>  
+&nbsp;If you select anonymous, the value <u><b>anonymous</b></u> will be entered as the name.
+
+<input type="hidden" name="name_type_01" value="">
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard"  xbgcolor="bb8844">
+<td class="label13nou">
+Name Authority
+</td>
+<td><font face="arial" size="1">
+&nbsp;&nbsp;&nbsp;<input type="radio" name="name_authority_01_radio" value="NONE" checked onclick="name_authority_01_radio_pop(this)">
+&nbsp;<u>NONE</u> 
+&nbsp;If you select NONE, no name authority will be added to the mods tag.  
+<br>&nbsp;&nbsp;&nbsp;<input type="radio" name="name_authority_01_radio" value="LCNAF" onclick="name_authority_01_radio_pop(this)">
+&nbsp;<u>LCNAF</u>  
+&nbsp;If you select LCNAF and name type <u>personal</u> or <u>corporate</u>, LCNAF name authority will be added to the mods tag.  
+<br>&nbsp;&nbsp;&nbsp;<input type="radio" name="name_authority_01_radio" value="ULAN" onclick="name_authority_01_radio_pop(this)">
+&nbsp;<u>ULAN</u> If you select ULAN and name type <u>personal</u>, ULAN name authority will be added to the mods:name tag. 
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input class="notrequirednw" type="text" size="6" value="" READONLY name="name_authority_01"> Please note, 
+name authority only applies to personal names or corporate names, not unknown or anonymous.
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+
+<tr class="bgstandard"   xbgcolor="bb8844">
+<td class="label13nou">
+<u>Last Name</u> <br>and Name Parts
+</td>
+<td valign="top">
+<table border="0" cellpadding="1" cellspacing="0">
+<tr class="bgstandard" ><td colspan="4"><font face='arial' size='1'>&nbsp;
+<input type="text" name="creator_lastname_01" value="Smith" size="58" class="requirednw">
+Last Name/Corporate Name.
+</td></tr>
+<tr class="bgstandard" ><td><font face='arial' size='1'>&nbsp;
+<input type="text" name = "creator_firstname_01" value="" size="20" class="notrequirednw">
+</td><td><font face='arial' size='1'>
+&nbsp;
+<input type="text" name = "creator_middlename_01" value="" size="20" class="notrequirednw">
+</td><td valign="top"><font face='arial' size='1'>
+&nbsp;Personal Name Parts associated with the resource.
+</td><td width="50">&nbsp;
+
+</td></tr>
+<tr class="bgstandard" ><td><font face='arial' size='1'>
+&nbsp;&nbsp;&nbsp;firstname
+</td><td><font face='arial' size='1'>
+&nbsp;&nbsp;&nbsp;middlename (or initial)
+</td><td><font face='arial' size='1'>
+&nbsp;
+</td><td width="10"></td></tr></table>
+
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard"   xbgcolor="bb8844">
+<td class="label13nou">
+Vital Dates
+</td>
+<td valign="top">
+<table border="0" cellpadding="1" cellspacing="0">
+<tr class="bgstandard" ><td valign="middle"><font face='arial' size='1'>
+&nbsp;
+&nbsp;<input type="button" name="Bcreator_dob_01" value="Year of Birth" 
+class="button100w"
+onclick="selectOneOptionDate(this,'500','550')">&nbsp;
+<input type="text" name = "creator_dob_01" value="" size="10"  class="notrequirednw" READONLY>
+
+<input type="button" name="Ccreator_dob_01" value="Clear Date" 
+class="button80w" onclick="clearDateNoQual(this)">
+&nbsp;&nbsp;&nbsp;
+
+</td>
+<td rowspan="1" width="20">&nbsp;</td>
+</tr><tr class="bgstandard" >
+
+<td valign="middle"><font face='arial' size='1'>
+&nbsp;
+&nbsp;<input type="button" name="Bcreator_dod_01" value="Year of Death" 
+class="button100w"
+onclick="selectOneOptionDate(this,'500','550')">&nbsp;
+<input type="text" name = "creator_dod_01" value="0000-00-00" size="10"  class="notrequirednw"
+READONLY>
+
+<input type="button" name="Ccreator_dod_01" value="Clear Date" 
+class="button80w"
+onclick="clearDateNoQual(this)">
+</td>
+<td rowspan="1" width="20">&nbsp;</td>
+</tr>
+</table>
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard"   xbgcolor="bb8844">
+<td class="label13nou">
+ Name Description 
+</td>
+<td>&nbsp;
+<input type="text" name="creator_description_01" value="" size="36" class="notrequired300w"
+><font face='arial' size='1'> <BR>&nbsp;&nbsp;&nbsp;Description to distinguish from other names.   Example: American artist, 20th century.</td>
+<td>&nbsp</td>
+</tr>
+
+
+
+
+<tr class="bgstandard"  >
+<td class="label13u">
+Role 
+</td>
+<td>&nbsp;
+<input type="text" name="creator_role_01" value="Code" size="2" READONLY class="required300w">
+<input type="hidden" name="creator_role_01_display" value="Description" size="72" READONLY >
+<input type="button" name="Bcreator_role_01" value="Select" class="button80w"
+onclick="selectOneOption(this,'400','600')">
+<input type="button" name="Ccreator_role_01" value="Clear" class="button80w"
+onclick="clearSelection(this,2)">
+<font face="arial" size="1" color="000000" ><br>&nbsp;&nbsp;&nbsp;Complete Role Descriptions from <a href="http://www.loc.gov/marc/sourcecode/relator/relatorlist.html" target="blank">MARC Relatorlist</a>.  Select up to 3 Role terms.
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard" >
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+<tr class="greenrow">
+<td height="08" colspan="3"></td></tr>
+
+<tr class="bgstandard"  xbgcolor="bb8844">
+<td class="label13nou">
+Second Name Type
+</td>
+<td valign="top"><font face="arial" size="1">IS THERE A SECOND NAME ASSOCIATED WITH THE CREATION OF THIS RESOURCE?
+<br>&nbsp;&nbsp;&nbsp;<input type="radio" name="creator_radio_02" value="X" checked onclick="creator_radio_02_pop(this)">
+&nbsp;<u>NO</u> No mods tags for a second name.
+<br>&nbsp;&nbsp;&nbsp;<input type="radio" name="creator_radio_02" value="Y"  onclick="creator_radio_02_pop(this)">
+&nbsp;<u>personal</u> 
+&nbsp;If you select personal, you are required to fill in a Last Name/Corporate Name below. Name Parts (First name, Middle name, and Vital Dates) are recommended. 
+
+<br>&nbsp;&nbsp;&nbsp;<input type="radio" name="creator_radio_02" value="C" onclick="creator_radio_02_pop(this)">
+&nbsp;<u>corporate</u>  
+&nbsp;If you select corporate, you are required to fill in a Last Name/Corporate Name below.  Name Parts are not used.  
+
+<input type="hidden" name="name_type_02" value="">
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard"  xbgcolor="bb8844">
+<td  class="label13nou">
+Name Authority
+</td>
+<td><font face="arial" size="1">
+&nbsp;&nbsp;&nbsp;<input type="radio" name="name_authority_02_radio" value="N" checked onclick="name_authority_02_radio_pop(this)">
+&nbsp;<u>NONE</u> 
+&nbsp;If you select NONE, no name authority will be added to the mods tag.  
+<br>&nbsp;&nbsp;&nbsp;<input type="radio" name="name_authority_02_radio" value="L" onclick="name_authority_02_radio_pop(this)">
+&nbsp;<u>LCNAF</u>  
+&nbsp;If you select LCNAF  and name type <u>personal</u> or <u>corporate</u>,  LCNAF name authority will be added to the mods tag.  
+<br>&nbsp;&nbsp;&nbsp;<input type="radio" name="name_authority_02_radio" value="U" onclick="name_authority_02_radio_pop(this)">
+&nbsp;<u>ULAN</u> If you select ULAN  and name type <u>personal</u>, ULAN name authority will be added to the mods:name tag. 
+<br>&nbsp;<input type="text" class="notrequirednw" size="6" value="" READONLY name="name_authority_02"> Please note, name authority only applies to personal names or corporate names.
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+
+<tr class="bgstandard"   xbgcolor="bb8844">
+<td  class="label13nou">
+Last Name  <br>and Name Parts
+</td>
+<td valign="top">
+<table border="0" cellpadding="1" cellspacing="0">
+<tr class="bgstandard" ><td colspan="4"><font face='arial' size='1'>&nbsp;
+<input type="text" name="creator_lastname_02" value="Smith" size="58" class="requirednw">
+Last Name/Corporate Name.
+</td></tr>
+<tr class="bgstandard" ><td><font face='arial' size='1'>&nbsp;
+<input type="text" name = "creator_firstname_02" value="" size="20" class="notrequirednw">
+</td><td><font face='arial' size='1'>
+&nbsp;
+<input type="text" name = "creator_middlename_02" value="" size="20" class="notrequirednw">
+</td><td valign="top"><font face='arial' size='1'>
+&nbsp; Personal Name Parts associated with the resource.
+</td><td width="50"></td></tr>
+<tr class="bgstandard" ><td><font face='arial' size='1'>
+&nbsp;&nbsp;&nbsp;firstname
+</td><td><font face='arial' size='1'>
+&nbsp;&nbsp;&nbsp;middlename (or initial)
+</td><td><font face='arial' size='1'>
+
+</td><td width="10"></td></tr></table>
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard"   xbgcolor="bb8844">
+<td  class="label13nou">
+Vital Dates
+</td>
+<td valign="top">
+<table border="0" cellpadding="1" cellspacing="0">
+<tr class="bgstandard" ><td valign="middle"><font face='arial' size='1'>
+&nbsp;
+&nbsp;<input type="button" name="Bcreator_dob_02" value="Year of Birth" class="button100w"
+onclick="selectOneOptionDate(this,'500','550')">&nbsp;
+<input type="text" name = "creator_dob_02" value="" size="10" class="notrequirednw" READONLY>
+
+<input type="button" name="Ccreator_dob_02" value="Clear Date" class="button80w"
+onclick="clearDateNoQual(this)">
+&nbsp;&nbsp;&nbsp;
+
+</td>
+<td rowspan="1" width="20">&nbsp;</td>
+</tr><tr class="bgstandard" >
+
+<td valign="middle"><font face='arial' size='1'>
+&nbsp;
+&nbsp;<input type="button" name="Bcreator_dod_02" value="Year of Death" class="button100w"
+onclick="selectOneOptionDate(this,'500','550')">&nbsp;
+<input type="text" name = "creator_dod_02" value="0000-00-00" size="10" class="notrequirednw" READONLY>
+
+<input type="button" name="Ccreator_dod_02" value="Clear Date"  class="button80w"
+onclick="clearDateNoQual(this)">
+</td>
+<td rowspan="1" width="20">&nbsp;</td>
+</tr>
+</table>
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard"   xbgcolor="bb8844">
+<td class="label13nou">
+ Name Description 
+</td>
+<td>&nbsp;
+<input type="text" name="creator_description_02" value="" size="36"
+ class="notrequired300w">
+<font face='arial' size='1'><br>&nbsp;&nbsp;&nbsp;Description to distinguish from other names.  Example: American artist, 20th century.</td>
+<td>&nbsp</td>
+</tr>
+
+
+
+
+<tr class="bgstandard"  >
+<td class="label13nou">
+Role 
+</td>
+<td>&nbsp;<input type="text" name="creator_role_02" value="Code" size="2" READONLY class="notrequired300w">
+<input type="hidden" name="creator_role_02_display" value="Description" size="72" READONLY >
+<input type="button" name="Bcreator_role_02" value="Select" class="button80w"
+onclick="selectOneOption(this,'400','600')">
+<input type="button" name="Ccreator_role_02" value="Clear" class="button80w"
+onclick="clearSelection(this,2)">
+<font face="arial" size="1" color="000000" ><br>&nbsp;&nbsp;&nbsp;Complete Role Descriptions from <a href="http://www.loc.gov/marc/sourcecode/relator/relatorlist.html" target="blank">MARC Relatorlist</a>.
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard" >
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+
+<tr class="greenrow">
+<td height="08" colspan="3"></td></tr>
+
+<tr class="bgstandard"  >
+<td  class="label13nou">
+Third Name Type
+</td>
+<td valign="top"><font face="arial" size="1">IS THERE A THIRD NAME ASSOCIATED WITH THE CREATION OF THIS RESOURCE?
+<br>&nbsp;&nbsp;&nbsp;<input type="radio" name="creator_radio_03" value="X" checked onclick="creator_radio_03_pop(this)">
+&nbsp;<u>NO</u> No mods tags for a third name.
+
+<br>&nbsp;&nbsp;&nbsp;<input type="radio" name="creator_radio_03" value="Y" checked onclick="creator_radio_03_pop(this)">
+&nbsp;<u>personal</u> 
+&nbsp;If you select personal, you are required to fill in a Last Name/Corporate Name below. Name Parts (First name, Middle name, and Vital Dates) are recommended. 
+
+<br>&nbsp;&nbsp;&nbsp;<input type="radio" name="creator_radio_03" value="C" onclick="creator_radio_03_pop(this)">
+&nbsp;<u>corporate</u>  
+&nbsp;If you select corporate, you are required to fill in a Last Name/Corporate Name below. Name Parts are not used.  
+
+<input type="hidden" name="name_type_03" value="">
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard"  xbgcolor="bb8844">
+<td  class="label13nou">
+Name Authority 
+</td>
+<td><font face="arial" size="1">
+&nbsp;&nbsp;&nbsp;<input type="radio" name="name_authority_03_radio" value="N" checked onclick="name_authority_03_radio_pop(this)">
+&nbsp;<u>NONE</u> 
+&nbsp;If you select NONE, no name authority will be added to the mods tag.  
+<br>&nbsp;&nbsp;&nbsp;<input type="radio" name="name_authority_03_radio" value="L" onclick="name_authority_03_radio_pop(this)">
+&nbsp;<u>LCNAF</u>  
+&nbsp;If you select LCNAF  and name type <u>personal</u> or <u>corporate</u>,  LCNAF name authority will be added to the mods tag.  
+<br>&nbsp;&nbsp;&nbsp;<input type="radio" name="name_authority_03_radio" value="U" onclick="name_authority_03_radio_pop(this)">
+&nbsp;<u>ULAN</u> If you select ULAN  and name type <u>personal</u>, ULAN name authority will be added to the mods:name tag. 
+<br>&nbsp;<input type="text" class="notrequirednw" size="6" value="" READONLY name="name_authority_03"> Please note, name authority only applies to personal names or corporate names.
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+
+<tr class="bgstandard"   xbgcolor="bb8844">
+<td  class="label13nou">
+Last Name  <br>and Name Parts
+</td>
+<td valign="top">
+<table border="0" cellpadding="1" cellspacing="0">
+<tr class="bgstandard" ><td colspan="4"><font face='arial' size='1'>&nbsp;
+<input type="text" name="creator_lastname_03" value="Smith" size="58" class="requirednw">
+Last Name/Corporate Name.
+</td></tr>
+<tr class="bgstandard" ><td><font face='arial' size='1'>&nbsp;
+<input type="text" name = "creator_firstname_03" value="" size="20" class="notrequirednw">
+</td><td><font face='arial' size='1'>
+&nbsp;
+<input type="text" name = "creator_middlename_03" value="" size="20" class="notrequirednw">
+</td><td valign="top"><font face='arial' size='1'>
+&nbsp;Personal Name Parts associated with the resource.
+</td><td width="50"></td></tr>
+<tr class="bgstandard" ><td><font face='arial' size='1'>
+&nbsp;&nbsp;&nbsp;firstname
+</td><td><font face='arial' size='1'>
+&nbsp;&nbsp;&nbsp;middlename (or initial)
+</td><td><font face='arial' size='1'>
+
+</td><td width="10"></td></tr></table>
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard"   xbgcolor="bb8844">
+<td  class="label13nou">
+Vital Dates
+</td>
+<td valign="top">
+<table border="0" cellpadding="1" cellspacing="0">
+<tr class="bgstandard" ><td valign="middle"><font face='arial' size='1'>
+&nbsp;
+&nbsp;<input type="button" name="Bcreator_dob_03" value="Year of Birth" class="button100w"
+onclick="selectOneOptionDate(this,'500','550')">&nbsp;
+<input type="text" name = "creator_dob_03" value="" size="10" class="notrequirednw" READONLY>
+
+<input type="button" name="Ccreator_dob_03" value="Clear Date" class="button80w"
+onclick="clearDateNoQual(this)">
+&nbsp;&nbsp;&nbsp;
+
+</td>
+<td rowspan="1" width="20">&nbsp;</td>
+</tr><tr class="bgstandard" >
+
+<td valign="middle"><font face='arial' size='1'>
+&nbsp;
+&nbsp;<input type="button" name="Bcreator_dod_03" value="Year of Death" class="button100w"
+onclick="selectOneOptionDate(this,'500','550')">&nbsp;
+<input type="text" name = "creator_dod_03" value="0000-00-00" size="10" class="notrequirednw" READONLY>
+
+<input type="button" name="Ccreator_dod_03" value="Clear Date" class="button80w"
+onclick="clearDateNoQual(this)">
+</td>
+<td rowspan="1" width="20">&nbsp;</td>
+</tr>
+</table>
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard"   xbgcolor="bb8844">
+<td class="label13nou">
+ Name Description 
+</td>
+<td>&nbsp;
+<input type="text" name="creator_description_03" value="" size="36" class="notrequired300w">
+<font face='arial' size='1'><br>&nbsp;&nbsp;&nbsp;Description to distinguish from other names.  Example: American artist, 20th century.</td>
+<td>&nbsp</td>
+</tr>
+
+
+
+
+<tr class="bgstandard"  >
+<td class="label13nou">
+Role 
+</td>
+<td>&nbsp;<input type="text" name="creator_role_03" value="Code" size="2" READONLY class="notrequired300w">
+<input type="hidden" name="creator_role_03_display" value="Description" size="72" READONLY >
+<input type="button" name="Bcreator_role_03" value="Select" class="button80w"
+onclick="selectOneOption(this,'400','600')">
+<input type="button" name="Ccreator_role_03" value="Clear" class="button80w"
+onclick="clearSelection(this,2)">
+<font face="arial" size="1" color="000000" ><br>&nbsp;&nbsp;&nbsp;Complete Role Descriptions from <a href="http://www.loc.gov/marc/sourcecode/relator/relatorlist.html" target="blank">MARC Relatorlist</a>.
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard" >
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+
+
+<tr class="bgstandard" ><td colspan="3" align="center">
+&nbsp;&nbsp;
+
+<input type="button" name="B_UF" value="Save" class="buttonnw" onclick="buildModsTags(10);">
+<!---input type="button" name="B_DF" value="Reset"  class="buttonnw" onclick="load_DF_form();"--->
+<input type="button" name="B2" 
+value="Save Data and View MODS TAGS" class="buttonnw"
+onclick="buildModsTags(1)">
+
+</td></tr>
+
+</table>
+
+
+
+
+
+
+</form name="forms[0]">
+
+
+<center><font face="arial">
+<h2> <script> document.write(parent.adb_project_name); </script>
+ Workbook Page 1</h2>
+</center>
+
+<hr>
+<script>
+
+/////chdchdchd
+
+
+
+function load_UF_form() {
+//////alert("load_UF_form()");
+parent.U.document.UF.title.value = document.DF.title.value;
+
+
+///PageOneFirstName
+parent.U.document.UF.name_authority_01_radio[0].checked = document.DF.name_authority_01_radio[0].checked;
+parent.U.document.UF.name_authority_01_radio[1].checked = document.DF.name_authority_01_radio[1].checked;
+parent.U.document.UF.name_authority_01_radio[2].checked = document.DF.name_authority_01_radio[2].checked;
+parent.U.document.UF.name_authority_01.value = document.DF.name_authority_01.value;
+parent.U.document.UF.creator_radio_01[0].checked = document.DF.creator_radio_01[0].checked;//yes
+parent.U.document.UF.creator_radio_01[1].checked = document.DF.creator_radio_01[1].checked;//yes, not a person
+parent.U.document.UF.creator_radio_01[2].checked = document.DF.creator_radio_01[2].checked;//unknown
+parent.U.document.UF.creator_radio_01[3].checked = document.DF.creator_radio_01[3].checked;//anonymous
+parent.U.document.UF.creator_lastname_01.value = document.DF.creator_lastname_01.value;
+parent.U.document.UF.creator_firstname_01.value = document.DF.creator_firstname_01.value;
+parent.U.document.UF.creator_middlename_01.value = document.DF.creator_middlename_01.value;
+parent.U.document.UF.creator_dob_01.value = document.DF.creator_dob_01.value;
+parent.U.document.UF.creator_dod_01.value = document.DF.creator_dod_01.value;
+parent.U.document.UF.creator_description_01.value = document.DF.creator_description_01.value;
+parent.U.document.UF.creator_role_01.value = document.DF.creator_role_01.value;
+
+
+///PageOneSecondName
+parent.U.document.UF.name_authority_02_radio[0].checked = document.DF.name_authority_02_radio[0].checked;
+parent.U.document.UF.name_authority_02_radio[1].checked = document.DF.name_authority_02_radio[1].checked;
+parent.U.document.UF.name_authority_02_radio[2].checked = document.DF.name_authority_02_radio[2].checked;
+parent.U.document.UF.name_authority_02.value = document.DF.name_authority_02.value;
+parent.U.document.UF.creator_radio_02[0].checked = document.DF.creator_radio_02[0].checked;//no tags
+parent.U.document.UF.creator_radio_02[1].checked = document.DF.creator_radio_02[1].checked;//yes
+parent.U.document.UF.creator_radio_02[2].checked = document.DF.creator_radio_02[2].checked;//yes, not a person
+///////////parent.U.document.UF.creator_radio_02[3].checked = document.DF.creator_radio_02[3].checked;//unknown, anonymous not valid
+parent.U.document.UF.creator_lastname_02.value = document.DF.creator_lastname_02.value;
+parent.U.document.UF.creator_firstname_02.value = document.DF.creator_firstname_02.value;
+parent.U.document.UF.creator_middlename_02.value = document.DF.creator_middlename_02.value;
+parent.U.document.UF.creator_dob_02.value = document.DF.creator_dob_02.value;
+parent.U.document.UF.creator_dod_02.value = document.DF.creator_dod_02.value;
+parent.U.document.UF.creator_description_02.value = document.DF.creator_description_02.value;
+parent.U.document.UF.creator_role_02.value = document.DF.creator_role_02.value;
+
+///PageOneThirdName
+parent.U.document.UF.name_authority_03_radio[0].checked = document.DF.name_authority_03_radio[0].checked;
+parent.U.document.UF.name_authority_03_radio[1].checked = document.DF.name_authority_03_radio[1].checked;
+parent.U.document.UF.name_authority_03_radio[2].checked = document.DF.name_authority_03_radio[2].checked;
+parent.U.document.UF.name_authority_03.value = document.DF.name_authority_03.value;
+parent.U.document.UF.creator_radio_03[0].checked = document.DF.creator_radio_03[0].checked;//no tags
+parent.U.document.UF.creator_radio_03[1].checked = document.DF.creator_radio_03[1].checked;//yes
+parent.U.document.UF.creator_radio_03[2].checked = document.DF.creator_radio_03[2].checked;//yes, not a person
+//////////parent.U.document.UF.creator_radio_03[3].checked = document.DF.creator_radio_03[3].checked;//unknown, anonymous not valid
+parent.U.document.UF.creator_lastname_03.value = document.DF.creator_lastname_03.value;
+parent.U.document.UF.creator_firstname_03.value = document.DF.creator_firstname_03.value;
+parent.U.document.UF.creator_middlename_03.value = document.DF.creator_middlename_03.value;
+parent.U.document.UF.creator_dob_03.value = document.DF.creator_dob_03.value;
+parent.U.document.UF.creator_dod_03.value = document.DF.creator_dod_03.value;
+parent.U.document.UF.creator_description_03.value = document.DF.creator_description_03.value;
+parent.U.document.UF.creator_role_03.value = document.DF.creator_role_03.value;
+return;
+}
+
+
+function load_DF_form() {
+
+////////alert("load_DF_form()");
+
+//first time load title
+if ( parent.U.document.UF.title.value == "" ) {
+	document.DF.title.value = parent.adb_itemtitle;
+}else{
+	document.DF.title.value = parent.U.document.UF.title.value ;
+}
+
+
+///PageOneFirstName
+document.DF.name_authority_01_radio[0].checked = parent.U.document.UF.name_authority_01_radio[0].checked ;
+document.DF.name_authority_01_radio[1].checked = parent.U.document.UF.name_authority_01_radio[1].checked ;
+document.DF.name_authority_01_radio[2].checked = parent.U.document.UF.name_authority_01_radio[2].checked ;
+document.DF.name_authority_01.value = parent.U.document.UF.name_authority_01.value ;
+document.DF.creator_radio_01[0].checked = parent.U.document.UF.creator_radio_01[0].checked ;//yes
+document.DF.creator_radio_01[1].checked = parent.U.document.UF.creator_radio_01[1].checked ;//yes, not a person
+document.DF.creator_radio_01[2].checked = parent.U.document.UF.creator_radio_01[2].checked ;//unknown
+document.DF.creator_radio_01[3].checked = parent.U.document.UF.creator_radio_01[3].checked ;//anonymous
+document.DF.creator_lastname_01.value = parent.U.document.UF.creator_lastname_01.value ;
+document.DF.creator_firstname_01.value = parent.U.document.UF.creator_firstname_01.value ;
+document.DF.creator_middlename_01.value = parent.U.document.UF.creator_middlename_01.value ;
+document.DF.creator_dob_01.value = parent.U.document.UF.creator_dob_01.value ;
+document.DF.creator_dod_01.value = parent.U.document.UF.creator_dod_01.value ;
+document.DF.creator_description_01.value = parent.U.document.UF.creator_description_01.value ;
+document.DF.creator_role_01.value = parent.U.document.UF.creator_role_01.value ;
+
+///PageOneSecondName
+document.DF.name_authority_02_radio[0].checked = parent.U.document.UF.name_authority_02_radio[0].checked ;
+document.DF.name_authority_02_radio[1].checked = parent.U.document.UF.name_authority_02_radio[1].checked ;
+document.DF.name_authority_02_radio[2].checked = parent.U.document.UF.name_authority_02_radio[2].checked ;
+document.DF.name_authority_02.value = parent.U.document.UF.name_authority_02.value ;
+document.DF.creator_radio_02[0].checked = parent.U.document.UF.creator_radio_02[0].checked ;//no tags
+document.DF.creator_radio_02[1].checked = parent.U.document.UF.creator_radio_02[1].checked ;//yes
+document.DF.creator_radio_02[2].checked = parent.U.document.UF.creator_radio_02[2].checked ;//yes, not a person
+//////////document.DF.creator_radio_02[3].checked = parent.U.document.UF.creator_radio_02[3].checked ;//unknown, anonymous not valid
+document.DF.creator_lastname_02.value = parent.U.document.UF.creator_lastname_02.value ;
+document.DF.creator_firstname_02.value = parent.U.document.UF.creator_firstname_02.value ;
+document.DF.creator_middlename_02.value = parent.U.document.UF.creator_middlename_02.value ;
+document.DF.creator_dob_02.value = parent.U.document.UF.creator_dob_02.value ;
+document.DF.creator_dod_02.value = parent.U.document.UF.creator_dod_02.value ;
+document.DF.creator_description_02.value = parent.U.document.UF.creator_description_02.value ;
+document.DF.creator_role_02.value = parent.U.document.UF.creator_role_02.value ;
+
+///PageOneThirdName
+document.DF.name_authority_03_radio[0].checked = parent.U.document.UF.name_authority_03_radio[0].checked ;
+document.DF.name_authority_03_radio[1].checked = parent.U.document.UF.name_authority_03_radio[1].checked ;
+document.DF.name_authority_03_radio[2].checked = parent.U.document.UF.name_authority_03_radio[2].checked ;
+document.DF.name_authority_03.value = parent.U.document.UF.name_authority_03.value ;
+document.DF.creator_radio_03[0].checked = parent.U.document.UF.creator_radio_03[0].checked ;//no tags
+document.DF.creator_radio_03[1].checked = parent.U.document.UF.creator_radio_03[1].checked ;//yes
+document.DF.creator_radio_03[2].checked = parent.U.document.UF.creator_radio_03[2].checked ;//yes, not a person
+//////////document.DF.creator_radio_03[3].checked = parent.U.document.UF.creator_radio_03[3].checked ;//unknown, anonymous not valid
+document.DF.creator_lastname_03.value = parent.U.document.UF.creator_lastname_03.value ;
+document.DF.creator_firstname_03.value = parent.U.document.UF.creator_firstname_03.value ;
+document.DF.creator_middlename_03.value = parent.U.document.UF.creator_middlename_03.value ;
+document.DF.creator_dob_03.value = parent.U.document.UF.creator_dob_03.value ;
+document.DF.creator_dod_03.value = parent.U.document.UF.creator_dod_03.value ;
+document.DF.creator_description_03.value = parent.U.document.UF.creator_description_03.value ;
+document.DF.creator_role_03.value = parent.U.document.UF.creator_role_03.value ;
+
+
+return;
+
+}
+
+
+function buildModsTags(N) {
+
+////do this first so current values are loaded regardless of validation status
+load_UF_form();
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+//before writing MODS TAGS, make sure all required fields are populated
+//checkAllRequired... true  validation sets validation status to 1  -- complete
+//checkAllRequired... false validation sets validation status to 0  -- incomplete
+
+if (!checkAllRequiredElements_Page_01() ) return;
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+var num = new Number();
+    num = N;
+
+if (num == 10) {
+        alert("Values have been saved.");
+        return;
+        }
+
+//alert("got to here")
+
+var aps= new Array();
+var hps= new Array();
+var cps= new Array();
+
+    hps = buildTagsArray_header(num);
+    aps = buildTagsArray_page_01(num);
+    cps = buildTagsArray_closer(num);
+
+
+   
+
+//=================================================
+
+document.write('<input type="button" name="BBACK" onclick="javascript: history.back()" value="BACK"><P>');
+document.write('<font face="Elephant" size="3" color="a00000">'+parent.adb_project_name+' Workbook, Page 1<p></font>');
+//PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+document.write( "This is the generated xml script.  Values you entered are highlighted in red.<HR>");
+
+//document.write('< ? xml version="1.0"  ? > \r\n'); 
+///document.write("Content-Type: text/xml ")
+
+for (i=0;i<hps.length;i++) {
+	var vps = new String(hps[i]);
+ 	document.write("<br>"+vps);
+
+	}
+
+
+
+for (i=0;i<aps.length;i++) {
+	var vps = new String(aps[i]);
+	document.write("<br>"+vps);
+
+	}
+
+
+
+for (i=0;i<cps.length;i++) {
+	var vps = new String(cps[i]);
+	document.write("<br>"+vps);
+
+	}
+
+
+}//end function
+
+
+
+
+
+</script>
+	
+
+
+</body>
+</html>
+

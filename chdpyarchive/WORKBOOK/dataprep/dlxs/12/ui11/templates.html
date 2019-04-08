@@ -1,0 +1,180 @@
+<html>
+<head>
+<title>HTML Templates / Interfaces in DLXS</title>
+
+
+
+ <link href="../dlxsdocs.css" rel="stylesheet" type="text/css">
+</head>         <body>
+<div class="pageTitle">[DRAFT] HTML Templates / Interfaces</div>
+
+<p>The user interface in the DLXS middleware is realized by a combination of interrelated 
+  techniques:</p>
+<ul>
+  <li><a href="#templates">HTML Templates</a></li>
+  <li><a href="#procins">Processing Instructions</a></li>
+  <li><a href="#procinsmodule">ProcIns Module</a></li>
+</ul>
+
+
+
+<a name="templates"></a><h2>HTML Templates</h2>
+<p>HTML templates are used to deliver dynamic content from the CGI within a prescribed
+   HTML structure. In general, there are as many templates per class as there
+  are 
+  distinct page types in the overall functional architecture of the class. A
+  collection  implemented with the TextClass middleware, for example, can include
+  up to 33 
+  template files for delivering, among other pages, multiple search forms, results
+   displays, bibliographic headers and tables of contents, search histories and
+  
+  full text displays. Each HTML template is a combination of static HTML code
+   for areas of content that are unchanging from page to page, and processing
+  instructions 
+  that are either replaced by content provided by the CGI or used to remove content
+   or code from the template before delivery. Processing instructions can deliver
+  
+  simple strings, or large combinations of text and HTML code, depending on the
+   circumstance, but the practice has been to minimize the amount of HTML code
+  
+  replaced via a PI because this allows for easier maintenance of graphical interface
+   at the template level. Otherwise, the only rule governing template planning
+  
+  is that, when parsed, it should deliver valid or acceptable HTML to the browser.
+</p>
+
+
+
+<a name="templatesfallback"></a><h2>Fallback Mechanism</h2>
+<p>DLXS employs a fallback mechanism to determine whether to use the default templates, javascript files, or graphics. in DLXSROOT/web/c/class or to prefer a custom template in DLXSROOT/web/c/collection or DLXSROOT/web/g/group. This mechanism allows individual collections or collection groups to have an appearance different from the default.  Currently the CSS files do not participate in this mechanism.
+</p>
+<p>
+There is enhanced template debugging available via the debug=tpl URL
+parameter. Here's the basic idea of how fallback works:</p>
+<ol>
+<li>If the URL has a tpl= parameter the filename
+   specified as its value is searched for according to
+   the fallback rules outlined in 2. through 5. below.</li> 
+<li>If the URL has one 'c' parameter the mode is "singlecoll" and the fallback is
+<ol>
+    <li>collection webdir</li>
+    <li>default group webdir</li>
+    <li>class webdir</li>
+</ol></li>
+
+<li>If the URL has more than one 'c' parameter the mode is "colls"
+  there is no fallback: always use the class webdir</li>
+
+<li>If the url has a 'g' parameter and no 'c' parameters or a 'g' parameter and more than one 'c' parameter the mode is "group and the fallback is:
+<ol>
+<li>group webdir</li>
+<li>class webdir</li></ol></li>
+
+<li>If the URL parameter has a 'g' parameter an *one* c parameter the mode is "groupcoll" and the fallback is:
+<ol>      
+              <li> collection webdir</li>
+              <li> group webdir</li>
+              <li> default group webdir</li>
+              <li> class webdir</li></ol></li>
+
+<li>Allows the g (group) parameter to "ride along" with the 
+c (coll) parameter to allow a logical branch if the 'xc' 
+(cross-collection) parameter is set
+<ul>
+<li>If the 'xc' parameter is set the situation is one where
+the user was in a multiple collection environment such as
+a group selection page listing several collections but just
+selected one collection to search.  So we want to use 
+the group templates.  To accomplish this, if 'xc' is set on the URL,
+Collection Resolution changes the mode from "groupcoll" to "group"
+(case 4.) so fallback will select group templates, if available.</li>
+<li>If the 'xc' parameter is <strong>not</strong> set the situation is one where
+the user was in a multiple collection environment such as
+a group selection page listing several collections but <strong>navigated</strong>
+to a single collection home page to focus on just one collection.
+Here we want to use collection templates and fall back to the 
+group templates if no collection templates are available.
+The is accomplished by leaving the mode as  "groupcoll" (case 5.).</li></ul></li>
+</ol>
+
+<p>
+Finally, there is support for the "defaultgroupid" field in the database on a per collection
+basis for all classes.  This lets collections participate in a
+default group to acquire templates in the absence
+of either collection templates if in  "singlecoll" mode
+or collection or group templates if in "groupcoll" mode.</p>
+
+
+
+<a name="procins"></a><h2>Processing Instructions</h2>
+<p>HTML templates are combined with processing instruction tags that are parsed 
+  and replaced by the middleware. Processing instruction tags are of the form</p>
+<blockquote>
+  <p><span>&lt;?PI_IDENTIFIER_NAME [modifiername=&quot;value&quot;]*&gt;</span></p>
+</blockquote>
+<p>where all identifier names are preceded by a question mark and are represented 
+  in all capital letters with underscore characters. Zero or more modifier name/value 
+  pairs can be included to provide additional parameters. Here are two example 
+  PI tags:</p>
+<blockquote>
+  <table border="1" cellspacing="0" cellpadding="5" width="85%" style="border-width: 1px; border-style: solid; border-color: #CCCCCC">
+<tbody>
+    <tr>
+      <td valign="TOP" style="border-width: 1px; border-style: solid; border-color: #CCCCCC"><code>&lt;?TITLE&gt;</code></td>
+    <td style="border-width: 1px; border-style: solid; border-color: #CCCCCC">Appears witin <code>&lt;TITLE&gt;&lt;/TITLE&gt;</code> 
+      tags and supplies a collection title string.</td>
+  </tr>
+  <tr>
+      <td style="border-width: 1px; border-style: solid; border-color: #CCCCCC" valign="TOP"><code>&lt;?DOC_ROOT mode=&quot;single&quot;&gt;</code></td>
+    <td style="border-width: 1px; border-style: solid; border-color: #CCCCCC">Can appear within the <code>href</code> 
+      or <code>src</code> attribute values in 
+      individual collection templates to return the appropriate local root path 
+      of that collection.</td>
+  </tr></tbody>
+</table></blockquote>
+<p>Processing instruction tags are not, in all cases, a standardized API mechanism 
+  to collection information, though they share some of those characteristics. 
+  In general, the PIs are more likened to a customized API to the middleware itself. 
+  In this regard, PIs perform two general types of functionality:</p>
+<p><strong>PIs may act as simple variable names</strong>: As in <code>&lt;?TITLE&gt;</code> 
+  above, replaced by simple strings or even large blocks of HTML code and text; 
+</p>
+<p><strong>PIs may act as include/exclude instructions</strong>: A pair of PI tags may instruct 
+  the middleware to include or exclude code contained in the template, depending 
+  on specific context. </p>
+
+<blockquote>
+<p><code>&lt;?INCLUDE_COLL_SPECIFIC_CONTENT id="navbarbrowselink"&gt;<br />
+<br />
+ &lt;td id="browsetab" width="90" height="23" align="center" nowrap&gt;<br />
+ &lt;span class="navlinks"&gt;<br />
+&lt;a id="browselink"
+href="&lt;?COLL_SPECIFIC_CONTENTid="navbarbrowselink"cginame="text-idx"&gt;"
+class="nav"
+onMouseOver="P7_autoLayers(0)"&gt;Browse&lt;/a&gt;<br />
+</code> <code>&lt;/span&gt;<br />
+&lt;/td&gt;<br />
+&lt;td id="sep3" width="1"&gt;<br />
+&lt;img src="/t/text/graphics/plug.gif" width="1" height="1" border="0"
+alt="design graphic"&gt;<br />
+&lt;/td&gt;<br />
+<br />
+ &lt;?INCLUDE_COLL_SPECIFIC_CONTENT id="navbarbrowselink"&gt;</code></p>
+</blockquote>
+
+<p>The code example above is from the table that contains cells navigation bar tabs
+and tab divisions. The HTML wrapped within the
+<code>&lt;?INCLUDE_COLL_SPECIFIC_CONTENT&gt;</code> PI tags is for a browse feature
+that is not supported by all collections. The PIs are used to remove the code in the
+case of collections that do not need this HTML, and to provide the appropriate url
+for the browse feature for collections that do have browse features.</p>
+
+
+<a name="procinsmodule"></a><h2>ProcIns Module</h2>
+<p>The <tt>ProcIns.pm</tt> module is an object-oriented DLXS middleware Perl module that handles the processing of PIs found in HTML templates. For more information see <a href="../program/libmodules.html"><tt>ProcIns.pm</tt></a>.
+</p>
+
+
+</body>
+
+</html>

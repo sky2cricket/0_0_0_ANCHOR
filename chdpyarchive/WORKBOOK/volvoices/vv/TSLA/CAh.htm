@@ -1,0 +1,164 @@
+<html>
+<head>
+<title>vv_popupCA</title>
+
+<link href="../vv_workbook.css" type="text/css" rel="stylesheet">
+
+
+
+
+<script language="javascript">
+
+var select_id= new String();
+function get_select_id() {
+
+var str = new String();
+    str = parent.location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  parent.window.opener.location.href="+parent.window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=get_select_id();
+
+
+
+var strSelect_PN_A = new String('');
+
+
+strSelect_PN_A = '<select name="aaa"  size="24" style="font-size:10px"> \r\n'
+	+'<option value="0" selected>No value selected</option> \r\n'
+		
+
+
+
+
+
+
+	+'<option>HALBROOK HOTEL (DICKSON, TENN.)</option>  \r\n'
+	+'<option>HALE\'S BAR SCHOOL (TENN.)</option>  \r\n'
+	+'<option>HALL-DONAHUE FUNERAL HOME (KNOXVILLE, TENN.)</option>  \r\n'
+	+'<option>HALL-MOODY INSTITUTE (MARTIN, TENN.)</option>  \r\n'
+	+'<option>HARDEMAN ACADEMY (WILLIAMSON COUNTY, TENN.)</option>  \r\n'
+	+'<option>HARPETH HALL SCHOOL (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>HARRISON FUNERAL HOME (HAWKINS COUNTY, TENN.)</option>  \r\n'
+	+'<option>HARTMUS & CO. (MEMPHIS, TENN.)</option>  \r\n'
+	+'<option>HARTSVILLE FEMALE INSTITUTE (HARTSVILLE, TENN.)</option>  \r\n'
+	+'<option>HAWKINS MORTUARY (LOUDON COUNTY, TENN.)</option>  \r\n'
+	+'<option>HAY LONG HIGH SCHOOL (MOUNT PLEASANT, TENN.)</option>  \r\n'
+	+'<option>HEBREW CEMETERY (CHATTANOOGA, TENN.)</option>  \r\n'
+	+'<option>HENDERSONVILLE PRESBYTERIAN CHURCH (HENDERSONVILLE, TENN.)</option>  \r\n'
+	+'<option>HERMITAGE (HERMITAGE, TENN.)</option>  \r\n'
+	+'<option>HICKERSON & POWERS (FIRM : MANCHESTER, TENN.)</option>  \r\n'
+	+'<option>HICKS CHAPEL SCHOOL (WHITWELL, TENN.)</option>  \r\n'
+	+'<option>HIGBEE SCHOOL (MEMPHIS, TENN.)</option>  \r\n'
+	+'<option>HIGHLANDER FOLK SCHOOL (MONTEAGLE, TENN.)</option>  \r\n'
+	+'<option>HIGHLANDER RESEARCH AND EDUCATION CENTER (KNOXVILLE, TENN.)</option>  \r\n'
+	+'<option>HILLSBORO HIGH SCHOOL (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>HILLTOP CHRISTIAN CENTER FOR GIRLS (COLLEGEDALE, TENN.)</option>  \r\n'
+	+'<option>HINDS CREEK BAPTIST CHURCH (UNION COUNTY, TENN.)</option>  \r\n'
+	+'<option>HIWASSEE COLLEGE (MADISONVILLE, TENN.)</option>  \r\n'
+	+'<option>HOLLEY GAMBLE FUNERAL HOME (CLINTON, TENN.)</option>  \r\n'
+	+'<option>HOLY TRINITY EPISCOPAL CHURCH (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>HOPEWELL BAPTIST CHURCH OF CHRIST (CANNON COUNTY, TENN.)</option>  \r\n'
+	+'<option>HOPEWELL PRESBYTERIAN CHURCH (JEFFERSON COUNTY, TENN.)</option>  \r\n'
+	+'<option>HOPEWELL PRESBYTERIAN CHURCH (RUTHERFORD COUNTY, TENN.)</option>  \r\n'
+	+'<option>HOWARD H. BAKER, JR., UNITED STATES COURTHOUSE (KNOXVILLE, TENN.)</option>  \r\n'
+	+'<option>HOWARD SCHOOL (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>HOWARD/WALKER CEMETERY (BLEDSOE COUNTY, TENN.)</option>  \r\n'
+	+'<option>HUGHES PUBLIC LIBRARY (RUGBY, TENN.)</option>  \r\n'
+	+'<option>HUME SCHOOL (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>HUME-FOGG HIGH SCHOOL (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>HUNDRED OAKS CASTLE (WINCHESTER, TENN.)</option>  \r\n'
+	+'<option>HUNTER CEMETERY (MT. PLEASANT, TENN.)</option>  \r\n'
+	+'<option>HUNTER MEETING HOUSE (MT. PLEASANT, TENN.)</option>  \r\n'
+	+'<option>HUNTSVILLE HIGH SCHOOL (TENN.)</option>  \r\n'
+	+'<option>HURRICANE SPRINGS HOTEL CO. (TULLAHOMA, TENN.)</option>  \r\n'
+
+
+
++'</select> \r\n';
+	
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+<body class="background">
+
+
+
+
+<form name="FormOne" >
+
+
+<div name="SS" id="SS">
+<script>
+document.write(
+
+	 '<table border="1" cellpadding="4" cellspacing="0"  width="90%">\r\n'
+	+'<tr><td  bgcolor="ddeeff">\r\n'
+	///+'vv_functions.htm called by '+select_id+' <br>\r\n'
+	+'<b>Select Corporate Author H</b> \r\n'
+	+'</td></tr><tr><td bgcolor="ddeeff"> \r\n' 
+	+ strSelect_PN_A
+
+	+'</td></tr></table> \r\n'
+	///+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+</script>
+	
+</div>
+
+<input type="button" onclick="showSelection();" name="B1" value="Corporate Author">
+
+</form>
+
+<script>
+
+
+
+                  
+
+function showSelection() {
+
+val = new String();
+
+for ( i=0; i< document.FormOne.aaa.length; i++ ) {
+
+if ( document.FormOne.aaa[i].selected == true ) {
+  	val = document.FormOne.aaa[i].text;
+	break;
+	}
+else { val = "you never selected anything"; 
+	}
+
+}
+////////////////////////alert ("You selected " +val);
+
+switch ( select_id ) {
+
+case  "subject_name_lcsh_01" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_01.value=val;
+	parent.window.close();
+	break;
+
+case  "subject_name_lcsh_02" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_02.value=val;
+	parent.window.close();
+	break;
+}//end switch
+
+}///end function
+</script>
+

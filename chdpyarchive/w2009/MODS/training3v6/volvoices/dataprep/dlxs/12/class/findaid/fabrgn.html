@@ -1,0 +1,65 @@
+<html>
+<head>
+<title>Fabricated Regions in Findaid Class</title>
+<link href="../../dlxsdocs.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="pageTitle">Fabricated regions in Findaid Class</div>
+<p>When you use XPAT in combination with xmlrgn and a DTD, or multirgn and a
+   tags file, you are identifying the elements and attributes in the DTD or tags
+   file as "regions," containers of content rather like fields in a database.
+   These separate regions are built into the regions file (collid.rgn) and are
+   identified in the data dictionary (collid.dd). This is what is happening when
+   you are running xmlrgn. </p>
+<p>However, sometimes the things you want to identify collectively aren't so
+   handily identified as elements in the DTD. For example, the Findaid Class
+   search interface can allow the user to search in Names regions. Perhaps for
+   your collection you want Names to include persname, corpname, geoname. By
+   creating an XPAT query that ORs these regions, you can have XPAT index all
+   the regions that satisfy the OR-ed query. For example: 
+<pre>(region "name" + region "persname" + region "corpname" + region "geoname" +
+region "famname")</pre>
+</P>
+<p>Once you have a query that produces the results you want, create a file for
+   export, export it, and sync it:</p>
+<pre>{exportfile "$DLXSROOT/idx/c/collid/names.rgn"} export ~sync "names" </pre>
+<p>Why fabricate regions? Why not just put these queries in the map file and
+   call them names? While you could, it's probably worth your time to build these
+   succinctly-named and precompiled regions; query errors are more easily identified
+   in the index building than in the CGI, and XPAT searches can be simpler and
+   quicker for terms within the prebuilt regions. </p>
+<p>Fabricated regions within the Findaid Class can be found in the extra.srch
+   file for the sample collection at <tt>$DLXSROOT/prep/s/samplefa/samplefa.extra.srch</tt>.
+   As with any other elements used in the interface for a given collection, fabricated
+   regions used must also be represented in the collmgr entry and the map file
+   for that collection. </p>
+<h1>Fabricated regions required in Findaid Class</h1>
+<ul>
+   <li>main</li>
+   <li>maintitle</li>
+   <li>mainauthor</li>
+   <li>mainabstract</li>
+   <li>colltitle</li>
+   <li>colldate</li>
+   <li>callnum</li>
+   <li>contentslist</li>
+   <li>contentslist-t</li>
+   <li>admininfo</li>
+   <li>admininfo</li>
+   <li>admininfo-t</li>
+   <li>frontmatter-t</li>
+   <li>bioghist-t</li>
+   <li>arrangement-t</li>
+   <li>controlaccess-t</li>
+   <li>controlaccess</li>
+   <li>scopecontent-t</li>
+   <li>summaryinfo-t</li>
+   <li>summaryinfo</li>
+</ul>
+<h1>Fabricated regions commonly found in Findaid Class</h1>
+<ul>
+   <li>subjects</li>
+   <li>names</li>
+</ul>
+</body>
+</html>

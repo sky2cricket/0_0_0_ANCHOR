@@ -1,0 +1,867 @@
+
+<html>
+<head>
+<title>
+page_01
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+<!---
+//vv_compose_page_01.js from vv_compose_tags.js    Dec 8 2009
+//accounting for new definitions in page_upper_091130.htm
+//written in conjunction with vv_reload_page_01.js
+//and called by page_01b.htm
+//as part of w2009 workbook
+--->
+
+<script language=javascript src="vv_formvardebug.js"></script>
+<!---
+<script language=javascript src="vv_functions.js"></script>
+<script language=javascript src="vv_functions_radio.js"></script>
+<script language=javascript src="vv_validation.js"></script>
+<script language=javascript src="vv_compose_tags.js"></script>
+--->
+<script language=javascript src="vv_compose_page_01.js"></script>
+
+<script>
+function add_remove(strN,AR){
+var sN = new String(strN);
+alert("add_remove("+sN+","+AR+")");
+
+var s0=new String();
+    s0="document.DF.creator_exist_"+sN+".value";
+var op = new String();
+    op = "='"+AR+"';";
+var eval_s0=new String();
+    eval_s0=s0+op;
+eval(eval_s0);
+return;
+}//end function add_remove(strN,AR)
+</script>
+
+</head>
+
+<script>document.write('<body onload="load_DF_form();"  bgcolor="'+parent.adb_background_color+'" >');
+
+function clear_name_parts(num) {
+var N = new String(num);
+var last   = new String();//same for corporate and complexpers and pers
+var given  = new String();//combine first and middle
+    last   = "document.forms[0].creator_lastname_0"+N+".value";
+    given  = "document.forms[0].creator_given_0"+N+".value";
+
+var stLast = last  +'="";';
+var stGiven = given +'="";';
+
+eval(stLast);
+eval(stGiven);
+}
+
+
+</script>
+
+<font face="arial" size="3">
+<center><font face="arial">
+<h2> <script> document.write(parent.adb_project_name); </script>
+ Workbook Page 1</h2>
+</center>
+
+<script>
+///Civil War Salt Peter Mining None, LCNAF, ULAN. 
+</script>
+
+
+
+<form name="DF"  >
+
+<table  class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="99aabb">
+<tr class="bgstandard" ><td colspan="3">
+
+Required Fields are <u>underlined</u>.
+Non-Required Fields are not underlined.
+w2009 v6  page_01b.htm (use with page_upper_091130.htm)
+</td></tr>
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>MODS LABEL</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+<tr class="bgstandard" >
+<td class="label13u">
+Title 
+</td>
+<td>&nbsp;
+
+<!---Civil War Salt Peter Mining--->
+<input type="text" name="title" value="" size="36" 
+class="required300w"
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+>
+
+<font face='arial' size='1'>
+</td>
+<td>&nbsp</td>
+</tr>
+<tr class="greenrow">
+<td height="08" colspan="3"></td></tr>
+<tr class="bgstandard"  >
+<td colspan="3"><font face="arial" size="3">Three name and name attributes blocks allow for creation of
+up to 3 sets of mods:name tags.
+<br>The following Name Authorities are available:
+<li> LCNAF -- Complete Description at: <a href="http://authorities.loc.gov/" target="_blank">http://authorities.loc.gov/</a>
+<li> ULAN -- Complete Description at: <a href="http://www.getty.edu/research/conducting_research/vocabularies/ulan/" target="_blank">http://www.getty.edu/research/conducting_research/vocabularies/ulan/</a>
+</td><!---td>&nbsp;</td--->
+</tr>
+
+<tr class="greenrow">
+<td height="08" colspan="3"></td></tr>
+
+<tr class="bgstandard"   xbgcolor="bb8844">
+<td class="label13nou">
+Name Buttons
+</td>
+<td>
+<input type="button" name="add_creatorname_01" value="Add Creator #1" 
+class="button160w" onclick="add_remove('01','yes')">&nbsp;&nbsp;
+<input type="button" name="remove_creatorname_01" value="Remove Creator #1" 
+class="button160w" onclick="add_remove('01','no')">&nbsp;&nbsp;<p>
+
+<input type="button" name="name_01a_callbutton" value="Add/Edit Personal Name #1"
+onclick="parent.L.populate_name_fields2('01','a',700,600)"
+class="button160w">&nbsp;
+
+<input type="button" name="name_01b_callbutton" value="Add/Edit Complex Personal Name #1"
+onclick="parent.L.populate_name_fields2('01','b',700,600)"
+class="button200w">&nbsp;
+
+<input type="button" name="name_01c_callbutton" value="Add/Edit Corporate Name #1"
+onclick="parent.L.populate_name_fields2('01','c',700,600)"
+class="button160w">&nbsp;
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard"   xbgcolor="bb8844">
+<td class="label13nou">
+Name Help 
+</td>
+<td>&nbsp;<font face="arial" size="2"><b>>> <script>document.write(parent.adb_itemcreator)</script> <<</b></font>
+<br><font face='arial' size='1'>&nbsp;Name associated with the creation of this object as reported in the Admin DB.
+<br>&nbsp;Please use this a a guide in filling out the Name input boxes below.
+
+<td>&nbsp</td>
+</tr>
+
+<script>
+var creator_01_hide= new String(" ");
+    creator_01_hide += '<input type="hidden" name="name_type_01" value="">'
+	+'<input type="hidden" name="name_authority_01" value="">'
+	+'<input type="hidden" name="namepart_family_01" value="">'
+	+'<input type="hidden" name="creator_lastname_01" value="">'
+	+'<input type="hidden" name="namepart_given_01" value="">'
+	+'<input type="hidden" name="creator_givenname_01" value="">'
+	+'<input type="hidden" name="namepart_date_01" value="">'
+	+'<input type="hidden" name="creator_fulldatestr_01" value="">'
+	+'<input type="hidden" name="creator_description_01" value="">'
+	+'<input type="hidden" name="creator_rolea_auth_01" value="">'
+	+'<input type="hidden" name="creator_rolea_01" value="">'
+	+'<input type="hidden" name="creator_roleb_auth_01" value="">'
+	+'<input type="hidden" name="creator_roleb_01" value="">'
+	+'<input type="hidden" name="creator_rolec_auth_01" value="">'
+	+'<input type="hidden" name="creator_rolec_01" value="">'
+	;
+
+</script>
+<tr class="bgstandard"  xbgcolor="bb8844">
+<td class="label13u">
+Primary Name Type
+</td>
+<td valign="top"><font face="arial" size="1">IS THE PRIMARY NAME ASSOCIATED WITH THE CREATION OF THIS RESOURCE KNOWN?
+<p><input type="text" size="4" name="creator_exist_01" value="no"> creator_exist_01
+<br>
+<script>
+if (document.DF.creator_exist_01.value=="no"){
+	document.write(creator_01_hide);
+}else{
+	document.write("creator_01_show");
+</script>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input class="notrequirednw" type="text" size="16" value="" xREADONLY name="name_type_01"> name_type_01  
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard"  xbgcolor="bb8844">
+<td class="label13nou">
+Name Authority
+</td>
+<td><font face="arial" size="1">
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input class="notrequirednw" type="text" size="6" value="" xREADONLY name="name_authority_01"> name_authority_01 
+Please note, 
+name authority only applies to personal names or corporate names, not unknown or anonymous.
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard"   xbgcolor="bb8844">
+<td class="label13nou">
+<u>Last Name</u> <br>and Name Parts
+</td>
+<td valign="top">
+<table border="0" cellpadding="1" cellspacing="0">
+
+<tr class="bgstandard" ><td colspan="4"><font face='arial' size='1'>&nbsp;
+namePart type&nbsp;&nbsp;&nbsp;&nbsp;namePart value<br>&nbsp;
+<input type="text" name="namepart_family_01" value="" size="4">&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="text" name="creator_lastname_01" value="Smith" size="58" 
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+onblur="clear_complex_name(1);"
+class="requirednw">
+Last Name/Corporate Name/Complex Personal Name
+</td></tr>
+<tr class="bgstandard" ><td colspan="4"><font face='arial' size='1'>&nbsp;
+<input type="text" name="namepart_given_01" value="" size="4">&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="text" name = "creator_givenname_01" value="" size="58" 
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+class="notrequirednw"> Given Name (first and middle name for personal only)
+
+</td></tr></table>
+
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard"   xbgcolor="bb8844">
+<td class="label13nou">
+Vital Dates
+</td>
+<td valign="top">
+<table border="0" cellpadding="1" cellspacing="0">
+<tr class="bgstandard" ><td valign="middle"><font face='arial' size='1'>
+&nbsp;
+<input type="text" name="namepart_date_01" value="" size="4">&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="text" name = "creator_fulldatestr_01" value="" size="10"  class="notrequirednw" xREADONLY> &nbsp; use 4 digit year only (birth-death)
+
+
+</td>
+<td rowspan="1" width="20">&nbsp;</td>
+</tr>
+
+</table>
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard"   xbgcolor="bb8844">
+<td class="label13nou">
+ Name Description 
+</td>
+<td>&nbsp;
+<input type="text" name="creator_description_01" value="" size="36" class="notrequired300w"
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+><font face='arial' size='1'> &nbsp;&nbsp;&nbsp;Description to distinguish from other names.   Example: American artist, 20th century.</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard"  >
+<td class="label13u">
+Role 
+</td>
+<td>&nbsp;
+
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td align="left"><font face="arial" size="1">role authority</font></td>
+    <td align="left"><font face="arial" size="1">role description</font></td></tr>
+<tr><td>
+<input type="text" name="creator_rolea_auth_01" value="" size="7" > &nbsp;
+</td><td>
+<input type="text" name="creator_rolea_01" value="" size="12" xREADONLY class="required300w">
+</td></tr> <tr><td>
+<input type="text" name="creator_roleb_auth_01" value="" size="7" > &nbsp;
+</td><td>
+<input type="text" name="creator_roleb_01" value="" size="12" xREADONLY class="notrequired300w">
+</td></tr> <tr><td>
+<input type="text" name="creator_rolec_auth_01" value="" size="7" > &nbsp;
+</td><td>
+<input type="text" name="creator_rolec_01" value="" size="12" xREADONLY class="notrequired300w">
+</td></tr> </table>
+
+</td>
+<td>&nbsp</td>
+</tr>
+<script>
+}//end else for if (document.DF.creator_exist_01.value=="no")
+</script>
+<tr class="bgstandard" >
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+
+<tr class="greenrow">
+<td height="08" colspan="3"></td></tr>
+
+<tr class="bgstandard"  xbgcolor="bb8844">
+<td class="label13nou">
+Second Name Type
+</td>
+<td valign="top"><font face="arial" size="1">IS THERE A SECOND NAME ASSOCIATED WITH THE CREATION OF THIS RESOURCE?
+<p>
+<input type="text" size="4" name="creator_exist_02" value="no"> creator_exist_02
+<br><input class="notrequirednw" type="text" size="16" value="" xREADONLY name="name_type_02"> name_type_02  
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard"  xbgcolor="bb8844">
+<td  class="label13nou">
+Name Authority
+</td>
+<td><font face="arial" size="1">
+<!---
+former name authority 02 radio buttons
+--->
+<br>&nbsp;<input type="text" class="notrequirednw" size="6" value="" xREADONLY name="name_authority_02"> Please note, name authority only applies to personal names or corporate names.
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+
+<tr class="bgstandard"   xbgcolor="bb8844">
+<td  class="label13nou">
+Last Name  <br>and Name Parts
+</td>
+<td valign="top">
+<table border="0" cellpadding="1" cellspacing="0">
+<tr class="bgstandard" ><td colspan="4"><font face='arial' size='1'>&nbsp;
+<input type="text" name="creator_lastname_02" value="Smith" size="58" 
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+class="requirednw">
+Last Name/Corporate Name.
+</td></tr>
+<tr class="bgstandard" ><td><font face='arial' size='1'>&nbsp;
+<input type="text" name = "creator_givenname_02" value="" size="58" 
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+onblur="clear_complex_name(2);"
+class="notrequirednw"> Given Name (first and middle for personal only)
+</td></tr></table>
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard"   xbgcolor="bb8844">
+<td  class="label13nou">
+Vital Dates
+</td>
+<td valign="top">
+<table border="0" cellpadding="1" cellspacing="0">
+<tr class="bgstandard" ><td valign="middle"><font face='arial' size='1'>
+&nbsp;
+<input type="text" name = "creator_fulldatestr_02" value="" size="10" class="notrequirednw" xREADONLY>
+&nbsp;&nbsp;&nbsp; use 4 digit year only (birth-death)
+
+</td>
+<td rowspan="1" width="20">&nbsp;</td>
+</tr><tr class="bgstandard" >
+
+<td valign="middle"><font face='arial' size='1'>
+&nbsp;
+&nbsp;<input type="button" name="Bcreator_dod_02" value="Year of Death" class="button100w"
+onclick="parent.L.selectOneOptionDate(this,'500','550')">&nbsp;
+<input type="text" name = "creator_dod_02" value="" size="10" class="notrequirednw" xREADONLY>
+
+</td>
+<td rowspan="1" width="20">&nbsp;</td>
+</tr>
+</table>
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard"   xbgcolor="bb8844">
+<td class="label13nou">
+ Name Description 
+</td>
+<td>&nbsp;
+<input type="text" name="creator_description_02" value="" size="36"
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+ class="notrequired300w">
+<font face='arial' size='1'><br>&nbsp;&nbsp;&nbsp;Description to distinguish from other names.  Example: American artist, 20th century.</td>
+<td>&nbsp</td>
+</tr>
+
+
+
+
+<tr class="bgstandard"  >
+<td class="label13nou">
+Role 
+</td>
+<td>&nbsp;
+<table border="01" cellpadding="0" cellspacing="0">
+<tr><td align="left"><font face="arial" size="1">authority</font></td>
+    <td align="left"><font face="arial" size="1">role description</font></td></tr>
+<tr><td>
+<input type="text" name="creator_rolea_auth_02" value="" size="7" > &nbsp;
+</td><td>
+<input type="text" name="creator_rolea_02" value="" size="12" xREADONLY class="required300w">
+</td></tr> <tr><td>
+<input type="text" name="creator_roleb_auth_02" value="" size="7" > &nbsp;
+</td><td>
+<input type="text" name="creator_roleb_02" value="" size="12" xREADONLY class="notrequired300w">
+</td></tr> <tr><td>
+<input type="text" name="creator_rolec_auth_02" value="" size="7" > &nbsp;
+</td><td>
+<input type="text" name="creator_rolec_02" value="" size="12" xREADONLY class="notrequired300w">
+</td></tr> </table>
+
+
+<input type="button" name="Bcreator_role_02" value="Select" class="button80w"
+onclick="parent.L.selectOneOption(this,'400','600')">
+<input type="button" name="Ccreator_role_02" value="Clear" class="button80w"
+onclick="parent.L.clearSelection(this,2)">
+<font face="arial" size="1" color="000000" ><br>&nbsp;&nbsp;&nbsp;Complete Role Descriptions from <a href="http://www.loc.gov/marc/sourcecode/relator/relatorlist.html" target="blank">MARK Relatorlist</a>.
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard" >
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+
+<tr class="greenrow">
+<td height="08" colspan="3"></td></tr>
+
+<tr class="bgstandard"  >
+<td  class="label13nou">
+Third Name Type
+</td>
+<td valign="top"><font face="arial" size="1">IS THERE A THIRD NAME ASSOCIATED WITH THE CREATION OF THIS RESOURCE?
+<input type="text" size="4" name="creator_exist_03" value="no"> creator_exist_03
+<br><input class="notrequirednw" type="text" size="16" value="" xREADONLY name="name_type_03"> name_type_03  
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard"  xbgcolor="bb8844">
+<td  class="label13nou">
+Name Authority 
+</td>
+<td><font face="arial" size="1">
+<!---
+former name authority 03 radio buttons
+--->
+<br>&nbsp;<input type="text" class="notrequirednw" size="6" value="" xREADONLY name="name_authority_03"> Please note, name authority only applies to personal names or corporate names.
+</td>
+<td>&nbsp</td>
+</tr>
+
+<!--
+<tr class="bgstandard"   xbgcolor="bb8844">
+<td class="label13nou">
+<u>Complex Personal Name</u> 
+</td>
+<td valign="top">
+<table border="0" cellpadding="1" cellspacing="0">
+<tr class="bgstandard" ><td colspan="4"><font face='arial' size='1'>&nbsp;
+<input type="text" name="creator_complexname_03" value="Smith" size="80"
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+onblur="clear_name_parts(3);"
+class="requirednw">
+&nbsp;&nbsp;Complex Personal Name &nbsp;&nbsp;&nbsp;(entire personal name entered here).
+</td></tr>
+</table>
+</td>
+<td>&nbsp</td>
+</tr>
+-->
+
+
+
+
+<tr class="bgstandard"   xbgcolor="bb8844">
+<td  class="label13nou">
+Last Name  <br>and Name Parts
+</td>
+<td valign="top">
+<table border="0" cellpadding="1" cellspacing="0">
+<tr class="bgstandard" ><td colspan="4"><font face='arial' size='1'>&nbsp;
+<input type="text" name="creator_lastname_03" value="Smith" size="58" 
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+onblur="clear_complex_name(3);"
+class="requirednw"> 
+Last Name/Corporate Name.
+</td></tr>
+<tr class="bgstandard" ><td><font face='arial' size='1'>&nbsp;
+<input type="text" name = "creator_givenname_03" value="" size="58" 
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+onblur="clear_complex_name(3);"
+class="notrequirednw"> Given Name (personal only)
+</td></tr></table>
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard"   xbgcolor="bb8844">
+<td  class="label13nou">
+Vital Dates
+</td>
+<td valign="top">
+<table border="0" cellpadding="1" cellspacing="0">
+<tr class="bgstandard" ><td valign="middle"><font face='arial' size='1'>
+&nbsp;
+<input type="text" name = "creator_fulldatestr_03" value="" size="10" class="notrequirednw" xREADONLY>
+
+&nbsp;&nbsp;&nbsp;
+
+</td>
+<td rowspan="1" width="20">&nbsp;</td>
+</tr><tr class="bgstandard" >
+
+<td valign="middle"><font face='arial' size='1'>
+&nbsp;
+&nbsp;<input type="button" name="Bcreator_dod_03" value="Year of Death" class="button100w"
+onclick="parent.L.selectOneOptionDate(this,'500','550')">&nbsp;
+<input type="text" name = "creator_dod_03" value="" size="10" class="notrequirednw" xREADONLY>
+
+<input type="button" name="Ccreator_dod_03" value="Clear Date" class="button80w"
+onclick="parent.L.clearDateNoQual(this)">
+</td>
+<td rowspan="1" width="20">&nbsp;</td>
+</tr>
+</table>
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard"   xbgcolor="bb8844">
+<td class="label13nou">
+ Name Description 
+</td>
+<td>&nbsp;
+<input type="text" name="creator_description_03" value="" size="36" 
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+class="notrequired300w">
+<font face='arial' size='1'><br>&nbsp;&nbsp;&nbsp;Description to distinguish from other names.  Example: American artist, 20th century.</td>
+<td>&nbsp</td>
+</tr>
+
+
+
+
+<tr class="bgstandard"  >
+<td class="label13nou">
+Role 
+</td>
+<td>&nbsp;
+<table border="01" cellpadding="0" cellspacing="0">
+<tr><td align="left"><font face="arial" size="1">authority</font></td>
+    <td align="left"><font face="arial" size="1">role description</font></td></tr>
+<tr><td>
+<input type="text" name="creator_rolea_auth_03" value="" size="7" > &nbsp;
+</td><td>
+<input type="text" name="creator_rolea_03" value="" size="12" xREADONLY class="required300w">
+</td></tr> <tr><td>
+<input type="text" name="creator_roleb_auth_03" value="" size="7" > &nbsp;
+</td><td>
+<input type="text" name="creator_roleb_03" value="" size="12" xREADONLY class="notrequired300w">
+</td></tr> <tr><td>
+<input type="text" name="creator_rolec_auth_03" value="" size="7" > &nbsp;
+</td><td>
+<input type="text" name="creator_rolec_03" value="" size="12" xREADONLY class="notrequired300w">
+</td></tr> </table>
+<input type="button" name="Bcreator_role_03" value="Select" class="button80w"
+onclick="parent.L.selectOneOption(this,'400','600')">
+<input type="button" name="Ccreator_role_03" value="Clear" class="button80w"
+onclick="parent.L.clearSelection(this,2)">
+<font face="arial" size="1" color="000000" ><br>&nbsp;&nbsp;&nbsp;Complete Role Descriptions from <a href="http://www.loc.gov/marc/sourcecode/relator/relatorlist.html" target="blank">MARK Relatorlist</a>.
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard" >
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+
+
+<tr class="bgstandard" ><td colspan="3" align="center">
+&nbsp;&nbsp;
+
+<input type="button" name="B_UF" value="Save" class="buttonnw" onclick="buildModsTags(10);">
+<!---input type="button" name="B_DF" value="Reset"  class="buttonnw" onclick="load_DF_form();"--->
+<input type="button" name="B2" 
+value="Save Data and View MODS TAGS" class="buttonnw"
+onclick="buildModsTags(1)">
+
+</td></tr>
+
+</table>
+
+
+
+
+
+
+</form name="forms[0]">
+
+
+<center><font face="arial">
+<h2> <script> document.write(parent.adb_project_name); </script>
+ Workbook Page 1</h2>
+</center>
+
+<hr>
+<script>
+
+/////chdchdchd
+
+
+
+function load_UF_form() {
+
+////parent.U.document.UF.validate_page_01.value="0"; //no caching from previous value
+
+//////alert("load_UF_form()");
+parent.U.document.UF.title.value = document.DF.title.value;
+
+
+///PageOneFirstName
+parent.U.document.UF.creator_exist_01.value=document.DF.creator_exist_01.value;
+parent.U.document.UF.name_type_01.value = document.DF.name_type_01.value;
+parent.U.document.UF.name_authority_01.value = document.DF.name_authority_01.value;
+parent.U.document.UF.creator_lastname_01.value = document.DF.creator_lastname_01.value;
+parent.U.document.UF.creator_givenname_01.value = document.DF.creator_givenname_01.value;
+parent.U.document.UF.creator_fulldatestr_01.value = document.DF.creator_dob_01.value;
+parent.U.document.UF.creator_description_01.value = document.DF.creator_description_01.value;
+parent.U.document.UF.creator_rolea_auth_01.value = document.DF.creator_rolea_auth_01.value;
+parent.U.document.UF.creator_rolea_01.value = document.DF.creator_rolea_01.value;
+parent.U.document.UF.creator_roleb_auth_01.value = document.DF.creator_roleb_auth_01.value;
+parent.U.document.UF.creator_roleb_01.value = document.DF.creator_roleb_01.value;
+parent.U.document.UF.creator_rolec_auth_01.value = document.DF.creator_rolec_auth_01.value;
+parent.U.document.UF.creator_rolec_01.value = document.DF.creator_rolec_01.value;
+
+
+///PageOneSecondName
+parent.U.document.UF.name_type_02.value = document.DF.name_type_02.value;
+parent.U.document.UF.name_authority_02.value = document.DF.name_authority_02.value;
+parent.U.document.UF.creator_lastname_02.value = document.DF.creator_lastname_02.value;
+parent.U.document.UF.creator_givenname_02.value = document.DF.creator_givenname_02.value;
+parent.U.document.UF.creator_fulldatestr_02.value = document.DF.creator_dob_02.value;
+parent.U.document.UF.creator_description_02.value = document.DF.creator_description_02.value;
+parent.U.document.UF.creator_rolea_auth_02.value = document.DF.creator_rolea_auth_02.value;
+parent.U.document.UF.creator_rolea_02.value = document.DF.creator_rolea_02.value;
+parent.U.document.UF.creator_roleb_auth_02.value = document.DF.creator_roleb_auth_02.value;
+parent.U.document.UF.creator_roleb_02.value = document.DF.creator_roleb_02.value;
+parent.U.document.UF.creator_rolec_auth_02.value = document.DF.creator_rolec_auth_02.value;
+parent.U.document.UF.creator_rolec_02.value = document.DF.creator_rolec_02.value;
+
+///PageOneThirdName
+parent.U.document.UF.name_type_03.value = document.DF.name_type_03.value;
+parent.U.document.UF.name_authority_03.value = document.DF.name_authority_03.value;
+parent.U.document.UF.creator_lastname_03.value = document.DF.creator_lastname_03.value;
+parent.U.document.UF.creator_givenname_03.value = document.DF.creator_givenname_03.value;
+parent.U.document.UF.creator_middlename_03.value = document.DF.creator_middlename_03.value;
+parent.U.document.UF.creator_fulldatestr_03.value = document.DF.creator_dob_03.value;
+parent.U.document.UF.creator_description_03.value = document.DF.creator_description_03.value;
+parent.U.document.UF.creator_rolea_auth_03.value = document.DF.creator_rolea_auth_03.value;
+parent.U.document.UF.creator_rolea_03.value = document.DF.creator_rolea_03.value;
+parent.U.document.UF.creator_roleb_auth_03.value = document.DF.creator_roleb_auth_03.value;
+parent.U.document.UF.creator_roleb_03.value = document.DF.creator_roleb_03.value;
+parent.U.document.UF.creator_rolec_auth_03.value = document.DF.creator_rolec_auth_03.value;
+parent.U.document.UF.creator_rolec_03.value = document.DF.creator_rolec_03.value;
+return;
+}
+
+
+function load_DF_form() {
+
+////////alert("load_DF_form()");
+
+
+//first time load title
+if ( parent.U.document.UF.title.value == "" ) {
+	document.DF.title.value = parent.adb_itemtitle;
+}else{
+	document.DF.title.value = parent.U.document.UF.title.value ;
+}
+
+
+///PageOneFirstName
+document.DF.creator_exist_01.value=parent.U.document.UF.creator_exist_01.value;
+document.DF.name_type_01.value = parent.U.document.UF.name_type_01.value;
+document.DF.name_authority_01.value = parent.U.document.UF.name_authority_01.value ;
+
+document.DF.creator_lastname_01.value = parent.U.document.UF.creator_lastname_01.value ;
+document.DF.creator_givenname_01.value = parent.U.document.UF.creator_givenname_01.value ;
+document.DF.creator_fulldatestr_01.value = parent.U.document.UF.creator_fulldatestr_01.value ;
+document.DF.creator_description_01.value = parent.U.document.UF.creator_description_01.value ;
+document.DF.creator_rolea_auth_01.value = parent.U.document.UF.creator_rolea_auth_01.value ;
+document.DF.creator_rolea_01.value = parent.U.document.UF.creator_rolea_01.value ;
+
+///PageOneSecondName
+document.DF.name_type_02.value = parent.U.document.UF.name_type_02.value;
+document.DF.name_authority_02.value = parent.U.document.UF.name_authority_02.value ;
+
+document.DF.creator_lastname_02.value = parent.U.document.UF.creator_lastname_02.value ;
+document.DF.creator_givenname_02.value = parent.U.document.UF.creator_givenname_02.value ;
+document.DF.creator_fulldatestr_02.value = parent.U.document.UF.creator_fulldatestr_02.value ;
+document.DF.creator_description_02.value = parent.U.document.UF.creator_description_02.value ;
+document.DF.creator_rolea_auth_02.value = parent.U.document.UF.creator_rolea_auth_02.value ;
+document.DF.creator_rolea_02.value = parent.U.document.UF.creator_rolea_02.value ;
+
+///PageOneThirdName
+document.DF.name_type_03.value = parent.U.document.UF.name_type_03.value;
+document.DF.name_authority_03.value = parent.U.document.UF.name_authority_03.value ;
+
+document.DF.creator_lastname_03.value = parent.U.document.UF.creator_lastname_03.value ;
+document.DF.creator_givenname_03.value = parent.U.document.UF.creator_givenname_03.value ;
+document.DF.creator_fulldatestr_03.value = parent.U.document.UF.creator_fulldatestr_03.value ;
+document.DF.creator_description_03.value = parent.U.document.UF.creator_description_03.value ;
+document.DF.creator_rolea_auth_03.value = parent.U.document.UF.creator_rolea_auth_03.value ;
+document.DF.creator_rolea_03.value = parent.U.document.UF.creator_rolea_03.value ;
+
+
+return;
+
+}
+
+
+function buildModsTags(N) {
+
+form_filter();
+
+////do this first so current values are loaded regardless of validation status
+load_UF_form();
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+//before writing MODS TAGS, make sure all required fields are populated
+//checkAllRequired... true  validation sets validation status to 1  -- complete
+//checkAllRequired... false validation sets validation status to 0  -- incomplete
+
+if (!parent.L.checkAllRequiredElements_Page_01() ) {
+	alert("page 1");
+	parent.L.update_page_validation(1,0);
+	return;
+}
+parent.L.update_page_validation(1,1);
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+var num = new Number();
+    num = N;
+
+if (num == 10) {
+        alert("Values have been saved.");
+        return;
+        }
+
+//alert("got to here")
+
+var aps= new Array();
+var hps= new Array();
+var cps= new Array();
+
+    hps = buildTagsArray_header(num);
+    aps = buildTagsArray_page_01(num);
+    cps = buildTagsArray_closer(num);
+
+
+   
+
+//=================================================
+
+document.write('<input type="button" name="BBACK" onclick="javascript: history.back()" value="BACK"><P>');
+document.write('<font face="Elephant" size="3" color="a00000">'+parent.adb_project_name+' Workbook, Page 1<p></font>');
+//PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+//document.write( "This is the generated xml script.  Values you entered are highlighted in red.<HR>");
+document.write('<font face="Elephant" size="3" color="a00000">PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+		+"This is the generated xml script.  Values you entered are highlighted in red."
+		+"<HR>");
+
+//document.write('< ? xml version="1.0"  ? > \r\n'); 
+///document.write("Content-Type: text/xml ")
+
+for (i=0;i<hps.length;i++) {
+	var vps = new String(hps[i]);
+ 	document.write("<br>"+vps);
+
+	}
+
+
+
+for (i=0;i<aps.length;i++) {
+	var vps = new String(aps[i]);
+	document.write("<br>"+vps);
+
+	}
+
+
+
+for (i=0;i<cps.length;i++) {
+	var vps = new String(cps[i]);
+	document.write("<br>"+vps);
+
+	}
+
+
+}//end function
+
+
+
+formvardebug();
+
+
+</script>
+	
+
+
+</body>
+</html>
+

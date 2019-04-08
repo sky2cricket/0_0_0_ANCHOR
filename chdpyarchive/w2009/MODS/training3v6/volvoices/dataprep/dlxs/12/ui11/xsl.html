@@ -1,0 +1,155 @@
+<html>
+<head>
+<title>XSL Files / Interfaces in DLXS</title>
+
+
+
+ <link href="../dlxsdocs.css" rel="stylesheet" type="text/css">
+</head>         <body>
+<div class="pageTitle">[DRAFT] XSL Files / Interfaces</div>
+
+<p>The user interface in the DLXS middleware is realized by a combination of interrelated 
+  techniques:</p>
+<ul>
+  <li><a href="#XMLFiles">XML Files</a></li>
+  <li><a href="#XSLFiles">XSL Files</a> </li>
+  <li><a href="#procins">Processing Instructions</a></li>
+  <li><a href="#procinsmodule">ProcIns Module</a></li>
+</ul>
+
+
+
+<a name="XMLFiles" id="XMLFiles"></a><h2>XML Files</h2>
+<p>XML files contain elements that contain <a href="#procins">Processing Instructions</a> (PIs) which
+   are dynamically replaced with data by the Middleware. Of course the data inserted
+   must be well-formed XML, whether it is  a simple text string or a complex
+   XML node set. The cgi program grabs the  XML file from disk corresponding
+   to the function at hand. For example, a URL with &quot;page=simple&quot; will
+   cause the cgi to render a search page complete with the HTML form needed for
+   the user to enter a search query. The file <span class="command">search.xml</span> will
+   be read from disk, and the PIs in it will be replaced with dynamic data produced
+   by the cgi program. This will then be sent along with a (virtual) XSL file
+   (more on this below) to the xsltproc transformation engine via the Lib::XSLT
+   Perl module. The output will then be printed to STDOUT, which will cause the
+   web server to serve the HTML output to the user's browser. </p>
+<p>XML files include one element, <span class="command">XslFallbackFileList</span>, which in turn contains
+   a number of <span class="command">Filename</span> elements. The cgi program reads this list of filenames,
+   determines which directory's version of the file should be used (via <a href="#templatesfallback">fallback</a>),
+   and constructs a virtual XSL stylesheet in memory that <span class="command">xsl:import</span>s
+   each of these files.</p>
+<p><a name="XSLFiles"></a></p>
+<h2>XSL Files</h2>
+<p>XSL files are found in the class web directory (or for collection-specific
+   behavior, in the collection's web directory). XSL files are organized around
+   cgi function and modularized with both reuse of XSL &quot;code&quot; and maintenance
+   concerns. Any XSL needed for collection-specific functionality or look and
+   feel can be added in colleciton web directories. All files listed in the <span class="command">XslFallbackFilesList</span>   are found via <a href="#templatesfallback">fallback</a> and so, if a collection-specific XSL file is found
+   to be needed and exists in the collection-specific directory, it will be added
+   to the import list in the virtual XSL file created by the cgi program. </p>
+<p><a name="templatesfallback"></a></p>
+<h2>Fallback Mechanism</h2>
+<p>DLXS employs a fallback mechanism to determine whether to use the XML files,
+   XSL files, or graphics. in <span class="command">DLXSROOT/web/c/class</span> or to prefer a version of
+   any file in <span class="command">DLXSROOT/web/c/collection</span> or <span class="command">DLXSROOT/web/g/group</span>. This mechanism
+   allows individual collections or collection groups to have an appearance different
+   from the default. Currently the CSS files do not participate in this mechanism.
+</p>
+<p>
+There is enhanced  debugging available via the <span class="command">debug=tpl</span> URL
+parameter. Here's the basic idea of how fallback works:</p>
+<ol>
+<li>If the URL has one 'c' parameter the mode is "singlecoll" and the fallback is
+<ol>
+    <li>collection webdir</li>
+    <li>default group webdir</li>
+    <li>class webdir</li>
+</ol></li>
+
+<li>If the URL has more than one 'c' parameter the mode is "colls"
+  there is no fallback: always use the class webdir</li>
+
+<li>If the url has a 'g' parameter and no 'c' parameters or a 'g' parameter and more than one 'c' parameter the mode is "group and the fallback is:
+<ol>
+<li>group webdir</li>
+<li>class webdir</li></ol></li>
+
+<li>If the URL parameter has a 'g' parameter an *one* c parameter the mode is "groupcoll" and the fallback is:
+<ol>      
+              <li> collection webdir</li>
+              <li> group webdir</li>
+              <li> default group webdir</li>
+              <li> class webdir</li></ol></li>
+
+<li>Allows the g (group) parameter to "ride along" with the 
+c (coll) parameter to allow a logical branch if the 'xc' 
+(cross-collection) parameter is set
+<ul>
+<li>If the 'xc' parameter is set the situation is one where
+the user was in a multiple collection environment such as
+a group selection page listing several collections but just
+selected one collection to search.  So we want to use 
+the group templates.  To accomplish this, if 'xc' is set on the URL,
+Collection Resolution changes the mode from "groupcoll" to "group"
+(case 4.) so fallback will select group templates, if available.</li>
+<li>If the 'xc' parameter is <strong>not</strong> set the situation is one where
+the user was in a multiple collection environment such as
+a group selection page listing several collections but <strong>navigated</strong>
+to a single collection home page to focus on just one collection.
+Here we want to use collection templates and fall back to the 
+group templates if no collection templates are available.
+The is accomplished by leaving the mode as  "groupcoll" (case 5.).</li></ul></li>
+</ol>
+
+<p>
+Finally, there is support for the "defaultgroupid" field in the database on a
+per collection basis for all classes. This lets collections participate in a
+default group to acquire files in the absence
+of either collection files if in  "singlecoll" mode
+or collection or group files if in "groupcoll" mode.</p>
+
+
+
+<a name="procins"></a><h2>Processing Instructions</h2>
+<p>XML files  contain processing instruction tags that are parsed 
+  and replaced by the middleware. Processing instruction tags are of the form</p>
+<blockquote>
+  <p><span>&lt;?PI_IDENTIFIER_NAME [modifiername=&quot;value&quot;]*?&gt;</span></p>
+</blockquote>
+<p>where all identifier names are preceded by a question mark and are represented 
+  in all capital letters with underscore characters. Zero or more modifier name/value 
+  pairs can be included to provide additional parameters. Here are two example 
+  PI tags:</p>
+<blockquote>
+  <table border="1" cellspacing="0" cellpadding="5" width="85%" style="border-width: 1px; border-style: solid; border-color: #CCCCCC">
+<tbody>
+    <tr>
+      <td valign="TOP" style="border-width: 1px; border-style: solid; border-color: #CCCCCC"><code>&lt;?TITLE?&gt;</code></td>
+      <td style="border-width: 1px; border-style: solid; border-color: #CCCCCC">Appears witin <code>&lt;TITLE&gt;&lt;/TITLE&gt;</code> 
+      tags and supplies a collection title string.</td>
+  </tr>
+  <tr>
+      <td class="command" style="border-width: 1px; border-style: solid; border-color: #CCCCCC" valign="TOP">&lt;?CHUNK
+      filename=&quot;dlxsclassglobals.xml&quot;?</td>
+      <td style="border-width: 1px; border-style: solid; border-color: #CCCCCC">Can
+         appear in an XML file. The file named in the attribute's value is found
+         via fallback and the contents of the file is inserted in the place of
+       this &quot;CHUNK&quot; PI.</td>
+  </tr></tbody>
+</table></blockquote>
+<p>Processing instruction tags are not, in all cases, a standardized API mechanism
+    to collection information, though they share some of those characteristics.
+    In general, the PIs are more likened to a customized API to the middleware
+   itself.  In this regard, PIs can act as simple variable
+   names: As in <code>&lt;?TITLE?&gt;</code> 
+  above, replaced by simple strings or even large blocks of HTML code and text; 
+</p>
+<a name="procinsmodule"></a><h2>ProcIns Module</h2>
+<p>The <tt>ProcIns.pm</tt> module is an object-oriented DLXS middleware Perl
+   module that handles the processing of PIs found in XML files. For more information
+   see <a href="../program/libmodules.html"><tt>ProcIns.pm</tt></a>.
+</p>
+
+
+</body>
+
+</html>

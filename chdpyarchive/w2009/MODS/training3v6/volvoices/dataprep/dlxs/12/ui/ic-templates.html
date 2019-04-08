@@ -1,0 +1,900 @@
+<html>
+<head>
+<title>User Interface - Imageclass Templates &amp; PIs</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="../styles.css" type="text/css">
+</head>
+<body bgcolor="#FFFFFF" leftmargin="10" topmargin="10" marginwidth="10" marginheight="10" class="mainpalette">
+<h1>ImageClass Templates &amp; Processing Instructions </h1>
+<a name="ictemplates"></a>
+<h3>ImageClass Templates</h3>
+<p>The table bellow gives a brief description of all templates included in the
+	Image Class distribution. </p>
+<table width="100%" border="1" cellpadding="5" cellspacing="0">
+	<tr>
+		<th nowrap="nowrap" valign="top">Template name</th>
+		<th width="90%">Description</th>
+	</tr>
+	<tr>
+		<td nowrap="nowrap" valign="top"><a name="icbbdel" id="icbbdel"></a>bbdel.tpl</td>
+		<td width="90%">Delete portfolio dialog display.</td>
+	</tr>
+	<tr>
+		<td nowrap="nowrap" valign="top"><a name="icbbentry" id="icbbentry"></a>bbentry.tpl</td>
+		<td width="90%">Displays an image viewer window for a record when invoked from
+			a portfolio window.</td>
+	</tr>
+	<tr>
+		<td nowrap="nowrap" valign="top"><a name="icbbname" id="icbbname"></a>bbname.tpl</td>
+		<td width="90%">Displays in a popup dialog window a form for naming a new portfolio,
+			or for selecting an existing portfolio, to add selected images to.</td>
+	</tr>
+	<tr>
+		<td nowrap="nowrap" valign="top"><a name="icbbopen" id="icbbopen"></a>bbopen.tpl</td>
+		<td width="90%">Displays in a popup dialog window a form for selecting a portfolio
+			to open.</td>
+	</tr>
+	<tr>
+		<td nowrap="nowrap" valign="top"><a name="icbbreslist" id="icbbreslist"></a>bbreslist.tpl</td>
+		<td width="90%">Displays portfolio contents as a list of image captions linking
+			to full record displays. </td>
+	</tr>
+	<tr>
+		<td nowrap="nowrap" valign="top"><a name="icbbslideentry" id="icbbslideentry"></a>bbslideentry.tpl</td>
+		<td width="90%">Displays an image viewer window for a record when invoked from
+			a portfolio window. </td>
+	</tr>
+	<tr>
+		<td nowrap="nowrap" valign="top"><a name="icbbthumbfull" id="icbbthumbfull"></a>bbthumbfull.tpl</td>
+		<td width="90%">Displays portfolio contents as a table of image thumbnails
+			with short captions and a sidebar that displays full record information for
+			any thumbnail when an &quot;info&quot; link for that thumbnail is clicked.
+			Thumbnails also link to full record displays </td>
+	</tr>
+	<tr>
+		<td nowrap="nowrap" valign="top"><a name="icbbthumbnail" id="icbbthumbnail"></a>bbthumbnail.tpl</td>
+		<td width="90%">Displays portfolio contents as a table of image thumbnails
+			with short captions, where thumbnails link to full record displays. </td>
+	</tr>
+	<tr>
+		<td nowrap="nowrap" valign="top"><a name="iccollinfo" id="iccollinfo"></a>collinfo.tpl</td>
+		<td width="90%">Displays brief collection information.</td>
+	</tr>
+	<tr>
+		<td nowrap="nowrap" valign="top"><a name="icentry" id="icentry"></a>entry.tpl</td>
+		<td width="90%">Displays an image viewer window for a record when invoked from
+			a normal results window. </td>
+	</tr>
+	<tr>
+		<td nowrap="nowrap" valign="top"><a name="icgroups" id="icgroups"></a>groups.tpl</td>
+		<td width="90%">Displays a page for selecting among multiple collection groups.</td>
+	</tr>
+	<tr>
+		<td nowrap="nowrap" valign="top"><a name="icsearchgroup" id="icsearchgroup"></a>searchgroup.tpl</td>
+		<td width="90%">Form for searching image collection groups.</td>
+	</tr>
+	<tr>
+		<td nowrap="nowrap" valign="top"><a name="icindex" id="icindex"></a>index.tpl</td>
+		<td width="90%">A collection home page.</td>
+	</tr>
+	<tr>
+		<td nowrap="nowrap" valign="top"><a name="icnoresults" id="icnoresults"></a>noresults.tpl</td>
+		<td width="90%">No results display.</td>
+	</tr>
+	<tr>
+		<td nowrap="nowrap" valign="top"><a name="icreslist" id="icreslist"></a>reslist.tpl</td>
+		<td width="90%">Displays search results as a list of image captions linking
+			to full record displays.</td>
+	</tr>
+	<tr>
+		<td nowrap="nowrap" valign="top"><a name="icsearch" id="icsearch"></a>search.tpl</td>
+		<td width="90%">Form for searching image collection databases.</td>
+	</tr>
+	<tr>
+		<td nowrap="nowrap" valign="top"><a name="icthumbfull" id="icthumbfull"></a>thumbfull.tpl</td>
+		<td width="90%">Displays search results as a table of image thumbnails with
+			short captions and a sidebar that displays full record information for any
+			thumbnail when an &quot;info&quot; link for that thumbnail is clicked. Thumbnails
+			also link to full record displays </td>
+	</tr>
+	<tr>
+		<td nowrap="nowrap" valign="top"><a name="icthumbnail" id="icthumbnail"></a>thumbnail.tpl</td>
+		<td width="90%">Displays search results as a table of image thumbnails with
+			short captions, where thumbnails link to full record displays. </td>
+	</tr>
+	<tr>
+		<td nowrap="nowrap" valign="top"><a name="ictips" id="ictips"></a>tips.tpl</td>
+		<td width="90%">Displays in a popup window tips for conducting effective searches. </td>
+	</tr>
+</table>
+<p><br>
+</p>
+<p>
+<h3><a name="icprocins"></a>ImageClass Processing Instructions</h3>
+<p>The following table includes descriptions of all the processing instructions
+	that appear in ImageClass templates, as well as links to descriptions of the
+	relevant template files in which they appear. </p>
+<table border="1" bordercolor="#CCCCCC" cellpadding="5" cellspacing="0" width="100%">
+	<tr>
+		<th align="left" width="25%">PI tag</th>
+		<th valign="top" width="12%">Optional parameters</th>
+		<th valign="top" width="13%">Associated templates</th>
+		<th valign="top" width="50%">Description</th>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?BANNER&gt; </td>
+		<td valign="top" width="12%">none</td>
+		<td valign="top" width="13%"><a href="#icentry">entry.tpl</a><br>
+  			<a href="#icgroups">groups.tpl</a><br>
+  			<a href="#icindex">index.tpl</a><br>
+  			<a href="#icreslist">reslist.tpl</a><br>
+  			<a href="#icsearch">search.tpl</a><br>
+  			<a href="#icthumbfull">thumbfull.tpl</a><br>
+  			<a href="#icthumbnail">thumbnail.tpl</a><br>
+		</td>
+		<td valign="top" width="25%">inserts the name of the collection or the cross
+			collection banner (e.g., UM Image Source) in cross collection mode. banner
+			text is configurable in the &quot;banner&quot; colldb field. Cross collection
+			banner specified in imageclass.cfg. May be text or graphic.</td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?ALLPUROSE&gt; </td>
+		<td valign="top" width="12%">any </td>
+		<td valign="top" width="13%">all </td>
+		<td valign="top" width="25%">this PI does nothing by default, but may be programmed
+			to do almost anything. The allpurpose routine is in $DLXSROOT/cgi/i/image/ICLocalUtils.pm.</td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?BBACTIONFORM&gt; </td>
+		<td valign="top" width="12%">action</td>
+		<td valign="top" width="13%"><a href="#icbbentry">bbentry.tpl</a><br>
+  			<a href="#icbbreslist">bbreslist.tpl</a><br>
+  			<a href="#icbbthumbfull">bbthumbfull.tpl</a><br>
+  			<a href="#icbbthumbnail">bbthumbnail.tpl</a><br>
+  			<a href="#icentry">entry.tpl</a><br>
+  			<a href="#icreslist">reslist.tpl</a><br>
+  			<a href="#icthumbfull">thumbfull.tpl</a><br>
+  			<a href="#icthumbnail">thumbnail.tpl</a><br>
+		</td>
+		<td valign="top" width="25%"><p>inserts form for activating the various portfolio
+				actions, such as adding an item to a portfolio.</p>
+  			<p><b>action</b> param may be set to: add or remove</p></td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?BBAGINFO&gt; </td>
+		<td valign="top" width="12%">colname</td>
+		<td valign="top" width="13%"><a href="#icbbentry">bbentry.tpl</a><br>
+  			<a href="#icbbreslist">bbreslist.tpl</a><br>
+  			<a href="#icbbslideentry">bbslideentry.tpl</a><br>
+  			<a href="#icbbthumbfull">bbthumbfull.tpl</a><br>
+  			<a href="#icbbthumbnail">bbthumbnail.tpl</a><br>
+		</td>
+		<td valign="top" width="25%"><p>inserts information about the portfolio, such
+				as the title of the portfolio. any field of the bookbagdb can be displayed(?).</p>
+  			<p>Most often, colname=&quot;bbagname&quot;, which displays the name of
+  				the portfolio.</p></td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?BBAGNAMEFORM&gt; </td>
+		<td valign="top" width="12%">none</td>
+		<td valign="top" width="13%"><a href="#icbbname">bbname.tpl</a><br>
+		</td>
+		<td valign="top" width="25%">inserts form for creating/naming a new portfolio</td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?BBAGPICKLIST&gt; </td>
+		<td valign="top" width="12%">action<br>
+			type </td>
+		<td valign="top" width="13%"><a href="#icbbdel">bbdel.tpl</a><br>
+  			<a href="#icbbname">bbname.tpl</a><br>
+  			<a href="#icbbopen">bbopen.tpl</a><br>
+		</td>
+		<td valign="top" width="25%"><p>insert list of existing portfolios for opening
+				a portfolio or adding to a portfolio.</p>
+  			<p><b>action</b> can be &quot;open&quot; or &quot;add&quot;</p>
+  			<p><b>type</b> can be &quot;public&quot; or &quot;private&quot;. <b>type</b> is
+  				only specifice when <b>action</b> is &quot;open&quot;.</p></td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?COLLNAME&gt; </td>
+		<td valign="top" width="12%">none </td>
+		<td valign="top" width="13%"><a href="#icbbentry">bbentry.tpl</a><br>
+  			<a href="#icbbslideentry">bbslideentry.tpl</a><br>
+  			<a href="#icentry">entry.tpl</a><br>
+  			<a href="#icreslist">reslist.tpl</a><br>
+  			<a href="#icthumbfull">thumbfull.tpl</a><br>
+  			<a href="#icthumbnail">thumbnail.tpl</a><br>
+		</td>
+		<td valign="top" width="25%">inserts the collection name as specified in &quot;collname&quot; field
+			of colldb or &quot;Multiple Collections&quot; in cross collection mode.</td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?COLLPICK&gt; </td>
+		<td valign="top" width="12%">none</td>
+		<td valign="top" width="13%"><a href="#icindex">index.tpl</a><br>
+  			<a href="#icsearch">search.tpl</a><br>
+		</td>
+		<td valign="top" width="25%">inserts a list of collections for selection by
+			the user</td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?COLLPICKARRAYS&gt; </td>
+		<td valign="top" width="12%">none</td>
+		<td valign="top" width="13%"><a href="#icsearch">search.tpl</a><br>
+		</td>
+		<td valign="top" width="25%">inserts javascript arrays that are needed by collpicker.
+			the arrays hold field lists per coll.</td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?COLLPICKBUTTON&gt; </td>
+		<td valign="top" width="12%">none</td>
+		<td valign="top" width="13%"><a href="#icsearch">search.tpl</a><br>
+		</td>
+		<td valign="top" width="25%">inserts a button (but why?)</td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?CSSURL&gt; </td>
+		<td valign="top" width="12%">type</td>
+		<td valign="top" width="13%"><a href="#icbbentry">bbentry.tpl</a><br>
+  			<a href="#icbbname">bbname.tpl</a><br>
+  			<a href="#icbbopen">bbopen.tpl</a><br>
+  			<a href="#icbbreslist">bbreslist.tpl</a><br>
+  			<a href="#icbbslideentry">bbslideentry.tpl</a><br>
+  			<a href="#icbbthumbfull">bbthumbfull.tpl</a><br>
+  			<a href="#icbbthumbnail">bbthumbnail.tpl</a><br>
+  			<a href="#icentry">entry.tpl</a><br>
+  			<a href="#icgroups">groups.tpl</a><br>
+  			<a href="#icindex">index.tpl</a><br>
+  			<a href="#icreslist">reslist.tpl</a><br>
+  			<a href="#icsearch">search.tpl</a><br>
+  			<a href="#icthumbfull">thumbfull.tpl</a><br>
+  			<a href="#icthumbnail">thumbnail.tpl</a><br>
+		</td>
+		<td valign="top" width="25%"><p>inserts the necessary CSS (cascading style
+				sheet) link depending on the situation.</p>
+  			<p><b>type</b> can be &quot;ie&quot; or &quot;ns&quot; (Internet Explorer
+  				or Netscape)</p></td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?DELETEPORTFOLIO&gt; </td>
+		<td valign="top" width="12%">none</td>
+		<td valign="top" width="13%"><a href="#icbbreslist">bbreslist.tpl</a><br>
+  			<a href="#icbbthumbfull">bbthumbfull.tpl</a><br>
+  			<a href="#icbbthumbnail">bbthumbnail.tpl</a><br>
+		</td>
+		<td valign="top" width="25%">inserts button to initiate deletion of entire
+			portfolio </td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?DIVBUTTONS&gt; </td>
+		<td valign="top" width="12%">none</td>
+		<td valign="top" width="13%"><a href="#icbbentry">bbentry.tpl</a><br>
+  			<a href="#icentry">entry.tpl</a><br>
+		</td>
+		<td valign="top" width="25%">inserts the radio buttons used for switching between &quot;full
+			image&quot;, &quot;description&quot; and &quot;other views&quot; entry views</td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?ENTRYID&gt; </td>
+		<td valign="top" width="12%">none</td>
+		<td valign="top" width="13%"><a href="#icbbentry">bbentry.tpl</a><br>
+  			<a href="#icbbslideentry">bbslideentry.tpl</a><br>
+  			<a href="#icentry">entry.tpl</a><br>
+		</td>
+		<td valign="top" width="25%">inserts the entry (record) id.</td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?FISHEYE&gt; </td>
+		<td valign="top" width="12%">none </td>
+		<td valign="top" width="13%"><a href="#icreslist">reslist.tpl</a><br>
+  			<a href="#icthumbfull">thumbfull.tpl</a><br>
+  			<a href="#icthumbnail">thumbnail.tpl</a><br>
+		</td>
+		<td valign="top" width="25%">inserts the &quot;fisheye&quot; tool into a results
+			view. the fisheye tool allows quick jumping among the full range of results. </td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?GROUPNAME&gt; </td>
+		<td valign="top" width="12%">none</td>
+		<td valign="top" width="13%"><a href="#icindex">index.tpl</a><br>
+  			<a href="#icsearch">search.tpl</a><br>
+		</td>
+		<td valign="top" width="25%">inserts the name of the group being searched if
+			in cross collection mode. groups are defined in the &quot;groups&quot; table. </td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?GROUPSLINK&gt; </td>
+		<td valign="top" width="12%">none </td>
+		<td valign="top" width="13%"><a href="#icindex">index.tpl</a><br>
+  			<a href="#icsearch">search.tpl</a><br>
+		</td>
+		<td valign="top" width="25%">inserts a link to the group selection page</td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?GROUPSPICK&gt; </td>
+		<td valign="top" width="12%">groups</td>
+		<td valign="top" width="13%"><a href="#icgroups">groups.tpl</a><br>
+		</td>
+		<td valign="top" width="25%">inserts a list of groups for selecting a group
+			to search. the optional &quot;groups&quot; parameter is for specifying a list
+			of groups (as group ids separated by vertical bars/pipes) to include. without
+			a value for the &quot;groups&quot; parameter, all groups are listed by default.</td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?CONTACT&gt; </td>
+		<td valign="top" width="12%">type </td>
+		<td valign="top" width="13%"><a href="#icentry">entry.tpl</a> <br>
+  			<a href="#icreslist">reslist.tpl</a><br>
+  			<a href="#icthumbfull">thumbfull.tpl</a><br>
+  			<a href="#icthumbnail">thumbnail.tpl</a><br>
+		</td>
+		<td valign="top" width="25%"><p>type=&quot;link&quot; inserts value from colldb &quot;contactlink&quot; field</p>
+  			<p>type=&quot;text&quot; inserts value from colldb &quot;contacttext&quot; field</p>
+  			<p>if multiple collection mode, default contact info from imageclass.cfg
+  				is used.</p></td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?HIDDENSID&gt; </td>
+		<td valign="top" width="12%">none </td>
+		<td valign="top" width="13%"><p><a href="#icsearchgroup">searchgroup.tpl</a><br>
+    				<a href="#icsearch">search.tpl</a><br>
+		</p></td>
+		<td valign="top" width="25%">inserts session id in search form</td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?IMAGE&gt; </td>
+		<td valign="top" width="12%">quality<br>
+			override </td>
+		<td valign="top" width="13%"><a href="#icbbentry">bbentry.tpl</a><br>
+  			<a href="#icbbslideentry">bbslideentry.tpl</a><br>
+  			<a href="#icentry">entry.tpl</a><br>
+		</td>
+		<td valign="top" width="25%"><p>inserts an image without a form. this means
+				that the image is not interactive (you can't click on it to zoom). it is
+				just an image.</p>
+  			<p><b>quality</b> = the default size for image display. there are several
+  				ways to specify the <b>quality</b>. </p>
+  			<p>examples:</p>
+  			<ul>
+  				<li>h600 -- height no larger than 600 pixels
+ 					<li>w600 -- width no larger than 600 pixels
+ 					<li>m800 -- max dimension of image no larger than 800 pixels
+ 					<li>min -- smallest available
+ 					<li>max -- largest available
+ 					<li>mid -- mid-size among available
+ 					<li>preview -- defined in imageclass.cfg ($gDefaultPreviewImageSize)
+ 					<li>screen -- defined in imageclass.cfg ($gDefaultScreenImageSize)
+ 					<li>integer value -- MrSID res value
+			</ul>
+  			<p>Image Class version 1 quality terms are approximately converted to the
+  				above quality terms. </p>
+  			<p><b>override</b> should be set to &quot;on&quot; to allow the template
+  				to be overriden by the value of the quality cgi parameter, if present.
+  				See existing templates for examples.</p></td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?IMAGEPANTOOL&gt; </td>
+		<td valign="top" width="12%">quality<br>
+			override </td>
+		<td valign="top" width="13%"><a href="#icbbentry">bbentry.tpl</a><br>
+  			<a href="#icentry">entry.tpl</a><br>
+		</td>
+		<td valign="top" width="25%"><p>inserts the interface tool for panning a MrSID
+				image.</p>
+  			<p>See &lt;?IMAGE&gt; for description of quality and override values.</p></td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?IMAGESIZETOOL&gt; </td>
+		<td valign="top" width="12%">quality</td>
+		<td valign="top" width="13%"><a href="#icbbentry">bbentry.tpl</a><br>
+  			<a href="#icentry">entry.tpl</a><br>
+		</td>
+		<td valign="top" width="25%"><p>inserts the interface tool for choosing from
+				the range of full-size images that are available.</p>
+  			<p>See &lt;?IMAGE&gt; for description of quality values.</p></td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?IMAGEWITHFORM&gt; </td>
+		<td valign="top" width="12%">quality<br>
+			override </td>
+		<td valign="top" width="13%"><a href="#icbbentry">bbentry.tpl</a><br>
+  			<a href="#icentry">entry.tpl</a><br>
+		</td>
+		<td valign="top" width="25%"><p>inserts an image with a form. this means that
+				the image is interactive and can be clicked on for zooming.</p>
+  			<p>See &lt;?IMAGE&gt; for description of quality and override values.</p></td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?IMAGEZOOMTOOL&gt; </td>
+		<td valign="top" width="12%"><p>quality<br>
+				override </p></td>
+		<td valign="top" width="13%"><a href="#icbbentry">bbentry.tpl</a><br>
+  			<a href="#icentry">entry.tpl</a><br>
+		</td>
+		<td valign="top" width="25%"><p>inserts the interface tool for zooming.</p>
+  			<p>See &lt;?IMAGE&gt; for description of quality and override values.</p></td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?INFOTEXT&gt; </td>
+		<td valign="top" width="12%">none </td>
+		<td valign="top" width="13%"><a href="#icindex">index.tpl</a><br>
+  			<a href="#iccollinfo">collinfo.tpl</a> <br>
+		</td>
+		<td valign="top" width="25%">inserts the info.txt file if the file is found
+			in the collections web directory. this allows a collection specific description
+			to be included for each collection without necessarily creating a collection
+			specific <a href="#icindex">index.tpl</a> and <a href="#iccollinfo">collinfo.tpl</a> template.
+			the info.txt file may include HTML tags, but it should not be a complete HTML
+			document. </td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?JAVASCRIPTURL&gt; </td>
+		<td valign="top" width="12%">none</td>
+		<td valign="top" width="13%"><a href="#icbbentry">bbentry.tpl</a><br>
+  			<a href="#icbbreslist">bbreslist.tpl</a><br>
+  			<a href="#icbbslideentry">bbslideentry.tpl</a><br>
+  			<a href="#icbbthumbfull">bbthumbfull.tpl</a><br>
+  			<a href="#icbbthumbnail">bbthumbnail.tpl</a><br>
+  			<a href="#icentry">entry.tpl</a><br>
+  			<a href="#icgroups">groups.tpl</a><br>
+  			<a href="#icindex">index.tpl</a><br>
+  			<a href="#icreslist">reslist.tpl</a><br>
+  			<a href="#icsearch">search.tpl</a><br>
+  			<a href="#icthumbfull">thumbfull.tpl</a><br>
+  			<a href="#icthumbnail">thumbnail.tpl</a><br>
+		</td>
+		<td valign="top" width="25%">inserts link that loads Image Class JavaScript. </td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?LOGINLINK&gt; </td>
+		<td valign="top" width="12%">type<br>
+			on </td>
+		<td valign="top" width="13%"><a href="#icbbentry">bbentry.tpl</a><br>
+  			<a href="#icbbreslist">bbreslist.tpl</a><br>
+  			<a href="#icbbslideentry">bbslideentry.tpl</a><br>
+  			<a href="#icbbthumbfull">bbthumbfull.tpl</a><br>
+  			<a href="#icbbthumbnail">bbthumbnail.tpl</a><br>
+  			<a href="#icentry">entry.tpl</a><br>
+  			<a href="#icgroups">groups.tpl</a><br>
+  			<a href="#icindex">index.tpl</a><br>
+  			<a href="#icreslist">reslist.tpl</a><br>
+  			<a href="#icsearch">search.tpl</a><br>
+  			<a href="#icthumbfull">thumbfull.tpl</a><br>
+  			<a href="#icthumbnail">thumbnail.tpl</a><br>
+		</td>
+		<td valign="top" width="25%"><p>inserts login button. if login is turned off
+				in imageclass.cfg, button is not displayed. </p>
+  			<p><b>type</b> can be set to &quot;bbag&quot;, in which case a message precedes
+  				the button encouraging the user to login to use bbag functions. </p>
+  			<p><b>on</b> can be set to &quot;white&quot;, which causes the login button
+  				designed to sit on a white background to be loaded (login-white.gif). usually,
+  				login-black.gif is loaded. <b>on</b> can be set to any color, and the file
+  				login-color.gif will be loaded, however only login-white.gif and login-black.gif
+  				are provided.</p></td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?MEDIAONLYBUTTON&gt; </td>
+		<td valign="top" width="12%">none </td>
+		<td valign="top" width="13%"><a href="#icsearch">search.tpl</a><br>
+  			<a href="#icsearchgroup">searchgroup.tpl</a> <br>
+		</td>
+		<td valign="top" width="25%">inserts media restriction in search form (i.e.,
+			search for images only)</td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?NEXT&gt; </td>
+		<td valign="top" width="12%">none </td>
+		<td valign="top" width="13%"><a href="#icreslist">reslist.tpl</a><br>
+  			<a href="#icthumbfull">thumbfull.tpl</a><br>
+  			<a href="#icthumbnail">thumbnail.tpl</a><br>
+		</td>
+		<td valign="top" width="25%">inserts link to next page of results.</td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?NEXTENTRY&gt; </td>
+		<td valign="top" width="12%">none </td>
+		<td valign="top" width="13%"><a href="#icbbentry">bbentry.tpl</a><br>
+  			<a href="#icbbslideentry">bbslideentry.tpl</a><br>
+  			<a href="#icentry">entry.tpl</a><br>
+		</td>
+		<td valign="top" width="25%">inserts link to next result in entry/record view.</td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?NORESULTSMESSAGE&gt; </td>
+		<td valign="top" width="12%">none</td>
+		<td valign="top" width="13%"><a href="#icnoresults">noresults.tpl</a><br>
+		</td>
+		<td valign="top" width="25%">inserts message to user about the fact they got
+			zero results.</td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?OPENPORTFOLIO&gt; </td>
+		<td valign="top" width="12%">none </td>
+		<td valign="top" width="13%"><a href="#icbbentry">bbentry.tpl</a><br>
+  			<a href="#icbbreslist">bbreslist.tpl</a><br>
+  			<a href="#icbbslideentry">bbslideentry.tpl</a><br>
+  			<a href="#icbbthumbfull">bbthumbfull.tpl</a><br>
+  			<a href="#icbbthumbnail">bbthumbnail.tpl</a><br>
+  			<a href="#icentry">entry.tpl</a><br>
+  			<a href="#icgroups">groups.tpl</a><br>
+  			<a href="#icindex">index.tpl</a><br>
+  			<a href="#icreslist">reslist.tpl</a><br>
+  			<a href="#icsearch">search.tpl</a><br>
+  			<a href="#icthumbfull">thumbfull.tpl</a><br>
+  			<a href="#icthumbnail">thumbnail.tpl</a><br>
+		</td>
+		<td valign="top" width="25%">inserts button and link for opening a portfolio</td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?PATH&gt; </td>
+		<td valign="top" width="12%">type </td>
+		<td valign="top" width="13%"><a href="#icbbdel">bbdel.tpl</a><br>
+  			<a href="#icbbentry">bbentry.tpl</a><br>
+  			<a href="#icbbname">bbname.tpl</a><br>
+  			<a href="#icbbopen">bbopen.tpl</a><br>
+  			<a href="#icbbslideentry">bbslideentry.tpl</a><br>
+  			<a href="#icentry">entry.tpl</a><br>
+  			<a href="#icgroups">groups.tpl</a><br>
+  			<a href="#icsearch">search.tpl</a><br>
+  			<a href="#ictips">tips.tpl</a><br>
+		</td>
+		<td valign="top" width="25%">inserts a path of a certain type, most commonly &quot;web&quot;,
+			which creates a relative URL path to the current web directory.</td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?PREV&gt; </td>
+		<td valign="top" width="12%">none </td>
+		<td valign="top" width="13%"><a href="#icbbentry">bbentry.tpl</a><br>
+  			<a href="#icbbslideentry">bbslideentry.tpl</a><br>
+  			<a href="#icentry">entry.tpl</a><br>
+  			<a href="#icreslist">reslist.tpl</a><br>
+  			<a href="#icthumbfull">thumbfull.tpl</a><br>
+  			<a href="#icthumbnail">thumbnail.tpl</a><br>
+		</td>
+		<td valign="top" width="25%">inserts link to previous page of results. </td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?PREVENTRY&gt; </td>
+		<td valign="top" width="12%">none </td>
+		<td valign="top" width="13%"><a href="#icbbentry">bbentry.tpl</a><br>
+  			<a href="#icbbslideentry">bbslideentry.tpl</a><br>
+  			<a href="#icentry">entry.tpl</a><br>
+		</td>
+		<td valign="top" width="25%">inserts link to previous result in entry/record
+			view. </td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?RECORDTABLE&gt; </td>
+		<td valign="top" width="12%"><p>fields<br>
+				table <br>
+				thumb </p></td>
+		<td valign="top" width="13%"><a href="#icbbentry">bbentry.tpl</a><br>
+  			<a href="#icbbslideentry">bbslideentry.tpl</a><br>
+  			<a href="#icentry">entry.tpl</a><br>
+		</td>
+		<td valign="top" width="25%"><p>Displays a record in entry (full record) views.
+				Fields and field order are specified in the colldb field &quot;dfltentryflds,&quot; or
+				may be overridden by a <b>fields</b> parameter. Whether specified in colldb
+				or by <b>fields </b>parameter, the rules about how to specify the fields
+				to display are as follows. </p>
+  			<p>Fields must be listed as abbreviations in the order desired and delimited
+  				by pipes ( &quot;|&quot; ). e.g., MUSART.TI|MUSART.CR|musart.DA</p>
+  			<p>Values are not case sensitive. </p>
+  			<p>There are several options that may be turned on and off to enhance the
+  				display of records. The options are specified inline with the field abbreviations.
+  				When the status of an option is changed, the change is persistent for all
+  				subsequent fields, until the status is changed again. The exceptions to
+  				this are the &quot;sectionlabel&quot; and &quot;urltext&quot;, which are
+  				specified as often as needed.</p>
+  			<p>The &quot;url&quot; option, for example, causes fields that contain a
+  				URL (and nothing but a URL), to be turned into a hyperlink. It can be used
+  				in conjunction with the &quot;urltext&quot; option, which makes allows
+  				the link text to be specified. Normally the URL itself is used for the
+  				link text. e.g., <br>
+				MUSART.TI|url:on|urltext:View_Copyright_Statement|MUSART.cp|url:off|MUSART.DA</p>
+  			<p>The &quot;hilite&quot; option causes search terms to be hilited. This
+  				option is &quot;on&quot; by default, but if you wanted to turn hiliting
+  				off for several consecutive fields, you could. e.g., MUSART.TI|hilite:off|MUSART.DA|MUSART.PG|MUSART.LI|hilite:on|MUSART.TY</p>
+  			<p>The complete list of field options are as follows: </p>
+  			<table border="1" cellpadding="1" cellspacing="1" width="100%">
+  				<tr>
+  					<th width="14%">option</th>
+  					<th width="31%">values</th>
+  					<th width="7%">default</th>
+  					<th width="48%">description</th>
+ 					</tr>
+  				<tr>
+  					<td width="14%">label</td>
+  					<td width="31%">on/off</td>
+  					<td width="7%">on</td>
+  					<td width="48%">display name of field before field value</td>
+ 					</tr>
+  				<tr>
+  					<td height="37" width="14%">sectionlabel</td>
+  					<td height="37" width="31%">text string*<br>
+  						</td>
+  					<td height="37" width="7%">empty</td>
+  					<td height="37" width="48%">display a section label before a series of
+  						fields. allows a record to split into sections.</td>
+ 					</tr>
+  				<tr>
+  					<td width="14%">url</td>
+  					<td width="31%">on/off</td>
+  					<td width="7%">off</td>
+  					<td width="48%">turn the entire contents of the field in to a link. assumes
+  						the field contains a single URL.</td>
+ 					</tr>
+  				<tr>
+  					<td width="14%">urltext</td>
+  					<td width="31%">text string*</td>
+  					<td width="7%">empty</td>
+  					<td width="48%">display the provided string as the text of the &quot;url&quot; option
+  						link. if &quot;urltext&quot; is not specified, the URL value is used
+  						as the text of the link.</td>
+ 					</tr>
+  				<tr>
+  					<td width="14%">idres</td>
+  					<td width="31%">on/off</td>
+  					<td width="7%">off</td>
+  					<td width="48%">look the value of the field up in the id resolver and
+  						display the value. use with &quot;url&quot; and/or &quot;urltext&quot; to
+  						turn the value in to a link.</td>
+ 					</tr>
+  				<tr>
+  					<td width="14%">dateconv</td>
+  					<td width="31%">on/off</td>
+  					<td width="7%">off</td>
+  					<td width="48%"><p>displays some ISO format dates in a more human readable
+  							form.</p>
+    						<p>supports YYYYMMDD, YYYYMMDD/YYYYMMDD and maintains any data that
+    							might follow the date in the field e.g, (ca.)</p></td>
+ 					</tr>
+  				<tr>
+  					<td width="14%">hilite</td>
+  					<td width="31%">on/off</td>
+  					<td width="7%">on</td>
+  					<td width="48%"><p>hilites search terms in the field. </p>
+    						<p>DLXS hiliting supports 3 search fields only (q1 - q3). </p></td>
+ 					</tr>
+  				<tr>
+  					<td width="14%">keylinks</td>
+  					<td width="31%">on/off</td>
+  					<td width="7%">off</td>
+  					<td width="48%"><p>turns the field value into a url that will search the
+  							collection for that value. by default, each word of the field is made
+  							into a separate link. the delimiter used to split the field can be specified
+  							by the &quot;delim&quot; option.</p></td>
+ 					</tr>
+  				<tr>
+  					<td width="14%">delim</td>
+  					<td width="31%">1 or more characters</td>
+  					<td width="7%">SPACE</td>
+  					<td width="48%"><p>used in conjunction with the keylinks option to split
+  							the value of a field into smaller parts by the value delim specifies.
+  							for example, if a field holds a list of keywords delimited by &quot;; &quot; delim
+  							can be set to &quot;;_&quot; to tell the keylinks option how to split
+  							the field. (note: use an underscore for SPACE.) e.g., delim:;_</p></td>
+ 					</tr>
+  				</table>
+  			<p>* use underscores for spaces. special characters may not work.</p>
+  			<p><b>table</b> parameter may be set to &quot;on&quot; or &quot;off&quot; to
+  				specify whether record is wrapped in a table, or simple text with line
+  				breaks. Default is&quot;on&quot;.</p>
+  			<p><b>thumb</b> parameter may be set to &quot;on&quot; or &quot;off&quot; to
+  				specify whether a thumbnail image should be included with the record. Default
+  				is &quot;on&quot;.</p>
+  			<p>Cross collection fields are configured in imageclass.cfg.</p></td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?RELATEDVIEWS&gt; </td>
+		<td valign="top" width="12%">none </td>
+		<td valign="top" width="13%"><a href="#icbbentry">bbentry.tpl</a><br>
+  			<a href="#icentry">entry.tpl</a><br>
+		</td>
+		<td valign="top" width="25%">inserts table of related views for a record (all
+			of the images associated with a single record). See also documentation on &quot;Image
+			Structures&quot;.</td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?RELATEDVIEWSMENU&gt; </td>
+		<td valign="top" width="12%">none </td>
+		<td valign="top" width="13%"><a href="#icbbentry">bbentry.tpl</a><br>
+  			<a href="#icentry">entry.tpl</a><br>
+		</td>
+		<td valign="top" width="25%"><p>inserts a menu for entry type templates that
+				is a menu of all related views (aka &quot;other views&quot;). If a record
+				has more than one image associated with it, then it has related views. the
+				related views menu is intended for use with colls that need a &quot;pageflipping&quot; function. <br>
+				e.g., &quot;Students on Site&quot;, &quot;Harpers Weekly&quot;.<br>
+			</p>
+  			<p>uses the colldb for configuration.<br>
+				colldb fields used:<br>
+				relviewmenu -- on/off switch for the menu<br>
+				relviewmenuvals -- specifies which istruct attribute value to use for
+				menu *display*<br>
+				options. default is &quot;CAPTIONS&quot;<br>
+				relviewmenuinstruct -- instruction text, if any to put in front of form<br>
+				relviewmenuprefx -- prefix string to put in front of each and every displayed
+				menu <br>
+				option</p>
+  			<p>if a particular record has only one view/image, a related views menu
+  				is not built/displayed, even if the option is turned on.</p></td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?RESULTSTABLE&gt; </td>
+		<td valign="top" width="12%">x</td>
+		<td valign="top" width="13%"><a href="#icbbreslist">bbreslist.tpl</a><br>
+  			<a href="#icbbthumbfull">bbthumbfull.tpl</a><br>
+  			<a href="#icbbthumbnail">bbthumbnail.tpl</a><br>
+  			<a href="#icreslist">reslist.tpl</a><br>
+  			<a href="#icthumbfull">thumbfull.tpl</a><br>
+  			<a href="#icthumbnail">thumbnail.tpl</a><br>
+		</td>
+		<td valign="top" width="25%"><p>Inserts a table of results. Layout varies automatically
+				depending on the view. </p>
+  			<p><b>x</b> parameter is for specifying the number of columns in a table
+  				of thumbnail results. The default is 5.</p>
+  			<p>the fields displayed for each results are configurable in the colldb
+  				field called &quot;dfltresflds&quot;. </p>
+  			<p>term hiliting happens by default, and without an option to turn it off.</p>
+  			<p>optionally, field values may be trimmed to a specific character length
+  				to conserve space in thumbnail views. configure this option in the colldb
+  				field called &quot;resfldtrim&quot;.</p></td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?SEARCHFORM&gt; </td>
+		<td valign="top" width="12%">none </td>
+		<td valign="top" width="13%"><a href="#icsearch">search.tpl</a><br>
+  			<a href="#icsearchgroup">searchgroup.tpl</a><br>
+		</td>
+		<td valign="top" width="25%">inserts a search form. </td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?SEARCHLINK&gt; </td>
+		<td valign="top" width="12%">none </td>
+		<td valign="top" width="13%"><p><a href="#icreslist">reslist.tpl</a><br>
+    				<a href="#icthumbfull">thumbfull.tpl</a><br>
+    				<a href="#icthumbnail">thumbnail.tpl</a><br>
+    				<a href="#icindex">index.tpl</a><br>
+    				<a href="#icnoresults">noresults.tpl</a><br>
+    				<br>
+		</p></td>
+		<td valign="top" width="25%">inserts link to search form page</td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?SLICESUMMARY&gt; </td>
+		<td valign="top" width="12%">none </td>
+		<td valign="top" width="13%"><a href="#icreslist">reslist.tpl</a><br>
+  			<a href="#icthumbfull">thumbfull.tpl</a><br>
+  			<a href="#icthumbnail">thumbnail.tpl</a><br>
+		</td>
+		<td valign="top" width="25%">inserts a summary of search results. </td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?SORTMENU&gt; </td>
+		<td valign="top" width="12%">none</td>
+		<td valign="top" width="13%"><a href="#icbbreslist">bbreslist.tpl</a><br>
+  			<a href="#icbbthumbfull">bbthumbfull.tpl</a><br>
+  			<a href="#icbbthumbnail">bbthumbnail.tpl</a><br>
+  			<a href="#icreslist">reslist.tpl</a><br>
+  			<a href="#icthumbfull">thumbfull.tpl</a><br>
+  			<a href="#icthumbnail">thumbnail.tpl</a><br>
+		</td>
+		<td valign="top" width="25%">inserts sort menu</td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?SWITCHENTRYVIEW&gt; </td>
+		<td valign="top" width="12%">view</td>
+		<td valign="top" width="13%"><a href="#icbbentry">bbentry.tpl</a><br>
+  			<a href="#icbbslideentry">bbslideentry.tpl</a><br>
+		</td>
+		<td valign="top" width="25%"><p>inserts a URL link for switching between portfolio
+				entry view and portfolio slideshow view. Likely values are...</p>
+  			<p>bbentry</p>
+  			<p>bbslideentry </p></td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?THUMBFULLDIVS&gt; </td>
+		<td valign="top" width="12%">none</td>
+		<td valign="top" width="13%"><a href="#icbbthumbfull">bbthumbfull.tpl</a><br>
+  			<a href="#icthumbfull">thumbfull.tpl</a><br>
+		</td>
+		<td valign="top" width="25%">inserts the set of HTML DIVs, one for every record
+			included in the page of results, that is used for displaying full records
+			on the results page (thumb with full record view).</td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?THUMBFULLJSARRAYS&gt; </td>
+		<td valign="top" width="12%">none </td>
+		<td valign="top" width="13%"><a href="#icbbthumbfull">bbthumbfull.tpl</a><br>
+  			<a href="#icthumbfull">thumbfull.tpl</a><br>
+		</td>
+		<td valign="top" width="25%">inserts JavaScript arrays used for dynamically
+			displaying a full record on the results page when requested.</td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?THUMBFULLSTYLE&gt; </td>
+		<td valign="top" width="12%">none </td>
+		<td valign="top" width="13%"><a href="#icbbthumbfull">bbthumbfull.tpl</a><br>
+  			<a href="#icthumbfull">thumbfull.tpl</a><br>
+		</td>
+		<td valign="top" width="25%">inserts style definitions for positioning of the
+			full record divs.</td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?THUMBNAIL&gt; </td>
+		<td valign="top" width="12%">none </td>
+		<td valign="top" width="13%"><a href="#icentry">entry.tpl</a><br>
+  			<a href="#icbbentry">bbentry.tpl</a><br>
+  			<a href="#icentry">slideentry.tpl</a> </td>
+		<td valign="top" width="25%">inserts a thumbnail image. (does this really work???) </td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?VIEWINSTRUCT&gt; </td>
+		<td valign="top" width="12%">none </td>
+		<td valign="top" width="13%"><a href="#icbbreslist">bbreslist.tpl</a><br>
+  			<a href="#icbbthumbfull">bbthumbfull.tpl</a><br>
+  			<a href="#icbbthumbnail">bbthumbnail.tpl</a><br>
+  			<a href="#icreslist">reslist.tpl</a><br>
+  			<a href="#icthumbfull">thumbfull.tpl</a><br>
+  			<a href="#icthumbnail">thumbnail.tpl</a><br>
+		</td>
+		<td valign="top" width="25%">inserts instructions for the user, depending on
+			the situation.</td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?VIEWTABS&gt; </td>
+		<td valign="top" width="12%">form</td>
+		<td valign="top" width="13%"><a href="#icbbreslist">bbreslist.tpl</a><br>
+  			<a href="#icbbthumbfull">bbthumbfull.tpl</a><br>
+  			<a href="#icbbthumbnail">bbthumbnail.tpl</a><br>
+  			<a href="#icreslist">reslist.tpl</a><br>
+  			<a href="#icthumbfull">thumbfull.tpl</a><br>
+  			<a href="#icthumbnail">thumbnail.tpl</a><br>
+		</td>
+		<td valign="top" width="25%">inserts the view tabs that are used for switching
+			among the results views. by default, the viewtabs are graphical. Optionally
+			the &quot;form&quot; PI parameter can be used to specify that the viewtabs
+			be displayed as &quot;text&quot;. This simply provides a quick and dirty way
+			to change the background color of the header row without creating a new graphic
+			that is dithered to the new background color.<br>
+      			<br>
+			graphic (default)<br>
+			<br>
+			text</td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?VISIBILITY&gt; </td>
+		<td valign="top" width="12%">div</td>
+		<td valign="top" width="13%"><a href="#icbbentry">bbentry.tpl</a><br>
+  			<a href="#icbbslideentry">bbslideentry.tpl</a><br>
+  			<a href="#icentry">entry.tpl</a><br>
+		</td>
+		<td valign="top" width="25%"><p>inserts styles that control the visibility
+				of DIVs in the entry/record display. the default divs are listed below, but
+				there are ways to add or change DIVs if that is of interest. Contact dlxs-info@umich.edu
+				for guidance.</p>
+  			<p>full-image</p>
+  			<p>description</p>
+  			<p>other-views </p></td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?ZOOMTHUMB&gt; </td>
+		<td valign="top" width="12%">none </td>
+		<td valign="top" width="13%"><a href="#icentry">entry.tpl</a><br>
+		</td>
+		<td valign="top" width="25%">this is not ready for primetime, but it is a feature
+			for displaying a thumbnail that has a red box drawn on it indicating the portion
+			of the full image that is currently being viewed. It is a navigational tool. </td>
+	</tr>
+	<tr>
+		<td valign="top" width="25%">&lt;?RESTRICTSTATUS&gt; </td>
+		<td valign="top" width="12%">none</td>
+		<td valign="top" width="13%"><a href="#icindex">index.tpl</a><br>
+  			<a href="#iccollinfo">collinfo.tpl</a> </td>
+		<td valign="top" width="25%">inserts authority of the user relative to the
+			collection</td>
+	</tr>
+</table>
+</body>
+</html>

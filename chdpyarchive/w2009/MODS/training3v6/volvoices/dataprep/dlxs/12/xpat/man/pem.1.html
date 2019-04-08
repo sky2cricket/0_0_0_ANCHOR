@@ -1,0 +1,150 @@
+
+
+<html><head><title>Manpage of PEM</title>
+<link href="../../dlxsdocs.css" rel="stylesheet" type="text/css"> </head><body>
+<h1>PEM</h1>
+Section: User Commands  (1)<br>Updated: November 2000<br><a href="#index">Index</a>
+<a href="http://localhost/cgi-bin/man/man2html">Return to Main Contents</a><hr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="lbAB">&nbsp;</a>
+<h2>NAME</h2>
+
+<b>pem</b> - XPAT Parallel Execution Monitor: search engine control program for
+multiple databases
+<a name="lbAC">&nbsp;</a>
+<h2>SYNOPSIS</h2>
+
+<b>pem</b>
+[ <b>-m</b> <i>memory</i> <b>k</b> | <b>K</b> | <b>m</b> | <b>M</b> ]
+[ <b>-v</b> ]
+[ <b>-q</b> ] 
+[ <b>-e</b> ]
+[ <b>-label</b> <i>label</i> ]
+[ <b>-h</b> <i>historysize</i> ]
+[ <b>-I</b> <i>index_name</i> ]
+<i>pem_data_dictionary</i>
+<a name="lbAD">&nbsp;</a>
+<h2>DESCRIPTION</h2>
+
+<b>pem</b> reads database queries from the standard input and produces
+results on the standard output.  The query
+expressions must be in the form of XPat Command Language commands
+(refer to the <i>XPat Reference Manual and Tutorial</i> for a description of this language).
+<b>pem</b> searches for word prefixes, words, phrases or ranges of any of these.
+<b>pem</b> supports many different operations for combining the results of 
+searches.  In addition, <b>pem</b> supports region operations which allow
+queries to be restricted to specific user-defined regions in the
+database.  These region operations also apply inclusion operations
+to query results.
+<p>
+<b>pem</b> issues the queries to underlying <b>xpat</b> databases.  The names
+of the databases, the hosts on which they reside, and other relevant
+information are specified in the <i>pem_data_dictionary</i> (see <b><a href="http://localhost/cgi-bin/man/man2html?5+pemdata_dict">pemdata_dict</a></b>(5)).
+Each database's index is created with the <b><a href="http://localhost/cgi-bin/man/man2html?1+xpatrgn">xpatrgn</a></b>(1) program.
+<a name="lbAE">&nbsp;</a>
+<h2>OPTIONS</h2>
+
+
+
+<dl compact>
+<dt><b>-m</b> <i>memory</i> [ <b>k</b> | <b>K</b> | <b>m</b> | <b>M</b> ]<dd>
+
+memory - use <i>memory</i> <b>k</b>ilobytes or <b>m</b>egabytes
+for index and text caching.
+
+<dt><b>-v</b><dd>
+verbose - produce some additional messages concerning the execution.
+<dt><b>-q</b><dd>
+quiet - output results in a tagged machine readable format for use with 
+other programs.  Refer to the
+<b>quiet mode</b> section of the <i>XPat Reference Manual and Tutorial</i> for further details.
+<dt><b>-e</b><dd>
+echo - echo the input to standard output.  This is useful when reading input 
+from a file.
+<dt><b>-label</b> <i>label_name</i><dd>
+label - 
+assign the given <i>label_name</i> to this <b>pem</b> process for the current session.
+<dt><b>-h</b> <i>historysize</i><dd>
+history size - set the history list size.
+This option is passed on to each underlying <b>xpat</b> process at startup time.
+<b>xpat</b> defaults to a maximum history of 300 queries.
+Use this option to increase the number of queries in the history list.
+<dt><b>-I</b> <i>index_name</i><dd>
+index name - instruct the underlying <b>xpat</b> processes to use the <i>index_name</i>
+index.
+This option is passed on to each underlying <b>xpat</b> process
+at startup time.
+If the <b>-I</b> option
+is not used, the first index in the Data Dictionary is used.  Note that
+finer index specification can be achieved using the &lt;Index&gt;
+field in the <i>pem_data_dictionary</i> (see the <b><a href="http://localhost/cgi-bin/man/man2html?5+pemdata_dict">pemdata_dict</a></b>(5) man page for further details).
+</dl>
+<a name="lbAF">&nbsp;</a>
+<h2>EXAMPLE</h2>
+
+<pre>
+
+
+&gt;&gt; love
+  1: 462 matches
+
+&gt;&gt; hate
+  2: 263 matches
+
+&gt;&gt; love near hate
+  3: 47 matches
+
+&gt;&gt; pr sample
+       .
+       .
+       .
+&gt;&gt; love fby hate
+  4: 36 matches
+
+&gt;&gt; quit
+</pre>
+
+<a name="lbAG">&nbsp;</a>
+<h2>SEE ALSO</h2>
+
+<b><a href="http://localhost/cgi-bin/man/man2html?1+xpat">xpat</a></b>(1), <b><a href="http://localhost/cgi-bin/man/man2html?1+xpatbld">xpatbld</a></b>(1), <b><a href="http://localhost/cgi-bin/man/man2html?1+xpatrgn">xpatrgn</a></b>(1), <b><a href="http://localhost/cgi-bin/man/man2html?5+regions">regions</a></b>(5), <b><a href="http://localhost/cgi-bin/man/man2html?5+pemdata_dict">pemdata_dict</a></b>(5), <b><a href="http://localhost/cgi-bin/man/man2html?5+xpat_export">xpat_export</a></b>(5)
+<p>
+
+<hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">NAME</a><dd>
+<dt><a href="#lbAC">SYNOPSIS</a><dd>
+<dt><a href="#lbAD">DESCRIPTION</a><dd>
+<dt><a href="#lbAE">OPTIONS</a><dd>
+<dt><a href="#lbAF">EXAMPLE</a><dd>
+<dt><a href="#lbAG">SEE ALSO</a><dd>
+</dl>
+<hr>
+This document was created by
+<a href="http://localhost/cgi-bin/man/man2html">man2html</a>,
+using the manual pages.<br>
+Time: 18:03:38 GMT, March 26, 2001
+</body>
+</html>

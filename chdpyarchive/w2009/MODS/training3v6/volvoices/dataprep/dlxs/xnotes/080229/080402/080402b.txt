@@ -1,0 +1,310 @@
+multiples dothis
+
+
+move all done files to /done!!!!
+
+run fieldtest to check incoming mods
+run hexmess
+
+AT SOME POINT RUN fixSubjects
+
+run
+modsICsearchOaiMusic > checkme
+check checkme for "ERROR"
+grep ERROR checkme
+grep % mods/*
+grep x0 ic/* (hexes which must be changed to entities in /d1/dlxs/misc/sgml/image.dtd
+
+
+cat vviHeader ic/* done/ic/* footer > ic.vvi.unnorm.sgm
+cp ic.vvi.unnorm.sgm /d1/dlxs/prep/v/vvi/.
+	MESSAGE cp: overwrite `/d1/dlxs/prep/v/vvi/ic.vvi.unnorm.sgm'? y
+
+rm /d1/dlxs/prep/v/vvi/ic.vvi.norm.sgm
+	MESSAGE rm: remove regular file `/d1/dlxs/prep/v/vvi/ic.vvi.norm.sgm'? y
+
+cp thumbs/* /d1/dlxs/img/v/vvi/thumb/
+cp jpegs/* /d1/dlxs/img/v/vvi/large/
+  do image class setup
+
+
+separate out the newmods from institution 0012 and put in spc directory.
+/bin/mv newmods/0012* spc/mods/.
+
+for bib class:
+/bin/mv  modsbib/0012* spc/modsbib/.
+/bin/cp modsbib/* /d1/workarea/dlxs/bib/mods/vv/xml
+
+
+for search:
+/bin/cp search/0012* spc/modssearch/.
+/bin/cp search/* /d1/workarea/dlxs/bib/search/vv/xml/
+---------------------------------------------------------------done to here
+
+I suppose that "there" in the sentence below means /d1/workarea/dlxs/bib/search/vv/xml/
+Or maybe not.
+
+The file fixSubjectsBib is at:
+/d1/workarea/dlxs/bib/mods/vv/fixSubjectsBib
+
+The files you want to modify are at /d1/workarea/dlxs/bib/search/vv/xml/
+
+So you run ../../mods/vv/fixSubjectsBib xml/*
+
+Running fixSubjectsBib adds new files 
+      to ../../mods/vv/newSubxml
+and to ../../mods/vv/newPresSubxml
+
+[root@diglib2 vv]# ls ../../mods/vv
+closebib   fixPreserveSubjectsBib   newSubxml          OAI_modsbibToPresMods  xml
+DLCnewSub  fixSubjectsBib           OAIDC              olderVersions
+DLCpres    fixSubjectsBib.20080130  OAI_modsbibToDC    openbib
+dothis     newPresSubxml            OAI_modsbibToMods  vvs-mods.xml
+[root@diglib2 vv]# ls ../../mods/vv/newSubxml/0018_000054_0002*
+../../mods/vv/newSubxml/0018_000054_000200_0000
+../../mods/vv/newSubxml/0018_000054_000202_0000
+../../mods/vv/newSubxml/0018_000054_000203_0000
+../../mods/vv/newSubxml/0018_000054_000204_0000
+../../mods/vv/newSubxml/0018_000054_000205_0000
+../../mods/vv/newSubxml/0018_000054_000206_0000
+../../mods/vv/newSubxml/0018_000054_000207_0000
+../../mods/vv/newSubxml/0018_000054_000209_0000
+../../mods/vv/newSubxml/0018_000054_000211_0000
+../../mods/vv/newSubxml/0018_000054_000212_0000
+../../mods/vv/newSubxml/0018_000054_000213_0000
+../../mods/vv/newSubxml/0018_000054_000214_0000
+../../mods/vv/newSubxml/0018_000054_000215_0000
+../../mods/vv/newSubxml/0018_000054_000216_0000
+../../mods/vv/newSubxml/0018_000054_000217_0000
+../../mods/vv/newSubxml/0018_000054_000218_0000
+../../mods/vv/newSubxml/0018_000054_000219_0000
+
+[root@diglib2 vv]# ls ../../mods/vv/DLCnewSub/0018_000054_0002*
+ls: ../../mods/vv/DLCnewSub/0018_000054_0002*: No such file or directory
+[root@diglib2 vv]# ls ../../mods/vv/newPresSubxml/0018_000054_0002*
+../../mods/vv/newPresSubxml/0018_000054_000200_0000
+../../mods/vv/newPresSubxml/0018_000054_000202_0000
+../../mods/vv/newPresSubxml/0018_000054_000203_0000
+../../mods/vv/newPresSubxml/0018_000054_000204_0000
+../../mods/vv/newPresSubxml/0018_000054_000205_0000
+../../mods/vv/newPresSubxml/0018_000054_000206_0000
+../../mods/vv/newPresSubxml/0018_000054_000207_0000
+../../mods/vv/newPresSubxml/0018_000054_000209_0000
+../../mods/vv/newPresSubxml/0018_000054_000211_0000
+../../mods/vv/newPresSubxml/0018_000054_000212_0000
+../../mods/vv/newPresSubxml/0018_000054_000213_0000
+../../mods/vv/newPresSubxml/0018_000054_000214_0000
+../../mods/vv/newPresSubxml/0018_000054_000215_0000
+../../mods/vv/newPresSubxml/0018_000054_000216_0000
+../../mods/vv/newPresSubxml/0018_000054_000217_0000
+../../mods/vv/newPresSubxml/0018_000054_000218_0000
+../../mods/vv/newPresSubxml/0018_000054_000219_0000
+
+SITUATION IN /d1/workarea/dlxs/bib/mods/vv/ directory
+
+[root@diglib2 vv]# pwd
+/d1/workarea/dlxs/bib/search/vv
+[root@diglib2 vv]# ls
+closesearch  opensearch  vvs-bib.xml  xml
+[root@diglib2 vv]# pwd
+/d1/workarea/dlxs/bib/search/vv
+[root@diglib2 vv]# cd ../../mods/vv
+[root@diglib2 vv]# ls
+closebib   fixPreserveSubjectsBib   newSubxml          OAI_modsbibToPresMods  xml
+DLCnewSub  fixSubjectsBib           OAIDC              olderVersions
+DLCpres    fixSubjectsBib.20080130  OAI_modsbibToDC    openbib
+dothis     newPresSubxml            OAI_modsbibToMods  vvs-mods.xml
+
+
+
+The /d1/workarea/dlxs/bib/search/vv does NOT contain a dothis file.
+The /d1/workarea/dlxs/bib/mods/vv/ directory contains its own do this file shown here:
+===========================================================start dothis
+fixSubjectsBib  (repairs subjects in xml directory, puts them in newSubxml)
+cat openbib newSubxml/* closebib >  vvs-mods.xml
+cp vvs-mods.xml /d1/dlxs/prep/v/vvs-mods/
+
+[root@diglib2 vv]# ls /d1/dlxs/prep/v/vvs-mods/
+modsSearch3.dtd  vvs-mods.errors      vvs-mods.prepost.dd       vvs-mods.xml
+norm.xml         vvs-mods.extra.dd    vvs-mods.presgml.dd
+transform        vvs-mods.extra.srch  vvs-mods.single.blank.dd
+[root@diglib2 vv]# cp vvs-mods.xml /d1/dlxs/prep/v/vvs-mods/
+cp: overwrite `/d1/dlxs/prep/v/vvs-mods/vvs-mods.xml'? y
+
+***********because these two files are in the /d1/workarea/dlxs/bib/mods/vv/ directory 
+***********I am running them before the change directory in the dothis file 
+[root@diglib2 vv]# fixPreserveSubjectsBib
+[root@diglib2 vv]# OAI_modsbibToPresMods
+************************
+************************
+
+
+
+cd /d1/dlxs/prep/v/vvs-mods/
+do bib class setup  (run transform, and copy xml to obj directory
+	[root@diglib2 vvs-mods]# transform
+	[root@diglib2 vvs-mods]# cp vvs-mods.xml /d1/dlxs/obj/v/vvs-mods/
+	cp: overwrite `/d1/dlxs/obj/v/vvs-mods/vvs-mods.xml'? Y
+
+
+[root@diglib2 vv]# cd /d1/dlxs/prep/v/vvs-mods/
+[root@diglib2 vvs-mods]# ls
+modsSearch3.dtd  vvs-mods.errors      vvs-mods.prepost.dd       vvs-mods.xml
+norm.xml         vvs-mods.extra.dd    vvs-mods.presgml.dd
+transform        vvs-mods.extra.srch  vvs-mods.single.blank.dd
+[root@diglib2 vvs-mods]# transform
+
+
+
+
+
+go to /d1/dlxs/idx/v/vvs-mods
+run: make all
+---------------------------------------------------------------------done to here
+
+[root@diglib2 vv]# pwd
+/d1/workarea/dlxs/bib/mods/vv
+[root@diglib2 vv]# cd /d1/dlxs/prep/v/vvs-mods/
+[root@diglib2 vvs-mods]# ls
+modsSearch3.dtd  vvs-mods.errors      vvs-mods.prepost.dd       vvs-mods.xml
+norm.xml         vvs-mods.extra.dd    vvs-mods.presgml.dd
+transform        vvs-mods.extra.srch  vvs-mods.single.blank.dd
+[root@diglib2 vvs-mods]# cp vvs-mods.xml /d1/dlxs/obj/v/vvs-mods/
+cp: overwrite `/d1/dlxs/obj/v/vvs-mods/vvs-mods.xml'? y 
+[root@diglib2 vvs-mods]# cd /d1/dlxs/idx/v/vvs-mods
+[root@diglib2 vvs-mods]# ls
+bib-regions.tags  date.rgn        keydate.rgn   name.rgn        temporal.rgn  vvs-mods.init
+catcode.rgn       detail.rgn      location.rgn  names.rgn       title.rgn     vvs-mods.inp
+charents.frag     genre.rgn       loccd.rgn     publisher.rgn   topic.rgn     vvs-mods.rgn
+collid.rgn        geographic.rgn  locco.rgn     record.rgn      vvcat.rgn
+coll.rgn          id.rgn          Makefile      repository.rgn  vvs-mods.dd
+creator.rgn       ITEM.rgn        media.rgn     subject.rgn     vvs-mods.idx
+[root@diglib2 vvs-mods]# make all
+make convert
+make[1]: Entering directory `/d1/dlxs/idx/v/vvs-mods'
+/d1/dlxs/bin/t/text/isolat128bit.pl /d1/dlxs/obj/v/vvs-mods/vvs-mods.xml
+make[1]: Leaving directory `/d1/dlxs/idx/v/vvs-mods'
+make norm
+make[1]: Entering directory `/d1/dlxs/idx/v/vvs-mods'
+sgmlnorm \
+/d1/dlxs/idx/v/vvs-mods/vvs-mods.inp \
+/d1/dlxs/obj/v/vvs-mods/vvs-mods.xml  > /d1/dlxs/obj/v/vvs-mods/vvs-mods.norm.xml
+mv  /d1/dlxs/obj/v/vvs-mods/vvs-mods.norm.xml /d1/dlxs/obj/v/vvs-mods/vvs-mods.xml
+make[1]: Leaving directory `/d1/dlxs/idx/v/vvs-mods'
+make validate
+make[1]: Entering directory `/d1/dlxs/idx/v/vvs-mods'
+nsgmls -s -f /d1/dlxs/prep/v/vvs-mods/vvs-mods.errors /d1/dlxs/idx/v/vvs-mods/vvs-mods.inp /d1/dlxs/obj/v/vvs-mods/vvs-mods.xml
+make[1]: Leaving directory `/d1/dlxs/idx/v/vvs-mods'
+make singledd
+make[1]: Entering directory `/d1/dlxs/idx/v/vvs-mods'
+cp /d1/dlxs/prep/v/vvs-mods/vvs-mods.single.blank.dd /d1/dlxs/idx/v/vvs-mods/vvs-mods.dd
+/usr/local/xpat/bin/xpatbld -m 256m -D /d1/dlxs/idx/v/vvs-mods/vvs-mods.dd
+cp /d1/dlxs/idx/v/vvs-mods/vvs-mods.dd /d1/dlxs/prep/v/vvs-mods/vvs-mods.presgml.dd
+make[1]: Leaving directory `/d1/dlxs/idx/v/vvs-mods'
+make multi
+make[1]: Entering directory `/d1/dlxs/idx/v/vvs-mods'
+cp /d1/dlxs/prep/v/vvs-mods/vvs-mods.presgml.dd /d1/dlxs/idx/v/vvs-mods/vvs-mods.dd
+/usr/local/xpat/bin/multirgn -f -D /d1/dlxs/idx/v/vvs-mods/vvs-mods.dd -t /d1/dlxs/idx/v/vvs-mods/bib-regions.tags
+cp /d1/dlxs/idx/v/vvs-mods/vvs-mods.dd /d1/dlxs/prep/v/vvs-mods/vvs-mods.prepost.dd
+make[1]: Leaving directory `/d1/dlxs/idx/v/vvs-mods'
+make post
+make[1]: Entering directory `/d1/dlxs/idx/v/vvs-mods'
+cp /d1/dlxs/prep/v/vvs-mods/vvs-mods.prepost.dd /d1/dlxs/idx/v/vvs-mods/vvs-mods.dd
+touch /d1/dlxs/idx/v/vvs-mods/vvs-mods.init
+/usr/local/xpat/bin/xpat -q /d1/dlxs/idx/v/vvs-mods/vvs-mods.dd < /d1/dlxs/prep/v/vvs-mods/vvs-mods.extra.srch | /d1/dlxs/bin/t/text/output.dd.frag.pl /d1/dlxs/idx/v/vvs-mods/ > /d1/dlxs/prep/v/vvs-mods/vvs-mods.extra.dd
+/d1/dlxs/bin/t/text/inc.extra.dd.pl /d1/dlxs/prep/v/vvs-mods/vvs-mods.extra.dd /d1/dlxs/idx/v/vvs-mods/vvs-mods.dd
+make[1]: Leaving directory `/d1/dlxs/idx/v/vvs-mods'
+[root@diglib2 vvs-mods]# 
+---------------------------------------------------------------------done to here
+
+
+directory for fixPreserveSubjectsBib /d1/workarea/dlxs/bib/mods/vv/
+        and for fixSubjectsBib
+        and for OAI_modsbibToPresMods
+
+
+
+make sure it's in the httpd conf directory, restart if adding
+release to production
+
+test in OAI
+
+fixPreserveSubjectsBib    (takes files from xml, fixes subjects and category
+                           attributes  and puts them in newPresSubxml)
+OAI_modsbibToPresMods     (takes files from newPresSubxml, outputs
+                             preservation mods with unicode in DLCpres)
+
+MODS files to be preserved are now in DLCpres.  Move with preservation TEI to join
+tiffs on preservation server.
+
+OAI_modsbibToMods and OAI_modsbibToDC are for testing the broker output of the bib
+records in mods and bib, writing the results to OAIDC and DLCnewSub
+
+fixSubjects takes MODS from DLC and repairs the subjects and puts the files in DLCnewSub
+(older script not currently in use).
+===========================================================end dothis
+
+Again, what does "there" mean in the following line?
+[root@diglib2 multiples]# pwd
+/d1/workarea/dlxs/image/tel/multiples
+Does it me the directory /d1/workarea/dlxs/image/tel/multiples
+You will go there to put all the search and mods files from different directories up.
+(remember to run fixSubjectsBib first)
+
+
+scp minithumbs/* diglib@diglib.lib.utk.edu:/d1/dlxs/web/thumbs/vv/.
+(need these for search display)
+
+[root@diglib2 multiples]# scp minithumbs/* diglib@diglib.lib.utk.edu:/d1/dlxs/web/thumbs/vv/
+diglib@diglib.lib.utk.edu's password: 
+0018_000054_000220_0001.jpg                                  100%   28KB   1.8MB/s   00:00    
+0018_000054_000220_0002.jpg                                  100%   28KB  17.3MB/s   00:00    
+0018_000054_000220_0003.jpg                                  100%   30KB  18.6MB/s   00:00    
+0018_000054_000220_0004.jpg                                  100%   27KB  19.5MB/s   00:00    
+0018_000054_000220_0005.jpg                                  100%   28KB  17.2MB/s   00:00    
+0018_000054_000221_0001.jpg                                  100%   25KB  18.0MB/s   00:00    
+0018_000054_000221_0002.jpg                                  100%   25KB  18.1MB/s   00:00    
+0018_000054_000223_0001.jpg                                  100%   25KB  17.8MB/s   00:00    
+0018_000054_000223_0002.jpg                                  100%   27KB  19.3MB/s   00:00    
+0018_000054_000223_0003.jpg                                  100%   27KB  19.4MB/s   00:00    
+0018_000054_000223_0004.jpg                                  100%   28KB  17.4MB/s   00:00    
+0018_000054_000223_0005.jpg                                  100%   27KB  19.5MB/s   00:00    
+0018_000054_000223_0006.jpg                                  100%   29KB  18.0MB/s   00:00    
+0018_000054_000224_0001.jpg                                  100%   32KB   4.5MB/s   00:00    
+0018_000054_000225_0001.jpg                                  100%   28KB  17.7MB/s   00:00    
+0018_000054_000225_0002.jpg                                  100%   32KB  17.2MB/s   00:00    
+0018_000054_000225_0003.jpg                                  100%   31KB  19.5MB/s   00:00    
+0018_000054_000225_0004.jpg                                  100%   29KB  17.9MB/s   00:00    
+0018_000054_000225_0005.jpg                                  100%   24KB  17.3MB/s   00:00    
+0018_000054_000225_0006.jpg                                  100%   31KB  19.7MB/s   00:00    
+0018_000054_000226_0001.jpg                                  100%   27KB  19.7MB/s   00:00    
+0018_000054_000226_0002.jpg                                  100%   28KB  17.4MB/s   00:00    
+0018_000054_000226_0003.jpg                                  100%   30KB   3.6MB/s   00:00    
+0018_000054_000226_0004.jpg                                  100%   29KB  18.3MB/s   00:00    
+0018_000054_000226_0005.jpg                                  100%   26KB  18.8MB/s   00:00    
+0018_000054_000232_0001.jpg                                  100%   27KB  19.2MB/s   00:00    
+0018_000054_000232_0002.jpg                                  100%   30KB  18.6MB/s   00:00    
+0018_000054_000232_0003.jpg                                  100%   30KB  18.8MB/s   00:00    
+0018_000054_000232_0004.jpg                                  100%   30KB  18.4MB/s   00:00    
+0018_000054_000233_0001.jpg                                  100%   30KB  18.9MB/s   00:00    
+0018_000054_000233_0002.jpg                                  100%   30KB  19.0MB/s   00:00    
+0018_000054_000235_0001.jpg                                  100%   25KB  17.9MB/s   00:00    
+0018_000054_000235_0002.jpg                                  100%   30KB   4.3MB/s   00:00    
+0018_000054_000235_0003.jpg                                  100%   29KB  18.4MB/s   00:00    
+0018_000054_000235_0004.jpg                                  100%   29KB  18.2MB/s   00:00    
+[root@diglib2 multiples]# 
+
+
+AFTER COMPLETING ALL COLLECTIONS from this pickup, go to /d1/workarea/telfiles
+and run "listfiles" and send Cricket the resulting list.  It runs off the newmods
+directory.  This must be done BEFORE moving the newmods to spc/mods.
+
+
+run fixSubjects to create the preservation files
+
+do NOT run infotrack on these yet, as we need to relate them to their EADs,
+and alter them for crosslinking.
+
+hopefully you have all new dlc files in one directory alone.
+point infotrack at this directory and run it, to put info on files into
+InfoTrack database.  then copy new stuff to store1.

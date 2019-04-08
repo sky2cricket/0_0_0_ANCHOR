@@ -1,0 +1,667 @@
+
+<html>
+<head>
+<title>
+page_06
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+<script language=javascript src="vv_compose_tags.js"></script>
+<script>
+
+function changeType2(){
+for (i=0;i<document.DF.collection_id_num_type.length;i++){
+	if(document.DF.collection_id_num_type[i].selected==true){
+	   document.DF.collection_id_number_type2.value=
+	     document.DF.collection_id_num_type[i].text;
+		break;
+	}//end if
+}//end for
+}//end function changeType2()
+
+</script>
+
+
+</head>
+
+<script> document.write('<body onload="load_DF_form();"  bgcolor="'+parent.adb_background_color+'" >'); </script>
+
+
+<font face="arial" size="3">
+<center><font face="arial">
+<h2><script> document.write(parent.adb_project_name); </script>
+ Workbook Page 6</h2>
+</center>
+
+<script>
+///Civil War Salt Peter Mining None, LCNAF, ULAN. 
+
+
+
+
+
+</script>
+
+<form name="DF"  action="new.xml">
+
+<table class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="ddeeff">
+<tr class="bgstandard"><td colspan="3">
+
+Required Fields are <u>underlined</u>.
+Non-Required Fields are not underlined.
+</td></tr>
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>MODS LABEL</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+<font face="arial">
+
+
+
+
+<tr class="bgstandard">
+<td class="label13u">
+Contributing Institution
+</td>
+<td>&nbsp;<input type="text" name="physical_location_repository" value="Special Collections, Hoskins Library. Knoxville, TN." size="36" 
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+class="required300w"
+>
+&nbsp;&nbsp;<font face="arial" size="1"><br>&nbsp;Name of repository (library, archive, museum) in which resource resides.
+<br>For example: Special Collections, Hoskins Library. Knoxville, TN.
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13u">
+Street Address
+</td>
+<td>&nbsp;<input type="text" name="physical_location_street_addr" value="Knoxville" size="36" 
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:300px; background:#ffffaa"
+>
+&nbsp;&nbsp;<font face="arial" size="1">Street address for the home repository. 
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13u">
+City
+</td>
+<td>&nbsp;<input type="text" name="physical_location_city" value="Knoxville" size="36" 
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:300px; background:#ffffaa"
+>
+&nbsp;&nbsp;<font face="arial" size="1">City in which the home repository is located.
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13u">
+State
+</td>
+<td>&nbsp;<input type="text" name="physical_location_state" value="Tennessee" size="36" 
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:300px; background:#ffffaa"
+>
+&nbsp;&nbsp;<font face="arial" size="1">State in which the home repository is located.
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13u">
+ZIP
+</td>
+<td>&nbsp;<input type="text" name="physical_location_zip" value="Tennessee" size="36" 
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:300px; background:#ffffaa"
+>
+&nbsp;&nbsp;<font face="arial" size="1">Zip code for the physical address.
+</td>
+<td>&nbsp</td>
+</tr>
+<tr class="bgstandard">
+<td class="label13u">
+Repository Full Address
+</td>
+<td>&nbsp;
+<textarea name="physical_location_fulladd" cols="60" rows="6" ></textarea> 
+&nbsp;&nbsp;<font face="arial" size="1">
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td class="label13u">
+County
+</td>
+<td>&nbsp;<input type="text" name="physical_location_county" value="Code" size="2" READONLY
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:40px; background:#ffffaa"
+>
+&nbsp;<input type="text" name="physical_location_county_display" value="Description" size="36" READONLY 
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:252px; background:#ffffaa"
+>
+
+
+&nbsp;<input type="button" name="Bphysical_location_county" value="Select County" 
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:121px"
+onclick="parent.L.selectOneOption(this,'600','400')">
+&nbsp;<input type="button" name="Cphysical_location_county" value="Clear" 
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:100px"
+onclick="parent.L.clearSelection(this,2)">
+
+
+<font face="arial" size="1" color="000000" >
+
+<br>Code, Description for 1 95 Tennessee Counties. County in which the home repository is located.
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+
+
+<!---Placeholder fields<br>museum_accession_number<br>museum_credit_line
+ tag built on this page, but input box on museum page------------->
+<input type="hidden" name="museum_credit_line" value="">
+
+</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td class="label13u">
+Collection Name
+</td>
+<td>&nbsp;<script>
+document.write('<input type="text" ' 
+	+' style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:300px; " '
+	+' name="collection_id_name" '
+	+' onmousedown="return parent.L.stopCutAndPaste(this,event)" '
+	+' onkeypress="return parent.L.stopCutAndPaste(this,event)" '
+	+' onkeydown="return parent.L.stopCutAndPaste(this,event)" '
+	+' value="'+parent.adb_collname+'" >');
+</script>
+&nbsp;&nbsp;<font face="arial" size="1"> Archival Collection Name.
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13u">
+Identification Number Type
+Select
+</td>
+<td>&nbsp;<select name="collection_id_num_type" 
+onchange="changeType2()"
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:300px; " 
+>
+<option value="none" selected>none selected</option>
+<option value="manuscriptNumber">Manuscript Number</option>
+<option value="archiveNumber">Archive Number</option>
+<option value="callNumber">Call Number</option>
+<option value="accessionNumber">Accession Number</option>
+<option value="otherIdentificationNumber">Other Identification Number</option>
+</select>  parent.adb_collidndes = 
+<script>
+document.write( parent.adb_collidndes )
+</script>
+&nbsp;&nbsp;<font face="arial" size="1"><br>&nbsp;Archival Collection Number Type. Required when Collection ID Number is filled in.
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13u">
+Identification Number Type
+</td>
+<td>&nbsp;<input type="text" name="collection_id_number_type2" value="" size="36" 
+READONLY
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:300px; "
+>
+&nbsp;&nbsp;<font face="arial" size="1"> If blank, select a choice from above. 
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13u">
+Identification Number 
+</td>
+<td>&nbsp;<input type="text" name="collection_id_number" value="" size="36" 
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:300px; "
+>
+&nbsp;&nbsp;<font face="arial" size="1"> Archival Collection Number.
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td class="label13u">
+Detail
+</td>
+<td>&nbsp;<input type="text" name="physical_location_detail" value="manuscript collection name, number, series, box, folder" size="36" 
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:300px"
+>
+&nbsp;&nbsp;<font face="arial" size="1">
+<br>&nbsp;Additional detail to help find the resource in the home repository.  
+<br>If material is organized with Box/Folder number, please include.
+<br>Example:  Box 1, Folder 3. 
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td class="label13u">
+Record Content Source
+</td>
+<td><font face="arial" size="1">&nbsp;
+<br>&nbsp;<input type="text" name="record_content_source" value="digitization center" size="80"
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; xwidth:300px; background:#ffffaa"
+>
+&nbsp;&nbsp;<font face="arial" size="1">
+<br>&nbsp;Digitization center, institution, group, or individual responsible for creating the record.
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+
+<tr class="bgstandard">
+<td class="label13u">
+Record Creation Date<br>yyyy-mm-dd
+</td>
+<td>&nbsp;<input type="text" name="record_creation_date" value="2006-09-05" size="36" READONLY
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:240px; background:#ffffaa"
+>
+&nbsp;<input type="button" name="Brecord_creation_date" value="Select Date" 
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:121px"
+onclick="parent.L.selectOneOptionDate(this,'600','700')">
+&nbsp;<input type="button" name="Crecord_creation_date" value="Clear" 
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:100px"
+ onclick="parent.L.clearDateNoQual(this)" >
+<font face='arial' size='1'><br>&nbsp;Date this form is completed.
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+<!--- Placeholder  Fields language_of_cataloging <br>language_of_cataloging_display
+language of cat Locked as eng, English--->
+
+<input type="hidden" name="xlanguage_of_cataloging" value="eng">
+<input type="hidden" name="xlanguage_of_cataloging_display" value="English" >
+
+<tr class="bgstandard">
+<td class="label13u">
+Language of Cataloging
+</td>
+<td>&nbsp;<input type="text" name="language_of_cataloging" value="eng" size="2" class="requirednw" READONLY
+>
+&nbsp;<input type="text" name="language_of_cataloging_display" value="English" READONLY xclass="required300w" 
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:190px; background:#ffffaa"
+>
+&nbsp;<input type="button" name="Blanguage_of_cataloging" value="Select Language" xclass="button120w"
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:121px"
+onclick="parent.L.selectOneOption(this,'400','600')" >
+&nbsp;<input type="button" name="Clanguage_of_cataloging" value="Clear"  xclass="button80w"
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:100px"
+onclick="parent.L.clearSelection(this,2)" >
+&nbsp;&nbsp;<font face="arial" size="1"><br>iso639-2 Code, Description for Language. Enter values by clicking the Select Language Button.
+<br>Values are from <a href="http://www.loc.gov/standards/iso639-2/php/code_list.php" target="_blank">http://www.loc.gov/standards/iso639-2/php/code_list.php</a>.
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+
+<tr class="bgstandard">
+<td  class="label13u">
+Use and Reproduction
+</td>
+<td>&nbsp;
+
+<b>
+<script>
+//in vv_build_tags.js, the urls are hardcoded, not passed from this page
+var url_sp=new String("http://idserver.utk.edu/?id=200600000001198");
+var url_vv=new String("http://idserver.utk.edu/?id=200600000001200");
+var target_sp = new String(' target="blank" ');
+
+if ( parent.adb_institution_id == "0012" ) {
+	document.write('<a '
+		+' href="http://idserver.utk.edu/?id=200600000001198" '+target_sp+' >'
+		+'Click here for more information.</a>');
+	document.write('<input type="hidden" name="use_and_reproduction" '
+		+' value="'+url_sp +'">');
+}else{
+	document.write('<a '
+		+' href="http://idserver.utk.edu/?id=200600000001200" '+target_sp+' >'
+		+'Click here for more information.</a>');
+	document.write('<input type="hidden" name="use_and_reproduction" '
+		+' value="'+url_vv +'">');
+}
+</script>
+	
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+
+
+
+
+<tr class="bgstandard"><td colspan="3" align="center">
+&nbsp;&nbsp;
+<input type="button" name="B_UF" value="Save" class="buttonnw" onclick="buildModsTags(10);">
+<!---input type="button" name="B_DF" value="Reset"  class="buttonnw" onclick="load_DF_form();"--->
+
+<input type="button" name="B2" 
+value="Save Data and View MODS TAGS" class="buttonnw"
+onclick="buildModsTags(1)">
+
+
+</td></tr>
+
+</table>
+
+
+
+
+
+
+
+</form name="forms[0]">
+
+<center><font face="arial">
+<h2><script> document.write(parent.adb_project_name); </script>
+ Workbook Page 6</h2>
+</center>
+
+
+<hr>
+<script>
+
+
+///document.write("parent.U.document.UF.validate_page_06.value="+parent.U.document.UF.validate_page_06.value+"<br>"); 
+
+
+
+
+
+/////chdchdchd
+
+
+
+
+
+function load_UF_form() {
+
+parent.U.document.UF.physical_location_repository.value = document.DF.physical_location_repository.value
+parent.U.document.UF.physical_location_street_addr.value = document.DF.physical_location_street_addr.value
+parent.U.document.UF.physical_location_detail.value = document.DF.physical_location_detail.value
+parent.U.document.UF.physical_location_city.value = document.DF.physical_location_city.value
+parent.U.document.UF.physical_location_state.value = document.DF.physical_location_state.value 
+alert("parent.U.document.UF.physical_location_fulladd.value="
+	+parent.U.document.UF.physical_location_fulladd.value)
+
+//parent.U.document.UF.physical_location_zip.value = document.DF.physical_location_zip.value 
+//parent.U.document.UF.physical_location_fulladd.value = document.DF.physical_location_fulladd.value 
+parent.U.document.UF.physical_location_county.value = document.DF.physical_location_county.value
+parent.U.document.UF.physical_location_county_display.value = document.DF.physical_location_county_display.value
+parent.U.document.UF.collection_id_name.value = document.DF.collection_id_name.value
+
+parent.U.document.UF.collection_id_number.value = document.DF.collection_id_number.value
+parent.U.document.UF.collection_id_number_type2.value = document.DF.collection_id_number_type2.value
+for(i=0;i<6;i++ ) {
+parent.U.document.UF.collection_id_num_type[i].selected = document.DF.collection_id_num_type[i].selected;
+}
+//parent.U.document.UF.museum_accession_number.value = document.DF.museum_accession_number.value
+parent.U.document.UF.museum_credit_line.value = document.DF.museum_credit_line.value 
+parent.U.document.UF.record_content_source.value = document.DF.record_content_source.value
+
+
+parent.U.document.UF.record_creation_date.value = document.DF.record_creation_date.value
+parent.U.document.UF.language_of_cataloging.value = document.DF.language_of_cataloging.value
+parent.U.document.UF.language_of_cataloging_display.value = document.DF.language_of_cataloging_display.value
+parent.U.document.UF.use_and_reproduction.value = document.DF.use_and_reproduction.value
+
+
+
+return;
+}
+
+
+function load_DF_form() {
+
+//repository -- parent.adb_instname
+if ( parent.U.document.UF.physical_location_repository.value != "" ) {
+	document.DF.physical_location_repository.value = parent.U.document.UF.physical_location_repository.value;
+}else {
+	document.DF.physical_location_repository.value = parent.adb_instname;
+}
+//street_addr
+var street_address=new String(parent.adb_instadd);
+    street_address=street_address.replace(parent.adb_instname,'');
+	document.DF.physical_location_street_addr.value = street_address;
+
+
+//city -- parent.adb_instcity
+if ( parent.U.document.UF.physical_location_city.value != "" ) {
+	document.DF.physical_location_city.value = parent.U.document.UF.physical_location_city.value;
+}else {
+	document.DF.physical_location_city.value = parent.adb_instcity;
+}
+
+
+//state -- parent.adb_inststate
+if ( parent.U.document.UF.physical_location_state.value != "" ) {
+	document.DF.physical_location_state.value = parent.U.document.UF.physical_location_state.value;
+}else {
+	document.DF.physical_location_state.value = parent.adb_inststate;
+}
+
+//zip -- parent.adb_instzip
+	document.DF.physical_location_zip.value = parent.U.document.UF.physical_location_zip.value;
+
+//full address
+	document.DF.physical_location_fulladd.value = parent.U.document.UF.physical_location_fulladd.value;
+
+
+//county display -- parent.adb_instcounty
+
+if ( parent.U.document.UF.physical_location_county_display.value != "" ) {
+	document.DF.physical_location_county_display.value = parent.U.document.UF.physical_location_county_display.value;
+}else {
+	document.DF.physical_location_county_display.value = parent.adb_instcounty;
+}
+
+//county -- calculate from county display
+if ( parent.U.document.UF.physical_location_county.value != "" ) {
+	document.DF.physical_location_county.value = parent.U.document.UF.physical_location_county.value;
+}else {
+	document.DF.physical_location_county.value= parent.L.getCountyCode(parent.L.aVVcounty,document.DF.physical_location_county_display.value);
+}
+
+
+
+
+//collection_id_name -- parent.adb_collname
+if ( parent.U.document.UF.collection_id_name.value != "" ) {
+	document.DF.collection_id_name.value = parent.U.document.UF.collection_id_name.value;
+}else {
+	document.DF.collection_id_name.value = parent.adb_collname;
+}
+
+//collection_id_number -- parent.adb_collidn
+//collection_id_num_type -- parent.adb_collidndes
+document.DF.collection_id_number_type2.value = parent.U.document.UF.collection_id_number_type2.value;
+if ( parent.U.document.UF.collection_id_number.value != "" ) {
+	document.DF.collection_id_number.value = parent.U.document.UF.collection_id_number.value;
+	//also do collection_id_num_type 
+	for(i=0;i<6;i++ ) {
+		document.DF.collection_id_num_type[i].selected = parent.U.document.UF.collection_id_num_type[i].selected;
+	}
+}else {
+	document.DF.collection_id_number.value = parent.adb_collidn;
+	//collection_id_num_type -- parent.adb_collidndes
+	//calculate index of selected=true in select box
+	var iii = 0;//index of selected
+	if (parent.adb_collidndes != "" ) {
+		iii = parent.L.getCode(parent.L.aCollection_id_num_type,parent.adb_collidndes)
+		alert("collection_id_num_type iii="+iii);
+	}
+	document.DF.collection_id_num_type[iii].selected = true;
+}
+
+//detail -- no parent.adb_VALUE for detail
+document.DF.physical_location_detail.value = parent.U.document.UF.physical_location_detail.value;
+
+//record content source 
+document.DF.record_content_source.value = parent.U.document.UF.record_content_source.value
+
+//hidden on page 06 - museum_credit_line (entered on museum page)
+//hidden language_of_cataloging, language_of_cataloging_display
+
+document.DF.museum_credit_line.value = parent.U.document.UF.museum_credit_line.value
+
+document.DF.language_of_cataloging.value = "eng";/////parent.U.document.UF.language_of_cataloging.value
+document.DF.language_of_cataloging_display.value = "English";////parent.U.document.UF.language_of_cataloging_display.value
+
+
+//record creation date
+document.DF.record_creation_date.value = parent.U.document.UF.record_creation_date.value
+
+//hardcoded -- rights -- hidden field
+document.DF.use_and_reproduction.value = parent.U.document.UF.use_and_reproduction.value;
+
+return;
+
+}//end function load_DF_form() 
+
+
+function buildModsTags(N) {
+
+
+form_filter();
+
+////do this first so current values are loaded regardless of validation status
+load_UF_form();
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+//before writing MODS TAGS, make sure all required fields are populated
+//checkAllRequired... true  validation sets validation status to 1  -- complete
+//checkAllRequired... false validation sets validation status to 0  -- incomplete
+
+if (!parent.L.checkAllRequiredElements_Page_06() ) {
+	parent.L.update_page_validation(6,0);
+	return;
+}
+parent.L.update_page_validation(6,1);
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+var num = new Number();
+    num = N;
+
+if (num == 10) {
+        alert("Values have been saved.");
+        return;
+        }
+
+
+var aps= new Array();
+var aps= new Array();
+var hps= new Array();
+var cps= new Array();
+    
+    hps = buildTagsArray_header(num);
+    aps = buildTagsArray_page_06(num);
+    cps = buildTagsArray_closer(num);
+
+
+//=================================================
+
+document.write('<input type="button" name="BBACK" onclick="javascript: history.back()" value="BACK"><P>');
+document.write('<font face="Elephant" size="3" color="a00000">'+parent.adb_project_name+' Workbook, Page 6<p></font>');
+//PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+document.write( "This is the generated xml script.  Values you entered are highlighted in red.<HR>");
+
+//document.write('< ? xml version="1.0"  ? > \r\n'); 
+///document.write("Content-Type: text/xml ")
+
+
+
+for (i=0;i<hps.length;i++) {
+	var vps = new String(hps[i]);
+ 	document.write("<br>"+vps);
+	}
+
+
+
+for (i=0;i<aps.length;i++) {
+	var vps = new String(aps[i]);
+	document.write("<br>"+vps);
+	}
+
+
+
+for (i=0;i<cps.length;i++) {
+	var vps = new String(cps[i]);
+	document.write("<br>"+vps);
+
+	}
+
+
+
+}//end function
+
+
+
+
+</script>
+	
+
+
+</body>
+</html>
+

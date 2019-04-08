@@ -1,0 +1,78 @@
+<html>
+<head>
+<title>Adding Collections to collmgr, Bibliographic Class</title>
+<link href="../../dlxsdocs.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="pageTitle">Adding Collections to collmgr, Bibliographic Class</div>
+<p>The <a href="../../collmeta/colldatabases.html">collection database</a> for
+   Bibliographic Class and all other classes is managed through the <a href="../../collmeta/collmgr.html">collmgr</a> program.
+   The collmgr application mediates access to creating and updating the metadata,
+   and has online, in-context documentation, for example, the DLPS implementation
+   of <a href="../../collmeta/collmgr-fields.html">collmgr documentation</a>.
+   This documentation notes fields that are "required," as well as the types
+   of values that each field supports. In those cases where a field uses the
+   reserved keyword "default," a system-supplied default value or function is
+   used. For example, in Bibliographic Class, if "default" is used for <tt>short
+   filter</tt>, records will be displayed according to the rules used in the
+   default Bibliographic Class short filter.</p>
+<p>For most of your Bibliographic Class collections, you will add the following
+   fields. The instructions below assume a sample collection named "nyt". Please
+   replace these sample names with your local filenames.</p>
+<ul>
+   <li><tt>collid</tt> = [The unique ID string used for the collection, e.g.,] <i>nyt</i></li>
+   <li><tt>collname</tt> = [The collection name as it will appear on the cross-collection
+      results lists, in the collection picker (sorted alphabetically), and on
+      the home page for the collection, e.g.,] <i>Historical Index to the New
+      York Times (1863-1905)</i></li>
+   <li><tt>homesite</tt> = [The URL for the host webserver hosting the middleware,
+      e.g.,] <i>http://www.hti.umich.edu/</i></li>
+   <li><tt>host</tt> = [The host name for the machine hosting the collection
+      data and data indexes, e.g.,] <i>www.hti.umich.edu</i></li>
+   <li><tt>webdir</tt> = [The directory path relative to DLXSROOT for the collection
+      (usually in the form /c/collid), e.g.,] <i>/n/nyt</i></li>
+   <li><tt>objdir</tt> = [The directory where text/image objects are stored,
+      e.g.,] <i>/n/nyt</i></li>
+   <li><tt>map</tt> = [The location of the TerminologyMapper map file for the
+      collection, e.g.,] <i>nyt.map</i> [or default]</li>
+   <li><tt>port</tt> = [The access port for the XPAT daemon on the machine identified
+      in "host" above. Only necessary for collections where data and indexes
+      are on a different machine than the middleware, e.g.,] <i>620</i></li>
+   <li><tt>appmodule</tt> = [The module name (without .pm suffix) of the Application
+      Object or subclass thereof supporting the basic application functionality
+      for the Bibliographic Class middleware, e.g.,] <i>BibApp</i></li>
+   <li><tt>subclassmodule</tt> = [The name of the subclass module (without the ".pm" suffix)
+      that defines the subclass of the Bibliographic Class object for the collection,
+      e.g.,] <i>BibClass/NytBC</i></li>
+   <li><tt>primarytitle</tt> = [The first title (or graphical banner) that appears
+      at the top of the initial web page, e.g.,] <i>text:Historical Index to
+      the New York Times (1863-1905)</i></li>
+   <li><tt>minmaxyearstart</tt> = [The minimum valid year value to be used to
+      check user input for date searches, e.g.,] <i>1912</i></li>
+   <li><tt>minmaxyearend</tt> = [The maximum valid year value to be used to check
+      user input for date searches, e.g.,] <i>2002</i></li>
+   <li><tt>dddir</tt> = [The directory containing the XPAT dd file or files (specified
+      in the dd field) for the collection, e.g.,] <i>/n/nyt</i></li>
+   <li><tt>dd</tt> = [A list of one or more XPAT .dd files for the collection.
+      Their location is specified by the dddir field, e.g.,] <i>nyt.dd</i></li>
+   <li><tt>regionsearch</tt> = [The regions which are retrieved for Boolean searches
+      (minimally, "entire record"), e.g.,]</li>
+   <ul>
+      <li><i>entire record</i></li>
+      <li><i>author</i></li>
+      <li><i>title</i></li>
+   </ul>
+</ul>
+<p>Submit your changes and check them in.</p>
+<h1>Related Information</h1>
+<p>You <b>must</b> also create templates for the new collection. For more information
+   on creating and altering templates, please see <a href="templates.html">Creating
+   and Editing HTML/Template Files</a>.</p>
+<p>You <b>may</b> also add new fields, not previously defined. For more information
+   on adding new searchable fields, please see <a href="maps.html">Adding
+   New Searchable Fields</a>.</p>
+<p>You <b>may</b> also wish to create special filtering routines for the new
+   collection. For more information on creating and editing filters, please see <a href="filters.html">Creating
+   and Editing Filtering Routines</a>.</p>
+</body>
+</html>

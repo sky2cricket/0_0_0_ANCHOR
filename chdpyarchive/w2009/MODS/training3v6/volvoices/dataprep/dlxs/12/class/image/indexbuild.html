@@ -1,0 +1,123 @@
+<html>
+<head>
+<title>Image Class XPAT Index Building</title>
+
+
+
+
+
+ <link href="../../dlxsdocs.css" rel="stylesheet" type="text/css"></head>         <body>
+<div class="pageTitle">Image Class XPAT Index Building</div>  
+<p><a href="mailto:dlxs-help@umich.edu">dlxs-help@umich.edu</a> </p>
+
+<p>This document describes the steps necessary to build an XPAT index for the 
+  Image Class. </p>
+<p><b>New in DLXS 12:</b></p>
+<ul>
+<li>The Makefile now uses xpatbldu instead of  xpatbld. xpatbldu supports unicode.</li>
+<li>Legacy data that happens to be Unicode compliant does not need to have the xpat index rebuilt. If the legacy data includes character entities, they must be represented in the file $DLXSROOT/web/i/image/entitiesdoctype.chnk in order for the data to display properly in the Image Class middleware.</li> 
+<li>To rebuild an index with using the Unicode version of XPat, delete or move the existing $DLXSDATAROOT/idx/c/collid and $DLXSDATAROOT/obj/c/collid directories. Use $DLXSROOT/bin/i/image/setupcollindex to create new idx and obj dirs based on image-blank. Then proceed to build the index using the Makefile (per normal, accordingn to instructions in this document below. This assumes that the data is Unicode compliant!</li> 
+</ul>
+ 
+<h2>About image-blank</h2>
+<p>Distributed with Image Class is a preconfigured XPAT index directory named 
+  "image-blank" that can be used as a boilerplate for building new Image Class 
+  XPAT indexes. You find image-blank at...</p>
+<pre>$DLXSROOT/idx/i/image-blank</pre>
+  
+
+<h2>Setup New Collection Specific Directories (if necessary)</h2>
+<p>In DLXS all content data (sgml for Image Class) are stored under $DLXSDATAROOT/obj 
+  with the exception of continuous tone images which are stored under $DLXSDATAROOT/img. 
+  It is necessary to create collection specific obj and idx directories for each 
+  collection.</p>
+
+<p>The shell script ($DLXSDATAROOT/bin/i/image/setupcollindex) automatically creates and configures idx and obj directories for a new collection. It also copies the sgml file from $DLXSDATAROOT/prep/c/collid to $DLXSDATAROOT/obj/c/collid. It stops short of actually building the index.</p>
+
+<p>usage: $DLXSROOT/bin/i/image/setupcollindex c/collid</p>
+
+<p>example: $DLXSROOT/bin/i/image/setupcollindex s/sampleic</p>
+
+<ul>
+  <li>All SGML files must have the filename extension .sgm</li>
+  <li>All SGML files must already be normalized and validated against the Image Class SGML DTD. (If the prescribed database transformation steps were followed, 
+    this is taken care of.)</li>
+  <li>All SGML file permissions should be 664.</li>
+</ul>
+  
+<h2>Build the XPAT Index</h2>
+<p>With all of the SGML files properly placed in the $DLXSDATAROOT/obj/c/collid directory, 
+  and the $DLXSDATAROOT/idx/c/collid directory setup, the XPAT index can be built. Most 
+  collections of several thousand records will build in less than an hour. Large 
+  collections could take several hours. It depends on the amount of data and the 
+  available computing power. Building an index with a small amount of data is 
+  recommended on the first try. A few hundred records is appropriate for starters, 
+  and will only take a few minutes to run.</p>
+<ol>
+  <li>Navigate to the /11/idx/c/collid directory</li>
+  <li>Issue the comand <b>make all </b>(previously make dd)</li>
+  <li>Wait until it says it is done</li>
+</ol>
+<p><b>Tip: </b>If you want the index to build in the background and without needing 
+  to worry about the process dying if the session is lost, try... <tt>nohup make 
+  all &amp;</tt></p>
+  
+<h2>Test the Index</h2>
+<p>It is possible to test the index by starting an XPAT session on the command 
+  line from within <tt>$DLXSDATAROOT/idx/c/collid</tt>.</p>
+<pre>jweise@sangria% xpatu image.dd
+        Digital Library eXtension Service, XPAT, Release 5.3
+		        COPYRIGHT (c) 2000, 2003, 2004 The Regents of the University of Michigan
+				        All Rights Reserved
+						&gt;&gt; region &quot;ENTRY&quot;   
+						  1: 8 matches
+						  &gt;&gt; pr sample
+						       1327, ..D&lt;/BASE&gt;&lt;/GEN&gt;&lt;ENTRY COLLID=&quot;MCSAMPLEIC&quot; ENTRYID=&quot;X-34&quot; CA=&quot;samp..
+							   4245, ..D&gt;&lt;/I&gt;&lt;/ENTRY&gt;&lt;ENTRY COLLID=&quot;MCSAMPLEIC&quot; ENTRYID=&quot;X-49&quot; CA=&quot;samp..
+							   5090, ..D&gt;&lt;/I&gt;&lt;/ENTRY&gt;&lt;ENTRY COLLID=&quot;MCSAMPLEIC&quot; ENTRYID=&quot;X-51&quot; CA=&quot;samp..
+							   5970, ..D&gt;&lt;/I&gt;&lt;/ENTRY&gt;&lt;ENTRY COLLID=&quot;MCSAMPLEIC&quot; ENTRYID=&quot;X-52&quot; CA=&quot;samp..
+							   6802, ..D&gt;&lt;/I&gt;&lt;/ENTRY&gt;&lt;ENTRY COLLID=&quot;MCSAMPLEIC&quot; ENTRYID=&quot;X-59&quot; CA=&quot;samp..
+							   7581, ..D&gt;&lt;/I&gt;&lt;/ENTRY&gt;&lt;ENTRY COLLID=&quot;MCSAMPLEIC&quot; ENTRYID=&quot;X-62&quot; CA=&quot;samp..
+							   10101, ..D&gt;&lt;/I&gt;&lt;/ENTRY&gt;&lt;ENTRY COLLID=&quot;MCSAMPLEIC&quot; ENTRYID=&quot;X-77&quot; CA=&quot;samp..
+							   14959, ..D&gt;&lt;/I&gt;&lt;/ENTRY&gt;&lt;ENTRY COLLID=&quot;MCSAMPLEIC&quot; ENTRYID=&quot;X-84&quot; CA=&quot;samp..</pre>
+<p> </p>
+  
+<h2>Moving an Index to a Different Machine and Into Service</h2>
+<p>It is possible and favorable to move a built index to a new location. For example, 
+  at Michigan, an XPAT index is built on a development machine and then moved 
+  to a production machine. Building an index is an intensive CPU process that 
+  can take a few minutes to several hours. Building an XPAT index on the development 
+  machine removes the burden from the production machine. It also allows an index 
+  to be tested thoroughly in the development environment before being moved to 
+  production. </p>
+<p>The steps for moving an index and associated SGML files from one machine to 
+  another, and into production are:</p>
+<ol>
+  <li>Create a tar file of the $DLXSDATAROOT/idx/c/collid directory (<tt>cd $DLXSDATAROOT/idx/c;
+tar cf idxcollid.tar ./collid</tt>)</li>
+  <li>Create a tar file of the $DLXSDATAROOT/obj/c/collid directory</li>
+  <li>Transfer the tar files to the destination machine.</li>
+  <li>Remove any existing $DLXSDATAROOT/idx/c/collid and $DLXSDATAROOT/c/collid directories 
+    from the destination.</li>
+  <li>Extract the files from the tar files.</li>
+</ol>
+<p>It is important to know that since paths are hard-coded in the index, the index 
+  must be put into an identical directory location at the destination; otherwise 
+  it will not work.</p>
+ 
+<h2>Other Ideas</h2>
+<p>It might be useful to manage multiple instances of idx and obj directories 
+  for a single collection and then use a symlink to point to the index that is 
+  to be used by the middleware. For example, one could have $DLXSDATAROOT/idx/c/collid-a 
+  and $DLXSDATAROOT/idx/c/collid-b plus a symlink $DLXSDATAROOT/idx/c/collid that points to 
+  the a or b instance. This approach might simplify the deployment of collection 
+  updates with minimal disruption of service.</p>
+<p>A better approach is to build indexes in a development environment (preferably 
+  on a separate machine) and use a tool such as <b>rdist</b> to transfer the index 
+  files to the production location.</p>
+ 
+
+
+</body>
+
+</html>

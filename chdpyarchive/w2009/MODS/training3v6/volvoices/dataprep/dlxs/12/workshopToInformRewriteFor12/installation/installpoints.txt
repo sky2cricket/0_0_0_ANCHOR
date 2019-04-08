@@ -1,0 +1,54 @@
+
+
+Install Points
+--------------
+
+        Introduction
+                
+                A working system
+                Two CDs - one installable, one for xpat
+
+        Pre-install
+                
+                Our DLXSROOT will be /l1/workshop/test01/dlxs
+                Show how our XPAT is set up
+                  
+                     /l/local/bin/xpat -> ../xpat/bin/xpat
+                     /l/local/xpat -> xpat-5.3.2/
+                     /l/local/xpat-5.3.2/bin/xpat
+
+                Other binaries we supply
+
+                      tif2web, mrsid_retrieve, kakadu, cjpeg
+                      not c42pdf
+
+                Perl modules + 5.8.3
+
+        Install
+
+                COLLECTION DB NAME:           test01_ws
+                COLLECTION DB USERNAME:       dlxs
+                COLLECTION DB PASSWORD:       middleware
+                COLLECTION DB ADMIN PASSWORD: collmgr
+                perl dependencies
+                bin/symlinks
+                hashbangs as in:
+
+                         bin/f/findaid/catsourcefiles.pl
+
+                DLXSROOT as in:
+
+                         dlxs/idx/s/samplefa/samplefa.dd
+
+                 sample files as in:                 
+                        
+                          /bin/installer/config-examples:
+                                
+                                crontab.dlxs
+                                httpd.conf.dlxs
+
+        Post-install
+
+                Session dirs if CSV
+                virtual host config
+                change collmgr password if using basic auth

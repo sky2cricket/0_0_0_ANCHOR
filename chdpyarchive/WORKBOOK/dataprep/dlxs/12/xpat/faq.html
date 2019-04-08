@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>The XPAT FAQ</title>
+
+
+
+
+
+
+
+<link href="../dlxsdocs.css" rel="stylesheet" type="text/css"> </head>         <body>
+<div class="pageTitle">XPAT FAQ</div>
+    
+      <dl>
+        <dt>Is XPAT designed to take advantage of multiple processors?</dt>
+        <dd><p>The XPAT server isn't multi-threaded, and so can't take advantage of multi-processor systems in the way that a truly multi-threaded application can.  However, that's not to say that a multi-processor system won't give you a performance advantage in the multi-user environment. That is, parallel XPAT processes for different search requests will be load-balanced across the available CPUs by the operating system. They are <i>not</i> queued, as in a database environment. They are separate independent processes.</p>
+<p>In some quick testing I've confirmed that Solaris migrates running processes to different CPUs (and probably Linux does too), giving further load-balancing.  Thus the performance gain you should expect would be nearly linear with the number of processors ("nearly" because there are shared resources such as memory which would probably prevent a truly linear relationship), although this would only be realized when the number of active users equals or exceeds the number of processors. That is, if there is only one search, it's going to go at full speed on a single processor. However if another comes along, it too will go full-speed on the second processor, independent of the first. Thus the performance gain in that situation over a uniprocessor system would be, from the perspective of the user, approximately double.</p>
+<p>Incidentally, everything we buy for production is quad-CPU. We're overconfigured in some areas and under- in others, and it's all a function of your expected usage and collection size. For multi-user systems in general, though, I personally prefer multiple CPUs. (csnavely, 2001-05-02)</p></dd>
+        
+        <dt>Can I get a free "trial" copy of XPAT?</dt>
+        <dd><p>Yes!  We are pleased to offer a "lite" version of a subset of XPAT tools including the XPAT search engine "xpatl", the indexer "xpatbldl", the region indexer "multirgnl" and SGML parser/indexer "sgmlrgnl".  These will be available free of charge and downloadable from <a href="http://www.dlxs.org">www.dlxs.org</a> beginning with DLXS Release 11. The "lite" versions of these tools have a 10 meg limit on the size of the data to be indexed.</p><p>Our contract for the source code and rights for development and distribution restricts us from making the fully functional XPAT available without a license and fees. Therefore, the fully functional toolset including the Unicode enabled XPAT search engine "xpatu" will continue to require a licensing fee.  (pfarber Thu 2003-09-02)</p></dd>
+        <dt><p>I represent a commercial (i.e., not a non-profit) organization, and am interested in acquiring XPAT.  Are you allowed to sell to for-profit organizations?</p></dt>
+        <dd><p>The University of Michigan has been given tentative approval on making XPAT
+available to organizations that do not have non-profit status.  If you are a
+commercial institution interested in licensing the full version of XPAT,
+please contact dlxs-info@umich.edu. (jpwilkin, 2003-09-23)</p></dd>
+      </dl>
+    
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+  </body>
+
+                            
+
+</html>

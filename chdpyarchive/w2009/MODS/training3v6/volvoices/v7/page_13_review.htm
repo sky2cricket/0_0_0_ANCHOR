@@ -1,0 +1,998 @@
+<!--
+    This code is issued under the GNU General Public License, 
+    version 3, 29 June 2007.
+
+    The DLC-MODS Workbook provides a series of web pages to help you 
+    generate a MODS metadata record that follows the Digital Library 
+    Federation Implementation Guidelines for Shareable MODS Records, 
+    as described in the DLF Aquifer Guidlines November 2006.  These 
+    Guidelines and the specific MODS Profile are documented on the 
+    MODS Profile Page of the DLC-MODS Workbook.
+
+    Copyright (C) 2007 
+    Christine Haygood Deane 
+    University of Tennessee Libraries
+    Digital Library Center
+ 
+
+    This program is free software: you can redistribute it and/or modify    
+    it under the terms of the GNU General Public License as published by    
+    the Free Software Foundation, version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see http://www.gnu.org/licenses/
+-->
+
+<html>
+<head>
+<title>
+page_review
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+<script language=javascript src="vv_compose_tags.js"></script>
+
+</head>
+
+<script> document.write('<body  bgcolor="'+parent.adb_background_color+'" >'); </script>
+<font face="arial" size="3">
+<center><font face="arial">
+<h2><script> document.write(parent.adb_project_name); </script>
+ Review Page </h2>
+</center>
+
+<form name="DF"  action="new.xml">
+
+<table class="bgINNER"  border="1" cellpadding="2" cellspacing="1" width="98%" xbgcolor="ddeeff">
+<tr class="greenrow"><td colspan="3">
+<font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+<tr class="bgstandard"><td colspan="3">
+This review page provides a quick display of your work before saving the xml file to a text document.
+<br>This review page shows what information has already been saved.
+<br>This review page is display only and causes no changes.
+<br>You may visit this page as often as you like to check your work.
+<p>Check Required Fields.
+<li>All Page Data. The rows with a yellow background are for REQUIRED fields.  
+<li>Page 6 Data. The 2 rows with a  pink background on page 6 are conditionally REQUIRED.  Either you have both of these or neither of these.
+<p>Check Content.
+<li>You are in the best position to know what should be entered into the workbook.
+<li>If you find something amiss, this is the time to return to the input page, enter a correction, save, and review again.
+</td></tr>
+<tr class="bgstandard"><td colspan="3">
+&nbsp;
+</td></tr>
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" width="35%"><b>Validation</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+<font face="arial">
+
+
+<tr class="bgstandard">
+<td class="label13nou">
+Page Validation
+</td>
+<td>
+&nbsp;<script>
+var strVVcomment_04 = new String(parent.U.document.UF.VVcomment_04.value);
+    strVVcomment_04 = strVVcomment_04.substring(1);
+    strVVcomment_04 = "&lt;"+strVVcomment_04;
+    document.write(strVVcomment_04);
+</script>
+<br>This value indicates the status of Page Validation.  
+<br>If you are not finished, it may contain a zero.
+<br>When a page has been completed, the validation value is changed to 1.
+<br>A fully completed workbook record will have the Page validation shown below.
+<br>&lt;!-- PAGE VALIDATION :1:1:1:1:1:1:1: --> 
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard"><td colspan="3"> &nbsp; </td></tr>
+
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>Page Begin Data</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+
+<tr class="bgffffcc">
+<td class="label13nou">
+Content Contributor
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.contributorName.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgffffcc">
+<td class="label13nou">
+Institution
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.institutionName.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgffffcc">
+<td class="label13nou">
+XML File Name
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.XMLmaster_simple.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgffffcc">
+<td class="label13nou">
+Page Validation
+</td>
+<td>
+&nbsp;<script>
+var temp = new String(parent.U.document.UF.VVcomment_04.value);
+    temp = temp.replace(/</,"&lt;");
+document.write(temp);
+</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard"><td colspan="3"> &nbsp; </td></tr>
+
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>Page One Data</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td class="label13nou">
+Title Non-Sort
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.title_non_sort.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgffffcc">
+<td class="label13nou">
+Title
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.title.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td class="label13nou">
+Sub Title
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.title_sub_title.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou">
+Title Part Number
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.title_partNumber.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou">
+Title Part Name
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.title_part_name.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="greenrow">
+<td height="08" colspan="3"></td></tr>
+
+<script>
+var M = new String(parent.U.document.UF.name_block_list.value);
+var A = new Array();
+if (M.length == "0") {
+	for(i=0;i<8;i++) {
+		A[i]= " ";
+		}
+}else{
+    	A = M.split(parent.U.split_token);
+}
+var a = 0;//A counter
+ 
+for (j=0;j<A.length;j++){
+	if (A[j]=="empty_string") { 
+		A[j]=" ";
+		}
+}
+
+var p = 0;
+var n = new Number(parent.U.document.UF.numNameBlocks.value);
+for (i=0;i<n;i++) {
+p=i+1;
+document.write(
+ '<tr class="bgstandard"> <td class="label13nou"> name type #'+p+'</td>'
++'<td> &nbsp;'+A[a++]+'</td><td>&nbsp;</td></tr>'
++'<tr class="bgstandard"> <td class="label13nou"> name authority #'+p+'</td>'
++'<td> &nbsp;'+A[a++]+'</td><td>&nbsp;</td></tr>'
++'<tr class="bgstandard"> <td class="label13nou"> namePart family #'+p+'</td>'
++'<td> &nbsp;'+A[a++]+'</td><td>&nbsp;</td></tr>'
++'<tr class="bgstandard"> <td class="label13nou"> namePart given #'+p+'</td>'
++'<td> &nbsp;'+A[a++]+'</td><td>&nbsp;</td></tr>'
++'<tr class="bgstandard"> <td class="label13nou"> namePart termsOfAddress #'+p+'</td>'
++'<td> &nbsp;'+A[a++]+'</td><td>&nbsp;</td></tr>'
++'<tr class="bgstandard"> <td class="label13nou"> roleTerms #'+p+'</td>'
++'<td> &nbsp;'+A[a++]+'</td><td>&nbsp;</td></tr>'
++'<tr class="bgstandard"> <td class="label13nou"> namePart date (birth) #'+p+'</td>'
++'<td> &nbsp;'+A[a++]+'</td><td>&nbsp;</td></tr>'
++'<tr class="bgstandard"> <td class="label13nou"> namePart date (death) #'+p+'</td>'
++'<td> &nbsp;'+A[a++]+'</td><td>&nbsp;</td></tr>'
++'<tr class="greenrow"> <td height="08" colspan="3"></td></tr>'
+);
+a++;
+
+}
+</script>
+
+
+
+<tr class="bgstandard"><td colspan="3"> &nbsp; </td></tr>
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>Page Two Data</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+
+<tr class="bgffffcc">
+<td class="label13nou">
+Date Created &nbsp;OR&nbsp;
+<br>Date Created Begin Range
+</td>
+<td valign="top">
+&nbsp;<script>
+var temp = new String("");
+    temp = parent.U.document.UF.date_created.value; 
+    if ( temp == "" ) {
+	 temp = parent.U.document.UF.date_created_begin.value +"(Date Created Begin Range)";
+    }else {
+	 temp += " (Date Created)";
+    }
+document.write(temp)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td class="label13nou">
+Date Created Qualifier &nbsp;OR&nbsp;
+<br>Date Created Begin Range Qualifier
+</td>
+<td valign="top">
+&nbsp;<script>
+	var temp = new String("");
+    	temp = parent.U.document.UF.date_createdQ.value; 
+    	if ( temp == "" ) {
+	 	temp = parent.U.document.UF.date_created_beginQ.value +"(Date Created Begin Range Qualifier)";
+    	}else {
+	 	temp += " (Date Created Qualifier)";
+    	}
+	document.write(temp);
+</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td class="label13nou">
+Date Created End Range
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.date_created_end.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou">
+Date Created End Range Qualifier 
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.date_created_endQ.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou">
+Place of creation authority
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.place_of_origin_authority.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou">
+Place of creation 
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.place_of_origin.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou">
+Publisher Name
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.publisher_name.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td class="label13nou">
+Publisher Address 
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.publisher_address.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou">
+Publication Date (date issued)
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.date_issued.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou">
+Publication Date Qualifier
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.date_issuedQ.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard"><td colspan="3">
+&nbsp;
+</td></tr>
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>Page Three Data</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou">
+Language 
+</td>
+<td>
+&nbsp;(<script>document.write(parent.U.document.UF.language.value)</script>)
+&nbsp;<script>document.write(parent.U.document.UF.language_display.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgffffcc">
+<td class="label13nou">
+Type of Resource 
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.type_of_resource_all.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgffffcc">
+<td class="label13nou">
+Mods Genre Authority
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.mods_genre_authority.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgffffcc">
+<td class="label13nou">
+Mods Genre 
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.mods_genre.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgffffcc">
+<td class="label13nou">
+Extent
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.mods_extent.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+
+<tr class="bgstandard">
+<td class="label13nou">
+Abstract
+</td>
+<td><table border="1" cellspacing="0" cellpadding="4"><tr><td width="500" style="background:#ffffff">
+<script>
+if (parent.U.document.UF.mods_genre_abstract.value == "" ) {
+	document.write("no abstract");
+}else{
+	document.write(parent.U.document.UF.mods_genre_abstract.value);
+}
+</script>
+</td></tr></table>
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+
+<tr class="bgstandard"><td colspan="3">
+&nbsp;
+</td></tr>
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>Page Four Data</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+
+<script> 
+if (my0012 == "yes") { document.write('<tr class="bgaaffee">');
+}else{ document.write('<tr class="bgstandard">'); }
+</script>
+<td class="label13nou">
+LCSH Topical #1
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.subject_topic_lcsh_01.value+msgteal)</script> 
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td class="label13nou">
+LCSH Topical #2
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.subject_topic_lcsh_02.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou">
+LCSH Topical #3
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.subject_topic_lcsh_03.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<script> 
+if (my0012 == "yes") { document.write('<tr class="bgaaffee">');
+}else{ document.write('<tr class="bgstandard">'); }
+</script>
+<td class="label13nou">
+LCSH Name #1
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.subject_name_lcsh_01.value+msgteal)</script> 
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou">
+LCSH Name #2
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.subject_topic_lcsh_02.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<script> 
+if (my0012 == "yes") { document.write('<tr class="bgaaffee">');
+}else{ document.write('<tr class="bgstandard">'); }
+</script>
+<td class="label13nou">
+LCSH Geographic #1
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.subject_geographic_lcsh_01.value+msgteal)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou">
+LCSH Geographic #2 
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.subject_geographic_lcsh_02.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<script> 
+if (my0012 == "yes") { document.write('<tr class="bgaaffee">');
+}else{ document.write('<tr class="bgstandard">'); }
+</script>
+<td class="label13nou">
+LCSH Temporal #1
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.subject_temporal_lcsh_01.value+msgteal)</script> 
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou">
+LCSH Temporal #2 
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.subject_temporal_lcsh_02.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<script> 
+if (my0012 == "yes") { document.write('<tr class="bgaaffee">');
+}else{ document.write('<tr class="bgstandard">'); }
+</script>
+<td class="label13nou">
+TGM Topical #1
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.subject_topic_tgm_01.value+msgteal)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou">
+TGM Topical #2
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.subject_topic_tgm_02.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou">
+TGM Topical #3
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.subject_topic_tgm_03.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgffffcc">
+<td class="label13nou">
+VV Temporal 
+</td>
+<td>
+&nbsp;(<script>document.write(parent.U.document.UF.subject_temporal_vv_01.value)</script>) 
+&nbsp;<script>document.write(parent.U.document.UF.subject_temporal_vv_01_display.value)</script> 
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou">
+VV Curriculum Topic #1 
+</td>
+<td>
+&nbsp;<script>
+if ( parent.U.document.UF.subject_topic_vv_01.value.length > 0 ) {
+document.write("("+ parent.U.document.UF.subject_topic_vv_01.value+")"
+		  +parent.U.document.UF.subject_topic_vv_01_display.value)
+}</script> 
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou">
+VV Curriculum Topic #2 
+</td>
+<td>
+&nbsp;<script>
+if ( parent.U.document.UF.subject_topic_vv_02.value.length > 0 ) {
+document.write("("+ parent.U.document.UF.subject_topic_vv_02.value+") "
+		  +parent.U.document.UF.subject_topic_vv_02_display.value)
+}</script> 
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou">
+VV Broad Topic #1 
+</td>
+<td>
+&nbsp;<script>
+if ( parent.U.document.UF.subject_topic_vv_03.value.length > 0 ) {
+document.write("("+ parent.U.document.UF.subject_topic_vv_03.value+") "
+		  +parent.U.document.UF.subject_topic_vv_03_display.value)
+}</script> 
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou">
+VV Broad Topic #2 
+</td>
+<td>
+&nbsp;<script>
+if ( parent.U.document.UF.subject_topic_vv_04.value.length > 0 ) {
+document.write("("+ parent.U.document.UF.subject_topic_vv_04.value+") "
+		  +parent.U.document.UF.subject_topic_vv_04_display.value)
+}</script> 
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou">
+VV Broad Topic #3 
+</td>
+<td>
+&nbsp;<script>
+if ( parent.U.document.UF.subject_topic_vv_05.value.length > 0 ) {
+document.write("("+ parent.U.document.UF.subject_topic_vv_05.value+") "
+		  +parent.U.document.UF.subject_topic_vv_05_display.value)
+}</script> 
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou">
+VV Geographic Topic #1 
+</td>
+<td>
+&nbsp;<script>
+if ( parent.U.document.UF.subject_geographic_vv_01.value.length > 0 ) {
+document.write("("+ parent.U.document.UF.subject_geographic_vv_01.value+") "
+		  +parent.U.document.UF.subject_geographic_vv_01_display.value)
+}</script> 
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou">
+VV Geographic Topic #2 
+</td>
+<td>
+&nbsp;<script>
+if ( parent.U.document.UF.subject_geographic_vv_02.value.length > 0 ) {
+document.write("("+ parent.U.document.UF.subject_geographic_vv_02.value+") "
+		  +parent.U.document.UF.subject_geographic_vv_02_display.value)
+}</script> 
+</td>
+<td>&nbsp</td>
+</tr>
+
+<script>
+document.write(spcRow1);
+document.write(spcRow2);
+document.write(spcRow3);
+</script>
+
+<script> 
+if (my0012 == "yes") { document.write('<tr class="bgaaffee">');
+}else{ document.write('<tr class="bgstandard">'); }
+</script>
+<td class="label13nou">
+Keyword Topical 
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.subject_topic_none_01_desc.value+msgteal)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<script> 
+if (my0012 == "yes") { document.write('<tr class="bgaaffee">');
+}else{ document.write('<tr class="bgstandard">'); }
+</script>
+<td class="label13nou">
+Keyword Name 
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.subject_name_none_01_desc.value+msgteal)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<script> 
+if (my0012 == "yes") { document.write('<tr class="bgaaffee">');
+}else{ document.write('<tr class="bgstandard">'); }
+</script>
+<td class="label13nou">
+Keyword Geographic 
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.subject_geographic_none_01.value+msgteal)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<script> 
+if (my0012 == "yes") { document.write('<tr class="bgaaffee">');
+}else{ document.write('<tr class="bgstandard">'); }
+</script>
+<td class="label13nou">
+Keyword Temporal 
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.subject_temporal_none_01_desc.value+msgteal)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard"><td colspan="3">
+&nbsp;
+</td></tr>
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>Page Five Data</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+
+<tr class="bgffffcc">
+<td class="label13nou">
+Constituent Files
+</td>
+<td>
+&nbsp;You have specified <b><script>document.write(parent.U.document.UF.numRelatedItems.value)</script></b> consituent file(s).  See Page 5 for names.
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard"><td colspan="3">
+&nbsp;
+</td></tr>
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>Page Six Data</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+
+<tr class="bgffffcc">
+<td class="label13nou">
+Contributing Institution
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.physical_location_repository.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgffffcc">
+<td class="label13nou">
+City
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.physical_location_city.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgffffcc">
+<td class="label13nou">
+State
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.physical_location_state.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgffffcc">
+<td class="label13nou">
+County
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.physical_location_county_display.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td class="label13nou">
+Collection Name
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.collection_id_name.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<script>
+
+var strCollIdNumType =  new String();
+for(i=0;i<6;i++ ) {
+//parent.U.document.UF.collection_id_num_type[i].selected = document.DF.collection_id_num_type[i].selected;
+if ( parent.U.document.UF.collection_id_num_type[i].selected){
+	strCollIdNumType = parent.U.document.UF.collection_id_num_type[i].text;
+	}
+}
+
+</script>
+<tr class="bgffddff">
+<td class="label13nou">
+Identification Number Type
+</td>
+<td>
+&nbsp;<script>document.write(strCollIdNumType)</script>
+--- You must have NO data for pink fields or have BOTH pink fields filled in.
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgffddff">
+<td class="label13nou">
+Collection ID Number
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.collection_id_number.value)</script>
+--- You must have NO data for pink fields or have BOTH pink fields filled in.
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou">
+Detail
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.physical_location_detail.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgffffcc">
+<td class="label13nou">
+Record Content Source
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.record_content_source.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgffffcc">
+<td class="label13nou">
+Record Creation Date
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.record_creation_date.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard"><td colspan="3">
+&nbsp;
+</td></tr>
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>Museum Page Data</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou">
+Technique
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.museum_form_type_technique.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou">
+Medium
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.museum_form_type_medium.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou">
+Museum Credit Line
+</td>
+<td>
+&nbsp;<script>document.write(parent.U.document.UF.museum_credit_line.value)</script>
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard"><td colspan="3">
+&nbsp;
+</td></tr>
+<tr class="greenrow"><td colspan="3">
+<font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+
+</table>
+
+
+
+
+
+
+
+</form name="forms[0]">
+
+<center><font face="arial">
+<h2><script> document.write(parent.adb_project_name); </script></h2>
+</center>
+
+</body>
+</html>
+
+
+

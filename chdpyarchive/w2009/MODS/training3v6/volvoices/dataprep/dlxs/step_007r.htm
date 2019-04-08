@@ -1,0 +1,220 @@
+<html>
+<head>
+<title>step_007r</title>
+</head>
+<body>
+<font face="arial" size="3">
+step_007r.htm
+<br>http://diglib.lib.utk.edu/~cdeane/WORKBOOK/dataprep/dlxs/step_007r.htm
+<br><a href="http://diglib.lib.utk.edu/~cdeane/WORKBOOK/dataprep/dlxs/step_007r.htm"
+target="_blank">step_007r new window</a> (table width="100%")&nbsp;&nbsp;&nbsp; 
+<br>need analog for 7r:
+<a href="http://diglib.lib.utk.edu/~cdeane/WORKBOOK/dataprep/dlxs/step_007_r_print.htm" target="_blank">step_007r print</a> (table width="660")
+<p><u>TEXTCLASS tei files</u>
+<hr>
+<p>&nbsp;
+<table border="1" cellpadding="4" cellspacing="0" width="100%">
+<tr>
+<td valign="top" width="3%">&nbsp;</td>
+<td valign="top" width="32%">04 notext vvb</td>
+<td valign="top" width="32%">02 ocr vvo</td>
+<td valign="top" width="32%">03 typed vvt</td>
+</tr>
+<tr>
+<td valign="top" width="3%">&nbsp;</td>
+<td valign="top" colspan="3">
+modsTCerrorTest takes files from initial import directories (files in workbook mods format) 
+<br>and transforms them to tei.2 format and writes results to initial tei directories.
+<br>&nbsp;&nbsp;&nbsp;tei/notext
+<br>&nbsp;&nbsp;&nbsp;tei/ocr
+<br>&nbsp;&nbsp;&nbsp;tei/typed
+<br>These directories are where the program tei_transform expects to find input
+<br>Unfortunately...
+<br>The tei files produced by modsTC lack pb tags and must be processed to add these tags.
+<br>&nbsp;&nbsp;&nbsp;(requiring a move out of tei/notext, tei/ocr, and tei/typed)
+<br>and then the products of repair must be returned to expected directories
+<br>&nbsp;&nbsp;&nbsp;(requiring a move back to tei/notext, tei/ocr, and tei/typed)
+<br>before tei_transform is executed.
+</td>
+</tr>
+<td valign="top" width="3%">&nbsp;</td>
+<td valign="top" colspan="3">
+<u>TEI ADD PB TAGS PROCESSING</u> 
+<p>move initial tei to tei/*Curr directories
+<br>&nbsp;&nbsp;&nbsp;/bin/mv tei/notext/* tei/notextCurr
+<br>&nbsp;&nbsp;&nbsp;/bin/mv tei/ocr/* tei/ocrCurr
+<br>&nbsp;&nbsp;&nbsp;/bin/mv tei/typed/* tei/typedCurr
+<p>Then the pb programs add pb information and write results to tei/*PB directories.
+<br>&nbsp;&nbsp;&nbsp;python pb_notext2.py
+<br>&nbsp;&nbsp;&nbsp;python pb_ocr2.py
+<br>&nbsp;&nbsp;&nbsp;python pb_typed2.py
+<p>
+<table border ="0" cellpadding="4" cellspacing="0" xwidth="50%">
+<tr>
+<td>notext/mods</td>
+<td>modsTC output ==>> tei/notext</td>
+<td> move to tei/notextCurr </td>
+<td>pb_notext2.py output ==>> tei/notextPB***</td>
+</tr>
+<tr>
+<td>ocr/mods</td>
+<td>modsTC output ==>> tei/ocr</td>
+<td> move to tei/ocrCurr </td>
+<td>pb_ocr2.py output ==>> tei/ocrPB***</td>
+</tr>
+<tr>
+<td>typed/mods</td>
+<td>modsTC output ==>> tei/typed</td>
+<td> move to tei/typedCurr </td>
+<td>pb_typed2.py output==>> tei/typedPB***</td>
+</tr>
+</table>
+<br>***At this point the tei files have PB TAGS and are ready for processing by tei_transform, 
+<br>***but are not in the input directories for tei_transform.
+</td>
+</tr>
+
+<tr>
+<td valign="top" width="3%">&nbsp;</td>
+<td valign="top" colspan="3">
+<u>TEI tei_transform PROCESSING</u>
+<br>The tei_transform program needs both done/tei/*/* files and *PB/* files
+<br>There should be a directory comparison to check that there is no overlap between files
+
+
+<table border ="0" cellpadding="4" cellspacing="0" xwidth="50%">
+<tr><td>compare done/tei/notext </td><td> with tei/notextPB </td></tr>
+<tr><td>compare done/tei/ocr </td><td> with tei/ocrPB </td></tr>
+<tr><td>compare done/tei/typed </td><td> with tei/typedPB </td></tr>
+</table>
+<p>
+Two utilities for this are
+<br>dirComp.py : gives a detailed account - run second to analyze problems
+<br>dirCompShort.py : gives a short account - run first to detect problems
+
+<p>cd /d1/workarea/dlxs/text/tel
+<br>python dirCompShort.py done/tei/notext tei/notextPB
+<br>python dirCompShort.py done/tei/ocr tei/ocrPB
+<br>python dirCompShort.py done/tei/typed tei/typedPB
+
+<p><a href="xfiles/step_007q/dirComp_results.txt" target="_blank">view dirCompShort results</a>
+<br><a href ="xfiles/step_007q/fct_before_after_pb_py.txt" target="_blank">also view file counts</a>
+
+<br>In the case that overlap is found investigate to make sure you understand the cause of the overlap.  If benign, copy the done files first and then the *PB files to the input directories for tei_transform as shown below.  
+<p>If not benign, fix the problem.
+<br>Backup materials in /d1/workarea/dlxs/text/tel
+<br>tei/notextCurr contains original modsTC output files from notext/mods
+<br>tei/ocrCurr contains original modsTC output files from ocr/mods
+<br>tei/notestCurr contains original modsTC output files from typed/mods
+</td>
+</tr>
+
+<td valign="top" width="3%">&nbsp;</td>
+<td valign="top" colspan="3">
+<u>Before copying files to tei_transform input directories</u>
+<p>Run the following error check
+<br> cd /d1/workarea/dlxs/text/tel
+<br> grep -ci "<PB" done/tei/notext/* done/tei/ocr/* done/tei/typed/* > Adate.txt
+<br> grep -ci "<PB" tei/notextPB/* tei/ocrPB/* tei/typedPB/* >> Adate.txt
+<br> open Adate.txt and search for ":0"
+<br> finding ":0" means no "<PB" found -- NO PB TAGS! in that file
+<br> diagnose and fix the problem and run grep again until ":0" not found
+<p>&nbsp;
+<u>copying files to the tei_transform input directories</u>
+<p> cd /d1/workarea/dlxs/text/tel
+<br> cp done/tei/notext/* tei/notext/
+<br> cp tei/notextPB/*    tei/notext/
+<br> cp done/tei/ocr/* tei/ocr/
+<br> cp tei/ocrPB/*    tei/ocr/
+<br> cp done/tei/typed/* tei/typed/
+<br> cp tei/typedPB/*    tei/typed/
+
+<P>view a single tei object <a href="xfiles/step_007q/before_tei_transform_0012_000052_000204.htm" target="_blank">before</a> and <a href="xfiles/step_007q/after_tei_transform_0012_000052_000204.htm" target="_blank">after</a> running tei_transform.
+
+<br> These will be the input for tei_transform
+<p>run perl tei_transform
+<br><a href="xfiles/step_007q/fct_before_after_tei_transform.txt" target="_blank">view counts on tei files before and after tei_transform</a>
+</td>
+</tr>
+
+<td valign="top" width="3%">&nbsp;</td>
+<td valign="top" colspan="3">
+<u>TEI VALIDATION PROCESSING</u>
+<br>After tei_transform has placed files in the tei_output directories,
+<br>validate these files one at a time with nsgmls_tei.py 
+<br>cd /d1/workarea/dlxs/text/tel/chd_nsgmls/py_tei
+<br>python nsgmls_tei.py ../../tei_output/notext r1
+<br>python nsgmls_tei.py ../../tei_output/ocr r1
+<br>python nsgmls_tei.py ../../tei_output/typed r1
+
+<p><a href="xfiles/step_007q/tei_validation.txt" target="_blank">view tei validation</a>
+</td>
+</tr>
+
+<tr>
+<td valign="top" width="3%">&nbsp;</td>
+<td valign="top" colspan="3">
+<u>OLD TEI VALIDATION PROCESSING</u>
+<br>cd /d1/workarea/dlxs/text/tel
+<br>The file tei_validate contains 3 lines shown below
+
+<p> nsgmls -s -f ./tei_output/typed/vvt.errors /d1/dlxs/prep/v/vvt/vvt.inp tei_output/typed/vvt.xml
+<br> nsgmls -s -f ./tei_output/ocr/vvo.errors /d1/dlxs/prep/v/vvo/vvo.inp tei_output/ocr/vvo.xml
+<br> nsgmls -s -f ./tei_output/notext/vvb.errors /d1/dlxs/prep/v/vvb/vvb.inp tei_output/notext/vvb.xml
+<p>
+Run these instructions to react the vv*errors files.
+<p>
+Then run ls -l tei_output/*/vv* to check filesizes.
+
+<p>[root@diglib2 tel]# ls -l tei_output/*/vv*
+<br>-rw-r--r--  1 root root       0 Nov  4 14:55 tei_output/notext/vvb.errors
+<br>-rw-r--r--  1 root root 1418385 Nov  4 12:38 tei_output/notext/vvb.xml
+<br>-rw-r--r--  1 root root       0 Nov  4 14:55 tei_output/ocr/vvo.errors
+<br>-rw-r--r--  1 root root 4959910 Nov  4 12:38 tei_output/ocr/vvo.xml
+<br>-rw-r--r--  1 root root       0 Nov  4 14:55 tei_output/typed/vvt.errors
+<br>-rw-r--r--  1 root root 2616174 Nov  4 12:38 tei_output/typed/vvt.xml
+<p>
+This repeats processing done by nsgmls_tei.py and should give consistant results.
+
+</td>
+</tr>
+
+<tr>
+<td valign="top" width="3%">&nbsp;</td>
+<td valign="top" colspan="3">
+<u>Prepare FOR modsTC live version</u>
+<br>At this point, when validations  for modsbib, search, and tei show no errors, 
+<br>you should run modsTC to put lines in the <u>linkfile</u> and rows in the <u>locserv.y2008</u> table.
+<br>BUT..............
+<br>Because modsTC will write its output to the same directories as input directories for tei_transform
+<p>&nbsp;&nbsp;&nbsp;tei/notext
+<br>&nbsp;&nbsp;&nbsp;tei/ocr
+<br>&nbsp;&nbsp;&nbsp;tei/typed
+<p>You must first protect your work by moving to tei/*Prev directories 
+<br>The first step is to make sure the tei/*Prev directories are empty.
+<p>python binUtil/FCT.py tei/notextPrev tei/ocrPrev tei/typedPrev
+<br>&nbsp;&nbsp;&nbsp;&nbsp;FCT.py The directory tei/notextPrev      contains 0 files.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;FCT.py The directory tei/ocrPrev         contains 0 files.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;FCT.py The directory tei/typedPrev       contains 0 files.
+
+<p>Do the move.
+<br> &nbsp;&nbsp;&nbsp;&nbsp;mv tei/notext/* tei/notextPrev/
+<br> &nbsp;&nbsp;&nbsp;&nbsp;mv tei/ocr/* tei/ocrPrev/
+<br> &nbsp;&nbsp;&nbsp;&nbsp;mv tei/typed/* tei/typedPrev/
+<p><a href="xfiles/step_007q/fct_after_tei_move.txt" target="_blank">view file counts after the move</a>
+
+
+</td>
+</tr>
+
+<tr>
+<td valign="top" width="3%">&nbsp;</td>
+<td valign="top" colspan="3">
+<u>DONE WITH PREPARATION FOR modsTC LIVE VERSION</u>
+
+
+</td>
+</tr>
+</table>
+</body>
+</html>

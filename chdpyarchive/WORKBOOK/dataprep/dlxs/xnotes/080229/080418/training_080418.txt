@@ -1,0 +1,67 @@
+resume from 080409_training
+
+[root@diglib2 tel]# pwd
+/d1/workarea/dlxs/text/tel
+[root@diglib2 tel]# ls
+0012_xml.txt  countfiles         hexmess    notext          spc             transform
+BadColl       crossmappings      hextest    ocr             specify         translate
+badocr        done               howmany    olderVersions   tei             ttout.txt
+batchedOut    dothis             infotrack  output          teiHead         typed
+categories    dupes              linkfile   preservation    teiHeadNoText   validate
+charTest.pl   dupesInText        modsbib    problems        teiHeadOcrText
+checkme       duplicates_noproc  modsTC     rebatch         teiTail
+chkfiles      fieldtest          newmods    repairLocserve  test
+chkid         fixDupes           NOTE       search          testfiles
+[root@diglib2 tel]# 
+
+
+after repairs do search and bib, then come back to this /d1/workarea/dlxs/text/tel directory.
+
+[root@diglib2 tel]# cd /d1/workarea/dlxs/bib
+[root@diglib2 bib]# ls
+mods  search
+[root@diglib2 bib]# 
+
+mods is oai stuff
+search is search stuff
+
+in mods
+fixSubjectsBib -- input xml/* output newSubxml/*
+
+[root@diglib2 vv]# fixSubjectsBib
+[root@diglib2 vv]# cat openbib newSubxml/* closebib >  vvs-mods.xml
+[root@diglib2 vv]# cp vvs-mods.xml /d1/dlxs/prep/v/vvs-mods/
+cp: overwrite `/d1/dlxs/prep/v/vvs-mods/vvs-mods.xml'? y
+[root@diglib2 vv]# cd /d1/dlxs/prep/v/vvs-mods/
+[root@diglib2 vvs-mods]# ls
+modsSearch3.dtd  vvs-mods.errors      vvs-mods.prepostpwd.dd       vvs-mods.xml
+norm.xml         vvs-mods.extra.dd    vvs-mods.presgml.dd
+transform        vvs-mods.extra.srch  vvs-mods.single.blank.dd
+[root@diglib2 vvs-mods]# transform
+sgmlnorm:vvs-mods.xml:39765:255:E: general entity "c." not defined and no default entity
+[root@diglib2 vvs-mods]# 
+
+[root@diglib2 vvs-mods]# pwd
+/d1/dlxs/idx/v/vvs-mods
+[root@diglib2 vvs-mods]# cd /d1/workarea/dlxs/bib/mods/vv
+[root@diglib2 vv]# ls
+closebib   fixPreserveSubjectsBib  OAIDC                  olderVersions  xml
+DLCnewSub  fixSubjectsBib          OAI_modsbibToDC        openbib
+DLCpres    newPresSubxml           OAI_modsbibToMods      spc
+dothis     newSubxml               OAI_modsbibToPresMods  vvs-mods.xml
+[root@diglib2 vv]# 
+
+
+see do_008.htm for oai stuff
+
+-----------------------------
+PUT UP SEARCH STUFF
+-----------------------------
+
+/d1/workarea/dlxs/bib/mods/vv
+[root@diglib2 vv]# cd ../../search/vv
+[root@diglib2 vv]# pwd
+/d1/workarea/dlxs/bib/search/vv
+[root@diglib2 vv]# 
+
+

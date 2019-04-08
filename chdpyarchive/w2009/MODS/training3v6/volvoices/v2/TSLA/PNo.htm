@@ -1,0 +1,284 @@
+<html>
+<head>
+<title>vv_popupPN</title>
+
+<link href="../vv_workbook.css" type="text/css" rel="stylesheet">
+<script language=javascript src="../vv_functions_tsla.js"></script>
+
+
+
+
+<script language="javascript">
+
+var select_id= new String();
+function get_select_id() {
+
+var str = new String();
+    str = parent.location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  parent.window.opener.location.href="+parent.window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=get_select_id();
+
+
+
+var strSelect_PN_A = new String('');
+
+
+strSelect_PN_A = '<select name="aaa"  size="24" style="font-size:10px"> \r\n'
+	+'<option value="0" selected>No value selected</option> \r\n'
+		
+
+
+
+
+
+
+	+'<option>O\'BRIEN, FITZ JAMES, - 1828-1862</option>  \r\n'
+	+'<option>O\'BRIEN, GEORGE M., - 1917-1986</option>  \r\n'
+	+'<option>O\'BRIEN, LAWRENCE F.</option>  \r\n'
+	+'<option>O\'BRYAN, FANNY - (FANNY B.), - 1827-1879</option>  \r\n'
+	+'<option>O\'BRYAN, MARTHA, - 1836-1910</option>  \r\n'
+	+'<option>O\'CONNELL, DANIEL, - 1775-1847</option>  \r\n'
+	+'<option>O\'CONNER, THOMAS, - 1836-1882</option>  \r\n'
+	+'<option>O\'CONNOR FAMILY</option>  \r\n'
+	+'<option>O\'CONNOR, FLANNERY</option>  \r\n'
+	+'<option>O\'CONNOR, RACHEL SWAYZE, - 1774-1846</option>  \r\n'
+	+'<option>O\'DELL FAMILY</option>  \r\n'
+	+'<option>O\'DEVELIN FAMILY</option>  \r\n'
+	+'<option>O\'DONNELL FAMILY</option>  \r\n'
+	+'<option>O\'FALLIN FAMILY</option>  \r\n'
+	+'<option>O\'FARRELL FAMILY</option>  \r\n'
+	+'<option>O\'HANLON FAMILY</option>  \r\n'
+	+'<option>O\'HARA, THEODORE, - 1820-1867</option>  \r\n'
+	+'<option>O\'KEEFE, SEAN</option>  \r\n'
+	+'<option>O\'KEEFFE, GEORGIA, - 1887-1986</option>  \r\n'
+	+'<option>O\'LEARY, HAZEL ROLLINS, - 1937-</option>  \r\n'
+	+'<option>O\'NEILL FAMILY</option>  \r\n'
+	+'<option>O\'NEILL, EUGENE, - 1888-1953</option>  \r\n'
+	+'<option>O\'NEILL, J. TIMOTHY, - 1954-</option>  \r\n'
+	+'<option>O\'NEILL, PAUL H. - (PAUL HENRY), - 1935-</option>  \r\n'
+	+'<option>O\'NEILL, TIP</option>  \r\n'
+	+'<option>O\'ROURKE FAMILY</option>  \r\n'
+	+'<option>O\'SHAUGHNESSY, EDITH, - 1870-1939</option>  \r\n'
+	+'<option>O\'SULLIVAN, TIMOTHY H., - 1840-1882</option>  \r\n'
+	+'<option>O\'TOOLE, TARA JEANNE, - 1951-</option>  \r\n'
+	+'<option>OAKES FAMILY</option>  \r\n'
+	+'<option>OAKES, GEORGE WASHINGTON OCHS, - 1861-1931</option>  \r\n'
+	+'<option>OAKLEY FAMILY</option>  \r\n'
+	+'<option>OAKLEY, ANNIE, - 1866-1926</option>  \r\n'
+	+'<option>OAKLEY, JOHN TUGGLE</option>  \r\n'
+	+'<option>OAKLEY, JOHN W.</option>  \r\n'
+	+'<option>OBEAR, KATHARINE THEUS, - 1852-</option>  \r\n'
+	+'<option>OBERLAG FAMILY</option>  \r\n'
+	+'<option>OBERLIN, JOHANN FRIEDRICH, - 1740-1826</option>  \r\n'
+	+'<option>OCHS, ADOLPH S. - (ADOLPH SIMON), - 1858-1935</option>  \r\n'
+	+'<option>ODEGAARD, CHARLES E.</option>  \r\n'
+	+'<option>ODOM FAMILY</option>  \r\n'
+	+'<option>ODOM, ELI, - FL. 1793-1869</option>  \r\n'
+	+'<option>ODUM, HOWARD WASHINGTON, - 1884-1954</option>  \r\n'
+	+'<option>OERTEL, JOHANNES ADAM SIMON, - 1823-1909</option>  \r\n'
+	+'<option>OFFER FAMILY</option>  \r\n'
+	+'<option>OFFERLE, O. E.</option>  \r\n'
+	+'<option>OFFICER FAMILY</option>  \r\n'
+	+'<option>OFFICER, ALEXANDER, - CA. 1775-1819</option>  \r\n'
+	+'<option>OFFUTT FAMILY</option>  \r\n'
+	+'<option>OGDEN FAMILY</option>  \r\n'
+	+'<option>OGDEN, AARON, - 1756-1839</option>  \r\n'
+	+'<option>OGDEN, DAVID W.</option>  \r\n'
+	+'<option>OGDEN, JOHN, - 1824-1910</option>  \r\n'
+	+'<option>OGDEN, ROBERT C. - (ROBERT CURTIS), - 1836-1913</option>  \r\n'
+	+'<option>OGDEN, ROGER HOUSTON</option>  \r\n'
+	+'<option>OGILVIE FAMILY</option>  \r\n'
+	+'<option>OGILVIE, WILLIAM HARRIS, - 1842-1920</option>  \r\n'
+	+'<option>OGLE FAMILY</option>  \r\n'
+	+'<option>OGLETHORPE, JAMES EDWARD, - 1696-1785</option>  \r\n'
+	+'<option>OGLETREE FAMILY</option>  \r\n'
+	+'<option>OGLIVIE FAMILY</option>  \r\n'
+	+'<option>OKUMA, SANDRA, - 1945-</option>  \r\n'
+	+'<option>OKUN, DEANNA TANNER, - 1963-</option>  \r\n'
+	+'<option>OLAV - I TRYGVESON, - KING OF NORWAY, - 968-1000</option>  \r\n'
+	+'<option>OLCOTT FAMILY</option>  \r\n'
+	+'<option>OLDHAM FAMILY</option>  \r\n'
+	+'<option>OLDHAM, VAN BUREN, - 1840-1884</option>  \r\n'
+	+'<option>OLIFF FAMILY</option>  \r\n'
+	+'<option>OLINGER FAMILY</option>  \r\n'
+	+'<option>OLIPHANT FAMILY</option>  \r\n'
+	+'<option>OLIVER FAMILY</option>  \r\n'
+	+'<option>OLIVER, C. Y.</option>  \r\n'
+	+'<option>OLIVER, JANE, - FL. 1848</option>  \r\n'
+	+'<option>OLMSTED, FREDERICK LAW, - 1822-1903</option>  \r\n'
+	+'<option>OLMSTED, FREDERICK LAW, - 1870-1957</option>  \r\n'
+	+'<option>OLNEY, STEPHEN, - 1756-1832</option>  \r\n'
+	+'<option>OLONNE, CATHERINE HENRIETTE (D\'ANGENNES) - COMTESSE D\', - 1634-1714</option>  \r\n'
+	+'<option>OLSEN, MARTHA B., - 1948-</option>  \r\n'
+	+'<option>OLSON, MARK WALTER, - 1943-</option>  \r\n'
+	+'<option>OLSON, THEODORE B.</option>  \r\n'
+	+'<option>OMAS, GEORGE A., - 1940-</option>  \r\n'
+	+'<option>OMOHUNDRO FAMILY</option>  \r\n'
+	+'<option>OMOHUNDRO, JOHN BURWELL, - 1846-1880</option>  \r\n'
+	+'<option>OMOKAYE, OLUFUNMILAYO O.</option>  \r\n'
+	+'<option>ONASSIS, JACQUELINE KENNEDY, - 1929-1994</option>  \r\n'
+	+'<option>ONATE FAMILY</option>  \r\n'
+	+'<option>OPDYKE FAMILY</option>  \r\n'
+	+'<option>OPDYKE, GEORGE, - 1805-1880</option>  \r\n'
+	+'<option>OPFER, GEORGE JOSEPH, - 1947-</option>  \r\n'
+	+'<option>OPPENHEIMER, J. ROBERT, - 1904-1967</option>  \r\n'
+	+'<option>ORBISON, ROY</option>  \r\n'
+	+'<option>ORE, JAMES</option>  \r\n'
+	+'<option>ORICK FAMILY</option>  \r\n'
+	+'<option>ORLEANS, HENRIETTA ANNE, - DUCHESSE D\', - 1644-1670</option>  \r\n'
+	+'<option>ORLEANS, LOUIS PHILIPPE JOSEPH, - DUC D\', - 1747-1793</option>  \r\n'
+	+'<option>ORMAN, EDGAR, - 1909-</option>  \r\n'
+	+'<option>ORME FAMILY</option>  \r\n'
+	+'<option>ORMSBY FAMILY</option>  \r\n'
+	+'<option>ORMSBY, JOHN, - 1720-1805</option>  \r\n'
+	+'<option>ORNDORFF FAMILY</option>  \r\n'
+	+'<option>ORR FAMILY</option>  \r\n'
+	+'<option>ORR, J. L. - (JAMES LAWRENCE), - 1822-1873</option>  \r\n'
+	+'<option>ORR, ROBERT M. - FL. 1876</option>  \r\n'
+	+'<option>ORRERY, ROGER BOYLE, - EARL OF, - 1621-1679</option>  \r\n'
+	+'<option>ORSAY, ALFRED GUILLAUME GABRIEL, - COMTE D\', - 1801-1852</option>  \r\n'
+	+'<option>OSBORN, RANSOM, - 1802-1853</option>  \r\n'
+	+'<option>OSBORN, THOMAS WARD, - 1833-1898</option>  \r\n'
+	+'<option>OSBORNE FAMILY</option>  \r\n'
+	+'<option>OSBORNE, DOROTHY, - 1627-1695</option>  \r\n'
+	+'<option>OSCEOLA, - SEMINOLE CHIEF, - 1804-1838</option>  \r\n'
+	+'<option>OSLER, WILLIAM, - SIR, - 1849-1919</option>  \r\n'
+	+'<option>OSMOND FAMILY</option>  \r\n'
+	+'<option>OSTEEN, W. E. </option>  \r\n'
+	+'<option>OSWALD, LEE HARVEY</option>  \r\n'
+	+'<option>OSWALD, MARGUERITE C.</option>  \r\n'
+	+'<option>OSWELL, TROY BARNES</option>  \r\n'
+	+'<option>OTEY FAMILY</option>  \r\n'
+	+'<option>OTEY, JAMES HERVEY, - BISHOP, - 1800-1863</option>  \r\n'
+	+'<option>OTINGER FAMILY</option>  \r\n'
+	+'<option>OTIS, HARRISON GRAY, - 1765-1848</option>  \r\n'
+	+'<option>OTIS, JAMES, - 1725-1783</option>  \r\n'
+	+'<option>OTIS, MARSHALL V.</option>  \r\n'
+	+'<option>OTKEN FAMILY</option>  \r\n'
+	+'<option>OTTINGER FAMILY</option>  \r\n'
+	+'<option>OULD ABDALLAH, AHMEDOU</option>  \r\n'
+	+'<option>OURSLER FAMILY</option>  \r\n'
+	+'<option>OUSLEY FAMILY</option>  \r\n'
+	+'<option>OUTLAW FAMILY</option>  \r\n'
+	+'<option>OUTLAW, DAVID, - 1806-1868</option>  \r\n'
+	+'<option>OVERALL FAMILY</option>  \r\n'
+	+'<option>OVERBURY, THOMAS, - SIR, - 1581-1613</option>  \r\n'
+	+'<option>OVERBY FAMILY</option>  \r\n'
+	+'<option>OVERSTREET FAMILY</option>  \r\n'
+	+'<option>OVERTON FAMILY</option>  \r\n'
+	+'<option>OVERTON, E. C.</option>  \r\n'
+	+'<option>OVERTON, HARRIET (MAXWELL), - 1832-1899</option>  \r\n'
+	+'<option>OVERTON, JESSE MAXWELL, - 1863-1922</option>  \r\n'
+	+'<option>OVERTON, JOHN</option>  \r\n'
+	+'<option>OVERTON, JOHN WILLIAMS, - 1894-1918</option>  \r\n'
+	+'<option>OVERTON, JOHN, - 1766-1833</option>  \r\n'
+	+'<option>OVERTON, JOHN, - 1821-1898</option>  \r\n'
+	+'<option>OVERTON, SAIDEE WILLIAMS, - 1872-1963</option>  \r\n'
+	+'<option>OVERTON, WATKINS, - 1894-1958</option>  \r\n'
+	+'<option>OWEN FAMILY</option>  \r\n'
+	+'<option>OWEN, GUS A., - 1933-</option>  \r\n'
+	+'<option>OWEN, LAURA ANN DOBSON, - 1843-1895</option>  \r\n'
+	+'<option>OWEN, NARCISSA (CHISHOLM), - 1831-</option>  \r\n'
+	+'<option>OWEN, RICHARD, - 1810-1890</option>  \r\n'
+	+'<option>OWEN, ROBERT DALE, - 1801-1877</option>  \r\n'
+	+'<option>OWEN, ROBERT, - 1771-1858</option>  \r\n'
+	+'<option>OWEN, TOMMY</option>  \r\n'
+	+'<option>OWEN, URBAN GRAMMAR, - 1833-1903</option>  \r\n'
+	+'<option>OWEN, WILLIAM, - 1822-1896</option>  \r\n'
+	+'<option>OWENS, JESSE, - 1913-</option>  \r\n'
+	+'<option>OWENS, JOHN EDMOND, - 1823-1886</option>  \r\n'
+	+'<option>OWINGS, NATHANIEL ALEXANDER, - 1903-</option>  \r\n'
+	+'<option>OWNBY FAMILY</option>  \r\n'
+	+'<option>OWSLEY, FRANK LAWRENCE, - 1890-1956</option>  \r\n'
+	+'<option>OXFORD FAMILY</option>  \r\n'
+
++'</select> \r\n';
+	
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+<body class="background">
+
+
+
+
+<form name="FormOne" >
+
+
+<div name="SS" id="SS">
+<script>
+document.write(
+
+	 '<table border="1" cellpadding="4" cellspacing="0"  width="90%">\r\n'
+	+'<tr><td  bgcolor="ddeeff">\r\n'
+	///+'vv_functions.htm called by '+select_id+' <br>\r\n'
+	+'<b>Select Personal Name O</b> \r\n'
+	+'</td></tr><tr><td bgcolor="ddeeff"> \r\n' 
+	+ strSelect_PN_A
+
+	+'</td></tr></table> \r\n'
+	///+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+</script>
+	
+</div>
+
+<input type="button" onclick="showSelection();" name="B1" value="Personal Name">
+
+</form>
+
+<script>
+
+
+
+                  
+
+function showSelection() {
+
+val = new String();
+
+for ( i=0; i< document.FormOne.aaa.length; i++ ) {
+
+if ( document.FormOne.aaa[i].selected == true ) {
+  	val = document.FormOne.aaa[i].text;
+	break;
+	}
+else { val = "you never selected anything"; 
+	}
+
+}
+////////////////////////alert ("You selected " +val);
+val=reformatPn(val);
+
+switch ( select_id ) {
+
+case  "subject_name_lcsh_01" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_01.value=val;
+	parent.window.close();
+	break;
+
+case  "subject_name_lcsh_02" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_02.value=val;
+	parent.window.close();
+	break;
+}//end switch
+
+}///end function
+</script>
+

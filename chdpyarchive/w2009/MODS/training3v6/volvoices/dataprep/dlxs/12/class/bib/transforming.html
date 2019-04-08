@@ -1,0 +1,27 @@
+<html>
+<head>
+<title>Transforming Bibliographic Files, Bibliographic Class</title>
+
+
+
+ <link href="../../dlxsdocs.css" rel="stylesheet" type="text/css">
+</head>         <body>
+<div class="pageTitle">Transforming Bibliographic Files, Bibliographic Class</div>
+
+<p>Please note that for most classes in DLXS, DLXS does not formally support transformations from non-DLXS formats to DLXS XML/SGML.  The following instructions and programs are provided as guides or aids only.</p>
+
+<p>To date, DLPS has received and processed bibliographic information in a variety of formats, including USMARC records from our NOTIS catalog, SGML from Chadwyck-Healey, bibliographic information in our own generic TEI-like SGML (encoded for the Text Class), and a variety of local database schema from applications like FMPro and MS-Access.  The three Perl programs linked below are representative both for their ability to transform from one of these to Bibliographic Class, and for their degree of "polish."  They are provided as freely available aids for those implementing the DLXS Bibliographic Class and doing similar work.</p>
+<ul>
+<li><p><a href="gums2bib.pl">gums2bib.pl</a>:  This very rudimentary program transforms data encoded in Text Class's "grand unified markup scheme" (tongue-in-cheek), a TEI-derived DTD, to the Bibliographic Class's <a href="dtd.html">DTD</a>.  It will be replaced with a similarly simple program that transforms data from the more current <a href="../text/examples/textclass.dtd.txt">Text Class DTD</a>. However, it should be noted that, wherever possible, we rely on data coming from USMARC records for both the encoded information in the gums.dtd/textclass.dtd and for bibliographic information in the Bibliographic Class, so this program is reserved for exceptions -- bibliographic data found only in the online text. To use it, ensure that the path to Perl is correct and issue the <tt>gums2bib.pl</tt> command, specifying input file and output file, as in: </p>
+
+<p><tt>gums2bib.pl my-texts.sgm &gt; my-bib.sgm</tt></p></li>
+
+<li><p><a href="marc2bib.pl">marc2bib.pl</a>:  This much more thoughtful program (written primarily by Beth Kirschner) derives bibliographic information from NOTIS records in the USMARC format and produces output in the Bibliographic Class's <a href="bib.dtd">bib.dtd</a>.  We often use it in conjunction with something called <a href="marc_split.pl">marc_split.pl</a>, which divides a file of NOTIS-generated records into individual records named with the NOTIS record identifier and the ".marc" extension.  Current practice, in fact, relies on periodic updates of the approximately 15,000 bibliographic files from the Library online catalog, splitting the resulting records into individual files, and generating new Bibliographic Class and Text Class records.</p>
+<p>The program will look for USMARC records in a file called <tt>records.marc</tt>, or alternatively in a file or files identified on the command line.  It will produce a collection of individual files with the <tt>.bib</tt> extension, each named with the NOTIS record identifier or key and will put those output files in a directory called <tt>sgmlout</tt>.  Thus, <tt>marc2bib.pl</tt> by itself, with a file called <tt>records.marc</tt> containing the NOTIS keys foo, bar, and foobar, will result in <tt>sgmlout/foo.bib</tt>, <tt>sgmlout/bar.bib</tt>, and <tt>sgmlout/foobar.bib</tt>.  Similarly, <tt>marc2bib.pl</tt> with the command line argument <tt>marc/*.marc</tt> with the NOTIS IDs <tt>foo.marc</tt>, <tt>bar.marc</tt>, and <tt>foobar.marc</tt>, will also result in (or overwrite) <tt>sgmlout/foo.bib</tt>, <tt>sgmlout/bar.bib</tt>, and <tt>sgmlout/foobar.bib</tt>.</p></li>
+
+<li><a href="fixtimes.pl">fixtimes.pl</a>:  This program, written by Phil Farber, was extremely useful in processing Chadwyck-Healey's SGML from three bibliographic collections.  The <i>Historical Index to the New York Times, 1851-1922</i>, the <i>Official Index to the Times (London), 1906-1980</i>, and <i>Palmer's Index to the Times, 1790-1905</i> were all encoded using roughly the same Chadwyck-Healey DTD.  The data were transformed, primarily by <a href="fixtimes.pl">fixtimes.pl</a>, into the Bibliographic Class's <a href="bib.dtd">bib.dtd</a>.  To use this program, ensure that the path to Perl is correct in the program, and then issue the command <tt>fixtimes.pl</tt> with the arguments <tt>input-file</tt> and <tt>output-file</tt>, as in: <br/><tt>fixtimes.pl times.sgm > newtimes.sgm</tt></li>
+</ul>
+
+</body>
+
+</html>

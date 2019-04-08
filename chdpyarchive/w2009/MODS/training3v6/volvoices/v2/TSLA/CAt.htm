@@ -1,0 +1,532 @@
+<html>
+<head>
+<title>vv_popupCA</title>
+
+<link href="../vv_workbook.css" type="text/css" rel="stylesheet">
+<script language=javascript src="../vv_functions_tsla.js"></script>
+
+
+
+
+<script language="javascript">
+
+var select_id= new String();
+function get_select_id() {
+
+var str = new String();
+    str = parent.location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  parent.window.opener.location.href="+parent.window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=get_select_id();
+
+
+
+var strSelect_PN_A = new String('');
+
+
+strSelect_PN_A = '<select name="aaa"  size="24" style="font-size:10px"> \r\n'
+	+'<option value="0" selected>No value selected</option> \r\n'
+		
+
+
+
+
+
+
+
+	+'<option>TEMPLE BAPTIST CHURCH (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>TEMPLE BETH EL (KNOXVILLE, TENN.)</option>  \r\n'
+	+'<option>TEMPLE ISRAEL (MEMPHIS, TENN.)</option>  \r\n'
+	+'<option>TENNCARE (PROGRAM)</option>  \r\n'
+	+'<option>TENNESSEE</option>  \r\n'
+	+'<option>TENNESSEE (ARMORED CRUISER NO. 10)</option>  \r\n'
+	+'<option>TENNESSEE (BATTLESHIP)</option>  \r\n'
+	+'<option>TENNESSEE (SUBMARINE)</option>  \r\n'
+	+'<option>TENNESSEE - AERONAUTICS DIVISION</option>  \r\n'
+	+'<option>TENNESSEE - AIR NATIONAL GUARD - AIR REFUELING GROUP, 134TH</option>  \r\n'
+	+'<option>TENNESSEE - AIR NATIONAL GUARD - AIR TRANSPORT WING (HEAVY), 118TH</option>  \r\n'
+	+'<option>TENNESSEE - AIR POLLUTION CONTROL DIVISION</option>  \r\n'
+	+'<option>TENNESSEE - ALCOHOLIC BEVERAGE COMMISSION</option>  \r\n'
+	+'<option>TENNESSEE - ALCOHOLIC BEVERAGE STUDY COMMISSION</option>  \r\n'
+	+'<option>TENNESSEE - ARMY NATIONAL GUARD</option>  \r\n'
+	+'<option>TENNESSEE - ATTORNEY GENERAL AND REPORTER</option>  \r\n'
+	+'<option>TENNESSEE - ATTORNEY-GENERAL\'S OFFICE</option>  \r\n'
+	+'<option>TENNESSEE - BOARD FOR LICENSING HEALTH CARE FACILITIES</option>  \r\n'
+	+'<option>TENNESSEE - BOARD OF CLAIMS</option>  \r\n'
+	+'<option>TENNESSEE - BOARD OF COMMUNICATIONS DISORDERS AND SCIENCES/COUNCIL FOR LICENSING</option>  \r\n'
+	+'<option>TENNESSEE - BOARD OF DENTISTRY</option>  \r\n'
+	+'<option>TENNESSEE - BOARD OF FINANCE</option>  \r\n'
+	+'<option>TENNESSEE - BOARD OF MASSAGE LICENSURE</option>  \r\n'
+	+'<option>TENNESSEE - BOARD OF MEDICAL EXAMINERS</option>  \r\n'
+	+'<option>TENNESSEE - BOARD OF NURSING</option>  \r\n'
+	+'<option>TENNESSEE - BOARD OF OCCUPATIONAL AND PHYSICAL THERAPY EXAMINERS</option>  \r\n'
+	+'<option>TENNESSEE - BOARD OF PAROLES</option>  \r\n'
+	+'<option>TENNESSEE - BOARD OF PHARMACY</option>  \r\n'
+	+'<option>TENNESSEE - BOARD OF POLYGRAPH EXAMINERS</option>  \r\n'
+	+'<option>TENNESSEE - BOARD OF PRISON COMMISSIONERS</option>  \r\n'
+	+'<option>TENNESSEE - BOARD OF PROBATION AND PAROLE</option>  \r\n'
+	+'<option>TENNESSEE - BOARD OF RESPIRATORY CARE</option>  \r\n'
+	+'<option>TENNESSEE - BOARD OF STANDARDS</option>  \r\n'
+	+'<option>TENNESSEE - BOARD OF VETERINARY MEDICAL EXAMINERS</option>  \r\n'
+	+'<option>TENNESSEE - BUREAU OF ALCOHOL AND DRUG ABUSE SERVICES</option>  \r\n'
+	+'<option>TENNESSEE - BUREAU OF HEALTH SERVICES</option>  \r\n'
+	+'<option>TENNESSEE - BUREAU OF INSURANCE</option>  \r\n'
+	+'<option>TENNESSEE - BUREAU OF INVESTIGATION</option>  \r\n'
+	+'<option>TENNESSEE - BUREAU OF MASS TRANSIT</option>  \r\n'
+	+'<option>TENNESSEE - BUREAU OF REFUGEES, FREEDMEN, AND ABANDONED LANDS</option>  \r\n'
+	+'<option>TENNESSEE - BUREAU OF WORKSHOP AND FACTORY INSPECTION</option>  \r\n'
+	+'<option>TENNESSEE - CHANCERY COURT (7TH DIVISION)</option>  \r\n'
+	+'<option>TENNESSEE - CHEROHALA COMMISSION</option>  \r\n'
+	+'<option>TENNESSEE - CHILD WELFARE LICENSING BOARD OF REVIEW</option>  \r\n'
+	+'<option>TENNESSEE - CHILD WELFARE LICENSING STANDARDS COMMITTEE</option>  \r\n'
+	+'<option>TENNESSEE - CHILDREN\'S PLAN</option>  \r\n'
+	+'<option>TENNESSEE - CIRCUIT COURT</option>  \r\n'
+	+'<option>TENNESSEE - CIVIL DEFENSE AND DISASTER COMPACT</option>  \r\n'
+	+'<option>TENNESSEE - CIVIL WAR CENTENNIAL COMMISSION</option>  \r\n'
+	+'<option>TENNESSEE - CLOVER BOTTOM DEVELOPMENTAL CENTER (NASHVILLE)</option>  \r\n'
+	+'<option>TENNESSEE - COMMISSION ON AGING</option>  \r\n'
+	+'<option>TENNESSEE - COMMISSION ON CHILDREN AND YOUTH</option>  \r\n'
+	+'<option>TENNESSEE - COMMISSION ON POSTSECONDARY VOCATIONAL EDUCATION INSTITUTIONAL AUTHORIZATION</option>  \r\n'
+	+'<option>TENNESSEE - COMMUNITY-BASED SERVICES PLANNING COMMISSION</option>  \r\n'
+	+'<option>TENNESSEE - COMPTROLLER OF THE TREASURY</option>  \r\n'
+	+'<option>TENNESSEE - COMPTROLLER OF THE TREASURY - OFFICE OF MANAGEMENT SERVICES</option>  \r\n'
+	+'<option>TENNESSEE - CONSTITUTION</option>  \r\n'
+	+'<option>TENNESSEE - CONSTITUTIONAL CONVENTION, 1971</option>  \r\n'
+	+'<option>TENNESSEE - CONSTITUTIONAL CONVENTION, 1977</option>  \r\n'
+	+'<option>TENNESSEE - COURT OF APPEALS</option>  \r\n'
+	+'<option>TENNESSEE - COURT OF CIVIL APPEALS</option>  \r\n'
+	+'<option>TENNESSEE - COURTS OF GENERAL SESSIONS</option>  \r\n'
+	+'<option>TENNESSEE - CRIMINAL COURT (6TH CIRCUIT. 1ST DIVISION)</option>  \r\n'
+	+'<option>TENNESSEE - DEFENSE FORCE</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF AGRICULTURE</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF AUDIT</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF BANKING</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF CHILDREN\'S SERVICES</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF COMMERCE AND INSURANCE</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF CONSERVATION</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF CORRECTION</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF CORRECTION - YOUTH SERVICES DIVISION</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF CORRECTIONS</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF ECONOMIC AND COMMUNITY DEVELOPMENT</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF ECONOMIC AND COMMUNITY DEVELOPMENT - ENERGY DIVISION</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF EDUCATION</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF EDUCATION - TEACHERS STUDY COUNCIL</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF EMPLOYMENT SECURITY</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF ENVIRONMENT AND CONSERVATION</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF FINANCE AND ADMINISTRATION</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF FINANCE AND ADMINISTRATION - INFORMATION SYSTEM SERVICES DIVISION</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF FINANCE AND TAXATION</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF FINANCIAL INSTITUTIONS</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF FOOD AND DRUGS</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF GENERAL SERVICES</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF HEALTH</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF HEALTH AND ENVIRONMENT</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF HIGHWAYS</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF HIGHWAYS AND PUBLIC WORKS</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF HIGHWAYS AND PUBLIC WORKS - DIVISION OF SAFETY</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF HISTORY AND ARCHIVES</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF HUMAN SERVICES</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF INSTITUTIONS AND PUBLIC WELFARE</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF INSURANCE</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF LABOR</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF LABOR AND WORKFORCE DEVELOPMENT</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF MENTAL HEALTH</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF MENTAL HEALTH AND DEVELOPMENTAL DISABILITIES</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF MENTAL HEALTH AND MENTAL RETARDATION</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF PERSONNEL</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF PUBLIC HEALTH</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF PUBLIC HEALTH - CRIPPLED CHILDREN\'S  SERVICE</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF PUBLIC WELFARE</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF REVENUE</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF SAFETY</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF SHOP AND FACTORY INSPECTION</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF STATE</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF TRANSPORTATION</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF TRANSPORTATION - BUREAU OF MASS TRANSIT</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF VETERANS\' AFFAIRS</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF WEIGHTS AND MEASURES</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF WORKSHOP AND FACTORY INSPECTION</option>  \r\n'
+	+'<option>TENNESSEE - DEPT. OF YOUTH DEVELOPMENT</option>  \r\n'
+	+'<option>TENNESSEE - DIVISION OF ALCOHOL AND DRUG ABUSE SERVICES</option>  \r\n'
+	+'<option>TENNESSEE - DIVISION OF CONSUMER AFFAIRS</option>  \r\n'
+	+'<option>TENNESSEE - DIVISION OF DRIVER CONTROL</option>  \r\n'
+	+'<option>TENNESSEE - DIVISION OF FOOD SERVICES MANAGEMENT</option>  \r\n'
+	+'<option>TENNESSEE - DIVISION OF FOODS, FERTILIZERS AND DAIRIES</option>  \r\n'
+	+'<option>TENNESSEE - DIVISION OF FORESTRY</option>  \r\n'
+	+'<option>TENNESSEE - DIVISION OF GEOLOGY</option>  \r\n'
+	+'<option>TENNESSEE - DIVISION OF HIGHWAY PATROL</option>  \r\n'
+	+'<option>TENNESSEE - DIVISION OF LABORATORIES</option>  \r\n'
+	+'<option>TENNESSEE - DIVISION OF MENTAL RETARDATION</option>  \r\n'
+	+'<option>TENNESSEE - DIVISION OF NATURAL HERITAGE</option>  \r\n'
+	+'<option>TENNESSEE - DIVISION OF OCCUPATIONAL SAFETY</option>  \r\n'
+	+'<option>TENNESSEE - DIVISION OF PARKS AND RECREATION</option>  \r\n'
+	+'<option>TENNESSEE - DIVISION OF PRINTING</option>  \r\n'
+	+'<option>TENNESSEE - DIVISION OF PROPERTY ASSESSMENTS</option>  \r\n'
+	+'<option>TENNESSEE - DIVISION OF SOILS AND GEOLOGICAL ENGINEERING</option>  \r\n'
+	+'<option>TENNESSEE - DIVISION OF SPECIAL EDUCATION</option>  \r\n'
+	+'<option>TENNESSEE - DIVISION OF STATE AUDIT</option>  \r\n'
+	+'<option>TENNESSEE - DIVISION OF STATE PARKS</option>  \r\n'
+	+'<option>TENNESSEE - DIVISION OF TUBERCULOSIS CONTROL</option>  \r\n'
+	+'<option>TENNESSEE - DIVISION OF UNEMPLOYMENT COMPENSATION</option>  \r\n'
+	+'<option>TENNESSEE - DIVISION OF VOCATIONAL REHABILITATION</option>  \r\n'
+	+'<option>TENNESSEE - DIVISION OF WATER MANAGEMENT</option>  \r\n'
+	+'<option>TENNESSEE - DIVISION OF WATER QUALITY CONTROL</option>  \r\n'
+	+'<option>TENNESSEE - DIVISION OF WATER RESOURCES</option>  \r\n'
+	+'<option>TENNESSEE - ELECTION LAW COMMISSION</option>  \r\n'
+	+'<option>TENNESSEE - FACTORY INSPECTION DEPT.</option>  \r\n'
+	+'<option>TENNESSEE - FILM, ENTERTAINMENT AND MUSIC COMMISSION</option>  \r\n'
+	+'<option>TENNESSEE - FOOD STAMP VICTORY NETWORK</option>  \r\n'
+	+'<option>TENNESSEE - FORMS REDUCTION AND MANAGEMENT APPEALS BOARD</option>  \r\n'
+	+'<option>TENNESSEE - GENERAL ASSEMBLY</option>  \r\n'
+	+'<option>TENNESSEE - GENERAL ASSEMBLY - (89TH : - 1975)</option>  \r\n'
+	+'<option>TENNESSEE - GENERAL ASSEMBLY - (90TH : - 1977)</option>  \r\n'
+	+'<option>TENNESSEE - GENERAL ASSEMBLY - FISCAL REVIEW COMMITTEE</option>  \r\n'
+	+'<option>TENNESSEE - GENERAL ASSEMBLY - HOUSE OF REPRESENTATIVES</option>  \r\n'
+	+'<option>TENNESSEE - GENERAL ASSEMBLY - LEGISLATIVE COUNCIL COMMITTEE</option>  \r\n'
+	+'<option>TENNESSEE - GENERAL ASSEMBLY - OFFICE OF LEGAL SERVICES</option>  \r\n'
+	+'<option>TENNESSEE - GENERAL ASSEMBLY - SENATE</option>  \r\n'
+	+'<option>TENNESSEE - GOVERNOR (1796-1801 : SEVIER)</option>  \r\n'
+	+'<option>TENNESSEE - GOVERNOR (1907-1911 : PATTERSON)</option>  \r\n'
+	+'<option>TENNESSEE - GOVERNOR (1975-1979 : BLANTON)</option>  \r\n'
+	+'<option>TENNESSEE - GOVERNOR (1995-2003 : SUNDQUIST)</option>  \r\n'
+	+'<option>TENNESSEE - GOVERNOR\'S TASK FORCE ON TORT AND LIABILITY INSURANCE REFORM</option>  \r\n'
+	+'<option>TENNESSEE - GREAT SMOKY MOUNTAINS PARK COMMISSION</option>  \r\n'
+	+'<option>TENNESSEE - HEALTH PLANNING AND RESOURCES DEVELOPMENT AUTHORITY</option>  \r\n'
+	+'<option>TENNESSEE - HIGHER EDUCATION AND TECHNICAL INSTITUTIONS PUBLICATIONS COMMITTEE</option>  \r\n'
+	+'<option>TENNESSEE - HIGHER EDUCATION PUBLICATIONS COMMITTEE</option>  \r\n'
+	+'<option>TENNESSEE - HUMAN RIGHTS COMMISSION</option>  \r\n'
+	+'<option>TENNESSEE - HUMAN SERVICES ADVISORY COMMITTEE</option>  \r\n'
+	+'<option>TENNESSEE - INDUSTRIAL DEVELOPMENT DIVISION</option>  \r\n'
+	+'<option>TENNESSEE - INTERSTATE COMPACT ON THE PLACEMENT OF CHILDREN</option>  \r\n'
+	+'<option>TENNESSEE - INTERSTATE ENVIRONMENTAL COMPACT</option>  \r\n'
+	+'<option>TENNESSEE - JUVENILE JUSTICE COMMISSION</option>  \r\n'
+	+'<option>TENNESSEE - JUVENILE JUSTICE SYSTEM</option>  \r\n'
+	+'<option>TENNESSEE - LAW ENFORCEMENT PLANNING AGENCY</option>  \r\n'
+	+'<option>TENNESSEE - LAW REVISION COMMISSION</option>  \r\n'
+	+'<option>TENNESSEE - LEGISLATIVE COUNCIL COMMITTEE</option>  \r\n'
+	+'<option>TENNESSEE - LOCAL PLANNING ASSISTANCE OFFICE</option>  \r\n'
+	+'<option>TENNESSEE - LUNATIC HOSPITAL (NASHVILLE)</option>  \r\n'
+	+'<option>TENNESSEE - MEDICAL MALPRACTICE REVIEW BOARD</option>  \r\n'
+	+'<option>TENNESSEE - MILITARY DEPT</option>  \r\n'
+	+'<option>TENNESSEE - MILITIA</option>  \r\n'
+	+'<option>TENNESSEE - MILITIA - DIVISION, 2ND</option>  \r\n'
+	+'<option>TENNESSEE - MILITIA - DIVISION, 3RD</option>  \r\n'
+	+'<option>TENNESSEE - MILITIA - INFANTRY REGIMENT, 122ND</option>  \r\n'
+	+'<option>TENNESSEE - MILITIA - JOHN GORDON\'S COMPANY OF MOUNTED SPIES</option>  \r\n'
+	+'<option>TENNESSEE - MILITIA - REGIMENT, 3RD</option>  \r\n'
+	+'<option>TENNESSEE - MILITIA, 90TH</option>  \r\n'
+	+'<option>TENNESSEE - NATIONAL GUARD</option>  \r\n'
+	+'<option>TENNESSEE - NATIONAL GUARD - MOBILE ARMY SURGICAL HOSPITAL, 300TH</option>  \r\n'
+	+'<option>TENNESSEE - OFFICE OF LOCAL GOVERNMENT</option>  \r\n'
+	+'<option>TENNESSEE - OFFICE OF MINORITY BUSINESS ENTERPRISE</option>  \r\n'
+	+'<option>TENNESSEE - OFFICE OF THE STATE LONG-TERM CARE OMBUDSMAN</option>  \r\n'
+	+'<option>TENNESSEE - OIL AND GAS BOARD</option>  \r\n'
+	+'<option>TENNESSEE - PUBLIC HEALTH COUNCIL</option>  \r\n'
+	+'<option>TENNESSEE - PUBLIC LIVESTOCK MARKET BOARD</option>  \r\n'
+	+'<option>TENNESSEE - PUBLICATIONS COMMITTEE</option>  \r\n'
+	+'<option>TENNESSEE - REAL ESTATE APPRAISER COMMISSION</option>  \r\n'
+	+'<option>TENNESSEE - RECREATIONAL DEVELOPMENT ADVISORY COMMISSION</option>  \r\n'
+	+'<option>TENNESSEE - SALES AND USE TAX DIVISION</option>  \r\n'
+	+'<option>TENNESSEE - SCHOOL FOR THE BLIND , NASHVILLE</option>  \r\n'
+	+'<option>TENNESSEE - SERGEANT YORK MONUMENT COMMITTEE</option>  \r\n'
+	+'<option>TENNESSEE - SOLID WASTE DISPOSAL CONTROL BOARD</option>  \r\n'
+	+'<option>TENNESSEE - STATE AGENCY PUBLICATIONS COMMITTEE</option>  \r\n'
+	+'<option>TENNESSEE - STATE BOARD OF EDUCATION</option>  \r\n'
+	+'<option>TENNESSEE - STATE BOARD OF EQUALIZATION</option>  \r\n'
+	+'<option>TENNESSEE - STATE BUILDING COMMISSION</option>  \r\n'
+	+'<option>TENNESSEE - STATE ELECTION COMMISSION</option>  \r\n'
+	+'<option>TENNESSEE - STATE GAME AND FISH COMMISSION</option>  \r\n'
+	+'<option>TENNESSEE - STATE GUARD</option>  \r\n'
+	+'<option>TENNESSEE - STATE HIGHWAY COMMISSION</option>  \r\n'
+	+'<option>TENNESSEE - STATE LIBRARY</option>  \r\n'
+	+'<option>TENNESSEE - STATE PLANNING DIVISION</option>  \r\n'
+	+'<option>TENNESSEE - STATEWIDE HEALTH COORDINATING COUNCIL</option>  \r\n'
+	+'<option>TENNESSEE - SUPERINTENDENT OF PUBLIC INSTRUCTION</option>  \r\n'
+	+'<option>TENNESSEE - SUPREME COURT</option>  \r\n'
+	+'<option>TENNESSEE - THE COMPREHENSIVE EDUCATION REFORM ACT OF 1984</option>  \r\n'
+	+'<option>TENNESSEE - TREASURY DEPT.</option>  \r\n'
+	+'<option>TENNESSEE - UNEMPLOYMENT COMPENSATION DIVISION</option>  \r\n'
+	+'<option>TENNESSEE - VOLUNTEER INFANTRY REGIMENT, 5TH</option>  \r\n'
+	+'<option>TENNESSEE - WATER QUALITY CONTROL BOARD</option>  \r\n'
+	+'<option>TENNESSEE - WESTERN STATE HOSPITAL FOR THE INSANE (BOLIVAR)</option>  \r\n'
+	+'<option>TENNESSEE - WIC PROGRAM</option>  \r\n'
+	+'<option>TENNESSEE - WILDLIFE RESOURCES AGENCY</option>  \r\n'
+	+'<option>TENNESSEE - WORKSHOP FOR THE BLIND</option>  \r\n'
+	+'<option>TENNESSEE ACADEMY OF SCIENCE</option>  \r\n'
+	+'<option>TENNESSEE ADVISORY COMMISSION ON INTERGOVERNMENTAL RELATIONS</option>  \r\n'
+	+'<option>TENNESSEE ADVISORY COUNCIL FOR THE EDUCATION OF STUDENTS WITH DISABILITIES</option>  \r\n'
+	+'<option>TENNESSEE ADVISORY COUNCIL FOR THE EDUCATION OF THE HANDICAPPED</option>  \r\n'
+	+'<option>TENNESSEE ADVISORY COUNCIL TO THE FILM, ENTERTAINMENT, AND MUSIC COMMISSION</option>  \r\n'
+	+'<option>TENNESSEE AGRICULTURAL AND INDUSTRIAL STATE COLLEGE</option>  \r\n'
+	+'<option>TENNESSEE AGRICULTURAL AND INDUSTRIAL STATE UNIVERSITY</option>  \r\n'
+	+'<option>TENNESSEE AMERICAN REVOLUTION BICENTENNIAL COMMISSION</option>  \r\n'
+	+'<option>TENNESSEE ARCHAEOLOGICAL SOCIETY</option>  \r\n'
+	+'<option>TENNESSEE ARTS COMMISSION</option>  \r\n'
+	+'<option>TENNESSEE ASSOCIATION</option>  \r\n'
+	+'<option>TENNESSEE ASSOCIATION OF CRAFT ARTISTS</option>  \r\n'
+	+'<option>TENNESSEE ASSOCIATION OF MEXICAN WAR VETERANS</option>  \r\n'
+	+'<option>TENNESSEE ASSOCIATION OF MUSEUMS</option>  \r\n'
+	+'<option>TENNESSEE AVIATION HISTORY PROJECT</option>  \r\n'
+	+'<option>TENNESSEE BANKERS ASSOCIATION</option>  \r\n'
+	+'<option>TENNESSEE BAPTIST ASSOCIATION</option>  \r\n'
+	+'<option>TENNESSEE BAPTIST CONVENTION</option>  \r\n'
+	+'<option>TENNESSEE BAR ASSOCIATION</option>  \r\n'
+	+'<option>TENNESSEE BICENTENNIAL CAPITOL MALL (NASHVILLE)</option>  \r\n'
+	+'<option>TENNESSEE BICENTENNIAL CELEBRATION</option>  \r\n'
+	+'<option>TENNESSEE BOARD OF PROBATION AND PAROLE</option>  \r\n'
+	+'<option>TENNESSEE BREWING COMPANY</option>  \r\n'
+	+'<option>TENNESSEE BRIGADE</option>  \r\n'
+	+'<option>TENNESSEE BUILDING MATERIAL ASSOCIATION</option>  \r\n'
+	+'<option>TENNESSEE BUSINESS ENTERPRISES</option>  \r\n'
+	+'<option>TENNESSEE CAPITOL ASSOCIATION</option>  \r\n'
+	+'<option>TENNESSEE CENTENNIAL AND INTERNATIONAL EXPOSITION - (1897 : - NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>TENNESSEE CENTRAL RAILWAY COMPANY</option>  \r\n'
+	+'<option>TENNESSEE CHILD CARE FACILITIES CORPORATION</option>  \r\n'
+	+'<option>TENNESSEE CHILDREN\'S HOME SOCIETY</option>  \r\n'
+	+'<option>TENNESSEE CHILDREN\'S HOME SOCIETY - SHELBY COUNTY DIVISION</option>  \r\n'
+	+'<option>TENNESSEE COAL, IRON, AND RAILROAD COMPANY</option>  \r\n'
+	+'<option>TENNESSEE COLLEGE (MURFREESBORO, TENN.)</option>  \r\n'
+	+'<option>TENNESSEE COLLEGE ASSOCIATION</option>  \r\n'
+	+'<option>TENNESSEE COMMISSION ON NATIONAL AND COMMUNITY SERVICE </option>  \r\n'
+	+'<option>TENNESSEE CONGRESS OF MOTHERS</option>  \r\n'
+	+'<option>TENNESSEE CONGRESS OF PARENTS AND TEACHERS</option>  \r\n'
+	+'<option>TENNESSEE CONSERVATION LEAGUE</option>  \r\n'
+	+'<option>TENNESSEE CONSOLIDATED RETIREMENT SYSTEM</option>  \r\n'
+	+'<option>TENNESSEE COPPER COMPANY</option>  \r\n'
+	+'<option>TENNESSEE CORRECTIONAL ACADEMY</option>  \r\n'
+	+'<option>TENNESSEE CORRECTIONS INSTITUTE</option>  \r\n'
+	+'<option>TENNESSEE COUNCIL OF JUVENILE AND FAMILY COURT JUDGES</option>  \r\n'
+	+'<option>TENNESSEE COUNCIL ON DEVELOPMENTAL DISABILITIES</option>  \r\n'
+	+'<option>TENNESSEE CRIME INFORMATION CENTER</option>  \r\n'
+	+'<option>TENNESSEE DECISION SUPPORT PROJECT</option>  \r\n'
+	+'<option>TENNESSEE DENTAL ASSOCIATION</option>  \r\n'
+	+'<option>TENNESSEE DEVELOPMENTAL DISABILITIES COUNCIL</option>  \r\n'
+	+'<option>TENNESSEE DEVELOPMENTAL DISABILITIES PLANNING COUNCIL</option>  \r\n'
+	+'<option>TENNESSEE EDUCATION CONGRESS</option>  \r\n'
+	+'<option>TENNESSEE EDUCATION IMPROVEMENT ACT OF 1992</option>  \r\n'
+	+'<option>TENNESSEE ELECTRIC POWER COMPANY</option>  \r\n'
+	+'<option>TENNESSEE EMERGENCY MANAGEMENT AGENCY</option>  \r\n'
+	+'<option>TENNESSEE ENERGY AUTHORITY</option>  \r\n'
+	+'<option>TENNESSEE ENERGY INSTITUTE</option>  \r\n'
+	+'<option>TENNESSEE ENERGY OFFICE</option>  \r\n'
+	+'<option>TENNESSEE EQUAL SUFFRAGE LEAGUE</option>  \r\n'
+	+'<option>TENNESSEE FARM BUREAU FEDERATION</option>  \r\n'
+	+'<option>TENNESSEE FEDERATION OF GARDEN CLUBS</option>  \r\n'
+	+'<option>TENNESSEE FEDERATION OF JUNIOR HISTORIANS</option>  \r\n'
+	+'<option>TENNESSEE FEDERATION OF MUSIC CLUBS</option>  \r\n'
+	+'<option>TENNESSEE FEMALE COLLEGE (FRANKLIN, TENN.)</option>  \r\n'
+	+'<option>TENNESSEE FINE ARTS CENTER</option>  \r\n'
+	+'<option>TENNESSEE FIRE SERVICE AND CODES ENFORCEMENT ACADEMY</option>  \r\n'
+	+'<option>TENNESSEE FOLKLORE SOCIETY</option>  \r\n'
+	+'<option>TENNESSEE GEODETIC REFERENCE NETWORK</option>  \r\n'
+	+'<option>TENNESSEE GOVERNMENT EXECUTIVE INSTITUTE</option>  \r\n'
+	+'<option>TENNESSEE GOVERNOR\'S MANSION (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>TENNESSEE HEALTH CARE ASSOCIATION</option>  \r\n'
+	+'<option>TENNESSEE HEALTH FACILITIES COMMISSION</option>  \r\n'
+	+'<option>TENNESSEE HIGHER EDUCATION COMMISSION</option>  \r\n'
+	+'<option>TENNESSEE HIGHWAY PATROL</option>  \r\n'
+	+'<option>TENNESSEE HISTORICAL COMMISSION</option>  \r\n'
+	+'<option>TENNESSEE HISTORICAL RECORDS SURVEY</option>  \r\n'
+	+'<option>TENNESSEE HISTORICAL SOCIETY</option>  \r\n'
+	+'<option>TENNESSEE HOSPITAL ASSOCIATION</option>  \r\n'
+	+'<option>TENNESSEE HOUSING DEVELOPMENT AGENCY</option>  \r\n'
+	+'<option>TENNESSEE IMPROVEMENT COMPANY</option>  \r\n'
+	+'<option>TENNESSEE INDUSTRIAL INFRASTRUCTURE PROGRAM</option>  \r\n'
+	+'<option>TENNESSEE INDUSTRIAL SCHOOL (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>TENNESSEE INTERNATIONAL TRADE AND EXPORT DEVELOPMENT ADVISORY COUNCIL</option>  \r\n'
+	+'<option>TENNESSEE LAW ENFORCEMENT PLANNING COMMISSION</option>  \r\n'
+	+'<option>TENNESSEE LEAGUE FOR NURSING</option>  \r\n'
+	+'<option>TENNESSEE LIBRARY FOR THE BLIND AND PHYSICALLY HANDICAPPED</option>  \r\n'
+	+'<option>TENNESSEE MALT BEVERAGE ASSOCIATION</option>  \r\n'
+	+'<option>TENNESSEE MEDICAL ASSOCIATION</option>  \r\n'
+	+'<option>TENNESSEE MEDICAL FOUNDATION, KNOXVILLE</option>  \r\n'
+	+'<option>TENNESSEE MEIJI GAKUIN HIGH SCHOOL (SWEETWATER, TENN.)</option>  \r\n'
+	+'<option>TENNESSEE MILITARY INSTITUTE, SWEETWATER</option>  \r\n'
+	+'<option>TENNESSEE MUNICIPAL LEAGUE</option>  \r\n'
+	+'<option>TENNESSEE NATIONAL GUARD</option>  \r\n'
+	+'<option>TENNESSEE NEGRO BUSINESS INSTITUTE</option>  \r\n'
+	+'<option>TENNESSEE NURSES ASSOCIATION</option>  \r\n'
+	+'<option>TENNESSEE OCCUPATIONAL INFORMATION COORDINATING COMMITTEE</option>  \r\n'
+	+'<option>TENNESSEE OILERS (FOOTBALL TEAM)</option>  \r\n'
+	+'<option>TENNESSEE ORNITHOLOGICAL SOCIETY</option>  \r\n'
+	+'<option>TENNESSEE PERFORMING ARTS CENTER</option>  \r\n'
+	+'<option>TENNESSEE PHARMACEUTICAL ASSOCIATION</option>  \r\n'
+	+'<option>TENNESSEE POLYTECHNIC INSTITUTE</option>  \r\n'
+	+'<option>TENNESSEE PREPARATORY SCHOOL (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>TENNESSEE PRESS ASSOCIATION</option>  \r\n'
+	+'<option>TENNESSEE PRINCIPALS STUDY COUNCIL</option>  \r\n'
+	+'<option>TENNESSEE PUBLIC HEALTH ASSOCIATION</option>  \r\n'
+	+'<option>TENNESSEE PUBLIC SCHOOL NURSE PROGRAM</option>  \r\n'
+	+'<option>TENNESSEE PUBLIC SERVICE COMMISSION</option>  \r\n'
+	+'<option>TENNESSEE RE-EDUCATION CENTER</option>  \r\n'
+	+'<option>TENNESSEE REGIONAL LIBRARY SYSTEM</option>  \r\n'
+	+'<option>TENNESSEE REGULATORY AUTHORITY</option>  \r\n'
+	+'<option>TENNESSEE REPUBLICAN EXECUTIVE COMMITTEE</option>  \r\n'
+	+'<option>TENNESSEE RETIRED TEACHER\'S ASSOCIATION</option>  \r\n'
+	+'<option>TENNESSEE RIVER BASIN WATER POLLUTION CONTROL COMPACT</option>  \r\n'
+	+'<option>TENNESSEE ROAD BUILDERS ASSOCIATION</option>  \r\n'
+	+'<option>TENNESSEE SCENIC TRAIL PROJECT</option>  \r\n'
+	+'<option>TENNESSEE SCHOOL FOR THE BLIND</option>  \r\n'
+	+'<option>TENNESSEE SCHOOL FOR THE DEAF</option>  \r\n'
+	+'<option>TENNESSEE SECONDARY SCHOOL ATHLETIC ASSOCIATION</option>  \r\n'
+	+'<option>TENNESSEE SENTENCING COMMISSION</option>  \r\n'
+	+'<option>TENNESSEE SOCIETY IN NEW YORK</option>  \r\n'
+	+'<option>TENNESSEE SOCIETY OF CERTIFIED PUBLIC ACCOUNTANTS</option>  \r\n'
+	+'<option>TENNESSEE SOYBEAN PROMOTION BOARD</option>  \r\n'
+	+'<option>TENNESSEE STATE ASSOCIATION OPPOSED TO WOMAN\'S SUFFRAGE</option>  \r\n'
+	+'<option>TENNESSEE STATE DENTAL ASSOCIATION</option>  \r\n'
+	+'<option>TENNESSEE STATE EMPLOYMENT SERVICE</option>  \r\n'
+	+'<option>TENNESSEE STATE FEDERATION OF WOMEN\'S CLUBS</option>  \r\n'
+	+'<option>TENNESSEE STATE LAW LIBRARY</option>  \r\n'
+	+'<option>TENNESSEE STATE LIBRARY AND ARCHIVES</option>  \r\n'
+	+'<option>TENNESSEE STATE MEDICAL ASSOCIATION</option>  \r\n'
+	+'<option>TENNESSEE STATE MUSEUM</option>  \r\n'
+	+'<option>TENNESSEE STATE MUSEUM FOUNDATION</option>  \r\n'
+	+'<option>TENNESSEE STATE NORMAL AND INDUSTRIAL SCHOOL, COLUMBIA, TENNESSEE</option>  \r\n'
+	+'<option>TENNESSEE STATE NURSES\' ASSOCIATION</option>  \r\n'
+	+'<option>TENNESSEE STATE PARKS FOLKLIFE PROJECT</option>  \r\n'
+	+'<option>TENNESSEE STATE PENITENTIARY (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>TENNESSEE STATE PLANNING COMMISSION</option>  \r\n'
+	+'<option>TENNESSEE STATE PLANNING OFFICE</option>  \r\n'
+	+'<option>TENNESSEE STATE PRISON</option>  \r\n'
+	+'<option>TENNESSEE STATE RACING COMMISSION</option>  \r\n'
+	+'<option>TENNESSEE STATE RETIREMENT SYSTEM</option>  \r\n'
+	+'<option>TENNESSEE STATE SCHOOL BOND AUTHORITY</option>  \r\n'
+	+'<option>TENNESSEE STATE SOCIETY</option>  \r\n'
+	+'<option>TENNESSEE STATE UNIVERSITY</option>  \r\n'
+	+'<option>TENNESSEE STUDENT ASSISTANCE CORPORATION</option>  \r\n'
+	+'<option>TENNESSEE TECHNOLOGICAL UNIVERSITY</option>  \r\n'
+	+'<option>TENNESSEE TOLLWAY AUTHORITY</option>  \r\n'
+	+'<option>TENNESSEE TRANSPORTATION ASSISTANCE PROGRAM</option>  \r\n'
+	+'<option>TENNESSEE TREASURES TRAVELING MUSEUM</option>  \r\n'
+	+'<option>TENNESSEE TUBERCULOSIS ASSOCIATION</option>  \r\n'
+	+'<option>TENNESSEE VALLEY AGRICULTURAL & INDUSTRIAL FAIR</option>  \r\n'
+	+'<option>TENNESSEE VALLEY AUTHORITY</option>  \r\n'
+	+'<option>TENNESSEE VALLEY AUTHORITY - BOARD OF DIRECTORS</option>  \r\n'
+	+'<option>TENNESSEE VALLEY AUTHORITY - DIVISION OF FORESTRY RELATIONS</option>  \r\n'
+	+'<option>TENNESSEE VALLEY AUTHORITY - DIVISION OF FOSSIL AND HYDRO POWER</option>  \r\n'
+	+'<option>TENNESSEE VALLEY AUTHORITY - OFFICE OF THE INSPECTOR GENERAL</option>  \r\n'
+	+'<option>TENNESSEE VALLEY INTER-LEAGUE COUNCIL</option>  \r\n'
+	+'<option>TENNESSEE VALLEY LIBRARY COUNCIL</option>  \r\n'
+	+'<option>TENNESSEE VALLEY RAILROAD COMPANY</option>  \r\n'
+	+'<option>TENNESSEE VALLEY RAILROAD MUSEUM</option>  \r\n'
+	+'<option>TENNESSEE VALLEY SECTION</option>  \r\n'
+	+'<option>TENNESSEE VALUE ADDED ASSESSMENT SYSTEM</option>  \r\n'
+	+'<option>TENNESSEE VOLUNTEERS (BASKETBALL TEAM)</option>  \r\n'
+	+'<option>TENNESSEE VOLUNTEERS (FOOTBALL TEAM)</option>  \r\n'
+	+'<option>TENNESSEE WALKING HORSE NATIONAL CELEBRATION (SHELBYVILLE, TENN.)</option>  \r\n'
+	+'<option>TENNESSEE WARS COMMISSION</option>  \r\n'
+	+'<option>TENNESSEE WESLEYAN COLLEGE</option>  \r\n'
+	+'<option>TENNESSEE WESLEYAN UNIVERSITY</option>  \r\n'
+	+'<option>TENNESSEE WILDLIFE RESOURCES AGENCY</option>  \r\n'
+	+'<option>TENNESSEE WOMAN\'S HISTORICAL ASSOCIATION</option>  \r\n'
+	+'<option>TENNESSEE WRITERS ALLIANCE</option>  \r\n'
+	+'<option>TENNESSEE\'S 21ST CENTURY SCHOOLS PROGRAM</option>  \r\n'
+	+'<option>TENNESSEE-TOMBIGBEE WATERWAY</option>  \r\n'
+	+'<option>THIRD NATIONAL BANK (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>THOMPSON CREEK BAPTIST CHURCH (HENRY COUNTY, TENN.)</option>  \r\n'
+	+'<option>THOMPSON CREEK BAPTIST CHURCH (RAUS, TENN.)</option>  \r\n'
+	+'<option>TIMBER RIDGE CHURCH (GREENEVILLE, TENN.)</option>  \r\n'
+	+'<option>TIPTON-HAYNES MANSION (JOHNSON CITY, TENN.)</option>  \r\n'
+	+'<option>TOONE CUMBERLAND PRESBYTERIAN CHURCH (HARDEMAN COUNTY, TENN.)</option>  \r\n'
+	+'<option>TRAVELLERS\' REST (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>TREVECCA NAZARENE COLLEGE (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>TRIMBLE SCHOOL (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>TRINITY CHURCH (CLARKSVILLE, TENN.)</option>  \r\n'
+	+'<option>TRINITY EPISCOPAL CHURCH (CLARKSVILLE, TENN.)</option>  \r\n'
+	+'<option>TRINITY LUTHERAN CHURCH (TULLAHOMA, TENN.)</option>  \r\n'
+	+'<option>TULIP STREET METHODIST CHURCH (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>TURNEY CENTER (ONLY, TENN.)</option>  \r\n'
+	+'<option>TUSCULUM COLLEGE (TENN.)</option>  \r\n'
+	+'<option>TWO RIVERS MANSION (NASHVILLE, TENN.)</option>  \r\n'
+
+
++'</select> \r\n';
+	
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+<body class="background">
+
+
+
+
+<form name="FormOne" >
+
+
+<div name="SS" id="SS">
+<script>
+document.write(
+
+	 '<table border="1" cellpadding="4" cellspacing="0"  width="90%">\r\n'
+	+'<tr><td  bgcolor="ddeeff">\r\n'
+	///+'vv_functions.htm called by '+select_id+' <br>\r\n'
+	+'<b>Select Corporate Author T</b> \r\n'
+	+'</td></tr><tr><td bgcolor="ddeeff"> \r\n' 
+	+ strSelect_PN_A
+
+	+'</td></tr></table> \r\n'
+	///+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+</script>
+	
+</div>
+
+<input type="button" onclick="showSelection();" name="B1" value="Corporate Author">
+
+</form>
+
+<script>
+
+
+
+                  
+
+function showSelection() {
+
+val = new String();
+
+for ( i=0; i< document.FormOne.aaa.length; i++ ) {
+
+if ( document.FormOne.aaa[i].selected == true ) {
+  	val = document.FormOne.aaa[i].text;
+	break;
+	}
+else { val = "you never selected anything"; 
+	}
+
+}
+////////////////////////alert ("You selected " +val);
+val=reformatCa(val);
+
+switch ( select_id ) {
+
+case  "subject_name_lcsh_01" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_01.value=val;
+	parent.window.close();
+	break;
+
+case  "subject_name_lcsh_02" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_02.value=val;
+	parent.window.close();
+	break;
+}//end switch
+
+}///end function
+</script>
+

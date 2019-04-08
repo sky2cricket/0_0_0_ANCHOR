@@ -1,0 +1,41 @@
+
+<html>
+<head>
+<title>index</title>
+<link href="workbook/vv_workbook.css" type="text/css" rel="stylesheet">
+</head>
+<body class="background">
+
+<font face="arial" size="3">
+
+<form method="POST" action="login.php">
+<table cellpadding="2" cellspacing="2" border="0">
+<tr><td align="right">
+username:<input type="text" size="10" name="uName" value="">
+</td></tr>
+<tr><td align="right">
+password:<input type="password" size="12" name="pWord" value="">
+</td></tr>
+<tr><td align="right">
+<br><input type="button" value="Login to Volunteer Voices Workbook" onclick="check_password()">
+</td></tr><table>
+</form>
+
+
+
+<script>
+
+function check_password() {
+
+var str = new String();
+    str = document.forms[0].pWord.value;
+document.forms[0].submit();
+
+}
+</script>
+
+</body>
+</html>
+
+
+

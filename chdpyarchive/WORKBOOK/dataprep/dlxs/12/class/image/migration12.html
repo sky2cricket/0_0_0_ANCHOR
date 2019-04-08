@@ -1,0 +1,104 @@
+<html>
+<head>
+<title>Migration to Image Class DLXS 12</title>
+
+
+
+
+
+ <link href="../../dlxsdocs.css" rel="stylesheet" type="text/css">
+ <style type="text/css">
+<!--
+.style1 {
+	color: #FF0000;
+	font-weight: bold;
+}
+-->
+ </style>
+</head>         <body>
+<div class="pageTitle">
+Migration of Image Class to DLXS 12</div>
+  <p>This document assumes migration from <strong>DLXS 11/11a </strong>to<strong> DLXS
+      12</strong>. Migration from
+    10 to 12 should be possible, just be sure to read the <a href="migration.html">Migration
+    to DLXS 11</a>    documentation. Migration from an even earlier version requires
+    review of the documentation that was packaged with the software. </p>
+
+
+
+
+ 
+  <h2><a name="Overview"></a>Summary of Middleware Changes That Affect Data Preparation</h2>
+
+<p>Read the <a href="../../intro/index.html">DLXS, Getting Started</a> documentation, and this document, completely, before proceeding.</p>
+<h3>Media Table Required for MySQL Collections </h3>
+<p>Image Class now requires that each collection have a <strong>media
+    table</strong>. Previously
+  the <strong>media table</strong> was optional. <a href="mysql.html">Data preparation</a> is considerably
+  easier with DLXS 12, making it more reasonable to require a <strong>media table</strong>.
+  </p>
+<h3>Character Encoding</h3>
+<p>DLXS 12 expects all data to be <a href="../unicode.html">Unicode</a> UTF8 encoded. The user interface will
+    fail (assertion errors) if the XSLT engine used by the middleware  encounters
+    non-UTF8 characters.</p>
+<p>If all data is ASCII or UTF8, DLXS
+  12 Image Class middleware is compatible with DLXS 11 Image Class data.</p>
+<p>DLXS 11 Image Class
+      middleware is compatible with DLXS 12 Image Class data. UTF8 data not translatable
+  to ASCII or latin1 will not behave properly.</p>
+<p>Data preparation/loading scripts expect UTF8.</p>
+<p>Existing MySQL tables can be converted to UTF8 as long as the charactset
+    of the data is known. See <a href="http://dev.mysql.com/doc/mysql/en/alter-table.html">MySQL
+    &quot;alter table&quot; documentaion</a> for more information.
+  Tables containing strictly ASCII need not be converted. Please read the <a href="../unicode.html">DLXS
+  Unicode</a> documentation
+    for more information. </p>
+<h3>Searching &quot;Anywhere in Record&quot;</h3>
+<p><strong>ic_all</strong> is now the lone preferred  field mapping for searching &quot;Anywhere in Record&quot;.
+  The collection specific counterpart, in the form <strong>collid_all</strong>,
+    is only necessary for backward compatibility of bookmarked search results
+    pages. Here is the recommended usage of <strong>ic_all</strong>:</p>
+<p>First of all, do not change the configuration of legacy MySQL collections
+  that do not already have an <strong>ic_all</strong> field in the data table
+        unless you are prepared to reload the collection's data.</p>
+<p>Otherwise...</p>
+<ul>
+  <li>In the Collmgr field <span class="style1">field_admin_maps</span> (not
+    field_xcoll_maps!) map
+    <strong>ic_all</strong> to the collection specific fields to be searched
+        when the user chooses &quot;Anywhere in Record.&quot; This causes an <strong>ic_all</strong> field
+          to be created in the data table as a concatenation of the collection
+          specific fields plus the collid. This happens when the data is loaded. </li>
+  <li>Include a label for ic_all in CollMgr field <strong>field_labels</strong>.</li>
+  <li>Use <strong>ic_all, not collid_all, </strong>in Collmgr field <strong>dfltsrchflds</strong>.</li>
+  <li>If backward compatibility for bookmarked results page urls is desired,
+          map <strong>collid_all</strong> to <strong>ic_all</strong> in the CollMgr
+          field <strong>field_xcoll_maps</strong>.</li>
+</ul>
+<h3>Sorting on Cross Collection Fields </h3>
+<p>Only the first field mapped to a cross collection field is used for sorting.
+</p>
+<h2><a name="basicmigration"></a>User Interface Migration</h2>
+
+<p>DLXS 12 introduces a complete change to the way the user interface is handled.
+    The middleware prepares XML and applies XSL to it in order to generate XHTML.
+    HTML template files (.tpl) are gone, and the Image Class middleware is not
+    backward compatible with existing HTML templates. Class, group, and collection
+    specific interface customizations previously done in the Perl code, or HTML
+    templates must be revisited and likely redone completely.</p>
+<p>The good news is that the XML/XSLT combination is extremely versatile and
+    powerful. All Image Class interface functionality has been maintained if
+    not enhanced. And the vast majority of interface customizations that previously
+    required Perl code modifications can now be done with XSLT. This is true
+    of Image Class, Text Class, and FindAid Class.</p>
+<p>If your previous use of Image Class did not include template based interface
+  customizations, no special action is required.</p>
+<p>Migration of template based interface customizations requires analysis and
+  scrutiny of previous changes and reapplication in XSLT. In general, customizations
+  are much easier in XSLT once basic familiarity with the new implmentation is
+    attained.</p>
+<p>See <a href="http://jweise.dev.umdl.umich.edu/d/dlxs/docs/ui/index.html">DLXS
+  User Interface</a> documentation for details.  </p>
+</body>
+
+</html>

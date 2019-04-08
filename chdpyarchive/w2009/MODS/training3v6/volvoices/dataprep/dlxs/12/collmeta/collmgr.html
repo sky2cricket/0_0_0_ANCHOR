@@ -1,0 +1,127 @@
+<html>
+<head>
+<title>The DLXS Collection Manager CGI: collmgr</title>
+
+
+
+
+
+
+
+<link href="../dlxsdocs.css" rel="stylesheet" type="text/css"> </head>         <body>
+<div class="pageTitle">The DLXS Collection Manager CGI: collmgr</div>
+		
+			<h1>Overview and Contents</h1>
+			<p>This document describes the Collection Manager CGI program (<i>collmgr</i>) delivered with the DLXS middleware. It is used to maintain the <a href="colldatabases.html">metadata databases</a> that allow the DLXS middleware to access information about specific collections and groups of collections implemented through the middleware.</p>
+			<p>The collection information and groups information databases serve to identify and locate the various modules, objects, and search restrictions that are used by the class middleware to serve each collection available in the various classes. For more information about the databases themselves,<a href="colldatabases.html">click here</a>.</p>
+			<p>
+				<b>collmgr</b> is a CGI program whose main function is to manage collection and group information. This information is that which was kept in the groups and colldb tab-delimited text files prior to the CDROM #8 <a href="http://www.dlxs.org/products/products.html">release of DLXS</a>. This CGI program allows you to maintain this information in either a CSV database or a MySQL database.</p>
+			<p>For information on the individual fields, please see the <a href="collmgr-fields.html">help file </a> used by the Collection Manager (collmgr)
+   </p>
+			<p>
+				<b>IMPORTANT</b>: To learn about the databases and their structure and for an explanation of how different user IDs affect which rows of data are retrieved from the databases see <a href="colldatabases.html#interaction">Interaction between database rows, users, DLXS Middleware and collmgr</a>.
+   </p>
+			<p>
+				<b>Contents:</b>
+			</p>
+			<ul>
+				<li>
+					<a href="#definitions">Definitions</a>
+				</li>
+				<li>
+					<a href="#workflow">Workflow for user other than <i>dlxsadm</i>
+					</a>
+					<ul>
+						<li>
+							<a href="#managecollections">Managing collections</a>
+						</li>
+						<li>
+							<a href="#managegroups">Managing groups</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="#workflowdlxsadm">Workflow for user <i>dlxsadm</i>
+					</a>
+				</li>
+			</ul>
+		
+		
+			<h1>
+				<a name="definitions"/>Definitions</h1>
+			<p>In the following explanations, certain terms are used that need some explanation.</p>
+			<dl>
+				<dt>user ID</dt>
+				<dd>The user ID is the key in the database (either collection or groups database) that determines which row of metadata information in the database will be used for a particular collection or group of collections.</dd>
+				<dt>release</dt>
+				<dd>The term <i>release</i> refers to the database rows that have been released by individual developers for testing by a larger audience.  When testing is complete, these are the rows that will be moved into production. These rows in the databases are keyed by the user ID <i>dlxsadm</i>. At DLPS, these are rows that are seen by the middleware when running in the <a href="../program/devenvironment.html#workdirs">"release" directory</a>, as opposed to a particular developer's work directory, and when the <a href="colldatabases.html#dlpsdevenv">DLPS_DEV environment variable</a> is set to 1.</dd>
+				<dt>production</dt>
+				<dd>Rows in the databases keyed by this user ID are seen by the middleware in the production environment; that is, when the <a href="colldatabases.html#dlpsdevenv">DLPS_DEV envrionment variable</a> is set to 0 or not defined.</dd>
+				<dt>
+					<a name="remoteuserenv"/>REMOTE_USER</dt>
+				<dd>This environment variable is set by an authorization system when running the collmgr. It determines what permissions a user has when managing the databases. For example, if the authorization system allows each user to log in as a unique individual with his or her own user ID (see <a href="../program/devenvironment.html">DLPS development environment</a>), that user may check out rows into their own working environment, or make changes to rows and check them back in. If the user logs in as "dlxsadm", the user may "release" the rows keyed by "dlxsadm" (that is, the "release rows") to production and may also add or delete fields from tables.</dd>
+			</dl>
+		
+		
+			<h1>
+				<a name="workflow"/>Workflow for someone managing a collection with a user ID other than <i>dlxsadm</i>
+			</h1>
+			
+				<h2>
+					<a name="managecollections"/>Managing collections</h2>
+				<p>When you login to manage a collection, you are asked whether you wish to manage collections or groups. Then you are asked to select the class with which you wish to work. A list of working collections will be displayed.  These are the collections you have checked out under your user ID.</p>
+				<p>The first time you run <i>collmgr</i>, this list will be empty. In order to build up the list you can choose to <i>checkout collection</i>. This will display a page where you will be permitted to select one or more collections to <i>checkout</i>. <i>Checking out</i> actually creates a copy of the collection database row keyed as <i>release</i>. The new row is keyed by the user ID of the user requesting the checkout.</p>
+				<p>Returning  to the page that lists your working collections, you will see the collection(s) you have just checked out. You can then view them or edit them as you wish, one at a time.</p>
+				<p>If at any time you wish to get a more up-to-date version of a collection (see point below regarding <i>aging</i>) from the release pool or to undo some changes you have saved to your copy, just check it out, and the values in your row (i.e., the row for that collection which is keyed by your user ID) will be overwritten with those in the <i>release</i> row.  </p>
+				<p>You can also create a new collection, and then check it in. <i>Checkin</i> places the collection in the release pool (by actually copying the row into a new row with all the same values except for the user ID, now dlxsadm (<b>note</b>: any row with user ID <i>dlxsadm</i> is known as a <i>release row</i> or <i>release collection</i>). If you find that you no longer need a collection in your working list, select <i>remove working collection</i>, and it will be removed from your working list (i.e., the row for that collection which is keyed by your user ID, will be deleted). <b>Note</b>: The release pool is not affected by this function because the release row (keyed by user ID <i>dlxsadm</i>) is not deleted.</p>
+				<p>Here are some important points to keep in mind when developing collections using <i>collmgr</i>:</p>
+				<ul>
+					<li>When you create a collection, and give it an id, <i>collmgr</i> will check to make sure this collection id is not used by any collections in any of the classes. If it is, it will post a warning and <b>not allow you create</b> that collection.</li>
+					<li>If you <i>checkout</i> a collection and someone else also checks it out, makes changes to it, and then checks it in during the time you have it checked out, you will see <b>- AGED</b> attached to the collection name in the list. This notifies you that the release collection has changed since your <i>checkout</i>. You will <b>not be allowed</b> to check this collection in. You will have to check it out, thereby accepting the changes the other user has made to the <i>release</i> row. Only then can you make the changes you need, and check in those changes.</li>
+				</ul>
+			
+			
+				<h2>
+					<b>
+						<a name="managegroups"/>Managing Groups </b>
+				</h2>
+				<p>Managing groups works in much the same way as managing collections. You will be able to create a group, check out groups, delete groups from your working list, and then check in your changes. </p>
+				<p>However, there is one additional layer of complexity that comes with working with groups: the relationship that exists between groups and collections. <b>Note</b> the following:</p>
+				<ul>
+					<li>When a user creates a group, s/he also selects the collections that are included in the group. When a user is creating a group, the collections presented include all the collections in release, all the collections the user has checked out, and all the collections that are new (i.e., collections s/he may be developing and that have never been checked in).</li>
+					<li> As the user selects collections to associate with the group, collmgr will check out each collection, unless it has already been checked out by the user.</li>
+					<li>Also when a group is checked out, all collections associated with that group are automatically checked out (i.e., placed in the user's list of working collections), assuming the collection has not already been checked out.</li>
+					<li>This behavior of collmgr guarantees that the working list of collections and the working list of groups that reference these collections are compatible. </li>
+					<li>One important scenario that collmgr guards against is the case where a collection has been created, has never been checked in, but has been associated with a group. If the user tries to check in the group, collmgr will display a warning to the user to indicate the situation and <b>will not allow</b> the user to check in the group with this collection selected.</li>
+					<li>In order to maintain a consistent relationship between a group and collection, if a collection is removed from the working list it will be removed from all groups that include it.</li>
+				</ul>
+			
+		
+		
+			<h1>
+				<a name="workflowdlxsadm"/>Workflow for someone managing a collection with user ID <i>dlxsadm</i>
+			</h1>
+			<p>The principal difference when managing collections and groups when logged in as <i>dlxsadm</i> is that you are editing the release rows in the database <b>directly</b>.  That is, you do not check out and check in rows.  The edits you submit affect the release rows immediately. </p>
+			<p>If your DLXS site does not involve interactions among many collection developers, each needing their own work space, you may decide that the easiest approach is just to use the single user ID: <i>dlxsadm</i> to accomplish all your collection development.</p>
+			<p>If you delete a working collection, only the
+'release' version is deleted.  All user collection rows are kept and also the
+production collection rows.  A release to production at this point will overwrite the production collection row.  This differs from the case where, when logged in as an individual user, if you remove a collection, it is only removed from that user's set of working rows, not from release or production.  Deleting a group behaves the same as deleting a collection.  The collections in the group are not affected, however. </p>
+			<p>A quick glance at the initial <b>collmgr</b> page will show that when logged in as <i>dlxsadm</i> you are allowed to manipulate the databases in ways that individual users cannot.  Following is a list of these additional priviledges.
+      <ul>
+					<li>
+						<b>Make a Release to Production</b> enables the administrator to copy the release rows onto the production rows making the release row changes visible to the middleware when it is running in an environment without the DLPS_DEV environment variable set, i.e., when the middleware is running in a production mode.  The release rows are those that contain all the changes checked in by individual users or changed directly by <i>dlxsadm</i>.  </li>
+					<li>
+						<b>Add Fields to Collection Tables</b> enables the administrator to create new collection fields for one or more of the middleware classes by entering a field name and selecting which classes use the field.  If all the classes use the field, it is placed global table (the "Collection" table).  If only a few classes need the field, the field is placed in tha class specific table(s) for the selected classes.  When entering the field name, the collmgr code checks if the field already exists for the class selected.  If it does, it will not add the field to the database. The administrator may optionally supply a default value for the field and specify whether the field should contain a single value or a list of values. If the field can contain multiple values, the user may enter the multiple values in the area indicated and separate each value with the pipe symbol (|).  Fields are added typically when there is a need for additional new functionality coded in the middleware. 
+     </li>
+					<li>
+						<b>Delete Fields from Colleciton Tables</b> enables the administrator to remove existing fields for one or more of the middleware classes by selecting a field name. The user will be prompted for the class(es) for which the field is to be deleted, since the same field name may be used by multiple classes. At DLPS this function is primarily to remove obsolete fields.</li>
+					<li>
+						<b>Add Fields to Group Tables</b> enables the administrator to create new group fields for one or more of the middleware classes by entering a group field name and selecting which classes use the field. The steps for performing this task are the same as those for adding a field to the collection tables.</li>
+					<li>
+						<b>Delete Fields from Group Tables</b> enables the administrator to remove existing fields for one or more of the middleware classes by selecting a group field name.  At DLPS this function is primarily to remove obsolete fields.  The steps for performing this task are the same as those for deleting a field from the collection tables.</li>
+				</ul>
+			</P>
+		
+	</body>
+
+</html>

@@ -1,0 +1,424 @@
+Overview
+
+1.  Scripts to scrape http logs for relevant entries for DLC collections
+2.  Load this data to database tables
+3.  Scripts to gather statistics
+4.  Scripts to display statistics
+5.  Where are all these things................see below
+
+
+=========================================
+Last login: Fri Feb 22 14:20:07 2008 from dlc02.lib.utk.edu
+[cdeane@diglib2 cdeane]$ mysql -u cricket
+ERROR 1045: Access denied for user: 'cricket@localhost' (Using password: NO)
+[cdeane@diglib2 cdeane]$ mysql -u cricket -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 873 to server version: 3.23.58
+
+Type 'help;' or '\h' for help. Type '\c' to clear the buffer.
+
+mysql> use checkscripts;
+Database changed
+mysql> show tables;
++------------------------+
+| Tables_in_checkscripts |
++------------------------+
+| ran                    |
+| scripts                |
++------------------------+
+2 rows in set (0.03 sec)
+
+mysql> 
+mysql> show columns from scripts;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| id         | int(20)      |      | PRI | NULL    | auto_increment |
+| scriptname | varchar(30)  |      |     |         |                |
+| server     | varchar(50)  |      |     |         |                |
+| directory  | varchar(255) |      |     |         |                |
+| cron       | varchar(50)  |      |     |         |                |
+| runswhen   | varchar(255) | YES  |     | NULL    |                |
+| doeswhat   | text         | YES  |     | NULL    |                |
+| succeeds   | varchar(255) | YES  |     | NULL    |                |
+| preceeds   | varchar(255) | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+9 rows in set (0.02 sec)
+
+mysql> select scriptname, server, directory, runswhen, doeswhat from scripts;
++-------------------+---------------------+--------------------------------+--------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| scriptname        | server              | directory                      | runswhen                             | doeswhat                                                                                                                                                                                                                                                                                                                   |
++-------------------+---------------------+--------------------------------+--------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| storedata         | diglib.lib.utk.edu  | /home/firestar/logs/           | 04:07 Sundays                        | parses /etc/httpd/logs/access_log.1 just after rotation; stores info in DlxsLogs.everyhit on diglib for use by extract script.  Does not gather hits on gila.lib.utk.edu or JEI.                                                                                                                                           |
+| storeEtd          | diglib.lib.utk.edu  | /home/firestar/logs/           | 04:06 Sundays                        | for ETD access collection: parses /etc/httpd/logs/etd-access_log.1 just after rotation; stores info in DlxsLogs.everyhit on diglib for use by extract script.                                                                                                                                                              |
+| journals          | diglib.lib.utk.edu  | /home/firestar/logs/           | 04:05 Sundays                        | collects hits on journal pdfs only: parses /etc/httpd/logs/access_log.1 just after rotation; stores them in paul's logdb database for use by extract script.                                                                                                                                                               |
+| extract           | diglib.lib.utk.edu  | /home/firestar/logs/           | 02:01 the 8th day of every month     | selects and analyzes information from DlxsLogs.everyhit on diglib, and also Paul's journals database logdb, and stores results in metrics database on diglib for use 
+by metrics display (and ARL stats). Also extracts month's entries in everyhit, backs up the table, and deletes those entries from the main database. |
+| failedSearch      | diglib.lib.utk.edu  | /home/firestar/logs/fsbackups  | 01:01 the 1st day of every month     | Reads in 'queries' files from /d1/dlxs/cgi/t/text, /i/image, /b/bib/, analyzes results, and stores them in FailedSearch on diglib.                                                                                                                                                                                         |
+| showmetrics       | diglib.lib.utk.edu  | /home/firestar/php/            | 08:01 the 8th day of every month     | pulls data from metrics database on diglib and creates displays of usage statistics seen at http://diglib.lib.utk.edu/metrics                                                                                                                                                                                              |
+| access            | diglib.lib.utk.edu  | /home/firestar/logs/           | 03:30 every day                      | overwrites all authorized ips for the day to restricted collections with a default set of valid ips;  this makes sure dynamic ips do not have constant access.  Copies auth to .auth in the /d1/dlxs/lib/.list/ directory. Paul's wpa-login script writes current ip to .auth if the user is authorized.                   |
+| checkdate         | diglib.lib.utk.edu  | /home/firestar/logs/authmails/ | 00:15 every day                      | goes through rcauth.rcusers table on diglib, removes users who have expired over a month ago;  if less than 14 days till they expire, sends them an email to invite them to ask for an extension if they need it.  For WPA restricted collections.                                                                         |
+| managesessions.pl | diglib.lib.utk.edu  | /d1/dlxs/bin/                  | 11:11 every day                      | clears sessions out of dlxs database if over 120 days old.                                                                                                                                                                                                                                                                 |
+| storesums         | store2.lib.utk.edu  | /home/firestar/md5stuff/       | 17:30 every Friday                   | checks store1 current checksum files against those in diglib2:md5sums and adds new entries if they have changed                                                                                                                                                                                                            |
+| checkscripts      | diglib2.lib.utk.edu | /home/firestar/logs/cya/       | 18:30 every Sunday                   | checks to see if monthly scripts have run; emails me of problems                                                                                                                                                                                                                                                           |
+| storesums         | store2.lib.utk.edu  | /home/firestar/md5stuff/       | 17:30 every Sunday                   | checks store1 current checksum files against those in diglib2:md5sums and adds new entries if they have changed                                                                                                                                                                                                            |
+| checkscriptcheck  | diglib.lib.utk.edu  | /home/firestar/logs/cya/       | 19:30 every Sunday                   | checks to see if checkscripts ran; emails me of problems                                                                                                                                                                                                                                                                   |
+| dirs              | store2.lib.utk.edu  | /home/firestar/md5stuff/       | midnight (first thing) every Friday  | checks all md5checksums on store1 in area2;  creates new ones as needed; lets me know of any errors                                                                                                                                                                                                                        |
+| dirs              | store2.lib.utk.edu  | /home/firestar/md5stuff/       | 01:30 every Sunday                   | checks all md5checksums on store1 in area2;  creates new ones as needed; lets me know of any errors                                                                                                                                                                                                                        |
+| storedataNF       | gila.lib.utk.edu    | /home/jody/logs/               | 04:10 every Sunday                   | scrapes /var/log/httpd/access_log.1 right after rotation, collecting access stats for Newfound Press, and puts the info in DlxsLogs.everyhit database on diglib                                                                                                                                                            |
+| storedataFA       | dlc.lib.utk.edu     | /home/firstar/logs/            | 04:40 every Sunday                   | scrapes /var/log/httpd/access_log.1 right after rotation, collectiong access stats for Finding Aids in DLXS 12, and puts the info in DlxsLogs.everyhit database on diglib                                                                                                                                                  |
+| backups           | diglib2.lib.utk.edu | /home/firestar/logs/cya/       | 4:01 am the first day of every month | backs up selected mySQL databases into /d1/backups                                                                                                                                                                                                                                                                         |
+| backups           | diglib.lib.utk.edu  | /home/firestar/logs/cya/       | 4:01 am the first day of every month | backs up selected mySQL databases into /d1/backups                                                                                                                                                                                                                                                                         |
+| storedataXTF      | dlc.lib.utk.edu     | /home/firstar/logs/            | 06:01 the 8th day of every month     | scrapes /var/log/tomcat5/xtf_access_logs and backs them up, inserting analyzed stats for xtf into metrics database on diglib, ready for showmetrics                                                                                                                                                                        |
+| storeStreamData   | yucca.lib.utk.edu   | /home/firestar/logs/           | Wednesday mornings 4:27 am           | scrapes streaming data logs in /var/streaming/logs/StreamingServer logs just after rotation                                                                                                                                                                                                                                |
++-------------------+---------------------+--------------------------------+--------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+21 rows in set (0.01 sec)
+
+mysql> 
+after server update - crash - change
+
+1.  logs are still rotating at the same time
+2.  are the cron jobs still active
+3.  make sure the email server is running
+4.  make sure the database calls are still going through
+
+>mail cdeane  send yourself email to check #3
+
+All feed into DlxsLogs on diglib.
+
+one table everyhit.
+
+On 8th day of each month, another script goes through scrapings to get data we want
+for each collection.  extract.  on diglib under logs.
+
+The parsed data goes to metrics on diglib
+
+
+mysql> select distinct server from scripts;
++---------------------+
+| server              |
++---------------------+
+| diglib.lib.utk.edu  |
+| store2.lib.utk.edu  |---------------store2 is preservation
+| diglib2.lib.utk.edu |
+| gila.lib.utk.edu    |
+| dlc.lib.utk.edu     |
+| yucca.lib.utk.edu   |
++---------------------+
+6 rows in set (0.00 sec)
+
+mysql> 
+
+all others have stats
+
+Anything happens to any of the above stat servers, affects cron jobs
+
+After in metrics, a php script feeds the data to php files for display.
+
+Once a month, everyhit is saved to archive as diglib/d1/backups
+
+
+
+
+SSH Secure Shell 3.2.9 (Build 283)
+Copyright (c) 2000-2003 SSH Communications Security Corp - http://www.ssh.com/
+
+This copy of SSH Secure Shell is a non-commercial version.
+This version does not include PKI and PKCS #11 functionality.
+
+
+Last login: Fri Feb 22 14:42:57 2008 from dlc02.lib.utk.edu
+[cdeane@anasazi cdeane]$ mysql -u firestar -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 1345680 to server version: 3.23.58
+
+Type 'help;' or '\h' for help. Type '\c' to clear the buffer.
+
+mysql> use DlxsLogs
+Database changed
+mysql> show tables
+    -> ;
++--------------------+
+| Tables_in_DlxsLogs |
++--------------------+
+| everyhit           |
++--------------------+
+1 row in set (0.03 sec)
+
+mysql> show columns from everyhit;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| id       | mediumint(9) |      | PRI | NULL    | auto_increment |
+| date     | date         | YES  |     | NULL    |                |
+| time     | time         | YES  |     | NULL    |                |
+| coll     | char(15)     | YES  |     | NULL    |                |
+| status   | int(11)      | YES  |     | NULL    |                |
+| file     | char(255)    | YES  |     | NULL    |                |
+| ip       | char(20)     | YES  |     | NULL    |                |
+| refer    | char(255)    | YES  |     | NULL    |                |
+| platform | char(255)    | YES  |     | NULL    |                |
+| day      | char(3)      | YES  |     | NULL    |                |
+| request  | char(255)    | YES  |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+11 rows in set (0.03 sec)
+mysql> select * from everyhit limit 20
+    -> ;
++---------+------------+----------+--------+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+--------------------------------------------------------------------------------------+-------------+------+---------+
+| id      | date       | time     | coll   | status | file                                                                                                                                                                                     | ip              | refer                                                                                | platform    | day  | request |
++---------+------------+----------+--------+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+--------------------------------------------------------------------------------------+-------------+------+---------+
+| 2128490 | 2008-02-03 | 03:59:24 | egy    |    200 | /cgi/i/image/image-idx?q1=Old%2BKingdom,%2BDynasty%2BIII;rgn1=Time%20Period;op2=And;rgn2=All%20Categories;type=boolean;g=utic;view=thumbnail;c=egy;corig=egy;start=1;size=20;sort=EGY.LO | 41.232.167.18   | "http://diglib.lib.utk.edu/cgi/i/image/image-idx?c=egy"                              | Mozilla/4.0 | Sun  | GET     |
+| 2128489 | 2008-02-03 | 03:58:30 | egy    |    200 | /cgi/i/image/image-idx?c=egy                                                                                                                                                             | 41.232.167.18   | "http://www.digitalbookindex.org/_search/search010areastudiesegypta.asp"             | Mozilla/4.0 | Sun  | GET     |
+| 2128488 | 2008-02-03 | 03:53:19 | utcat  |    200 | /dlc/catalog/images/g/2007/g_ed.pdf                                                                                                                                                      | 196.46.120.68   | "http://diglib.lib.utk.edu/dlc/catalog/g2007.htm"                                    | Mozilla/4.0 | Sun  | GET     |
+| 2128487 | 2008-02-03 | 03:53:01 | utcat  |    200 | /dlc/catalog/images/g/2007/covert.jpg                                                                                                                                                    | 196.46.120.68   | "http://diglib.lib.utk.edu/dlc/catalog/g2007.htm"                                    | Mozilla/4.0 | Sun  | GET     |
+| 2128486 | 2008-02-03 | 03:52:53 | utcat  |    200 | /dlc/catalog/g2007.htm                                                                                                                                                                   | 196.46.120.67   | "http://diglib.lib.utk.edu/dlc/catalog/index.html"                                   | Mozilla/4.0 | Sun  | GET     |
+| 2128485 | 2008-02-03 | 03:52:11 | utcat  |    200 | /dlc/catalog/index.html                                                                                                                                                                  | 196.46.120.68   | "http://admissions.utk.edu/graduate/apply.shtml"                                     | Mozilla/4.0 | Sun  | GET     |
+| 2128484 | 2008-02-03 | 03:21:43 | etdbib |    200 | /cgi/b/bib/bib-idx?c=etd-bib;cc=etd-bib;sid=c557ca44e4f1a9e651260724459fcb69;page=history                                                                                                | 208.111.154.197 | "-"                                                                                  | Mozilla/5.0 | Sun  | HEAD    |
+| 2128483 | 2008-02-03 | 03:21:40 | etdbib |    200 | /cgi/b/bib/bib-idx?c=etd-bib;cc=etd-bib;sid=c557ca44e4f1a9e651260724459fcb69;page=history                                                                                                | 208.111.154.197 | "-"                                                                                  | Mozilla/5.0 | Sun  | GET     |
+| 2128482 | 2008-02-03 | 03:20:59 | utcat  |    206 | /dlc/catalog/images/u/2006/u_arc.pdf                                                                                                                                                     | 24.87.54.244    | "-"                                                                                  | Mozilla/5.0 | Sun  | GET     |
+| 2128481 | 2008-02-03 | 03:20:59 | utcat  |    200 | /dlc/catalog/images/u/2006/u_arc.pdf                                                                                                                                                     | 24.87.54.244    | "http://www.google.ca/search?q=art+drawing+architectural+course&hl=en&start=50&sa=N" | Mozilla/5.0 | Sun  | GET     |
+| 2128480 | 2008-02-03 | 03:20:03 | rth    |    200 | /cgi/i/image/image-idx?q1=Balds&rgn1=Subject%20Headings&type=boolean&view=thumbnail&c=rth;g=gsmc                                                                                         | 208.111.154.194 | "-"                                                                                  | Mozilla/5.0 | Sun  | HEAD    |
+| 2128479 | 2008-02-03 | 03:19:55 | rth    |    200 | /cgi/i/image/image-idx?q1=Balds&rgn1=Subject%20Headings&type=boolean&view=thumbnail&c=rth;g=gsmc                                                                                         | 208.111.154.194 | "-"                                                                                  | Mozilla/5.0 | Sun  | GET     |
+| 2128478 | 2008-02-03 | 03:19:21 | tdh    |    200 | /cgi/t/text/text-idx?sid=809c37b469db0173554d7926c86d62c9&cc=tdh&c=tdh&page=tdh_sub                                                                                                      | 64.12.116.8     | "http://www.rootsweb.com/~tnoverto/overton.htm"                                      | Mozilla/4.0 | Sun  | GET     |
+| 2128477 | 2008-02-03 | 02:31:31 | utcat  |    200 | /dlc/catalog/images/u/2007/u_ba.pdf                                                                                                                                                      | 71.193.185.185  | "http://diglib.lib.utk.edu/dlc/catalog/u2007.htm"                                    | Mozilla/4.0 | Sun  | GET     |
+| 2128476 | 2008-02-03 | 02:31:21 | utcat  |    200 | /dlc/catalog/u2007.htm                                                                                                                                                                   | 71.193.185.185  | "http://diglib.lib.utk.edu/dlc/catalog/index.html"                                   | Mozilla/4.0 | Sun  | GET     |
+| 2128475 | 2008-02-03 | 02:31:16 | utcat  |    200 | /dlc/catalog/index.html                                                                                                                                                                  | 71.193.185.185  | "-"                                                                                  | Mozilla/4.0 | Sun  | GET     |
+| 2128474 | 2008-02-03 | 02:26:13 | utcat  |    200 | /dlc/catalog/index.html                                                                                                                                                                  | 65.214.44.29    | "-"                                                                                  | Mozilla/5.0 | Sun  | GET     |
+| 2128473 | 2008-02-03 | 02:21:53 | tdh    |    200 | /cgi/t/text/text-idx?c=tdh;cc=tdh;q1=William%20Carroll;rgn=main;view=text;idno=sl609                                                                                                     | 65.214.45.100   | "-"                                                                                  | Mozilla/5.0 | Sun  | GET     |
+| 2128472 | 2008-02-03 | 02:05:56 | tdh    |    200 | /cgi/t/text/text-idx?c=tdh;cc=tdh;q1=Fergusson;rgn=main;view=text;idno=sl417                                                                                                             | 65.214.45.100   | "-"                                                                                  | Mozilla/5.0 | Sun  | GET     |
+| 2128471 | 2008-02-03 | 01:46:33 | utcat  |    200 | /dlc/catalog/g2001.htm                                                                                                                                                                   | 208.111.154.29  | "-"                                                                                  | Mozilla/5.0 | Sun  | HEAD    |
++---------+------------+----------+--------+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+--------------------------------------------------------------------------------------+-------------+------+---------+
+20 rows in set (3.44 sec)
+
+mysql> 
+The collection must be in the infotrack database in the collection table and have appropriate bibfield and type
+mysql> use metrics
+Database changed
+mysql> show tables
+    -> ;
++-------------------+
+| Tables_in_metrics |
++-------------------+
+| Apr2004           |
+| Apr2005           |
+| Apr2006           |
+| Apr2007           |
+| Aug2003           |
+| Aug2004           |
+| Aug2005           |
+| Aug2006           |
+| Aug2007           |
+| Dec2003           |
+| Dec2004           |
+| Dec2005           |
+| Dec2006           |
+| Dec2007           |
+| Feb2004           |
+| Feb2005           |
+| Feb2006           |
+| Feb2007           |
+| Jan2004           |
+| Jan2005           |
+| Jan2006           |
+| Jan2007           |
+| Jan2008           |
+| Jul2004           |
+| Jul2005           |
+| Jul2006           |
+| Jul2007           |
+| Jun2004           |
+| Jun2005           |
+| Jun2006           |
+| Jun2007           |
+| Mar2004           |
+| Mar2005           |
+| Mar2006           |
+| Mar2007           |
+| May2004           |
+| May2005           |
+| May2006           |
+| May2007           |
+| Nov2003           |
+| Nov2004           |
+| Nov2005           |
+| Nov2006           |
+| Nov2007           |
+| Oct2003           |
+| Oct2004           |
+| Oct2005           |
+| Oct2006           |
+| Oct2007           |
+| Sep2003           |
+| Sep2004           |
+| Sep2005           |
+| Sep2006           |
+| Sep2007           |
+| more_arl          |
++-------------------+
+55 rows in set (0.03 sec)
+
+mysql> 
+The above are for arl stats.
+
+more_arl are for page hits instead of just title hits
+Turned in once a year from July1 to June30 of a year.
+
+mysql> show columns from Jan2008;
++------------+----------+------+-----+---------+-------+
+| Field      | Type     | Null | Key | Default | Extra |
++------------+----------+------+-----+---------+-------+
+| collid     | char(10) |      | PRI |         |       |
+| category   | char(10) | YES  |     | NULL    |       |
+| local_hit  | int(11)  | YES  |     | NULL    |       |
+| away_hit   | int(11)  | YES  |     | NULL    |       |
+| all_hit    | int(11)  | YES  |     | NULL    |       |
+| local_srch | int(11)  | YES  |     | NULL    |       |
+| away_srch  | int(11)  | YES  |     | NULL    |       |
+| all_srch   | int(11)  | YES  |     | NULL    |       |
+| local_user | int(11)  | YES  |     | NULL    |       |
+| away_user  | int(11)  | YES  |     | NULL    |       |
+| all_user   | int(11)  | YES  |     | NULL    |       |
+| local_brws | int(11)  | YES  |     | NULL    |       |
+| away_brws  | int(11)  | YES  |     | NULL    |       |
+| all_brws   | int(11)  | YES  |     | NULL    |       |
++------------+----------+------+-----+---------+-------+
+14 rows in set (0.05 sec)
+
+mysql> 
+
+local - on campus
+away - off campus
+mysql> select * from Jan2008 where collid = 'rth';
++--------+----------+-----------+----------+---------+------------+-----------+----------+------------+-----------+----------+------------+-----------+----------+
+| collid | category | local_hit | away_hit | all_hit | local_srch | away_srch | all_srch | local_user | away_user | all_user | local_brws | away_brws | all_brws |
++--------+----------+-----------+----------+---------+------------+-----------+----------+------------+-----------+----------+------------+-----------+----------+
+| rth    | image    |        32 |     1307 |    1339 |          4 |       277 |      281 |         15 |       399 |      414 |          1 |        38 |       39 |
++--------+----------+-----------+----------+---------+------------+-----------+----------+------------+-----------+----------+------------+-----------+----------+
+1 row in set (0.00 sec)
+
+mysql> 
+mysql> select * from Jan2008 where collid = 'utcat';
++--------+----------+-----------+----------+---------+------------+-----------+----------+------------+-----------+----------+------------+-----------+----------+
+| collid | category | local_hit | away_hit | all_hit | local_srch | away_srch | all_srch | local_user | away_user | all_user | local_brws | away_brws | all_brws |
++--------+----------+-----------+----------+---------+------------+-----------+----------+------------+-----------+----------+------------+-----------+----------+
+| utcat  | text     |     14588 |   102961 |  117549 |          0 |         0 |        0 |       1609 |      9462 |    11071 |       2545 |     13158 |    15703 |
++--------+----------+-----------+----------+---------+------------+-----------+----------+------------+-----------+----------+------------+-----------+----------+
+1 row in set (0.00 sec)
+
+mysql> 
+mysql> show columns from more_arl;
++--------+---------+------+-----+---------+-------+
+| Field  | Type    | Null | Key | Default | Extra |
++--------+---------+------+-----+---------+-------+
+| monyr  | char(7) |      | PRI |         |       |
+| jeiPV  | int(11) | YES  |     | NULL    |       |
+| tdhPV  | int(11) | YES  |     | NULL    |       |
+| vvtPV  | int(11) | YES  |     | NULL    |       |
+| vvoPV  | int(11) | YES  |     | NULL    |       |
+| vvbPV  | int(11) | YES  |     | NULL    |       |
+| spctPV | int(11) | YES  |     | NULL    |       |
+| arroPV | int(11) | YES  |     | NULL    |       |
+| arrtPV | int(11) | YES  |     | NULL    |       |
+| utcatT | int(11) | YES  |     | NULL    |       |
++--------+---------+------+-----+---------+-------+
+10 rows in set (0.04 sec)
+
+
+mysql> select * from more_arl where monyr = 'Jan2008';
++---------+-------+-------+-------+-------+-------+--------+--------+--------+--------+
+| monyr   | jeiPV | tdhPV | vvtPV | vvoPV | vvbPV | spctPV | arroPV | arrtPV | utcatT |
++---------+-------+-------+-------+-------+-------+--------+--------+--------+--------+
+| Jan2008 |   146 |  1004 |    42 |   641 |   654 |     72 |    785 |     21 |  15703 |
++---------+-------+-------+-------+-------+-------+--------+--------+--------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from more_arl where monyr = 'jan2008';
++---------+-------+-------+-------+-------+-------+--------+--------+--------+--------+
+| monyr   | jeiPV | tdhPV | vvtPV | vvoPV | vvbPV | spctPV | arroPV | arrtPV | utcatT |
++---------+-------+-------+-------+-------+-------+--------+--------+--------+--------+
+| Jan2008 |   146 |  1004 |    42 |   641 |   654 |     72 |    785 |     21 |  15703 |
++---------+-------+-------+-------+-------+-------+--------+--------+--------+--------+
+1 row in set (0.00 sec)
+http://diglib.lib.utk.edu/metrics ==> drill down and data from metrics database tables will be displayed
+
+Last login: Wed Feb 27 14:42:58 2008 from dlc02.lib.utk.edu
+[cdeane@anasazi cdeane]$ cd ../firestar/logs
+-bash: cd: ../firestar/logs: Permission denied
+[cdeane@anasazi cdeane]$ sudo su
+[root@anasazi cdeane]# cd ../firestar/logs
+[root@anasazi logs]# ls
+access              extract.20070707jd    extract_one_gamut  reachdig2
+arl_more            extract.20070720jd    extract_redo       repair
+arlstats            extract.20070723jd    finish             storedata
+arlstuff            extract.20071121b     fsbackups          storedata.20070615jd
+authmails           extract.20071121jd    gamut              storedata.20070720jd
+cats                extract.20071205      here               storedata.20071210
+cleanit             extract.20071210      jeionly            storeEtd
+cronjob             extractDT             journals           storemaps
+cya                 extractjei            journals.20070621  test
+extract             extractjeiBkuptable   message            testdb
+extract.20070511jd  extract_lastmo        montable           testme
+extract.20070617jd  extract_oldstuff      nohup.out          twoInOne
+extract.20070618jd  extract_one           olderVersions      working
+extract.20070624jd  extract_one.20070618  oldmetrics
+[root@anasazi logs]# vi storedata
+vi extract
+
+[root@anasazi logs]# cd ..
+[root@anasazi firestar]# ls
+ARL_Emetrics_Data_Collection_Manual.pdf  files        oldoaifiles    toprep
+bash                                     gsm          otherdii       transfer
+bin                                      hoskins.jpg  perldebtut     tufts
+catalogOAI.xml.php                       imageinfo    php            utj
+catalogStuff                             junk         printme        utseal3.gif
+cgi                                      lesli        readme.pdf     vv
+CGIperldoc                               list         rsync          vv.dtd
+dcedit                                   logs         stuff          where
+Desktop                                  lp           tdh            wkshp
+dlcprojstatus.xls                        mail         tdhnew         work
+DUBLIN CORE.doc                          media        tel            xmlspy.TEI.tdh2.dtd
+ead                                      miscPub      tester         xom
+etd                                      museum       testmail       xpat
+etdDB                                    mysql        textclass.dtd  xslt
+etdOAI2bib                               OKI          text.dtd
+extracttiff.zip                          oldoai       toEtds
+fact                                     oldoaidbase  toIdserver
+[root@anasazi firestar]# cd php
+[root@anasazi php]# ls
+auth  olderVersions  showmetrics.20071121  showmetrics.20080109  testvar.php
+NOTE  showmetrics    showmetrics.20071128  sid.php
+[root@anasazi php]# 
+
+vi showmetrics
+
+[root@anasazi php]# cd /d1/dlxs/web/metrics
+:
+[root@anasazi metrics]# ls
+2003  2004  2005  2006  2007  2008  index.html  stats
+[root@anasazi metrics]# ls 2007
+all_etd.html    all_multimedia.html  all_SB_image.html       all_text.html
+all.html        all_SB_etd.html      all_SB_multimedia.html  collections
+all_image.html  all_SB.html          all_SB_text.html        months
+[root@anasazi metrics]# ls stats
+findaids.html  graph.php
+[root@anasazi metrics]# ls 2007/collections/graphs
+
+The graphs php files pull data from metrics database dynamically,
+but the files themselves are static.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,329 @@
+<html>
+<head>
+<title>vv_popupGE</title>
+
+<link href="../vv_workbook.css" type="text/css" rel="stylesheet">
+<script language=javascript src="../vv_functions_tsla.js"></script>
+
+
+
+
+<script language="javascript">
+
+var select_id= new String();
+function get_select_id() {
+
+var str = new String();
+    str = parent.location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  parent.window.opener.location.href="+parent.window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=get_select_id();
+
+
+
+var strSelect_GE_A = new String('');
+
+strSelect_GE_A = '<select name="aaa"  size="24" style="font-size:10px"> \r\n'
+	+'<option  selected>No Value Selected</option> \r\n'	
+
+
+
+
+
+
+
+	+'<option>NASHVILLE (TENN.)</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - AERIAL VIEWS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - AMUSEMENTS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - ANNIVERSARIES, ETC.</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - ANTIQUITIES</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - APPROPRIATIONS AND EXPENDITURES</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - BIBLIOGRAPHY - CATALOGS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - BIOGRAPHY - PORTRAITS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - BUILDINGS, STRUCTURES, ETC.</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - BUILDINGS, STRUCTURES, ETC. - CONSERVATION AND RESTORATION - PERIODICALS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - BUILDINGS, STRUCTURES, ETC. - EXHIBITIONS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - BUILDINGS, STRUCTURES, ETC. - PHOTOGRAPHS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - BUILDINGS, STRUCTURES, ETC. - VIEWS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - CENSUS, 1920</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - CENSUS, 1930</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - CHARITIES</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - CHARTERS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - CHURCH HISTORY - 19TH CENTURY</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - CHURCH HISTORY - SOURCES</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - CHURCHES</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - CITY PLANNING</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - CIVILIZATION</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - COMMERCE</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - COMMERCE - DIRECTORIES</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - COMMERCE - HISTORY - 19TH CENTURY</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - COMMERCE - HISTORY - 20TH CENTURY</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - COMMERCE - PERIODICALS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - CORRECTIONAL INSTITUTIONS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - DESCRIPTION AND TRAVEL</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - DESCRIPTION AND TRAVEL - GUIDEBOOKS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - DESCRIPTION AND TRAVEL - PICTORIAL WORKS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - DESCRIPTION AND TRAVEL - VIEWS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - DESCRIPTION AND TRAVEL - VIEWS - EXHIBITIONS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - DWELLINGS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - ECONOMIC ASPECTS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - ECONOMIC CONDITIONS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - ECONOMIC CONDITIONS - PICTORIAL WORKS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - ECONOMIC CONDITIONS - STATISTICS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - ECONOMIC CONDITIONS - STATISTICS - PERIODICALS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - EVENING AND CONTINUATION SCHOOLS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - EXHIBITIONS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - FICTION</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - FIRE, 1892</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - FIRES AND FIRE PREVENTION</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - FIRES AND FIRE PREVENTION - MAPS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - FLOOD, 1926-1927</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - FLOODS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - GUIDEBOOKS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - GUIDEBOOKS - JUVENILE LITERATURE</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - HISTORIC BUILDINGS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - HISTORIC HOUSES</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - HISTORIC SITES</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - HISTORY</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - HISTORY - 19TH CENTURY</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - HISTORY - 20TH CENTURY</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - HISTORY - CHRONOLOGY</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - HISTORY - CIVIL WAR, 1861-1865</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - HISTORY - CIVIL WAR, 1861-1865 - MAPS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - HISTORY - CONGRESSES</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - HISTORY - FICTION</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - HISTORY - JUVENILE LITERATURE</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - HISTORY - JUVENILE SOUND RECORDINGS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - HISTORY - MAPS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - HISTORY - PERIODICALS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - HISTORY - PICTORIAL WORKS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - HISTORY, MILITARY</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - HOSPITALS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - HOSPITALS - HISTORY</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - HOTELS, MOTELS, ETC.</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - IMPRINTS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - INDUSTRY</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - INTELLECTUAL LIFE</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - LIBRARIES</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - LITERARY COLLECTIONS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - MANUFACTURERS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - MAPS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - MAPS, MANUSCRIPT</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - MAYORS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - MONUMENTS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - MUSEUMS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - OFFICIALS AND EMPLOYEES - DIRECTORIES</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - PARKS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - PERIODICALS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - PHOTOGRAPHS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - PICTORIAL WORKS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - POLICE</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - POLITICS AND GOVERNMENT</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - POLITICS AND GOVERNMENT - TO 1865</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - POPULATION</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - POPULATION - STATISTICS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - PUBLIC BUILDINGS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - PUBLIC SCHOOLS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - PUBLIC WORKS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - RACE RELATIONS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - RACE RELATIONS - HISTORY</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - RECREATIONAL FACILITIES</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - SCHOOLS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - SCHOOLS - PICTORIAL WORKS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - SEWERAGE</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - SOCIAL CONDITIONS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - SOCIAL CONDITIONS - 20TH CENTURY</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - SOCIAL CONDITIONS - STATISTICS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - SOCIAL LIFE AND CUSTOMS - 19TH CENTURY</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - SOCIAL LIFE AND CUSTOMS - HISTORY - SOURCES</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - SOCIAL LIFE AND CUSTOMS - MISCELLANEA</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - SOCIAL LIFE AND CUSTOMS - PICTORIAL WORKS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - SOCIAL LIFE AND CUSTOMS - SOURCES</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - STATISTICS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - STATISTICS, VITAL</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - STREETS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - STREETS - DIRECTORIES</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - SUBURBS AND ENVIRONS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - SURVEYS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - TELEPHONE DIRECTORIES</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - TELEPHONE DIRECTORIES - YELLOW PAGES</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - THEATERS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - VIEWS</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - ZONING MAPS</option>  \r\n'
+	+'<option>NASHVILLE AND DAVIDSON COUNTY (TENN.)</option>  \r\n'
+	+'<option>NASHVILLE AND DAVIDSON COUNTY (TENN.) - ANTIQUITIES</option>  \r\n'
+	+'<option>NASHVILLE AND DAVIDSON COUNTY (TENN.) - CHARTERS</option>  \r\n'
+	+'<option>NASHVILLE AND DAVIDSON COUNTY (TENN.) - COMMERCE - DIRECTORIES</option>  \r\n'
+	+'<option>NASHVILLE AND DAVIDSON COUNTY (TENN.) - COMMERCE - PERIODICALS</option>  \r\n'
+	+'<option>NASHVILLE AND DAVIDSON COUNTY (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>NASHVILLE AND DAVIDSON COUNTY (TENN.) - EXECUTIVE DEPARTMENTS</option>  \r\n'
+	+'<option>NASHVILLE AND DAVIDSON COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>NASHVILLE AND DAVIDSON COUNTY (TENN.) - HISTORY - PERIODICALS</option>  \r\n'
+	+'<option>NASHVILLE AND DAVIDSON COUNTY (TENN.) - OFFICIALS AND EMPLOYEES - SALARIES, ALLOWANCES, ETC.</option>  \r\n'
+	+'<option>NASHVILLE AND DAVIDSON COUNTY (TENN.) - PERIODICALS</option>  \r\n'
+	+'<option>NASHVILLE AND DAVIDSON COUNTY (TENN.) - POLITICS AND GOVERNMENT</option>  \r\n'
+	+'<option>NASHVILLE AND DAVIDSON COUNTY (TENN.) - ROAD MAPS</option>  \r\n'
+	+'<option>NASHVILLE AND DAVIDSON COUNTY (TENN.) - SCHOOLS</option>  \r\n'
+	+'<option>NASHVILLE AND DAVIDSON COUNTY (TENN.) - SEWERAGE</option>  \r\n'
+	+'<option>NASHVILLE AND DAVIDSON COUNTY (TENN.) - STATISTICS</option>  \r\n'
+	+'<option>NASHVILLE AND DAVIDSON COUNTY (TENN.) - STREETS</option>  \r\n'
+	+'<option>NASHVILLE AND DAVIDSON COUNTY (TENN.) - WATER-SUPPLY - RATES</option>  \r\n'
+	+'<option>NASHVILLE CITY CEMETERY (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>NASHVILLE CITY CEMETERY (NASHVILLE, TENN.) - INDEXES</option>  \r\n'
+	+'<option>NASHVILLE METROPOLITAN AREA (TENN.)</option>  \r\n'
+	+'<option>NASHVILLE METROPOLITAN AREA (TENN.) - ANNIVERSARIES, ETC.</option>  \r\n'
+	+'<option>NASHVILLE METROPOLITAN AREA (TENN.) - CENSUS, 1980</option>  \r\n'
+	+'<option>NASHVILLE METROPOLITAN AREA (TENN.) - CHARITIES - HISTORY</option>  \r\n'
+	+'<option>NASHVILLE METROPOLITAN AREA (TENN.) - COMMERCE - DIRECTORIES</option>  \r\n'
+	+'<option>NASHVILLE METROPOLITAN AREA (TENN.) - COMMERCE - PERIODICALS</option>  \r\n'
+	+'<option>NASHVILLE METROPOLITAN AREA (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>NASHVILLE METROPOLITAN AREA (TENN.) - ECONOMIC CONDITIONS</option>  \r\n'
+	+'<option>NASHVILLE METROPOLITAN AREA (TENN.) - HISTORY</option>  \r\n'
+	+'<option>NASHVILLE METROPOLITAN AREA (TENN.) - MAPS</option>  \r\n'
+	+'<option>NASHVILLE REGION (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>NASHVILLE REGION (TENN.) - GUIDEBOOKS</option>  \r\n'
+	+'<option>NASHVILLE, BATTLE OF, NASHVILLE, TENN., 1864 - FICTION</option>  \r\n'
+	+'<option>NATCHEZ TRACE RESORT STATE PARK (TENN.) - MAPS</option>  \r\n'
+	+'<option>NATCHEZ TRACE STATE FOREST (TENN.)</option>  \r\n'
+	+'<option>NATCHEZ TRACE STATE PARK AND FOREST (TENN.)</option>  \r\n'
+	+'<option>NATHAN BEDFORD FORREST STATE PARK (TENN.)</option>  \r\n'
+	+'<option>NATURAL AREAS - TENNESSEE</option>  \r\n'
+	+'<option>NEW MARKET (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>NEW TAZEWELL (TENN.) - FLOODS</option>  \r\n'
+	+'<option>NEW TAZEWELL (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>NEWBERN (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>NEWBERN (TENN.) - HISTORY</option>  \r\n'
+	+'<option>NEWBERN (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>NEWPORT (TENN.)</option>  \r\n'
+	+'<option>NEWPORT (TENN.) - CHURCHES</option>  \r\n'
+	+'<option>NEWPORT (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>NEWPORT (TENN.) - FLOODS</option>  \r\n'
+	+'<option>NEWPORT (TENN.) - HISTORY</option>  \r\n'
+	+'<option>NEWPORT (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>NICKAJACK LAKE (TENN.)</option>  \r\n'
+	+'<option>NICKAJACK RESERVOIR REGION (TENN.)</option>  \r\n'
+	+'<option>NIOTA (TENN.) - HISTORY</option>  \r\n'
+	+'<option>NIOTA (TENN.) - INDUSTRY</option>  \r\n'
+	+'<option>NOLENSVILLE (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>NOLENSVILLE (TENN.) - HISTORY</option>  \r\n'
+	+'<option>NOLENSVILLE CEMETERY (NOLENSVILLE, TENN.)</option>  \r\n'
+	+'<option>NOLICHUCKY RIVER (N.C. AND TENN.)</option>  \r\n'
+	+'<option>NONCONNAH CREEK SITE (MEMPHIS, TENN.)</option>  \r\n'
+	+'<option>NORENE (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>NORENE (TENN.) - HISTORY</option>  \r\n'
+	+'<option>NORMANDY (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>NORMANDY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>NORMANDY RESERVOIR (TENN.)</option>  \r\n'
+	+'<option>NORMANDY RESERVOIR (TENN.) - ANTIQUITIES</option>  \r\n'
+	+'<option>NORMANDY RESERVOIR (TENN.) - PICTORIAL WORKS</option>  \r\n'
+	+'<option>NORRIS (TENN.)</option>  \r\n'
+	+'<option>NORRIS (TENN.) - HISTORY</option>  \r\n'
+	+'<option>NORRIS (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>NORRIS (TENN.) - PARKS</option>  \r\n'
+	+'<option>NORRIS (TENN.) - WATER-SUPPLY</option>  \r\n'
+	+'<option>NORRIS DAM (TENN.)</option>  \r\n'
+	+'<option>NORRIS DAM STATE PARK (TENN.)</option>  \r\n'
+	+'<option>NORRIS LAKE (TENN.)</option>  \r\n'
+	+'<option>NORRIS LAKE REGION (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>NORTH CAROLINA - BOUNDARIES - TENNESSEE</option>  \r\n'
+	+'<option>NORTH CAROLINA - BOUNDARIES - TENNESSEE - MAPS, MANUSCRIPT</option>  \r\n'
+
+
++'</select> \r\n';
+	
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+<body class="background">
+
+
+
+
+<form name="FormOne" >
+
+
+<div name="SS" id="SS">
+<script>
+document.write(
+
+	 '<table border="1" cellpadding="4" cellspacing="0"  width="90%">\r\n'
+	+'<tr><td  bgcolor="ddeeff">\r\n'
+	///+'vv_functions.htm called by '+select_id+' <br>\r\n'
+	+'<b>Select Geographic Subject N </b> \r\n'
+	+'</td></tr><tr><td bgcolor="ddeeff"> \r\n' 
+	+ strSelect_GE_A
+
+	+'</td></tr></table> \r\n'
+	///+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+</script>
+	
+</div>
+
+<input type="button" onclick="showSelection();" name="B1" value="Geographic Name">
+
+</form>
+
+<script>
+
+
+
+                  
+
+function showSelection() {
+
+val = new String();
+
+for ( i=0; i< document.FormOne.aaa.length; i++ ) {
+
+if ( document.FormOne.aaa[i].selected == true ) {
+  	val = document.FormOne.aaa[i].text;
+	break;
+	}
+else { val = "you never selected anything"; 
+	}
+
+}
+////////////////////////alert ("You selected " +val);
+val=reformatGeo(val);
+
+switch ( select_id ) {
+
+case  "subject_geographic_lcsh_01" :
+	parent.window.opener.document.forms[0].subject_geographic_lcsh_01.value=val;
+	parent.window.close();
+	break;
+
+case  "subject_geographic_lcsh_02" :
+	parent.window.opener.document.forms[0].subject_geographic_lcsh_02.value=val;
+	parent.window.close();
+	break;
+
+}//end switch
+
+}///end function
+</script>
+

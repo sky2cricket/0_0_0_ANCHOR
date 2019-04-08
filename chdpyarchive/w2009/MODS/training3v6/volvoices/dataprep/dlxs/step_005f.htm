@@ -1,0 +1,308 @@
+<html>
+<head>
+<script language=javascript src="links/vv_functions_links.js"></script>
+<title>
+bib setup
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+</head>
+<!-- body  class="bg_aabbcc" -->
+<body bgcolor="aabbcc">
+<font face="arial" size="3">
+<center><font face="arial">
+<script>//document.write(dlxs_vv_header);</script>
+<p>
+</center>
+<table  class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="99aabb">
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+<tr class="bgstandardwhite" ><td colspan="3" align="left" class="step">
+<pre>
+step_005f.htm -  bib class setup for 00 files in /d1/workarea/dlxs/bib/mods/vv/
+============================
+SUMMARY
+(first part of summary at step_005a2.htm)
+
+most program files in /d1/workarea/dlxs/bib/mods/vv/
+(most info below from the file /d1/workarea/dlxs/bib/mods/vv/dothis)
+
+
+cd /d1/workarea/dlxs/bib/mods/vv/
+
+if you have 0012 records
+
+cd /d1/workarea/dlxs/image/tel/singles
+/bin/mv newmods/0012* spc/mods/
+/bin/mv  modsbib/0012* spc/modsbib/
+/bin/cp search/0012* spc/modssearch/
+
+
+For Unified Search from TextClass
+
+cd /d1/workarea/dlxs/image/tel/singles
+/bin/cp done/search/* /d1/workarea/dlxs/bib/search/vv/xml/
+/bin/cp search/*      /d1/workarea/dlxs/bib/search/vv/xml/
+
+
+
+attend to processing non-0012 files
+
+cd /d1/workarea/dlxs/bib/mods/vv/
+perl badfiles >look_date.txt                           
+
+IF FIND BADFILES, CORRECT 
+
+
+bin/cp /d1/workarea/dlxs/image/tel/singles/modsbib/*  /d1/workarea/dlxs/bib/mods/vv/xml/
+perl fixSubjectsBib
+cat openbib newSubxml/* closebib > vvs-mods.xml 
+cp vvs-mods.xml /d1/dlxs/prep/v/vvs-mods/
+
+AFTER ANSWERING Y TO OVERWRITE WARNING MOVE TO PREP DIRECTORY
+cd /d1/dlxs/prep/v/vvs-mods/
+perl transform
+cp vvs-mods.xml /d1/dlxs/obj/v/vvs-mods/
+
+AFTER ANSWERING Y TO OVERWRITE WARNING MOVE TO INDEX DIRECTORY
+cd /d1/dlxs/idx/v/vvs-mods
+make all
+
+If this is a new collection, make sure it is in the httpd conf directory, restart if adding
+
+Now you are ready for a release to production for BIB CLASS
+	http://diglib2.lib.utk.edu/cgi/c/collmgr/collmgr/ Select Release to Production, Bib Class
+
+ Test in OAI display <a href="http://diglib2.lib.utk.edu/cgi/b/broker20/broker20/?verb=GetRecord&metadataPrefix=mods&identifier=oai:diglib2.lib.utk.edu:0031_000050_000203_0000" target="_blank">http://diglib2.lib.utk.edu/cgi/b/broker20/broker20/?verb=GetRecord&metadataPrefix=mods&identifier=oai:diglib2.lib.utk.edu:0031_000050_000203_0000</a>
+
+(in the url, replace 0031_000050_000203_0000 with one from the new batch)
+
+
+cd /d1/workarea/dlxs/bib/mods/vv
+perl fixPreserveSubjectsBib
+perl OAI_modsbibToPresMods
+
+
+search class (step_005g.htm)
+<!-- -->
+
+cd /d1/workarea/dlxs/bib/mods/vv/
+
+/bin/cp /d1/workarea/dlxs/image/tel/singles/modsbib/*  /d1/workarea/dlxs/bib/mods/vv/xml/
+perl fixSubjectsBib
+cat openbib newSubxml/* closebib > vvs-mods.xml 
+cp vvs-mods.xml /d1/dlxs/prep/v/vvs-mods/
+
+AFTER OVERWRITE WARNING ANSWER Y, CD TO PREP DIRECTORY
+
+cd /d1/dlxs/prep/v/vvs-mods/
+perl transform
+cp vvs-mods.xml /d1/dlxs/obj/v/vvs-mods/
+
+AFTER OVERWRITE WARNING ANSWER Y, CD TO IDX DIRECTORY
+cd /d1/dlxs/idx/v/vvs-mods
+make all
+<!-- -->
+
+This summary covers commands in step_005g.htm also
+
+END SUMMARY
+============================
+step_005f.htm -  bib class setup for 00 files in /d1/workarea/dlxs/bib/mods/vv/
+(using 0031_000050_000203 files as an example)
+"transform" in 080409/080409_training.txt
+
+First, attend to segregation of 0012 files in /d1/workarea/dlxs/image/tel/singles.
+The reason for segregation is ....................?
+
+a.  command> /bin/mv newmods/0012* spc/mods/
+b.  command> /bin/mv  modsbib/0012* spc/modsbib/
+c.  command> /bin/cp search/0012* spc/modssearch/
+
+Second, attend to processing non-0012 files.
+
+[root@diglib2 vv]# ls /d1/workarea/dlxs/bib/mods/vv/
+
+closebib   fixPreserveSubjectsBib  OAIDC                  olderVersions  xml
+DLCnewSub  fixSubjectsBib          OAI_modsbibToDC        openbib
+DLCpres    newPresSubxml           OAI_modsbibToMods      spc
+dothis     newSubxml               OAI_modsbibToPresMods  vvs-mods.xml
+
+1. copy non-0012 files from singles/modsbib directory to /d1/workarea/dlxs/bib/mods/vv/xml
+	command> cp /d1/workarea/dlxs/image/tel/singles/modsbib/*  /d1/workarea/dlxs/bib/mods/vv/xml/
+
+2. normalize subject tags
+	command> perl fixSubjectsBib
+	input:	/d1/workarea/dlxs/bib/mods/vv/xml/0031_00050_000203_0000.xml <a href="xfiles/00_vvz/modsbib_0031_000050_000203_0000.txt" target="_blank">view xml</a>
+	output:	/d1/workarea/dlxs/bib/mods/vv/newSubxml/0031_000050_000203_0000.xml <a href="xfiles/00_vvz/newSubxml_0031_000050_000203_0000.txt" target="_blank">view newSubxml</a>
+
+3. create vvs-mods.xml and copy to prep directory
+	command> cat openbib newSubxml/* closebib > vvs-mods.xml <a href="xfiles/00_vvz/short_vvs-mods.txt" target="_blank">view short vvs-mods.xml</a>
+	command> cp vvs-mods.xml /d1/dlxs/prep/v/vvs-mods/
+	warning about overwrite, answer yes
+	cp: overwrite `/d1/dlxs/prep/v/vvs-mods/vvs-mods.xml'? y
+
+5. Move to the prep directory.
+	command> cd /d1/dlxs/prep/v/vvs-mods/
+	command> ls
+	modsSearch3.dtd  vvs-mods.errors      vvs-mods.prepost.dd       vvs-mods.xml
+	norm.xml         vvs-mods.extra.dd    vvs-mods.presgml.dd
+	transform        vvs-mods.extra.srch  vvs-mods.single.blank.dd
+
+6. Run the transform program that is in /d1/dlxs/prep/v/vvs-mods/
+	command> cd /d1/dlxs/prep/v/vvs-mods/
+	command> perl transform
+
+	What just happened?  I ran transform on the short version vvs-mods to show the changes.
+	transform takes the input file <a href="xfiles/00_vvz/short_vvs-mods.txt" target="_blank">vvs-mods.xml</a>
+	An intermediate file named <a href="xfiles/00_vvz/short_vvs-mods_transform_norm.txt" target="_blank">norm.xml</a> is created.
+	Then transform grinds through norm.xml to create a new compressed version of <a  href="xfiles/00_vvz/short_vvs-mods_after_transform.txt" target="_blank">vvs_mods.xml</a>
+	The new compressed vvs-mods.xml is one long line, but if you use view source from
+	the browser it is a little more human-readable.
+
+7. Copy the new compressed version of vvs-mods.xml from the prep directory to the obj directory.  
+   If you are re-indexing, there will be a question about overwriting the file.  Answer Y
+	command> cp vvs-mods.xml /d1/dlxs/obj/v/vvs-mods/
+	warning about overwrite, answer yes
+	cp: overwrite `/d1/dlxs/obj/v/vvs-mods/vvs-mods.xml'? Y
+ 
+8. Go to /d1/dlxs/idx/v/vvs-mods/ (the index directory) and run make all.  
+	command> cd /d1/dlxs/idx/v/vvs-mods
+	command> make all
+        ----------------------------------------------------------------
+[root@diglib2 vvs-mods]# make all
+make convert
+make[1]: Entering directory `/d1/dlxs/idx/v/vvs-mods'
+/d1/dlxs/bin/t/text/isolat128bit.pl /d1/dlxs/obj/v/vvs-mods/vvs-mods.xml
+make[1]: Leaving directory `/d1/dlxs/idx/v/vvs-mods'
+make norm
+make[1]: Entering directory `/d1/dlxs/idx/v/vvs-mods'
+sgmlnorm \
+/d1/dlxs/idx/v/vvs-mods/vvs-mods.inp \
+/d1/dlxs/obj/v/vvs-mods/vvs-mods.xml  > /d1/dlxs/obj/v/vvs-mods/vvs-mods.norm.xml
+mv  /d1/dlxs/obj/v/vvs-mods/vvs-mods.norm.xml /d1/dlxs/obj/v/vvs-mods/vvs-mods.xml
+make[1]: Leaving directory `/d1/dlxs/idx/v/vvs-mods'
+make validate
+make[1]: Entering directory `/d1/dlxs/idx/v/vvs-mods'
+nsgmls -s -f /d1/dlxs/prep/v/vvs-mods/vvs-mods.errors /d1/dlxs/idx/v/vvs-mods/vvs-mods.inp /d1/dlxs/obj/v/vvs-mods/vvs-mods.xml
+make[1]: Leaving directory `/d1/dlxs/idx/v/vvs-mods'
+make singledd
+make[1]: Entering directory `/d1/dlxs/idx/v/vvs-mods'
+cp /d1/dlxs/prep/v/vvs-mods/vvs-mods.single.blank.dd /d1/dlxs/idx/v/vvs-mods/vvs-mods.dd
+/usr/local/xpat/bin/xpatbld -m 256m -D /d1/dlxs/idx/v/vvs-mods/vvs-mods.dd
+cp /d1/dlxs/idx/v/vvs-mods/vvs-mods.dd /d1/dlxs/prep/v/vvs-mods/vvs-mods.presgml.dd
+make[1]: Leaving directory `/d1/dlxs/idx/v/vvs-mods'
+make multi
+make[1]: Entering directory `/d1/dlxs/idx/v/vvs-mods'
+cp /d1/dlxs/prep/v/vvs-mods/vvs-mods.presgml.dd /d1/dlxs/idx/v/vvs-mods/vvs-mods.dd
+/usr/local/xpat/bin/multirgn -f -D /d1/dlxs/idx/v/vvs-mods/vvs-mods.dd -t /d1/dlxs/idx/v/vvs-mods/bib-regions.tags
+cp /d1/dlxs/idx/v/vvs-mods/vvs-mods.dd /d1/dlxs/prep/v/vvs-mods/vvs-mods.prepost.dd
+make[1]: Leaving directory `/d1/dlxs/idx/v/vvs-mods'
+make post
+make[1]: Entering directory `/d1/dlxs/idx/v/vvs-mods'
+cp /d1/dlxs/prep/v/vvs-mods/vvs-mods.prepost.dd /d1/dlxs/idx/v/vvs-mods/vvs-mods.dd
+touch /d1/dlxs/idx/v/vvs-mods/vvs-mods.init
+/usr/local/xpat/bin/xpat -q /d1/dlxs/idx/v/vvs-mods/vvs-mods.dd < /d1/dlxs/prep/v/vvs-mods/vvs-mods.extra.srch | /d1/dlxs/bin/t/text/output.dd.frag.pl /d1/dlxs/idx/v/vvs-mods/ > /d1/dlxs/prep/v/vvs-mods/vvs-mods.extra.dd
+/d1/dlxs/bin/t/text/inc.extra.dd.pl /d1/dlxs/prep/v/vvs-mods/vvs-mods.extra.dd /d1/dlxs/idx/v/vvs-mods/vvs-mods.dd
+make[1]: Leaving directory `/d1/dlxs/idx/v/vvs-mods'
+[root@diglib2 vvs-mods]# pwd
+/d1/dlxs/idx/v/vvs-mods
+        ----------------------------------------------------------------
+
+
+9. If this is a new collection, make sure it is in the httpd conf directory, restart if adding
+
+10.  Release to production:
+	<a href="http://diglib2.lib.utk.edu/cgi/c/collmgr/collmgr/" target="_blank">http://diglib2.lib.utk.edu/cgi/c/collmgr/collmgr/</a> Select Release to Production, Bib Class
+
+11.  Test in OAI display <a href="http://diglib2.lib.utk.edu/cgi/b/broker20/broker20/?verb=GetRecord&metadataPrefix=mods&identifier=oai:diglib2.lib.utk.edu:0031_000050_000203_0000" target="_blank">http://diglib2.lib.utk.edu/cgi/b/broker20/broker20/?verb=GetRecord&metadataPrefix=mods&identifier=oai:diglib2.lib.utk.edu:0031_000050_000203_0000</a>
+
+12.  OAI tester: <a href="http://re.cs.uct.ac.za/" target="_blank">http://re.cs.uct.ac.za/</a>
+
+
+
+
+
+
+
+
+Then..........
+separate out the newmods from institution 0012 and put in spc directory.
+7.  command> /bin/mv newmods/0012* spc/mods/.
+
+for bib class:
+8.  command> /bin/mv  modsbib/0012* spc/modsbib/.
+9.  command> /bin/cp modsbib/* /d1/workarea/dlxs/bib/mods/vv/xml
+
+
+for search:
+10. command> /bin/cp search/0012* spc/modssearch/.
+11. command> /bin/cp search/* /d1/workarea/dlxs/bib/search/vv/xml/
+
+You will go there to put all the search and mods files from different directories up.
+12. command> scp minithumbs/* diglib@diglib.lib.utk.edu:/d1/dlxs/web/thumbs/vv/.
+(need these for search display)
+
+
+----------------end of this page, notes for next----------------
+see SUMMARY for deleted lines about changing class
+
+
+b.  fixSubjects - this process now done at /d1/workarea/dlxs/bib/mods/vv
+	# fixSubjects
+	# repairs the MODS and the modsbib (not the search)
+	# so that each subject is contained in its own &lt;subject auth= tag.
+	# also, for LCSH ones, splits them out on the "--" value.
+	# if the  value contains "century" or numbers (dashes?), label it temporal
+	# if the value contains only "Tennessee" or "United States" and spaces,
+	#    label it geographic
+	# otherwise, the first value keeps its current tag, and all following 
+	# values (that don't meet those specs) get labeled topic, and stay within the
+	# same subject tag.
+
+c. hexmess - use only if software breaks when you normalize
+	#hexmess
+	#hexdumps files and checks the hexdump for bad characters.
+	# outputs list of characters that must be removed or replaced.
+	# use to test OCR files in particular
+
+<!---------------------------------
+other things to do, including special handling for special collectios
+this came from the "dothis" file in /d1/workarea/dlxs/image/tel/singles
+
+
+separate out the newmods from institution 0012 and put in spc directory.
+/bin/mv newmods/0012* spc/mods/.
+
+for bib class:
+/bin/mv  modsbib/0012* spc/modsbib/.
+/bin/cp modsbib/* /d1/workarea/dlxs/bib/mods/vv/xml
+
+
+for search:
+/bin/cp search/0012* spc/modssearch/.
+/bin/cp search/* /d1/workarea/dlxs/bib/search/vv/xml/
+
+You will go there to put all the search and mods files from different directories up.
+scp minithumbs/* diglib@diglib.lib.utk.edu:/d1/dlxs/web/thumbs/vv/.
+(need these for search display)
+
+run fixSubjects
+
+(more about fixSubjects in MODS dir where we will be making preservation versions)
+
+do NOT run infotrack on these yet, as we need to relate them to their EADs,
+and alter them for crosslinking.
+
+hopefully you have all new dlc files in one directory alone.
+point infotrack at this directory and run it, to put info on files into
+InfoTrack database.  then copy new stuff to store1.
+-->
+
+
+</pre>
+</font>
+</td></tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+</table>
+
+

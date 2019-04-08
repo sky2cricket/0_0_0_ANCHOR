@@ -1,0 +1,131 @@
+<html>
+<head>
+<title>Browsing</title>
+
+
+
+ <link href="../dlxsdocs.css" rel="stylesheet" type="text/css">
+</head>         <body>
+<h1 class="pageTitle">Overview and Contents</h1>
+<p> Through a combination of <a href="colldatabases.html">database</a> tables
+   and <a href="collmgr.html">collmgr</a> field configuration,
+   dynamic browsing is available through the DLXS middleware. When the proper
+   CGI-based URL is received, the middleware checks for certain metadata in the
+   database tables, packages some of it in XML, uses some of it, as is in its
+   stored format of XML, and lets XSLT format the results. At run time, no <a href="../xpat/index.html">XPAT</a>   queries are needed, only MySQL queries are run against the item browse tables
+   in the  <a href="colldatabases.html">dlxs
+   database</a>. </p>
+<p>After the tables are prepared, that is,  populated with item metadata through
+   the <span class="command">$DLXSROOT/bin/browse/updatebrowsedb.pl</span> script (aka &quot;database populator&quot;),
+   configuration for the behavior of dynamic browsing is accomplished by modifying
+   certain <a href="collmgr.html">collmgr</a>   fields.</p>
+<p>Provisions will soon be made for creating static HTML browse pages with the
+   database populator script. </p>
+<h1> <b>Contents</b>:</h1>
+<ul>
+   <li><a href="#ItemBrowseTables">Item browse database tables</a></li>
+   <li><a href="#CollmgrFields">collmgr fields for configuration</a></li>
+   <li><a href="#Preparation">Preparing collections for item browsing</a>      <ul>
+         <li><a href="#Configure">Configure the collmgr fields </a></li>
+            <li><a href="#PopulatingTables">Populating the item browse database
+                  tables </a></li>
+      </ul>
+   </li>
+</ul>
+<h1> <a name="ItemBrowseTables" id="ItemBrowseTables"/>Item browse database tables </h1>
+<p>There are three tables in the dlxs database that are specifically used for
+   dynamic browsing in the middleware:</p>
+<ul>
+   <li class="command">ItemColl</li>
+   <li class="command">ItemBrowse</li>
+   <li class="command">ItemBrowseCounts</li>
+</ul>
+<p>The ItemColl table holds, for each item/document and collection combination,
+   one row containing the following columns: </p>
+<ul>
+   <li>the idno</li>
+   <li>the collection
+         id</li>
+   <li>the modification date of the row's information</li>
+   <li>XML metadata
+               about the item: in the case of TextClass, this is simply the <span class="command">DLXSTEXTCLASS/HEADER</span>      element that is retrieved from an XPAT query in the &quot;database
+         populator&quot; script. In the case of ImageClass, the Perl subclass used
+      by the database populator grabs information from the MySQL or XPAT data
+      and wraps it in specific XML before filling in this field. </li>
+</ul>
+<p>The ItemBrowse table holds, for each item/document's browseable field (e.g.,
+   author, title, etc.): </p>
+<ul>
+   <li>the idno</li>
+   <li>the field name</li>
+   <li>the value of the field </li>
+   <li>rank (not currently used) </li>
+</ul>
+<p>The ItemBrowseCounts table holds, for each collection, a list of rows containing:</p>
+<ul>
+   <li>	colleciton id</li>
+   <li>the field name </li>
+   <li>the first character or the first two characters of the sortable
+            field's value (sortable title, author's name) </li>
+   <li>the count of items that begin with that first character or those first
+      two characters </li>
+</ul>
+<h2><a name="CollmgrFields" id="CollmgrFields"/>Collmgr fields for configuration </h2>
+<p>The main fields in the collmgr that need to be set properly are:</p>
+<ul>
+   <li>locale</li>
+   <li>browsenav</li>
+   <li>browsefields</li>
+</ul>
+<p>See <a href="#Configure">Configure the collmgr fields</a> below for
+   more information.</p>
+<h1><a name="Preparation"></a>Preparing collections for browsing </h1><h2><a name="Configure" id="Configure"/>Configure
+the collmgr fields </h2>
+<p>Start collmgr and change the following fields:</p>
+<ul>
+   <li><span class="command">devhost</span>: if you are running the database populator in a development environment
+      (that is, where <span class="command"><a href="../program/devenvironment.html#workdirs">DLPS_DEV</a></span> environment variable
+      is set), you can have the middleware use  XPAT-indexed data that is
+      on a  machine different from the usual host. This can be useful for testing
+      purposes. </li>
+   <li><span class="command">locale</span>: (this should be changed to a UTF-8 type of encoding, e.g., <span class="command">en_US.UTF-8</span>)</li>
+   <li><span class="command">browsenav</span>: enter 0, 1, or 2. If you want no paging, that is, that all
+      items in the colleciton appear on one HTML page for the user to browse,
+      enter 0. Enter 1, if you want &quot;one level of browsing&quot;, that is, that a
+      separate page be created for each first character of the value in question
+      (e.g., title or author) and that a navigation bar be built that allows
+      the user to navigate to each page, for example, jump to the page listing
+      items whose value begins with &quot;M&quot;. Entering 2 in this field will create
+      a &quot;two-level browse&quot;, where two navigation bars will be created. The first
+      bar will allow the user to jump to items whose values begin with a particular
+      first character (e.g., jump to the records that begin with &quot;B&quot;). The second
+      navigation bar will allow the user to jump to items whose values begin
+      with a particular two-character combination, (e.g., records that begin
+      with &quot;Bu&quot;). This decision is left to the collection coordinator. We have
+      found that the level is based on how many total items there are in
+      the collection and therefore what is a reasonable number of browseable
+      items for a single HTML page. </li>
+   <li> <span class="command">browsefields</span>: list the browseable fields for the collection. For example,
+      some collections may have only title browsing, others may need both title
+      and author, etc. </li>
+</ul>
+<h2> <a name="PopulatingTables" id="PopulatingTables"/>Populating the item browse
+tables </h2>
+<p>To initially populate or to update the item browse tables, simply run the
+   database populator. To do so, enter:</p>
+<p class="command">$DLXSROOT/bin/browse/updatebrowsedb.pl class=AAA c=BBB host=CCC</p>
+<p>where <span class="command">AAA</span> is either &quot;text&quot; or &quot;image&quot; and
+   where <span class="command">BBB</span> is the collection id of
+   the collection you want to create browsing for and <span class="command">CCC</span> is
+   the name of the host on which resides the XPAT index for the collection. You
+   may want to point the script at new or test data on a machine that is different
+   from your production machine. If that is the case, you may also want to change
+   the devhost field for the collection in collmgr and test the collection in
+   development mode (with the <a href="../program/devenvironment.html#workdirs">DLPS_DEV</a> environment variable set). </p>
+<p>Running this program will populate or update the rows necessary in each of
+   the three ItemBrowse related tables. These tables will be queried when the
+user requests browsing from the middleware.</p>
+</body>
+
+
+</html>

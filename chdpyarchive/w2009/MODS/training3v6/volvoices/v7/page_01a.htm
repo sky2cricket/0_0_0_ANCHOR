@@ -1,0 +1,338 @@
+<!--
+    This code is issued under the GNU General Public License, 
+    version 3, 29 June 2007.
+
+    The DLC-MODS Workbook provides a series of web pages to help you 
+    generate a MODS metadata record that follows the Digital Library 
+    Federation Implementation Guidelines for Shareable MODS Records, 
+    as described in the DLF Aquifer Guidlines November 2006.  These 
+    Guidelines and the specific MODS Profile are documented on the 
+    MODS Profile Page of the DLC-MODS Workbook.
+
+    Copyright (C) 2007 
+    Christine Haygood Deane 
+    University of Tennessee Libraries
+    Digital Library Center
+ 
+
+    This program is free software: you can redistribute it and/or modify    
+    it under the terms of the GNU General Public License as published by    
+    the Free Software Foundation, version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see http://www.gnu.org/licenses/
+-->
+
+<html>
+<head>
+<title>
+page_01
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+<script>
+
+var split_token=parent.U.split_token;
+parent.L.thisDocument = parent.D.document;
+
+function test_DF_form(){
+alert("under construction");
+}
+
+</script>
+
+
+
+
+</head>
+
+<script>document.write('<body onload="load_DF_form();"  bgcolor="'+parent.adb_background_color+'" >');</script>
+
+<font face="arial" size="3"><center>
+<h2> <script> document.write(parent.adb_project_name); </script>
+&lt;titleInfo></h2>
+</center>
+
+<form name="DF"  >
+
+<table  class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="99aabb">
+<tr class="bgstandard"><td colspan="3">
+Required Fields have yellow-highlighted input box. 
+</td></tr>
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>MODS LABEL</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+
+<tr class="bgstandard" ><td colspan="3">
+<b>Title Information</b>
+</td></tr>
+
+<tr class="bgstandard" >
+<td class="label13nou">
+Non Sort 
+</td>
+<td>&nbsp;
+<input type="text" name="title_non_sort" value="" size="36" 
+class="notrequired300w"
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+>
+<font face='arial' size='1'>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard" >
+<td class="label13u">
+Title 
+</td>
+<td>&nbsp;
+<input type="text" name="title" value="" size="36" 
+class="required300w"
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+>
+<font face='arial' size='1'>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard" >
+<td class="label13nou">
+Sub Title 
+</td>
+<td>&nbsp;
+<input type="text" name="title_sub_title" value="" size="36" 
+class="notrequired300w"
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+>
+<font face='arial' size='1'>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard" >
+<td class="label13nou">
+Part Number
+</td>
+<td>&nbsp;
+<input type="text" name="title_part_number" value="" size="36" 
+class="notrequired300w"
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+>
+<font face='arial' size='1'>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard" >
+<td class="label13nou">
+Part Name
+</td>
+<td>&nbsp;
+<input type="text" name="title_part_name" value="" size="36" 
+class="notrequired300w"
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+>
+<font face='arial' size='1'>
+</td>
+<td>&nbsp</td>
+</tr>
+</table>
+
+<table  class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="99aabb">
+<!--
+
+///////////////////////////NAME BLOCK//////////////////////
+
+-->
+<script>
+var name_block_count=0;
+var a400 =  new String('400');
+var a500 =  new String('500');
+var a550 =  new String('550');
+var a600 =  new String('600');
+</script>
+
+
+
+<tr class="bgstandard" >
+<td >&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+<tr class="bgstandard" ><td colspan="3" align="center">
+&nbsp;&nbsp;
+<input type="button" name="B_UF" value="Save" class="buttonnw" onclick="buildModsTags(10);">
+<input type="button" name="B_DF" value="load_DF_form"  class="buttonnw" onclick="load_DF_form();">
+<input type="button" name="B2" 
+value="Save Data and View MODS TAGS" class="buttonnw"
+onclick="buildModsTags(1)">
+
+</td></tr>
+<tr class="bgstandard" >
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+</table>
+
+
+<input type="hidden" name="name_block_list" value="">
+
+
+
+
+
+</form name="forms[0]">
+
+
+<center><font face="arial">
+<h2> <script> document.write(parent.adb_project_name); </script> </h2>
+</center>
+
+<script>
+
+
+function load_UF_form() {
+
+////parent.U.document.UF.validate_page_01.value="0"; //no caching from previous value
+
+//alert("load_UF_form()");
+///PageOneTitleInfo
+
+parent.U.document.UF.title_non_sort.value = document.DF.title_non_sort.value;
+parent.U.document.UF.title.value = document.DF.title.value;
+parent.U.document.UF.title_sub_title.value = document.DF.title_sub_title.value;
+parent.U.document.UF.title_part_number.value = document.DF.title_part_number.value;
+parent.U.document.UF.title_part_name.value = document.DF.title_part_name.value;
+
+//parent.U.document.UF.name_block_list.value = document.DF.name_block_list.value;
+
+return;
+
+
+}
+
+
+function load_DF_form() {
+
+////////alert("load_DF_form()");
+
+
+//first time load title
+if ( parent.U.document.UF.title.value == "" ) {
+	document.DF.title.value = parent.adb_itemtitle;
+}else{
+	document.DF.title.value = parent.U.document.UF.title.value ;
+}
+
+
+document.DF.title_non_sort.value = parent.U.document.UF.title_non_sort.value ;
+document.DF.title.value = parent.U.document.UF.title.value ;
+document.DF.title_sub_title.value = parent.U.document.UF.title_sub_title.value ;
+document.DF.title_part_number.value = parent.U.document.UF.title_part_number.value ;
+document.DF.title_part_name.value = parent.U.document.UF.title_part_name.value ;
+
+
+return;
+}//end function load_DF_form
+
+
+function buildModsTags(N) {
+
+
+////do this first so current values are loaded regardless of validation status
+load_UF_form();
+if (num == 11) {return;} //before validation check
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+//before writing MODS TAGS, make sure all required fields are populated
+//checkAllRequired... true  validation sets validation status to 1  -- complete
+//checkAllRequired... false validation sets validation status to 0  -- incomplete
+
+/* rewrite
+if (!parent.L.checkAllRequiredElements_Page_01() ) {
+	parent.L.update_page_validation(1,0);
+	return;
+}*/
+parent.L.update_page_validation(1,1);
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+var num = new Number();
+    num = N;
+
+if (num == 11) {return;}
+if (num == 10) {
+        alert("Values have been saved.");
+        return;
+        }
+
+//alert("got to here")
+
+var aps= new Array();
+var hps= new Array();
+var cps= new Array();
+
+    hps = parent.L.buildTagsArray_header(num);
+    aps = parent.L.buildTagsArray_titleInfo(num);
+    cps = parent.L.buildTagsArray_closer(num);
+
+
+//=================================================
+
+document.write('<input type="button" name="BBACK" onclick="javascript: history.back()" value="BACK"><P>');
+document.write('<font face="Elephant" size="3" color="a00000">'+parent.adb_project_name+' &lt;titleInfo><p></font>');
+//PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+//document.write( "This is the generated xml script.  Values you entered are highlighted in red.<HR>");
+document.write('<font face="Elephant" size="3" color="a00000">PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+		+"This is the generated xml script.  Values you entered are highlighted in red."
+		+"<HR>");
+
+//document.write('< ? xml version="1.0"  ? > \r\n'); 
+///document.write("Content-Type: text/xml ")
+
+for (i=0;i<hps.length;i++) {
+	var vps = new String(hps[i]);
+ 	document.write("<br>"+vps);
+	}
+
+for (i=0;i<aps.length;i++) {
+	var vps = new String(aps[i]);
+	document.write("<br>"+vps);
+	}
+
+for (i=0;i<cps.length;i++) {
+	var vps = new String(cps[i]);
+	document.write("<br>"+vps);
+
+	}
+
+
+}//end function
+
+</script>
+	
+
+<hr>
+
+</body>
+</html>
+

@@ -1,0 +1,23 @@
+
+I made a fake record to test
+
+
+0097_000050_000135_0000  http://idserver.utk.edu/?id=200800000001683
+
+appears in locserve.y2008 as
+
+id  00000001683 
+realurl  http://diglib.lib.utk.edu/cgi/i/image/image-idx?c=vvz;view=entry;subview=detail;cc=vvz;entryid=x-0097_000050_000135_0000; 
+dt  20080421152136 
+hist  http://diglib.lib.utk.edu/cgi/i/image/image-idx?c=vvz;view=entry;subview=detail;cc=vvz;entryid=x-0097_000050_000135_0000;
+ 
+
+
+SELECT * 
+FROM `y2008` 
+WHERE id = '00000001683'
+returns 1 row
+
+SQL query:
+DELETE FROM `y2008` WHERE id = '00000001683' 
+deletes one row

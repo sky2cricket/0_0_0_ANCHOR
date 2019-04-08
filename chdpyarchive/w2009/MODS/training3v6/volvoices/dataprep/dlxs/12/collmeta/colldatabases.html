@@ -1,0 +1,252 @@
+<html>
+<head>
+<title>DLXS Metadata Databases</title>
+
+
+
+ <link href="../dlxsdocs.css" rel="stylesheet" type="text/css"></head>         <body>
+<div class="pageTitle">DLXS Metadata Databases</div>
+
+<h1>Overview and Contents</h1>
+<p>This document describes some of the metadata used by the DLXS middleware. The <i>dlxs</i> database contains metadata about the collections and the collection groups.</p>
+<p><b>Contents:</b></p>
+<ul>
+<li><a href="#schema">Database schema</a></li>
+<li><a href="#fields">Database fields</a></li>
+<li><b><a href="#interaction">IMPORTANT</a></b><a href="#interaction">: Interaction 
+between database rows, users, DLXS Middleware and collmgr</a>
+<ul>
+<li><a href="#tworows">Two rows: Release and Production</a></li>
+<li><a href="#threerows">Three or more rows: Release, Production and individual 
+developers</a></li>
+</ul>
+</li>
+</ul>
+
+
+
+<h2><a name="schema"></a>Database schema</h2>
+<p>The <a href="collmgr.html">Collection Manager</a> (collmgr program) maintains all collection and group information in tables. These tables are the following:</p>
+<table border="1">
+<tbody>
+<tr><td>No</td><td>Table</td><td>Description</td>
+</tr>
+<tr><td>1</td><td>Collection</td><td>This table contains all the collection parameters common to all the classes. 
+In some cases, a particular parameter may not currently be used by a 
+class, but may be in future releases.</td>
+</tr>
+<tr><td>2</td><td>Bkup_Collection</td><td>This is the backup table for the Collection table. It is populated when 
+a collection is removed from the database.</td>
+</tr>
+<tr><td>3</td><td>BibClass</td><td>This table contains all the collection parameters that are specific to 
+a bib class collection.</td>
+</tr>
+<tr><td>4</td><td>Bkup_BibClass</td><td>This is the backup table for the BibClass table. It is populated when 
+a bib collection is removed from the database.</td>
+</tr>
+<tr><td>5</td><td>TextClass</td><td>This table contains all the collection parameters that are specific to 
+a text class collection.</td>
+</tr>
+<tr><td>6</td><td>Bkup_TextClass</td><td>This is the backup table for the TextClass table. It is populated when 
+a text collection is removed from the database.</td>
+</tr>
+<tr><td>7</td><td>ImageClass</td><td>This table contains all the collection parameters that are specific to 
+an image class collection.</td>
+</tr>
+<tr><td>8</td><td>Bkup_ImageClass</td><td>This is the backup table for the ImageClass table. It is populated when 
+an image collection is removed from the database.</td>
+</tr>
+<tr><td>9</td><td>GroupData</td><td>This table contains all the group parameters that are common to all the 
+classes. In some cases, the parameter is not currently being used by 
+a class, but may be in future releases.</td>
+</tr>
+<tr><td>10</td><td>Bkup_GroupData</td><td>This is the backup table for the GroupData table. It is populated when 
+a group is removed from the database.</td>
+</tr>
+<tr><td>11</td><td>BibClassGroup</td><td>This table contains all the group parameters that are specific to bib 
+class.</td>
+</tr>
+<tr><td>12</td><td>Bkup_BibClassGroup</td><td>This is the backup table for the BibClassGroup table. It is populated 
+when a bib group is removed from the database.</td>
+</tr>
+<tr><td>13</td><td>TextClassGroup</td><td>This table contains all the group parameters that are specific to text 
+class.</td>
+</tr>
+<tr><td>14</td><td>Bkup_TextClassGroup</td><td>This is the backup table for the TextClassGroup table. It is populated 
+when a text group is removed from the database.</td>
+</tr>
+<tr><td>15</td><td>ImageClassGroup</td><td>This table contains all the group parameters that are specific to image class collections.</td>
+</tr>
+<tr><td>16</td><td>Bkup_ImageClassGroup</td><td>This is the backup table for the ImageClassGroup table. It is populated 
+when an image group is removed from the database.</td>
+</tr>
+<tr><td>17</td><td>GroupColl</td><td>This table contains the relationship between groups and collections. 
+It tells which collections are in which groups.</td>
+</tr>
+<tr><td>18</td><td>Bkup_GroupColl</td><td>This is the backup of the GroupColl table. It is populated when a group 
+is deleted.</td>
+</tr>
+<tr><td>19</td><td>CheckinCollection</td><td>This table is used to maintain a record of which user checked in which collection and at what time.</td>
+</tr>
+<tr><td>20</td><td>CheckoutCollection</td><td>This table is used to maintain a record of which user checked out which collection and at what time.</td>
+</tr>
+<tr><td>21</td><td>CheckinGroup</td><td>This table is used to maintain a record of which user checked in which group and at what time.</td>
+</tr>
+<tr><td>22</td><td>CheckoutGroup</td><td>This table is used to maintain a record of which user checked out which group and at what time.</td>
+</tr>
+<tr><td>23</td><td>DbStructure</td><td>This table maintains a record of the structure of the database: 
+what tables are in the database, what the fields are in these tables, and the type of fields (e.g., VARCHAR). 
+This table is used by the <a href="dbmove.html">dbmove</a> script to move 
+collections from one database store to another. When a user manages a class through <i>collmgr</i>, this table is also consulted to create a list of class-related parameters.</td>
+</tr>
+<tr><td>24</td><td>Version</td><td>This table maintains the version number of the database.</td>
+</tr>
+</tbody>
+</table>
+
+<p>These tables serve to identify and locate the various modules, objects, and search restrictions that are used by the class middleware to serve each collection available in the various classes. <a href="collmgr.html">See more on the tables in the database</a> in the collmgr documentation.</p>
+
+<p>Some of the columns contain data that are required; others contain optional data. Multiple values, which are allowed in some fields, are entered through collmgr, into the appropriate fields one value per line.</p>
+
+
+
+<h2>User IDs</h2>
+<p>All but the DbStructure and Version tables have a field called <i>userid</i>. <i>userid</i> can take on several values with very specific meaning. One is that of the <i>dlxsadm</i>. The other important value is <i>production</i>. Finally, another value might be that of a specific developer logged into collmgr, say <i>smith</i>. These are explained here.</p>
+
+<p>The userid <i>dlxsadm</i> is referred to as the <i>release user</i>. The middleware will read rows keyed by userid <i>dlxsadmn</i> from these tables when the following are true:</p>
+
+<ul>
+<li> the userid is <i>dlxsadm</i></li>
+<li> the environment variable <a href="#dlpsdevenv">DLPS_DEV</a> is set to 1 
+</li>
+<li>a DLXS CGI program is being run from the release directory; e.g; <a href="../intro/dirstruct.html#dlxsrootenv">$DLXSROOT</a>/b/bib/.</li>
+</ul>
+
+<p>The userid <i>production</i> is referred to as the <i>production user</i>. The middleware will read rows keyed by userid <i>production</i> from these tables when:</p>
+<ul>
+<li>when the environment DLPS_DEV is not set</li>
+</ul>
+
+<p>The userid <i>smith</i>, for example, is referred to as the <i>development user</i>. The middleware will read rows keyed by this userid when:</p>
+<ul>
+<li> the userid is <i>smith</i></li>
+<li>when the environment <a href="#dlpsdevenv">DLPS_DEV</a> is set to <i>smith</i></li>
+<li>the executable used to run the middleware is located in  <i>smith</i>'s development directory which corresponds to the value of the DLXSROOT environment variable (e.g., /l1/dev/smith) normally set by  <i>smith</i>'s virtual host, e.g.  <i>smith.dev.umdl.umich.edu</i></li>
+</ul>
+<p>This will allow <i>smith</i> to perform testing based on collections and groups of his choice that he can set up using the <a href="collmgr.html">Collection Manager</a>. Most institutions will not need to use this third type of user because there will not be a need to have several users work against the same collections. For those institutions, it will only be necessary to log in to the Collection Managmer as <i>dlxsadm</i>. All data management can happen through that userid.</p>
+
+
+<h2> Additional privilege for <i>dlxsadm</i></h2>
+<p>In addition to being able to delete, add, or edit collections and groups associated with the <i>dlxsadm</i> user, this administrative login userid has other privileges. The <i>dlxsadm</i> will be able to add fields to classes, and delete fields from classes. This will change the structure of the tables associated with the classes, and will update the <i>DbStructure</i> table to reflect the new schema. </p>
+<p><b>Note</b> that when the userid <i>dlxsadm</i> deletes a collection or group, a backup of the deleted collection or group is kept in the appropriate backup tables.</p>
+<p>The user <i>dlxsadm</i> also has privileges to release classes to production. "Releasing to production" effectively copies every <i>dlxsadm</i> row to a row keyed by the userid <i>production</i>. This distinction between <i>dlxsadm</i> and <i>production</i>, allows you to work on collections and groups independent of the collections and groups that are accessible by the version of the middleware that is running in production.</p>
+
+
+
+<h1><a name="fields"></a>Database fields</h1>
+<p>For information on the individual fields, please see the <a href="collmgr-fields.html">help file</a> used by the <a href="collmgr.html">Collection Manager</a> (collmgr).</p>
+
+
+<h1><a name="interaction"></a>Interaction between database rows, users, DLXS Middleware 
+and the Collection Manager<a name="tworows"></a></h1>
+
+<h2>Two rows: Release and Production</h2>
+<p>Most users of DLXS Middleware will likely have the following situation. A collection manager will be making changes to the collection information database, changing, adding or deleting collections. Then at some point, the new set of collections to be delivered will need to go into production. The database holds both sets of rows. </p>
+<ul>
+<li>One set of rows containing collections and groups as they are tested in 
+a development environment. When ready, these will be moved to production.</li>
+<li>One set of rows containing collections and groups that are used by the production 
+environment.</li>
+</ul>
+
+
+<h2>Middleware</h2>
+<p>The middleware can be set to look at either the <i>release rows </i>(for testing and subsequent release) or the <i>production rows</i> (rows actually being used by the production system). This is accomplished through the setting of the environment variable <b><a name="dlpsdevenv"></a>DLPS_DEV</b>. If set to 1, the <i>release rows</i> and their values are used by the middleware. If set to 0 or not present, the <i>production rows</i> are used by the middleware. </p>
+<p>Therefore, two environments need to be set up: one for release and one for production. These can be set up as separate <i>virtual hosts</i> on a web server, each defining its own environment variables, or as servers on two <i>separate machines</i>. At DLPS, we have a separate development machine and more than one production machine, but it seems to be the case that most DLXS partners have one machine where both development and production are done.</p>
+<p>In either case, the situation is that there are <i>two sets of rows</i> in the database and two servers (whether they are virtual hosts or actual separate physical hosts is irrelevant).  (In addition there is an <a href="../program/devenvironment.html">extension</a> to this scheme whereby each individual developer can have his/her own set of rows in order to develop without disturbing the database values in the release and production rows.)  </p>
+
+<p>For example, assume there is one machine with two virtual hosts (<i>dev.domain.edu</i> and <i>prod.domain.edu</i>). The configuration for the virtual host <i>dev.domain.edu</i> should have a SetEnv directive setting <a href="#dlpsdevenv">DLPS_DEV</a> to 1. The configuration for the <i>prod.domain.edu</i> virtual host should not include this environment variable setting.</p>
+<p>When the <i>dev.domain.edu</i> server is asked to run the middleware it will access the <i>release rows</i> in the database and use their values.</p>
+<p><b>Note</b>: As mentioned, if you want to run the cgi programs on the command line or within a debugger, you'll need to set your own shell environment to include a <a href="#dlpsdevenv">DLPS_DEV</a> variable set to 1.</p>
+<p>Likewise, the <i>production rows</i> and their values will be used for any cgi call to the <i>prod.domain.edu</i> virtual host because the user that the web server runs as (e.g., <i>nobody</i>) will not have the DLPS_DEV environment variable set. This is because no SetEnv directive in the <i>prod.domain.edu</i>'s virtual host configuration will have been set.</p>
+
+
+<h2>Collection Manager</h2>
+<p>When running the <b><a href="collmgr.html">Collection Manager</a></b> cgi, you should log in as user <i>dlxsadm </i>in order to add, remove, edit rows that are the <i>release rows</i>. When you want the working production system to actually use your changes, the Collection Manager lets you "move release rows to production", which actually copies the rows keyed by the user <i>dlxsadm</i> to rows keyed by the user <i>production</i>. You cannot directly manipulate the production rows. This layer of protection is something akin to "checking in" data. Click here for more on the <a href="collmgr.html#workflow">collmgr workflow</a>.</p>
+<table border="1">
+<tbody>
+<tr><td><i>to use</i></td><td>collmgr</td>
+</tr>
+<tr><td>release rows</td><td>log in as dlxsadm, view and edit rows</td>
+</tr>
+<tr><td>production rows</td><td>log in a s dlxsadm, view rows, copy release rows onto production rows</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2><a name="threerows"></a>Three or more rows: Release, Production and individual developers</h2>
+<p>If you do work where different users require individualized versions of the database rows, as we do at DLPS, the databases can also be set up with, in addition to the <i>release</i> and <i>production</i> rows described above, rows keyed by <i>username</i>.  In addition to the material below, please refer also to the instructions related to configuring this <i>username</i> <a href="../program/devenvironment.html">extension</a>. </p>
+
+<p>Here, there are at least three sets of rows: the same two as before, but with additional sets for individual developers. A user can:</p>
+<ul>
+<li>check out rows from release (essentially a copy of the rows from those marked 
+as <i>release</i>, creating or overwriting the user's previous rows for those collections)</li>
+<li>view or edit rows keyed by his/her user name</li>
+<li>check in rows to release (essentially a copy of the rows from those keyed 
+by the user name, overwriting <i>release</i>'s previous rows for those collections)</li>
+<li>later, using the <a href="collmgr.html">Collection Manager</a>, logged in as dlxsadm, one can "move" release to production as described above</li>
+</ul>
+
+
+<h2>Middleware</h2>
+<p>The middleware can be set to use the release rows or the user name rows. This is accomplished by:</p>
+<ul>
+<li>Having the <a href="#dlpsdevenv">DLPS_DEV</a> variable set to 1, as in the 
+two row scenario explained above. If running through a browser, the host web server will 
+have to be configured to have the DLPS_DEV variable set, or if on a 
+command line or in a debugger, the user will have to have the variable set 
+in his/her environment.</li>
+<li>Running the middleware CGI programs.</li>
+</ul>
+<p><a name="symlink"></a>The middleware can also be set to use the user specific rows. This is generally done to test new functionality in the middleware or to try out potential changes to the database field values. This is accomplished 
+by:</p>
+<ul>
+<li>Having the <a href="#dlpsdevenv">DLPS_DEV</a> variable set to  <i>username</i>. If running through a browser, the developer's virtual host will 
+have to have been configured to have the DLPS_DEV variable set, or if on a 
+command line or in a debugger, the user will have to have the variable set 
+in his/her environment.</li>
+
+</ul>
+
+
+
+<h2>Collection Manager</h2>
+<p>When running the <b>Collection Manager</b> cgi, in order to make changes to the rows keyed by your user name, you should log in as <i>username</i>. This allows you to check out rows from the release rows, view and edit your own rows, and check them back in to release. Click here for more on the <a href="collmgr.html#workflow">Collection Manager
+workflow</a>.</p>
+<table border="1">
+<tbody>
+<tr><td><i>to use</i></td><td>collmgr</td>
+</tr>
+<tr><td>release rows</td><td>log in as dlxsadm, view and edit rows</td>
+</tr>
+<tr><td>production rows</td><td>log in as dlxsadm, view rows, copy release rows onto production rows</td>
+</tr>
+<tr><td>username rows</td><td>log in as user, checkout release rows, view, edit user rows, checkin 
+rows to release</td>
+</tr>
+</tbody>
+</table>
+<p>Imagine your username is <i>smith</i>. When you log in to the <b>Collection Manager</b> cgi, you can check out rows from the release rows (they are copied) to rows that are keyed by the userid <i>smith</i>. You can make changes to these rows so that when you access them through the middleware (running under a virtual host with DLPS_DEV set to  <i>smith</i> and DLXSROOT set to smith's copy of the code tree under development), the values from those rows will be used. If or when you check them back in, the values you entered/changed in the <i>smith</i>-keyed rows will be copied into the corresponding release rows.</p>
+<p>Later, when ready, logging in as dlxsadm, one can "move" release to production.</p>
+
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+</body>
+
+</html>

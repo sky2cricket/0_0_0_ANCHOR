@@ -1,0 +1,32 @@
+<html>
+<body>
+<pre>
+&lt;?xml version="1.0"?>
+&lt;xsl:stylesheet version="1.0"
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:pe="http://www.cafeconleche.org/namespaces/people">
+     
+  &lt;xsl:template match="pe:people">
+    &lt;html>
+      &lt;head>&lt;title>Famous Scientists&lt;/title>&lt;/head>
+      &lt;body>
+        &lt;xsl:apply-templates/>
+      &lt;/body>
+    &lt;/html>
+  &lt;/xsl:template>
+     
+  &lt;xsl:template match="pe:name">
+    &lt;p>&lt;xsl:value-of select="pe:last_name"/>,
+    &lt;xsl:value-of select="pe:first_name"/>&lt;/p>
+  &lt;/xsl:template>
+     
+  &lt;xsl:template match="pe:person">
+    &lt;xsl:apply-templates select="pe:name"/>
+  &lt;/xsl:template>
+     
+&lt;/xsl:stylesheet>
+</pre>
+</body>
+</html>
+
+
