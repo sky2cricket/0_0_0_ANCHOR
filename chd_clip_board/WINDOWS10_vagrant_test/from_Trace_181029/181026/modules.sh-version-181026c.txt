@@ -1,0 +1,304 @@
+#!/usr/bin/env bash
+
+# detect centos
+OS="ubuntu"
+APACHEGROUP="www-data"
+if [ -f "/etc/centos-release" ]; then
+  OS="centos"
+  APACHEGROUP="apache"
+fi
+# correct env variables for fits
+export FITS_HOME=/usr/local/fits
+export FITS_VERSION=1.1.1
+
+
+echo "Arrive 000 "
+echo "start modules.sh-version-181026c"
+echo "Installing all Islandora Foundation modules"
+echo "OS = "$OS
+echo "  APACHEGROUP = "$APACHEGROUP
+
+echo "Arrive 001 "
+
+# Permissions and ownership
+echo "Setting permissions and ownership for Drupal directories"
+sudo chown -hR vagrant:"$APACHEGROUP" "$DRUPAL_HOME"/sites/all/libraries
+echo "Arrive 002 "
+sudo chown -hR vagrant:"$APACHEGROUP" "$DRUPAL_HOME"/sites/all/modules
+echo "Arrive 003 "
+sudo chown -hR vagrant:"$APACHEGROUP" "$DRUPAL_HOME"/sites/default/files
+echo "Arrive 004 "
+sudo chmod -R 755 "$DRUPAL_HOME"/sites/all/libraries
+echo "Arrive 005 "
+sudo chmod -R 755 "$DRUPAL_HOME"/sites/all/modules
+echo "Arrive 006 "
+sudo chmod -R 755 "$DRUPAL_HOME"/sites/default/files
+echo "Arrive 007 "
+
+# for some reason /home/vagrant/.drush/cache/ && /home/vagrant/.drush/cache/default become
+# owned by root. It causes failures in various scripts.
+# chd: probably the reason is incorrect syntax on chown
+if [ -d /home/vagrant/.drush/cache/default ]; then
+  sudo chown -R vagrant.vagrant /home/vagrant/.drush   #chd fix
+  sudo chmod -R 777 /home/vagrant/.drush
+else
+  sudo mkdir -p /home/vagrant/.drush/cache/default
+  sudo chown -R vagrant.vagrant /home/vagrant/.drush   #chd fix
+  sudo chmod -R 777 /home/vagrant/.drush
+fi
+
+echo "Arrive 008 "
+
+# Clone all Islandora Foundation modules
+echo "Cloning Islandora modules"
+cd "$DRUPAL_HOME"/sites/all/modules || exit
+echo "Arrive 009 while "
+while read -r LINE; do
+  echo "Arrive 010 $LINE"
+  git clone https://github.com/Islandora/"$LINE"
+done < "$SHARED_DIR"/configs/islandora-module-list-sans-tuque
+echo "Arrive 011 done"
+
+echo "Arrive 100 "
+
+# Set git filemode false for git
+cd "$DRUPAL_HOME"/sites/all/modules || exit
+echo "Arrive 012 while"
+while read -r LINE; do
+  echo "Arrive 013 $LINE"
+  cd "$LINE" || exit
+  git config core.filemode false
+  cd "$DRUPAL_HOME"/sites/all/modules || exit
+done < "$SHARED_DIR"/configs/islandora-module-list-sans-tuque
+echo "Arrive 014 done "
+
+echo "Arrive 101 "
+
+# clone UTK Digital Initiatives forks and local modules
+git clone https://github.com/utkdigitalinitiatives/islandora_simple_workflow.git
+git clone https://github.com/utkdigitalinitiatives/trace_ext_workflow.git
+git clone https://github.com/utkdigitalinitiatives/islandora_scholar
+git clone https://github.com/utkdigitalinitiatives/islandora_solr_metadata
+git clone https://github.com/utkdigitalinitiatives/islandora_xml_forms
+git clone https://github.com/utkdigitalinitiatives/islandora_binary_object
+git clone https://github.com/utkdigitalinitiatives/islandora_batch_digital_commons
+git clone https://github.com/utkdigitalinitiatives/islandora_scholar_tombstone
+
+echo "Arrive 102 "
+
+#set up islandora_batch_ditital_commons
+sudo curl --output /tmp/BaseX867.zip -L "http://files.basex.org/releases/8.6.7/BaseX867.zip"
+sudo unzip /tmp/BaseX867.zip -d /usr/local/lib/
+sudo rm /tmp/BaseX867.zip
+
+echo "Arrive 103 "
+
+sudo mkdir -p /usr/local/share/php5/php-aws
+sudo curl --output /tmp/aws.zip -L "http://docs.aws.amazon.com/aws-sdk-php/v3/download/aws.zip"
+sudo unzip /tmp/aws.zip -d /usr/local/share/php5/php-aws
+sudo rm /tmp/aws.zip
+
+
+echo "Arrive 104 "
+
+# set core.filemode on our forks
+cd "$DRUPAL_HOME"/sites/all/modules/islandora_scholar || exit
+git config core.filemode false
+cd "$DRUPAL_HOME"/sites/all/modules || exit
+
+echo "Arrive 105 "
+
+cd "$DRUPAL_HOME"/sites/all/modules/islandora_solr_metadata || exit
+git config core.filemode false
+cd "$DRUPAL_HOME"/sites/all/modules || exit
+
+echo "Arrive 106 "
+
+cd "$DRUPAL_HOME"/sites/all/modules/islandora_xml_forms || exit
+git config core.filemode false
+cd "$DRUPAL_HOME"/sites/all/modules || exit
+
+echo "Arrive 107 "
+
+cd "$DRUPAL_HOME"/sites/all/modules/islandora_binary_object || exit
+git config core.filemode false
+cd "$DRUPAL_HOME"/sites/all/modules || exit
+
+echo "Arrive 108 "
+
+# clone the Digital initiatives module to ingest collections
+git clone https://github.com/utkdigitalinitiatives/islandora_ingest_collections.git
+
+echo "Arrive 109 "
+
+# clone islandora usage stats callbacks needed for displaying view / download count
+git clone https://github.com/Islandora-Labs/islandora_usage_stats_callbacks.git
+echo "Arrive 110 "
+
+cd "$DRUPAL_HOME"/sites/all/modules/islandora_ingest_collections || exit
+git config core.filemode false
+
+echo "Arrive 111 "
+
+cd "$DRUPAL_HOME"/sites/all/modules || exit
+
+# clone the Digital initiatives module to create nested collections
+git clone https://github.com/utkdigitalinitiatives/islandora_nested_collections.git
+echo "Arrive 112 "
+cd "$DRUPAL_HOME"/sites/all/modules/islandora_nested_collections || exit
+git config core.filemode false
+cd "$DRUPAL_HOME"/sites/all/modules || exit
+echo "Arrive 113 "
+
+# clone Ashok Modi's module to extend XML Form Builder to Work with Field Panels and Field Panes
+cd "$DRUPAL_HOME"/sites/all/modules || exit
+git clone https://github.com/Islandora/islandora_form_fieldpanel
+echo "Arrive 114 "
+
+# Clone Tuque, BagItPHP, and Cite-Proc
+cd "$DRUPAL_HOME"/sites/all || exit
+if [ ! -d libraries ]; then
+  mkdir libraries || echo failure
+fi
+echo "Arrive 115 "
+
+cd "$DRUPAL_HOME"/sites/all/libraries || exit
+git clone https://github.com/Islandora/tuque.git
+git clone git://github.com/scholarslab/BagItPHP.git
+git clone https://github.com/Islandora/citeproc-php.git
+
+echo "Arrive 116 "
+cd "$DRUPAL_HOME"/sites/all/libraries/tuque || exit
+git config core.filemode false
+
+echo "Arrive 117 "
+
+cd "$DRUPAL_HOME"/sites/all/libraries/BagItPHP || exit
+git config core.filemode false
+echo "Arrive 118 "
+
+# Check for a user's .drush folder, create if it doesn't exist
+# chd: Why are we using different owner than original vagrant.vagrant???
+if [ ! -d "$HOME_DIR/.drush" ]; then
+  mkdir /home/vagrant/.drush || echo failure
+  sudo chown -hR vagrant:www-data /home/vagrant/.drush
+fi
+echo "Arrive 119 "
+
+# Move OpenSeadragon drush file to user's .drush folder
+if [ -d "$HOME_DIR/.drush" ] && [ -f "$DRUPAL_HOME/sites/all/modules/islandora_openseadragon/islandora_openseadragon.drush.inc" ]; then
+  mv "$DRUPAL_HOME/sites/all/modules/islandora_openseadragon/islandora_openseadragon.drush.inc" "$HOME_DIR/.drush"
+fi
+
+echo "Arrive 120 "
+# Move pdf.js drush file to user's .drush folder
+if [ -d "$HOME_DIR/.drush" ] && [ -f "$DRUPAL_HOME/sites/all/modules/islandora_pdfjs/islandora_pdfjs.drush.inc" ]; then
+  mv "$DRUPAL_HOME/sites/all/modules/islandora_pdfjs/islandora_pdfjs.drush.inc" "$HOME_DIR/.drush"
+fi
+
+echo "Arrive 121 "
+# Move IA Bookreader drush file to user's .drush folder
+if [ -d "$HOME_DIR/.drush" ] && [ -f "$DRUPAL_HOME/sites/all/modules/islandora_internet_archive_bookreader/islandora_internet_archive_bookreader.drush.inc" ]; then
+  mv "$DRUPAL_HOME/sites/all/modules/islandora_internet_archive_bookreader/islandora_internet_archive_bookreader.drush.inc" "$HOME_DIR/.drush"
+fi
+echo "Arrive 122 "
+
+cd "$DRUPAL_HOME"/sites/all/modules || exit
+
+echo "Arrive 123 "
+
+drush -y -u 1 en php_lib islandora objective_forms
+drush -y -u 1 en islandora_solr islandora_solr_metadata islandora_solr_views
+drush -y -u 1 en islandora_basic_collection islandora_pdf islandora_book
+drush -y -u 1 en islandora_basic_image islandora_large_image
+drush -y -u 1 en islandora_checksum islandora_checksum_checker islandora_compound_object
+drush -y -u 1 en islandora_book_batch islandora_pathauto islandora_pdfjs
+drush -y -u 1 en islandora_openseadragon
+drush -y -u 1 en xml_forms xml_form_builder xml_schema_api xml_form_elements xml_form_api jquery_update
+drush -y -u 1 en zip_importer
+drush -y -u 1 en islandora_bibliography islandora_compound_object
+drush -y -u 1 en islandora_google_scholar islandora_scholar_embargo islandora_solr_config citation_exporter
+drush -y -u 1 en doi_importer endnotexml_importer pmid_importer ris_importer
+#drush -y -u 1 en islandora_fits
+drush -y -u 1 en islandora_ocr islandora_oai islandora_simple_workflow
+drush -y -u 1 en islandora_xacml_api islandora_xacml_editor islandora_xmlsitemap colorbox
+drush -y -u 1 en islandora_internet_archive_bookreader islandora_bagit
+drush -y -u 1 en islandora_batch_report
+drush -y -u 1 en islandora_usage_stats islandora_usage_stats_callbacks islandora_populator
+drush -y -u 1 en islandora_binary_object
+drush -y -u 1 en islandora_ingest_collections islandora_nested_collections
+drush -y -u 1 en rules_admin trace_ext_workflow
+drush -y -u 1 en islandora_binary_object_zip_importer
+drush -y -u 1 en islandora_form_fieldpanel
+drush -y -u 1 en islandora_scholar_tombstone
+
+echo "Arrive 124 "
+
+cd "$DRUPAL_HOME"/sites/all/modules || exit
+
+# Login Module
+drush dl betterlogin
+drush -y en betterlogin
+echo "Arrive 125 "
+
+# Enable Triggers
+drush -y en trigger
+echo "Arrive 126 "
+
+# Set variables for Islandora modules
+echo " Set variables for Islandora modules"
+#drush eval "variable_set('islandora_fits_executable_path', '$FITS_HOME/fits-$FITS_VERSION/fits.sh')"
+
+echo "Arrive 127 "
+drush eval "variable_set('islandora_book_viewers', array('name' => array('none' => 'none', 'islandora_internet_archive_bookreader' => 'islandora_internet_archive_bookreader'), 'default' => 'islandora_internet_archive_bookreader'))"
+echo "Arrive 128 "
+drush eval "variable_set('islandora_book_page_viewers', array('name' => array('none' => 'none', 'islandora_openseadragon' => 'islandora_openseadragon'), 'default' => 'islandora_openseadragon'))"
+
+echo "Arrive 129 "
+drush eval "variable_set('islandora_large_image_viewers', array('name' => array('none' => 'none', 'islandora_openseadragon' => 'islandora_openseadragon'), 'default' => 'islandora_openseadragon'))"
+echo "Arrive 130 "
+drush eval "variable_set('islandora_use_kakadu', TRUE)"
+echo "Arrive 131 "
+drush eval "variable_set('islandora_pdf_create_fulltext', 1)"
+echo "Arrive 132 "
+drush eval "variable_set('islandora_pdf_create_pdfa', 1)"
+echo "Arrive 133 "
+drush eval "variable_set('islandora_checksum_enable_checksum', TRUE)"
+echo "Arrive 134 "
+drush eval "variable_set('islandora_checksum_checksum_type', 'SHA-256')"
+echo "Arrive 135 "
+# comment out dsids to check to set a default of all dsids
+#drush eval "variable_set('islandora_checksum_dsids_to_check', 'MODS,OBJ,PDF,DIGITAL_COMMONS_MD')"
+drush eval "variable_set('islandora_ocr_tesseract', '/usr/bin/tesseract')"
+echo "Arrive 136 "
+drush eval "variable_set('islandora_batch_java', '/usr/bin/java')"
+echo "Arrive 137 "
+drush eval "variable_set('image_toolkit', 'imagemagick')"
+echo "Arrive 138 "
+drush eval "variable_set('imagemagick_convert', '/usr/bin/convert')"
+echo "Arrive 139 "
+drush eval "variable_set('islandora_embargo_content_models', array('ir:citationCModel', 'ir:thesisCModel', 'islandora:sp_pdf', 'islandora:binaryObjectCModel'))"
+echo "Arrive 140 "
+drush eval "variable_set('islandora_scholar_create_fulltext', 0)"
+echo "Arrive 141 "
+drush eval "variable_set('islandora_scholar_google_scholar_search_enabled', 0)"
+echo "Arrive 142 "
+drush eval "variable_set('islandora_scholar_path_to_pdftotext', '/usr/bin/pdftotext')"
+echo "Arrive 143 "
+drush eval "variable_set('islandora_scholar_preview_density', 72)"
+echo "Arrive 144 "
+drush eval "variable_set('islandora_scholar_preview_height', 700)"
+echo "Arrive 145 "
+drush eval "variable_set('islandora_scholar_preview_width', 500)"
+echo "Arrive 146 "
+drush eval "variable_set('islandora_repository_pid', 'utk:ir')"
+echo "Arrive 147 "
+# add jail option to compound
+drush eval "variable_set('islandora_compound_object_use_jail_view', 1)"
+echo "Arrive 148 "
+
+# Grant permissions for everyone to see the download count
+drush role-add-perm 'anonymous user' 'access usage stats callbacks api'
+drush role-add-perm 'authenticated user' 'access usage stats callbacks api'
+echo "Arrive 149 "
+echo "end modules.sh"

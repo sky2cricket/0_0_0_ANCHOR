@@ -1,0 +1,79 @@
+Last login: Fri Dec 16 15:16:30 2016 from 10.0.2.2
+vagrant@trace:~$ cd $DRUPAL_HOME
+vagrant@trace:/var/www/drupal$ drush sqlq "SELECT  menu_name, link_title, lnk_path, weight from menu_links where menu_name like '%user-menu%' order by weight 
+> ^C
+vagrant@trace:/var/www/drupal$ drush sqlq "SELECT  menu_name, link_title, lnk_path, weight from menu_links where menu_name like '%user-menu%' order by weight" 
+ERROR 1054 (42S22) at line 1: Unknown column 'lnk_path' in 'field list'
+Query failed.                                                                                                                                                                                               [error]
+vagrant@trace:/var/www/drupal$ drush sqlq "SELECT  menu_name, link_title, link_path, weight from menu_links where menu_name like '%user-menu%' order by weight" 
+menu_name       link_title      link_path       weight
+user-menu       Inbox   messages/inbox  -15
+user-menu       Sent Messages   messages/sent   -12
+user-menu       All messages    messages/list   -10
+user-menu       Read message    messages/view/% -5
+user-menu       Write new message       messages/new    -3
+user-menu       Create new account      user/register   0
+user-menu       Log in  user/login      0
+user-menu       Request new password    user/password   0
+user-menu       Overview        islandora-bookmark/lists        0
+user-menu               islandora-bookmark/listid/%     0
+user-menu               islandora-bookmark/listid/%/view        0
+user-menu               islandora-bookmark/listid/%/manage      0
+user-menu       Add     islandora-bookmark/add  1
+user-menu       Log out user/logout     10
+user-menu       Blocked users   messages/blocked        10
+user-menu       User account    user    12
+user-menu       Submit  node/2  14
+user-menu       Messages        messages        16
+user-menu       My bookmarks    islandora-bookmark      18
+vagrant@trace:/var/www/drupal$ drush sqlq "SELECT  menu_name,  link_path, link_title, weight from menu_links where menu_name like '%user-menu%' order by weight" 
+menu_name       link_path       link_title      weight
+user-menu       messages/inbox  Inbox   -15
+user-menu       messages/sent   Sent Messages   -12
+user-menu       messages/list   All messages    -10
+user-menu       messages/view/% Read message    -5
+user-menu       messages/new    Write new message       -3
+user-menu       user/register   Create new account      0
+user-menu       user/login      Log in  0
+user-menu       user/password   Request new password    0
+user-menu       islandora-bookmark/lists        Overview        0
+user-menu       islandora-bookmark/listid/%             0
+user-menu       islandora-bookmark/listid/%/view                0
+user-menu       islandora-bookmark/listid/%/manage              0
+user-menu       islandora-bookmark/add  Add     1
+user-menu       user/logout     Log out 10
+user-menu       messages/blocked        Blocked users   10
+user-menu       user    User account    12
+user-menu       node/2  Submit  14
+user-menu       messages        Messages        16
+user-menu       islandora-bookmark      My bookmarks    18
+vagrant@trace:/var/www/drupal$ drush sqlq "SELECT  menu_name,  link_path, weight from menu_links where menu_name like '%user-menu%' order by weight" 
+menu_name       link_path       weight
+user-menu       messages/inbox  -15
+user-menu       messages/sent   -12
+user-menu       messages/list   -10
+user-menu       messages/view/% -5
+user-menu       messages/new    -3
+user-menu       islandora-bookmark/listid/%/manage      0
+user-menu       islandora-bookmark/listid/%/view        0
+user-menu       islandora-bookmark/listid/%     0
+user-menu       islandora-bookmark/lists        0
+user-menu       user/register   0
+user-menu       user/login      0
+user-menu       user/password   0
+user-menu       islandora-bookmark/add  1
+user-menu       user/logout     10
+user-menu       messages/blocked        10
+user-menu       user    12
+user-menu       node/2  14
+user-menu       messages        16
+user-menu       islandora-bookmark      18
+vagrant@trace:/var/www/drupal$ drush sqlq "SELECT  menu_name,  link_path, link_title, weight from menu_links where menu_name like '%user-menu%' AND weight > 9 order by weight" 
+menu_name       link_path       link_title      weight
+user-menu       user/logout     Log out 10
+user-menu       messages/blocked        Blocked users   10
+user-menu       user    User account    12
+user-menu       node/2  Submit  14
+user-menu       messages        Messages        16
+user-menu       islandora-bookmark      My bookmarks    18
+vagrant@trace:/var/www/drupal$ 

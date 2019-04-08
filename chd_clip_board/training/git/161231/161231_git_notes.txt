@@ -1,0 +1,48 @@
+.git-completion.bash
+
+__git_ps1
+
+------------------------------------------
+see changes: >> git diff master..seo_title
+
+be in recieving branch:  >>git checkout master
+
+merge changes from seo_title:>> git merge seo_title
+Updting 380f32b..dc9c83c
+fast-forward
+index.tml |    2+
+1 file changed, 2 insertion(+), 1 deletion(-)
+
+>>git branch --merged* master
+  seo_title [contained inmaster]
+ 
+>> git merge --no-ff branch  (allows documentation)
+
+>> git merge --ff-only branch (abort if you cannot do ff)
+
+
+>> git commit -m "commit one change to master branch"
+
+>> git merge shorten title
+Merge made gy the 'recurdsive' strategy
+ index.html | 2+
+ 1 file changed, 1 insertion(+), 1 deletion{-)
+
+===========================
+merge conflict
+
+>>git merge --abort
+
+git branch --merged
+ gives a list of fully merged branches
+
+
+git log --graph --oneline --all --decorate
+
+when you do a stash, it runs git reset hard head and the stash is saved.
+
+
+
+
+
+

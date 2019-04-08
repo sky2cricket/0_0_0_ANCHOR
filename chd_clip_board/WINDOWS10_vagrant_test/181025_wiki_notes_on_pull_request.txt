@@ -1,0 +1,379 @@
+﻿181025_wiki_notes_on_pull_request.txt
+
+ORIGINAL WIKI NOTES FROM
+
+https://github.com/utkdigitalinitiatives/TRACE
+
+go back in time and pull another branch.
+
+git ls-remote make a new branch
+------------------------------------------------
+
+$ git pull
+$ git ls-remote
+   7c77cac00be703161ac74c5195575c3c2586c789	HEAD
+   6e2ae423632242cebde7ace64766d6497286a43e	refs/heads/Sprint-#1
+   fb7dde6bfc14efa6c8bcc5d26cd7426c45c40ed9	refs/heads/Sprint-#2
+   7c77cac00be703161ac74c5195575c3c2586c789	refs/heads/master
+   c9cc0fc8280950d707d3059427257679d34b3307	refs/pull/1/head
+
+$ git fetch origin pull/1/head:pr-1
+$ git checkout pr-1
+
+DELETE WHEN DONE
+git branch -D pr-1
+
+==========================
+$ git fetch origin pull/56/head:pr-56  
+
+
+
+   
+
+
+
+
+
+------------------------------------------------
+
+==================cmer transcript=======================
+
+
+
+C:\Users\cdeane
+λ mkdir git-v2.19.1
+
+C:\Users\cdeane
+λ cd git-v2.19.1\
+
+C:\Users\cdeane\git-v2.19.1
+λ git config --global user.name="cdeaneGit"
+error: invalid key: user.name=cdeaneGit
+
+C:\Users\cdeane\git-v2.19.1
+λ git config --global user.name "cdeaneGit"
+
+C:\Users\cdeane\git-v2.19.1
+λ git config --global user.email "cdeane@utk.edu"
+
+C:\Users\cdeane\git-v2.19.1
+λ git clone https://github.com/utkdigitalinitiatives/TRACE
+Cloning into 'TRACE'...
+remote: Enumerating objects: 23, done.
+remote: Counting objects: 100% (23/23), done.
+remote: Compressing objects: 100% (21/21), done.
+remote: Total 3626 (delta 7), reused 15 (delta 2), pack-reused 3603
+Receiving objects: 100% (3626/3626), 6.40 MiB | 7.84 MiB/s, done.
+Resolving deltas: 100% (2559/2559), done.
+
+C:\Users\cdeane\git-v2.19.1
+λ cd TRACE\
+
+C:\Users\cdeane\git-v2.19.1\TRACE (master -> origin)
+λ ls
+README.md  ROADMAP.md  Vagrantfile  build/  configs/  files/  scripts/
+
+C:\Users\cdeane\git-v2.19.1\TRACE (master -> origin)
+λ ls
+README.md  ROADMAP.md  Vagrantfile  build/  configs/  files/  scripts/
+
+C:\Users\cdeane\git-v2.19.1\TRACE (master -> origin)
+λ vi Vagrantfile
+
+C:\Users\cdeane\git-v2.19.1\TRACE (master -> origin)
+λ !v
+History expansion: vi Vagrantfile
+
+C:\Users\cdeane\git-v2.19.1\TRACE (master -> origin)
+λ echo "NO CHANGES TO Vagrantfile"
+"NO CHANGES TO Vagrantfile"
+
+C:\Users\cdeane\git-v2.19.1\TRACE (master -> origin)
+λ ls build
+
+C:\Users\cdeane\git-v2.19.1\TRACE (master -> origin)
+λ cd ..
+
+C:\Users\cdeane\git-v2.19.1
+λ rm -rf
+
+C:\Users\cdeane\git-v2.19.1
+λ ls
+TRACE/
+
+C:\Users\cdeane\git-v2.19.1
+λ rm -rf TRACE
+
+C:\Users\cdeane\git-v2.19.1
+λ ls
+
+C:\Users\cdeane\git-v2.19.1
+λ git clone --recursive TRACE
+fatal: repository 'TRACE' does not exist
+
+C:\Users\cdeane\git-v2.19.1
+λ ls
+
+C:\Users\cdeane\git-v2.19.1
+λ git clone --recursive https://github.com/utkdigitalinitiatives/TRACE
+Cloning into 'TRACE'...
+remote: Enumerating objects: 23, done.
+remote: Counting objects: 100% (23/23), done.
+remote: Compressing objects: 100% (21/21), done.
+remote: Total 3626 (delta 7), reused 15 (delta 2), pack-reused 3603
+Receiving objects: 100% (3626/3626), 6.40 MiB | 9.40 MiB/s, done.
+Resolving deltas: 100% (2559/2559), done.
+Submodule 'build' (https://github.com/utkdigitalinitiatives/shell-ci-build.git) registered for path 'build'
+Cloning into 'C:/Users/cdeane/git-v2.19.1/TRACE/build'...
+remote: Enumerating objects: 199, done.
+remote: Total 199 (delta 0), reused 0 (delta 0), pack-reused 199
+Receiving objects: 100% (199/199), 28.54 KiB | 3.17 MiB/s, done.
+Resolving deltas: 100% (90/90), done.
+Submodule path 'build': checked out '6bce086396145817a0a7821332645176bf6648c1'
+
+C:\Users\cdeane\git-v2.19.1
+λ ls build
+ls: cannot access 'build': No such file or directory
+
+C:\Users\cdeane\git-v2.19.1
+λ cd TRACE
+
+C:\Users\cdeane\git-v2.19.1\TRACE (master -> origin)
+λ ls build
+LICENSE  README.md  build.sh*  install.sh*  shippable.yml.example  tests/  travis.yml.example
+
+C:\Users\cdeane\git-v2.19.1\TRACE (master -> origin)
+λ vagrant up
+Bringing machine 'default' up with 'virtualbox' provider...
+==> default: Box 'TRACE' could not be found. Attempting to find and install...
+    default: Box Provider: virtualbox
+    default: Box Version: >= 0
+==> default: Loading metadata for box 'http://dlwork.lib.utk.edu/vboxes/u14plus.json'
+    default: URL: http://dlwork.lib.utk.edu/vboxes/u14plus.json
+==> default: Adding box 'TRACE' (v0.1.7.1) for provider: virtualbox
+    default: Downloading: http://dlwork.lib.utk.edu/vboxes/u14plus-0.1.7.1.box
+    default:
+    default: Calculating and comparing box checksum...
+==> default: Successfully added box 'TRACE' (v0.1.7.1) for 'virtualbox'!
+==> default: Importing base box 'TRACE'...
+==> default: Matching MAC address for NAT networking...
+==> default: Checking if box 'TRACE' is up to date...
+==> default: Setting the name of the VM: TRACE_default_1540476739954_80
+==> default: Clearing any previously set network interfaces...
+==> default: Preparing network interfaces based on configuration...
+    default: Adapter 1: nat
+==> default: Forwarding ports...
+    default: 8080 (guest) => 8080 (host) (adapter 1)
+    default: 3306 (guest) => 3306 (host) (adapter 1)
+    default: 8000 (guest) => 8000 (host) (adapter 1)
+    default: 22 (guest) => 2222 (host) (adapter 1)
+==> default: Running 'pre-boot' VM customizations...
+==> default: Booting VM...
+==> default: Waiting for machine to boot. This may take a few minutes...
+    default: SSH address: 127.0.0.1:2222
+    default: SSH username: vagrant
+    default: SSH auth method: private key
+==> default: Machine booted and ready!
+==> default: Checking for guest additions in VM...
+    default: The guest additions on this VM do not match the installed version of
+    default: VirtualBox! In most cases this is fine, but in rare cases it can
+    default: prevent things such as shared folders from working properly. If you see
+    default: shared folder errors, please make sure the guest additions within the
+    default: virtual machine match the version of VirtualBox you have installed on
+    default: your host and reload your VM.
+    default:
+    default: Guest Additions Version: 4.3.36
+    default: VirtualBox Version: 5.2
+==> default: Setting hostname...
+==> default: Mounting shared folders...
+    default: /vagrant => C:/Users/cdeane/git-v2.19.1/TRACE
+==> default: Running provisioner: shell...
+    default: Running: C:/Users/cdeane/AppData/Local/Temp/vagrant-shell20181025-5188-1vw07fl.sh
+    default: Installing all Islandora Foundation modules
+    default: OS = ubuntu
+    default:   APACHEGROUP = www-data
+    default: Setting permissions and ownership for Drupal directories
+    default: Cloning Islandora modules
+    default: Cloning into 'islandora'...
+    default: Cloning into 'islandora_bagit'...
+    default: Cloning into 'islandora_batch'...
+    default: Cloning into 'islandora_book_batch'...
+    default: Cloning into 'islandora_checksum'...
+    default: Cloning into 'islandora_checksum_checker'...
+    default: Cloning into 'islandora_fits'...
+    default: Cloning into 'islandora_importer'...
+    default: Cloning into 'islandora_internet_archive_bookreader'...
+    default: Cloning into 'islandora_oai'...
+    default: Cloning into 'islandora_ocr'...
+    default: Cloning into 'islandora_openseadragon'...
+    default: Cloning into 'islandora_paged_content'...
+    default: Cloning into 'islandora_pathauto'...
+    default: Cloning into 'islandora_pdfjs'...
+    default: Cloning into 'islandora_populator'...
+    default: Cloning into 'islandora_solr_search'...
+    default: Cloning into 'islandora_solr_views'...
+    default: Cloning into 'islandora_solution_pack_book'...
+    default: Cloning into 'islandora_solution_pack_collection'...
+    default: Cloning into 'islandora_solution_pack_image'...
+    default: Cloning into 'islandora_solution_pack_large_image'...
+    default: Cloning into 'islandora_solution_pack_pdf'...
+    default: Cloning into 'islandora_solution_pack_compound'...
+    default: Cloning into 'islandora_usage_stats'...
+    default: Cloning into 'islandora_xacml_editor'...
+    default: Cloning into 'islandora_xmlsitemap'...
+    default: Cloning into 'objective_forms'...
+    default: Cloning into 'php_lib'...
+: No such file or directoryhell: line 47: cd: islandora
+The SSH command responded with a non-zero exit status. Vagrant
+assumes that this means the command failed. The output for this command
+should be in the log above. Please read the output to determine what
+went wrong.
+
+C:\Users\cdeane\git-v2.19.1\TRACE (master -> origin)
+λ ls ..\..\.vagrant.d\boxes\
+TRACE/
+
+C:\Users\cdeane\git-v2.19.1\TRACE (master -> origin)
+λ vagrant destroy
+    default: Are you sure you want to destroy the 'default' VM? [y/N] y
+==> default: Forcing shutdown of VM...
+==> default: Destroying VM and associated drives...
+
+C:\Users\cdeane\git-v2.19.1\TRACE (master -> origin)
+λ rm -rf ..\..\.vagrant.d\\boxes\TRACE
+
+C:\Users\cdeane\git-v2.19.1\TRACE (master -> origin)
+λ echo """""""""""""""""""""""VERIFY CLEAN ENVIrONMENT""""""""""""""""""""""""""""
+"""""""""""""""""""""""VERIFY CLEAN ENVIrONMENT""""""""""""""""""""""""""""
+
+C:\Users\cdeane\git-v2.19.1\TRACE (master -> origin)
+λ
+C:\Users\cdeane\git-v2.19.1\TRACE (master -> origin)
+λ git pull --all
+Fetching origin
+Already up to date.
+
+C:\Users\cdeane\git-v2.19.1\TRACE (master -> origin)
+λ git ls-remote
+From https://github.com/utkdigitalinitiatives/TRACE
+13aa07066f197c18d80cadbc402baabce43268f2        HEAD
+6e2ae423632242cebde7ace64766d6497286a43e        refs/heads/Sprint-#1
+d10dc3e89868294efe7958b63166799096672772        refs/heads/Sprint-#10
+d6f0bb91f0553c3e243466bde2c608829546881f        refs/heads/Sprint-#11
+7cedf451c1b3a303d04cc9d83358e4f9e6516bd5        refs/heads/Sprint-#2
+74632a9c2773f093394632bee9c83e251f9c6bc6        refs/heads/Sprint-#3
+9cacd409e03dbf372698a81da229918c72fe0a77        refs/heads/Sprint-#4
+9b82287af0afa939a501828a1cacff046a6565f3        refs/heads/Sprint-#5
+2a0c482850a028b9709957b4c7b85e8e7bc85e9c        refs/heads/Sprint-#6
+94a4bb293474c64b1bf6673fd19589c87a1c9b9d        refs/heads/Sprint-#7
+2b1d194aa194cf1e413cb2f26898fd1d7e624e3a        refs/heads/Sprint-#8
+0cdbe2748ec257898df0ef1ff823cc1645c2a160        refs/heads/Sprint-#9
+00c673c6c6ebf7e85f80b87724dd786a5808a67e        refs/heads/TRAC-1016-trace
+cc0a3fd52d90932f9155d74106df1dbc375d19bc        refs/heads/TRAC-1068-trace
+ef1ec66169cf88e2e3ded39eb758cb58f034164a        refs/heads/TRAC-1077
+a9f7a5218b9ab2e06d7ec59c1a4f5e864229085c        refs/heads/TRAC-1132-trace
+29f4f99b8d7bd8b205285e1d4d3465852119e6d5        refs/heads/TRAC-1138-rpw
+c45ec90ebc64a806969c07851063d79f0841b874        refs/heads/TRAC-1144-chd-trace-new2
+bc186cae5491546a00e16867d7999b9168ad0a66        refs/heads/TRAC-1191
+a1da79d46fe80d77b5a2bcd510f0935834fc6726        refs/heads/TRAC-845-trace-chd
+ce62137e89117dac50e0e06bcc06ad5ff69d960e        refs/heads/halloween
+13aa07066f197c18d80cadbc402baabce43268f2        refs/heads/master
+1bbf8c21f22ed8ef333f6c04ffd796b00bb65f55        refs/heads/public-switch
+90d57fd85c1070c48de75dd848ea68b68d032e81        refs/heads/simulated_production_env
+c9cc0fc8280950d707d3059427257679d34b3307        refs/pull/1/head
+6975a494ad578b4f9edcb007eedd7cf8ed145116        refs/pull/10/head
+8d15e17f989a8fed2bab3ddfeb2c3aa4fbfef886        refs/pull/10/merge
+e5d3fbc1cacf85014382c9e3aa3c7d3ffdd88129        refs/pull/11/head
+1a33badc6748abc0edd72d09287954627f065333        refs/pull/12/head
+069fdd8734d1b03bf3e4c7daa165980058268c72        refs/pull/12/merge
+8be3d0006f7a436744e62791f2f421a73f9f644c        refs/pull/13/head
+d0024e88a54c0735448611152c4ce14164aff164        refs/pull/13/merge
+0cdbe2748ec257898df0ef1ff823cc1645c2a160        refs/pull/14/head
+d10dc3e89868294efe7958b63166799096672772        refs/pull/15/head
+a1ed988e8cc5220f0cf1bc6f9083de23e9ba2672        refs/pull/16/head
+f7fe7c6c1b2bb3c975b16a517f8b32b9cbf6f96d        refs/pull/17/head
+93871d4cfd17008dc5bd3e120323d8b6e0018b98        refs/pull/18/head
+70a86d9ad1404eaf600daceb7422aef6f2673495        refs/pull/18/merge
+d6f0bb91f0553c3e243466bde2c608829546881f        refs/pull/19/head
+2e178e02ea401fc5dbc94127a2a3244931da93c7        refs/pull/2/head
+51d55eae72e65f92ab6c701bd876b5111f4fe8e0        refs/pull/20/head
+cb06765a3749be4bbf84f20704cfa04745dff7af        refs/pull/21/head
+beb794e51a41e62c6821d60369d05f2cb01f556c        refs/pull/22/head
+02b4aad47f06983aefc7278ff27c6276c4512eaa        refs/pull/23/head
+945aa6da5c8a9411559b1b281b3ff56a6aac3294        refs/pull/24/head
+a4d4d7ccfbccb43475dbc41f3968325b9de27be7        refs/pull/25/head
+9d83b036bdb66b2c33032e6c12e7735e6960162f        refs/pull/26/head
+e822fb88d73aabd341505f17e89fd33279b8b95d        refs/pull/27/head
+218f9e54dcd3b71918af4fd36d00bf20a25ff631        refs/pull/28/head
+04bac9dc79600d1d546303f5acba9e01082bf8e9        refs/pull/29/head
+9cacd409e03dbf372698a81da229918c72fe0a77        refs/pull/3/head
+eb370c9cf0f3a296c12865355a4e1adcac07ea1c        refs/pull/30/head
+598d0e63e7f4250e7004ca7bd52d61168b099805        refs/pull/31/head
+a565a7d365463304b89c4ae7c02a1c342637a5f8        refs/pull/32/head
+9ecda79cac7cf50af39ab6853ff71ebfb65d5bbb        refs/pull/33/head
+da5f87e655f251cbff5ed7f5eb34d086fe276ee6        refs/pull/34/head
+b87cf4ad80640f81ab79f1aefee61537c0bec1cc        refs/pull/35/head
+fa09214d93a7ee7f506b91f41a6e4f0f687d237b        refs/pull/36/head
+9873c64dcd6a26a87aec0b99f21301b7c1ed1dab        refs/pull/37/head
+476543b2a6ff2d573396b8768f8dd96c5e591b81        refs/pull/38/head
+a8d222f2f3e9514e046935f48b7994babd356cd1        refs/pull/39/head
+9b82287af0afa939a501828a1cacff046a6565f3        refs/pull/4/head
+18d95d1ce2c864d45853f16f5b0266babb9bb0e4        refs/pull/40/head
+97a255fc8471d5f28c955dfbc43adf711d774161        refs/pull/41/head
+e0b02462e59100e7754aee89e8ed12e4f8232961        refs/pull/42/head
+e73c870626d74697878a7df36d33b143b353bc68        refs/pull/42/merge
+4f85c0f3f2782e34840535a1902e1c536d411fd9        refs/pull/43/head
+4f7050e9f0f06ae11963e85a49514971232d7e3a        refs/pull/44/head
+9bfb02efda5811932fef5317341d894e914fd7f5        refs/pull/45/head
+6c5ddd1cb45606e3d3c0f453a7a437364383a75e        refs/pull/46/head
+e6fe38ae350d5b265bf9a768e211ad26bb37481c        refs/pull/46/merge
+b597d089b1c584e6dec901cb0a0d7209883b1cf5        refs/pull/47/head
+232c3cc59985b2b72bcc1af99d708f2a84f657bd        refs/pull/48/head
+6307febe2f1967d04fae34151b52098eb54d9ce5        refs/pull/49/head
+9a99ba9436b8f5e56ccfe337c5e8dde5f418b1fa        refs/pull/49/merge
+0da23d44e34cbdac3f5aa378a99f3d724cfe6bb7        refs/pull/5/head
+cc0a3fd52d90932f9155d74106df1dbc375d19bc        refs/pull/50/head
+29f4f99b8d7bd8b205285e1d4d3465852119e6d5        refs/pull/51/head
+927a2e64273b904f0290305a0de194634bdd853a        refs/pull/52/head
+2987051c36cbedd08e0903ab8ab569885b68f554        refs/pull/53/head
+2824e5136debf8b1c02cfd71717233e9711e60d7        refs/pull/54/head
+bc186cae5491546a00e16867d7999b9168ad0a66        refs/pull/55/head
+1bbf8c21f22ed8ef333f6c04ffd796b00bb65f55        refs/pull/56/head
+3448791d5293f789e26a234530257519253c1ecb        refs/pull/56/merge
+94a4bb293474c64b1bf6673fd19589c87a1c9b9d        refs/pull/6/head
+afdc7f83a61c9efffc7474a7a2419ba21f2c833a        refs/pull/7/head
+2ef9d7251c6bea015a23ff20d98f53de83c61464        refs/pull/7/merge
+2b1d194aa194cf1e413cb2f26898fd1d7e624e3a        refs/pull/8/head
+6975a494ad578b4f9edcb007eedd7cf8ed145116        refs/pull/9/head
+571e2c3985c144b12869e4ba4b4e23a06d519047        refs/pull/9/merge
+
+C:\Users\cdeane\git-v2.19.1\TRACE (master -> origin)
+λ git branch -a
+* master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/Sprint-#1
+  remotes/origin/Sprint-#10
+  remotes/origin/Sprint-#11
+  remotes/origin/Sprint-#2
+  remotes/origin/Sprint-#3
+  remotes/origin/Sprint-#4
+  remotes/origin/Sprint-#5
+  remotes/origin/Sprint-#6
+  remotes/origin/Sprint-#7
+  remotes/origin/Sprint-#8
+  remotes/origin/Sprint-#9
+  remotes/origin/TRAC-1016-trace
+  remotes/origin/TRAC-1068-trace
+  remotes/origin/TRAC-1077
+  remotes/origin/TRAC-1132-trace
+  remotes/origin/TRAC-1138-rpw
+  remotes/origin/TRAC-1144-chd-trace-new2
+  remotes/origin/TRAC-1191
+  remotes/origin/TRAC-845-trace-chd
+  remotes/origin/halloween
+  remotes/origin/master
+  remotes/origin/public-switch
+  remotes/origin/simulated_production_env
+
+C:\Users\cdeane\git-v2.19.1\TRACE (master -> origin)
+λ

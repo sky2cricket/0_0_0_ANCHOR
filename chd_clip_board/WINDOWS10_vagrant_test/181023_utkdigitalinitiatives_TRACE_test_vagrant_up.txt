@@ -1,0 +1,391 @@
+﻿181023_TRACE_vagrant_up.txt
+
+basic initial setup
+
+install
+
+VirtualBox-5.2.20
+Oracle_VM_VirtualBox_Extension_Pack-5.2.20.vbox-extpack
+VirtualBox 5.2.20 Software Developer Kit (SDK)-- Oracle VirtualBoxSDK-5.2.20-123813.zip
+
+Vagrant_2.2.0_x86_64.msi
+
+Then make 3 repos
+
+grepoA  ------ for utkdititalinitiatives/islandora_vagrant
+
+grepoB  ------ for utkdigitalinitiatives/TRACE
+
+grepoLabs   -- for Islandora-Labs/islandora_vagrant
+
+
+This is for testing vagrant up with TRACE on windows 10 cricketsurface
+
+
+utkdigitalinitiatives/TRACE
+================cmder transcript=============================
+
+
+
+C:\Users\cdeane
+λ cd grepoB
+
+C:\Users\cdeane\grepoB (master -> origin)
+λ ls
+TRACE/
+
+C:\Users\cdeane\grepoB (master -> origin)
+λ cd TRACE
+
+C:\Users\cdeane\grepoB\TRACE (master -> origin)
+λ ls ..\..\.vagrant.d\boxes
+
+C:\Users\cdeane\grepoB\TRACE (master -> origin)
+λ vagrant status
+Current machine states:
+
+default                   not created (virtualbox)
+
+The environment has not yet been created. Run `vagrant up` to
+create the environment. If a machine is not created, only the
+default provider will be shown. So if a provider is not listed,
+then the machine is not created for that environment.
+
+C:\Users\cdeane\grepoB\TRACE (master -> origin)
+λ ls build
+LICENSE  README.md  build.sh*  install.sh*  shippable.yml.example  tests/  travis.yml.example
+
+C:\Users\cdeane\grepoB\TRACE (master -> origin)
+λ echo "That was a check to make sure git clone --recursive as used in this repo"
+"That was a check to make sure git clone --recursive as used in this repo"
+
+C:\Users\cdeane\grepoB\TRACE (master -> origin)
+λ vagrant up
+Bringing machine 'default' up with 'virtualbox' provider...
+==> default: Box 'TRACE' could not be found. Attempting to find and install...
+    default: Box Provider: virtualbox
+    default: Box Version: >= 0
+==> default: Loading metadata for box 'http://dlwork.lib.utk.edu/vboxes/u14plus.json'
+    default: URL: http://dlwork.lib.utk.edu/vboxes/u14plus.json
+==> default: Adding box 'TRACE' (v0.1.7.1) for provider: virtualbox
+    default: Downloading: http://dlwork.lib.utk.edu/vboxes/u14plus-0.1.7.1.box
+    default:
+    default: Calculating and comparing box checksum...
+==> default: Successfully added box 'TRACE' (v0.1.7.1) for 'virtualbox'!
+==> default: Importing base box 'TRACE'...
+==> default: Matching MAC address for NAT networking...
+==> default: Checking if box 'TRACE' is up to date...
+==> default: Setting the name of the VM: TRACE_default_1540303261870_8759
+==> default: Clearing any previously set network interfaces...
+==> default: Preparing network interfaces based on configuration...
+    default: Adapter 1: nat
+==> default: Forwarding ports...
+    default: 8080 (guest) => 8080 (host) (adapter 1)
+    default: 3306 (guest) => 3306 (host) (adapter 1)
+    default: 8000 (guest) => 8000 (host) (adapter 1)
+    default: 22 (guest) => 2222 (host) (adapter 1)
+==> default: Running 'pre-boot' VM customizations...
+==> default: Booting VM...
+==> default: Waiting for machine to boot. This may take a few minutes...
+    default: SSH address: 127.0.0.1:2222
+    default: SSH username: vagrant
+    default: SSH auth method: private key
+==> default: Machine booted and ready!
+==> default: Checking for guest additions in VM...
+    default: The guest additions on this VM do not match the installed version of
+    default: VirtualBox! In most cases this is fine, but in rare cases it can
+    default: prevent things such as shared folders from working properly. If you see
+    default: shared folder errors, please make sure the guest additions within the
+    default: virtual machine match the version of VirtualBox you have installed on
+    default: your host and reload your VM.
+    default:
+    default: Guest Additions Version: 4.3.36
+    default: VirtualBox Version: 5.2
+==> default: Setting hostname...
+==> default: Mounting shared folders...
+    default: /vagrant => C:/Users/cdeane/grepoB/TRACE
+==> default: Running provisioner: shell...
+    default: Running: C:/Users/cdeane/AppData/Local/Temp/vagrant-shell20181023-11544-1a68wf3.sh
+    default: Installing all Islandora Foundation modules
+    default: OS = ubuntu
+    default:   APACHEGROUP = www-data
+    default: Setting permissions and ownership for Drupal directories
+    default: Cloning Islandora modules
+    default: Cloning into 'islandora'...
+    default: Cloning into 'islandora_bagit'...
+    default: Cloning into 'islandora_batch'...
+    default: Cloning into 'islandora_book_batch'...
+    default: Cloning into 'islandora_checksum'...
+    default: Cloning into 'islandora_checksum_checker'...
+    default: Cloning into 'islandora_fits'...
+    default: Cloning into 'islandora_importer'...
+    default: Cloning into 'islandora_internet_archive_bookreader'...
+    default: Cloning into 'islandora_oai'...
+    default: Cloning into 'islandora_ocr'...
+    default: Cloning into 'islandora_openseadragon'...
+    default: Cloning into 'islandora_paged_content'...
+    default: Cloning into 'islandora_pathauto'...
+    default: Cloning into 'islandora_pdfjs'...
+    default: Cloning into 'islandora_populator'...
+    default: Cloning into 'islandora_solr_search'...
+    default: Cloning into 'islandora_solr_views'...
+    default: Cloning into 'islandora_solution_pack_book'...
+    default: Cloning into 'islandora_solution_pack_collection'...
+    default: Cloning into 'islandora_solution_pack_image'...
+    default: Cloning into 'islandora_solution_pack_large_image'...
+    default: Cloning into 'islandora_solution_pack_pdf'...
+    default: Cloning into 'islandora_solution_pack_compound'...
+    default: Cloning into 'islandora_usage_stats'...
+    default: Cloning into 'islandora_xacml_editor'...
+    default: Cloning into 'islandora_xmlsitemap'...
+    default: Cloning into 'objective_forms'...
+    default: Cloning into 'php_lib'...
+: No such file or directoryhell: line 47: cd: islandora
+The SSH command responded with a non-zero exit status. Vagrant
+assumes that this means the command failed. The output for this command
+should be in the log above. Please read the output to determine what
+went wrong.
+
+C:\Users\cdeane\grepoB\TRACE (master -> origin)
+λ vagrant ssh
+Welcome to Ubuntu 14.04.5 LTS (GNU/Linux 3.13.0-121-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com/
+
+  System information as of Tue Oct 23 10:01:30 EDT 2018
+
+  System load:  0.92              Processes:           100
+  Usage of /:   9.8% of 39.34GB   Users logged in:     0
+  Memory usage: 6%                IP address for eth0: 10.0.2.15
+  Swap usage:   0%
+
+  Graph this data and manage this system at:
+    https://landscape.canonical.com/
+
+  Get cloud support with Ubuntu Advantage Cloud Guest:
+    http://www.ubuntu.com/business/services/cloud
+
+
+Last login: Tue Jun 27 09:21:09 2017 from 10.0.2.2
+vagrant@trace:~$ pwd
+/home/vagrant
+vagrant@trace:~$ cd /
+vagrant@trace:/$ ls -la /home/vagrant
+total 40
+drwxr-xr-x 5 vagrant vagrant 4096 Jun 27  2017 .
+drwxr-xr-x 4 root    root    4096 Mar  5  2017 ..
+-rw------- 1 vagrant vagrant  613 Jun 27  2017 .bash_history
+-rw-r--r-- 1 vagrant vagrant  220 Apr  8  2014 .bash_logout
+-rw-r--r-- 1 vagrant vagrant 3637 Apr  8  2014 .bashrc
+drwx------ 2 vagrant vagrant 4096 Mar  5  2017 .cache
+drwxrwxrwx 3 vagrant root    4096 Jun 27  2017 .drush
+-rw-r--r-- 1 vagrant vagrant  675 Apr  8  2014 .profile
+drwx------ 2 vagrant vagrant 4096 Mar  5  2017 .ssh
+-rw------- 1 root    root     862 Jun 27  2017 .viminfo
+vagrant@trace:/$ ls -la /var/www/drupal
+total 304
+drwxrwxr-x  9 www-data www-data   4096 Jun 27  2017 .
+drwxr-xr-x  4 root     root       4096 Mar  5  2017 ..
+-rw-r--r--  1 root     root       6604 Jun 21  2017 authorize.php
+-rw-r--r--  1 root     root     111613 Jun 21  2017 CHANGELOG.txt
+-rw-r--r--  1 root     root       1481 Jun 21  2017 COPYRIGHT.txt
+-rw-r--r--  1 root     root        720 Jun 21  2017 cron.php
+-rw-r--r--  1 root     root        317 Jun 21  2017 .editorconfig
+-rw-r--r--  1 root     root        174 Jun 21  2017 .gitignore
+-rw-r--r--  1 root     root       6112 Jun 21  2017 .htaccess
+drwxr-xr-x  4 root     root       4096 Jun 21  2017 includes
+-rw-r--r--  1 root     root        529 Jun 21  2017 index.php
+-rw-r--r--  1 root     root       1717 Jun 21  2017 INSTALL.mysql.txt
+-rw-r--r--  1 root     root       1874 Jun 21  2017 INSTALL.pgsql.txt
+-rw-r--r--  1 root     root        703 Jun 21  2017 install.php
+-rw-r--r--  1 root     root       1298 Jun 21  2017 INSTALL.sqlite.txt
+-rw-r--r--  1 root     root      17995 Jun 21  2017 INSTALL.txt
+-rw-r--r--  1 root     root      18092 Nov 16  2016 LICENSE.txt
+-rw-r--r--  1 root     root       8710 Jun 21  2017 MAINTAINERS.txt
+drwxr-xr-x  4 root     root       4096 Jun 21  2017 misc
+drwxr-xr-x 42 root     root       4096 Jun 21  2017 modules
+drwxr-xr-x  5 root     root       4096 Jun 21  2017 profiles
+-rw-r--r--  1 root     root       5382 Jun 21  2017 README.txt
+-rw-r--r--  1 root     root       2189 Jun 21  2017 robots.txt
+drwxr-xr-x  2 root     root       4096 Jun 21  2017 scripts
+drwxrwxr-x  4 www-data www-data   4096 Mar  5  2017 sites
+drwxr-xr-x  7 root     root       4096 Jun 21  2017 themes
+-rw-r--r--  1 root     root      19986 Jun 21  2017 update.php
+-rw-r--r--  1 root     root      10123 Jun 21  2017 UPGRADE.txt
+-rw-r--r--  1 root     root       2200 Jun 21  2017 web.config
+-rw-r--r--  1 root     root        417 Jun 21  2017 xmlrpc.php
+vagrant@trace:/$ ls -la
+total 92
+drwxr-xr-x  24 root    root     4096 Oct 23 10:01 .
+drwxr-xr-x  24 root    root     4096 Oct 23 10:01 ..
+drwxr-xr-x   2 root    root     4096 Jun 27  2017 bin
+drwxr-xr-x   3 root    root     4096 Jun 27  2017 boot
+drwxr-xr-x   3 root    root     4096 Mar  5  2017 build
+drwxr-xr-x  13 root    root     3880 Oct 23 10:01 dev
+drwxr-xr-x 118 root    root     4096 Oct 23 10:01 etc
+drwxr-xr-x   4 root    root     4096 Mar  5  2017 home
+lrwxrwxrwx   1 root    root       34 Jun 27  2017 initrd.img -> boot/initrd.img-3.13.0-121-generic
+lrwxrwxrwx   1 root    root       34 Mar  2  2017 initrd.img.old -> boot/initrd.img-3.13.0-110-generic
+drwxr-xr-x  22 root    root     4096 Mar  2  2017 lib
+drwxr-xr-x   2 root    root     4096 Jun 27  2017 lib64
+drwx------   2 root    root    16384 Mar  2  2017 lost+found
+drwxr-xr-x   2 root    root     4096 Mar  2  2017 media
+drwxr-xr-x   2 root    root     4096 Apr 10  2014 mnt
+drwxr-xr-x   3 root    root     4096 Mar  5  2017 opt
+dr-xr-xr-x 104 root    root        0 Oct 23 10:01 proc
+drwx------   7 root    root     4096 Jun 27  2017 root
+drwxr-xr-x  25 root    root      900 Oct 23 10:12 run
+drwxr-xr-x   2 root    root     4096 Jun 27  2017 sbin
+drwxr-xr-x   2 root    root     4096 Mar  2  2017 srv
+dr-xr-xr-x  13 root    root        0 Oct 23 10:01 sys
+drwxrwxrwt   7 root    root     4096 Oct 23 10:09 tmp
+drwxr-xr-x  10 root    root     4096 Mar  2  2017 usr
+drwxrwxrwx   1 vagrant vagrant  4096 Oct 23 09:52 vagrant
+drwxr-xr-x  14 root    root     4096 Mar  5  2017 var
+lrwxrwxrwx   1 root    root       31 Jun 27  2017 vmlinuz -> boot/vmlinuz-3.13.0-121-generic
+lrwxrwxrwx   1 root    root       31 Mar  2  2017 vmlinuz.old -> boot/vmlinuz-3.13.0-110-generic
+vagrant@trace:/$ ls -la /var/www/drupal
+total 304
+drwxrwxr-x  9 www-data www-data   4096 Jun 27  2017 .
+drwxr-xr-x  4 root     root       4096 Mar  5  2017 ..
+-rw-r--r--  1 root     root       6604 Jun 21  2017 authorize.php
+-rw-r--r--  1 root     root     111613 Jun 21  2017 CHANGELOG.txt
+-rw-r--r--  1 root     root       1481 Jun 21  2017 COPYRIGHT.txt
+-rw-r--r--  1 root     root        720 Jun 21  2017 cron.php
+-rw-r--r--  1 root     root        317 Jun 21  2017 .editorconfig
+-rw-r--r--  1 root     root        174 Jun 21  2017 .gitignore
+-rw-r--r--  1 root     root       6112 Jun 21  2017 .htaccess
+drwxr-xr-x  4 root     root       4096 Jun 21  2017 includes
+-rw-r--r--  1 root     root        529 Jun 21  2017 index.php
+-rw-r--r--  1 root     root       1717 Jun 21  2017 INSTALL.mysql.txt
+-rw-r--r--  1 root     root       1874 Jun 21  2017 INSTALL.pgsql.txt
+-rw-r--r--  1 root     root        703 Jun 21  2017 install.php
+-rw-r--r--  1 root     root       1298 Jun 21  2017 INSTALL.sqlite.txt
+-rw-r--r--  1 root     root      17995 Jun 21  2017 INSTALL.txt
+-rw-r--r--  1 root     root      18092 Nov 16  2016 LICENSE.txt
+-rw-r--r--  1 root     root       8710 Jun 21  2017 MAINTAINERS.txt
+drwxr-xr-x  4 root     root       4096 Jun 21  2017 misc
+drwxr-xr-x 42 root     root       4096 Jun 21  2017 modules
+drwxr-xr-x  5 root     root       4096 Jun 21  2017 profiles
+-rw-r--r--  1 root     root       5382 Jun 21  2017 README.txt
+-rw-r--r--  1 root     root       2189 Jun 21  2017 robots.txt
+drwxr-xr-x  2 root     root       4096 Jun 21  2017 scripts
+drwxrwxr-x  4 www-data www-data   4096 Mar  5  2017 sites
+drwxr-xr-x  7 root     root       4096 Jun 21  2017 themes
+-rw-r--r--  1 root     root      19986 Jun 21  2017 update.php
+-rw-r--r--  1 root     root      10123 Jun 21  2017 UPGRADE.txt
+-rw-r--r--  1 root     root       2200 Jun 21  2017 web.config
+-rw-r--r--  1 root     root        417 Jun 21  2017 xmlrpc.php
+vagrant@trace:/$ ls -la /var/www/drupal/sites
+total 24
+drwxrwxr-x 4 www-data www-data 4096 Mar  5  2017 .
+drwxrwxr-x 9 www-data www-data 4096 Jun 27  2017 ..
+drwxrwxr-x 5 www-data www-data 4096 Mar  5  2017 all
+dr-xr-xr-x 3 www-data www-data 4096 Mar  5  2017 default
+-rw-rw-r-- 1 www-data www-data 2365 Feb  1  2017 example.sites.php
+-rw-rw-r-- 1 www-data www-data  904 Feb  1  2017 README.txt
+vagrant@trace:/$ ls -la /var/www/drupal/sites/all
+total 20
+drwxrwxr-x  5 www-data www-data 4096 Mar  5  2017 .
+drwxrwxr-x  4 www-data www-data 4096 Mar  5  2017 ..
+drwxr-xr-x  2 vagrant  www-data 4096 Mar  5  2017 libraries
+drwxr-xr-x 44 vagrant  www-data 4096 Oct 23 10:02 modules
+drwxrwxr-x  2 www-data www-data 4096 Mar  5  2017 themes
+vagrant@trace:/$ ls -la /var/www/sites/all/libraries
+ls: cannot access /var/www/sites/all/libraries: No such file or directory
+vagrant@trace:/$ ls -la /var/www/drupal/sites/all/libraries
+total 12
+drwxr-xr-x 2 vagrant  www-data 4096 Mar  5  2017 .
+drwxrwxr-x 5 www-data www-data 4096 Mar  5  2017 ..
+-rwxr-xr-x 1 vagrant  www-data  151 Feb  1  2017 README.txt
+vagrant@trace:/$ ls -la /var/www/drupal/sites/all/modules
+total 180
+drwxr-xr-x 44 vagrant  www-data 4096 Oct 23 10:02 .
+drwxrwxr-x  5 www-data www-data 4096 Mar  5  2017 ..
+drwxr-xr-x  7 vagrant  www-data 4096 Jul 12  2016 coder
+drwxr-xr-x 19 vagrant  www-data 4096 Mar  5  2017 ctools
+drwxr-xr-x 12 vagrant  www-data 4096 Apr  7  2017 date
+drwxr-xr-x  4 vagrant  www-data 4096 Mar  5  2017 datepicker
+drwxr-xr-x  4 vagrant  www-data 4096 Mar  5  2017 devel
+drwxr-xr-x  3 vagrant  www-data 4096 Mar  5  2017 imagemagick
+drwxrwxr-x 11 vagrant  vagrant  4096 Oct 23 10:01 islandora
+drwxrwxr-x  7 vagrant  vagrant  4096 Oct 23 10:01 islandora_bagit
+drwxrwxr-x 10 vagrant  vagrant  4096 Oct 23 10:01 islandora_batch
+drwxrwxr-x  6 vagrant  vagrant  4096 Oct 23 10:01 islandora_book_batch
+drwxrwxr-x  7 vagrant  vagrant  4096 Oct 23 10:01 islandora_checksum
+drwxrwxr-x  6 vagrant  vagrant  4096 Oct 23 10:01 islandora_checksum_checker
+drwxrwxr-x  8 vagrant  vagrant  4096 Oct 23 10:01 islandora_fits
+drwxrwxr-x  8 vagrant  vagrant  4096 Oct 23 10:01 islandora_importer
+drwxrwxr-x 11 vagrant  vagrant  4096 Oct 23 10:01 islandora_internet_archive_bookreader
+drwxrwxr-x  8 vagrant  vagrant  4096 Oct 23 10:01 islandora_oai
+drwxrwxr-x  7 vagrant  vagrant  4096 Oct 23 10:02 islandora_ocr
+drwxrwxr-x 11 vagrant  vagrant  4096 Oct 23 10:02 islandora_openseadragon
+drwxrwxr-x 12 vagrant  vagrant  4096 Oct 23 10:02 islandora_paged_content
+drwxrwxr-x  5 vagrant  vagrant  4096 Oct 23 10:02 islandora_pathauto
+drwxrwxr-x  6 vagrant  vagrant  4096 Oct 23 10:02 islandora_pdfjs
+drwxrwxr-x  6 vagrant  vagrant  4096 Oct 23 10:02 islandora_populator
+drwxrwxr-x 14 vagrant  vagrant  4096 Oct 23 10:02 islandora_solr_search
+drwxrwxr-x  6 vagrant  vagrant  4096 Oct 23 10:02 islandora_solr_views
+drwxrwxr-x 11 vagrant  vagrant  4096 Oct 23 10:02 islandora_solution_pack_book
+drwxrwxr-x 12 vagrant  vagrant  4096 Oct 23 10:02 islandora_solution_pack_collection
+drwxrwxr-x 11 vagrant  vagrant  4096 Oct 23 10:02 islandora_solution_pack_compound
+drwxrwxr-x 11 vagrant  vagrant  4096 Oct 23 10:02 islandora_solution_pack_image
+drwxrwxr-x 11 vagrant  vagrant  4096 Oct 23 10:02 islandora_solution_pack_large_image
+drwxrwxr-x 11 vagrant  vagrant  4096 Oct 23 10:02 islandora_solution_pack_pdf
+drwxrwxr-x  7 vagrant  vagrant  4096 Oct 23 10:02 islandora_usage_stats
+drwxrwxr-x  9 vagrant  vagrant  4096 Oct 23 10:02 islandora_xacml_editor
+drwxrwxr-x  5 vagrant  vagrant  4096 Oct 23 10:02 islandora_xmlsitemap
+drwxr-xr-x  4 vagrant  www-data 4096 Mar  5  2017 jquery_update
+drwxr-xr-x  3 vagrant  www-data 4096 Mar  5  2017 libraries
+drwxrwxr-x  6 vagrant  vagrant  4096 Oct 23 10:02 objective_forms
+drwxr-xr-x  2 vagrant  www-data 4096 Mar  5  2017 pathauto
+drwxrwxr-x  8 vagrant  vagrant  4096 Oct 23 10:02 php_lib
+-rwxr-xr-x  1 vagrant  www-data 1474 Feb  1  2017 README.txt
+drwxr-xr-x  3 vagrant  www-data 4096 Mar  5  2017 token
+drwxr-xr-x  8 vagrant  www-data 4096 Mar  5  2017 variable
+drwxr-xr-x 15 vagrant  www-data 4096 Apr  2  2017 views
+drwxr-xr-x 11 vagrant  www-data 4096 Mar  5  2017 xmlsitemap
+vagrant@trace:/$ ls -la /var/www/drupal/sites/all/themes
+total 12
+drwxrwxr-x 2 www-data www-data 4096 Mar  5  2017 .
+drwxrwxr-x 5 www-data www-data 4096 Mar  5  2017 ..
+-rw-rw-r-- 1 www-data www-data 1020 Feb  1  2017 README.txt
+vagrant@trace:/$
+vagrant@trace:/$ echo ' END permissions/ownership check '
+ END permissions/ownership check
+vagrant@trace:/$
+vagrant@trace:/$ exit
+logout
+Connection to 127.0.0.1 closed.
+
+C:\Users\cdeane\grepoB\TRACE (master -> origin)
+λ echo ' START CLEANUP '
+' START CLEANUP '
+
+C:\Users\cdeane\grepoB\TRACE (master -> origin)
+λ echo '  localhost:8000 loads as a bare drupal site with some islandora stuff '
+'  localhost:8000 loads as a bare drupal site with some islandora stuff '
+
+C:\Users\cdeane\grepoB\TRACE (master -> origin)
+λ echo '  localhost:8000 shows NO CUSTOM TRACE FEATURES '
+'  localhost:8000 shows NO CUSTOM TRACE FEATURES '
+
+C:\Users\cdeane\grepoB\TRACE (master -> origin)
+λ ls ..\..\.vagrant.d\boxes
+TRACE/
+
+C:\Users\cdeane\grepoB\TRACE (master -> origin)
+λ vagrant destroy
+    default: Are you sure you want to destroy the 'default' VM? [y/N] y
+==> default: Forcing shutdown of VM...
+==> default: Destroying VM and associated drives...
+
+C:\Users\cdeane\grepoB\TRACE (master -> origin)
+λ rm -rf ..\..\.vagrant.d\boxes\TRACE
+
+C:\Users\cdeane\grepoB\TRACE (master -> origin)
+λ echo '  CLEANUP COMPLETE '
+'  CLEANUP COMPLETE '
+
+C:\Users\cdeane\grepoB\TRACE (master -> origin)
+λ

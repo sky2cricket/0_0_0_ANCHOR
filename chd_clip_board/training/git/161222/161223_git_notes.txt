@@ -1,0 +1,211 @@
+http://www.kernel.og/pub/software/scm/git/docs/
+
+git log --oneline
+
+git log --grep "temp"
+
+git log --oneline  sha1..sha2
+
+git log  crb913e.. index.html
+
+git log -p
+
+git log -p crb913e.. index.html
+
+git log --stat --summary  [statistics and summary of
+
+git log --format=oneline [full sha]
+git log --format=short
+git log --format=medium [default]
+git log --format=full
+git log --format=fuller
+git log --format=email
+git log --format=raw
+git log --graph
+git log --oneline --graph --all --decorate
+
+
+echo PS1
+\[\e[1;31m]\u@\h $PWD <-----\n \[\e[1;36m\]---> \$[\e\m\]
+
+
+export PS1='\[\e[1;31m]\u@\h $PWD <-----\n \[\e[1;36m\]---> \$[\e\m\]'
+
+
+export PS1='\[\e[1;31m]\u@\h $PWD <-----\n \[\e[1;31m\]---> \$\[\e[m\]'
+
+
+
+
+
+
+
+login as: cdeane
+cdeane@dlweb.lib.utk.edu's password:
+Last login: Fri Dec 23 00:22:43 2016 from 50.142.18.179
+cdeane@dlweb /home/cdeane <-----
+ --> $ echo PS1
+PS1
+cdeane@dlweb /home/cdeane <-----
+ --> $
+Broadcast message from nut@dlweb.lib.utk.edu (Fri Dec 23 16:12:18 2016):
+
+UPS dlhost2@192.168.0.50 is unavailable
+
+cdeane@dlweb /home/cdeane <-----
+ --> $ echo $PS1
+\[\e[1;31m\]\u@\h $PWD <-----\n \[\e[1;36m\]--> \$\[\e[m\]
+cdeane@dlweb /home/cdeane <-----
+ --> $ script MYPROMPT.txt
+Script started, file is MYPROMPT.txt
+cdeane@dlweb /home/cdeane <-----
+ --> $ echo $PS1
+\[\e[1;31m\]\u@\h $PWD <-----\n \[\e[1;36m\]--> \$\[\e[m\]
+cdeane@dlweb /home/cdeane <-----
+ --> $
+Broadcast message from nut@dlweb.lib.utk.edu (Fri Dec 23 16:17:22 2016):
+
+UPS dlhost2@192.168.0.50 is unavailable
+
+Broadcast message from nut@dlweb.lib.utk.edu (Fri Dec 23 16:17:22 2016):
+
+UPS dlhost2@192.168.0.50 is unavailable
+
+cdeane@dlweb /home/cdeane <-----
+ --> $ exit
+exit
+Script done, file is MYPROMPT.txt
+cdeane@dlweb /home/cdeane <-----
+ --> $ vi MYPROMPT.txt
+cdeane@dlweb /home/cdeane <-----
+ --> $
+cdeane@dlweb /home/cdeane <-----
+ --> $ echo $PS1
+\[\e[1;31m\]\u@\h $PWD <-----\n \[\e[1;36m\]--> \$\[\e[m\]
+cdeane@dlweb /home/cdeane <-----
+ --> $
+cdeane@dlweb /home/cdeane <-----
+ --> $
+Broadcast message from nut@dlweb.lib.utk.edu (Fri Dec 23 16:22:26 2016):
+
+UPS dlhost2@192.168.0.50 is unavailable
+
+cdeane@dlweb /home/cdeane <-----
+ --> $ echo $PS1
+\[\e[1;31m\]\u@\h $PWD <-----\n \[\e[1;36m\]--> \$\[\e[m\]
+cdeane@dlweb /home/cdeane <-----
+ --> $ script MYPROMPT2.txt
+Script started, file is MYPROMPT2.txt
+cdeane@dlweb /home/cdeane <-----
+ --> $ echo $PS1
+\[\e[1;31m\]\u@\h $PWD <-----\n \[\e[1;36m\]--> \$\[\e[m\]
+cdeane@dlweb /home/cdeane <-----
+ --> $ \[\e[1;31m]\u@\h $PWD <-----\n \[\e[1;36m\]---> \$[\e\m\]
+bash: [e[1: command not found
+bash: -----n: No such file or directory
+bash: 36m]---: command not found
+cdeane@dlweb /home/cdeane <-----
+ --> $
+cdeane@dlweb /home/cdeane <-----
+ --> $ echo $PS1
+\[\e[1;31m\]\u@\h $PWD <-----\n \[\e[1;36m\]--> \$\[\e[m\]
+cdeane@dlweb /home/cdeane <-----
+ --> $
+Broadcast message from nut@dlweb.lib.utk.edu (Fri Dec 23 16:27:30 2016):
+
+UPS dlhost2@192.168.0.50 is unavailable
+
+Broadcast message from nut@dlweb.lib.utk.edu (Fri Dec 23 16:27:30 2016):
+
+UPS dlhost2@192.168.0.50 is unavailable
+echo $PS1
+\[\e[1;31m\]\u@\h $PWD <-----\n \[\e[1;36m\]--> \$\[\e[m\]
+cdeane@dlweb /home/cdeane <-----
+ --> $ exit
+exit
+Script done, file is MYPROMPT2.txt
+cdeane@dlweb /home/cdeane <-----
+ --> $ vi MYPROMPT2.txt
+cdeane@dlweb /home/cdeane <-----
+ --> $ man PS1
+No manual entry for PS1
+cdeane@dlweb /home/cdeane <-----
+ --> $
+Broadcast message from nut@dlweb.lib.utk.edu (Fri Dec 23 16:32:34 2016):
+
+UPS dlhost2@192.168.0.50 is unavailable
+
+cdeane@dlweb /home/cdeane <-----
+ --> $
+cdeane@dlweb /home/cdeane <-----
+ --> $ script MYPROMPT3.txt
+Script started, file is MYPROMPT3.txt
+cdeane@dlweb /home/cdeane <-----
+ --> $ export PS1='\[\e[1;31m]\u@\h $PWD <-----\n \[\e[1;31m\]---> \$[\e\m\]'
+]cdeane@dlweb /home/cdeane <-----
+ ---> $[m
+]cdeane@dlweb /home/cdeane <-----
+ ---> $[m
+]cdeane@dlweb /home/cdeane <-----
+ ---> $[mvi MYPROMPT.txt
+]cdeane@dlweb /home/cdeane <-----
+ ---> $[m
+Broadcast message from nut@dlweb.lib.utk.edu (Fri Dec 23 16:37:38 2016):
+
+UPS dlhost2@192.168.0.50 is unavailable
+
+Broadcast message from nut@dlweb.lib.utk.edu (Fri Dec 23 16:37:38 2016):
+
+UPS dlhost2@192.168.0.50 is unavailable
+
+]cdeane@dlweb /home/cdeane <-----
+\]'-> $[mexport PS1='\[\e[1;31m]\u@\h $PWD <-----\n \[\e[1;31m\]---> \$\[\e\m
+]cdeane@dlweb /home/cdeane <-----
+ ---> $mexport PS1='\[\e[1;31m]\u@\h $PWD <-----\n \[\e[1;31m\]---> \$\[\e\m\]'
+]cdeane@dlweb /home/cdeane <-----
+ ---> $mvi
+]cdeane@dlweb /home/cdeane <-----
+ ---> $mvi MYPROMPT.txt MYPROMPT2.txt
+2 files to edit
+]cdeane@dlweb /home/cdeane <-----
+ ---> $mexport PS1='\[\e[1;31m]\u@\h $PWD <-----\n \[\e[1;31m\]---> \$\[\e\m\]'export PS1='\[\e[1;31m]\u@\h $PWD <----\n \[\e[1;31m\]---> \$\[\e\m\]'
+]cdeane@dlweb /home/cdeane <-----
+ ---> $m
+]cdeane@dlweb /home/cdeane <-----
+ ---> $mexit
+exit
+Script done, file is MYPROMPT3.txt
+cdeane@dlweb /home/cdeane <-----
+ --> $ e
+Broadcast message from nut@dlweb.lib.utk.edu (Fri Dec 23 16:42:42 2016):
+
+UPS dlhost2@192.168.0.50 is unavailable
+cdeane@dlweb /home/cdeane <-----
+ --> $
+cdeane@dlweb /home/cdeane <-----
+ --> $
+cdeane@dlweb /home/cdeane <-----
+ --> $ echo $PS1
+\[\e[1;31m\]\u@\h $PWD <-----\n \[\e[1;36m\]--> \$\[\e[m\]
+cdeane@dlweb /home/cdeane <-----
+ --> $
+
+======================================================================
+export PS1='\[\e[1;31m]\u@\h $PWD <-----\n \[\e[1;31m\]---> \$\[\e\m\]'
+export PS1='\[\e[1;31m\]\u@\h $PWD <-----\n \[\e[1;36m\]--> \$\[\e[m\]'
+
+export PS1='\[\e[1;31m\]\u@\h $PWD <-----\n \[\e[1;31m\]--> \$\[\e[m\]'
+=======================================================================
+
+export PS1='\[\e[1;31m\]\u@\h $PWD <-----\n \[\e[1;31m\]--> \$\[\e[m\]'
+
+	
+ 
+
+
+
+
+
+
+
+

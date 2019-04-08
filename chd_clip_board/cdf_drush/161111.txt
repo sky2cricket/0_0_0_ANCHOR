@@ -1,0 +1,9 @@
+--parent=chd2016:thesis
+--namespace=thesis
+
+ drush -v  --user=cdeane  --uri=http://dlwork.lib.utk.edu islandora_batch_scan_preprocess  --type=directory  --strict=0   --content-models=ir:thesisCModel   --parent=chd2016:thesis  --namespace=thesis   --scan_target=/gwork/cdeane/IREPO/ingest_target
+
+ drush -v   --user=cdeane  --uri=http://localhost islandora_batch_ingest 
+
+from don---------------------------------------------------------
+drush -y en islandora_batch

@@ -1,0 +1,120 @@
+Building a Data-Driven App with AngularJS
+
+angulardata
+
+Ray Villalobos
+
+
+Responsive Bootstrap
+
+
+Code Clinic JS
+
+
+pull alll branches:
+
+mkdir newdir
+
+git clone --mirror https://github.com/planetoftheweb/responsivebootstrap
+
+git config --bool core.bare false
+
+git reset --hard
+
+
+
+----------------------------------
+
+get one branch of a repo
+
+
+git clone -b 00)start https://github.com/planetoftheweb/responsivebootstrap
+
+need to remove .git
+
+rm -dfr .git ------------------recursive delete will get rid of it being a git repo
+
+then do git init to get a new .git folder
+
+
+Raybo.org
+
+---------------------
+git-scm.com - download from here
+
+https://help.github.com/articles/set-up-git
+
+--CONFIGURATION--
+System
+linux:  /etc/gitconfig
+windows Program Files/etc/gitconfig
+User
+linux: ~/gitconfig
+Windows: $HOME/.gitconfig
+Project:
+inside the project
+
+
+git config --global color.ui false   
+------------------------------
+
+git log grep "init"
+returns all commits where msg contains "init"
+
+----------------------------------------------------
+Chpa 7 undoing changes
+
+git checkout --             [stay on this branch]
+git checkout --  filename   [get file on this branch]
+
+
+git reset HEAD filename     [move filename from staging to working dir]
+
+
+git checkout 2907cc54hash filename [put filename from commit 2907cc54hash into staging dir]
+put the hash into your commit message.  
+
+
+another way
+git revert 907cc54hash [revert entire commit]
+you will be given opportunity to edit commit message.
+
+--soft
+git reset --soft hash : specify where HEAD should point, undo multiple commits.
+COPY YOUR LOG BEFORE ANY RESET
+The reversion is in staging and working dir.
+
+
+--mixed
+git reset --mixed hash 
+The reversion is in staging  dir.
+
+
+git reset --hard hashVal
+The log last commit is the hashVal
+log chopped
+files are gone.
+
+You can also go get another hashVal if you have the COPY OF LOG.
+
+git clean -f [remove untraced files]
+
+------------------------------------------------
+.gitignore
+
+https://help.github.com/articles/ignoring-files
+https://github.com/github/gitignore
+
+
+git config --global core.excludesfile path/.gitignore_global
+
+git config --global core.excludesfile  C:\Users\cdeane\.gitignore_global
+
+C:\Users\cdeane\.gitconfig
+C:\Users\cdeane\.gitignore
+C:\Users\cdeane\.gitignore_global
+
+
+git config --global color.ui false   
+
+

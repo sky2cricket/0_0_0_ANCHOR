@@ -1,0 +1,289 @@
+
+cdeane@cricketsurface MINGW64 ~
+$ ls
+00GG/
+AppData/
+'Application Data'@
+Contacts/
+Cookies@
+Desktop/
+Documents/
+Downloads/
+Favorites/
+Links/
+'Local Settings'@
+Music/
+'My Documents'@
+NTUSER.DAT
+NTUSER.DAT{2ad17fa9-746e-11e6-89c2-a955b13bb616}.TxR.0.regtrans-ms
+NTUSER.DAT{2ad17fa9-746e-11e6-89c2-a955b13bb616}.TxR.1.regtrans-ms
+NTUSER.DAT{2ad17fa9-746e-11e6-89c2-a955b13bb616}.TxR.2.regtrans-ms
+NTUSER.DAT{2ad17fa9-746e-11e6-89c2-a955b13bb616}.TxR.blf
+NTUSER.DAT{2ad17faa-746e-11e6-89c2-a955b13bb616}.TM.blf
+NTUSER.DAT{2ad17faa-746e-11e6-89c2-a955b13bb616}.TMContainer00000000000000000001.regtrans-ms
+NTUSER.DAT{2ad17faa-746e-11e6-89c2-a955b13bb616}.TMContainer00000000000000000002.regtrans-ms
+NetHood@
+OneDrive/
+Pictures/
+PrintHood@
+Recent@
+'Saved Games'/
+Searches/
+SendTo@
+'Start Menu'@
+Templates@
+'This PC - Shortcut.lnk'*
+Tracing/
+Videos/
+'VirtualBox VMs'/
+islandora_bagit/
+islandora_vagrant/
+ntuser.dat.LOG1
+ntuser.dat.LOG2
+ntuser.ini
+
+cdeane@cricketsurface MINGW64 ~
+$ cd 00GG
+
+cdeane@cricketsurface MINGW64 ~/00GG
+$ ls
+0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_ANCHOR/  TRACE/  machine_learning_examples/
+
+cdeane@cricketsurface MINGW64 ~/00GG
+$ git clone https://github.com/cdeaneGit/chd_clip_board
+Cloning into 'chd_clip_board'...
+remote: Counting objects: 33, done.
+remote: Compressing objects: 100% (16/16), done.
+remote: Total 33 (delta 3), reused 0 (delta 0), pack-reused 14
+Unpacking objects: 100% (33/33), done.
+
+cdeane@cricketsurface MINGW64 ~/00GG
+$ git status
+fatal: Not a git repository (or any of the parent directories): .git
+
+cdeane@cricketsurface MINGW64 ~/00GG
+$ cd chd_clip_board/
+
+cdeane@cricketsurface MINGW64 ~/00GG/chd_clip_board (master)
+$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+nothing to commit, working tree clean
+
+cdeane@cricketsurface MINGW64 ~/00GG/chd_clip_board (master)
+$ ls -la
+total 29
+drwxr-xr-x 1 cdeane 1049089     0 Dec 23 14:58 ./
+drwxr-xr-x 1 cdeane 1049089     0 Dec 23 14:58 ../
+drwxr-xr-x 1 cdeane 1049089     0 Dec 23 14:59 .git/
+-rw-r--r-- 1 cdeane 1049089    63 Dec 23 14:58 README.md
+-rw-r--r-- 1 cdeane 1049089 12464 Dec 23 14:58 bash_transcript_161223.txt
+drwxr-xr-x 1 cdeane 1049089     0 Dec 23 14:58 cdf_drush/
+drwxr-xr-x 1 cdeane 1049089     0 Dec 23 14:58 training/
+
+cdeane@cricketsurface MINGW64 ~/00GG/chd_clip_board (master)
+$ cd training/git
+
+cdeane@cricketsurface MINGW64 ~/00GG/chd_clip_board/training/git (master)
+$ git mv ../../bash_transcript_161223.txt .
+
+cdeane@cricketsurface MINGW64 ~/00GG/chd_clip_board/training/git (master)
+$ ls
+161222_git_notes.txt  bash_transcript_161223.txt          sqlq_notes.txt
+161223_git_notes.txt  bash_transcript_sprint8_161222.txt
+
+cdeane@cricketsurface MINGW64 ~/00GG/chd_clip_board/training/git (master)
+$ mkdir 161222
+
+cdeane@cricketsurface MINGW64 ~/00GG/chd_clip_board/training/git (master)
+$ ls
+161222/               161223_git_notes.txt        bash_transcript_sprint8_161222.txt
+161222_git_notes.txt  bash_transcript_161223.txt  sqlq_notes.txt
+
+cdeane@cricketsurface MINGW64 ~/00GG/chd_clip_board/training/git (master)
+$ ls 161222
+
+cdeane@cricketsurface MINGW64 ~/00GG/chd_clip_board/training/git (master)
+$ mv *.txt 161222/
+
+cdeane@cricketsurface MINGW64 ~/00GG/chd_clip_board/training/git (master)
+$ ls
+161222/
+
+cdeane@cricketsurface MINGW64 ~/00GG/chd_clip_board/training/git (master)
+$ cd 161222
+
+cdeane@cricketsurface MINGW64 ~/00GG/chd_clip_board/training/git/161222 (master)
+$ ls
+161222_git_notes.txt  bash_transcript_161223.txt          sqlq_notes.txt
+161223_git_notes.txt  bash_transcript_sprint8_161222.txt
+
+cdeane@cricketsurface MINGW64 ~/00GG/chd_clip_board/training/git/161222 (master)
+$ ls -l
+total 72
+-rw-r--r-- 1 cdeane 1049089  2324 Dec 23 14:58 161222_git_notes.txt
+-rw-r--r-- 1 cdeane 1049089     0 Dec 23 14:58 161223_git_notes.txt
+-rw-r--r-- 1 cdeane 1049089 12464 Dec 23 14:58 bash_transcript_161223.txt
+-rw-r--r-- 1 cdeane 1049089 44683 Dec 23 14:58 bash_transcript_sprint8_161222.txt
+-rw-r--r-- 1 cdeane 1049089  4719 Dec 23 14:58 sqlq_notes.txt
+
+cdeane@cricketsurface MINGW64 ~/00GG/chd_clip_board/training/git/161222 (master)
+$ vi 161223_git_notes.txt
+
+cdeane@cricketsurface MINGW64 ~/00GG/chd_clip_board/training/git/161222 (master)
+$ cd ,,
+bash: cd: ,,: No such file or directory
+
+cdeane@cricketsurface MINGW64 ~/00GG/chd_clip_board/training/git/161222 (master)
+$ cd ,,
+bash: cd: ,,: No such file or directory
+
+cdeane@cricketsurface MINGW64 ~/00GG/chd_clip_board/training/git/161222 (master)
+$ cd ..
+
+cdeane@cricketsurface MINGW64 ~/00GG/chd_clip_board/training/git (master)
+$ cd ,,
+bash: cd: ,,: No such file or directory
+
+cdeane@cricketsurface MINGW64 ~/00GG/chd_clip_board/training/git (master)
+$ cd ,,
+bash: cd: ,,: No such file or directory
+
+cdeane@cricketsurface MINGW64 ~/00GG/chd_clip_board/training/git (master)
+$ cd ..
+
+cdeane@cricketsurface MINGW64 ~/00GG/chd_clip_board/training (master)
+$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        renamed:    ../bash_transcript_161223.txt -> git/bash_transcript_161223.txt
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        deleted:    git/161222_git_notes.txt
+        deleted:    git/161223_git_notes.txt
+        deleted:    git/bash_transcript_161223.txt
+        deleted:    git/bash_transcript_sprint8_161222.txt
+        deleted:    git/sqlq_notes.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        git/161222/
+        git/Path_to_github..txt
+
+
+cdeane@cricketsurface MINGW64 ~/00GG/chd_clip_board/training (master)
+$ 9999999999999999999999999999999999999999999999999996y
+bash: 9999999999999999999999999999999999999999999999999996y: command not found
+
+cdeane@cricketsurface MINGW64 ~/00GG/chd_clip_board/training (master)
+$
+
+cdeane@cricketsurface MINGW64 ~/00GG/chd_clip_board/training (master)
+$ cd ..
+
+cdeane@cricketsurface MINGW64 ~/00GG/chd_clip_board (master)
+$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        renamed:    bash_transcript_161223.txt -> training/git/bash_transcript_161223.txt
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        deleted:    training/git/161222_git_notes.txt
+        deleted:    training/git/161223_git_notes.txt
+        deleted:    training/git/bash_transcript_161223.txt
+        deleted:    training/git/bash_transcript_sprint8_161222.txt
+        deleted:    training/git/sqlq_notes.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        training/git/161222/
+        training/git/Path_to_github..txt
+
+
+cdeane@cricketsurface MINGW64 ~/00GG/chd_clip_board (master)
+$ ls training/git
+161222/  Path_to_github..txt
+
+cdeane@cricketsurface MINGW64 ~/00GG/chd_clip_board (master)
+$ ls training/161222
+ls: cannot access 'training/161222': No such file or directory
+
+cdeane@cricketsurface MINGW64 ~/00GG/chd_clip_board (master)
+$ ls training/git/161222
+161222_git_notes.txt  161223_git_notes.txt  bash_transcript_161223.txt  bash_transcript_sprint8_161222.txt  sqlq_notes.txt
+
+cdeane@cricketsurface MINGW64 ~/00GG/chd_clip_board (master)
+$ ls
+README.md  cdf_drush/  training/
+
+cdeane@cricketsurface MINGW64 ~/00GG/chd_clip_board (master)
+$ git mv training/git/Path_to_github..txt ./Path_to_github.txt
+fatal: not under version control, source=training/git/Path_to_github..txt, destination=Path_to_github.txt
+
+cdeane@cricketsurface MINGW64 ~/00GG/chd_clip_board (master)
+$ git add .
+warning: CRLF will be replaced by LF in training/git/161222/161223_git_notes.txt.
+The file will have its original line endings in your working directory.
+warning: CRLF will be replaced by LF in training/git/161222/sqlq_notes.txt.
+The file will have its original line endings in your working directory.
+warning: CRLF will be replaced by LF in training/git/Path_to_github..txt.
+The file will have its original line endings in your working directory.
+
+cdeane@cricketsurface MINGW64 ~/00GG/chd_clip_board (master)
+$ git commit -m '161222-161223 notes'
+[master 092cb11] 161222-161223 notes
+ Committer: Deane <cdeane@utk.edu>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 7 files changed, 362 insertions(+), 79 deletions(-)
+ rename training/git/{ => 161222}/161222_git_notes.txt (100%)
+ create mode 100644 training/git/161222/161223_git_notes.txt
+ rename bash_transcript_161223.txt => training/git/161222/bash_transcript_161223.txt (100%)
+ rename training/git/{ => 161222}/bash_transcript_sprint8_161222.txt (100%)
+ rename training/git/{ => 161222}/sqlq_notes.txt (98%)
+ delete mode 100644 training/git/161223_git_notes.txt
+ create mode 100644 training/git/Path_to_github..txt
+
+cdeane@cricketsurface MINGW64 ~/00GG/chd_clip_board (master)
+$ git  push
+Username for 'https://github.com': cdeaneGit
+Counting objects: 8, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (7/7), done.
+Writing objects: 100% (8/8), 2.20 KiB | 0 bytes/s, done.
+Total 8 (delta 2), reused 0 (delta 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/cdeaneGit/chd_clip_board
+   f32bc22..092cb11  master -> master
+
+cdeane@cricketsurface MINGW64 ~/00GG/chd_clip_board (master)
+$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+nothing to commit, working tree clean
+
+cdeane@cricketsurface MINGW64 ~/00GG/chd_clip_board (master)
+$

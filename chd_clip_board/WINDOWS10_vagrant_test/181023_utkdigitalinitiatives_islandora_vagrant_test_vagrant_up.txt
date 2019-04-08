@@ -1,0 +1,358 @@
+﻿181023_utkdiginit_islandora_vagrant_up.txt
+
+basic initial setup
+
+install
+
+VirtualBox-5.2.20
+Oracle_VM_VirtualBox_Extension_Pack-5.2.20.vbox-extpack
+VirtualBox 5.2.20 Software Developer Kit (SDK)-- Oracle VirtualBoxSDK-5.2.20-123813.zip
+
+Vagrant_2.2.0_x86_64.msi
+
+Then make 3 repos
+
+grepoA  ------ for utkdititalinitiatives/islandora_vagrant
+
+grepoB  ------ for utkdigitalinitiatives/TRACE
+
+grepoLabs   -- for Islandora-Labs/islandora_vagrant
+
+
+This is for testing vagrant up with TRACE on windows 10 cricketsurface
+
+
+utkdigitalinitiatives/islandora_vagrant
+================cmder transcript=============================
+
+
+
+C:\Users\cdeane
+λ cd grepoA
+
+C:\Users\cdeane\grepoA (master -> origin)
+λ ls
+islandora_vagrant/
+
+C:\Users\cdeane\grepoA (master -> origin)
+λ cd islandora_vagrant\
+
+C:\Users\cdeane\grepoA\islandora_vagrant (master -> origin)
+λ echo 'cloned from utkdigitalinitiatives/islandora_vagrant '
+'cloned from utkdigitalinitiatives/islandora_vagrant '
+
+C:\Users\cdeane\grepoA\islandora_vagrant (master -> origin)
+λ vagrant status
+Current machine states:
+
+default                   not created (virtualbox)
+
+The environment has not yet been created. Run `vagrant up` to
+create the environment. If a machine is not created, only the
+default provider will be shown. So if a provider is not listed,
+then the machine is not created for that environment.
+
+C:\Users\cdeane\grepoA\islandora_vagrant (master -> origin)
+λ ls ..\..\.vagrant.d\boxes\
+
+C:\Users\cdeane\grepoA\islandora_vagrant (master -> origin)
+λ echo ' VERIFY CLEAN ENVIRONMENT '
+' VERIFY CLEAN ENVIRONMENT '
+
+C:\Users\cdeane\grepoA\islandora_vagrant (master -> origin)
+λ vagrant up
+Bringing machine 'default' up with 'virtualbox' provider...
+==> default: Box 'islandora/islandora-base' could not be found. Attempting to find and install...
+    default: Box Provider: virtualbox
+    default: Box Version: >= 0
+==> default: Loading metadata for box 'islandora/islandora-base'
+    default: URL: https://vagrantcloud.com/islandora/islandora-base
+==> default: Adding box 'islandora/islandora-base' (v1.0.6) for provider: virtualbox
+    default: Downloading: https://vagrantcloud.com/islandora/boxes/islandora-base/versions/1.0.6/providers/virtualbox.box
+    default: Download redirected to host: vagrantcloud-files-production.s3.amazonaws.com
+    default:
+==> default: Successfully added box 'islandora/islandora-base' (v1.0.6) for 'virtualbox'!
+==> default: Importing base box 'islandora/islandora-base'...
+==> default: Matching MAC address for NAT networking...
+==> default: Checking if box 'islandora/islandora-base' is up to date...
+==> default: Setting the name of the VM: Islandora 7.x-1.x Development VM
+==> default: Clearing any previously set network interfaces...
+==> default: Preparing network interfaces based on configuration...
+    default: Adapter 1: nat
+==> default: Forwarding ports...
+    default: 8080 (guest) => 8080 (host) (adapter 1)
+    default: 3306 (guest) => 3306 (host) (adapter 1)
+    default: 8000 (guest) => 8000 (host) (adapter 1)
+    default: 22 (guest) => 2222 (host) (adapter 1)
+==> default: Running 'pre-boot' VM customizations...
+==> default: Booting VM...
+==> default: Waiting for machine to boot. This may take a few minutes...
+    default: SSH address: 127.0.0.1:2222
+    default: SSH username: vagrant
+    default: SSH auth method: private key
+    default: Warning: Connection aborted. Retrying...
+==> default: Machine booted and ready!
+==> default: Checking for guest additions in VM...
+    default: The guest additions on this VM do not match the installed version of
+    default: VirtualBox! In most cases this is fine, but in rare cases it can
+    default: prevent things such as shared folders from working properly. If you see
+    default: shared folder errors, please make sure the guest additions within the
+    default: virtual machine match the version of VirtualBox you have installed on
+    default: your host and reload your VM.
+    default:
+    default: Guest Additions Version: 4.3.36
+    default: VirtualBox Version: 5.2
+==> default: Setting hostname...
+==> default: Mounting shared folders...
+    default: /vagrant => C:/Users/cdeane/grepoA/islandora_vagrant
+==> default: Running provisioner: shell...
+    default: Running: C:/Users/cdeane/AppData/Local/Temp/vagrant-shell20181023-4960-1vprje.sh
+    default: Installing all Islandora Foundation modules
+    default: Cloning into 'islandora'...
+    default: Cloning into 'islandora_altmetrics'...
+    default: Cloning into 'islandora_bagit'...
+    default: Cloning into 'islandora_batch'...
+    default: Cloning into 'islandora_book_batch'...
+    default: Cloning into 'islandora_bookmark'...
+    default: Cloning into 'islandora_checksum'...
+    default: Cloning into 'islandora_checksum_checker'...
+    default: Cloning into 'islandora_fits'...
+    default: Cloning into 'islandora_importer'...
+    default: Cloning into 'islandora_internet_archive_bookreader'...
+    default: Cloning into 'islandora_jwplayer'...
+    default: Cloning into 'islandora_marcxml'...
+    default: Cloning into 'islandora_newspaper_batch'...
+    default: Cloning into 'islandora_oai'...
+    default: Cloning into 'islandora_ocr'...
+    default: Cloning into 'islandora_openseadragon'...
+    default: Cloning into 'islandora_paged_content'...
+    default: Cloning into 'islandora_pathauto'...
+    default: Cloning into 'islandora_pdfjs'...
+    default: Cloning into 'islandora_premis'...
+    default: Cloning into 'islandora_populator'...
+    default: Cloning into 'islandora_scholar'...
+    default: Cloning into 'islandora_simple_workflow'...
+    default: Cloning into 'islandora_solr_facet_pages'...
+    default: Cloning into 'islandora_solr_metadata'...
+    default: Cloning into 'islandora_solr_search'...
+    default: Cloning into 'islandora_solr_views'...
+    default: Cloning into 'islandora_solution_pack_audio'...
+    default: fatal: unable to access 'https://github.com/Islandora/islandora_solution_pack_audio/': Could not resolve host: github.com
+    default: Cloning into 'islandora_solution_pack_book'...
+    default: Cloning into 'islandora_solution_pack_collection'...
+    default: Cloning into 'islandora_solution_pack_compound'...
+    default: Cloning into 'islandora_solution_pack_disk_image'...
+    default: Cloning into 'islandora_solution_pack_entities'...
+    default: Cloning into 'islandora_solution_pack_image'...
+    default: Cloning into 'islandora_solution_pack_large_image'...
+    default: Cloning into 'islandora_solution_pack_newspaper'...
+    default: Cloning into 'islandora_solution_pack_pdf'...
+    default: Cloning into 'islandora_solution_pack_video'...
+    default: Cloning into 'islandora_solution_pack_web_archive'...
+    default: Cloning into 'islandora_usage_stats'...
+    default: Cloning into 'islandora_videojs'...
+    default: Cloning into 'islandora_xacml_editor'...
+    default: Cloning into 'islandora_xml_forms'...
+    default: Cloning into 'islandora_form_fieldpanel'...
+    default: Cloning into 'islandora_xmlsitemap'...
+    default: Cloning into 'objective_forms'...
+    default: Cloning into 'php_lib'...
+    default: /tmp/vagrant-shell: line 29: cd: islandora_solution_pack_audio: No such file or directory
+The SSH command responded with a non-zero exit status. Vagrant
+assumes that this means the command failed. The output for this command
+should be in the log above. Please read the output to determine what
+went wrong.
+
+C:\Users\cdeane\grepoA\islandora_vagrant (master -> origin)
+λ echo 'slightly different cause of failure '
+'slightly different cause of failure '
+
+C:\Users\cdeane\grepoA\islandora_vagrant (master -> origin)
+λ vagrant ssh
+Welcome to Ubuntu 14.04.5 LTS (GNU/Linux 3.13.0-92-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com/
+
+  System information as of Tue Oct 23 14:35:24 UTC 2018
+
+  System load:  0.38              Processes:           110
+  Usage of /:   9.9% of 39.34GB   Users logged in:     0
+  Memory usage: 5%                IP address for eth0: 10.0.2.15
+  Swap usage:   0%
+
+  Graph this data and manage this system at:
+    https://landscape.canonical.com/
+
+  Get cloud support with Ubuntu Advantage Cloud Guest:
+    http://www.ubuntu.com/business/services/cloud
+
+
+Last login: Fri Apr 13 19:14:35 2018 from 10.0.2.2
+vagrant@islandora:~$ pwd
+/home/vagrant
+vagrant@islandora:~$ cd /
+vagrant@islandora:/$ ls -la /home/vagrant
+total 10592
+drwxr-xr-x 4 vagrant vagrant     4096 Apr 13  2018 .
+drwxr-xr-x 4 root    root        4096 Apr 13  2018 ..
+-rw-rw-r-- 1 vagrant vagrant        0 Apr 13  2018 .bash_history
+-rw-r--r-- 1 vagrant vagrant      220 Apr  9  2014 .bash_logout
+-rw-r--r-- 1 vagrant vagrant     3637 Apr  9  2014 .bashrc
+drwx------ 2 vagrant vagrant     4096 Apr 13  2018 .cache
+-rw-r--r-- 1 root    root    10816155 Jun 17  2014 drush-6.3.tar.gz
+-rw-r--r-- 1 vagrant vagrant      675 Apr  9  2014 .profile
+drwx------ 2 vagrant vagrant     4096 Apr 13  2018 .ssh
+vagrant@islandora:/$ ls -la /var/www/drupal
+total 304
+drwxrwxr-x  9 www-data www-data   4096 Apr 13  2018 .
+drwxr-xr-x  4 root     root       4096 Apr 13  2018 ..
+-rw-rw-r--  1 www-data www-data   6604 Mar 27  2018 authorize.php
+-rw-rw-r--  1 www-data www-data 111859 Mar 27  2018 CHANGELOG.txt
+-rw-rw-r--  1 www-data www-data   1481 Mar 27  2018 COPYRIGHT.txt
+-rw-rw-r--  1 www-data www-data    720 Mar 27  2018 cron.php
+-rw-rw-r--  1 www-data www-data    317 Mar 27  2018 .editorconfig
+-rw-rw-r--  1 www-data www-data    174 Mar 27  2018 .gitignore
+-rw-rw-r--  1 www-data www-data   6112 Mar 27  2018 .htaccess
+drwxrwxr-x  4 www-data www-data   4096 Apr 13  2018 includes
+-rw-rw-r--  1 www-data www-data    529 Mar 27  2018 index.php
+-rw-rw-r--  1 www-data www-data   1717 Mar 27  2018 INSTALL.mysql.txt
+-rw-rw-r--  1 www-data www-data   1874 Mar 27  2018 INSTALL.pgsql.txt
+-rw-rw-r--  1 www-data www-data    703 Mar 27  2018 install.php
+-rw-rw-r--  1 www-data www-data   1298 Mar 27  2018 INSTALL.sqlite.txt
+-rw-rw-r--  1 www-data www-data  17995 Mar 27  2018 INSTALL.txt
+-rw-rw-r--  1 www-data www-data  18092 Nov 16  2016 LICENSE.txt
+-rw-rw-r--  1 www-data www-data   8710 Mar 27  2018 MAINTAINERS.txt
+drwxrwxr-x  4 www-data www-data   4096 Apr 13  2018 misc
+drwxrwxr-x 42 www-data www-data   4096 Apr 13  2018 modules
+drwxrwxr-x  5 www-data www-data   4096 Apr 13  2018 profiles
+-rw-rw-r--  1 www-data www-data   5382 Mar 27  2018 README.txt
+-rw-rw-r--  1 www-data www-data   2189 Mar 27  2018 robots.txt
+drwxrwxr-x  2 www-data www-data   4096 Apr 13  2018 scripts
+drwxrwxr-x  4 www-data www-data   4096 Apr 13  2018 sites
+drwxrwxr-x  7 www-data www-data   4096 Apr 13  2018 themes
+-rw-rw-r--  1 www-data www-data  19986 Mar 27  2018 update.php
+-rw-rw-r--  1 www-data www-data  10123 Mar 27  2018 UPGRADE.txt
+-rw-rw-r--  1 www-data www-data   2200 Mar 27  2018 web.config
+-rw-rw-r--  1 www-data www-data    417 Mar 27  2018 xmlrpc.php
+vagrant@islandora:/$ ls -la /var/www/drupal/sites
+total 24
+drwxrwxr-x 4 www-data www-data 4096 Apr 13  2018 .
+drwxrwxr-x 9 www-data www-data 4096 Apr 13  2018 ..
+drwxrwxr-x 5 www-data www-data 4096 Apr 13  2018 all
+dr-xr-xr-x 3 www-data www-data 4096 Apr 13  2018 default
+-rw-rw-r-- 1 www-data www-data 2365 Mar 27  2018 example.sites.php
+-rw-rw-r-- 1 www-data www-data  904 Mar 27  2018 README.txt
+vagrant@islandora:/$ ls -la /var/www/drupal/sites/all
+total 20
+drwxrwxr-x  5 www-data www-data 4096 Apr 13  2018 .
+drwxrwxr-x  4 www-data www-data 4096 Apr 13  2018 ..
+drwxr-xr-x  2 vagrant  www-data 4096 Apr 13  2018 libraries
+drwxr-xr-x 62 vagrant  www-data 4096 Oct 23 14:37 modules
+drwxrwxr-x  2 www-data www-data 4096 Apr 13  2018 themes
+vagrant@islandora:/$ ls -la /var/www/drupal/sites/all/libraries/
+total 12
+drwxr-xr-x 2 vagrant  www-data 4096 Apr 13  2018 .
+drwxrwxr-x 5 www-data www-data 4096 Apr 13  2018 ..
+-rwxr-xr-x 1 vagrant  www-data  151 Mar 27  2018 README.txt
+vagrant@islandora:/$ ls -la /sites/all/modules/
+ls: cannot access /sites/all/modules/: No such file or directory
+vagrant@islandora:/$ ls -ls /var/www/drupal/sites/all/modules/
+total 244
+4 drwxr-xr-x  7 vagrant www-data 4096 Apr 13  2018 coder
+4 drwxr-xr-x 19 vagrant www-data 4096 Apr 13  2018 ctools
+4 drwxr-xr-x 12 vagrant www-data 4096 Apr 13  2018 date
+4 drwxr-xr-x  4 vagrant www-data 4096 Apr 13  2018 datepicker
+4 drwxr-xr-x  4 vagrant www-data 4096 Apr 13  2018 devel
+4 drwxr-xr-x  3 vagrant www-data 4096 Apr 13  2018 imagemagick
+4 drwxrwxr-x 11 vagrant vagrant  4096 Oct 23 14:35 islandora
+4 drwxrwxr-x  6 vagrant vagrant  4096 Oct 23 14:35 islandora_altmetrics
+4 drwxrwxr-x  7 vagrant vagrant  4096 Oct 23 14:35 islandora_bagit
+4 drwxrwxr-x 10 vagrant vagrant  4096 Oct 23 14:35 islandora_batch
+4 drwxrwxr-x  6 vagrant vagrant  4096 Oct 23 14:35 islandora_book_batch
+4 drwxrwxr-x 10 vagrant vagrant  4096 Oct 23 14:35 islandora_bookmark
+4 drwxrwxr-x  7 vagrant vagrant  4096 Oct 23 14:35 islandora_checksum
+4 drwxrwxr-x  6 vagrant vagrant  4096 Oct 23 14:35 islandora_checksum_checker
+4 drwxrwxr-x  8 vagrant vagrant  4096 Oct 23 14:35 islandora_fits
+4 drwxrwxr-x  9 vagrant vagrant  4096 Oct 23 14:37 islandora_form_fieldpanel
+4 drwxrwxr-x  8 vagrant vagrant  4096 Oct 23 14:35 islandora_importer
+4 drwxrwxr-x 11 vagrant vagrant  4096 Oct 23 14:35 islandora_internet_archive_bookreader
+4 drwxrwxr-x  6 vagrant vagrant  4096 Oct 23 14:35 islandora_jwplayer
+4 drwxrwxr-x  6 vagrant vagrant  4096 Oct 23 14:35 islandora_marcxml
+4 drwxrwxr-x  5 vagrant vagrant  4096 Oct 23 14:35 islandora_newspaper_batch
+4 drwxrwxr-x  8 vagrant vagrant  4096 Oct 23 14:35 islandora_oai
+4 drwxrwxr-x  7 vagrant vagrant  4096 Oct 23 14:35 islandora_ocr
+4 drwxrwxr-x 11 vagrant vagrant  4096 Oct 23 14:35 islandora_openseadragon
+4 drwxrwxr-x 12 vagrant vagrant  4096 Oct 23 14:36 islandora_paged_content
+4 drwxrwxr-x  5 vagrant vagrant  4096 Oct 23 14:36 islandora_pathauto
+4 drwxrwxr-x  6 vagrant vagrant  4096 Oct 23 14:36 islandora_pdfjs
+4 drwxrwxr-x  6 vagrant vagrant  4096 Oct 23 14:36 islandora_populator
+4 drwxrwxr-x  9 vagrant vagrant  4096 Oct 23 14:36 islandora_premis
+4 drwxrwxr-x 12 vagrant vagrant  4096 Oct 23 14:36 islandora_scholar
+4 drwxrwxr-x  6 vagrant vagrant  4096 Oct 23 14:36 islandora_simple_workflow
+4 drwxrwxr-x  7 vagrant vagrant  4096 Oct 23 14:36 islandora_solr_facet_pages
+4 drwxrwxr-x  7 vagrant vagrant  4096 Oct 23 14:36 islandora_solr_metadata
+4 drwxrwxr-x 14 vagrant vagrant  4096 Oct 23 14:36 islandora_solr_search
+4 drwxrwxr-x  6 vagrant vagrant  4096 Oct 23 14:36 islandora_solr_views
+4 drwxrwxr-x 11 vagrant vagrant  4096 Oct 23 14:36 islandora_solution_pack_book
+4 drwxrwxr-x 12 vagrant vagrant  4096 Oct 23 14:36 islandora_solution_pack_collection
+4 drwxrwxr-x 11 vagrant vagrant  4096 Oct 23 14:36 islandora_solution_pack_compound
+4 drwxrwxr-x 11 vagrant vagrant  4096 Oct 23 14:36 islandora_solution_pack_disk_image
+4 drwxrwxr-x 11 vagrant vagrant  4096 Oct 23 14:36 islandora_solution_pack_entities
+4 drwxrwxr-x 11 vagrant vagrant  4096 Oct 23 14:36 islandora_solution_pack_image
+4 drwxrwxr-x 11 vagrant vagrant  4096 Oct 23 14:36 islandora_solution_pack_large_image
+4 drwxrwxr-x 12 vagrant vagrant  4096 Oct 23 14:37 islandora_solution_pack_newspaper
+4 drwxrwxr-x 11 vagrant vagrant  4096 Oct 23 14:37 islandora_solution_pack_pdf
+4 drwxrwxr-x 11 vagrant vagrant  4096 Oct 23 14:37 islandora_solution_pack_video
+4 drwxrwxr-x 11 vagrant vagrant  4096 Oct 23 14:37 islandora_solution_pack_web_archive
+4 drwxrwxr-x  7 vagrant vagrant  4096 Oct 23 14:37 islandora_usage_stats
+4 drwxrwxr-x  9 vagrant vagrant  4096 Oct 23 14:37 islandora_videojs
+4 drwxrwxr-x  9 vagrant vagrant  4096 Oct 23 14:37 islandora_xacml_editor
+4 drwxrwxr-x  9 vagrant vagrant  4096 Oct 23 14:37 islandora_xml_forms
+4 drwxrwxr-x  5 vagrant vagrant  4096 Oct 23 14:37 islandora_xmlsitemap
+4 drwxr-xr-x  4 vagrant www-data 4096 Apr 13  2018 jquery_update
+4 drwxr-xr-x  3 vagrant www-data 4096 Apr 13  2018 libraries
+4 drwxrwxr-x  6 vagrant vagrant  4096 Oct 23 14:37 objective_forms
+4 drwxr-xr-x  2 vagrant www-data 4096 Apr 13  2018 pathauto
+4 drwxrwxr-x  8 vagrant vagrant  4096 Oct 23 14:37 php_lib
+4 -rwxr-xr-x  1 vagrant www-data 1474 Mar 27  2018 README.txt
+4 drwxr-xr-x  3 vagrant www-data 4096 Apr 13  2018 token
+4 drwxr-xr-x  8 vagrant www-data 4096 Apr 13  2018 variable
+4 drwxr-xr-x 15 vagrant www-data 4096 Apr 13  2018 views
+4 drwxr-xr-x 11 vagrant www-data 4096 Apr 13  2018 xmlsitemap
+vagrant@islandora:/$ ls -la /var/www/drupal/sites/all/themes
+total 12
+drwxrwxr-x 2 www-data www-data 4096 Apr 13  2018 .
+drwxrwxr-x 5 www-data www-data 4096 Apr 13  2018 ..
+-rw-rw-r-- 1 www-data www-data 1020 Mar 27  2018 README.txt
+vagrant@islandora:/$ echo ' END TEST FOR ownership/permissions '
+ END TEST FOR ownership/permissions
+vagrant@islandora:/$
+vagrant@islandora:/$ echo ' CHECK localhost:8000 THEN DO CLEANUP '
+ CHECK localhost:8000 THEN DO CLEANUP
+vagrant@islandora:/$ exit
+logout
+Connection to 127.0.0.1 closed.
+
+C:\Users\cdeane\grepoA\islandora_vagrant (master -> origin)
+λ echo ' localhost:8000 is drupal site with some islandora features '
+' localhost:8000 is drupal site with some islandora features '
+
+C:\Users\cdeane\grepoA\islandora_vagrant (master -> origin)
+λ ls ..\..\.vagrant.d\boxes\
+islandora-VAGRANTSLASH-islandora-base/
+
+C:\Users\cdeane\grepoA\islandora_vagrant (master -> origin)
+λ rm -rf ..\..\.vagrant.d\boxes\islandora-VAGRANTSLASH-islandora-base
+
+C:\Users\cdeane\grepoA\islandora_vagrant (master -> origin)
+λ vagrant destroy
+    default: Are you sure you want to destroy the 'default' VM? [y/N] y
+==> default: Forcing shutdown of VM...
+==> default: Destroying VM and associated drives...
+
+C:\Users\cdeane\grepoA\islandora_vagrant (master -> origin)
+λ echo ' CLEANUP COMPLETE '
+' CLEANUP COMPLETE '
+
+C:\Users\cdeane\grepoA\islandora_vagrant (master -> origin)
+λ
