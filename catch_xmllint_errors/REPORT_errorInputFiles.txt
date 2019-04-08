@@ -1,0 +1,23 @@
+To obtain dc:identifier information for a file with an error:
+  a. View that file with your text editor.
+  b. Find <identifier>...</identifier>.  This contains the dc:identifier value.
+  c. If <identifier> is missing, find <title>...</title>.  Copy the title value.
+  d. In a browser, go to http://trace.tennessee.edu/ 
+  e. Enter the title value into the search box.  This will take you to a list of approximate matches.
+  f. Click on the link to the EXACT match.  This will take you to the page for the broken xml file.
+  g. Scroll to the bottom to find the dc:identifier.
+  h. It will look like this: http://trace.tennessee.edu/utk_graddiss/3011/
+
+You will have to do this for each file on the list.
+
+Results saved at: REPORT_errorInputFiles.txt
+-------------------------------------------------------------------------
+
+>> python catch_xmllint_errors.py errorInputFiles
+fileName: errorInputFiles/utk_graddiss-4507.xml; 	returnCode: 256
+fileName: errorInputFiles/utk_graddiss-4626.xml; 	returnCode: 256
+fileName: errorInputFiles/utk_gradthes-3413.xml; 	returnCode: 256
+fileName: errorInputFiles/utk_gradthes-3730.xml; 	returnCode: 256
+
+Number of files processed: 7
+Number of files containing errors: 4
