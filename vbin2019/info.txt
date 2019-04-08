@@ -1,0 +1,57 @@
+This information is out of date.
+
+http://dlwork.lib.utk.edu/~cdeane/ACTIVE/VAGRANT/VagrantHelpPages/VagrantHelp.htm
+
+Added to /home/vagrant/.bashrc
+#cricket aliases (ref: http://tldp.org/LDP/abs/html/sample-bashrc.html)
+alias $DRUPAL_HOME  = '/var/www/drupal'
+alias $FEDORA_USR   = '/usr/local/fedora'
+alias $FEDORA_ADMIN = '/var/lib/tomcat7/webapps/fedora'
+alias $SOLR_USR       = '/usr/local/solr'
+alias $SOLR_LIB       = '/var/lib/tomcat7/solr'
+alias $SOLR_webapps   = '/var/lib/tomcat7/webapps/solr'
+alias $SOLR_proc_USR  = '/proc/11530/cwd/usr/local/solr'
+alias $SOLR_proc_LIB  = '/proc/11530/cwd/var/lib/tomcat7/solr'
+
+#because alias not recognised...
+
+vagrant@islandora(/home/vagrant)>>$ ln -s /var/www/drupal DRUPAL_HOME
+
+where to put things
+
+/usr/bin/tree
+
+=======================================
+WHAT WORKS  171010
+=======================================
+
+vagrant@islandora(/home/vagrant/VAGRANT_BIN)>>$ ls
+170908      info.txt  more             script  xmllint
+dot.bashrc  locate    MyFishMovie.MOV  tree
+vagrant@islandora(/home/vagrant/VAGRANT_BIN)>>$ mkdir usr_bin
+vagrant@islandora(/home/vagrant/VAGRANT_BIN)>>$ mv more usr_bin/
+vagrant@islandora(/home/vagrant/VAGRANT_BIN)>>$ mv script usr_bin/
+vagrant@islandora(/home/vagrant/VAGRANT_BIN)>>$ mv locate usr_bin/
+vagrant@islandora(/home/vagrant/VAGRANT_BIN)>>$ mv xmllint usr_bin/
+vagrant@islandora(/home/vagrant/VAGRANT_BIN)>>$ ls
+170908  dot.bashrc  info.txt  MyFishMovie.MOV  tree  usr_bin
+vagrant@islandora(/home/vagrant/VAGRANT_BIN)>>$ mv tree usr_bin/
+vagrant@islandora(/home/vagrant/VAGRANT_BIN)>>$ cd usr_bin/
+vagrant@islandora(/home/vagrant/VAGRANT_BIN/usr_bin)>>$ cp * ../
+vagrant@islandora(/home/vagrant/VAGRANT_BIN/usr_bin)>>$ ls
+locate  more  script  tree  xmllint
+vagrant@islandora(/home/vagrant/VAGRANT_BIN/usr_bin)>>$ sudo -i
+root@islandora:~# cd /home/vagrant/VAGRANT_BIN/usr_bin/
+root@islandora:/home/vagrant/VAGRANT_BIN/usr_bin# chmod 755 *
+root@islandora:/home/vagrant/VAGRANT_BIN/usr_bin# chown root.root *
+root@islandora:/home/vagrant/VAGRANT_BIN/usr_bin# ls -l
+total 232
+-rwxr-xr-x 1 root root 40504 Sep  7 20:47 locate
+-rwxr-xr-x 1 root root 41136 Nov 23  2016 more
+-rwxr-xr-x 1 root root 20080 Nov 23  2016 script
+-rwxr-xr-x 1 root root 62768 Nov 23  2016 tree
+-rwxr-xr-x 1 root root 63408 Nov 23  2016 xmllint
+root@islandora:/home/vagrant/VAGRANT_BIN/usr_bin# mv * /usr/bin/
+
+
+

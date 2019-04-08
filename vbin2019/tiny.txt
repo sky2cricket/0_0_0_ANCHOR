@@ -1,0 +1,24 @@
+tiny.txt
+
+first: in /home/vagrant/ directory:
+
+cp ./vbin2018/dot.bashrc  ./bashrc
+
+cp -r ./vbin2018 /vagrant/
+
+cd /vagrant/vbin2018/
+
+
+
+must become root to do the rest
+
+sudo -i                   ; 
+cp -r usr_bin  /bin       ;
+cd /bin/usr_bin           ;
+chown root.root *         ;
+chmod 755 *               ;
+mv * ../                  ;
+cd ..                     ;
+rmdir usr_bin             ;
+exit                      ;
+
