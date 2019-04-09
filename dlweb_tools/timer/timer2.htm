@@ -1,0 +1,76 @@
+<html>
+<head>
+<title>timer2</title>
+</head>
+<body bgcolor="aaccff">
+<font face="verdana" size="3">
+timer.htm 
+<hr>
+from: http://www.devguru.com/technologies/javascript/10904.asp
+<p>
+Syntax: window.setInterval(expression/function, milliseconds)
+<br>
+This method is used to call a function or evaluate an expression at specified intervals, in milliseconds.
+<p>
+This will continue until the clearInterval method is called or the window is closed. The ID value returned by setInterval is used as the parameter for the clearInterval method. Note that if an expression is to be evaluated, it must be quoted to prevent it being evaluated immediately.
+
+<hr>
+<form name="myForm" action="" method="POST">
+<input name="myClock" type="Text" size="80">
+</form>
+<script language=javascript>
+
+var myseconds=300000;//5 minutes
+self.setInterval('clock()', myseconds)
+
+function clock() {
+    time=new Date()
+    document.myForm.myClock.value=time
+    alert("time:\n"+time);
+}
+
+</script>
+<hr>
+Text of the form and the function:
+<p>
+<pre>
+&lt;form name="myForm" action="" method="POST">
+&lt;input name="myClock" type="Text" size="80">
+&lt;/form>
+&lt;script language=javascript>
+
+var myseconds=300000; //5 minutes
+self.setInterval('clock()', myseconds)
+
+function clock() {
+    time=new Date()
+    document.myForm.myClock.value=time
+    alert("time:\n"+time);
+}
+
+&lt;/script>
+</pre>
+<hr>
+Explanation:
+<br>
+This example uses the setInterval method to call the clock() function which updates the time in a text box.
+<hr>
+
+from: http://www.devguru.com/technologies/javascript/10881.asp
+<p>
+Syntax: window.clearInterval(intervalID)
+<br>
+This method is used to cancel a timeout previously set with the setInterval method.
+<hr>
+var timerID = window.setTimeout("someFunc(...)", 1000); 
+<br>
+... 
+<br>
+window.clearInterval(timerID);
+<hr>
+<hr>
+<hr>
+
+</font>
+</body>
+</html>

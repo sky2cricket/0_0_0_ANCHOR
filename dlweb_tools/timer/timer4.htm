@@ -1,0 +1,156 @@
+<html>
+<head>
+<title>timer</title>
+</head>
+<body bgcolor="aaccff">
+<font face="verdana" size="3">
+timer.htm 
+<hr>
+from: http://www.devguru.com/technologies/javascript/10904.asp
+<p>
+Syntax: window.setInterval(expression/function, milliseconds)
+<br>
+This method is used to call a function or evaluate an expression at specified intervals, in milliseconds.
+<p>
+This will continue until the clearInterval method is called or the window is closed. The ID value returned by setInterval is used as the parameter for the clearInterval method. Note that if an expression is to be evaluated, it must be quoted to prevent it being evaluated immediately.
+
+<hr>
+<form name="myForm" action="" method="POST">
+<input name="myClock" type="Text" size="80">
+</form>
+<script language=javascript>
+
+self.setInterval('clock()', 50)
+
+function clock() {
+    time=new Date()
+    document.myForm.myClock.value=time
+}
+
+</script>
+<hr>
+Text of the form and the function:
+<p>
+<pre>
+&lt;form name="myForm" action="" method="POST">
+&lt;input name="myClock" type="Text" size="80">
+&lt;/form>
+&lt;script language=javascript>
+
+self.setInterval('clock()', 50)
+
+function clock() {
+    time=new Date()
+    document.myForm.myClock.value=time
+}
+
+&lt;/script>
+</pre>
+<hr>
+Explanation:
+<br>
+This example uses the setInterval method to call the clock() function which updates the time in a text box.
+<hr>
+
+from: http://www.devguru.com/technologies/javascript/10881.asp
+<p>
+Syntax: window.clearInterval(intervalID)
+<br>
+This method is used to cancel a timeout previously set with the setInterval method.
+<hr>
+var timerID = window.setTimeout("someFunc(...)", 1000); 
+<br>
+... 
+<br>
+window.clearInterval(timerID);
+<hr>
+<hr>
+<hr>
+from: http://docs.sun.com/source/816-6408-10/window.htm
+<p>setInterval
+<br>http://docs.sun.com/source/816-6408-10/window.htm#1203669
+<p>clearInterval
+<br>http://docs.sun.com/source/816-6408-10/window.htm#1201732
+<hr>
+<hr>
+<hr>
+<pre>
+setInterval 
+Evaluates an expression or calls a function every time a specified number of milliseconds elapses, until canceled by a call to clearInterval.Method of
+ window
+ 
+Implemented in
+ JavaScript 1.2
+ 
+
+
+Syntax 
+setInterval(expression, msec)setInterval(function, msec[, arg1[, ..., argN]])
+Parameters 
+function
+ Any function.
+ 
+expression
+ A string containing a JavaScript expression. The expression must be quoted; otherwise, setInterval calls it immediately. For example, setInterval("calcnum(3, 2)", 25).
+ 
+msec
+ A numeric value or numeric string, in millisecond units.
+ 
+arg1, ..., argn
+ The arguments, if any, passed to function.
+ 
+
+
+Description 
+The timeouts continue to fire until the associated window or frame is destroyed or the interval is canceled using the clearInterval method.
+
+setInterval does not stall the script. The script continues immediately (not waiting for the interval to elapse). The call simply schedules a future event.
+
+Examples 
+The following code displays the current time in a Text object. In the startclock function, the call to the setInterval method causes the showtime function to be called every second to update the clock. Notice that the startclock function and setInterval method are each called only one time.
+
+&lt;SCRIPT LANGUAGE="JavaScript">
+var timerID = nullvar 
+timerRunning = false
+
+function stopclock(){   
+	if(timerRunning)      
+	clearInterval(timerID)   
+	timerRunning = false
+	}
+
+function startclock(){   
+	// Make sure the clock is stopped   
+	stopclock()   
+	timerID = setInterval("showtime()",1000)   
+	timerRunning = true
+	}
+
+function showtime(){   
+	var now = new Date()   
+	var hours = now.getHours()   
+	var minutes = now.getMinutes()   
+	var seconds = now.getSeconds()   
+	var timeValue = "" + ((hours > 12) ? hours - 12 : hours)   
+	timeValue += ((minutes &lt; 10) ? ":0" : ":") + minutes   
+	timeValue += ((seconds &lt; 10) ? ":0" : ":") + seconds   
+	timeValue += (hours >= 12) ? " P.M." : " A.M."   
+	document.clock.face.value = timeValue
+	}
+
+&lt;/SCRIPT>
+&lt;BODY onLoad="startclock()">
+&lt;FORM NAME="clock" onSubmit="0">   
+&lt;INPUT TYPE="text" NAME="face" SIZE=12 VALUE ="">
+&lt;/FORM>
+&lt;/BODY>
+See also 
+window.clearInterval, window.setTimeout 
+
+</pre>
+
+
+
+</font>
+</body>
+</html>

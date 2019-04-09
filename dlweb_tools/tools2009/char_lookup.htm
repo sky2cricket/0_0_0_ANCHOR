@@ -1,0 +1,220 @@
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>character_lookup</title>
+<script language="javascript">
+
+
+
+function clear_char_lookup(){
+document.forms[0].my_character.value = "";
+document.forms[0].my_number.value = "";
+document.forms[0].unicodemy_a_code.value = "";
+document.forms[0].my_h_number.value = "";
+document.forms[0].my_h_code.value = "";
+document.all.show_char_ascii.innerHTML= '<font face="arial" size="4">&nbsp;</font>';
+document.all.show_char.innerHTML= '<font face="arial" size="4">&nbsp;</font>';
+document.all.input_char.innerHTML= '<font face="arial" size="4">&nbsp;</font>';
+}
+
+
+
+function char_2_int(){
+if (document.forms[0].my_character.value == "") {
+	alert("You must enter and input character to continue.");
+	return;
+	}
+var c = new String(document.forms[0].my_character.value);
+
+document.all.input_char.innerHTML= '<font face="arial" size="4">'+document.forms[0].my_character.value+'</font>';
+var n = c.charCodeAt(0);
+//alert (" c="+c+"\n n="+n);
+document.forms[0].my_number.value=n;
+var prefix = new String();
+if (n>99) {
+        prefix="";
+}else if (n>9) {
+        prefix = "0";
+}else {
+        prefix = "00";
+}
+prefix = "&#"+prefix;
+
+document.forms[0].my_a_code.value = prefix + n + ";";
+document.all.show_char_ascii.innerHTML= '<font face="arial" size="4">'+document.forms[0].my_a_code.value+'</font>';
+
+document.forms[0].my_h_number.value="";
+document.forms[0].my_h_code.value="";
+var h = new String();
+h = n.toString(16);
+h = "0000"+h;
+index = h.length - 4;
+//alert("h="+h);
+h = h.substring(index);
+var h_code = new String();
+h_code = "&#x"+h+";";
+var u_code = new String();
+u_code ="\\u"+h+";";
+var u_char_code = new String();
+u_char_code ="u+"+h;
+//alert("h="+h);
+//alert("int_2_hex\n base 10: "+n+"\n base 16: "+h +"\n hexcode: "+h_code);
+document.forms[0].my_h_number.value=h;
+document.forms[0].my_h_code.value=h_code;
+document.forms[0].my_u_char_code.value=u_char_code;
+document.forms[0].my_u_code.value=u_code;
+document.all.show_char.innerHTML= '<font face="arial" size="4">'+document.forms[0].my_h_code.value+'</font>';
+document.all.show_char_unicode.innerHTML= '<font face="arial" size="4">&'+document.forms[0].my_u_code.value+'</font>';
+}
+
+function int_2_char(){
+var n = new Number(document.forms[0].my_number.value);
+var c = new String();
+    c = "000"+n;
+    c_index = c.length -3;
+    c = c.substring(c_index);
+    c = "&#"+c+";";
+document.forms[0].my_character.value = c;
+}
+
+function int_2_hex() {
+
+var n = new Number(document.forms[0].my_number.value);
+document.forms[0].my_h_number.value="";
+document.forms[0].my_h_code.value="";
+var h = new String();
+h = n.toString(16);
+h = "0000"+h;
+index = h.length - 4;
+//alert("h="+h);
+h = h.substring(index);
+var h_code = new String();
+h_code = "&#x"+h+";";
+//alert("h="+h);
+//alert("int_2_hex\n base 10: "+n+"\n base 16: "+h +"\n hexcode: "+h_code);
+document.forms[0].my_h_number.value=h;
+document.forms[0].my_h_code.value=h_code;
+}
+
+function show_the_char_ascii() {
+if (document.forms[0].my_number.value == "" ) {
+        alert("no character value to load.");
+        return;
+        }
+
+document.all.show_char_ascii.innerHTML= '<font face="arial" size="4">'+document.forms[0].my_a_code.value+'</font>';
+}
+
+function show_the_char() {
+if (document.forms[0].my_h_number.value == "" ) {
+        alert("no character value to load.");
+        return;
+        }
+
+document.all.show_char.innerHTML= '<font face="arial" size="4">'+document.forms[0].my_h_code.value+'</font>';
+}
+
+</script>
+
+</head>
+<body bgcolor="ddeeff">
+<font face="arial" size="3">
+Character Lookup - javascript utility - cricket deane Jan 10, 2008 - easy as &#960;
+<hr>
+<form name="f">
+
+<table border="1" cellpadding="4" cellspacing="0">
+<tr>
+<td>
+<input type="text" name="my_character" value="" size="5">
+</td><td>
+enter input character here.
+</td><td>
+<input type="button" name ="char2int" onclick="char_2_int();" value="char to int" style="width:160px">
+</td></tr>
+<tr>
+<td>
+<div id="input_char"><font face="arial" size="4">&nbsp;</font></div>
+</td><td colspan="2">display input character. 
+</td></tr>
+<tr>
+<td>
+<input type="text" name="my_number" value="" size="5">
+<td>ascii integer value for character.
+</td><td>
+<input type="button" name ="b_show_char_ascii" onclick="show_the_char_ascii();" value="Show Char" style="width:160px">
+</td></tr>
+<tr>
+<td>
+<input type="text" name="my_a_code" value="" size="5">
+</td><td>
+integer encoding for web page.
+</td><td>
+<input type="button" name ="int2hex" onclick="int_2_hex();" value="int to hex" style="width:160px">
+</td></tr>
+<tr>
+<td>
+<div id="show_char_ascii"><font face="arial" size="4">&nbsp;</font></div>
+</td><td colspan="2">display character for ascii encoding.
+<tr>
+<td>
+<input type="text" name="my_h_number" value="" size="5">
+</td><td>
+ascii hex value for character.
+</td><td>&nbsp;
+</td></tr>
+<tr>
+<td>
+<input type="text" name="my_h_code" value="" size="5">
+</td><td>
+hex encoding for web page.
+</td><td>
+&nbsp;
+</td></tr>
+<tr>
+<td>
+<div id="show_char"><font face="arial" size="4">&nbsp;</font></div>
+</td><td colspan="2">display character for hex encoding.
+</td></tr>
+<tr>
+<td colspan="2">&nbsp;
+</td><td>
+<input type="button" name ="b_clear_char" onclick="clear_char_lookup();" value="Clear All" style="width:160px">
+</td></tr>
+
+<tr>
+<td>
+<input type="text" name="my_u_char_code" value="" size="5">
+</td><td>
+unicode value for the character.
+</td><td>
+&nbsp;
+</td></tr>
+
+<tr>
+<td>
+<input type="text" name="my_u_code" value="" size="5">
+</td><td>
+unicode encoding for web page.
+</td><td>
+&nbsp;
+</td></tr>
+<tr>
+<td>
+<div id="show_char_unicode"><font face="arial" size="4">&nbsp;</font></div>
+</td><td colspan="2">display character for unicode encoding.
+</td></tr>
+
+<tr><td colspan="3">&nbsp;</td></tr>
+<tr><td colspan="3">If your input character does not match any of the display characters, please contact me! 
+</td></tr></table>
+
+</form>
+
+
+
+
+</font>
+</body>
+</html>

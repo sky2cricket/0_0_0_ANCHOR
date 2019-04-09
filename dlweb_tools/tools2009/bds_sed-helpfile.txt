@@ -1,0 +1,18 @@
+'s/<publisher>University\ of\ Tennessee\ Special\ Collections,\ Knoxville,\ TN<\/publisher>/<publisher>University\ of\ Tennessee\ Libraries,\ Knoxville,\ Special\ Collections<\/publisher>/g' --- for fa_arch, fa_spc
+'s/<publisher>University\ of\ Tennessee\ Libraries,\ Knoxville,\ Special\ Collections<\/publisher>/<publisher>University\ of\ Tennessee\ Libraries,\ Knoxville,\ Howard\ J\.\ Baker\ Center\ for\ Public\ Policy\<\/publisher>/g' --- for baker center files
+'s/University\ of\ Tennessee\ Special\ Collections\ Library,\ <\/corpname>/University\ of\ Tennessee\ Libraries,\ Special\ Collections,\ <\/corpname>/g' --- for fa_*/ (corpname element)
+'s/University\ of\ Tennessee,\ Knoxville,\ Special\ Collections.<\/p>/University\ of\ Tennessee\ Libraries,\ Knoxville,\ Special\ Collections.<\/p>/g' --- for fa_*/ (prefercite element)
+'s/University\ of\ Tennessee\ Special\ Collections\ Library,\ Knoxville,\ TN<\/publisher>/University\ of\ Tennessee\ Libraries,\ Knoxville,\ Special\ Collections<\/publisher>/g' --- for fa_*/ (publisher element)
+'s/<p>Collection\ is\ open\ for\ research.<\/p>/<p>Manuscript\ collections\ are\ stored\ offsite,\ and\ a\ minimum\ of\ 24\ hours\ is\ needed\ to\ retrieve\ these\ items\ for\ research\ use.\  Readers\ interested\ in\ consulting\ any\ of\ the\ collections\ are\ advised\ to\ contact\ <extref\ href=\"http:\/\/www.lib.utk.edu\/special\"\ actuate=\"onrequest\"\ show=\"new\">Special Collections<\/extref>.<\/p>/g' --- for fa_*/ (accessrestrict element)
+'s/For\ more\ information,\ contact\ the\ Special\ Collections./For\ more\ information,\ contact\ <extref\ href=\"http:\/\/www.lib.utk.edu\/special\"\ actuate=\"onrequest\"\ show=\"new\">Special Collections<\/extref>./g' --- for fa_*/ (userestrict element)
+'s/<\/extref>.Library.<\/p>/<\/extref>.<\/p>/g' --- minor correction to the userestrict element sed fix.
+'s/.\ University\ of\ Tennessee,\ Knoxville,\ Special\ Collections\ Library.<\/p>/.\ University\ of\ Tennessee\ Libraries,\ Knoxville,\ Special\ Collections.<\/p>/g' --- prefercite fix :-/
+'s/This\ collection\ was\ donated\ to\ the\ University\ of\ Tennessee\ Special\ Collections\ Library.<\/p>/This\ collection\ was\ donated\ to\ the\ University\ of\ Tennessee\ Libraries\ Special\ Collections.<\/p>/g'
+'s/University\ of\ Tennessee\ Libraries,\ Special\ Collections,\ <\/corpname>/University\ of\ Tennessee,\ Howard\ J.\ Baker\ Center\ for\ Public\ Policy,\ <\/corpname>/g'
+'s/University\ of\ Tennessee\ Libraries,\ Knoxville,\ Special\ Collections.<\/p>/University\ of\ Tennessee,\ Knoxville,\ Howard\ J.\ Baker\ Center\ for\ Public\ Policy.<\/p>/g' --preferredcite
+'s/contact\ <extref\ href=\"http:\/\/www.lib.utk.edu\/special\"\ actuate=\"onrequest\"\ show=\"new\">Special\ Collections<\/extref>/contact\ the\ <extref href=\"http:\/\/bakercenter.utk.edu\"\ actuate=\"onrequest\"\ show=\"new\">Howard\ J.\ Baker\ Center\ for\ Public\ Policy<\/extref>/g'
+'s/<p>Manuscript\ collections\ are\ stored\ offsite,\ and\ a\ minimum\ of\ 24\ hours\ is\ needed\ to\ retrieve\ these\ items\ for\ research\ use.\ Readers\ interested\ in\ consulting\ any\ of\ the\ collections\ are\ advised\ to\ contact/<p>Contact/g'
+'s/<\/extref><\/p>/<\/extref>.<\/p>/g'
+'s/C:\\Program\ Files\\Corel\\XMetaL\ 4\\Author\\Rules\\ead\.dtd/http:\/\/www\.lib\.utk\.edu\/spcoll\/processing\/ead\.dtd/g'
+'s/eadcbs5/ead.dtd/g'
+

@@ -1,0 +1,78 @@
+-------------------from: dlweb:
+/home/cdeane/public_html/vdlc_bk_cdeane/arch_dlc/public_html/tools
+-------------------
+
+To convert excel.txt to xml
+
+
+Altova XML SPY
+
+Convert >> Import Text File
+        dialog 2 choices - use Convert CSV text file into XML
+        Choose file ( field delimiter=tab, text enclosed in NOT, First row contains field
+
+names )         enter filename
+        click ok
+
+Now you see logic table view - click on text to see the xml
+
+
+do FILE >> Save As...   filename.xml
+
+It may not be valid xml.  Who cares?
+-------------------------------------------
+
+feb 12 2010
+
+Go from xml to tab delimited text file
+
+how_to_convert_xml_to_tabbed_text
+
+Starting from a previous tab delimited text file
+
+0.  Copy tabbed text file to create excel sheet for nodupes
+
+1.  Rename col headers to get alphabetical order that I like
+
+2.  Add 01, 02, etc to identical col headers to distinguish
+
+3.  Copy this sheet to text file for import to xmlspy
+
+4.  Create new xmlfile.  Save as text file. (col order from step 1 is honored)
+
+5.  Follow steps above:
+
+	5.1.  Cut and paste an xml file into new altova xml text window
+
+	5.2.  Select Convert->Export to text/database
+
+	5.3.  Radio button select Convert XML into text files or database data
+(see jpeg)
+
+	5.4.  This brings up Export_filedef dialog (see jpg)
+
+	5.5.  Click on Export to text files button
+
+	5.6.  This brings up Export to text files dialog (see jpeg)
+
+	5.7.  Click on okay button
+
+	5.8.  When done you should see Export Success alert (see jpeg)
+
+6.  Drop new tabbed text file into excel spread sheet to check
+
+7.  No data loss, desired column order - alphabetical order
+
+----------------------------------------------------------------
+
+Starting with an xml file.
+
+1.  Are any xml tags repeated?  Correct this with a python script.
+
+2.  Alphabetical order of tags.  Correct this with a python script.
+
+3.  Now you are ready for step 5. above.
+
+
+
+

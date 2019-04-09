@@ -1,0 +1,373 @@
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>character_lookup</title>
+<script language="javascript">
+
+
+function clear_char_lookup(){
+document.forms[0].my_character.value = "";
+document.forms[0].my_number.value = "";
+document.forms[0].my_a_code.value = "";
+document.forms[0].my_h_number.value = "";
+document.forms[0].my_h_code.value = "";
+document.all.show_char_ascii.innerHTML= '<font face="arial" size="4">&nbsp;</font>';
+document.all.show_char.innerHTML= '<font face="arial" size="4">&nbsp;</font>';
+document.all.input_char.innerHTML= '<font face="arial" size="4">&nbsp;</font>';
+}
+
+function process_int_value() {
+if (document.forms[0].my_number.value == "") {
+	alert("You must enter and input character to continue.");
+	return;
+	}
+
+var n = document.forms[0].my_number.value;
+make_a_character(n);
+make_a_code(n);
+make_h_code(n);
+}
+
+function make_a_character(num){
+
+}
+
+function process_hex_value() {
+var h = new String(document.forms[0].my_h_number.value);
+
+var h_code ="&#x"+h+";";
+
+document.forms[0].my_h_code.value = h_code;
+
+document.all.show_char.innerHTML= '<font face="arial" size="4">'+document.forms[0].my_h_code.value+'</font>';
+document.all.primary_input.innerHTML= '<input type="text" name="my_character" value="'+document.forms[0].my_h_code.value+'" size="5">';
+char_2_int();
+}
+
+
+
+
+function make_a_code(num) {
+var n= new Number(n);
+var prefix = new String();
+if (n>99) {
+        prefix="";
+}else if (n>9) {
+        prefix = "0";
+}else {
+        prefix = "00";
+}
+prefix = "&#"+prefix;
+document.forms[0].my_a_code.value = prefix + num + ";";
+document.all.show_char_ascii.innerHTML= '<font face="arial" size="4">'+document.forms[0].my_a_code.value+'</font>';
+document.all.input_char.innerHTML= '<font face="arial" size="4">'+document.forms[0].my_a_code.value+'</font>';
+
+document.all.primary_input.innerHTML= '<input type="text" name="my_character" value="'+document.forms[0].my_a_code.value+'" size="5">';
+return;
+}
+
+function make_h_code(num) {
+
+var n = new Number(num);
+var h = new String();
+    h = n.toString(16);
+h = "0000"+h;
+index = h.length - 4;
+//alert("h="+h);
+h = h.substring(index);
+var h_code = new String();
+h_code = "&#x"+h+";";
+document.forms[0].my_h_number.value=h;
+document.forms[0].my_h_code.value=h_code;
+document.all.show_char.innerHTML= '<font face="arial" size="4">'+document.forms[0].my_h_code.value+'</font>';
+return;
+}
+
+
+
+
+
+function char_2_int(){
+if (document.forms[0].my_character.value == "") {
+	alert("You must enter and input character to continue.");
+	return;
+	}
+var c = new String(document.forms[0].my_character.value);
+
+document.all.input_char.innerHTML= '<font face="arial" size="4">'+document.forms[0].my_character.value+'</font>';
+var n = c.charCodeAt(0);
+//alert (" c="+c+"\n n="+n);
+document.forms[0].my_number.value=n;
+var prefix = new String();
+if (n>99) {
+        prefix="";
+}else if (n>9) {
+        prefix = "0";
+}else {
+        prefix = "00";
+}
+prefix = "&#"+prefix;
+
+document.forms[0].my_a_code.value = prefix + n + ";";
+document.all.show_char_ascii.innerHTML= '<font face="arial" size="4">'+document.forms[0].my_a_code.value+'</font>';
+
+document.forms[0].my_h_number.value="";
+document.forms[0].my_h_code.value="";
+var h = new String();
+h = n.toString(16);
+h = "0000"+h;
+index = h.length - 4;
+//alert("h="+h);
+h = h.substring(index);
+var h_code = new String();
+h_code = "&#x"+h+";";
+var u_code = new String();
+u_code ="\\u"+h+";";
+var u_char_code = new String();
+u_char_code ="u+"+h;
+//alert("h="+h);
+//alert("int_2_hex\n base 10: "+n+"\n base 16: "+h +"\n hexcode: "+h_code);
+document.forms[0].my_h_number.value=h;
+document.forms[0].my_h_code.value=h_code;
+document.all.show_char.innerHTML= '<font face="arial" size="4">'+document.forms[0].my_h_code.value+'</font>';
+}
+
+function int_2_char(){
+var n = new Number(document.forms[0].my_number.value);
+var c = new String();
+    c = "000"+n;
+    c_index = c.length -3;
+    c = c.substring(c_index);
+    c = "&#"+c+";";
+document.forms[0].my_character.value = c;
+}
+
+function int_2_hex() {
+
+var n = new Number(document.forms[0].my_number.value);
+document.forms[0].my_h_number.value="";
+document.forms[0].my_h_code.value="";
+var h = new String();
+h = n.toString(16);
+h = "0000"+h;
+index = h.length - 4;
+//alert("h="+h);
+h = h.substring(index);
+var h_code = new String();
+h_code = "&#x"+h+";";
+//alert("h="+h);
+//alert("int_2_hex\n base 10: "+n+"\n base 16: "+h +"\n hexcode: "+h_code);
+document.forms[0].my_h_number.value=h;
+document.forms[0].my_h_code.value=h_code;
+}
+
+function show_the_char_ascii() {
+if (document.forms[0].my_number.value == "" ) {
+        alert("no character value to load.");
+        return;
+        }
+
+document.all.show_char_ascii.innerHTML= '<font face="arial" size="4">'+document.forms[0].my_a_code.value+'</font>';
+}
+
+function show_the_char() {
+if (document.forms[0].my_h_number.value == "" ) {
+        alert("no character value to load.");
+        return;
+        }
+
+document.all.show_char.innerHTML= '<font face="arial" size="4">'+document.forms[0].my_h_code.value+'</font>';
+}
+
+</script>
+
+</head>
+<body bgcolor="ddeeff">
+<font face="arial" size="3">
+Character Lookup - javascript utility - cricket deane Jan 10, 2008 - easy as &#960;
+<br> &#35488;  &nbsp;&nbsp;  &#951; &nbsp;&nbsp; &#23594; &nbsp;&nbsp; &#34856; &#nbsp;&nbsp;
+&#48045; &nbsp;&nbsp; &#22829; &nbsp;&nbsp; &#22567; &nbsp;&nbsp; &#34866; &nbsp;&nbsp;
+[&#11040;  #11040;] &nbsp;&nbsp; [&#1136; #1136;] &nbsp;&nbsp; &#174; &nbsp;&nbsp; &#169;
+&nbsp;&nbsp; 
+<br> &#9827; &nbsp;&nbsp;&#9830; &nbsp;&nbsp; &#9829; &nbsp;&nbsp; &#9824; &nbsp;&nbsp;
+&#9825; &nbsp;&nbsp;&#9828; &nbsp;&nbsp; &#9831; &nbsp;&nbsp; &#9832; &nbsp;&nbsp;
+&#9833; &nbsp;&nbsp;&#9834; &nbsp;&nbsp; &#9835; &nbsp;&nbsp; &#9836; &nbsp;&nbsp;
+&#9837; &nbsp;&nbsp;&#9839; &nbsp;&nbsp; &#8660; &nbsp;&nbsp; &#8656; &nbsp;&nbsp;
+&#8657; &nbsp;&nbsp;&#8658; &nbsp;&nbsp; &#8659; &nbsp;&nbsp; &#8629; &nbsp;&nbsp;
+&#8501; &nbsp;&nbsp;&#8482; &nbsp;&nbsp; &#212; &nbsp;&nbsp; &#8228; &nbsp;&nbsp;
+<br>&#x263a;&nbsp;&nbsp;&#x263b; &nbsp;&nbsp; &#x2605; &nbsp;&nbsp; &#x2606; &nbsp;&nbsp;
+&#x260e; &nbsp;&nbsp; &#x260f;
+
+<hr>
+<form name="f">
+
+<table border="1" cellpadding="4" cellspacing="0">
+<tr>
+<td colspan="5">Enter a value into one of the white boxes (character, ascii integer, ascii hex).<br>
+The corresponding values will be calculated.  
+<br>I am not checking for format, that is up to you.  Sloppy in, sloppy out.
+</td>
+</tr>
+<tr>
+<td colspan="3">&nbsp;</td>
+<td colspan="2">examples</td>
+</tr>
+<tr>
+<td><div id="primary_input"><input type="text" name="my_character" value="" size="5"></div>
+</td><td>
+enter input character here.
+</td><td>
+<input type="button" name ="char2int" onclick="char_2_int();" value="Process Single Character" style="width:200px">
+</td><td><input type="text" name="ex_character" value="a" size="5" READONLY>
+</td><td><input type="text" name="ex_character"  value="&#228;" size="5" READONLY>
+</td></tr>
+<tr>
+<td>
+<div id="input_char"><font face="arial" size="4">&nbsp;</font></div>
+</td><td colspan="2">display input character. 
+</td><td><font face="arial" size="4">a</font>
+</td><td><font face="arial" size="4">&#228;<font>
+</td></tr>
+<tr>
+<td>
+<input type="text" name="my_number" value="" size="5">
+<td>ascii integer value for character.
+</td><td>
+<input type="button" name ="b_show_char_ascii" onclick="process_int_value();" value="Process Integer Value" style="width:200px">
+</td><td> <input type="text" name="ex_number" value="97" size="5" READONLY>
+</td><td> <input type="text" name="ex_number" value="228" size="5" READONLY>
+</td></tr>
+<tr>
+<td>
+<input type="text" name="my_a_code" value="" size="5" READONLY style="background:#ddeeff;">
+</td><td colspan="2">
+integer encoding for web page.
+</td><td><input type="text" name="ex_a_code" value="&amp;#097;" size="5" READONLY style="background:#ddeeff;">
+</td><td><input type="text" name="ex_a_code" value="&amp;#228;" size="5" READONLY style="background:#ddeeff;">
+</td></tr>
+<tr>
+<td>
+<div id="show_char_ascii"><font face="arial" size="4">&nbsp;</font></div>
+</td><td colspan="2">display character for ascii encoding.
+</td><td><font face="arial" size="4">a</font>
+</td><td><font face="arial" size="4">&#228;</font>
+</td></tr>
+<tr>
+<td>
+<input type="text" name="my_h_number" value="" size="5">
+</td><td>
+ascii hex value for character.
+</td><td>
+<input type="button" name ="int2hex" onclick="process_hex_value();" value="Process Hex Value" style="width:200px">
+</td><td> <input type="text" name="ex_h_number" value="0061" size="5" READONLY>
+</td><td> <input type="text" name="ex_h_number" value="00e4" size="5" READONLY>
+</td></tr>
+<tr>
+<td>
+<input type="text" name="my_h_code" value="" size="5" READONLY style="background:ddeeff;">
+</td><td colspan="2">
+hex encoding for web page.
+</td><td> <input type="text" name="ex_h_code" value="&amp;#x0061;" size="5" READONLY style="background:ddeeff;">
+</td><td> <input type="text" name="ex_h_code" value="&amp;#x00e4;" size="5" READONLY style="background:ddeeff;">
+</td></tr>
+<tr>
+<td>
+<div id="show_char"><font face="arial" size="4">&nbsp;</font></div>
+</td><td colspan="2">display character for hex encoding.
+</td><td><font face="arial" size="4">a</font>
+</td><td><font face="arial" size="4">&#x00e4;<font>
+</td></tr>
+<tr>
+<td colspan="5">&nbsp;
+</td></tr>
+
+
+<tr>
+<td colspan="2">&nbsp;
+</td><td>
+<input type="button" name ="b_clear_char" onclick="clear_char_lookup();" value="Clear All" style="width:200px">
+</td><td colspan="2">&nbsp;
+</td></tr>
+
+
+<tr><td colspan="5">&nbsp;</td></tr>
+<tr><td colspan="5">If your input character does not match any of the display characters, please contact me! 
+</td></tr></table>
+
+</form>
+
+<p>
+<a href="http://www.zvon.org/other/charSearch/PHP/search.php" target=""_blank">http://www.zvon.org/other/charSearch/PHP/search.php</a> input hex encoding, direct characters do not translate correctly.
+
+<hr><b>
+The characters shown below MUST be encoded in XML files.<p>
+<table border="1" cellpadding="4" cellspacing="0">
+<tr>
+<td>character</td>
+<td>character name</td>
+<td>html entity</td>
+<td>integer encoding</td>
+<td>hex encoding</td>
+</tr>
+
+<tr>
+<td><b>&amp;</td>
+<td>ampersand</td>
+<td>&amp;amp;</td>
+<td>&amp;#038;</td>
+<td>&amp;#x0026;</td>
+</tr>
+<tr>
+<td><b>&#039;</td>
+<td>apostrophe</td>
+<td>&amp;apos;</td>
+<td>&amp;#039;</td>
+<td>&amp;#x0027;</td>
+</tr>
+<tr>
+<td><b>&quot;</td>
+<td>double quote</td>
+<td>&amp;quot;</td>
+<td>&amp;#034;</td>
+<td>&amp;#x0022;</td>
+</tr>
+<tr>
+<td><b>&lt;</td>
+<td>left angle bracket</td>
+<td>&amp;lt;</td>
+<td>&amp;#060;</td>
+<td>&amp;#x003C;</td>
+</tr>
+<tr>
+<td><b>&gt;</td>
+<td>right angle bracket</td>
+<td>&amp;gt;</td>
+<td>&amp;#062;</td>
+<td>&amp;#x003E;</td>
+</tr>
+</table>
+<!---
+//// & &amp;  >>> &#038;  >>>HEX &#x0026;
+//// & &amp; ///has to be first or will replace "&" in the replacements shown below!
+//// ' &apos; >>> &#039;  >>>HEX &#x0027;
+//// " &quot; >>> &#034;  >>>HEX &#x0022;
+//// < &lt;   >>> &#060;  >>>HEX &#x003C;
+//// > &gt;   >>> &#062;  >>>HEX &#x003E;
+--->
+
+<hr>
+One gigabyte: 024 megabytes or 1,073,741,824 bytes; also : one billion bytes
+
+
+<hr>
+References:
+<br><a href="http://www.alanwood.net/" target="_blank">Alan Wood's Web Site</a>
+
+</font>
+</body>
+</html>
+
+

@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>timer5</title>
+<script language="javascript">
+T = new Date();
+function get_T(){
+	return T;
+	}
+</script>
+</head>
+<body bgcolor="aaccff">
+<font face="verdana" size="2">
+timer5.htm set for 300,000 milliseconds (5 min)
+<!-- adapted from: http://www.devguru.com/technologies/javascript/10904.asp -->
+<hr>
+<form name="myForm" action="" method="POST">
+<input name="myClock" type="Text" size="40">
+</form>
+Start Time:&nbsp;<div id="TMR" name="TMR"></div>
+<script language=javascript>
+document.all.TMR.innerHTML=T;
+document.myForm.myClock.value=T;
+var myseconds=300000;//5 minutes
+//var myseconds= 60000;//1 minute
+self.setInterval('clock()', myseconds);
+function clock() {
+    time=new Date();
+    document.myForm.myClock.value=time;
+    window.focus();
+    alert("timer5 time:\n"+time);
+}
+</script>
+<hr>
+Text of the form and the function:
+<p>
+</font>
+<font face="verdana" size="3">
+<pre>
+&lt;form name="myForm" action="" method="POST">
+&lt;input name="myClock" type="Text" size="40">
+&lt;/form>
+Start Time:&nbsp;&lt;div id="TMR" name="TMR">&lt;/div>
+&lt;script language=javascript>
+document.all.TMR.innerHTML=T;
+document.myForm.myClock.value=T;
+var myseconds=300000; //5 minutes
+//var myseconds= 60000;//1 minute
+self.setInterval('clock()', myseconds);
+function clock() {
+    time=new Date();
+    document.myForm.myClock.value=time;
+    window.focus();
+    alert("timer5 time:\n"+time);
+}
+&lt;/script>
+</pre>
+<hr>
+
+</font>
+</body>
+</html>

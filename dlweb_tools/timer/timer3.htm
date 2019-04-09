@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>timer3</title>
+</head>
+<body bgcolor="aaccff">
+<font face="verdana" size="3">
+timer3.htm set for 300,000 milliseconds (5 min)
+<hr>
+adapted from: http://www.devguru.com/technologies/javascript/10904.asp
+<hr>
+<form name="myForm" action="" method="POST">
+<input name="myClock" type="Text" size="40">
+</form>
+<script language=javascript>
+var myseconds=300000;//5 minutes
+self.setInterval('clock()', myseconds)
+function clock() {
+    time=new Date()
+    document.myForm.myClock.value=time
+    window.focus();
+    alert("timer3 time:\n"+time);
+}
+</script>
+<hr>
+Text of the form and the function:
+<p>
+<pre>
+&lt;form name="myForm" action="" method="POST">
+&lt;input name="myClock" type="Text" size="40">
+&lt;/form>
+&lt;script language=javascript>
+var myseconds=300000; //5 minutes
+self.setInterval('clock()', myseconds)
+function clock() {
+    time=new Date()
+    document.myForm.myClock.value=time
+    alert("timer3 time:\n"+time);
+}
+&lt;/script>
+</pre>
+<hr>
+<hr>
+<hr>
+<hr>
+
+</font>
+</body>
+</html>
