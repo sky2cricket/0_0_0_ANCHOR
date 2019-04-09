@@ -1,0 +1,31 @@
+#!/usr/bin/perl
+
+#countfiles
+#counts files in a directory
+
+$dir = "./mods/";
+$endit = ".xml";
+$count = 0;
+
+opendir (DIR, $dir) or die "can't open $dir\n";
+while ($file = readdir(DIR)){
+  if ( $file =~ /\.xml/){
+    $count ++;
+    }
+  }
+close DIR;
+print "there are $count files in $dir.\n";
+
+$dir = "./done/mods/";
+$count2 = 0;
+
+opendir (DIR, $dir) or die "can't open $dir\n";
+while ($file = readdir(DIR)){
+  if ( $file =~ /\.xml/){
+    $count2 ++;
+    }
+  }
+close DIR;
+print "there are $count2 files in $dir.\n";
+print " for a total of ".($count + $count2)." files for vvz.\n\n";
+

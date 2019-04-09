@@ -1,0 +1,138 @@
+
+<html>
+<head>
+<title>step_007s</title>
+</head>
+<body>
+<font face="arial" size="3">
+step_007s.htm
+<br>http://diglib.lib.utk.edu/~cdeane/WORKBOOK/dataprep/dlxs/step_007s.htm
+<br><a href="http://diglib.lib.utk.edu/~cdeane/WORKBOOK/dataprep/dlxs/step_007s.htm"
+target="_blank">step_007s new window</a> (table width="100%")&nbsp;&nbsp;&nbsp; 
+<br>need analog for 7s:
+<a href="http://diglib.lib.utk.edu/~cdeane/WORKBOOK/dataprep/dlxs/step_007_s_print.htm" target="_blank">step_007s print</a> (table width="660")
+<p><u>modsTC live processing</u>
+<hr>
+<p>&nbsp;
+<table border="1" cellpadding="4" cellspacing="0" width="100%">
+<tr>
+<td valign="top" width="3%">&nbsp;</td>
+<td valign="top" width="32%">04 notext vvb</td>
+<td valign="top" width="32%">02 ocr vvo</td>
+<td valign="top" width="32%">03 typed vvt</td>
+</tr>
+
+<tr>
+<td valign="top" width="3%">&nbsp;</td>
+<td valign="top" colspan="3">
+<u>DONE WITH PREPARATION FOR modsTC LIVE VERSION</u>
+<br>At this point you have validated all of the output from running <u>modsTCerrorTest</u>
+and all validation is good.
+<br>You have also moved finished tei files 
+<br>&nbsp;&nbsp;&nbsp;from tei/notext/ to tei/notextPrev/
+<br>&nbsp;&nbsp;&nbsp;from tei/ocr/ to tei/ocrPrev/
+<br>&nbsp;&nbsp;&nbsp;from tei/typed/ to tei/typedPrev/
+<br>so that modsTC will not overwrite the finished tei files
+
+<p>You have also made an archive copy of the current linkfile
+<p>cd /d1/workarea/dlxs/text/tel
+<br>cp linkfile done/xlinkfile/linkfile_before_modsTC_081104
+
+<p>
+perl modsTC > checkme_081104.txt (use current date)
+<p>What has happened?
+<br>&nbsp;&nbsp;&nbsp; 1 transformed files written to modsbib, search, tei/notext, tei/ocr, tei/typed
+<br>&nbsp;&nbsp;&nbsp; 2 a line is written to linkfile for each of the files in #1
+<br>&nbsp;&nbsp;&nbsp; 3 a row is written to locserv.y2008 table for each of the files in #1
+<p>Examine the checkme file.
+<br>Make sure you have no errors except for <u>ERROR:  NO PAGES</u>
+<br>&nbsp;&nbsp;&nbsp;(a mysterious error that should be ignored)
+
+<p>You now make an archive copy of the current linkfile
+<p>cd /d1/workarea/dlxs/text/tel
+<br>cp linkfile done/xlinkfile/linkfile_after_modsTC_081104
+
+<p>If you are satisfied with prior validation done with <u>modsTCerrorTest</u> files, <br>you have good files here and can proceed.
+
+</td>
+</tr>
+
+<tr>
+<td valign="top" width="3%">&nbsp;</td>
+<td valign="top" colspan="3">
+<u>CLEANUP TO BE DONE LATER</u>
+<p>
+<table border="1" cellpadding = "4" cellspacing="0">
+<tr>
+<td> source directory </td> 
+<td> destination directory</td>
+<td> description </td>
+</tr>
+<tr>
+<td>tei/notext</td>
+<td>delete later</td>
+<td> raw output from modsTC</td>
+</tr>
+<tr>
+<td>tei/notextCurr </td>
+<td>delete later</td>
+<td> raw output from modsTC</td>
+</tr>
+
+<tr>
+<td>tei/notextPB</td>
+<td>move to done/tei/notext</td>
+<td>tei complete with PB tags</td>
+</tr>
+<tr>
+<td>tei/notextPrev</td>
+<td>delete later or save for backup</td>
+<td>tei/notextPB/* + done/tei/notext</td>
+</tr>
+<tr>
+<td>tei/ocr</td>
+<td>delete later</td>
+<td> raw output from modsTC</td>
+</tr>
+<tr>
+<td>tei/ocrCurr</td>
+<td>delete later</td>
+<td> raw output from modsTC</td>
+</tr>
+<tr>
+<td>tei/ocrPB</td>
+<td>move to done/tei/ocr/</td>
+<td>tei complete with PB tags</td>
+</tr>
+<tr>
+<td>tei/ocrPrev</td>
+<td>delete later or save for backup</td>
+<td>tei/ocrPB/* + done/tei/ocr</td>
+</tr>
+
+<tr>
+<td>tei/typed</td>
+<td>delete later</td>
+<td> raw output from modsTC</td>
+</tr>
+<tr>
+<td>tei/typedCurr</td>
+<td>delete later</td>
+<td> raw output from modsTC</td>
+</tr>
+<tr>
+<td>tei/typedPB</td>
+<td>move to done/tei/typed/</td>
+<td>tei complete with PB tags</td>
+</tr>
+<tr>
+<td>tei/typedPrev</td>
+<td>delete later or save for backup</td>
+<td>tei/ocrPB/* + done/tei/ocr</td>
+</tr>
+
+
+
+</table>
+</body>
+</html>

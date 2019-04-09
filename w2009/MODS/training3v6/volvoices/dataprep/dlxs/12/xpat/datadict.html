@@ -1,0 +1,1989 @@
+<html>
+<head>
+<title>The XPAT Data Dictionary</title>
+
+
+
+
+
+
+
+<link href="../dlxsdocs.css" rel="stylesheet" type="text/css"> </head>         <body>
+<!-- This chapter was originally adapted from the 1995 Open Text
+documentation and is based on DBA chapter 3.  Major differences
+include the following: 1. Removal of all information about indexing
+word processing files (as well as other proprietary binary formats)
+2. Addition of some text focusing on "consolidated" (i.e., non-MFS)
+databases and drawing a clearer distinction between these and MFS
+databases.  3. Emendations of grammatical and spelling errors, as well
+as, probably, the introduction of new errors.  As is usually the case
+when some large mass of text is adapted for a new but related purpose,
+there are problems with the construction of this text.  In adapting
+the text, you inherit structures and purposes that you may not have,
+or that are not as central to your purpose(s), at the same time that
+you may not be able to bend the original text enough to your purposes.
+On the whole, the text feels too long, and to go into too much detail
+on things like MFS indexing, especially as DLXS deprecates MFS
+indexing.  It is, though, I hope, an accurate and thorough
+representation of the data dictionary as related to XPAT.
+
+jpw, 28 April, 2002
+-->
+<div align="center">The XPAT Data Dictionary</div>
+
+<h1>Table of Contents</h1>
+<ul>
+<li><a href="#sec1.1">1.1 Introduction</a></li>
+<li><a href="#sec1.2">1.2 Preparing the Data Dictionary</a></li>
+<li><a href="#sec1.3">1.3 The Text Segment: Describing your source data</a>
+<ul>
+<li><a href="#sec1.3.1">1.3.1 Introduction</a></li>
+<li><a href="#sec1.3.2">1.3.2 Consolidated text database indexes</a></li>
+<li><a href="#sec1.3.3">1.3.3 Multi-file indexing and the MfsFiles Segment</a>
+<ul>
+<li><a href="#sec1.3.3.1">1.3.3.1 The FileMap Field</a></li>
+<li><a href="#sec1.3.3.2">1.3.3.2 The FilterChain Segment</a></li>
+<li><a href="#sec1.3.3.3">1.3.3.3 How to use the Text segment for MFS indexing</a></li></ul></li></ul></li>
+<li><a href="#sec1.4">1.4 Indices Segment:  Describing Your Main Index</a>
+<ul>
+<li><a href="#sec1.4.1">1.4.1 Introduction</a></li>
+<li><a href="#sec1.4.2">1.4.2 Components of the Data Dictionary's Indexes Segment</a></li>
+<li><a href="#sec1.4.3">1.4.3 How to use the Indexes segment</a>
+<ul>
+<li><a href="#sec1.4.3.1">1.4.3.1 Selection of Indexes</a></li>
+<li><a href="#sec1.4.3.2">1.4.3.2 Index Points and Phrase Starts</a></li>
+<li><a href="#sec1.4.3.3">1.4.3.3 Mappings:  Converting Characters</a></li>
+<li><a href="#sec1.4.3.4">1.4.3.4 StopWords</a></li></ul></li>
+<li><a href="#sec1.4.4">1.4.4 Summary</a></li></ul></li>
+<li><a href="#sec1.5">1.5 Regions Segment: Describing Your Regions</a>
+<ul>
+<li><a href="#sec1.5.1">1.5.1 Components of the DD's Regions Segment</a></li>
+<li><a href="#sec1.5.2">1.5.2 Structure of the Regions Segment</a></li>
+<li><a href="#sec1.5.3">1.5.3 Summary</a></li></ul></li>
+<li><a href="#sec1.6">1.6 Miscellaneous: Thesaurus Field</a></li>
+<li><a href="#sec1.7">1.7 Generating the Data Dictionary Template</a></li>
+<li><a href="#sec1.8">1.8 Chapter Summary</a></li>
+<li><a href="#sec1.9">1.9 Example Data Dictionaries</a></li>
+</ul>
+
+<a name="sec1.1"></a><h1>1.1 Introduction</h1>
+<p>The XPAT database building process involves the preparation of source data
+and control files before the index-building steps can be run. There are a number
+of important control files that play a role in the data preparation. The
+following list shows the general order of preparation of these files:</p>
+<ol>
+<li>The Data Dictionary: the database's main control file.</li>
+<li>Either the Region Tagnames file (for simpler SGML and XML indexing) or a
+Document Type Definition (DTD) (for indexing most Text Class documents): lists
+data region tags (application-defined and system-defined) for index-building
+purposes.</li>
+<li>The optional User Meta-data file; allows an XPAT database manager to add
+related information to the source files without actually altering the original
+data. The meta-data file is required for multi-file databases and does not apply
+to consolidated databases.</li></ol>
+<p>The Region Tagnames file, User
+Meta-data file, and DTD are discussed in the XPAT Regions documentation. This
+chapter talks about the preparation of the Data Dictionary file. The Data
+Dictionary is an XPAT database's main control file, providing parameters
+for the index-building process.</p>
+<p>The Data Dictionary is introduced below. The rest of the chapter describes
+the various segments of the Data Dictionary, their functionality, and whether or
+not the XPAT database manager should modify them.</p>
+
+<a name="sec1.2"></a><h1>1.2 Preparing the Data Dictionary</h1>
+<p>The Data Dictionary (abbreviated as the 'DD' file) is an XPAT
+database's main control file. Parameters necessary for index building and
+for database searching (e.g., the indices built, files that make up the text
+being searched, the list of relevant control parameters, etc.) are placed in
+this file. The Data Dictionary is updated with these parameters by the XPAT
+database manager (XPAT database manager) and, more often, automatically by the
+various XPAT index building utilities. The Data Dictionary reflects the current
+state of a database. It is initialized by the XPAT database manager and
+thereafter maintained by the index-building utilities.</p>
+<p>The preparation of the DD involves first starting with a
+'template' DD. This template file can either be generated by the
+ddgen utility or copied from an existing template DD. The Data Dictionary
+typically has a filename extension of '.dd'.</p>
+<p>The DD file is a tagged ASCII data file. It consists of labeled sections
+that contain information relevant to the index-building process. To avoid
+confusion with terminology, this manual refers to regions in control files as
+segments. Fields within a segment are termed fields.</p>
+<p>There are four main segments in a DD file. They are the Text, Indices,
+Regions and thesaurus segments. Each of these segments is in turn divided into
+segments and fields, some of which are optional. Some fields are modified by the
+XPAT database manager and maintained by the system (index-building utilities),
+and others are both modified and maintained by the system.</p>
+<p>The Text segment of the DD provides information about source data files:
+their file format, how they should be processed, how they should be displayed
+during queries, their full pathnames, etc.</p>
+<p>The Indices segment provides information about the indices created for your
+system (including Main indices and FastFind indices), how to handle non-ASCII
+and extended-ASCII character sets, a list of word starts and stopwords, etc.
+(Wordstarts are special character strings that occur at the beginning of a word.
+Stopwords are character strings that should be ignored for indexing
+purposes.)</p>
+<p>The Regions segment provides information about any Region and FastRegion
+indices created.</p>
+<p>The Thesaurus region is used to specify the thesaurus synonym
+file.</p>
+
+<p>During the index-building process, the three segments of the DD, Text,
+Indices, and Regions, are updated and maintained by the index-building
+utilities. The DD is changed by the system during the process so as to reflect
+the current state of the database.</p>
+<p>Each of the main segments serves a specific purpose, so the sequence in
+which segments of the Data Dictionary are modified depends on a number of
+factors.  The Text segment is initialized by the XPAT database manager before
+starting the index-building process. This segment is not updated again unless
+new source data files are added to the database.  The Text segment of the DD is
+enclosed by the following
+tags:</p>
+<pre>
+&lt;Text&gt;
+....detailed information about the Text segment
+&lt;/Text&gt;</pre>
+<p>The first tag marks the start of the Text segment. The second tag marks the
+end.  Next is the Indices segment. This segment is not directly initialized by
+the XPAT database manager. Instead, the ddgen utility that generates the
+template DD (or the copy from which you make your new data dictionary)
+introduces initial values. Then, as indices are built, the system updates this
+segment as necessary. The Indices segment is enclosed by the following
+tags:</p>
+<pre>
+&lt;Indices&gt;
+....detailed information about the Indices segment
+&lt;/Indices&gt;</pre>
+<p>
+The REGIONS segment is created and updated entirely by the index-building
+utilities. Information about any index files created are placed here. This
+segment is enclosed in the Data Dictionary by the two tags
+below:</p>
+<pre>
+&lt;Regions&gt;
+....detailed information about the Regions segment
+&lt;/Regions&gt;</pre>
+<p>
+A complete data dictionary (i.e., after the indices are built) consists of
+these three segments of information about the database. Each of these three
+segments has its own set of sections. We will now examine in detail the sections
+of the Text, Indices and Regions segments of the Data Dictionary.  The general
+syntax of these Data Dictionary components are presented first, followed by
+detailed syntax and information on how to use these components to suit your
+data.</p>
+
+<a name="sec1.3"></a><h1>1.3 The Text Segment: Describing your source data</h1>
+<a name="sec1.3.1"></a><h2>1.3.1 Introduction</h2>
+<p>The Text segment of a DD contains information about the source data files.
+This segment is maintained entirely by the database manager and is delineated by
+<tt>&lt;Text&gt;</tt> and
+<tt>&lt;/Text&gt;</tt> tags.  Your XPAT database
+will consist of either a single SGML or XML file (i.e., a consolidated text
+database) or a collection of SGML or XML files in a filesystem (i.e., a
+multi-file or MFS database).  DLXS recommends the use of the consolidated text
+database approach rather than the multi-file approach for a variety of reasons. 
+For example, it simplifies indexing and problem resolution, and it appreciably
+improves search performance.  Each approach is detailed below.    </p>
+<p>Relatively little of the Text segment in a DD is created or modified by the
+indexing process.  In the case of consolidated databases, only the ModDate
+element is modified by the index-building utilities, and the remainder of the
+information is supplied by the database manager.  In the case of multi-file
+databases, no part of the Text segment of a DD is modified by the indexing
+process.</p>
+
+<a name="sec1.3.2"></a><h2>1.3.2 Consolidated text database indexes</h2>
+<p>Many collections will consist of a single SGML or XML file and can thus be
+treated as a consolidated text database.  For consolidated text databases, the
+Text segment of the DD is relatively simple and provides a reference or pointer
+to the file being indexed, along with basic information about that file.  Figure
+1 illustrates the Text segment of a sample DD for a consolidated text database.
+</p>
+<p><b>Figure 1:  Consolidated text file
+database</b></p>
+<pre>
+&lt;Text&gt;
+&lt;Files&gt;
+&lt;File&gt;
+&lt;SysName&gt;/DLXSROOT/obj/patent.xml&lt;/SysName&gt;
+&lt;ModDate&gt;769282584&lt;/ModDate&gt;
+&lt;Offset&gt;0&lt;/Offset&gt;
+&lt;/File&gt;
+&lt;/Files&gt;
+&lt;/Text&gt;</pre>
+<p>
+</p>
+<p>In this example, the file
+<tt>patent.xml</tt> is being indexed.  The
+database manager supplies the file name and its path (i.e.,
+<tt>/DLXSROOT/obj/</tt>). The value for ModDate
+may be left blank or unchanged, as it will be accurately updated at the time of
+indexing.  The value of ModDate is also evaluated by the XPAT search engine at
+the time of startup to determine whether inadvertent changes to the source data
+have been made; a warning is generated when a discrepancy is found.  (The
+default value for Offset is "0".)  Typically, for consolidated text
+databases, the database manager need only supply an accurate path and filename
+of the material being indexed.</p>
+
+<a name="sec1.3.3"></a><h2>1.3.3 Multi-file indexing and the MfsFiles Segment</h2>
+<p>More information is required for multi-file databases, and so the Text
+segment contains the names of the files and their locations, a label associated
+with the data file format (SGML, etc.), how the file formats should be treated
+for searching, and information (currently unused) about how to display the file.
+The MfsFiles segment is enclosed by &lt;MfsFiles&gt; and &lt;/MfsFiles&gt; tags.
+It contains all the information that specifies the different files that are part
+of the database, along with the filter information required to process the
+various file types. The MfsFiles segment contains a FileMap field and one or
+more FilterChain segments. </p>
+<p><b>Figure 2:  Multi-file
+database</b></p>
+<pre>
+&lt;Text&gt;
+&lt;MfFiles&gt;
+&lt;FileMap&gt;test&lt;/FileMap&gt;
+&lt;FilterChain&gt;
+&lt;SearchView&gt;meta&lt;/SearchView&gt;
+&lt;DisplayView&gt;meta&lt;/DisplayView&gt;
+&lt;RawView&gt;meta&lt;/RawView&gt;
+&lt;DisplayFmt&gt;sgml,DOCROOT,COLLROOT&lt;/DisplayFmt&gt;
+&lt;FileGroup&gt;
+&lt;MfsDir&gt;../files&lt;/MfsDir&gt;
+&lt;MfsFile&gt;*.sgm&lt;/MfsFile&gt;
+&lt;MfsExpand&gt;file&lt;/MfsExpand&gt;
+&lt;/FileGroup&gt;
+&lt;/FilterChain&gt;
+&lt;FilterChain&gt;
+&lt;SearchView&gt;meta&lt;/SearchView&gt;
+&lt;DisplayView&gt;meta&lt;/DisplayView&gt;
+&lt;RawView&gt;meta&lt;/RawView&gt;
+&lt;DispiayFmt&gt;sgml,DOCROOT,COLLROOT&lt;/DispayFmt&gt;
+&lt;FileGroup&gt;
+&lt;MfsDir&gt;../files&lt;/MfsDir&gt;
+&lt;MfsFile&gt;*.sgm&lt;/MfsFile&gt;
+&lt;MfsExpand&gt;file&lt;/MfsExpand&gt;
+&lt;/FileGroup&gt;
+&lt;/FilterChain&gt;
+&lt;/MfsFiles&gt;
+&lt;/Text&gt;</pre>
+<a name="sec1.3.3.1"></a><h3>1.3.3.1 The FileMap Field</h3>
+<p>The FileMap field is enclosed by
+<tt>&lt;FileMap&gt;</tt> and
+<tt>&lt;/FileMap&gt;</tt> tags. It specifies the
+file name prefix for the three files that make up the FileMap. These files are
+(1) the '.fmp' file, (2) the '.imp' file, and (3) the
+'.xmp' file. In the above example the File Map prefix is
+'test'. Assuming a database had been built using that DD, the
+resulting files would be 'test.fmp', 'test.imp', and
+'test.xmp'.</p>
+
+<a name="sec1.3.3.2"></a><h3>1.3.3.2 The FilterChain Segment</h3>
+<p>Each FilterChain segment is enclosed by
+<tt>&lt;FilterChain&gt;</tt> and
+<tt>&lt;/FilterChain&gt;</tt> tags. You must
+define one FilterChain segment for each different file format present in the
+database. Each FilterChain segment contains fields that specify the five
+required items for a file type. These fields are the SearchView field, the
+DisplayView field, the RawView field, the DisplayFmt field, and the FileGroup
+segment. A FilterChain may contain one or more FileGroup segments.</p>
+<h4>1.3.3.2.1 The SearchView Field</h4>
+<p>The SearchView field is enclosed by
+<tt>&lt;SearchView&gt;</tt> and
+<tt>&lt;/SearchView&gt;</tt> tags. It specifies
+the filter chain that produces indexable and searchable text for each file. The
+filter chain is specified by listing the names of each filter, in order from
+first (which accesses the files directly) to last (whose output goes to the
+indexing or search programs). The filter names are separated by the pipe
+('|') character. The last filter in a chain should always be the
+'meta' filter. For example, consider a filter chain that consists of
+a decompression filter followed by the 'meta' filter. The following
+would be the correct SearchView field
+specification:</p>
+<pre> &lt;SearchView&gt;sys("uncompress")|meta&lt;/SearchView&gt;</pre>
+<p>
+The sys filter allows any general Unix program to be used as a filter. The
+last filter in the chain should always be the meta filter. Filter chains of a
+length of one (i.e., meta only) are typical. </p>
+<p>Two additional filters, wfw and iflat, were used to extract text from
+now-defunct word processing, database, and spreadsheet file formats and to check
+the integrity of those files, respectively.  DLXS does not support the wfw and
+iflat filters, and no documentation for them filter is provided here.  Also
+unsupported and undocumented here are custom filters.  (More information on
+custom filters is available in the original PAT 5.0 documentation)  </p>
+
+<h4>1.3.3.2.2 The DisplayView Field</h4>
+<p>The DisplayView field (enclosed by &lt;DisplayView&gt; and
+&lt;/DisplayView&gt; tags) is now defunct but must be included for proper MFS
+indexing.  It was used to temporarily convert the source data into a displayable
+format for viewer program Open TextView. It should read,
+simply:</p>
+<pre> &lt;DisplayView&gt;meta&lt;/DisplayView&gt;</pre>
+
+<h4>1.3.3.2.3 The RawView Field</h4>
+<p>The Raw View field is enclosed by &lt;RawView&gt; and &lt;/RawView&gt;
+tags. It specifies the filter chain that will produce the raw data of the
+database.</p>
+
+<h4>1.3.3.2.4 The DisplayFmt Field</h4>
+<p>The DisplayFmt field (enclosed by &lt;DisplayFmt&gt; and
+&lt;/DisplayFmt&gt; tags) is now defunct but must be included for proper MFS
+indexing.  The DisplayFmt field was designed to direct output to a specific
+viewing application.  It should read,
+simply</p>
+<pre> &lt;DisplayFmt&gt;sgml,DOCROOT,COLLROOT&lt;/DisplayFmt&gt;</pre>
+<p>
+where DOCROOT is your document's root element and COLLROOT is your
+collection's root element (e.g., DLPSTEXTCLASS and COLL for DLXS
+TextClass).</p>
+
+<h4>1.3.3.2.5 The FileGroup Segment</h4>
+<p>The FileGroup segment is enclosed by &lt;FileGroup&gt; and
+&lt;/FileGroup&gt; tags. Each FilterChain segment may contain one or more
+FileGroup segments. Each FileGroup segment specifies a group of files in a
+directory or subtree that are to be included in the database and which are in
+the data format that can be handled by the SearchView, DisplayView and RawView
+filter chains in the enclosing FilterChain segment. Each FileGroup segment
+contains three fields: MfsDir, MfsFile, and MfsExpand.</p>
+<h5>1.3.3.2.5.1 The MfsDir Field</h5>
+<p>The MfsDir field is enclosed by &lt;MfsDir&gt; and &lt;/MfsDir&gt; tags. It
+specifies the directory containing the files. If the FileGroup is specifying a
+subtree, the MfsDir field specifies the root of the subtree (the MfsExpand
+field, described below, determines whether the MfsDir field is interpreted as a
+directory or as the root of a subtree). Note that the directory path may be
+relative to the current directory or may be the full path name.</p>
+
+<h5>1.3.3.2.5.2 The MfsFile Field</h5>
+<p>The MfsFile field is enclosed by &lt;MfsFile&gt; and &lt;/MfsFile&gt; tags.
+It specifies the file name pattern for the files to include in this FileGroup.
+Multiple files are specified using the wildcard characters supported by the
+operating system that the XPAT database is being built on. Single files are
+specified without wildcard characters. Some of the more commonly used wildcard
+characters are listed below:</p>
+<table border="1">
+<tbody>
+<tr><td>'*'</td><td>represents an alphanumeric string of any length1</td></tr>
+<tr><td>'[ ]'</td><td>allows for a range-specification for any single alpha or numeric
+character</td></tr>
+<tr><td>'?'</td><td>represents any single alphanumeric character (including underscore and
+hyphen)</td></tr>
+</tbody>
+</table>
+<p>Refer to the mfs man page for a complete list of valid file patterns. If
+the FileGroup is specifying a subtree, then all the files in the subtree
+matching the given filename or pattern are included.</p>
+
+<h5>1.3.3.2.5.3 The MfsExpand Field</h5>
+<p>The MfsExpand field is enclosed by &lt;Mfs Expand&gt; and &lt;/Mfs
+Expand&gt; tags. The value of this field determines whether the MfsFile
+specification applies only to the files in the MfsDir directory or to all the
+files in the subtree rooted at the given directory. A value of
+'file' means that only the files in the given directory will be
+included--the subdirectories rooted at the given directory will not be searched.
+A value of 'tree' means that files in the directory specified by
+MfsDir will be searched, along with any files in the directory's
+sub-directories.</p>
+
+
+
+<a name="sec1.3.3.3"></a><h3>1.3.3.3 How to use the Text segment for MFS indexing</h3>
+<p>The XPAT software has the ability to process source files in 7- and 8-bit
+SGML, as well as XML using 7- or 8-bit character encodings and Unicode
+UTF-8 encoding of the Basic Multilingual Plane (UCS-2 code points up to U+FFFF). The FilterChain
+segment of the Text component is used to indicate the format(s) of your source
+files. There are no restrictions on combinations of file formats your data can
+be in; your data can all be in one format or in many different
+formats.</p>
+<p>To convey how to use the Text segment, this section has been divided into
+several "situations" that an XPAT database manager may encounter in
+the course of setting up XPAT databases. Each of these "situation"
+sub-sections describes what segment of the DD must be modified in order to
+achieve the desired result.</p>
+<h4>1.3.3.3.1 Setting The Database Name</h4>
+<p>The FileMap field records the name of your database system. Because of the
+file naming Unix environment, there is no limit to the database name (blanks in
+the name are not recommended).  For
+example:</p>
+<pre>
+&lt;Text&gt;
+&lt;MfsFiles&gt;
+&lt;FileMap&gt;test&lt;/FileMap&gt;
+&lt;/MfsFiles&gt;
+&lt;/Text&gt;</pre>
+
+<h4>1.3.3.3.2 Selecting the Correct Filters</h4>
+<p>For each group of your source data files that have a particular file
+format, a separate FilterChain segment must be specified. Within each
+FilterChain segment, you need to specify a set of filters for text searching
+purposes.</p>
+<p>The SearchView field specifies the file filters that should be used to
+process source data for indexing and searching. (To be more precise, this field
+is used to indicate which series of filters--i.e., filter chain--should be
+used.). (For ease of explanation. let's assume that we are only using one
+source file type. Multiple source file types are discussed below.)  For
+example,</p>
+<pre>
+&lt;Text&gt; 
+&lt;MfsFiles&gt;
+&lt;FileMap&gt;test&lt;/FileMap&gt;
+&lt;Fi1lterChain&gt;
+&lt;SearchView&gt;sys("uncompress")|meta&lt;/SearchView&gt;
+&lt;DisplayView&gt;sys("uncompress")|meta&lt;/DisplayView&gt;
+&lt;/FilterChain&gt;
+(additional FilterChain segments for each file type
+&lt;/MfsFiles&gt;
+&lt;/Text&gt;</pre>
+
+
+<h4>1.3.3.3.3 Specifying the File Hierarchy</h4>
+<p>A powerful feature of the XPAT software is its ability to distribute your
+source data across several files in several directories. If you use this feature
+you need a way of specifying your source file hierarchy. The FileGroup segment
+(of the FilterChain segment) of the DD lets you provide this information via
+three fields:</p>
+<ol>
+<li>MfsDir</li>
+<li>MfsFile</li>
+<li>MfsExpand</li></ol>
+<p>in that order.</p>
+<p>The MfsDir field specifies the full pathname of a directory containing one
+or more of your source files. This directory may also control several levels of
+subdirectories that contain more source files.</p>
+<p>The MfsFile field specifies a file name pattern for one or more of your
+source files that are in the directories indicated by the preceding MfsDir
+field.</p>
+<p>The MfsExpand field allows you to specify the use of files in the directory
+indicated by the MfsDir field, or the files in the entire sub-tree rooted at the
+directory.</p>
+<h5>1.3.3.3.3.1 Using Multiple Data Files</h5>
+<p>If your database uses several source files in a single directory, there are
+a number of ways to specify this, depending on the file formats being used. 
+</p>
+<p>You may use wild cards to specify data filenames.  Given that you have a
+set of files that have the same file format and the same file extension, you can
+specify this situation in the MfsFile field. For example if you want to specify
+all XML files starting with 'patent' and ending with
+'.xml', you might
+use:</p>
+<pre>
+&lt;FileGroup&gt;
+&lt;MfsDir&gt;/DLXSROOT/misc&lt;/MfsDir&gt;
+&lt;MfsFile&gt;patent*.xml&lt;/MfsFile&gt;
+&lt;MfsExpand&gt;file&lt;/MfsExpand&gt;
+&lt;/FileGroup&gt;</pre>
+<p>
+The MfsFile field also allows for a more complex form of wildcards when
+specifying filenames. This field allows for combinations of the following:
+'?' (any single character), '*' (a string of zero or
+more characters), and '[a-z,0-9]' (a range of single alphanumeric
+characters). For example, to specify "any file starting with the letters
+'patent', followed by a letter ranging from 'j' through
+'n', ending with any letter, and having any extension ending with a
+'ml' could be specified as
+follows:</p>
+<pre> &lt;MfsFile&gt;patent[j-n]?.*ml&lt;/MfsFile&gt;</pre>
+<p>
+Note: The above MfsFile field specifies filenames with a length of eight
+characters before the extension.</p>
+
+<h5>1.3.3.3.3.2 Using Multiple File Extensions for the Same Format</h5>
+<p>Occasionally you will have files of the same (or similar enough) format
+that use different file extensions. This sort of file hierarchy can be specified
+in a series of FileGroup segments contained within the same FilterChain segment.
+For example, if you want to include all files ending in either
+'.sgml' or '.xml' in the directory /DLXSROOT/docs, you
+can do so as
+follows:</p>
+<pre>
+&lt;FilterChain&gt;
+&lt;SearchView&gt;...&lt;/SearchView&gt;
+&lt;FileGroup&gt;
+&lt;MfsDir&gt;/DLXSROOT/docs&lt;/MfsDir&gt;
+&lt;MfsFile&gt;*.sgml&lt;/MfsFile&gt;
+&lt;MfsExpand&gt;file&lt;/MfsExpand&gt;
+&lt;/FileGroup&gt;
+&lt;FileGroup&gt;
+&lt;MfsDir&gt;/DLXSROOT/docs&lt;/MfsDir&gt;
+&lt;MfsFile&gt;*.xml&lt;/MfsFile&gt;
+&lt;MfsExpand&gt;file&lt;/MfsExpand&gt;
+&lt;/FileGroup&gt;
+&lt;/FilterChain&gt;</pre>
+
+<h5>1.3.3.3.3.3 Using Multiple Directories</h5>
+<p>In the above example, the source files had different file extensions but
+were of roughly the same format.  Similarly, if your files are in different
+directories (with either the same file extensions or different ones) and are of
+roughly the same format, you can specify this with multiple FileGroup segments
+within the same FilterChain segment. Suppose you want to specify files ending in
+either '. sgml' or '.xml' in /DLXSROOT/obj/toronto,
+files ending in '.xml' in /DLXSROOT/obj/washington, and files ending
+in '.sgml' in /DLXSROOT/obj/boston. These files can be specified
+using four FileGroup segments within a single FilterChain
+segment:</p>
+<pre>
+&lt;FilterChain&gt;
+&lt;SearchView&gt;...
+&lt;/SearchView&gt;
+&lt;FileGroup&gt;
+&lt;MfsDir&gt;/DLXSROOT/obj/toronto&lt;/MfsDir&gt;
+&lt;MfsFile&gt;*.sgml&lt;/MfsFile&gt;
+&lt;MfsExpand&gt;file&lt;/MfsExpand&gt;
+&lt;/FileGroup&gt;
+&lt;FileGroup&gt;
+&lt;MfsDir&gt;/DLXSROOT/obj/toronto&lt;/MfsDir&gt;
+&lt;MfsFile&gt;*.xml&lt;/MfsFile&gt;
+&lt;MfsExpand&gt;file&lt;/MfsExpand&gt;
+&lt;/FileGroup&gt;
+&lt;FileGroup&gt;
+&lt;MfsDir&gt;/DLXSROOT/obj/washington&lt;/MfsDir&gt;
+&lt;MfsFile&gt;*.xml&lt;/MfsFile&gt;
+&lt;MfsExpand&gt;file&lt;/MfsExpand&gt;
+&lt;/FileGroup&gt;
+&lt;FileGroup&gt;
+&lt;MfsDir&gt;/DLXSROOT/obj/boston&lt;/MfsDir&gt;
+&lt;MfsFile&gt;*.sgml&lt;/MfsFile&gt;
+&lt;MfsExpand&gt;
+file&lt;/MfsExpand&gt;
+&lt;/FileGroup&gt;
+&lt;/FilterChain&gt;</pre>
+<p>
+These four segments can be reduced to three segments or even one segment
+(but not two in this case), depending on certain conditions. For example, if
+'/DLXSROOT/data /toronto' contains only files ending with
+'.sgml' and '.xml', then the two 'toronto'
+FileGroup segments can be combined into
+one:</p>
+<pre>
+&lt;FileGroup&gt;
+&lt;MfsDir&gt;/DLXSROOT/obj/toronto&lt;/MfsDir&gt;
+&lt;MfsFile&gt;*.*&lt;/MfsFile&gt;
+&lt;MfsExpand&gt;file&lt;/MfsExpand&gt;
+&lt;/FileGroup&gt;</pre>
+<p>Note:  If there are any other files in the 'toronto' directory
+that you do not want to include, then you must use separate FileGroups for each
+of the unique file extensions that you do want to include. The entire group of
+source files above can also be specified in a single FileGroup using
+'tree' instead of 'file' in the MfsExpand
+field.</p>
+<pre>
+&lt;FileGroup&gt;
+&lt;MfsDir&gt;/DLXSROOT/obj&lt;/MfsDir&gt;
+&lt;MfsFile&gt;*.*/MfsFile&gt;
+&lt;MfsExpand&gt;tree&lt;/MfsExpand&gt;
+&lt;/FileGroup&gt;</pre>
+<p>
+This assumes (1) that all the files in obj and its sub-directories
+(toronto, washington, boston) are of roughly the same format, and (2) that none
+of these files are to be excluded. If any files are to be excluded, multiple
+FileGroup segments must be used. If there is more than one file format in use,
+multiple FilterChain segments must be used.</p>
+
+
+<h4>1.3.3.3.4 Summary</h4>
+<p>The MFS Text segment contains system information about the source files:
+their file hierarchy; labels associated with their file types: and how the files
+should be processed. This segment is maintained by you, the XPAT database
+manager. None of the index-building utilities modify this segment at any time.
+If new source files are added to the database, the XPAT database manager must
+update this segment manually and then rebuild the index files.</p>
+
+
+
+
+<a name="sec1.4"></a><h1>1.4 Indices Segment:  Describing Your Main Index</h1>
+<a name="sec1.4.1"></a><h2>1.4.1 Introduction</h2>
+<p>XPAT's text searching facilities achieve their speed and
+functionality through the use of specialized indices. Index files can be likened
+to the index in the back of a book. Indices provide you with a fast way of
+searching for a particular word or phrase. Indices are built on words and
+phrases, special character sequences, letter pairs and so on. During
+index-building, the source data is scanned for occurrences of the requested text
+meeting the appropriate criteria, and this information is catalogued. Later,
+when text searches are requested, the indices are used to find occurrences of
+the text. In other words, the index list is scanned for whatever character
+string is being queried. Since this index list has 'pointers' set
+directly to all occurrences of various strings, searches are faster than if the
+original data was searched. Again, we use the analogy of an index in the back of
+a book. If we are looking for a particular topic in the book, we can skim the
+entire book or we can speed up our search and look in the index for a list of
+page numbers where the topic was discussed. The XPAT software's indices
+work in virtually the same fashion, but the 'page numbers' are
+invisible to the user.</p>
+<p>Database indices reflect the text being searched. When the source text is
+altered, indices are updated to reflect these changes. There are two methods of
+updating the indices:</p>
+<ol>
+<li>Rebuild the entire database</li>
+<li>Incrementally rebuild the database to reflect additions and deletions using
+the xpatmaint utility.</li></ol>
+<p>There are several types of indices used for
+XPAT databases, all of which can be categorized into two main groups: (1) the
+Main Index Group and (2) the Region Index Group. Sub-sections of this portion of
+the documentation guide discuss Main Indices and Region Indices. </p>
+<p>The main index group of files actually consists of the Main Index file and,
+in the case of MFS indexes, a set of FastFind indices. System information about
+this group of files, and any relevant Main Index parameters, is catalogued in
+the Indices segment of the DD. The Indices segment, for the most part, is
+created and maintained by the index-building utilities. There are certain
+initial values that an XPAT database manager needs to set, but this is otherwise
+mostly a hands-off segment. Nevertheless, each part of the Indices segment of a
+DD has a specific function which you should be familiar with.</p>
+<p>The Indices segment of a DD is enclosed by
+<tt>&lt;Indices&gt;</tt> and
+<tt>&lt;/Indices&gt;</tt> tags and contains one
+or more Index segments. Each Index segment consists of a Name field, a File
+segment, an optional InitFile field, an IndexPoints segment, a Mappings segment
+and an IntegrityCheck field. These segments of the DD are described
+below.</p>
+
+<a name="sec1.4.2"></a><h2>1.4.2 Components of the Data Dictionary's Indexes Segment</h2>
+<p>The Indices segment of the DD is created and maintained by the
+index-building utilities. The XPAT database manager may fine tune this section,
+but should otherwise leave it alone. This segment provides information about the
+indices built upon the source data: the type of index; the system name
+(filename); etc. Below is the Indices segment of a sample DD. (Note that the
+first occurrence of a tag below is printed in boldface type.) The segments and
+fields are explained following the sample below.</p>
+<p><b>Consolidated File Indices Group</b></p>
+<pre>
+&lt;Indices&gt;
+&lt;Index&gt;
+ &lt;Name&gt;&lt;/Name&gt;
+ &lt;File&gt;
+  &lt;SysName&gt;/DLXSROOT/idx/patent/patent.idx&lt;/SysName&gt;
+  &lt;ModDate&gt;981736879&lt;/ModDate&gt;
+  &lt;Offset&gt;0&lt;/Offset&gt;
+ &lt;/File&gt;
+ &lt;IndexPoints&gt;
+  &lt;IndexPt&gt;&amp;printable.&lt;/IndexPt&gt;
+  &lt;IndexPt&gt;&amp;printable.-&lt;/IndexPt&gt;
+  &lt;IndexPt&gt;-&amp;printable.&lt;/IndexPt&gt;
+  &lt;IndexPt&gt;&amp;printable.&amp;lt.&lt;/IndexPt&gt;
+  &lt;IndexPt&gt;&amp;printable.&amp;amp.&lt;/IndexPt&gt;
+ &lt;/IndexPoints&gt;
+ &lt;Mappings&gt;
+  &lt;Map&gt;&lt;From&gt;&lt;/From&gt;&lt;To&gt;&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;&amp;backspace.&lt;/From&gt;&lt;To&gt;&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;&amp;tab.&lt;/From&gt;&lt;To&gt;&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;&amp;newline.&lt;/From&gt;&lt;To&gt;&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;&amp;return.&lt;/From&gt;&lt;To&gt;&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;!&lt;/From&gt;&lt;To&gt;&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;"&lt;/From&gt;&lt;To&gt;&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;#&lt;/From&gt;&lt;To&gt;&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;$&lt;/From&gt;&lt;To&gt;&lt;/To&gt;&lt;/Map&gt;
+  .
+  .
+  .
+  &lt;Map&gt;&lt;From&gt;.&lt;/From&gt;&lt;To&gt;&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;:&lt;/From&gt;&lt;To&gt;&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;;&lt;/From&gt;&lt;To&gt;&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;=&lt;/From&gt;&lt;To&gt;&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;&amp;gt.&lt;/From&gt;&lt;To&gt;&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;?&lt;/From&gt;&lt;To&gt;&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;@&lt;/From&gt;&lt;To&gt;&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;A&lt;/From&gt;&lt;To&gt;a&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;B&lt;/From&gt;&lt;To&gt;b&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;C&lt;/From&gt;&lt;To&gt;c&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;U&lt;/From&gt;&lt;To&gt;u&lt;/To&gt;&lt;/Map&gt;
+  .
+  .
+  .
+  &lt;Map&gt;&lt;From&gt;X&lt;/From&gt;&lt;To&gt;x&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;Y&lt;/From&gt;&lt;To&gt;y&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;Z&lt;/From&gt;&lt;To&gt;z&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;[&lt;/From&gt;&lt;To&gt;&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;\&lt;/From&gt;&lt;To&gt;&lt;/To&gt;&lt;/Map&gt;
+  .
+  .
+  .
+  &lt;Map&gt;&lt;From&gt;~&lt;/From&gt;&lt;To&gt;&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;\300&lt;/From&gt;&lt;To&gt;a&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;\301&lt;/From&gt;&lt;To&gt;a&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;\302&lt;/From&gt;&lt;To&gt;a&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;\303&lt;/From&gt;&lt;To&gt;a&lt;/To&gt;&lt;/Map&gt;
+  .
+  .
+  .
+  &lt;Map&gt;&lt;From&gt;\375&lt;/From&gt;&lt;To&gt;y&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;\377&lt;/From&gt;&lt;To&gt;y&lt;/To&gt;&lt;/Map&gt;
+  &lt;StopWords&gt;&lt;/StopWords&gt;
+ &lt;/Mappings&gt;
+ &lt;LongestMatch&gt;
+  &lt;Length&gt;0&lt;/Length&gt;
+  &lt;Resolution&gt;0&lt;/Resolution&gt;
+ &lt;/LongestMatch&gt;
+ &lt;IntegrityCheck&gt;-1596985544&lt;/IntegrityCheck&gt;
+&lt;/Index&gt;
+&lt;/Indices&gt;</pre>
+<p>
+</p>
+<p><b>MFS File Indices Group</b></p>
+<pre>
+&lt;Indices&gt;
+&lt;Index&gt;
+ &lt;Name&gt;&lt;/Name&gt;
+ &lt;FastFind&gt;
+  &lt;FastFindCompression&gt;
+   &lt;File&gt;
+    &lt;SysName&gt;/DLXSROOT/idx/patent/patent.ffi&lt;/SysName&gt;
+    &lt;ModDate&gt;1019834215&lt;/ModDate&gt;
+    &lt;Offset&gt;0&lt;/Offset&gt;
+   &lt;/File&gt;
+  &lt;/FastFindCompression&gt;
+  &lt;FastFindIndex&gt;
+   &lt;File&gt;
+    &lt;SysName&gt;/DLXSROOT/idx/patent/patent.ffc&lt;/SysName&gt;
+    &lt;ModDate&gt;1019834215&lt;/ModDate&gt;
+    &lt;Offset&gt;0&lt;/Offset&gt;
+   &lt;/File&gt;
+  &lt;/FastFindIndex&gt;
+  &lt;FastFindWordList&gt;
+   &lt;File&gt;
+    &lt;SysName&gt;/DLXSROOT/idx/patent/patent.ffw&lt;/SysName&gt;
+    &lt;ModDate&gt;1019834210&lt;/ModDate&gt;
+    &lt;Offset&gt;0&lt;/Offset&gt;
+   &lt;/File&gt;
+  &lt;/FastFindWordList&gt;
+ &lt;/FastFind&gt;
+ &lt;File&gt;
+  &lt;SysName&gt;/DLXSROOT/idx/patent/patent.idx&lt;/SysName&gt;
+  &lt;ModDate&gt;1019834195&lt;/ModDate&gt;
+  &lt;Offset&gt;0&lt;/Offset&gt;
+ &lt;/File&gt;
+ &lt;IndexPoints&gt;
+  &lt;IndexPt&gt;&amp;printable.&lt;/IndexPt&gt;
+  &lt;IndexPt&gt;&amp;printable.-&lt;/IndexPt&gt;
+  &lt;IndexPt&gt;-&amp;printable.&lt;/IndexPt&gt;
+  &lt;IndexPt&gt;&amp;printable.&amp;lt.&lt;/IndexPt&gt;
+  &lt;IndexPt&gt;&amp;printable.&amp;amp.&lt;/IndexPt&gt;
+ &lt;/IndexPoints&gt;
+ &lt;Mappings&gt;
+  &lt;Map&gt;&lt;From&gt;&lt;/From&gt;&lt;To&gt;&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;&amp;backspace.&lt;/From&gt;&lt;To&gt;&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;&amp;tab.&lt;/From&gt;&lt;To&gt;&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;&amp;newline.&lt;/From&gt;&lt;To&gt;&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;&amp;return.&lt;/From&gt;&lt;To&gt;&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;!&lt;/From&gt;&lt;To&gt;&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;"&lt;/From&gt;&lt;To&gt;&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;#&lt;/From&gt;&lt;To&gt;&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;$&lt;/From&gt;&lt;To&gt;&lt;/To&gt;&lt;/Map&gt;
+  .
+  .
+  .
+  &lt;Map&gt;&lt;From&gt;:&lt;/From&gt;&lt;To&gt;&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;;&lt;/From&gt;&lt;To&gt;&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;=&lt;/From&gt;&lt;To&gt;&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;&amp;gt.&lt;/From&gt;&lt;To&gt;&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;?&lt;/From&gt;&lt;To&gt;&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;@&lt;/From&gt;&lt;To&gt;&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;A&lt;/From&gt;&lt;To&gt;a&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;B&lt;/From&gt;&lt;To&gt;b&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;C&lt;/From&gt;&lt;To&gt;c&lt;/To&gt;&lt;/Map&gt;
+  .
+  .
+  .
+  &lt;Map&gt;&lt;From&gt;X&lt;/From&gt;&lt;To&gt;x&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;Y&lt;/From&gt;&lt;To&gt;y&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;Z&lt;/From&gt;&lt;To&gt;z&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;[&lt;/From&gt;&lt;To&gt;&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;\&lt;/From&gt;&lt;To&gt;&lt;/To&gt;&lt;/Map&gt;
+  .
+  .
+  .
+  &lt;Map&gt;&lt;From&gt;~&lt;/From&gt;&lt;To&gt;&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;\300&lt;/From&gt;&lt;To&gt;a&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;\301&lt;/From&gt;&lt;To&gt;a&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;\302&lt;/From&gt;&lt;To&gt;a&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;\303&lt;/From&gt;&lt;To&gt;a&lt;/To&gt;&lt;/Map&gt;
+  .
+  .
+  .
+  &lt;Map&gt;&lt;From&gt;\375&lt;/From&gt;&lt;To&gt;y&lt;/To&gt;&lt;/Map&gt;
+  &lt;Map&gt;&lt;From&gt;\377&lt;/From&gt;&lt;To&gt;y&lt;/To&gt;&lt;/Map&gt;
+  &lt;StopWords&gt;&lt;/StopWords&gt;
+ &lt;/Mappings&gt;
+ &lt;LongestMatch&gt;
+  &lt;Length&gt;0&lt;/Length&gt;
+  &lt;Resolution&gt;0&lt;/Resolution&gt;
+ &lt;/LongestMatch&gt;
+ &lt;IntegrityCheck&gt;-1596985544&lt;/IntegrityCheck&gt;
+&lt;/Index&gt;
+&lt;/Indices&gt;</pre>
+<ol>
+<li><b>Indices segment:</b>  The Indices segment is enclosed by &lt;Indices&gt;
+and &lt;/Indices&gt; tags. It contains one or more Index segments.</li>
+<li><b>Index segment:</b> The Index segment is enclosed by &lt; Index&gt; and
+&lt;/Index&gt; tags. It contains information about a single, named Main Index.
+Specifically, it contains a Name field, a FastFind segment (if a FastFind index
+has been built on this Main Index), a File segment, an optional InitFile field,
+an IndexPoints a segment, a Mappings segment, an IntegrityCheck field, and other
+miscellaneous fields.</li>
+<li><b>Name Field:</b>  The Name field is enclosed by &lt;Name&gt; and
+&lt;/Name&gt; tags. It names the index in the enclosing Index segment. It is
+used when invoking xpat to specify which index is to be used in searching. The
+first Index segment may have an empty Name field (i.e.,
+'&lt;Name&gt;&lt;/Name&gt;'). All other Index segments must have
+non-empty Name fields.</li>
+<li><b>FastFind segment:</b>  The FastFind segment (used in MFS index building)
+is enclosed by &lt;FastFind&gt; and &lt;/FastFind&gt; tags. It contains a
+FastFindCompression segment, a FastFind Index segment and a FastFind WordList
+segment. These segments describe information for each of the three files that
+constitute the FastFind index. Note that these segments are only present in the
+DD if a FastFind index has been built on the database. This is always the case
+for MFS database, but may not always be the case for consolidated
+databases.</li>
+<li><b>FastFind Compression segment:</b>  The FastFind Compression segment is
+enclosed by &lt;FastFindCompression&gt; and &lt;/FastFindCompression&gt; tags.
+It contains one File segment that specifies the FastFind Compression file. The
+contents of the File segment are described below. </li>
+<li><b>File segment:</b>  The File segment is enclosed by &lt;File&gt; and
+&lt;/File&gt; tags and contains data about a single file. This data is organized
+into a standard format. This format is used throughout the DD in all file
+references. This format consists of the SysName, ModDate and Offset fields.</li>
+<li><b>SysName Field:</b> The SysName field is enclosed by &lt;SysName&gt; and
+&lt;/SysName&gt; tags. It contains the name by which the file is known to the
+computer's file system. This can be either a relative path or an absolute
+path, though we recommend using absolute paths.</li>
+<li><b>ModDate Field:</b>  The ModDate field is enclosed by &lt;ModDate&gt; and
+&lt;/ModDate&gt; tags. It contains the last modification date of the file
+encoded as an number. It is maintained by the index building and maintenance
+programs to ensure that the index was constructed after the last modification to
+the source files.</li>
+<li><b>Offset Field:</b>  The Offset field is enclosed by &lt;Offset&gt; and
+&lt;/Offset&gt; tags. It specifies the logical starting offset of the index
+within the file. This field is usually 0; it has only non-zero values when it
+appears in the Regions segment (see below).</li>
+<li><b>FastFindIndex segment:</b>  The FastFindIndex segment is enclosed by
+&lt;FastFindIndex&gt; and &lt;/FastFindIndex&gt; tags. It contains one File
+segment that specifies the main FastFind Index file. The contents of this File
+segment are the same as that of the File segment in FastFindCompression.</li>
+<li><b>FastFindWordList segment:</b> The FastFindWordList segment is enclosed by
+&lt;FastFindWordList&gt; and &lt;/FastFindWordList&gt; tags. It contains one
+File segment that specifies the FastFind Word List file.</li>
+<li><b>File segment:</b> The File segment is enclosed by &lt;File&gt; and
+&lt;/File&gt; tags. It identifies the file containing the actual index data. It
+contains the same fields as the File segment in the Text segment.</li>
+<li><b>InitFile Field:</b>  The InitFile field is enclosed by &lt;InitFile&gt;
+and &lt;/InitFile&gt; tags. It is an optional field and contains the name of a
+file that is read by xpat during initialization. The initialization file may
+contain any legal xpat commands. Typical uses of the initialization file include
+setting the DefaultRegion; defining macros; or defining a match set or region
+set commonly used in an xpat session.</li>
+<li><b>IndexPoints segment:</b> The IndexPoints segment is enclosed by
+&lt;IndexPoints&gt; and &lt;/IndexPoints&gt; tags. It contains one or more
+IndexPt fields.</li>
+<li><b>IndexPt Field:</b> The IndexPt fields are enclosed by &lt;IndexPt&gt; and
+&lt;/IndexPt&gt; tags. These fields contain strings which indicate points in the
+text which should be indexed.
+<p>The simplest index point
+specification is simply two characters, for instance
+'&lt;IndexPt&gt;ab&lt;/IndexPt &gt;'. This example instructs xpatbld to
+create an index point each time an "ab" occurs in the text. For each
+such occurrence, an index point is generated for the "b". Since
+listing each two-letter combination to index can be cumbersome, each IndexPt
+field can contain meta-characters. A meta-character stands for a number of
+characters. For instance, the meta-character '&amp;uppercase.'
+stands for the characters 'ABCDEFGH...' and so on. An index point
+containing <tt>&lt;IndexPt&gt; &amp;uppercase.&lt;/IndexPt&gt;</tt> (note the space immediately before
+the '&amp;' character) is equivalent to specifying the
+following:</p>
+<pre>
+&lt;IndexPt&gt;A&lt;/IndexPt&gt;
+&lt;IndexPt&gt;B&lt;/IndexPt&gt;
+&lt;IndexPt&gt;C&lt;/IndexPt&gt;
+&lt;IndexPt&gt;C&lt;/IndexPt&gt;</pre>
+<p>
+A meta-character may appear in place of either the first character or the
+second character, or both.  </p><p><b>The following meta-characters are defined for the ISO Latin-* encodings :</b></p>
+<p><b>&amp;printable.  </b>All ASCII printable
+characters:</p>
+<pre>
+!#$%^&amp;*()_+~|1234567890-='\{}:"&lt;&gt;?[];',./
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+abcdefghijklmnopqrstuvwxyz</pre>
+<p>
+<b>&amp;ISO _printable. </b>All ASCII printable characters, as defined
+above, plus the printable characters from the ISO character set. Note that not
+every character with the 8th bit set on is an ISO printable character. In octal,
+the characters are the following (these are generally accented characters and
+other special characters):</p>
+<pre> \241 \242 \243 \244
+\245 \246 \247
+\250 \251 \252 \253
+\254 \255 \256 \257
+\260 \261 \262
+\263 \264 \265 \266 \267
+\270 \271
+\272 \273 \274 \275 \276 \277
+\300
+\301 \302 \303 \304 \305 \306
+\307
+\310 \311 \312 \313 \314 \315
+\316 \317
+\320 \321 \322 \323 \324
+\325 \326 \327
+\330 \331 \332 \333
+\334 \335 \336 \337
+\340 \341 \342
+\343 \344 \345 \346 \347
+\350 \351
+\352 \353 \354 \355 \356 \357
+\360
+\361 \362 \363 \364 \365 \366
+\367
+\370 \371 \372 \373 \374 \375
+\376 \377</pre>
+<p>
+<b>&amp;alphabetic.</b>  Alphabetic characters 'A- Z' and
+'a -z'.</p>
+<p><b>&amp;ISO_alphabetic.</b>  ASCII alphabetic characters as defined above
+plus ISO alphabetic characters:</p>
+<pre> \300 \301 \302
+\303 \304 \305 \306 \307
+\310 \311
+\312 \313 \314 \315 \316 \317
+\321
+\322 \323 \324 \325 \326
+\331 \332
+\333 \334 \335
+\340 \341 \342 \343
+\344 \345 \346 \347
+\350 \351 \352
+\353 \354 \355 \356 \357
+\361 \362
+\363 \364 \365 \366
+\371 \372 \373
+\374 \375 \377</pre>
+<p>
+<b>&amp;uppercase.</b>  Uppercase alphabetic characters 'A-
+Z'.</p>
+<p><b>&amp;ISO_uppercase.</b>  ASCII uppercase characters as defined above
+plus ISO uppercase characters:</p>
+<pre> \300 \301 \302
+\303 \304 \305 \306 \307
+\310 \311
+\312 \313 \314 \315 \316 \317
+\321
+\322 \323 \324 \325 \326
+\331 \332
+\333 \334 \335</pre>
+<p>
+<b>&amp;lowercase.</b>  Lowercase alphabetic characters 'a-
+z'.</p>
+<p><b>&amp;ISO_lowercase.</b>  ASCII lowercase characters, defined above, plus
+ISO lowercase characters:</p>
+<pre> \340 \341 \342 \343
+\344 \345 \346 \347
+\350 \351 \352
+\353 \354 \355 \356 \357
+\361 \362
+\363 \364 \365 \366 
+\371 \372 \373
+\374 \375 \377</pre>
+<p>
+<b>&amp;numeric.</b>  The numeric digits: '01234
+56789'.</p>
+<p><b>&amp;alphanumeric.  </b>The alphabetic and numeric characters:
+'0-9', 'A-Z', and 'a-z'.</p>
+<p><b>&amp;special.  </b>Non-alphanumeric ASCII printable
+characters:</p>
+<pre> !@#$%^&amp;*()_+~|-='\{}[]:";`&lt;&gt;?,./</pre>
+<p>
+<b>&amp;ISO_special.  </b>The ASCII special characters, defined above, plus
+the following ISO special characters:</p>
+<pre> \241 \242
+\243 \244 \245 \246 \247
+\250 \251
+\252 \253 \254 \255 \256 \257
+\260
+\261 \262 \263 \264 \265 \266
+\267
+\270 \271 \272 \273 \274 \275
+\276 \277
+\320
+\327
+\330 \336
+\337
+\360 \367 \370
+\376</pre>
+<p>
+<b>&amp;all.  </b>Every 7-bit character, including
+'\000'.</p>
+<p><b>&amp;ISOall.  </b>Every 8-bit character, including
+'\000'.</p>
+
+<p>The following meta-characters stand for single characters that are special
+in the syntax of the DD:</p>
+<table border="1">
+<tbody>
+
+<tr><td>&amp;amp.</td><td>&amp;</td></tr>
+<tr><td>&amp;backspace.</td><td>\b</td></tr>
+<tr><td>&amp;lt.</td><td>&lt;</td></tr>
+<tr><td>&amp;gt.</td><td>&gt;</td></tr>
+<tr><td>&amp;newline.</td><td>\n</td></tr>
+<tr><td>&amp;return.</td><td>\r</td></tr>
+<tr><td>&amp;tab.</td><td>\t</td></tr>
+</tbody>
+</table>
+ <br />
+ <hr />
+<p><b>The Following meta-characters are defined for Unicode support. Note the code points are specified in ranges using the Unicode 'U+' notation.</b> </p>
+
+<dl>
+<dt><b>&amp;printable.</b></dt>
+<dd>
+All ASCII printable characters:
+<pre>
+!@#$%^&amp;*()_+~|1234567890-=`}:&quot;&lt;&gt;?[];',./
+abcdefghijklmnopqrstuvwxyz
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+</pre></dd>
+
+
+<dt><b>&amp;special.</b></dt>
+
+<dd>Non-alphanumeric ASCII printable characters:
+<pre>
+!@#$%^&amp;*()_+~|-=`\{}[]:&quot;;'&lt;&gt;?,./
+</pre></dd></dl>
+
+<p> The following meta-characters represent single  characters  which  are special in the syntax of the Data Dictionary:
+<table border="1">
+<tbody>
+
+<tr><td>&amp;amp.</td><td>&amp;</td></tr>
+<tr><td>&amp;backspace.</td><td>\b</td></tr>
+<tr><td>&amp;lt.</td><td>&lt;</td></tr>
+<tr><td>&amp;gt.</td><td>&gt;</td></tr>
+<tr><td>&amp;newline.</td><td>\n</td></tr>
+<tr><td>&amp;return.</td><td>\r</td></tr>
+<tr><td>&amp;tab.</td><td>\t</td></tr>
+</tbody>
+</table>
+</P>
+
+<p> The  following scripts are based on UnicodeData.txt and Perl 5.8 unicore/lib files.
+</p>
+
+<dl>
+<dt><b>&amp;Latin.</b></dt>
+<dd>
+<pre>
+U+0041-U+005A U+0061-U+007A U+00AA-U+00AA U+00BA-U+00BA
+U+00C0-U+00D6 U+00D8-U+00F6 U+00F8-U+0220 U+0222-U+0233
+U+0250-U+02AD U+02B0-U+02B8 U+02E0-U+02E4 U+1E00-U+1E9B
+U+1EA0-U+1EF9 U+2071-U+2071 U+207F-U+207F U+212A-U+212B
+U+FB00-U+FB06 U+FF21-U+FF3A U+FF41-U+FF5A
+</pre></dd>
+
+<dt><b>&amp;Armenian.</b></dt>
+<dd>
+<pre>
+U+0531-U+0556 U+0559-U+0559 U+0561-U+0587 U+FB13-U+FB17
+</pre></dd>
+
+<dt><b>&amp;Bengali.</b></dt>
+<dd>
+<pre>
+U+0981-U+0983 U+0985-U+098C U+098F-U+0990 U+0993-U+09A8
+U+09AA-U+09B0 U+09B2-U+09B2 U+09B6-U+09B9 U+09BC-U+09BC
+U+09BE-U+09C4 U+09C7-U+09C8 U+09CB-U+09CD U+09D7-U+09D7
+U+09DC-U+09DD U+09DF-U+09E3 U+09E6-U+09F1
+</pre></dd>
+
+<dt><b>&amp;Bopomofo.</b></dt>
+<dd>
+<pre>
+U+3105-U+312C U+31A0-U+31B7
+</pre></dd>
+<dt><b>&amp;Buhid.</b></dt>
+<dd>
+<pre>
+U+1740-U+1753
+</pre></dd>
+
+<dt><b>&amp;Cherokee.</b></dt>
+<dd>
+<pre>
+U+13A0-U+13F4
+</pre></dd>
+
+<dt><b>&amp;Cyrillic.</b></dt>
+<dd>
+<pre>
+U+0400-U+0481 U+048A-U+04CE U+04D0-U+04F5 U+04F8-U+04F9
+U+0500-U+050F
+U+0901-U+0903 U+0905-U+0939 U+093C-U+094D U+0950-U+0954
+U+0958-U+0963 U+0966-U+096F
+</pre></dd>
+
+<dt><b>&amp;Ethiopic.</b></dt>
+<dd>
+<pre>
+U+1200-U+1206 U+1208-U+1246 U+1248-U+1248 U+124A-U+124D
+U+1250-U+1256 U+1258-U+1258 U+125A-U+125D U+1260-U+1286
+U+1288-U+1288 U+128A-U+128D U+1290-U+12AE U+12B0-U+12B0
+U+12B2-U+12B5 U+12B8-U+12BE U+12C0-U+12C0 U+12C2-U+12C5
+U+12C8-U+12CE U+12D0-U+12D6 U+12D8-U+12EE U+12F0-U+130E
+U+1310-U+1310 U+1312-U+1315 U+1318-U+131E U+1320-U+1346
+U+1348-U+135A U+1369-U+137C
+</pre></dd>
+
+<dt><b>&amp;Georgian.</b></dt>
+<dd>
+<pre>
+U+10A0-U+10C5 U+10D0-U+10F8
+</pre></dd>
+
+<dt><b>&amp;Greek.</b></dt>
+<dd>
+<pre>
+U+00B5-U+00B5 U+037A-U+037A U+0386-U+0386 U+0388-U+038A
+U+038C-U+038C U+038E-U+03A1 U+03A3-U+03CE U+03D0-U+03F5
+U+1F00-U+1F15 U+1F18-U+1F1D U+1F20-U+1F45 U+1F48-U+1F4D
+U+1F50-U+1F57 U+1F59-U+1F59 U+1F5B-U+1F5B U+1F5D-U+1F5D
+U+1F5F-U+1F7D U+1F80-U+1FB4 U+1FB6-U+1FBC U+1FBE-U+1FBE
+U+1FC2-U+1FC4 U+1FC6-U+1FCC U+1FD0-U+1FD3 U+1FD6-U+1FDB
+U+1FE0-U+1FEC U+1FF2-U+1FF4 U+1FF6-U+1FFC U+2126-U+2126
+</pre></dd>
+
+<dt><b>&amp;Gujarati.</b></dt>
+<dd>
+<pre>
+U+0A81-U+0A83 U+0A85-U+0A8B U+0A8D-U+0A8D U+0A8F-U+0A91
+U+0A93-U+0AA8 U+0AAA-U+0AB0 U+0AB2-U+0AB3 U+0AB5-U+0AB9
+U+0ABC-U+0AC5 U+0AC7-U+0AC9 U+0ACB-U+0ACD U+0AD0-U+0AD0
+U+0AE0-U+0AE0 U+0AE6-U+0AEF
+</pre></dd>
+
+<dt><b>&amp;Gurmukhi.</b></dt>
+<dd>
+<pre>
+U+0A02-U+0A02 U+0A05-U+0A0A U+0A0F-U+0A10 U+0A13-U+0A28
+U+0A2A-U+0A30 U+0A32-U+0A33 U+0A35-U+0A36 U+0A38-U+0A39
+U+0A3C-U+0A3C U+0A3E-U+0A42 U+0A47-U+0A48 U+0A4B-U+0A4D
+U+0A59-U+0A5C U+0A5E-U+0A5E U+0A66-U+0A74
+</pre></dd>
+
+<dt><b>&amp;Hangul.</b></dt>
+<dd>
+<pre>
+U+1100-U+1159 U+115F-U+11A2 U+11A8-U+11F9 U+3131-U+318E
+U+AC00-U+D7A3 U+FFA0-U+FFBE U+FFC2-U+FFC7 U+FFCA-U+FFCF
+U+FFD2-U+FFD7 U+FFDA-U+FFDC
+</pre></dd>
+
+<dt><b>&amp;Han.</b></dt>
+<dd>
+<pre>
+U+2E80-U+2E99 U+2E9B-U+2EF3 U+2F00-U+2FD5 U+3005-U+3005
+U+3007-U+3007 U+3021-U+3029 U+3038-U+303B U+3400-U+4DB5
+U+4E00-U+9FA5 U+F900-U+FA2D U+FA30-U+FA6A
+</pre></dd>
+
+<dt><b>&amp;Hanunoo.</b></dt>
+<dd>
+<pre>
+U+1720-U+1734
+</pre></dd>
+
+<dt><b>&amp;Hebrew.</b></dt>
+<dd>
+<pre>
+U+05D0-U+05EA U+05F0-U+05F2 U+FB1D-U+FB1D U+FB1F-U+FB28
+U+FB2A-U+FB36 U+FB38-U+FB3C U+FB3E-U+FB3E U+FB40-U+FB41
+U+FB43-U+FB44 U+FB46-U+FB4F
+</pre></dd>
+
+<dt><b>&amp;Hiragana.</b></dt>
+<dd>
+<pre>
+U+3041-U+3096 U+309D-U+309F
+</pre></dd>
+<dt><b>&amp;Kannada.</b></dt>
+<dd>
+<pre>
+U+0C82-U+0C83 U+0C85-U+0C8C U+0C8E-U+0C90 U+0C92-U+0CA8
+U+0CAA-U+0CB3 U+0CB5-U+0CB9 U+0CBE-U+0CC4 U+0CC6-U+0CC8
+U+0CCA-U+0CCD U+0CD5-U+0CD6 U+0CDE-U+0CDE U+0CE0-U+0CE1
+U+0CE6-U+0CEF
+</pre></dd>
+
+<dt><b>&amp;Katakana.</b></dt>
+<dd>
+<pre>
+U+30A1-U+30FA U+30FD-U+30FF U+31F0-U+31FF U+FF66-U+FF6F
+U+FF71-U+FF9D
+</pre></dd>
+
+<dt><b>&amp;Khmer.</b></dt>
+<dd>
+<pre>
+U+1780-U+17D3 U+17E0-U+17E9
+</pre></dd>
+
+<dt><b>&amp;Lao.</b></dt>
+<dd>
+<pre>
+U+0E81-U+0E82 U+0E84-U+0E84 U+0E87-U+0E88 U+0E8A-U+0E8A
+U+0E8D-U+0E8D U+0E94-U+0E97 U+0E99-U+0E9F U+0EA1-U+0EA3
+U+0EA5-U+0EA5 U+0EA7-U+0EA7 U+0EAA-U+0EAB U+0EAD-U+0EB9
+U+0EBB-U+0EBD U+0EC0-U+0EC4 U+0EC6-U+0EC6 U+0EC8-U+0ECD
+U+0ED0-U+0ED9 U+0EDC-U+0EDD
+</pre></dd>
+
+<dt><b>&amp;Malayalam.</b></dt>
+<dd>
+<pre>
+U+0D02-U+0D03 U+0D05-U+0D0C U+0D0E-U+0D10 U+0D12-U+0D28
+U+0D2A-U+0D39 U+0D3E-U+0D43 U+0D46-U+0D48 U+0D4A-U+0D4D
+U+0D57-U+0D57 U+0D60-U+0D61 U+0D66-U+0D6F
+</pre></dd>
+
+<dt><b>&amp;Mongolian.</b></dt>
+<dd>
+<pre>
+U+1810-U+1819 U+1820-U+1877 U+1880-U+18A9
+</pre></dd>
+
+<dt><b>&amp;Myanmar.</b></dt>
+<dd>
+<pre>
+U+1000-U+1021 U+1023-U+1027 U+1029-U+102A U+102C-U+1032
+U+1036-U+1039 U+1040-U+1049 U+1050-U+1059
+</pre></dd>
+
+<dt><b>&amp;Oriya.</b></dt>
+<dd>
+<pre>
+U+0B01-U+0B03 U+0B05-U+0B0C U+0B0F-U+0B10 U+0B13-U+0B28
+U+0B2A-U+0B30 U+0B32-U+0B33 U+0B36-U+0B39 U+0B3C-U+0B43
+U+0B47-U+0B48 U+0B4B-U+0B4D U+0B56-U+0B57 U+0B5C-U+0B5D
+U+0B5F-U+0B61 U+0B66-U+0B6F
+</pre></dd>
+
+<dt><b>&amp;Runic.</b></dt>
+<dd>
+<pre>
+U+16A0-U+16EA U+16EE-U+16F0
+</pre></dd>
+
+<dt><b>&amp;Sinhala.</b></dt>
+<dd>
+<pre>
+U+0D82-U+0D83 U+0D85-U+0D96 U+0D9A-U+0DB1 U+0DB3-U+0DBB
+U+0DBD-U+0DBD U+0DC0-U+0DC6 U+0DCA-U+0DCA U+0DCF-U+0DD4
+U+0DD6-U+0DD6 U+0DD8-U+0DDF U+0DF2-U+0DF3
+</pre></dd>
+<dt><b>&amp;Syriac.</b></dt>
+<dd>
+<pre>
+U+0710-U+072C U+0730-U+074A
+</pre></dd>
+
+<dt><b>&amp;Tagalog.</b></dt>
+<dd>
+<pre>
+U+0710-U+072C U+0730-U+074A
+</pre></dd>
+
+<dt><b>&amp;Tagbanwa.</b></dt>
+<dd>
+<pre>
+U+1760-U+176C U+176E-U+1770 U+1772-U+1773
+</pre></dd>
+
+<dt><b>&amp;Tamil.</b></dt>
+<dd>
+<pre>
+U+0B82-U+0B83 U+0B85-U+0B8A U+0B8E-U+0B90 U+0B92-U+0B95
+U+0B99-U+0B9A U+0B9C-U+0B9C U+0B9E-U+0B9F U+0BA3-U+0BA4
+U+0BA8-U+0BAA U+0BAE-U+0BB5 U+0BB7-U+0BB9 U+0BBE-U+0BC2
+U+0BC6-U+0BC8 U+0BCA-U+0BCD U+0BD7-U+0BD7 U+0BE7-U+0BF2
+</pre></dd>
+
+<dt><b>&amp;Telugu.</b></dt>
+<dd>
+<pre>
+U+0C01-U+0C03 U+0C05-U+0C0C U+0C0E-U+0C10 U+0C12-U+0C28
+U+0C2A-U+0C33 U+0C35-U+0C39 U+0C3E-U+0C44 U+0C46-U+0C48
+U+0C4A-U+0C4D U+0C55-U+0C56 U+0C60-U+0C61 U+0C66-U+0C6F
+</pre></dd>
+
+<dt><b>&amp;Thaana.</b></dt>
+<dd>
+<pre>
+U+0780-U+07B1
+</pre></dd>
+
+<dt><b>&amp;Thai.</b></dt>
+<dd>
+<pre>
+U+0E01-U+0E3A U+0E40-U+0E4E U+0E50-U+0E59
+</pre></dd>
+
+<dt><b>&amp;Tibetan.</b></dt>
+<dd>
+<pre>
+U+0F00-U+0F00 U+0F18-U+0F19 U+0F20-U+0F33 U+0F35-U+0F35
+U+0F37-U+0F37 U+0F39-U+0F39 U+0F40-U+0F47 U+0F49-U+0F6A
+U+0F71-U+0F84 U+0F86-U+0F8B U+0F90-U+0F97 U+0F99-U+0FBC
+U+0FC6-U+0FC6
+</pre></dd>
+
+<dt><b>&amp;UnifiedIdeograph.</b></dt>
+<dd>
+<pre>
+U+3400-U+4DB5 U+4E00-U+9FA5 U+FA0E-U+FA0F U+FA11-U+FA11
+U+FA13-U+FA14 U+FA1F-U+FA1F U+FA21-U+FA21 U+FA23-U+FA24
+U+FA27-U+FA29
+</pre></dd></dl></li>
+
+<li><b>Mappings segment:</b>  <p>The Mappings segment is enclosed by
+&lt;Mapping&gt; and &lt;/Mapping&gt; tags. It consists of two distinct parts.
+The first part is a list of Map segments, each of which maps a character,
+enclosed by &lt;From&gt; and &lt;/From&gt; tags, to another character, enclosed
+by &lt;To&gt; and &lt;/To&gt; tags. The most common use is to map uppercase
+letters into their lowercase equivalents, or punctuation into spaces. Another
+use of character mappings is to map selected non-printable characters to
+themselves. This type of mapping is sometimes necessary because of the way xpat
+creates the character maps internally. When xpat starts up, it first builds a
+default map which maps all non-ASCII and all non-printable characters to NULL.
+xpat then reads the user-defined character mappings defined in the Mappings
+segment and adds those specifications to the initial map. The user-defined
+mappings override the default mappings. This effectively undoes the NULL mapping
+that xpat creates by default for those characters.</p>
+<p>Three escape
+mechanisms exist to specify non-printable characters or Unicode UCS-2 characters in the From and the To
+fields. The first mechanism is octal specification. Each octal specification
+consists of a backslash followed by three octal digits (e.g., '\003'
+for '^C'). The second mechanism is Unicode notation specification. Each Unicode specification
+consists of a capital letter U followed by a '+' sign followed by 
+up to 4 hexadecimal digits (e.g., 'U+041E' for "CYRILLIC CAPITAL LETTER O").  
+The third mechanism is entity reference specification.
+The following table illustrates the entity references that can be used. The
+characters in the right-hand column can be specified using the corresponding
+entity reference in the left-hand column:</p>
+<table border="1">
+<tbody>
+<tr><td>&amp;amp.</td><td>&amp;</td></tr>
+<tr><td>&amp;backspace.</td><td>\b</td></tr>
+<tr><td>&amp;lt.</td><td>&lt;</td></tr>
+<tr><td>&amp;gt.</td><td>&gt;</td></tr>
+<tr><td>&amp;return.</td><td>\r</td></tr>
+<tr><td>&amp;newline.</td><td>\n</td></tr>
+<tr><td>&amp;tab.</td><td>\t</td></tr>
+</tbody>
+</table>
+<p>Each of the From and To fields can contain at most one character, one octal
+code, one Unicode code point value or one entity reference. If a To field is empty, it means the corresponding
+From character should be mapped to NULL. The second part of the mappings section
+is a list of stopwords, i.e., words that are not indexed. The words themselves
+are enclosed by &lt;Ignore&gt; and &lt;/Ignore&gt; tags. The whole list is
+enclosed by &lt;StopWords&gt; and &lt;/StopWords&gt; tags.  DLXS discourages the
+use of stopwords. </p><p>Note that there is no stopword support in the Unicode-enabled index
+builder <b>xpatbldu</b>. </p>
+<p> Note also that when defining mappings utilizing the "U+" notation for use with the
+non-Unicode version of the index builder (<b>xpatbld</b>), it
+is an error to specify a value above 255 decimal, i.e. above U+00FF.</p>
+<p> It  is  also  possible to map <i>ranges</i> of characters. One range mapping, for example,  might be from upper case characters to their lower case equivalents (where this concept is applicable).  Other types of range mappings may be envisioned for certain multi-lingual material.  This compact form can save space and improve readability.   </p><p>The beginning character of  the  range, enclosed in &lt;First&gt; and &lt;/First&gt;, is followed by the last character in the range enclosed in &lt;Last&gt; and &lt;/Last&gt;.  These  two  tag pairs are enclosed by &lt;CharRange&gt; and &lt;/CharRange&gt;. The &lt;CharRange&gt; tag pair is enclosed by the &lt;From&gt; and &lt;To&gt; tag pairs as  described  for  a single character above. For example:
+ <pre>
+       &lt;From&gt;
+         &lt;CharRange&gt;
+           &lt;First&gt;A&lt;/First&gt;
+           &lt;Last&gt;Z&lt;/Last&gt;
+         &lt;/CharRange&gt; 
+       &lt;/From&gt;
+
+       &lt;To&gt;
+         &lt;CharRange&gt;
+           &lt;First&gt;a&lt;/First&gt;
+           &lt;Last&gt;z&lt;/Last&gt;
+         &lt;/CharRange&gt; 
+       &lt;/To&gt;
+</pre>
+</P>
+</li>
+
+<li><b>IntegrityCheck Field:</b>  The IntegrityCheck field is enclosed by
+&lt;IntegrityCheck&gt; and &lt;/IntegrityCheck&gt; tags. This field contains a
+single number that encodes relevant information about the indexing parameters to
+ensure that the descriptive information in the DD matches the information used
+to actually create the index. It is maintained by programs that build and
+maintain indices (e.g., xpatbld and xpatmaint). The IntegrityCheck value is also
+checked by xpat on startup. If an integrity error is detected, xpat will print
+an error message to that effect and will not search the database. This error
+means that the definition of the index changed, not that the index is
+incorrect.</li></ol>
+
+<a name="sec1.4.3"></a><h2>1.4.3 How to use the Indexes segment</h2>
+<p>The Indices segment of a DD is created and maintained by the index-building
+utilities, and possibly tuned by the XPAT database manager. There are a number
+of segments and fields in the Indices segment that XPAT database managers can
+modify for fine-tuning the database being built. Various situations call for the
+modification of these elements within the Indices segment. More on these indexes
+and their selection is presented in the following sections.</p>
+<a name="sec1.4.3.1"></a><h3>1.4.3.1 Selection of Indexes</h3>
+<p>The performance of indices depends very much on the original data and on
+the type of text searches being performed. If frequent queries involve searching
+for text strings occurring in particular regions of the text (say in Headlines,
+or Bylines) then special "FastRegion" indices can be
+built.</p>
+<h4>1.4.3.1.1 Main index (.idx)</h4>
+<p>The Main index provides rapid string searching capabilities and flexible
+controls for the XPAT database manager to fine-tune the database's
+performance. If source data changes, the index files and the DD must be updated
+to reflect the changes.</p>
+
+<h4>1.4.3.1.2 FastFind indices (three files: .ffi, .ffc, .ffw)</h4>
+<p>FastFind indices are an extension of the Main Index and provide optimized
+performance for text searches. They may be used at any time, though there are
+two main situations to which FastFind indices apply. The first situation applies
+when you are not working with a consolidated database (e.g., when you are using
+an MFS database, your source data is distributed over several files in one or
+more directories).  FastFind indices:</p>
+<ul>
+<li>greatly accelerate string search performance (i.e., searches for words and
+phrases)</li>
+<li>are required for MFS (i.e., multi-file) database</li>
+<li>are required for all CD-ROM applications</li></ul>
+
+<h4>1.4.3.1.3 Region Sub-indices (one or more .rgn files)</h4>
+<p>Region sub-indices provide structure-based query capabilities by defining
+regions in the database: e.g., Chapter, Section, Headline, etc. Regions are
+powerful constructs that can be thought of as a general case of fields. For
+those familiar with SGML, regions are a more general case of
+'elements' and 'attributes'.</p>
+
+<h4>1.4.3.1.4 FastRegion (.fri)</h4>
+<p>FastRegion indices are an extension of the Region sub-indices and are ideal
+for accelerating text searches for frequently-accessed regions.</p>
+
+
+<a name="sec1.4.3.2"></a><h3>1.4.3.2 Index Points and Phrase Starts</h3>
+<p>An Index Point (also known as a Wordstart or a Phrase Start) defines the
+beginning of a phrase that is to be indexed. The most common Index Point
+specification (and the default for the XPAT system) is the two-character
+sequence of a blank followed by any ISO printable character. This Index Point
+guarantees that the beginning of every word preceded by a blank in the source
+data will be indexed. For example, if "Yale is the best" is a string
+in the source data and the end-user queries for the string "ale is the
+best", the text search will fail (unless the string "ale is the
+best", preceded by a blank, appears elsewhere in the source data). [Note
+that the XPAT software effectively "inserts" a blank in front of the
+very first word in each source data file, if there is not already one there.]
+The default Index Point specification is indicated in the DD as
+follows:</p>
+<pre>
+&lt;IndexPoints&gt;
+&lt;IndexPt&gt;
+&amp;ISO_printable.&lt;/Index&gt;
+&lt;/IndexPoints&gt;</pre>
+<p>
+Another common index point is a newline character followed by any
+ISO_printable character, as illustrated in the
+following:</p>
+<pre> &lt;IndexPt&gt;&amp;newline.&amp;ISOprintable.&lt;/IndexPt&gt;</pre>
+<p>
+This allows for queries where the phrase you are searching for is specified
+as starting at the beginning of a line (i.e., after the previous newline
+character).  Database indices can be customized for specific applications using
+IndexPts. The granularity of a text search can be increased by specifying
+additional IndexPts. For example, if every (printable) two-character pair should
+be indexed, this criterion can be specified as
+follows:</p>
+<pre> &lt;IndexPt&gt;&amp;ISO_printable.&amp;ISO_printable.&lt;/IndexPt&gt;</pre>
+<p>
+With this IndexPt, text searches such as "syllabic" would
+return both "polysyllabic" and "syllabic". Note:  
+Indiscriminate use of extra index points, such as in the above example, could
+lead to increased index overhead.</p>
+
+<a name="sec1.4.3.3"></a><h3>1.4.3.3 Mappings:  Converting Characters</h3>
+<p>An important aspect of text retrieval is that certain character strings
+need special handling. For instance, before indexing occurs, punctuation marks
+might be converted into blanks; multiple consecutive blanks into a single blank;
+uppercase characters into lowercase; etc. Exactly how data are mapped is up to
+the XPAT database manager who is configuring the XPAT software. Several common
+types of mappings are explained below.</p>
+
+<p><b>(A) Handling Carriage Returns</b></p>
+<p>A phrase that is being searched for may be split over two lines in the
+original source file. Normally, this would mean that the phrase would be
+bypassed without some intervention. To avoid this undesirable situation, newline
+characters are typically converted into blanks during the index-build process.
+Two separate source text lines then effectively become one line and the phrase
+being searched for can be
+found:</p>
+<pre>
+&lt;Mappings&gt;
+&lt;Map&gt;&lt;From&gt;&amp;newline.&lt;/From&gt;&lt;To&gt;
+&lt;/To&gt;&lt;/Map&gt;
+&lt;/Mappings&gt;</pre>
+<p>
+</p>
+<p><b>(B) Handling Case Sensitivity In Your Data</b></p>
+<p>All occurrences of uppercase letters need to be converted (mapped) to
+lowercase, or vice versa. A common character mapping is to convert uppercase
+letters to lowercase, or vice versa. This is done in a Map From/To field like
+so:</p>
+<pre>
+&lt;Mappings&gt;
+&lt;Map&gt;&lt;From&gt;U&lt;/From&gt;&lt;To&gt;u&lt;/To&gt;&lt;/Map&gt;
+&lt;/Mappings&gt;</pre>
+<p>
+</p>
+<p>Punctuation is often ignored during indexing for text searching purposes.
+The simplest way to do this with the XPAT software is to specify in the Mappings
+segment of the DD which punctuation characters should be ignored (by being
+converted into blanks). You should be careful not to map tag characters (e.g.,
+<tt>&lt;</tt>) into
+blanks.</p>
+<pre>
+&lt;Mappings&gt;
+&lt;Map&gt;&lt;From&gt;(&lt;/From&gt;&lt;To&gt;
+&lt;/To&gt;&lt;/Map&gt;
+&lt;Map&gt;&lt;From&gt;)&lt;/From&gt;&lt;To&gt;
+&lt;/To&gt;&lt;/Map&gt;
+&lt;Map&gt;&lt;From&gt;;&lt;/From&gt;&lt;To&gt;
+&lt;/To&gt;&lt;/Map&gt;
+&lt;/Mappings&gt;</pre>
+<p>
+A second method involves the use of stopwords to ignore character sequences
+that contain punctuation marks.</p>
+<p>Occasionally, you will have characters that are non-standard ASCII and that
+should be mapped into another character for the purposes of text searching. An
+example is the city name, Zurich. The Germans spell it as Z&#252;rich and
+the French spell it Zurich, without the umlaut. If you want to be able to search
+for the word without having to take into account this sort of spelling
+variation, you can add a Map From/To field in the Mappings segment of the
+DD:</p>
+<pre>
+&lt;Mappings&gt;
+&lt;Map&gt;&lt;From&gt;&#252;&lt;/From&gt;&lt;To&gt;u&lt;/To&gt;&lt;/Map&gt;
+&lt;Map&gt;&lt;From&gt;$#220;&lt;/From&gt;&lt;To&gt;U&lt;/To&gt;&lt;/Map&gt;
+&lt;/Mappings&gt;</pre>
+<p>
+You can customize your application to handle a variety of special
+characters by mapping them into some other appropriate character.</p>
+
+<a name="sec1.4.3.4"></a><h3>1.4.3.4 StopWords</h3>
+<p>Stopwords are phrases or words that should be ignored for indexing
+purposes. For instance, a common stopword is 'the', due to its high
+frequency of occurrence. Ignoring stopwords will greatly reduce the number of
+index points and thus reduce the space requirements for indices. Other common
+stopwords are 'and', 'a', 'of', etc. A
+stopword generally has to satisfy the following criteria:</p>
+<ol>
+<li>starts at an index point</li>
+<li>no other character in the matched word can have an index point</li>
+<li>stopwords must be followed by a space (this space should not be in the
+stopword specification)</li></ol>
+<p>These criteria guarantee that if
+'and' is specified as a stopword, the 'and' in words
+such as 'hand' will not be matched. The StopWords segment of the DD
+is marked by the tags &lt;StopWords&gt;, &lt;/StopWords&gt; and consists of a
+list of stopwords marked by the tags &lt;Ignore&gt;, &lt;/Ignore&gt;. A maximum
+of 31 stopwords are allowed in a DD. An example list of stopwords in a DD
+follows:</p>
+<pre>
+&lt;StopWords&gt;
+&lt;Ignore&gt;the&lt;/Ignore&gt;
+&lt;Ignore&gt;and&lt;/Ignore&gt;
+&lt;Ignore&gt;of&lt;/Ignore&gt;
+&lt;/StopWords&gt;</pre>
+<p>
+The StopWords list is placed at the end of the Mappings segment of the DD
+(just before the closing &lt;/Mappings&gt; tag). Note:   One of the key benefits
+of the XPAT search engine is that it does not require any stopwords to be
+defined (unlike other text search systems), without any drop in performance.
+This feature increases the power of the search system by allowing the retrieval
+of strings such as "to be or not to be". Other search systems could
+not retrieve such a string since it consists entirely of words that other
+systems require be treated as stopwords.  For these reasons, DLXS discourages
+the use of stopwords.</p>
+
+
+<a name="sec1.4.4"></a><h2>1.4.4 Summary</h2>
+<p>The following steps are followed by the system before index-building
+begins:</p>
+<ol>
+<li>character mappings are applied</li>
+<li>NULL characters are removed</li>
+<li>multiple blank characters are mapped into a single character</li>
+<li>all occurrences of the index points specified in the IndexPoints segment are
+located in the source data</li>
+<li>all occurrences of stopwords are removed</li></ol>
+<p>Note that in all
+steps above, the original source data is not altered. Mappings are applied to a
+special temporary file that is created by the system. This temporary file starts
+as a duplicate of the source data combined into one file. Note also that
+stopwords are matched after the first four steps above have completed. This
+means that if a character mapping requires that all uppercase characters be
+mapped to lowercase, then all stopword specifications must also be in lowercase
+or else they will not be matched. The Indices segment is generated by the ddgen
+utility and possibly tuned by the XPAT database manager. It is thereafter
+maintained by the index-building utilities. (Note: the XPAT database manager can
+also modify settings and rebuild the indices.) One or more Index segments makes
+up the Indices segment, and each of the Index segments breaks down into several
+segments and fields. All information about the Main Index, FastFind Indices,
+index points, special character mappings, and stopwords are listed in these
+segments.</p>
+
+
+<a name="sec1.5"></a><h1>1.5 Regions Segment: Describing Your Regions</h1>
+<p>The source data that comprises your database has a natural structure. This
+structure can be either be implied or explicitly defined. Data that has an
+explicit structure will be organized into a hierarchy of parts known as regions.
+For instance, source text from newspaper articles can have the regions Headline,
+Date, Byline, Title, Story, Paragraph, and others. In the case of a newspaper
+article, these regions would be marked by occurrences of start and end region
+tags such as "&lt;Headline&gt;" and "&lt;/Headline&gt;",
+"&lt;Date&gt;" and "&lt;/Date&gt;", etc. The general
+form of the start tag is "&lt;TagBody&gt;" and the general form of
+the end tag is "&lt;/TagBody&gt;", where TagBody is the name of the
+region.</p>
+<p>This type of tag is known as a region tag and exists physically in the
+source data, or through a set of relationships through other physically existing
+information in the source data. The fundamental reason for structuring source
+data into regions is to reflect the conceptual structure of the data, thus
+facilitating text retrieval. For example, you may be interested in retrieving
+all newspaper articles from your database in which the text string
+"Information Super-Highway" appears, but only in headlines. Without
+'Headline' regions, this search would not be possible. By
+structuring source text into regions, text retrieval becomes more powerful. The
+Regions segment, unlike the Text segment, is created and updated primarily by
+the index-building programs based on information provided by other control
+files, such as the Region Tag Names file ('.tag') and a Document
+Type Definition (DTD).</p>
+<p>The Regions segment is enclosed by &lt;Regions&gt; and &lt;/Regions&gt;
+tags and contains zero or more Region segments. (If no regions are defined, the
+Regions segment may be omitted.) Each Region segment contains zero or more
+FastRegion segments; a Name field; a Desc field; a File segment; a Count field;
+and a Type field. Each FastRegion segment has a File segment and an IndexName
+segment.</p>
+<a name="sec1.5.1"></a><h2>1.5.1 Components of the DD's Regions Segment</h2>
+<p>The Regions defined in a particular database are listed in the DD along
+with the indices and locations of the text files (as discussed earlier). The
+region information is defined in the Regions segment of the DD. The Regions
+segment consists of one or more Region segments. Each Region segment is further
+divided into fields:</p>
+<p><b>Name</b>: The name of the region</p>
+<p><b>Desc</b>: A optional comment describing the function of the
+region</p>
+<p><b>File</b>: Information about the file containing the Region Sub-indices.
+This file is created during the index-building phase and the filename is either
+supplied by the XPAT database manager or a default prefix is used (suffix is
+'.rgn'). (This file should not be modified by the XPAT database
+manager.)</p>
+<p>Below are example Region segments from the Regions segment of a sample DD.
+The segments and fields are explained in more detail following the
+definitions.</p>
+<pre>
+&lt;Regions&gt;
+&lt;Region&gt;
+&lt;Name&gt;OTDoc&lt;/Name&gt;
+&lt;Desc&gt;Structure delimited by 'OTDoc' tags.&lt;/Desc&gt;
+&lt;File&gt;
+&lt;SysName&gt;test.rgn&lt;/SysName&gt;
+&lt;ModDate&gt;761240610&lt;/ModDate&gt;
+&lt;Offset&gt;0&lt;/Offset&gt;
+&lt;/File&gt;
+&lt;Count&gt;26&lt;/Count&gt;
+&lt;Type&gt;pairs&lt;/Type&gt;
+&lt;/Region&gt;</pre>
+
+<pre>
+&lt;Region&gt;
+&lt;Name&gt;OTMeta&lt;/Name&gt;
+&lt;Desc&gt;Structure delimited by 'OTMeta' tags.&lt;/Desc&gt;
+&lt;File&gt;
+&lt;SysName&gt;test.rgn&lt;/SysName&gt;
+&lt;ModDate&gt;761240610&lt;/ModDate&gt;
+&lt;Offset&gt;104&lt;/Offset&gt;
+&lt;/File&gt;
+&lt;Count&gt;26&lt;/Count&gt;
+&lt;Type&gt;pairs&lt;/Type&gt;
+&lt;/Region&gt;</pre>
+
+<pre>
+&lt;Region&gt;
+Name&gt;OTFile&lt;/Name&gt;
+&lt;Desc&gt;Structure delimited by 'OTFile' tags.&lt;/Desc&gt;
+&lt;File&gt;
+&lt;SysName&gt;test.rgn&lt;/SysName&gt;
+&lt;ModDate&gt;761240610&lt;/ModDate&gt;
+&lt;Offset&gt;208&lt;/Offset&gt;
+&lt;/File&gt;
+&lt;Count&gt;26&lt;/Count&gt;
+&lt;Type&gt;pairs&lt;/Type&gt;
+&lt;/Region&gt;</pre>
+
+<pre>
+&lt;Region&gt;
+&lt;FastRegion&gt;
+&lt;File&gt;
+&lt;SysName&gt;OTFields.fri&lt;/SysName&gt;
+&lt;ModDate&gt;764366973&lt;/ModDate&gt;
+&lt;Offset&gt;O&lt;/Offset&gt;
+&lt;/File&gt;
+&lt;IndexName&gt;&lt;/IndexName&gt;
+&lt;/FastRegion&gt;
+
+&lt;Name&gt;OTFields&lt;/Name&gt;
+
+&lt;Desc&gt;Structure delimited by 'OTFields'
+tags.&lt;/Desc&gt;
+&lt;File&gt;
+&lt;SysName&gt;test.rgn&lt;/SysName&gt;
+&lt;ModDate&gt;761240610&lt;/ModDate&gt;
+&lt;Offset&gt;624&lt;/Offset&gt;
+&lt;/File&gt;
+&lt;Count&gt;26&lt;/Count&gt;
+&lt;Type&gt;pairs&lt;/Type&gt;
+&lt;/Region&gt;</pre>
+
+<pre>
+&lt;Region&gt;
+&lt;Name&gt;OTData&lt;/Name&gt;
+&lt;Desc&gt;Structure delimited by 'OTData' tags.&lt;/Desc&gt;
+&lt;File&gt;
+&lt;SysName&gt;test.rgn&lt;/SysName&gt;
+&lt;ModDate&gt;761240610&lt;/ModDate&gt;
+&lt;Offset&gt;728&lt;/Offset&gt;
+&lt;/File&gt;
+&lt;Count&gt;26&lt;/Count&gt;
+&lt;Type&gt;pairs&lt;/Type&gt;
+&lt;/Region&gt;</pre>
+
+<pre>
+&lt;Region&gt;
+&lt;Name&gt;OTSize&lt;/Name&gt;
+&lt;Desc&gt;Structure delimited by 'OTSize' tags.&lt;/Desc&gt;
+&lt;File&gt;
+&lt;SysName&gt;test.rgn&lt;/SysName&gt;
+&lt;ModDate&gt;761240610&lt;/ModDate&gt;
+&lt;OffseC&gt;832&lt;/Offset&gt;
+&lt;/File&gt;
+&lt;Count&gt;0&lt;/Count&gt;
+&lt;Type&gt;pairs&lt;/Type&gt;
+&lt;/Region&gt;
+&lt;/Regions&gt;</pre>
+
+<ol>
+<li><b>Regions segment:</b> The Regions segment is enclosed by &lt;Regions&gt;
+and &lt;/Regions&gt; tags. It contains one or more Region segments. The Regions
+segment may be empty or omitted if no regions are defined.</li>
+<li><b>Region segment: </b>The Region segments are enclosed by &lt;Region&gt;
+and &lt;/Region&gt; tags. Each Region segment contains information defining a
+region of the database. Regions are used by xpat in the "within" and
+"including" commands. Regions provide users the ability to conduct
+detailed fine grain searches and qualify their search constraints with high
+precision. Each Region segment contains zero or more FastRegion segments; a Name
+field; a Desc field; a File segment; a Count field and a Type field.</li>
+<li><b>FastRegion segment:  </b>The FastRegion segments are enclosed by
+&lt;FastRegion&gt; and &lt;/FastRegion&gt; tags. Each FastRegion segment
+contains information defining the FastRegion index for the enclosing Region
+segment and a specific Main Index. Within a particular Region segment, there can
+be at most one FastRegion segment for each Index segment in the DD. The
+FastRegion segments are  automatically created by the xpatfr program. Note that
+the Region segment for the 'OTFields' region, in the example DD
+below, contains a FastRegion segment. Each FastRegion segment contains a File
+segment and an IndexName segment.</li>
+<li><b>File segment: </b>The File segment is enclosed by &lt;File&gt; and
+&lt;/File&gt; tags. It specifies the file that contains the FastRegion index for
+this Region and the Index named in the following IndexName segment. This segment
+contains the same kind of information as the File segment of the Text segment.
+By default, xpatfr names the FastRegion file with the prefix set to the name of
+the Region, and the suffix set to '.fri'. However, you can override
+this default with the '-o' option to xpatfr (which is useful, for
+example, when the name of the region contains a space).</li>
+<li><b>IndexName segment: </b>The IndexName segment is enclosed by
+&lt;IndexName&gt; and &lt;/IndexName&gt; tags. It specifies the name of the
+index in this DD that this particular FastRegion index was built for. The index
+name in this field has to be the same as the Name in one of the Index fields in
+this DD. This field can be empty if the FastRegion was built on the default
+index (which does not need to have a name).</li>
+<li><b>Name Field: </b>The Name field is enclosed by &lt;Name&gt; and
+&lt;/Name&gt; tags. It contains the name by which that region is referenced in
+xpat. Note that this can be different from the name of the corresponding tags in
+the text.</li>
+<li><b>Desc Field: </b>The Desc field is enclosed by &lt;Desc&gt; and
+&lt;/Desc&gt; tags. It contains an optional description of the region and so may
+be empty or omitted. This field can be used to build a user interface that
+provides a description of the region.</li>
+<li><b>File segment: </b>The File segment is enclosed by &lt;File&gt; and
+&lt;/File&gt; tags. It indicates where to find the file containing the
+region's pointers into the text. This segment contains the same kind of
+information as the File segment of the Text segment. Note that the Offset field
+within these File segments may be non-zero. This is because the region-building
+programs often place the index pointers for several regions into a single file.
+The Offset field specifies where in that file the current region's segment
+begins.</li>
+<li><b>Count Field: </b>The Count field is enclosed by &lt;Count&gt; and
+&lt;/Count&gt; tags. It gives the number of pointers for this region. Note that
+this number is twice the number of regions defined because each region in a
+region set consists of a start pointer and an end pointer.</li>
+<li><b>Type Field: </b>The Type field is enclosed by &lt;Type&gt; and
+&lt;/Type&gt; tags. The only type that is currently supported is the
+"pairs" type (where each region is explicitly defined by a start and
+an end pointer).</li></ol>
+<a name="sec1.5.2"></a><h2>1.5.2 Structure of the Regions Segment</h2>
+<p>The Regions segment of the DD is primarily created and maintained by the
+index-building utilities. However, an XPAT database manager should understand
+the information it represents and the functionality of each segment and field,
+and may <i>add to</i> the Regions information through manual processes. These
+functionalities are discussed here and examples are included. Region Sub-Indices
+for system-defined meta-data tags are automatically generated by DBBuild (i.e.,
+by the XPAT database manager).</p>
+<p><b>Indexing Regions for Reducing Search Times</b></p>
+<p>Region indices are built for the regions defined in the tag names file
+('. tag') or defined in an associated DTD. All the regions will have
+their own indices, and are typically placed in the main Region Sub-index file
+unless generated through ancillary region building processes.  For each of these
+entries, a Region segment is added to the Regions segment of the DD like
+so:</p>
+<pre>
+&lt;Region&gt;
+&lt;Name&gt;entry&lt;/Name&gt;
+&lt;Desc&gt;Sample Region Description&lt;/Desc&gt;
+&lt;File&gt;
+&lt;SysName&gt;/DLXSROOT/patent/patent.rgn&lt;/SysName&gt;
+&lt;ModDate&gt;761240610&lt;/ModDate&gt;
+&lt;Offset&gt;0&lt;/Offset&gt;
+&lt;/File&gt;
+&lt;Count&gt;26&lt;/Count&gt;
+&lt;Type&gt;pairs&lt;/Type&gt;
+&lt;/Region&gt;</pre>
+<p>
+<b>FastRegion Indices: Further Acceleration of Searches for Frequently Used
+Regions</b> FastRegion indices allow the XPAT database manager to set up an
+additional set of special indices specifically for particular regions. If the
+end-user will be performing 80% of their queries on text that appears within
+Headline regions, creating a FastRegion index for this region will decrease
+search times over a system that does not have such indices. Each FastRegion
+index is built in a separate file (with a default or XPAT database
+manager-defined filename prefix). For each FastRegion index built, a Region
+segment is added to the Regions segment of the DD like
+so:</p>
+<pre>
+&lt;Region&gt;
+&lt;FastRegion&gt;
+&lt;File&gt;
+&lt;SysName&gt;/DLXSROOT/OTFields.fri&lt;/SysName&gt;
+&lt;ModDate&gt;764366973&lt;/ModDate&gt;
+&lt;Offset&gt;O&lt;/Offset&gt;
+&lt;/File&gt;
+&lt;IndexName&gt;&lt;/IndexName&gt;
+&lt;/FastRegion&gt;
+&lt;Name&gt;OTFields&lt;/Name&gt;
+&lt;Desc&gt;Structure delimited by 'OTField' tags.&lt;/Desc&gt;
+&lt;File&gt;
+&lt;SysName&gt;/DLXSROOT/mydb.rgn&lt;/SysName&gt;
+&lt;ModDate&gt;761240610&lt;/ModDate&gt;
+&lt;Offset&gt;624&lt;/Offset&gt;
+&lt;/File&gt;
+&lt;Count&gt;26&lt;/Count&gt;
+&lt;Type&gt;pairs&lt;/Type&gt;
+&lt;/Region&gt;</pre>
+<p>
+In the example above, the meta-data region is OTFields. A FastRegion
+segment is defined for the FastRegion index (which resides in the file
+'OTFields.fri'), along with the usual information for a region
+(Name, Desc, File, etc.).</p>
+<p>FastRegion indices are created by the index-building utility
+xpatfr.</p>
+<p><b>Changing the Name of Region Index Files and FastRegion Index Files
+</b></p>
+<p>As noted earlier, the Regions segment of a DD is created and maintained by
+the index-building utilities. However, if the XPAT database manager wishes to
+change the names of either the Region Index or FastRegion Index files, then all
+&lt;SysName&gt; segments in the DD must be modified. The File segments of each
+Region segment of a DD specify the names of Region index files (if they exist).
+These names (and directory path, if desired) can be changed by the XPAT database
+manager right in the DD without any repercussions, provided the actual index
+files also have their names (and locations, if appropriate) changed. For
+example, the Region Sub-index file '/DLXSROOT/patent/mydb.rgn' can
+be changed to '/usr/tmp/mydb5. rgn' by simply changing the SysName
+field's entry (in addition to moving the original 'mydb.rgn'
+file to the new directory location and name) as
+follows:</p>
+<pre>
+&lt;Region&gt;
+&lt;Name&gt;entry&lt;/Name&gt;
+&lt;Desc&gt;Sample Region Description&lt;/Desc&gt;
+&lt;File&gt;
+&lt;SysName&gt;/usr/tmp/mydb5.rgn&lt;/SysName&gt;
+&lt;ModDate&gt;761240610&lt;/ModDate&gt;
+&lt;Offset&gt;0&lt;/Offset&gt;
+&lt;/File&gt;
+&lt;Count&gt;26&lt;/Count&gt;
+&lt;Type&gt;pairs&lt;/Type&gt;
+&lt;/Region&gt;
+</pre>
+
+<a name="sec1.5.3"></a><h2>1.5.3 Summary</h2>
+<p>Tie Regions segment of the DD provides information about two types of data
+regions: (1) application-defined regions in the text, such as Headline, Story
+and Paragraph, along with application-defined meta-data such as ProjectNo,
+CityCode, etc.; and (2) system-defined meta-data such as OTDoc, OTFile, OTDate,
+etc. The region tags describe the conceptual structure of the source data. The
+meta-data tags provide additional information that applies to entire source
+files. Text searches that make use of any of these types of regions can be made
+faster by creating FastRegion Indices on the more frequently accessed
+regions.</p>
+
+
+<a name="sec1.6"></a><h1>1.6 Miscellaneous: Thesaurus Field</h1>
+<p>The Thesaurus field is enclosed by &lt;Thesaurus&gt; and &lt;/Thesaurus&gt;
+tags. It contains the name of a file with thesaurus definitions. The format of
+this file is described in the 'thesaurus' section of the XPat
+documentation. The filename can be specified using either a relative path or an
+absolute path.  DLXS does not currently use the Thesaurus function in
+XPAT.</p>
+
+<a name="sec1.7"></a><h1>1.7 Generating the Data Dictionary Template</h1>
+<p>There are two ways to generate a Data Dictionary for a new database: (1)
+Copy an existing DD and modify it; or (2) Generate a "template" DD
+using the ddgen utility. The syntax for the ddgen utility is as follows:
+</p>
+<pre> ddgen -C [-c none|basic|isolatin|sgml] file_prefix</pre>
+<p>
+The first parameter, '-C' (capital '-C'), is
+optional. If used, the DD created will use defaults for a consolidated database.
+The second parameter, '-c' followed by a code, is also optional.
+This parameter indicates what sort of character mappings should be configured
+for the template DD (i.e., none, basic, iso-latin. or SGML). The default is
+SGML. The third and final parameter is required and indicates the desired
+filename prefix for the template DD about to be generated. Refer to the ddgen
+man page for more details on generating a template DD.</p>
+
+<a name="sec1.8"></a><h1>1.8 Chapter Summary</h1>
+<p>The Data Dictionary (DD) is the XPAT system's main control file. All
+information about the source data files, the index files, and parameters on how
+the source data is to be converted and displayed is stored within the three
+segments Text, Indices, and Regions. The actual indices are stored in separate
+files and are built by the indexing-building utilities. All database system
+changes are recorded here, either by the XPAT database manager or by the
+index-building utilities. Thus, the DD always reflects the current state of the
+system. Region building and associated files is discussed in detail in the next
+chapter.</p>
+
+<a name="sec1.9"></a><h1>1.9 Example Data Dictionaries</h1>
+<p>The following are examples of a complete DD (i.e., it reflects the state of
+a database after indices have been built). The first is for a typical DLXS Text
+Class consolidated database, and the second is for a DLXS Text Class MFS
+database.</p>
+<ul>
+<li><a href="examples/consolidated-sample.dd">Consolidated Database Data Dictionary</a></li>
+<li><a href="examples/consolidated-Unicode-sample.dd">Consolidated Database Unicode Data Dictionary</a></li>
+<li><a href="examples/mfs-sample.dd">MFS Database Data Dictionary</a></li>
+</ul>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+</body>
+
+</html>

@@ -1,0 +1,239 @@
+#!/usr/bin/perl
+
+# fixSubjects
+
+# repairs the MODS and the modsbib (not the search)
+# so that each subject is contained in its own <subject auth= tag.
+# also, for LCSH ones, splits them out on the "--" value.
+# if the  value contains "century" or numbers (dashes?), label it temporal
+# if the value contains only "Tennessee" or "United States" and spaces,
+#    label it geographic
+# otherwise, the first value keeps its current tag, and all following 
+# values (that don't meet those specs) get labeled topic, and stay within the
+# same subject tag.
+
+
+$inMods = "./newmods/";
+$outMods = "./preservation/";
+
+opendir(INMODS, $inMods) or die "can't open $inMods\n";
+while ($file = readdir(INMODS)){
+   if (!($file =~ /^\./)){
+
+     $infile = $inMods.$file;
+     $outfile = $outMods.$file;
+     undef $substart;
+     undef $subend;
+     undef $substuff;
+     undef @start;
+     undef @end;
+     open(IN, $infile) or die "can't open $infile\n";
+     while ($line = <IN>){
+        chomp $line;
+        if ($line =~ /<mods\:subject/){
+           $substart = 1;
+        #   $substuff .= $line;
+           }
+        elsif ($line =~ /<\/mods\:subject>/){
+           $subend = 1;
+           undef $substart;
+           $substuff .= $line;
+           undef $line;
+           }
+        if ((!$substart) && (!$subend)){
+           push (@start, $line);
+           }
+        elsif ($substart){
+           $substuff .= $line;
+           }
+        elsif ($subend){
+           if ($line){ push (@end, $line);}
+           }
+        }
+     close(IN);
+     
+  # we now have the start of the file in @start, the end in @end and 
+  # all the subject stuff on a single line, in $substuff
+     undef @newsubs;
+     print " \n$file contains: \n$substuff\n\n";
+     while ($substuff =~ /<mods\:subject(.*?)>(.*?)<\/mods\:subject>(.*)/){
+       $att = $1;
+       $working = $2;
+       $substuff = $3;
+       undef $mysub;
+       print "working:  \n$working\n"; 
+       if ($att =~ /authority="(.*?)"/){
+           $auth = $1;
+            }
+       else{ undef $auth;}  
+       if ($auth){
+           $mysubstart = '<mods:subject authority="'.$auth.'">';
+           }
+       else{ $mysubstart = '<mods:subject>';}
+       while ($working =~ /<mods\:([^>]*)>(.*?) *<\/mods\:[^>]*>(.*)/){
+             $subline = $2;
+             $tagtype = $1;
+             $working = $3;
+                 # subjects that do not end in hyphen (dates, not yet dead) or
+                 # close parens, need to end in a period.
+             if ((! ($subline =~ /\. *$/)) && (! ($subline =~ /\)$/)) &&
+                (! ($subline =~ /\-$/))){
+                $subline .= ".";
+                }
+             undef $working2;
+             undef $val1;
+             if ($tagtype =~ /name/){
+               if ($subline =~ /(.*?) -- (.*)/){
+                 $mysub = $mysubstart."\n<mods:name>$1</mods:namePart></mods:name>\n";
+                 $working2 = $2;
+                 }
+               else{
+                 $mysub = $mysubstart."\n<mods:name>".$subline."</mods:namePart></mods:name>";
+                 }
+               }
+             else{
+               if ($subline =~ /^((.*?) -- .*)$/){
+                 $val1 = $2;
+                 $working2 = $1;  # working contains val1;  if val1 is not temporal or geog,
+                                  #                       give it tagtype
+                 $mysub = $mysubstart;
+                 }
+               else{ 
+                  $mysub = $mysubstart."\n<mods:".$tagtype.">".$subline."</mods:".$tagtype.">";
+                  undef $working2;
+                  }
+                }
+             if ($working2){
+                print "      working2: \n$working2\n";
+                while ($working2 =~ /^(.*?) -- (.*)$/){
+                   $working2 = $2;
+                   $thisval = $1;
+                   if (($thisval eq $val1) && ($tagtype eq "name")){
+                      $mytag = $tagtype;
+                      }
+                   elsif ($thisval =~ /^ *Tennessee *\.? *$/i || $thisval =~ /^ *United States *\.? *$/i ||
+                      $thisval =~ /^ *Georgia *\.? *$/i  || $thisval =~ /^ *th Carolina *\.? */i  ||
+                      $thisval =~ /^ *Virginia *\.? *$/i  || $thisval =~ /^ *Kentucky *\.? */i  ||
+                      $thisval =~ /^ *Mississippi *\.? *$/i  || $thisval =~ /^ *Arkansas *\.? */i  ||
+                      $thisval =~ /^ *Louisiana *\.? *$/i  || $thisval =~ /^ *Florida *\.? */i  ||
+                      $thisval =~ /^ *Tennessee\, East *\.? *$/i ||$thisval =~ /^ *Dayton *\.? *$/i ||
+                      $thisval =~ /^ *Jonesborough *\.? *$/i  || $thisval =~ / County/i ||
+                      $thisval =~ /^ *Knoxville *\.? *$/i  || $thisval =~ / \( *TENN\./i  ||
+                      $thisval =~ /^ *Nashville *\.? *$/i  || $thisval =~ /^ *Memphis *\.? */i  ||
+                      $thisval =~ /^ *Maryville *\.? *$/i  || $thisval =~ /^ *Gatlinburg *\.? */i  ||
+                      $thisval =~ /^ *Johnson City *\.? *$/i  || $thisval =~ /^ *Chattanooga *\.? */i  ||
+                      $thisval =~ /^ *Southern States *\.? *$/){
+                      $mytag = "geographic";
+                      } 
+                   elsif ($thisval =~ /^ *\d{4} *\- *\d{4} *\.? *$/  || 
+                         $thisval =~ /^ *\d{4} *\-? *\.? *$/ ||
+                          $thisval =~ / century *.*?\.?/i){
+
+                      $mytag = "temporal"; 
+                      }
+                   elsif (($working2 =~ /\W/) &&  # this should be the last section of the subject
+                      ($thisval =~ /sources/i || $thisval =~ /periodicals/i ||
+                      $thisval =~ /photo/i || $thisval =~ /essay/i ||
+                      $thisval =~ /play/i || $thisval =~ /poem/i ||
+                      $thisval =~ /letter/i || $thisval =~ /correspondence/i ||
+                      $thisval =~ /speech/i || $thisval =~ /advertisement/i ||
+                      $thisval =~ /sheet music/i || $thisval =~ /sketches/i ||
+                      $thisval =~ /minutes/i  || $thisval =~ /records/i ||
+                      $thisval =~ /handbill/i ||  $thisval =~ /telegrams/i ||
+                      $thisval =~ /report/i  ||  $thisval =~ /broadsides/i ||
+                      $thisval =~ /petitions/i || $thisval =~ /reviews/i ||
+                      $thisval =~ /anecdotes/i || $thisval =~ /biography/i ||
+                      $thisval =~ /collections/i || $thisval =~ /facsimiles/i ||
+                      $thisval =~ /maps/i  || $thisval =~ /music/ ||
+                      $thisval =~ /pictorial works/i || $thisval =~ /poetry/i ||
+                      $thisval =~ /songs/i   )){
+
+                      $mytag = "genre";
+                      }  
+                   elsif ($thisval eq $val1){ $mytag = $tagtype;}
+                   else{ $mytag = "topic";}
+                   $mysub .= "\n<mods:$mytag>$thisval</mods:$mytag>";
+
+                   }
+                # put last section in 
+                if ($working2 =~ /\w/){
+                   $thisval = $working2;
+                  if (($thisval eq $val1) && ($tagtype eq "name")){
+                      $mytag = $tagtype;
+                      }
+                   elsif ($thisval =~ /^ *Tennessee *\.? *$/i || $thisval =~ /^ *United States *\.? *$/i ||
+                      $thisval =~ /^ *Georgia *\.? *$/i  || $thisval =~ /^ *th Carolina *\.? */i  ||
+                      $thisval =~ /^ *Virginia *\.? *$/i  || $thisval =~ /^ *Kentucky *\.? */i  ||
+                      $thisval =~ /^ *Mississippi *\.? *$/i  || $thisval =~ /^ *Arkansas *\.? */i  ||
+                      $thisval =~ /^ *Louisiana *\.? *$/i  || $thisval =~ /^ *Florida *\.? */i  ||
+                      $thisval =~ /^ *Jonesborough *\.? *$/i  || $thisval =~ / County/i ||
+                      $thisval =~ /^ *Knoxville *\.? *$/i  || $thisval =~ / \( *TENN\./i  ||
+                      $thisval =~ /^ *Tennessee\, East *\.? *$/i ||$thisval =~ /^ *Dayton *\.? *$/i ||
+                      $thisval =~ /^ *Nashville *\.? *$/i  || $thisval =~ /^ *Memphis *\.? */i  ||
+                      $thisval =~ /^ *Maryville *\.? *$/i  || $thisval =~ /^ *Gatlinburg *\.? */i  ||
+                      $thisval =~ /^ *Johnson City *\.? *$/i  || $thisval =~ /^ *Chattanooga *\.? */i  ||
+                      $thisval =~ /^ *Southern States *\.? *$/){
+
+
+                      $mytag = "geographic";
+                      }
+                   elsif ($thisval =~ /^ *\d{4} *\- *\d{4} *\.? *$/  ||
+                          $thisval =~ /^ *\d{4} *\-? *\.? *$/ ||
+                          $thisval =~ / century *.*?\.?/i){
+
+                      $mytag = "temporal";
+                      }
+                   elsif (($working2 =~ /\W/) &&
+                      ($thisval =~ /sources/i || $thisval =~ /periodicals/i ||
+                      $thisval =~ /photo/i || $thisval =~ /essay/i ||
+                      $thisval =~ /play/i || $thisval =~ /poem/i ||
+                      $thisval =~ /letter/i || $thisval =~ /correspondence/i ||
+                      $thisval =~ /speech/i || $thisval =~ /advertisement/i ||
+                      $thisval =~ /sheet music/i || $thisval =~ /sketches/i ||
+                      $thisval =~ /minutes/i  || $thisval =~ /records/i ||
+                      $thisval =~ /handbill/i ||  $thisval =~ /telegrams/i ||
+                      $thisval =~ /report/i  ||  $thisval =~ /broadsides/i ||
+                      $thisval =~ /petitions/i || $thisval =~ /reviews/i ||
+                      $thisval =~ /anecdotes/i || $thisval =~ /biography/i ||
+                      $thisval =~ /collections/i || $thisval =~ /facsimiles/i ||
+                      $thisval =~ /maps/i  || $thisval =~ /music/ ||
+                      $thisval =~ /pictorial works/i || $thisval =~ /poetry/i ||
+
+                      $thisval =~ /songs/i   )){
+
+                      $mytag = "genre";
+                      }
+
+                   elsif ($thisval eq $val1){ $mytag = $tagtype;}
+                   else{ $mytag = "topic";}
+                   if ($mytag eq "name"){
+                      $mysub .= "\n<mods:name>".$thisval."</mods:namePart></mods:name>";
+                      }
+                   else{
+                     $mysub .= "\n<mods:$mytag>$thisval</mods:$mytag>";
+                     }
+
+                   }
+
+ 
+                }
+             $mysub .= "\n</mods:subject>";
+             print "MYSUB:  \n$mysub\n\n";
+             push (@newsubs, $mysub);
+             }
+          }
+
+      open(OUT, ">$outfile") or die "can't open $outfile\n";
+      foreach (@start){
+        print OUT $_."\n";
+        }
+      foreach (@newsubs){
+        print OUT $_."\n";
+        }
+      foreach (@end){
+        print OUT $_."\n";
+        }
+      close(OUT);
+      }
+    }    
+  close(INMODS);

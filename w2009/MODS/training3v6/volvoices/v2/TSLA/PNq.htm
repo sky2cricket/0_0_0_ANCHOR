@@ -1,0 +1,148 @@
+<html>
+<head>
+<title>vv_popupPN</title>
+
+<link href="../vv_workbook.css" type="text/css" rel="stylesheet">
+<script language=javascript src="../vv_functions_tsla.js"></script>
+
+
+
+
+<script language="javascript">
+
+var select_id= new String();
+function get_select_id() {
+
+var str = new String();
+    str = parent.location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  parent.window.opener.location.href="+parent.window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=get_select_id();
+
+
+
+var strSelect_PN_A = new String('');
+
+
+strSelect_PN_A = '<select name="aaa"  size="24" style="font-size:10px"> \r\n'
+	+'<option value="0" selected>No value selected</option> \r\n'
+		
+
+
+	+'<option>QUANDER, PAUL ALONZO, - 1954-</option>  \r\n'
+	+'<option>QUANTRILL, WILLIAM CLARKE, - 1837-1865</option>  \r\n'
+	+'<option>QUARLES FAMILY</option>  \r\n'
+	+'<option>QUARLES, JAMES MINOR, - 1823-1901</option>  \r\n'
+	+'<option>QUARLES, RANDAL KEITH, - 1957-</option>  \r\n'
+	+'<option>QUARLES, ROBERT THOMAS, - 1891-1968</option>  \r\n'
+	+'<option>QUARLES, WILLIAM, - FL. 1752-1814</option>  \r\n'
+	+'<option>QUARRIER FAMILY</option>  \r\n'
+	+'<option>QUEEN FAMILY</option>  \r\n'
+	+'<option>QUEENER FAMILY</option>  \r\n'
+	+'<option>QUESENBERRY FAMILY</option>  \r\n'
+	+'<option>QUEZON, MANUEL LUIS, - 1878-1944</option>  \r\n'
+	+'<option>QUICK FAMILY</option>  \r\n'
+	+'<option>QUICK, HAROLD EDWARD, - 1939-</option>  \r\n'
+	+'<option>QUIGBY FAMILY</option>  \r\n'
+	+'<option>QUINBY FAMILY</option>  \r\n'
+	+'<option>QUINCY, JOHN, - 1689-1767</option>  \r\n'
+	+'<option>QUINCY, JOSIAH, - 1772-1864</option>  \r\n'
+	+'<option>QUINCY, JUDITH (SHAKESPEARE) - MRS - 1585-1661 OR 2</option>  \r\n'
+	+'<option>QUINN FAMILY</option>  \r\n'
+	+'<option>QUINN, JAMES, - 1775-1847</option>  \r\n'
+	+'<option>QUINN, JOHN M. - (JOHN MICHAEL), - 1949-</option>  \r\n'
+	+'<option>QUINN, P. E. - (PHIL E.), - 1950-</option>  \r\n'
+	+'<option>QUINTARD, C. T. - (CHARLES TODD), - 1824-1898</option>  \r\n'
+	+'<option>QUINTRELL FAMILY</option>  \r\n'
+	+'<option>QUISENBERRY FAMILY</option>  \r\n'
+	+'<option>QUITMAN, JOHN ANTHONY, - 1799-1858</option>  \r\n'
+
++'</select> \r\n';
+	
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+<body class="background">
+
+
+
+
+<form name="FormOne" >
+
+
+<div name="SS" id="SS">
+<script>
+document.write(
+
+	 '<table border="1" cellpadding="4" cellspacing="0"  width="90%">\r\n'
+	+'<tr><td  bgcolor="ddeeff">\r\n'
+	///+'vv_functions.htm called by '+select_id+' <br>\r\n'
+	+'<b>Select Personal Name Q</b> \r\n'
+	+'</td></tr><tr><td bgcolor="ddeeff"> \r\n' 
+	+ strSelect_PN_A
+
+	+'</td></tr></table> \r\n'
+	///+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+</script>
+	
+</div>
+
+<input type="button" onclick="showSelection();" name="B1" value="Personal Name">
+
+</form>
+
+<script>
+
+
+
+                  
+
+function showSelection() {
+
+val = new String();
+
+for ( i=0; i< document.FormOne.aaa.length; i++ ) {
+
+if ( document.FormOne.aaa[i].selected == true ) {
+  	val = document.FormOne.aaa[i].text;
+	break;
+	}
+else { val = "you never selected anything"; 
+	}
+
+}
+////////////////////////alert ("You selected " +val);
+val=reformatPn(val);
+
+switch ( select_id ) {
+
+case  "subject_name_lcsh_01" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_01.value=val;
+	parent.window.close();
+	break;
+
+case  "subject_name_lcsh_02" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_02.value=val;
+	parent.window.close();
+	break;
+}//end switch
+
+}///end function
+</script>
+

@@ -1,0 +1,341 @@
+<html>
+<head>
+<title>vv_popupPN</title>
+
+<link href="../vv_workbook.css" type="text/css" rel="stylesheet">
+<script language=javascript src="../vv_functions_tsla.js"></script>
+
+
+
+
+<script language="javascript">
+
+var select_id= new String();
+function get_select_id() {
+
+var str = new String();
+    str = parent.location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  parent.window.opener.location.href="+parent.window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=get_select_id();
+
+
+
+var strSelect_PN_A = new String('');
+
+
+strSelect_PN_A = '<select name="aaa"  size="24" style="font-size:10px"> \r\n'
+	+'<option value="0" selected>No value selected</option> \r\n'
+		
+
+
+
+
+
+
+	+'<option>NADEAU FAMILY</option>  \r\n'
+	+'<option>NAF, HANS CONRAD, - 1713?-</option>  \r\n'
+	+'<option>NAF, HANS, - 1598?-</option>  \r\n'
+	+'<option>NAGY, JAMES EMERICK, - 1903-1987</option>  \r\n'
+	+'<option>NAIFEH, JIMMY</option>  \r\n'
+	+'<option>NAIL FAMILY</option>  \r\n'
+	+'<option>NAIL, JOSEPH</option>  \r\n'
+	+'<option>NAIPAUL, V. S. - (VIDIADHAR SURAJPRASAD), - 1932-</option>  \r\n'
+	+'<option>NANCE FAMILY</option>  \r\n'
+	+'<option>NANCE, A. STEVE, - 1895-1938</option>  \r\n'
+	+'<option>NANCE, JOHN, - 1841-1867</option>  \r\n'
+	+'<option>NANNEY FAMILY</option>  \r\n'
+	+'<option>NAPIER FAMILY</option>  \r\n'
+	+'<option>NAPIER, CHARLES JAMES, - SIR, - 1782-1853</option>  \r\n'
+	+'<option>NAPIER, ELIAS W.</option>  \r\n'
+	+'<option>NAPIER, GEORGE F.</option>  \r\n'
+	+'<option>NAPIER, JAMES CARROLL - 1845-1940</option>  \r\n'
+	+'<option>NAPOLEON - I, - EMPEROR OF THE FRENCH, - 1769-1821</option>  \r\n'
+	+'<option>NAPOLEON - III, - EMPEROR OF THE FRENCH, - 1808-1873</option>  \r\n'
+	+'<option>NARAYSINGH, ORLANDO WAYNE, - 1975-</option>  \r\n'
+	+'<option>NARON, L.H., UNION SCOUT</option>  \r\n'
+	+'<option>NASH FAMILY</option>  \r\n'
+	+'<option>NASH, FRANCIS, - 1720-1777</option>  \r\n'
+	+'<option>NASH, OGDEN, - 1902-1971</option>  \r\n'
+	+'<option>NASH, WILLIAM, - 1696-1760</option>  \r\n'
+	+'<option>NATCHER, WILLIAM HUSTON, - 1909-1994</option>  \r\n'
+	+'<option>NAVE FAMILY</option>  \r\n'
+	+'<option>NEAL FAMILY</option>  \r\n'
+	+'<option>NEAL, - (JOHN RANDOLPH), - MR - 1836-1889</option>  \r\n'
+	+'<option>NEAL, C. M.</option>  \r\n'
+	+'<option>NEAL, PALLIS, - 1774-1850</option>  \r\n'
+	+'<option>NEAL, PATRICIA, - 1926-</option>  \r\n'
+	+'<option>NEAL, WILLIAM HASKELL, - 1859-1934</option>  \r\n'
+	+'<option>NEALE, WALTER, - 1873-1933</option>  \r\n'
+	+'<option>NEARCHUS, - OF CRETE, - 4TH CENT. B. C.</option>  \r\n'
+	+'<option>NEASE FAMILY</option>  \r\n'
+	+'<option>NEAVES FAMILY</option>  \r\n'
+	+'<option>NEEDHAM FAMILY</option>  \r\n'
+	+'<option>NEEL, ANJALINE</option>  \r\n'
+	+'<option>NEEL, JAMES</option>  \r\n'
+	+'<option>NEEL, JIM</option>  \r\n'
+	+'<option>NEELY FAMILY</option>  \r\n'
+	+'<option>NEELY, MARY, - 1761-1852</option>  \r\n'
+	+'<option>NEELY, WILLIAM, - CA. 1735-CA. 1780</option>  \r\n'
+	+'<option>NEESE FAMILY</option>  \r\n'
+	+'<option>NEFF FAMILY</option>  \r\n'
+	+'<option>NEHRU, JAWAHARLAL, - 1889-1964</option>  \r\n'
+	+'<option>NEIL, ALBERT BRAMLETT</option>  \r\n'
+	+'<option>NEIMAN FAMILY</option>  \r\n'
+	+'<option>NELMS FAMILY</option>  \r\n'
+	+'<option>NELSON FAMILY</option>  \r\n'
+	+'<option>NELSON, ALEXANDER</option>  \r\n'
+	+'<option>NELSON, BABY FACE, - 1908-1934</option>  \r\n'
+	+'<option>NELSON, HENRY S., - 1923-</option>  \r\n'
+	+'<option>NELSON, HORATIO NELSON, - VISCOUNT, - 1758-1805</option>  \r\n'
+	+'<option>NELSON, LINDSEY</option>  \r\n'
+	+'<option>NELSON, RACHEL WEST</option>  \r\n'
+	+'<option>NELSON, ROBERT T., - 1936-</option>  \r\n'
+	+'<option>NELSON, ROSEMARY, - D. 1999</option>  \r\n'
+	+'<option>NELSON, THOMAS AMOS ROGERS, - 1812-1873</option>  \r\n'
+	+'<option>NELSON, THOMAS, - 1738-1789</option>  \r\n'
+	+'<option>NELSON, WILLIAM, - 1711-1772</option>  \r\n'
+	+'<option>NESBIT FAMILY</option>  \r\n'
+	+'<option>NESBITT FAMILY</option>  \r\n'
+	+'<option>NESMITH FAMILY</option>  \r\n'
+	+'<option>NESS, SUSAN PAULA, - 1948-</option>  \r\n'
+	+'<option>NESSEN, RON, - 1934-</option>  \r\n'
+	+'<option>NESSIMA, JOSEPH HARDY, - 1843-1890</option>  \r\n'
+	+'<option>NETHERLAND FAMILY</option>  \r\n'
+	+'<option>NETHERLAND, JOHN</option>  \r\n'
+	+'<option>NETHERLAND, JOHN, - 1808-1887</option>  \r\n'
+	+'<option>NETHERS FAMILY</option>  \r\n'
+	+'<option>NETTLES FAMILY</option>  \r\n'
+	+'<option>NEUBERT FAMILY</option>  \r\n'
+	+'<option>NEUENSCHWANDER FAMILY</option>  \r\n'
+	+'<option>NEUMANN, THERESE, - 1896-</option>  \r\n'
+	+'<option>NEVILLE FAMILY</option>  \r\n'
+	+'<option>NEVINS, ALLAN, - 1890-1971</option>  \r\n'
+	+'<option>NEW FAMILY</option>  \r\n'
+	+'<option>NEWBERY, JOHN, - 1713-1767</option>  \r\n'
+	+'<option>NEWBOLD FAMILY</option>  \r\n'
+	+'<option>NEWBOLD, GEORGE, - D. 1858</option>  \r\n'
+	+'<option>NEWBURY FAMILY</option>  \r\n'
+	+'<option>NEWCASTLE, THOMAS PELHAM-HOLLES, - DUKE OF, - 1693-1768</option>  \r\n'
+	+'<option>NEWCOMB, JACK</option>  \r\n'
+	+'<option>NEWCOMER FAMILY</option>  \r\n'
+	+'<option>NEWELL FAMILY</option>  \r\n'
+	+'<option>NEWHALL, WALTER SYMONDS, - 1841-1863</option>  \r\n'
+	+'<option>NEWKIRK FAMILY</option>  \r\n'
+	+'<option>NEWMAN FAMILY</option>  \r\n'
+	+'<option>NEWMAN, FRANK NEIL, - 1942-</option>  \r\n'
+	+'<option>NEWMAN, HOWARD WALKER, - 1840-1904</option>  \r\n'
+	+'<option>NEWMAN, ROBERT LOFTIN, - 1827-1912</option>  \r\n'
+	+'<option>NEWMAN, WILLIE BETTY, - 1863-1935</option>  \r\n'
+	+'<option>NEWNAN FAMILY</option>  \r\n'
+	+'<option>NEWPORT FAMILY</option>  \r\n'
+	+'<option>NEWSOM, JOSEPH M.</option>  \r\n'
+	+'<option>NEWSOME FAMILY</option>  \r\n'
+	+'<option>NEWSOME, JAMES EUGENE, - 1959-</option>  \r\n'
+	+'<option>NEWTON FAMILY</option>  \r\n'
+	+'<option>NEWTON, A. EDWARD - (ALFRED EDWARD), - 1864-1940</option>  \r\n'
+	+'<option>NEWTON, CALVIN, - 1928-</option>  \r\n'
+	+'<option>NEWTON, HUEY P.</option>  \r\n'
+	+'<option>NEWTON, ISAAC, - SIR, - 1642-1727</option>  \r\n'
+	+'<option>NEWTON, JOHN, - 1725-1807</option>  \r\n'
+	+'<option>NEWTON, RICHARD, - 1609?-1701</option>  \r\n'
+	+'<option>NEWTON, ROBERT, - 1780-1854</option>  \r\n'
+	+'<option>NEWTON, THOMAS</option>  \r\n'
+	+'<option>NEY, MICHEL, - 1769-1815</option>  \r\n'
+	+'<option>NEY, PETER STUART, - D. 1846</option>  \r\n'
+	+'<option>NGUYEN, QUY AN, - 1943-</option>  \r\n'
+	+'<option>NIBLE FAMILY</option>  \r\n'
+	+'<option>NIBLETT FAMILY</option>  \r\n'
+	+'<option>NICHOL, BRADFORD, - 1841-1913</option>  \r\n'
+	+'<option>NICHOL, WILLIAM, - 1800-1878</option>  \r\n'
+	+'<option>NICHOLAS - II, - EMPEROR OF RUSSIA, - 1868-1918</option>  \r\n'
+	+'<option>NICHOLS FAMILY</option>  \r\n'
+	+'<option>NICHOLS, HUGH C., - 1879-CA. 1964</option>  \r\n'
+	+'<option>NICHOLS, JARED C.</option>  \r\n'
+	+'<option>NICHOLSON FAMILY</option>  \r\n'
+	+'<option>NICHOLSON, A. O. P. - (ALFRED OSBORNE POPE), - 1808-1876</option>  \r\n'
+	+'<option>NICHOLSON, FRANCIS, - SIR, - 1600-1728</option>  \r\n'
+	+'<option>NICHOLSON, JOHN, - 1757-1800</option>  \r\n'
+	+'<option>NICHOLSON, JUNE, - 1870-1907</option>  \r\n'
+	+'<option>NICKELL, LAWRENCE R.</option>  \r\n'
+	+'<option>NICKELL, W. S.</option>  \r\n'
+	+'<option>NICKEY FAMILY</option>  \r\n'
+	+'<option>NICKLIN, BEN S.</option>  \r\n'
+	+'<option>NICOLAY, JOHN G. - (JOHN GEORGE), - 1832-1901</option>  \r\n'
+	+'<option>NICOLET, JEAN, - D. 1642</option>  \r\n'
+	+'<option>NIEBUHR, BARTHOLD GEORG, - 1776-1831</option>  \r\n'
+	+'<option>NIEDERER, JOHANNES, - 1780-1843</option>  \r\n'
+	+'<option>NIEDERGESES FAMILY</option>  \r\n'
+	+'<option>NIEMELA FAMILY</option>  \r\n'
+	+'<option>NIETZSCHE, FRIEDRICH WILHELM, - 1844-1900</option>  \r\n'
+	+'<option>NIGHTINGALE, FLORENCE, - 1820-1910</option>  \r\n'
+	+'<option>NIGHTSHEAD FAMILY</option>  \r\n'
+	+'<option>NIJINSKY, WASLAW, - 1890-1950</option>  \r\n'
+	+'<option>NISBET, CHARLES</option>  \r\n'
+	+'<option>NISSLEY FAMILY</option>  \r\n'
+	+'<option>NIX FAMILY</option>  \r\n'
+	+'<option>NIXON FAMILY</option>  \r\n'
+	+'<option>NIXON, GEORGE HENRY, - 1822-1887</option>  \r\n'
+	+'<option>NIXON, H. C. - (HERMAN CLARENCE), - 1886-</option>  \r\n'
+	+'<option>NIXON, PAT, - 1912-</option>  \r\n'
+	+'<option>NIXON, RICHARD M. - (RICHARD MILHOUS), - 1913-1994</option>  \r\n'
+	+'<option>NIXON, SARAH E. BUSBY</option>  \r\n'
+	+'<option>NIXON, WALTER L., - 1928-</option>  \r\n'
+	+'<option>NOBEL, ALFRED BERNHARD, - 1833-1896</option>  \r\n'
+	+'<option>NOBLE FAMILY</option>  \r\n'
+	+'<option>NOBLE, RONALD K.</option>  \r\n'
+	+'<option>NOBLETT FAMILY</option>  \r\n'
+	+'<option>NOBLITT FAMILY</option>  \r\n'
+	+'<option>NOEL FAMILY</option>  \r\n'
+	+'<option>NOEL HUME, IVOR</option>  \r\n'
+	+'<option>NOEL, SAMUEL AYERS, - 1814-1847</option>  \r\n'
+	+'<option>NOICE, HAROLD</option>  \r\n'
+	+'<option>NOLAN FAMILY</option>  \r\n'
+	+'<option>NOLAN, BETH, - 1951-</option>  \r\n'
+	+'<option>NOLAN, REGINA, - 1959-</option>  \r\n'
+	+'<option>NOLEN, HUGH RAY</option>  \r\n'
+	+'<option>NORCROSS FAMILY</option>  \r\n'
+	+'<option>NORDHAUS, ROBERT R., - 1937-</option>  \r\n'
+	+'<option>NORFLEET FAMILY</option>  \r\n'
+	+'<option>NORMAN FAMILY</option>  \r\n'
+	+'<option>NORMAN, HENRY C., - 1850-1913</option>  \r\n'
+	+'<option>NORMAN, JACK, - 1904-</option>  \r\n'
+	+'<option>NORRIS FAMILY</option>  \r\n'
+	+'<option>NORRIS, CLARENCE</option>  \r\n'
+	+'<option>NORRIS, GEORGE W. - (GEORGE WILLIAM), - 1861-1944</option>  \r\n'
+	+'<option>NORRIS, JAMES BUSBY, - 1849-1878</option>  \r\n'
+	+'<option>NORRIS, JOHN, - D. 1740</option>  \r\n'
+	+'<option>NORRIS, STEPHEN LESLIE, - 1950-</option>  \r\n'
+	+'<option>NORSWORTHY FAMILY</option>  \r\n'
+	+'<option>NORTH FAMILY</option>  \r\n'
+	+'<option>NORTH, JOHN, - D. 1692</option>  \r\n'
+	+'<option>NORTH, SIMEON, - 1705-1852</option>  \r\n'
+	+'<option>NORTHCUT FAMILY</option>  \r\n'
+	+'<option>NORTHCUTT FAMILY</option>  \r\n'
+	+'<option>NORTHERN, WILLIAM LEE, - 1920-1941</option>  \r\n'
+	+'<option>NORTHROP, LUCIUS BELLINGER, - 1811-1894</option>  \r\n'
+	+'<option>NORTHWAY FAMILY</option>  \r\n'
+	+'<option>NORTHWOOD FAMILY</option>  \r\n'
+	+'<option>NORTON FAMILY</option>  \r\n'
+	+'<option>NORTON, GALE A.</option>  \r\n'
+	+'<option>NORTON, JOSHUA A., - 1819-1880</option>  \r\n'
+	+'<option>NORTON, MARY E. (NOAKES), - D.1885</option>  \r\n'
+	+'<option>NORTON, SARAH (LOW) - MRS - 1790-1856</option>  \r\n'
+	+'<option>NORVELL FAMILY</option>  \r\n'
+	+'<option>NORWOOD FAMILY</option>  \r\n'
+	+'<option>NOSWORTHY FAMILY</option>  \r\n'
+	+'<option>NOTASH, MINA VAHEDI, - 1967-</option>  \r\n'
+	+'<option>NOTESTEIN FAMILY</option>  \r\n'
+	+'<option>NOTGRASS FAMILY</option>  \r\n'
+	+'<option>NOTMAN, JOHN, - 1810-1865</option>  \r\n'
+	+'<option>NOTTINGHAM FAMILY</option>  \r\n'
+	+'<option>NOURSE FAMILY</option>  \r\n'
+	+'<option>NOWLIN, JAMES</option>  \r\n'
+	+'<option>NOYES FAMILY</option>  \r\n'
+	+'<option>NOYES, JAMES, - 1608-1656</option>  \r\n'
+	+'<option>NOYES, NICHOLAS, - 1615?-1701</option>  \r\n'
+	+'<option>NUGENT, ELANOR SMITH</option>  \r\n'
+	+'<option>NUGENT, THOMAS LEWIS, - 1841-1895</option>  \r\n'
+	+'<option>NUGENT, WILLIAM LEWIS, - 1832-1897</option>  \r\n'
+	+'<option>NUNEZ CABEZA DE VACA, ALVAR, - 16TH CENT</option>  \r\n'
+	+'<option>NUNLEY FAMILY</option>  \r\n'
+	+'<option>NUNN FAMILY</option>  \r\n'
+	+'<option>NUR JAHAN, - EMPRESS, CONSORT OF JAHANGIR, EMPEROR OF HINDUSTAN, - D. 1645</option>  \r\n'
+	+'<option>NUTT FAMILY</option>  \r\n'
+	+'<option>NUTT, DANIEL, - CA. 1746-1816</option>  \r\n'
+	+'<option>NUTT, GRADY</option>  \r\n'
+	+'<option>NUTTALL, THOMAS, - 1786-1859</option>  \r\n'
+	+'<option>NYDEGGER FAMILY</option>  \r\n'
+	+'<option>NYE FAMILY</option>  \r\n'
+	+'<option>NYE, BILL, - 1850-1896</option>  \r\n'
+	+'<option>NYE, GERALD PRENTICE, - 1892-1971</option>  \r\n'
+
++'</select> \r\n';
+	
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+<body class="background">
+
+
+
+
+<form name="FormOne" >
+
+
+<div name="SS" id="SS">
+<script>
+document.write(
+
+	 '<table border="1" cellpadding="4" cellspacing="0"  width="90%">\r\n'
+	+'<tr><td  bgcolor="ddeeff">\r\n'
+	///+'vv_functions.htm called by '+select_id+' <br>\r\n'
+	+'<b>Select Personal Name N</b> \r\n'
+	+'</td></tr><tr><td bgcolor="ddeeff"> \r\n' 
+	+ strSelect_PN_A
+
+	+'</td></tr></table> \r\n'
+	///+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+</script>
+	
+</div>
+
+<input type="button" onclick="showSelection();" name="B1" value="Personal Name">
+
+</form>
+
+<script>
+
+
+
+                  
+
+function showSelection() {
+
+val = new String();
+
+for ( i=0; i< document.FormOne.aaa.length; i++ ) {
+
+if ( document.FormOne.aaa[i].selected == true ) {
+  	val = document.FormOne.aaa[i].text;
+	break;
+	}
+else { val = "you never selected anything"; 
+	}
+
+}
+////////////////////////alert ("You selected " +val);
+val=reformatPn(val);
+
+switch ( select_id ) {
+
+case  "subject_name_lcsh_01" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_01.value=val;
+	parent.window.close();
+	break;
+
+case  "subject_name_lcsh_02" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_02.value=val;
+	parent.window.close();
+	break;
+}//end switch
+
+}///end function
+</script>
+

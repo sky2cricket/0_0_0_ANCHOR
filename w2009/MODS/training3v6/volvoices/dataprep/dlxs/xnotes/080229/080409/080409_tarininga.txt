@@ -1,0 +1,71 @@
+NAMEPREFIX = vvo
+OBJDIR = /d1/dlxs/obj/v/vvo/
+
+
+        ./tei2text $(OBJDIR)$(NAMEPREFIX).xml $(OBJDIR)
+        ./nodefy $(OBJDIR)$(NAMEPREFIX).xml
+        mv $(OBJDIR)$(NAMEPREFIX).xml.noded $(OBJDIR)$(NAMEPREFIX).xml
+
+
+
+        ./tei2text $(OBJDIR)$(NAMEPREFIX).xml $(OBJDIR)
+        ./tei2text $/d1/dlxs/obj/v/vvo/vvo.xml /d1/dlxs/obj/v/vvo/
+
+
+
+
+
+[root@diglib2 tel]# ls -l modsbib
+total 60
+-rw-r--r--    1 root     root         2998 Apr  9 12:36 0012_000070_000245_0000
+-rw-r--r--    1 root     root         2846 Apr  9 12:36 0012_000070_000246_0000
+-rw-r--r--    1 root     root         3128 Apr  9 12:36 0012_000070_000247_0000
+-rw-r--r--    1 root     root         3067 Apr  9 12:36 0012_000070_000248_0000
+-rw-r--r--    1 root     root         2929 Apr  9 12:36 0012_000070_000249_0000
+-rw-r--r--    1 root     root         3010 Apr  9 12:36 0012_000070_000250_0000
+-rw-r--r--    1 root     root         3027 Apr  9 12:36 0012_000070_000388_0000
+-rw-r--r--    1 root     root         3365 Apr  9 12:36 0012_000144_000216_0000
+-rw-r--r--    1 root     root         2593 Apr  9 12:36 0022_000060_000204_0000
+-rw-r--r--    1 root     root         2558 Apr  9 12:36 0022_000060_000206_0000
+-rw-r--r--    1 root     root         2660 Apr  9 12:36 0022_000060_000207_0000
+-rw-r--r--    1 root     root         2550 Apr  9 12:36 0022_000060_000208_0000
+-rw-r--r--    1 root     root         2651 Apr  9 12:36 0022_000060_000209_0000
+-rw-r--r--    1 root     root         2946 Apr  9 12:36 0076_000050_000204_0000
+-rw-r--r--    1 root     root         2760 Apr  9 12:36 0082_000050_000204_0000
+
+/bin/cp modsbib/* /d1/workarea/dlxs/bib/mods/vv/xml
+
+ran the above /bin/cp command
+now need to roll back and remvoed 0012 stuff
+
+for bib class:
+separate out the newmods from institution 0012 and put in spc directory.
+/bin/mv newmods/ocr/0012* spc/mods/ocr/.
+/bin/mv newmods/typed/0012* spc/mods/typed/.
+/bin/mv newmods/notext/0012* spc/mods/notext/.
+
+copy modsbib and search files from 0012 there also, for changes.
+/bin/mv modsbib/0012* spc/modsbib/.
+/bin/cp search/0012* spc/modssearch/.
+
+/bin/cp modsbib/* /d1/workarea/dlxs/bib/mods/vv/xml
+
+
+
+[root@diglib2 tel]#  ls /d1/workarea/dlxs/bib/mods/vv/xml/0012_000070_00024*
+/d1/workarea/dlxs/bib/mods/vv/xml/0012_000070_000242_0000
+/d1/workarea/dlxs/bib/mods/vv/xml/0012_000070_000245_0000
+/d1/workarea/dlxs/bib/mods/vv/xml/0012_000070_000246_0000
+/d1/workarea/dlxs/bib/mods/vv/xml/0012_000070_000247_0000
+/d1/workarea/dlxs/bib/mods/vv/xml/0012_000070_000248_0000
+/d1/workarea/dlxs/bib/mods/vv/xml/0012_000070_000249_0000
+[root@diglib2 tel]# ls /d1/workarea/dlxs/bib/mods/vv/xml/0012_000070_00025*
+/d1/workarea/dlxs/bib/mods/vv/xml/0012_000070_000250_0000
+/d1/workarea/dlxs/bib/mods/vv/xml/0012_000070_000257_0000
+/d1/workarea/dlxs/bib/mods/vv/xml/0012_000070_000258_0000
+/d1/workarea/dlxs/bib/mods/vv/xml/0012_000070_000259_0000
+[root@diglib2 tel]# ls /d1/workarea/dlxs/bib/mods/vv/xml/0012_000070_000388*
+/d1/workarea/dlxs/bib/mods/vv/xml/0012_000070_000388_0000
+[root@diglib2 tel]# ls /d1/workarea/dlxs/bib/mods/vv/xml/0012_000144_000216*
+/d1/workarea/dlxs/bib/mods/vv/xml/0012_000144_000216_0000
+

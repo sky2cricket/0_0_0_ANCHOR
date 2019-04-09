@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<TITLE>Text Class Templates and PIs, releases 8 - 10</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<style type="text/css">
+<!--
+.status {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #CC0033;
+}
+.PItag {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+-->
+</style>
+</head>
+
+<BODY>
+  <H2>Migration of templates and PIs for Text Class</H2>
+  <P>Tables 1 through 8 below give a chronology of changes to web templates and
+  	PIs from releases 8, 9 and 10. The focus of PI changes is given to simple.tpl
+  	or its equivalents.</P>
+  <P>&nbsp;</P>
+ <H4>Table 1: Release 8 list of templates</H4>
+  <TABLE BORDER="1" CELLSPACING="1" CELLPADDING="2" bordercolor="cccccc">
+ <TR><TD CLASS="PItag">bbag.css </TD></TR>
+ <TR><TD CLASS="PItag">bbagWindow.js </TD></TR>
+ <TR><TD CLASS="PItag">bbagemail.tpl </TD></TR>
+ <TR><TD CLASS="PItag">bbaglist.tpl </TD></TR>
+ <TR><TD CLASS="PItag">bib.tpl </TD></TR>
+ <TR><TD CLASS="PItag">bibext.tpl </TD></TR>
+ <TR><TD CLASS="PItag">boolean.tpl </TD></TR>
+ <TR><TD CLASS="PItag">booleanbbag.tpl </TD></TR>
+ <TR><TD CLASS="PItag">booleanext.tpl </TD></TR>
+ <TR><TD CLASS="PItag">collpick.tpl </TD></TR>
+ <TR><TD CLASS="PItag">dlps1-home.tpl </TD></TR>
+ <TR><TD CLASS="PItag">dlps1-index.html </TD></TR>
+ <TR><TD CLASS="PItag">dlps4-home.tpl </TD></TR>
+ <TR><TD CLASS="PItag">dlps4-index.html </TD></TR>
+ <TR><TD CLASS="PItag">header.tpl </TD></TR>
+ <TR><TD CLASS="PItag">home.tpl </TD></TR>
+ <TR><TD CLASS="PItag">index.html </TD></TR>
+ <TR><TD CLASS="PItag">note.tpl </TD></TR>
+ <TR><TD CLASS="PItag">pageviewer.frameset.tpl </TD></TR>
+ <TR><TD CLASS="PItag">pageviewer.main.tpl </TD></TR>
+ <TR><TD CLASS="PItag">pageviewer.nav.tpl </TD></TR>
+ <TR><TD CLASS="PItag">pageviewer.pagenav.tpl </TD></TR>
+ <TR><TD CLASS="PItag">pageviewer.picklist.tpl </TD></TR>
+ <TR><TD CLASS="PItag">proximity.tpl </TD></TR>
+ <TR><TD CLASS="PItag">proximitybbag.tpl </TD></TR>
+ <TR><TD CLASS="PItag">proximityext.tpl </TD></TR>
+ <TR><TD CLASS="PItag">reslist.tpl </TD></TR>
+ <TR><TD CLASS="PItag">search.js </TD></TR>
+ <TR><TD CLASS="PItag">searchhistory.tpl </TD></TR>
+ <TR><TD CLASS="PItag">simple.tpl </TD></TR>
+ <TR><TD CLASS="PItag">simplebbag.tpl </TD></TR>
+ <TR><TD CLASS="PItag">simpleext.tpl </TD></TR>
+ <TR><TD CLASS="PItag">splash.tpl </TD></TR>
+ <TR><TD CLASS="PItag">text.picklist.tpl </TD></TR>
+ <TR><TD CLASS="PItag">text.tpl </TD></TR>
+ <TR><TD CLASS="PItag">textclass-specific.css </TD></TR>
+ <TR><TD CLASS="PItag">textclass.css </TD></TR>
+ <TR><TD CLASS="PItag">textclass.js </TD></TR>
+ <TR><TD CLASS="PItag">viewtextnote.tpl </TD></TR>
+ <TR><TD CLASS="PItag">ww-full.tpl </TD></TR>
+ <TR><TD CLASS="PItag">ww-start.tpl </TD></TR>
+ </TABLE>
+
+  <BR />
+  <H4>Table 2: Release 8 simple.tpl PIs
+  </H4>
+  <TABLE BORDER="1" CELLSPACING="1" CELLPADDING="2" bordercolor="cccccc"> 
+		<TR>
+			<TD><STRONG>PI name</STRONG></TD>
+		</TR>
+		<TR><TD CLASS="PItag">&lt;?TITLE&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?DOC_ROOT&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?DOC_ROOT mode="single"&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?JS_PATH filename="search.js"&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?JS_PATH filename="bbagWindow.js"&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?GRAPHICS_PATH filename="hdr-bg1.gif"&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?TITLE mode="complex"&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?GRAPHICS_PATH filename="hdr-bg2.gif"&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?INCLUDE_GO_TO_XCOLL&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?GO_TO_XCOLL&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?INCLUDE_GO_TO_XCOLL&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?RE_AUTH_LINK&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?BOOKBAG_LINK&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?BOOKBAG_ITEMS&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?BOOLEAN_SEARCH_LINK&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?SEARCH_HISTORY_LINK&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?INCLUDE_COLL_SPECIFIC_CONTENT id="navbarbrowselink"&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?COLL_SPECIFIC_CONTENT id="navbarbrowselink" cginame="text-idx"&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?INCLUDE_COLL_SPECIFIC_CONTENT id="navbarbrowselink"&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?HELP_LINK&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?SEARCH_RESTRICTION&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?HELP_LINK&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?HELP_LINK&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?SCRIPT_NAME cginame="text-idx"&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?HIDDEN_REQUESTED_COLLECTIONS&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?HIDDEN_SID&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?HIDDEN_XC&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?HIDDEN_IDNO&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?HIDDEN_BOOKBAG&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?HIDDEN_G&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?Q1_INPUT size="30" class="formhilite"&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?REGION_SEARCH_SELECT&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?SINGLE_GENRE&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?GENRE_SEARCH_SELECT&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?SINGLE_GENRE&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?SINGLE_GENDER&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?GENDER_SEARCH_SELECT&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?SINGLE_GENDER&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?SINGLE_PERIOD&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?PERIOD_SEARCH_SELECT&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?SINGLE_PERIOD&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?SINGLE_PUB_BETWEEN&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?PUB_BETWEEN_SEARCH_SELECT&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?SINGLE_PUB_BETWEEN&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?XC_COLLLIST&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?NUMBER_OF_COLLECTIONS&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?NUMBER_OF_TEXTS&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?GENRE_LIST&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?GENDER_LIST&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?LANGUAGE_LIST&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?PERIOD_LIST&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?EXT_SIMPLE_SEARCH_FORM_LINK&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?COLLECTION_LIST&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?XC_COLLLIST&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?INCLUDE_COLL_SPECIFIC_CONTENT id="collspecinlinehelp"&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?COLL_SPECIFIC_CONTENT id="collspecinlinehelp"&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?INCLUDE_COLL_SPECIFIC_CONTENT id="collspecinlinehelp"&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?CONTACT type="link"&gt;</TD></TR>
+ <TR><TD CLASS="PItag">&lt;?CONTACT type="text"&gt;</TD></TR>
+ </TABLE>
+  <P>&nbsp;</P>
+  <H4>Table 3: Release 9 list of templates</H4>
+  <TABLE BORDER="1" CELLSPACING="1" CELLPADDING="2" bordercolor="cccccc">
+  	<TR>
+    	<TD ALIGN="CENTER"><STRONG>Status</STRONG>
+ 		 </TD>
+    	<TD CLASS="PItag"><STRONG>File name</STRONG>
+ 		 </TD>
+	 </TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">bbag.css </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">bbagWindow.js </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">bbagemail.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">bbaglist.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">bib.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">bibext.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">boolean.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">booleanbbag.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">booleanext.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">browse_template.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">collpick.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">dlps1-home.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">dlps1-index.html </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">dlps4-home.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">dlps4-index.html </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">header.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">home.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">index.html </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">note.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">pageviewer.frameset.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">pageviewer.main.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">pageviewer.nav.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">pageviewer.pagenav.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">pageviewer.picklist.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">proximity.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">proximitybbag.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">proximityext.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">reslist.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">search.js </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">searchhistory.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">simple.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">simplebbag.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">simpleext.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">splash.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">text.picklist.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">text.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">textclass-specific.css </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">textclass.css </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">textclass.js </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">viewtextnote.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">ww-full.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">ww-start.tpl </TD></TR>
+ 
+</TABLE>
+  <BR />
+  <H4>Table 4: Release 9 simple.tpl PIs </H4>
+ <TABLE BORDER="1" CELLSPACING="1" CELLPADDING="2" bordercolor="cccccc">
+<TR>
+	<TD ALIGN="CENTER"><STRONG>Status</STRONG></TD>
+	<TD CLASS="PItag"><STRONG>PI name</STRONG></TD>
+</TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?TITLE&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?DOC_ROOT&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?DOC_ROOT mode="single"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?JS_PATH filename="search.js"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?GRAPHICS_PATH filename="hdr-bg1.gif"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?TITLE mode="complex"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?GRAPHICS_PATH filename="hdr-bg2.gif"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?INCLUDE_GO_TO_XCOLL&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?GO_TO_XCOLL&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?INCLUDE_GO_TO_XCOLL&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?RE_AUTH_LINK&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?BOOKBAG_LINK&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?BOOKBAG_ITEMS&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?HOME_LINK&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?INCLUDE_COLL_SPECIFIC_CONTENT id="navbarbrowselink"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?COLL_SPECIFIC_CONTENT id="navbarbrowselink" cginame="text-idx"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?INCLUDE_COLL_SPECIFIC_CONTENT id="navbarbrowselink"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?HELP_LINK&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?GRAPHICS_PATH filename="smnavarrow.gif"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?GRAPHICS_PATH filename="smnavline.gif"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?BOOLEAN_SEARCH_LINK&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?GRAPHICS_PATH filename="smnavline.gif"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?PROXIMITY_SEARCH_LINK&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?GRAPHICS_PATH filename="smnavline.gif"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?BIB_SEARCH_LINK&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?WW_NAV&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?GRAPHICS_PATH filename="smnavline.gif"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?WORDWHEEL_SEARCH_LINK&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?WW_NAV&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?GRAPHICS_PATH filename="smnavplug.gif"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?GRAPHICS_PATH filename="smnavline.gif"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?SEARCH_HISTORY_LINK&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?SCRIPT_NAME cginame="text-idx"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?HIDDEN_REQUESTED_COLLECTIONS&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?HIDDEN_SID&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?HIDDEN_XC&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?HIDDEN_IDNO&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?HIDDEN_BOOKBAG&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?HIDDEN_G&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?HELP_LINK&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?REGION_SEARCH_SELECT&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?Q1_INPUT size="30" class="formhilite"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N</SPAN></TD><TD CLASS="PItag">&lt;?CITE1_INPUT size="30" class="formhilite"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?CITE1_RESTRICT_SELECT&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?CITE2_INPUT size="30" class="formhilite"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?CITE2_RESTRICT_SELECT&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?CITE3_INPUT size="30" class="formhilite"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?CITE3_RESTRICT_SELECT&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?SINGLE_GENRE&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?GENRE_SEARCH_SELECT&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?SINGLE_GENRE&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?SINGLE_GENDER&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?GENDER_SEARCH_SELECT&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?SINGLE_GENDER&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?SINGLE_PERIOD&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?PERIOD_SEARCH_SELECT&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?SINGLE_PERIOD&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?SINGLE_PUB_BETWEEN&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?PUB_BETWEEN_SEARCH_SELECT&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?SINGLE_PUB_BETWEEN&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">n </SPAN></TD><TD CLASS="PItag">&lt;?INCLUDE_ORG_INFO&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">n </SPAN></TD><TD CLASS="PItag">&lt;?ORG_INFO type="link"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">n </SPAN></TD><TD CLASS="PItag">&lt;?ORG_INFO type="text"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">n </SPAN></TD><TD CLASS="PItag">&lt;?INCLUDE_ORG_INFO&gt;</TD></TR>
+</TABLE>
+ <P>&nbsp;</P>
+ <H4>Table 5: Release 10 list of templates</H4>
+ <TABLE BORDER="1" CELLSPACING="1" CELLPADDING="2" bordercolor="cccccc">
+ 	<TR>
+  	<TD ALIGN="CENTER"><STRONG>Status</STRONG>
+	 </TD>
+  	<TD CLASS="PItag"><STRONG>File name</STRONG>
+	 </TD>
+	</TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">accesspolicy.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">bbag.css </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">bbagWindow.js </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">bbagbooleansearchform.chnk</TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">bbagemail.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">bbaglist.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">bbagproximitysearchform.chnk </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">bbagsearch.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">bbagsimplesearchform.chnk </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">bibsearchform.chnk </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status">R </SPAN></TD><TD CLASS="PItag">booleanbbag.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">booleansearchform.chnk </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">browse_template.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">browsecolls.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">browsetabstyle.css </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">collpick.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">header.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">home.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">jsheader.chnk </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">navheader-static.chnk </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">navheader.chnk </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">newmaterial.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">note.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">pageviewer.frameset.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">pageviewer.js </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">pageviewer.main.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">pageviewer.nav.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">pageviewer.pagenav.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">picklist.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status">R </SPAN></TD><TD CLASS="PItag">proximitybbag.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">proximitysearchform.chnk </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">reslist.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">search.js </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">search.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status">n/a </SPAN></TD><TD CLASS="PItag">searchext.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">searchhistory.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">searchtabstyles.css </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status">R </SPAN></TD><TD CLASS="PItag">simplebbag.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status">n </SPAN></TD><TD CLASS="PItag">simplesearchform.chnk </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">text.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">textclass-specific.css </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">textclass.css </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">textclass.js </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">viewtextnote.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">ww-full.tpl </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status">n </SPAN></TD><TD CLASS="PItag">ww-fullnewsearchform.chnk</TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status">n </SPAN></TD><TD CLASS="PItag">ww-fullscrollform.chnk </TD></TR>
+ <TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">ww-start.tpl </TD></TR>
+</TABLE>
+ <BR />
+ <H4>Release 10 PIs for search.tpl, navheader.chnk, and simplesearchform.chnk</H4>
+ <H4> Table 6: PIs for search.tpl</H4>
+<TABLE BORDER="1" CELLSPACING="1" CELLPADDING="2" bordercolor="cccccc">
+ 	<TR>
+  	<TD ALIGN="CENTER"><STRONG>Status</STRONG>
+	 </TD>
+  	<TD CLASS="PItag"><STRONG>PI name</STRONG>
+	 </TD>
+	</TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?TITLE&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?DOC_ROOT&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?DOC_ROOT mode="single"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?JS_PATH filename="search.js"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?JS_PATH filename="bbagWindow.js"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?JS_REGION_ARRAYS&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?CHUNK filename="jsheader.chnk"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?NAV_TAB_STYLE_OVERRIDES&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?PAGETYPE&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?CHUNK filename="navheader.chnk"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?SEARCH_TYPE_TEXT&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?SEARCH_RESTRICTION&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?INCLUDE_GROUPS_SELECTION_NAV&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?BROWSE_GROUPS_LINK&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?GROUPS_SELECTION_NAV&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?INCLUDE_GROUPS_SELECTION_NAV&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?SCRIPT_NAME cginame="text-idx"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?FORM_VALIDATE&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?SEARCH_TYPE&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?HIDDEN_REQUESTED_COLLECTIONS&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?HIDDEN_SID&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?HIDDEN_XC&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?HIDDEN_IDNO&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?HIDDEN_BOOKBAG&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?HIDDEN_G&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?HIDDEN_XG&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?HIDDEN_DEBUG&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?CHUNK type="page"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?INCLUDE_COLL_LIST_WITH_CHECKBOXES&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?GROUP_IN_FOCUS_NAME&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?COLL_LIST_WITH_CHECKBOXES&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?INCLUDE_COLL_LIST_WITH_CHECKBOXES&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?CONTACT type="link"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?CONTACT type="text"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?ORG_INFO type="link"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?ORG_INFO type="text"&gt;</TD></TR>
+</TABLE>
+<P>&nbsp;</P>
+<H4> Table 7: PIs for navheader.chnk</H4>
+<TABLE BORDER="1" CELLSPACING="1" CELLPADDING="2" bordercolor="cccccc">
+	<TR>
+  	<TD ALIGN="CENTER"><STRONG>Status</STRONG>
+	 </TD>
+  	<TD CLASS="PItag"><STRONG>PI name</STRONG>
+	 </TD>
+	</TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?SIMPLE_SEARCH_LINK&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?BOOLEAN_SEARCH_LINK&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?PROXIMITY_SEARCH_LINK&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?BIB_SEARCH_LINK&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?WW_NAV&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?WORDWHEEL_SEARCH_LINK&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?WW_NAV&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?SEARCH_HISTORY_LINK&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?GRAPHICS_PATH filename="hdr-bg1.gif"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?HOME_LINK&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?TITLE mode="complex"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?GRAPHICS_PATH filename="hdr-bg2.gif"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?INCLUDE_GO_TO_XCOLL&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?GO_TO_XCOLL&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?INCLUDE_GO_TO_XCOLL&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?RE_AUTH_LINK&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?BOOKBAG_LINK&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?BOOKBAG_ITEMS&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?INCLUDE_SEARCH_TAB&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?INCLUDE_SEARCH_TAB&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?INCLUDE_COLL_SPECIFIC_CONTENT id="navbarbrowselink"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?INCLUDE_COLL_SPECIFIC_CONTENT id="navbarbrowselink"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?HOME_LINK&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?INCLUDE_SEARCH_TAB&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?SIMPLE_SEARCH_LINK&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?INCLUDE_SEARCH_TAB&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?INCLUDE_COLL_SPECIFIC_CONTENT id="navbarbrowselink"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?COLL_SPECIFIC_CONTENT id="navbarbrowselink" cginame="text-idx"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?INCLUDE_COLL_SPECIFIC_CONTENT id="navbarbrowselink"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?HELP_LINK&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?INCLUDE_SEARCH_TAB&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?INCLUDE_SEARCH_TAB&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?INCLUDE_COLL_SPECIFIC_CONTENT id="navbarbrowselink"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?INCLUDE_COLL_SPECIFIC_CONTENT id="navbarbrowselink"&gt;</TD></TR>
+</TABLE>
+
+<P>&nbsp;</P>
+<H4> Table 8: PIs for simplesearchform.chnk</H4>
+<TABLE BORDER="1" CELLSPACING="1" CELLPADDING="2" bordercolor="cccccc">
+	<TR>
+  	<TD ALIGN="CENTER"><STRONG>Status</STRONG>
+	 </TD>
+  	<TD CLASS="PItag"><STRONG>PI name</STRONG>
+	 </TD>
+	</TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?REGION_SEARCH_SELECT class="selectmenu"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?Q1_INPUT size="30" class="formhilite"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?HELP_LINK&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?CITE1_INPUT size="30" class="formhilite"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?CITE1_RESTRICT_SELECT class="selectmenu"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?CITE2_INPUT size="30" class="formhilite"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?CITE2_RESTRICT_SELECT class="selectmenu"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?SINGLE_GENRE&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?GENRE_SEARCH_SELECT class="selectmenu"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?SINGLE_GENRE&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?SINGLE_GENDER&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?GENDER_SEARCH_SELECT class="selectmenu"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?SINGLE_GENDER&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?SINGLE_PERIOD&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?PERIOD_SEARCH_SELECT class="selectmenu"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?SINGLE_PERIOD&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?SINGLE_PUB_BETWEEN&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?PUB_BETWEEN_SEARCH_SELECT class="selectmenu"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?SINGLE_PUB_BETWEEN&gt;</TD></TR>
+<TR>
+	<TD ALIGN="CENTER"><SPAN CLASS="status">N
+  	</SPAN></TD><TD CLASS="PItag">&lt;?SEARCHES_RESTRICT_TEXT&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?BOOLEAN_SEARCH_LINK testforrestrict="1"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?PROXIMITY_SEARCH_LINK testforrestrict="1"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?INCLUDE_NON_RESTRICTED_SEARCH_LINKS&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?BIB_SEARCH_LINK testforrestrict="1"&gt;</TD></TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD><TD CLASS="PItag">&lt;?WW_NAV&gt;</TD></TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD><TD CLASS="PItag">&lt;?WORDWHEEL_SEARCH_LINK&gt;</TD></TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD><TD CLASS="PItag">&lt;?WW_NAV&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status"> </SPAN></TD><TD CLASS="PItag">&lt;?SEARCH_HISTORY_LINK&gt;</TD></TR>
+<TR><TD ALIGN="CENTER"><SPAN CLASS="status">N </SPAN></TD><TD CLASS="PItag">&lt;?INCLUDE_NON_RESTRICTED_SEARCH_LINKS&gt;</TD></TR>
+</TABLE>
+ <P>&nbsp;</P>
+</BODY>
+</html>

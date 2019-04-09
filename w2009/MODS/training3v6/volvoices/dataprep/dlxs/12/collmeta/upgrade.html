@@ -1,0 +1,689 @@
+<html>
+<head>
+<title>DLXS Database Upgrade Utility</title>
+
+
+
+ <link href="../dlxsdocs.css" rel="stylesheet" type="text/css">
+</head>         <body>
+<div class="pageTitle">DLXS Database Upgrade Utility</div>
+		
+			<h1>Overview</h1>
+			<p>This document discusses  strategies and specific procedures to accomplish a successful upgrade of the dlxs database. If you are using DLXS version 9, you will want to upgrade to version 2 of the metadata database.  If you are using DLXS version 10, you will want to upgrade to version version 3 of the metadata database.  The procedure you follow to upgrade the database depends on what version of the database you are starting with. If you have version 1 of the database and you want to upgrade to version 5, you will first have to run the script  <i>$DLXSROOT/bin/db/upgrade_1_2</i> to get to version 2,  <i>$DLXSROOT/bin/db/upgrade_2_3</i> to get to version 3, <i>$DLXSROOT/bin/db/upgrade_3_4</i> to get to version 4, and finally <i>$DLXSROOT/bin/db/upgrade_3_4</i> to get to version 5. </p>
+			<p>It is important to keep in mind that each version of the database is meant to be run with a specific version of DLXS.  For example, version 2 of the database works with version 9 of DLXS, but will not work with other versions of DLXS.  So, if you need to have two or more versions of DLXS running, you will need to setup a database with the appropriate version for each of your DLXS installations.  If this is of interest to you, contact DLXS Help for guidance in doing this.</p>
+			<p>Below is a series of steps to follow when upgrading your database.  In order to update to version 2 of the database, you must have a version 1 of the database.  If you do not have a version 1 of the database, start at Step 1.   If you have a version 1 of the database and want to update to version 2, go to Step 3.  If you have a version 2 of the database and want to update to version 3, go to Step 4.  If you have a version 3 of the database and want to update to version 4, go to Step 5.   If you have a version 4 of the database and want to update to version 5, go to Step 6.</p>
+			<h1>Step 1.  To upgrade to Version 1 of the database</h1>
+			<p>To upgrade to version 1 of the database, you need run <i>$DLXRROOT/bin/db/dconv</i>.  This script will copy all the data in the colldb and groups files used by image, bib, and text class into a CSV database.  The CSV database created will be in <i>$DLXSROOT/misc/db</i> directory.</p>
+			<h1>Step 2.  CVS vs MySQL</h1>
+			<p>Now that you have copied all your data from the colldb and groups file into a CSV database, you can have the middleware access this metadata database.  But if you have a MySQL installation at your site, you may wish to move the CSV installation to a MySQL database.  To do this you can run the script <i>$DLXSROOT/bin/db/dbmove -s CSV -t MySQL</i> (the s stands for source, and the t for target).  Before you do this you will need to create a database by the name of dlxs, and two users for this database with specific privileges,   These users are <i>dlxs</i>, and <i>dlxsadm</i>.  Refer to the <a href="colldatabases.html#interaction">section of the DLXS documentation on database users</a> to get more information about setting up the privileges for these users. </p>
+			<p>If at any time you wish to move back to a CSV database, you can run the command <i>$DLXSROOT/bin/db/dbmove -r all -s MySQL -t CSV</i>.  Just make sure that the <i>$DLXSROOT/misc/db</i> directory is empty and that the script has permissions to write to it.  This database move script will not move the entire MySQL database to CSV, since the MySQL database may contain an enormous amount of data which could be potentially hazardous to place on a disk.  To learn more about the dbmove command read the <a href="dbmove.html">documentation section about the dbmove script.</a>
+			</p>
+			<h1>Step 3.  To upgrade to version 2 of the database from version 1</h1>
+			<p>If you need to upgrade version 1 of the database to version 2, you will need to use the script <i>$DLXSROOT/bin/db/upgrade_1_2</i>.   <i>$DLXSROOT/bin/db/upgrade_1_2</i> can be run against either a MySQL database or a CSV database. </p>
+			<p>To upgrade a MySQL database enter <i>$DLXSROOT/bin/db/upgrade_1_2 -d MySQL</i>.  Notice that the upgrade will try to backup the MySQL database into the directory <i>$DLXSROOT/misc/MySQL_DB_Backup</i> before performing the upgrade.  This is done just in case something goes wrong, you'll have a backup of the database.  From the backup, you should be able to use the MySQL <i>mysqlimport</i> script to recover your database if you need to.</p>
+			<p>To upgrade a CSV database enter <i>$DLXSROOT/bin/db/upgrade_1_2 -d CSV</i>.  Notice that the upgrade will try to backup the CSV database into the directory <i>$DLXSROOT/misc/CSV_DB_Backup</i> before performing the upgrade.  This is done just in case something goes wrong, you'll have a backup of the database.  </p>
+			<p>Once the upgrade is completed you should have a version 2 of the metadata database that is compatible with version 9 of the DLXS.</p>
+			<p>The following is a list of changes that the upgrade script makes:</p>
+			<table border="1">
+				<tbody align="LEFT">
+					<tr style="bold">
+						<th>Field</th>
+						<th>Table</th>
+						<th>Description</th>
+					</tr>
+					<tr>
+						<th>shortrecordfilter</th>
+						<th>BibClass</th>
+						<th>Deleted</th>
+					</tr>
+					<tr>
+						<th>longrecordfilter</th>
+						<th>BibClass</th>
+						<th>Deleted</th>
+					</tr>
+					<tr>
+						<th>downloadrecordfilter</th>
+						<th>BibClass</th>
+						<th>Deleted</th>
+					</tr>
+					<tr>
+						<th>emailrecordfilter</th>
+						<th>BibClass</th>
+						<th>Deleted</th>
+					</tr>
+					<tr>
+						<th>pageviewport</th>
+						<th>TextClass</th>
+						<th>Deleted</th>
+					</tr>
+					<tr>
+						<th>browseable</th>
+						<th>Collection</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>orgtext</th>
+						<th>Collection</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>orglink</th>
+						<th>Collection</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>lel2divtype</th>
+						<th>TextClass</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>idno</th>
+						<th>Pageview</th>
+						<th>Changed to varchar(32) NOT NULL</th>
+					</tr>
+					<tr>
+						<th>image</th>
+						<th>Pageview</th>
+						<th>Changed to varchar(32) NOT NULL</th>
+					</tr>
+					<tr>
+						<th>seq</th>
+						<th>Pageview</th>
+						<th>Changed to varchar(16) NOT NULL</th>
+					</tr>
+					<tr>
+						<th>n</th>
+						<th>Pageview</th>
+						<th>Changed to varchar(16) DEFAULT NULL</th>
+					</tr>
+					<tr>
+						<th>ftr</th>
+						<th>Pageview</th>
+						<th>Changed to varchar(16) DEFAULT NULL</th>
+					</tr>
+				</tbody>
+			</table>
+			<p>The sessions table is redefined to contain id varchar(32) default null, a_session long blob, and a key by the name of sessions_index composed of id is created.</p>
+			<h1>Step 4.  To upgrade to version 3 of the database from version 2</h1>
+			<p>If you need to upgrade version 2 of the database to version 3, you will need to use the script <i>$DLXSROOT/bin/db/upgrade_2_3</i>.   <i>$DLXSROOT/bin/db/upgrade_2_3</i> can be run against either a MySQL database or a CSV database. </p>
+			<p>To upgrade a MySQL database enter <i>$DLXSROOT/bin/db/upgrade_2_3 -d MySQL</i>.  Notice that the upgrade will try to backup the MySQL database into the directory <i>$DLXSROOT/misc/MySQL_DB_Backup</i> before performing the upgrade.  This is done just in case something goes wrong, you'll have a backup of the database.  From the backup, you should be able to use the MySQL <i>mysqlimport</i> script to recover your database if you need to.</p>
+			<p>To upgrade a CSV database enter <i>$DLXSROOT/bin/db/upgrade_2_3 -d CSV</i>.  Notice that the upgrade will try to backup the CSV database into the directory <i>$DLXSROOT/misc/CSV_DB_Backup</i> before performing the upgrade.  This is done just in case something goes wrong, you'll have a backup of the database.  </p>
+			<p>Once the upgrade is completed you should have a version 3 of the metadata database that is compatible with version 10 of the DLXS.</p>
+			<p>The following is a list of changes that the upgrade script makes:</p><table border="1">
+				<tbody align="LEFT">
+					<tr style="bold">
+						<th>Field</th>
+						<th>Table</th>
+						<th>Description</th>
+					</tr>
+					<tr>
+						<th>defaultgroupid</th>
+						<th>Collection</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>groupdescr</th>
+						<th>GroupData</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>ignoreon</th>
+						<th>GroupData</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>viewtabform</th>
+						<th>ImageClass</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>detailviewtype</th>
+						<th>TextClass</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>encodingtype</th>
+						<th>TextClass</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>detailviewlayout</th>
+						<th>TextClass</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>sortflds</th>
+						<th>TextClass</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>lel2divtype</th>
+						<th>TextClass</th>
+						<th>Deleted</th>
+					</tr>
+					<tr>
+						<th>rankfile</th>
+						<th>TextClass</th>
+						<th>Deleted</th>
+					</tr>
+					<tr>
+						<th>resultsviewlength</th>
+						<th>TextClass</th>
+						<th>Deleted</th>
+					</tr>
+					<tr>
+						<th>longviewtype</th>
+						<th>TextClass</th>
+						<th>Deleted</th>
+					</tr>
+					<tr>
+						<th>language</th>
+						<th>TextClass</th>
+						<th>Deleted</th>
+					</tr>
+					<tr>
+						<th>gender</th>
+						<th>TextClass</th>
+						<th>Deleted</th>
+					</tr>
+					<tr>
+						<th>genre</th>
+						<th>TextClass</th>
+						<th>Deleted</th>
+					</tr>
+					<tr>
+						<th>period</th>
+						<th>TextClass</th>
+						<th>Deleted</th>
+					</tr>
+					<tr>
+						<th>primarytitle</th>
+						<th>ImageClassGroup</th>
+						<th>Deleted</th>
+					</tr>
+					<tr>
+						<th>groupdescr</th>
+						<th>ImageClassGroup</th>
+						<th>Deleted</th>
+					</tr>
+					<tr>
+						<th>ignoreon</th>
+						<th>Collection</th>
+						<th>Changed to text type</th>
+					</tr>
+					<tr>
+						<th>cnf</th>
+						<th>Pageview</th>
+						<th>Changed to int(11)</th>
+					</tr>
+					<tr>
+						<th>bpp</th>
+						<th>Pageview</th>
+						<th>Added</th>
+					</tr>
+				</tbody>
+			</table>
+			<p>A new table is added:PageviewFig.  This table consist of idno varchar(32) with default value of '', seq int (11) with default value of 0, image varchar(32) with default value of '', and a key by the name of idno composed of idno and seq is created.  The sessions table is redefined to contain id varchar(32) default null, a_session long blob, and a key by the name of sessions_index composed of id is created.</p>
+			<h1>Step 5.  To upgrade to version 4 of the database from version 3</h1>
+			<p>If you need to upgrade version 3 of the database to version 4, you will need to use the script <i>$DLXSROOT/bin/db/upgrade_3_4</i>.   <i>$DLXSROOT/bin/db/upgrade_3_4</i> can be run against either a MySQL database or a CSV database. </p>
+			<p>To upgrade a MySQL database enter <i>$DLXSROOT/bin/db/upgrade_3_4 -d MySQL</i>.  Notice that the upgrade will try to backup the MySQL database into the directory <i>$DLXSROOT/misc/MySQL_DB_Backup</i> before performing the upgrade.  This is done just in case something goes wrong, you'll have a backup of the database.  From the backup, you should be able to use the MySQL <i>mysqlimport</i> script to recover your database if you need to.</p>
+			<p>To upgrade a CSV database enter <i>$DLXSROOT/bin/db/upgrade_3_4 -d CSV</i>.  Notice that the upgrade will try to backup the CSV database into the directory <i>$DLXSROOT/misc/CSV_DB_Backup</i> before performing the upgrade.  This is done just in case something goes wrong, you'll have a backup of the database.  </p>
+			<p>Once the upgrade is completed you should have a version 4 of the metadata database that is compatible with version 11 of the DLXS.</p>
+			<p>The following is a list of changes that the upgrade script makes:</p>
+			<table border="1">
+				<tbody align="LEFT">
+					<tr style="bold">
+						<th>Field</th>
+						<th>Table</th>
+						<th>Description</th>
+					</tr>
+					<tr>
+						<th>hold</th>
+						<th>Collection</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>querylanguage</th>
+						<th>Collection</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>rendering</th>
+						<th>Collection</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>perlpifillermodule</th>
+						<th>Collection</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>xsltpifillermodule</th>
+						<th>Collection</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>sortflds</th>
+						<th>Collection</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>primarytitle</th>
+						<th>Collection</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>secondarytitle</th>
+						<th>Collection</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>field_labels</th>
+						<th>ImageClass</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>field_xcoll_maps</th>
+						<th>ImageClass</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>field_admin_maps</th>
+						<th>ImageClass</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>data_table</th>
+						<th>ImageClass</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>media_table</th>
+						<th>ImageClass</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>mediahost</th>
+						<th>ImageClass</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>field_labels</th>
+						<th>ImageClassGroup</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>printondemand</th>
+						<th>TextClass</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>pageviewhost</th>
+						<th>TextClass</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>primarytitle</th>
+						<th>BibClass</th>
+						<th>Deleted</th>
+					</tr>
+					<tr>
+						<th>secondarytitle</th>
+						<th>BibClass</th>
+						<th>Deleted</th>
+					</tr>
+					<tr>
+						<th>banner</th>
+						<th>ImageClass</th>
+						<th>Deleted</th>
+					</tr>
+					<tr>
+						<th>sortflds</th>
+						<th>ImageClass</th>
+						<th>Deleted</th>
+					</tr>
+					<tr>
+						<th>sortflds</th>
+						<th>TextClass</th>
+						<th>Deleted</th>
+					</tr>
+					<tr>
+						<th>standalonename</th>
+						<th>TextClass</th>
+						<th>Deleted</th>
+					</tr>
+					<tr>
+						<th>maxdepthitems</th>
+						<th>TextClass</th>
+						<th>Deleted</th>
+					</tr>
+					<tr>
+						<th>bbagcontent</th>
+						<th>BookBagDB</th>
+						<th>Deleted</th>
+					</tr>
+				</tbody>
+			</table>
+			<p>The tables:  BookBagItems, idresolver, FindaidClass, and FindaidClassGroup were added.  Below is a list of the fields in these tables:</p>
+			<table border="1">
+				<tbody align="LEFT">
+					<tr style="bold">
+						<th>Field</th>
+						<th>Table</th>
+					</tr>
+					<tr>
+						<th>bbid</th>
+						<th>BokBagItems</th>
+					</tr>
+					<tr>
+						<th>itemid</th>
+						<th>BokBagItems</th>
+					</tr>
+					<tr>
+						<th>collid</th>
+						<th>BokBagItems</th>
+					</tr>
+					<tr>
+						<th>class</th>
+						<th>BokBagItems</th>
+					</tr>
+					<tr>
+						<th>userorder</th>
+						<th>BokBagItems</th>
+					</tr>
+					<tr>
+						<th>usernotes</th>
+						<th>BokBagItems</th>
+					</tr>
+					<tr>
+						<th>id</th>
+						<th>idresolver</th>
+					</tr>
+					<tr>
+						<th>url</th>
+						<th>idresolver</th>
+					</tr>
+					<tr>
+						<th>modified</th>
+						<th>idresolver</th>
+					</tr>
+					<tr>
+						<th>userid</th>
+						<th>FindAidClass</th>
+					</tr>
+					<tr>
+						<th>class</th>
+						<th>FindAidClass</th>
+					</tr>
+					<tr>
+						<th>collid</th>
+						<th>FindAidClass</th>
+					</tr>
+					<tr>
+						<th>termsearch</th>
+						<th>FindAidClass</th>
+					</tr>
+					<tr>
+						<th>regionsearch</th>
+						<th>FindAidClass</th>
+					</tr>
+					<tr>
+						<th>containerdepth</th>
+						<th>FindAidClass</th>
+					</tr>
+					<tr>
+						<th>userid</th>
+						<th>FindAidClassGroup</th>
+					</tr>
+					<tr>
+						<th>class</th>
+						<th>FindAidClassGroup</th>
+					</tr>
+					<tr>
+						<th>groupid</th>
+						<th>FindAidClassGroup</th>
+					</tr>
+				</tbody>
+			</table>
+
+<h1>Step 6.  To upgrade to version 5 of the database from version 4</h1>
+			<p>If you need to upgrade version 4 of the database to version 5, you will need to use the script <i>$DLXSROOT/bin/db/upgrade_4_5</i>.   <i>$DLXSROOT/bin/db/upgrade_4_5</i> can be run against either a MySQL database or a CSV database. </p>
+			<p>To upgrade a MySQL database enter <i>$DLXSROOT/bin/db/upgrade_4_5 -d MySQL</i>.  Notice that the upgrade will try to backup the MySQL database into the directory <i>$DLXSROOT/misc/MySQL_DB_Backup</i> before performing the upgrade.  This is done just in case something goes wrong, you'll have a backup of the database.  From the backup, you should be able to use the MySQL <i>mysqlimport</i> script to recover your database if you need to.</p>
+			<p>To upgrade a CSV database enter <i>$DLXSROOT/bin/db/upgrade_4_5 -d CSV</i>.  Notice that the upgrade will try to backup the CSV database into the directory <i>$DLXSROOT/misc/CSV_DB_Backup</i> before performing the upgrade.  This is done just in case something goes wrong, you'll have a backup of the database.  </p>
+			<p>Once the upgrade is completed you should have a version 5 of the metadata database that is compatible with version 12 of the DLXS.</p>
+			<p>The following is a list of changes that the upgrade script makes:</p>
+			<table border="1">
+				<tbody align="LEFT">
+					<tr style="bold">
+						<th>Field</th>
+						<th>Table</th>
+						<th>Description</th>
+					</tr>
+					<tr>
+						<th>colldescr</th>
+						<th>Collection</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>devhost</th>
+						<th>Collection</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>languagepriority</th>
+						<th>Collection</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>browsefields</th>
+						<th>Collection</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>perlpifillermodule</th>
+						<th>Collection</th>
+						<th>Deleted</th>
+					</tr>
+					<tr>
+						<th>pvstoredformatprioritymap</th>
+						<th>TextClass</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>pvinputoutputmap</th>
+						<th>TextClass</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>browsenav</th>
+						<th>TextClass</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>defaultpageviewsize</th>
+						<th>TextClass</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>displaynotesinline</th>
+						<th>TextClass</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>pageviewimageformat</th>
+						<th>TextClass</th>
+						<th>Deleted</th>
+					</tr>
+					<tr>
+						<th>storedimageformat</th>
+						<th>TextClass</th>
+						<th>Deleted</th>
+					</tr>
+					<tr>
+						<th>charfilters</th>
+						<th>TextClass</th>
+						<th>Deleted</th>
+					</tr>
+					<tr>
+						<th>notesfilters</th>
+						<th>TextClass</th>
+						<th>Deleted</th>
+					</tr>
+					<tr>
+						<th>wwrealms</th>
+						<th>TextClass</th>
+						<th>Deleted</th>
+					</tr>
+					<tr>
+						<th>wwrealmseng</th>
+						<th>TextClass</th>
+						<th>Deleted</th>
+					</tr>
+					<tr>
+						<th>field_load_maps</th>
+						<th>ImageClass</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>searchable_items</th>
+						<th>ImageClass</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>entryauth</th>
+						<th>ImageClass</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>browsenav</th>
+						<th>ImageClass</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>mediadevhost</th>
+						<th>ImageClass</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>brosenav</th>
+						<th>FindaidClass</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>sortpriority</th>
+						<th>GroupData</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>languagepriority</th>
+						<th>GroupData</th>
+						<th>Added</th>
+					</tr>
+					<tr>
+						<th>groupdescr</th>
+						<th>GroupData</th>
+						<th>Change to be type text</th>
+					</tr>
+					<tr>
+						<th>DbStructure</th>
+						<th>type</th>
+						<th>Change to be type text</th>
+					</tr>
+
+					<tr>
+						<th>BibClass</th>
+						<th>userid</th>
+						<th>Change to be type varchar(100)</th>
+					</tr>
+					<tr>
+						<th>BibClass</th>
+						<th>collid</th>
+						<th>Change to be type varchar(100)</th>
+					</tr>
+					<tr>
+						<th>BibClassGroup</th>
+						<th>userid</th>
+						<th>Change to be type varchar(100)</th>
+					</tr>
+					<tr>
+						<th>BibClassGroup</th>
+						<th>groupid</th>
+						<th>Change to be type varchar(100)</th>
+					</tr>
+					<tr>
+						<th>Collection</th>
+						<th>userid</th>
+						<th>Change to be type varchar(100)</th>
+					</tr>
+					<tr>
+						<th>Collection</th>
+						<th>collid</th>
+						<th>Change to be type varchar(100)</th>
+					</tr>
+					<tr>
+						<th>FindaidClass</th>
+						<th>userid</th>
+						<th>Change to be type varchar(100)</th>
+					</tr>
+					<tr>
+						<th>FindaidClass</th>
+						<th>collid</th>
+						<th>Change to be type varchar(100)</th>
+					</tr>
+					<tr>
+						<th>FindaidClassGroup</th>
+						<th>userid</th>
+						<th>Change to be type varchar(100)</th>
+					</tr>
+					<tr>
+						<th>FindaidClassGroup</th>
+						<th>groupid</th>
+						<th>Change to be type varchar(100)</th>
+					</tr>
+					<tr>
+						<th>GroupData</th>
+						<th>userid</th>
+						<th>Change to be type varchar(100)</th>
+					</tr>
+					<tr>
+						<th>GroupData</th>
+						<th>groupid</th>
+						<th>Change to be type varchar(100)</th>
+					</tr>
+					<tr>
+						<th>ImageClass</th>
+						<th>userid</th>
+						<th>Change to be type varchar(100)</th>
+					</tr>
+					<tr>
+						<th>ImageClass</th>
+						<th>collid</th>
+						<th>Change to be type varchar(100)</th>
+					</tr>
+					<tr>
+						<th>ImageClassGroup</th>
+						<th>userid</th>
+						<th>Change to be type varchar(100)</th>
+					</tr>
+					<tr>
+						<th>ImageClassGroup</th>
+						<th>groupid</th>
+						<th>Change to be type varchar(100)</th>
+					</tr>
+					<tr>
+						<th>DbStructure</th>
+						<th>tablename</th>
+						<th>Change to be type varchar(100)</th>
+					</tr>
+					<tr>
+						<th>DbStructure</th>
+						<th>fieldname</th>
+						<th>Change to be type varchar(100)</th>
+					</tr>
+
+				</tbody>
+			</table>
+			<p>The following tables were added: ItemBrowse, ItemBroseCounts, ItemColl, RestrictedItems, ArticleClips. Also, the following image tables were added for the MySQL installation:  sampleic, sampleic_media, workshopic, and workshopic_media.  The database was made utf8.</p>
+	</body>
+
+</html>

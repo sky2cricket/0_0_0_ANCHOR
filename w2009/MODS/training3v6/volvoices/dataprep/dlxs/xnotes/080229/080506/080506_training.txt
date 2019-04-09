@@ -1,0 +1,46 @@
+080506_training.txt
+
+
+vvs-mods is oai
+vvs-bib is search
+
+
+
+[root@diglib mysql]# ls /d1/backups/dlxs_2008*
+/d1/backups/dlxs_20080101T040101.sql  /d1/backups/dlxs_20080401T040101.sql
+/d1/backups/dlxs_20080201T040101.sql  /d1/backups/dlxs_20080501T040101.sql
+/d1/backups/dlxs_20080301T040101.sql
+[root@diglib mysql]# mysqldump -u cdeane -p dlxs > /d1/backups/dlxs_20080505.sql
+Enter password: 
+mysqldump: Got error: 1045: Access denied for user: 'cdeane@localhost' (Using password: YES) when trying to connect
+
+[root@diglib mysql]# ls -l /d1/backups/dlxs_2008*
+-rw-r--r--    1 diglib   root     206492088 Jan  1 04:01 /d1/backups/dlxs_20080101T040101.sql
+-rw-r--r--    1 diglib   root     174786679 Feb  1 04:01 /d1/backups/dlxs_20080201T040101.sql
+-rw-r--r--    1 root     root     402962942 Mar  1 04:01 /d1/backups/dlxs_20080301T040101.sql
+-rw-r--r--    1 root     root     270787171 Apr  1 04:01 /d1/backups/dlxs_20080401T040101.sql
+-rw-r--r--    1 root     root     163906913 May  1 04:01 /d1/backups/dlxs_20080501T040101.sql
+-rw-r--r--    1 root     root     54268888 May  6 14:11 /d1/backups/dlxs_20080505.sql
+-rw-r--r--    1 diglib   diglib   196803545 May  6 14:19 /d1/backups/dlxs_20080506.sql
+[root@diglib mysql]# mysqladmin -u cricket -p drop dlxs
+Enter password: 
+Dropping the database is potentially a very bad thing to do.
+Any data stored in the database will be destroyed.
+
+Do you really want to drop the 'dlxs' database [y/N] y
+Database "dlxs" dropped
+
+[root@diglib2 tel]# ls ocr
+cleantext  jpegs  minithumbs  mods  text  text_fixme  thumbs
+[root@diglib2 tel]# pwd
+/d1/workarea/dlxs/text/tel
+[root@diglib2 tel]# ls
+0012_xml.txt  countfiles         hexmess    notext          search          testfiles
+BadColl       crossmappings      hextest    ocr             spc             transform
+badocr        done               howmany    olderVersions   specify         translate
+batchedOut    dothis             infotrack  output          tei             ttout.txt
+categories    dupes              linkfile   preservation    teiHead         typed
+charTest.pl   dupesInText        modsbib    problems        teiHeadNoText   validate
+checkme       duplicates_noproc  modsTC     rebatch         teiHeadOcrText
+chkfiles      fieldtest          newmods    removeOldDupes  teiTail
+chkid         fixDupes           NOTE       repairLocserve  test

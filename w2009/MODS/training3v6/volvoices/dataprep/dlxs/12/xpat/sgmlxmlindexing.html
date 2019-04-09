@@ -1,0 +1,662 @@
+<html>
+<head>
+<title>SGML and XML Indexing Support</title>
+
+
+
+
+
+
+
+<link href="../dlxsdocs.css" rel="stylesheet" type="text/css"> </head>         <body>
+<div class="pageTitle">2	 SGML and XML Indexing Support</div>
+<h1>2.1	 INTRODUCTION</h1>
+<p><b>[Editor's note: This text is in the process of being
+adapted from the original Open Text manual, chapter 13 in the DBA section. 
+References to sections with a "13" prefix are internal to this document. The
+original document has a heavy emphasis on MFS index building, which has not yet
+been corrected, and on "dbbuild", which DLXS does not support or recommend. 
+This text was drawn from OCR, and so many errors exist, and figures are
+typically no longer meaningful.]</b></p>
+<p>This chapter is a summary of SGML concepts and index-building techniques and thus assumes that the reader has <i>some</i> familiarity
+with the concepts of tagged text (see Chapters 1 and 4) and SGML. Further
+information on SGML can be found in the references listed in <i>Section 13.6.</i></p>
+
+<h1>2.2	 A BRIEF SUMMARY OF SGML</h1>
+<p>In order to maximize DLXS XPAT's SGML functionality, it is necessary to be aware of SGML and its capabilities with respect to your documents. This section will introduce some of the terminology that is used in the rest of the documentation. The characteristics and function of SGML tags will be described, along with the configuration files required by the DLXS XPAT software to utilize SGML functionality.</p>
+<p>Note:  SGML is the International Standards Organization (ISO) Standard 8879. It is explained in great detail in a number of books. See <i>Section
+13.6</i> for references. The following subsections will provide enough of an
+introduction to get started.</p>
+<h2>2.2.1	 SGML and structure elements</h2>
+<p>Standard Generalized Markup Language (SGML) is a system that allows you to "mark up" text with special tags. These tags specify the structure of the document you are working with. For instance, if you were writing a book, you would use special tags to say "this block of text is a paragraph", or "this block of text is a chapter title". These tags can be combined: "this block of text, made up of a chapter title and one or more paragraphs, is a chapter". Saying that "this block of text is a paragraph" means that the 'paragraph' is a structure element in your document. And saying that "this block of text, made up of a 'chapter title' and one or more 'paragraphs', is a 'chapter' " shows you that structure elements can be made of up combinations of other structure elements.</p>
+
+<h2>2.2.2	 SGML tags</h2>
+<p>In order to tell programs such as <i>xpat</i> that, for
+instance, "this block of text is a paragraph", you have to
+surround that block of text with tags. These tags usually exist in pairs:
+start-tags and end- tags. For the 'paragraph' example, '&lt; P&gt;' is a
+possible start-tag (the actual tag name is arbitrary, provided you use it
+consistently). This tells xpat that the text following the start-tag is
+to be considered pan of a 'paragraph' region. To end the 'paragraph', you would
+use the end-tag '&lt; / P&gt;'.</p>
+<p>The start-tag and end-tag are almost identical, except that the end-tag's name is preceded by a slash ('/') character. The start and end tag pairs allow both you and the program to quickly and easily find the structure elements in an SGML document.</p>
+
+<h2>2.2.3	 SGML document type</h2>
+<p>You can combine structure elements, such as paragraphs and headlines, together until you get a single element. This element is called the document type. For instance, if you were writing a book, your document type could be BOOK. For a newspaper, you could have a document type called NEWPAPER (document type labels are, by default, limited to 8 characters. However, that limit can be changed by modifying the SGML declaration).</p>
+
+
+<h1>2.3	
+THE SGML DOCUMENT ENVIRONMENT</h1>
+<h2>2.3.1	 SGML Document</h2>
+<p>An SGML document is represented as a sequence of characters organized physically into an entity structure and logically into element structure. The first entity of an SGML document that is parsed must be the "SGML document entity", which contains the document type definition and other information that governs the parse.</p>
+<p>The SGML declaration is a section that defines all concrete syntax, optional features and capacity requirements that affect the parsing of the Document Type Definition (DTD) and the document instance. This SGML declaration can usually be skipped and the system default declaration will be assumed.</p>
+<p>After the SGML declaration is a DTD that defines the structure of the document in terms of the elements it contains. Within the DTD, each type of element found in the document is given a name (generic identifier) by which it can be recognized. When placed within special markup delimiter characters, these generic identifiers form the tags that are used to identify the start and the end of each element.</p>
+<p>To allow large documents to be generated efficiently, SGML documents can be built up from a series of sub-documents or SGML text 'entities'. The non-SGML data can also be referenced by non- SGML data entities (such as graphics, spreadsheet, etc). Physically, a typical SGML document entity will look like the this:</p>
+<p></p>
+<p>The SGML declaration is at the top and is followed by the document type declaration. The document instance, which contains the actual data, is after the document type declaration. However, the SGML declaration "&lt; ! SGML . . . &gt;" is usually ignored because most applications can rely on the default (see the <i>sgmlrgn</i> man
+pages in the <i>DBA Reference Guide).</i> The DTD exists in a separate file. Therefore, a more common arrangement is be
+depicted as follows:</p>
+<p>&lt;! DOCTYPE NEWPAPER SYSTEM   news.<b>
+did</b> "&gt;  <i>Document type declaration</i></p>
+<p>&lt;NEWPAPER&gt;       <i>Documen</i>t <i>instance</i></p>
+<p>&lt; /NEWPAPER&gt;</p>
+<p>The "&lt; DOCTYPE   ...&gt;" document type declaration defines the location of the DTD information. In the previous example, the DTD is located in the file "news . dtd". The document instance will follow the declaration. However, since the location of the DTD may be constantly changed, a more convenient setup will be to separate the "&lt; ! DOCTYPE . . &gt;" statement into another file (suffix '.inp'). This is shown below:</p>
+<p></p>
+<p>The declaration is located in <b><i>'filename.</i> </b>inp'
+input file. The document instance will be kept separately
+in <b><i>'filename.</i></b> sgm' to achieve maximum portability of the
+document instance. When using <i>sgmlrgn,</i> the
+two files can be concatenated together by listing them in sequence in the <i>sgmlrgn</i> command line:</p>
+<p>sgmlrgn [...various options...] <b><i>filename.inp</i></b> <i><b>flename.sgm</b></i></p>
+<p>In this case, the contents of <b><i>filename.</i></b> inp'
+will be considered before the contents of <b><i>'filename.</i></b> sgm'. Thus, greater flexibility is achieved by separating the document type
+declaration from the document. The pure
+data file<b> <i>filename</i></b> <i><b>. </b></i>sgm' can be ported elsewhere
+and used with a different DTD and INP.</p>
+
+<h2>2.3.2	 SGML Document Example</h2>
+<p>To take advantage of the information contained in your SGML tagged document, you first need to tell programs such as <i>sgmlrgn</i> that you have a base document type and then say
+how that document type is constructed from
+the different structure elements. In other words, the allowable fields (elements) have to be defined, and legal
+nestings must be unambiguously declared. This requires
+two files: (1) the '.inp' file, and (2) the '.dtd' file. The '.inp' file
+declares the document type and tells the
+program where to find the '.dtd' file. The '.dtd' (Document Type Definition) file defines the document structure
+elements (fields) and their allowable nestings. This section will provide examples of both files, as well as an
+example of SGML tagged text, all of which will
+be based on the example of a newspaper.</p>
+<h3>2.3.2.1	 The Document Type Declaration (.inp) file</h3>
+<p>In this section, we will describe the function of the Document Type Declaration file, describe its syntax, and give an example of it. The Document Type Declaration (' . inp') file declares the name of the base document type for your SGML tagged document and describes in which file to find the formal definition of the document structure (i.e., the DTD). The Document Type Declaration file usually only has one line, which has the following syntax: &lt; ! DOCTYPE doctype SYSTEM "filename. dtd"&gt; where <i>'doctype'</i>is the name of the base document type, and <b><i>'filename.</i></b> dtd'
+is the name of the file that contains the
+formal definition of the document structure (called the Document Type
+Definition or DTD). The<b> <i>filename.</i> </b>dtd'
+file will be assumed to be in the current directory or in the directory specified by the environment variable,
+SGMLREGION_PATH (Unix only). Documents can be of
+two types: SYSTEM or PUBLIC. PUBLIC documents are those known to more than the
+native system format, whereas SYSTEM
+documents are those that are specific to the system on which they are prepared. Our example is not going to refer
+to any other documents, so we can specify a SYSTEM
+entry.</p>
+<p>For our newspaper example, we will call the doctype NEWPAPER. The<b> <i>filename.</i> </b>dtd' file will be called 'newpaper. dtd'. Our Document Type Declaration file,
+called 'newpaper. inp', now looks like
+this:</p>
+<p>&lt;!DOCTYPE NEWPAPER SYSTEM  "newpaper.dtd"&gt;</p>
+
+<h3>2.3.2.2	 The Document Type Definition (.dtd) file</h3>
+<p>This section gives an overview of the function and syntax of the Document Type Definition (' .dtd') file, and gives an example of its use. Refer to <i>Section 13.6</i> for further
+references on SGML and DTD's.</p>
+<p>The Document Type Definition (DTD) formally defines the structure of an SGML document, as well as the relationships between the different structure elements. It describes how simple structure elements, made up of characters, can be combined to form more complex structure elements, including the base document type. For the newspaper example, we can assume a newspaper is made up of Stories, Illustrations, and Ads. Stories may be made up of Paragraphs, a Date, a Byline, an Author, and other pieces. Paragraphs may be made up only of text (character data), not other structure elements.</p>
+<p>To construct our DTD, we will start with the topmost element of an SGML document: the base document type itself. We illustrate with the newspaper example.</p>
+<p>&lt;!ELEMENT NEWPAPER O O (STORY)*&gt;</p>
+<p>The clement NEWPAPER is made up of zero or more STORY's. (The '*' means zero or more). The first capital letter 'O' means that the start-tag for this structure clement can be omitted from the actual SGML document. The second capital letter '0' means that the end-tag for this structure element can be omitted.</p>
+<p>The next step is to define what a STORY element looks like:</p>
+<p>&lt;!ELEMENT STORY - - (TEXT ILLUST)*&gt;</p>
+<p>For our newspaper example, a story is made up of zero or more TEXTS or ILLUSTrations. The vertical bar (I) means "or". The dashes ('-') mean that the start and end tags must be present in the text in order for the structure element to be recognized as a story. We can also say that the STORY has certain attributes, such as Status, Publisher, Date and Page. Each of these attributes can have a value associated with it. So, for our newspaper example, we add the following:</p>
+<p></p>
+<p>These "entries" tell us that the structure element STORY has an ATTribute LIST that includes STATUS, PUBlisher, DATE, and PAGE data regions. The STATUS attribute can take one of three values (Draft, Prepare, or Ready), but defaults to Draft. The PUBlisher attribute is made up of characters (CDATA) and defaults to 'Local Newspaper'. The DATE attribute is a number. The # IMPLIED value tells the system that there is no default for the attribute, and that the system should imply a value if none is given. The PAGE is simply character data and defaults to a blank. The TEXT and ILLUSTration elements are, for the purposes of our newspaper example, made up of characters. To be recognized, they will require both start and end tags. To enter these definitions into the DTD, we write:</p>
+<p>&lt;!ELEMENT TEXT - - CDATA&gt;</p>
+<p>&lt;!ELEMENT ILLUST - - CDATA&gt;</p>
+<p>By looking at all the entries together, it is easy to see that our base document type, NEWPAPER, is made up of zero or more STORY's. A STORY is made up of zero or more pieces of TEXT or ILLUSTrations, each of which are in turn made up of characters (CDATA). Each STORY also has a STATUS, PUBlisher, DATE, and PAGE associated with it. The following puts all the information together. The tags that start with '&lt; e --' and end with '- &gt;' are regarded as comments.</p>
+<p></p>
+
+<h3>2.3.2.3	 The SGML. document (.sgm) file</h3>
+<p>The SGML document ('.sgm') file contains the actual SGML tagged text. The DTD is used to interpret the text and its various elements (fields). Notice that the elements defined in the DTD are called tags when surrounded by angle brackets (&lt;&gt;). Also notice that the same line that appeared in the Document Type Declaration ('.inp') file is also the first line of the SGML ('.sgm') document <b>file. </b>The attributes of the STORY element and their associated
+values are all contained within the STORY
+tag as well. The following is some sample text that, in this example, would be
+stored in the SGML document file called
+'newpaper. sgm':</p>
+<p></p>
+
+
+
+<h1>2.4	 SGML PROCESSING</h1>
+<p>The SGML processing model closely resembles the traditional model of processing computer programs written in a programming language. Most processing systems (i.e., a compiler) for computer language programs have the same structure. This structure is depicted below:</p>
+<p><b><i>Figure 13-1:<i> </i></i></b>Programming Language
+Document Processing Structure (Compiler)</p>
+<p>input parse semanc</p>
+<p><b>~pasprogram</b> -^ <b>par</b>   tree -   processi9ng- 
+output</p>
+<p>The task of the "parser" is to check whether the input is syntactically correct and to build the parse tree. After the parser has done its task, the other part of the system will perform the semantic processing. An SGML processing system has the same general structure as a compiler:</p>
+<p><i>Figure 13-2: SGML Document Processing Structure</i></p>
+<p>inpu/<b> GL-T   </b>valid   output</p>
+<p>An SGML parser, as defined in the SGML Standard, has the same structure as a parser for programming languages. The parser only checks the conformance of SGML document to its DTD and performs no further semantic processing. The output of most SGML parsers includes a <i>normalized document,</i> which
+is the document for which all start-tags and end-tags have been fully expanded. At this stage, the document is said
+to conform to the corresponding DTD. The internal
+structure of this complete document corresponds to the parse tree in
+systems for programming language.</p>
+<p>As with programs, the complete document is not the end-stage in processing a document. It merely serves as an intermediate product, in which the correctness of the document has been assessed. Subsequently, the document has to be further processed. This is labeled <i>SGML Application</i> in <i>Figure</i> <i>13-2.</i> The SGML application may generate
+code for various output formats. More specifically,
+<i>sgmlrgn</i> relies on a common, public-domain SGML parser called
+"sgmls". The various SGML applications
+are combined into a unified interface as <i>sgmlrgn.</i> Each mode serves as a
+unique application that generates'support
+information for DLXS XPAT products. For example, the 'region' mode generates the Region indices which can be
+used by <i>xpat.</i> The relationship and application for various SGML supports are illustrated in <i>Figure
+13-3:</i></p>
+<p><i>Figure</i> 1<i>3-3: SGML Processing support for</i> 'sgmlrgn',
+various modes</p>
+<p></p>
+<p>Each processing mode will take an SGML document as an input and use the SGML parser to</p>
+<p>produce an oututt format. The 'check' mode should be used before any other processing mode</p>
+<p>since a validated SGML document is vital to other processing tools. The most commonly used mode</p>
+<p>will be 'check' and 'region' modes. This combination will validate the SGML document and</p>
+<p>produce the regions for the <i>Pat</i> search engine. If <i>PatMotif50</i>and <i>LectorMotif50</i> are selected as yhe</p>
+<p>usr's sarch  ier and viewer, the i ter' mode can be used to support communication between the</p>
+<p>two programs. The 'spec' mode is used to generate a simple "Lector specification file" for</p>
+<p>displaying tagged text in <i>LectorMotif5O.</i> The 'root' is
+used'to generate the topmost level element in</p>
+<p>the DTD so that it can be included in the "Pat initialization file".</p>
+<p>sgmlrgn Processing Modes</p>
+<p><i>The sgmlrgn</i> program has several different SGML
+application modes. Many of these will be used</p>
+<p>throughout this section, so we will describe these modes here. The desired mode is specified as part of the '- m' option of the <i>sgmlrgn</i> command line:</p>
+<p></p>
+<p>Commonly used options are described in the following table in order of importance:</p>
+<table border="1"><tbody>
+<tr><td><b>Mode</b></td><td><b>Function</b></td></tr>
+<tr><td>-m check</td><td>This mode validates the SGML document itself with respect to the DTD file. Any syntax or other errors will be reported by sgmlrgn.</td></tr>
+<tr><td>-m region</td><td>This mode generates all the regions in the file and updates</td></tr>
+<tr><td>-D datadictname.dd</td><td>the region information in the DD file. The '-D' option must be included to specify which DD file is to be updated. The name of the region file created uses a '.rgn' extension and the same prefix as that of the text file.</td></tr>
+<tr><td>-m root</td><td>This mode determines and prints out the root element (also referred to as the base document type for our purposes) of the SGML document.</td></tr>
+<tr><td>-m filter</td><td>This mode gets sgmlrgn to parse the DTD and wait for standard input. It is suitable for use as a filter between PatMotifSO and LectorMotif50. This configuration is described further below.</td></tr>
+<tr><td>-m spec</td><td>This mode will generate a simple LectorMotif50 specification ('.spc') file, where all elements are recorded. See the LectorMotif50(l) man pages or the LectorMotif50 section in the DLXS XPATQuery Configuration Guide for a more complete discussion of the specification file.</td></tr>
+</tbody></table>
+<p>Refer to the <i>sgmlrgn(5)</i> man page for a more complete
+discussion of these options. It is
+important to note why the <i>sgmlrgn</i> program is used here, instead of the <i>xpatrgn
+or</i> <i>multirgn</i> programs. <i>The</i>
+<i>xpatrgn</i> program is designed to be used when the document has arbitrary patterns to denote regions. The <i>multirgn</i> program
+is designed to be used when the document has SGML
+style tags (i.e., surrounded by angle (&lt;&gt;) brackets), but no DTD. The <i>sgmlrgn</i>program is designed to be used with
+fully validated SGML documents that have associated DTD's. This can be summarized with the following table.</p>
+<p>Region</p>
+<p>Boulder Appropriate Use</p>
+<p><i>xpatrgn  </i> text has arbitrary patterns</p>
+<p><i>multirgn  </i> text has SGML type tags but no DTD</p>
+<p><i>sgmlrgn  </i> text has fully validated SGML tags and a
+DTD</p>
+<p>Throughout this section, reference will be made to the files 'newpaper. inp', 'newpaper. dtd', and 'newpaper. sgm'. These are the names of the example files described in <i>Section
+13.2.</i></p>
+<h2>2.4.1	 Checking the SGML document correctness</h2>
+<p>In order to ensure that there arc no syntax or other errors in the DTD (contained in the '.dtd' file) or the SGML tagged document (in the '.sgm' file) itself, you should run a test over them. The <i>sgmlrgn</i> program
+provides an easy way to perform this verification: the check mode.</p>
+<p>sgmlrgn -v -m check newpaper.sgm</p>
+<p>The '-v' option again makes the output verbose, instructing <i>sgmlrgn</i>to describe its operations as it
+proceeds. The '-m' option selects the mode (see the discussion above and the <i>sgmlrgn(</i>1<i>)</i>man page). Substitute your SGML file
+for the 'newpaper . sgm' file given here. Please note that all fatal errors must be overcome before other processing
+modes will be able to use the document. If the verification
+is successful, messages similar to the following will be returned:</p>
+<p>check mode ...</p>
+<p>checking total size(125K) time (2s)</p>
+<p>Once this simple step has completed, we know that our SGML document and DTD are correct and fully validated. We can now move on to building the regions file.</p>
+
+<h2>2.4.2	 Building the SGML regions</h2>
+<p>One of the benefits associated with using SGML documents is that we can define regions of text. A region is the text that exists between the start and end tags of an SGML document structure element. So, for instance, text between &lt;P&gt; and &lt;/P&gt; tags will be referred to as a region. When lists of regions are placed into a regions file, <i>xpat</i> can restrict searches only to "paragraphs" (for
+example), or some other defined region.
+However, the DD file must exist before you try to build the regions file, as
+the region builder will update the DD file
+with the new region information. The SGML region builder is invoked with the following command:</p>
+<p>sgmlrgn -v -m region -D newpaper.dd newpaper.sgm</p>
+<p>You can substitute your DD name for the 'newpaper. dd' file and your SGML document for the 'newpaper. sgm' file. The region information is derived from the actual SGML document, and the results are placed in the region file. In the above example, <i>sgmlrgn</i> would create a region index file called 'newpaper. rgn'. If the region
+building operation is successful, then messages similar to the following will be displayed (the number of regions, their
+sizes, and the time shown are for the example
+given):</p>
+<p></p>
+<p>In addition to these messages, a message similar to the following will be given for each different type of region that was built:</p>
+<p>built (newpaper.rgn)   region  (NEWPAPER count= 2)</p>
+<p><i>The sgmlrgn</i> program will clean up the DD file to
+accommodate the new region information. If the region
+name previously existed in the DD file, that region definition will be replaced
+by the newly constructed information. If a
+region name is no longer a reference to any file, this region definition will be removed.</p>
+<p>If for some reason a region is not needed or not wanted for <i>xpat</i>or <i>PatMotif50,</i> it can be manually deleted
+from the DD after the regions building process is completed. For instance, if
+ILLUSTrations <b>are</b> not needed, the
+following segment can be deleted from the DD:</p>
+<p>&lt;Region&gt;</p>
+<p>&lt;Name&gt; ILLUST&lt;/Name&gt;</p>
+<p>&lt;/Region&gt;</p>
+<p>Once that segment is deleted from the DD, the I LLUST region is invisible to <i>xpat</i> or <i>PatMotifSO.</i></p>
+
+
+<h1>2.5	 ADVANCE TOPICS IN SGML PROCESSING</h1>
+<h2>2.5.1	 Regions Built by sgmlrgn</h2>
+<p>The region building mode for <i>sgmlrgn</i> will construct
+region indices that can be used by the <i>Pat</i> search engine. For every unique element occurring inside the
+SGML document, <i>sgmlrgn</i> will assign
+a unique region index for it. For example, assuming the following SGML document
+has been validated with 'check' mode, the
+document instance is:</p>
+<p></p>
+<p>It is important to note that <b>three</b> types of region
+indices will be built on each region tag. Type 1 indices
+are built on the <i>contents of the data regions</i> marked by <i>&lt;tag_body&gt;</i>and <i>&lt;</i> <i>/tag_body&gt;.</i> Type
+2 indices are built on just the <i>contents
+of the start tags</i> (i.e., <i>&lt;tagbody&gt;.</i> Type 3 indices are built
+on <i>attributes within a</i> <i>tagody.</i></p>
+<p>For instance, a type 1 index would be built on the contents of the inventor data region and would be called INVENTOR (SGML region indices are always named with uppercase letters). A Type 2 index would be built on the start tag &lt;uspatapp ...&gt; tag and would be called USPATAPP-T (type 2 indices are always suffixed by "-T"). Type 3 indices would be built on the attributes of uspatapp. For example, the Type 3 index built on the patnu., attribute would be called A- PATNUM (type 3 indices are always prefixed by "A-"). (The figure below illustrates further.) These three different types of SGML indices allow users to restrict queries to very specific sets of regions (i.e., those with specific combinations of attribute values).</p>
+<p>Figure <i>13-4: Scope</i> of SGML indices <i>on regions, tag</i>
+<i>bodies,</i> and <i>tag</i> attributes</p>
+<p>&lt;uspatapp patnum="..........." IMGAVLDATE=" ..........." appnum="......"&gt;...............&lt;/uspatapp&gt;</p>
+<p><b>Scope of</b> <b>Scope of</b>      <b>Scope of</b></p>
+<p><b>A-PATNUM A-IMGAVLDATE    A-APPNUM</b></p>
+<p><b>index index   index</b></p>
+<p><b>Scope of USPATAPP-T index</b></p>
+<p><b>Scope of USPATAPP index</b></p>
+
+<h2>2.5.2	 External Entity Management</h2>
+<p>An external entity resides in one or more files. A system identifier is interpreted as a list of filenames separated by colons. If no system identifier is supplied, then the entity manager will attempt to generate a filename using the public identifier. The searching of the related system filename associated with the public identifier is done by a table lookup. The table is named "sgml ent i ty .map" in the system. The sgmlent ity .map file has two white-space delimited fields per document type. The first field is the system filename. The second field is the PUBLIC ID. The following are sample entries for document types in the sgmlentity file:</p>
+<p></p>
+<p><i>sgmlrgn</i> uses the following precedence order searching
+algorithm to find the PUBLIC ID:</p>
+<p>1. the sgmlentity. map file in the local directory.</p>
+<p>2. the sgmlentity . map file pointed to by the SGMLREGION_PATH environment variable</p>
+<p>3. the system filename in the local directory.</p>
+<p><b>An External Entity Mapping Example</b></p>
+<p>The examples that follow rely on three files: the document type definition, the document instance, and the input file. The following is a sample document type definition called 'example. dtd'.</p>
+<p></p>
+<p>The following is an example SGML document instance called example. sgm:</p>
+<p>&lt;!DOCTYPE doc SYSTEM "example.dtd"&gt;</p>
+<p>&lt;doc&gt;&lt;intro&gt; Introduction</p>
+<p>&lt;body&gt;&lt;p type=left&gt;Paragraph 1</p>
+<p>&lt;p type=center&gt;Paragraph 2</p>
+<p>&lt;concl&gt;Conclusion</p>
+<p>The PUBLIC entity "TSO 8879-1986//ENTITIES Added Latin i//EN" will producea table lookup in the entity map file 'sgmlent i ty. map' (or in '$ (SGMLREGION_PATH) /sgmientity.map'). The following is an entry in the sgml ent i ty. map file:</p>
+<p>/usr/app/isolatl.gml "ISO 8879-1986//ENTITIES Added Latin 1//EN"</p>
+<p>This particular ISOlat public entity will be mapped to the system id "/usr/app/isolat. gml"</p>
+
+<h2>2.5.3	 Building SGML Regions in MFS Databases</h2>
+<h3>2.5.3.1	 SGML Data in MFS Database</h3>
+<p>In MFS databases, the MFS system creates a "virtual text" from the text of all the files in the database. The portion of this virtual text that corresponds to each file consists of three pieces: the Meta-Header section, the Data section and the Meta-Trailer section. This breakdown is illustrated in the following diagram:</p>
+<p></p>
+<p>The data in the Meta-Header and Meta-Trailer sections is highly structured and is uniform across all the files in the MFS database. In contrast, the data in the Data sections may be untagged text, tagged text without a DTD or tagged text with a DTD (SGML data).</p>
+<p>The process of building region indices on such databases involves three steps. The first step involves running <i>mfsmeta</i> over the database to build a meta structure_file. This file
+contains information about the positions
+of the Meta-Header, Data and Meta-Trailer sections for each file in the
+database. The second step involves
+building regions on the fields in the Meta-Headcr and Meta-Trailer sections that are common to all files. Refer to
+the <i>multirgn(l)</i> man page for further details. The third step involves building regions for the Data sections.
+For the Data sections that contain tagged
+text without a DTD, this task is accomplished using <i>multirgn.</i> For SGML
+Data sections (that do have a DTD), this
+task is accomplished using <i>sgmlrgn.</i></p>
+<p>There are three types of SGML MFS databases. The first type consists of a group of SGML files that all conform to the same DTD and where each file is a complete document. The second type consists of a group of SGML files that conform to several different DTD's, but where each file is still a complete document. The third type consists of a group of SGML files that conform to one or more DTD's and where the files may contain either complete documents or pieces of documents (i.e., the text for specific elements in the DTD). Each of the next three sections discusses how to build regions for one of the above database types.</p>
+
+<h3>2.5.3.2	 uilding Regions for Type 1 SGML Databases</h3>
+<p>The first step in building region indices for Type 1 SGML databases involves setting up the Fi tcerChain section of the Data Dictionary, which specifies the SGML files to be included. In particular, the DisplayFmt field should be set to the value, 'sgml'. For example, the following FilterChain section might be appropriate for a Type 1 SGML database.</p>
+<p></p>
+<p>Once the FilterChain sections have been set up, the following command can be used to build the SGML regions (usually done separately after <i>dbbuild</i> or individual index-builders have been run):</p>
+<p>sgmlrgn -v -m region -M <b>data.str</b> -D data.dd data.inp
+data.dd</p>
+<p>For this example, assume that the meta_structure_file generated by <i>mfsmeta</i> is called 'data.
+str' and that the 'data. inp' contains the &lt; ! DOCTYPE .. .&gt; declaration for the SGML files in the database. The <i>sgmlrgn</i> program
+will then use the 'data. str' to identify
+all the 'sgml' format files and will build
+SGML regions on them.</p>
+
+<h3>2.5.3.3	 Building Regions for Type 2 SGML Databases</h3>
+<p>As with Type I SGML databases, the first step involves setting up the FilterChain sections of the Data Dictionary. However, because the files conform to more than one DTD, they must be separated into groups, where all the files in a group conform to a particular DTD. A F ilterChain section is then setup for each group. The DisplayFmt section of each FilterChain is then set with two values separated by a comma. The first value is the keyword 'sgml' and the second value is a short group name that you pick, which uniquely identifies the group. For example, the following FilterChain sections might be appropriate for a Type 2 SGML database that contains files from two DTD's (having group names 'manual' and 'news').</p>
+<p></p>
+<p>Once the FilterChain sections have been set up, the following commands can be used to build the SGML regions (each DTD in the database requires one pass with <i>sgmlrgn).</i> For
+this example, assume the
+meta_structurc_file generated by <i>mfsmeta</i> is called data. str. Assume
+that the file, 'manual . inp' contains the
+&lt; ! DOCTYPE . . .&gt; declaration for the 'manual' files. Finally, assume that the file, 'news . inp' contains the
+&lt; ! DOCTYPE . . . &gt; declaration for the 'news' files.</p>
+<p>sgmlrgn -v -m region -M data.str -G manual -D data.dd manual.inp data.dd</p>
+<p>sgmlrgn -v -m region -M data.str -G news -D data.dd news.inp data.dd</p>
+<p>Note:  The '-G' option is used to specify which group to build the regions on in each pass.</p>
+
+<h3>2.5.3.4	 Building Regions for Type 3 SGML Databases</h3>
+<p>As with Type 2 SGML databases, the first step involves setting up the FilterChain sections of the Data Dictionary. Also, as in Type 2 SGML databases, the files must be separated into groups. What is different for Type 3 databases is that the groups not only specify files that use a particular DTD has, but may also be further refined to specify files that contain text for a specific clement of a DTD.</p>
+<p>For example. assume the newspaper documents in the example above consists of two elements, HEADLINE and TEXT. Further, assume that text for all the HEADLINE regions are in files with the suffix, '.hi' and that the text for the TEXT regions are in files with the suffix, '.txt'. Then the following FilterChain sections could be used to define this database (which also includes the 'manual' files from the other directory):</p>
+<p></p>
+<p>Note:  A third attribute has been added to the DisplayFmt fields of the 'news' filegroup, which identifies the element that the text in those files corresponds to. Also note that HEADLINE and TEXT groups have different group names ('newshl' and 'newstxt'). Finally, note that there is no element attribute defined for the 'manual' files because they are to be parsed using the entire 'manual' DTD.</p>
+<p>Once the FilterChain sections have been set up, the following commands can be used to build the SGML regions. For this example, assume the meta_structure_file generated by <i>mfsmeta
+is</i> called 'data. str'. Assume
+that the file, 'manual. inp' contains the &lt; ! DOCTYPE . . . &gt; declaration for the 'manual' files. Finally,
+assume that the file, 'news. inp' contains the &lt;
+! DOCTYPE . . . &gt; declaration for the 'news' files.</p>
+<p></p>
+<p>Note:  The '-G' option is used to specify which group to build the regions on in each pass.</p>
+
+
+
+<h1>2.6	 CHAPTER SUMMARY</h1>
+<p><i>Section 13.1</i> provided a brief overview of SGML, its
+concepts and structure. Further information can be
+found in the references listed in <i>Section 13.6</i> below. <i>Section 13.2</i> reviewed the concepts and
+structure of an SGML document. The base document type of an SGML document is made up of a number of different structure
+elements, which may themselves be made up
+of other structure elements. The base document type should be first declared in
+the Document Type Declaration ('.inp')
+file. The function of the Document Type Definition ('.dtd') file is then to describe the relationships
+among the different structure elements of your document, as well as to describe the attributes that are
+associated with these elements. The SGML ('.sgm') file is itself the actual SGML tagged document whose
+structure is defined by the first two files. <i>Section
+13.3</i> described the concept of SGML processing and various SGML processing
+modes supported by <i>sgmlrgn.</i> We then
+checked the SGML document for correctness. We used <i>sgmlrgn</i> to automatically generate
+"regions" index file for our document. We also used the sgmlregion program to generate a simple <i>LectorMotif50</i> specification
+file. We then discussed the need to use an SGML
+filter between <i>PatMotifSO</i> and <i>LectorMotifSO.</i> <i>Section 13.4</i> reviewed the internals of <i>sgmlrgn</i>about how the regions are being constructed for a regular SGML documents or minimized SGML documents. If the SGML document
+refers to external entities, the 'sgml ent
+i ty .map' is used to map the PUBLIC identifier to the system file. Finally, the method to use <i>sgmlrgn</i> to
+construct regions in an MFS database is described. By identifying the display format, group name and start element, <i>sgmlrgn</i>can jump into any SGML data section to
+construct regions.</p>
+
+<h1>2.7	 REFERENCES</h1>
+<p>Suggested readings and reference materials on SGML:</p>
+<p>(1) <i>The SGML Handbook: The annotated full text of ISO
+8879 - Standard Generalized Markup</i> <i>Language,</i>Dr. Charles F. Goldfarb. Claredon Press, Oxford, 1990.</p>
+<p>(2) <i>SGML: An Author's</i> Guide to the Standard <i>Generalized
+Markup Language,</i> Martin Bryan. Addison-Wesley
+Publishing Company, New York, 1988.</p>
+<p>(3) <i>SGML</i> and Related Standards: Document <i>Description</i>and <i>Processing Language,</i> Joan Smith. Ellis Horwood, New York, 1992.</p>
+<p>(4) <i>CAN/CSA-Z243.210-89 (ISO 8879, 9069),</i> Canadian
+Standard Association.</p>
+
+<h1>2.8	 ERROR MESSAGES</h1>
+<p>The <i>sgmlrgn</i> index building program contains a very
+extensive error reporting facility. The original
+error messages are adapted from the public domain "SGMLS" parser. A
+typical error message generated by <i>sgmlrgn</i>will look like:</p>
+<p>sgmlrgn: SGML error at &lt;filename&gt;, line &lt;number&gt; at "&lt;char&gt;":</p>
+<p>&lt;specific error messages&gt;</p>
+<p>A complete error reporting will contain the '&lt; filename&gt;' and its line '&lt;number&gt;' where the error occurred. It will also locate the closest character '&lt;char&gt;' where the parser starts to detecting problem. The 'specific error messages' will also be produced to briefly explain the problem. Although the severity and the type of error is not reported, the user can refer to the following tables to find more information about the severity and the type of error. SGML is a very strict system of text markup. Thus, errors can occur very easily. All errors must be resolved in order <b>to</b> get document conformation. Therefore, it is necessary
+to use <i>sgm</i><i>l</i><i>rgn</i> program's 'check' mode to find and resolve all problems before other processing modes
+can be applied. The error messages are
+classified by their severity ('Code') and the type of error ('Type'). The severity codes are as following:</p>
+<table border="1"><tbody>
+<tr><td>Severity<b> Code</b></td><td>Description</td></tr>
+<tr><td>I</td><td>Information (not an SGML error) </td></tr>
+<tr><td>W</td><td>Warning (an SGML markup error but it knows what you mean)</td></tr>
+<tr><td>E</td><td>Error (the parser keeps a count and aborts if too many errors occurred)</td></tr>
+<tr><td>C</td><td>Critical Error (the parser will abort at this point)</td></tr>
+</tbody></table>
+<p>The type of error can be used to identify the nature of the problem and the types are as follows:</p>
+<table border="1"><tbody>
+<tr><td><b>Type Code</b></td><td><b>Description</b></td></tr>
+<tr><td>R</td><td>Resource problem</td></tr>
+<tr><td>C</td><td>Context/Content problem</td></tr>
+<tr><td>M</td><td>Minimization problem</td></tr>
+<tr><td>Q</td><td>Quantity problem</td></tr>
+<tr><td>S</td><td>Syntax problem</td></tr>
+<tr><td>D</td><td>Declaration problem</td></tr>
+<tr><td>U</td><td>Unsupported feature</td></tr>
+</tbody></table>
+<p>The following is the table of error messages. The first column is the reference error code number. The second column is the severity code, the third column is the error type code, and the last column is the actual error message being generated. Inside the error message, the X and Y represent /- <i>,</i> variables which will be substituted with
+the appropriate name where the problem occurred.</p>
+<table border="1"><tbody>
+<tr><td><b>E#</b></td><td><b>Code</b></td><td><b>Type</b></td><td><b>Error Message</b></td></tr>
+<tr><td>1</td><td>E</td><td>C</td><td>X element not allowed at this <i>point</i> in Y element</td></tr>
+<tr><td>2</td><td>E</td><td>D</td><td>X <i>markup</i> declaration
+not <i>permitted</i> here; declaration ended</td></tr>
+<tr><td>3</td><td>E</td><td><i>Q</i></td><td><i>Length</i> of name number or token exceeded NAMELEN limit</td></tr>
+<tr><td>4</td><td>E</td><td>S</td><td>Non-SGML character occurred in <i>markup;</i> character <i>ignored</i></td></tr>
+<tr><td>5</td><td>E</td><td>C</td><td>X end-tag ignored: doesn't end any open element (current is Y)</td></tr>
+<tr><td>6</td><td>E</td><td>Q</td><td>X start-tag exceeds open element limit; possible lies from Y on</td></tr>
+<tr><td>7</td><td>E</td><td>M</td><td>Start-tag <i>omitted</i>
+from X with <i>empty</i> content</td></tr>
+<tr><td>8</td><td>E</td><td>S</td><td>Illegal entity end in markup or delimited text</td></tr>
+<tr><td>9</td><td>E</td><td>S</td><td>Incorrect character in markup; markup terminated</td></tr>
+<tr><td>10</td><td>E</td><td>C</td><td>Data not allowed at this point in X element</td></tr>
+<tr><td>11</td><td>E</td><td>C</td><td>No element declaration for X end-tag GI; end-tag ignored</td></tr>
+<tr><td>12</td><td>E</td><td>S</td><td>X <i>name ignored: not a
+syntactically valid</i> SGML name</td></tr>
+<tr><td>13</td><td>E</td><td>C</td><td>X = "Y" attribute ignored: not defined for this element</td></tr>
+<tr><td>14</td><td>E</td><td>S</td><td>X = "Y" attribute value defaulted: invalid character</td></tr>
+<tr><td>15</td><td>E</td><td>Q</td><td>X = "Y" attribute value defaulted: token <i>too</i> <i>long</i></td></tr>
+<tr><td>16</td><td>E</td><td>C</td><td>X = "Y" attribute value defaulted: too many tokens</td></tr>
+<tr><td>17</td><td>E</td><td>C</td><td>X = "Y" attribute value defaulted: wrong token type</td></tr>
+<tr><td>18</td><td>E</td><td>C</td><td>X = "Y" attribute value defaulted: token not in group</td></tr>
+<tr><td>19</td><td>E</td><td>C</td><td>Required X attribute was not specified; may affect processing</td></tr>
+<tr><td>20</td><td>E</td><td>M</td><td>X end-tag implied by Y end-tag; not minimizable</td></tr>
+<tr><td>21</td><td>W</td><td>M</td><td>X start-tag implied by Y start-tag; not minimizable</td></tr>
+<tr><td>22</td><td>E</td><td>C</td><td>Possible attributes treated as data because none were defined</td></tr>
+<tr><td>23</td><td>E</td><td>D</td><td>Duplicate specification occurred for "X"; may affect processing</td></tr>
+<tr><td>24</td><td>E</td><td>D</td><td>"X" keyword invalid; declaration terminated</td></tr>
+<tr><td>25</td><td>E</td><td>C</td><td>X = "Y" attribute defaulted: empty string not allowed for token</td></tr>
+<tr><td>26</td><td>E</td><td>S</td><td>Marked section end ignored; not in a marked section</td></tr>
+<tr><td>27</td><td>E</td><td>Q</td><td>Marked section start ignored; X marked sections open already</td></tr>
+<tr><td>28</td><td>E</td><td>D</td><td>One or more parameters missing; declaration ignored</td></tr>
+<tr><td>29</td><td>E</td><td>D</td><td>"PUBLIC" or "SYSTEM" required; declaration terminated</td></tr>
+<tr><td>30</td><td>E</td><td>C</td><td>X element ended prematurely; required Y omitted</td></tr>
+<tr><td>31</td><td>E</td><td>R</td><td>Entity "X" terminated: could not read file</td></tr>
+<tr><td>32</td><td>E</td><td>R</td><td>Could not open file for entity "X"; entity reference ignored</td></tr>
+<tr><td>33</td><td>C</td><td>R</td><td>Insufficient main memory; unable to continue parsing</td></tr>
+<tr><td>34</td><td>E</td><td>Q</td><td>X entity reference ignored; exceeded open entity limit (Y)</td></tr>
+<tr><td>35</td><td>E</td><td>C</td><td>No declaration for entity "X"; reference ignored</td></tr>
+<tr><td>36</td><td>E</td><td>C</td><td>X entity reference occurred within own text; reference ignored</td></tr>
+<tr><td>37</td><td>E</td><td>S</td><td>Entity <i>nesting level</i> out of <i>sync</i></td></tr>
+<tr><td>38</td><td>E</td><td>D</td><td>Parameter entity text cannot have X keyword; keyword ignored</td></tr>
+<tr><td>39</td><td>W</td><td>M</td><td>X end-tag implied by Y start-tag; not minimizable</td></tr>
+<tr><td>40</td><td>E</td><td>D</td><td><i>Start-tag minimization ignored;</i> element has <i>required</i>
+attribute</td></tr>
+<tr><td>41</td><td>E</td><td>C</td><td>Required X element cannot be excluded from Y element</td></tr>
+<tr><td>42</td><td>E</td><td>C</td><td>No DOCTYPE declaration; document type is unknown</td></tr>
+<tr><td>43</td><td>E</td><td>C</td><td>Undefined X start-tag GI was used in DTD; "X <b>O O</b>
+ANY" assumed</td></tr>
+<tr><td>44</td><td> E</td><td> S</td><td> Invalid character(s) ignored; attempting to resume DOCTYPE <b>subset</b></td></tr>
+<tr><td>45</td><td>1</td><td>C</td><td>No declaration for entity "X"; default definition used</td></tr>
+<tr><td>46</td><td>W</td><td>M</td><td>X end-tag implied by NET delimiter; not minimizable</td></tr>
+<tr><td>47</td><td>W</td><td>M</td><td>X end-tag implied by data; not minimizable</td></tr>
+<tr><td>48</td><td>W</td><td>M</td><td>X end-tag implied by short <i>start-tag</i> (no GI); not
+minimizable</td></tr>
+<tr><td>49</td><td>W</td><td>M</td><td>X start-tag implied by data; not minimizable</td></tr>
+<tr><td>50</td><td>W</td><td>M</td><td>X <i>start-tag implied by</i> short <i>start-tag (no</i>
+GI); not minimizable</td></tr>
+<tr><td>51</td><td>E</td><td>C</td><td>Short end-tag (no GI) ignored: no open elements</td></tr>
+<tr><td>52</td><td>E</td><td>C</td><td>No definition for X document type; "X-O O ANY" assumed</td></tr>
+<tr><td>53</td><td>E</td><td>C</td><td>No definition for X implied start-tag; "X O 0 ANY" assumed</td></tr>
+<tr><td>54</td><td>E</td><td>C</td><td>X element ended prematurely; required sub-element omitted</td></tr>
+<tr><td>55</td><td>E</td><td>D</td><td>Content model token X: connectors conflict; first was used</td></tr>
+<tr><td>56</td><td>E</td><td>D</td><td>Duplicate specification occurred for "X"; duplicate ignored</td></tr>
+<tr><td>57</td><td>E</td><td>S</td><td>Bad end-tag in R/CDATA clement; treated as short (no GI) cnd-<i>tag</i></td></tr>
+<tr><td>58</td><td> E</td><td> D</td><td>Start-tag minimization prohibited for EMPTY or R/CDATA; ignored</td></tr>
+<tr><td>59</td><td>E</td><td>S</td><td>Reference to PI entity not permitted here; reference ignored</td></tr>
+<tr><td>60</td><td>W</td><td>S</td><td>Non-SGML character found; should have been character reference</td></tr>
+<tr><td>61</td><td>E</td><td>S</td><td>Numeric character reference exceeds 255; reference <i>ignored</i></td></tr>
+<tr><td>62</td><td>E</td><td>S</td><td>Invalid alphabetic character reference ignored</td></tr>
+<tr><td>63</td><td>E</td><td>S</td><td>Invalid character in minimum literal; character ignored</td></tr>
+<tr><td>64</td><td>E</td><td>D</td><td>Keyword X ignored; "Y" is not a valid marked section keyword</td></tr>
+<tr><td>65</td><td>E</td><td>Q</td><td>Parameter entity name longer than (NAMELEN-1); truncated</td></tr>
+<tr><td>66</td><td>W</td><td>Q</td><td>Start-tag length exceeds TAGLEN limit; parsed <i>correctly</i><b>
+</b>.</td></tr>
+<tr><td>67</td><td>W</td><td>C</td><td>X attribute defaulted: FIXED attribute must equal default</td></tr>
+<tr><td>68</td><td>1</td><td>D</td><td>Duplicate specification occurred for "X"; duplicate<i> ignored</i></td></tr>
+<tr><td>69</td><td>E</td><td>C</td><td>X = "Y" IDREF attribute <i>ignored:</i> referenced ID does not exist</td></tr>
+<tr><td>70</td><td>E</td><td>Q</td><td>X = "Y" IDREF attribute ignored: number of IDs in list exceeds GRPCNT limit</td></tr>
+<tr><td>71</td><td>E</td><td>C</td><td>X = "Y" ID attribute ignored: ID in use for another element</td></tr>
+<tr><td>72</td><td>E</td><td>C</td><td>X = "Y" ENTITY attribute not general entity; may affect processing</td></tr>
+<tr><td>73</td><td>W</td><td>C</td><td>X = "Y" <i>attribute</i>
+ignored: previously specified in same list</td></tr>
+<tr><td>74</td><td>E</td><td>C</td><td>"" - "X" name token ignored: not in any group in this list</td></tr>
+<tr><td>75</td><td>E</td><td><i>Q</i></td><td>Normalized attribute specification length over ATTSPLEN limit</td></tr>
+<tr><td>76</td><td>E</td><td>C</td><td>X = "Y" NOTATION ignored: clement content is empty</td></tr>
+<tr><td>77</td><td>E</td><td>C</td><td>X = "Y" NOTATION undefined: may affect processing</td></tr>
+<tr><td>78</td><td>E</td><td>C</td><td>Entity "X" has undefined notation "Y"</td></tr>
+<tr><td>79</td><td>E</td><td>C</td><td>X = "Y" default attribute value not in group; #IMPLIED used</td></tr>
+<tr><td>80</td><td>E</td><td>D</td><td>#CURRENT default value treated as #IMPLIED for X ID attribute</td></tr>
+<tr><td>81</td><td>E</td><td>D</td><td>ID attribute X cannot have a default value; treated as #IMPLIED</td></tr>
+<tr><td>82</td><td>E</td><td>D</td><td>X attribute must be token not empty string; treated as #IMPLIED</td></tr>
+<tr><td>83</td><td>E</td><td>D</td><td>NOTATION attribute ignored for EMPIY element</td></tr>
+<tr><td>84</td><td>E</td><td>C</td><td>X = "Y" NOTATION ignored: content reference specified</td></tr>
+<tr><td>85</td><td>W</td><td>D</td><td>#CONREF default value treated as #IMPLIED for EMPTY element</td></tr>
+<tr><td>86</td><td>E</td><td>C</td><td>X = "Y" entity not data entity; may affect processing</td></tr>
+<tr><td>87</td><td>1</td><td>D</td><td>End-tag minimization should be "0" for EMPTY element</td></tr>
+<tr><td>88</td><td>E</td><td>S</td><td>Formal public identifier "X" invalid; treated as informal</td></tr>
+<tr><td>89</td><td>E</td><td>C</td><td>Out-of-context X start-tag ended Y document element (and parse)</td></tr>
+<tr><td>90</td><td>E</td><td>D</td><td>"X" keyword is for unsupported feature; declaration terminated</td></tr>
+<tr><td>91</td><td>E</td><td>D</td><td><i>Attribute</i> specification list in prolog cannot be empty</td></tr>
+<tr><td>92</td><td>C</td><td>S</td><td>Document ended invalidly within a literal; parsing ended</td></tr>
+<tr><td>93</td><td>E</td><td>C</td><td>Short ref in map "X" to undeclared entity "Y" treated as data</td></tr>
+<tr><td>94</td><td>E</td><td>R</td><td>Could not reopen file to continue entity "X"; entity terminated</td></tr>
+<tr><td>95</td><td>E</td><td>C</td><td>Out-of-context data ended X document element (and parse)</td></tr>
+<tr><td>96</td><td>E</td><td>C</td><td>i Short start-tag (no GI) ended X document lmnt element (and parse)</td></tr>
+<tr><td>97</td><td>E</td><td>D</td><td>DSO delimiter (X) omitted from marked section declaration</td></tr>
+<tr><td>98</td><td>E</td><td>D</td><td>Group token X: duplicate name or name token "Y" ignored</td></tr>
+<tr><td>99</td><td>E</td><td>D</td><td>Attempt to redefine X attribute ignored</td></tr>
+<tr><td>100</td><td>E</td><td>D</td><td>X definition ignored: Y is not a valid declared value keyword</td></tr>
+<tr><td>101</td><td>E</td><td>D</td><td>X definition ignored: NOTATION attribute already <i>defined</i></td></tr>
+<tr><td>102</td><td>E</td><td>D</td><td>X definition ignored: ID attribute already defined</td></tr>
+<tr><td>103</td><td>E</td><td>D</td><td>X definition <i>ignored:</i>
+no declared <i>value specified</i></td></tr>
+<tr><td>104</td><td>E</td><td>D</td><td>X definition ignored: invalid declared value specified</td></tr>
+<tr><td>105</td><td>E</td><td>D</td><td>X definition ignored: number of names or name tokens in group exceeded GRPCNT limit</td></tr>
+<tr><td>106</td><td>E</td><td> D</td><td>X definition ignored: name group omitted for NOTATION attribute</td></tr>
+<tr><td>107</td><td>E</td><td>D</td><td>#CONREF default value treated as #IMPLIED for X ID attribute</td></tr>
+<tr><td>108</td><td>E</td><td>D</td><td>X definition ignored: Y is not a valid default value keyword</td></tr>
+<tr><td>109</td><td>E-</td><td>D</td><td>X definition ignored: no default value specified</td></tr>
+<tr><td>110</td><td>E</td><td>D</td><td>X definition ignored: invalid default value specified</td></tr>
+<tr><td>111</td><td>E</td><td>D</td><td>More than ATTCNT attribute names and/or name (token) values; terminated</td></tr>
+<tr><td>112</td><td>E</td><td>D</td><td>Attempted redefinition of attribute definition list ignored</td></tr>
+<tr><td>113</td><td>E</td><td>Q</td><td>Content model token X: more than GRPCNT model group tokens; terminated</td></tr>
+<tr><td>114</td><td>E</td><td> Q</td><td>Content model token X: more than GRPGTCNT content model tokens; terminated</td></tr>
+<tr><td>115</td><td>E</td><td> Q</td><td>Content model token X: more than GRPLVL nested model groups; terminated</td></tr>
+<tr><td>116</td><td>E</td><td>D</td><td>Content model token X: Y invalid; declaration terminated</td></tr>
+<tr><td>117</td><td>E</td><td>D</td><td>"PUBLIC" specified without public ID; declaration terminated</td></tr>
+<tr><td>118</td><td>E</td><td>D</td><td>"X" keyword invalid (only Y permitted); declaration terminated</td></tr>
+<tr><td>119</td><td>E</td><td>D</td><td>"X" specified without notation name; declaration terminated</td></tr>
+<tr><td>120</td><td>E</td><td>D</td><td>Parameter must be a name; declaration terminated</td></tr>
+<tr><td>121</td><td>E</td><td>D</td><td>Parameter must be a GI or a group of them; declaration terminated</td></tr>
+<tr><td>122</td><td>E</td><td>D</td><td>Parameter must be a name or PERO (%); declaration terminated</td></tr>
+<tr><td>123</td><td>E</td><td>D</td><td>Parameter must be a literal; declaration terminated</td></tr>
+<tr><td>124</td><td>E</td><td>D</td><td>"X" not valid short reference delimiter; declaration terminated</td></tr>
+<tr><td>125</td><td>E</td><td>C</td><td>Map does not exist; declaration ignored</td></tr>
+<tr><td>126</td><td>E</td><td>D</td><td>MDC delimiter (&gt;) expected; following text may be <i>misinterpreted</i></td></tr>
+<tr><td>127</td><td>C</td><td>S</td><td>Document ended invalidly within prolog; parsing ended</td></tr>
+<tr><td>128</td><td>E</td><td>D</td><td>"PUBLIC" or "SYSTEM" or DSO ([) required; declaration terminated</td></tr>
+<tr><td>129</td><td>E</td><td>D</td><td>Minimization must be "-" or "O" (not "X"); declaration terminated</td></tr>
+<tr><td>130</td><td>E</td><td>D</td><td>Content model or keyword expected; declaration terminated</td></tr>
+<tr><td>131</td><td>E</td><td>D</td><td> Rank stem "X" + suffix "Y" more than NAMELEN characters; not defined</td></tr>
+<tr><td>132</td><td>E</td><td>C</td><td>Undefined X start-tag GI ignored; not used in DTD</td></tr>
+<tr><td>133</td><td>C</td><td>S</td><td>Document ended invalidly within a markup declaration; parsing ended</td></tr>
+<tr><td>134</td><td>E</td><td>Q</td><td>Normalized length of literal exceeded X; markup terminated</td></tr>
+<tr><td>135</td><td>E</td><td>D</td><td>R/CDATA marked section in declaration subset; prolog terminated</td></tr>
+<tr><td>136</td><td>E</td><td>Q</td><td><i>X</i> <i>= "Y"</i> ENTITIES <i>attribute
+ignored: more</i> <i>than</i> GRPCNT in<i> list</i></td></tr>
+<tr><td>137</td><td>W</td><td>D</td><td>Content model is ambiguous</td></tr>
+<tr><td>138</td><td>E</td><td>S</td><td>Invalid parameter entity name "X"</td></tr>
+<tr><td>139</td><td>C</td><td>S</td><td>Document ended invalidly within a marked section; parsing ended</td></tr>
+<tr><td>140</td><td>D</td><td>
+
+</td><td>Element "X" used in DTD but not defined</td></tr>
+<tr><td>141</td><td>E</td><td>S</td><td>Invalid NDATA or SUBDOC entity reference occurred; ignored</td></tr>
+<tr><td>142</td><td>E</td><td>C</td><td>Associated element type <i>not</i> allowed in document
+instance</td></tr>
+<tr><td>143</td><td>E</td><td>C</td><td>Illegal DSC character; in different entity from DSO</td></tr>
+<tr><td>144</td><td>E</td><td>D</td><td>Declared value of data attribute cannot be ID"</td></tr>
+<tr><td>145</td><td>E</td><td>S</td><td>Invalid reference to external CDATA or SDATA entity; ignored</td></tr>
+<tr><td>146</td><td>E</td><td>R</td><td>Could not find external document type "X"</td></tr>
+<tr><td>147</td><td>E</td><td>R</td><td>Could not find external general entity "X"</td></tr>
+<tr><td>148</td><td>E</td><td>R</td><td>Could not find external parameter entity <i>"X"</i></td></tr>
+<tr><td>149</td><td>E</td><td>R</td><td>Could not find external notation "X"</td></tr>
+<tr><td>150</td><td>E</td><td>R</td><td>Could not find entity "X" using default declaration</td></tr>
+<tr><td>151</td><td>E</td><td>R</td><td>Could not find entity "X" in attribute Y using default declaration</td></tr>
+<tr><td>152</td><td>E</td><td>S</td><td>Confusing non-SGML character found; ignored</td></tr>
+<tr><td>153</td><td>I</td><td>D</td><td>End-tag minimization should be "0" for element with CONREF attribute</td></tr>
+<tr><td>154</td><td> E</td><td> D</td><td> Declared value of data attribute cannot be ENTITY or ENTITIES"</td></tr>
+<tr><td>155</td><td>E</td><td>D</td><td>Declared value of data attribute cannot be IDREF or IDREFS"</td></tr>
+<tr><td>156</td><td>E</td><td>D</td><td>Declared value of data attribute cannot be NOTATION"</td></tr>
+<tr><td>157</td><td>E</td><td>D</td><td>CURRENT cannot be specified for a data attribute"</td></tr>
+<tr><td>158</td><td>E</td><td>D</td><td>CONREF cannot be specified for a data attribute"</td></tr>
+<tr><td>159</td><td>E</td><td>C</td><td>Short reference map for element "X" not defined; ignored</td></tr>
+<tr><td>160</td><td>C</td><td>R</td><td>Cannot create temporary file</td></tr>
+<tr><td>161</td><td>C</td><td>D</td><td>Document ended invalidly within SGML declaration</td></tr>
+<tr><td>162 <i>1</i></td><td>W</td><td>Q</td><td>Capacity limit X exceeded by Y points</td></tr>
+<tr><td>163</td><td>W</td><td>D</td><td>Amendment 1 requires "ISO 8879:1986" instead of "ISO 8879-1986"</td></tr>
+<tr><td>164</td><td>E</td><td>D</td><td><i>Non-markup non-minimum</i> data character in SGML declaration</td></tr>
+<tr><td>165</td><td>E</td><td>D</td><td>Parameter cannot be a literal</td></tr>
+<tr><td>166</td><td>E</td><td>D</td><td>Invalid concrete syntax scope "X"</td></tr>
+<tr><td>167</td><td>E</td><td>D</td><td>Parameter must be a number</td></tr>
+<tr><td>168</td><td>E</td><td>D</td><td>"X" should have been "Y"</td></tr>
+<tr><td>169</td><td>E</td><td>U</td><td>Character number X is not supported as an additional name character</td></tr>
+<tr><td>170</td><td>E</td><td>D</td><td>Parameter must be a literal or "X"</td></tr>
+<tr><td>171</td><td>E</td><td>D</td><td>Bad <i>character</i> <i>description
+for</i> <i>character</i> X</td></tr>
+<tr><td>172</td><td>W</td><td>D</td><td>Character number X is descried more than once</td></tr>
+<tr><td>173</td><td>E</td><td>D</td><td>Character number plus number of characters exceeds 256</td></tr>
+<tr><td>174</td><td>W</td><td>D</td><td>No description for upper half of character set: assuming "128 128 UNUSED"</td></tr>
+<tr><td>175</td><td>E</td><td>D</td><td>Character number X was not described; assuming UNUSED</td></tr>
+<tr><td>176</td><td>E</td><td>D</td><td>Non-significant shunned character number X not declared <i>UNUSED</i></td></tr>
+<tr><td>177</td><td>E</td><td>D</td><td>Significant character "X" cannot be non-SGML</td></tr>
+<tr><td>178</td><td>E</td><td>U</td><td>Unknown capacity set "X"</td></tr>
+<tr><td>179</td><td>E</td><td>D</td><td>No capacities specified</td></tr>
+<tr><td>180</td><td>E</td><td>U</td><td>Unknown concrete syntax "X"</td></tr>
+<tr><td>181</td><td>E</td><td>D</td><td>Character number exceeds 255</td></tr>
+<tr><td>182</td><td>E</td><td>U</td><td>Concrete syntax SWITCHES not supported</td></tr>
+<tr><td>183</td><td>E</td><td>U</td><td>"INSTANCE" scope not supported</td></tr>
+<tr><td>184</td><td>E</td><td>D</td><td>Value of "X" feature must be one or more</td></tr>
+<tr><td>185</td><td>E</td><td>D</td><td>"X" invalid; must be "YES" or "NO"</td></tr>
+<tr><td>186</td><td>E</td><td>D</td><td>"X" invalid; must be "PUBLIC" or "SGMLREF"</td></tr>
+<tr><td>187</td><td>E</td><td>U</td><td>Feature "X" is not supported</td></tr>
+<tr><td>188</td><td>E</td><td>Q</td><td>Too many open subdocument entities</td></tr>
+<tr><td>189</td><td>1</td><td>D</td><td>Invalid formal public identifier</td></tr>
+<tr><td>190</td><td><b>I</b></td><td>D</td><td>Public text class should have been "X"</td></tr>
+<tr><td>191</td><td>W</td><td>D</td><td>Character number X must be non-SGML</td></tr>
+<tr><td>192</td><td>W</td><td>D</td><td>Notation "X" not defined in DTD</td></tr>
+<tr><td>193</td><td>W</td><td>M</td><td>Unclosed start or end tag requires "SHORTTAG YES"</td></tr>
+<tr><td>194</td><td>W</td><td>M</td><td>Net-enabling start tag requires "SHORTTAG YES"</td></tr>
+<tr><td>195</td><td>W</td><td>M</td><td>Attribute name omission requires "SHORTTAG YES"</td></tr>
+<tr><td>196</td><td>W</td><td>M</td><td>Undelimited attribute value <i>requires</i>
+"SHORTTAG YES"</td></tr>
+<tr><td>197</td><td>W</td><td>M</td><td>Attribute specification omitted for "X": requires markup minimization</td></tr>
+<tr><td>198</td><td>E</td><td>D</td><td>Concrete syntax does not have any short reference delimiters</td></tr>
+<tr><td>199</td><td>E</td><td>D</td><td>Character number X does not exist in the base character set</td></tr>
+<tr><td>200</td><td>E</td><td>D</td><td>Character number X is UNUSED in the syntax reference character set</td></tr>
+<tr><td>201</td><td>E</td><td> D</td><td> Character number X was not described in the syntax reference character set</td></tr>
+<tr><td>202</td><td>E</td><td> D</td><td> Character number X in the syntax reference character set has no corresponding character in the system character set</td></tr>
+<tr><td>203</td><td>E</td><td>D</td><td>Character number X was described using an unknown base set</td></tr>
+<tr><td>204</td><td>E</td><td>D</td><td>Duplication specification for added function "X"</td></tr>
+<tr><td>205</td><td>E</td><td>D</td><td>Added function character cannot be "X"</td></tr>
+<tr><td>206</td><td>E</td><td>U</td><td><i>Only</i> reference <i>concrete</i> <i>syntax</i> function
+characters <i>supported</i></td></tr>
+<tr><td>207</td><td>E</td><td>U</td><td>Only reference concrete syntax general delimiters supported</td></tr>
+<tr><td>208</td><td>E</td><td>U</td><td>Only reference concrete syntax short reference delimiters supported</td></tr>
+<tr><td>209</td><td>E</td><td>D</td><td>Unrecognized keyword "X"</td></tr>
+<tr><td>210</td><td>E</td><td>D</td><td>Unrecognized quantity name <i>"X"</i></td></tr>
+<tr><td>211</td><td>E</td><td>D</td><td>Interpretation of "X" is not a valid name in the declared concrete syntax</td></tr>
+<tr><td>212</td><td>E</td><td>D</td><td>Replacement reserved name "X" cannot be reference reserved name</td></tr>
+<tr><td>213</td><td>E</td><td>D</td><td>Duplicate replacement reserved name "X"</td></tr>
+<tr><td>214</td><td>E</td><td>D</td><td>Quantity "X" must not be less than Y</td></tr>
+<tr><td>215</td><td>E</td><td>U</td><td>Only values up to X are supported for quantity "Y"</td></tr>
+<tr><td>216</td><td>E</td><td>C</td><td>Exclusions attempt to change required status of group in "X"</td></tr>
+<tr><td>217</td><td>E</td><td>C</td><td>Exclusion cannot apply to token "X" in content model for "Y"</td></tr>
+<tr><td>218</td><td>E</td><td>D</td><td>An entity with notation "X" has already been declared</td></tr>
+<tr><td>219</td><td>E</td><td>D</td><td>UCNMSTRT must have the same number of characters as LCNMSTRT</td></tr>
+<tr><td>220</td><td>E</td><td> D</td><td> UCNMCHAR must have the same number of characters as LCNMCHAR</td></tr>
+<tr><td>221</td><td>E</td><td> D</td><td> Character number X assigned to both LCNMSTRT or UCNMSTRT and LCNMCHIAR or UCNMCHAR</td></tr>
+<tr><td>222</td><td>E</td><td>D</td><td>Character number X cannot be an additional name character</td></tr>
+<tr><td>223</td><td>E</td><td>U</td><td>It is unsupported for "-" not to be assigned to UCNMCHAR or LCNMCHAR</td></tr>
+<tr><td>224</td><td>E</td><td><i>Q</i></td><td>Normalized length of value of attribute "X" exceeded LITLEN</td></tr>
+<tr><td>225</td><td>E</td><td>Q</td><td>Length of interpreted parameter literal exceeds LITLEN less the length of the bracketing delimiters</td></tr>
+<tr><td>226</td><td>W</td><td>M</td><td>Start tag of document element omitted; not minimizable</td></tr>
+<tr><td>227</td><td>I</td><td>U</td><td>Unrecognized designating escape sequence "X"</td></tr>
+<tr><td>228</td><td>I</td><td>D</td><td>Earlier reference to <i>entity</i> "X" used
+default entity</td></tr>
+</tbody></table>
+
+</body>
+
+</html>

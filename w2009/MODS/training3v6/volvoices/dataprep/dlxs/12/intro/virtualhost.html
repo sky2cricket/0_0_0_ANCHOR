@@ -1,0 +1,64 @@
+<html>
+<head>
+<title>DLXS Virtual Host Example</title>
+
+
+
+ <link href="../dlxsdocs.css" rel="stylesheet" type="text/css">
+</head>         <body>
+<div class="pageTitle">DLXS Virtual Host Example</div>
+    
+      
+      <h1>Example Apache virtual host configuration</h1>
+      
+      <blockquote>           
+        <pre>&lt;VirtualHost 141.211.000.00:80&gt;
+<br />  ServerName somewhere.dlxs10.edu
+<br />
+<br />  DocumentRoot          /usr/local/dlxs10/web
+<br />  ScriptAlias   /cgi/   /usr/local/dlxs10/cgi/
+<br />
+<br />  SetEnv DLXSROOT       /usr/local/dlxs10
+<br />  <font color="#ff0000"># optional</font> 
+<br />  <font color="#FF0000">SetEnv DLXSDATAROOT   /usr/local/dlxs8</font> 
+<br />  SetEnv REMOTE_USER    user01
+<br />  SetEnv USERID         user01
+<br />  UnsetEnv DLPS_DEV<br />  <font color="#FF0000"># optional
+<br />  SetEnv DLPS_DEV       user01</font>
+<br />
+<br />  &lt;Directory /usr/local/dlxs10/cgi/b/bib&gt;
+<br />    SetEnv AUTHZD_COLL  :amverse-bib:samplebc:
+<br />    SetEnv PUBLIC_COLL  :
+<br />  &lt;/Directory&gt;
+<br />
+<br />  &lt;Directory /usr/local/dlxs10/cgi/i/image&gt;
+<br />    SetEnv AUTHZD_COLL  :
+<br />    SetEnv PUBLIC_COLL  :sampleic:workshopic:
+<br />  &lt;/Directory&gt;
+<br />
+<br />  &lt;Directory /usr/local/dlxs10/cgi/t/text&gt;
+<br />    SetEnv AUTHZD_COLL  :moajrnl:moa:sampletc:workshoptc:
+<br />    SetEnv PUBLIC_COLL  :
+<br />  &lt;/Directory&gt;
+<br />
+<br />  &lt;Directory "/usr/local/dlxs10/cgi/c/collmgr"&gt;
+<br />    AuthName "DLXS collection management"
+<br />    AuthType Basic
+<br />
+<br />    AuthUserFile conf/htpasswd.dlxs
+<br />
+<br />    Require user dlxsadm
+<br />  &lt;/Directory&gt;
+<br />&lt;/VirtualHost&gt;
+<br />          
+</pre>
+      </blockquote>
+      <br />
+      
+    
+    
+  </body>
+
+                            
+
+</html>

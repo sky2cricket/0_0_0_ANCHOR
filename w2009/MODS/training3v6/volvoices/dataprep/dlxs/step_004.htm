@@ -1,0 +1,84 @@
+<html>
+<head>
+<script language=javascript src="links/vv_functions_links.js"></script>
+<title>
+char_check
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+</head>
+<!-- body  class="bg_aabbcc" -->
+<body bgcolor="aabbcc">
+<font face="arial" size="3">
+<center><font face="arial">
+<script>//document.write(dlxs_vv_header);</script>
+<p>
+</center>
+<table  class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="99aabb">
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+<tr class="bgstandardwhite" ><td colspan="3" align="left" class="step">
+<pre>
+step_004.htm
+STEP FOUR - File validation before Pickup.
+
+Targets of testing will be in
+store1/area2/volvoices/vvImport/selected_directories
+
+Testing will be done by scripts in 
+diglib2/d1/workarea/dlxs/telfiles
+
+[root@diglib2 telfiles]# ls
+BeforePickup                  forWindows                         pickupTime.20080311
+check_incoming                jpglist                            pickupTime.20080402
+done                          listFiles                          problems
+dothis                        logs                               results
+duplicates_all                olderVersions                      scripts
+duplicates_noproc             olderVersions.duplicates.20080318  testfiles
+duplicates_noproc_noreworked  onedirDerivatives                  tiflist
+duplicates_xml                onedirDerivatives_size             totalSoFar
+fieldtest                     pickuplog
+filemess                      pickupTime
+
+SCRIPTS TO RUN:
+
+a.  command> perl check_incoming (makes sure xml file has all tiff children)
+	output found in results/IncomingTest_timestamp.txt
+
+b.  command> perl duplicates_noproc >nameYourRedirect.txt
+    command> perl duplicates_noproc_reworked >nameYourRedirect.txt
+    There are several versions of this script to find duplicates 
+	(xml files already online)
+   	output goes to screen unless you redirect
+
+c.  command> perl onedirDerivatives (tests for xml having all children)
+	Children needed can be tiffs, jpegs, minithumbs, thumbs, text.
+	Exact children depend on directory. (e.g. 00 not need text)
+	output goes to results/derivatives_timestamp.txt
+
+d.  command> perl fieldtest (required xml tags populated)
+	Requirements can change.
+	output goes to results/FieldTesttimestamp.txt
+	
+AFTER FILE VALIDATION RUN PICKUPTIME
+This will pickup scripts from 00,01,02,03,04,05 in your selected batch.
+
+command> perl pickuptime > nameYourRedirect.txt
+
+pickuptime will present you with a list of directories on
+store1/area2/volvoices/vvImport to choose from.  Select the directory,
+output will go to screen unless you redirect.
+
+AFTER PICKUPTIME
+
+Go to each directory and work the files.
+
+/d1/workarea/dlxs/image/tel/singles ..............00
+/d1/workarea/dlxs/image/tel/multiples ............01
+/d1/workarea/dlxs/text/tel/.......................02, 03, 04
+</pre>
+</font>
+</td></tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+</table>
+
+

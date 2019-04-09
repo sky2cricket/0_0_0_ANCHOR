@@ -1,0 +1,427 @@
+<html>
+<head>
+<title>Specifying Individual Collection Characteristics</title>
+
+
+
+ <link href="../../dlxsdocs.css" rel="stylesheet" type="text/css">
+</head>         <body>
+<div class="pageTitle">Specifying Individual Collection Characteristics</div>
+        
+            <ul>
+               <li><a href="#css">CSS files</a>
+               </li>
+               <li><a href="#graphics">Graphics</a>
+               </li>
+               <li><a href="#hdr">Header Characteristics</a>
+                  <ul>
+                     <li><a href="#background">Background colors and graphics</a>
+                     </li>
+                     <li><a href="#hdrcollname">Title name or graphic</a>
+                     </li>
+                     <li><a href="#hdrtabs">Navigation tabs and fonts</a></li>
+                  </ul>
+               </li>
+            </ul>
+            <h2><a name="css"></a>CSS files</h2>
+                <p>Text Class HTML utilizes two CSS files for controlling most
+                   font and color characteristics: <span class="command">textclass.css</span> and <span class="command">textclass-specific.css</span>.
+                   <span class="command">textclass.css</span> is stored in at
+                   the <code>$DLXSROOT/web/t/text/</code> path
+                   and contains all the default style declarations. <span class="command">textclass-specific.css</span>                   is
+                   created for each individual collection and stored at the <code>$DLXSROOT/web/c/coll/</code> path.
+                    References to both stylesheets are as follows:</p>
+                <blockquote>
+                    <p> &lt;link rel=&quot;stylesheet&quot;
+                        href=&quot;/t/text/textclass.css&quot; type=&quot;text/css&quot;><br/>
+                        &lt;link rel=&quot;stylesheet&quot; href=&quot;&lt;CSS_PATH filename=textclass-specific.css&quot;
+                        type=&quot;text/css&quot;> </p>
+                </blockquote>
+                <p>The <span class="command">&lt;?CSS_PATH?> </span>processing
+                   instruction resolves to the relevant path for the stylesheet
+                    file indicated by the filename attribute. Because <span class="command">textclass-specific.css</span>                   is
+                    referenced after <span class="command">textclass.css</span>,
+                    any style declarations that appear in <span class="command">textclass-specific.css</span> will
+                    effectively override matching declarations in <span class="command">textclass.css</span>.
+                    This is how fonts and background colors are varied for each
+                    collection. (<a href="textclasscss.html">full
+                   text of textclass.css</a>)</p>
+                <a name="graphics"></a><br/>
+            
+            
+                <h2>Graphics</h2>
+                <p>Default text class XSL stylesheets create HTML that employs
+                   a variety of relatively generic graphics that can be referenced
+                   by all collection instances. A <a href="graphics.html">table
+                   of shared files</a> shows
+                   those files that are stored in the <code>$DLXSROOT/web/t/text/graphics/</code> directory.
+                   Any alternative graphics by identical names may be stored
+                   in individual collections'
+                    <code>graphics</code> directories to replace the default
+                    class graphics for that particular collection. Any files
+                    not stored in collection graphics directories, but referenced
+                    in the HTML, will be found in the class graphics
+                    directory via the <a href="../../ui11/xsl.html#templatesfallback">fallback</a> mechanism.
+                    Graphics files that are likely to be unique to each collection
+                    are discussed in the section on <a href="#background">header
+                        background colors and graphics</a>. </p>
+                <br/>
+            
+            
+                <h2><a name="hdr" id="hdr"></a>Header characteristics</h2>
+                <p>The header of each HTML page  includes that area in the top
+                   75 pixels of the page containing those elements associated
+                   with unique collection identity: main collection title, global
+                   links, if any, and the main navigation bar. The templates
+                   accommodate inclusion of background colors or graphics to
+                   provide some flexibility in creating unique appearances for
+                   different collections. </p>
+                
+                    <h3><a name="background"></a>Background color and graphics</h3>
+                    <p>Main background color for the header area of the HTML
+                       page is provided at three different levels: default
+                       background colors for table cells specified in the<code>
+                        bgcolor</code> attribute, style declarations in the <span class="command">textclass-specific.css</span>                       file,
+                        and table cell background graphics referenced by the
+                       <code>background</code> attribute. <b>Figure 3</b> illustrates
+                        how these characteristics are specified in <code>td</code> opening
+                        tags in the <em>Voltaire &eacute;lectronique</em> collection.</p>
+                    <p/>
+                    <p/>
+                    <p/>
+                    <table border="0" cellpadding="0" cellspacing="2">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <img alt="text-hdr-layout.gif" height="91"
+                                        src="graphics/text-hdr-layout.gif"
+                                        style="border: 1px solid 000000" width="633"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Figure 3</b>: Header cell color and graphics.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>The two top cells each have CSS class associations and background graphic
+                        references to files in the local collection graphics directory. The
+                        <code>hdrcolor</code> style is set locally in the textclass-specific.css
+                        style sheet as</p>
+                    <blockquote>
+                        <p>
+                            <code>.hdrcolor { background-color: #FFFFF1 } </code>
+                        </p>
+                    </blockquote>
+                    <p>The background graphics files, <span class="command">hdr-bg1.gif</span> and <span class="command">hdr-bg2.gif</span>, are, in fact,
+                        laying &quot;over&quot; the background color specified by the CSS style--the
+                        order of precedence for CSS capable browsers is<code> background</code>,
+                        <code>class</code>, <code>bgcolor</code>--but you see the CSS style colors
+                        because the gifs are transparent. The lower cell has a <code>bgcolor</code>
+                        value and a CSS style, <code>navcolor</code>, set again in the local
+                        textclass-specific.css as</p>
+                    <blockquote>
+                        <p>
+                            <code>.navcolor { background-color: #F3E098 }</code><br/>
+                    </p>
+                    </blockquote>
+                    <p>
+                        <b>Figure 4</b> illustrates the appearance of another header based on the
+                        same template using non-transparent background gifs that integrate with the
+                        collection title gif and the CSS style for <code>navcolor.</code>
+                    </p>
+                    <table border="0" cellpadding="0" cellspacing="2" width="75%">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <img alt="umr-hdr.gif" height="78" src="graphics/umr-hdr.gif"
+                                        style="border: 1px solid 000000" width="625"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <table border="0" cellpadding="10" cellspacing="0" width="100%">
+                                        <tbody>
+                                            <tr>
+                                                <td valign="TOP">
+                                                  <p>
+                                                  <img alt="umtr-combined.gif" height="51"
+                                                  src="graphics/umtr-combined.gif"
+                                                  style="border: 1px solid 000000" width="333"/>
+                                                  </p>
+                                                  <p>collection title gif</p>
+                                                </td>
+                                                <td class="stuff">
+                                                  <img alt="bgmat.gif" height="91"
+                                                  src="graphics/bgmat.gif"
+                                                  style="left-margin: 5px; right-margin: 5px; border: 1px solid 000000"
+                                                  width="100"/>hdr-bg1.gif and hdr-bg2.gif provide background.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Figure 4:</b> component files for a header portion of UM
+                                    Technical Reports templates.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br/>
+                    <br/>
+                
+                
+                    <h3><a name="hdrcollname"></a>Title name or graphic</h3>
+                    <p>Collection title name is provided in the XML files via
+                       the<code> &lt;?TITLE
+                        mode=&quot;complex&quot;?></code> processing instruction.
+                        The PI will resolve to a text string or a graphic file
+                        as specified in the <code><a href="../../collmeta/collmgr.html">colldb</a>.</code>
+                        When rendered as text, titles are by default wrapped
+                        in H3 tags by the XSL with CSS style
+                        <code>topheadlink</code> so that collection title font
+                        can be specified.</p>
+                    <br/>
+                
+                
+                    <h3><a name="hdrtabs"></a>Navigation fonts and tabs</h3>
+                    <p>Color for navitation tabs is controlled by CSS styles, as are the border
+                        colors that surround and underline the tabs. Tab color is, in the
+                        &quot;backgrounded&quot; state, set by the <code>navcolor</code> style. The
+                        tab &quot;foreground&quot; state color is specified with the
+                        <code>navhicolor</code> style. Border and underline colors are set
+                            with<code> navdivision</code> and <code>navhrcolor</code> styles
+                        respectively. </p>
+                    <p>Font settings for tabs are also CSS controlled. Relative style declarations
+                        for fonts are as below:</p>
+                    <blockquote>
+                        <p>
+                            <code>/* nav bar fonts */<br/> .navlinks { font-family: Arial,
+                                Helvetica, sans-serif; <br/> font-size: 12px; <br/> font-weight:
+                                bold; <br/> color: #666666; <br/> text-decoration: none<br/> }</code>
+                        </p>
+                        <p>
+                            <code>/* nav link characteristics */<br/> A:hover { text-decoration:
+                                underline }<br/> A.nav { color: #FFFFFF; <br/> text-decoration: none
+                                <br/> }<br/>
+                                <br/> A.nav:hover { color : #FFCC33; <br/> text-decoration:
+                                underline <br/> }</code>
+                        </p>
+                    </blockquote>
+                    <p>These styles set the default, &quot;closed&quot; tab state
+                       for all navigation fonts.</p>
+                    <p>Beginning in release 12, the navigation menu is contained
+                       in a single, separate chunk of XML, <span class="command">navheader.xml</span>,
+                       that is &quot;chunked into&quot; all main XML pages. The <span class="command">navheader.xsl</span>                       XSL
+                       stylesheet checks the current URL parameters (via some
+                       global XML that is emitted for all runs of the cgi program)
+                       and determines what kind of page this is, and therefore
+                       which nav tab should be &quot;open&quot; and which should be &quot;closed&quot;,
+                       using the corresponding css styles for each tab. </p>
+                    <blockquote><p>&nbsp;</p>
+</blockquote>
+                    <p>The result is as is shown in <strong>Figure 5 </strong> below.</p>
+					<p/>
+					<table border="0" cellpadding="0" cellspacing="2">
+					<tbody>
+                    <tr>
+                        <td>
+                            <img src="graphics/amversesearch.gif" alt="amversesearch.gif" style="border: 1px solid 000000"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Figure 5 </strong>: Search page for
+                            American Verse.</td>
+                    </tr>
+					</tbody>
+					</table>
+                    <p>&nbsp;</p>
+                    <p><strong>Note</strong>: Navigation pop-up submenus are
+                       gone as of Release 12 as part of our attempt to reduce,
+                       as much as possible, the reliance on JavaScript. In a
+                       previous release of the DLXS Text Class design, multiple
+                       search options were grouped under a single &quot;Search&quot; tab
+                       as a static sub-menu. <strong>Figure 6</strong> illustrates
+                       this design as implemented by the ACLS History E-book
+                       collection.</p>
+                    <table border="0" cellpadding="0" cellspacing="2" width="389">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <img alt="acls-nav.gif" height="155" src="graphics/acls-nav.gif"
+                                        style="border: 1px solid 000000" width="389"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Figure 6 </b>: The ACLS navigation bar
+                                    showing static search sub-menu.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>Beginning with release 10 a new DHTML &quot;pull-down&quot; menu triggered by Javascript
+                        <code>onmouseover</code> events became the default behavior.
+						This menu, as delivered in HTML, is shown in <strong>Figure 8</strong>.</p>
+                    <table border="0" cellpadding="0" cellspacing="2" width="455">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <img alt="amverse-nav.gif" height="121"
+                                        src="graphics/amverse-nav.gif"
+                                        style="border: 1px solid 000000" width="455"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Figure 8</b>: The American Verse navigation bar showing the
+                                    &quot;pull-down&quot; menu.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+					<p/>
+                    <p>The pull-down menu technique is a modified implementation of the 
+					<a href="http://projectseven.com/">Project Seven</a> positioned dropped
+                        down menus design, utilizing Project Seven extensions to 
+						<a href="http://www.macromedia.com/software/dreamweaver/">Macromedia
+                        Dreamweaver</a>. The elements of the pull-down menu, as they appear 
+						in the navhaeder.chnk template file, are shown in <b>Figure 9</b>.</p>
+						
+						<table border="0" cellpadding="0" cellspacing="2">
+						<tr>
+						 <td><img height="318" width="565" src="graphics/nav-dmenu-layout.gif"/>
+					</td>
+						</tr>
+						<tr>
+							<td><b>Figure 9</b>
+								:&quot;close-up&quot; of the navigation bar, showing main DHTML menu components.</td>
+						</tr>
+					</table>
+						
+						<p>HTML from <code>navheader.chnk</code> file is shown below; included here are 
+						  the two layers that constitute the hidden pull-down search menu, and the portion 
+						  of the navigation bar that triggers the menu (in highlighted colors). Since 
+						  the only portion of the menu that comes from the CGI are the search type link 
+						  hrefs, changing the look or shape of the menu is simply a matter of editing 
+						  the menu HTML. (Well, almost: the &quot;closer&quot; layer, which lays under 
+						  the drop down menu layer, should always be top-alligned with the menu layer, 
+						  but sufficiently wide and deep enough to provide a margin outside the left, 
+						  bottom, and right edges of the menu layer.) The javascript invoked by the search 
+						  link (in green below) opens the pull menu &quot;snapped&quot; to the image with 
+						  ID=&quot;menuanchor&quot; (shown in red). This means that so long as menuanchor 
+						  is present in relation to the search tab, the pull-down menu will always appear 
+						  in relation to the navigation bar. The javascript functions that execute the 
+						  menu behavior are contained in the <code>jsheader.chnk</code> template, and 
+						  are imported into the page at load time.</p>
+						<blockquote>
+							<span style="font-family: courier; font-size:11px">
+							 &lt;td id="sep1" width="1"&gt;
+							 <br/>
+							 <span style="color:red">
+								&lt;
+								img src="/t/text/graphics/plug.gif" width="1" height="23" border="0" vspace="0" hspace="0" name="menuanchor" id="menuanchor" alt="design graphic
+								"
+								&gt;
+							 </span>&lt;/td&gt;
+							 <br/>
+									  &lt;!-- search  --&gt;
+									  <br/>&lt;!-- this nav bar tab is conditionally included by the cgi  --&gt;
+									  <br/>&lt;?INCLUDE_SEARCH_TAB&gt;
+									  <br/>&lt;td id="searchtab" width="90" height="23" align="center" nowrap&gt;
+									  
+									  <br/>&lt;span class="navlinks"&gt;
+								<br/>
+						
+						<span style="color:009900">
+							&lt;
+								a id="searchlink" href="&lt;?SIMPLE_SEARCH_LINK&gt;" class="nav" onMouseOver="P7_Snap('menuanchor','closer',-70,25,'menuanchor','ddsearchmenu',-50,25);P7_autoLayers(0,'ddsearchmenu','closer')"&gt;
+						</span>Search&lt;img name="navmenuarrow" src="/t/text/graphics/navdwnarrow.gif" alt="design graphic" width="16" height="8" border="0"&gt;&lt;/a&gt;&lt;/span&gt;
+								<br/>&lt;/td&gt;
+									  <br/>&lt;td id="sep2" width="1"&gt;&lt;img src="/t/text/graphics/plug.gif" width="1" height="1" border="0" alt="design graphic"&gt;
+									&lt;/td&gt;
+									<br/>
+									  <br/>&lt;div style="position:absolute; left:15px; top:70px; width:420px; height:22px;
+								z-index:3; visibility: hidden;" id="ddsearchmenu"&gt; 
+						  &lt;table width="420" border="0" cellspacing="0" cellpadding="0"&gt;
+							&lt;tr&gt; 
+							  &lt;td bgcolor="#666666"&gt;
+							  <br/>&lt;table width="100%" border="0" cellspacing="1" cellpadding="0"&gt;
+								  <br/> 
+						&lt;tr&gt; 
+									<br/>
+						
+						&lt;td class="mencellup"  height="22" bgcolor="#E5E5E5" nowrap&gt;
+								<br/>
+						
+						&lt;span class="smallformfont"&gt;&lt;a class="menunav" href="&lt;?SIMPLE_SEARCH_LINK&gt;"&gt;Basic&lt;/a&gt;&lt;/span&gt;
+								
+								<br/>
+								
+								
+								|
+								<br/>
+						
+								&lt;span class="smallformfont"&gt;&lt;a class="menunav" href="&lt;?BOOLEAN_SEARCH_LINK&gt;"&gt;Boolean&lt;/a&gt;&lt;/span&gt;
+								<br/>
+								
+								
+								  |
+								  <br/>
+						
+							  &lt;span class="smallformfont"&gt;&lt;a class="menunav" href="&lt;?PROXIMITY_SEARCH_LINK&gt;"&gt;Proximity&lt;/a&gt;&lt;/span&gt;
+							  <br/>
+							   
+							  
+								  |
+								  <br/>
+						
+							  &lt;span class="smallformfont"&gt;&lt;a class="menunav" href="&lt;?SEARCH_HISTORY_LINK&gt;"&gt;Search
+								History&lt;/a&gt;&lt;/span&gt;
+							  <br/>
+						
+						&lt;/td&gt;
+								  <br/>
+						&lt;/tr&gt;
+								  <br/>&lt;/table&gt;&lt;/td&gt;
+							&lt;/tr&gt;
+						  &lt;/table&gt;
+						&lt;/div&gt;
+						<br/>
+						&lt;div id="closer" style="position:absolute; left:3px; top:70px; width:460px;
+						height:50px; z-index:2; visibility: hidden;"&gt;&lt;a href="javascript:;" onMouseOver="P7_autoLayers(0)"&gt;&lt;img
+						src="/t/text/graphics/plug.gif" name="Image1" width="460" height="50" hspace="0" vspace="0" border="0" id="Image1" alt="design
+						graphic"&gt;&lt;/a&gt;&lt;/div&gt;
+							<br/>&lt;!-- end menu divs  --&gt;</span>
+						</blockquote>
+						
+						
+						<p>The Project Seven implementation is very reliable, working
+                        effectively for Netscape 4.7 and up, and for Internet Explorer 5 and up (and
+                        most other browsers) for the PC and Mac platforms. Even so, the search page
+                        design offers static link alternatives for all menu options. </p>
+                    <p>(<strong>Note:</strong> The implementation of the pull-down menu, however, is
+                        not tied to the cgi since the cgi only provides the<code> HREF</code> values
+                        for the various links in the menu. Alternative markup for the earlier design
+                        is available, and will be supplied in the distribution.)</p>
+                    <p>Modifying the appearance of the pull-down menu background colors and font
+                        characteristics is accessible through CSS class declarations, shown below.</p>
+                    <blockquote>
+                        <p>
+                            <code>A.menunav { color: #000000; text-decoration: none }<br/>
+                                A.menunav:hover { color : #FF6633; text-decoration: underline }<br/>
+                                <br/> /* the color of popup menu cells in the up state - #BABCEA
+                                */<br/> .mencellup { background-color: #E5E5E5; }<br/>
+                                <br/> /* the color of the bground table cell for the menu nav i.e.,
+                                the border color for nav cells */<br/> .menucellground {
+                                background-color: #666666; }</code>
+                        </p>
+                    </blockquote>
+                    <p>The font style of the menu labels themselves is controlled by the
+                        <code>smallformfont</code> class.</p>
+                
+            
+        
+    </body>
+
+</html>

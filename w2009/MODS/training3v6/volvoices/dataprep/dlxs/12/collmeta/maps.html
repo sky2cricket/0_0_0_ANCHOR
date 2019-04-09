@@ -1,0 +1,79 @@
+<html>
+<head>
+<title>DLXS Map Files</title>
+
+
+
+ <link href="../dlxsdocs.css" rel="stylesheet" type="text/css">
+</head>         <body>
+<div class="pageTitle">DLXS Map Files</div>  <h1>Overview</h1>
+<p>This document describes what we call <i>maps</i> or <i>map files</i>. Map files contain mapped items where one term or name for an item is mapped to another term or name. For example, a term used by an HTML form to refer to a searchable region (e.g., "entire text"; see <a href="#label">LABEL</a> below) can be mapped to an <a href="../xpat/index.html">XPAT</a> searchable region (e.g., TEXT; see <a href="#nativeregionname">NATIVEREGIONNAME</a> below). </p>
+<p>Currently, the format of the map files is SGML and each collection map file conforms to a simple DTD (other ways of mapping terms, such as a database where one could map from one column's data to another are possible and have been considered for implementation). The map is read into a <a href="../program/libmodules.html#terminologymapper">TerminologyMapper</a> object during the running of the middleware after which the CGI program can at any time request of the object the mappings for terms. Each mapped item and its various terms are contained within a &lt;MAPPING&gt; element.</p>
+ <h2>Semantic Contexts</h2>
+<p>There are two semantic contexts for MAPPINGs currently implemented.</p>
+<ol>
+  <li><a href="#termtoterm">Mapping a set of terms to one another</a></li>
+  <li><a href="#ordering">Mapping and ordering the terms for an HTML form selection's  option elements</a></li>
+</ol>
+  <h2><a name="termtoterm"></a>Mapping a set of terms to one another</h2>
+<p>Collection map files exist to identify the regions and operators used by the middleware and XPAT in four ways, each way represented by one of four terms:</p>
+<ol>
+  <li><a name="label"></a>LABEL: by the term that is used in the collection database   and interface</li>
+  <li>SYNTHETIC: by the variable name that is used in the cgi program</li>
+  <li> NATIVE: by the language that is used by the search engine</li>
+  <li><a name="nativeregionname"></a>NATIVEREGIONNAME: by the element name that   is indexed</li>
+</ol>
+ <h3>Mapping terms for XPAT operators</h3>
+<p> The first part of the map (by convention rather than by DTD enforcement) contains the mappings for the boolean and proximity operators. In versions of DLXS prior to Release 10, mappings for operators tended to appear twice, with labels in all lower case and with mixed case, to cover likely interface option scenarios. Only one mapping per operator is now permitted; older map files must be updated to eliminate unused "duplicate" operator mappings.   Here is an example
+  of an operator mapping: </p>
+<pre>
+  &lt;mapping&gt;   &lt;label&gt;and&lt;/label&gt;   &lt;synthetic&gt;AND&lt;/synthetic&gt;   &lt;native&gt;^&lt;/native&gt; &lt;/mapping&gt;
+</pre>
+<p><i>(^ is the symbol used in the XPAT query language to indicate an intersection.)</i></p>
+  <h3>Mapping terms for regions</h3>
+<p>The second part of the map file contains region mappings, which identify the SGML elements, encoded or fabricated, that are used by the middleware and in the HTML, either as labels in pulldown menus or as <code>rgn</code> variables in links to text from results lists. These are the labels stored in the collection manager fields
+  <code>termsearch</code>,<code>regionsearch</code>, and <code>bibsearch</code>. The mapping labels and the collmgr entries <b>must match exactly</b> in spelling, number, and case. If they do not, the middleware will fail. For any collection, there will be at a minimum entries with SYNTHETIC mappings for <code>MAIN_SEARCHABLE, IDNO, BIBL</code>, and <code>NODE</code> (used by the cgi); with LABEL mappings for <code>full text, works</code>, and <code>citation</code> (used as labels in the HTML search pages); and with NATIVEREGIONNAME mappings for <code>DIV1</code> (used to build a link to divisions from results lists). There should of course be maps for all the divisions in a given collection. Here is an example of a region mapping:</p>
+<pre>
+  &lt;mapping&gt;
+  &lt;label&gt;full text&lt;/label&gt;
+  &lt;synthetic&gt;MAIN_SEARCHABLE&lt;/synthetic&gt;
+  &lt;native&gt;region TEXT&lt;/native&gt;
+  &lt;nativeregionname&gt;TEXT&lt;/nativeregionname&gt;
+  &lt;/mapping&gt;
+</pre>
+<p>Note: In BibClass, SYNTHETIC and NATIVEREGIONNAME are not used, but SUMMARYLABEL is. See
+<a href="../class/bib/maps.html">BibClass documentation</a>.</p>
+   <h2><a name="ordering"></a>Mapping and ordering the terms for an HTML form selection's option elements</h2>
+<p>This section of the <i>map file</i> is not needed in all collections, but may be needed for a specific collection if its markup supports specialized restrictions such as date of publication, genre, period, or gender. In general, the maps support label values, native values, and the order in which the restrictions should be presented in pulldown menus. The existence of these maps is indicated in the <a href="colldatabases.html">metadata database</a>. Here are the genre mappings for the Chadwyck-Healey Yeats collection, which divides works into four categories:</p>
+<pre>
+  &lt;mapping&gt;
+  &lt;genrelabel&gt;Prose Fiction&lt;/genrelabel&gt;
+  &lt;genreorder&gt;1&lt;/genreorder&gt;
+  &lt;genrenative&gt;FICT&lt;/genrenative&gt;
+  &lt;/mapping&gt;
+</pre>
+<pre>
+  &lt;mapping&gt;
+  &lt;genrelabel&gt;Prose Non-fiction&lt;/genrelabel&gt;
+  &lt;genreorder&gt;2&lt;/genreorder&gt;
+  &lt;genrenative&gt;NONFICT&lt;/genrenative&gt;
+  &lt;/mapping&gt;
+</pre>
+<pre>
+  &lt;mapping&gt;
+  &lt;genrelabel&gt;Drama&lt;/genrelabel&gt;
+  &lt;genreorder&gt;3&lt;/genreorder&gt;
+  &lt;genrenative&gt;PLAY&lt;/genrenative&gt;
+  &lt;/mapping&gt;
+</pre>
+<pre>
+  &lt;mapping&gt;
+  &lt;genrelabel&gt;Poetry&lt;/genrelabel&gt;
+  &lt;genreorder&gt;4&lt;/genreorder&gt;
+  &lt;genrenative&gt;POEM&lt;/genrenative&gt;
+  &lt;/mapping&gt;
+</pre>
+<p>Under the basic middleware architecture, collection maps are stored in <a href="../intro/dirstruct.html#dlxsrootenv">$DLXSROOT</a>/misc/c/class/maps/ and are named <i>collid.map</i> (for example, <i>moa.map</i> or <i>ampo20.map</i> for the Making of America and 20th Century American Poetry collections, respectively).</p>
+  </body>
+
+</html>

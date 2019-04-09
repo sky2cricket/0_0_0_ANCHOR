@@ -1,0 +1,746 @@
+<html>
+<head>
+<title>User Interface</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="../styles.css" type="text/css">
+</head>
+<body bgcolor="#FFFFFF" leftmargin="10" topmargin="10" marginwidth="10" marginheight="10" class="mainpalette">
+<h1> User Interface</h1>
+<p>NOTE: <em>This page begins with general information about how XML and XSL are
+   used to deliver HTML in Release 12 of DLXS. Whenever examples or specifics
+   are needed, the implementation for Text Class is used.</em></p>
+<ul>
+  <li><a name="main"> </a> <a href="#overview">HTML Delivery in Release 12: an overview</a>
+    <ul>
+      <li><a href="#templates">XML Templates</a> </li>
+      <li><a href="#procins">Processing Instructions</a> </li>
+      <li><a href="#fallback">Collection templates and class fallback</a></li>
+    </ul>
+  </li>
+  <li>
+    <a href="#PageLayoutAndColor">Main template components</a></li>
+  <ul>
+    <li><a href="#PageLayoutAndColor">General Page Layout and Color </a></li>
+    <li><a href="#XmlTemplatesAndFallback">XML templates and fallback</a> </li>
+    <li><a href="#SearchXmlExample">Example of fallback in the
+  search page</a></li>
+    <li><a href="#VirtualStylesheet">Virtual Stylesheet</a></li>
+    <li><a href="#FallbackCaveats">Fallback Caveats</a></li>
+    <li><a href="#XslStylesheets">XSL Stylesheets</a> </li>
+  </ul>
+  <li><a href="#CollSpecificXSL">Specifying Individual Collection Characteristics</a>
+    <ul>
+      <li><a href="#ModifyingXslXml">Part 1: Modifying XSL or XML for individual
+            collections</a> 
+      </li>
+    </ul>
+  </li>
+  <ul>
+    <ul>
+      <li><a href="#Example1">Example 1: Changing language labels in the
+        search page</a></li>
+      <li><a href="#Example2">Example 2: Removing search options from the search
+        page</a></li>
+      <li><a href="#Example3">Example 3: Substituting xsl template rules for individual collections</a>      </li>
+    </ul>
+    <li><a href="#LookAndFeel">Part 2: Look and Feel</a> 
+      <ul>
+        <li><a href="#CssFiles">CSS Files</a></li>
+        <li><a href="#Graphics">Graphics</a></li>
+        <li><a href="#Header">Header</a> </li>
+      </ul>
+    </li>
+  </ul>
+</ul>
+<hr size="1" width="90%">
+<h2><a name="overview"></a>HTML delivery in Release 12: an overview </h2>
+<div class="level1"></div>
+<p>The user interface for Release 12 uses XSLT for transforming
+	source XML to HTML for the web. The source XML is provided by .xml template
+	files containing DLXS processing instructions that are processed on the fly
+	by the middleware, and then transformed by a virtual XSLT stylesheet, also
+	composed on the fly.</p>
+<p>Release 12 XML template files differ from  HTML template files in release
+	11  primarily in the sense that all final HTML markup has been moved
+	into related XSL files, with the XML files generating only XML content to
+  send to the XSLT processor. A host of debugging tools are available for diagnosing
+	and customizing XML output and/or XSL template transformations to HTML. There
+	is also a significant increase in the amount and availability of XML content
+	to all XSL stylesheets for greater flexibility in controlling final output.</p>
+<div class="level2"></div>
+<h3><a name="templates"> </a> </h3>
+<h3>XML Templates</h3>
+<p>XML templates are used to deliver dynamic content from the CGI as well-formed
+	XML to the XSLT processor. In general, the top level structure of XML templates
+	mirrors that of the previous tpl template files, with an XML file for each
+  major page scenario (search, results, header, text, etc.) Each XML template
+  is a combination of static XML markup and processing instructions that are
+  replaced by the cgi with XML compliant string values, or XML node fragments.
+  In order to facilitate more flexibility and increased functionality to the
+  XSLT process, a significant amount of additional data is provided as XML nodes
+  to each processed XML template, including language specific reference tables,
+  CGI, middleware and web environment variables, and references to all collection
+  specific files.	</p>
+  
+<a name="procins"> </a> 
+<h3>Processing Instructions</h3>
+<p>Processing instruction tags  are parsed 
+  and replaced by the middleware cgi. The resulting xml becomes the source
+  tree for the XSLT processor. Processing instruction tags have a slightly different
+	form in Release 12. </p>
+<blockquote> 
+  <p class="unixcommand">&lt;?PI_IDENTIFIER_NAME [modifiername=&quot;value&quot;]*?&gt;</p>
+</blockquote>
+<p>where all identifier names are preceded by a question mark and are represented
+	 in all capital letters with underscore characters. Zero or more modifier
+   name/value pairs can be included to provide additional parameters. The tag
+   is completed by a trailing question mark and a closing angle bracket. Here
+   are two example PI tags surrounded by xml tags in the xml file:</p>
+<blockquote> 
+  <table border="1" cellpadding="5" cellspacing="0" style="border-width: 1px; border-style: solid; border-color: #CCCCCC" width="85%">
+    <tr> 
+      <td style="border-width: 1px; border-style: solid; border-color: #CCCCCC" valign="center"><p class="unixcommand">&lt;IncludeReturnToResults&gt;<br />
+	  &lt;?INCLUDE_RETURN_TO_RESULTS_XML?&gt;<br />
+     	&lt;/IncludeReturnToResults&gt;</p>
+      </td>
+      <td style="border-width: 1px; border-style: solid; border-color: #CCCCCC">Can
+      	appear within multiple xml files. If there is a return to results link,
+      	the middleware supplies the href value within the IncludeReturnToResults
+      	tags. If there is no link, the xml delivered to the processor will contain
+      	only the empty tags. </td>
+    </tr>
+    <tr> 
+      <td style="border-width: 1px; border-style: solid; border-color: #CCCCCC" valign="center">
+	  <p class="unixcommand">&lt;CssLink&gt;<br />
+	  &lt;?CSS_PATH_XML
+   			filename=&quot;textclass.css&quot;?&gt;<br />
+			&lt;/CssLink&gt;</p>
+      </td>
+      <td style="border-width: 1px; border-style: solid; border-color: #CCCCCC">
+        <p>Returns
+      		the appropriate contextual path to a collection-specific CSS file,
+      		named in the filename modifier (e.g., $DLXSROOT/c/coll/textclass-specific.css).</p>
+   	  </td>
+    </tr>
+  </table>
+</blockquote>
+<ul>
+   <li><b>PIs in Release 12 act primarily as simple variable names</b>:  replaced
+	   by simple strings or even large blocks of well-formed XML. </li>
+   <li><b>Include/Exclude PIs no longer exist in Release 12</b>:
+	      Instead, a number of nodes return binary values indicating if related
+      nodes should be used or not. An example from navheader.xml<br>
+      <blockquote class="unixcommand">&lt;IncludeGoToXcoll&gt;&lt;?INCLUDE_GO_TO_XCOLL_XML?&gt;&lt;/IncludeGoToXcoll&gt;</blockquote>
+  
+      The cgi returns the PI with a string, 'true' or 'false' (i.e., &lt;IncludeGoToXcoll&gt;true&lt;/IncludeGoToXcoll&gt;).
+	   The XSL for this case then acts on a 'true' value to build a link to the
+   cross-collection home page:<br>
+
+<blockquote class="unixcommand">
+   &lt;xsl:if test=&quot;IncludeGoToXcoll = 'true'&quot;&gt;<br>
+&nbsp; &lt;td class=&quot;xcollnavcolor&quot; align=&quot;center&quot;&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;span class=&quot;globnav&quot;&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...
+&lt;/xsl:if&gt;</blockquote>
+
+Sometimes, instead, an &lt;xsl:if&gt; or &lt;xsl:choose&gt; is used in
+      the XSL to test for the existence of a value in an element. If there, it
+      is used, if not, nothing is done. </li>
+   <li>CHUNK PIs are also used to insert some piece of XML or other text. The
+      PI simply grabs the contents of a file (located through fallback) and drops
+      that in its entirety at the point where the CHUNK PI was encountered.</li>
+</ul>
+<h3><a name="fallback"> </a> </h3>
+<h3>Collection templates and class fallback</h3>
+<p>Each of the class-specific sections below describes the techniques that are
+   applied within the class architecture to effect changes to overall class look
+  
+  and feel as it is expressed through the templates. It is important to note,
+   however, that the class middleware supports the implementation of customized,
+  
+  collection-specific XML templates collection-specific XSL stylesheets, and
+	optional, supplemental XML nodes. That is, in principle, the fallback mechanism
+	utilized in release 11 and before is the same: when attempting to render
+  a particular page utilizing a specific template, the middleware will first
+  look for the
+  required 
+  template in the collection-specific path--using a customized template if it
+   exists--and, if not found there, processing the class version of the same
+	template.</p>
+<p>The relationship between XML templates and final HTML delivery
+    is different in Release 12, and so the application of fallback is different;
+    and in some places there is new fallback behavior not present in previous
+  releases. The sections below describe in detail, using TextClass when examples
+   are necessary, the new application of fallback and the techniques that can
+   be applied to any templates to achieve differentiation in HTMl output. </p>
+<p>&nbsp;</p>
+<p>
+<a name="PageLayoutAndColor" id="PageLayoutAndColor"> </a> 
+<h3 align="left">Main template components</h3>
+<h4 align="left">General Page Layout and Color</h4>
+<p>In Release 12  page delivery is still modeled on class-level
+	templates that are shared by all instances of the class and serve as default
+	display for each page scenario. All default  page templates are
+	still based on the same general layout approach, which relies on tables for
+	all general positioning, though Release 12 relies more heavily on associated
+  CSS style definitions. </p>
+<p>General layout (<em>for TextClass</em>) is shown in <b>Figure
+	  1</b>, which shows top-level tables with borders showing, and using the color
+	   scheme for the <em>Voltaire &eacute;lectronique</em> collection. Each
+  header  and navigation cell also has a default CSS class value and default
+  background  image (the image is now specified in a CSS style definition for
+	   each header cell in textclass.css). For more on specifying individual
+	   collection appearance, see <a href="#CollSpecificXSL">Specifying
+  individual collection characteristics</a>.</p>
+<table border="0" cellpadding="0" cellspacing="2">
+  <tr> 
+    <td><img height="368" src="graphics/gen-layout.gif" width="450"></td>
+  </tr>
+  <tr> 
+    <td><b>Figure 1</b>: top-level table structure of a typical page in Text
+       Class </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p><b> Figure 2</b> shows the simple search page for the <em>American
+      Verse</em> collection
+  as it appears normally. Navigation bar labels, page text header markup (not
+  header text content, e.g., &quot;Basic Search&quot;), instruction text and
+  footer text are hard coded, and thus identical
+  across
+  all collections.
+  All other content is specified per collection by
+   processing 
+  instructions. </p>
+<table border="0" cellpadding="0" cellspacing="2">
+  <tr> 
+    <td><img src="graphics/amverse-basic.gif" width="447" height="448"></td>
+  </tr>
+  <tr> 
+    <td><b>Figure 2</b>: Basic search page for <em>American
+      Verse</em> in Text Class </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<h4 align="left"><a name="XmlTemplatesAndFallback"></a>XML templates and fallback </h4>
+<p>Release 11 .tpl template files combined processing instructions with hard-coded
+	HTML markup that was processed in the CGI. In this approach,
+	all the source markup in the Text Class schema was transformed to HTML with
+	perl filters, usually in place of a PI in the .tpl file. Fallback was automatic
+	in the sense that simply creating a template file of the same name in a separate
+	directory would result in that file being pulled into the transformation for
+	the designated page. </p>
+<p>In Release 12, the HTML markup for delivery is embedded within XSL templates
+	that transform the XML given directly in the xml files, or generated by the
+   CGI from PIs filled in via XPat queries, database data, etc. The final process
+   is an XSLT transform, involving one xml file and one xsl file. Those of you
+   familiar with XSLT transformations know that xsl stylesheets can import other
+   stylesheets and utilize the template rules from the imported stylesheet. This
+   is part of a model of modularity inherent in the design of XSLT. <strong>However</strong>,
+   by default, XSLT does not allow that the imported stylesheets be designated
+   at XSLT transform run time: the paths have to be hard coded in the stylesheet.
+   Many of the XSL stylesheets in Release 12 work together, just as if they were
+   all part of a single styesheet compiled via import, but to enable fallback
+   to work at the level of each stylesheet, we designate the dependent XSL stylesheets
+   by name in the xml file. The middleware, then, compiles a virtual stylesheet
+   for the XSLT transform process. An example from Text Class is shown below
+   for the search page.</p>
+<h4><strong><a name="SearchXmlExample"></a></strong>Example of fallback in the
+  search page in Text Class </h4>
+<p>Building the search page begins with the search.xml template, shown here in
+  full :</p>
+<p><strong>search.xml</strong>	</p>
+<table border="1" cellpadding="3" cellspacing="3">
+<tr>
+<td>
+<div class="markupsnippet">
+
+	<pre>&nbsp;
+&lt;Top xmlns:dlxs=&quot;http://www.umdl.umich.edu/dlxs&quot;&gt;
+
+  &lt;!-- XSL fallback files --&gt;
+  &lt;XslFallbackFileList&gt;
+  &lt;Filename&gt;bookbagitemsstring.xsl&lt;/Filename&gt;
+    &lt;Filename&gt;search.xsl&lt;/Filename&gt;
+    &lt;Filename&gt;htmlhead.xsl&lt;/Filename&gt;
+    &lt;Filename&gt;navheader.xsl&lt;/Filename&gt;
+    &lt;Filename&gt;footer.import.xsl&lt;/Filename&gt;
+    &lt;Filename&gt;searchforms.xsl&lt;/Filename&gt;
+    &lt;Filename&gt;xsl2htmlutils.xsl&lt;/Filename&gt;
+    &lt;Filename&gt;globalvariables.xsl&lt;/Filename&gt;
+    &lt;Filename&gt;headerutils.xsl&lt;/Filename&gt;
+  &lt;/XslFallbackFileList&gt;  
+
+  &lt;!-- Custom OPTIONAL XML for top-level file search.xml&lt;2&gt; --&gt;
+  &lt;CustomXml&gt;&lt;?CHUNK filename=&quot;searchextra.xml&quot; optional=&quot;1&quot;?&gt;&lt;/CustomXml&gt;
+
+  &lt;SearchTips&gt;
+    &lt;Url&gt;&lt;?SEARCH_TIPS_URL_XML?&gt;&lt;/Url&gt;
+    &lt;Show&gt;&lt;?SHOW_SEARCH_TIPS_XML?&gt;&lt;/Show&gt;
+  &lt;/SearchTips&gt;
+  
+  &lt;?CHUNK filename=&quot;dlxspageglobals.xml&quot;?&gt;
+
+  &lt;SearchType&gt;&lt;?SEARCH_TYPE_XML?&gt;&lt;/SearchType&gt;
+  &lt;SearchNav&gt;
+    &lt;NavItem&gt;
+      &lt;Name&gt;simple&lt;/Name&gt;
+      &lt;Tab&gt;true&lt;/Tab&gt;
+      &lt;Link&gt;&lt;?SIMPLE_SEARCH_LINK_XML testforrestrict=&quot;1&quot;?&gt;&lt;/Link&gt;
+      &lt;Label&gt;Basic&lt;/Label&gt;
+    &lt;/NavItem&gt;
+    &lt;NavItem&gt;
+      &lt;Name&gt;boolean&lt;/Name&gt;
+      &lt;Tab&gt;true&lt;/Tab&gt;
+      &lt;Link&gt;&lt;?BOOLEAN_SEARCH_LINK_XML testforrestrict=&quot;1&quot;?&gt;&lt;/Link&gt;
+      &lt;Label&gt;Boolean&lt;/Label&gt;
+    &lt;/NavItem&gt;
+    &lt;NavItem&gt;
+      &lt;Name&gt;proximity&lt;/Name&gt;
+      &lt;Tab&gt;true&lt;/Tab&gt;
+      &lt;Link&gt;&lt;?PROXIMITY_SEARCH_LINK_XML testforrestrict=&quot;1&quot;?&gt;&lt;/Link&gt;
+      &lt;Label&gt;Proximity&lt;/Label&gt;
+    &lt;/NavItem&gt;
+    &lt;NavItem&gt;
+      &lt;Name&gt;bib&lt;/Name&gt;
+      &lt;Tab&gt;true&lt;/Tab&gt;
+      &lt;Link&gt;&lt;?BIB_SEARCH_LINK_XML?&gt;&lt;/Link&gt;
+      &lt;Label&gt;Bibliographic&lt;/Label&gt;
+    &lt;/NavItem&gt;
+    &lt;NavItem&gt;
+      &lt;Name&gt;wwstart&lt;/Name&gt;
+      &lt;Tab&gt;&lt;?WW_NAV_XML?&gt;&lt;/Tab&gt;
+      &lt;Link&gt;&lt;?WORDWHEEL_SEARCH_LINK_XML?&gt;&lt;/Link&gt;
+      &lt;Label&gt;Word Index&lt;/Label&gt;
+    &lt;/NavItem&gt;
+    &lt;NavItem&gt;
+      &lt;Name&gt;history&lt;/Name&gt;
+      &lt;Tab&gt;true&lt;/Tab&gt;
+      &lt;Link&gt;&lt;?SEARCH_HISTORY_LINK_XML?&gt;&lt;/Link&gt;
+      &lt;Label&gt;History&lt;/Label&gt;
+    &lt;/NavItem&gt;  
+  &lt;/SearchNav&gt;
+  
+  &lt;BookbagAddHref&gt;&lt;?BOOKBAG_ADD_REMOVE_ITEM_XML?&gt;&lt;/BookbagAddHref&gt;
+  &lt;SearchRestriction&gt;
+   &lt;DocEncodingType&gt;&lt;?DOC_ENCODING_TYPE_XML?&gt;&lt;/DocEncodingType&gt;
+    &lt;ItemHeader&gt;&lt;?HEADER_XML?&gt;&lt;/ItemHeader&gt;
+  &lt;/SearchRestriction&gt;
+  
+  &lt;!-- this is for the HTML select element (pulldown) of all groups --&gt;
+  &lt;GroupsSelect&gt;&lt;?GROUPS_SELECT_XML?&gt;&lt;/GroupsSelect&gt;
+  
+  &lt;SearchForm&gt;
+    &lt;HiddenVars&gt;
+      &lt;?HIDDEN_REQUESTED_COLLECTIONS_XML?&gt;
+      &lt;?HIDDEN_XC_XML?&gt;
+      &lt;?HIDDEN_IDNO_XML?&gt;
+      &lt;?HIDDEN_BOOKBAG_XML?&gt;
+      &lt;?HIDDEN_G_XML?&gt; 
+      &lt;?HIDDEN_XG_XML?&gt;
+      &lt;?HIDDEN_DEBUG_XML?&gt;
+    &lt;/HiddenVars&gt;
+    &lt;SearchQuery&gt;
+      &lt;RegionSearchSelect&gt;&lt;?REGION_SEARCH_SELECT_XML?&gt;&lt;/RegionSearchSelect&gt;
+      &lt;Region1SearchSelect&gt;&lt;?REGION1_SEARCH_SELECT_XML?&gt;&lt;/Region1SearchSelect&gt;
+      &lt;Region2SearchSelect&gt;&lt;?REGION2_SEARCH_SELECT_XML?&gt;&lt;/Region2SearchSelect&gt;
+      &lt;Region3SearchSelect&gt;&lt;?REGION3_SEARCH_SELECT_XML?&gt;&lt;/Region3SearchSelect&gt;
+      &lt;Q1&gt;
+        &lt;?Q1_INPUT_XML?&gt;
+      &lt;/Q1&gt;
+      &lt;Op2&gt;&lt;?OP2_SELECT_XML?&gt;&lt;/Op2&gt;
+      &lt;Q2&gt;&lt;?Q2_INPUT_XML?&gt;&lt;/Q2&gt;
+      &lt;Amt2&gt;&lt;?AMT2_SELECT_XML?&gt;&lt;/Amt2&gt;
+      &lt;Op3&gt;&lt;?OP3_SELECT_XML?&gt;&lt;/Op3&gt;
+      &lt;Q3&gt;&lt;?Q3_INPUT_XML?&gt;&lt;/Q3&gt;
+      &lt;Amt3&gt;&lt;?AMT3_SELECT_XML?&gt;&lt;/Amt3&gt;
+    &lt;/SearchQuery&gt;
+    &lt;CiteRestrictions&gt;
+      &lt;Cite&gt;
+        &lt;Input&gt;&lt;?CITE1_INPUT_XML?&gt;&lt;/Input&gt;
+        &lt;Restrict&gt;&lt;?CITE1_RESTRICT_SELECT_XML?&gt;&lt;/Restrict&gt;
+      &lt;/Cite&gt;
+      &lt;Cite&gt;
+        &lt;Input&gt;&lt;?CITE2_INPUT_XML?&gt;&lt;/Input&gt;
+        &lt;Restrict&gt;&lt;?CITE2_RESTRICT_SELECT_XML?&gt;&lt;/Restrict&gt;
+      &lt;/Cite&gt;
+    &lt;/CiteRestrictions&gt;
+    &lt;OtherRestrictions&gt;
+      &lt;!-- Begin collection specific restrictions --&gt;
+      &lt;GenreSelect&gt;
+        &lt;?GENRE_SEARCH_SELECT_XML?&gt;
+      &lt;/GenreSelect&gt;
+      &lt;GenderSelect&gt;
+        &lt;?GENDER_SEARCH_SELECT_XML?&gt;
+      &lt;/GenderSelect&gt;
+      &lt;PeriodSelect&gt;
+        &lt;?PERIOD_SEARCH_SELECT_XML?&gt;
+      &lt;/PeriodSelect&gt;
+      &lt;PubBetweenSelect&gt;
+        &lt;?PUB_BETWEEN_SEARCH_SELECT_XML?&gt;
+      &lt;/PubBetweenSelect&gt;
+    &lt;/OtherRestrictions&gt;
+  &lt;/SearchForm&gt;
+  
+  &lt;CollCheckboxList&gt;
+    &lt;?COLL_LIST_WITH_CHECKBOXES_XML?&gt;
+  &lt;/CollCheckboxList&gt;
+
+&lt;/Top&gt;
+</pre>
+</div>
+<td>
+</tr>
+</table>
+
+<p><strong>NOTE</strong>: Very important is the  <span class="unixcommand">XslFallbackFileList</span> node at
+  the top. Each child <span class="unixcommand">Filename</span> node indicates an xsl file--each found via fallback--that
+	is required to transform the source tree xml that will result when all the
+	PIs are resolved. The middleware will acquire the paths to each xsl file
+  named, and compile a single virtual stylesheet in memory, as shown below: </p>
+<p><a name="VirtualStylesheet"></a><strong>Virtual transform stylesheet to be
+      used for search.xml</strong></p>
+<table border="1" cellpadding="3" cellspacing="3">
+<tr>
+<td><div class="markupsnippet"> 
+  	<pre>
+		&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+
+&lt;xsl:stylesheet version=&quot;1.0&quot; 
+   xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; 
+   xmlns:dlxs=&quot;http://dlxs.org&quot;&gt;
+  
+  &lt;!-- transform.xml is processed by the middleware into an internally    
+  referenced XSL stylesheet. This allows fallback processing of the  
+  stylesheets imported into the top-level stylesheet. The top-level  
+  stylesheet is normally specified by the &lt;?xml-stylesheet           
+  type=&quot;text/xsl&quot; href=&quot;somestylesheet.xsl&quot;?&gt; processing instruction 
+  (PI) in the top-level XML file.  In the absence of that PI, an XML 
+  XslFallbackFileList node must be present in the top-level XML file 
+  to list the XSL files which should appear in XSL import statements 
+  to replace the XSL_FALLBACK_FILE_LIST PI below. --&gt;
+
+  &lt;xsl:import href=&quot;/l1/web/t/text/bookbagitemsstring.xsl&quot;/&gt;
+  &lt;xsl:import href=&quot;/l1/web/t/text/search.xsl&quot;/&gt;
+  &lt;xsl:import href=&quot;/l1/web/t/text/htmlhead.xsl&quot;/&gt;
+  &lt;xsl:import href=&quot;/l1/web/b/bldemo/navheader.xsl&quot;/&gt;
+  &lt;xsl:import href=&quot;/l1/web/t/text/footer.import.xsl&quot;/&gt;
+  &lt;xsl:import href=&quot;/l1/web/t/text/searchforms.xsl&quot;/&gt;
+  &lt;xsl:import href=&quot;/l1/web/lib/xsl2htmlutils.xsl&quot;/&gt;
+  &lt;xsl:import href=&quot;/l1/web/t/text/globalvariables.xsl&quot;/&gt;
+  &lt;xsl:import href=&quot;/l1/web/t/text/headerutils.xsl&quot;/&gt;
+
+   
+ &lt;xsl:output method=&quot;html&quot;
+   indent=&quot;yes&quot;
+   encoding=&quot;utf-8&quot;
+   media-type=&quot;text/html&quot; 
+   doctype-public=&quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;/&gt;
+  
+&lt;/xsl:stylesheet&gt;
+
+</pre>
+</div>
+</td>
+</tr>
+</table>
+<p>Note that in this case, for the collection with collid <em>bldemo</em> there
+   is a collection-specific copy of navheader.xsl in /l1/web/b/bldemo/. All other
+   files are taken from class directories. (More on the breakdown of xsl and
+   xml files later in this document.)
+</p>
+<p>Fallback is also operating in the resolution of all CHUNK PIs, as in previous
+	releases. In particular in this example are </p>
+<div class="unixcommand">
+	<p>&lt;CustomXml&gt;&lt;?CHUNK filename=&quot;searchextra.xml&quot; optional=&quot;1&quot;?&gt;&lt;/CustomXml&gt; </p>
+</div>
+	<p><em>and</em></p>
+<div class="unixcommand">
+	<p> &lt;?CHUNK filename=&quot;dlxspageglobals.xml&quot;?&gt;</p>
+</div>
+<p>The first example will insert into search.xml the contents of a searchextra.xml
+	file from the current collection specific directory (e.g., /l1/web/b/bldemo)
+	if it exists, but simply remove the PI if it does not exist. This mechanism
+	allows for the addition of specific XML content, per collection, that is relevant
+	to the search page.</p>
+<p>The second example causes the middleware to insert the dlxspageglobals.xml
+	file into search.xml. dlxspageglobals.xml itself references xml for each page
+	header (navheader.xml), footer (footer.import.xml) and a set of global level
+	nodes wrapped in a &lt;DlxsGlobals&gt; node that provide a variety of reference data
+	to facilitate many of the templates in dependent XSL pages. </p>
+<h5 class="warning"><a name="FallbackCaveats"></a>Fall back caveats</h5>
+<p>Note that fallback allows for multiple levels of CHUNK lookups in xml files,
+which are all processed in sequence into a single source tree. </p>
+<p> Fallback is
+		not exercised, however, in the xsl files referenced in the virtual stylesheet.
+		The reason is primarily to make it easier to test XSL transformations &quot;off
+		line&quot; simply by saving the compiled stylesheet and its import sheets separately,
+		to transform in a local debugger. This approach will also provide for
+		eventual client side xsl transformation, when the virtual stylesheet
+		can simply be written to disc and referenced in the xml file sent directly
+		to the user's browser. </p>
+<p>Finally, incorporating fallback into the mechanism here interrupts to some
+	degree the facility of importing and either overriding or augmenting template
+	rules from one XSL stylesheet to another. Becaue none of the stylesheets
+  in the virtual stylesheet actually imports another, it is not possible to
+  utilize the <code class="unixcommand">apply-imports</code> element. Also, template
+  rules that are identical to the processor--that match the same node--will be
+  executed in reverse occurrence order: the last valid template takes precedence.
+  That effectively means that when two xsl files named in <code class="unixcommand">Filename</code> nodes
+  within a single xml file contain identical, or equally valid, template rules
+  for the same source node, the template rule in the last named xsl file will
+  be applied. </p>
+<h4><a name="XslStylesheets"></a>XSL Stylesheets</h4>
+<p>The final core component in Release 12 is the array of XSL stylesheets that
+  provide all the template rules for the XSLT tranform process. The stylesheets
+  are where most of the individual collection customizations will be handled.
+  DLXS middleware for Release 12 is built around the <span class="unixcommand">libxslt</span> processor.
+  The stylesheets are all XSLT version 1.0, with several utilizing EXSLT extensions
+  (see <a href="http://www.exslt.org" target="external">exslt.org</a>  for more
+  on EXSLT). </p>
+<p>Annotated lists of stylesheets:</p>
+<ul>
+  <li><a href="textclassXSLlist.html">Text Class</a></li>
+  <li><a href="imageclassXSLlist.html">Image Class</a> </li>
+</ul>
+<p>See also a table of<a href="xslbyxmlname.html"> Text Class xsl file dependencies</a> by
+      xml filename as an overview of the structure of xsl and a guide for customizing
+changes. This information can also be discovered by looking at the <a href="#XmlTemplatesAndFallback">Fallback
+File List</a> of any XML document along with import statements within the relevant XSL.</p>
+<p><a name="CollSpecificXSL" id="CollSpecificXSL"></a></p>
+<h3>Specifying Individual Collection Characteristics</h3>
+<h3><a name="ModifyingXslXml"></a>Part 1: Modifying xsl
+    or xml for individual collections</h3>
+<p>To effect collection-specific changes that involve significant re-arrangement
+  of page components, alternative filtering of source nodes, or changes in language
+  labels in the interface, you can create collection specific XML templates or
+  XSL stylesheets, or both, or you can create local language map xml files. Each
+  approach is discussed in the following examples.</p>
+<h4><a name="Example1"></a>Example 1: Changing language labels in the search page</h4>
+<p>Refer to the above code sample from Text Class's search.xml. All the possible
+   variations for a search form, including restrictions by title / author / citation
+   or genre, date, etc, are included in xml nodes in search.xml and handled conditionally
+  in the xsl depending on current searchtype and collection. For a single collection
+   in Text Class, an optional restriction is by <em>genre</em>. In the xml template,
+   this is reflected in the node:</p>
+<p><code> &lt;GenreSelect&gt; &lt;?GENRE_SEARCH_SELECT_XML?&gt; &lt;/GenreSelect&gt; </code></p>
+<p>When the xml template is processed, the <code>&lt;?GENRE_SEARCH_SELECT_XML?&gt;</code> PI
+  is replaced by a node set for building the form select element called 'singlegenre'</p>
+<table width="75%" border="1" cellpadding="3" cellspacing="3">
+<tr>
+<td>
+<div class="markupsnippet">
+  <pre>
+&lt;GenreSelect&gt;
+  &lt;Option&gt;
+&lt;Label&gt;All&lt;/Label&gt;
+&lt;Value&gt;All&lt;/Value&gt;
+&lt;Focus&gt;true&lt;/Focus&gt;
+&lt;/Option&gt;
+  &lt;Option&gt;
+&lt;Label&gt;Prose Fiction&lt;/Label&gt;
+&lt;Value&gt;FICT&lt;/Value&gt;
+&lt;/Option&gt;
+  &lt;Option&gt;
+&lt;Label&gt;Prose Non-fiction&lt;/Label&gt;
+&lt;Value&gt;NONFICT&lt;/Value&gt;
+&lt;/Option&gt;
+  &lt;Option&gt;
+&lt;Label&gt;Drama&lt;/Label&gt;
+&lt;Value&gt;PLAY&lt;/Value&gt;
+&lt;/Option&gt;
+  &lt;Option&gt;
+&lt;Label&gt;Poetry&lt;/Label&gt;
+&lt;Value&gt;POEM&lt;/Value&gt;
+&lt;/Option&gt;
+&lt;Name&gt;singlegenre&lt;/Name&gt;
+&lt;Default&gt;All&lt;/Default&gt;
+&lt;/GenreSelect&gt;
+  </pre>
+</div>
+</td></tr></table>
+
+<p>By default, when searchforms.xsl processes a GenreSelect element, it builds
+  a form select element with the label 'Restrict to genre', as seen in figure
+  3.</p>
+<p>&nbsp;</p>
+<table width="410"  border="0" cellspacing="2" cellpadding="0">
+  <tr>
+    <td><img src="graphics/genrerestrict.gif" width="410" height="38" border="1"></td>
+  </tr>
+  <tr>
+    <td><strong>Figure 3 </strong></td>
+  </tr>
+</table>
+<p>The label 'Restrict to genre,' is, like all language strings in the interface,
+  stored in a langmap.en.xml file and referenced by an XSL key() function, as
+  in</p>
+<blockquote>
+  <p class="unixcommand"><code> &lt;span class=&quot;formfont&quot;&gt;&lt;xsl:value-of select=&quot;key('get-lookup','searchforms.str.19')&quot;/&gt;&lt;/span&gt; </code></p>
+</blockquote>
+<p>The key reference above, retrieves the value, in langmap.en.xml, of the following
+  node:</p>
+<blockquote>
+  <p class="unixcommand"><code>&lt;Item key=&quot;searchforms.str.19&quot;&gt;Restrict to genre:&lt;/Item&gt;</code></p>
+</blockquote>
+<p>But a different collection may have the singlegenre field mapped to language,
+  instead of traditional literary genre categories, in which case the label should
+  say 'Restrict to language' instead. Substituting language mappings in Release
+   12 is done by creating a local <code>langmapextra.en.xml file</code> in the
+   collection directory. For this collection, if this were the only language
+   substitution for the entire collection, the contents of the langmapextra.en.xml
+   file would be ... </p>
+<blockquote>
+  <p class="unixcommand"><code> &lt;ColLookupTables&gt;<br>
+&lt;Lookup id=&quot;searchforms&quot;&gt;<br>
+&lt;Item key=&quot;searchforms.str.19&quot;&gt;Restrict to language:&lt;/Item&gt;<br>
+&lt;/Lookup&gt;<br>
+&lt;/ColLookupTables&gt;</code></p>
+</blockquote>
+<p>When search.xml is invoked for the specific collection, the contents of the <code>langmapextra.en.xml
+file</code> will be inserted just before the class <code>langmap.en.xml
+</code> file. Because the key() function is being used in a single node context,
+it will return only the first match it makes, the substituted text. </p>
+<p>&nbsp;</p>
+<h4><a name="Example2"></a>Example 2: Removing search options from the search page</h4>
+<p>Just as collection-specific information or behavior can be added, class level
+   information or behavior can be removed. In the Text Class search form, for
+   example, the cgi provides node sets for
+      only those elements in the<code> &lt;SearchForm&gt;</code> node (see search.xml
+      sample above) that are relevant to the current search, and the xsl template
+   rules are invoked depending on search type. The exception
+      to this, however, is the <code>&lt;CiteRestrictions&gt; </code>node, included
+      for the portion of the non-bibliographic search forms that allows bibliographic
+      restrictions. This node may be populated even if the collection doesn't
+      provide the functionality. If this is the case, add a local version of
+      the searchforms.xsl file to the collection directory, and remove those
+   xsl templates that build the fields.</p>
+<p>&nbsp;</p>
+<h4><a name="Example3"></a>Example 3: Substituting xsl template rules for individual
+collections </h4>
+<p>There are a variety of reasons why you might want to substitute / replace
+   specific xsl template rules for a particular collection. Two obvious possible
+   scenarios are 1) to make a more significant structural change to a page header
+   and 2) to process source content nodes (e.g., notes or heads) differently
+   in the full text display. </p>
+<p>Scenario 1 is easy. The change to the header can most likely be effected by
+  altering the templates in navheader.xsl. Simply creating a local version of
+  this file in the collection directory will result in it being referenced by
+  fallback each time a page for that collection in invoked. No other file substitutions
+  are necessary.</p>
+<p>Scenario 2 can be done with multiple approaches. Imagine, for example, that
+   a Text Class collection has slightly different data for a text element that
+   either needs to account for the occurrence of specific data or output similar
+   data differently (an example, might be  an L element in poems). The text.components.xsl
+   file has a template rule for the L node. You could simply copy the text.components.xsl
+      file from the class directory and make a change only in that single template
+      rule, leaving all other rules the same. The fallback mechanism would cause
+      text.xml to include the collection version of text.components.xsl and apply
+   its specific template rule for that node. </p>
+<p>Better, though, would be to substitute only a single xsl template rule (i.e.,
+   just the rule for the L node). If there was no fallback mechanism, text.xml
+   would instead reference a single text.xsl, which could use the xsl:import
+   element and thus exploit the import inheritance rules of xslt. By those rules,
+   text.xsl could import text.components.xsl, which would give it access to all
+   the templates in that stylesheet, and add a local substitute template for
+   any of the imported templates, thus overriding the 'default' behavior of the
+   imported template with the local behavior. You can exploit this inheritance
+   capability within the fallback framework. To do so in the Text Class text
+   filtering scenario illustrated here would require the following changes:</p>
+<ol>
+  <li>Create a local empty version of text.components.xsl.  This will cause the
+    cgi to grab the local text.components.xsl when compiling the virtual stylesheet. </li>
+  <li>In the local text.components.xsl, add an xsl import statements that points
+    to the class text.components.xsl file ...<br>
+	<div class="markupsnippet">
+	<pre class="unixcommand">&lt;xsl:import href=&quot;../../t/text/text.components.xsl&quot;/&gt;</pre>
+	</div>
+  </li>
+  <li>Now
+    any xsl template rules you add to this file will override any template
+    rules imported from the class text.components.xsl stylesheet. </li>
+</ol>
+<p>There is a short cut to this procedure that can accomplish the same results
+  for most cases. Simply copy the class text.xsl file to the collection directory
+  and add the substitute template to it. You also should make sure, though, that
+  the the Filename node for text.xsl comes <strong>after</strong> the node for text.components.xsl
+  in text.xml. The reason for this is that when an xslt processor finds two
+  equally valid template rules for a single node, it executes the last rule found
+  (very similarly to the cascade rule of precedence in CSS).</p>
+<p>There are, of course, other variations on these approaches to template
+  substitution; you can exploit fallback to invoke any number of alternative
+  xsl inclusions.</p>
+<p>&nbsp;</p>
+<h3>Specifying Individual Collection Characteristics </h3>
+<h3><a name="LookAndFeel"></a>Part 2: Look and Feel </h3>
+<div class="level2"></div>
+<p>Much of the framework for specifying collection look and feel in earlier releases
+  is retained in Release 12. That is, the main header portion of the page, previously
+  included through a navheader.chnk file, is now compiled from a navheader.xml
+  file and navheader.xsl file.The same framework for CSS style modification is
+   also retained, which will apply to almost any font, spacing, or color characteristic
+  of common HTML elements in the result tree. The main change in Release 12 in
+  this regard is the inclusion of graphics files: there no longer is a PI to
+  build paths to specifically indicated graphic filenames. All references to
+  common graphics in Release 12 hard-coded to the class graphics directory in
+  XSL templates. To include collection specific graphics will require changing
+  an XSL template rule for that collection (see above). Techniques for 
+  CSS and header options are detailed in the following sections.<br>
+</p>
+<p>	<a name="CssFiles" id="CssFiles"> </a> 
+</p>
+<h4>CSS files</h4>
+<p>Using Text Class again as an example, templates utilize two CSS files for
+   controlling most font and color characteristics: textclass.css and textclass-specific.css.
+   textclass.css is stored in at the <code>$DLXSROOT/web/t/text/</code> path
+   and contains all the default style declarations. textclass-specific.css is
+   created for each individual collection and stored at the <code>$DLXSROOT/web/c/coll/</code> path.
+   Reference paths to both stylesheets are now included as node values within
+   the DlxsGlobals node to each page ...</p>
+<blockquote>
+  <p class="unixcommand"><code>&lt;CssLink&gt;/t/text/textclass.css&lt;/CssLink&gt;<br>
+&lt;CssLink&gt;/c/collection/textclass-specific.css&lt;/CssLink&gt;</code></p> 
+</blockquote>
+..and the link elements to the files are constructed in the htmlhead.xsl stylesheet.
+<p>Because textclass-specific.css is referenced after textclass.css,
+	any style declarations that appear in textclass-specific.css will effectively
+	overwrite matching declarations in textclass.css. This is how fonts and background
+	colors are varied for each collection. (<a href="textclasscss.html">full
+	  text of textclass.css</a>)</p>
+<p>When creating a local look and feel with textclass-specific.css, you replace
+  those CSS style rules that affect portions of the page header (or any other
+  styles) so that they will override, for that collection, the class leve styles.
+   Refer to this <a href="cssSpecificConfigFS.html">guide
+  to header css</a> styles for more details on creating the textclass-specific.css
+  file.<br>
+</p>
+<h4><a name="Graphics" id="Graphics"> </a> Graphics </h4>
+<h4>&nbsp;</h4>
+<h4><a name="Header" id="Header"> </a> 
+Header characteristics</h4>
+<p>In Text Class, the header of each page template includes the area in the
+   top 75 pixels of the page containing those elements associated with unique
+   collection identity: main collection title, global links, if any, and the
+   main navigation bar. As of Release 12, all header and navigation components
+   are built primarily by the navheader.xml, navheader.xsl, and navbarutils.xsl
+   files, which are incorporated into each of the main functional template files.
+   The relationship between a main template file (e.g., reslist.xml) and navheader.xsl
+   is illustrated in <strong>Figure
+	4</strong> below.</p>
+<table border="0" cellpadding="7" cellspacing="2">
+	<tr>
+		<td bgcolor="#CCCCCC"><img src="graphics/gen-layout-top_r1_c1.gif" alt="" name="genlayouttop_r1_c1" width="450" height="79" hspace="4" vspace="4" border="0"><br clear="all">
+  			<span style="font-family: verdana,arial,sans-serif; font-size:10px">navheader</span></td>
+	</tr>
+	<tr>
+	  <td bgcolor="#C5C5E2"><img src="graphics/gen-layout-bottom.gif" width="450" height="262" hspace="4" vspace="4"><br clear="all">
+		  <span style="font-family: verdana,arial,sans-serif; font-size:10px">[anytemplate].xsl</span></td>
+	</tr>
+	<tr>
+		<td><b>Figure 4 </b> : Template layout showing division between
+			main template content and the navheader .</td>
+	</tr>
+</table>
+<p>&nbsp; </p>
+</body>
+</html>

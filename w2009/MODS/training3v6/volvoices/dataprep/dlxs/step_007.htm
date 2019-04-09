@@ -1,0 +1,112 @@
+<html>
+<head>
+<script language=javascript src="links/vv_functions_links.js"></script>
+<title>
+char_check
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+</head>
+<!-- body  class="bg_aabbcc" -->
+<body bgcolor="aabbcc">
+<font face="arial" size="3">
+<center><font face="arial">
+<script>//document.write(dlxs_vv_header);</script>
+<p>
+</center>
+<table  class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="99aabb">
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+<tr class="bgstandardwhite" ><td colspan="3" align="left" class="step">
+<pre>
+step_007.htm
+STEP SEVEN -- image class setup for vvz-00 files
+
+Now prepare stuff for image class
+
+cat vvzHeader ic/* done/ic/* footer > ic.vvz.unnorm.sgm
+cp ic.vvz.unnorm.sgm /d1/dlxs/prep/v/vvz/.
+rm /d1/dlxs/prep/v/vvz/ic.vvz.norm.sgm
+cp thumbs/* /d1/dlxs/img/v/vvz/thumb/
+cp jpegs/* /d1/dlxs/img/v/vvz/large/
+  do image class setup
+
+imageprep vvz > A.txt
+
+REMOVE OLD INDEX
+[root@diglib2 image]# ls /d1/dlxs/idx/v/vvz/
+image.blank.dd  image.cfg  image.dd  image.idx  image.inp  image.rgn  Makefile  tags.txt
+[root@diglib2 image]# rmdir /d1/dlxs/idx/v/vvz
+[root@diglib2 image]# setupcollindex v/vvz
+using /d1/dlxs.
+setting up /d1/dlxs/idx for v/vvz
+done.
+setting up /d1/dlxs/obj up for v/vvz
+done.
+[root@diglib2 image]# 
+[root@diglib2 image]# cd /d1/dlxs/idx/v/vvz
+[root@diglib2 vvz]# make all 
+echo "working..."
+working...
+rm -f ./image.ffc
+rm -f ./image.ffi
+rm -f ./image.ffw
+rm -f ./image.idx
+rm -f ./image.maps.*
+rm -f ./image.mfs
+rm -f ./image*.rgn
+rm -f ./image.str
+rm -f ./image.dd
+rm -f ../../../obj/v/vvz/image.sgm
+cat ../../../obj/v/vvz/ic.*.norm.sgm > ../../../obj/v/vvz/image.sgm
+cp ./image.blank.dd ./image.dd
+xpatbld -D ./image.dd
+multirgn -f -D ./image.dd -t ./tags.txt
+[root@diglib2 vvz]# 
+
+OPEN BROWSER TO http://diglib2.lib.utk.edu/cgi/c/collmgr/collmgr
+uname  see 080401
+passw  see 080401
+
+<!---
+OPEN BROWSER TO http://diglib2.lib.utk.edu/cgi/c/collmgr/collmgr
+--->
+
+Select Make a release to production
+
+Select Class - image class
+
+back to command line
+[root@diglib2 idx]# cd /d1/dlxs/cgi/i/image
+[root@diglib2 image]# ls
+a                       createbookbagdb.txt  imageclass.cfg          queries
+authcoll                getimage-idx         ImageClassUtils         Searchbuild.pm
+AUTHZD_COLL             getthumbnail-idx     ImageClassUtils.pm      Sid2.pm
+Collectionmaps-last.pm  ICLocalUtils.pm      image-idx               Sidget2.pm
+Collectionmaps-new.pm   ImageApp             largeBOOK.GIF           WPAcrew_crop5.png
+Collectionmaps.pm       ImageApp.pm          makeCollectionmaps-idx
+collstats-idx           ImageClass           olderVersions
+[root@diglib2 image]#  makeCollectionmaps-idx > A.txt
+
+
+NOW RETURN TO BROWSER AT: http://diglib2.lib.utk.edu/cgi/i/image/image-idx?c=vvz
+and search to see if your images are there
+
+
+
+</pre>
+</font>
+</td></tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+</table>
+
+
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+</pre>
+</font>
+</td></tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+</table>
+
+

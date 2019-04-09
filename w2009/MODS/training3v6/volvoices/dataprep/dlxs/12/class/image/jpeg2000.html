@@ -1,0 +1,102 @@
+<html>
+<head>
+<title>Image Class and JPEG2000</title>
+
+
+
+  <link href="../../dlxsdocs.css" rel="stylesheet" type="text/css"></head>         <body>
+<div class="pageTitle">Image Class and JPEG2000</div>
+
+
+
+ 
+<h2><a name="Introduction"></a>Introduction</h2>
+
+ <p>
+Image Class supports JPEG2000 compressed images in the JP2
+format. The <a href="http://www.kakadusoftware.com/">Kakadu</a>
+ Software Development Kit was used to implement functionality nearly
+identical to that offered with MrSID from 
+<a href="http://www.lizardtech.com">LizardTech</a>. High compression ratios
+using wavelet compression, multiple image sizes, zooming, and panning
+are all included. 
+</p>
+<p>
+Command line compression and expansion utilities for Solaris and Linux are provided with
+DLXS to paying DLXS subscribers. These utilities may also be licensed
+from Kakadu Software. We are simply using the "demo" utilties,
+kdu_compress and kdu_expand.
+</p>
+<p>The University of Michigan Library has a license for
+the Kakadu Software (SDK) that allows non-commercial redistribution of
+compiled applications. Visit <a href="http://www.kakadusoftware.com">Kakadu Software</a> to learn more about
+additional licensing options.</p>
+
+
+
+ 
+<h2><a name="Compression"></a>Compression</h2>
+<p>
+The kdu_compress utilitiy accepts a long list of options that will not
+be explained here. The following will generate a JPEG2000 compressed
+JP2 file with roughly 20:1 compression and 5 images sizes. The rate
+option is used to control the amount of compression. The Clevels
+option is for controlling the number of image sizes.
+</p>
+<code>kdu_compress -i filename.bmp -o filename.jp2 -Clevels=5 -rate 1.09</code>
+
+<p>
+David Taubman, creator/owner of Kakadu Software stated in the online
+discussion forum, "The JPEG2000 standard has no explicit definition for a quality
+factor (neither does the JPEG standard for that matter).  As
+a general rule, the rate-distortion slope threshold often turns out
+to be a more reliable indicator of quality than the bit-rate.  I
+would suggest compressing some images which are typical of
+your application to the point which you believe represents a
+sufficient quality, then looking at the slope thresholds reported
+by "kdu_compress" in its verbose (default) mode.  You can then
+compress all your images, using the "-slope" option." 
+</p>
+<p>Using -slope to control quality has not yet been explored at the
+University of Michigan.</p>
+
+<p>It is a bit of a problem that the Kakadu utilities do not support a
+wider range of formats for input and output. It is not a priority of
+Kakadu Software to add additional formats. There are many other
+existing utilities for converting files to one of the formats
+supported for input. <a href="http://www.imagemagick.org">ImageMagick</a> is probably best known.
+</p>
+
+
+
+ 
+<h2><a name="Expansion"></a>Expansion</h2>
+
+<p>Expansion of JPEG2000 compressed image files in the JP2 format can
+be done with kdu_expand. The "-reduce" option is used to specify the
+desired image size referenced by level (see -Clevel compression option
+above). Note that the largest size is level 0.</p>
+
+<code>kdu_expand -i filename.jp2 -o filename.bmp -reduce 2</code>
+
+<p>
+QuickTime (Macintosh only at this time) is capable of opening JP2
+files created by Kakadu. In fact Apple uses Kakadu for JPEG2000
+support in QuickTime.
+</p>
+
+<p>Image Class middleware uses the cjpeg program to convert output
+from kdu_expand to create a JPEG compressed image to send to the
+browser. cjpeg is part of libjpeg and is often included on UNIX
+systems by default. If not, it can be found on the web.</p>
+
+<p></p>
+
+
+
+
+
+ 
+</body>
+
+</html>

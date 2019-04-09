@@ -1,0 +1,663 @@
+<HTML>
+<HEAD>
+<TITLE>vv_popupNames.htm</TITLE>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+<script language=javascript src="vv_formvardebug.js"></script>
+<script language="javascript">
+function enterDate_for_popupNames(sbox){
+    
+/*
+alert("enterDate_for_popupNames:\n"
+	+"\ndocument.forms.PF.YOB.value="+document.forms.PF.YOB.value
+	+"\ndocument.forms.PF.YOD.value="+document.forms.PF.YOD.value
+	+"\ndocument.forms.PF.creator_fd.value="+document.forms.PF.creator_fd.value
+	);
+*/
+
+if (document.forms.PF.YOB.value==""){
+	document.forms.PF.YOB.value="none";
+	}
+
+var fulldatestr=new String();
+    fulldatestr=document.forms.PF.YOB.value;
+    if(fulldatestr.length>1){
+	fulldatestr=fulldatestr+"-"+document.forms.PF.YOD.value;
+	}
+
+document.forms.PF.creator_fd.value=fulldatestr;
+
+
+
+}//end function enterDate_for_popupNames(sbox){
+
+
+function checkDate_for_popupNames(sbox,W,H) 
+{
+
+//alert("checkDate_for_popupNames\n sbox.value="+sbox.value);
+//alert("is "+sbox.value+" an NaN (not a number)?\n isNaN("+sbox.value+")="+isNaN(sbox.value) );
+//alert("length of "+sbox.value+"="+sbox.value.length);
+
+if (sbox.value.length != 4 || isNaN(sbox.value) ) {
+	alert("Please enter a 4 digit year \nor leave this field blank.");
+	sbox.value="";
+}else{
+	//alert("Valid Year Value: "+sbox.value);
+}
+
+}//end function checkDate_for_popupNames(sbox,W,H) 
+
+function selectOneOption_for_popupNames(sbox,W,H) 
+{
+alert("vv_popupNames.htm: selectOneOption_for_popupNames:  sBox.name="+sbox.name)
+var sTarget = new String();
+    ///sTarget = "vv_popups.htm?sbox_name="+sbox.name;
+    sTarget = "vv_popupLists.htm?sbox_name="+sbox.name;
+
+var w = new String(W);
+var h = new String(H);
+
+var wDef = new String();
+    wDef = "width="+w+",height="+h;
+    wDef += ",scrollbars=yes"
+    wDef += ",resizable"
+
+
+//alert(sTarget+",\"helpWindow\",\""+wDef+"\"")
+
+window.open(sTarget,"helpWindow",wDef);
+
+}//end function selectOneOption_for_popupNames(sbox,W,H) 
+
+
+function getRoleTerm(){
+
+var s1=new String(' ');
+var ct=0;
+
+//alert("getRoleTerm():\n document.PF.aaa.length="+document.PF.aaa.length);
+for(i=0;i<document.PF.aaa.length;i++){
+   if(document.PF.aaa[i].selected){
+	s1=s1+document.PF.aaa[i].value+";";
+	if(ct == 0) {
+		document.PF.pRolea.value=document.PF.aaa[i].value;
+		document.PF.pRolea_auth.value="marcrelator";
+	}else if(ct == 1) {
+		document.PF.pRoleb.value=document.PF.aaa[i].value;
+		document.PF.pRoleb_auth.value="marcrelator";
+	}else if(ct == 2) {
+		document.PF.pRolec.value=document.PF.aaa[i].value;
+		document.PF.pRolec_auth.value="marcrelator";
+	}
+	ct++;
+	}
+   if (ct>2) break;
+}
+
+//alert("s1="+s1)
+
+}//end function getRoleTerm
+
+
+
+
+
+//global var
+var changeNameAuthoritySelect= new String("");
+///alert("changeNameAuthoritySelect");
+//LN=LastNameFromUpper
+//GN=GivenNameFromUpper
+function name_auth_select(LN,GN){
+if (document.PF.name_auth_attr.value=="1"){
+	document.PF.name_authority.value="";
+	document.PF.pLastName.value=LN;
+	document.PF.pGivenName.value=GN;
+}else if (document.PF.name_auth_attr.value=="2"){
+	document.PF.name_authority.value="LCNAF";
+	document.PF.pLastName.value=LN;
+	document.PF.pGivenName.value=GN;
+}else if (document.PF.name_auth_attr.value=="3"){
+	document.PF.name_authority.value="ULAN";
+	document.PF.pLastName.value=LN;
+	document.PF.pGivenName.value=GN;
+}else if (document.PF.name_auth_attr.value=="4"){
+	document.PF.name_authority.value="";
+	document.PF.pLastName.value="unknown";
+	document.PF.pGivenName.value="";
+}else if (document.PF.name_auth_attr.value=="5"){
+	document.PF.name_authority.value="";
+	document.PF.pLastName.value="anonymous";
+	document.PF.pGivenName.value="";
+}else if (document.PF.name_auth_attr.value=="6"){
+	document.PF.name_authority.value="";
+	document.PF.pLastName.value=LN;
+	//document.PF.pGivenName.value="";
+}else if (document.PF.name_auth_attr.value=="7"){
+	document.PF.name_authority.value="LCNAF";
+	document.PF.pLastName.value=LN;
+	//document.PF.pGivenName.value="";
+}else if (document.PF.name_auth_attr.value=="8"){
+	document.PF.name_authority.value="ULAN";
+	document.PF.pLastName.value=LN;
+	//document.PF.pGivenName.value="";
+}
+
+}//end function name_auth_select(LN,GN)
+
+function name_select_opt(NUM){
+var option_val=0;
+var changeSelect=new String("0");
+var varNameTarget = new String("window.opener.parent.D.document.forms[0].name_authority_01");
+alert("varNameTarget="+varNameTarget);
+
+
+for (i=0;i<document.forms[0].name_auth_attr.length;i++){
+	//alert("varName["+i+"].value="+document.forms[0].name_attr[i].value);
+	//alert("varName["+i+"].selected="+document.forms[0].name_attr[i].selected);
+	
+	if (document.forms[0].name_auth_attr[i].selected){
+		//alert("varName[i].value="+document.forms[0].name_attr[i].value);
+		changeSelect=document.forms[0].name_auth_attr[i].text;
+		if (changeSelect.indexOf("anonymous") > -1) {
+			document.forms[0].pLastName.value="anonymous";
+			document.forms[0].pGivenName.value="";
+		}else if(changeSelect.indexOf("unknown") > -1) {
+			document.forms[0].pLastName.value="unknown";
+			document.forms[0].pGivenName.value="";
+		}
+		//alert("changeSelect="+changeSelect);
+		break;
+		}
+	
+	}
+
+
+		
+var varNameLocalValue = new String();
+    varNameLocalValue = changeSelect;
+alert("varNameLocal.value="+varNameLocalValue);
+
+var varNameTargetValue = new String();
+    //varNameTargetValue = eval(varNameTarget+".value");
+    varNameTargetValue = changeSelect;
+alert("varNameTarget.value="+varNameTargetValue);
+
+alert("Change detected for name_select_opt: "+NUM +"\nchangeSelect="+changeSelect);
+
+changeNameAuthoritySelect=changeSelect;
+}
+
+
+function submit_personal_name(sbox,N){
+//N is 01, 02, 03, etc which one up to 09
+//form this page document.PF
+
+var this_name = new String(sbox.name);
+//alert("sbox.name="+this_name);
+
+var str_creator_number = new String(N);
+    str_creator_number = "0"+str_creator_number;
+var scN = new String(N);
+    scN = "0"+scN;
+//alert("str_creator_number="+str_creator_number);
+
+//if(!confirm("function submit_personal_name("+str_creator_number+")"))return;
+//if (document.forms[0].name_auth_attr[0].selected){}
+if (document.forms[0].name_authority.value == "") {
+	if(!confirm("Please note: \nYou have NOT selected any name attributes from the drop down list. \nDo you wish to continue?")) return;
+	}
+
+var sall = new String();
+var s0 = new String();
+    s0 = 'window.opener.parent.D.document.forms[0].creator_exist_'+scN+'.value= "yes";';
+//eval(s0);
+var s00= new String();
+    s00= 'window.opener.parent.D.document.forms[0].chosen_name_type_'+scN+'.value= "'+nameLabel+'";';
+
+var s1 = new String();
+    s1 = 'window.opener.parent.D.document.forms[0].name_type_'+scN+'.value= "'+document.PF.name_type.value+'";';
+
+//eval(s1);
+
+var s2 = new String();
+    s2 = 'window.opener.parent.D.document.forms[0].name_authority_'+scN+'.value= document.PF.name_authority.value;';
+//eval(s2);
+
+
+var s3 = new String();
+    s3 = 'window.opener.parent.D.document.forms[0].namepart_family_'+scN+'.value= document.PF.pNamePartFamily.value;';
+//eval(s3);
+
+var s4 = new String();
+    s4 = 'window.opener.parent.D.document.forms[0].creator_lastname_'+scN+'.value= document.PF.pLastName.value;';
+//eval(s4)
+
+var s5 = new String();
+    s5 = 'window.opener.parent.D.document.forms[0].namepart_given_'+scN+'.value= document.PF.pNamePartGiven.value;';
+//eval(s5);
+
+var s6 = new String();
+    s6 = 'window.opener.parent.D.document.forms[0].creator_givenname_'+scN+'.value= document.PF.pGivenName.value;';
+//eval(s6);
+
+var s7 = new String();
+    s7 = 'window.opener.parent.D.document.forms[0].namepart_date_'+scN+'.value= document.PF.pNamePartDate.value;';
+//eval(s7);
+
+var s8 = new String();
+    s8 = 'window.opener.parent.D.document.forms[0].creator_fulldatestr_'+scN+'.value= document.PF.creator_fd.value;';
+//eval(s8);
+
+var s9 = new String();
+    s9 = 'window.opener.parent.D.document.forms[0].creator_description_'+scN+'.value= document.PF.pNameDescription.value;';
+//eval(s9)
+
+var s10 = new String();
+    s10 = 'window.opener.parent.D.document.forms[0].creator_rolea_auth_'+scN+'.value= document.PF.pRolea_auth.value;';
+//eval(s10);
+
+var s11 = new String();
+    s11 = 'window.opener.parent.D.document.forms[0].creator_rolea_'+scN+'.value= document.PF.pRolea.value;';
+//eval(s11);
+
+var s12 = new String();
+    s12 = 'window.opener.parent.D.document.forms[0].creator_roleb_auth_'+scN+'.value= document.PF.pRoleb_auth.value;';
+//eval(s12);
+
+var s13 = new String();
+    s13 = 'window.opener.parent.D.document.forms[0].creator_roleb_'+scN+'.value= document.PF.pRoleb.value;';
+//eval(s13);
+
+var s14 = new String();
+    s14 = 'window.opener.parent.D.document.forms[0].creator_rolec_auth_'+scN+'.value= document.PF.pRolec_auth.value;';
+//eval(s14);
+
+var s15 = new String();
+    s15 = 'window.opener.parent.D.document.forms[0].creator_rolec_'+scN+'.value= document.PF.pRolec.value;';
+//eval(s15);
+
+sall = s00+s1+s2+s3+s4+s5+s6+s7+s8+s9+s10+s11+s12+s13+s14+s15;
+eval(sall);
+
+//window.close();
+if (this_name.indexOf("2")>-1) {
+	window.close();
+	}
+
+}//end function submit_personal_name(sbox,N)
+
+function cgi_chop(LHREF,varname){
+//L=location.href
+//varname=which cgi var you want
+//should return the value for the varname
+
+var L = new String (LHREF);
+    L = L+"&end";//needed to parse last thing on string
+var s = new String (varname);
+    s = s+"=";
+    //alert("s= >>>"+s+"<<< \ns.length="+s.length);
+var slen = s.length;
+var L2=new String("");
+var L3=new String("");
+var L4=new String("");
+
+if (L.indexOf(s)> -1){
+	i2=L.indexOf(s)+slen;
+	L2=L.substring(L.indexOf(s));
+	L3=L2.substring(L2.indexOf("&"));
+	i3=L2.indexOf(L3);
+	L4=L2.substring(slen,i3);
+	
+	//alert("L="+L +"\nL2="+L2 +"\nL3="+L3 +"\nL4="+L4);
+	}
+
+
+return (L4);
+}//end function cgi_chop(LHREF,varname)
+
+
+//load_PF load popup form
+function load_PF(){
+var numstr = new String();
+    numstr = cgi_chop(location.href,"N");
+var str_creator_number= new String(numstr);
+
+var fv_creator_lastname = new String();
+    fv_creator_lastname = "window.opener.parent.D.document.DF.creator_lastname_"+str_creator_number+".value";
+    document.PF.pLastName.value=eval(fv_creator_lastname);
+
+var fv_name_authority   = new String();
+    fv_name_authority = "window.opener.parent.D.document.DF.name_authority_"+str_creator_number+".value";
+    document.PF.name_authority.value=eval(fv_name_authority);
+
+
+}//end function load_PF
+
+
+
+</script>
+</HEAD>
+<BODY bgcolor="eeffee" x=green onload="load_PF();" >
+vv_popupNames.htm
+<script language="javascript">
+document.write("<font face=\"arial\" size=\"1\">");
+document.write("window.opener.location.href="+window.opener.location.href+"<br>");
+document.write("location.href="+location.href+"</font>");
+var LHREF= new String(location.href);
+
+var jjstr = new String(cgi_chop(location.href,"sType"));
+var jj = new Number(jjstr);
+var nameLabel= new String();
+
+if (jj==1) {
+	nameLabel="Personal";
+}else if(jj==2){
+	nameLabel="Complex Personal";
+}else{
+	nameLabel="Corporate";
+}
+
+
+
+var numstr = new String();
+    numstr = cgi_chop(location.href,"N");
+var str_creator_number= new String(numstr);
+//alert("str_creator_number="+str_creator_number);
+
+
+
+document.write("<br>str_creator_number="+str_creator_number);
+
+var numstr = new String();
+    numstr = cgi_chop(location.href,"N");
+var sN = new String();
+    sN = cgi_chop(location.href,"N");
+
+var name_exist = new String("creator_exist_");
+    name_exist = name_exist + numstr ;
+
+document.write("<br><font face=\"arial\" size=\"3\">Create "+nameLabel+" Name for Creator # "+str_creator_number+" </font>");
+document.write("<hr><form name=\"PF\">"); //popup form
+document.write("<hr align=\"left\" height=\"40\" width=\"600\" color=\"a00000\">");
+document.write("<table border=\"10\" cellpadding=\"0\" cellspacing=\"0\">");
+	document.write("<tr class=\"bgstandard\"><td class=\"label13nou\">Name Exist:</td><td><input type=\"text\" size=\"3\" name=\"creator_exist\" value=\"yes\"> name_exist="+name_exist+" name_type="+nameLabel+"</td>"); 
+document.write("</td></tr></table><p>");
+document.write("<table border=\"1\" cellpadding=\"0\" cellspacing=\"0\">");
+
+var LastNameFromUpper=new String();//cgi_chop(LHREF,'sCLN'));
+var LNFD = new String();
+    LNFD ='LNFD=window.opener.parent.D.document.forms[0].creator_lastname_'+sN+'.value;';
+    LNFD ='window.opener.parent.U.document.forms[0].creator_lastname_'+sN+'.value;';
+alert("LNFD=\n"+LNFD);
+var eval_LNFD= new String();
+    eval_LNFD= eval(LNFD);
+
+var GivenNameFromUpper=new String();//cgi_chop(LHREF,'sCGN'));
+var GNFD = new String();
+    GNFD = 'GNFD=window.opener.parent.D.document.forms[0].creator_givenname_'+sN+'.value;';
+var eval_GNFD= new String(eval(GNFD));
+
+LastNameFromUpper=eval_LNFD;
+GivenNameFromUpper=eval_GNFD;
+var selectRoleTerm = new String();
+    selectRoleTerm = '<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ddeeff">\r\n'
+        +'<tr><td class="label13nou">\r\n'
+        +'Select Up to 3 Role Terms: \r\n'
+        +'</td></tr><tr><td>  \r\n'
+        +'<select name="aaa" size="20" multiple onblur="getRoleTerm()"> \r\n'
+        +window.opener.parent.L.getSelectList(window.opener.parent.L.aRole,-1)
+        +'</select> \r\n'
+        +'<input type="button" name="bdummy" value="click to enter roleTerm(s)">'
+        +'</td></tr></table> \r\n'
+        +'<font face="arial" size="1">'        +'To select more than one Role Term, hold down the <b>CNTL</b> button while you click on terms.<br> \r\n'        +'Complete Role Descriptions available from: '
+        +'</font><font face="arial" size="2">'        +'<br><a href="http://www.loc.gov/marc/sourcecode/relator/relatorlist.html" target="blank">MARK Relatorlist</a>. \r\n'
+        +'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+        ;
+
+if (jj<3){
+//PERSONAL(1) COMPLEX PERSONAL(2)
+//name_type_01
+//name_authority_01
+var sAuth2 = new String();
+    sAuth2 = 'window.opener.parent.D.document.forms[0].name_authority_'+sN+'.value';
+
+	document.write('<tr class="bgstandard"><td class="label13nou">Personal Name Attributes:&nbsp;&nbsp;</td><td class="label13nou"><select name="name_auth_attr" size="6" onchange="name_auth_select(LastNameFromUpper,GivenNameFromUpper)">'
+	+'\n	<option value="0" selected>none selected</option>'
+ 	+'\n	<option value="1">personal name, no name authority</option>'
+	+'\n	<option value="2">personal name, authority=LCNAF</option>'
+	+'\n	<option value="3">personal name, authority=ULAN</option>'
+	+'\n	<option value="4">unknown, no name authority</option>'
+	+'\n	<option value="5">anonymous, no name authority</option>'
+	+'\n </select><br>'
+	+'<font face="arial" size="1">name type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name authority<br>'
+	+'<input type="text" size="6" value="personal" name="name_type">&nbsp;&nbsp;'
+	+'<input type="text" size="6" value="'+eval(sAuth2)+'" name="name_authority">&nbsp;&nbsp;<br>('+nameLabel+')'
+	+'</td>');
+
+document.write("<td rowspan=\"11\" valign=\"bottom\" class='label13nou'>");
+var select_id= new String("xxx");
+document.write(selectRoleTerm);
+/*
+ document.write(
+	 '<font color="eeffee">vv_functions.htm called by '+select_id+' </font>\r\n'
+	+'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ddeeff">\r\n'
+	+'<tr><td class="label13nou">\r\n'
+	+'Select Up to 3 Role Terms: \r\n'
+	+'</td></tr><tr><td>  \r\n'
+	+'<select name="aaa" size="20" multiple onblur="getRoleTerm()"> \r\n'
+	+window.opener.parent.L.getSelectList(window.opener.parent.L.aRole,-1)
+	+'</select> \r\n'
+	+'<input type="button" name="bdummy" value="click to enter roleTerm(s)">'
+	+'</td></tr></table> \r\n'
+	+'<font face="arial" size="1">'
+	+'To select more than one Role Term, hold down the <b>CNTL</b> button while you click on terms.<br> \r\n'
+	+'Complete Role Descriptions available from: '
+	+'</font><font face="arial" size="2">'
+	+'<br><a href="http://www.loc.gov/marc/sourcecode/relator/relatorlist.html" target="blank">MARK Relatorlist</a>. \r\n'
+	+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+*/
+document.write("</td></tr>");
+	
+if (jj==1){//PERSONAL
+var npF = new String();
+    npF = 'npF=window.opener.parent.D.document.forms[0].namepart_family_'+sN+'.value';
+var eval_npF=new String(eval(npF));
+
+	document.write("<tr class=\"bgstandard\"><td class=\"label13nou\">Last Name:</td><td class=\"label13nou\"><font fact=\"arial\" size=\"1\"> namePart type &nbsp;&nbsp;&nbsp; namePart value<br><input type=\"text\" size=\"6\" name=\"pNamePartFamily\" value=\"family\">&nbsp;&nbsp;&nbsp;&nbsp;<input type=\"text\" size=\"30\" name=\"pLastName\" value=\" "+LastNameFromUpper+" \"></td></tr>"); 
+
+var npG = new String();
+    npG = 'npG=window.opener.parent.D.document.forms[0].namepart_given_'+sN+'.value';
+var eval_npG=new String(eval(npG));
+	document.write("<tr class=\"bgstandard\"><td class=\"label13nou\">Given Name:</td><td class=\"label13nou\"><font fact=\"arial\" size=\"1\"> namePart type &nbsp;&nbsp;&nbsp; namePart value<br><input type=\"text\" size=\"6\" name=\"pNamePartGiven\" value=\"given\">&nbsp;&nbsp;&nbsp;&nbsp;<input type=\"text\" size=\"30\" name=\"pGivenName\" value=\" "+GivenNameFromUpper+" \"></td></tr>"); 
+}
+
+else if(jj==2){//COMPLEX PERSONAL
+var npF = new String();
+    npF = 'npF=window.opener.parent.D.document.forms[0].namepart_family_'+sN+'.value';
+var eval_npF=new String(eval(npF));
+
+	document.write("<tr class=\"bgstandard\"><td class=\"label13nou\">Complex Personal Name:</td><td class=\"label13nou\"><font fact=\"arial\" size=\"1\"> namePart type &nbsp;&nbsp;&nbsp; namePart value<br><input type=\"text\" size=\"6\" name=\"pNamePartFamily\" value=\"none\">&nbsp;&nbsp;&nbsp;&nbsp;<input type=\"text\" size=\"30\" name=\"pLastName\" value=\" "+LastNameFromUpper+" \"></td></tr>"); 
+
+	//document.write("<input type=\"hidden\" name=\"pNamePartFamily\" value=\"\">");
+	document.write("<input type=\"hidden\" name=\"pGivenName\" value=\"no given name for complex personal name\">");
+	document.write("<input type=\"hidden\" name=\"pNamePartGiven\" value=\"\">");
+
+}
+
+}//end if (jj<3)
+
+else if (jj==3){//CORPORATE NAME
+//name_type_01
+//name_authority_01
+var sAuth2 = new String();
+    sAuth2 = 'window.opener.parent.D.document.forms[0].name_authority_'+sN+'.value';
+
+	document.write('<tr class="bgstandard"><td class="label13nou">Corporate Name Attributes:&nbsp;&nbsp;</td><td class="label13nou"><select name="name_auth_attr" size="4" onchange="name_auth_select(LastNameFromUpper,GivenNameFromUpper)">'
+	+'\n	<option value="0" selected>none selected</option>'
+ 	+'\n	<option value="6">corporate name, no name authority</option>'
+	+'\n	<option value="7">corporate name, authority=LCNAF</option>'
+	+'\n	<option value="8">corporate name, authority=ULAN</option>'
+	+'\n </select><br>'
+	+'<font face="arial" size="1">name type&nbsp;&nbsp;&nbsp;&nbsp;name authority<br>'
+	+'<input type="text" size="6" value="corporate" name="name_type">&nbsp;&nbsp;'
+	+'<input type="text" size="6" value="'+eval(sAuth2)+'" name="name_authority">&nbsp;&nbsp;<br>('+nameLabel+')'
+	+'</td>');
+
+document.write("<td rowspan=\"12\" valign=\"bottom\" xbgcolor='ffffaa'>");
+var select_id= new String("xxx");
+document.write(selectRoleTerm);
+/*
+ document.write(
+	 '<font color="eeffee">vv_functions.htm called by '+select_id+' </font>\r\n'
+	+'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ddeeff">\r\n'
+	+'<tr><td>\r\n'
+	+'<b>Select Up to 3 Role Terms: </b> \r\n'
+	+'</td></tr><tr><td>  \r\n'
+	+'<select name="aaa" size="20" multiple onblur="getRoleTerm()"> \r\n'
+	+window.opener.parent.L.getSelectList(window.opener.parent.L.aRole,-1)
+	+'</select> \r\n'
+	+'</td></tr></table> \r\n'
+	+'<p>&nbsp;&nbsp;To select more than one Role Term, <br>&nbsp;&nbsp;hold down the <b>CNTL</b> button while you click on terms.<p> \r\n'
+	+'&nbsp;&nbsp;Complete Role Descriptions from <a href="http://www.loc.gov/marc/sourcecode/relator/relatorlist.html" target="blank">MARK Relatorlist</a>.<p> \r\n'
+	+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+*/
+document.write("</td></tr>");
+var npF = new String();
+    npF = 'npF=window.opener.parent.D.document.forms[0].namepart_family_'+sN+'.value';
+var eval_npF=new String(eval(npF));
+
+	document.write("<tr class=\"bgstandard\"><td class=\"label13nou\">Corporate Name:</td><td class=\"label13nou\"><font fact=\"arial\" size=\"1\"> namePart type &nbsp;&nbsp;&nbsp; namePart value<br><input type=\"text\" size=\"6\" name=\"pNamePartFamily\" value=\"none\">&nbsp;&nbsp;&nbsp;&nbsp;<input type=\"text\" size=\"30\" name=\"pLastName\" value=\" "+LastNameFromUpper+" \"></td></tr>"); 
+	//document.write("<input type=\"hidden\" name=\"pNamePartFamily\" value=\"\">");
+	document.write("<input type=\"hidden\" name=\"pGivenName\" value=\"no given name for corporate name\">");
+	document.write("<input type=\"hidden\" name=\"pNamePartGiven\" value=\"\">");
+
+}//end if (jj==3)
+
+
+
+var npD = new String();
+    npD = 'npD=window.opener.parent.D.document.forms[0].namepart_date_'+sN+'.value;';
+var eval_npD=new String(eval(npD));
+
+
+//var pFD = cgi_chop(location.href,'sFD');
+var pFD = new String();
+    pFD = 'pFD=window.opener.parent.D.document.forms[0].creator_fulldatestr_'+sN+'.value';
+    eval_pFD = new String(eval(pFD));
+
+	document.write("<tr class=\"bgstandard\"><td class=\"label13nou\">Vital Dates:</td><td class=\"label13nou\"><font fact=\"arial\" size=\"1\"> namePart type &nbsp;&nbsp;&nbsp; namePart value<br><input type=\"text\" size=\"6\" name=\"pNamePartDate\" value=\"date\">&nbsp;&nbsp;&nbsp;&nbsp;<input type=\"text\" size=\"30\" name=\"creator_fd\" value=\" "+eval_pFD+" \"></td></tr>"); 
+
+
+
+document.write('<tr class="bgstandard"   xbgcolor="bb8844">'
+	+'<td class="label13nou">Revise Dates:</td>'
+	+'<td valign="top">'
+	+'<table border="00" cellpadding="0" cellspacing="0"><tr><td>'
+	+'<font face="arial" size="1">Year of  Birth<br>'
+	+'<input type="text" size="4" name="YOB" value="" '
+	+'class="notrequirednw" onblur="checkDate_for_popupNames(this)">'
+	+'&nbsp;&nbsp;&nbsp;&nbsp;'
+	+'</td><td>'
+	+'<font face="arial" size="1">Year of  Death<br>'
+	+'<input type="text" size="4" name="YOD" value="" '
+	+'class="notrequirednw" onblur="checkDate_for_popupNames(this)">'
+	+'</td>'
+	+'<td colspan="1">&nbsp;&nbsp;<input type="button" name="Ybutton" value="revise date(s)" '
+	+'onclick="enterDate_for_popupNames()" class="button120w">'
+	+'</td></tr></table>'
+	+' </td> </tr>'
+	);
+
+
+
+/**/
+//var pND = cgi_chop(location.href,'sND');
+var pND = new String();
+    pND ='pND=window.opener.parent.D.document.forms[0].creator_description_'+sN+'.value;';
+var eval_pND=new String(eval(pND));
+document.write('<tr class="bgstandard"   xbgcolor="bb8844">'
+	+'<td class="label13nou">Name Description:</td>'
+	+'<td><input type=\"text\" size=\"30\" name=\"pNameDescription\" value=\"'+eval_pND+'\" xonfocus="cgi_chop(location.href,\'sND\')"></td></tr>'); 
+
+/**/
+
+//var pNRa = cgi_chop(location.href,'sNRa');
+//var pNRaa = cgi_chop(location.href,'sNRaa');
+var pNRa = new String();
+    pNRa ='pNRa=window.opener.parent.D.document.forms[0].creator_rolea_'+sN+'.value;';
+var eval_pNRa = new String(eval(pNRa));
+var pNRaa = new String();
+    pNRaa ='pNRaa=window.opener.parent.D.document.forms[0].creator_rolea_auth_'+sN+'.value;';
+var eval_pNRaa = new String(eval(pNRaa));
+
+document.write('<tr class="bgstandard"   xbgcolor="bb8844">'
+	+'<td class="label13nou">RoleTerm (a):</td>'
+	+'<td class="label13nou"><font face="arial" size="1"> roleTerm authority / '
+	+'roleTerm description</font><br>'
+	+'<input type=\"text\" size=\"7\" name=\"pRolea_auth\" value=\"'+eval_pNRaa+'\" >&nbsp;<input type=\"text\" size=\"30\" name=\"pRolea\" value=\"'+eval_pNRa+'\" onfocus="cgi_chop(location.href,\'sNRa\')"><!--input type="button" name="Bcreator_role_01" value="Select" class="button80w" onclick="window.opener.parent.L.selectOneOption(this,\'400\',\'600\')"--></td></tr>'); 
+
+//var pNRb = cgi_chop(location.href,'sNRb');
+//var pNRba = cgi_chop(location.href,'sNRba');
+var pNRb = new String();
+    pNRb ='pNRb=window.opener.parent.D.document.forms[0].creator_roleb_'+sN+'.value;';
+var eval_pNRb = new String(eval(pNRb));
+var pNRba = new String();
+    pNRba ='pNRba=window.opener.parent.D.document.forms[0].creator_roleb_auth_'+sN+'.value;';
+var eval_pNRba = new String(eval(pNRba));
+document.write('<tr class="bgstandard"   xbgcolor="bb8844">'
+	+'<td class="label13nou">RoleTerm (b):</td>'
+	+'<td><input type=\"text\" size=\"7\" name=\"pRoleb_auth\" value=\"'+eval_pNRba+'\" >&nbsp;<input type=\"text\" size=\"30\" name=\"pRoleb\" value=\"'+eval_pNRb+'\" xonfocus="cgi_chop(location.href,\'sNRa\')"></td></tr>'); 
+
+//var pNRc = cgi_chop(location.href,'sNRc');
+//var pNRca = cgi_chop(location.href,'sNRca');
+var pNRc = new String();
+    pNRc ='pNRc=window.opener.parent.D.document.forms[0].creator_rolec_'+sN+'.value;';
+var eval_pNRc = new String(eval(pNRc));
+var pNRca = new String();
+    pNRca ='pNRca=window.opener.parent.D.document.forms[0].creator_rolec_auth_'+sN+'.value;';
+var eval_pNRca = new String(eval(pNRca));
+/*
+document.write('<tr class="bgstandard"   xbgcolor="bb8844">'
+	+'<td class="label13nou">RoleTerm (c):</td>'
+	+'<td><input type=\"text\" size=\"7\" name=\"pRolec_auth\" value=\"'+eval_pNRca+'\" >&nbsp;<input type=\"text\" size=\"30\" name=\"pRolec\" value=\"'+eval_pNRc+'\" xonfocus="cgi_chop(location.href,\'sNRc\')"></td></tr>'); 
+*/
+
+document.write('<tr class="bgstandard"   xbgcolor="bb8844">'
+	+'<td class="label13nou">RoleTerm (c):</td>'
+	+'<td><input type=\"text\" size=\"7\" name=\"pRolec_auth\" value=\"'+eval_pNRca+'\" >&nbsp;<input type=\"text\" size=\"30\" name=\"pRolec\" value=\"'+eval_pNRc+'\" xonfocus="cgi_chop(location.href,\'sNRc\')"></td>'); 
+
+
+
+document.write("<tr class=\"bgstandard\"><td colspan=\"2\" align=\"center\">");
+document.write("<input type=\"button\" name=\"bpersonalbot\" onclick=\"submit_personal_name(this,"+str_creator_number+")\" value=\"submit name\" class=\"button120w\">");
+document.write("<input type=\"button\" name=\"bpersonalbot2\" onclick=\"submit_personal_name(this,"+str_creator_number+")\" value=\"submit and close\" class=\"button200w\">");
+document.write("<input type=\"button\" name=\"wclose\" value=\"close this window\" onclick=\"javascript:window.close()\" class=\"button120w\">");
+/*
+document.write("<input type=\"button\" name=\"bpersonalbot\" onclick=\"submit_personal_name(this,"+str_creator_number+")\" value=\"submit "+nameLabel +" name\" class=\"button200w\">");
+document.write("<br><input type=\"button\" name=\"bpersonalbot2\" onclick=\"submit_personal_name(this,"+str_creator_number+")\" value=\"submit "+nameLabel +" name and close\" class=\"button240w\">");
+document.write("<br><input type=\"button\" name=\"wclose\" value=\"close this window\" onclick=\"javascript:window.close()\" class=\"button200w\">");
+*/
+document.write("</td></tr>");
+
+document.write("</table>");
+document.write("</form>");
+
+
+//}//end if jj==1
+
+
+
+formvardebug();
+
+
+
+
+</script>
+<hr>
+</BODY>
+</html>
+
+
+

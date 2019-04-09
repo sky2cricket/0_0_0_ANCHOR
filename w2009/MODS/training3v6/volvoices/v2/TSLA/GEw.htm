@@ -1,0 +1,348 @@
+<html>
+<head>
+<title>vv_popupGE</title>
+
+<link href="../vv_workbook.css" type="text/css" rel="stylesheet">
+<script language=javascript src="../vv_functions_tsla.js"></script>
+
+
+
+
+<script language="javascript">
+
+var select_id= new String();
+function get_select_id() {
+
+var str = new String();
+    str = parent.location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  parent.window.opener.location.href="+parent.window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=get_select_id();
+
+
+
+var strSelect_GE_A = new String('');
+
+strSelect_GE_A = '<select name="aaa"  size="24" style="font-size:10px"> \r\n'
+	+'<option  selected>No Value Selected</option> \r\n'	
+
+
+
+
+
+
+
+
+	+'<option>WALDEN RIDGE (TENN.)</option>  \r\n'
+	+'<option>WALDEN RIDGE (TENN.) - HISTORY</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.)</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - CENSUS, 1820</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - CENSUS, 1830</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - CENSUS, 1840</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - CENSUS, 1850</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - CENSUS, 1860</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - CENSUS, 1870</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - CENSUS, 1910</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - CHURCH HISTORY - SOURCES</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - GENEALOGY - PERIODICALS</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - HISTORY - PERIODICALS</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - LAND RECORDS</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - PICTORIAL WORKS</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>WARREN COUNTY (TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+	+'<option>WARRIORS PATH STATE PARK (TENN.)</option>  \r\n'
+	+'<option>WARTBURG (TENN.) - HISTORY</option>  \r\n'
+	+'<option>WARTBURG (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>WARTRACE (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>WARTRACE (TENN.) - HISTORY, LOCAL</option>  \r\n'
+	+'<option>WARTRACE (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>WASHINGTON COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>WASHINGTON COUNTY (TENN.) - CENSUS, 1830</option>  \r\n'
+	+'<option>WASHINGTON COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>WASHINGTON COUNTY (TENN.) - CHURCHES</option>  \r\n'
+	+'<option>WASHINGTON COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>WASHINGTON COUNTY (TENN.) - GENEALOGY - INDEXES</option>  \r\n'
+	+'<option>WASHINGTON COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>WASHINGTON COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>WASHINGTON COUNTY (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>WASHINGTON COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>WASHINGTON COUNTY (TENN.) - PHOTOGRAPHS</option>  \r\n'
+	+'<option>WASHINGTON COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>WATAUGA LAKE REGION (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>WATAUGA LAKE REGION (TENN.) - HISTORY</option>  \r\n'
+	+'<option>WATAUGA RESERVOIR REGION (TENN.) - POETRY</option>  \r\n'
+	+'<option>WATAUGA RIVER (N.C. AND TENN.) - MAPS</option>  \r\n'
+	+'<option>WATERTOWN (TENN.) - HISTORY</option>  \r\n'
+	+'<option>WATERTOWN (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>WATTS BAR DAM (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>WATTS BAR RESERVOIR (TENN.)</option>  \r\n'
+	+'<option>WATTS BAR RESERVOIR (TENN.) - STATISTICS</option>  \r\n'
+	+'<option>WAVERLY (TENN.)</option>  \r\n'
+	+'<option>WAVERLY (TENN.) - COMMERCE - HISTORY - 20TH CENTURY - SOURCES</option>  \r\n'
+	+'<option>WAVERLY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>WAVERLY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>WAYNE COUNTY (TENN.)</option>  \r\n'
+	+'<option>WAYNE COUNTY (TENN.) - ANTIQUITIES</option>  \r\n'
+        +'<option>WAYNE COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+        +'<option>WAYNE COUNTY (TENN.) - CENSUS</option>  \r\n'
+        +'<option>WAYNE COUNTY (TENN.) - CENSUS, 1820</option>  \r\n'
+        +'<option>WAYNE COUNTY (TENN.) - CENSUS, 1850</option>  \r\n'
+        +'<option>WAYNE COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+        +'<option>WAYNE COUNTY (TENN.) - CENSUS, 1891</option>  \r\n'
+        +'<option>WAYNE COUNTY (TENN.) - CENSUS, 1910</option>  \r\n'
+        +'<option>WAYNE COUNTY (TENN.) - CENSUS, 1920</option>  \r\n'
+        +'<option>WAYNE COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+        +'<option>WAYNE COUNTY (TENN.) - GENEALOGY - PERIODICALS</option>  \r\n'
+        +'<option>WAYNE COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+        +'<option>WAYNE COUNTY (TENN.) - HISTORY</option>  \r\n'
+        +'<option>WAYNE COUNTY (TENN.) - HISTORY - PERIODICALS</option>  \r\n'
+        +'<option>WAYNE COUNTY (TENN.) - HISTORY - SOURCES</option>  \r\n'
+        +'<option>WAYNE COUNTY (TENN.) - MAPS</option>  \r\n'
+        +'<option>WAYNE COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+        +'<option>WAYNE COUNTY (TENN.) - PLANNING</option>  \r\n'
+        +'<option>WAYNE COUNTY (TENN.) - POLITICS AND GOVERNMENT</option>  \r\n'
+        +'<option>WAYNE COUNTY (TENN.) - RURAL CONDITIONS</option>  \r\n'
+        +'<option>WAYNESBORO (TENN.) - NEWSPAPERS</option>  \r\n'
+        +'<option>WEAKLEY COUNTY (TENN.)</option>  \r\n'
+        +'<option>WEAKLEY COUNTY (TENN.) - ANTIQUITIES</option>  \r\n'
+        +'<option>WEAKLEY COUNTY (TENN.) - ARCHIVAL RESOURCES - CATALOGS</option>  \r\n'
+        +'<option>WEAKLEY COUNTY (TENN.) - CENSUS, 1850</option>  \r\n'
+        +'<option>WEAKLEY COUNTY (TENN.) - CENSUS, 1860</option>  \r\n'
+        +'<option>WEAKLEY COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+        +'<option>WEAKLEY COUNTY (TENN.) - CHARTERS</option>  \r\n'
+        +'<option>WEAKLEY COUNTY (TENN.) - ECONOMIC POLICY</option>  \r\n'
+        +'<option>WEAKLEY COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+        +'<option>WEAKLEY COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+        +'<option>WEAKLEY COUNTY (TENN.) - HISTORY</option>  \r\n'
+        +'<option>WEAKLEY COUNTY (TENN.) - HISTORY - SOURCES</option>  \r\n'
+        +'<option>WEAKLEY COUNTY (TENN.) - HISTORY, MILITARY</option>  \r\n'
+        +'<option>WEAKLEY COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+        +'<option>WEAKLEY COUNTY (TENN.) - PLANNING</option>  \r\n'
+        +'<option>WEDGEWOOD (NASHVILLE, TENN.) - BIOGRAPHY</option>  \r\n'
+        +'<option>WEDGEWOOD (NASHVILLE, TENN.) - HISTORY</option>  \r\n'
+        +'<option>WESSYNGTON (CEDAR HILL, TENN.)</option>  \r\n'
+        +'<option>WEST NASHVILLE (NASHVILLE, TENN.) - BIOGRAPHY</option>  \r\n'
+        +'<option>WEST NASHVILLE (NASHVILLE, TENN.) - DIRECTORIES</option>  \r\n'
+        +'<option>WEST NASHVILLE (NASHVILLE, TENN.) - HISTORY</option>  \r\n'
+        +'<option>WEST WILSON COUNTY (TENN.) - MAPS</option>  \r\n'
+        +'<option>WESTMORELAND (TENN.) - NEWSPAPERS</option>  \r\n'
+        +'<option>WESTPOINT (TENN.)</option>  \r\n'
+        +'<option>WESTPOINT (TENN.) - GENEALOGY</option>  \r\n'
+        +'<option>WESTPOINT (TENN.) - HISTORY</option>  \r\n'
+        +'<option>WHITE (TENN.) - NEWSPAPERS</option>  \r\n'
+        +'<option>WHITE BLUFF (TENN.) - HISTORY</option>  \r\n'
+        +'<option>WHITE BLUFF (TENN.) - NEWSPAPERS</option>  \r\n'
+        +'<option>WHITE COUNTY (TENN.)</option>  \r\n'
+        +'<option>WHITE COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+        +'<option>WHITE COUNTY (TENN.) - CENSUS, 1820</option>  \r\n'
+        +'<option>WHITE COUNTY (TENN.) - CENSUS, 1850</option>  \r\n'
+        +'<option>WHITE COUNTY (TENN.) - CENSUS, 1870</option>  \r\n'
+        +'<option>WHITE COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+        +'<option>WHITE COUNTY (TENN.) - CHURCH HISTORY</option>  \r\n'
+        +'<option>WHITE COUNTY (TENN.) - CHURCH HISTORY - SOURCES</option>  \r\n'
+        +'<option>WHITE COUNTY (TENN.) - DIRECTORIES</option>  \r\n'
+        +'<option>WHITE COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+        +'<option>WHITE COUNTY (TENN.) - GENEALOGY - PERIODICALS</option>  \r\n'
+        +'<option>WHITE COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+        +'<option>WHITE COUNTY (TENN.) - HISTORY</option>  \r\n'
+        +'<option>WHITE COUNTY (TENN.) - HISTORY - PERIODICALS</option>  \r\n'
+        +'<option>WHITE COUNTY (TENN.) - HISTORY - SOURCES</option>  \r\n'
+        +'<option>WHITE COUNTY (TENN.) - MAPS</option>  \r\n'
+        +'<option>WHITE COUNTY (TENN.) - MAPS, MANUSCRIPT</option>  \r\n'
+        +'<option>WHITE COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+        +'<option>WHITE COUNTY (TENN.) - PLANNING</option>  \r\n'
+        +'<option>WHITE COUNTY (TENN.) - SOCIAL LIFE AND CUSTOMS - 19TH CENTURY</option>  \r\n'
+        +'<option>WHITE HOUSE (TENN.) - HISTORY</option>  \r\n'
+        +'<option>WHITE HOUSE (TENN.) - NEWSPAPERS</option>  \r\n'
+        +'<option>WHITE LAKE (TENN.)</option>  \r\n'
+        +'<option>WHITE OAK (TENN.) - NEWSPAPERS</option>  \r\n'
+        +'<option>WHITE PINE (TENN.) - HISTORY</option>  \r\n'
+        +'<option>WHITEHAVEN (TENN.) - HISTORY</option>  \r\n'
+        +'<option>WHITEHAVEN (TENN.) - NEWSPAPERS</option>  \r\n'
+        +'<option>WHITES CREEK (TENN.) - CHURCH HISTORY</option>  \r\n'
+        +'<option>WHITESBURG (TENN.) - NEWSPAPERS</option>  \r\n'
+        +'<option>WHITWELL (TENN.) - CHURCH HISTORY</option>  \r\n'
+        +'<option>WHITWELL (TENN.) - HISTORY</option>  \r\n'
+        +'<option>WHITWELL (TENN.) - PHOTOGRAPHS</option>  \r\n'
+        +'<option>WILLIAMSON COUNTY (TENN.)</option>  \r\n'
+        +'<option>WILLIAMSON COUNTY (TENN.) - ANTIQUITIES</option>  \r\n'
+        +'<option>WILLIAMSON COUNTY (TENN.) - BIBLIOGRAPHY</option>  \r\n'
+        +'<option>WILLIAMSON COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+        +'<option>WILLIAMSON COUNTY (TENN.) - CENSUS, 1820</option>  \r\n'
+        +'<option>WILLIAMSON COUNTY (TENN.) - CENSUS, 1830</option>  \r\n'
+        +'<option>WILLIAMSON COUNTY (TENN.) - CENSUS, 1840</option>  \r\n'
+        +'<option>WILLIAMSON COUNTY (TENN.) - CENSUS, 1850</option>  \r\n'
+        +'<option>WILLIAMSON COUNTY (TENN.) - CENSUS, 1860</option>  \r\n'
+        +'<option>WILLIAMSON COUNTY (TENN.) - CENSUS, 1870</option>  \r\n'
+        +'<option>WILLIAMSON COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+        +'<option>WILLIAMSON COUNTY (TENN.) - CENTENNIAL CELEBRATIONS, ETC.</option>  \r\n'
+        +'<option>WILLIAMSON COUNTY (TENN.) - CHURCH HISTORY - SOURCES</option>  \r\n'
+        +'<option>WILLIAMSON COUNTY (TENN.) - COMMERCE - 19TH CENTURY - SOURCES</option>  \r\n'
+        +'<option>WILLIAMSON COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+        +'<option>WILLIAMSON COUNTY (TENN.) - GENEALOGY - PERIODICALS</option>  \r\n'
+        +'<option>WILLIAMSON COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+        +'<option>WILLIAMSON COUNTY (TENN.) - HISTORY</option>  \r\n'
+        +'<option>WILLIAMSON COUNTY (TENN.) - HISTORY - CALENDARS</option>  \r\n'
+        +'<option>WILLIAMSON COUNTY (TENN.) - HISTORY - CIVIL WAR, 1861-1865 - CALENDARS</option>  \r\n'
+        +'<option>WILLIAMSON COUNTY (TENN.) - HISTORY - CIVIL WAR, 1861-1865 - REGISTERS</option>  \r\n'
+        +'<option>WILLIAMSON COUNTY (TENN.) - HISTORY - INDEXES</option>  \r\n'
+        +'<option>WILLIAMSON COUNTY (TENN.) - HISTORY - PERIODICALS</option>  \r\n'
+        +'<option>WILLIAMSON COUNTY (TENN.) - HISTORY - PICTORIAL WORKS</option>  \r\n'
+        +'<option>WILLIAMSON COUNTY (TENN.) - HISTORY - SOCIETIES, ETC.</option>  \r\n'
+        +'<option>WILLIAMSON COUNTY (TENN.) - HISTORY - SOURCES</option>  \r\n'
+        +'<option>WILLIAMSON COUNTY (TENN.) - HISTORY, LOCAL</option>  \r\n'
+        +'<option>WILLIAMSON COUNTY (TENN.) - MAPS</option>  \r\n'
+        +'<option>WILLIAMSON COUNTY (TENN.) - MISCELLANEA</option>  \r\n'
+        +'<option>WILLIAMSON COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+        +'<option>WILLIAMSON COUNTY (TENN.) - PERIODICALS</option>  \r\n'
+        +'<option>WILLIAMSON COUNTY (TENN.) - PICTORIAL WORKS</option>  \r\n'
+        +'<option>WILLIAMSON COUNTY (TENN.) - PLANNING</option>  \r\n'
+        +'<option>WILLIAMSON COUNTY (TENN.) - PUBLIC WORKS</option>  \r\n'
+        +'<option>WILLIAMSON COUNTY (TENN.) - RACE RELATIONS</option>  \r\n'
+        +'<option>WILLIAMSON COUNTY (TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+        +'<option>WILSON COUNTY (TENN.)</option>  \r\n'
+        +'<option>WILSON COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+        +'<option>WILSON COUNTY (TENN.) - CENSUS, 1820</option>  \r\n'
+        +'<option>WILSON COUNTY (TENN.) - CENSUS, 1840</option>  \r\n'
+        +'<option>WILSON COUNTY (TENN.) - CENSUS, 1850</option>  \r\n'
+        +'<option>WILSON COUNTY (TENN.) - CENSUS, 1860</option>  \r\n'
+        +'<option>WILSON COUNTY (TENN.) - CENSUS, 1870</option>  \r\n'
+        +'<option>WILSON COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+        +'<option>WILSON COUNTY (TENN.) - CENSUS, 1900</option>  \r\n'
+        +'<option>WILSON COUNTY (TENN.) - CENSUS, 1910</option>  \r\n'
+        +'<option>WILSON COUNTY (TENN.) - CENSUS, 1920</option>  \r\n'
+        +'<option>WILSON COUNTY (TENN.) - CENSUS, 1930</option>  \r\n'
+        +'<option>WILSON COUNTY (TENN.) - CHURCH HISTORY</option>  \r\n'
+        +'<option>WILSON COUNTY (TENN.) - CHURCH HISTORY - SOURCES</option>  \r\n'
+        +'<option>WILSON COUNTY (TENN.) - COMMERCE - HISTORY - 19TH CENTURY - SOURCES</option>  \r\n'
+        +'<option>WILSON COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+        +'<option>WILSON COUNTY (TENN.) - GENEALOGY - INDEXES</option>  \r\n'
+        +'<option>WILSON COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+        +'<option>WILSON COUNTY (TENN.) - HISTORY</option>  \r\n'
+        +'<option>WILSON COUNTY (TENN.) - HISTORY - INDEXES</option>  \r\n'
+        +'<option>WILSON COUNTY (TENN.) - HISTORY - PERIODICALS</option>  \r\n'
+        +'<option>WILSON COUNTY (TENN.) - HISTORY - PICTORIAL WORKS</option>  \r\n'
+        +'<option>WILSON COUNTY (TENN.) - HISTORY - REVOLUTION, 1775-1783</option>  \r\n'
+        +'<option>WILSON COUNTY (TENN.) - HISTORY - SOURCES</option>  \r\n'
+        +'<option>WILSON COUNTY (TENN.) - HISTORY, LOCAL - SOURCES</option>  \r\n'
+        +'<option>WILSON COUNTY (TENN.) - MAPS</option>  \r\n'
+        +'<option>WILSON COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+        +'<option>WILSON COUNTY (TENN.) - PLANNING</option>  \r\n'
+        +'<option>WILSON COUNTY (TENN.) - PUBLIC WORKS</option>  \r\n'
+        +'<option>WILSON COUNTY (TENN.) - SOCIAL LIFE AND CUSTOMS - 19TH CENTURY - SOURCES</option>  \r\n'
+        +'<option>WINCHESTER (TENN.) - BUILDINGS, STRUCTURES, ETC.</option>  \r\n'
+        +'<option>WINCHESTER (TENN.) - CHURCH HISTORY</option>  \r\n'
+        +'<option>WINCHESTER (TENN.) - DIRECTORIES</option>  \r\n'
+        +'<option>WINCHESTER (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+        +'<option>WINCHESTER (TENN.) - NEWSPAPERS</option>  \r\n'
+        +'<option>WINCHESTER (TENN.) - STREETS</option>  \r\n'
+        +'<option>WOLF CREEK (TENN.) - HISTORY</option>  \r\n'
+        +'<option>WOLF CREEK (TENN.) - MANUFACTURING</option>  \r\n'
+        +'<option>WONDER CAVE (TENN.) - PHOTOGRAPHS</option>  \r\n'
+        +'<option>WOODBURY (TENN.) - BIOGRAPHY</option>  \r\n'
+        +'<option>WOODBURY (TENN.) - HISTORY</option>  \r\n'
+        +'<option>WOODBURY (TENN.) - NEWSPAPERS</option>  \r\n'
+        +'<option>WOODBURY (TENN.) - PHOTOGRAPHS</option>  \r\n'
+        +'<option>WOODS LAKE (TENN.)</option>  \r\n'
+        +'<option>WYNNEWOOD (CASTALIAN SPRINGS, TENN.)</option>  \r\n'
+
+	+'<option>(NO X, Y, OR Z AVAILABLE)</option>  \r\n'
+
++'</select> \r\n';
+	
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+<body class="background">
+
+
+
+
+<form name="FormOne" >
+
+
+<div name="SS" id="SS">
+<script>
+document.write(
+
+	 '<table border="1" cellpadding="4" cellspacing="0"  width="90%">\r\n'
+	+'<tr><td  bgcolor="ddeeff">\r\n'
+	///+'vv_functions.htm called by '+select_id+' <br>\r\n'
+	+'<b>Select Geographic Subject W-X-Y-Z </b> \r\n'
+	+'</td></tr><tr><td bgcolor="ddeeff"> \r\n' 
+	+ strSelect_GE_A
+
+	+'</td></tr></table> \r\n'
+	///+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+</script>
+	
+</div>
+
+<input type="button" onclick="showSelection();" name="B1" value="Geographic Name">
+
+</form>
+
+<script>
+
+
+
+                  
+
+function showSelection() {
+
+val = new String();
+
+for ( i=0; i< document.FormOne.aaa.length; i++ ) {
+
+if ( document.FormOne.aaa[i].selected == true ) {
+  	val = document.FormOne.aaa[i].text;
+	break;
+	}
+else { val = "you never selected anything"; 
+	}
+
+}
+////////////////////////alert ("You selected " +val);
+val=reformatGeo(val);
+
+switch ( select_id ) {
+
+case  "subject_geographic_lcsh_01" :
+	parent.window.opener.document.forms[0].subject_geographic_lcsh_01.value=val;
+	parent.window.close();
+	break;
+
+case  "subject_geographic_lcsh_02" :
+	parent.window.opener.document.forms[0].subject_geographic_lcsh_02.value=val;
+	parent.window.close();
+	break;
+
+}//end switch
+
+}///end function
+</script>
+

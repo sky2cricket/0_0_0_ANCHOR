@@ -1,0 +1,281 @@
+<html>
+<head>
+<title>vv_popupCA</title>
+
+<link href="../vv_workbook.css" type="text/css" rel="stylesheet">
+
+
+
+
+<script language="javascript">
+
+var select_id= new String();
+function get_select_id() {
+
+var str = new String();
+    str = parent.location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  parent.window.opener.location.href="+parent.window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=get_select_id();
+
+
+
+var strSelect_PN_A = new String('');
+
+
+strSelect_PN_A = '<select name="aaa"  size="24" style="font-size:10px"> \r\n'
+	+'<option value="0" selected>No value selected</option> \r\n'
+		
+
+
+
+
+
+
+
+
+
+	+'<option>VADEN FAMILY</option>  \r\n'
+	+'<option>VAIL FAMILY</option>  \r\n'
+	+'<option>VALENTINE FAMILY</option>  \r\n'
+	+'<option>VALENTINE, EDWARD VIRGINIUS, - 1838-1930</option>  \r\n'
+	+'<option>VALLANDIGHAM, CLEMENT L. - (CLEMENT LAIRD), - 1820-1871</option>  \r\n'
+	+'<option>VALLS FAMILY</option>  \r\n'
+	+'<option>VAN ALEN FAMILY</option>  \r\n'
+	+'<option>VAN ALSTINE FAMILY</option>  \r\n'
+	+'<option>VAN BEEK, STEPHEN DART, - 1961-</option>  \r\n'
+	+'<option>VAN BENSCHOTEN FAMILY</option>  \r\n'
+	+'<option>VAN BUREN, MARTIN, - 1782-1862</option>  \r\n'
+	+'<option>VAN DER GRIFT FAMILY</option>  \r\n'
+	+'<option>VAN DER MARK FAMILY (THOMAS VAN DER MARK, - 1643-1724)</option>  \r\n'
+	+'<option>VAN DER VOORT FAMILY</option>  \r\n'
+	+'<option>VAN DEUSEN FAMILY</option>  \r\n'
+	+'<option>VAN DEVENTER FAMILY</option>  \r\n'
+	+'<option>VAN DOORN FAMILY</option>  \r\n'
+	+'<option>VAN DOREN FAMILY</option>  \r\n'
+	+'<option>VAN DOREN, CARL, - 1885-1950</option>  \r\n'
+	+'<option>VAN DORN, EARL, - 1820-1863</option>  \r\n'
+	+'<option>VAN DYCK, ANTHONY, - SIR, - 1599-1641</option>  \r\n'
+	+'<option>VAN ETTEN FAMILY</option>  \r\n'
+	+'<option>VAN FLEET FAMILY</option>  \r\n'
+	+'<option>VAN HOOK FAMILY</option>  \r\n'
+	+'<option>VAN HOOSE FAMILY</option>  \r\n'
+	+'<option>VAN HOOSER FAMILY</option>  \r\n'
+	+'<option>VAN HORN FAMILY</option>  \r\n'
+	+'<option>VAN HUSS FAMILY</option>  \r\n'
+	+'<option>VAN KIRK FAMILY</option>  \r\n'
+	+'<option>VAN LEER FAMILY</option>  \r\n'
+	+'<option>VAN METER FAMILY</option>  \r\n'
+	+'<option>VAN NESS FAMILY</option>  \r\n'
+	+'<option>VAN NUYS FAMILY</option>  \r\n'
+	+'<option>VAN NUYS, ISSAC, - 1739-1804</option>  \r\n'
+	+'<option>VAN RENSSELAER FAMILY</option>  \r\n'
+	+'<option>VAN SCOYOC FAMILY</option>  \r\n'
+	+'<option>VAN TUYL FAMILY</option>  \r\n'
+	+'<option>VAN VALKENBURGH FAMILY</option>  \r\n'
+	+'<option>VAN VECHTEN, CARL, - 1880-1964</option>  \r\n'
+	+'<option>VAN VRYLING FAMILY</option>  \r\n'
+	+'<option>VAN WINGENE FAMILY</option>  \r\n'
+	+'<option>VAN WINKLE FAMILY</option>  \r\n'
+	+'<option>VAN ZANDT FAMILY</option>  \r\n'
+	+'<option>VANCE FAMILY</option>  \r\n'
+	+'<option>VANCE, CYRUS R. - (CYRUS ROBERTS), - 1917-2002</option>  \r\n'
+	+'<option>VANCE, HIRAM A. - (HIRAM ALBERT), - 1860-1906</option>  \r\n'
+	+'<option>VANCE, NATHAN C.</option>  \r\n'
+	+'<option>VANCE, ZEBULON BAIRD, - 1830-1894</option>  \r\n'
+	+'<option>VANCEL, HUGH, - 1906-</option>  \r\n'
+	+'<option>VANCOUVER, GEORGE, - 1757-1798</option>  \r\n'
+	+'<option>VANDENBERG, ARTHUR H. - (ARTHUR HENDRICK), - 1884-1951</option>  \r\n'
+	+'<option>VANDENBERG, HOYT SANFORD, - 1899-1954</option>  \r\n'
+	+'<option>VANDERBILT FAMILY</option>  \r\n'
+	+'<option>VANDERBILT, CORNELIUS, - 1794-1877</option>  \r\n'
+	+'<option>VANDERBILT, GRACE WILSON, - 1870-1953</option>  \r\n'
+	+'<option>VANDERFORD, CHARLES F.</option>  \r\n'
+	+'<option>VANDERPOOL FAMILY</option>  \r\n'
+	+'<option>VANDERPOOL, JAMES, - 1841-1876</option>  \r\n'
+	+'<option>VANDEVEER FAMILY</option>  \r\n'
+	+'<option>VANDIVER FAMILY</option>  \r\n'
+	+'<option>VANDYBOGURT FAMILY</option>  \r\n'
+	+'<option>VANE, HENRY, - SIR, - 1612?-1662</option>  \r\n'
+	+'<option>VANHUSS FAMILY</option>  \r\n'
+	+'<option>VANLANDINGHAM FAMILY</option>  \r\n'
+	+'<option>VANN FAMILY</option>  \r\n'
+	+'<option>VANN, JAMES, - 1765-1809</option>  \r\n'
+	+'<option>VANNOY FAMILY</option>  \r\n'
+	+'<option>VANON FAMILY</option>  \r\n'
+	+'<option>VARDAMAN, JAMES KIMBLE, - 1861-1930</option>  \r\n'
+	+'<option>VARE, GEORGE AUGUSTUS, - 1859-1908</option>  \r\n'
+	+'<option>VARMUS, HAROLD</option>  \r\n'
+	+'<option>VARNELL FAMILY</option>  \r\n'
+	+'<option>VARNEY, CHRISTINE ANNE, - 1955-</option>  \r\n'
+	+'<option>VARNUM, JAMES M. - (JAMES MITCHELL), - 1748-1789</option>  \r\n'
+	+'<option>VASQUEZ, JUAN F., - 1948-</option>  \r\n'
+	+'<option>VAUDREUIL, PIERRE DE RIGAUD, - MARQUIS DE, - 1698-1778</option>  \r\n'
+	+'<option>VAUGHAN FAMILY</option>  \r\n'
+	+'<option>VAUGHAN, ALFRED JEFFERSON, - 1830-1899</option>  \r\n'
+	+'<option>VAUGHAN, ALFRED JEFFERSON, - 1867-1942</option>  \r\n'
+	+'<option>VAUGHAN, BLOSSOM CHAPLINE, - 1877-1965</option>  \r\n'
+	+'<option>VAUGHAN, HENRY, - 1622-1695</option>  \r\n'
+	+'<option>VAUGHAN, JAMES D.</option>  \r\n'
+	+'<option>VAUGHAN, MARTHA JANE (HARDAWAY) - 1836-1911</option>  \r\n'
+	+'<option>VAUGHAN, RUFFIN, - 1805-1870</option>  \r\n'
+	+'<option>VAUGHN FAMILY</option>  \r\n'
+	+'<option>VAUGHN, EMMA BAXTER</option>  \r\n'
+	+'<option>VAUGHN, JAMES, - D. CA. 1865 OR 6.</option>  \r\n'
+	+'<option>VAUGHN, JOHN CRAWFORD, - 1824-1875</option>  \r\n'
+	+'<option>VAUGHN, ROBERT, - 1856-1924</option>  \r\n'
+	+'<option>VAUGHT FAMILY</option>  \r\n'
+	+'<option>VAUGHT, NATHAN, - 1799-1880</option>  \r\n'
+	+'<option>VAULX FAMILY</option>  \r\n'
+	+'<option>VAULX, JOSEPH, - B. 1835</option>  \r\n'
+	+'<option>VAULX, JOSEPH, - FL. 1809-1865</option>  \r\n'
+	+'<option>VAWTER FAMILY</option>  \r\n'
+	+'<option>VAZQUEZ DE CORONADO, FRANCISCO, - 1510-1549</option>  \r\n'
+	+'<option>VEALE FAMILY</option>  \r\n'
+	+'<option>VEAZEY FAMILY</option>  \r\n'
+	+'<option>VEBLEN, THORSTEIN, - 1857-1929</option>  \r\n'
+	+'<option>VEDDER, ELIHU, - 1836-1923</option>  \r\n'
+	+'<option>VEEDER FAMILY</option>  \r\n'
+	+'<option>VEITCH FAMILY</option>  \r\n'
+	+'<option>VELAZQUEZ, DIEGO, - 1599-1660</option>  \r\n'
+	+'<option>VENABLE, SAM</option>  \r\n'
+	+'<option>VENEMAN, ANN MARGARET, - 1949-</option>  \r\n'
+	+'<option>VERDIER FAMILY</option>  \r\n'
+	+'<option>VERELST, HARMAN</option>  \r\n'
+	+'<option>VERHAEREN, EMILE, - 1855-1916</option>  \r\n'
+	+'<option>VERNEY FAMILY</option>  \r\n'
+	+'<option>VERNON FAMILY</option>  \r\n'
+	+'<option>VERRAN FAMILY</option>  \r\n'
+	+'<option>VERRAZZANO, GIOVANNI DA, - 1485?-1527</option>  \r\n'
+	+'<option>VERREE, JOHN P. - (JOHN PAUL), - 1817-1889</option>  \r\n'
+	+'<option>VESEY, DENMARK, - 1767 (CA.)-1822</option>  \r\n'
+	+'<option>VESPUCCI, AMERIGO, - 1451-1512</option>  \r\n'
+	+'<option>VEST, CHARLES, - D. 1828</option>  \r\n'
+	+'<option>VEST, GEORGE</option>  \r\n'
+	+'<option>VESTAL FAMILY</option>  \r\n'
+	+'<option>VETCH, SAMUEL, - 1668-1732</option>  \r\n'
+	+'<option>VIADERO, ROGER CHARLES, - 1948-</option>  \r\n'
+	+'<option>VICK FAMILY</option>  \r\n'
+	+'<option>VICK, JOSEPH, - CA. 1640-CA. 1702</option>  \r\n'
+	+'<option>VICKERS FAMILY</option>  \r\n'
+	+'<option>VICKERY, RAYMOND EZEKIEL, - 1942-</option>  \r\n'
+	+'<option>VICTOR EMMANUEL - II, - KING OF ITALY, - 1820-1878</option>  \r\n'
+	+'<option>VICTORIA, - QUEEN OF GREAT BRITAIN, - 1819-1901</option>  \r\n'
+	+'<option>VIDAURRI, SANTIAGO, - 1808-1867</option>  \r\n'
+	+'<option>VILLAMIL, JOSE ANTONIO, - 1946-</option>  \r\n'
+	+'<option>VILLARD, HENRY, - 1835-1900</option>  \r\n'
+	+'<option>VILLINES, FRANK</option>  \r\n'
+	+'<option>VILLON, FRANCOIS, - B. 1431</option>  \r\n'
+	+'<option>VINCENT FAMILY</option>  \r\n'
+	+'<option>VINCENT, JOHN HEYL, - BISHOP, - 1832-1920</option>  \r\n'
+	+'<option>VINCENZ, JEAN, - 1894-</option>  \r\n'
+	+'<option>VINEYARD, MARY S. (OWENS) - 1808-1877</option>  \r\n'
+	+'<option>VIRGIL</option>  \r\n'
+	+'<option>VITOVSKY FAMILY</option>  \r\n'
+	+'<option>VITTS FAMILY</option>  \r\n'
+	+'<option>VIVONA, JOSEPH FELICE, - 1951-</option>  \r\n'
+	+'<option>VIVRETT FAMILY</option>  \r\n'
+	+'<option>VIZETELLY, FRANK, - 1830-1883</option>  \r\n'
+	+'<option>VOGEL FAMILY</option>  \r\n'
+	+'<option>VOGEL, MAURICE ALBERT, - 1906-1969</option>  \r\n'
+	+'<option>VOGEL, R. JOHN - (RAYMOND JOHN), - 1940-</option>  \r\n'
+	+'<option>VOGT, CARL W., - 1936-</option>  \r\n'
+	+'<option>VOGTLE FAMILY</option>  \r\n'
+	+'<option>VOLTAIRE, - 1694-1778</option>  \r\n'
+	+'<option>VOLTAIRE, FRANCOIS MARIE AROUET DE</option>  \r\n'
+	+'<option>VOORHEES FAMILY</option>  \r\n'
+	+'<option>VOORHEES, IMOGEN (SOUTHERLAND) - 1808-</option>  \r\n'
+	+'<option>VOSBURGH FAMILY</option>  \r\n'
+	+'<option>VOSE FAMILY</option>  \r\n'
+	+'<option>VOSS FAMILY</option>  \r\n'
+	+'<option>VOSS, JOSEPH, - B. CA. 1720</option>  \r\n'
+	+'<option>VREELAND FAMILY</option>  \r\n'
+
++'</select> \r\n';
+	
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+<body class="background">
+
+
+
+
+<form name="FormOne" >
+
+
+<div name="SS" id="SS">
+<script>
+document.write(
+
+	 '<table border="1" cellpadding="4" cellspacing="0"  width="90%">\r\n'
+	+'<tr><td  bgcolor="ddeeff">\r\n'
+	///+'vv_functions.htm called by '+select_id+' <br>\r\n'
+	+'<b>Select Personal Name V</b> \r\n'
+	+'</td></tr><tr><td bgcolor="ddeeff"> \r\n' 
+	+ strSelect_PN_A
+
+	+'</td></tr></table> \r\n'
+	///+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+</script>
+	
+</div>
+
+<input type="button" onclick="showSelection();" name="B1" value="Personal Name">
+
+</form>
+
+<script>
+
+
+
+                  
+
+function showSelection() {
+
+val = new String();
+
+for ( i=0; i< document.FormOne.aaa.length; i++ ) {
+
+if ( document.FormOne.aaa[i].selected == true ) {
+  	val = document.FormOne.aaa[i].text;
+	break;
+	}
+else { val = "you never selected anything"; 
+	}
+
+}
+////////////////////////alert ("You selected " +val);
+
+switch ( select_id ) {
+
+case  "subject_name_lcsh_01" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_01.value=val;
+	parent.window.close();
+	break;
+
+case  "subject_name_lcsh_02" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_02.value=val;
+	parent.window.close();
+	break;
+}//end switch
+
+}///end function
+</script>
+

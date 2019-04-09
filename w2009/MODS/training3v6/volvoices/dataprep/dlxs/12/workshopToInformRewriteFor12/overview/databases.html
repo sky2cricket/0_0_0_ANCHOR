@@ -1,0 +1,85 @@
+<html>
+<head>
+<title>Collection&amp;Group Databases</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="../styles.css" type="text/css">
+</head>
+<body bgcolor="#FFFFFF" class="mainpalette">
+<h3> Collection/Group Databases</h3>
+<ul>
+   <li> <strong> Current version</strong> uses a relational database called <i> dlxs</i>
+      <ul>
+         <li> Underlying format can be CSV, MySQL, Oracle. Logical format is
+            handled through Perl <a href="http://www.perl.com/pub/a/1999/10/DBI.html" target="external">DBI</a> .</li>
+         <li> managed through a CGI program called the <a href="collmgr.html">Collection
+               Manager (collmgr)</a> </li>
+      </ul>
+   </li>
+   <li> <b> Collection Database Schema</b>
+      <ul>
+         <li> <i> </i>Collection table to hold fields common to all collections
+            classes</li>
+         <li> Class tables to hold fields that are specific to each class </li>
+         <li> Backup tables, version table</li>
+      </ul>
+   </li>
+   <li> <b> Groups Database</b>
+      <ul>
+         <li> A group of collections (for collection coordinators to logically
+            group collections for searching)</li>
+      </ul>
+   </li>
+   <li> <b> Other information required by the middleware that is kept in databases</b>
+      <ul>
+         <li> Parts of the dlxs database:
+            <ul>
+               <li> Pageview (for which we recommend against CSV because of functionality,
+                  performance, scalability)</li>
+               <li> Portfolios (BookBagDB table)</li>
+            </ul>
+         </li>
+         <li> These are databases, but are not part of the <i> dlxs</i> database
+            as such; temporary
+            <ul>
+               <li> Sessions, which hold search history, and other collection/group
+                  information needed during the running of the CGI program. In
+                  TextClass and FindaidClass, sessions also hold bookbag information.
+                  In ImageClass, portfolios are held in a separate MySQL table.</li>
+            </ul>
+         </li>
+      </ul>
+   </li>
+   <li> <b>Middleware use of databases</b>
+      <ul>
+         <li> <a href="middleware.html"> Middleware</a> and <a href="collmgr.html"> collmgr</a> use
+            Perl <a href="http://www.perl.com/pub/a/1999/10/DBI.html" target="external"> DBI</a> and
+            support DBD drivers for CSV, MySQL</li>
+      </ul>
+   </li>
+   <ul>
+      <li> For example: CioFactory object compares requested collections and
+         groups, authorized collections (see <span class="unixcommand">AUTHZD_COLL</span>) and groups </li>
+   </ul>
+   <li> <b> See</b> the <a href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/collmeta/colldatabases.html" target="external"> DLXS
+         documentation for more information on the databases</a> </li>
+   <li> <b> Database maintenance</b>
+      <ul>
+         <li> <b> <a href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/collmeta/dbconv.html" target="external"> dbconv</a></b>:
+            one time program to convert DLXS users' colldb's (from any release
+            prior to #8) to a database (either CSV or MySQL) for subsequent
+            versions.</li>
+         <li> <b> <a href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/collmeta/dbmove.html" target="external"> dbmove</a></b>:
+            program to convert from CSV to MySQL versions of the same database
+            structure (We at DLPS will also use this to release CSV versions
+            of new database structures as time goes by)</li>
+         <li> <a href="collmgr.html"> <b> collmgr</b> (Collection Manager)</a> </li>
+         <li> <strong> upgrade_1_2,</strong><strong> upgrade_2_3 </strong>and<strong> <strong> upgrade_3_4</strong></strong> and
+            (most recently) <strong><strong> upgrade_4_5</strong></strong> :
+            for moving database information (from DLXS version 8 to version 9,
+            from version 9 to version 10,  from version 10 to version 11, and
+            from version 11 to version 12, respectively) </li>
+      </ul>
+   </li>
+</ul>
+</body>
+</html>

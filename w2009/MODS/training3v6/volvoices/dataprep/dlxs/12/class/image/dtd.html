@@ -1,0 +1,121 @@
+<html>
+<head>
+<title>Image Class DTD Description</title>
+
+
+
+
+
+ <link href="../../dlxsdocs.css" rel="stylesheet" type="text/css"></head>         <body>
+<div class="pageTitle">Image Class DTD Description</div>
+
+
+<p><a href="mailto:dlxs-help@umich.edu">dlxs-help@umich.edu</a>
+</p>
+
+
+<h2>Introduction</h2>
+
+<p>The Image Class DTD was designed specifically with information retrieval as the primary purpose. It is not very useful for general storage of image database data. It structures data for fast retrieval and filtering. Frequently used data is replicated for ready accessibility. For example, a database record that references 3 image files will be replicated 3 times in &lt;I&gt; (item) elements. The 3 instances are then clustered within an &lt;ENTRY&gt; element so they can be treated either as a single record or as 3 independent search results. The &lt;ISTRUCT&gt; element serves multple purposes.  It summarizes the most essential data points of an item so that items can quickly and easily be retrieved and displayed. This is very useful when displaying all of the images associated with a record/ENTRY because it eliminates the need to retrieve and filter the full items for each image.</p>
+
+
+<ul>
+  <li>The Image Class <a href="dtd/image.dtd">SGML DTD</a></li>
+</ul>
+
+
+<h2>Elements</h2>
+         <p>The <b>&lt;COLL&gt;</b> element
+         provides an essential wrapper around the collection-specific
+         SGML file and provides the primary location for the
+         collection ID, which is replicated strategically through the
+         SGML for easy access by the middleware.</p>
+
+         <p>&#0160;The
+         <b>&lt;GEN&gt;</b> element, for "general", holds information that
+         applies to the entire collection, and which is often
+         utilized by other elements.</p>
+
+         <p>The <b>RULES, PROGR, DATA, and DATE</b> attributes of the 
+         &lt;GEN&gt; element provide basic adminstrative data about
+         the method used to create the SGML file. This data is not
+         used in the information retrieval process.</p>
+
+         <p>&#0160;The <b>&lt;ADMIN&gt;</b>
+         elements, meaning "administrative," provide unique,
+         abbreviated representations of the Administrative Field
+         Mappings. These field mappings are used to flag certain
+         critical fields of the database, such as the fields that
+         hold image filenames and record ID numbers. Most of these
+         mappings are only utilized in the process of generating the
+         SGML. For example, the IS.fn mapping is used in the
+         generation of the ISTRUCT element's &lt;M&gt; attribute (image file
+         reference).</p>
+
+         <p>The <b>&lt;META&gt;</b> elements
+         establish unique abbreviations for the "meta" fields. 
+         Collection-specific fields are mapped to the meta-fields as
+         part of a high level field mapping process that ultimately
+         enables cross collection searching.</p>
+
+         <p>&#0160;The <b>&lt;BASE&gt;</b>
+         elements establish unique abbreviations for the collection-specific field names. The abbreviations are used within the
+         &lt;ITEM&gt;&#0160;elements to label fielded data.</p>
+
+         <p>&#0160;The <b>&lt;ENTRY&gt;</b>
+         element provides the outermost structure for the
+         representation of a data record. The collection identifiers
+         are replicated here to facilitate retrieval and filtering
+         from SGML&#0160;to HTML for display. In cases where the
+         record has multiple images associated with it, the &lt;ENTRY&gt;
+         element binds together the information for each image, which
+         is wrapped in the &lt;I&gt; (for "item") elements.</p>
+
+         <p>&#0160;The <b>&lt;ENTRYAUTH&gt;</b>
+         element aids in determining what groups of users are allowed
+         to access the large size images associated with the record.
+         It applies to all items in the &lt;ENTRY&gt; and is critical for
+         authorization mechanisms of the CGI. See also <a href="accesstable.html"> Image Class Access Control Summary and Examples Table</a>.</p>
+
+         <p>&#0160;For every image of a
+         record there is an <b>&lt;I&gt;</b> element, meaning "item". The
+         attributes of the &lt;I&gt; element are essential to the
+         information retrieval and the process of filtering data for
+         display to the user. Each &lt;I&gt; element of a an
+         &lt;ENTRY&gt; has the potential to be a single search
+         result. The point being that while an &lt;ENTRY&gt;&#0160;is
+         a complete representation of the original data record, the
+         &lt;ITEM&gt; is the unit retrieved and displayed to the user
+         by the middleware. </p>
+
+         <p> The <b>&lt;INO&gt;</b> element is identical to the &lt;I&gt; element except that it is not searched nor displayed as a result. It is only retrieved and displayed as a related image to the record. The most common situation is where there is an overview image for a record as well as several detail images, and where it is preferable to only display the summary image as a search result.</p>
+
+<p> The <b>&lt;ISTRUCT&gt;</b> element holds a summary of the most essential information about the image. This includes the image filename, caption, and whether or not the image file was present in the file system at the time of encoding. Additionally the ISTRUCT element holds structural metadata that describes the visual relationship of the image to the other images of the entry. For example, if the images of the entry combine to form a tiled matrix representing a larger whole, this is stored in the structural metadata. The structural metadata attributes are STID, FACE, STTY, X, and Y and they are described more fully in the document <a href="imagestructures.html">Image Class - Mapping Image Structures</a>. </p>
+
+         <p>&#0160;The <b>&lt;D&gt;</b> element
+         provides a wrapper around the descriptive metadata of each
+         item.</p>
+
+         <p>&#0160;The <b>&lt;C&gt;</b> element,
+         for "category", tags the fielded descriptive content of each
+         record. The attributes utilize the unique abbreviations that
+         were established in the &lt;GEN&gt; element in order to
+         provide logical mappings of collection-specific fields to
+         the general "meta" fields used for cross collection
+         searching. The attributes are essential to formulating
+         queries on specific fields, such as a search of the "Title"
+         field. Furthermore, the abbreviations also appear in the
+         HTML interface templates and are used by the middleware to
+         populate placeholders with data.</p>
+
+         <p>The <b>&lt;CNO&gt;</b> element is identical to the &lt;C&gt; element, though it is for fields that should not be searched. Situations exist where the content provider would like the field to be displayable, but not searchable.</p>
+
+
+
+ 
+
+
+
+</body>
+
+</html>

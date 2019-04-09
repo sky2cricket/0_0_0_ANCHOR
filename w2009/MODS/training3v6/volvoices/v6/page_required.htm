@@ -1,0 +1,503 @@
+
+<html>
+<head>
+<title>
+page_required	
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+<script language=javascript src="vv_compose_tags.js"></script>
+
+
+
+</head>
+
+<script> document.write('<body onload="load_DF_form();"  bgcolor="'+parent.adb_background_color+'" >'); </script>
+
+<font face="arial" size="3">
+<center><font face="arial">
+<h2><script> document.write(parent.adb_project_name); </script>
+ Workbook Required Fields </h2>
+</center>
+
+<script>
+///Civil War Salt Peter Mining None, LCNAF, ULAN. 
+
+
+
+
+
+</script>
+
+<form name="DF"  action="new.xml">
+
+<table class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="ddeeff">
+<tr class="bgstandard"><td colspan="3">
+
+Required Fields are <u>underlined</u>.
+Non-Required Fields are not underlined.
+</td></tr>
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>MODS LABEL</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+<font face="arial">
+
+
+<tr class="greenrow">
+<td colspan="3" align="left"><font face="arial" size="2" color="ffffff" ><b>REQUIRED FIELDS
+</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou">
+Page 1 : Title
+</td>
+<td>
+<br><input type="text"  name="title" value="" size="50"> title
+
+&nbsp;&nbsp;<font face="arial" size="1">
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou">
+Page 2 : Key Date
+</td>
+<td>
+<br><input type="text" name="date_created" value="" size="50"> date_created
+<br><input type="text" name="date_createdQ" value="" size="50"> date_createdQ qualifier
+<br><input type="text" name="date_created_begin" value="" size="50"> date_created_begin range
+<br><input type="text" name="date_created_beginQ" value="" size="50"> date_created_beginQ qualifier
+<br><input type="text" name="date_created_end" value="" size="50"> date_created_end range
+<br><input type="text" name="date_created_endQ" value="" size="50"> date_created_endQ qualifier
+&nbsp;&nbsp;<font face="arial" size="1">
+You need one key date of creation
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+
+<tr class="bgstandard">
+<td class="label13nou">
+Page 3 : Type of Resource
+</td>
+<td>
+<br><input type="text" name="type_of_resource_01" value=""   size="50"> type_of_resource_01
+<br><input type="text" name="type_of_resource_02" value=""   size="50"> type_of_resource_02
+<br><input type="text" name="type_of_resource_03" value=""   size="50"> type_of_resource_03
+
+&nbsp;&nbsp;<font face="arial" size="1">
+Need at least one.
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td class="label13nou">
+Page 3 : Genre
+</td>
+<td>
+<br><input type="radio" name="mods_genre_radio" value="a"  > mods_genre_radio aat
+<br><input type="radio" name="mods_genre_radio" value="c"  > mods_genre_radio chenhall
+<br><input type="radio" name="mods_genre_radio" value="m"  > mods_genre_radio MARC
+<br><input type="text" name="mods_genre_authority" value=""   size="50"> mods_genre_authority which of the 3 above is chosen
+<br><input type="text" name="mods_genre" value=""   size="50"> mods_genre
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td class="label13nou">
+Page 3 : Autopop Fields
+</td>
+<td>
+<br><input type="text" name="digital_origin" value="reformatted digital"   size="50"> hidden digital_origin  FIXED VALUE
+<br><input type="text" name="internetmediatype"value="image/jpeg"   size="50" > hidden internetmediatype image/jpeg FIXED VALUE
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+
+<tr class="bgstandard">
+<td class="label13nou">
+Page 3 : Extent 
+</td>
+<td>
+<br><input type="text" name="extent_pages" value=""    size="50"> extent_pages digits only
+<br><input type="text" name="extent_number_of_objects" value=""   size="50" > extent_number_of_objects
+<br><input type="text" name="extent_dimensions" value=""   size="50"> extent_dimensions
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td class="label13nou">
+Page 4 : topic
+</td>
+<td>need at least one of the 9 below
+<br>//topics - loc
+<br><input type="text" name="subject_topic_lcsh_01" value="" size="50"> subject_topic_lcsh_01
+<br><input type="text" name="subject_name_lcsh_01" value="" size="50"> subject_name_lcsh_01
+<br><input type="text" name="subject_geographic_lcsh_01" value="" size="50"> subject_geographic_lcsh_01 code
+<br><input type="text" name="subject_temporal_lcsh_01" value="" size="50"> subject_temporal_lcsh_01
+
+
+<br>//topics - tgm
+<br><input type="text" name="subject_topic_tgm_01" value="" size="50"> subject_topic_tgm_01
+
+<br>//topics - spc
+<br><input type="text" name="subject_topic_spc_01" value="" size="50"> subject_topic_spc_01 code
+<!--
+<br><input type="text" name="subject_topic_spc_01_display" value="" size="50"> subject_topic_spc_01_display
+-->
+
+<br>//topics - free text
+<br><input type="text" name="subject_topic_none_01_desc" value=""   size="50"> subject_topic_none_01_desc free text description
+<br><input type="text" name="subject_name_none_01_desc" value=""   size="50"> subject_name_none_01_desc free text description
+<br><input type="text" name="subject_geographic_none_01" value=""   size="50"> subject_geographic_none_01 free text description
+<br><input type="text" name="subject_temporal_none_01_desc" value=""   size="50">  subject_temporal_none_01_desc free text description
+
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou">
+Page 4 : VolVoices Temporal 
+</td>
+<td>
+<br><input type="text" name="subject_temporal_vv_01" value="" size="50"> subject_temporal_vv_01 code
+<!--
+<br><input type="text" name="subject_temporal_vv_01_display" value="" size="50"> subject_temporal_vv_01_display
+-->
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+
+
+<tr class="bgstandard">
+<td class="label13nou">
+Page 5 - tif ids 
+</td>
+<td>&nbsp; <br><input type="text"  name="numConstituentsTIFF" value="0" size="50" > numConstituentsTIFF, must be > 0, see page 5 for details
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td class="label13nou">
+Page 6 : Contributing Repository
+<br> name, address 
+</td>
+<td>
+<br><input type="text" name="physical_location_repository"  value="" size="50" > physical_location_repository
+<br><input type="text" name="physical_location_city"  value=""  size="50"> physical_location_city
+<br><input type="text" name="physical_location_state"  value=""  size="50"> physical_location_state
+<br><input type="text" name="physical_location_county"  value="" size="50"> physical_location_county
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td class="label13nou">
+Page 6 : Record Details
+</td>
+<td>
+<br><input type="radio" name="record_content_source_radio" value="EAST" checked > record_content_source_radio EAST 
+<br><input type="radio" name="record_content_source_radio" value="MIDDLE" checked > record_content_source_radio MIDDLE
+<br><input type="radio" name="record_content_source_radio" value="WEST" checked > record_content_source_radio WEST 
+<br><input type="radio" name="record_content_source_radio" value="OTHER" checked > record_content_source_radio OTHER
+
+<br><input type="text" name="record_content_source"  value="" size="50">record_content_source
+<br><input type="text" name="record_creation_date"  value="" size="50">record_creation_date
+<br><input type="text" name="language_of_cataloging"  value="" size="50">language_of_cataloging
+<br><input type="text" name="language_of_cataloging_display"  value="" size="50">language_of_cataloging_display<br><input type="text" name="use_and_reproduction" value="<a href='http://diglib.lib.utk.edu/dlc/rights/vv.html' target='_blank'>Use and Reproduction</a>" size="100"> use_and_reproduction
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+
+
+
+
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+
+
+
+
+<tr><td colspan="3" align="center">
+&nbsp;&nbsp;
+<input type="button" name="B_UF" value="Save" class="buttonnw" onclick="buildModsTags(10);">
+<!---input type="button" name="B_DF" value="Reset"  class="buttonnw" onclick="load_DF_form();"--->
+
+<input type="button" name="B2" 
+value="Save Data and View MODS TAGS" class="buttonnw"
+onclick="buildModsTags(1)">
+
+
+</td></tr>
+
+</table>
+
+
+
+
+
+
+
+</form name="forms[0]">
+
+<center><font face="arial">
+<h2><script> document.write(parent.adb_project_name); </script>
+ Workbook Required Fields </h2>
+</center>
+
+
+<hr>
+<script>
+
+
+
+
+
+
+
+/////chdchdchd
+
+
+function load_UF_form() {
+/* no loading from this page, just view
+
+parent.U.document.UF.title.value = document.DF.title.value
+parent.U.document.UF.date_created.value = document.DF.date_created.value
+parent.U.document.UF.date_createdQ.value = document.DF.date_createdQ.value
+//parent.U.document.UF.museum_accession_number.value = document.DF.museum_accession_number.value
+parent.U.document.UF.museum_credit_line.value = document.DF.museum_credit_line.value 
+
+
+
+
+parent.U.document.UF.constituent_file_name_1.value = document.DF.constituent_file_name_1.value;
+parent.U.document.UF.constituent_file_uri_1.value = document.DF.constituent_file_uri_1.value;
+
+
+constituent_file_name_1 
+constituent_file_uri_1 
+
+*/
+
+return;
+}
+
+function load_DF_form() {
+
+//page 1 - title
+document.DF.title.value = parent.U.document.UF.title.value
+
+//page 2 - key date
+document.DF.date_created.value = parent.U.document.UF.date_created.value
+document.DF.date_createdQ.value = parent.U.document.UF.date_createdQ.value
+document.DF.date_created_begin.value = parent.U.document.UF.date_created_begin.value
+document.DF.date_created_beginQ.value = parent.U.document.UF.date_created_beginQ.value
+document.DF.date_created_end.value = parent.U.document.UF.date_created_end.value
+document.DF.date_created_endQ.value = parent.U.document.UF.date_created_endQ.value
+
+//page 3 - type of resource
+document.DF.type_of_resource_01.value = parent.U.document.UF.type_of_resource_01.value
+document.DF.type_of_resource_02.value = parent.U.document.UF.type_of_resource_02.value
+document.DF.type_of_resource_03.value = parent.U.document.UF.type_of_resource_03.value
+
+//page 3 - genre
+document.DF.mods_genre_radio[0].checked = parent.U.document.UF.mods_genre_radio[0].checked;
+document.DF.mods_genre_radio[1].checked = parent.U.document.UF.mods_genre_radio[1].checked;
+document.DF.mods_genre_radio[2].checked = parent.U.document.UF.mods_genre_radio[2].checked;
+document.DF.mods_genre_authority.value = parent.U.document.UF.mods_genre_authority.value;
+document.DF.mods_genre.value = parent.U.document.UF.mods_genre.value;
+
+//page 3 - hidden
+document.DF.digital_origin.value = parent.U.document.UF.digital_origin.value;
+document.DF.internetmediatype.value = parent.U.document.UF.internetmediatype.value;
+
+//page 3 - extent
+document.DF.extent_pages.value = parent.U.document.UF.extent_pages.value;
+document.DF.extent_number_of_objects.value = parent.U.document.UF.extent_number_of_objects.value;
+document.DF.extent_dimensions.value = parent.U.document.UF.extent_dimensions.value;
+
+//page 4 - topics
+
+//loc
+document.DF.subject_topic_lcsh_01.value = parent.U.document.UF.subject_topic_lcsh_01.value
+document.DF.subject_name_lcsh_01.value = parent.U.document.UF.subject_name_lcsh_01.value
+document.DF.subject_geographic_lcsh_01.value = parent.U.document.UF.subject_geographic_lcsh_01.value 
+document.DF.subject_temporal_lcsh_01.value = parent.U.document.UF.subject_temporal_lcsh_01.value 
+
+//tgm
+document.DF.subject_topic_tgm_01.value = parent.U.document.UF.subject_topic_tgm_01.value
+
+//spc - topic
+document.DF.subject_topic_spc_01.value = parent.U.document.UF.subject_topic_spc_01.value //-- the code
+//document.DF.subject_topic_spc_01_display.value = parent.U.document.UF.subject_topic_spc_01_display.value
+
+// keyword
+document.DF.subject_topic_none_01_desc.value = parent.U.document.UF.subject_topic_none_01_desc.value
+document.DF.subject_name_none_01_desc.value = parent.U.document.UF.subject_name_none_01_desc.value
+document.DF.subject_geographic_none_01.value = parent.U.document.UF.subject_geographic_none_01.value
+document.DF.subject_temporal_none_01_desc.value = parent.U.document.UF.subject_temporal_none_01_desc.value
+
+//vv - temporal
+document.DF.subject_temporal_vv_01.value  = parent.U.document.UF.subject_temporal_vv_01.value //--the code
+//document.DF.subject_temporal_vv_01_display.value  = parent.U.document.UF.subject_temporal_vv_01_display.value
+
+
+//page 5 - number of constituent files
+document.DF.numConstituentsTIFF.value = parent.U.document.UF.numConstituentsTIFF.value 
+
+//page 6 - Contributing Repository
+
+document.DF.physical_location_repository.value = parent.U.document.UF.physical_location_repository.value;
+document.DF.physical_location_city.value = parent.U.document.UF.physical_location_city.value;
+document.DF.physical_location_state.value = parent.U.document.UF.physical_location_state.value;
+document.DF.physical_location_county.value = parent.U.document.UF.physical_location_county.value;
+
+
+//page 6 
+
+//record content source 
+document.DF.record_content_source.value = parent.U.document.UF.record_content_source.value
+
+//record_content_source_radio
+//var aRecord_content_source_radio = new Array(
+for (j=0;j<4;j++ ) {
+	document.DF.record_content_source_radio[j].checked = parent.U.document.UF.record_content_source_radio[j].checked;
+	}
+
+document.DF.language_of_cataloging.value = "eng";/////parent.U.document.UF.language_of_cataloging.value
+document.DF.language_of_cataloging_display.value = "English";////parent.U.document.UF.language_of_cataloging_display.value
+
+
+//record creation date
+document.DF.record_creation_date.value = parent.U.document.UF.record_creation_date.value
+
+//hardcoded -- rights -- hidden field
+document.DF.use_and_reproduction.value = parent.U.document.UF.use_and_reproduction.value;
+
+
+
+return;
+}
+
+
+
+function buildModsTags(N) {
+
+////do this first so current values are loaded regardless of validation status
+load_UF_form();
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+//before writing MODS TAGS, make sure all required fields are populated
+//checkAllRequired... true  validation sets validation status to 1  -- complete
+//checkAllRequired... false validation sets validation status to 0  -- incomplete
+
+///if (!parent.L.checkAllRequiredElements_Page_Museum() ) return; ///no required fields, no validation
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+var num = new Number();
+    num = N;
+
+if (num == 10) {
+        alert("Values have been saved.");
+        return;
+        }
+
+
+
+var aps= new Array();
+var aps= new Array();
+var hps= new Array();
+var cps= new Array();
+    
+    hps = buildTagsArray_header(num);
+    aps = buildTagsArray_page_museum(num);
+    cps = buildTagsArray_closer(num);
+//=================================================
+
+document.write('<input type="button" name="BBACK" onclick="javascript: history.back()" value="BACK"><P>');
+document.write('<font face="Elephant" size="3" color="a00000">'+parent.adb_project_name+' Workbook, Museum Page <p></font>');
+//PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+document.write('<font face="Elephant" size="3" color="a00000">PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>');
+document.write( "This is the generated xml script.  Values you entered are highlighted in red."
+		+"<br>This display allows you to see the values entered here, but real tags for this are generated on page 3 and page 6."
+		+"<br>So when you are finished here, view page 3 and 6 for the final tags for museum fields.<HR>");
+
+document.write('< ? xml version="1.0"  ? > \r\n'); 
+///document.write("Content-Type: text/xml ")
+
+
+
+for (i=0;i<hps.length;i++) {
+	var vps = new String(hps[i]);
+ 	document.write("<br>"+vps);
+	}
+
+
+
+for (i=0;i<aps.length;i++) {
+	var vps = new String(aps[i]);
+	document.write("<br>"+vps);
+	}
+
+
+
+for (i=0;i<cps.length;i++) {
+	var vps = new String(cps[i]);
+	document.write("<br>"+vps);
+
+	}
+
+
+
+
+}//end function
+
+
+
+
+
+</script>
+	
+
+
+</body>
+</html>
+

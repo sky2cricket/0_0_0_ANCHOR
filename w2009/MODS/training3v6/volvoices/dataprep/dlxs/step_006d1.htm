@@ -1,0 +1,142 @@
+<html>
+<head>
+<script language=javascript src="links/vv_functions_links.js"></script>
+<title>
+char_check
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+</head>
+<!-- body  class="bg_aabbcc" -->
+<body bgcolor="aabbcc">
+<font face="arial" size="3">
+<center><font face="arial">
+<script>//document.write(dlxs_vv_header);</script>
+<p>
+</center>
+<table  class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="99aabb">
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+<tr class="bgstandardwhite" ><td colspan="3" align="left" class="step">
+<pre>
+step_006d1.htm
+
+processing 01 files - /d1/workarea/dlxs/image/tel/multiples
+=========================================================
+SUMMARY
+cd /d1/workarea/dlxs/image/tel/multiples
+
+perl modsICsearchOaiMusic ---------------has already been run
+
+cat vviHeader ic/* done/ic/* footer > ic.vvi.unnorm.sgm
+cp ic.vvi.unnorm.sgm /d1/dlxs/prep/v/vvi/.
+
+AFTER OVERWRITE WARNING ANSWER Y
+rm /d1/dlxs/prep/v/vvi/ic.vvi.norm.sgm
+
+AFTER RM WARNING ANSWER Y
+cp thumbs/* /d1/dlxs/img/v/vvi/thumb/
+cp jpegs/* /d1/dlxs/img/v/vvi/large/
+
+SANITY CHECK HERE, these images start out on diglib store1-area2
+scp minithumbs/* diglib@diglib.lib.utk.edu:/d1/dlxs/web/thumbs/vv/.
+SEE DISCUSSION BELOW
+
+for 0012 files
+/bin/mv  newmods/0012* spc/mods/
+/bin/mv  modsbib/0012* spc/modsbib/
+/bin/cp  search/0012*  spc/modssearch/
+
+for 0012 and non-0012
+/bin/cp modsbib/* /d1/workarea/dlxs/bib/mods/vv/xml
+/bin/cp search/* /d1/workarea/dlxs/bib/search/vv/xml/
+
+END SUMMARY
+=========================================================
+processing 01 files - /d1/workarea/dlxs/image/tel/multiples
+file copy
+
+
+Relevant files in this directory.
+ic/
+done/ic/
+mods/
+modsbib/
+newmods/
+preservation/
+search/
+spc/mods
+spc/modsbib
+spc/modssearch
+
+
+After creating new files with modsICsearchOai in the singles directory, 
+these new files are copied out for various processing tasks.
+
+Copy files for idb processing in ic setup (image prep).
+
+1.  command> cat vviHeader ic/* done/ic/* footer > ic.vvi.unnorm.sgm
+2.  command> cp ic.vvi.unnorm.sgm /d1/dlxs/prep/v/vvi/.
+	warning about overwrite, answer yes
+	cp: overwrite `/d1/dlxs/prep/v/vvi/ic.vvi.unnorm.sgm'? y
+
+3.  command> rm /d1/dlxs/prep/v/vvi/ic.vvi.norm.sgm
+	warning about remove, answer yes
+	rm: remove regular file `/d1/dlxs/prep/v/vvi/ic.vvi.norm.sgm'? y
+
+
+Copy image files for idx processing in ic setup (image prep)/
+
+5.  command> cp thumbs/* /d1/dlxs/img/v/vvi/thumb/
+6.  command> cp jpegs/* /d1/dlxs/img/v/vvi/large/
+
+Copy image files for search display.
+7.  command> scp minithumbs/* diglib@diglib.lib.utk.edu:/d1/dlxs/web/thumbs/vv/.
+
+REALITY CHECK:  need to copy from vvImport directory to /d1/dlxs/web/thumbs/vv/
+because both are on diglib.
+
+[root@diglib 01]# pwd
+/d1/store1-area2/volvoices2008/vvImport/080812/01
+[root@diglib 01]# cp minithumbs/* /d1/dlxs/web/thumbs/vv/
+
+Copy 0012 files for separate processing for bib setup and search setup.
+The reason for this segregation is ....................?
+
+8.  command> /bin/mv  newmods/0012* spc/mods/
+9.  command> /bin/mv  modsbib/0012* spc/modsbib/
+10. command> /bin/cp  search/0012*  spc/modssearch/
+
+For bib class
+11. command> /bin/cp modsbib/* /d1/workarea/dlxs/bib/mods/vv/xml
+
+For search class
+12. command> /bin/cp search/* /d1/workarea/dlxs/bib/search/vv/xml/
+
+
+SUMMARY
+
+cat vviHeader ic/* done/ic/* footer > ic.vvi.unnorm.sgm
+cp ic.vvi.unnorm.sgm /d1/dlxs/prep/v/vvi/.
+rm /d1/dlxs/prep/v/vvi/ic.vvi.norm.sgm
+
+cp thumbs/* /d1/dlxs/img/v/vvi/thumb/
+cp jpegs/* /d1/dlxs/img/v/vvi/large/
+scp minithumbs/* diglib@diglib.lib.utk.edu:/d1/dlxs/web/thumbs/vv/.
+/bin/mv  newmods/0012* spc/mods/
+/bin/mv  modsbib/0012* spc/modsbib/
+/bin/cp  search/0012*  spc/modssearch/
+
+/bin/cp modsbib/* /d1/workarea/dlxs/bib/mods/vv/xml
+/bin/cp search/* /d1/workarea/dlxs/bib/search/vv/xml/
+
+
+
+
+
+</pre>
+</font>
+</td></tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+</table>
+
+

@@ -1,0 +1,28 @@
+
+ENCAPSULATION by page
+
+1.  purpose - easier code maintainance and expansion to other metadata types
+	for example: DC
+
+2.  strategy
+	a.  have a set of directories named by page
+		ipage_01, ipage_02, etc
+	b.  directory contents are very similar
+	-bash-3.2$ ls ../ipage_01b/  ../ipage_02b/
+	../ipage_01b/:
+	note_100129.txt  vv_build_mods_page_01.js  vv_load_UF_DF_page_01b.js
+	note.txt         vv_functions_page_01.js
+
+	../ipage_02b/:
+	vv_build_mods_page_02.js   vv_popupDates.htm
+	vv_load_UF_DF_page_02b.js  vv_popupDates_page_02.htm
+
+	c.  filename denotes function
+
+	d.  move page_0N* into ipage_0N* directories
+		and fix links!
+
+3.  reward
+	a. can add new metadata type and test one page at a time
+	b. pattern off previous pages
+

@@ -1,0 +1,60 @@
+<html>
+<head>
+<title>Creating and Editing HTML/Template Files, Bibliographic Class</title>
+
+
+
+  <link href="../../dlxsdocs.css" rel="stylesheet" type="text/css"></head         ><body>
+<div class="pageTitle">Creating and Editing HTML/Template Files, Bibliographic Class</div>
+
+<p>The Bibliographic Class relies on default templates for the "simple" and "advanced" search interfaces and builds these from variables in the collection database, as presented through collmgr <a href="colldb.html">colldb</a>. An <tt>index.tpl</tt> is required for each collection and placed at <tt>/{DLXSROOT}/web/c/collid</tt>, and instructions on editing the <tt>index.tpl</tt> are provided below.  It is also possible to build specialized web pages (e.g., a browse page for a relatively small collection) and link these from the <tt>index.tpl</tt>.  Instructions on creating specialized web pages will be provided at a later date.</p>
+
+
+
+<h2>Editing <tt>index.tpl</tt> for a Collection</h2>
+<p>A <a href="bib-sample.tpl">sample <tt>index.tpl</tt></a> is provided as a working example of an <tt>index.tpl</tt>. Items that should be added or changed are in curly braces (e.g., <tt>{ }</tt>).</p>
+<ol>
+<li>Add the <tt>HEAD</tt> element with the following components:
+<pre>
+  &lt;head&gt;
+    &lt;title&gt; &lt;/title&gt;
+    &lt;meta content="template generated html"&gt;
+    &lt;link rel="MADE" href="mailto:"&gt;
+    &lt;link rel="STYLESHEET" type="text/css" href="$STYLE_SHEET_URL"&gt;
+    &lt;link rel="STYLESHEET" type="text/css" href="$STYLE_SHEET_SPECIFIC_URL"&gt;
+  &lt;/head&gt;
+</pre>
+Provide a title for the collection and add the "help" e-mail address in the <tt>LINK</tt> element, as in <tt>LINK rel="MADE" href="mailto:umdl-help@umich.edu"</tt>.</li>
+<li>You may choose to add a banner or textual title for the collection within the body of the template.</li>
+<li>You may choose to provide one or more paragraphs of descriptive text about the collection within the body of the template.</li>
+<li>Provide links to the "simple" and "advanced" search pages using the template variables <tt>$SIMPLE_SEARCH_LINK</tt> and <tt>$BOOLEAN_SEARCH_LINK</tt>, e.g.:
+<pre>
+              &lt;p align="left"&gt;
+                &lt;a href="$SIMPLE_SEARCH_LINK"&gt;
+                  &lt;font size="4"&gt;Simple Search&lt;/font&gt; &lt;/a&gt;
+                Search for a word or phrase in a title, a main heading or anywhere in the entry. 
+              &lt;/p&gt;
+              
+              &lt;p align="left"&gt;
+                &lt;a href="$BOOLEAN_SEARCH_LINK"&gt;
+                  &lt;font size="4"&gt;Advanced Search&lt;/font&gt;&lt;/a&gt;
+                Search for combinations of words or phrases in a title, main heading or anywhere in the entry.
+              &lt;/p&gt;
+</pre></li>
+<li>You may also provide links to other web pages with embedded links to support activities such as browsing.  Examples and instructions will be provided here at a later date.</li>
+<li>Add a link to help pages about a particular collection using the <tt>$COLLECTION_HELP</tt> variable.  The following is one form this might take:
+<pre>
+   &lt;center&gt;&lt;p&gt;&lt;a href="$COLLECTION_HELP"&gt;Help&lt;/a&gt;&lt;/center&gt;
+</pre>
+</li>
+</ol>
+
+
+
+<h2>Creating Additional Web Pages</h2>
+<p>Information will be provided about creating supporting web pages for other types of access (e.g., browsing).  For working examples of this, please see the Digital Library Federation's <a href="http://www.hti.umich.edu/cgi/b/bib/bib-idx?c=dlf">Digital Library Documents</a> collection.</p>
+
+</body>
+
+
+</html>

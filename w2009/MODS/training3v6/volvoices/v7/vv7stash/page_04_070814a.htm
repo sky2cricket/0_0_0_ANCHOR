@@ -1,0 +1,427 @@
+<!--
+    This code is issued under the GNU General Public License, 
+    version 3, 29 June 2007.
+
+    The DLC-MODS Workbook provides a series of web pages to help you 
+    generate a MODS metadata record that follows the Digital Library 
+    Federation Implementation Guidelines for Shareable MODS Records, 
+    as described in the DLF Aquifer Guidlines November 2006.  These 
+    Guidelines and the specific MODS Profile are documented on the 
+    MODS Profile Page of the DLC-MODS Workbook.
+
+    Copyright (C) 2007 
+    Christine Haygood Deane 
+    University of Tennessee Libraries
+    Digital Library Center
+ 
+
+    This program is free software: you can redistribute it and/or modify    
+    it under the terms of the GNU General Public License as published by    
+    the Free Software Foundation, version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see http://www.gnu.org/licenses/
+-->
+
+<html>
+<head>
+<title>
+page_04
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+<script language=javascript src="vv_compose_tags.js"></script>
+
+<script>
+function clearText_01(N){
+var n = new Number(N);
+
+if (n==0) {
+	document.forms[0].subject_01_auth.value="";
+	document.forms[0].subject_01.value="";
+	document.forms[0].subject_01_auth_close.value="";
+}
+
+if (n==1) {
+	document.forms[0].subject_01_auth.value="";
+	document.forms[0].subject_01_auth_close.value="";
+}
+
+if (n==2) {
+	document.forms[0].subject_01.value="";
+}
+
+}//end function clearText
+</script>
+
+</head>
+
+
+<script> document.write('<body onload="load_DF_form();"  bgcolor="'+parent.adb_background_color+'" >'); </script>
+<font face="arial" size="3">
+<center>
+<h2><script> document.write(parent.adb_project_name); </script>
+ Page 4</h2></center>
+<form name="DF">
+<table class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" >
+<tr class="bgstandard"><td colspan="3">
+<p>
+For the rules on building a MODS Subject Block, please refer to 
+<a href="http://www.diglib.org/aquifer/dlfmodsimplementationguidelines_finalnov2006.pdf" target="_blank">DLF Aquifer Guidlines</a>.
+</p>
+</td></tr>
+
+<tr class="greenrow"><td colspan="3" ><font face="arial" size="3" color="ffffff">
+<b>Subject Block #1</td></tr>
+<tr class="bgstandard" >
+<td class="label13u">
+Subject Block #1
+</td>
+<td>
+<input type="text" name="subject_01_auth" size="40" value="" 
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; xwidth:300px"
+READONLY><br>
+<textarea name="subject_01" cols="80" rows="12" READONLY 
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; xwidth:300px"
+></textarea>
+<br><input type="text" name="subject_01_auth_close" size="40" value="" 
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; xwidth:300px"
+READONLY>
+<br>&nbsp;
+<input type="button" name="Bauth_subject_01" value="select subject authority" class="button140w"
+onclick="parent.L.selectOneOptionSubject(this,'700','700')">
+<input type="button" name="Clear_subject_01" value="clear all" class="button140w"
+onclick="clearText_01(0)">
+<input type="button" name="Clear_subject_01a" value="clear subject authority" class="button140w"
+onclick="clearText_01(1)">
+<input type="button" name="Clear_subject_01b" value="clear subelements" class="button140w"
+onclick="clearText_01(2)">
+<br>&nbsp;
+<input type="button" name="Bcart_subject_01" value="cartographics" class="button140w"
+onclick="parent.L.selectOneOptionSubject(this,'500','600')">
+<input type="button" name="Bcgeo_subject_01" value="geographicCode" class="button140w"
+onclick="parent.L.selectOneOptionSubject(this,'500','600')">
+<input type="button" name="Bhgeo_subject_01" value="hierarchicalGeographic" class="button140w"
+onclick="parent.L.selectOneOptionSubject(this,'500','600')">
+<input type="button" name="Bgeog_subject_01" value="geographic" class="button140w"
+onclick="parent.L.selectOneOptionSubject(this,'500','600')">
+<br>&nbsp;
+<input type="button" name="Bgenr_subject_01" value="genre" class="button140w"
+onclick="parent.L.selectOneOptionSubject(this,'500','600')">
+<input type="button" name="Btopi_subject_01" value="topic" class="button140w"
+onclick="parent.L.selectOneOptionSubject(this,'500','600')">
+<input type="button" name="Boccu_subject_01" value="occupation" class="button140w"
+onclick="parent.L.selectOneOptionSubject(this,'500','600')">
+<input type="button" name="Btemp_subject_01" value="temporal" class="button140w"
+onclick="parent.L.selectOneOptionSubject(this,'600','600')">
+<br>&nbsp;
+<input type="button" name="Bnamp_subject_01" value="name personal" class="button140w"
+onclick="parent.L.selectOneOptionSubject(this,'500','600')">
+<input type="button" name="Bnamc_subject_01" value="name corporate" class="button140w"
+onclick="parent.L.selectOneOptionSubject(this,'500','600')">
+<input type="button" name="Bnamm_subject_01" value="name conference" class="button140w"
+onclick="parent.L.selectOneOptionSubject(this,'500','600')">
+<input type="button" name="Btitl_subject_01" value="titleInfo" class="button140w"
+onclick="parent.L.selectOneOptionSubject(this,'500','600')">
+<br>&nbsp;
+<font face="arial" size="1" color="000000" ><br> A Subject Block must contain at least
+one Subelement Block.  
+<br>Click on the Subelement Name to create the corresponding Subelement Block.
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+
+<script>
+var a500 = new String("500");
+var a600 = new String("600");
+var a700 = new String("700");
+
+var j=2;
+
+document.write(
+ '<tr class="greenrow"><td colspan="3" ><font face="arial" size="3" color="ffffff">\r\n'
++'<b>Subject Block #1</td></tr>\r\n'
++'<tr class="bgstandard" >\r\n'
++'<td class="label13u">\r\n'
++'Subject Block #'+j+'\r\n'
++'</td>\r\n'
++'<td>\r\n'
++'<input type="text" name="subject_01_auth" size="40" value=""\r\n'
++'style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; xwidth:300px" READONLY><br>\r\n'
++'<textarea name="subject_0'+j+'" cols="80" rows="12" READONLY\r\n'
++'style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; xwidth:300px"></textarea>\r\n'
++'<br><input type="text" name="subject_0'+j+'_auth_close" size="40" value=""\r\n'
++'style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; xwidth:300px" READONLY>\r\n'
++'<br>&nbsp;\r\n'
++'<input type="button" name="Bauth_subject_0'+j+'" value="select subject authority" class="button140w"\r\n'
++'onclick="parent.L.selectOneOptionSubject(this,a700,a700)">\r\n'
++'<input type="button" name="Clear_subject_0'+j+'" value="clear all" class="button140w"\r\n'
++'onclick="clearText_01(0)">\r\n'
++'<input type="button" name="Clear_subject_0'+j+'a" value="clear subject authority" class="button140w"\r\n'
++'onclick="clearText_01(1)">\r\n'
++'<input type="button" name="Clear_subject_0'+j+'b" value="clear subelements" class="button140w"\r\n'
++'onclick="clearText_01(2)">\r\n'
++'<br>&nbsp;\r\n'
++'<input type="button" name="Bcart_subject_0'+j+'" value="cartographics" class="button140w"\r\n'
++'onclick="parent.L.selectOneOptionSubject(this,a500,a600)">\r\n'
++'<input type="button" name="Bcgeo_subject_0'+j+'" value="geographicCode" class="button140w"\r\n'
++'onclick="parent.L.selectOneOptionSubject(this,a500,a600)">\r\n'
++'<input type="button" name="Bhgeo_subject_0'+j+'" value="hierarchicalGeographic" class="button140w"\r\n'
++'onclick="parent.L.selectOneOptionSubject(this,a500,a600)">\r\n'
++'<input type="button" name="Bgeog_subject_0'+j+'" value="geographic" class="button140w"\r\n'
++'onclick="parent.L.selectOneOptionSubject(this,a500,a600)">\r\n'
++'<br>&nbsp;\r\n'
++'<input type="button" name="Bgenr_subject_0'+j+'" value="genre" class="button140w"\r\n'
++'onclick="parent.L.selectOneOptionSubject(this,a500,a600)">\r\n'
++'<input type="button" name="Btopi_subject_0'+j+'" value="topic" class="button140w"\r\n'
++'onclick="parent.L.selectOneOptionSubject(this,a500,a600)">\r\n'
++'<input type="button" name="Boccu_subject_0'+j+'" value="occupation" class="button140w"\r\n'
++'onclick="parent.L.selectOneOptionSubject(this,a500,a600)">\r\n'
++'<input type="button" name="Btemp_subject_0'+j+'" value="temporal" class="button140w"\r\n'
++'onclick="parent.L.selectOneOptionSubject(this,a600,a600)">\r\n'
++'<br>&nbsp;\r\n'
++'<input type="button" name="Bnamp_subject_0'+j+'" value="name personal" class="button140w"\r\n'
++'onclick="parent.L.selectOneOptionSubject(this,a500,a600)">\r\n'
++'<input type="button" name="Bnamc_subject_0'+j+'" value="name corporate" class="button140w"\r\n'
++'onclick="parent.L.selectOneOptionSubject(this,a500,a600)">\r\n'
++'<input type="button" name="Bnamm_subject_0'+j+'" value="name conference" class="button140w"\r\n'
++'onclick="parent.L.selectOneOptionSubject(this,a500,a600)">\r\n'
++'<input type="button" name="Btitl_subject_0'+j+'" value="titleInfo" class="button140w"\r\n'
++'onclick="parent.L.selectOneOptionSubject(this,a500,a600)">\r\n'
++'<br>&nbsp;\r\n'
++'<font face="arial" size="1" color="000000" ><br> A Subject Block must contain at least\r\n'
++'one Subelement Block.\r\n'
++'<br>Click on the Subelement Name to create the corresponding Subelement Block.\r\n'
++'</td>\r\n'
++'<td>&nbsp</td>\r\n'
++'</tr>\r\n'
+);
+
+</script>
+
+
+
+
+
+<tr class="bgstandard">
+<td>&nbsp</td><td>&nbsp;</td><td>&nbsp;</td>
+</tr>
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+<tr class="bgstandard"><td colspan="3" align="center">
+&nbsp;&nbsp;
+<input type="button" name="B_UF" value="Save" class="buttonnw" onclick="buildModsTags(10);">
+<!---input type="button" name="B_DF" value="Reset"  class="buttonnw" onclick="load_DF_form();"--->
+
+<input type="button" name="B2" 
+value="Save Data and View MODS TAGS" class="buttonnw"
+onclick="buildModsTags(1)">
+
+
+</td></tr>
+<tr class="bgstandard" >
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+</table>
+
+
+
+
+
+
+
+</form name="forms[0]">
+
+
+<center><font face="arial">
+<h2><script> document.write(parent.adb_project_name); </script></h2>
+</center>
+
+<script>
+
+
+function load_UF_form() {
+
+parent.U.document.UF.subject_01.value = document.DF.subject_01.value;
+parent.U.document.UF.subject_01_auth.value = document.DF.subject_01_auth.value;
+parent.U.document.UF.subject_01_auth_close.value = document.DF.subject_01_auth_close.value;
+
+
+return;
+}
+
+function load_DF_form() {
+
+document.DF.subject_01.value = parent.U.document.UF.subject_01.value;
+document.DF.subject_01_auth.value = parent.U.document.UF.subject_01_auth.value;
+document.DF.subject_01_auth_close.value = parent.U.document.UF.subject_01_auth_close.value;
+
+return;
+}
+
+
+
+function buildModsTags(N) {
+
+
+////do this first so current values are loaded regardless of validation status
+load_UF_form();
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+//before writing MODS TAGS, make sure all required fields are populated
+//checkAllRequired... true  validation sets validation status to 1  -- complete
+//checkAllRequired... false validation sets validation status to 0  -- incomplete
+
+if (!parent.L.checkAllRequiredElements_Page_04() ) {
+	parent.L.update_page_validation(4,0);
+	return;
+}
+parent.L.update_page_validation(4,1);
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+var num = new Number();
+    num = N;
+
+if (num == 10) {
+        alert("Values have been saved.");
+        return;
+        }
+
+
+var aps= new Array();
+var hps= new Array();
+var cps= new Array();
+    
+    hps = buildTagsArray_header(num);
+    aps = buildTagsArray_page_04(num);
+    //aps = buildTagsArray_page_04_new(num);
+    cps = buildTagsArray_closer(num);
+
+//=================================================
+
+document.write('<input type="button" name="BBACK" onclick="javascript: history.back()" value="BACK"><P>');
+document.write('<font face="Elephant" size="3" color="a00000">'+parent.adb_project_name+' Workbook, Page 4<p></font>');
+//PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+document.write('<font face="Elephant" size="3" color="a00000">PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+		+"This is the generated xml script.  Values you entered are highlighted in red."
+		+"<HR>");
+//document.write( "This is the generated xml script.  Values you entered are highlighted in red.<HR>");
+
+//document.write('< ? xml version="1.0"  ? > \r\n'); 
+///document.write("Content-Type: text/xml ")
+
+
+
+for (i=0;i<hps.length;i++) {
+	var vps = new String(hps[i]);
+ 	document.write("<br>"+vps);
+	}
+
+
+
+for (i=0;i<aps.length;i++) {
+	///alert("aps["+i+"]="+aps[i]);
+	var vps = new String(aps[i]);
+	document.write("<br>"+vps);
+	}
+
+
+
+for (i=0;i<cps.length;i++) {
+	var vps = new String(cps[i]);
+	document.write("<br>"+vps);
+	}
+
+
+
+
+}//end function
+
+
+
+
+</script>
+	
+<script>
+function fdg() {
+//return;
+
+var BEGINFORM = 0;
+var ENDFORM   = document.forms.length;
+
+document.write("<div id='formdebug' align='left'><font face='arial' size='1' color='a00000'>");
+for ( jj=BEGINFORM; jj<ENDFORM; jj++ ) {
+document.write('<hr> document.forms['+jj+'].name='+document.forms[jj].name+'<br>');
+document.write(' document.forms['+jj+'].method='+document.forms[jj].method+'<br>');
+document.write(' document.forms['+jj+'].action='+document.forms[jj].action+'<br>');
+
+for(i=0;i<document.forms[jj].length;i++)
+{
+document.write( 'document.forms['+jj+']::'+ document.forms[jj].name+".elements["+i+"]::"
+			  +' ------name: '+document.forms[jj].elements[i].name
+			  +' ------type: '+document.forms[jj].elements[i].type
+			  +' -----value: '+document.forms[jj].elements[i].value
+			  )
+			  if ( typeof(document.forms[jj].elements[i].tabindex) != 'undefined') {
+			  document.write( ' -----tabindex: '+ document.forms[jj].elements[i].tabindex )
+			  }
+			  if ( typeof(document.forms[jj].elements[i].onblur) != 'undefined') {
+			  document.write( ' -----onblur: '+ document.forms[jj].elements[i].onblur )
+			  }
+			  if ( document.forms[jj].elements[i].type == 'button' ) {
+			  document.write( ' -----onclick: '+ document.forms[jj].elements[i].onclick )
+			  }
+			  if ( document.forms[jj].elements[i].type == 'radio' ) {
+			  document.write( ' -----checked: '+ document.forms[jj].elements[i].checked )
+			  }
+document.write('<br>')
+			  
+			  }}
+
+
+
+
+document.write("<HR>");
+document.write(	" location.href = "+location.href+"<BR>");
+document.write('document.location.href='+document.location.href+'<BR>');
+document.write(	" parent.location.href = "+parent.location.href+"<BR>");
+document.write("<HR>");
+
+
+
+for ( i=0; i<parent.frames.length; i++ ) 
+{
+document.write(	" parent.frames["+i+"] :: "
+			+ " ------name: "+parent.frames[i].name
+			+ " ------location.href: "+ parent.frames[i].location.href
+			+ "<br>"
+			);
+			}
+
+document.write("<HR>");
+document.write("</font></div>");
+
+}///end function formvardebug()
+
+fdg();
+
+</script>
+
+</body>
+</html>
+

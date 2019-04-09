@@ -1,0 +1,91 @@
+
+<html>
+<head>
+<title>WORKBOOK</title>
+<script language='javascript'>
+var dlc_software_id ="University of Tennesse Libraries Digital Library Center Workbook Version 1.0"; 
+var mytest='0039_000050_000200';
+var admindb_data='0039_000050_000200';
+var check_test = '';
+//===============12142006=============================
+var adb_test_itemdescr = "The+location+at+the+top+of+the+letter+says+%22Bachelors%27+Hall%2C+The+Ladies+Choice.%22+The+first+image+has+pages+1+and+4+of+his+handwritten+letter%2C+the+second+contains+pages+2+and+3.+Pages+5+and+6+are+separate.+Pages+7+-+9+are+a+typed+transcription+done+by+his+descendent+Dr.+James+King.+";
+
+var adb_username = 'cricket.deane';
+var adb_fullname = 'Christine Deane';
+var adb_instname = 'Albert Gore Sr. Research Center';
+var adb_instadd = 'Albert Gore Research Center P. O. Box 193 128 Todd Hall Middle Tennessee State University  ';
+var adb_instcity = 'Murfreesboro';
+var adb_instcounty = 'Rutherford';
+var adb_inststate = 'Tennessee';
+var adb_instzip = '37132';
+var adb_collidn = 'P1999.07';
+var adb_collidndes = 'accessionNumber';
+var adb_collname = 'Colonel James Moore King Collection, 1792-1877';
+var adb_colldes = 'The James Moore King Collection is a compilation of personal letters, legal documents, and genealogy notes on James Moore King and his family. Colonel King was a prominent citizen of Rutherford County and lived in Murfreesboro, Tennessee from 1809-1877. ';
+var adb_collextent = '7 boxes, 3.5 linear feet';
+var adb_itempname = 'VV';
+var adb_itemfbname = '0039_000050_000200';
+var adb_itemtitle = 'James M. King at Bachelors' Hall to James Moore in North Carolina';
+var adb_itemdate = '1815-03-15';
+var adb_itemdescr = 'The location at the top of the letter says "Bachelors\' Hall, The Ladies Choice." The first image has pages 1 and 4 of his handwritten letter, the second contains pages 2 and 3. Pages 5 and 6 are separate. Pages 7 - 9 are a typed transcription done by his descendent Dr. James King. ';
+var adb_itemtype = 'text';
+var adb_itemgenre = 'letters (correspondence)';
+var adb_itemdim = '7.5 in x 9.0 in and 8.5 x 11 in';
+var adb_itemrights = '';
+var adb_itemlocation = 'Box 1, Folder 3';
+var adb_admindb_data = '0039_000050_000200';
+var adb_itemcreator  = 'King, James M.';
+var adb_institution_id = new String (adb_admindb_data); 
+    adb_institution_id = adb_institution_id.substring(0,4); 
+var adb_project_name  = 'Volunteer Voices'; 
+var adb_project_id  = 'VV'; 
+var adb_background_class = 'backgroundVV';
+var adb_background_color = '#99aabb';
+if ( adb_institution_id == '0012' ) { 
+		adb_project_name = 'DLC-MODS';  
+		adb_project_id = 'SC';  
+		adb_background_color = '#d0d0d0';  
+		adb_background_class = 'backgroundSC';  
+		} 
+//=====================================================
+
+</script>
+</head>
+
+
+
+<!--------------------------->
+<script language="javascript">
+
+if ( parent.adb_username == "cricket.deane" || parent.adb_username == "jody"  ) {
+document.write(  '<frameset cols="90,*"  border="01" >'
+        	+'<frame name="T" src="volvoices/v2/page_links.htm" >'
+        	+'<frameset rows="150,20,*" >'
+                +'<frame name="U" src="volvoices/v2/page_upper.htm"  >'
+                //+'<frame name="L" src="volvoices/v2/page_lower.htm" >'
+                +'<frame name="L" src="volvoices/v2/page_lower_080501.htm" >'
+                +'<frame name="D" src="volvoices/v2/page_welcome.htm" scrolling="yes">'
+        	+'</frameset>'
+		+'</frameset>'
+		);
+}else{
+document.write(  '<frameset cols="90,*"  border="0" >'
+        	+'<frame name="T" src="volvoices/v2/page_links.htm" >'
+        	+'<frameset rows="0,0,*" >'
+                +'<frame name="U" src="volvoices/v2/page_upper.htm"  >'
+                +'<frame name="L" src="volvoices/v2/page_lower.htm" >'
+                +'<frame name="D" src="volvoices/v2/page_welcome.htm" scrolling="yes">'
+        	+'</frameset>'
+		+'</frameset>'
+		);
+}
+</script>
+
+<!----------------------------->
+
+
+
+</html>
+
+
+

@@ -1,0 +1,23 @@
+[root@diglib2 v]# cd vvz
+[root@diglib2 vvz]# ls
+image.blank.dd  image.cfg  image.inp  Makefile  tags.txt
+[root@diglib2 vvz]# make all
+echo "working..."
+working...
+rm -f ./image.ffc
+rm -f ./image.ffi
+rm -f ./image.ffw
+rm -f ./image.idx
+rm -f ./image.maps.*
+rm -f ./image.mfs
+rm -f ./image*.rgn
+rm -f ./image.str
+rm -f ./image.dd
+rm -f ../../../obj/v/vvz/image.sgm
+cat ../../../obj/v/vvz/ic.*.norm.sgm > ../../../obj/v/vvz/image.sgm
+cp ./image.blank.dd ./image.dd
+xpatbld -D ./image.dd
+multirgn -f -D ./image.dd -t ./tags.txt
+[root@diglib2 vvz]# ls
+image.blank.dd  image.cfg  image.dd  image.idx  image.inp  image.rgn  Makefile  tags.txt
+[root@diglib2 vvz]# 

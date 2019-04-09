@@ -1,0 +1,395 @@
+<html>
+<head>
+<title>Debugging DLXS Perl Code</title>
+
+
+
+ <link href="../dlxsdocs.css" rel="stylesheet" type="text/css">
+</head>         <body>
+<div class="pageTitle">Debugging DLXS Perl Middleware Code</div>
+          
+          
+            <p>Much code debugging can be accomplished in whatever development environment you may be using.  At DLPS we generally use XEmacs, along with its Comint mode for the Perl debugger. However, it is often helpful to investigate a program's behavior within the browser environment as well. There are occasional debugging statements in the code that will print values of specific variables or even dump entire objects in HTML. These are controlled by adding a parameter to any URL. Simply add a "
+               <tt>
+                  <b>;debug=
+                     <i>value</i>
+                  </b>
+               </tt>
+               " to a URL in your browser where 
+               <i>value</i>
+                is any of the following described below.</p>
+             
+            <p>Note that the value 
+               <b>all</b>
+                turns on all debugging switches and produces a considerable quantity of output, especially in the case of searches.</p>
+             
+
+          
+            <h1>Debug Values Available in All Classes</h1>
+             
+            <p>These values pertain to the debugging output produced by modules in Lib i.e. 
+               <tt>DLXSROOT/lib</tt>
+                and as such they are common to all of the class middleware.</p>
+             
+            <dl> 
+      <dt><tt><b>tpl</b></tt></dt>
+      <dd>show the path where files subject to fallback resolution (<tt>.xml, .xsl, .css, .js</tt>) are found. 
+        <dt><tt><b>xml</b></tt></dt>
+        <dd>emit the raw xml from the middleware not subjected to XSLT transformation to HTML. 
+          <dt><tt><b>xslt</b></tt></dt>
+          <dd>emit the virtual stylesheet constructed by the middleware. 
+               <dt>
+                  <b>auth</b>
+               </dt>
+                
+               <dd>Prints the contents of the 
+                  <tt>AUTHZD_COLL</tt>
+                   and 
+                  <tt>PUBLIC_COLL</tt>
+                   environment variables.</dd>
+
+               <dt>
+                  <b>cache</b>
+               </dt>
+                
+               <dd>Prints information regarding the process of caching information in the session and 
+			   	when profiling time spent in certain parts of the code. See the debug
+				variable <b>time</b> below.</dd>
+                
+               <dt>
+                  <b>collsinfo</b>
+               </dt>
+                
+               <dd>Prints a variety of information about the Collection Information (
+                  <tt>CollsInfo</tt>
+                  ) object primarily related to the contents of the object, also whether the object has been "reused" (e.g., from the cache) or created fresh from the database. 
+                  <ul>
+                     <li>Dumps the contents of the CollsInfo object as a list of table rows, one per collection.</li>
+                     <li>Indicates whether a session-cached 
+                        <tt>CollsInfo</tt>
+                         object is reused or a new one is created by reading the database.</li>
+                     <li>Prints the path to the database and the database table in use. Prints the database user name accessing the rows: a specific 
+                        <i>userid</i>
+                        , 
+                        <i>dlxsadm</i>
+                         or 
+                        <i>production</i>
+                        .</li>
+                     <li>Prints warnings about collections that are authorized according to the auth variables but that do not appear in the database and vice versa.</li>
+                     <li>Reports the successful addition of a Class (Text, Bib, Image) object supporting each collection in the CollsInfo object that is marked as requested by the user.</li>
+                     <li>Reports the Group Information object (
+                        <tt>GroupsInfo</tt>
+                        ) in the same way as the 
+                        <tt>CollsInfo</tt>
+                         object. Additionally, prints a warning if a database group is deleted from the object if none of the group's collections are authorized.</li>
+                     <li>Reports the creation of a object for each collection to be supported.</li>
+                  </ul>
+               </dd>
+                
+               <dt>
+                  <b>reauth</b>
+               </dt>
+                
+               <dd>Prints out the contents of the link generated to redirect the user to your site's authorization system.</dd>
+                
+               <dt>
+                  <b>results</b>
+               </dt>
+                
+               <dd>Prints each query just before it is sent to XPAT for evaluation and
+prints a formatted representation of the raw results returned by XPAT. Prints the "clean" result after XPAT result markup tags have been removed, displaying the order in which the result came back from XPAT, its byte offset, the data and the size of the data.  </dd>
+                
+               <dt>
+                  <b>resultset</b>
+               </dt>
+                
+               <dd>Prints the type and label of each XPat Result Object as it is added
+to the given Result Set object (
+                  <tt>XPatResutlSet</tt>
+                  ).</dd>
+                
+               <dt>
+                  <b>session</b>
+               </dt>
+                
+               <dd>Prints the session id under which the current invocation of the cgi
+program is running and indicates whether this is a new session id or the id of
+a previous session retrieved from the session cache.</dd>
+                
+				
+               <dt>
+                  <b>xpat</b>
+               </dt>
+                
+               <dd>Prints a dump of the 
+                  <tt>XPat</tt>
+                   object when it is first created. Prints the local or remote startup command string to be sent to the forked process
+running XPAT and each query string sent to XPAT for evaluation. </dd>
+                
+</dl>
+             
+            <dl>
+               <dt>
+                  <b>cgi</b>
+               </dt>
+                
+               <dd>Prints a dump of the CGI object created from the URL that invoked
+the cgi program. It is a 
+                  <tt>key=value</tt>
+                   list of the URL parameters. </dd>
+                
+               <dt>
+                  <b>env</b>
+               </dt>
+                
+               <dd>Prints a dump of the environment variables in effect when the cgi
+program runs.</dd>
+                
+               <dt>
+                  <b>search</b>
+               </dt>
+                
+               <dd>
+                  <ul>
+                     <li>Prints the query and query type for each search query sent to
+XPAT for a variety of different search types.</li>
+                     <li>Prints status information when the Class CGI is unable to
+start up an XPAT process for a given collection. This normally fails silently so
+as not to interrupt a startup loop over multiple collections.</li>
+                  </ul>
+               </dd>
+                
+               <dt>
+                  <b>time</b>
+               </dt>
+                
+               <dd>Prints a summary of the amount of time it takes the Class CGI to
+run. It displays the elapsed time to compile and run the entire program (which
+includes time to communicate with a local or remote XPAT process, and so
+includes process startup, context switching, network latency, and inter-process
+communication overhead). It also displays the CPU time devoted solely to the
+process running the Class CGI. The difference between these two numbers is a
+rough indication of the overhead to which the CGI is subject. </dd>
+                
+               <dt>
+                  <b>version</b>
+               </dt>
+                
+               <dd>Prints the value 
+                  <tt>$LibVersion::VERSION</tt>
+                   that is the version of the
+separate Lib deliverable in use by the Class CGI.  Prints the Release number of the middleware.  Prints the Perl version number.  Prints the main program version number.</dd>
+                
+               <dt>
+                  <b>db</b>
+               </dt>
+                
+               <dd>Prints connect string used to access the database and the database user name the connect was issued under.  For example, 
+                  <tt>DSN=DBI:mysql:dlxs:mysql.umdl.umich.edu:, Username=dlxs</tt>
+                  .</dd>
+                
+</dl>
+         
+          
+            <h1>Unique Text Class Debug Values</h1>
+             
+            <dl> 
+               <dt>
+                  <b>filter</b>
+               </dt>
+                
+               <dd>Prints the result of applying various filters to the results
+returned from a given query. Currently, the following filters' results are
+printed:
+                  <ul>
+                     <li>
+                        <tt>FilterDivhead</tt>
+                     </li>
+                     <li>
+                        <tt>FilterMainHeader</tt>
+                     </li>
+                     <li>
+                        <tt>StripMainHeader</tt>
+                     </li>
+                     <li>
+                        <tt>_HeaderFilter</tt>
+                     </li>
+                  </ul>
+               </dd>
+                
+               <dt>
+                  <b>links</b>
+               </dt>
+                
+               <dd>Prints the contents of the 'search within' link generated by
+                  <tt>TextClass::_SearchWithinLinks</tt>
+               </dd>
+                
+
+               <dt>
+                  <b>qf</b>
+               </dt>
+                
+               <dd>Prints status when the QueryFactory object is created for a given collection object.  If the collection implements the use of XPAT mapping of special characters (e.g. 'Y' for yogh in Middle English) the transformation of these characters in the CGI object is called out at this point.</dd>
+                
+
+               <dt>
+                  <b>target</b>
+               </dt>
+                
+               <dd>Useful for tracing the construction of searches for the target of &lt;PTR> type notes.  Prints which mode of target region search was used, i.e. fabricated region search or explicitly coded list of regions.  Prints the XPAT query for the target region and the parent region of the target region.  Prints the overall restriction applied to limit the search to a particular main region.  This debug output appears in the note popup window when the note is displayed.</dd>
+                
+				
+               <dt>
+                  <b>sort</b>
+               </dt>
+                
+               <dd>Prints information regarding the process of sorting results and 
+			   	when profiling time spent in certain parts of the code. See the debug
+				variable <b>time</b> below.</dd>
+                
+
+               <dt>
+                  <b>pageviewer</b>
+               </dt>
+                
+               <dd>Prints a variety of information related to page viewing (
+                  <tt>pageviewer-idx</tt>
+                  ) including: 
+                  <ul>
+                     <li>A dump of the Page View object's (
+                        <tt>PageView</tt>
+                        ) contents.</li>
+                     <li>Entry trace information for the subroutines that serve the
+frames in the Pageviewer frameset.</li>
+                     <li>The contents of the URL that the Pageviewer CGI uses to
+redirect to the TextClass CGI for text-mode page viewing.</li>
+                  </ul>
+               </dd>
+                
+               <dt>
+                  <b>ww</b>
+               </dt>
+                
+               <dd>Prints a variety of information about the Wordwheel CGI and
+Wordwheel Object. The information printed for the CGI includes the environment
+and the contents of the CGI object created from the URL that invoked the
+wordwheel CGI. The information printed for the Wordwheel object (
+                  <tt>WW</tt>
+                  )consists of:
+                  <ul>
+                     <li>Status information about failure to start XPAT (if failed)</li>
+                     <li>A dump of the Wordwheel object contents.</li>
+                     <li>A dump of the table of words constructed by the
+                        <tt>GetCombinedTable</tt>
+                         object method.</li>
+                     <li>A dump of the search results returned by the XPAT queries used
+to generate the wordwheel table.</li>
+                  </ul>
+                   </dd>
+                
+</dl>
+             
+
+          
+          
+            <h1>Unique Bib Class Debug Values</h1>
+             
+            <dl> 
+               <dt>
+                  <b>fisheye</b>
+               </dt>
+                
+               <dd>A dump of the data computed for the construction of the fisheye
+navigation string.</dd>
+            </dl>
+             
+
+          
+          
+            <h1>Unique Image Class Debug Values</h1>
+             
+            <p>There are not many distinct values unique to Image Class for the 
+               <tt>debug</tt>
+                URL parameter.  Assigning any value to 
+               <tt>debug</tt>
+                (e.g. 
+               <tt>1</tt>
+               ) will turn on debugging output globally within Image Class.  Of course, the common distinct values mentioned earlier must be specified as documented to turn on their given debug function. </p>
+
+            <dl> 
+               <dt>
+                  <b>hs</b>
+               </dt>
+                
+               <dd>Prints the collection ID for each collection processes in the 
+                  <tt>HandleSearch</tt>
+                   subroutine.</dd>
+            </dl>
+             
+
+          
+         
+            <h1>Environment Variables</h1>
+            <dl>
+               <dt>
+                  <b>charents</b>
+               </dt>
+                
+               <dd>Not a 
+                  <tt>debug</tt>
+                   parameter value. Rather, if the 
+                  <tt>DEBUG</tt>
+                   environment
+variable is set to 
+                  <i>charents</i>
+                   at the command line or debugging environment,
+each character entity reference encountered in the data is printed together
+with the graphic image or equivalent character to which it will be mapped in
+the output. </dd>
+               <dt>
+                  <b>DBI_TRACE</b>
+               </dt>
+                
+               <dd>This will enable a dump of the interaction of the middleware with
+the Perl DBI (database interface) module. It must be set 
+                  <i>before</i>
+                   Perl executes. Refer to the POD for 
+                  <tt>DBI.pm</tt>
+                   in your Perl
+install tree (At the shell prompt type: 
+                  <tt>perldoc DBI.pm</tt>
+                  ).</dd>
+                
+               <dt>
+                  <b>ASSERTION_EMAIL</b>
+               </dt>
+                
+               <dd>Setting this environment variable to an email address (e.g. 
+                  <tt>umdl-errors@umich.edu</tt>
+                  ) will cause the 
+                  <tt>ASSERT</tt>
+                   subroutine to send a complete email summary of the data that caused an assertion failure.  This is useful in monitoring the health of production code in the absence of user feedback.</dd>
+                
+               <dt>
+                  <b>XPAT_LOGGING</b>
+               </dt>
+                
+               <dd>Setting this environment variable to the name of a file will cause the 
+                  <tt>XPat.pm</tt>
+                   module to log process ids and associated URL strings for each XPAT process forked to execute a query.  At DLPS we couple this log file with a runaway process killer which kills XPAT processes that run for more than 1.5 minutes.  The process killer sends email notification and with the additional logged data we can determine the URL that generated the runaway and resolve the problem.</dd>
+                
+</dl>
+         
+          
+            <h1>Support for Virtual Host-based Work Directories</h1>
+             
+            <p>Related to the issue of ebugging is the issue off having multiple work directories for each developer. DLXS middleware supports this. There are ways of setting up "sandboxes" so that individuals can have their own environments for running and testing changes they are making, independently of others' work. For more information, see 
+               <a href="devenvironment.html">DLPS/DLXS Development Environment</a>
+               .
+</p>
+
+         
+      </body>
+   
+</html>

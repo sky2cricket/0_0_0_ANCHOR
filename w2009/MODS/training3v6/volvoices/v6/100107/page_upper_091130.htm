@@ -1,0 +1,509 @@
+
+<html>
+<head>
+<title>upper</title>
+
+
+
+<script>
+var parent_test="chd";
+
+function load_admindb_values() {
+
+var str_admindb_data = new String();
+    str_admindb_data = parent.admindb_data;
+
+/*
+document.forms[0].XMLmaster_01.value = str_admindb_data.substring(0,4);
+document.forms[0].XMLmaster_02.value = str_admindb_data.substring(5,11);
+document.forms[0].XMLmaster_03.value = str_admindb_data.substring(12);
+*/
+document.forms[0].XMLBASE.value = str_admindb_data+"_";
+document.forms[0].XMLFILENAME.value = str_admindb_data+"_0000.xml";
+
+}
+
+//=========100107===================================== line 117 end at 208 = 92 lines
+//from vv_load_UF_DF_strings.js
+
+//call with eval(get_begin_b_load_UF_strings("_01"));
+//The guts of this function should be added to
+// function load_admindb_values() 
+
+function get_page_begin_b_load_UF_strings(strN){
+var street_instaddr = new String(parent.adb_instadd);
+    street_instaddr = street_instaddr.replace(parent.adb_instname,'');
+var sN = new String(strN);
+var s0 = new String(" ");
+	s0 = s0
+	+'parent.U.document.UF.VVcomment_03c.value=parent.adb_fullname;'
+
+	//page_01b
+	+'parent.U.document.UF.creator_lastname_01.value=parent.adb_itemcreator;'
+	+'parent.U.document.UF.title.value=parent.adb_itemtitle;'
+	+'parent.U.document.UF.creator_exist_01.value="yes";'
+	+'parent.U.document.UF.creator_lastname_01.value=parent.adb_itemcreator;'
+
+	//page_06
+	+'parent.U.document.UF.VVcomment_03i.value=parent.adb_instname;'
+	+'parent.U.document.UF.physical_location_repository.value=parent.adb_instname;'
+	+'parent.U.document.UF.physical_location_street_addr.value=parent.adb_instadd;'
+	+'parent.U.document.UF.physical_location_city.value=parent.adb_instcity;'
+	+'parent.U.document.UF.physical_location_state.value=parent.adb_inststate;'
+	+'parent.U.document.UF.physical_location_county_display.value=parent.adb_instcounty;'
+	+'parent.U.document.UF.physical_location_county.value=parent.L.getCountyCode(parent.L.aVVcounty,parent.U.document.UF.physical_location_county_display.value);'
+	+'parent.U.document.UF.collection_id_number.value=parent.adb_collidn;'
+	+'parent.U.document.UF.collection_id_name.value=parent.adb_collname;'
+
+	;
+/*
+DEFINITIONS FROM vv_workbook.php
+
+print "var mytest='$input_str';\n";
+print "var admindb_data='$str_admindb_data';\n";
+#print "alert(\"admindb_data.substr(0,4)=\"+admindb_data.substr(0,4));\n";
+print "//===============12142006=============================\n";
+
+
+print "var post_instid = '$instid';\n";
+print "var post_collid = '$collid';\n";
+print "var post_itemid = '$itemid';\n";
+print "var post_iquery = '$post_iquery';\n";
+
+print "var adb_username = '$str_username';\n";
+##print "alert(\"adb_username=\"+adb_username);\n";
+print "var adb_fullname = '$str_fullname';\n";
+print "var adb_instname = '$str_instname';\n";
+print "var adb_instid   = '$post_instid';\n";
+print "var adb_instadd  = '$str_instadd';\n";
+print "var adb_instcity = '$str_instcity';\n";
+print "var adb_instcounty = '$str_instcounty';\n";
+print "var adb_inststate = '$str_inststate';\n"; 
+print "var adb_instzip = '$str_instzip';\n";  
+print "var adb_collidn = '$str_collidn';\n";
+print "var adb_collidndes = '$str_collidndes';\n";
+print "var adb_collname = '$str_collname';\n"; 
+print "var adb_colldes = '$str_colldes';\n";  
+print "var adb_collextent = '$str_collextent';\n"; 
+print "var adb_itempname = '$str_itempname';\n";
+print "var adb_itemfbname = '$str_itemfbname';\n";  
+print "var adb_itemtitle = '$str_itemtitle';\n";      
+print "var adb_itemdate = '$str_itemdate';\n";      
+print "var adb_itemdescr = '$str_itemdescr';\n";  
+print "var adb_itemtype = '$str_itemtype';\n";     
+print "var adb_itemgenre = '$str_itemgenre';\n"; 
+print "var adb_itemgendes = '$str_itemgendes';\n"; 
+print "var adb_itemdim = '$str_itemdim';\n";     
+print "var adb_itemlocation = '$str_itemlocation';\n";  
+print "var adb_admindb_data = '$str_admindb_data';\n";   
+print "var adb_itemcreator  = '$str_itemcreator';\n";   
+
+print "var adb_institution_id  =  admindb_data.substr(0,4);\n";
+print "var adb_project_name  = 'w2009 Beta'; \n"; //was 'Volunteer Voices'
+print "var adb_project_id  = 'w2009'; \n"; //was 'VV'
+print "var adb_background_class = 'backgroundSC';\n";//was 'backgroundVV'
+print "var adb_background_color = '#d0d0d0';\n";     //was '#99aabb'
+print " if (adb_institution_id.length == 0 ) { adb_institution_id = '0012'; }";
+print "if ( adb_institution_id == '0012' ) { \n";
+print "		adb_project_name = 'DLC-MODS';  \n";
+print "		adb_project_id = 'SC';  \n";
+print "		adb_background_color = '#d0d0d0';  \n";
+print "		adb_background_class = 'backgroundSC';  \n";
+print "		} \n";
+
+
+*/
+return(s0);
+}//end function get_page_begin_b_load_UF_strings(strN)
+
+//=========100107===================================== line 208
+
+</script>
+<script language=javascript src="vv_compose_tags.js"></script>
+
+<script language=javascript src="vv_formvardebug.js"></script>
+
+</head>
+<body onload="load_admindb_values()" bgcolor="ddffdd" >
+<script>
+document.write('<font face="arial" size="1">document.location.href='+document.location.href+'</font><br>');
+document.write("test NEW RELOAD FIELDS<hr>parent.admindb_data="+parent.admindb_data+"<HR>");
+</script>
+<form name="UF" >
+<hr>
+<b>Page Validation Form Elements</b>
+<br><input type="text"  name="validate_page_final"  value="0" size="50"> validate_page_final, set to 1 for debug
+<br><input type="text"  name="validate_page_begin"  value="0" size="50"> validate_page_begin
+<br><input type="text"  name="validate_page_01"     value="0" size="50"> validate_page_01
+<br><input type="text"  name="validate_page_02"     value="0" size="50"> validate_page_02
+<br><input type="text"  name="validate_page_03"     value="0" size="50"> validate_page_03
+<br><input type="text"  name="validate_page_04"     value="0" size="50"> validate_page_04
+<br><input type="text"  name="validate_page_05"     value="1" size="50"> validate_page_05//no validation needed
+<br><input type="text"  name="validate_page_06"     value="0" size="50"> validate_page_06
+<br><input type="text"  name="validate_page_museum" value="1" size="50"> validate_page_museum//no validation needed
+
+
+
+
+<hr>
+<b>Begin Page Form Elements</b>
+
+<br><input type="text"  name="VVcomment_01" value="" size="80"> VVcomment_01 filename 
+<br><input type="text"  name="VVcomment_02" value="" size="80"> VVcomment_02 # of constit files
+<br><input type="text"  name="VVcomment_03b" value="" size="80"> VVcomment_03b begin work date 
+<br><input type="text"  name="VVcomment_03d" value="" size="80"> VVcomment_03d last work date
+<br><input type="text"  name="VVcomment_03r" value="" size="80"> VVcomment_03r reload yes/no 
+<br><input type="text"  name="VVcomment_03c" value="" size="80"> VVcomment_03c cataloger  
+<br><input type="text"  name="VVcomment_03i" value="" size="80"> VVcomment_03i institution
+<br><input type="text"  name="VVcomment_03p" value="" size="80"> VVcomment_03p project
+<br><input type="text"  name="VVcomment_04" value="<!-- PAGE VALIDATION :0:0:0:0:0:0:0: -->" size="80"> VVcomment_04 validation string
+<!---
+<br><input type="hidden"  name="XMLmaster_01" value="" size="50"> XMLmaster_01 XML file name part 1
+<br><input type="hidden"  name="XMLmaster_02" value="" size="50"> XMLmaster_02 XML file name part 2
+<br><input type="hidden"  name="XMLmaster_03" value="" size="50"> XMLmaster_03 XML file name part 3
+<br><input type="hidden"  name="XMLmaster_04" value="0000" size="50"> XMLmaster_04 XML file name part 4
+<br><input type="hidden"  name="XMLmaster_05" value=".xml" size="50"> XMLmaster_05 XML file name part 5
+------->
+<br><input type="text"  name="XMLBASE" value="" size="50"> XMLBASE
+<br><input type="text"  name="XMLFILENAME" value="" size="50"> XMLFILENAME
+
+<br><input type="text"  name="numConstituentsTIFF" value="1" size="50" > numConstituentsTIFF default=1
+
+<hr>
+<b>Page One Form Elements (use page_01b.htm) </b>
+
+<br><input type="text"  name="title" value="" size="50"> title
+
+
+<!---Page One Primary Name--->
+<br><b>Page One Primary Name _01 ----------------------------------- </b>
+<br><input type="text" name="creator_exist_01" value="yes"  size="50"> creator_exist_01 
+<br><input type="text" name="name_type_01" value=""  size="50"> name_type_01 name type 1
+<br><input type="text" name="name_authority_01" value=""  size="50"> name_authority_01 name authority 1
+
+
+<br><input type="text"  name="namepart_family_01" value="" size="50"> namepart_family_01
+<br><input type="text"  name="creator_lastname_01" value="" size="50"> creator_lastname_01
+<br><input type="text"  name="namepart_given_01" value="" size="50"> namepart_given_01
+<br><input type="text"  name="creator_givenname_01" value="" size="50"> creator_givenname_01
+<br><input type="text"  name="namepart_date_01" value="" size="50"> namepart_date_01
+<br><input type="text"  name="creator_fulldatestr_01" value="" size="50"> creator_fulldatestr_01
+<br><input type="text"  name="creator_description_01" value="" size="50"> creator_description_01
+<br><input type="text"  name="creator_rolea_auth_01" value="" size="50"> creator_rolea_auth_01
+<br><input type="text"  name="creator_rolea_01" value="" size="50"> creator_rolea_01
+<br><input type="text"  name="creator_roleb_auth_01" value="" size="50"> creator_roleb_auth_01
+<br><input type="text"  name="creator_roleb_01" value="" size="50"> creator_roleb_01
+<br><input type="text"  name="creator_rolec_auth_01" value="" size="50"> creator_rolec_auth_01
+<br><input type="text"  name="creator_rolec_01" value="" size="50"> creator_rolec_01
+
+<!---Page One Second Name--->
+<br><b>Page One Second Name _02 ------------------------------------ </b>
+<br><input type="text" name="creator_exist_02" value="no"  size="50"> creator_exist_02 
+<br><input type="text" name="name_type_02" value=""  size="50"> name_type_02 name type 2
+<br><input type="text" name="name_authority_02" value="" size="50" > name_authority_02
+
+<br><input type="text"  name="namepart_family_02" value="" size="50"> namepart_family_02
+<br><input type="text"  name="creator_lastname_02" value="" size="50"> creator_lastname_02
+<br><input type="text"  name="namepart_given_02" value="" size="50"> namepart_given_02
+<br><input type="text"  name="creator_givenname_02" value="" size="50"> creator_givenname_02
+<br><input type="text"  name="namepart_date_02" value="" size="50"> namepart_date_02
+<br><input type="text"  name="creator_fulldatestr_02" value="" size="50"> creator_fulldatestr_02
+<br><input type="text"  name="creator_description_02" value="" size="50"> creator_description_02
+<br><input type="text"  name="creator_rolea_auth_02" value="" size="50"> creator_rolea_auth_02
+<br><input type="text"  name="creator_rolea_02" value="" size="50"> creator_rolea_02
+<br><input type="text"  name="creator_roleb_auth_02" value="" size="50"> creator_roleb_auth_02
+<br><input type="text"  name="creator_roleb_02" value="" size="50"> creator_roleb_02
+<br><input type="text"  name="creator_rolec_auth_02" value="" size="50"> creator_rolec_auth_02
+<br><input type="text"  name="creator_rolec_02" value="" size="50"> creator_rolec_02
+
+<!---Page One Third Name--->
+<br><b>Page One Third Name _03 ------------------------------------- </b>
+<br><input type="text" name="creator_exist_03" value="no"  size="50"> creator_exist_03 
+<br><input type="text" name="name_type_03" value=""  size="50"> name_type_03 name type 3
+<br><input type="text" name="name_authority_03" value=""  size="50"> name_authority_03
+
+<br><input type="text"  name="namepart_family_03" value="" size="50"> namepart_family_03
+<br><input type="text"  name="creator_lastname_03" value="" size="50"> creator_lastname_03
+<br><input type="text"  name="namepart_given_03" value="" size="50"> namepart_given_03
+<br><input type="text"  name="creator_givenname_03" value="" size="50"> creator_givenname_03
+<br><input type="text"  name="namepart_date_03" value="" size="50"> namepart_date_03
+<br><input type="text"  name="creator_fulldatestr_03" value="" size="50"> creator_fulldatestr_03
+<br><input type="text"  name="creator_description_03" value="" size="50"> creator_description_03
+<br><input type="text"  name="creator_rolea_auth_03" value="" size="50"> creator_rolea_auth_03
+<br><input type="text"  name="creator_rolea_03" value="" size="50"> creator_rolea_03
+<br><input type="text"  name="creator_roleb_auth_03" value="" size="50"> creator_roleb_auth_03
+<br><input type="text"  name="creator_roleb_03" value="" size="50"> creator_roleb_03
+<br><input type="text"  name="creator_rolec_auth_03" value="" size="50"> creator_rolec_auth_03
+<br><input type="text"  name="creator_rolec_03" value="" size="50"> creator_rolec_03
+
+<!---Page One Fourth Name--->
+<br><b>Page One Fourth Name _04 ------------------------------------- </b>
+<br><input type="text" name="creator_exist_04" value="no"  size="50"> creator_exist_04 
+<br><input type="text" name="name_type_04" value=""  size="50"> name_type_04 name type 4
+<br><input type="text" name="name_authority_04" value=""  size="50"> name_authority_04
+
+<br><input type="text"  name="namepart_family_04" value="" size="50"> namepart_family_04
+<br><input type="text"  name="creator_lastname_04" value="" size="50"> creator_lastname_04
+<br><input type="text"  name="namepart_given_04" value="" size="50"> namepart_given_04
+<br><input type="text"  name="creator_givenname_04" value="" size="50"> creator_givenname_04
+<br><input type="text"  name="namepart_date_04" value="" size="50"> namepart_date_04
+<br><input type="text"  name="creator_fulldatestr_04" value="" size="50"> creator_fulldatestr_04
+<br><input type="text"  name="creator_description_04" value="" size="50"> creator_description_04
+<br><input type="text"  name="creator_rolea_auth_04" value="" size="50"> creator_rolea_auth_04
+<br><input type="text"  name="creator_rolea_04" value="" size="50"> creator_rolea_04
+<br><input type="text"  name="creator_roleb_auth_04" value="" size="50"> creator_roleb_auth_04
+<br><input type="text"  name="creator_roleb_04" value="" size="50"> creator_roleb_04
+<br><input type="text"  name="creator_rolec_auth_04" value="" size="50"> creator_rolec_auth_04
+<br><input type="text"  name="creator_rolec_04" value="" size="50"> creator_rolec_04
+
+<!---Page One Fifth Name--->
+<br><b>Page One Fifth Name _05 ------------------------------------- </b>
+<br><input type="text" name="creator_exist_05" value="no"  size="50"> creator_exist_05
+<br><input type="text" name="name_type_05" value=""  size="50"> name_type_05 name type 4
+<br><input type="text" name="name_authority_05" value=""  size="50"> name_authority_05
+
+<br><input type="text"  name="namepart_family_05" value="" size="50"> namepart_family_05
+<br><input type="text"  name="creator_lastname_05" value="" size="50"> creator_lastname_05
+<br><input type="text"  name="namepart_given_05" value="" size="50"> namepart_given_05
+<br><input type="text"  name="creator_givenname_05" value="" size="50"> creator_givenname_05
+<br><input type="text"  name="namepart_date_05" value="" size="50"> namepart_date_05
+<br><input type="text"  name="creator_fulldatestr_05" value="" size="50"> creator_fulldatestr_05
+<br><input type="text"  name="creator_description_05" value="" size="50"> creator_description_05
+<br><input type="text"  name="creator_rolea_auth_05" value="" size="50"> creator_rolea_auth_05
+<br><input type="text"  name="creator_rolea_05" value="" size="50"> creator_rolea_05
+<br><input type="text"  name="creator_roleb_auth_05" value="" size="50"> creator_roleb_auth_05
+<br><input type="text"  name="creator_roleb_05" value="" size="50"> creator_roleb_05
+<br><input type="text"  name="creator_rolec_auth_05" value="" size="50"> creator_rolec_auth_05
+<br><input type="text"  name="creator_rolec_05" value="" size="50"> creator_rolec_05
+
+<!---Page One Sixth Name--->
+<br><b>Page One Sixth Name _06 ------------------------------------- </b>
+<br><input type="text" name="creator_exist_06" value="no"  size="50"> creator_exist_06
+<br><input type="text" name="name_type_06" value=""  size="50"> name_type_06 name type 4
+<br><input type="text" name="name_authority_06" value=""  size="50"> name_authority_06
+
+<br><input type="text"  name="namepart_family_06" value="" size="50"> namepart_family_06
+<br><input type="text"  name="creator_lastname_06" value="" size="50"> creator_lastname_06
+<br><input type="text"  name="namepart_given_06" value="" size="50"> namepart_given_06
+<br><input type="text"  name="creator_givenname_06" value="" size="50"> creator_givenname_06
+<br><input type="text"  name="namepart_date_06" value="" size="50"> namepart_date_06
+<br><input type="text"  name="creator_fulldatestr_06" value="" size="50"> creator_fulldatestr_06
+<br><input type="text"  name="creator_description_06" value="" size="50"> creator_description_06
+<br><input type="text"  name="creator_rolea_auth_06" value="" size="50"> creator_rolea_auth_06
+<br><input type="text"  name="creator_rolea_06" value="" size="50"> creator_rolea_06
+<br><input type="text"  name="creator_roleb_auth_06" value="" size="50"> creator_roleb_auth_06
+<br><input type="text"  name="creator_roleb_06" value="" size="50"> creator_roleb_06
+<br><input type="text"  name="creator_rolec_auth_06" value="" size="50"> creator_rolec_auth_06
+<br><input type="text"  name="creator_rolec_06" value="" size="50"> creator_rolec_06
+
+
+<!--------------End Page One------------------------------------------------>
+
+<hr>
+<b>Page Two Form Elements</b>
+<br><input type="text" name="date_created" value="" size="50"> date_created
+<br><input type="text" name="date_createdQ" value="" size="50"> date_createdQ qualifier
+<!---
+<br><input type="radio" name="date_created_radio" value="D"> date_created_radio D
+<br><input type="radio" name="date_created_radio" value="R"> date_created_radio R
+-------->
+<br><input type="text" name="date_created_begin" value="" size="50"> date_created_begin range
+<br><input type="text" name="date_created_beginQ" value="" size="50"> date_created_beginQ qualifier
+<br><input type="text" name="date_created_end" value="" size="50"> date_created_end range
+<br><input type="text" name="date_created_endQ" value="" size="50"> date_created_endQ qualifier
+
+
+<br><input type="radio" name="publisher_name_radio" value="Y"> publisher_name_radio Y
+<br><input type="radio" name="publisher_name_radio" value="N" checked> publisher_name_radio N
+<br><input type="text" name="publisher_name" value="" size="50"> publisher_name
+<br><input type="text" name="publisher_address" value=""  size="50"> publisher_address
+
+<br><input type="text" name="date_issued" value="" size="50"> date_issued 
+<br><input type="text" name="date_issuedQ" value="" size="50"> date_issuedQ qualifier
+
+<br><input type="text" name="place_of_origin" value=""  size="50"> place_of_origin
+
+<!--------------End Page Two------------------------------------------------>
+
+
+
+<!--------------Start Page Three------------------------------------------------>
+
+<hr>
+<b>Page Three Form Elements</b>
+<br><input type="text" name="language" value="eng"   size="50" > language code
+<br><input type="text" name="language_display" value="English"   size="50"> language_display
+<br><input type="text" name="type_of_resource_01" value=""   size="50"> type_of_resource_01
+<br><input type="text" name="type_of_resource_02" value=""   size="50"> type_of_resource_02
+<br><input type="text" name="type_of_resource_03" value=""   size="50"> type_of_resource_03
+
+<br><input type="radio" name="mods_genre_radio" value="a"  > mods_genre_radio aat
+<br><input type="radio" name="mods_genre_radio" value="c"  > mods_genre_radio chenhall
+<br><input type="radio" name="mods_genre_radio" value="m"  > mods_genre_radio MARC
+<br><input type="text" name="mods_genre_authority" value=""   size="50"> mods_genre_authority which of the 3 above is chosen
+<br><input type="text" name="mods_genre" value=""   size="50"> mods_genre
+
+
+
+
+<br><input type="text" name="digital_origin" value="reformatted digital"   size="50"> hidden digital_origin  FIXED VALUE
+<br><input type="text" name="museum_form_type_technique" value=""   size="50"> museum_form_type_technique <u>input box on museum page</u>
+<br><input type="text" name="museum_form_type_medium" value=""   size="50">  museum_form_type_medium <u>input box on museum page</u>
+<br><input type="text" name="internetmediatype"value="image/jpeg"   size="50" > hidden internetmediatype image/jpeg FIXED VALUE
+<br><input type="text" name="extent_pages" value=""    size="50"> extent_pages digits only
+<br><input type="text" name="extent_number_of_objects" value=""   size="50" > extent_number_of_objects
+<br><input type="text" name="extent_dimensions" value=""   size="50"> extent_dimensions
+<br><textarea name="mods_genre_abstract"  cols="60" rows="4" ></textarea> mods_genre_abstract
+
+<!--------------End Page Three------------------------------------------------>
+
+
+
+<!--------------Start Page Four------------------------------------------------>
+
+<hr>
+<b>Page Four Form Elements</b>
+
+<br><input type="text" name="subject_topic_lcsh_01" value="" size="50"> subject_topic_lcsh_01 
+<br><input type="text" name="subject_topic_lcsh_02" value="" size="50"> subject_topic_lcsh_02
+<br><input type="text" name="subject_topic_lcsh_03" value="" size="50"> subject_topic_lcsh_03 
+
+<br><input type="text" name="subject_name_lcsh_01" value="" size="50"> subject_name_lcsh_01 
+<br><input type="text" name="subject_name_lcsh_02" value="" size="50"> subject_name_lcsh_02 
+
+<br><input type="text" name="subject_geographic_lcsh_01" value="" size="50"> subject_geographic_lcsh_01 code 
+<br><input type="text" name="subject_geographic_lcsh_01_display" value="" size="50"> subject_geographic_lcsh_01_display  hidden
+<br><input type="text" name="subject_geographic_lcsh_02" value="" size="50"> subject_geographic_lcsh_02 code
+<br><input type="text" name="subject_geographic_lcsh_02_display" value="" size="50"> subject_geographic_lcsh_02_display  hidden
+
+<br><input type="text" name="subject_temporal_lcsh_01" value="" size="50"> subject_temporal_lcsh_01
+<br><input type="text" name="subject_temporal_lcsh_02" value="" size="50"> subject_temporal_lcsh_02
+
+<br><input type="text" name="subject_topic_tgm_01" value="" size="50"> subject_topic_tgm_01
+<br><input type="text" name="subject_topic_tgm_02" value="" size="50"> subject_topic_tgm_02
+<br><input type="text" name="subject_topic_tgm_03" value="" size="50"> subject_topic_tgm_03
+
+
+<br><input type="text" name="subject_temporal_vv_01" value="" size="50"> subject_temporal_vv_01 code
+<br><input type="text" name="subject_temporal_vv_01_display" value="" size="50"> subject_temporal_vv_01_display
+<!------------------per Tiffanie Conner, drop second temporal field-------------------
+<br><input type="text" name="subject_temporal_vv_02" value="" size="50"> subject_temporal_vv_02 code
+<br><input type="text" name="subject_temporal_vv_02_display" value="" size="50"> subject_temporal_vv_02_display
+------------------------------------------------------------------------------------->
+
+<br><input type="text" name="subject_topic_vv_01" value="" size="50"> subject_topic_vv_01 code
+<br><input type="text" name="subject_topic_vv_01_display" value="" size="50"> subject_topic_vv_01_display
+<br><input type="text" name="subject_topic_vv_02" value="" size="50"> subject_topic_vv_02 code
+<br><input type="text" name="subject_topic_vv_02_display" value="" size="50"> subject_topic_vv_02 display
+<br><input type="text" name="subject_topic_vv_03" value="" size="50"> subject_topic_vv_03 code
+<br><input type="text" name="subject_topic_vv_03_display" value="" size="50"> subject_topic_vv_03_display
+<br><input type="text" name="subject_topic_vv_04" value="" size="50"> subject_topic_vv_04 code
+<br><input type="text" name="subject_topic_vv_04_display" value="" size="50"> subject_topic_vv_04_display
+<br><input type="text" name="subject_topic_vv_05" value="" size="50"> subject_topic_vv_05 code
+<br><input type="text" name="subject_topic_vv_05_display" value="" size="50"> subject_topic_vv_05 display
+
+<br><input type="text" name="subject_geographic_vv_01" value="" size="50"> subject_geographic_vv_01 code
+<br><input type="text" name="subject_geographic_vv_01_display" value="" size="50"> subject_geographic_vv_01 display
+<br><input type="text" name="subject_geographic_vv_02" value="" size="50"> subject_geographic_vv_02 code
+<br><input type="text" name="subject_geographic_vv_02_display" value="" size="50"> subject_geographic_vv_02_display
+
+
+
+<br><input type="text" name="subject_topic_spc_01" value="" size="50"> subject_topic_spc_01 code
+<br><input type="text" name="subject_topic_spc_01_display" value="" size="50"> subject_topic_spc_01_display
+<br><input type="text" name="subject_topic_spc_02" value="" size="50"> subject_topic_spc_02 code
+<br><input type="text" name="subject_topic_spc_02_display" value="" size="50"> subject_topic_spc_02 display
+<br><input type="text" name="subject_topic_spc_03" value="" size="50"> subject_topic_spec_03 code
+<br><input type="text" name="subject_topic_spc_03_display" value="" size="50"> subject_topic_spc_03_display
+
+<br><input type="text" name="subject_topic_none_01_desc" value=""   size="50"> subject_topic_none_01_desc free text description
+<br><input type="text" name="subject_name_none_01_desc" value=""   size="50"> subject_name_none_01_desc free text description
+<br><input type="text" name="subject_geographic_none_01" value=""   size="50"> subject_geographic_none_01 free text description
+<br><input type="text" name="subject_temporal_none_01_desc" value=""   size="50">  subject_temporal_none_01_desc free text description
+
+<!--------------End Page Four------------------------------------------------>
+
+
+
+
+<!--------------Start Page Five------------------------------------------------>
+<hr>
+<b>Page Five Form Elements</b>
+<br>This text box is filled in by page_begin.htm when <u>parent.U.document.UF.numConstituentsTIFF.value</u> is defined.
+
+<!--br><input type="text" name="xfile_list_tiff" value="" size="50"> file_list_tiff, comma delimited list -->
+<br><textarea name="file_list_tiff"  cols="24" rows="10" ></textarea> file_list_tiff, comma delimited list created on page_begin.htm
+
+<!--------------End Page Five------------------------------------------------>
+
+
+<!--------------Start Page Six------------------------------------------------>
+<hr>
+<b>Page Six Form Elements</b>
+
+<br><input type="text" name="physical_location_repository"  value="" size="50" > physical_location_repository
+<br><input type="text" name="physical_location_street_addr"  value="" size="50" > physical_location_street_addr
+<br><input type="text" name="physical_location_city"  value=""  size="50"> physical_location_city
+<br><input type="text" name="physical_location_state"  value=""  size="50"> physical_location_state
+<br><input type="text" name="physical_location_county"  value="" size="50"> physical_location_county
+<br><input type="text" name="physical_location_county_display"  value="" size="50"> physical_location_county_display
+
+
+<br><input type="text" name="collection_id_name"  value="" size="50"> collection_id_name
+<br><select size="6" name="collection_id_num_type">
+<option value="none" selected>none selected</option>
+<option value="manuscriptNumber">Manuscript Number</option>
+<option value="archiveNumber">Archive Number</option>
+<option value="callNumber">Call Number</option>
+<option value="accessionNumber">Accession Number</option>
+<option value="otherIdentificationNumber">Other Identification Number</option>
+</select> collection_id_num_type
+<br><input type="text" name="collection_id_number"  value="" size="50"> collection_id_number
+<br><input type="text" name="physical_location_detail"  value="" size="50" > physical_location_detail
+
+
+<br>museum_credit_line <u>input box on museum page</u>
+<br><textarea name="museum_credit_line" cols="60" rows="4" ></textarea>
+
+<br><input type="radio" name="record_content_source_radio" value="EAST" checked > record_content_source_radio EAST 
+<br><input type="radio" name="record_content_source_radio" value="MIDDLE" checked > record_content_source_radio MIDDLE 
+<br><input type="radio" name="record_content_source_radio" value="WEST" checked > record_content_source_radio WEST 
+<br><input type="radio" name="record_content_source_radio" value="OTHER" checked > record_content_source_radio OTHER
+
+<br><input type="text" name="record_content_source"  value="" size="50">record_content_source
+<br><input type="text" name="record_creation_date"  value="" size="50">record_creation_date
+<br><input type="text" name="language_of_cataloging"  value="" size="50">language_of_cataloging
+<br><input type="text" name="language_of_cataloging_display"  value="" size="50">language_of_cataloging_display
+<br><input type="text" name="use_and_reproduction" value="<a href='http://diglib.lib.utk.edu/dlc/rights/vv.html' target='_blank'>Use and Reproduction</a>" size="100"> use_and_reproduction
+
+<!--------------End Page Six------------------------------------------------>
+
+
+<!--------------Start Page Museum----------------------------------------------->
+<hr>
+<b>Museum Page Form Elements</b>
+
+<br>museum_form_type_technique -- see page 3
+<br>museum_form_type_medium -- see page 3
+<!---br>museum_accession_number -- see page 6 --->
+<br>museum_credit_line -- see page 6
+<br><b>virtual - never used</b>
+
+<!--------------End Page Museum------------------------------------------------>
+
+
+
+
+
+</form>
+
+<script>
+
+formvardebug();
+
+
+
+</script>
+</body>
+</head>
+

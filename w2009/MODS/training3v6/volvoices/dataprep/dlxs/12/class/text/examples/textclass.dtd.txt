@@ -1,0 +1,491 @@
+<!-- 08-07-2001, 5:20 PM.  Includes more PLD needs (NOTE1 and NOTE2 within BIBL; DIV11-DIV14 added). -->
+<!-- 08-03-2001, 12:50 PM.  Includes PLD needs (CB element (column break) and COM attribute (column number); BIBL permitted within BIBL. -->
+<!--  04-11-2001, 5:0 PM.  Includes amverse needs. -->
+<!-- 04-04-2000, 1:20 PM.  Removes all reference to GUMS.  Includes MoA needs (EPB element, PB attributes). -->
+<!-- 11-09-1999, 4:16 PM.  Includes Bosnia needs (REF and CIT elements). -->
+<!-- 10-20-1999, 4:09 PM.  Includes Yeats needs (SP and OPENER elements, PLACE and GENRE attributes). -->
+<!-- 06-02-1999, 4:11 PM.  Includes Harpers needs (PRICE, COPYRIGHT). -->
+<!-- 03-25-1999, 3:25 PM.  Includes Voltaire header needs. -->
+
+<!ENTITY % all.as "who cdata #implied teiform cdata #implied value cdata #implied  rows cdata #implied expan cdata #implied level cdata #implied ed cdata #implied targtype cdata #implied direct cdata #implied cnf cdata #implied ftr cdata #implied fmt cdata #implied res cdata #implied seq cdata #implied place cdata #implied genre cdata #implied reason cdata #implied ref cdata #implied inline cdata #implied role cdata #implied colspan cdata #implied edition cdata #implied vn cdata #implied target cdata #implied cols cdata #implied width cdata #implied unit cdata #implied cert cdata #implied date cdata #implied date2 cdata #implied  id cdata #implied n cdata #implied lang cdata #implied rend cdata #implied type cdata #implied name cdata #implied rhymed cdata #implied original cdata #implied align cdata #implied attrib cdata #implied poet cdata #implied poe2 cdata #implied poe3 cdata #implied indent cdata #implied part cdata #implied ln cdata #implied anchored cdata #implied scheme cdata #implied norm cdata #implied entity cdata #implied sic cdata #implied ana cdata #implied corr cdata #implied resp cdata #implied sex cdata #implied key cdata #implied enjamb cdata #implied rhyme cdata #implied met cdata #implied targorder cdata #implied default cdata #implied agent cdata #implied desc cdata #implied extent cdata #implied status cdata #implied source cdata #implied from cdata #implied to cdata #implied node cdata #implied vcom cdata #implied vbcom cdata #implied period cdata #implied edn cdata #implied test cdata #implied nl cdata #implied head cdata #implied com cdata #implied">
+ 
+<!ELEMENT COLL O O (DLPSTEXTCLASS)+>
+<!ELEMENT header - -  (fileDesc, (encodingDesc)*, (profileDesc)*, (revisionDesc)*)>
+<!ATTLIST header %all.as;>
+
+<!ELEMENT fileDesc - - (titleStmt, (editionStmt)?, (extent)?, publicationStmt, (seriesStmt)?, (notesStmt)?, (sourceDesc)+)>
+<!ATTLIST fileDesc %all.as;>
+<!ELEMENT titleStmt - - ((title)+, (author | editor | respStmt)*)>
+<!ATTLIST titleStmt %all.as;>
+<!ELEMENT editionStmt - - ((edition, (respStmt)*) | (p)+)>
+<!ATTLIST editionStmt %all.as;>
+<!ELEMENT edition - - (#pcdata | HI1 | DATE)*>
+<!ATTLIST edition %all.as;>
+<!ELEMENT respStmt - - ((resp & name), (resp | name)*)>
+<!ATTLIST respStmt %all.as;>
+<!ELEMENT resp - - (#PCDATA | hi1)*>
+<!ATTLIST resp %all.as;>
+<!ELEMENT name - - (#PCDATA | hi1)*>
+<!ATTLIST name %all.as;>
+<!ELEMENT add - - (#PCDATA | hi1 | p | l | lg | note1 | note2 | bibl | q1)*>
+<!ATTLIST add %all.as;>
+<!ELEMENT del - - (#PCDATA | hi1 | gap | del)*>
+<!ATTLIST del %all.as;>
+<!ELEMENT SUPPLIED - - (#PCDATA | hi1 | gap)*>
+<!ATTLIST SUPPLIED %all.as;>
+<!ELEMENT postscript - - ((head | opener | lb | milestone | pb | gap)*, ((p | l | lg | q1 | list | note | stage | sp | bibl),  (lb | milestone | pb | gap)*)+, ((closer | trailer), (lb | milestone | pb | gap)*)*)  >
+<!ATTLIST postscript %all.as;>
+<!ELEMENT EXPAN - - (#PCDATA | hi1)*>
+<!ATTLIST EXPAN %all.as;>
+<!ELEMENT extent - - (#pcdata | hi1)*>
+<!ATTLIST extent %all.as;>
+<!ELEMENT publicationStmt - - (((publisher | distributor | authority | pubPlace)*, (address)?, (series)?, (idno)*,  (acc.no)*, (availability)?, (date)?)+)>
+<!ATTLIST publicationStmt %all.as;>
+<!ELEMENT distributor - - (#PCDATA | hi1 | address)*>
+<!ATTLIST distributor %all.as;>
+<!ELEMENT author - - ((#PCDATA | name | hi1 | date)*, ((descrip) | (dates) | (alias))* )>
+<!ELEMENT editor - - ((#PCDATA | name | hi1)*, ((descrip) | (dates) | (alias))* )>
+<!ATTLIST editor %all.as;>
+<!ELEMENT authority - - (#PCDATA | hi1)*>
+<!ATTLIST authority %all.as;>
+<!ELEMENT series - - (#pcdata | hi1)*>
+<!ATTLIST series %all.as;>
+<!ELEMENT descrip - - (#pcdata | hi1)*>
+<!ELEMENT alias - - (#pcdata | hi1)*>
+<!ATTLIST (author|descrip|alias) %all.as;>
+
+<!ELEMENT sourceDesc - - (p | bibl | biblFull)+>
+<!ATTLIST (sourceDesc) %all.as;>
+<!ELEMENT biblFull - - (titleStmt, (editionStmt)?, (extent)?, publicationStmt, (seriesStmt)?, (notesStmt)?, (sourceDesc)*)>
+<!ATTLIST (biblFull) %all.as;>
+<!ELEMENT title - - (q1 | bibl | num | date | foreign | #pcdata | hi1 | name)* >
+<!ATTLIST (title) %all.as;>
+<!ELEMENT num - - (#pcdata | hi1)*>
+<!ATTLIST (num) %all.as;>
+<!ELEMENT acc.no - - (#pcdata | hi1)*>
+<!ELEMENT idno - - (#pcdata | hi1)*>
+<!ATTLIST (acc.no|idno) %all.as;>
+<!ELEMENT dates - - (#pcdata | hi1)*>
+<!ATTLIST dates born cdata #implied died cdata #implied cert (y|n|scarcely|uncertain) y>
+<!-- born and died specify years for IR purposes: content of tag is a phrase such as floreat 1634 or 1678-?89 -->
+<!ELEMENT availability - - (p)+>
+<!ATTLIST availability %all.as;>
+<!ELEMENT publisher - - (#PCDATA | ADDRESS | HI1 | NAME | DATE)*>
+<!ATTLIST publisher %all.as;>
+<!ELEMENT pubplace - - (#PCDATA | ADDRESS | hi1)*>
+<!ATTLIST pubplace %all.as;>
+<!ELEMENT address - - (#PCDATA | addrline | hi1)*>
+<!ATTLIST address %all.as;>
+<!ELEMENT date - - (#PCDATA | hi1 | emph | gap)*>
+<!ATTLIST date %all.as;>
+<!ELEMENT notesstmt - - (note)+>
+<!ATTLIST notesstmt %all.as;>
+
+<!ELEMENT abbr - - ANY>
+<!ATTLIST abbr %all.as;>
+<!ELEMENT corr - - ANY>
+<!ATTLIST corr %all.as;>
+<!ELEMENT emph - - ANY>
+<!ATTLIST emph %all.as;>
+<!ELEMENT gloss - - ANY>
+<!ATTLIST gloss %all.as;>
+<!ELEMENT hi1 - - ANY>
+<!ATTLIST hi1 %all.as;>
+<!ELEMENT hi2 - - ANY>
+<!ATTLIST hi2 %all.as;>
+<!ELEMENT hi3 - - ANY>
+<!ATTLIST hi3 %all.as;>
+<!ELEMENT rs - - ANY>
+<!ATTLIST rs %all.as;>
+<!ELEMENT encodingDesc - - ((projectDesc)*, (editorialDecl), (refsDecl)*, (p)*)>
+<!ATTLIST encodingDesc %all.as;>
+<!ELEMENT projectDesc - - (p+)>
+<!ATTLIST projectDesc %all.as;>
+<!ELEMENT editorialDecl - - (p+)>
+<!ATTLIST editorialDecl %all.as;>
+<!ELEMENT profileDesc - - ((creation)?, (langUsage)*, (textClass)*)>
+<!ATTLIST profileDesc %all.as;>
+<!ELEMENT langUsage - - (p | language)+>
+<!ATTLIST langUsage %all.as;>
+<!ELEMENT language - - (#pcdata)>
+<!ATTLIST language %all.as;>
+<!ELEMENT textClass - - (classcode | catref | keywords)*>
+<!ATTLIST textClass %all.as;>
+<!ELEMENT keywords - - ANY>
+<!ATTLIST keywords %all.as;>
+<!ELEMENT term - - (#PCDATA | HI1)*>
+<!ATTLIST term %all.as;>
+<!ELEMENT authorind - - (#PCDATA | HI1)*>
+<!ATTLIST authorind %all.as;>
+<!ELEMENT classcode - - (#PCDATA | HI1)*>
+<!ATTLIST classcode %all.as;>
+<!ELEMENT catref - - (#PCDATA)>
+<!ATTLIST catref %all.as;>
+<!ELEMENT price - - (#PCDATA)>
+<!ATTLIST price %all.as;>
+<!ELEMENT copyright - - (#PCDATA)>
+<!ATTLIST copyright %all.as;>
+<!ELEMENT revisionDesc - - (change)+>
+<!ATTLIST revisionDesc %all.as;>
+<!ELEMENT change - - (date, (respStmt)+, item)>
+<!ATTLIST change %all.as;>
+
+<!ELEMENT seriesStmt - - ((title+, (idno | respStmt)*) | (p)+)>
+<!ATTLIST seriesStmt %all.as;>
+<!ELEMENT bibl - - (#PCDATA | address | bibl | biblscope | date | gap | hi1 | title | author | authorind  | edition | editor | extent | idno | name | note | note1 | note2 | publisher | pubPlace | respStmt | price | copyright | emph | add | imprint | term)*>
+<!ATTLIST bibl %all.as;>
+
+<!ELEMENT ADDRLINE - - ANY>
+<!ATTLIST ADDRLINE %all.as;>
+
+<!ELEMENT BIBLSCOPE - - (#PCDATA | hi1)*>
+<!ATTLIST BIBLSCOPE %all.as;>
+
+<!ELEMENT LISTBIBL - - (HEAD?, BIBL+)>
+<!ATTLIST LISTBIBL %all.as;>
+
+<!ELEMENT IMPRINT - - ANY>
+<!ATTLIST IMPRINT %all.as;>
+
+<!ELEMENT DIV1 - - ANY>
+<!ATTLIST DIV1 %all.as;
+               node cdata #required>
+
+<!ELEMENT DIV2 - - ANY>
+<!ATTLIST DIV2 %all.as;
+               node cdata #required>
+
+<!ELEMENT DIV3 - - ANY>
+<!ATTLIST DIV3 %all.as;
+               node cdata #required>
+
+<!ELEMENT DIV4 - - ANY>
+<!ATTLIST DIV4 %all.as;
+               node cdata #required>
+
+<!ELEMENT DIV5 - - ANY>
+<!ATTLIST DIV5 %all.as;
+               node cdata #required>
+
+<!ELEMENT DIV6 - - ANY>
+<!ATTLIST DIV6 %all.as;
+               node cdata #required>
+
+<!ELEMENT DIV7 - - ANY>
+<!ATTLIST DIV7 %all.as;
+               node cdata #required>
+
+<!ELEMENT DIV8 - - ANY>
+<!ATTLIST DIV8 %all.as;
+               node cdata #required>
+
+<!ELEMENT DIV9 - - ANY>
+<!ATTLIST DIV9 %all.as;
+               node cdata #required>
+
+<!ELEMENT DIV10 - - ANY>
+<!ATTLIST DIV10 %all.as;
+               node cdata #required>
+
+<!ELEMENT DIV11 - - ANY>
+<!ATTLIST DIV11 %all.as;
+               node cdata #required>
+
+<!ELEMENT DIV12 - - ANY>
+<!ATTLIST DIV12 %all.as;
+               node cdata #required>
+
+<!ELEMENT DIV13 - - ANY>
+<!ATTLIST DIV13 %all.as;
+               node cdata #required>
+
+<!ELEMENT DIV14 - - ANY>
+<!ATTLIST DIV14 %all.as;
+               node cdata #required>
+
+<!ELEMENT REFSDECL - - ANY>
+<!ATTLIST REFSDECL %all.as;>
+
+<!ELEMENT PERFORMANCE - - ((CASTLIST)+)>
+<!ATTLIST PERFORMANCE %all.as>
+
+<!ELEMENT CASTLIST - - (HEAD*, (CASTITEM | CASTGROUP)+)>
+<!ATTLIST CASTLIST %all.as;>
+
+<!ELEMENT CASTGROUP - - ((HEAD)?, (CASTITEM | CASTGROUP)+)>
+<!ATTLIST CASTGROUP %all.as;>
+
+<!ELEMENT CASTITEM - - (ROLE | ROLEDESC | hi1 | #PCDATA)*>
+<!ATTLIST CASTITEM %all.as;>
+
+<!ELEMENT ROLE - - ANY>
+<!ATTLIST ROLE %all.as;>
+
+<!ELEMENT SET - - ANY>
+<!ATTLIST SET %all.as;>
+
+<!ELEMENT SEG - - ANY>
+<!ATTLIST SEG %all.as;>
+
+<!ELEMENT ROLEDESC - - (#PCDATA | hi1)*>
+<!ATTLIST ROLEDESC %all.as>
+
+<!ELEMENT REF - - ANY>
+<!ATTLIST REF %all.as;>
+
+<!ELEMENT CIT - - ANY>
+<!ATTLIST CIT %all.as;>
+
+<!ELEMENT TITLEPAGE - - ANY>
+<!ATTLIST TITLEPAGE %all.as;>
+
+<!ELEMENT TITLEPART - - ANY>
+<!ATTLIST TITLEPART %all.as;>
+
+<!ELEMENT BYLINE - - ANY>
+<!ATTLIST BYLINE %all.as;>
+
+<!ELEMENT DOCTITLE - - ANY>
+<!ATTLIST DOCTITLE %all.as;>
+
+<!ELEMENT DOCAUTHOR - - ANY>
+<!ATTLIST DOCAUTHOR %all.as;>
+
+<!ELEMENT DOCIMPRINT - - ANY>
+<!ATTLIST DOCIMPRINT %all.as;>
+
+<!ELEMENT DOCDATE - - ANY>
+<!ATTLIST DOCDATE %all.as;>
+
+<!ELEMENT DOCEDITION - - ANY>
+<!ATTLIST DOCEDITION %all.as;>
+
+<!ELEMENT ARGUMENT - - ANY>
+<!ATTLIST ARGUMENT %all.as;>
+
+<!ELEMENT SIC - - ANY>
+<!ATTLIST SIC %all.as;>
+
+<!ELEMENT VB - O EMPTY>
+<!ATTLIST VB %all.as;>
+
+<!ELEMENT SALUTE - - ANY>
+<!ATTLIST SALUTE %all.as;>
+
+<!ELEMENT CAESURA - O EMPTY>
+<!ATTLIST CAESURA %all.as;>
+
+<!ELEMENT XPTR - O EMPTY>
+<!ATTLIST XPTR %all.as;>
+
+<!ELEMENT LB - O EMPTY>
+<!ATTLIST LB %all.as;>
+
+<!ELEMENT GAP - O EMPTY>
+<!ATTLIST GAP %all.as;>
+
+<!ELEMENT UNCLEAR - - ANY>
+<!ATTLIST UNCLEAR %all.as;>
+
+<!ELEMENT SOCALLED - - ANY>
+<!ATTLIST SOCALLED %all.as;>
+
+<!ELEMENT CREATION - - ANY>
+<!ATTLIST CREATION %all.as;>
+
+<!ELEMENT PB - O EMPTY>
+<!ATTLIST PB %all.as;>
+
+<!ELEMENT EPB - O EMPTY>
+<!ATTLIST EPB %all.as;>
+
+<!ELEMENT CB - O EMPTY>
+<!ATTLIST CB %all.as;>
+
+<!ELEMENT SPEAKER - - ANY>
+<!ATTLIST SPEAKER %all.as;>
+
+<!ELEMENT SP - - ANY>
+<!ATTLIST SP %all.as;>
+
+<!ELEMENT V - - ANY>
+<!ATTLIST V %all.as;>
+
+<!ELEMENT S - - ANY>
+<!ATTLIST S %all.as;> 
+
+<!ELEMENT L - - ANY>
+<!ATTLIST L %all.as;>
+
+<!ELEMENT DEDICAT - - ANY>
+<!ATTLIST DEDICAT %all.as;>
+
+<!ELEMENT EPIGRAPH - - ANY>
+<!ATTLIST EPIGRAPH %all.as;>
+
+<!ELEMENT CAPTION - - ANY>
+<!ATTLIST CAPTION %all.as;>
+
+<!ELEMENT DLPSTEXTCLASS - - (HEADER, TEXT)>
+<!ATTLIST DLPSTEXTCLASS %all.as;>
+
+<!ELEMENT LG - - ANY>
+<!ATTLIST LG %all.as;>
+
+<!ELEMENT TRAILER - - ANY>
+<!ATTLIST TRAILER %all.as;>
+
+<!ELEMENT FIRSTL - - ANY>
+<!ATTLIST FIRSTL %all.as;>
+
+<!ELEMENT STAGE - - ANY>
+<!ATTLIST STAGE %all.as;>
+
+<!ELEMENT PREFACE - - ANY>
+<!ATTLIST PREFACE %all.as;>
+
+<!ELEMENT SIGNED - - ANY>
+<!ATTLIST SIGNED %all.as;>
+
+<!ELEMENT LIST - - ((head)*, (gap | caption | item | label | stage)+) >
+<!ATTLIST LIST %all.as;>
+
+<!ELEMENT DATELINE - - ANY>
+<!ATTLIST DATELINE %all.as;>
+
+<!ELEMENT FIGURE - - ANY>
+<!ATTLIST FIGURE %all.as;>
+
+<!ELEMENT FIGDESC - - ANY>
+<!ATTLIST FIGDESC %all.as;>
+
+<!ELEMENT P - - ANY>
+<!ATTLIST P %all.as;>
+
+<!ELEMENT FOREIGN - - ANY>
+<!ATTLIST FOREIGN %all.as;>
+
+<!ELEMENT CLOSER - - ANY>
+<!ATTLIST CLOSER %all.as;>
+
+<!ELEMENT ITEM - - ANY>
+<!ATTLIST ITEM %all.as;>
+
+<!ELEMENT LABEL - - ANY>
+<!ATTLIST LABEL %all.as;>
+
+<!ELEMENT HEAD - - ANY>
+<!ATTLIST HEAD %all.as;>
+
+<!ELEMENT RUNHEAD - - ANY>
+<!ATTLIST RUNHEAD %all.as;>
+
+<!ELEMENT SUBHEAD - - ANY>
+<!ATTLIST SUBHEAD %all.as;>
+
+<!ELEMENT GROUP - - ((head| pb | epb)*,(text | group)+)>
+<!ATTLIST GROUP %all.as;>
+
+<!ELEMENT TEXT - - ((head*), (front?), (body | group), (back?)) +(corr | sic | unclear | anchor | foreign | ptr | pb | epb | cb | lb | milestone | table | caption | figure | figdesc | note1 | trailer | gap  ref)>
+<!ATTLIST TEXT %all.as;>
+
+<!ELEMENT NOTE1 - - ANY>
+<!ATTLIST NOTE1 %all.as;>
+
+<!ELEMENT NOTE2 - - ANY>
+<!ATTLIST NOTE2 %all.as;>
+
+<!ELEMENT NOTE3 - - ANY>
+<!ATTLIST NOTE3 %all.as;>
+
+<!ELEMENT DIVINFO - - ANY>
+<!ATTLIST DIVINFO %all.as;>
+
+<!ELEMENT ORIGINAL - - ANY>
+<!ATTLIST ORIGINAL %all.as;>
+
+<!ELEMENT NOTE - - ANY>
+<!ATTLIST NOTE %all.as;>
+
+<!ELEMENT FRONT - - ANY>
+<!ATTLIST FRONT %all.as;>
+
+<!ELEMENT BODY - - ANY>
+<!ATTLIST BODY %all.as;>
+
+<!ELEMENT BACK - - ANY>
+<!ATTLIST BACK %all.as;>
+
+<!ELEMENT PROLOGUE - - ANY>
+<!ATTLIST PROLOGUE %all.as;>
+
+<!ELEMENT EPILOGUE - - ANY>
+<!ATTLIST EPILOGUE %all.as;>
+
+<!ELEMENT Q1 - - ANY>
+<!ATTLIST Q1 %all.as;>
+
+<!ELEMENT Q2 - - ANY>
+<!ATTLIST Q2 %all.as;>
+
+<!ELEMENT Q3 - - ANY>
+<!ATTLIST Q3 %all.as;>
+
+<!ELEMENT PTR - O EMPTY>
+<!ATTLIST PTR %all.as;>
+ 
+<!ELEMENT ANCHOR - O EMPTY>
+<!ATTLIST ANCHOR %all.as;>
+
+<!ELEMENT MILESTONE - O EMPTY>
+<!ATTLIST MILESTONE %all.as;>
+ 
+<!ELEMENT APP - - ANY>
+<!ATTLIST APP %all.as;>
+ 
+<!ELEMENT RDG - - ANY>
+<!ATTLIST RDG %all.as;>
+ 
+<!ELEMENT WIT - - ANY>
+<!ATTLIST WIT %all.as;>
+
+ <!ELEMENT OPENER - - ANY>
+<!ATTLIST OPENER %all.as;>
+
+<!ELEMENT TABLE - - (head*, (p | caption | row)+)>
+<!ATTLIST TABLE %all.as;>
+
+<!ELEMENT ROW - - (cell)+>
+<!ATTLIST ROW %all.as;>
+
+<!ELEMENT CELL - - ANY>
+<!ATTLIST CELL %all.as;>
+
+<!-- The following was causing errors in rgn -->
+<!--
+<!ENTITY % ISOgrk1 PUBLIC
+       "ISO 8879:1986//ENTITIES Greek Letters//EN">
+       
+%ISOgrk1;
+
+<!ENTITY % ISOgrk3 PUBLIC
+       "ISO 8879:1986//ENTITIES Greek Letters//EN">
+%ISOgrk3;
+
+<!ENTITY % TEIgrk PUBLIC
+	"-//TEI TR1 W4:1992//ENTITIES Extra Classical Greek Letters//EN">
+%TEIgrk;
+
+<!ENTITY % ISOlat1 PUBLIC "ISO 8879-1986//ENTITIES Added Latin 1//EN">
+%ISOlat1; 
+
+<!ENTITY % ISOlat2 PUBLIC "ISO 8879-1986//ENTITIES Added Latin 2//EN">
+%ISOlat2; 
+
+<!ENTITY % ISOnum  
+  PUBLIC   "ISO 8879-1986//ENTITIES Numeric and Special Graphic//EN">
+%ISOnum;
+
+<!ENTITY % ISOpub  PUBLIC "ISO 8879-1986//ENTITIES Publishing//EN">
+%ISOpub; 
+-->

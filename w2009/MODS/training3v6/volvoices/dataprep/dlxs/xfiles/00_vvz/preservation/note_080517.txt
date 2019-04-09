@@ -1,0 +1,21 @@
+preservation
+
+files are from diglib2/d1/workarea/dlxs/bib/mods/vv
+
+/xml - file copied from single directory with the command
+
+command> >> cp  /d1/workarea/dlxs/image/tel/singles/modsbib/0031_000050_000203_0000 
+
+/d1/workarea/dlxs/bib/mods/vv/xml/0031_000050_000203_0000
+
+
+/newSubxml  - file created by running the command
+command>> fixSubjectsBib  (repairs subjects in xml directory, puts them in newSubxml)
+
+make a tiny version of vvs-mods.xml
+
+cat openbib newSubxml/* closebib >  vvs-mods.xml
+
+that you can run transport on in prep directory
+
+cp vvs-mods.xml /d1/dlxs/prep/v/vvs-mods/

@@ -1,0 +1,41 @@
+
+var creator_01_hide= new String(" ");
+    creator_01_hide += '<input type="hidden" name="name_type_01" value="">'
+	+'<input type="hidden" name="name_authority_01" value="">'
+	+'<input type="hidden" name="namepart_family_01" value="">'
+	+'<input type="hidden" name="creator_lastname_01" value="">'
+	+'<input type="hidden" name="namepart_given_01" value="">'
+	+'<input type="hidden" name="creator_givenname_01" value="">'
+	+'<input type="hidden" name="namepart_date_01" value="">'
+	+'<input type="hidden" name="creator_fulldatestr_01" value="">'
+	+'<input type="hidden" name="creator_description_01" value="">'
+	+'<input type="hidden" name="creator_rolea_auth_01" value="">'
+	+'<input type="hidden" name="creator_rolea_01" value="">'
+	+'<input type="hidden" name="creator_roleb_auth_01" value="">'
+	+'<input type="hidden" name="creator_roleb_01" value="">'
+	+'<input type="hidden" name="creator_rolec_auth_01" value="">'
+	+'<input type="hidden" name="creator_rolec_01" value="">'
+	;
+
+
+difference between creator_01_hide.txt and creator_tags.js
+
+:%s /_01/_'+sN+'/
+
+var creator_NN_hide= new String(" ");
+    creator_NN_hide += '<input type="hidden" name="name_type_'+sN+'" value="">'
+	+'<input type="hidden" name="name_authority_'+sN+'" value="">'
+	+'<input type="hidden" name="namepart_family_'+sN+'" value="">'
+	+'<input type="hidden" name="creator_lastname_'+sN+'" value="">'
+	+'<input type="hidden" name="namepart_given_'+sN+'" value="">'
+	+'<input type="hidden" name="creator_givenname_'+sN+'" value="">'
+	+'<input type="hidden" name="namepart_date_'+sN+'" value="">'
+	+'<input type="hidden" name="creator_fulldatestr_'+sN+'" value="">'
+	+'<input type="hidden" name="creator_description_'+sN+'" value="">'
+	+'<input type="hidden" name="creator_rolea_auth_'+sN+'" value="">'
+	+'<input type="hidden" name="creator_rolea_'+sN+'" value="">'
+	+'<input type="hidden" name="creator_roleb_auth_'+sN+'" value="">'
+	+'<input type="hidden" name="creator_roleb_'+sN+'" value="">'
+	+'<input type="hidden" name="creator_rolec_auth_'+sN+'" value="">'
+	+'<input type="hidden" name="creator_rolec_'+sN+'" value="">'
+	;

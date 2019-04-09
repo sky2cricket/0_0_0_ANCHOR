@@ -1,0 +1,190 @@
+## The following is a suite of test searches for the bibliographic
+## middleware.  It is designed to be run against the sample bib
+## collection "umr-bib", a collection of 4,769 records converted from
+## USMARC format for the University of Michigan Reports series.  
+##
+## Significantly, this test suite lacks a test of searching multiple
+## simultaneous indexes.  When searching multiple simultaneous indexes,
+## you may run into problems such as numbering, where (for example) the
+## results numbering restarts in the second index when it should run
+## continuously across the indexes.  This omission will be corrected after
+## test system is installed.
+## 
+## Programmer procedures
+## (1) Run these searches from the command-line on the UNIX system to generate
+##     numbers or reproduce the numbers provided here.  Syntax is:
+##      xpat -e /l1/idx/u/umr/umr-bib.dd < /{path to test searches}/bibtest.srch
+## (2) Run the following searches in the test interface to attempt to
+##     replicate the numbers you got from the command-line; this is typically something
+##     that can be delegated to other staff, preferably students.
+#########################################################################
+# Searches to be conducted from the command-line
+# 1. Simple searches
+# 1.1. Simple search for a word with no truncation
+region A incl "rocket "
+# should produce 100 matches
+#
+# 1.2. Simple search for a word with truncation
+region A incl "rocket"
+# should produce 121 matches
+#
+# 1.3. Simple search for a word with an 8-bit character in the middle
+region A incl "für "
+# should produce 1 match
+#
+# 1.4. Simple search for a word with an entity reference in the middle
+region A incl "Akademi&illig;&arlig;"
+# should produce 1 match
+#
+# 1.5.  Simple search for word in author, with truncation
+region A incl (region L incl "bart")
+# should produce 54 matches
+#
+# 1.6.  Simple search for word in author, no truncation
+region A incl (region L incl "bartman ")
+# should produce 43 matches
+#
+# 1.7.  Simple search for word in title, no truncation
+# really need something that tests for words at end of field, like
+# "word</k>" but everything in UMR has period at end of title/author.
+region A incl (region K incl "rocket ")
+# should produce 32 matches
+#
+# 1.8.  Simple search for word in title, with truncation
+region A incl (region K incl "rocket")
+# should produce 47 matches
+#
+###
+# 2. Boolean searches (AND)
+# 2.1 Boolean search with two words anywhere in record (using truncation)
+(region A incl "rocket") ^ (region A incl "sounding")
+# should produce 26 matches 
+#
+# 2.2 Boolean search with two words anywhere in record (no truncation)
+(region A incl "rocket ") ^ (region A incl "sounding ")
+# should produce 22 matches
+#
+# 2.3 Boolean search with three words anywhere in record (using truncation)
+(region A incl "rocket") ^ (region A incl "sounding") ^ (region A incl "engineering")
+# should produce 16 matches 
+#
+# 2.2 Boolean search with three words anywhere in record (no truncation)
+(region A incl "rocket ") ^ (region A incl "sounding ") ^ (region A incl "engineering ")
+# should produce 12 matches
+#
+# 2.3 Boolean search with two words in fields (using truncation)
+(region A incl (region K incl "experiment")) ^ (region A incl (region L incl "jones, l"))
+# should produce 3 matches 
+#
+# 2.4 Boolean search with two words in fields (no truncation)
+(region A incl (region K incl "experiment ")) ^ (region A incl (region L incl "jones, leslie "))
+# should produce 1 match
+#
+# 2.5 Boolean search with three words, two in fields and one anywhere in record (using truncation)
+(region A incl (region K incl "bar")) ^ (region A incl (region L incl "jo")) ^ (region A incl "comp")
+# should produce 2 matches 
+#
+# 2.6 Boolean search with three words, two in fields and one anywhere in record (no truncation for first two, and then truncation for last)
+(region A incl (region K incl "bar ")) ^ (region A incl (region L incl "joseph ")) ^ (region A incl "comparative")
+# should produce 1 match
+#
+###
+# 3. Boolean searches (OR)
+# 3.1 Boolean search with two words anywhere in record (using truncation)
+(region A incl "rocket") + (region A incl "sounding")
+# should produce 123 matches 
+#
+# 3.2 Boolean search with two words anywhere in record (no truncation)
+(region A incl "rocket ") + (region A incl "sounding ")
+# should produce 104 matches
+#
+# 3.3 Boolean search with three words anywhere in record (using truncation)
+(region A incl "rocket") + (region A incl "sounding") + (region A incl "engineering")
+# should produce 3567 matches 
+#
+# 3.2 Boolean search with three words anywhere in record (no truncation)
+((region A incl "rocket ") + (region A incl "sounding ")) ^ (region A incl "engineering ")
+# should produce 81 matches
+#
+# 3.3 Boolean search with two words in fields (using truncation)
+(region A incl (region K incl "experiment")) + (region A incl (region L incl "jones, l"))
+# should produce 182 matches 
+#
+# 3.4 Boolean search with two words in fields (no truncation)
+(region A incl (region K incl "experiment ")) + (region A incl (region L incl "jones, leslie "))
+# should produce 54 matches
+#
+# 3.5 Boolean search with three words, two in fields and one anywhere in record (using truncation)
+((region A incl "comp") + (region A incl (region K incl "bar"))) ^ (region A incl (region L incl "jo"))
+# should produce 75 matches 
+#
+# 3.6 Boolean search with three words, two in fields and one anywhere in record (using no truncation)
+((region A incl (region L incl "joseph ")) + (region A incl (region L incl "jon "))) ^ (region A incl "comp")
+# should produce 13 matches
+#
+###
+# 4. Boolean searches (NOT)
+# 4.1 Boolean search with two words anywhere in record (using truncation)
+(region A incl "rocket") - (region A incl "sounding")
+# should produce 95 matches 
+#
+# 4.2 Boolean search with two words anywhere in record (no truncation)
+(region A incl "rocket ") - (region A incl "sounding ")
+# should produce 78 matches
+#
+# 4.3 Boolean search with three words anywhere in record (using truncation)
+((region A incl "rocket") ^ (region A incl "sounding")) - (region A incl "engineering")
+# should produce 10 matches 
+#
+# 4.2 Boolean search with three words anywhere in record (no truncation)
+((region A incl "rocket ") + (region A incl "sounding ")) - (region A incl "engineering ")
+# should produce 23 matches
+#
+# 4.3 Boolean search with two words in fields (using truncation)
+(region A incl (region K incl "experiment")) - (region A incl (region L incl "jones, l"))
+# should produce 161 matches 
+#
+# 4.4 Boolean search with two words in fields (no truncation)
+(region A incl (region K incl "experiment ")) - (region A incl (region L incl "jones, leslie "))
+# should produce 46 matches
+#
+# 4.5 Boolean search with three words, two in fields and one anywhere in record (using truncation)
+((region A incl "comp") + (region A incl (region K incl "bar"))) - (region A incl (region L incl "jo"))
+# should produce 975 matches 
+#
+# 4.6 Boolean search with three words, two in fields and one anywhere in record (using truncation)
+((region A incl (region L incl "joseph ")) + (region A incl (region L incl "jon "))) - (region A incl "comp")
+# should produce 62 matches
+###
+# 5. Boolean searches (NOT) with date limitations
+# 5.1 Boolean search with two words anywhere in record (using truncation)
+((region A incl "rocket") - (region A incl "sounding")) ^ (region A incl (region YR incl "1926".."1988"))
+# should produce 92 matches 
+#
+# 5.2 Boolean search with two words anywhere in record (no truncation)
+((region A incl "rocket ") - (region A incl "sounding ")) ^ (region A incl (region YR incl "1926".."1988"))
+# should produce 76 matches
+#
+# 5.3 Boolean search with three words anywhere in record (using truncation)
+(((region A incl "rocket") ^ (region A incl "sounding")) - (region A incl "engineering")) ^ (region A incl (region YR incl "1956".."1970"))
+# should produce 6 matches 
+#
+# 5.2 Boolean search with three words anywhere in record (no truncation)
+(((region A incl "rocket ") + (region A incl "sounding ")) - (region A incl "engineering ")) ^ (region A incl (region YR incl "1956".."1970"))
+# should produce 17 matches
+#
+# 5.3 Boolean search with two words in fields (using truncation)
+((region A incl (region K incl "experiment")) - (region A incl (region L incl "jones, l"))) ^ (region A incl (region YR incl "1926".."1988"))
+# should produce 142 matches 
+#
+# 5.4 Boolean search with two words in fields (no truncation)
+((region A incl (region K incl "experiment ")) - (region A incl (region L incl "jones, leslie "))) ^ (region A incl (region YR incl "1926".."1988"))
+# should produce 41 matches
+#
+# 5.5 Boolean search with three words, two in fields and one anywhere in record (using truncation)
+(((region A incl "comp") + (region A incl (region K incl "bar"))) - (region A incl (region L incl "jo"))) ^ (region A incl (region YR incl "1926".."1988"))
+# should produce 821 matches 
+#
+# 5.6 Boolean search with three words, two in fields and one anywhere in record (using truncation)
+(((region A incl (region L incl "joseph ")) + (region A incl (region L incl "jon "))) - (region A incl "comp")) ^ (region A incl (region YR incl "1926".."1988"))
+# should produce 56 matches

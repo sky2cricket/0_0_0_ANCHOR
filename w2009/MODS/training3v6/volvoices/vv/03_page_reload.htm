@@ -1,0 +1,368 @@
+
+<html>
+<head>
+<title>
+page_reload
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+<script language=javascript src="02_vv_decompose_tags.js"></script>
+
+<script>
+
+
+
+
+//alert("parent.L.RELOAD = "+parent.L.RELOAD);
+
+</script>
+
+
+</head>
+
+<script>document.write('<body   bgcolor="'+parent.adb_background_color+'" >');</script>
+
+<font face="arial" size="3">
+<center><font face="arial">
+<h2>Volunteer Voices Workbook 02_Reload Page </h2>
+<font face="arial" size="2" color="a00000">uses 02_decompose_tags.js</script>
+
+</center>
+
+<script>
+
+//global variables defined in vv_decompose_tags.js
+///var xmlAll = new String();
+///var xmlCursor = 0;
+///var localCursor = 0;
+
+
+/*
+function xtestData2() {
+// function get_MODS_element_block2(StartTag,EndTag,SentinelTag,fromString,startIndex){
+var chompStr = new String(document.forms[0].chomp.value);
+var MEB_cursor=0;
+var mods_header = new String(get_MODS_header_block('<?xml','<mods:titleInfo',chompStr,MEB_cursor));
+    MEB_cursor = chompStr.indexOf(mods_header)+mods_header.length;
+var mods_titleInfo=new String(get_MODS_element_block2('<mods:titleInfo','</mods:titleInfo>','<mods:name',chompStr,MEB_cursor));
+    MEB_cursor += mods_titleInfo.length;
+var mods_name_01  =new String(get_MODS_element_block2('<mods:name type','</mods:name>','<mods:originInfo',chompStr,MEB_cursor));
+    MEB_cursor += mods_name_01.length;
+var mods_name_02  =new String(get_MODS_element_block2('<mods:name type','</mods:name>','<mods:originInfo',chompStr,MEB_cursor));
+    MEB_cursor += mods_name_02.length;
+var mods_name_03  =new String(get_MODS_element_block2('<mods:name type','</mods:name>','<mods:originInfo',chompStr,MEB_cursor));
+    MEB_cursor += mods_name_03.length;
+var mods_originInfo = new String(get_MODS_element_block2('<mods:originInfo','</mods:originInfo>','<mods:language',chompStr,MEB_cursor));
+    MEB_cursor += mods_originInfo.length;
+var mods_language = new String(get_MODS_element_block2('<mods:language','</mods:language>','<mods:typeOfResource',chompStr,MEB_cursor));
+    MEB_cursor += mods_language.length;
+var mods_typeOfResource_01 = new String(get_MODS_element_block2('<mods:typeOfResource','</mods:typeOfResource>','<mods:genre',chompStr,MEB_cursor));
+    MEB_cursor += mods_typeOfResource_01.length;
+var mods_typeOfResource_02 = new String(get_MODS_element_block2('<mods:typeOfResource','</mods:typeOfResource>','<mods:genre',chompStr,MEB_cursor));
+    MEB_cursor += mods_typeOfResource_02.length;
+var mods_typeOfResource_03 = new String(get_MODS_element_block2('<mods:typeOfResource','</mods:typeOfResource>','<mods:genre',chompStr,MEB_cursor));
+    MEB_cursor += mods_typeOfResource_03.length;
+var mods_genre = new String(get_MODS_element_block2('<mods:genre authority','</mods:genre>','<mods:physicalDescription',chompStr,MEB_cursor));
+    MEB_cursor += mods_genre.length;
+var mods_physicalDescription = new String(get_MODS_element_block2('<mods:physicalDescription','</mods:physicalDescription>','<mods:abstract',chompStr,MEB_cursor));
+    MEB_cursor += mods_physicalDescription.length;
+var mods_abstract = new String(get_MODS_element_block2('<mods:abstract','</mods:abstract>','<mods:subject',chompStr,MEB_cursor));
+    MEB_cursor += mods_abstract.length;
+var mods_subject_auth_lcsh = new String(get_MODS_element_block2('<mods:subject authority="lcsh"','</mods:subject>','<mods:relatedItem',chompStr,MEB_cursor));
+    MEB_cursor += mods_subject_auth_lcsh.length;
+var mods_subject_auth_tgm = new String(get_MODS_element_block2('<mods:subject authority="tgm"','</mods:subject>','<mods:relatedItem',chompStr,MEB_cursor));
+    MEB_cursor += mods_subject_auth_tgm.length;
+var mods_subject_auth_vv = new String(get_MODS_element_block2('<mods:subject authority="vv"','</mods:subject>','<mods:relatedItem',chompStr,MEB_cursor));
+    MEB_cursor += mods_subject_auth_vv.length;
+var mods_subject_auth_spc = new String(get_MODS_element_block2('<mods:subject authority="spc"','</mods:subject>','<mods:relatedItem',chompStr,MEB_cursor));
+    MEB_cursor += mods_subject_auth_spc.length;
+var mods_subject_auth_none = new String(get_MODS_element_block2('<mods:subject ','</mods:subject>','<mods:relatedItem',chompStr,MEB_cursor));
+    MEB_cursor += mods_subject_auth_none.length;
+var mods_constituent_files = new String(get_MODS_element_block2('<mods:relatedItem type="constituent"','</mods:relatedItem','<mods:location',chompStr,MEB_cursor));
+    MEB_cursor += mods_constituent_files.length;
+
+var mods_uri = new String(get_MODS_element_block2('<mods:identifier type="uri"','</mods:identifier>','<mods:location',chompStr,MEB_cursor));
+    MEB_cursor += mods_uri.length;
+var mods_location = new String(get_MODS_element_block2('<mods:location','</mods:location>','<mods:note',chompStr,MEB_cursor));
+    MEB_cursor += mods_location.length;
+var mods_note = new String(get_MODS_element_block2('<mods:note type','</mods:note>','<mods:recordInfo',chompStr,MEB_cursor));
+    MEB_cursor += mods_note.length;
+var mods_recordInfo = new String(get_MODS_element_block2('<mods:recordInfo','</mods:recordInfo>','<mods:accessCondition',chompStr,MEB_cursor));
+    MEB_cursor += mods_recordInfo.length;
+var mods_accessCondition = new String(get_MODS_element_block2('<mods:accessCondition','</mods:accessCondition>','</mods:mods>',chompStr,MEB_cursor));
+    MEB_cursor += mods_accessCondition.length;
+
+extract_page_begin(chompStr);
+
+}//end function testData2()
+*/
+function testData() {
+
+var chompStr = new String(document.forms[0].chomp.value);
+//alert("testData");
+//var S = new dataTuple_11("testA","testB","testC","testD","testE","testF","testG");
+//alert ("S.a="+S.a+"\nS.g="+S.g+"\nS.k="+S.k)
+
+var MEB_cursor=0;
+var mods_header = new String(get_MODS_header_block('<?xml','<mods:titleInfo',chompStr,MEB_cursor));
+    MEB_cursor = chompStr.indexOf(mods_header)+mods_header.length;
+var mods_titleInfo=new String(get_MODS_element_block('<mods:titleInfo','</mods:titleInfo>',chompStr,MEB_cursor));
+    MEB_cursor += mods_titleInfo.length;
+var mods_name_01  =new String(get_MODS_element_block('<mods:name type','</mods:name>',chompStr,MEB_cursor));
+    MEB_cursor += mods_name_01.length;
+
+var mods_name_02  =new String(get_MODS_element_block('<mods:name type','</mods:name>',chompStr,MEB_cursor));
+    MEB_cursor += mods_name_02.length;
+var mods_name_03  =new String(get_MODS_element_block('<mods:name type','</mods:name>',chompStr,MEB_cursor));
+    MEB_cursor += mods_name_03.length;
+var mods_originInfo = new String(get_MODS_element_block('<mods:originInfo','</mods:originInfo>',chompStr,MEB_cursor));
+    MEB_cursor += mods_originInfo.length;
+var mods_language = new String(get_MODS_element_block('<mods:language','</mods:language>',chompStr,MEB_cursor));
+    MEB_cursor += mods_language.length;
+
+var mods_typeOfResource_01 = new String(get_MODS_element_block('<mods:typeOfResource','</mods:typeOfResource>',chompStr,MEB_cursor));
+    MEB_cursor += mods_typeOfResource_01.length;
+var mods_typeOfResource_02 = new String(get_MODS_element_block('<mods:typeOfResource','</mods:typeOfResource>',chompStr,MEB_cursor));
+    MEB_cursor += mods_typeOfResource_02.length;
+var mods_typeOfResource_03 = new String(get_MODS_element_block('<mods:typeOfResource','</mods:typeOfResource>',chompStr,MEB_cursor));
+    MEB_cursor += mods_typeOfResource_03.length;
+var mods_genre = new String(get_MODS_element_block('<mods:genre authority','</mods:genre>',chompStr,MEB_cursor));
+    MEB_cursor += mods_genre.length;
+
+var mods_physicalDescription = new String(get_MODS_element_block('<mods:physicalDescription','</mods:physicalDescription>',chompStr,MEB_cursor));
+    MEB_cursor += mods_physicalDescription.length;
+var mods_abstract = new String(get_MODS_element_block('<mods:abstract','</mods:abstract>',chompStr,MEB_cursor));
+    MEB_cursor += mods_abstract.length;
+var mods_subject_auth_lcsh = new String(get_MODS_element_block('<mods:subject authority="lcsh"','</mods:subject>',chompStr,MEB_cursor));
+    MEB_cursor += mods_subject_auth_lcsh.length;
+var mods_subject_auth_tgm = new String(get_MODS_element_block('<mods:subject authority="tgm"','</mods:subject>',chompStr,MEB_cursor));
+    MEB_cursor += mods_subject_auth_tgm.length;
+var mods_subject_auth_vv = new String(get_MODS_element_block('<mods:subject authority="vv"','</mods:subject>',chompStr,MEB_cursor));
+    MEB_cursor += mods_subject_auth_vv.length;
+var mods_subject_auth_spc = new String(get_MODS_element_block('<mods:subject authority="spc"','</mods:subject>',chompStr,MEB_cursor));
+    MEB_cursor += mods_subject_auth_spc.length;
+
+var mods_subject_auth_none = new String(get_MODS_element_block('<mods:subject','</mods:subject>',chompStr,MEB_cursor));
+    MEB_cursor += mods_subject_auth_none.length;
+var mods_constituent_files = new String(get_MODS_element_block('<mods:relatedItem type="constituent"','</mods:relatedItem',chompStr,MEB_cursor));
+    MEB_cursor += mods_constituent_files.length;
+
+var mods_uri = new String(get_MODS_element_block('<mods:identifier type="uri"','</mods:identifier>',chompStr,MEB_cursor));
+    MEB_cursor += mods_uri.length;
+var mods_location = new String(get_MODS_element_block('<mods:location','</mods:location>',chompStr,MEB_cursor));
+    MEB_cursor += mods_location.length;
+var mods_note = new String(get_MODS_element_block('<mods:note type','</mods:note>',chompStr,MEB_cursor));
+    MEB_cursor += mods_note.length;
+var mods_recordInfo = new String(get_MODS_element_block('<mods:recordInfo','</mods:recordInfo>',chompStr,MEB_cursor));
+    MEB_cursor += mods_recordInfo.length;
+var mods_accessCondition = new String(get_MODS_element_block('<mods:accessCondition','</mods:accessCondition>',chompStr,MEB_cursor));
+    MEB_cursor += mods_accessCondition.length;
+
+
+
+return;
+}
+
+function clearData() {
+document.forms[0].chomp.value = "";
+return;
+}
+
+function chompData() {
+
+
+parent.U.document.UF.reset(); //clear cached values
+
+
+
+if ( parent.adb_username != "cricket.deane"  ) {
+if(!confirm("This function is not available at this time.\nThank you for your patience.\nTo continue click okay.")) return;
+}
+
+if (!confirm("Would you like to stop processing to view page_upper.htm?\n\nClick Cancel.\n\nTo continue click okay."))return;
+
+parent.L.RELOAD = true;
+xmlAll = document.forms[0].chomp.value;
+//alert("xmlAll=\n"+xmlAll);
+xmlCursor = 0;
+//show_xmlCursor(xmlCursor,0);
+localCursor = 0;//if you are going to reuse a block, need to keep track of local cursor for that block
+
+var p1 = xmlAll.indexOf("<mods:titleInfo");/// ("<-- page_01 -->");
+var p2 = xmlAll.indexOf("<mods:originInfo");///("<-- page_02 -->");
+var p3 = xmlAll.indexOf("<mods:language");///("<-- page_03 -->");
+var p4 = xmlAll.indexOf("<mods:subject authority=");///("<-- page_04 -->");
+var p5 = xmlAll.indexOf('<mods:relatedItem type="constituent"');///("<-- page_05 -->");
+var p6 = xmlAll.indexOf("<mods:location");///("<-- page_06 -->");
+var pEnd = xmlAll.indexOf("</mods:mods>");
+
+if ( pEnd == -1 ) { pEnd = xmlAll.length +1; }
+
+if ( p6 == -1 ) { p6 = pEnd; }
+if ( p5 == -1 ) { p5 = p6;   }
+if ( p4 == -1 ) { p4 = p5;   }
+if ( p3 == -1 ) { p3 = p4;   }
+if ( p2 == -1 ) { p2 = p3;   }
+if ( p1 == -1 ) { p1 = p2;   }
+
+var block_00 = new String(xmlAll.substring(0,p1));
+var block_01 = new String(xmlAll.substring(p1,p2));
+var block_02 = new String(xmlAll.substring(p2,p3));
+var block_03 = new String(xmlAll.substring(p3,p4));
+var block_04 = new String(xmlAll.substring(p4,p5));
+var block_05 = new String(xmlAll.substring(p5,p6));
+var block_06 = new String(xmlAll.substring(p6));
+
+/*
+alert("block_00.length="+block_00.length+"\nblock_00=\n"+block_00);
+alert("block_01.length="+block_01.length+"\nblock_01=\n"+block_01);
+alert("block_02.length="+block_02.length+"\nblock_02=\n"+block_02);
+alert("block_03.length="+block_03.length+"\nblock_03=\n"+block_03);
+alert("block_04.length="+block_04.length+"\nblock_04=\n"+block_04);
+alert("block_05.length="+block_05.length+"\nblock_05=\n"+block_05);
+alert("block_06.length="+block_06.length+"\nblock_06=\n"+block_06);
+*/
+
+
+
+
+
+///page_begin///////////////////////////////////////////////////////////////
+
+extract_page_begin(block_00);
+
+///page_01//////////////////////////////////////////////////////////////////
+
+extract_page_01(block_01);
+
+///page_02//////////////////////////////////////////////////////////////////
+
+extract_page_02(block_02);
+
+///page_03//////////////////////////////////////////////////////////////////
+
+extract_page_03(block_03);
+
+///page_04//////////////////////////////////////////////////////////////////
+
+extract_page_04(block_04);
+
+///page_05//////////////////////////////////////////////////////////////////
+
+///calculated on extract_page_begin
+
+///page_06//////////////////////////////////////////////////////////////////
+
+extract_page_06(block_06);
+
+///page_museum//////////////////////////////////////////////////////////////
+
+///page_final///////////////////////////////////////////////////////////////
+
+
+alert("Values have been loaded.");
+
+}//end function chompData()
+
+
+
+
+
+</script>
+
+<form name="DF"  action="new.xml">
+
+
+<!---table border="1" cellpadding="2" cellspacing="0" width="98%" bgcolor="ddeeff"--->
+<table  class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="99aabb">
+
+<tr class="bgstandard" ><td colspan="3">
+The purpose of this page is to upload an existing XML file from C:\Scan or C:Reworked directory.
+<br>So the file can be updated using the Volunteer Voices Workbook.
+<p>Enter preliminary input:  xml file name, directory, etc.
+<br>test file: C:\Scan\01\xml\0004_000003_000002_0000.xml
+</td></tr>
+
+
+<tr class="bgstandard" ><td colspan="3" bgcolor="004400">&nbsp;</td></tr>
+
+<tr class="bgstandard" ><td colspan="1" class="label12u">
+Reload<br>Data
+</td><td class="value10nou">
+textarea: document.DF.chomp.value<br>
+<textarea name="chomp"
+rows="8" cols="80"></textarea>
+<br>
+
+&nbsp;</td>
+
+<td>&nbsp;</td>
+</tr>
+
+
+
+<tr class="bgstandard" ><td colspan="3" bgcolor="004400">&nbsp;</td></tr>
+
+
+
+
+
+
+
+<tr class="bgstandard" ><td colspan="3" bgcolor="004400">&nbsp;</td></tr>
+
+
+
+
+<tr class="bgstandard" ><td colspan="3" align="left">
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+
+<input type="button" name ="bChomp" onclick="chompData();" value="Process Data in TextArea">
+&nbsp;
+<input type="button" name ="bClear" onclick="clearData();" value="Clear TextArea">
+&nbsp;
+<input type="button" name ="bTest" onclick="testData();" value="Test">
+&nbsp;
+<input type="button" name ="bTest2" onclick="testData2();" value="Test2">
+
+
+</td></tr>
+
+
+<tr class="bgstandard" >
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+
+
+
+<tr class="bgstandard" ><td colspan="3" bgcolor="004400">&nbsp;</td></tr>
+
+
+
+
+</table>
+
+
+
+
+
+
+
+</form name="forms[0]">
+
+
+
+<hr>
+<script>
+
+</script>
+	
+
+
+</body>
+</html>
+

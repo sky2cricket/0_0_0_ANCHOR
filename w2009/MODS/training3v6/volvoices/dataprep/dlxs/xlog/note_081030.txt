@@ -1,0 +1,23 @@
+
+081029 
+
+Paul moved the production dlxs database to diglib2 and that is the first 
+step of purging the data.
+
+Bridger worked his a** off checking "missing" text files found by the duplicates3.pl program.
+
+He also did a bit of transcription on these files.  There was a file name in place for each missing file, but the files were empty before his hard work.
+
+And I found an empty xml file, that used to be not empty because its Receive0 sibling was in the correct place.
+
+I spent the day gathering information to write python scripts to validate our xml files one by one on diglib2.  The existing validation puts all of the xml files into one humongous file and validates the big boy.  The error messages tell you at which character the error starts,
+since the entire thing is one long line.
+
+I will use python to open the files one-by-one and generate nsgmls validation for each one.  This way, the error messages will relate to a single file that I can open and examine.  I believe this will help me debug the dtd's also.  The first one complained about the "undefined" apos entity.
+
+There will be at least 3 scripts:
+	one for modsbib files
+	one for tei files
+	one for search files 
+
+

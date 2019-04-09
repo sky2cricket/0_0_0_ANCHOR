@@ -1,0 +1,43 @@
+
+
+Unicode Points
+--------------
+
+
+        Character sets
+                sometimes language, sometimes sequence, 
+                       sometimes encoding
+
+        In the past
+           
+                enticons/dbar.gif
+
+        Reasons
+
+                programming - don't have to depend on external config
+                searchable because chars and not representations
+                easier input
+                collation 
+
+        Data prep
+
+                get data to UTF-8 XML
+                may be easiest to use utilities 
+                then run through osx, XMLSpy
+
+        Indexing
+
+                FOR INDEX POINTS:
+                you have to analyze your data for entities
+                know your (alphabet) content and encoding
+                only one 8bit space Latin1,2,5,7 etc.
+                also EUC, Shift JIS, Big 5, more
+
+                FOR MAPPING:
+                know possibilities of alphabet e.g. case
+
+        Limitations
+
+                Can't mix encodings in XCOLL
+                only one charset in an HTML page
+                Got to Unicode universally or limit to single coll results

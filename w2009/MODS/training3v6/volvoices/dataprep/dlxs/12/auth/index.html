@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>DLXS Authentication and Authorization</title>
+
+
+
+ <link href="../dlxsdocs.css" rel="stylesheet" type="text/css">
+</head>         <body>
+<div class="pageTitle">DLXS Authentication and Authorization</div>
+<h1>Contents</h1>
+<ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#authz">Setting the List(s) of Accessible Collections</a>
+</li>
+<li><a href="#authen">Setting Up Authentication For Use With DLXS</a>
+</li>
+</ul>
+
+<h1><a name="overview"></a>Overview</h1>
+<p>The system uses three variables in the web server (CGI) environment for authentication and authorization operations.</p>
+<p>The variables which determine the collections the current user may access are
+<dl>
+<dt><code>AUTHZD_COLL</code></dt>
+<dd>a colon-delimited list of collection identifiers that the current user is explicitly authorized to access; i.e., authorized collections</dd>
+<dt><code>PUBLIC_COLL</code></dt>
+<dd>a colon-delimited list of collection identifiers that the current user may access without explicit authorization; i.e., public collections</dd>
+</dl>
+and the variable that contains the username of the current user (for middleware such as the Collection Manager that requires you to log in) is<dl>
+<dt><code>REMOTE_USER</code></dt>
+<dd>the username of the current user (if the user has logged in)</dd>
+</dl>
+</P>
+<p>To set up authentication and authorization in DLXS, mechanisms must be put in place to set the values of these variables according to your requirements. The following sections contain several examples of different methods to do this.</p>
+<p><i>Important note:</i> these lists must begin and end with a colon, and be colon-delimited.</p>
+
+<h1><a name="authz"></a>Setting the List(s) of Accessible Collections</h1>
+<h2>Using Static Settings</h2>
+<p>Probably the simplest way to set the list of accessible collections is to statically set the <code>AUTHZD_COLL</code> and/or <code>PUBLIC_COLL</code> environment variables in the web server configuration. The advantage of this approach is that it is easy and fast; the disadvantage is that it is not very flexible: <i>every</i> user accessing the DLXS server will have the same access permissions. This approach works particularly well for a server which hosts only public collections, since hosting non-public collections generally entails allowing access to some users and not to others. For more information on setting static environment variables with the Apache web server, consult the documentation for the <code>SetEnv</code> configuration directive at the <a href="http://httpd.apache.org/">Apache server home page</a>.</p>
+<p>The DLXS installation process creates a partial Apache configuration file that uses static settings as an example for you to work from. For more information about this example file, see the <a href="../installation/index.html#apacheconfig">Apache config sample files documentation</a>.</p>
+<h2>Using a Custom (Dynamic) Authorization System</h2>
+<p>If you require different users to have different lists of permitted resources, then you will need to put a mechanism in place to dynamically set the values of <code>AUTHZD_COLL</code> and/or <code>PUBLIC_COLL</code> based on the IP address of the user's workstation, domain name, or some other method of authentication. Depending on your requirements, this may be simple enough to be handled in the web server configuration, or it may be complex enough to require an external system. At DLPS, the environment variables above are dynamically set for use by the DLXS system by an Apache module that queries an Oracle database (for more information on this system, see <a href="/ancil/authsystem.html">DLXS Authentication and Authorization System documentation</a>), and plans are in place for a light-weight (Perl-based) system for a future release.</p>
+
+<h1><a name="authen"></a>Setting Up Authentication For Use With DLXS</h1>
+<h2>Using Basic Authentication</h2>
+<p>For sites with simple authentication requirements (e.g., if you just need to control several users' access to the <a href="/collmeta/collmgr.html">Collection Manager</a>), we recommend using standard HTTP Basic Authentication. Basic Authentication will ask users to enter a username and password for access to the directories you specify; after a user successfully authenticates, the environment variable REMOTE_USER will be set to the user's username, and then can be used by the DLXS system. For more information on configuring Basic Authentication with the Apache web server, consult the documentation at the <a href="http://httpd.apache.org/">Apache server home page</a>.</p>
+<p>The DLXS installation process creates a partial Apache configuration file that uses Basic Authentication as an example for you to work from. For more information about this example file, see the <a href="../installation/index.html#apacheconfig">Apache config sample files documentation</a>.</p>
+<h2>Using a Custom Authentication System</h2>
+<p>Any authentication mechanism that sets the <code>REMOTE_USER</code> environment variable (which, by the way, is conventional for all properly-written web authentication systems) will work with DLXS. There are myriad available systems, varying mainly in the specific database or file method used to store usernames and passwords. For more information on authentication modules available for the Apache web server, see the <a href="http://modules.apache.org/">Apache Module Registry</a>.</p>
+
+</body>
+
+</html>

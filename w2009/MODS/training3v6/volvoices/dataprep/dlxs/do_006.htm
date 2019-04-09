@@ -1,0 +1,37 @@
+<html>
+<head>
+<title>
+char_check
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+</head>
+<!-- body  class="bg_aabbcc" -->
+<body bgcolor="aabbcc">
+<font face="arial" size="3">
+<center><font face="arial">
+<h2>DLXS File Ingestion dothis 0</h2>
+<p>
+</center>
+<table  class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="99aabb">
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+<tr class="bgstandardwhite" ><td colspan="3" align="left">
+<font face="arial" size="4" > <b>
+<pre>
+/d1/workarea/dlxs/bib/search/dothis
+cat opensearch xml/* closesearch > vvs-bib.xml  (or whatever, match colleciton)
+cp vvs-bib.xml /d1/dlxs/prep/v/vvs-bib/.
+cd /d1/dlxs/prep/v/vvs-bib
+transform
+cp vvs-bib.xml ../../../obj/v/vvs-bib
+cd ../../../idx/v/vvs-bib
+make all
+(make a release to production:  bib class)
+
+</pre>
+</font>
+</td></tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+</table>
+
+

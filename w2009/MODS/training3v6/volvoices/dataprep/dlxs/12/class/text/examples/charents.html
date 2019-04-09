@@ -1,0 +1,42 @@
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.75 [en] (WinNT; U) [Netscape]">
+   <title>Character Entity Files</title>
+<link href="../../../dlxsdocs.css" rel="stylesheet" type="text/css"> </head>         <body>
+<h2><a name="top">Character Entity Files</a></h2>
+<p>The purpose of these files is to define character entities for later
+rendering when the text is viewed.&nbsp; Publishers should provide a character
+entity file (often called something like <b><tt>charents.frag</tt></b>)
+with each text collection.&nbsp; This file must define all character entities
+appearing in the collection.<p/>
+<p>The file's contents will look something like this:<p/>
+<blockquote><b><tt>&lt;!ENTITY aacgr SDATA "&amp;aacgr;" ></tt></b>
+<br><b><tt>&lt;!ENTITY aacute SDATA "&amp;aacute; " ></tt></b>
+<br><b><tt>&lt;!ENTITY Aacute SDATA "&amp;Aacute;" ></tt></b>
+<br><b><tt>&lt;!ENTITY Abar SDATA "&amp;Abar;" ></tt></b>
+<br><b><tt>&lt;!ENTITY ABAR SDATA "&amp;Abar;" ></tt></b>
+<br><b><tt>&lt;!ENTITY abar SDATA "&amp;abar;" ></tt></b>
+<br><b><tt>&lt;!ENTITY Acirc SDATA "&amp;Acirc;" ></tt></b>
+<br><b><tt>&lt;!ENTITY acirc SDATA "&amp;acirc;" ></tt></b>
+<br><b><tt>&lt;!ENTITY Adot SDATA "&amp;Adot;" ></tt></b>
+<br><b><tt>&lt;!ENTITY adot SDATA "&amp;adot;" ></tt></b>
+<br><b><tt>&lt;!ENTITY AELIG SDATA "&amp;AElig;" ></tt></b>
+<br><b><tt>&lt;!ENTITY AElig SDATA "&amp;AElig;" ></tt></b>
+<br><b><tt>...</tt></b></blockquote>
+<p/>After <b><tt>&lt;!ENTITY</tt></b>, the first expression is the character
+entity, without an initial ampersand and a final semicolon.&nbsp; This
+refers to character entities in the source files (so, for example, <b><tt>aacgr</tt></b>
+would appear in the source file as <b><tt>&amp;aacgr;)</tt></b>.&nbsp;
+The second expression, in quotation marks, is the "definition" of the character
+entity for rendering it when it is displayed.<p/>
+<p>If <b><tt>SDATA</tt></b> does not appear, insert it in each line as
+above.<p/>
+<p>If unfamiliar character entities are used, it can be helpful to look
+to character entity files of other large collections.&nbsp; If you can't
+find a definition, you may simply define it under the name of the character
+entity itself.&nbsp; Just be aware that when the collection is served online,
+that entity will have to be rendered as a specific character.<p/>
+<p>&nbsp;</p>
+</body>
+</html>

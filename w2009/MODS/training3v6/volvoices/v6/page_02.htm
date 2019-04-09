@@ -1,0 +1,408 @@
+
+<html>
+<head>
+<title>
+page_02
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+<script language=javascript src="vv_compose_tags.js"></script>
+
+</head>
+
+
+<script> document.write('<body  onload="load_DF_form();"  bgcolor="'+parent.adb_background_color+'" >'); </script>
+
+
+<font face="arial" size="3">
+<center><font face="arial">
+<h2><script> document.write(parent.adb_project_name); </script>
+ Workbook Page 2 </h2>
+</center>
+
+<script>
+///Civil War Salt Peter Mining None, LCNAF, ULAN. 
+
+
+
+
+
+</script>
+
+
+<form name="DF"  action="new.xml">
+
+
+<hr>
+
+<table class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="ddeeff">
+<tr class="bgstandard"><td colspan="3">
+
+Required Fields are <u>underlined</u>.
+Non-Required Fields are not underlined.
+</td></tr>
+<tr  class="greenrow">
+<td class="greencell">MODS LABEL</td>
+<td class="greencell">VALUE</td>
+<td class="greencell">&nbsp;</td>
+</tr>
+
+
+
+
+
+
+
+
+
+<tr class="bgstandard">
+<td class="label13u">
+Date of Creation/qualfier
+</td>
+<td>&nbsp;
+<input type="button" name="Bdate_created" value="Creation Date" 
+class="button180w"
+onclick="parent.L.selectOneOptionDate(this,'600','700')">&nbsp;
+<input type="text" name="date_created" value="" size="10"  class="requirednw" READONLY>
+<input type="text" name = "date_createdQ" value="" size="10" class="requirednw" READONLY>
+<input type="button" name="Cdate_created" value="Clear Date" 
+class="button80w" onclick="parent.L.clearDate(this)">
+<font face='arial' size='1'>
+&nbsp;&nbsp;&nbsp;<!---input type="radio" name="date_created_radio" value="D" checked onclick="parent.L.date_created_radio_pop(this)" >
+&nbsp;&nbsp;&nbsp;<u>use Date Created</u> <br>Date the resource was created.--->
+<input type="hidden" name="date_created_radio" value="D">
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard" xbgcolor="bb8844">
+<td  class="label10nou"><font face="arial" size="2" color="000000" ><u>
+Date of Creation/qualifier<br>Range</u><br>
+</font><font face="arial" size="1" color="000000" >Either the date or the date range is required.
+</td>
+<td valign="top">
+<table border="0" cellpadding="1" cellspacing="0">
+<tr class="bgstandard"><td valign="middle"><font face='arial' size='1'>
+&nbsp;
+&nbsp;<input type="button" name="Bdate_created_begin" value="Creation Date Begin Range" 
+class="button180w"
+onclick="parent.L.selectOneOptionDate(this,'600','700')">&nbsp;
+<input type="text" name = "date_created_begin" value="" size="10"  class="requirednw" READONLY>
+<input type="text" name = "date_created_beginQ" value="" size="10" class="requirednw" READONLY>
+<input type="button" name="Cdate_created_begin" value="Clear Date" 
+class="button80w" onclick="parent.L.clearDate(this)">
+&nbsp;&nbsp;&nbsp;<!---input type="radio" name="date_created_radio" value="R" onclick="parent.L.date_created_radio_pop(this)" >
+&nbsp;&nbsp;&nbsp;<u>use Date Created Range</u><br> Date Range for creation of the resource.</u>--->
+ 
+<input type="hidden" name="date_created_radio" value="R">
+
+</td>
+<td rowspan="1" width="20">&nbsp;</td>
+</tr><tr class="bgstandard">
+
+<td valign="middle"><font face='arial' size='1'>
+&nbsp;
+&nbsp;<input type="button" name="Bdate_created_end" value="Creation Date End Range" 
+class="button180w"
+onclick="parent.L.selectOneOptionDate(this,'600','700')">&nbsp;
+<input type="text" name = "date_created_end" value="" size="10"  class="notrequirednw"
+READONLY>
+<input type="text" name = "date_created_endQ" value="" size="10" class="notrequirednw" READONLY>
+<input type="button" name="Cdate_created_end" value="Clear Date" 
+class="button80w"
+onclick="parent.L.clearDate(this)">
+</td>
+<td rowspan="1" width="20">&nbsp;</td>
+</tr>
+</table>
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td  class="label13u">
+Place of Creation 
+</td>
+<td>&nbsp;<input type="text" name="place_of_origin" value="" size="36" class="notrequirednw"
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+>
+&nbsp;&nbsp;<font face="arial" size="1"> Place resource was created.
+			</td>
+
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+<tr class="greenrow">
+<td height="08" colspan="3"></td></tr>
+<tr class="bgstandard">
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+
+
+
+
+
+
+
+<tr class="bgstandard">
+<td  class="label13u">
+Previously published?<br></font><face="arial" size="1" color="00000">
+</td>
+<td valign="top">&nbsp;<font face="arial" size="1">&nbsp;<input type="radio" name="publisher_name_radio" value="Y" >&nbsp;<u>yes</u> 
+&nbsp;If you select yes, you are required to fill in a Publisher name, address and publication year below.  
+<br>&nbsp;&nbsp;&nbsp;<input type="radio" name="publisher_name_radio" value="N" checked>&nbsp;<u>no</u>  
+&nbsp;If you select no, enter whatever information is available. 
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b><u>
+Publisher Name/ Address
+</td>
+<td><font face="arial" size="1">&nbsp;
+<input type="text" name="publisher_name" value="" size="36" 
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+class="requirednw"> name : Name of entity that published or produced the resource.
+
+
+<br>&nbsp;
+<input type="text" name="publisher_address" value="" size="36" 
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+class="requirednw"> address : Place resource was published.
+
+
+&nbsp;&nbsp;<font face="arial" size="1"> 
+
+
+			</td>
+
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13u">
+Publication Year</td>
+<td>&nbsp;
+<input type="button" name="Bdate_issued" value="Publication Year" 
+class="button180w"
+onclick="parent.L.selectOneOptionDate(this,'600','700')">&nbsp;
+<input type="text" name="date_issued" value="" size="10"  class="requirednw" READONLY>
+<input type="text" name = "date_issuedQ" value="" size="10" class="requirednw" READONLY>
+<input type="button" name="Cdate_issued" value="Clear Date" 
+class="button80w" onclick="parent.L.clearDate(this)">
+<font face='arial' size='1'>Year the resource was published.
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+
+<tr class="greenrow"><td colspan="3" class+"greencell">&nbsp;</td></tr>
+
+
+
+<tr class="bgstandard"><td colspan="3" align="center">
+&nbsp;&nbsp;
+<input type="button" name="B_UF" value="Save" class="buttonnw" onclick="buildModsTags(10);">
+<!---input type="button" name="B_DF" value="Reset"  class="buttonnw" onclick="load_DF_form();"--->
+
+<input type="button" name="B2" 
+value="Save Data and View MODS TAGS" class="buttonnw"
+onclick="buildModsTags(1)">
+
+
+</td></tr>
+
+
+</table>
+
+
+
+
+
+
+
+</form name="FormOne">
+
+<center><font face="arial">
+<h2><script> document.write(parent.adb_project_name); </script>
+ Workbook Page 2 </h2>
+</center>
+
+
+<hr>
+<script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+/////chdchdchd
+
+
+
+
+
+function load_UF_form() {
+
+
+parent.U.document.UF.date_created.value = document.DF.date_created.value;
+parent.U.document.UF.date_createdQ.value = document.DF.date_createdQ.value;
+//parent.U.document.UF.date_created_radio[0].checked = document.DF.date_created_radio[0].checked;
+//parent.U.document.UF.date_created_radio[1].checked = document.DF.date_created_radio[1].checked;
+parent.U.document.UF.date_created_begin.value = document.DF.date_created_begin.value;
+parent.U.document.UF.date_created_beginQ.value = document.DF.date_created_beginQ.value;
+parent.U.document.UF.date_created_end.value = document.DF.date_created_end.value;
+parent.U.document.UF.date_created_endQ.value = document.DF.date_created_endQ.value;
+parent.U.document.UF.publisher_name_radio[0].checked = document.DF.publisher_name_radio[0].checked;
+parent.U.document.UF.publisher_name_radio[1].checked = document.DF.publisher_name_radio[1].checked;
+parent.U.document.UF.publisher_name.value = document.DF.publisher_name.value;
+parent.U.document.UF.publisher_address.value = document.DF.publisher_address.value;
+parent.U.document.UF.date_issued.value = document.DF.date_issued.value;
+parent.U.document.UF.date_issuedQ.value = document.DF.date_issuedQ.value;
+parent.U.document.UF.place_of_origin.value = document.DF.place_of_origin.value;
+
+
+return;
+}
+
+function load_DF_form() {
+
+//first time set value
+if ( parent.U.document.UF.date_created.value == "" ) {
+	document.DF.date_created.value = parent.adb_itemdate;
+}else{
+	document.DF.date_created.value = parent.U.document.UF.date_created.value ;
+}
+document.DF.date_createdQ.value = parent.U.document.UF.date_createdQ.value ;
+//document.DF.date_created_radio[0].checked = parent.U.document.UF.date_created_radio[0].checked ;
+//document.DF.date_created_radio[1].checked = parent.U.document.UF.date_created_radio[1].checked ;
+document.DF.date_created_begin.value = parent.U.document.UF.date_created_begin.value ;
+document.DF.date_created_beginQ.value = parent.U.document.UF.date_created_beginQ.value ;
+document.DF.date_created_end.value = parent.U.document.UF.date_created_end.value ;
+document.DF.date_created_endQ.value = parent.U.document.UF.date_created_endQ.value ;
+document.DF.publisher_name_radio[0].checked = parent.U.document.UF.publisher_name_radio[0].checked ;
+document.DF.publisher_name_radio[1].checked = parent.U.document.UF.publisher_name_radio[1].checked ;
+document.DF.publisher_name.value = parent.U.document.UF.publisher_name.value ;
+document.DF.publisher_address.value = parent.U.document.UF.publisher_address.value ;
+document.DF.date_issued.value = parent.U.document.UF.date_issued.value ;
+document.DF.date_issuedQ.value = parent.U.document.UF.date_issuedQ.value ;
+document.DF.place_of_origin.value = parent.U.document.UF.place_of_origin.value ;
+
+return;
+}
+
+
+
+function buildModsTags(N) {
+
+form_filter();
+
+////do this first so current values are loaded regardless of validation status
+load_UF_form();
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+//before writing MODS TAGS, make sure all required fields are populated
+//checkAllRequired... true  validation sets validation status to 1  -- complete
+//checkAllRequired... false validation sets validation status to 0  -- incomplete
+
+if (!parent.L.checkAllRequiredElements_Page_02() ) {
+	parent.L.update_page_validation(2,0);
+	return;
+}
+parent.L.update_page_validation(2,1);
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+var num = new Number();
+    num = N;
+
+if (num == 10) {
+        alert("Values have been saved.");
+        return;
+        }
+
+
+var aps= new Array();
+var hps= new Array();
+var cps= new Array();
+
+    hps = buildTagsArray_header(num);
+    aps = buildTagsArray_page_02(num);
+    cps = buildTagsArray_closer(num);
+
+
+
+
+//=================================================
+
+document.write('<input type="button" name="BBACK" onclick="javascript: history.back()" value="BACK"><P>');
+document.write('<font face="Elephant" size="3" color="a00000">'+parent.adb_project_name+' Workbook, Page 2<p></font>');
+//PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+document.write('<font face="Elephant" size="3" color="a00000">PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+		+"This is the generated xml script.  Values you entered are highlighted in red."
+		+"<HR>");
+//document.write( "This is the generated xml script.  Values you entered are highlighted in red.<HR>");
+
+//document.write('< ? xml version="1.0"  ? > \r\n'); 
+///document.write("Content-Type: text/xml ")
+
+
+
+for (i=0;i<hps.length;i++) {
+	var vps = new String(hps[i]);
+ 	document.write("<br>"+vps);
+	}
+
+
+
+for (i=0;i<aps.length;i++) {
+	var vps = new String(aps[i]);
+	document.write("<br>"+vps);
+	}
+
+
+
+for (i=0;i<cps.length;i++) {
+	var vps = new String(cps[i]);
+	document.write("<br>"+vps);
+	}
+
+
+}//end function
+
+
+
+
+</script>
+	
+
+
+</body>
+</html>
+

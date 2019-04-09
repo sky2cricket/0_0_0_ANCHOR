@@ -1,0 +1,17 @@
+From: Deridder, Jody L
+Sent: Wednesday, May 07, 2008 10:20 AM
+To: Deridder, Jody L; Cummins, Paul B; Deane, Christine Haygood
+Subject: collmgr problem (and other permission issues on dlxs)
+
+I think I fixed collmgr.  The problem had to do with permissions on the /d1/dlxs/lib directory and subdirectories -- the cgi script /d1/dlxs/cgi/c/collmgr/collmgr  couldn't remove the lockfile /d1/dlxs/lib/lockfile/dbexist
+
+I think it's okay now.
+
+We recently had other permission problems with dlxs -- when the /d1/dlxs/web/t/text directory was changed to ownership diglib, then apache couldn't write the images to gifcvtdir in that directory -- so page images wouldn't show up.
+
+We need to remember these things for future errors of this sort!
+Thank you!!
+
+--jody
+
+

@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+   <head>
+  <title>Database Migration</title>
+                        
+  <link rel="stylesheet" href="../styles.css" type="text/css">
+   </head>
+        <body class="mainpalette" leftmargin="10" topmargin="10"
+ marginwidth="10" marginheight="10">
+         
+<h1>Database Migration</h1>
+   <ul>
+                
+      <li>         <a href="#dbmove">Database moving</a>      
+  </li>
+      <li>         <a href="#dbconversion">Database conversion</a></li>
+      
+  <li><a href="#dbinstall">Having two databases installed to support two DLXS 
+    versions</a> </li>
+   </ul>
+   <h3><a name="dbmove"></a>Database moving</h3>
+   <p>
+             For initial installations, if you chose MySQL for your database,
+ use <a href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/collmeta/dbmove.html">$DLXSROOT/bin/db/dbmove</a>
+ to move the sample CSV database into your MySQL database before you try
+to  run the sample data.  This assumes you have configured a MySQL database
+as described in the <a
+ href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/intro/install.html#mysqlconfig">MySQL database
+configuration documentation</a>.     
+   </p>
+   <h3><a name="dbconversion"></a>Database conversion</h3>
+   <p>
+             If you are installing DLXS for the first time, database conversion is not
+ an issue.     
+   </p>
+   <p>
+             If you have a Release 11 DLXS installation, an upgrade utility called
+ <b><font face="Courier New, Courier, mono">upgrade_4_5</font></b> in $DLXSROOT/bin/db
+ can be used to update your version 4 database to version 5.  See documentation
+ on database functionality for <a
+ href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/collmeta/upgrade.html">complete instructions</a>.
+</p>
+   <p>
+             If you have a Release 10 DLXS installation, an upgrade utility called
+ <b><font face="Courier New, Courier, mono">upgrade_3_4</font></b> in $DLXSROOT/bin/db
+ can be used to update your version 3 database to version 4.  See documentation
+ on database functionality for <a
+ href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/collmeta/upgrade.html">complete instructions</a>.
+</p>
+   <p>
+             If you have a Release 9 DLXS installation, an upgrade utility called
+ <b><font face="Courier New, Courier, mono">upgrade_2_3</font></b> in $DLXSROOT/bin/db
+ can be used to update your version 2 database to version 3.  See documentation
+ on database functionality for <a
+ href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/collmeta/upgrade.html">complete instructions</a>.
+</p>
+   <p>
+             If you have a Release 8 DLXS installation, an upgrade utility called
+ <b><font face="Courier New, Courier, mono">upgrade_1_2</font></b> in $DLXSROOT/bin/db
+ can be used to update your version 1 database to version 2.  See documentation
+ on database functionality for <a
+ href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/collmeta/upgrade.html">complete instructions</a>.
+   </p>
+   <p>
+      If you have a DLXS installation that predates release 8, a conversion
+ utility called <b><font face="Courier New, Courier, mono">dbconv</font></b>
+ in $DLXSROOT/bin/db can be used to capture the data in your existing colldb
+ files and merged into the CSV tables located in DlXSROOT/misc/db.  See documentation
+ on database functionality for <a
+ href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/collmeta/dbconv.html">complete instructions</a>.<br>
+   </p>
+   <h3><a name="dbinstall"></a>Having two databases installed to support two
+ DLXS versions</h3>
+   <p>
+      Be aware of the following:<br>
+&nbsp;&nbsp;&nbsp; Version 8 of DLXS uses version 1 of the database.<br>
+ &nbsp;&nbsp;&nbsp; Version 9 of DLXS uses version 2 of the database<br>
+ &nbsp;&nbsp;&nbsp; Version 10 of DLXS uses version 3 of the database.<br>
+ &nbsp;&nbsp;&nbsp; Version 11 of DLXS uses version 4 of the database.<br>
+ &nbsp;&nbsp;&nbsp; Version 12 of DLXS uses version 5 of the database.<br>
+ <br>
+ Therefore, if you have version 8, 9, 10, or 11 of DLXS and have installed version 12 of 
+DLXS, you will need to get a database version 5 set up to use with your DLXS 
+version 12 installation.<br>
+ <br>
+ How should you go about doing this? Here are a few strategies to help 
+you decide what to do:<br>
+ <b><br>
+ 1. Say you have version 8 of DLXS using version 1 of a CSV database, 
+and you want to create a version 5 CSV database to run with a DLXS 12 
+installation.</b><br>
+ <br>
+ If you do not have too many collections, you may just want to go though
+<span class="unixcommand">collmgr</span> and change the database that way.<br>
+ <br>
+ If this is not feasible, copy your CSV tables from version 8 ($DLXSROOT/misc/db,
+where $DLXSROOT is the environment variable you used for version 8) to the CSV dir for version 12
+($DLXSROOT/misc/db, $DLXSROOT is the one you used for version 12).
+Then run the upgrade scripts on the just copied files. To go from DLXS
+8 to DLXS 12 you will need to run <span class="unixcommand">upgrade_1_2 -d CSV</span>, then <span class="unixcommand">upgrade_2_3 -d CSV</span>, then <span class="unixcommand">upgrade_3_4 -d CSV</span>, and finally <span class="unixcommand">upgrade_4_5
+-d CSV</span>. See <a href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/collmeta/upgrade.html">complete
+instructions</a>      on the upgrade scripts.<br>
+ <b><br>
+ 2. Say you have version 8 of DLXS using version 1 of a CSV database, 
+and you want to create a version 5 of a MySQL database to run with a DLXS 
+12 installation.</b><br>
+ <br>
+ In this case, follow the instructions presented in 1, and then run
+<br>
+ <br>
+ <span class="unixcommand">$DLXSROOT/bin/db/dbmove -s CSV -t MySQL</span><br>
+ <br>
+ This will move your CSV database into a MySQL database. &nbsp;Of course, 
+a MySQL database needs to exists with the appropriate permissions. See <a
+ href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/intro/install.html#mysqlconfig">MySQL database
+configuration documentation</a> for more details.     <br>
+ <br>
+ In versions of DLXS prior to 12, you could move the database first to MySQL using dbmove and then run the update script agains the MySQL database. But in version 12, dbmove was changed to create a utf8 MySQL database prior to moving the database from CSV to MySQL.  This presents a problem when moving CSV databases of version 4 or smaller, since some of the tables contain keys that exceeded the size limit in a utf8 MySQL database, therefore, you will get errors when moving databases version 4 or smaller.  upgrade_4_5 changes the size of the keys so that they can work in a utf8 database.  So if you want to use dbmove to move from CSV to MySQL, you must do it on CSV database with version 5 or higher.<br>
+
+
+ <b><br>
+ 3. &nbsp;Say you have version 8 of DLXS using version 1 of a MySQL database, 
+and you want to create a version 5 of a MySQL database to run with a DLXS 
+12 installation.</b><br>
+ <br>
+ In this case, the easiest thing would be to start up MySQL with the root password 
+and copy your database version 1 to the name you gave it when you installed
+DLXS 12. Then run the upgrade scripts on the copy of the database. Unfortunately, I don't belive you can copy a database with MySQL.<br>
+ <br>
+ What we would suggest is that you dump your version 1 of the MySQL database 
+into a dir and then load that data into a newly created database. &nbsp;Note
+that you may want to delete some entries in the sessions table before dumping
+the database into the directory since this table tends to get very large.
+&nbsp;After this is done you can run the upgrade scripts on the newly created
+database. &nbsp;<br>
+ <br>
+ Here are the steps to dump one database,  create a new database, and popultate it with the data dumped from the first:<br>
+
+<ol>
+<li>
+ From Unix prompt, make sure you have given
+DUMPDIR write permissions (you can also do this to backup the db):<br>
+shell&gt;<span class="unixcommand">mysqldump -u root -p --tab=DUMPDIR dlxs</span><br>
+ </li>
+ <li>
+Go into mysql as root and create the database<br>
+mysql&gt; <span class="unixcommand">create database dlxs12;</span><br>
+</li>
+      <li>
+Create the tables in the new database<br>
+ shell&gt; <span class="unixcommand">cat DUMPDIR/*.sql | mysql -u root -p dlxs12</span><br>
+</li>
+      <li>Now load the data in the database.<br>
+ shell&gt;<span class="unixcommand">mysqlimport -u root -p dlxs12 DUMPDIR/*.txt</span><br>
+ </li>
+ </ol>
+   
+   </P>
+   </body>
+</html>

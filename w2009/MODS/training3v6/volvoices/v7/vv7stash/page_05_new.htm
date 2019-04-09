@@ -1,0 +1,341 @@
+<!--
+    This code is issued under the GNU General Public License, 
+    version 3, 29 June 2007.
+
+    The DLC-MODS Workbook provides a series of web pages to help you 
+    generate a MODS metadata record that follows the Digital Library 
+    Federation Implementation Guidelines for Shareable MODS Records, 
+    as described in the DLF Aquifer Guidlines November 2006.  These 
+    Guidelines and the specific MODS Profile are documented on the 
+    MODS Profile Page of the DLC-MODS Workbook.
+
+    Copyright (C) 2007 
+    Christine Haygood Deane 
+    University of Tennessee Libraries
+    Digital Library Center
+ 
+
+    This program is free software: you can redistribute it and/or modify    
+    it under the terms of the GNU General Public License as published by    
+    the Free Software Foundation, version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see http://www.gnu.org/licenses/
+-->
+
+<!--
+
+
+http://www.loc.gov/standards/mods/v3/mods-userguide-elements.html#relateditem
+
+
+Attributes 
+
+type - The value of the type attribute describes the relationship between the <relatedItem> and the resource being described in the MODS record. This attribute may contain the following values: 
+
+preceding - Information concerning a predecessor to the resource (Equivalent to MARC 21 field 780).
+
+succeeding - Information concerning a successor to the resource (Equivalent to MARC 21 field 785).
+
+original - Information concerning an original form of the resource (Equivalent to MARC 21 fields 534, 786).
+
+host - Information concerning a host or parent resource for the resource described; this may be a parent collection (Equivalent to MARC 21 fields 760, 772, 773).
+
+constituent - Information concerning a constituent unit of the resource. This allows for more specific parsed information than may be used in <tableOfContents>. (Equivalent to MARC 21 fields 762, 770, 774; fields 700, 710, 711 with subfield $t).
+
+series - Information concerning the series in which a resource is issued.
+
+otherVersion - Information concerning another version (i.e. change in intellectual content) of the resource (Equivalent to MARC 21 field 775).
+
+otherFormat - Information concerning another format (i.e. change in physical format) of the resource (Equivalent to MARC 21 field 776). 
+
+isReferencedBy - Citations or references to published bibliographic descriptions, reviews, abstracts, or indexes of the content of the resource (Roughly equivalent to MARC 21 field 510, but allows for additional parsing of data).
+
+xlink:href - This attribute is used for an external link, including a link to a related record, if applicable. Use <identifier> for a URI for the related resource itself.
+
+displayLabel - This attribute is intended to be used when additional text associated with the related item is needed for display. It is equivalent to MARC 21 fields 76X-78X subfields $i and $3.
+
+ID - See the Attributes used throughout the schema for description. 
+
+-->
+
+<html>
+<head>
+<title>
+page_05
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+<script language=javascript src="vv_compose_tags.js"></script>
+
+
+
+</head>
+
+<script>document.write('<body onload="load_DF_form();"  bgcolor="'+parent.adb_background_color+'" >');</script>
+
+<font face="arial" size="3">
+<center><font face="arial">
+<h2> <script> document.write(parent.adb_project_name); </script>
+ Page 5 </h2>
+</center>
+
+<script>
+///Civil War Salt Peter Mining None, LCNAF, ULAN. 
+
+
+
+
+
+</script>
+
+<script>
+/* 
+///debug help
+document.write("<hr>XMLBASE: "+parent.U.document.UF.XMLBASE.value 
+	+"<BR>XMLPATH: "+parent.U.document.UF.XMLPATH.value 
+	+"<BR>numRelatedItems: "+parent.U.document.UF.numRelatedItems.value 
+	+"<HR>");
+*/
+</script>
+
+<form name="DF"  action="new.xml" onload="load_DF_form()"  >
+
+<table class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="ddeeff">
+<tr class="bgstandard"><td colspan="3">
+
+Required Fields are <u>underlined</u>.
+Non-Required Fields are not underlined.
+</td></tr>
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>MODS LABEL</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+<font face="arial">
+<script>
+
+//On this page the display of the filenames ( without extensions ) are generated from
+//parent.U.document.UF.file_list_tiff.value
+//The file_list_tiff was generated on the Begin Page
+//based on XMLBASE and "000N" where N goes from 1 to number of tiffs
+
+var str_file_list_tiff = new String(parent.U.document.forms[0].file_list_tiff.value);
+
+var atiff = new Array();
+    atiff = str_file_list_tiff.split(",");
+
+
+var numC = parent.U.document.UF.numRelatedItems.value;
+
+
+strCFN = new String();//strConstituentFileName
+strFV = new String("constituent_file_name");//name of the form variable - an array
+
+for(j=0;j<numC; j++) {
+
+strCFN = atiff[j];
+
+document.write('<tr class="bgstandard"> \r\n'
++'<td class="label12u"> \r\n'
++'Constituent File Name</td> \r\n'
++'<td class="value12u">&nbsp;<input type="text" name="'+strFV+'" value="" size="36"  \r\n'
+//+'<td class="value12u">&nbsp;<input type="text" name="'+strFV+'" value="'+strCFN+'" size="36" READONLY \r\n'
++'class="required300w"  >  \r\n'
++'&nbsp;&nbsp;<font face="arial" size="1">\r\n'
++'<br>&nbsp;full file name: ' +parent.U.document.UF.XMLPATHFULL.value +strCFN+".tif"
++'</td> \r\n'
++'<td>&nbsp</td> \r\n'
++'</tr> \r\n'
+);
+
+
+
+
+}//end for loop
+
+
+document.write('<input type="hidden" name="file_list_tiff" value=""> \r\n');
+
+</script>
+
+ <!--- placeholder for consitutent_file_uri_1 that JODY makes--->
+<input type="hidden" name="constituent_file_uri_1" value="">
+
+
+
+
+
+<tr class="bgstandard">
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+<tr class="bgstandard"><td colspan="3" class="value10nou">
+If you have too few or too many Constituent Files:
+<li>Return to the Begin Page and revise the Number of Consitutent Files.
+<li>Save the new value.
+<li>Then come back to Page 5 and continue.
+<li>You may not change the file name or file order of Constituent Files.
+<br>&nbsp;
+</td>
+</tr>
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+
+
+
+
+<tr class="bgstandard"><td colspan="3" align="center">
+&nbsp;&nbsp;
+
+<input type="button" name="B_page_01" class="buttonnw" onclick ="javascript:location.replace('page_00_begin_gen.htm')" value="Return to Begin Page">
+&nbsp;&nbsp;<input type="button" name="B_UF" value="Save" class="buttonnw" onclick="buildModsTags(10);">&nbsp;&nbsp;
+<!---input type="button" name="B_DF" value="Reset"  class="buttonnw" onclick="load_DF_form();"--->
+
+<input type="button" name="B2" 
+value="Save Data and View MODS TAGS" class="buttonnw"
+onclick="buildModsTags(1)">
+
+
+
+</td></tr>
+<tr class="bgstandard" >
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+</table>
+
+
+
+</form name="forms[0]">
+
+<center><font face="arial">
+<h2> <script> document.write(parent.adb_project_name); </script></h2>
+</center>
+
+
+<script>
+
+
+function load_UF_form() {//this list is controlled by begin page and can only be changed there.
+//alert("load_UF_form");
+//parent.U.document.UF.constituent_file_name_1.value = document.DF.constituent_file_name_1.value;
+//parent.U.document.UF.constituent_file_uri_1.value = document.DF.constituent_file_uri_1.value;
+
+return;
+}
+
+function load_DF_form() {//page 05 gets info from page_upper
+//document.DF.constituent_file_name_1.value = parent.U.document.UF.constituent_file_name_1.value;
+//document.DF.constituent_file_uri_1.value = parent.U.document.UF.constituent_file_uri_1.value;
+
+document.DF.file_list_tiff.value = parent.U.document.UF.file_list_tiff.value;
+
+
+return;
+}
+
+
+function buildModsTags(N) {
+
+////do this first so current values are loaded regardless of validation status
+load_UF_form();
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+//before writing MODS TAGS, make sure all required fields are populated
+//checkAllRequired... true  validation sets validation status to 1  -- complete
+//checkAllRequired... false validation sets validation status to 0  -- incomplete
+
+/*
+if (!parent.L.checkAllRequiredElements_Page_05() ) {
+	parent.L.update_page_validation(5,0);
+	return;
+}
+parent.L.update_page_validation(5,1);
+*/
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+var num = new Number();
+    num = N;
+
+if (num == 10) {
+        alert("Values have been saved.");
+        return;
+        }
+
+
+
+var abreak = new String("");
+if (num != "0" && num!=10 ) {
+	abreak = "<BR>";
+	}
+
+load_UF_form();
+
+var aps= new Array();
+var aps= new Array();
+var hps= new Array();
+var cps= new Array();
+    
+    hps = buildTagsArray_header(num);
+    aps = buildTagsArray_page_05(num);
+    cps = buildTagsArray_closer(num);
+
+//=================================================
+
+document.write('<input type="button" name="BBACK" onclick="javascript: history.back()" value="BACK"><P>');
+document.write('<font face="Elephant" size="3" color="a00000">'+parent.adb_project_name+' Workbook, Page 5<p></font>');
+//PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+document.write('<font face="Elephant" size="3" color="a00000">PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+		+"This is the generated xml script.  Values you entered are highlighted in red."
+		+"<HR>");
+//document.write( "This is the generated xml script.  Values you entered are highlighted in red.<HR>");
+
+///document.write('< ? xml version="1.0"  ? > \r\n'); 
+///document.write("Content-Type: text/xml ")
+
+
+
+for (i=0;i<hps.length;i++) {
+	var vps = new String(hps[i]);
+ 	document.write(abreak+vps);
+	}
+
+
+
+for (i=0;i<aps.length;i++) {
+	var vps = new String(aps[i]);
+	document.write(abreak+vps);
+	}
+
+
+
+for (i=0;i<cps.length;i++) {
+	var vps = new String(cps[i]);
+	document.write(abreak+vps);
+	}
+
+
+}//end function
+
+
+
+
+
+</script>
+	
+
+
+</body>
+</html>
+

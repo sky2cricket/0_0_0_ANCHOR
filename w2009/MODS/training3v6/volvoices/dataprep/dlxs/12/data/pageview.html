@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>Copying Page-level Metadata from pageview.dat files to a Database Store</title>
+
+
+
+
+
+
+
+<link href="../dlxsdocs.css" rel="stylesheet" type="text/css"> </head>         <body>
+<div class="pageTitle">Copying Page-level Metadata from <code>pageview.dat</code> files to a Database Store</div>
+
+<p>As of Release 8, DLXS Text Class middleware employs standard database mechanisms for
+storing page-level metadata (an improvement for scalability and
+management from the legacy <code>pageview.dat</code> file mechanism). DLXS encourages
+participants to move away from this legacy mechanism, and is currently working toward
+release of a utility that can be used during digitization to populate the database
+store directly as metadata is generated.</p>
+<p>In the meantime, to help
+transition materials that are using the legacy mechanism, we've
+supplied a utility to copy metadata from <code>pageview.dat</code> files into the
+database store (the Pageview table in the DLXS database) used by Text Class.</p>
+<p>The utility <code>bin/t/text/importpageviewdata.pl</code> can be run once
+(for a one-time cutover) or on a regular basis via <code>cron</code> or your preferred
+scheduling utility (for situations where
+<code>pageview.dat</code> files are still being maintained and updated).</p>
+<p>The syntax is
+<pre>
+  importpageviewdata.pl -d [directory] [-f]
+</pre>
+</P>
+<p>The required <code>[directory]</code> argument specifies the directory to crawl for <code>pageview.dat</code> files.
+If there is more than one, use <code>"directory1 directory2 directory3 ..."</code>,
+with the quotes.</p>
+<p>Directories may be excluded from crawling (for performance or other reasons) by creating files named <code>.importpageviewdata.skip</code> directly inside them. There is no limit on the number of directories that may be skipped using mechanism.</p>
+<p>The optional <code>[-f]</code> argument specifies a "full" run. If used,
+the recorded time of the previous run is
+ignored, and all <code>pageview.dat</code> files are processed regardless of their
+age. Without this argument, the utility runs in a "maintenance" mode,
+copying only metadata changed since the last run to the database store
+to increase performance and reduce database fragmentation and load.</p>
+<p><code>importpageviewdata.pl</code> will automatically use the database, user, and
+password that you entered when installing Text Class. If you manually
+change these configurations in Text Class, <code>importpageviewdata.pl</code> will
+honor the changes and connect using the new parameters.</p>
+
+</body>
+
+</html>

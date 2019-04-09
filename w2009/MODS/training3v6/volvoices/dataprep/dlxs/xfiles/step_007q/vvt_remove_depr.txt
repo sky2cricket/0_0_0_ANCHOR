@@ -1,0 +1,55 @@
+
+CAVEAT:
+This file was made 081105
+and is a copy of
+/d1/dlxs/obj/v/vvt/deprXMLDIRS/remove_depr.txt
+
+If there are other bad directories found, this file
+and the original need to be revised.
+
+-----------------------------------------------------
+FIRST CLEAN OUT /d1/dlxs/obj/v/vvt/0
+
+
+ cd /d1/dlxs/obj/v/vvt 
+    THIS COMMAND IS TOO LONG! /bin/rm 0/*/*/*/* 
+    INSTEAD USE... 
+    /bin/rm 0/0/1/*/* 
+    /bin/rm 0/0/2/*/* 
+    /bin/rm 0/0/3/*/* 
+    /bin/rm 0/0/4/*/* 
+    /bin/rm 0/0/5/*/* 
+    /bin/rm 0/0/6/*/* 
+    /bin/rm 0/0/7/*/* 
+    /bin/rm 0/0/8/*/* 
+    /bin/rm 0/0/9/*/* 
+    /bin/rm 0/1/0/*/* 
+    /bin/rm 0/1/1/*/* 
+    ls 0/*/*/*/* --------check 
+
+    /bin/rmdir 0/*/*/* 
+    /bin/rmdir 0/*/* 
+    /bin/rmdir 0/* 
+    /bin/rmdir 0 
+
+
+This is done before the step  make pv_createxmldirs 
+-----------------------------------------------------
+
+NO LONGER NEEDED
+
+[root@diglib2 vvt]# ls deprXMLDIRS/
+0012_000030_000079_0000  0015_000013_000016_0000  0015_000013_000063_0000
+
+cd /d1/dlxs/obj/v/vvt
+
+cd 0/0/1
+
+/bin/rm  0012_00003*/*
+rmdir     0012_00003*
+
+/bin/rm 0015_00001*/*
+rmdir    0015_00001*
+
+cd ../../..
+

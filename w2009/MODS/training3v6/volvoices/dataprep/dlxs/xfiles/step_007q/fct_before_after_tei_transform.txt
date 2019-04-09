@@ -1,0 +1,84 @@
+BEFORE tei_transform
+First copy the done files to tei/* directories.
+
+[root@diglib2 tel]# cp done/tei/notext/* tei/notext/ 
+[root@diglib2 tel]# cp done/tei/ocr/* tei/ocr/ 
+[root@diglib2 tel]# cp done/tei/typed/* tei/typed/ 
+
+[root@diglib2 tel]# python binUtil/FCT.py done/tei/notext done/tei/ocr
+done/tei/typed
+
+FCT.py The directory done/tei/notext     contains 389 files.
+
+FCT.py The directory done/tei/ocr        contains 387 files.
+
+FCT.py The directory done/tei/typed      contains 250 files.
+
+>> end python binUtil/FCT.py done/tei/notext done/tei/ocr done/tei/typed
+
+[root@diglib2 tel]# python binUtil/FCT.py tei/notextPB tei/ocrPB tei/typedPB
+
+FCT.py The directory tei/notextPB        contains 166 files.
+
+FCT.py The directory tei/ocrPB   contains 240 files.
+
+FCT.py The directory tei/typedPB         contains 522 files.
+
+>> end python binUtil/FCT.py tei/notextPB tei/ocrPB tei/typedPB
+
+
+[root@diglib2 tel]# python binUtil/FCT.py tei/notext tei/ocr tei/typed
+
+FCT.py The directory tei/notext  contains 555 files.
+
+FCT.py The directory tei/ocr     contains 627 files.
+
+FCT.py The directory tei/typed   contains 772 files.
+
+>> end python binUtil/FCT.py tei/notext tei/ocr tei/typed
+
+
+[root@diglib2 tel]# python binUtil/FCT.py tei_output/notext tei_output/ocr tei_output/typed
+
+FCT.py The directory tei_output/notext   contains 0 files.
+
+FCT.py The directory tei_output/ocr      contains 0 files.
+
+FCT.py The directory tei_output/typed    contains 0 files.
+
+>> end python binUtil/FCT.py tei_output/notext tei_output/ocr tei_output/typed
+
+RUN TEI TRANSFORM - note file counts
+
+[root@diglib2 tel]# perl tei_transform
+outputfilename is vvo.xml
+outfile is /d1/workarea/dlxs/text/tel/tei_output/ocr/vvo.xml
+completed transforming 627 files for directory
+/d1/workarea/dlxs/text/tel/tei/ocr/  
+outputfilename is vvt.xml
+outfile is /d1/workarea/dlxs/text/tel/tei_output/typed/vvt.xml
+completed transforming 772 files for directory
+/d1/workarea/dlxs/text/tel/tei/typed/  
+outputfilename is vvb.xml
+outfile is /d1/workarea/dlxs/text/tel/tei_output/notext/vvb.xml
+completed transforming 555 files for directory
+/d1/workarea/dlxs/text/tel/tei/notext/  
+
+AFTER tei_transform
+
+[root@diglib2 tel]# python binUtil/FCT.py tei_output/notext tei_output/ocr
+tei_output/typed
+
+FCT.py The directory tei_output/notext   contains 556 files.
+
+FCT.py The directory tei_output/ocr      contains 628 files.
+
+FCT.py The directory tei_output/typed    contains 773 files.
+
+>> end python binUtil/FCT.py tei_output/notext tei_output/ocr tei_output/typed
+
+WHAT ARE THE EXTRA FILES?
+
+[root@diglib2 tel]# ls tei_output/*/vv*
+tei_output/notext/vvb.xml  tei_output/ocr/vvo.xml  tei_output/typed/vvt.xml
+

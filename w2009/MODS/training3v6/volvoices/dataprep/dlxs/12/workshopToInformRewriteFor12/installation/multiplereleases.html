@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Multiple Releases</title>
+                            
+  <link rel="stylesheet" href="../styles.css" type="text/css">
+</head>
+  <body class="mainpalette" leftmargin="10" topmargin="10"
+ marginwidth="10" marginheight="10">
+           
+<h1>Multiple DLXS Releases</h1>
+                  
+<ul>
+   <li><span class="mainpalette"><a href="#intro">Introduction</a></span></li>
+   
+  <ul>
+     <li><a href="#howto">How to install and configure two DLXS releases</a></li>
+   
+  </ul>
+   
+  <ul>
+     <li><a href="#dlxsdataroot">How to point two different DLXS releases
+at the same data</a></li>
+   
+  </ul>
+ 
+</ul>
+                                
+<h2><a name="intro"></a>Introduction</h2>
+        
+<p>       There are times when you might want to have two different releases
+of DLXS  Middleware running at the same time.    </p>
+        
+<ul>
+         <li>       You might want to keep a past release running in production
+ mode but still have the ability to install, configure and migrate your local
+ changes to a new release version.    </li>
+         <li>And given installations of two different releases of DLXS Middleware:</li>
+       
+  <ul>
+      <li>You may or may not want to have both releases pointing to the same
+ indexed data.</li>
+      <li>You will almost certainly need different versions of the DLXS database 
+for each DLXS release.</li>
+       
+  </ul>
+               
+</ul>
+        
+<p>Whether you need multiple installations will depend a lot on how you manage 
+you DLXS site locally. &nbsp;These are all considerations in how to install 
+and configure multiple releases of DLXS. &nbsp;<br>
+ </p>
+                          
+<h2><a name="howto" id="howto"></a>How to install and configure two DLXS releases</h2>
+ 
+<h3>Two DLXSROOT values and two databases</h3>
+ 
+<p>The basic idea is to install the new release into a <font
+ color="#ff0000">separate</font> directory not within the directory of the 
+earlier release. &nbsp; When the installer program (<big><tt>Installer.pl</tt></big>) 
+prompts you for your DLXSROOT, give it the <font color="#ff0000">new</font> 
+directory you want to create to hold the new DLXS release.<br>
+ </p>
+ 
+<p>When the installer prompts you for the database type your answer will
+depend on whether you want to use the CSV database files that live in the
+install tree for each release or MySQL.<br>
+ </p>
+ 
+<ul>
+   <li><small>Choosing CSV probably means you'll be copying the CSV files 
+from the old release to the new release tree and running the upgrade utilities 
+on them. &nbsp;</small><small>&nbsp;(Details in <a
+ href="dbmigration.html">Database 
+Migration</a>). </small></li>
+   <li><small>Choosing MySQL probably means you'll be creating another database 
+under your MySQL server but with a different name, e.g. dlxs11. &nbsp;(Details 
+in <a href="dbmigration.html">Database Migration</a>). &nbsp; Just remember 
+to answer the installer with the <font color="#ff0000">new</font> database 
+name you're planning to create during migration.</small></li>
+ 
+</ul>
+ 
+<p>It is not necessary to have separate CSV session file locations (e.g.<big><tt>
+/tmp/sessions, /tmp/sessionslock</tt></big>) or a separate MySQL <big><tt>sessions</tt></big>&nbsp; 
+table for each of the two different DLXS releases. Note that sessions created
+by different releases of DLXS are not compatible. &nbsp;This is not generally
+a problem if you expire sessions regularly.<br>
+ </p>
+ 
+<h3>Separate Virtual Hosts</h3>
+ 
+<p>Next, configure another virtual host under your web server and set DLXSROOT 
+for that virtual host to point to the directory containing the new release. 
+&nbsp; Recall what a <a href="virtualhost.html">virtual host configuration</a> 
+looks like.<br>
+ </p>
+ 
+<p>For example, suppose you have DLXS release 10 installed under <big><tt>/usr/local/dlxs10</tt></big> 
+and you choose to install DLXS release 11 under  <big><tt>/usr/local/dlxs11</tt></big>. 
+You would have the release 10 virtual host (already) configured with:<br>
+ </p>
+ 
+<p>&nbsp; <tt>SetEnv DLXSROOT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /usr/local/dlxs10<br>
+ &nbsp;DocumentRoot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+/usr/local/dlxs10/web<br>
+ &nbsp;ScriptAlias&nbsp;&nbsp; /cgi/&nbsp;&nbsp; /usr/local/dlxs10/cgi/</tt></p>
+ 
+<p>and you would configure the release 11 virtual host with:<br>
+ </p>
+ 
+<p><tt>&nbsp;<tt>SetEnv DLXSROOT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /usr/local/dlxs11<br>
+  &nbsp;DocumentRoot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+/usr/local/dlxs11/web<br>
+  &nbsp;ScriptAlias&nbsp;&nbsp; /cgi/&nbsp;&nbsp; /usr/local/dlxs11/cgi/<br>
+ </tt></tt></p>
+ So for release 10 your URL might be:<big><tt><br>
+<br>
+&nbsp;&nbsp;&nbsp; diglib10.somewhere.edu/cgi/t/text/text-idx</tt></big> <br>
+<br>
+and your release 11 virtual host might be:<br>
+<br>
+<tt><big>&nbsp;&nbsp;&nbsp; diglib11.somewhere.edu/cgi/t/text/text-idx </big></tt><br>
+&nbsp;&nbsp;&nbsp; <br>
+where each URL would run middleware from a different install tree, i.e. a
+different DLXSROOT.<br>
+ 
+<h2><a name="dlxsdataroot"></a>How to point two different DLXS releases at
+the same data</h2>
+<h2></h2>
+ Data (SGML/XML, image files) and XPAT indexes occupy a lot of disk space. 
+&nbsp;DLXS middleware recognizes the DLXS<font color="#330033">DATA</font>ROOT 
+environment variable so that a given release can point to the data/index/image 
+directories (under <big><tt>obj</tt></big>, <big><tt>idx,</tt></big><big><tt>img) 
+</tt></big><font color="#ff0000">outside</font> of its own install tree.
+&nbsp; <br>
+<br>
+If the virtual host for a given DLXS release defines DLXSDATAROOT, that value 
+is used as the path prefix for  <big><small>the</small><tt> obj</tt></big>, 
+<big><tt>idx,</tt></big><big><tt>img</tt></big> directories. &nbsp;If not, 
+the DLXSROOT value is used for the path prefix.<br>
+ <br>
+ In the earlier example, in the virtual host <font color="#ff0000">for release 
+11</font>, you could set DLXSDATAROOT to <big><tt>/usr/local/<font
+ color="#ff0000">dlxs10</font></tt></big> to have release 11 read data from
+the release 10 install tree. <br>
+ <br>
+ This scenario requires that the release 10 data be <i>forward</i> compatible 
+with release 11. &nbsp;(<i>More on this when we talk about data preparation
+for TextClass</i>).&nbsp; If forward compatibility is a problem, the data
+could be moved to the release 11 tree and pointed to from the release 10 middleware. 
+Then the data could be migrated gradually to work with 11 in a manner that 
+was <i>backward</i> compatible with 10.             <br>
+ <br>
+There are other possibilities for using DLXSDATAROOT. &nbsp;For example,
+you could configure more than one virtual host <font color="#ff0000">for
+the same release</font>. &nbsp;One virtual host could use DLXSDATAROOT to
+point outside its tree while another points at data within its own tree etc.
+<br>
+<br>
+Another scenario might be to have your data in a single location entirely
+outside all install trees and use DLXSDATAROOT in every virtual host to point
+at that single location.<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>

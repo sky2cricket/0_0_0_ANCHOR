@@ -1,0 +1,429 @@
+<html>
+<head>
+<title>vv_popupCA</title>
+
+<link href="../vv_workbook.css" type="text/css" rel="stylesheet">
+
+
+
+
+<script language="javascript">
+
+var select_id= new String();
+function get_select_id() {
+
+var str = new String();
+    str = parent.location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  parent.window.opener.location.href="+parent.window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=get_select_id();
+
+
+
+var strSelect_GE_A = new String('');
+
+strSelect_GE_A = '<select name="aaa"  size="24" style="font-size:10px"> \r\n'
+	+'<option  selected>No Value Selected</option> \r\n'	
+
+
+
+
+
+
+	+'<option>SAINT ELMO (TENN.) - HISTORY</option>  \r\n'
+	+'<option>SAINT JOSEPH (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>SAINT JOSEPH (TENN.) - HISTORY</option>  \r\n'
+	+'<option>SAM COOPER BOULEVARD (MEMPHIS, TENN.)</option>  \r\n'
+	+'<option>SANTA FE (TENN.) - HISTORY</option>  \r\n'
+	+'<option>SARDIS (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>SAULSBURY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>SAVANNAH (TENN.)</option>  \r\n'
+	+'<option>SAVANNAH (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>SAVANNAH (TENN.) - HISTORY</option>  \r\n'
+	+'<option>SAVANNAH (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>SCOTT COUNTY (TENN.)</option>  \r\n'
+	+'<option>SCOTT COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>SCOTT COUNTY (TENN.) - CENSUS, 1850</option>  \r\n'
+	+'<option>SCOTT COUNTY (TENN.) - CENSUS, 1860</option>  \r\n'
+	+'<option>SCOTT COUNTY (TENN.) - CENSUS, 1870</option>  \r\n'
+	+'<option>SCOTT COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>SCOTT COUNTY (TENN.) - CENSUS, 1900</option>  \r\n'
+	+'<option>SCOTT COUNTY (TENN.) - CENSUS, 1910</option>  \r\n'
+	+'<option>SCOTT COUNTY (TENN.) - CENSUS, 1920</option>  \r\n'
+	+'<option>SCOTT COUNTY (TENN.) - DESCRIPTION AND TRAVEL - TOURS</option>  \r\n'
+	+'<option>SCOTT COUNTY (TENN.) - ECONOMIC CONDITIONS</option>  \r\n'
+	+'<option>SCOTT COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>SCOTT COUNTY (TENN.) - GENEALOGY - PERIODICALS</option>  \r\n'
+	+'<option>SCOTT COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>SCOTT COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>SCOTT COUNTY (TENN.) - HISTORY - CIVIL WAR, 1861-1865</option>  \r\n'
+	+'<option>SCOTT COUNTY (TENN.) - HISTORY - INDEXES</option>  \r\n'
+	+'<option>SCOTT COUNTY (TENN.) - HISTORY - PERIODICALS</option>  \r\n'
+	+'<option>SCOTT COUNTY (TENN.) - HISTORY - PICTORIAL WORKS</option>  \r\n'
+	+'<option>SCOTT COUNTY (TENN.) - MAPS, MANUSCRIPT</option>  \r\n'
+	+'<option>SCOTT COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>SCOTT COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>SCOTT COUNTY (TENN.) - SOCIAL CONDITIONS</option>  \r\n'
+	+'<option>SCOTT COUNTY (TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+	+'<option>SCOTTS HILL (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>SCOTT\'S GULF WILDERNESS AREA (TENN.) - PICTORIAL WORKS</option>  \r\n'
+	+'<option>SELMER (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>SELMER (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>SEQUATCHIE (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>SEQUATCHIE COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>SEQUATCHIE COUNTY (TENN.) - CENSUS, 1860</option>  \r\n'
+	+'<option>SEQUATCHIE COUNTY (TENN.) - CENSUS, 1870</option>  \r\n'
+	+'<option>SEQUATCHIE COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>SEQUATCHIE COUNTY (TENN.) - CENSUS, 1920</option>  \r\n'
+	+'<option>SEQUATCHIE COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>SEQUATCHIE COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>SEQUATCHIE COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>SEQUATCHIE COUNTY (TENN.) - HISTORY - PICTORIAL WORKS</option>  \r\n'
+	+'<option>SEQUATCHIE COUNTY (TENN.) - MAPS</option>  \r\n'
+	+'<option>SEQUATCHIE COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>SEQUATCHIE COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>SEQUATCHIE RIVER VALLEY (TENN.)</option>  \r\n'
+	+'<option>SEQUATCHIE RIVER VALLEY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>SEQUATCHIE RIVER VALLEY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>SEQUATCHIE RIVER VALLEY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>SEQUATCHIE RIVER VALLEY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>SEVIER COUNTY (TENN.)</option>  \r\n'
+	+'<option>SEVIER COUNTY (TENN.) - ARCHITECTURE</option>  \r\n'
+	+'<option>SEVIER COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>SEVIER COUNTY (TENN.) - BUILDINGS, STRUCTURES, ETC.</option>  \r\n'
+	+'<option>SEVIER COUNTY (TENN.) - CENSUS, 1830</option>  \r\n'
+	+'<option>SEVIER COUNTY (TENN.) - CENSUS, 1840</option>  \r\n'
+	+'<option>SEVIER COUNTY (TENN.) - CENSUS, 1850</option>  \r\n'
+	+'<option>SEVIER COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>SEVIER COUNTY (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>SEVIER COUNTY (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>SEVIER COUNTY (TENN.) - ECONOMIC CONDITIONS</option>  \r\n'
+	+'<option>SEVIER COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>SEVIER COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>SEVIER COUNTY (TENN.) - HISTORIC BUILDINGS</option>  \r\n'
+	+'<option>SEVIER COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>SEVIER COUNTY (TENN.) - HISTORY - PICTORIAL WORKS</option>  \r\n'
+	+'<option>SEVIER COUNTY (TENN.) - MAPS</option>  \r\n'
+	+'<option>SEVIER COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>SEVIER COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>SEVIER COUNTY (TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+	+'<option>SEVIER COUNTY (TENN.) - SURVEYS</option>  \r\n'
+	+'<option>SEVIER COUNTY (TENN.) - SURVEYS - 19TH CENTURY</option>  \r\n'
+	+'<option>SEVIERVILLE (TENN.)</option>  \r\n'
+	+'<option>SEVIERVILLE (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>SEVIERVILLE (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>SEVIERVILLE (TENN.) - HISTORY - PICTORIAL WORKS</option>  \r\n'
+	+'<option>SEVIERVILLE (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>SEVIERVILLE (TENN.) - POLITICS AND GOVERNMENT</option>  \r\n'
+	+'<option>SEVIERVILLE (TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+	+'<option>SEWANEE (TENN.)</option>  \r\n'
+	+'<option>SEWANEE (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>SEWANEE (TENN.) - FICTION</option>  \r\n'
+	+'<option>SEWANEE (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>SEWANEE (TENN.) - HISTORY</option>  \r\n'
+	+'<option>SEWANEE (TENN.) - HISTORY - CIVIL WAR, 1861-1865</option>  \r\n'
+	+'<option>SEWANEE (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>SEWANEE (TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+	+'<option>SEWART AIR FORCE BASE (SMYRNA, TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>SEYMOUR (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>SHADY GROVE CEMETERY (COFFEE COUNTY, TENN.)</option>  \r\n'
+	+'<option>SHADY VALLEY (TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+	+'<option>SHARON (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>SHAWANEE (TENN.) - HISTORY</option>  \r\n'
+	+'<option>SHELBY COUNTY (TENN.)</option>  \r\n'
+	+'<option>SHELBY COUNTY (TENN.) - ANTIQUITIES</option>  \r\n'
+	+'<option>SHELBY COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>SHELBY COUNTY (TENN.) - CENSUS, 1820</option>  \r\n'
+	+'<option>SHELBY COUNTY (TENN.) - CENSUS, 1880 - INDEXES</option>  \r\n'
+	+'<option>SHELBY COUNTY (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>SHELBY COUNTY (TENN.) - ECONOMIC CONDITIONS</option>  \r\n'
+	+'<option>SHELBY COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>SHELBY COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>SHELBY COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>SHELBY COUNTY (TENN.) - HISTORY - CIVIL WAR, 1861-1865 - PERSONAL NARRATIVES, CONFEDERATE</option>  \r\n'
+	+'<option>SHELBY COUNTY (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>SHELBY COUNTY (TENN.) - HOUSING</option>  \r\n'
+	+'<option>SHELBY COUNTY (TENN.) - INDUSTRIAL SITES - DIRECTORIES</option>  \r\n'
+	+'<option>SHELBY COUNTY (TENN.) - LAND USE</option>  \r\n'
+	+'<option>SHELBY COUNTY (TENN.) - LAWS, ETC.</option>  \r\n'
+	+'<option>SHELBY COUNTY (TENN.) - MAPS</option>  \r\n'
+	+'<option>SHELBY COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>SHELBY COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>SHELBY COUNTY (TENN.) - POLITICS AND GOVERNMENT</option>  \r\n'
+	+'<option>SHELBY COUNTY (TENN.) - POLITICS AND GOVERNMENT - BIBLIOGRAPHY</option>  \r\n'
+	+'<option>SHELBY COUNTY (TENN.) - POPULATION</option>  \r\n'
+	+'<option>SHELBY COUNTY (TENN.) - REFUSE AND REFUSE DISPOSAL</option>  \r\n'
+	+'<option>SHELBYVILLE (TENN.)</option>  \r\n'
+	+'<option>SHELBYVILLE (TENN.) - CENTENNIAL CELEBRATIONS, ETC.</option>  \r\n'
+	+'<option>SHELBYVILLE (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>SHELBYVILLE (TENN.) - DESCRIPTION AND TRAVEL</option>  \r\n'
+	+'<option>SHELBYVILLE (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>SHELBYVILLE (TENN.) - ECONOMIC CONDITIONS</option>  \r\n'
+	+'<option>SHELBYVILLE (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>SHELBYVILLE (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>SHELBYVILLE (TENN.) - HISTORY</option>  \r\n'
+	+'<option>SHELBYVILLE (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>SHELBYVILLE (TENN.) - MAPS, MANUSCRIPT</option>  \r\n'
+	+'<option>SHELBYVILLE (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>SHELBYVILLE (TENN.) - SCHOOLS</option>  \r\n'
+	+'<option>SHELBYVILLE REGION (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>SHERWOOD (TENN.) - HISTORY</option>  \r\n'
+	+'<option>SHILOH NATIONAL MILITARY PARK (TENN.)</option>  \r\n'
+	+'<option>SHILOH NATIONAL MILITARY PARK (TENN.) - ENVIRONMENTAL ASPECTS</option>  \r\n'
+	+'<option>SHILOH NATIONAL MILITARY PARK (TENN.) - GUIDEBOOKS</option>  \r\n'
+	+'<option>SHILOH NATIONAL MILITARY PARK (TENN.) - HISTORY</option>  \r\n'
+	+'<option>SHOAL CREEK WATERSHED (TENN. AND ALA.)</option>  \r\n'
+	+'<option>SHORT MOUNTAIN (TENN.)</option>  \r\n'
+	+'<option>SIGNAL MOUNTAIN (TENN.)</option>  \r\n'
+	+'<option>SIGNAL MOUNTAIN (TENN.) - HISTORY</option>  \r\n'
+	+'<option>SIGNAL MOUNTAIN (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>SITE 40WY87 (TENN.)</option>  \r\n'
+	+'<option>SKULLBONE (TENN.) - HISTORY</option>  \r\n'
+	+'<option>SMITH COUNTY (TENN.)</option>  \r\n'
+	+'<option>SMITH COUNTY (TENN.) - ANTIQUITIES</option>  \r\n'
+	+'<option>SMITH COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>SMITH COUNTY (TENN.) - CENSUS, 1820</option>  \r\n'
+	+'<option>SMITH COUNTY (TENN.) - CENSUS, 1830</option>  \r\n'
+	+'<option>SMITH COUNTY (TENN.) - CENSUS, 1840</option>  \r\n'
+	+'<option>SMITH COUNTY (TENN.) - CENSUS, 1850</option>  \r\n'
+	+'<option>SMITH COUNTY (TENN.) - CENSUS, 1860</option>  \r\n'
+	+'<option>SMITH COUNTY (TENN.) - CENSUS, 1870</option>  \r\n'
+	+'<option>SMITH COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>SMITH COUNTY (TENN.) - CENSUS, 1900</option>  \r\n'
+	+'<option>SMITH COUNTY (TENN.) - CENSUS, 1910</option>  \r\n'
+	+'<option>SMITH COUNTY (TENN.) - CENSUS, 1920</option>  \r\n'
+	+'<option>SMITH COUNTY (TENN.) - CENSUS, 1930</option>  \r\n'
+	+'<option>SMITH COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>SMITH COUNTY (TENN.) - GENEALOGY - PERIODICALS</option>  \r\n'
+	+'<option>SMITH COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>SMITH COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>SMITH COUNTY (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>SMITH COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>SMITH COUNTY (TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+	+'<option>SMITHVILLE (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>SMYRNA (RUTHERFORD COUNTY, TENN.) - COMMERCE - 19TH CENTURY</option>  \r\n'
+	+'<option>SMYRNA (RUTHERFORD COUNTY, TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>SMYRNA (RUTHERFORD COUNTY, TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>SMYRNA (RUTHERFORD COUNTY, TENN.) - POLITICS AND GOVERNMENT</option>  \r\n'
+	+'<option>SMYRNA ARMY AIR FIELD (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>SNAIL SHELL CAVE (TENN.)</option>  \r\n'
+	+'<option>SNEEDVILLE (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>SODDY-DAISY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>SOMERVILLE (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>SOMERVILLE (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>SOUTH CUMBERLAND RECREATION AREA (TENN.) - GUIDEBOOKS</option>  \r\n'
+	+'<option>SOUTH FULTON (TENN.)</option>  \r\n'
+	+'<option>SOUTH FULTON (TENN.) - ECONOMIC CONDITIONS</option>  \r\n'
+	+'<option>SOUTH FULTON (TENN.) - STREETS</option>  \r\n'
+	+'<option>SOUTH HOLSTON LAKE (TENN. AND VA.)</option>  \r\n'
+	+'<option>SOUTH PITTSBURG (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>SOUTH PITTSBURG (TENN.) - HISTORY</option>  \r\n'
+	+'<option>SOUTH PITTSBURG (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>SOUTHSIDE (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>SOUTHWEST TENNESSEE DEVELOPMENT DISTRICT - HOUSING</option>  \r\n'
+	+'<option>SPARTA (TENN.)</option>  \r\n'
+	+'<option>SPARTA (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>SPARTA (TENN.) - CHURCH HISTORY - SOURCES</option>  \r\n'
+	+'<option>SPARTA (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>SPARTA (TENN.) - HISTORY</option>  \r\n'
+	+'<option>SPARTA (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>SPEEDWELL (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>SPEEDWELL (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>SPEEDWELL (TENN.) - HISTORY</option>  \r\n'
+	+'<option>SPENCER (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>SPENCER (TENN.) - PHOTOGRAPHS</option>  \r\n'
+	+'<option>SPRING CITY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>SPRING HILL (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>SPRING HILL (TENN.) - GENEALOGY - PERIODICALS</option>  \r\n'
+	+'<option>SPRING HILL (TENN.) - HISTORY</option>  \r\n'
+	+'<option>SPRING HILL (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>SPRINGFIELD (TENN.)</option>  \r\n'
+	+'<option>SPRINGFIELD (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>SPRINGFIELD (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>SPRINGFIELD (TENN.) - FLOODS</option>  \r\n'
+	+'<option>SPRINGFIELD (TENN.) - HISTORY</option>  \r\n'
+	+'<option>SPRINGFIELD (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>STANDING STONE STATE PARK (TENN.)</option>  \r\n'
+	+'<option>STARDUST SITE (TENN.)</option>  \r\n'
+	+'<option>STATESVILLE (TENN.) - BIOGRAPHY - PORTRAITS</option>  \r\n'
+	+'<option>STATESVILLE (TENN.) - PICTORIAL WORKS</option>  \r\n'
+	+'<option>STATESVILLE (TENN.) - SOCIAL LIFE AND CUSTOMS - PICTORIAL WORKS</option>  \r\n'
+	+'<option>STEWART COUNTY (TENN.) - BIBLIOGRAPHY</option>  \r\n'
+	+'<option>STEWART COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>STEWART COUNTY (TENN.) - CENSUS, 1820</option>  \r\n'
+	+'<option>STEWART COUNTY (TENN.) - CENSUS, 1850</option>  \r\n'
+	+'<option>STEWART COUNTY (TENN.) - CENSUS, 1860</option>  \r\n'
+	+'<option>STEWART COUNTY (TENN.) - CENSUS, 1870</option>  \r\n'
+	+'<option>STEWART COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>STEWART COUNTY (TENN.) - CENSUS, 1900</option>  \r\n'
+	+'<option>STEWART COUNTY (TENN.) - ECONOMIC CONDITIONS</option>  \r\n'
+	+'<option>STEWART COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>STEWART COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>STEWART COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>STEWART COUNTY (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>STEWART COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>STEWART COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>STEWART COUNTY (TENN.) - POLITICS AND GOVERNMENT</option>  \r\n'
+	+'<option>STONES RIVER NATIONAL BATTLEFIELD (TENN.)</option>  \r\n'
+	+'<option>STONES RIVER NATIONAL BATTLEFIELD (TENN.) - BOUNDARIES</option>  \r\n'
+	+'<option>STONES RIVER NATIONAL BATTLEFIELD (TENN.) - MANAGEMENT</option>  \r\n'
+	+'<option>STONES RIVER NATIONAL BATTLEFIELD (TENN.) - MAPS</option>  \r\n'
+	+'<option>STRAWBERRY PLAINS (TENN.) - HISTORY</option>  \r\n'
+	+'<option>STREETS - TENNESSEE - MCMINNVILLE</option>  \r\n'
+	+'<option>SUGARLANDS (SEVIER COUNTY, TENN.) - HISTORY</option>  \r\n'
+	+'<option>SUGARLANDS (SEVIER COUNTY, TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+	+'<option>SULLIVAN COUNTY (TENN.)</option>  \r\n'
+	+'<option>SULLIVAN COUNTY (TENN.) - ANTIQUITIES</option>  \r\n'
+	+'<option>SULLIVAN COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>SULLIVAN COUNTY (TENN.) - CENSUS, 1830</option>  \r\n'
+	+'<option>SULLIVAN COUNTY (TENN.) - CENSUS, 1840</option>  \r\n'
+	+'<option>SULLIVAN COUNTY (TENN.) - CENSUS, 1850</option>  \r\n'
+	+'<option>SULLIVAN COUNTY (TENN.) - CENSUS, 1860</option>  \r\n'
+	+'<option>SULLIVAN COUNTY (TENN.) - CENSUS, 1870</option>  \r\n'
+	+'<option>SULLIVAN COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>SULLIVAN COUNTY (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>SULLIVAN COUNTY (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>SULLIVAN COUNTY (TENN.) - ECONOMIC CONDITIONS</option>  \r\n'
+	+'<option>SULLIVAN COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>SULLIVAN COUNTY (TENN.) - GENEALOGY - PERIODICALS</option>  \r\n'
+	+'<option>SULLIVAN COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>SULLIVAN COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>SULLIVAN COUNTY (TENN.) - HISTORY - CIVL WAR, 1861-1865</option>  \r\n'
+	+'<option>SULLIVAN COUNTY (TENN.) - HISTORY - PERIODICALS</option>  \r\n'
+	+'<option>SULLIVAN COUNTY (TENN.) - HISTORY - SOCIETIES, ETC. - PERIODICALS</option>  \r\n'
+	+'<option>SULLIVAN COUNTY (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>SULLIVAN COUNTY (TENN.) - HISTORY, MILITARY</option>  \r\n'
+	+'<option>SULLIVAN COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>SULLIVAN COUNTY (TENN.) - PICTORIAL WORKS</option>  \r\n'
+	+'<option>SULLIVAN COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>SULLIVAN COUNTY (TENN.) - SCHOOLS - PERIODICALS</option>  \r\n'
+	+'<option>SULPHUR SPRINGS (TENN.) - HISTORY</option>  \r\n'
+	+'<option>SUMMERTOWN (TENN.) - CHARTERS</option>  \r\n'
+	+'<option>SUMMERTOWN (TENN.) - HISTORY</option>  \r\n'
+	+'<option>SUMMERTOWN (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>SUMMERVILLE (TENN.) - SOCIAL CONDITIONS</option>  \r\n'
+	+'<option>SUMNER COUNTY (TENN.)</option>  \r\n'
+	+'<option>SUMNER COUNTY (TENN.) - ANTIQUITIES</option>  \r\n'
+	+'<option>SUMNER COUNTY (TENN.) - ARCHIVAL RESOURCES</option>  \r\n'
+	+'<option>SUMNER COUNTY (TENN.) - BIBLIOGRAPHY</option>  \r\n'
+	+'<option>SUMNER COUNTY (TENN.) - CENSUS, 1770-1790</option>  \r\n'
+	+'<option>SUMNER COUNTY (TENN.) - CENSUS, 1820</option>  \r\n'
+	+'<option>SUMNER COUNTY (TENN.) - CENSUS, 1850</option>  \r\n'
+	+'<option>SUMNER COUNTY (TENN.) - CENSUS, 1860</option>  \r\n'
+	+'<option>SUMNER COUNTY (TENN.) - CENSUS, 1870</option>  \r\n'
+	+'<option>SUMNER COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>SUMNER COUNTY (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>SUMNER COUNTY (TENN.) - CHURCH HISTORY - SOURCES</option>  \r\n'
+	+'<option>SUMNER COUNTY (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>SUMNER COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>SUMNER COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>SUMNER COUNTY (TENN.) - GENEALOGY - SOURCES - INDEXES</option>  \r\n'
+	+'<option>SUMNER COUNTY (TENN.) - HISTORIC HOUSES, ETC.</option>  \r\n'
+	+'<option>SUMNER COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>SUMNER COUNTY (TENN.) - HISTORY - CIVIL WAR, 1861-1865</option>  \r\n'
+	+'<option>SUMNER COUNTY (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>SUMNER COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>SUMNER COUNTY (TENN.) - PICTORIAL WORKS</option>  \r\n'
+	+'<option>SUMNER COUNTY (TENN.) - PUBLIC WORKS</option>  \r\n'
+	+'<option>SUNBRIGHT (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>SWANN STREET (MCMINNVILLE, TENN.)</option>  \r\n'
+	+'<option>SWEETWATER (TENN.) - FICTION</option>  \r\n'
+	+'<option>SWEETWATER (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>SWEETWATER (TENN.) - HISTORY</option>  \r\n'
+	+'<option>SWEETWATER (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>SWEETWATER CREEK VALLEY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>SWEETWATER CREEK VALLEY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>SYCAMORE (TENN.) - HISTORY</option>  \r\n'
+	+'<option>SYCAMORE SHOALS HISTORIC PARK (CARTER COUNTY, TENN.)</option>  \r\n'
+	+'<option>SYCAMORE SHOALS STATE HISTORIC AREA (TENN.)</option>  \r\n'
+
+
++'</select> \r\n';
+	
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+<body class="background">
+
+
+
+
+<form name="FormOne" >
+
+
+<div name="SS" id="SS">
+<script>
+document.write(
+
+	 '<table border="1" cellpadding="4" cellspacing="0"  width="90%">\r\n'
+	+'<tr><td  bgcolor="ddeeff">\r\n'
+	///+'vv_functions.htm called by '+select_id+' <br>\r\n'
+	+'<b>Select Geographic Subject S </b> \r\n'
+	+'</td></tr><tr><td bgcolor="ddeeff"> \r\n' 
+	+ strSelect_GE_A
+
+	+'</td></tr></table> \r\n'
+	///+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+</script>
+	
+</div>
+
+<input type="button" onclick="showSelection();" name="B1" value="Geographic Name">
+
+</form>
+
+<script>
+
+
+
+                  
+
+function showSelection() {
+
+val = new String();
+
+for ( i=0; i< document.FormOne.aaa.length; i++ ) {
+
+if ( document.FormOne.aaa[i].selected == true ) {
+  	val = document.FormOne.aaa[i].text;
+	break;
+	}
+else { val = "you never selected anything"; 
+	}
+
+}
+////////////////////////alert ("You selected " +val);
+
+switch ( select_id ) {
+
+case  "subject_geographic_lcsh_01" :
+	parent.window.opener.document.forms[0].subject_geographic_lcsh_01.value=val;
+	parent.window.close();
+	break;
+
+case  "subject_geographic_lcsh_02" :
+	parent.window.opener.document.forms[0].subject_geographic_lcsh_02.value=val;
+	parent.window.close();
+	break;
+
+}//end switch
+
+}///end function
+</script>
+

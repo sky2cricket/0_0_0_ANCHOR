@@ -1,0 +1,150 @@
+/d1/workarea/dlxs/ead/dothis
+
+
+THIS IS WHERE YOU WORK OAI, search, MARC, mods versions of EADs and fix links to constituent files.
+THE DISPLAY COLLECTION (fa) is worked on scholar (/d1/dlxs12/prep/f/fa -- test interface is 
+http://dlxs12test.lib.utk.edu/cgi/f/findaid/findaid-idx?c=fa;page=simple ) and goes live on dlc
+http://dlc.lib.utk.edu/f/fa/ .
+the search files will be included in spc-bib
+the mods files for OAI have their own collection:  fa-mods
+
+KEEP A COPY OF ANY NEW FILES SEPARATE TO WORK INTO MARC
+  -- to avoid duplicates of old ones being uploaded into the OPAC.
+
+AR files are worked in the AR_SERIES directory.  Again, the display collection (ar) is worked on scholar 
+(/d1/dlxs12/prep/a/ar/   -- test at http://dlxs12test.lib.utk.edu/cgi/f/findaid/findaid-idx?c=ar;page=simple)
+ and goes live on dlc   http://dlc.lib.utk.edu/a/ar/
+the search files will be included in spc-bib
+the mods files for OAI have their own collection:  ar-mods
+
+The group collection for all finding aids (display collections) is findaid
+http://dlc.lib.utk.edu/cgi/f/findaid/findaid-idx?xg=1;page=simple;g=findaid
+test interface on scholar is
+http://dlc.lib.utk.edu/cgi/f/findaid/findaid-idx?xg=1;page=simple;g=findaid
+
+
+--------------------------------------------------------
+
+following is for the non-display collections of fa.
+
+
+put copies of new ones in new directory, and 
+run checknums to find duplicates and errors in those deposited
+
+(this assumes done/linked are copied into done/fa)
+
+do  grep -c altformavail */*  and make sure there's at least one in each file in linkme and reworked_linkme
+   and NOT one in the other directories
+
+You have 5 possibilities here (at least):
+oaiRepeats  -- 
+   original 18 files in OAi, reworked as EADs.  only AR's have not been done as of 11/06.
+   may or may NOT have links added;  check to see if you need to make links. (this is a 6th possibility)
+   reuse existing pids in bib;  compare the bib, correct it, change the date.
+   CHANGE redirect link in locserv for the pid, so it goes to the EAD on dlc.lib instead of to oailinks/ on diglib.
+   process the FA as new, but do NOT create new pid.
+
+reworked_linkme --
+   CREATE LINKS.  
+   Reuse existing pid in bib.  (Compare bib and improve?? change date if you do)
+   process FA by replacing old file, and check display.  DO NOT CREATE NEW PID.
+
+linkme --
+   CREATE LINKS.
+   process FA as new, creating new pids and new bib.
+
+reworked --
+   reuse existing pid in bib.  (Compare bib and improve?? change date if you do)
+   process FA by replacing old file.
+
+new --
+   process FA as new, creating new pids and new bib.   
+
+
+-----------------------
+For the ones where you create links, you must already have pids for the constituent files, in a linkfile.
+1) So process constituent files first.
+  a)  display files in textclass or image class
+  b)  search files
+  c) bib files  (first run) -- these do not contain links for finding aids in them. 
+   those pids have not been created yet, but we need these pids to do the linking in the finding aids.
+
+2) then:  create links and insert them into reworked_linkme and linkme. (run fixfa)
+
+3) replace existing FA on scholar with the reworked_linked and reworked FA, and process.  Check output, and repair
+as necessary.  (all affected directories -- new, reworked, linked, oaiRepeats and...
+scp reworked_linked/* scholar.lib.utk.edu:../d1/dlxs12/prep/f/fa/indata/.    (follow instructions in prep directory there)
+
+4) add FA from new and linkme; process those, generating new PIDS and inserting them in InfoTrack and locserve.
+   Check output, and repair as necessary.  COPY NEW PIDS HERE
+ (see newpids)  Run getAllInfo
+(see allInfo file) --
+
+5) create MODS bib & search files for reworked and reworked_linkme, and oaiRepeats reusing old pids.
+ (use faToModsBib  for latest MODS; and faToSearch, to make searchfiles)
+ ( for DC search, use fachange, which puts the files in oldsearch)
+  
+ faToModsBib writes files to redonemods as well as to modsbib.
+  (preservation MODS will go in mods directory)
+
+use countfiles to make sure we have search and mods OAI for all of them.
+
+
+  Check to see if redonemods records differ
+from existing modsbib files.  If they do not, use the old ones.  If they DIFFER, you must trade them out.
+  -- overwrite those in the modsbib directory with the newer ones.
+for oaiRepeats, change the redirect link in locserve so the new display file is the default, on dlc.
+
+THEN:  repair the modsbib with fixSubjectsBib ;  the new modsbib will be in modsbibNewSubs
+       run OAI_modsbibToMods to create mods files for preservation -- these are in OAImods.
+
+NOTE:  for modsbib: faToModsBib  -- then fixSubjectsBib
+       for search: faToSearch
+ When ready to process search files, 
+ copy them to in /d1/workarea/dlxs/search/spc/fa/ and make sure you only overwrite those
+  you want to overwrite!
+
+6) create modsbib & search files for new and linkme FA, using the PIDS created on scholar; COPY THOSE HERE. Will need 
+them also in step 9.
+
+
+7) reprocess the modsbib  AND search files for the constituent items, reusing the same PIDS, 
+   but now adding in the PIDS for the 
+   finding aids into the dc:relation, and into the mods:relatedItem type="isReferencedBy mods:url field.
+
+8) process the search collections, with and without finding aids (spc, spcd). Check them
+
+9) process the bib collections.  (constituent files and finding aids) Check them.  put redonebib/* into bib/.
+   
+# the following is for modsbib
+  * remember *  to copy redonemods files into modsbib!
+/bin/mv redonemods/* modsbib
+ run 
+fixSubjectsBib
+
+REPLACE REFERENCES HERE to modsbib with modsbibnewSubs!
+  for fa:  cat openbib modsbibNewSubs/*   done/modsbibNewSubs/*  closebib > fa-mods.xml
+           cp fa-mods.xml /d1/dlxs/prep/f/fa-mods/.
+           cd /d1/dlxs/prep/f/fa-mods/
+           transform  (correct any errors)
+           cp fa-mods.xml ../../../obj/f/fa-mods/.
+           cd ../../../idx/f/fa-mods
+           make all
+          # xpatbld -m 10m -D fa-mods.dd
+          # multirgn -f -D fa-mods.dd -t bib-regions.tags
+           make a release to production in collmgr online
+           
+
+ put old files in done directories...
+
+10) Transfer all collections, including constitutent files collections, to production servers (diglib & dlc).  Check.
+
+11) if this stuff is finalized, copy bib records for FA to store1, TEI & MODS &bib &tiffs  (and ic files if images)
+for constitutent files to store1.
+
+
+
+run OAImodsbibToMods
+
+  # this translates those to Mods, putting files in OAImods.  Use these for preservation
+

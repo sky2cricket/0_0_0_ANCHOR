@@ -1,0 +1,210 @@
+<HTML>
+<HEAD>
+<TITLE>vv_popupNames.htm</TITLE>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+<script language="javascript">
+
+function selectOneOptionDate_for_popupNames(sbox,W,H) 
+{
+alert("selectOneOptionDate_for_popupNames");
+///alert("vv_functions.js: sBox.name="+sbox.name)
+var sTarget = new String();
+    sTarget = "vv_popupDates_for_popupNames.htm?sbox_name="+sbox.name;
+
+var w = new String(W);
+var h = new String(H);
+
+var wDef = new String();
+    wDef = "width="+w+",height="+h;
+    wDef += ",scrollbars=yes"
+    wDef += ",resizable"
+
+alert(sTarget+",\"helpDatesWindow\",\""+wDef+"\"")
+
+window.open(sTarget,"helpDatesWindow",wDef);
+
+
+
+}//end function selectOneOptionDate_for_popupNames(sbox,W,H) 
+
+
+//global var
+var changeNameAuthoritySelect= new String("");
+
+function name_select_opt(NUM){
+var option_val=0;
+var changeSelect=new String("0");
+var varNameTarget = new String("window.opener.parent.D.document.forms[0].name_attr_0"+NUM);
+alert("varNameTarget="+varNameTarget);
+
+
+for (i=0;i<document.forms[0].name_attr.length;i++){
+	//alert("varName["+i+"].value="+document.forms[0].name_attr[i].value);
+	//alert("varName["+i+"].selected="+document.forms[0].name_attr[i].selected);
+	
+	if (document.forms[0].name_attr[i].selected){
+		//alert("varName[i].value="+document.forms[0].name_attr[i].value);
+		changeSelect=document.forms[0].name_attr[i].text;
+		if (changeSelect.indexOf("anonymous") > -1) {
+			document.forms[0].pLastName.value="anonymous";
+			document.forms[0].pGivenName.value="";
+		}else if(changeSelect.indexOf("unknown") > -1) {
+			document.forms[0].pLastName.value="unknown";
+			document.forms[0].pGivenName.value="";
+		}
+		//alert("changeSelect="+changeSelect);
+		break;
+		}
+	
+	}
+
+
+		
+var varNameLocalValue = new String();
+    varNameLocalValue = changeSelect;
+alert("varNameLocal.value="+varNameLocalValue);
+
+var varNameTargetValue = new String();
+    //varNameTargetValue = eval(varNameTarget+".value");
+    varNameTargetValue = changeSelect;
+alert("varNameTarget.value="+varNameTargetValue);
+
+//alert("Change detected for name_select_opt: "+NUM +"\nchangeSelect="+changeSelect);
+
+changeNameAuthoritySelect=changeSelect;
+}
+
+
+function submit_personal_name(N){
+//N is 01, 02, 03, etc which one up to 09
+//form this page document.formN
+
+alert("function submit_personal_name()");
+if (document.forms[0].name_attr[0].selected){
+	if(!confirm("Please note: \nYou have NOT selected any name attributes from the drop down list. \nDo you wish to continue?")) return;
+	}
+
+window.opener.parent.D.document.forms[0].creator_lastname_01.value= document.formN.pLastName.value;
+window.opener.parent.D.document.forms[0].creator_firstname_01.value= document.formN.pGivenName.value;
+
+window.opener.parent.D.document.forms[0].name_type_01.value= "personal";
+window.opener.parent.D.document.forms[0].name_type_display_01.value= "personal";
+window.opener.parent.D.document.forms[0].name_authority_01.value= document.formN.name_attr.value;
+
+//window.opener.document.forms[0].creator_lastname_01.value= document.formN.pLastName.value;
+//window.opener.document.forms[0].creator_givenname_01.value= document.formN.pGivenName.value;
+//alert("window.opener.parent.D.document.forms[0]."+document.popupform.hidden_select_id.value+".value="+valval);
+
+
+}//end function submit_personal_name(N)
+
+
+</script>
+</HEAD>
+<BODY bgcolor="eeffee" x=green >
+vv_popupNames.htm
+<script language="javascript">
+document.write("<font face=\"arial\" size=\"1\">location.href="+location.href+"</font>");
+var LHREF= new String(location.href);
+var nameLabel= new String();
+var jj=0;
+if (LHREF.indexOf("sType=a")>-1) {
+	nameLabel="Personal";
+	jj=1;
+}else if(LHREF.indexOf("sType=b")>-1){
+	nameLabel="Complex Personal";
+	jj=2;
+}else{
+	nameLabel="Corporate";
+	jj=3;
+}
+var creator_number=0;
+var creator_number_index=0;
+var creator_number_index2=0;
+c_num_index=LHREF.indexOf("N=")+2;
+c_num_index2=LHREF.indexOf("&");
+var str_creator_number= new String(LHREF.substring(c_num_index,c_num_index2));
+
+document.write("<br>str_creator_number="+str_creator_number);
+
+document.write("<br><font face=\"arial\" size=\"3\">Create "+nameLabel+" Name for Creator # "+str_creator_number+" </font>");
+document.write("<hr><form name=\"formN\">");
+document.write("<table border=\"1\" cellpadding=\"0\" cellspacing=\"0\">");
+
+c_CLN_index=LHREF.indexOf("sCLN=")+5;
+c_CGN_index=LHREF.indexOf("sCGN=")+5;
+c_CLN_index2=LHREF.indexOf("sCGN=")-1;
+//c_CLN_index2=LHREF.indexOf("&");
+var LastNameFromUpper=new String(LHREF.substring(c_CLN_index,c_CLN_index2));
+var GivenNameFromUpper=new String(LHREF.substring(c_CGN_index));
+
+if (jj==1){
+	document.write('<tr class="bgstandard"><td>Personal Name Attributes:&nbsp;&nbsp;</td><td><select name="name_attr" size="1" onchange="name_select_opt(1)">'
+	+'\n	<option value="" selected>none selected</option>'
+ 	+'\n	<option value="">personal name, no name authority</option>'
+	+'\n	<option value="LCNAF">personal name, authority=LCNAF</option>'
+	+'\n	<option value="ULAN">personal name, authority=ULAN</option>'
+	+'\n	<option value="">unknown, no name authority</option>'
+	+'\n	<option value="">anonymous, no name authority</option>'
+	+'\n </select></td></tr>');
+	
+
+	document.write("<tr class=\"bgstandard\"><td>Last Name:</td><td><input type=\"text\" size=\"30\" name=\"pLastName\" value=\" "+LastNameFromUpper+" \"></td></tr>"); 
+	document.write("<tr class=\"bgstandard\"><td>Given Name:</td><td><input type=\"text\" size=\"30\" name=\"pGivenName\" value=\" "+GivenNameFromUpper+" \"></td></tr>"); 
+document.write("<input type=\"button\" name=\"bpersonal\" onclick=\"submit_personal_name()\" value=\"submit personal name\">");
+
+document.write('<tr class="bgstandard"   xbgcolor="bb8844">'
+	+'<td class="label13nou">Vital Dates</td>'
+	+'<td valign="top">'
+	+'<table border="0" cellpadding="1" cellspacing="0">'
+	+'<tr class="bgstandard" ><td valign="middle"><font face="arial" size="1">'
+	+'&nbsp;&nbsp;<input type="button" name="Bcreator_dob_01" value="Year of Birth" '
+	+'class="button100w" '
+	+'onclick="selectOneOptionDate_for_popupNames(this,\'500\',\'550\')">&nbsp;'
+	+'<input type="text" name = "creator_dob_01" value="" size="10"  '
+	+'class="notrequirednw" READONLY>'
+	+'<input type="button" name="Ccreator_dob_01" value="Clear Date" '
+	+'class="button80w" onclick="clearDateNoQual(this)">'
+	+'&nbsp;&nbsp;&nbsp; </td>'
+	+'<td rowspan="1" width="20">&nbsp;</td> </tr><tr class="bgstandard" >'
+	+'<td valign="middle"><font face="arial" size="1"> &nbsp;&nbsp;'
+	+'<input type="button" name="Bcreator_dod_01" value="Year of Death" '
+	+'class="button100w" '
+	+'onclick="selectOneOptionDate_for_popupNames(this,\'500\',\'550\')">&nbsp; '
+	+'<input type="text" name = "creator_dod_01" value="0000-00-00" size="10" '
+	+'class="notrequirednw" READONLY>'
+	+'<input type="button" name="Ccreator_dod_01" value="Clear Date" ' 
+	+'class="button80w" onclick="clearDateNoQual(this)"> </td>'
+	+'<td rowspan="1" width="20">&nbsp;</td> </tr> </table>'
+	//+' </td> <td>&nbsp</td> </tr>'
+	+' </td> </tr>'
+	);
+
+
+}//end if jj==1
+
+
+document.write("</table>");
+document.write("</form>");
+
+/*
+	<select name="name_attr_01" size="1" onchange="name_select_opt(1)">
+		<option value="0" selected>none selected</option>
+		<option value="1">personal name, no name authority</option>
+		<option value="2">personal name, authority=LCNAF</option>
+		<option value="3">personal name, authority=ULAN</option>
+		<option value="4">corporate name, no name authority</option>
+		<option value="5">corporate name, authority=LCNAF</option>
+		<option value="6">corporate name, authority=ULAN</option>
+		<option value="7">unknown</option>
+		<option value="8">anonymous</option>
+	</select>
+*/
+
+</script>
+<hr>
+</BODY>
+</html>
+
+
+

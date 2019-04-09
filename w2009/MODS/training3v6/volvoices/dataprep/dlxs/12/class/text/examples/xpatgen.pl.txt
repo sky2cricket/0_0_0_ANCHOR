@@ -1,0 +1,19 @@
+#!/usr/bin/perl
+
+use SGML::DTD;
+
+$infile = $ARGV[0];
+open (FILE,$infile);
+
+$dtd = new SGML::DTD;
+$dtd->read_dtd(\*FILE);
+
+@elements = $dtd->get_elements($nosort);
+
+foreach $element (@elements) {
+    $element =~ s/(.)/\u$1/g;
+    print "region \"$element\"\n";
+}
+
+close (FILE);
+exit;

@@ -1,0 +1,51 @@
+#!/l/local/bin/perl -i
+
+while (<>) {
+                s,&amp;iquest;,&iquest;,g;
+                s,&amp;iexcl;,&iexcl;,g;
+                s,&amp;sharp;,#,g;
+                s,&amp;middot;,&middot;,g;
+                s,&amp;Aacute;,&Aacute;,g;
+                s,&amp;Agrave;,&Agrave;,g;
+                s,&amp;AElig;,AE,g;
+                s,&amp;Ccedil;,&Ccedil;,g;
+                s,&amp;Eacute;,&Eacute;,g;
+                s,&amp;Egrave;,&Egrave;,g;
+                s,&amp;Icirc;,&Icirc;,g;
+                s,&amp;Ntilde;,&Ntilde;,g;
+                s,&amp;Oacute;,&Oacute;,g;
+                s,&amp;Ouml;,&Ouml;,g;
+                s,&amp;agrave;,&agrave;,g;
+                s,&amp;aacute;,&aacute;,g;
+                s,&amp;acirc;,&acirc;,g;
+                s,&amp;atilde;,&atilde;,g;
+                s,&amp;auml;,&auml;,g;
+                s,&amp;aelig;,ae,g;
+                s,&amp;ccedil;,&ccedil;,g;
+                s,&amp;egrave;,&egrave;,g;
+                s,&amp;eacute;,&eacute;,g;
+                s,&amp;ecirc;,&ecirc;,g;
+                s,&amp;euml;,&euml;,g;
+                s,&amp;iacute;,&iacute;,g;
+                s,&amp;icirc;,&icirc;,g;
+                s,&amp;iuml;,&iuml;,g;
+                s,&amp;ntilde;,&ntilde;,g;
+                s,&amp;ograve;,&ograve;,g;
+                s,&amp;oacute;,&oacute;,g;
+                s,&amp;ocirc;,&ocirc;,g;
+                s,&amp;ouml;,&ouml;,g;
+                s,&amp;ugrave;,&ugrave;,g;
+                s,&amp;uacute;,&uacute;,g;
+                s,&amp;ucirc;,&ucirc;,g;
+                s,&amp;uuml;,&uuml;,g;
+                s,&amp;cent;,&cent;,g;
+                s,&amp;deg;,&deg;,g;
+                s,&amp;hyphen;,-,g;
+                s,&amp;rsquo;,',g;
+                s,&amp;lsquo;,',g;
+                s,&amp;rdquo;,",g;
+                s,&amp;ldquo;,",g;
+                s,&amp;,&amp;amp;,g;
+
+                print;
+}

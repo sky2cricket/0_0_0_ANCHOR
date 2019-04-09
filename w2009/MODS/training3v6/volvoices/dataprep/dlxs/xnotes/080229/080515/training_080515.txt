@@ -1,0 +1,153 @@
+training_080515.txt
+
+see xpat bib paper file
+
+[root@diglib2 search]# ls
+0099_000033_000044_0000_reload.xml  ModsToBib
+arrow                               newmods
+bibDTDchanges                       NOTE
+BibToMods                           ocrgather
+changingStuff                       Old_New_Filenames_00_Priority.txt
+CHARS                               Old_New_filenames_05_Priority.txt
+close                               open
+crosswalks                          openmods
+DBCALLS                             removetags
+dothis                              samples
+here                                search
+hexmess                             search-bib.xml
+hextest                             search-bib.xml.bk
+icons                               search.dtd
+JODYLOOK                            search.dtd.bk
+modsbib                             search-mods.xml
+modsSearch2.dtd                     spc
+modsSearch2.dtd.20061221jd          teisplit
+modsSearch2.dtd.bk                  template10_nocomments.xml
+modsSearch2.dtd_nested              templateVV10.xml
+modsSearch2.dtd.prel                testmods2
+modsSearch3.dtd                     textfiles
+modsSearch.dtd
+[root@diglib2 search]# pwd
+/d1/workarea/dlxs/search
+
+
+for delivery as oai vv uses
+
+[root@diglib2 search]# cd /d1/dlxs/obj/v/vvs-mods
+[root@diglib2 vvs-mods]# ls
+vvs-mods.xml
+[root@diglib2 vvs-mods]# 
+
+and index 
+
+[root@diglib2 vvs-mods]# cd /d1/dlxs/idx/v
+[root@diglib2 v]# ls
+vvb  vvi  vvo  vvs-bib  vvs-mods  vvt  vvz  vvzBack
+[root@diglib2 v]#
+[root@diglib2 v]# cd vvs-mods
+[root@diglib2 vvs-mods]# ls
+bib-regions.tags  date.rgn        keydate.rgn   name.rgn        temporal.rgn  vvs-mods.init
+catcode.rgn       detail.rgn      location.rgn  names.rgn       title.rgn     vvs-mods.inp
+charents.frag     genre.rgn       loccd.rgn     publisher.rgn   topic.rgn     vvs-mods.rgn
+collid.rgn        geographic.rgn  locco.rgn     record.rgn      vvcat.rgn
+coll.rgn          id.rgn          Makefile      repository.rgn  vvs-mods.dd
+creator.rgn       ITEM.rgn        media.rgn     subject.rgn     vvs-mods.idx
+
+the index file is
+/d1/dlxs/idx/v/vvs-mods/vvs-mods.idx
+
+command line interface for xpat same directory
+
+[root@diglib2 vvs-mods]# xpat vvs-mods.dd
+
+        Digital Library eXtension Service, XPAT, Release 5.2
+        COPYRIGHT (c) 2000 The Regents of the University of Michigan
+        All Rights Reserved
+
+>> region k
+No information for region k in the data dictionary.
+
+region K
+  1: 1687 matches
+
+>> 
+>> region k
+No information for region k in the data dictionary.
+
+region K
+  1: 1687 matches
+
+>> 
+>> pr sam^H^H
+syntax error before: m
+
+pr.sample
+syntax error before: le
+
+[r^H^H
+syntax error before: r
+
+pr
+  4770191, ..8-05-06"> <B> <K>Library of The Athenaeum</K> <L><CNP>unknown</C..
+  4773187, ..8-05-06"> <B> <K>Students gathered around the Moorish Fountain, ..
+  4775792, ..8-05-06"> <B> <K>Jackson County Fair, 1st Prize Community Exhibi..
+  4778223, ..8-05-06"> <B> <K>U.S. Postal Employees, Gainesboro Post Office</..
+  4780704, ..8-05-06"> <B> <K>Martin Family Still</K> <L><CNP>unknown</CNP><C..
+  4783238, ..8-05-06"> <B> <K>Draper's Store</K> <L><CNP>unknown</CNP><CRL A=..
+  4785560, ..8-05-06"> <B> <K>Gainesboro High School, Class of 1923</K> <L><C..
+  4787917, ..8-05-06"> <B> <K>Jackson County Central High School Basketball T..
+  4790453, ..8-05-06"> <B> <K>George W. Stephens' check to the Gainesboro Tel..
+  4793849, ..8-05-06"> <B> <K>Cancelled check to Gainesboro Telephone Company..
+  4797411, ..8-05-06"> <B> <K>Signing of the resolution designating the Yello..
+  4800067, ..8-05-06"> <B> <K>Check to W. H. Estes from 1903</K> <L T="person..
+  4803202, ..8-05-06"> <B> <K>Ferry across Cumberland River near Gainesboro, ..
+>> quit
+[root@diglib2 vvs-mods]#
+-------------------------
+[root@diglib2 vvs-mods]# cd /d1/dlxs/cgi/b/broker20
+[root@diglib2 broker20]# ls
+ALTERENV  broker20.cfg  dclistID     ErrorLogFor_broker20  here           PopulateDienstDB.txt
+broker20  changeme      dclistIDetd  getOAI                olderVersions  trouble
+
+broker20
+broker20.cfg
+
+to use command line, need to alter the environment ( ALTERENV things )
+
+This will cough up mods (if available) and dc.
+
+http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=ListRecords&metadataPrefix=mods
+http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=ListRecords&metadataPrefix=oai_dc
+
+---------------------
+making preservation records
+
+[root@diglib2 broker20]# cd /d1/workarea/dlxs/bib/mods
+[root@diglib2 mods]# ls
+arrowmont  dothis  spc  vv
+[root@diglib2 mods]# cd vv
+[root@diglib2 vv]# ls
+badfiles   fixPreserveSubjectsBib  OAIDC                           olderVersions  xml
+closebib   fixSubjectsBib          OAI_modsbibToDC                 openbib
+DLCnewSub  look                    OAI_modsbibToMods               short.txt
+DLCpres    newPresSubxml           OAI_modsbibToPresMods           spc
+dothis     newSubxml               OAI_modsbibToPresMods.20080505  vvs-mods.xml
+[root@diglib2 vv]# 
+
+
+from the dothis
+/d1/workarea/dlxs/bib/mods/vv/dothis
+
+
+
+fixPreserveSubjectsBib    (takes files from xml, fixes subjects and category 
+                           attributes  and puts them in newPresSubxml)
+OAI_modsbibToPresMods     (takes files from newPresSubxml, outputs 
+                             preservation mods with unicode in DLCpres)
+
+
+for tei preservation
+/d1/workarea/dlxs/text/tel/dothis
+
+modsTC creates the tei preservation
+need to store the text files that came with music with other text files.
+

@@ -1,0 +1,170 @@
+
+//exportMods.php
+
+exportMods.php.txt
+
+
+<?php
+/*      
+   item-chg.php 
+         2006-06-27 Paul Cummins
+         -------------
+*/      
+require "vars.php";
+require "chkuser.php";
+include "add-func.php";
+  
+if (!isset($itemid))  
+  {
+        $err="Invalid access of export page.";
+        header("Location: ./error.php?msg=$err");        exit();
+        }
+  
+$iquery = "SELECT item.id,item.num,item.title,item.creator,item.datecreated,item.descr,item.type,item.genre,";
+$iquery.= "item.dimensions,coll.id,coll.num,coll.name,inst.id,inst.name,inst.address,inst.city,inst.county,inst.state,inst.zip "
+;       
+$iquery.= " FROM item,coll,inst WHERE item.id='$itemid' AND item.id='$itemid' ";
+$iquery.= " AND coll.id='$collid' AND item.collid=coll.id AND inst.id='$instid' AND coll.instid=inst.id ";
+$iresult = mysql_query($iquery, $link) or die ("Error in   query: $iquery. " . mysql_error());
+if (mysql_num_rows($iresult)) {
+list($itid,$itemnum,$itemtitle,$itemcreator,$itemdate,$itemdescr,$itemtype,$itemgenre,$itemdim,$cid,$collnum,$collname,$inid,$in
+stname,$instaddr,$instcity,$instcounty,$inststate,$instzip) = mysql_fetch_row($iresult);
+}
+// fix so dummy placeholders show up if no values
+if (!$itemdate) $itemdate="yyyy-mm-dd"; 
+if (!$itemdescr) $itemdescr="Free text description";
+if (!$itemtype) $itemtype="typeOfResource";
+if (!$itemgenre) $itemgenre="genre";
+if (!$itemdim) $itemdim="extent";
+if (!$collname) $collname="host title";
+if (!$instaddr) $instaddr="institution street address"; 
+if (!$instcity) $instcity="city";
+if (!$instcounty) $instcounty="county in which repository resides";
+if (!$inststate) $inststate="state";
+if (!$instzip) $instzip="zip code";
+// assemble file name 
+$instr=str_pad($instid, 4, "0", STR_PAD_LEFT);
+if ($collnum <50) $costr=str_pad($collid, 6, "0", STR_PAD_LEFT);
+else $costr=str_pad($collnum, 6, "0", STR_PAD_LEFT);
+if ($itemnum< 200) $itstr=str_pad($itemid, 6, "0", STR_PAD_LEFT);
+else $itstr=str_pad($itemnum, 6, "0", STR_PAD_LEFT);
+$xmlfilename=$instr."_".$costr."_".$itstr."_0000.xml";
+// begin output
+header("Content-type: application/octet-stream");
+header("Content-Disposition: attachment; filename=\"$xmlfilename\"");
+echo <<<END
+<?xml version="1.0" encoding="UTF-8"?>
+<mods:mods xmlns:mods="http://www.loc.gov/mods/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink"
+xsi:schemaLocation="http://www.loc.gov/mods/v3
+http://www.loc.gov/standards/mods/v3/mods-3-2.xsd"
+ID="MODS" version="3.2">
+        <!-- titleInfo required, not repeatable -->
+        <mods:titleInfo>
+                <!-- title required, not repeatable -->
+                <mods:title>$itemtitle</mods:title> <!-- dc:title --> <!-- admin:itemTitle -->
+        </mods:titleInfo>
+        <!-- name required, repeatable -->
+        <mods:name authority="fast">
+                <!-- namePart required, repeatable -->
+                <mods:namePart >$itemcreator</mods:namePart>  <!-- dc:creator -->  <!-- admin:itemCreator -->
+                <mods:role>
+                <!-- roleTerm required, repeatable -->
+                        <mods:roleTerm authority="marcrelator">role</mods:roleTerm> <!-- does not map to simple dc -->
+                </mods:role>
+        </mods:name>
+        <!-- originInfo required, not repeatable -->
+        <mods:originInfo>
+                <!-- dateCreated required, not repeatable -->
+                <mods:dateCreated qualifier="inferred" encoding="w3cdtf">$itemdate</mods:dateCreated>  <!-- dc:date --> <!-- admin:itemDate -->
+                <!-- place required if known, not repeatable -->
+                <mods:place>
+                        <!-- placeTerm required if known, not repeatable -->
+                        <mods:placeTerm>place</mods:placeTerm> <!-- does not map to simple dc -->
+                </mods:place>
+        </mods:originInfo>
+  <mods:language>
+   <mods:languageTerm type="code" authority="iso639-2b">eng</mods:languageTerm>
+  </mods:language>
+                <!-- typeOfResource required, not repeatable -->
+        <mods:typeOfResource>$itemtype</mods:typeOfResource> <!-- admin:itemType -->
+        <!-- physicalDescription required, not repeatable -->
+        <mods:physicalDescription>
+                <!-- form required, not repeatable -->
+                <mods:form>form</mods:form> <!-- dc:format -->
+                <!-- digitalOrigin required, not repeatable -->
+                <mods:digitalOrigin>reformatted digital</mods:digitalOrigin> <!-- dc:format -->
+                <!-- internetMediaType required, repeatable -->
+                <mods:internetMediaType>internetMediaType</mods:internetMediaType> <!-- dc:format -->
+                <!-- extent required, not repeatable --> 
+                <mods:extent>$itemdim</mods:extent> <!-- dc:format -->  <!-- admin:itemDimensions -->                 <!-- note optional, not repeatable --> <!-- gives end user additional detail on where precisely to find the reso
+urce within the relatedItem type="host" -->
+                <mods:note displayLabel="Location within resource">Series III, Box 1, Folder 1</mods:note>  <!-- dc:format -->
+        </mods:physicalDescription> 
+        <!-- abstract optional, not repeatable -->
+        <mods:abstract>$itemdescr</mods:abstract> <!-- dc:format -->  <!-- admin:itemDescription -->
+        <!-- subject required,  repeatable -->
+        <mods:subject authority="fast">
+                <!-- topic required,  repeatable --> 
+                <mods:topic>topic</mods:topic>  <!-- dc:subject -->
+                <mods:topic>topic</mods:topic> <!-- dc:subject -->
+                <mods:topic>topic</mods:topic>  <!-- dc:subject -->
+                <!-- geographic optional,  repeatable -->
+                <mods:geographic>geographic</mods:geographic>  <!-- dc:subject -->
+        </mods:subject>
+        <mods:subject authority="tgm">
+                <mods:topic>topic</mods:topic>  <!-- dc:subject -->
+        </mods:subject>
+        <mods:subject authority="aat">
+                <mods:genre>$itemgenre</mods:genre>  <!-- dc:subject -->  <!-- admin:itemGenre -->
+        </mods:subject>
+        <!-- subject authority="vv" required, repeatable-->
+        <mods:subject authority="vv">
+                <!-- temporal required, repeatable -->
+                <mods:temporal>Code for 1 of 10 eras -- A.1-A.10</mods:temporal>  <!-- dc:subject -->
+                <mods:temporal>Code for 1 of 15 eras -- B.1-B.15</mods:temporal>  <!-- dc:subject -->
+                <!-- geographic optional, repeatable -->
+                <mods:geographic>County the resource is about</mods:geographic>  <!-- dc:subject -->
+        </mods:subject>
+        <!-- relatedItem type="host" and subelements optional, not repeatable-->
+        <mods:relatedItem type="host" displayLabel="Part of">  <!-- dc:relation  Example: Anna Catherine Wiley Sketches, MS 1287. -->
+                <!-- titleInfo required if relatedItem exists -->
+                <mods:titleInfo>
+                        <!-- title required if titleInfo exists,  not repeatable -->
+                        <mods:title>$collname</mods:title> <!-- admin:collectionName -->
+                </mods:titleInfo>
+                <!-- note required if applicable,  not repeatable -->
+                <mods:note type="manuscriptNumber">MS 1287</mods:note>
+        </mods:relatedItem>
+        <!-- relatedItem type="constituent" required -->
+        <mods:relatedItem type="constituent"><!-- This will not display in metadata record to end users.  Also not in simple DC for OAI.  -->
+                <!-- identifier required, repeatable -->
+                <mods:identifier type="local">file name</mods:identifier>
+        </mods:relatedItem>
+        <!-- identifier type="uri" required, not repeatable -->
+        <mods:identifier type="uri">uri</mods:identifier> <!-- dc:identifier -->
+        <mods:location>
+                <mods:physicalLocation>$instname, $instaddr, $instcity, $inststate $instzip</mods:physicalLocation> <!-- admin:institutionName, admin:institutionAddress.-->
+                <mods:url>link to digital resource</mods:url>  <!-- dc:identifier -->
+        </mods:location>
+        <!-- note displayLabel="County" required, not repeatable -->
+        <mods:note displayLabel="County">$instcounty</mods:note> <!-- *not* the county which the resource is *about*; this field is for the sole purpose of creating the interactive map for the website; would map to dc:description; however, do *not* map, as it would be misleading about the subject matter of the resource -->
+        <!-- recordInfo required,  not repeatable -->
+        <mods:recordInfo> <!-- Administrative metadata. WIll not display. Does not map to dc. -->
+                <!-- recordContentSource required, not repeatable -->
+                <mods:recordContentSource>digitization center</mods:recordContentSource>
+                <mods:recordContentSource>digitization center</mods:recordContentSource>
+                <!-- recordCreationDate required, not repeatable -->
+                <mods:recordCreationDate encoding="w3cdtf">yyyy-mm-dd</mods:recordCreationDate>
+                <!-- languageOfCataloging required, not repeatable -->
+                <mods:languageOfCataloging>
+                        <!-- languageTerm required, not repeatable -->
+                        <mods:languageTerm type="code" authority="iso639-2b">eng</mods:languageTerm>
+                </mods:languageOfCataloging>
+        </mods:recordInfo>
+        <!-- accessCondition required, not repeatable -->        <mods:accessCondition type="useAndReproduction">rights statement or direction to URL</mods:accessCondition>
+         <!-- dc:rights -->   <!-- possibly admin:itemRights, unless we go with a blanket rights statement for all objects in the database pertaining to the digital image rather than the analog -->
+</mods:mods>            
+END;                    
+                
+?>              
+

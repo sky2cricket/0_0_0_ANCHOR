@@ -1,0 +1,2978 @@
+<html>
+<head>
+<title>The XPAT Command Manual</title>
+
+
+
+
+
+
+
+<link href="../dlxsdocs.css" rel="stylesheet" type="text/css"> </head>         <body>
+<div class="pageTitle">XPAT Command Manual</div>
+
+<p>The following provides a summary of XPAT commands, settings, and concepts, and is based extensively on Open Text's PAT 5.0 documentation.  Many of the commands included here are not implemented in DLXS middleware.</p>
+
+
+<h1>List of Commands (TOC)</h1>
+<ul>
+<li><a href="#{CommandFile}">{CommandFile}</a></li>
+<li><a href="#comment">comment</a></li>
+<li><a href="#{DefaultRegion}">{DefaultRegion}</a></li>
+<li><a href="#difference">difference</a></li>
+<li><a href="#done">done</a></li>
+<li><a href="#double quote">double quote</a></li>
+<li><a href="#exec">exec</a></li>
+<li><a href="#export">export</a></li>
+<li><a href="#{ExportFile}">{ExportFile}</a></li>
+<li><a href="#fby">fby</a></li>
+<li><a href="#first">first</a></li>
+<li><a href="#~free">~free</a></li>
+<li><a href="#~freeall">~freeall</a></li>
+<li><a href="#history">history</a></li>
+<li><a href="#{History}">{History}</a></li>
+<li><a href="#{HistoryFile}">{HistoryFile}</a></li>
+<li><a href="#import">import</a></li>
+<li><a href="#including">including</a></li>
+<li><a href="#index_point">index point</a></li>
+<li><a href="#intersect">intersect</a></li>
+<li><a href="#{Label}">{Label}</a></li>
+<li><a href="#last set">last set</a></li>
+<li><a href="#{LeftContext}">{LeftContext}</a></li>
+<li><a href="#macro">macro</a></li>
+<li><a href="#naming sets">naming sets</a></li>
+<li><a href="#near">near</a></li>
+<li><a href="#next">next</a></li>
+<li><a href="#~nextemp">~nextemp</a></li>
+<li><a href="#not">not</a></li>
+<li><a href="#offsets">offsets</a></li>
+<li><a href="#pr">pr</a></li>
+<li><a href="#{PrintLength}">{PrintLength}</a></li>
+<li><a href="#{Proximity}">{Proximity}</a></li>
+<li><a href="#~qnum">~qnum</a></li>
+<li><a href="#quiet mode">quiet mode</a></li>
+<li><a href="#{QuietOff}">{QuietOff}</a></li>
+<li><a href="#{QuietOn}">{QuietOn}</a></li>
+<li><a href="#quit">quit</a></li>
+<li><a href="#range">range</a></li>
+<li><a href="#rankedby">rankedby</a></li>
+<li><a href="#region">region</a></li>
+<li><a href="#sample">sample</a></li>
+<li><a href="#{SampleSize}">{SampleSize}</a></li>
+<li><a href="#save">save</a></li>
+<li><a href="#save.commands">save.commands</a></li>
+<li><a href="#{SaveFile}">{SaveFile}</a></li>
+<li><a href="#save.history">save.history</a></li>
+<li><a href="#set name">set name</a></li>
+<li><a href="#set number">set number</a></li>
+<li><a href="#sets">sets</a></li>
+<li><a href="#{Settings}">{Settings}</a></li>
+<li><a href="#shift">shift</a></li>
+<li><a href="#signif">signif</a></li>
+<li><a href="#{SortOrder}">{SortOrder}</a></li>
+<li><a href="#stop">stop</a></li>
+<li><a href="#string search">string search</a></li>
+<li><a href="#subset">subset</a></li>
+<li><a href="#~sync">~sync</a></li>
+<li><a href="#thesaurus">thesaurus</a></li>
+<li><a href="#union">union</a></li>
+<li><a href="#within">within</a></li>
+</ul>
+
+<h1>Command and Settings Documentation</h1>
+<h2><a name="{CommandFile}"><code>{CommandFile}</code></a></h2>
+<code>{CommandFile</code> <var>string</var><code>}</code> 
+<p>changes the file name used by <code>save.commands</code> and 
+<code>exec</code> . </p>
+<p>The <code>CommandFile</code> setting determines which file the 
+<code>save.commands</code> command writes to and the <code>exec</code> command 
+reads from. It has a default value of <code>xpat.cmd</code> . If the 
+string begins with a numeral or contains blanks or non-alphanumeric characters, 
+it must be enclosed within <code>double quote</code> marks. The file name must 
+also conform to the file naming conventions of the host operating system. It can 
+be changed at any time during a XPAT session and remains in effect until changed 
+again or until the end of the session. The current value of 
+<code>CommandFile</code> is displayed by the command <code>{Settings}</code> . 
+</p>
+
+<h3>Examples:</h3> 
+<pre>&gt;&gt;  <code>{CommandFile "/usr/new/output_file"}</code> </pre>
+<p>This changes the setting to the value <code>/usr/new/output_file</code> which any subsequent 
+  <code>save.commands</code> command writes to and <code>exec</code> command 
+  reads from. </p>
+
+<h3>See also:</h3> 
+<p><code>exec</code> , <code>save.commands</code> , <code>Settings</code> 
+</p>
+
+<h2><a name="comment"><code>comment</code></a></h2>
+<code>#</code> 
+<p>marks the start of a comment. </p>
+<p>The comment, that is the <code>#</code> and the rest of the line following 
+the <code>#</code> , is ignored by XPAT. The comment can be placed on a line by 
+itself or following a XPAT query. It is useful for annotating queries stored in a 
+file to be processed in batch mode or to be read in by the <code>exec</code> 
+command. The queries may be created externally or generated during a XPAT session 
+and saved by <code>save.commands</code> for later use. </p>
+
+<h3>Examples:</h3> 
+<pre>&gt;&gt;  <code>#</code> find all the Shakespearean quotations
+&gt;&gt;  region Quote incl (region Author incl "shaks") 
+</pre>
+<p>The line beginning with the <code>#</code> is ignored by XPAT. </p>
+<pre>&gt;&gt;  first = region "&lt;E&gt;" .. "&lt;/L&gt;"
+<code>#</code> find first language </pre>
+<p>XPAT creates a new region set with this command. The rest of the line, 
+  beginning with the <code>#</code> , is ignored. </p>
+
+<h3>See also:</h3> 
+<p><code>exec</code> , <code>save.commands</code> , <code>save.history</code> 
+</p>
+
+
+
+<h2><a name="{DefaultRegion}"><code>{DefaultRegion}</code></a></h2>
+<code>{DefaultRegion</code> <var>string</var><code>}</code> 
+<p>determines which region set is the current default. </p>
+<p>The <code>DefaultRegion</code> setting designates a special region set, known 
+as the default region. The default region can be referred to as 
+<code>region</code> without specifying the actual region name. The setting can 
+be changed at any time during a XPAT session and remains in effect until it is 
+changed again or until the end of the session. </p>
+<p>If the string giving the setting value begins with a numeral or contains 
+blanks or non-alphanumeric characters it must be enclosed within <code>double 
+quote</code> marks. </p>
+<p>Using the default region in a command, without having previously specified 
+one, is illegal and results in the following message.</p>
+<pre>No information for region in the data dictionary</pre>
+<p>For convenience, a frequently used <code>DefaultRegion</code> setting can be 
+defined within an <code>init</code> file whose location is given 
+in the data dictionary file. The <code>init</code> file is read 
+and executed by a XPAT session when it is started (see the data dictionary 
+documentation for details).</p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  region including "constitution" </pre>
+<p>The region set referred to in the example by <code>region</code> is the one designated by the 
+  <code>DefaultRegion</code> setting. </p>
+<pre>&gt;&gt;  <code>{DefaultRegion HeadLine}</code> 
+&gt;&gt;  region including constitution </pre>
+<p>The first line changes the <code>DefaultRegion</code> setting to the value 
+  <code>HeadLine</code> . The command that follows uses the region 
+  set <code>HeadLine</code> even though it is not specified. 
+  </p>
+
+<h3>See also:</h3> 
+<p>data dictionary documentation, <code>including</code> , <code>pr</code> , 
+<code>region</code> <code>save</code> , <code>Settings</code> , 
+<code>within</code></p>
+
+<h2><a name="difference"><code>difference</code></a></h2>
+<var>set1</var> <code>-</code> <var>set2</var> 
+<p>removes members from a set. </p>
+<p>The <code>difference</code> operator (<code>-</code> ) creates a new set 
+containing the members of <var>set1</var> that are not members of 
+<var>set2</var>. <var>Set1</var> and <var>set2</var> can be either point sets or 
+region sets. The new set is of the same type as <var>set1</var>. </p>
+<p>If either <var>set1</var> or <var>set2</var> is a region set, the first 
+pointer delineating each region is used to determine if a member of 
+<var>set1</var> also occurs in <var>set2</var>. Thus, for set arithmetic 
+(difference, union and intersection) in XPAT, set members of a region set are 
+considered to be equal if they start at the same location in the text. The end 
+point of a region is ignored in such operations. </p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  "to" <code>-</code> "to " <code>-</code> "to&lt;"
+</pre>
+<p>Note that these operators are parsed left to right and can be combined 
+  without bracketing. This query creates a point set that contains all the 
+  matches to the prefix <code>to</code> excluding those to the 
+  string <code>to</code> followed by a blank or a left angle 
+  bracket. Assuming an index in which all punctuation has been mapped to blanks, 
+  the result contains words starting with <code>to</code> ) but not 
+  the word <code>to</code> .</p>
+<pre>&gt;&gt;  ("q" <code>-</code> "qu") within region HeadWord
+</pre>
+<p>This query creates a point set. The point set includes all words located in 
+  a Headword region that begin with <code>q</code> but not with 
+  <code>qu</code> .</p>
+<pre>&gt;&gt;  region Story incl "music " <code>-</code> region
+Story incl "art "</pre>
+<p>This query creates a region set. The region set is comprised of all Story 
+  regions that include the string <code>music</code> but not the 
+  string <code>art</code> .</p>
+<pre>&gt;&gt;  region Q <code>-</code> "&lt;Q&gt;&lt;D&gt;" </pre>
+<p>Assume that the regions described by <code>region Q</code> 
+  all begin with the string <code>&lt;Q&gt;</code> . The above 
+  query creates a region set of the members of <code>region 
+  Q</code> that do not have the string <code>&lt;D&gt;</code> 
+  immediately following the <code>&lt;Q&gt;</code> . 
+</p>
+
+<h3>See also:</h3> 
+<p><code>intersection</code> , <code>union</code></p>
+
+<h2><a name="done"><code>done</code></a></h2>
+<code>done</code> 
+<p>terminates a XPAT session.</p>
+<p>The <code>done</code> command ends the session and causes the XPAT process to 
+exit. A message may be generated telling how much computer time has been used 
+during the session. </p>
+
+<h3>See also:</h3> 
+<p><code>quit</code> , <code>stop</code></p>
+
+<h2><a name="double quote"><code>double quote</code></a></h2>
+<code>"</code> <var>string</var><code>"</code> 
+<p>allows the use of strings that include special characters. </p>
+<p>Normally, XPAT interprets a sequence of characters as a string and searches 
+the database for matches to it. However, there are certain types of strings that 
+XPAT cannot recognize as search targets unless they are enclosed within 
+<code>double quote</code> marks. The special strings are: strings which begin 
+with a numeral, for example <code>2nd</code> ; strings which 
+contain blanks or non-alphanumeric characters, for example <code>end of the year</code> or <code>&lt;Author&gt;Scott</code> ; and strings which are XPAT commands, 
+for example <code>near</code> and <code>within</code> . In each case, a string that is not enclosed in 
+<code>double quote</code> marks but should be will result in a syntax error or 
+unexpected result. </p>
+<p>Note that if numbers are not enclosed in <code>double quote</code> marks, 
+they are interpreted as a reference to the number of a set previously calculated 
+in the XPAT session. </p>
+<p>A pair of quotes representing an empty string (<code>""</code> ) stands for 
+the set of all <code>index points</code> in the text being searched. </p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  "done "
+&gt;&gt;  done </pre>
+<p>The first command creates a point set containing matches to the word <code>done</code> . The second command ends the XPAT session. </p>
+<pre>&gt;&gt;  19 within region Date 
+&gt;&gt;  "19" within region Date </pre>
+<p>The first query finds those members of the previously calculated set, 
+  identified by the number 19, that are within <code>region 
+  Date</code> . The second query finds the matches to the string <code>19</code> within <code>region Date</code> . </p>
+<pre>&gt;&gt;  "" </pre>
+<p>This command produces a list of every point indexed in the text. </p>
+<pre>&gt;&gt;  "_XPat_1" = "match this string " 
+&gt;&gt;  "_XPat_OP1" = region "Region Set 5" 
+&gt;&gt;  "_XPat_2" = *"_XPat_1" within *"_XPat_OP1" </pre>
+<p>The above sequence of commands might be produced by a program that accepts 
+  input from a user and generates commands that are sent to XPAT. Since the names 
+  contain non-alphanumeric data they must be bounded by quotation marks. 
+  </p>
+
+<h3>See also:</h3> 
+<p><code>index point</code> , <code>region</code> , <code>set name</code> , 
+<code>string search</code></p>
+
+<h2><a name="exec"><code>exec</code></a></h2>
+<code>exec</code> 
+<p>reads a file into a XPAT session and executes the commands contained in the 
+file. </p>
+<p>The name of the file read by the <code>exec</code> command is determined by 
+the value of the <code>CommandFile</code> setting. By default, the value is 
+<code>xpat.cmd</code> but can be changed at any time during the XPAT 
+session. </p>
+<p>The <code>exec</code> command can be used to enter queries to a XPAT session. 
+The queries, for example macro definitions, may be recorded in a file using an 
+editor or saved in a file from a previous XPAT session using 
+<code>save.commands</code> . </p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  <code>{CommandFile "/usr/xpat/srch023.q"}</code> 
+&gt;&gt;  <code>exec</code> </pre>
+<p>The first command sets the name of the file to be read by any 
+  <code>exec</code> command to <code>/usr/xpat/srch023.q</code> . 
+  The second command reads the file <code>/usr/xpat/srch023.q</code> and executes the commands contained in 
+  the file. </p>
+
+<h3>See also:</h3> 
+<p><code>save.commands</code></p>
+<h3>Settings:</h3> 
+<p><code>CommandFile</code></p>
+
+<h2><a name="export"><code>export</code></a></h2>
+<code>export</code> <var>set1</var> 
+<p>saves information about sets created in a XPAT session. </p>
+<p><code>Export</code> writes a detailed description of the members of 
+<var>set1</var>, created during a XPAT session, to a file. The description 
+includes the type (region or point) of the set and sufficient information to 
+recreate a copy of the set. The name of the file is determined by the value of 
+the <code>ExportFile</code> setting. By default the file name is <code>xpat.exp</code> but can be changed during a session by using the 
+command <code>ExportFile</code> . When <code>export</code> writes to the named 
+file it writes over anything that may currently exist in the file. Assuming a 
+default <code>ExportFile</code> setting of <code>xpat.exp</code> , 
+the following message is given:</p>
+<pre>Exporting to xpat.exp.</pre>
+
+<p>The file may subsequently be read into a XPAT session by the 
+<code>import</code> command. </p>
+<p>If the saved set is a frequently used region set, it can be made available as 
+a predefined region in future XPAT sessions by editing the data dictionary file 
+and adding the appropriate information. If the new region set, containing 150 
+regions, is named <code>newregion</code> and saved in the file 
+<code>newregion_file</code> , the following lines, added to the 
+data dictionary, would make it available to XPAT.</p><pre>&lt;Region&gt;
+ &lt;Name&gt;newregion&lt;/Name&gt;
+ &lt;Desc&gt;This new region set describes ....&lt;/Desc&gt;
+ &lt;File&gt;
+  &lt;SysName&gt;newregion_file&lt;/SysName&gt;
+  &lt;Offset&gt;0&lt;/Offset&gt;
+ &lt;/File&gt;
+ &lt;Count&gt;300&lt;/Count&gt;
+ &lt;Type&gt;pairs&lt;/Type&gt;
+&lt;/Region&gt;
+</pre>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  "tax" near "increase" 
+&gt;&gt;  <code>export</code> % </pre>
+<p>The first query creates a point set of the matches to the string <code>tax</code> when it is within the current <code>Proximity</code> 
+  of the string <code>increase</code> . The second command writes 
+  this point set to the file <code>xpat.exp</code> . The information 
+  written to the file contains header information followed by details about each 
+  element in the set. </p>
+<pre>&gt;&gt;  {ExportFile "v.exp"} 
+&gt;&gt;  verse = region "&lt;V&gt;" .. "&lt;/V&gt;" 
+&gt;&gt;  <code>export</code> *verse </pre>
+<p>The first line of the example changes the <code>ExportFile</code> setting 
+  to <code>v.exp</code> . The second line creates a region set and 
+  names it <code>verse</code> . The third command writes header 
+  information and a description of each member of the <code>region 
+  verse</code> to the file <code>v.exp</code> . </p>
+
+<h3>See also:</h3> 
+<p>data dictionary documentation, <code>import</code></p>
+<h3>Settings:</h3> 
+<p><code>ExportFile</code></p>
+
+<h2><a name="{ExportFile}"><code>{ExportFile}</code></a></h2>
+<code>{ExportFile</code> <var>string</var><code>}</code> 
+<p>changes the file name used by <code>export</code> and <code>import</code> . 
+</p>
+<p>The <code>ExportFile</code> setting determines the file written by the 
+<code>export</code> command and read by the <code>import</code> command. It has 
+a default value of <code>xpat.exp</code> . If the string begins with 
+a numeral or contains blanks or non-alphanumeric characters, it must be enclosed 
+within <code>double quote</code> marks. The file name must also conform to the 
+file naming conventions of the host operating system. It can be changed at any 
+time during a XPAT session and remains in effect until it is changed again or 
+until the end of the session. The current value of the <code>ExportFile</code> 
+setting is displayed by the command <code>{Settings}</code> . </p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  <code>{ExportFile "/usr/new/export_file"}</code> 
+</pre>
+<p>This changes the value of the setting so that any subsequent 
+  <code>export</code> or <code>import</code> command utilizes the file <code>/usr/new/export_file</code> . </p>
+
+<h3>See also:</h3> 
+<p><code>export</code> , <code>import</code> , <code>Settings</code> 
+</p>
+
+<h2><a name="fby"><code>fby</code></a></h2>
+<var>set1</var> <code>fby</code> <var>set2</var> 
+<p>finds members of sets that occur close to each other in a specified order. 
+</p>
+<p><code>Fby</code> (followed by) creates a set containing those members of 
+<var>set1</var> that have one or more members of <var>set2</var> within a 
+specified number of characters to their right . <var>Set1</var> and 
+<var>set2</var> may be either point sets or region sets. The new set is of the 
+same type as <var>set1</var>. </p>
+<p>The distance between members of the two sets is calculated by counting the 
+number of characters in the text from the first character of a member of 
+<var>set1</var> to the first character of a member of <var>set2</var>. The 
+measure used to determine <code>closeness</code> is the value of 
+the <code>Proximity</code> setting which has a default value of 80 characters. 
+This can be changed for all subsequent uses of <code>fby</code> by changing the 
+<code>Proximity</code> setting, or it can be changed for an individual use of 
+<code>fby</code> by using a modifier attached to the command. The form of the 
+modifier is a period followed by a number representing the maximum distance (in 
+characters).</p>
+<p>If either <var>set1</var> or <var>set2</var> is a region set, the first of 
+the two pointers delineating the region is used to determine the distance 
+between the set members. </p>
+<p>Multiple <code>fby</code> commands are not parsed left to right. A command of 
+the form </p><pre>       set1 <code>fby</code> set2 <code>fby</code> set3</pre>
+<p>is handled as if parenthesized as follows: </p><pre>       set1 <code>fby</code> (set2 <code>fby</code> set3)</pre>
+<p>The command <code>not fby</code> creates a set containing the members of 
+<var>set1</var> that are <code>not</code> within the specified distance to the 
+left of any member of <var>set2</var>. </p><pre>       set1 <code>not fby</code> (set2 <code>fby</code> set3)</pre>
+<p>is the same as </p><pre>       set1 - (set1 <code>fby</code> (set2 <code>fby</code> set3))</pre>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  "law " <code>fby</code> "order " </pre>
+<p>Assuming a <code>Proximity</code> of 80, this query creates a point set 
+  containing the matches to <code>law</code> with one or more 
+  matches to <code>order</code> within 80 characters to their 
+  right, counting from the <code>l</code> in <code>law</code> to the <code>o</code> in <code>order</code> . </p>
+<pre>&gt;&gt;  region Title <code>fby.30</code> region Author
+</pre>
+<p>This query creates a region set containing the members of the set <code>region Title</code> that have one or more members in the set 
+  <code>region Author</code> within 30 characters to the right. 
+  The distance is measured as the number of characters from the first character 
+  of a Title region to the first character of an Author region. </p>
+<pre>&gt;&gt;  "law " <code>not fby</code> "order " </pre>
+<p>This query creates a point set containing the matches to <code>law</code> that do not have a match to <code>order 
+ </code> within 80 characters to the right, calculating the distance as in the 
+  first example. </p>
+<pre>&gt;&gt;  "law " <code>not fby.30</code> "order " </pre>
+<p>This query creates a point set containing the matches to <code>law</code> that do not have a match to <code>order 
+ </code> within 30 characters to the right. </p>
+
+<h3>See also:</h3> 
+<p><code>near</code></p>
+<h3>Settings:</h3> 
+<p><code>Proximity</code></p>
+
+<h2><a name="first"><code>first</code></a></h2>
+<code>first</code> <var>set1</var> 
+<p>finds a specific number of contiguous members from the start of a set. </p>
+<p><code>First</code> creates a set of a specified size which is comprised of 
+members from the beginning of <var>set1</var>. The members of the new set are in 
+the order they appear in <var>set1</var>. <var>Set1</var> may be either a region 
+set or a point set. The new set is of the same type as <var>set1</var>. </p>
+<p>The operation of the <code>first</code> command involves the set member 
+counter that keeps track of the selected members, the identification of the size 
+of the requested set, and the <code>SortOrder</code> setting that determines 
+which members are in the new set. </p>
+<p><code>First</code> selects members from the beginning of a set. The ordering 
+of a set, and hence which members occur at the beginning, is controlled by the 
+<code>SortOrder</code> setting. If the <code>SortOrder</code> setting is <code>Alpha</code> , the set is ordered alphabetically. If the 
+<code>SortOrder</code> setting is <code>Occur</code> or <code>OccurHead</code> , the set is ordered according to occurrence in 
+the text. If the <code>SortOrder</code> setting is <code>AsIs</code> , the set order is the current one which may be either 
+alphabetic or occurrence order. </p>
+<p>Each set that is used with a <code>first</code> , <code>next</code> or 
+<code>~nextemp</code> command has a cursor (set member counter) associated with 
+it. The cursor indicates the location in <var>set1</var> at which to start 
+selecting members for the set being created. Each <code>first</code> command 
+resets the cursor so members for the new set are chosen from the beginning of 
+<var>set1</var>. On completion of the <code>first</code> command the cursor is 
+updated to point at the beginning of the next set. Note, when the 
+<code>SortOrder</code> setting changes and the set ordering is changed, the 
+cursor is reset to the beginning of <var>set1</var>. </p>
+<p>The size of the set created is determined by the value of 
+<code>SampleSize</code> which has a default value of 10. If the size of 
+<var>set1</var> is less than <code>SampleSize</code> then the new set created is 
+the same size as <var>set1</var>. Changing the <code>SampleSize</code> setting 
+affects all subsequent uses of <code>first</code> during the current session. 
+For an individual use of the command, the size of the new set can be specified 
+by using a modifier attached to the <code>first</code> command. This modifier is 
+in the form of a period followed by a numeric value giving the desired set size. 
+</p>
+<p>The <code>first</code> command can be used by itself or with the 
+<code>pr</code> , <code>save</code> or <code>export</code> commands. </p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  {SampleSize 40} 
+&gt;&gt;  <code>first</code> 5 </pre>
+<p>The first line changes the <code>SampleSize</code> setting to 40 and the 
+  second line creates a set that contains the first 40 members of set number 5 
+  created earlier in the XPAT session. </p>
+<pre>&gt;&gt;  <code>first</code> .10 "the best of " </pre>
+<p>This line creates a set containing the first 10 members in the set of 
+  matches to the phrase <code>the best of</code> . </p>
+<pre>&gt;&gt;  <code>first</code> .0 3 </pre>
+<p>This query resets the cursor to the first member of set number 
+3.</p>
+
+<h3>See also:</h3> 
+<p><code>next</code> , <code>~nextemp</code> , <code>sample</code> , <code>set 
+number</code> , <code>subset</code></p>
+<h3>Settings:</h3> 
+<p><code>SampleSize</code> , <code>SortOrder</code></p>
+
+<h2><a name="~free"><code>~free</code></a></h2>
+<code>~free</code> <var>number</var> 
+<p>releases a XPAT set. </p>
+<p>Following the <code>~free</code> command, the set <var>number</var> is no 
+longer available for reference in a XPAT command. The set is no longer displayed 
+by the <code>history</code> command. </p>
+<p>If the sets freed are at the end of the current history list, the set numbers 
+will be reused for the next sets created in the XPAT session. For example, if the 
+history list contains set numbers 1 to 8, and 6 through 8 are freed using the 
+<code>~free</code> command, the next set number assigned is 6. However, if set 
+number 2 is freed and the history list includes set numbers 1 to 8, the next set 
+is number 9. </p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  <code>~free</code> 4 </pre>
+<p>This removes set number 4 from the history list. The set can no longer be 
+  accessed by number reference. </p>
+
+<h3>See also:</h3> 
+<p><code>~freeall</code> , <code>history</code></p>
+
+<h2><a name="~freeall"><code>~freeall</code></a></h2>
+<code>~freeall</code> 
+<p>releases all XPAT sets.</p>
+<p>Following the <code>~freeall</code> command, all the sets that existed in the 
+current session are no longer available for reference in a XPAT command. In 
+addition, those sets are no longer displayed by the <code>history</code> 
+command.</p>
+<p>Following the <code>~freeall</code> , the next set number assigned is 1. 
+</p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt; <code>~freeall</code> </pre>
+<p>This removes all the current sets in the history list from the history 
+  list. Following the command, no previously created sets can be referenced, and 
+  the next set that is produced is assigned the number 1. </p>
+
+<h3>See also:</h3> 
+<p><code>~free</code> , <code>history</code></p>
+
+<h2><a name="history"><code>history</code></a></h2>
+<code>history</code> 
+<p>displays the record of the current XPAT session. </p>
+<p>Information about each set created during the XPAT session is recorded in a 
+history list. For each of the sets, <code>history</code> displays a set number, 
+the number of members in the set and the query that produced the set. Sets 
+created during the current session can be accessed by referring to the number of 
+the set in the history list. The results of <code>pr</code> , <code>save</code> , 
+<code>Settings</code> , <code>{ }</code> , and certain tilde (<code>~</code> ) 
+commands do not appear in this list since no sets are produced by these 
+commands. </p>
+<p>As the entire history list may become quite long, it is useful to be able to 
+view only a part of the list. The <code>History</code> setting determines what 
+portion of the history list is displayed by the <code>history</code> command. 
+The <code>History</code> setting has a default value of 0. This indicates that 
+the entire history list is to be displayed. When set to an integer <var>n</var> 
+(any integer greater than zero) the final <var>n</var> elements in the history 
+list are displayed by any subsequent use of the <code>history</code> command 
+during the session. </p>
+<p>The items listed can also be changed for an individual use of the 
+<code>history</code> command. Modifiers may be attached to the 
+<code>history</code> command to request that a certain number of items and that 
+a particular portion of the list be displayed. </p>
+<p>The first modifier, in the form of a period followed by a number, indicates 
+where in the history list to begin the display. A positive integer <var>p</var> 
+requests that the display start at the <var>p</var>th item from the start of the 
+history list. A negative integer <var>p</var> requests that the display start at 
+the <var>p</var>th item from the end of the history list. The number of items 
+displayed is the value of the <code>History</code> setting. </p>
+<p>The number of items displayed can also be changed for an individual use of 
+the <code>history</code> command by using a second modifier attached to an 
+already modified <code>history</code> command. This second modifier is also in 
+the form of a period followed by a number giving the number of items to be 
+displayed. </p>
+<p>The default maximum size of the history list is 300 items. If more than 300 
+sets are created the last 300 sets created during this XPAT session are retained 
+in the list. This maximum size can be altered by a command line parameter when 
+starting a XPAT session. </p>
+<p>Note that a set can be removed from the history list by the 
+<code>~free</code> command. </p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  "univ" 
+&gt;&gt;  pr sample % 
+&gt;&gt;  "waterloo" 
+&gt;&gt;  1 near 2 
+&gt;&gt;  pr 
+&gt;&gt;  <code>history</code> </pre>
+<p>Assuming the above are the only commands executed in the XPAT session to 
+  this point, the result of the <code>history</code> command would be as 
+  follows:</p>
+<pre>  1:   11680,  "univ"
+  2:     209,  "waterloo"
+  3:       4,  1 near 2
+                       
+                       </pre>
+  
+<pre>&gt;&gt;  {History 5} 
+&gt;&gt;  <code>history</code> </pre>
+<p>The first command, in this example, sets the value of the 
+  <code>History</code> setting to 5. The second command, and subsequent uses of 
+  the <code>history</code> command in the session, will show information about 
+  the five final sets in the history list. The second command shows information 
+  about the final five sets in the history list. </p>
+<pre>&gt;&gt;  <code>history.3</code> </pre>
+<p>This use of the <code>history</code> command gives information about the 
+  commands in the history starting at the third element in the history list. 
+  Using the XPAT session described in the first example, above, the result of 
+  this would be.</p>
+<pre>  3:       4,  1 near 2</pre>
+  
+<pre>&gt;&gt;  <code>history.-2</code> </pre>
+<p>This use of the command gives information starting at the second element 
+  from the end of the history list. Again, using the first example, the result 
+  of this would be.</p>
+<pre>  2:     209,  waterloo
+  3:       4,  1 near 2</pre>
+  
+<pre>&gt;&gt;  <code>history.4.10</code> </pre>
+<p>This use of <code>history</code> gives information from the history list 
+  starting at the fourth entry on the list and continuing for ten entries. </p>
+<pre>&gt;&gt;  <code>history.-4.2</code> </pre>
+<p>This use of <code>history</code> gives information about the final two 
+  entries in the history list. </p>
+
+<h3>See also:</h3> 
+<p><code>~free</code> , <code>save.commands</code> , <code>save.history</code> , 
+<code>set number</code></p>
+<h3>Settings:</h3> 
+<p><code>History</code></p>
+
+<h2><a name="{History}"><code>{History}</code></a></h2>
+<code>{History</code> <var>number</var><code>}</code> 
+<p>changes the number of items from the history list displayed by the 
+<code>history</code> command. </p>
+<p>The <code>History</code> setting determines the number of items displayed by 
+the <code>history</code> command. Note that the setting may be overridden and 
+the number of items displayed determined by a modifier for an individual use of 
+the <code>history</code> command. The default value of the setting is 0 
+indicating that all sets created in this session are to be shown by the 
+<code>history</code> command. The setting can be changed at any time during a 
+XPAT session and stays in effect until changed again or until the end of the 
+session. The current value of the <code>History</code> setting is displayed by 
+the command <code>{Settings}</code> . </p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  <code>{History 30}</code> </pre>
+<p>This changes the setting to the value 30 so that any subsequent use of the 
+  <code>history</code> command during the session displays 30 items. 
+</p>
+
+<h3>See also:</h3> 
+<p><code>history</code> , <code>Settings</code></p>
+
+<h2><a name="{HistoryFile}"><code>{HistoryFile}</code></a></h2>
+<code>{HistoryFile</code> <var>string</var><code>}</code> 
+<p>changes the file name used by <code>save.history</code> . </p>
+<p>The <code>HistoryFile</code> setting determines the file written by the 
+<code>save.history</code> command. It has a default value of <code>xpat.his</code> . If the string begins with a numeral or contains 
+blanks or non-alphanumeric characters, it must be enclosed within <code>double 
+quote</code> marks. The file name must also conform to the file naming 
+conventions of the host operating system. It can be changed at any time during a 
+XPAT session and remains in effect until it is changed again or until the end of 
+the session. The current value of the <code>HistoryFile</code> setting is 
+displayed by the command <code>{Settings}</code> . </p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  <code>{HistoryFile "/usr/new/history_file"}</code> 
+</pre>
+<p>This changes the <code>HistoryFile</code> setting so that any subsequent 
+  use of the <code>save.history</code> command during the session writes to the 
+  file <code>/usr/new/history_file</code> . </p>
+
+<h3>See also:</h3> 
+<p><code>save.history</code> , <code>Settings</code></p>
+
+<h2><a name="import"><code>import</code></a></h2>
+<code>import</code> 
+<p>reads information that has been saved in a file by the <code>export</code> 
+command. </p>
+<p><code>Import</code> reads data from a file and creates a new set which can be 
+used as if it had been created during the current XPAT session. XPAT determines 
+from the header information whether the saved set is a point set or a region 
+set, and the new set is of the same type. The file read is determined by the 
+<code>ExportFile</code> setting which has a default value of <code>xpat.exp</code> . The file name can be changed during a session by 
+resetting the <code>ExportFile</code> setting. </p>
+<p>Assuming the default setting of <code>ExportFile</code> , if the imported set 
+is a region set, the following message is generated:</p>
+<pre>Importing regions from 'xpat.exp'</pre>
+
+<p>If it is a point set, the message generated is:</p>
+<pre>Importing point set from 'xpat.exp'.
+</pre>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  <code>import</code> 
+&gt;&gt;  % within region Quote </pre>
+<p>The first command reads from the file <code>xpat.exp</code> . 
+  The second line uses the imported set as an operand to a <code>within</code> 
+  command and finds the members of the set that occur within <code>region Quote</code> . </p>
+<pre>&gt;&gt;  {ExportFile "v.exp"} 
+&gt;&gt;  verse = <code>import</code> 
+&gt;&gt;  *verse including ("blind " fby "ditch ") </pre>
+<p>The first command resets the <code>ExportFile</code> setting to <code>v.exp</code> . The second reads a set from the file <code>v.exp</code> and names it <code>verse</code> . The 
+  third query finds the set of imported regions that include the string <code>blind</code> when it is followed by the string <code>ditch</code> (the assumption has been made that this set is a 
+  region set). </p>
+
+<h3>See also:</h3> 
+<p><code>export</code></p>
+<h3>Settings:</h3> 
+<p><code>ExportFile</code></p>
+
+<h2><a name="including"><code>including</code></a></h2>
+<var>set1</var> <code>including</code> <var>set2</var> 
+<p><var>set1</var> <code>incl</code> <var>set2</var> </p>
+<p>find regions that contain members of a set. </p>
+<p><code>Including</code> or <code>incl</code> creates a set comprised of 
+members of <var>set1</var> that include one or more members of <var>set2</var>. 
+<var>Set1</var> must be a region set. <var>Set2</var> may be either a point set 
+or a region set. The new set is a region set. </p>
+<p><var>Set1</var> may be a predefined region set, a region set created during 
+the XPAT session using the <code>region</code> command, a region set resulting 
+from the use of the <code>import</code> command, or the result of a previous 
+query in the session. </p>
+<p>If <var>set2</var> is a point set, and if one or more of the points occur in 
+a region from <var>set1</var>, then that <var>set1</var> region is included in 
+the new set.</p>
+<p>If <var>set2</var> is a region set, and the first of the pair of pointers 
+(offsets into the text) describing a region of <var>set2</var> is contained in a 
+region of <var>set1</var>, that <var>set1</var> region is included in the new 
+set. The second pointer of the pair delineating <var>set2</var> does not have to 
+fall within the region of <var>set1</var> in order that the <var>set1</var> 
+region be included in the new set.</p>
+<p>The <code>including</code> command can also be used to find regions that 
+contain more than one member of <var>set2</var>, by attaching a modifier 
+specifying the minimum number of members of <var>set2</var> to the 
+<code>including</code> command. This modifier is in the form of a period 
+followed by the value of the minimum number of members. </p>
+<p>The command <code>not including</code> creates a set containing those members 
+of <var>set1</var> that do not contain any of the members in <var>set2</var>. 
+</p><pre> set1 <code>not including</code> set2 </pre>
+<p>is the same as </p><pre> set1 - (set1 <code>including</code> set2) </pre>
+<p><code>Including</code> and <code>within</code> are similar in that they both 
+restrict searches to specified regions in the text. They differ in the set that 
+is created. The <code>including</code> command creates a set of regions that 
+<em>contain</em> one or more members of another set, while <code>within</code> 
+creates a set of pointers or regions that are <em>contained in</em> members of a 
+region set. </p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  region Story <code>including</code> ("Free trade"
+near "Canada") </pre>
+<p>This query finds the regions described by <code>region 
+  Story</code> that contain one or more matches to the string <code>Free trade</code> when it occurs close to the string <code>Canada</code> . </p>
+<pre>&gt;&gt;  region Story <code>including.3</code> ("Free trade"
+near "Canada") </pre>
+<p>This query finds the regions described by <code>region 
+  Story</code> that contain at least three matches to the string <code>Free trade</code> when it occurs close to the string <code>Canada</code> . </p>
+<pre>&gt;&gt;  region Quote <code>not including</code> region Author
+</pre>
+<p>This query creates a set of Quote regions that do not contain the first 
+  pointer of the pair delineating an Author region. </p>
+<pre>&gt;&gt;  dates = "1800" .. "1825" 
+&gt;&gt;  region Date <code>including</code> *dates </pre>
+<p>The first query creates a point set containing all the numbers that are 
+  alphabetically between <code>1800</code> and <code>1825</code> . The second creates the set of Date regions that 
+  contain one or more of these numbers. </p>
+<pre>&gt;&gt;  region Quotation <code>including</code> "Wright"
+
+&gt;&gt;  % <code>including</code> "Waterloo" </pre>
+<p>The first query creates a region set of quotations that contain the string 
+  <code>Wright</code> . The second query finds the members in the 
+  new region set that also contain the string <code>Waterloo</code> . </p>
+<pre>&gt;&gt;  (*speech including "republican") including "democrat"
+</pre>
+<p>This query is similar to the previous one. It assumes that a region set 
+  named <code>speech</code> has been defined and it finds the 
+  members of this set that contain both the string <code>republican</code> and the string <code>democrat</code> . </p>
+<pre>&gt;&gt;  (*definition incl ("men" + "women")) incl "education"
+
+&gt;&gt;  *definition including (("men" + "women") ^ "education")
+</pre>
+<p>The first query creates a set of definition regions that include the string 
+  <code>education</code> as well as either <code>men</code> or <code>women</code> . Note that the 
+  second query does not create the same set but actually creates a set of size 
+  0. This result is due to the fact that the intersection operation - <code>(("men" + "women") ^ "education")</code> - produces an empty 
+  result. This result occurs since there are no members of the union set <code>men + women</code> that are also members of the set <code>education</code> (see definition of the <code>union</code> 
+  operator).</p>
+
+<h3>See also:</h3> 
+<p><code>intersect</code> , <code>not</code> , <code>region</code> , <code>within 
+</code></p>
+
+<h2><a name="index_point"><code>index point</code></a></h2>
+<p>XPAT views the entire text as one long string. In contrast to 
+traditional text indices, which deal with words, XPAT indexes strings. The 
+indexed strings extend from each <code>index point</code> to the end of the 
+text.</p>
+<p>The XPAT index is made up of the starting points of each string. The index 
+points make up the possible match points for a string search. Parameters set 
+when the index is built determine which strings are in the index. The parameters 
+specify patterns in the text that define the beginnings of strings to be 
+indexed. For example, one pattern could specify that every character in the text 
+is to be indexed, while another pattern could specify that each printable 
+character following a blank is to be indexed. </p>
+<p>When the index is created, two additional settings can alter how XPAT sees the 
+text. <em>Character mappings</em> cause XPAT to see certain characters as 
+equivalent to other characters. For example, all upper case letters may be 
+mapped to lower case letters so that XPAT does not distinguish between upper and 
+lower case when searching for a string. Also, some words may be designated as 
+<em>stopwords</em>. XPAT views the text as if these words are not there. XPAT 
+ignores strings in the text that start at an index point and match the given 
+stopword strings followed by a blank after the character mappings have been 
+applied. The character mappings also affect the strings chosen to be index 
+points. For example, if a <code>&gt;</code> is mapped to a blank 
+and if the index points are defined as blanks followed by printable characters, 
+in the text <code>...&lt;tag&gt;wisdom...</code> the <code>w</code> in the string <code>wisdom</code> is an 
+index point. Text with character mappings applied and stopwords removed is 
+referred to as <em>converted text</em>. </p>
+<p>When searching for a given string, a match is found if the given string 
+(after having the character mappings applied to it and the stopwords removed) is 
+the same as the converted text that begins one of the indexed strings.</p>
+
+<h3>See also:</h3> 
+<p>data dictionary documentation, <code>double quote</code> , 
+<code>offsets</code> , <code>quiet mode</code> , <code>range</code> , 
+<code>shift</code> , <code>string search</code></p>
+
+<h2><a name="intersect"><code>intersect</code></a></h2>
+<var>set1</var> <code>^</code> <var>set2</var> 
+<p>finds members common to two sets. </p>
+<p>The <code>intersect</code> operator (<code>^</code> ) creates a new set 
+consisting of the members in <var>set1</var> that are also in <var>set2</var>. 
+<var>Set1</var> and <var>set2</var> can be either point sets or region sets. The 
+new set is of the same type as <var>set1</var>. </p>
+<p>If either of <var>set1</var> or <var>set2</var> is a region set, only the 
+first of the pointers describing the region is used in the comparison to 
+determine if a member should be included in the new set. Two members of a region 
+set are considered to be equal if they start at the same location in the text. 
+</p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;   (region Verse incl "eye") <code>^</code> (region
+Verse
+incl "seed") </pre>
+<p>This query creates a region set. It includes verse regions that contain 
+  both the string <code>eye</code> and the string <code>seed</code> . </p>
+<pre>&gt;&gt;   ("research" near "medical") <code>^</code> ("research" near "biolog") </pre>
+<p>This query creates a point set. It includes the matches to <code>research</code> that appear close to both the string <code>medical</code> and the string <code>biolog</code> . 
+  </p>
+
+<h3>See also:</h3> 
+<p><code>difference</code> , <code>region</code> , <code>union</code> 
+</p>
+
+<h2><a name="{Label}"><code>{Label}</code></a></h2>
+<code>{Label</code> <var>string</var><code>}</code> 
+<p>specifies an identifying string to be used as a label. </p>
+<p>When XPAT is operating in <code>quiet mode</code> with labels requested, any 
+set displayed by a <code>pr</code> or <code>save</code> command shows the label 
+string preceding the numeric value of the text offset. This can be used to 
+identify which database the information is from. In a XPAT session, if a value 
+for <code>Label</code> has not been set by this command, the default value used 
+is the name of the data dictionary. The label string must begin with an 
+alphabetic character and contain no blanks or non-alphanumeric characters. The 
+setting can be changed at any time during a XPAT session and remains in effect 
+until it is changed again or until the end of the session. </p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  <code>{Label Database1}</code> 
+&gt;&gt;  {QuietOn Label} 
+pr ("Ontario" near ("B.C." + "British Columbia"))
+</pre>
+<p>The tagged output from the <code>pr</code> command shows the numeric offset 
+  in the file preceded by the string <code>Database1</code> , in 
+  the form</p>
+<pre>&lt;PSet&gt;&lt;Start&gt;Database1:12345&lt;/Start&gt;&lt;/PSet&gt;</pre>
+
+
+<h3>See also:</h3> 
+<p><code>offsets</code> , <code>quiet mode</code></p>
+<h3>Settings:</h3> 
+<p><code>QuietOff</code> , <code>QuietOn</code></p>
+
+<h2><a name="last set"><code>last set</code></a></h2>
+<code>%</code> 
+<p>refers to the previous result. </p>
+<p><code>%</code> is used as shorthand to refer to the set created most recently 
+in the XPAT session. The set is the final one in the current history list. Some 
+commands, such as <code>pr</code> and <code>save</code> , do not create sets that 
+are saved and recorded in the history list and thus cannot be accessed by using 
+the <code>%</code> . If there is no history, the <code>last set</code> is the 
+null set which contains all index points. </p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  region Author including "Hemingway" 
+&gt;&gt;  pr sample % 
+&gt;&gt;  % within region Quote </pre>
+<p>The <code>%</code> in the second line of the example refers to the set 
+  created by the <code>including</code> command in the first query. The 
+  <code>%</code> in the third line also refers to the set created by the first 
+  line and not to the result of the <code>pr</code> in the second line which 
+  does not produce a set. </p>
+
+<h3>See also:</h3> 
+<p><code>~free</code> , <code>~freeall</code> , <code>history</code> 
+</p>
+
+<h2><a name="{LeftContext}"><code>{LeftContext}</code></a></h2>
+<code>{LeftContext</code> <var>number</var><code>}</code> 
+<p>specifies how many characters of context are displayed to the left of a set 
+member. </p>
+<p>By default, when a set is displayed with the <code>pr</code> command or 
+written to a file by the <code>save</code> command, the text has 14 characters 
+to the left of the match point. The setting can be changed at any time during a 
+XPAT session and remains in effect until it is changed again or until the end of 
+the current session. The current value of the <code>LeftContext</code> setting 
+is displayed by the command <code>{Settings}</code> . </p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  <code>{LeftContext 40}</code> </pre>
+<p>This changes the setting to the value 40 so that any subsequent 
+  <code>pr</code> or <code>save</code> command produces text with 40 characters 
+  to the left of the match point. </p>
+
+<h3>See also:</h3> 
+<p><code>pr</code> , <code>save</code> , <code>Settings</code></p>
+<h3>Settings:</h3> 
+<p><code>PrintLength</code></p>
+
+<h2><a name="macro"><code>macro</code></a></h2>
+<p>The <code>macro</code> capability facilitates the use of 
+frequently used sequences of XPAT commands. </p>
+<p>A macro can be defined in a XPAT session and be available only for the 
+duration of that session, or a macro can be created externally and read into any 
+XPAT session by an <code>exec</code> command or during initialization. </p>
+<p>The definition of a macro (here called <code>name</code> ) 
+begins with the following: <code>name = macro</code></p>
+<p>After this line the system prompt changes from <code>&gt;&gt;</code> to <code>||</code> for the duration 
+of the macro definition. The body of the macro may begin on the same line or on 
+a subsequent line. XPAT interprets anything immediately following the word 
+<code>macro</code> , that is not a blank or new line, as the beginning of the 
+macro definition. The body of the macro may contain arguments. The 
+<var>n</var>th argument to the macro is identified within the macro definition 
+by the string <code>$n$</code> . Any sets that are created by the 
+macro may also be used in its definition. The string <code>*n*</code> refers to the <var>n</var>th set created within the 
+macro. The end of the macro definition is indicated by a <code>@</code> . After the <code>@</code> the system prompt 
+returns to the form <code>&gt;&gt;</code> . </p>
+<p>References to other macros may be used within the definition of a macro. If 
+the macro contains more than one XPAT query, they can be put on separate lines or 
+on the same line with the queries separated by a semi-colon. The body of the 
+macro is not checked for syntax errors when it is defined. Any errors are 
+reported when the macro is used. </p>
+<p>The macro is invoked by the following call: </p><code>name(arg1,arg2..)</code> 
+<p>If the number of arguments in the macro call is less than the number in the 
+macro definition a syntax error is reported. If it is greater, the extra 
+arguments are ignored.</p>
+<p>Each argument consists of all the text occurring between argument delimiters: 
+parentheses and commas. That is, if a macro takes three arguments - <code>(arg1,arg2,arg3)</code> - <code>arg1</code> consists 
+of the text between the opening parenthesis and the first comma, <code>arg2</code> consists of the text between the first and second 
+comma, and <code>arg3</code> consists of the text between the 
+second comma and closing parenthesis. If a macro takes only one argument - <code>(arg1)</code> - the parentheses are the argument delimiters. Note 
+that any spaces entered with an argument string will be included with the 
+parameter substitution which is unlikely to be the intent of the user. To avoid 
+unexpected results, enter only the <em>exact</em> text that you wish to be 
+substituted in the arguments of the macro call. Also note that macros may have 
+no arguments. </p>
+<p>When the macro is invoked, the invocation is replaced by an exact copy of the 
+body of the macro with the arguments substituted for the formal parameters. This 
+means that the macro can be used within other XPAT queries. This may require that 
+the macro definition have the closing <code>@</code> on the same 
+line as the final line of the body of the macro definition to avoid introducing 
+an unwanted new-line character. </p>
+<p>If improperly used, macros that produce multiple sets and are used within 
+other queries may cause more than one syntax error to be reported. Care must be 
+taken with bracketing in order to ensure that the results reflect what was 
+actually intended. </p>
+<p>A macro can be redefined during a XPAT session. When the macro is redefined, 
+the previous definition of the macro is displayed following the first new line 
+entered after the word <code>macro</code> . The format of this previous 
+definition consists of the macro name followed by a colon, followed by the body 
+of the macro on subsequent lines. </p>
+<p>For convenience, macros that are used frequently can be defined within an 
+<em>init file</em> whose location is given in the data dictionary file. The init 
+file is read and executed by a XPAT session when it is initially started. (See 
+the data dictionary documentation for details.) </p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  word = macro 
+ ||  ( "$1$ " + "$1$&lt;" + "$1$-" ) @ 
+&gt;&gt;  <code>word(pad)</code> within *definitions </pre>
+<p>This macro is used with text that contains tags that start with a <code>&lt;</code> and where the tags may follow text without blanks 
+  appearing before the tag. The macro defines a word as a string of characters 
+  followed by a blank, <code>&lt;</code> , or <code>-</code> (in this definition an index that has all punctuation 
+  mapped to a blank is assumed). Since the macro definition has the <code>@</code> sign on the same line as the body of the definition, 
+  the macro can be used within a more complicated query as shown. Note the 
+  brackets included in the macro definition. The example assumes that there is a 
+  region <code>definition</code> and finds all occurrences of 
+  <code>pad</code> , as a word, inside one of these regions. </p>
+<pre>&gt;&gt;  both = macro 
+ ||  region $1$ 
+ ||  *1* including $2$ 
+ ||  *2* including $3$ 
+ ||  @ 
+&gt;&gt; 
+<code>both(Line</code> ,<code>"juliet"</code> ,<code>"romeo")</code> 
+</pre>
+<p>With the macro defined here, the members of a predefined region set which 
+  contain both of two given strings are found. In the macro call above, the 
+  macro is applied to a database of Shakespearean texts in order to find the 
+  members of the predefined region set named <code>Line</code> 
+  containing references to both <code>romeo</code> and <code>juliet</code> . The definition of this macro returns more than 
+  one set. It also has the <code>@</code> on the line following 
+  the body and thus could not be used within another query. The resulting output 
+  from XPAT showing the three sets produced by the macro would appear as below:</p>
+<pre>  16: 128794 matches
+  17: 214 matches
+  18: 25 matches</pre>
+
+<h3>See also:</h3> 
+<p>data dictionary documentation, <code>thesaurus</code></p>
+
+<h2><a name="naming sets"><code>naming sets</code></a></h2>
+<var>name</var> <code>=</code> <var>set1</var> 
+<p>assigns a name to a set. </p>
+<p>A set which has been named can be referred to either by that name or its set 
+number. <var>Set1</var> can be either a point set or a region set. </p>
+<p>A <var>name</var> that starts with a letter and contains only letters and 
+numbers does not need to be enclosed within <code>double quote</code> marks. 
+However, if the <var>name</var> contains special characters (blanks or 
+non-alphanumeric characters), or does not start with a letter, it must be 
+enclosed within <code>double quote</code> marks both in the assignment statement 
+and in subsequent use. </p>
+<p>To use the name in a query it must be preceded by an asterisk 
+(<code>*</code> ). Without the asterisk (<code>*</code> ), XPAT interprets the name 
+as a string rather than as the name of a set. </p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  UK <code>=</code> "U.K."+"Britain"+"Great Brit"+"United King" 
+&gt;&gt;  region Headline including *UK </pre>
+<p>The first line assigns the name <code>UK</code> to a set of 
+  matches to four alternate ways of referring to the United Kingdom. The second 
+  line finds Headline regions that contain any of the matches. </p>
+<pre>&gt;&gt;  "min_hiring" <code>=</code> region Minutes incl ("hiring" near "policy") 
+&gt;&gt;  region Attendees within *"min_hiring" </pre>
+<p>The first line of the example assigns the name <code>min_hiring</code> to Minutes regions that include matches to 
+  <code>hiring</code> appearing close to matches to <code>policy</code> . The second line finds the Attendees regions that 
+  are within one of the resulting Minutes regions from the first query. 
+</p>
+
+<h3>See also:</h3> 
+<p><code>double quote</code> , <code>set name</code></p>
+
+<h2><a name="near"><code>near</code></a></h2>
+<var>set1</var> <code>near</code> <var>set2</var> 
+<p>finds members of sets that are close to each other. </p>
+<p><code>Near</code> creates a set containing the members of <var>set1</var> 
+that are within a specified number of characters before or after one or more 
+members of <var>set2</var>. <var>Set1</var> and <var>set2</var> may be either 
+point sets or region sets. The new set is of the same type as <var>set1</var>. 
+</p>
+<p>The distance between members of the two sets is calculated by counting the 
+number of characters in the text between the first character of a member of 
+<var>set1</var> and the first character of a member of <var>set2</var>. The 
+measure used to determine <code>closeness</code> is the value of 
+the <code>Proximity</code> setting which has a default value of 80 characters. 
+The value can be changed for all subsequent uses of <code>near</code> by 
+changing the <code>Proximity</code> setting, or it can be changed for an 
+individual use of <code>near</code> by using a modifier attached to the command. 
+The form of the modifier is a period followed by a number representing the 
+maximum distance (in characters). </p>
+<p>If either <var>set1</var> or <var>set2</var> is a region set, the first of 
+the two pointers describing the region is used in finding the distance between 
+the members of the sets. </p>
+<p>Multiple <code>near</code> commands are not parsed left to right. A command 
+of the form </p><pre>       set1 <code>near</code> set2 <code>near</code> set3 </pre>
+<p>is handled as if parenthesized as follows: </p><pre>       set1 <code>near</code> (set2 <code>near</code> set3)</pre>
+<p>The command <code>not near</code> creates a set containing those members of 
+<var>set1</var> that are <code>not</code> within the specified distance of any 
+member of <var>set2</var>. </p><pre> set1 <code>not near</code> set2 </pre>
+<p>is the same as </p><pre> set1 - (set1 <code>near</code> set2) </pre>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  "love " <code>near</code> "hate " </pre>
+<p>Assuming a <code>Proximity</code> of 80, this query creates a point set 
+  containing those matches to <code>love</code> that are within 80 
+  characters of matches to <code>hate</code> , counting from the 
+  <code>l</code> in <code>love</code> to the <code>h</code> in <code>hate</code> . The string <code>hate</code> can occur before or after <code>love 
+ </code> in the text. </p>
+<pre>&gt;&gt;  region Title <code>near.30</code> region Author
+</pre>
+<p>This query creates a region set containing the members of <code>region Title</code> that are within 30 characters of one or more 
+  members of <code>region Author</code> . In this case the distance 
+  is measured as the number of characters between the first character of a Title 
+  region and the first character of an Author region. </p>
+<pre>&gt;&gt;  "love " <code>not near</code> "hate " </pre>
+<p>This query creates a point set containing those matches to <code>love</code> that do not occur within 80 characters of a match to 
+  <code>hate</code> calculating the distance as in the first 
+  example. </p>
+<pre>&gt;&gt;  "love " <code>not near.30</code> "hate " </pre>
+<p>This query creates a point set containing the matches to <code>love</code> that do not occur within 30 characters of a match to 
+  <code>hate</code> . </p>
+
+<h3>See also:</h3> 
+<p><code>fby</code> , <code>not</code></p>
+<h3>Settings:</h3> 
+<p><code>Proximity</code></p>
+
+<h2><a name="next"><code>next</code></a></h2>
+<code>next</code> <var>set1</var> 
+<p>finds a specified number of contiguous members of a set following members 
+already identified by a <code>first</code> or <code>next</code> command.</p>
+<p><code>Next</code> creates a set of a specified size containing the members of 
+<var>set1</var> that start at the current cursor position associated with this 
+set. The cursor position is determined by a previous <code>first</code> or 
+<code>next</code> command applied to <var>set1</var>. The members of the new set 
+are in the order they appear in <var>set1</var>. <var>Set1</var> may be either a 
+region set or a point set. The new set is of the same type as <var>set1</var>. 
+</p>
+<p>The operation of the <code>next</code> command depends on the set order 
+established by the <code>SortOrder</code> setting. If the <code>SortOrder</code> 
+setting is <code>Alpha</code> , the set is ordered alphabetically; 
+if the <code>SortOrder</code> setting is <code>Occur</code> or 
+<code>OccurHead</code> , the set is ordered as the members occur in 
+the text; and if the <code>SortOrder</code> setting is <code>AsIs</code> , the set ordering is the current one and may thus be 
+either alphabetic or occurrence order. </p>
+<p>Each set that is used with a <code>first</code> , <code>next</code> or 
+<code>~nextemp</code> command has a cursor (set member counter) associated with 
+it. The cursor indicates the location in <var>set1</var> at which to begin 
+selection for the set being created. On completion of the <code>next</code> 
+command the cursor is updated to point at the beginning of the next set. Note, 
+when the <code>SortOrder</code> setting changes and the set ordering is changed, 
+the cursor is reset to the first element. </p>
+<p>The size of the set created is determined by the value of 
+<code>SampleSize</code> which has a default value of 10. If the size of 
+<var>set1</var> is less than <code>SampleSize</code> , then the new set created 
+is the same size as <var>set1</var>. Changing the <code>SampleSize</code> 
+affects all subsequent uses of <code>next</code> during the current session. For 
+an individual use of the command, the size of the new set can be specified by 
+using a modifier attached to the <code>next</code> command. The modifier is in 
+the form of a period followed by a numeric value giving the desired set size. 
+</p>
+<p>The <code>next</code> command can be used by itself or with the 
+<code>pr</code> , <code>save</code> or <code>export</code> commands. Note that 
+<code>next</code> may only be used in conjunction with these commands. 
+</p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  {SampleSize 40} 
+&gt;&gt;  <code>first</code> .0 5 
+&gt;&gt;  <code>next</code> 5 </pre>
+<p>The first line of the example changes the <code>SampleSize</code> setting 
+  to 40. The <code>first</code> command resets the cursor associated with set 
+  number 5 to the first member of the set and creates a set of size 0 (thereby 
+  leaving the cursor at the first member). The third line creates a set that 
+  contains the first 40 members of set number 5. </p>
+<pre>&gt;&gt;  <code>next</code> .10 5 </pre>
+<p>If this command follows the previous example, a set of ten members is 
+  created. The cursor associated with set number 5 indicates that 40 members 
+  have been used to create the set in the previous <code>next</code> command and 
+  so this new set starts at the 41st member of set number 5. </p>
+
+<h3>See also:</h3> 
+<p><code>first</code> , <code>~nextemp</code> , <code>sample</code> , 
+<code>subset</code></p>
+<h3>Settings:</h3> 
+<p><code>SampleSize</code> , <code>SortOrder</code></p>
+
+<h2><a name="~nextemp"><code>~nextemp</code></a></h2>
+<code>~nextemp</code> <var>set1</var> 
+<p>finds a specified number of contiguous members of a set following members 
+already identified by a <code>first</code> or <code>next</code> command.</p>
+<p>The command <code>~nextemp</code> creates a set of a specified size 
+containing the members of <var>set1</var> that start at the current cursor 
+position associated with the set. The cursor position is determined by the 
+previous <code>first</code> or <code>next</code> command applied to 
+<var>set1</var>. The members of the new set are in the order they appear in 
+<var>set1</var>. <var>Set1</var> may be either a region set or a point set. The 
+new set is of the same type as <var>set1</var>. </p>
+<p>The <code>~nextemp</code> command is identical to the <code>next</code> 
+command except that the cursor is unchanged by the <code>~nextemp</code> 
+command. </p>
+<p>The operation of the <code>~nextemp</code> command depends on the set order 
+established by the <code>SortOrder</code> setting. If the <code>SortOrder</code> 
+setting is <code>Alpha</code> , the set is ordered alphabetically; 
+if the <code>SortOrder</code> setting is <code>Occur</code> or 
+<code>OccurHead</code> , the set is ordered as the members occur in 
+the text; and if the <code>SortOrder</code> setting is <code>AsIs</code> , the set ordering is the current one and may thus be 
+either alphabetic or occurrence order. </p>
+<p>Each set that is used with a <code>first</code> , <code>next</code> or 
+<code>~nextemp</code> command has a cursor (set member counter) associated with 
+it. The cursor indicates the location in <var>set1</var> to start selecting 
+members for the set being created. After completion of the <code>~nextemp</code> 
+command, the cursor is unchanged. This differs from the behaviour of the 
+<code>next</code> command, which updates the cursor to point at the last member 
+of <var>set1</var> selected for the new set. Note, when the 
+<code>SortOrder</code> setting and the set ordering change, the cursor is reset 
+to the first element. </p>
+<p>The size of the set created is determined by the value of the 
+<code>SampleSize</code> setting which has a default value of 10. If the size of 
+<var>set1</var> is less than <code>SampleSize</code> , then the new set created 
+is the same size as <var>set1</var>. Changing the <code>SampleSize</code> 
+setting affects all subsequent uses of <code>~nextemp</code> during the current 
+session. For an individual use of the command, the size of the new set can be 
+specified by using a modifier attached to the <code>~nextemp</code> command. 
+This modifier is in the form of a period followed by a numeric value giving the 
+desired set size. </p>
+<p>The <code>~nextemp</code> command can be used by itself or with the 
+<code>pr</code> , <code>save</code> or <code>export</code> commands. Note that 
+<code>~nextemp</code> may only be used in conjunction with these commands. 
+</p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  {SampleSize 40} 
+&gt;&gt;  <code>first</code> .0 5 
+&gt;&gt;  <code>~nextemp</code> 5 </pre>
+<p>The first line changes the <code>SampleSize</code> setting. The 
+  <code>first</code> command initializes the cursor associated with set number 5 
+  to the first member of the set and creates a result set of size 0 (thereby 
+  leaving the cursor at the first member). The third line creates a set that 
+  contains the first 40 members of set number 5. </p>
+<pre>&gt;&gt;  <code>~nextemp</code> .10 5 </pre>
+<p>Assume this command follows the previous example. On completion of the 
+  previous query, the cursor still points to the beginning of the set as the 
+  <code>~nextemp</code> command does not change the cursor setting. The set 
+  created by this query contains 10 elements from the beginning of set number 5. 
+  </p>
+
+<h3>See also:</h3> 
+<p><code>first</code> , <code>next</code> , <code>sample</code> , 
+<code>subset</code></p>
+<h3>Settings:</h3> 
+<p><code>SampleSize</code> , <code>SortOrder</code></p>
+
+<h2><a name="not"><code>not</code></a></h2>
+<p>is used to modify four XPAT commands. 
+The forms in which <code>not</code> can appear are <code>not fby</code> , 
+<code>not including</code> , <code>not near</code> , and <code>not within</code> . 
+These uses are described in the entries for <code>fby</code> , 
+<code>including</code> , <code>near</code> , and <code>within</code> . 
+<code>Not</code> cannot be used to modify any other commands. </p>
+
+<h3>See also:</h3> 
+<p><code>fby</code> , <code>including</code> , <code>near</code> , 
+<code>within</code></p>
+
+<h2><a name="offsets"><code>offsets</code></a></h2>
+<code>[<var>number</var>]</code> 
+<p><code>[<var>label:number</var>]</code></p>
+<p>generate a point set containing a specified position in the text. </p>
+<p>The number in the square brackets is a logical position in the text and need 
+not be an index point. The number indicates the offset, measured in number of 
+characters, from the beginning of the text database. The first character of the 
+text has offset [1]. If the number used in square brackets exceeds the size of 
+the text XPAT gives the message</p>
+<pre>Error: Input number too large.</pre>
+
+<p>Note that the new set is a point set with only one member. </p>
+<p>The second form of the command, shown above, uses offsets that are produced 
+when XPAT is operating in quiet mode and using labels. In this form, in order to 
+produce correct results, the label string must be the current value of the 
+setting <code>Label</code> . When the label is different from the current 
+<code>Label</code> setting the resulting set has size 0. </p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  region Quote including <code>[</code> 20000<code>]</code> </pre>
+<p>This query finds the Quote region that includes the offset 20000. </p>
+<pre>&gt;&gt;  {Label news} 
+&gt;&gt;  region Quote including <code>[</code> news:20000<code>]</code> </pre>
+<p>This query uses an offset in the form produced by XPAT in quiet mode (having 
+  requested labels with the offsets). Since the <code>Label</code> has been set 
+  to the value <code>news</code> by the previous command, the 
+  query finds the region set named <code>Quote</code> containing 
+  the given offset. If the label, prefixed to the offset, is anything other than 
+  <code>news</code> the query would produce a set of size 0. 
+  </p>
+
+<h3>See also:</h3> 
+<p><code>quiet mode</code> , <code>sets</code></p>
+
+<h3>Settings:</h3> 
+<p><code>Label</code></p>
+
+<h2><a name="pr"><code>pr</code></a></h2>
+<code>pr</code> <var>set1</var> 
+<p>displays contents of XPAT sets. </p>
+<p><code>Pr</code> displays each member of <var>set1</var> with surrounding 
+context. A modifier can be attached to the <code>pr</code> command in order to 
+control the context exactly. <var>Set1</var> can be any region set or point set. 
+If <var>set1</var> is a region set, the first of the pair of points describing 
+each region in the text is displayed by the <code>pr</code> command. If no 
+<var>set1</var> is given, the operand for the command is the most recent set 
+created in the session. </p>
+<p>For each member in the given set, the output is in the form of an integer 
+giving the offset of the set member in the text file, followed by a comma, a 
+blank, two periods and then the characters surrounding the set member. The first 
+character in the database is considered to be offset 1. The order in which the 
+set is displayed depends on the current <code>SortOrder</code> setting. </p>
+<p>With no modifier, <code>pr</code> prints a line of text for each element in 
+<var>set1</var>. The <code>PrintLength</code> and <code>LeftContext</code> 
+settings determine the content of the line printed. With the default settings, 
+the printed text is 64 characters in length of which 14 precede the match point. 
+The number of characters displayed to the left of the match point can be altered 
+by changing the <code>LeftContext</code> . The total number of characters printed 
+can be altered by changing the <code>PrintLength</code> setting.</p>
+<p>The total number of characters to be displayed can be set, for a single 
+instance of the command, by using a numeric modifier attached to the 
+<code>pr</code> . The modifier is in the form of a period followed by a number 
+giving the total number of characters to be displayed. The left context that is 
+displayed is still determined by the value of the <code>LeftContext</code> 
+setting. </p>
+<p>The second form the modifier can have is a period followed by the string 
+<code>region</code> . When the modifier <code>.region</code> is used, the output 
+text starts at the match point and continues to the end of the default region in 
+which the match point occurs. If the match point is not within the default 
+region, no output is displayed for the match point. </p>
+<p>The second form of the modifier can be refined to request that the text 
+displayed is a region other than the default region. An additional modifier 
+specifying a defined region set can be attached to the already modified 
+<code>pr</code> command (i.e. to the <code>pr.region</code> ). The additional 
+modifier can specify the region in one of three ways: a string giving the name 
+of a predefined region, the number of a region set created in the XPAT session, 
+or a string preceded by an asterisk (<code>*</code> ) referring to a named region 
+set defined in the XPAT session (see the examples below). As with the form 
+<code>pr.region</code> , described above, this use results in the displayed text 
+starting at the match point with no left context and continuing to the end of 
+the region. When the match point is not contained in the designated region set, 
+no output is displayed. </p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  <code>"Kipling"</code> 
+&gt;&gt;  <code>pr</code> </pre>
+<p>This command displays a line of context for each member of the previously 
+  calculated set. Assuming the <code>PrintLength</code> and 
+  <code>LeftContext</code> still have the default values, each line will contain 
+  64 characters of which 14 will be before the match point. </p>
+<pre>&gt;&gt;  {PrintLength 300} 
+&gt;&gt;  <code>pr</code> "my dear Watson" </pre>
+<p>As with the previous example, this command prints a line of context for 
+  each member in the point set matching the string <code>my dear 
+  Watson</code> . In this case, the line printed for each member in the set is 
+  300 characters long but still has 14 characters preceding the match point. 
+</p>
+<pre>&gt;&gt;  <code>pr</code> region including "detective" </pre>
+<p>This command will print a line for each member in the set of default 
+  regions that contains the string <code>detective</code> . The 
+  text displayed starts at the beginning of the <code>default region</code> . 
+</p>
+<pre>&gt;&gt;  <code>pr.200</code> shift.-100 ("city" near "oxford")
+</pre>
+<p>This command prints a line of 200 characters for each member in the set of 
+  matches to the string <code>city</code> when it appears near the 
+  string <code>oxford</code> . Since the match points in this set 
+  have been shifted 100 characters to the left the displayed text actually 
+  begins 114 characters to the left of the string <code>city</code> (assuming the <code>LeftContext</code> is set to 
+  14). </p>
+<pre>&gt;&gt;  region incl (region EQ incl ("&lt;D&gt;1980" .. "&lt;D&gt;1986")) 
+&gt;&gt;  <code>pr.region</code> </pre>
+<p>The first query finds the members of the <code>default region</code> (in 
+  this example they might be dictionary entries) that contain EQ regions which 
+  are in the period from 1980 to 1986. The second command prints these entries. 
+  After the offset, comma, blank and two periods, the displayed text starts at 
+  the match point which is at the beginning of the default region, and continues 
+  to the end of the default region. </p>
+<pre>&gt;&gt;  region Quote including ("univ" near "waterloo")
+
+&gt;&gt;  <code>pr.region.Quote</code> </pre>
+<p>The first query finds the Quote regions which contain the string <code>univ</code> occurring near the string <code>waterloo</code> . The second command displays these regions. The 
+  output consists of an offset, comma, blank, two periods and the text starting 
+  at the beginning of the Quote region and continuing to the end of the Quote 
+  region. </p>
+<pre>&gt;&gt;  <code>pr.region.5</code> "law" fby "order" </pre>
+<p>This command displays data from the set of matches to the string <code>law</code> when followed by <code>order</code> . 
+  The text that is printed starts at the matches to the string <code>law</code> and continues to the end of the regions which contain 
+  the match point. </p>
+<pre>&gt;&gt;  *verse including "faith, hope, charity" 
+&gt;&gt;  <code>pr.region.*verse</code> </pre>
+<p>The first query finds the regions that contain the string <code>faith, hope, charity</code> occurring in the set that has been 
+  created and named <code>verse</code> during the XPAT session. For 
+  each of the members in this region set, the second command prints information 
+  starting at the beginning of the region and continuing to the end of the 
+  region described by <code>*verse</code> . </p>
+
+<h3>See also:</h3> 
+<p><code>history</code> , <code>naming sets</code> , <code>quiet mode</code> , 
+<code>region</code> , <code>save</code></p>
+<h3>Settings:</h3> 
+<p><code>DefaultRegion</code> , <code>LeftContext</code> , 
+<code>PrintLength</code> , <code>SortOrder</code></p>
+
+
+
+<h2><a name="{PrintLength}"><code>{PrintLength}</code></a></h2>
+<code>{PrintLength</code> <var>number</var><code>}</code> 
+<p>specifies how many characters of text are displayed. </p>
+<p>By default, when the members of a set are displayed with the <code>pr</code> 
+command or written to a file by the <code>save</code> command, each member 
+contains 64 characters of context, 14 to the left of the match point, the match 
+point itself, and 49 to the right. This setting may be overridden so that the 
+number of characters processed is determined by a modifier for an individual use 
+of the <code>pr</code> or <code>save</code> commands. The 
+<code>PrintLength</code> setting determines the total number of characters 
+processed and thus affects the number of characters shown to the right of the 
+match point. The number of characters to the left of the match point is 
+determined by the <code>LeftContext</code> setting. </p>
+<p>The setting can be changed at any time during a XPAT session and remains in 
+effect until changed again or until the end of the session. The current value of 
+the <code>PrintLength</code> setting is displayed by the command 
+<code>{Settings}</code> . </p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  <code>{PrintLength 100}</code> 
+&gt;&gt;  pr ("Yukon" near ("B.C." + "British Columbia"))
+</pre>
+<p>This changes the setting to the value 100 so that any subsequent 
+  <code>pr</code> or <code>save</code> command produces text 100 characters in 
+  length. The set displayed has 14 characters to the left of the match point and 
+  85 characters to the right, assuming a default value of 14 characters for left 
+  context. </p>
+
+<h3>See also:</h3> 
+<p><code>pr</code> , <code>save</code> , <code>Settings</code></p>
+<h3>Settings:</h3> 
+<p><code>LeftContext</code></p>
+
+
+
+<h2><a name="{Proximity}"><code>{Proximity}</code></a></h2>
+<code>{Proximity</code> <var>number</var><code>}</code> 
+<p>specifies the measure of closeness for the <code>near</code> and 
+<code>fby</code> commands. </p>
+<p>The <code>Proximity</code> default for the <code>fby</code> and 
+<code>near</code> commands is 80 characters. That is, a match point of a member 
+of <var>set1</var> must be within 80 characters of a match point of a member of 
+<var>set2</var> to be included in a new set created by the <code>near</code> and 
+<code>fby</code> commands.</p>
+<p>The <code>Proximity</code> setting may be overridden for an individual use of 
+the <code>fby</code> and <code>near</code> commands by appending a modifier to 
+the command. </p>
+<p>The <code>Proximity</code> setting can also be changed at any time during a 
+XPAT session and remains in effect until changed again or until the end of the 
+session (see example below). The current value of the <code>Proximity</code> 
+setting is displayed by the command <code>{Settings}</code> . </p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  <code>{Proximity 200}</code> 
+&gt;&gt; "Canada" near ("U.S." + "United States" + "the States") </pre>
+<p>The first line of the example changes the <code>Proximity</code> setting to 
+  the value 200 so that any subsequent <code>Proximity</code> commands use this 
+  value. In the query, XPAT finds the occurrences of the string <code>Canada</code> that occur within 200 characters either to the 
+  left or right of members of the set produced by the union of the sets matching 
+  the strings <code>U.S.</code> , <code>United 
+  States</code> and <code>the States</code> . </p>
+
+<h3>See also:</h3> 
+<p><code>fby</code> , <code>near</code> , <code>Settings</code></p>
+
+
+
+<h2><a name="~qnum"><code>~qnum</code></a></h2>
+<code>~qnum</code> 
+<p>outputs a query number. </p>
+<p>The <code>~qnum</code> command operates in both standard and quiet mode. In 
+standard mode, the number of the next query is output. In quiet mode, the 
+information is tagged and the number of the next query is contained within 
+<var>&lt;Qnum&gt;</var> tags. </p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  "testing" 
+&gt;&gt;  <code>~qnum</code> </pre>
+<p>If <code>testing</code> is the first query in the XPAT 
+  session, the output from the <code>~qnum</code> command is the set number 2. 
+  In quiet mode, this appears as the string <code>&lt;Qnum&gt;2&lt;/Qnum&gt;</code> . </p>
+
+<h3>See also:</h3> 
+<p><code>quiet mode</code></p>
+
+
+
+<h2><a name="quiet mode"><code>quiet mode</code></a></h2>
+<code>{QuietOn</code> <var>Raw</var> <var>Converted</var> 
+<var>Label</var> <var>Persistent</var><code>}</code> 
+<p><code>{QuietOff}</code></p>
+<p>changes the mode of operation of XPAT. <code>{QuietOn}</code> causes XPAT to 
+operate in quiet mode. <code>{QuietOff}</code> causes XPAT to revert to standard 
+(non-quiet) mode. </p>
+<p>Each of the four arguments to <code>QuietOn</code> is optional and may appear 
+in any order. When an argument is present in a <code>QuietOn</code> command, the 
+corresponding setting is turned on. Conversely, when an argument is not present 
+in a <code>QuietOn</code> command, the corresponding setting is turned off. 
+Settings are not carried forward from one <code>QuietOn</code> command to the 
+next but are reset with each <code>QuietOn</code> command.</p>
+<p>All XPAT commands that create sets operate the same way in quiet mode and in 
+standard mode. However, the output generated by XPAT is different in the two 
+modes. No prompt or newline appears when XPAT is operating in quiet mode. In 
+addition, the output from XPAT in quiet mode is in a tagged format. </p>
+<p>In standard mode, when a command or query creates a new set, a set number and 
+the number of matches is output. In quiet mode, the tagged output contains the 
+number of matches within <var>&lt;SSize&gt;</var> tags but no set number. For 
+example, if a set of 122 matches is created by a XPAT query the output is of the 
+form: </p><pre>&lt;SSize&gt;122&lt;/SSize&gt;</pre>
+<p>In standard mode, information displayed about a set by a <code>pr</code> 
+command is affected if a modifier is attached to the command. The output from a 
+<code>pr</code> command is preceded by the offset in the text of the set member 
+being printed. If the set is a region set, the offset is the start of each 
+region in the set. In quiet mode, the output contains the numeric offset in a 
+tagged format. The settings of <var>Raw</var>, <var>Converted</var>, 
+<var>Label</var> and <var>Persistent</var> affect the information displayed by 
+the <code>pr</code> command. Each of the settings is discussed below. </p>
+<p><code>{QuietOn}</code></p>
+<p>With <var>Persistent</var> turned off, the values of the offsets that are 
+output are the logical offsets into the file. The logical and persistent offsets 
+are different and non- interchangeable. Persistent offsets are designed for use 
+with the update system. (See the documentation for the XPAT update system.) </p>
+<p>If the <code>pr</code> command is not of the form <code>pr.region</code> , the 
+offset of each set member is contained within <var>&lt;Start&gt;</var> tags and 
+the entire output is contained within <var>&lt;PSet&gt;</var> (for Point Set) 
+tags. For example, if the set is of size 2, the output might look as follows 
+(without the line breaks). </p><pre>&lt;PSet&gt;&lt;Start&gt;1234&lt;/Start&gt;
+&lt;Start&gt;5554&lt;/Start&gt;&lt;/PSet&gt;</pre>
+<p>If the modifier to the <code>pr</code> command is <code>.region</code> , in 
+standard mode the text displayed is from the match point to the end of a 
+specified region. In quiet mode, the tagged output contains both the offset of 
+the match point and the offset of the end of the specified region. The offsets 
+of the ends of the region are contained within <var>&lt;End&gt;</var> tags and 
+the entire output is contained within <var>&lt;RSet&gt;</var> (for Region Set) 
+tags. For example, for the above set of size 2, output from a 
+<code>pr.region</code> might look like </p><pre>
+&lt;RSet&gt;&lt;Start&gt;1234&lt;/Start&gt;&lt;End&gt;1444&lt;/End&gt;
+&lt;Start&gt;5554&lt;/Start&gt;&lt;End&gt;6000&lt;/End&gt;&lt;/RSet&gt;</pre>
+<p><code>{Quiet On</code> Label<code>}</code></p>
+<p>When <var>Label</var> is turned on, the form in which the offset is printed 
+changes. The numeric value of the offset into the text within the 
+<var>&lt;Start&gt;</var> or <var>&lt;End&gt;</var> tags is preceded by an 
+identifying label and a colon. This label string is the value of the 
+<code>Label</code> setting. If <code>Label</code> has not been set, the label 
+used in the output is the name of the data dictionary file up to the first 
+non-alphanumeric character. For example, if the data dictionary is <code>news.dd</code> and <code>Label</code> has not been set, the output 
+from a <code>pr</code> command would look like: </p><pre>&lt;PSet&gt;&lt;Start&gt;news:1234&lt;/Start&gt;
+&lt;Start&gt;news:5554&lt;/Start&gt;&lt;/PSet&gt;</pre>
+<p><code>{QuietOn</code> Raw <code>}</code></p>
+<p>When <var>Raw</var> is turned on, in addition to the tagged offsets, the 
+output contains text showing the match point and surrounding context. For each 
+member of the set, this additional information is output within 
+<var>&lt;Raw&gt;</var> tags following the tagged offset information for each 
+member of the set.</p>
+<p>The length of the string being output is given within <var>&lt;Size&gt;</var> 
+tags and is followed by the text. As in standard mode, if <code>pr</code> has no 
+modifier, the length of string output is determined by the 
+<code>PrintLength</code> setting and the context shown to the left of the match 
+point is determined by the <code>LeftContext</code> setting. If the modifier is 
+a numeric value, this value determines the length of the string and the left 
+context is still determined by the <code>LeftContext</code> setting. If the 
+modifier to the <code>pr</code> command is <code>.region</code> , the text starts 
+at the match point and continues to the end of the specified region. </p>
+<p>For example, assuming a <code>PrintLength</code> setting of 25, and a 
+<code>LeftContext</code> setting of 5, the output from a <code>pr</code> command 
+applied to a set of 2 matches to the string <code>sample</code> 
+would be (without the line breaks shown here): </p><pre>&lt;PSet&gt;&lt;Start&gt;1234&lt;/Start&gt;&lt;Raw&gt;&lt;Size&gt;25&lt;/Size&gt;
+This sample is to be firs&lt;/Raw&gt;
+&lt;Start&gt;3456&lt;/Start&gt;
+&lt;Raw&gt;&lt;Size&gt;25&lt;/Size&gt;
+This sample is to be seco&lt;/Raw&gt;
+&lt;/PSet&gt;</pre>
+<p>If the <code>SortOrder</code> setting is <code>OccurHead</code> , in addition to the above output, the descriptive 
+header is output in a tagged format. (See the entry for <code>SortOrder</code> 
+for a description of the header). This information is contained within 
+<var>&lt;Hdr&gt;</var> tags and includes the length of the descriptive string 
+within <var>&lt;Size&gt;</var> tags followed by the string of the header. If the 
+<code>SortOrder</code> setting was <code>OccurHead</code> in the 
+above example, the output would be (without the line breaks shown here): </p><pre>&lt;PSet&gt;&lt;Start&gt;1234&lt;/Start&gt;
+&lt;Hdr&gt;&lt;Size&gt;10&lt;/Size&gt;First     &lt;/Hdr&gt;
+&lt;Raw&gt;&lt;Size&gt;25&lt;/Size&gt;
+This sample is to be firs&lt;/Raw&gt;
+&lt;Start&gt;3456&lt;/Start&gt;
+&lt;Hdr&gt;&lt;Size&gt;10&lt;/Size&gt;Second    &lt;/Hdr&gt;
+&lt;Raw&gt;&lt;Size&gt;25&lt;/Size&gt;
+This sample is to be seco&lt;/Raw&gt;
+&lt;/PSet&gt;</pre>
+<p><code>{QuietOn</code> Converted<code>}</code></p>
+<p>When <var>Converted</var> is turned on, in addition to the tagged offsets, 
+text following the match point is output for each member of the set. This text 
+is displayed with the appropriate character mappings for the XPAT index and any 
+stopwords removed. For example, if upper case is mapped to lower case when 
+creating the index, the text is displayed in lower case. If the index has the 
+word <code>to</code> as a stopword, <code>to 
+</code> would not appear in the converted text. </p>
+<p>For each member of the set, this additional information is output within 
+<var>&lt;Cvt&gt;</var> tags. The length of the output text string is enclosed 
+within <var>&lt;Size&gt;</var> tags and is followed by the text itself. For each 
+set member, the text string shown starts at the match point. This is in contrast 
+to the <var>Raw</var> text output which shows the match point with some left 
+context. If the <code>pr</code> has no modifier, the length of the string is 
+determined by the <code>PrintLength</code> setting. If the modifier is numeric, 
+this determines the string length. If the modifier is <code>.region</code> , the 
+length of the string is the value of the difference between the offsets of the 
+match point and the end of the region. As the displayed text is converted text, 
+it is possible that some text conversions cause output, such as multiple blanks 
+resulting from character mappings or stopwords, to be suppressed. This may 
+result in text that occurs past the end of the region to be displayed. </p>
+<p>For example, using the above example of a set of size 2 and further assuming 
+that <code>to</code> and <code>be</code> are 
+stopwords the output might be: </p><pre>&lt;PSet&gt;&lt;Start&gt;1234&lt;/Start&gt;
+&lt;Cvt&gt;&lt;Size&gt;25&lt;/Size&gt;
+sample is first used for &lt;/Cvt&gt;
+&lt;Start&gt;3456&lt;/Start&gt;
+&lt;Cvt&gt;&lt;Size&gt;25&lt;/Size&gt;
+sample is second used for&lt;/Cvt&gt;
+&lt;/PSet&gt;</pre>
+<p>If the <code>SortOrder</code> setting is <code>OccurHead</code> , in addition to the above output, the descriptive 
+header is given in a tagged format. (See the entry for <code>SortOrder</code> 
+for a description of the header). The information giving the descriptive string 
+precedes the <var>&lt;Cvt&gt;</var> tag and does not have the character mappings 
+applied to it. The previous example would change to: </p><pre>&lt;PSet&gt;&lt;Start&gt;1234&lt;/Start&gt;
+&lt;Hdr&gt;&lt;Size&gt;10&lt;/Size&gt;First                   
+  ..&lt;Cvt&gt;&lt;Size&gt;25&lt;/Size&gt;
+this sample is first used&lt;/Cvt&gt;
+&lt;Start&gt;3456&lt;/Start&gt;
+&lt;Hdr&gt;&lt;Size&gt;10&lt;/Size&gt;Second                  
+  ..&lt;Cvt&gt;&lt;Size&gt;25&lt;/Size&gt;
+this sample is second use&lt;/Cvt&gt;
+&lt;/PSet&gt;</pre>
+<p><code>{QuietOn</code> Persistent<code>}</code></p>
+<p>When <var>Persistent</var> is turned on, the offsets that are output are the 
+persistent (persistent) positions within the text database. As noted earlier, in 
+a database that has not been initialized for update, the persistent and logical 
+offsets are identical. </p>
+<p><code>{QuietOn</code> Raw Converted Label<code>}</code></p>
+<p>Any combination of the <code>QuietOn</code> arguments may be used. Thus, 
+after the command <code>{QuietOn</code> Raw Converted Label<code>}</code> , the 
+following would result:</p><pre>&lt;PSet&gt;&lt;Start&gt;news:1234&lt;/Start&gt;
+&lt;Raw&gt;&lt;Size&gt;25&lt;/Size&gt;
+This sample is to be firs&lt;/Raw&gt;
+&lt;Cvt&gt;&lt;Size&gt;25&lt;/Size&gt;
+sample is used first for &lt;/Cvt&gt;
+&lt;Start&gt;news:3456&lt;/Start&gt;
+&lt;Raw&gt;&lt;Size&gt;25&lt;/Size&gt;
+This sample size is to be seco&lt;/Raw&gt;
+&lt;Cvt&gt;&lt;Size&gt;25&lt;/Size&gt;
+sample is second used for&lt;/Cvt&gt;
+&lt;/PSet&gt;</pre>
+<p>The <code>save</code> command results in identical behaviour to that of the 
+<code>pr</code> command except that the information is written to a designated 
+file rather than displayed on the standard output. </p>
+<p>Syntax errors that occur during the XPAT session are reported in a tagged 
+format. A set size of -1 is indicated and the error information is contained 
+within <var>&lt;Error&gt;</var> tags. For example, if a command uses the default 
+region before it is set, the error shown is (without the line breaks shown 
+here): </p><pre>&lt;SSize&gt;-1&lt;/SSize&gt;
+&lt;Error&gt;No information for default region
+&lt;/Error&gt;</pre>
+<p>Although the sets created by the <code>signif</code> command are the same in 
+quiet and standard mode, <code>signif</code> does not display the text string 
+associated with the set in quiet mode. If <code>signif</code> is modified with a 
+negative integer <var>n</var> requesting <var>n</var> sets, only information 
+about the last set created is shown. </p>
+<p><code>History</code> and <code>{Settings}</code> display no output in quiet 
+mode. </p>
+
+<h3>See also:</h3> 
+<p><code>history</code> , XPAT update system documentation, <code>pr</code> , 
+<code>save</code> , <code>Settings</code> , <code>signif</code></p>
+<h3>Settings:</h3> 
+<p><code>Label</code> , <code>LeftContext</code> , <code>PrintLength</code> , 
+<code>SortOrder</code></p>
+
+<h2><a name="{QuietOff}"><code>{QuietOff}</code></a></h2>
+<code>{QuietOff}</code> 
+
+
+<h3>See:</h3>
+<p><code>quiet mode</code></p>
+
+<h2><a name="{QuietOn}"><code>{QuietOn}</code></a></h2>
+<code>{QuietOn</code> <var>Raw Converted Label Persistent 
+</var><code>}</code> 
+
+
+<h3>See:</h3>
+<p><code>quiet mode</code></p>
+
+
+<h2><a name="quit"><code>quit</code></a></h2>
+<code>quit</code> 
+<p>terminates a XPAT session.</p>
+<p>The use of the <code>quit</code> command causes the session to end and the 
+XPAT process to exit. A message may be generated telling how much computer time 
+has been used during the XPAT session. </p>
+
+<h3>See also:</h3> 
+<p><code>done</code> , <code>stop</code></p>
+
+
+
+<h2><a name="range"><code>range</code></a></h2>
+<var>string1</var> <code>..</code> <var>string2</var> 
+<p>finds strings that begin with strings occurring within an alphabetic range. 
+</p>
+<p>The <code>range</code> operator creates a point set consisting of those 
+indexed points in the text that fall alphabetically between <var>string1</var> 
+and <var>string2</var> inclusive. <var>String1</var> and <var>string2</var> are 
+patterns that may or may not actually occur in the text being searched. The 
+resulting set contains the matches to both <var>string1</var> and 
+<var>string2</var>. </p>
+<p>Both the operands to the <code>range</code> command must be strings. Using a 
+set number with the <code>range</code> command is illegal and results in a 
+syntax error. </p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  "n" <code>..</code> "z" </pre>
+<p>This query finds all indexed points in the text that occur in the 
+  alphabetic ordering between <code>n</code> and <code>z</code> . </p>
+<pre>&gt;&gt;  "a" <code>..</code> "z" </pre>
+<p>Again, assuming the text has been indexed on words, this query creates a 
+  set of all the words and phrases in alphabetical order (that is, it produces a 
+  concordance of the text). </p>
+<pre>&gt;&gt;  "1" <code>..</code> "200" </pre>
+<p>This query find all the strings that fall alphabetically between <code>1</code> and <code>200</code> . This gives all the 
+  indexed strings that begin with <code>1</code> or <code>200</code> . For example, the strings <code>1929</code> , <code>20034</code> as well as strings 
+  such as <code>2003/1</code> and <code>2000-15000</code> are in this range. The resulting set does not 
+  contain the strings <code>3</code> or <code>4</code> . </p>
+<pre>&gt;&gt;  region Date including ("1920" <code>..</code> "1925")
+</pre>
+<p>This query finds Date regions that contain dates from 1920 to 1925 
+  inclusive. The range <code>1920</code> <code>..</code> <code>1925</code> also contains strings such as "1925000" as they also 
+  fall within the range. </p>
+<pre>&gt;&gt;  "&lt;Date&gt;1920" <code>..</code> "&lt;Date&gt;1925"
+</pre>
+<p>If dates are marked with the tag <code>&lt;Date&gt;</code> 
+  and begin with a 4-digit value for the year, this query reliably finds dates 
+  between 1920 and 1925 inclusive, and only those dates. </p>
+
+<h3>See also:</h3> 
+<p>data dictionary documentation, <code>index points</code></p>
+
+
+
+<h2><a name="rankedby"><code>rankedby</code></a></h2>
+<var>set1</var> <code>rankedby</code> <var>set2</var> 
+<p>ranks a region set by the number of contained members of another set.</p>
+<p><code>Rankedby</code> creates a set containing those members of 
+<var>set1</var> that contain the greatest number of occurrences of members of 
+<var>set2</var>. <var>Set1</var> must be a region set. <var>Set2</var> may be 
+either a point set or a region set. The new set is a region set.</p>
+<p><var>Set1</var> may be a predefined region set, a region set that has been 
+created within the current XPAT session using the <code>region</code> command, a 
+region set resulting from the use of the <code>import</code> command, or the 
+result of a previous query during the current session.</p>
+<p>The size of the new set is by default the value of the 
+<code>SampleSize</code> . Another size may be requested with a numeric modifier 
+in the form of a period followed by the requested size.</p>
+<p>The set that is created, when accessed by <code>pr</code> , <code>save</code> 
+and <code>subset</code> in <code>SortOrder</code> <code>AsIs</code> , is naturally ordered by rank. That is to say, the 
+first member will be that element of <var>set1</var> that contains the most 
+occurrences of members of <var>set2</var>.</p>
+<p>In detail, the <code>rankedby</code> command operates as follows. It first 
+splits all the members of <var>set1</var> into groups. Each member of a group 
+includes the same number of members of <var>set2</var> as the other members of 
+the group. In addition, within a group, the members are sorted into occurence 
+order. After it has grouped the members of <var>set1</var>, the 
+<code>rankedby</code> command sorts the groups into decreasing order of number 
+of included members of <var>set2</var>.</p>
+<p>For example, say that <var>set1</var> has 6 members, as follows: 3 members 
+that each contain 2 members of <var>set2</var>, 2 members that each contain 4 
+members of <var>set2</var>, and 1 member that contains no members of 
+<var>set2</var>. After <code>rankedby</code> has grouped and sorted 
+<var>set1</var>, the groups are be as follows. The first group consists of the 2 
+members of <var>set1</var> that contain 4 members of <var>set2</var>. The second 
+group consists of the 3 members of <var>set1</var> that contain 2 members of 
+<var>set2</var>, and the third group consists of the 1 member of <var>set1</var> 
+that contains no members of <var>set2</var>. Within each group, the members are 
+in occurence order. If the user has requested the top 4 sets, the result set 
+would contain both members of the first group and the first two members of the 
+second group.</p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  region Story rankedby ("Free trade" near "Canada")</pre>
+<p>This query finds the regions described by <code>region 
+  Story</code> that contain the greatest number of matches to <code>Free trade</code> when it occurs close to the <code>Canada</code> . The number of members in the new set is the value 
+  of the <code>SampleSize</code> setting.</p>
+  
+<pre>&gt;&gt;  region Quote rankedby.5 region Author</pre>
+<p>This query creates a set whose members are the 5 members of <code>region Quote</code> that contain the greatest number of members 
+  of <code>region Author</code> . </p>
+
+<h3>See also:</h3> 
+<p><code>including</code> , <code>region</code></p>
+
+<h3>Settings:</h3> 
+<p><code>SampleSize</code></p>
+
+
+
+<h2><a name="region"><code>region</code></a></h2>
+<code>region</code> 
+<p><code>region</code> <var>string</var> </p>
+<p><code>region</code> <var>set1</var> .. <var>set2</var> </p>
+<p>produce region sets in a text database. The first two forms of the 
+<code>region</code> command refer to region sets that have been defined 
+externally to a XPAT session and for which information is available in the data 
+dictionary. These region sets may have been defined using <em>patregion</em> or 
+any other program that generates information (in the form that XPAT understands) 
+about regions in the text. The third form of the command defines a region set 
+during a XPAT session. The results of any of these commands can be used as 
+operands to any of the XPAT commands that operate on region sets. </p>
+<p><code>region</code></p>
+<p><code>Region</code> , used with no operand, refers to the particular 
+predefined region set that has been designated as the default region. The 
+default region is defined by the <code>DefaultRegion</code> setting and can be 
+reset for the remainder of a XPAT session by changing the setting. If no default 
+region has been defined, using <code>region</code> in this form causes an error. 
+The following message is generated:</p>
+<pre>No information for default region.</pre>
+
+<p><code>region</code> string </p>
+<p>The second form of the <code>region</code> command indicates one of the named 
+predefined region sets. The <var>string</var> is the name that has been given to 
+the region set in the data dictionary. For example, the region sets might be the 
+chapters of a book, the entries in a dictionary or the headlines in a newspaper 
+database. The information about certain regions in the text database is 
+generated by a program external to XPAT and is made available during a XPAT 
+session via the data dictionary. One program that generates the information is 
+<em>patregion</em>. </p>
+<p>Note that the string giving the name of the region set can contain blanks or 
+special characters, if it is enclosed within <code>double quote</code> 
+marks.</p>
+<p><code>region</code> set1 .. set2 </p>
+<p>The third form of the <code>region</code> command defines a new region set. 
+The region set that is created by this command is only available for the 
+duration of the XPAT session. Information about this region set can be written to 
+a file using the <code>export</code> command and read into a future XPAT session 
+using the <code>import</code> command. </p>
+<p><var>Set1</var> and <var>set2</var> are used to define regions in the new 
+set. <var>Set1</var> and <var>set2</var> can be either point sets or region 
+sets. If either <var>set1</var> or <var>set2</var> is a region set, the 
+<code>region</code> command uses only the first of the pair of pointers 
+describing its members in defining the new region. </p>
+<p>Each region in the new set is formed as follows. A member of <var>set1</var> 
+is the beginning of a region if it is followed by a member from <var>set2</var> 
+with no other member of <var>set1</var> occurring between the two members. The 
+end point of the new region is defined by the member in <var>set2</var> that 
+most closely follows the <var>set1</var> member. The region contains the text 
+from the beginning of the member of <var>set1</var> up to but not including the 
+member of <var>set2</var>. This produces the smallest non-overlapping region set 
+that can be formed by <var>set1</var> and <var>set2</var>. The size of the 
+region set created is equal to or smaller than the size of <var>set1</var>. If 
+the members of <code>set2</code> are matches to a pattern, the new region set 
+does not contain the occurrences of that pattern. For example, if 
+<var>set2</var> is the set of matches to the string <code>End of 
+Message</code> , the new region set contains no occurrences of the string <code>End of Message</code> . </p>
+<p>If <var>set1</var> and <var>set2</var> are identical, two extra regions may 
+be included in the newly created set. These are: a region from the beginning of 
+the text to the member of <var>set1</var> that occurs earliest in the text; and 
+a region from the last element of <var>set1</var> in the text to the end of the 
+text. If either of these regions is a substring of length zero, it is not 
+included. If the <code>shift</code> command is applied to <var>set1</var> or 
+<var>set2</var>, the extra regions are not included in the new set. </p>
+<p>Some programs, such as <em>patregion</em>, that produce predefined region 
+sets, define the end point of the region in a somewhat different manner. These 
+programs deal with patterns of text (rather than points in the text) and the end 
+point of the region that is defined is usually the last character in the pattern 
+that is used to define the regions. If desired, the <code>region</code> command 
+within a XPAT session can be used in conjunction with the <code>shift</code> 
+command to create a set of regions in which the ends of the regions are at the 
+end of a pattern. See the examples below. </p>
+<p>XPAT does not support region sets whose members nest or overlap. As described 
+above, using <code>region</code> with operands that are patterns defining nested 
+or overlapping regions, creates a region set which is the smallest 
+non-overlapping set of regions. <em>Patregion</em> used on the same text creates 
+a possibly different region set (also non-overlapping) consisting of regions 
+from an opening pattern to the following end pattern. </p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  <code>region</code> including ("Smith" near "Jones")
+</pre>
+<p>This query creates a region set, consisting of the members of the default 
+  region which contain a match to the string <code>Smith</code> 
+  when it occurs within a prescribed distance of the string <code>Jones</code> . </p>
+<pre>&gt;&gt; "Campbell" within <code>region "Speaker Name"</code> </pre>
+<p>In this example, we assume that one of the predefined regions has been 
+  named <code>Speaker Name</code> . This query creates a point set 
+  that contains matches to the string <code>Campbell</code> 
+  occurring within members of <code>region Speaker Name</code> . 
+  </p>
+<pre>&gt;&gt;  firstb = <code>region</code> "&lt;A&gt;".."&lt;/B&gt;" 
+&gt;&gt;  (<code>region B</code> within *firstb) including "requested string" </pre>
+<p>The text, in this example, contains regions that begin with <code>&lt;A&gt;</code> and end with <code>&lt;/A&gt;</code> . Each of these <code>A</code> 
+  regions contains smaller regions that begin with <code>&lt;B&gt;</code> and end with <code>&lt;/B&gt;</code> . Assume, in certain instances, that it is 
+  necessary to be able to find the first <code>B</code> region 
+  within each <code>A</code> region. The use of region in the 
+  first query creates a region set named <code>firstb</code> that 
+  can be used to find these regions. The members of <code>firstb</code> are the pieces of text that begin with the string 
+  <code>&lt;A&gt;</code> and extend to the closest string <code>&lt;/B&gt;</code> . The second query finds the members of <code>region B</code> that are within <code>firstb</code> , and then finds the members of the latter that 
+  include <code>requested string</code> . </p>
+<pre>&gt;&gt;  quote = <code>region</code> "&lt;Q&gt;" .. (shift.4 "&lt;/Q&gt;") </pre>
+<p>If some components in the text are tagged with <code>&lt;Q&gt;</code> and <code>&lt;/Q&gt;</code> this 
+  command creates a region set describing these components. Each region in the 
+  set extends from the opening tag <code>&lt;Q&gt;</code> to the 
+  end of the closing tag <code>&lt;/Q&gt;</code> . By using the 
+  shift operator, applied to the <code>&lt;/Q&gt;</code> , the 
+  members of the point set used to find the ends of the new regions all point to 
+  the end of the string <code>&lt;/Q&gt;</code> rather than to the 
+  beginning of the tag. </p>
+<pre>&gt;&gt;  mess1 = <code>region</code> "From:" .. "From:"
+
+&gt;&gt;  mess2 = <code>region</code> "From:" .. (shift.0 "From:") 
+&gt;&gt;  from = <code>region</code> *mess1 .. "Received:"
+
+&gt;&gt;  "Bill" within *from </pre>
+<p>This set of queries is being applied to a database of mail messages. Each 
+  message has the string <code>From:</code> at the beginning. The 
+  string <code>Received:</code> appears at the beginning of the 
+  second line of the message indicating the time the message was received. 
+  Assume that the first query, identifying the matches to the string <code>From:</code> , returns a set of size 10. Further assume that 
+  there is text in the database preceding the first <code>From:</code> . The next query creates a region set of size 11 as 
+  two additional regions are included in the resulting set: one containing the 
+  text from the beginning of the text to the first occurrence of <code>From:</code> and the other containing the text from the last 
+  occurrence of <code>From:</code> to the end of the text. The 
+  third query creates a region set of size 9 as these two regions are not 
+  included in the new set. The next query creates a region set describing the 
+  sender of the message. The final query finds the matches to <code>Bill</code> in the regions describing the sender of the message. 
+  Notice the use of an asterisk (<code>*</code> ) before the name of the new 
+  region set when it is used as an operand to a XPAT command. </p>
+
+<h3>See also:</h3> 
+<p>data dictionary documentation, <code>export</code> , <code>import</code> , 
+<code>including</code> , <code>index point</code> , <code>naming sets</code> , 
+<code>pr</code> , <code>save</code> , <code>set name</code> , <code>shift</code> , 
+<code>within</code></p>
+<h3>Settings:</h3> 
+<p><code>DefaultRegion</code></p>
+
+
+
+<h2><a name="sample"><code>sample</code></a></h2>
+<code>sample</code> <var>set1</var> 
+<p>finds representative members of a larger set. </p>
+<p><code>Sample</code> creates a set containing a specified number of members of 
+<var>set1</var>. <var>Set1</var> may be either a region set or a point set. The 
+new set is of the same type as <var>set1</var>. </p>
+<p>The size of the set created is determined by the value of the 
+<code>SampleSize</code> setting which has a default value of 10. If the size of 
+<var>set1</var> is less than <code>SampleSize</code> , then the new set created 
+is the same size as <var>set1</var>. The size can be changed for all subsequent 
+uses of <code>sample</code> during the current session by changing the 
+<code>SampleSize</code> setting. For an individual use of the 
+<code>sample</code> command, the setting can be changed by using a modifier 
+attached to the command. The form of the modifier is a period followed by a 
+number giving the desired size of the sample set. </p>
+<p>The members of the sample set are chosen as follows. If the size of 
+<var>set1</var> is <var>x</var> and the sample size requested is <var>y</var>, 
+each <var>x/y</var>th member of <var>set1</var> is in the sample set. For 
+example, if a sample of size 20 is requested from a set of size 2000, the 100th, 
+200th members etc. are chosen. The ordering of the set, and hence the members of 
+the sample set, is determined when the set is created. The 
+<code>SortOrder</code> setting does not determine which members are included in 
+the set created by the <code>sample</code> command as it does for the 
+<code>subset</code> , <code>next</code> , <code>~nextemp</code> , and 
+<code>first</code> commands. However, this setting does affect how the 
+<code>sample</code> set is ordered when used with a <code>pr</code> command (or 
+<code>save</code> command). </p>
+<p>The <code>sample</code> command can be used by itself or with the 
+<code>pr</code> , <code>save</code> or <code>export</code> commands. The 
+<code>sample</code> may only be used in conjunction with these commands. 
+</p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  <code>sample</code> "shaks" </pre>
+<p>Assuming a <code>SampleSize</code> setting of 10, this query creates a set 
+  of 10 examples from the set of matches to the string <code>shaks</code> . </p>
+<pre>&gt;&gt;  {SampleSize 30} 
+&gt;&gt;  <code>sample</code> "shaks" </pre>
+<p>The first command changes the <code>SampleSize</code> setting to 30 and the 
+  second creates a set of 30 examples from the set of matches to the string 
+  <code>shaks</code> . </p>
+<pre>&gt;&gt;  region Quote including "Doyle" 
+&gt;&gt;  <code>sample</code> .20 % </pre>
+<p>The first query creates a region set containing Quote regions that include 
+  the string <code>Doyle</code> . The second query creates a sample 
+  set of 20 members from the results of the first query. </p>
+<pre>&gt;&gt;  region Quote including (<code>sample</code> "Doyle")
+</pre>
+<p>This query is illegal and results in a syntax error. </p>
+
+<h3>See also:</h3> 
+<p><code>first</code> , <code>next</code> , <code>~nextemp</code> , 
+<code>subset</code></p>
+<h3>Settings:</h3> 
+<p><code>SampleSize</code> , <code>SortOrder</code></p>
+
+
+
+<h2><a name="{SampleSize}"><code>{SampleSize}</code></a></h2>
+<code>{SampleSize</code> <var>number</var><code>}</code> 
+<p>specifies the size of the set produced by the <code>sample</code> , 
+<code>subset</code> , and <code>rankedby</code> commands. </p>
+<p>By default, <code>sample</code> and <code>subset</code> create a set of 10 
+members of a given set. This setting may be overridden and the size of the 
+result determined by a modifier for an individual use of these commands. The 
+<code>SampleSize</code> setting can be changed at any time during a XPAT session 
+and remains in effect until changed again or until the end of the session. The 
+current value of the <code>SampleSize</code> setting is displayed by the command 
+<code>{Settings}</code> . </p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  <code>{SampleSize 200}</code> 
+&gt;&gt;  pr sample 5 </pre>
+<p>This changes the <code>SampleSize</code> to 200 and any subsequent 
+  <code>sample</code> or <code>subset</code> command uses this value. In the 
+  second query XPAT prints information about 200 members of set number 5 created 
+  earlier in the session. </p>
+
+<h3>See also:</h3> 
+<p><code>rankedby</code> , <code>sample</code> , <code>Settings</code> , 
+<code>subset</code></p>
+
+
+
+<h2><a name="save"><code>save</code></a></h2>
+<code>save</code> <var>set1</var> 
+<p>writes the contents of a set to a file. </p>
+<p>The <code>save</code> command is identical to the <code>pr</code> command 
+except that the output is written to a file. The name of the file where the 
+information is written is determined by the value of the setting 
+<code>SaveFile</code> . The default value of the setting is <code>xpat.res</code> . The file used by the <code>save</code> command can 
+be changed at any time during the XPAT session by changing the setting. The 
+information output by the <code>save</code> command is concatenated onto the end 
+of the save file if one of the same name already exists. Otherwise, a new file 
+is created and the information is written to the new file. Assuming the default 
+setting of <code>SaveFile</code> , the following message is printed on execution 
+of the <code>save</code> command:</p>
+<pre>Saving in xpat.res.</pre>
+
+<p>For each member in the given set, the output is in the form of an integer 
+giving the offset of the set member in the text file followed by a comma, a 
+blank, two periods and the characters surrounding the set member. The order in 
+which the set is output is determined by the current <code>SortOrder</code> 
+setting. </p>
+<p>With no modifier, <code>Save</code> outputs a line of text for each element 
+in <var>set1</var>. The <code>PrintLength</code> and <code>LeftContext</code> 
+determine the content of the line saved. With the default settings, the saved 
+text is 64 characters in length of which 14 precede the match point. The number 
+of characters to the left of the match point can be altered by changing the 
+<code>LeftContext</code> setting. The total number of characters printed can be 
+altered by changing the <code>PrintLength</code> setting. </p>
+<p>The total number of characters to be saved can be set for a single instance 
+of the command, by using a numeric modifier attached to the <code>save</code> 
+command. The modifier is in the form of a period followed by a number giving the 
+total number of characters to be saved. The left context that is saved is still 
+determined by the value of the <code>LeftContext</code> setting. </p>
+<p>The second form the modifier can have is a period followed by the string 
+<code>region</code> . When the command <code>save.region</code> is used, the 
+output text starts at the match point and continues to the end of the default 
+region in which the match point occurs. If the match point is not within a 
+default region, no output is saved for the match point. </p>
+<p>The second form of the modifier can be refined to request that the text 
+output be in a region other than the default region. An additional modifier, 
+specifying a defined set of regions, can be attached to the already modified 
+<code>save</code> command (i.e. to the <code>save.region</code> ). This 
+additional modifier can be in one of three forms: a string giving the name of a 
+predefined region, the number of a region set created in the XPAT session, or a 
+string preceded by an asterisk (<code>*</code> ) referring to a named region set 
+defined in the XPAT session. As with the form <code>save.region</code> , described 
+above, this use results in the output text starting at the match point with no 
+left context and continuing to the end of the region. When the match point is 
+not contained in the designated set, no output is saved. </p>
+<p>The similarly named commands <code>save.commands</code> and 
+<code>save.history</code> result in very different behaviour and are described 
+in separate entries.</p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  "Helen Maday" 
+&gt;&gt;  <code>save</code> </pre>
+<p>As a result of this command, XPAT writes a line of context for each member 
+  in the most recently created set. The information is written to the file that 
+  is named by the setting <code>SaveFile</code> . If the setting has not been 
+  changed during the session, the file used is <code>xpat.res</code> . Note that the information is appended to the 
+  save file if one of the same name already exists. </p>
+<pre>&gt;&gt;  <code>save</code> "From: Tony Lopez " </pre>
+<p>A line of context for each member of the set that matches the string <code>From:</code> is written to the save file. </p>
+<pre>&gt;&gt;  {PrintLength 120} 
+&gt;&gt;  <code>save</code> region including "planet" </pre>
+<p>A line of context is written for each member in the set of regions created 
+  by the <code>including</code> query. The line that is written starts at the 
+  beginning of each region in of the new set. Since the <code>PrintLength</code> 
+  has been set to 120, each line contains 120 characters and has 14 characters 
+  to the left of the beginning of the displayed region. </p>
+<pre>&gt;&gt;  <code>save.200</code> shift.-100 ("procedure" near "policy")
+</pre>
+<p>In this case, a line of 200 characters is written to the save file for each 
+  member in the set created by the query <code>shift.-100 
+  ("procedure" near "policy")</code> . The text that is written starts 114 
+  characters to the left of the string <code>procedure</code> . 
+</p>
+<pre>&gt;&gt;  region including (region EQ including "&lt;A&gt;Doyle&lt;/A&gt;") 
+&gt;&gt;  <code>save.region</code> </pre>
+<p>The first query finds all the earliest quotes (defined by the <code>region EQ</code> ) that have <code>Doyle</code> as 
+  the author. The second command saves information about each of the default 
+  regions that includes one of these quotes. The information that is written for 
+  each of these regions contains the offset in the text file of the region, a 
+  comma, a blank followed by two periods and the text of the default region. As 
+  no set is given as an operand to the <code>save</code> command, it is 
+  understood that the command applies to the previous set. </p>
+<pre>&gt;&gt;  region Quote including ("stadium" near "Toronto")
+
+&gt;&gt;  <code>save.region.Quote</code> % </pre>
+<p>The first query finds all quotes that contain the strings <code>stadium</code> within 80 characters of the string <code>Toronto</code> . The second command saves information in the save 
+  file (<code>xpat.res</code> unless the <code>SaveFile</code> 
+  setting has been reset) about each of these regions. As in the example above, 
+  the output for each set member is in the form of an integer giving the text 
+  offset, a comma, a blank followed by two periods and the text beginning at the 
+  start of <code>region Quote</code> and continuing to the end of 
+  the region. </p>
+<pre>&gt;&gt;  <code>save.region.5</code> "night" fby "day" </pre>
+<p>This command saves information about the set created by the query <code>"night" fby "day"</code> . The information written to the save 
+  file (after the offset, comma, blank and two periods) starts at the text <code>night</code> and continues to the end of the region defined by 
+  set number 5 that contains the match.</p>
+<pre>&gt;&gt;  minutes = region "&lt;Min&gt;" .. "&lt;/Min&gt;"
+
+&gt;&gt;  *minutes including "examination schedule" 
+&gt;&gt;  <code>save.region.*minutes</code> </pre>
+<p>The first query in this example defines a set of regions that are named 
+  <code>minutes</code> . The second query finds the regions in this 
+  set that contain the string <code>examination schedule</code> . 
+  The third command saves information about this set in the save file. For each 
+  member in this set, the information saved contains the offset, comma, blank 
+  and two periods followed by the text of the region in the set named <code>minutes</code> . </p>
+
+<h3>See also:</h3> 
+<p><code>exec</code> , <code>export</code> , <code>import</code> , <code>pr</code> , 
+<code>save.commands</code> , <code>save.history</code></p>
+<h3>Settings:</h3> 
+<p><code>DefaultRegion</code> , <code>LeftContext</code> , 
+<code>PrintLength</code> , <code>Savefile</code> , <code>SortOrder</code> 
+</p>
+
+
+
+<h2><a name="save.commands"><code>save.commands</code></a></h2>
+<code>save.commands</code> 
+<p>writes information to a file about the queries in the XPAT session. These are 
+saved in a form that allows them to be used in another XPAT session. </p>
+<p><code>Save.commands</code> saves, in a file, all the queries that have been 
+executed and have produced sets during the current session. These are the 
+queries that appear in the history list. Only the command is saved in the file, 
+not the set number or number of matches. The setting <code>CommandFile</code> , 
+that determines the file where the information is written, has a default value 
+of <code>xpat.cmd</code> . The output file can be changed at any 
+time during the session by changing the <code>CommandFile</code> setting. If a 
+file of this name already exists, the information is concatenated onto the end 
+of the file. Otherwise a new file is created. </p>
+<p>The saved information can be read into a XPAT session and executed using the 
+<code>exec</code> command. </p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  "love" near "hate" 
+&gt;&gt;  pr sample 
+&gt;&gt;  region Q including % 
+&gt;&gt;  save.region.Q % 
+&gt;&gt;  {CommandFile "/usr/my_commandfile"} 
+&gt;&gt;  <code>save.commands</code> </pre>
+<p>The second last command sets a new name for the file to be used by 
+  <code>save.commands</code> ; <code>/usr/my_commandfile</code> . 
+  The final command saves the information about the commands that has been 
+  generated to this point in the XPAT session. In the portion of the session 
+  shown here, only two commands generated sets and so the following is saved in 
+  the file <code>/usr/my_commandfile</code> .</p>
+<pre>"love" near "hate"
+region Q including %</pre>
+
+<h3>See also:</h3> 
+<p><code>exec</code> , <code>export</code> , <code>import</code> , 
+<code>save</code> , <code>save.history</code></p>
+<h3>Settings:</h3> 
+<p><code>CommandFile</code></p>
+
+
+
+<h2><a name="{SaveFile}"><code>{SaveFile}</code></a></h2>
+<code>{SaveFile</code> <var>string</var><code>}</code> 
+<p>changes the file name used by <code>save</code> . </p>
+<p>The <code>SaveFile</code> setting determines the file written by the 
+<code>save</code> command. It has a default value of <code>xpat.res</code> . If the string begins with a numeral, or contains 
+blanks or non-alphanumeric characters, it must be enclosed within <code>double 
+quote</code> marks. The file name must also conform to the file naming 
+convention of the host operating system. It can be changed at any time during a 
+XPAT session and remains in effect until it is changed again or until the end of 
+the session. The current value of the <code>SaveFile</code> setting is displayed 
+by the command <code>{Settings}</code> . </p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  <code>{SaveFile "output_file"}</code> </pre>
+<p>This changes the setting to the value <code>output_file</code> so that any subsequent use of the 
+  <code>save</code> command writes to this file. The name of the file is not an 
+  absolute path name and is therefore located in the current working directory. 
+  </p>
+
+<h3>See also:</h3> 
+<p><code>save</code> , <code>Settings</code></p>
+
+
+
+<h2><a name="save.history"><code>save.history</code></a></h2>
+<code>save.history</code> 
+<p>writes information to a file about the queries and results in the current XPAT 
+session. </p>
+<p><code>Save.history</code> writes a record of a XPAT session. XPAT's history 
+list records information about all queries that produce sets. For these queries, 
+<code>save.history</code> saves the set number, the number of members in the 
+set, and the query that produced the set in a file. The setting 
+<code>HistoryFile</code> , that determines the file where the information is 
+written, has a default value of <code>xpat.his</code> . A different 
+output file can be chosen at any time during a session by changing the setting. 
+If a file of this name already exists, the information is concatenated onto the 
+end of the file. Otherwise a new file is created. Note that comments are saved 
+only if they are on the same line as the command itself. </p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  "fish" near "fowl" 
+&gt;&gt;  pr 
+&gt;&gt;  region definition including % 
+&gt;&gt;  <code>save.history</code> </pre>
+<p>This command saves the information from the history list in the file <code>xpat.his</code> . After the sequence of commands shown above, the 
+  history list contains information about two sets which are saved into a file:</p>
+<pre>1:     142,  "fish" near "fowl"
+2:      17,  region definition including
+%</pre>
+
+<h3>See also:</h3> 
+<p><code>exec</code> , <code>export</code> , <code>history</code> , 
+<code>import</code> , <code>save</code> , <code>save.commands</code></p>
+<h3>Settings:</h3> 
+<p><code>HistoryFile</code></p>
+
+
+
+<h2><a name="set name"><code>set name</code></a></h2>
+<code>*</code> <var>name</var> 
+<p>refers to a named set. </p>
+<p>Query result sets may be named and subsequently referred to either by set 
+number or by name. The name must be preceded by an asterisk (<code>*</code> ) to 
+reference the set; otherwise, XPAT interprets the name as a command or search 
+string. </p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  univ = "university" near "MIT" 
+&gt;&gt;  qu = region Quote including <code>*</code> univ
+
+&gt;&gt;  <code>*</code> qu including "Harvard" </pre>
+<p>The first query creates a set of matches to <code>university</code> occurring near <code>MIT</code> . 
+  The second query uses the set <code>*univ</code> and creates a 
+  new set <code>*qu</code> . The third query finds the Quote 
+  regions that include the set of matches from the first query as well as the 
+  string <code>Harvard</code> . </p>
+<pre>&gt;&gt;  begin = region "&lt;Title&gt;" .. "&lt;/Summary&gt;" 
+&gt;&gt; "Paris" within <code>*</code> begin </pre>
+<p>The first query defines a new region set and calls the new set <code>begin</code> . The second query creates a set containing the 
+  matches to <code>Paris</code> that fall within one of these 
+  regions. </p>
+
+<h3>See also:</h3> 
+<p><code>region</code> , <code>including</code> , <code>naming sets</code> , 
+<code>set number</code> , <code>within</code></p>
+
+
+
+<h2><a name="set number"><code>set number</code></a></h2>
+<var>number</var> 
+<p>references a previously created set. </p>
+<p>After the first query in a session, XPAT displays a line of the form: </p><pre>1: 300 matches</pre>
+<p>The number 1 here names the set of results and can be used in subsequent 
+searches. The valid set numbers are those displayed by the <code>history</code> 
+command. </p>
+<p>When an invalid set number is used XPAT generates a message. If, for example, 
+set number 33 is referenced before it has been calculated or after it has been 
+freed the message is:</p>
+<pre>Expression 33 is out of range</pre>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  region Author including 5 </pre>
+<p>In this query, the number 5 refers to the fifth result of the session. For 
+  example, set 5 might be the set of matches to all the variants of spelling for 
+  a particular author's name. </p>
+
+<h3>See also:</h3> 
+<p><code>history</code> , <code>~free</code> , <code>~qnum</code> , <code>set 
+name</code></p>
+<h3>Settings:</h3> 
+<p><code>History</code></p>
+
+
+
+<h2><a name="sets"><code>sets</code></a></h2>
+<p>In the XPAT system, queries are combinations of the XPAT commands 
+described in this document. In response to each query, XPAT creates a set which 
+is either a point set or a region set. </p>
+<p>These sets can be used as operands in subsequent queries. In contrast to the 
+conventional approach of a single, nested compound query, XPAT allows complex 
+queries to be expressed as a series of simple queries. This provides an 
+opportunity to try alternative ways of combining previous result sets to arrive 
+at a solution. XPAT provides a history list of all previous sets created in a 
+session and a convenient notation to access them. </p>
+<p>A member of a point set is a location in the text which is the start of a 
+string that continues to the end of the text. The XPAT system finds locations in 
+the text where strings, matching pattern(s) given in the query, begin. The 
+members of a point set are usually <code>index points</code> , however, in the 
+sets created by <code>shift</code> or <code>offsets</code> , (the notation 
+<code>[n]</code> ), the members refer to positions in the text that may or may 
+not be index points. </p>
+<p>The members of a region set are substrings of the text, beginning and ending 
+at specified points. Region sets that are the result of a query within a XPAT 
+session are available only for the duration of the session. However, region sets 
+can also be defined externally and be made available to the XPAT session. Each 
+member of a region set is described by two locations in the database, indicating 
+the start and end of the region and these locations may or may not be index 
+points. </p>
+<p>Region sets may be used in XPAT to restrict searches to desired parts of the 
+text. The <code>within</code> command finds the members of a set that are 
+contained in a designated region set. The <code>including</code> command finds 
+the members of the designated region set that contain one or more members of a 
+given set. </p>
+<p>The sets produced within XPAT can be refined using set arithmetic or proximity 
+commands. The difference (<code>-</code> ) and intersection (<code>^</code> ) 
+commands remove members of an existing set. The proximity (<code>fby</code> and 
+<code>near</code> ) commands reduce sets by finding the members of a given set 
+that have specified text close by. </p>
+<p>In addition to refining sets, it is possible to combine two sets to create a 
+larger one by using the union (<code>+</code> ) command. </p>
+<p>XPAT queries, applied to a text database, may create large sets; analyzing a 
+smaller, representative subset might aid in making decisions about how to 
+proceed appropriately with a search. Several commands in XPAT provide this 
+capability. <code>Sample</code> creates a representative subset while 
+<code>subset</code> , <code>next</code> , and <code>first</code> each create 
+contiguous smaller subsets of a larger set. </p>
+
+<h3>See also:</h3> 
+<p><code>difference</code> , <code>fby</code> , <code>first</code> , 
+<code>including</code> , <code>intersection</code> , <code>near</code> , 
+<code>next</code> , <code>offsets</code> , <code>range</code> , 
+<code>region</code> , <code>sample</code> , <code>shift</code> , 
+<code>subset</code> , <code>union</code> , <code>within</code></p>
+
+
+
+<h2><a name="{Settings}"><code>{Settings}</code></a></h2>
+<code>{Settings}</code> 
+<p>shows the current values of a number of XPAT parameters. </p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  <code>{Settings}</code> </pre>
+<p>The output might be:</p>
+<pre>{CharMappings " " "Aa" "Bb" "Cc" "Dd" "Ee" "Ff" "Gg" "Hh"
+"Ii" "Jj"
+ "Kk" "Ll" "Mm" "Nn" "Oo" "Pp" "Qq" "Rr" "Ss" "Tt" "Uu" "Vv"
+"Ww" "Xx"
+ "Yy" "Zz" "[ " "\\ " "] " "^ " "_ " "` " "{ " "| " "} " "~ "}
+{StopWords}
+{WordStarters  " \P" "\P-" "-\P" "\P&lt;" "\P&amp;."}
+{SortOrder AsIs}
+{PrintLength 64}
+{LeftContext 14}
+{Proximity 80}
+{SampleSize 10}
+{SaveFile xpat.res}
+{CommandFile xpat.cmd}
+{ExportFile xpat.exp}
+{HistoryFile xpat.his}
+{History 0}
+{QuietOff}</pre>
+  
+
+
+
+<h2><a name="shift"><code>shift</code></a></h2>
+<code>shift</code> <var>set1</var> 
+<p>creates a point set whose members are a specified distance from a set of 
+matches. </p>
+<p><code>Shift</code> creates a new set whose members are locations in the text 
+which result from an equal shift being applied to all members of 
+<var>set1</var>. <var>Set1</var> may be either a point set or a region set. If 
+it is a region set, the resulting set is a point set containing the first of the 
+pair of pointers describing each member of the set. The set created by the 
+<code>shift</code> command is always a point set. </p>
+<p>The <code>shift</code> command creates a new set consisting of pointers that 
+are (by default) 10 characters after the original set members. The set created 
+is in occurrence order. This default shift distance (10) and direction can be 
+changed by using a modifier attached to the <code>shift</code> command. The 
+modifier is of the form of a period followed by a positive or negative integer. 
+If the modifier is a negative integer <var>n</var>, each member of 
+<var>set1</var> is shifted to <var>n</var> characters before the original 
+location. If it is a positive integer <var>n</var>, the shift is to <var>n</var> 
+characters after that location. </p>
+<p>The points in the new set need not be index points. </p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  <code>shift</code> "dog and cat" </pre>
+<p>This creates a new point set whose members are 10 characters after each 
+  match to the string <code>dog and cat</code> . </p>
+<pre>&gt;&gt;  "&lt;Tag&gt;" 
+&gt;&gt;  pr 
+&gt;&gt;  <code>shift.5</code> % 
+&gt;&gt;  pr </pre>
+<p>The first query creates a point set of matches to the string <code>&lt;Tag&gt;</code> . The ordering of this set is alphabetical. 
+  The third line of the example creates a second point set whose members start 5 
+  characters after a string <code>&lt;Tag&gt;</code> . The members 
+  now point to the start of the contents of the tagged region. This set is in 
+  occurrence order. Thus, the order in which the members of the set are 
+  displayed by the second <code>pr</code> is not necessarily the same as that 
+  seen with the first <code>pr</code> command. </p>
+<pre>&gt;&gt;  <code>shift.5</code> region Tag 
+&gt;&gt;  pr </pre>
+<p>Assuming that <code>region Tag</code> describes a set that 
+  begins with a tag <code>&lt;Tag&gt;</code> , the first query 
+  creates a point set whose members now point to the start of the contents of 
+  Tag regions. The set created is the same as the one in the above example. </p>
+<pre>&gt;&gt;  pr <code>shift.-20</code> "the best of times" </pre>
+<p>This displays more context before the match points without having to change 
+  the <code>LeftContext</code> setting. The <code>pr</code> command displays 
+  members of a set of matches to the string <code>the best of 
+  times</code> with 34 characters showing before the matches (the default 14 
+  characters plus 20 additional resulting from the <code>shift</code> command). 
+  Because of the <code>shift</code> command, this set is displayed in occurrence 
+  order. Note, as with other commands, since the <code>pr</code> and 
+  <code>shift</code> are on the same line the set is not saved, does not appear 
+  on the history list and so is not accessible by a set number. 
+</p>
+
+<h3>See also:</h3> 
+<p><code>offsets</code> , <code>region</code></p>
+
+
+
+<h2><a name="signif"><code>signif</code></a></h2>
+<code>signif</code> <var>set1</var> 
+<p>finds frequently occurring words or phrases in the text. </p>
+<p><code>Signif</code> finds the most frequent words or phrases following the 
+text matching <var>set1</var>. <var>Set1</var> can be either a point set or a 
+region set for the first two forms of the command but has a restriction, as 
+noted below, for the third form of the command. The set (or sets) created are 
+point sets. If <var>set1</var> is not given, <code>signif</code> uses the last 
+set produced as its operand. </p>
+<p>The <code>signif</code> command looks for words or phrases, in contrast to 
+the other XPAT commands that operate on points and regions. For 
+<code>signif</code> , a word is defined as a string of characters ending either 
+in a blank or a character that has been mapped to a blank by the character 
+mappings used in building the index being used in the current XPAT session. </p>
+<p>The <code>signif</code> command examines the words or phrases that begin with 
+a string. The string used is the longest string common to the text pointed to by 
+each of the members of <var>set1</var>. If <var>set1</var> is a point set 
+resulting from a string search, <code>signif</code> starts with that string. If 
+<var>set1</var> is not given and the previous result was from a 
+<code>signif</code> command, the string is the one associated with the set 
+created. (Note that, in addition to the number of matches in the set, 
+<code>signif</code> returns a string value.) If <var>set1</var> is a region set, 
+the first of the pairs of pointers describing the regions are used to find any 
+common string beginning in these regions. For example, this might be the pattern 
+used to define the regions. If <var>set1</var> is a point set that is not the 
+result of a string search, XPAT checks for a common string beginning the text 
+pointed to by each member of <var>set1</var>. In some cases, this common string 
+is the null (empty) string. </p>
+<p><code>Signif</code> has three different modes of operation. A modifier can be 
+attached to the <code>signif</code> command. The syntax of the modifier is a 
+period followed by an integer <var>n</var>. </p>
+<p>The first mode of the command, <code>signif</code> with no modifier, finds a 
+frequent word or phrase and then, by reapplying <code>signif</code> to the 
+resulting set, may be used to extend this phrase. In this mode, the command 
+finds the string and then finds all possible extensions, in the text, of this 
+string up to the next blank. <code>Signif</code> creates the set, among the 
+matches to these possible extensions, with the most members. </p>
+<p>The second mode of the command, <code>signif</code> with a positive integer 
+<var>n</var> as modifier, finds the most commonly occurring phrase of length 
+<var>n</var> words beginning with the string. The set created contains those 
+members of <var>set1</var> that are the matches to the most frequent phrase 
+beginning with the given string that is at least <var>n</var> words in length. 
+</p>
+<p>The third mode of the command, <code>signif</code> with a negative integer 
+<var>n</var> as modifier, creates <var>n</var> sets which are the matches to the 
+<var>n</var> most frequent phrases beginning with the string. This use of the 
+<code>signif</code> command is restricted to sets matching a string or a set 
+created by a <code>range</code> command. Using any other set as an operand is 
+illegal and results in the error message:</p>
+<pre>Repetitive signif should be on strings or ranges only</pre>
+
+<p>Note that the set created by <code>signif</code> is identical to that created 
+by <code>signif.-1</code> but not necessarily to the one created by 
+<code>signif.1</code> .(See the examples.) </p>
+<p>The displayed output from the <code>signif</code> command gives the number of 
+matches and the word or phrase found (preceded by <var>text=</var>). The text is 
+shown with the character mappings applied and stop words removed (see data 
+dictionary documentation). For example, this means, if <code>&gt;</code> has been mapped to a blank and the word <code>the</code> is not a stopword, one would see the following: </p><pre>  &gt;&gt; <code>signif</code>  "&lt;HL&gt;"
+    2: 604 matches, text=&lt;hl the</pre>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  <code>signif</code> " 
+&gt;&gt;  <code>signif</code> 
+&gt;&gt;  <code>signif.3</code> " 
+&gt;&gt;  <code>signif.-10</code> " </pre>
+<p>The above queries, except the second one, operate on the entire text. In 
+  these cases, the string that the <code>signif</code> command starts with is 
+  the empty string. The first query finds the most frequent word or phrase that 
+  occurs in the text. The second query operates on the set created by the first 
+  query and extends this result by one word. The third query finds the most 
+  frequent phrase of at least three words that occurs in the text. The fourth 
+  query finds the ten most frequent words or phrases within the text. </p>
+<pre>&gt;&gt;  <code>signif</code> "y" </pre>
+<p>This finds the most frequent word that starts with the letter <code>y</code> in the text database. </p>
+<pre>&gt;&gt;  <code>signif</code> "to be" </pre>
+<p>Note that the string <code>to be</code> used by the 
+  <code>signif</code> command does not end in a blank. Since <code>signif</code> 
+  looks at all extensions of the string up to the next blank, the only phrases 
+  eligible to be the most frequent phrase starting with this string are two-word 
+  phrases. In many texts, the most likely set created with this command would be 
+  the point set matching the two-word phrase <code>to be 
+ </code> (ending in a blank). </p>
+<pre>&gt;&gt;  <code>signif</code> "to be " </pre>
+<p>In this example, the string given ends in a blank so the possible 
+  extensions of this string that are examined by <code>signif</code> are all 
+  three-word phrases. The point set created as the answer to this command is the 
+  set of matches to the three-word phrase starting with the two words <code>to be</code> that occurs most frequently in the text. </p>
+<pre>&gt;&gt;  <code>signif.1</code> "to be" </pre>
+<p>This command creates a set of the most frequent phrase whose word length is 
+  one. The newly created set is the set of matches to the word <code>to</code> that are contained in the set of matches to the phrase 
+  <code>to be</code> . This means that the size of the set is 
+  probably smaller than the set of matches to <code>to</code> but 
+  that the text shown is the string <code>to</code> . Also note 
+  that this set is not equal to the set created in the preceding example or to 
+  the set created in the following example. </p>
+<pre>&gt;&gt;  <code>signif.-1</code> "to be" </pre>
+<p>This command finds the most frequent phrase that begins with the string 
+  <code>to be</code> . The answer to this is a two-word phrase that 
+  is identical to that found in the second example. </p>
+<pre>&gt;&gt;  <code>signif.-3</code> "to be" </pre>
+<p>This command finds three sets that are the matches to the three most 
+  frequent phrases beginning with the string <code>to be</code> . 
+  The first set is the same set created in the example before last. The next set 
+  is created by applying <code>signif</code> to two sets and comparing the 
+  resulting sets. <code>Signif</code> is first applied to a set that is created 
+  by taking the difference between the set represented by the original string 
+  and the new set just created. <code>Signif</code> is also applied to the set 
+  just created. The larger set from these two <code>signif</code> applications 
+  is the second answer. This same procedure is repeated on the original set and 
+  on the two new sets to obtain the third set. </p>
+<pre>&gt;&gt;  <code>signif.4</code> "to be" 
+&gt;&gt;  <code>signif</code> </pre>
+<p>The first command creates the set of matches to the most frequent four-word 
+  phrase that begins with <code>to be</code> . The second 
+  <code>signif</code> is applied to the resulting four-word phrase. Since this 
+  result ends in a blank, the second <code>Signif</code> searches for the most 
+  frequently occurring five-word phrase that begins with the four words located 
+  by the first command. </p>
+<pre>&gt;&gt;  "aba" .. "abz" 
+&gt;&gt;  <code>signif</code> </pre>
+<p>The first command creates a point set that matches all strings that are 
+  alphabetically between <code>aba</code> and <code>abz</code> . <code>Signif</code> applied to this set creates a 
+  set of matches to the most frequent word in the text that begins with <code>ab</code> . </p>
+<pre>&gt;&gt;  auth = region "&lt;A&gt;" .. "&lt;/A&gt;" 
+&gt;&gt;  <code>signif</code> *auth 
+&gt;&gt;  <code>signif.2</code> *auth 
+&gt;&gt;  <code>signif.-4</code> *auth </pre>
+<p>The first command creates a region set. The second command creates a set 
+  representing the most frequent string at the beginning of these regions. 
+  Assuming that in the character mappings the <code>&gt;</code> is 
+  mapped to a blank, the string that <code>signif</code> uses to find the 
+  extension consists at least of the word <code>&lt;A&gt;</code> . 
+  Thus, the set created is the set of matches to the string <code>&lt;A&gt;</code> followed by at least one other word. The third 
+  command gives the most common two word phrase starting the region set named 
+  <code>auth</code> . The first word of this phrase will be <code>&lt;A&gt;</code> . The last command is illegal and results in the 
+  following error message: </p>
+<pre>Repetitive signif should be on strings or ranges only</pre>
+  
+  
+<pre>&gt;&gt;  <code>signif.-4</code> "&lt;A&gt;" </pre>
+<p>This command creates four sets. These are the sets of matches to the four 
+  most frequent phrases starting with the string <code>&lt;A&gt;</code> . Notice that, if the <code>&gt;</code> has been mapped to a blank, the phrases are at least 
+  two words in length. </p>
+<pre>&gt;&gt;  sample.100 "&lt;A&gt;" 
+&gt;&gt;  <code>signif.-2</code> % </pre>
+<p>This use of <code>signif</code> is illegal since <code>signif</code> with a 
+  negative modifier may be applied only to a set matching a string or created by 
+  a <code>range</code> command. An error message is generated. 
+</p>
+
+
+
+<h2><a name="{SortOrder}"><code>{SortOrder}</code></a></h2>
+<code>{SortOrder</code> <var>number</var><code>}</code> 
+<p>determines the ordering of a set. </p>
+<p>The behaviour of <code>first</code> , <code>next</code> , <code>pr</code> , 
+<code>save</code> , <code>subset</code> and <code>~nextemp</code> are affected by 
+the ordering associated with their operands. The <code>SortOrder</code> setting 
+indicates whether these sets are to be treated in alphabetical order or in the 
+order that members of the set occur in the text (occurrence order). (A 
+<code>SortOrder</code> setting of <code>OccurHead</code> 
+(explanation below) also determines what is displayed by the <code>pr</code> and 
+<code>save</code> commands.) </p>
+<p>Every set in XPAT has an internal ordering which varies from set to set, as 
+described below. The ordering is chosen by XPAT, for reasons of efficiency, and 
+no assumptions can be made in this regard. It is often desirable, however, to 
+present results in a certain order, and the <code>SortOrder</code> setting 
+exists to control this. When a set is an operand of a <code>pr</code> or 
+<code>save</code> command or a new set is created by a <code>first</code> , 
+<code>next</code> , <code>subset</code> or <code>~nextemp</code> command, the 
+ordering of the set and hence the behaviour of the command is determined by the 
+<code>SortOrder</code> setting. This may mean that the existing set must be 
+reordered for processing with these commands. For some XPAT commands this results 
+in a change in the internal ordering, and this change is reflected when 
+subsequently operating with a <code>SortOrder</code> setting of <code>AsIs</code> (explanation below). The ordering of a set that is not 
+an operand to one of the above commands is not affected when the 
+<code>SortOrder</code> setting changes. </p>
+<p>The permissible values for the <code>SortOrder</code> setting are <code>AsIs</code> , <code>Alpha</code> , <code>Occur</code> and <code>OccurHead</code> . The default 
+value of <code>SortOrder</code> is <code>AsIs</code> . If the 
+<code>SortOrder</code> setting is <code>AsIs</code> , the set is 
+processed in the order in which it currently exists. If the 
+<code>SortOrder</code> setting is <code>Alpha</code> , the set is 
+processed in alphabetical order. If the <code>SortOrder</code> setting is <code>Occur</code> or <code>OccurHead</code> , the set is 
+processed in occurrence order. For sets whose internal ordering is not 
+alphabetical, for example region sets, displaying results with a 
+<code>SortOrder</code> setting of <code>Alpha</code> will require 
+resorting which may result in additional computation delay depending on the set 
+size. </p>
+<p>Setting the <code>SortOrder</code> setting to <code>Occur</code> results in further changes to the behaviour of the 
+<code>pr</code> and <code>save</code> commands. For <code>Pr</code> and 
+<code>save</code> , with a <code>SortOrder</code> setting of <code>AsIs</code> , <code>Alpha</code> or <code>Occur</code> , the position offset for each set member is 
+displayed. With a <code>SortOrder</code> setting of <code>OccurHead</code> , the contents of a named region set are output in 
+place of the position offset. Setting <code>SortOrder</code> to <code>OccurHead</code> requires reference to two regions within the 
+brace brackets used to change the <code>SortOrder</code> setting. The first 
+region referenced is the one whose contents are displayed in place of an offset 
+when members of a set are displayed. The second region referenced must be one 
+that contains both the match points of the members of a set and the first region 
+referenced in the <code>SortOrder</code> setting (<code>OccurHead</code> ). </p>
+<p>The text displayed in place of the offset, as a result of 
+<code>SortOrder</code> being set to <code>OccurHead</code> , is the 
+<em>first</em> region found of the specified type within the containing region 
+(also specified in the <code>OccurHead</code> setting). If the 
+text to be displayed begins with an opening angle bracket, the text until the 
+closing angle bracket is ignored and the next character is displayed. If the 
+next character is another angle bracket, the preceding process is repeated 
+iteratively. A maximum of 10 characters or up to the next <code>&lt;</code> in the text is displayed. Both these region sets, 
+named in the <code>OccurHead</code> setting, must be in the data 
+dictionary. If they are not, for example if <code>X</code> is 
+named in the setting but does not exist in the data dictionary, the following 
+error message results:</p>
+<pre>No information for region X in the data dictionary</pre>
+
+<p>The <code>SortOrder</code> setting can be changed at any time during a XPAT 
+session and remains in effect until it is changed again or until the end of the 
+session. The current value of the <code>SortOrder</code> setting is displayed by 
+the command <code>{Settings}</code> . </p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  <code>{SortOrder Alpha}</code> 
+&gt;&gt;  pr % </pre>
+<p>The first command sets the <code>SortOrder</code> setting so that the 
+  displayed set, following the <code>pr</code> command, is in alphabetical 
+  order. </p>
+<pre>&gt;&gt;  <code>{SortOrder Occur}</code> 
+&gt;&gt;  sample "Moriarity" 
+&gt;&gt;  pr % 
+&gt;&gt;  <code>{SortOrder AsIs}</code> 
+&gt;&gt;  pr % </pre>
+<p>The sample set created in the first example has an alphabetical ordering. 
+  With the <code>SortOrder</code> setting of <code>Occur</code> , 
+  the first <code>pr</code> displays the set in occurrence order. However, after 
+  the <code>SortOrder</code> is reset to <code>AsIs</code> , the 
+  set that is printed after the next <code>pr</code> is displayed in alphabetic 
+  order. Note that the sample set is not affected by the <code>SortOrder</code> 
+  setting at the time of its creation and that the reordering for printing is 
+  temporary. </p>
+<pre>&gt;&gt;  <code>{SortOrder OccurHead LF E}</code> 
+&gt;&gt;  pr "shaks" </pre>
+<p>One effect of setting the <code>SortOrder</code> to <code>OccurHead</code> is that the set is displayed in occurrence 
+  order by the <code>pr</code> command. The beginning of each line, following 
+  the <code>pr</code> command, contains the starting characters of the first 
+  region, named <code>LF</code> , that occurs with the region named 
+  <code>E</code> containing a member of the point set matching the 
+  string <code>shaks</code> . </p>
+<pre>&gt;&gt;  Ondaatje
+&gt;&gt;  pr subset % 
+&gt;&gt;  <code>{SortOrder Occur}</code> 
+&gt;&gt;  pr subset % 
+&gt;&gt;  <code>{SortOrder AsIs}</code> 
+&gt;&gt;  pr % </pre>
+<p>The subset displayed by the first <code>pr</code> command is shown in 
+  alphabetical order. With the <code>SortOrder</code> set to <code>Occur</code> , the next <code>pr</code> command displays the 
+  subset in occurrence order. With the <code>SortOrder</code> set to <code>AsIs</code> , the final <code>pr</code> displays the set of 
+  matches to the string <code>Ondaatje</code> in occurrence order 
+  since this point set was reordered permanently as a result of the subset 
+  command executed when the <code>SortOrder</code> was <code>Occur</code> . </p>
+
+<h3>See also:</h3> 
+<p><code>first</code> , <code>next</code> , <code>~nextemp</code> , 
+<code>pr</code> , <code>save</code> , <code>Settings</code> , <code>subset</code> 
+</p>
+
+
+
+<h2><a name="stop"><code>stop</code></a></h2>
+<code>stop</code> 
+<p>terminates a XPAT session. The use of this command causes the session to end 
+and the XPAT process to exit. A message may be generated telling how much 
+computer time has been used during the XPAT session. </p>
+
+<h3>See also:</h3> 
+<p><code>done</code> , <code>quit</code></p>
+
+
+
+<h2><a name="string search"><code>string search</code></a></h2>
+
+<p>A command consisting only of a string causes XPAT to search for occurrences of 
+the string in the text database. A set is created whose members are matches to 
+all index points in the text that begin with the given string. A match occurs 
+when the given string (after having the character mappings applied to it and 
+stopwords removed) is the same as the text that begins at an index point (also 
+having had the character mappings applied and stopwords removed). Searching for 
+phrases with a XPAT index is as fast as searching for a word or a prefix of a 
+word. After a search, the number of matches to the pattern is displayed, but the 
+results of the search are not shown unless requested by a <code>pr</code> 
+command.</p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  in </pre>
+<p>If the index currently being used is based on words, the matches returned 
+  from this input string are the matches to all the phrases in the text that 
+  begin with the two characters <code>in</code> . That is, there 
+  will be matches to strings beginning with the word <code>in 
+ </code> as well as to strings beginning with <code>inside</code> , 
+  <code>into</code> etc. In order to match only strings beginning 
+  with the word <code>in</code> a blank must be added to the 
+  search string and the string enclosed within quotation marks. </p>
+<p>If each character is indexed, the matches returned would also include 
+  strings that appear as part of words such as <code>within</code> 
+  and <code>getting</code> . </p>
+<p>If the index has been made with character mappings that map upper case to 
+  lower case, the matches would also include matches to strings that include 
+  <code>In</code> . </p>
+  
+<pre>&gt;&gt;  "to be or not to be that is the question" </pre>
+<p>If the index used when searching for the above string was created with the 
+  stopwords <code>to</code> , <code>be</code> , <code>or</code> , <code>not</code> , <code>that</code> , <code>is</code> and <code>the</code> , this string search is equivalent to a search on the 
+  string <code>question</code> . </p>
+
+<h3>See also:</h3> 
+<p>data dictionary documentation, <code>double quote</code> , <code>index 
+point</code> , <code>offsets</code> , <code>quiet mode</code> , <code>range</code> , 
+<code>shift</code></p>
+
+
+
+<h2><a name="subset"><code>subset</code></a></h2>
+<code>subset</code> <var>set1</var> 
+<p>finds a number of contiguous members of a set. </p>
+<p><code>Subset</code> creates a set of a specified size containing members 
+starting at a designated location in <var>set1</var>. The members of the new set 
+are in the order they appear in <var>set1</var>. <var>Set1</var> may be a region 
+set or a point set. The new set is of the same type as <var>set1</var>. </p>
+<p>The operation of the <code>subset</code> command is affected by the size of 
+the set requested and the <code>SortOrder</code> setting. </p>
+<p>The ordering of a set, and hence which members are chosen to be in the set 
+created by the <code>subset</code> command, is controlled by the 
+<code>SortOrder</code> setting. If the <code>SortOrder</code> setting is <code>Alpha</code> , the set is ordered alphabetically; if it is <code>Occur</code> or <code>OccurHead</code> , the set is 
+ordered as the members occur in the text; and if the <code>SortOrder</code> 
+setting is <code>AsIs</code> , the set order is the current one and 
+may thus be either alphabetic or occurrence order. The location within 
+<var>set1</var> to start selecting members for the new set is indicated by a 
+numeric location in the ordered set. This numeric location is given to the 
+<code>subset</code> command as a modifier attached to the command. The modifier 
+is in the form of a period followed by an integer that can be either positive or 
+negative. A positive integer gives the desired location relative to the 
+beginning of the set and a negative integer gives it relative to the end of the 
+set. Without any modifier the <code>subset</code> is taken from the start of 
+<var>set1</var>. </p>
+<p>The size of the set created is determined by the value of the setting 
+<code>SampleSize</code> which has a default value of 10. If the size of 
+<var>set1</var> is less than <code>SampleSize</code> , then the new set created 
+is the same size as <var>set1</var>. Changing the <code>SampleSize</code> 
+setting affects all subsequent uses of <code>subset</code> during the current 
+session. The size of the <code>subset</code> can be specified for an individual 
+use of the command by using a second modifier attached to the already modified 
+<code>subset</code> command. This modifier is also of the form of a period 
+followed by a numeric value giving the desired set size. </p>
+<p>The <code>subset</code> command can be used by itself or with the 
+<code>pr</code> , <code>save</code> or <code>export</code> commands. The 
+<code>subset</code> may only be used in conjunction with these commands. 
+</p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  {SampleSize 40} 
+&gt;&gt;  <code>subset</code> % </pre>
+<p>The first command changes the SampleSize setting and the query in the 
+  second line returns a set that contains the first 40 members of the most 
+  recent result in the session. </p>
+<pre>&gt;&gt;  <code>subset</code> .10 "Montreal " </pre>
+<p>This query creates a set of 40 members (assuming the SampleSize setting in 
+  the first example) starting at the tenth member in the set of matches to the 
+  string <code>Montreal</code> . </p>
+<pre>&gt;&gt;  <code>subset</code> .-10 "Montreal " </pre>
+<p>This is similar to the previous query but the new set starts at the tenth 
+  member from the end of the set. Therefore, the resulting set size is only 10 
+  even though the SampleSize setting is 40. </p>
+<pre>&gt;&gt;  <code>subset</code> .5.30 % </pre>
+<p>This query creates a set of 30 members starting from the fifth member of 
+  the most recent result in the session. </p>
+<pre>&gt;&gt;  {SortOrder Occur} 
+&gt;&gt;  <code>subset</code> .-20.20 5 </pre>
+<p>The query in the second line of the example creates a set containing the 
+  final 20 members in the set represented by set number 5. The 
+  <code>SortOrder</code> setting means that both set number 5 and the new set 
+  are in occurrence order. </p>
+
+<h3>See also:</h3> 
+<p><code>first</code> , <code>next</code> , <code>~nextemp</code> , 
+<code>sample</code></p>
+<h3>Settings:</h3> 
+<p><code>SampleSize</code> , <code>SortOrder</code></p>
+
+
+
+<h2><a name="~sync"><code>~sync</code></a></h2>
+<code>~sync</code> <var>string</var> 
+<p>outputs a tagged identifier. </p>
+<p>The command <code>~sync</code> is available only when the XPAT session is 
+operating in quiet mode. <code>~sync</code> outputs a message tagged with 
+<var>Sync</var> tags containing the given string. This command is mainly used 
+when XPAT is integrated into a more complex system. The output from the 
+<code>~sync</code> command can then be used to identify a position in an input 
+stream when information is being received from several different sources. 
+</p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  <code>~sync</code> "festival" </pre>
+<p>The output from this command is the tagged string: <code>&lt;Sync&gt;festival&lt;/Sync&gt;</code> . </p>
+
+<h3>See also:</h3> 
+<p><code>~qnum</code></p>
+
+
+
+<h2><a name="thesaurus"><code>thesaurus</code></a></h2>
+<p>provides an efficient way to describe patterns that have some 
+common quality. 
+For example, if many searches of a database involve finding references in the 
+text to money in different currencies, the thesaurus provides the capability to 
+define a variable describing all the possible patterns to be used in these 
+searches. </p>
+<p>The <code>thesaurus</code> variable is defined in a file named in the data 
+dictionary. Within the thesaurus file, each separate variable, called a 
+<em>word</em>, is surrounded by <var>&lt;Entry&gt;</var> tags. Within the 
+<var>&lt;Entry&gt;</var> tags are other tagged areas: the name of the variable 
+is contained within <var>&lt;Word&gt;</var> tags, followed by the associated 
+query contained within <var>&lt;Query&gt;</var> tags. The thesaurus capability 
+is implemented using <code>macros</code> so the query may be a complex one 
+creating more than one set. The same cautions, described for macros, apply to 
+bracketing and syntax errors. </p>
+<p>To invoke a thesaurus variable the name is preceded by the character 
+<var>&lt;</var>. For example, a thesaurus variable named <code>money</code> may be used within a XPAT session as follows: 
+</p><code>&lt;"money"</code> 
+<p>As with macros, thesaurus invocations are replaced by an exact copy of the 
+definition. This means that a thesaurus variable can be used as an operand in 
+other XPAT queries. Note, however, that it may be necessary to bracket the entire 
+invocation in order to ensure correct results from the query. In practice, 
+bracketing the definition itself is a good general method. </p>
+<p>If an undefined thesaurus variable is used, for example &lt;<code>testing</code> , the following error message is generated.</p>
+<pre>The macro testing is undefined</pre>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  (<code>&lt;"policy"</code> ) near (<code>&lt;"economy"</code> ) </pre>
+<p>Assume that the following tagged data appears in the thesaurus file 
+  reference in the data dictionary for the XPAT session.</p>
+<pre>&lt;Entry&gt;
+ &lt;Word&gt;economy&lt;/Word&gt;
+ &lt;Query&gt;("economic " + "fiscal " + "monetary " + "economy")&lt;/Query&gt;
+&lt;/Entry&gt;
+&lt;Entry&gt;
+ &lt;Word&gt;policy&lt;/Word&gt;
+ &lt;Query&gt;("policy " + "policies ")&lt;/Query&gt;
+&lt;/Entry&gt;</pre> 
+<p>The query shown finds any matches to either of the strings
+described by the thesaurus variable <code>policy</code> that
+occur near any of the strings that are part of the union described
+by the thesaurus variable <code>economy</code> .
+</p>
+<pre>&gt;&gt;  *speaker including <code>&lt;"macbeth"</code> </pre>
+<p>This assumes that the following tagged data appears in
+the thesaurus file.</p>
+<pre>&lt;Entry&gt;
+ &lt;Word&gt;macbeth&lt;/Word&gt;
+ &lt;Query&gt;"macbeth" - (shift.5 "lady
+macbeth")&lt;/Query&gt;
+&lt;/Entry&gt;</pre>
+<p>The query shown finds those members of
+the region set defined by the name <code>speaker</code> that
+contain <code>Macbeth</code> but not <code>Lady
+Macbeth</code> . </p>
+
+<h3>See also:</h3> 
+<p>data dictionary documentation, <code>macro</code></p>
+
+
+
+<h2><a name="union"><code>union</code></a></h2>
+<var>set1</var> <code>+</code> <var>set2</var> 
+<p>combines two sets. </p>
+<p>The <code>union</code> operator (<code>+</code> ) creates a new set containing 
+the members of both <var>set1</var> and <var>set2</var>, with duplicates 
+removed. <var>Set1</var> and <var>set2</var> can be either point sets or region 
+sets. If either of <var>set1</var> or <var>set2</var> is a point set the new set 
+is also a point set. </p>
+<p>If both <var>set1</var> and <var>set2</var> are region sets and there is no 
+overlap or nesting of any member from <var>set1</var> and any member from 
+<var>set2</var>, the union set is a region set. If overlap or nesting occurs, 
+<var>set1</var> and <var>set2</var> are treated as point sets by using the first 
+of each pair of pointers describing the regions in the sets. The new set created 
+is the union of these point sets. The following message is generated when this 
+occurs:</p>
+<pre>Warning: Addition of Region objects produced a region
+with overlaps -- simplified into a point set</pre>
+
+<p>Note that if both <var>set1</var> and <var>set2</var> are region sets and a 
+member of <var>set1</var> coincides <em>exactly</em> with a member of 
+<var>set2</var>, this is not considered to be an instance of overlap or nesting; 
+rather, these members are considered identical and only one will be a member of 
+the output set. </p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt;  USA + "U.S.A" + "United States" + "America "
+</pre>
+<p>This query creates a new point set containing all matches to each of the 
+  individual sets in the query. </p>
+<pre>&gt;&gt;  region Title + region Summary </pre>
+<p>Assuming that the members of region Title and of region Summary do not 
+  overlap or nest, this query creates a new region set containing all the 
+  members of both regions. </p>
+<pre>&gt;&gt;  *your_region + region First </pre>
+<p>Assuming that <code>your_region</code> was created during the 
+  current XPAT session and contains a member that overlaps one or more members of 
+  <code>region First</code> , this query creates a point set. The 
+  members in the new set consist of the first of the two pointers that describe 
+  the members of <code>your_region</code> and of <code>region First</code> . XPAT prints a warning message before 
+  printing the number of matches in the new set. </p>
+
+<h3>See also:</h3> 
+<p><code>difference</code> , <code>intersect</code></p>
+
+<h2><a name="within"><code>within</code></a></h2>
+<var>set1</var> <code>within</code> <var>set2</var> 
+<p>finds members of a set within a given region. </p>
+<p><code>Within</code> creates a set containing those members of <var>set1</var> 
+that are located in one of the regions of the text described by <var>set2</var>. 
+<var>Set1</var> may be either a point set or a region set. <var>Set2</var> must 
+be a region set. The new set is of the same type as <var>set1</var>. </p>
+<p><var>Set2</var> may be a predefined region set, a region set that has been 
+created within the XPAT session using the <code>region</code> command, a region 
+set resulting from the use of the <code>import</code> command, or the result of 
+a previous query in the session. </p>
+<p>If <var>set1</var> is a point set, each member is examined to see if it falls 
+within a region from <var>set2</var> in order to determine inclusion in the new 
+set. If <var>set1</var> is a region set, the first of the pair of pointers 
+(offsets into the text) describing each member is examined to see if it falls 
+within a region of <var>set2</var>. The second pointer of the pair does not have 
+to fall within a region of <var>set2</var> for the region to be included in the 
+new set. That is to say, if <var>set1</var> and <var>set2</var> are both region 
+sets and they overlap, members of <var>set1</var> are included in the result of 
+<code>within</code> if they <em>begin</em> within a member of <var>set2</var>. 
+</p>
+<p>The command <code>not within</code> creates a set containing those members of 
+<var>set1</var> that are not in any of the regions described by <var>set2</var>. 
+</p><pre> set1 <code>not within</code> set2 </pre>
+<p>is the same as </p><pre> set1 - (set1 <code>within</code> set2) </pre>
+<p><code>Including</code> and <code>within</code> are similar in that they both 
+restrict searches to specified regions in the text. They differ in the set that 
+is created. The <code>including</code> command creates a set of regions that 
+<em>contain</em> one or more members of another set, while <code>within</code> 
+creates a set of pointers or regions that are <em>contained in</em> members of a 
+region set. </p>
+
+<h3>Examples:</h3>
+<pre>&gt;&gt; "Cohen" <code>within</code> region Speaker </pre>
+<p>In this example, the predefined <code>region Speaker</code> 
+  defines regions of the text that contain speakers' names. This query creates a 
+  set of matches to <code>Cohen</code> that falls within the 
+  regions described by <code>region Speaker</code> . </p>
+<pre>&gt;&gt; "Fontaine" <code>not within</code> region Speaker </pre>
+<p>This query finds all references to <code>Fontaine</code> that 
+  are not located within one of the regions describing a speaker. </p>
+<pre>&gt;&gt;  first = region "&lt;Etym&gt;" .. "&lt;/Language&gt;" 
+&gt;&gt;  ("Spanish" <code>within</code> region Language) <code>within</code> *first </pre>
+<p>The first query defines regions of the text that start at the string <code>&lt;Etym&gt;</code> and end with the string <code>&lt;/Language&gt;</code> . The second query finds all the matches 
+  to <code>Spanish</code> that are within a Language region and 
+  also within one of the newly defined regions. </p>
+
+<h3>See also:</h3> 
+<p><code>import</code> , <code>including</code> , <code>not</code> , 
+<code>region</code></p>
+</body>
+</html>

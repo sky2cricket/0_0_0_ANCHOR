@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>Collection Manager Details</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="../styles.css" type="text/css">
+</head>
+<body bgcolor="#FFFFFF" class="mainpalette">
+<h3> Collection Manager (collmgr) Details<br>
+</h3>
+            <ul>
+              <li><b>$REMOTE_USER</b> environment variable (likely to be set
+                 by 
+                &quot;Basic Auth&quot; in the virtual host); if set to <span class="unixcommand">dlxsadm</span>, 
+                <i>release rows</i> are visible, editable and moveable to <i>production</i></li>
+              <li><b>Let's look at a few examples</b> of how collmgr is used to 
+                manage collection data 
+                <ul>
+                  <li>fields
+                    <ul>
+                      <li>collection id, unchangeable</li>
+                      <li> host: where the data resides</li>
+                      <li>webdir: for finding html templates</li>
+                      <li>subclassmodule: possible collection specific Perl subclass 
+                        ofthe TextClass base class</li>
+                      <li>pdfchunk: number of pages to package up into one pdf 
+                        file for delivery in pageviewer</li>
+                      <li>qtytext: number of documents in this collection</li>
+                      <li>dd: one or more XPAT indexes for the collection</li>
+                      <li>termsearch: fields to display in simple search pulldown</li>
+                      <li>browsefields: list of fields that are to be
+                         browseable via dyanmic browse </li>
+                    </ul>
+                  </li>
+                  <li>moving rows from release to production; later</li>
+                </ul>
+              </li>
+            </ul>
+            <hr width="50%">
+            <p>For a full list of the tables in the collection and group database, 
+              see the <a href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/collmeta/collmetadata-index.html" target="external">DLXS 
+              documentation on the metadata database schema</a>.</p>
+            <p> For information on how the user name and DLPS_DEV environment 
+              variable affect the data values retrieved from the database (how 
+              to control testing vs. production vs. individual developers' environments), 
+              see the <a href="http://dev-linudx.umdl.umich.edu/d/dlxs/docs/collmeta/colldatabases.html#interaction" target="external">DLXS 
+              Documentation on the Interaction between database rows, users, DLXS 
+              Middleware and collmgr</a> </p>
+          
+</body>
+</html>

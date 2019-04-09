@@ -1,0 +1,230 @@
+080319 cleanup
+
+remove 080303 from diglib /d1/workarea/dlxs/  directories
+
+-----------------------------------------------------------------------------
+[root@diglib2 singles]# pwd
+/d1/workarea/dlxs/image/tel/singles
+
+[root@diglib2 singles]# ls ic
+0015_000066_000200_0000  0015_000066_000202_0000  0015_000066_000204_0000
+0015_000066_000201_0000  0015_000066_000203_0000
+[root@diglib2 singles]# ls mods
+0015_000066_000200_0000.xml  0015_000066_000202_0000.xml  0015_000066_000204_0000.xml
+0015_000066_000201_0000.xml  0015_000066_000203_0000.xml
+[root@diglib2 singles]# ls modsbib
+0015_000066_000200_0000  0015_000066_000202_0000  0015_000066_000204_0000
+0015_000066_000201_0000  0015_000066_000203_0000
+[root@diglib2 singles]# ls newmods
+0015_000066_000200_0000.xml  0015_000066_000202_0000.xml  0015_000066_000204_0000.xml
+0015_000066_000201_0000.xml  0015_000066_000203_0000.xml
+[root@diglib2 singles]# ls search
+0015_000066_000200_0000  0015_000066_000202_0000  0015_000066_000204_0000
+0015_000066_000201_0000  0015_000066_000203_0000
+
+
+[root@diglib2 ic]# ls
+0015_000066_000200_0000  0015_000066_000202_0000  0015_000066_000204_0000
+0015_000066_000201_0000  0015_000066_000203_0000
+[root@diglib2 ic]# rm *
+rm: remove regular file `0015_000066_000200_0000'? y
+rm: remove regular file `0015_000066_000201_0000'? y
+rm: remove regular file `0015_000066_000202_0000'? y
+rm: remove regular file `0015_000066_000203_0000'? y
+rm: remove regular file `0015_000066_000204_0000'? y
+-----------------------------------------------------------------------------
+CLEAN OUT SINGLES 00
+[root@diglib2 singles]# ls ic/ jpegs/ minithumbs/ mods/ modsbib/ newmods/ search/ thumbs/
+ic/:
+
+jpegs/:
+
+minithumbs/:
+
+mods/:
+
+modsbib/:
+
+newmods/:
+
+search/:
+
+thumbs/:
+[root@diglib2 singles]# 
+-----------------------------------------------------------------------------
+
+CLEAN  OUT MULTIPLES 01
+[root@diglib2 multiples]#  ls ic/ jpegs/ minithumbs/ mods/ modsbib/ newmods/ search/ thumbs/
+ic/:
+
+
+
+jpegs/:
+
+minithumbs/:
+
+mods/:
+
+modsbib/:
+
+newmods/:
+
+search/:
+
+thumbs/:
+[root@diglib2 multiples]# 
+-----------------------------------------------------------------------------
+
+
+
+CLEAN OUT NOTEXT 04
+[root@diglib2 mods]# pwd
+/d1/workarea/dlxs/text/tel/notext/mods
+[root@diglib2 mods]# ls
+0012_000070_000245_0000.xml  0012_000070_000247_0000.xml  0012_000070_000249_0000.xml
+0012_000070_000246_0000.xml  0012_000070_000248_0000.xml
+THESE ARE THE 080303 files
+[root@diglib2 notext]# ls
+jpegs  minithumbs  mods  thumbs
+[root@diglib2 notext]# ls jpegs
+0012_000070_000245_0001.jpg  0012_000070_000247_0001.jpg  0012_000070_000248_0001.jpg
+0012_000070_000245_0002.jpg  0012_000070_000247_0002.jpg  0012_000070_000248_0002.jpg
+0012_000070_000246_0001.jpg  0012_000070_000247_0003.jpg  0012_000070_000249_0001.jpg
+0012_000070_000246_0002.jpg  0012_000070_000247_0004.jpg  0012_000070_000249_0002.jpg
+[root@diglib2 notext]# ls minithumbs/
+0012_000070_000245_0001.jpg  0012_000070_000247_0001.jpg  0012_000070_000248_0001.jpg
+0012_000070_000245_0002.jpg  0012_000070_000247_0002.jpg  0012_000070_000248_0002.jpg
+0012_000070_000246_0001.jpg  0012_000070_000247_0003.jpg  0012_000070_000249_0001.jpg
+0012_000070_000246_0002.jpg  0012_000070_000247_0004.jpg  0012_000070_000249_0002.jpg
+[root@diglib2 notext]# ls mods
+0012_000070_000245_0000.xml  0012_000070_000247_0000.xml  0012_000070_000249_0000.xml
+0012_000070_000246_0000.xml  0012_000070_000248_0000.xml
+[root@diglib2 notext]# ls thumbs
+0012_000070_000245_0001.jpg  0012_000070_000247_0001.jpg  0012_000070_000248_0001.jpg
+0012_000070_000245_0002.jpg  0012_000070_000247_0002.jpg  0012_000070_000248_0002.jpg
+0012_000070_000246_0001.jpg  0012_000070_000247_0003.jpg  0012_000070_000249_0001.jpg
+0012_000070_000246_0002.jpg  0012_000070_000247_0004.jpg  0012_000070_000249_0002.jpg
+[root@diglib2 notext]# 
+[root@diglib2 notext]# rm -f thumbs/*
+[root@diglib2 notext]# rm -f jpegs/*
+[root@diglib2 notext]# rm -f mods/*
+[root@diglib2 notext]# rm -f minithumbs/*
+[root@diglib2 notext]#  ls jpegs/ minithumbs/ mods/ thumbs/
+jpegs/:
+
+minithumbs/:
+
+mods/:
+
+thumbs/:
+[root@diglib2 notext]# 
+-----------------------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------------------
+CLEAN OUT TYPED (03)
+
+[root@diglib2 tel]# cd typed
+[root@diglib2 typed]# ls
+badtext  cleantext  jpegs  minithumbs  mods  text  thumbs
+[root@diglib2 typed]# ls */* | more
+jpegs/0012_000070_000250_0001.jpg
+jpegs/0012_000070_000388_0001.jpg
+jpegs/0012_000144_000216_0001.jpg
+jpegs/0076_000050_000204_0001.jpg
+jpegs/0082_000050_000204_0001.jpg
+minithumbs/0012_000070_000250_0001.jpg
+minithumbs/0012_000070_000388_0001.jpg
+minithumbs/0012_000144_000216_0001.jpg
+minithumbs/0076_000050_000204_0001.jpg
+minithumbs/0082_000050_000204_0001.jpg
+mods/0012_000070_000250_0000.xml
+mods/0012_000070_000388_0000.xml
+mods/0012_000144_000216_0000.xml
+mods/0076_000050_000204_0000.xml
+mods/0082_000050_000204_0000.xml
+text/0012_000070_000250_0001.txt
+text/0012_000070_000388_0001.txt
+text/0012_000144_000216_0001.txt
+text/0076_000050_000204_0001.txt
+text/0082_000050_000204_0001.txt
+thumbs/0012_000070_000250_0001.jpg
+thumbs/0012_000070_000388_0001.jpg
+thumbs/0012_000144_000216_0001.jpg
+thumbs/0076_000050_000204_0001.jpg
+thumbs/0082_000050_000204_0001.jpg
+[root@diglib2 typed]# 
+[root@diglib2 typed]# rm -f jpegs/*
+[root@diglib2 typed]# rm -f minithumbs/*
+[root@diglib2 typed]# rm -f mods/*
+[root@diglib2 typed]# rm -f text/*
+[root@diglib2 typed]# rm -f thumbs/*
+[root@diglib2 typed]# ls */* | more
+ls: */*: No such file or directory
+[root@diglib2 typed]# ls * |more
+badtext:
+
+cleantext:
+
+jpegs:
+
+minithumbs:
+
+mods:
+
+text:
+
+thumbs:
+[root@diglib2 typed]# 
+------------------------------------------------------------------------------------
+CLEAN UP OCR (02)
+
+[root@diglib2 typed]# cd ../ocr
+[root@diglib2 ocr]# ls
+cleantext  jpegs  minithumbs  mods  text  text_fixme  thumbs
+[root@diglib2 ocr]# ls */* | more
+jpegs/0022_000060_000204_0001.jpg
+jpegs/0022_000060_000206_0001.jpg
+jpegs/0022_000060_000207_0001.jpg
+jpegs/0022_000060_000208_0001.jpg
+jpegs/0022_000060_000209_0001.jpg
+minithumbs/0022_000060_000204_0001.jpg
+minithumbs/0022_000060_000206_0001.jpg
+minithumbs/0022_000060_000207_0001.jpg
+minithumbs/0022_000060_000208_0001.jpg
+minithumbs/0022_000060_000209_0001.jpg
+mods/0022_000060_000204_0000.xml
+mods/0022_000060_000206_0000.xml
+mods/0022_000060_000207_0000.xml
+mods/0022_000060_000208_0000.xml
+mods/0022_000060_000209_0000.xml
+text/0022_000060_000204_0001.txt
+text/0022_000060_000206_0001.txt
+text/0022_000060_000207_0001.txt
+text/0022_000060_000208_0001.txt
+text/0022_000060_000209_0001.txt
+thumbs/0022_000060_000204_0001.jpg
+thumbs/0022_000060_000206_0001.jpg
+thumbs/0022_000060_000207_0001.jpg
+thumbs/0022_000060_000208_0001.jpg
+thumbs/0022_000060_000209_0001.jpg
+[root@diglib2 ocr]# 
+[root@diglib2 ocr]# rm -f jpegs/*
+[root@diglib2 ocr]# rm -f minithumbs/*
+[root@diglib2 ocr]# rm -f mods/*
+[root@diglib2 ocr]# rm -f text/*
+[root@diglib2 ocr]# rm -f thumbs/*
+[root@diglib2 ocr]# ls * | more
+cleantext:
+
+jpegs:
+
+minithumbs:
+
+mods:
+
+text:
+
+text_fixme:
+
+thumbs:
+[root@diglib2 ocr]# 

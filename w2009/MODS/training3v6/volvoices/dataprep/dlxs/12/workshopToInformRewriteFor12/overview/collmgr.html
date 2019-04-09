@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>Collection Manager</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="../styles.css" type="text/css">
+</head>
+<body bgcolor="#FFFFFF" class="mainpalette" >
+<h3> Collection Manager (collmgr)<br>
+</h3>
+            
+<p><b>collmgr</b> is a CGI program that functions as an interface to the <a href="databases.html">collection 
+  and group databases</a>. Using collmgr, you can maintain this information in
+  either a CSV database or a MySQL database. </p>
+            <ul>
+              <li>collmgr running under CSV
+                <ul>
+                  <li>CSV files are actual text files, but the interface lets
+                     them behave as a database (<i>It is important <b>not</b> to
+                      hand  edit the text files outside of collmgr</i>)</li>
+                  <li>the text files need to reside on the same machine as the
+                     middleware
+                  </li>
+                </ul>
+              </li>
+              <li>collmgr running under <a href="http://www.mysql.com" target="external">MySQL</a> 
+                <ul>
+                  <li>must install and maintain a MySQL database</li>
+                  <li>can be a networked database</li>
+                </ul>
+              </li>
+              <li><b>Workshop Note: </b><i>workshop setup vs. our DLPS development 
+                setup</i> (this will make more sense after seeing how collmgr 
+                interacts with the Middleware and after working through the installation 
+                process) 
+                <ul>
+                  
+      <li>workshop is in a production environment (no <span class="unixcommand">$DLPS_DEV</span> set)</li>
+                  <li> no user rows, only release and production rows; therefore, 
+                    no checkin checkout</li>
+                  <li>'release to production' option always visible</li>
+                </ul>
+              </li>
+            </ul>
+            <p><b>Link to <a href="collmgrdetails.html">details on the 
+              use of collmgr</a></b></p>
+  
+</body>
+</html>

@@ -1,0 +1,97 @@
+
+FILE LISTINGS FOR imageprep
+
+input:	/d1/dlxs/img/v/vvi/large/
+	/d1/dlxs/img/v/vvi/thumb/
+
+output:	/d1/dlxs/img/v/vvi/index/
+
+
+[root@diglib2 vvi]# ls /d1/dlxs/img/v/vvi
+index  large  thumb
+
+[root@diglib2 vvi]# ls /d1/dlxs/img/v/vvi/large/0018_000054_000232*
+/d1/dlxs/img/v/vvi/large/0018_000054_000232_0001.jpg
+/d1/dlxs/img/v/vvi/large/0018_000054_000232_0002.jpg
+/d1/dlxs/img/v/vvi/large/0018_000054_000232_0003.jpg
+/d1/dlxs/img/v/vvi/large/0018_000054_000232_0004.jpg
+
+[root@diglib2 vvi]#  ls /d1/dlxs/img/v/vvi/thumb/0018_000054_000232*
+/d1/dlxs/img/v/vvi/thumb/0018_000054_000232_0001.jpg
+/d1/dlxs/img/v/vvi/thumb/0018_000054_000232_0002.jpg
+/d1/dlxs/img/v/vvi/thumb/0018_000054_000232_0003.jpg
+/d1/dlxs/img/v/vvi/thumb/0018_000054_000232_0004.jpg
+
+[root@diglib2 vvi]# ls index/*/*/*/0018_000054_000232*
+index/0/0/1/0018_000054_000232_0001.inf
+index/0/0/1/0018_000054_000232_0001.jpg
+index/0/0/2/0018_000054_000232_0002.inf
+index/0/0/2/0018_000054_000232_0002.jpg
+index/0/0/3/0018_000054_000232_0003.inf
+index/0/0/3/0018_000054_000232_0003.jpg
+index/0/0/4/0018_000054_000232_0004.inf
+index/0/0/4/0018_000054_000232_0004.jpg
+
+======================================================================
+About the input:
+There are two copies of each image, 
+one in the thumb directory and one in the large directory.
+
+These are the files that you copied with the commands
+cp /d1/workarea/dlxs/image/tel/multiples/thumbs/* /d1/dlxs/img/v/vvi/thumb/
+cp /d1/workarea/dlxs/image/tel/multiples/jpegs/* /d1/dlxs/img/v/vvi/large/
+======================================================================
+
+About the output:
+
+2 output files are created in the index directory for each each image 
+by running /d1/dlxs/bin/i/image/imageprep vvi
+
+The example below is for 0015_000054_000232
+which is a digital object containing four images to display.
+
+
+Looking at the .jpg link files:
+
+[root@diglib2 vvi]# ls -l index/*/*/*/0018_000054_000232*.jpg
+index/0/0/1/0018_000054_000232_0001.jpg -> ../../../../thumb/0018_000054_000232_0001.jpg
+index/0/0/2/0018_000054_000232_0002.jpg -> ../../../../thumb/0018_000054_000232_0002.jpg
+index/0/0/3/0018_000054_000232_0003.jpg -> ../../../../thumb/0018_000054_000232_0003.jpg
+index/0/0/4/0018_000054_000232_0004.jpg -> ../../../../thumb/0018_000054_000232_0004.jpg
+
+Each link points to a same name jpg in the thumb directory.
+Caching links is better than caching files.
+
+Looking at the inf files (the index files make cgi run faster):
+
+[root@diglib2 vvi]# ls index/*/*/*/0018_000054_000232*.inf
+index/0/0/1/0018_000054_000232_0001.inf
+index/0/0/2/0018_000054_000232_0002.inf
+index/0/0/3/0018_000054_000232_0003.inf
+index/0/0/4/0018_000054_000232_0004.inf
+
+The inf files contain information to get the large and thumb images,
+shown below.
+
+
+===============================================
+
+0018_000054_000232_0001.inf
+<F F="JPG" C="0" D="600">large/0018_000054_000232_0001.jpg</F>
+<T M="image/jpg" F="JPG" C="0">/0/0/1/0018_000054_000232_0001.jpg</T>
+
+
+0018_000054_000232_0002.inf
+<F F="JPG" C="0" D="600">large/0018_000054_000232_0002.jpg</F>
+<T M="image/jpg" F="JPG" C="0">/0/0/2/0018_000054_000232_0002.jpg</T>
+
+0018_000054_000232_0003.inf
+<F F="JPG" C="0" D="600">large/0018_000054_000232_0003.jpg</F>
+<T M="image/jpg" F="JPG" C="0">/0/0/3/0018_000054_000232_0003.jpg</T>
+
+0018_000054_000232_0004.inf
+<F F="JPG" C="0" D="600">large/0018_000054_000232_0004.jpg</F>
+<T M="image/jpg" F="JPG" C="0">/0/0/4/0018_000054_000232_0004.jpg</T>
+
+
+

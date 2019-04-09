@@ -1,0 +1,60 @@
+<html>
+<head>
+<title>Index Building, Bibliographic Class</title>
+<link href="../../dlxsdocs.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="pageTitle">Index Building, Bibliographic Class</div>
+<p>You will need to identify a directory or directories where you plan to store
+   your SGML or XML source file, your index file (approximately 75% of the size
+   of your bibliographic information), your "region" files, and other information
+   such as data dictionaries. We recommend you use the following structure:</p>
+<ul>
+   <li>Store SGML or XML files in <tt>/{DLXSROOT}/obj/{s}/{sample}/</tt> where <tt>{DLXSROOT}</tt> is
+      the "tree" where you install all DLXS components, <tt>{s}</tt> is the first
+      letter of the name of the collection you are indexing, and <tt>{sample}</tt> is
+      the collection ID of the collection you are indexing. For example, if your
+      collection id is "nyt" and your DLXSROOT is "/l1", you will place the <tt>nyt.xml</tt> file
+      in <tt>/l1/obj/n/nyt/</tt>, e.g., <tt>/l1/obj/n/nyt/nyt.xml</tt>. See <a href="http://docs.umdl.umich.edu/arch/general/directory-conventions.html">directory
+      conventions</a> for more information.</li>
+   <li>Store index, region, data dictionary, and init files in <tt>/{DLXSROOT}/idx/{s}/{sample}/</tt>,
+      e.g., <tt>/l1/idx/n/nyt/nyt.idx</tt>. See the <a href="../../xpat/index.html">XPAT
+      documentation</a> for more on these types of files.</li>
+</ul>
+<p>The instructions below assume a sample collection named "nyt" and a DLXSROOT
+   of "/l1", as in the above examples. Please replace these sample names with
+   your local filenames.</p>
+<ol>
+<li>Ensure that your SGML is fully validated or normalized, or that your XML
+   is fully validated. Use a validating parser such as <a href="http://www.jclark.com/sp/nsgmls.htm">nsgmls</a> to
+   accomplish this. <b>NB: Building indexes without validation can cause problems
+   such as unreliable results; data that will not validate should not be put
+   online.</b> Assuming SGML, put the file <tt>nyt.sgm</tt> in <tt>/l1/obj/n/nyt/nyt.sgm</tt></li>
+<li>Copy the sample data dictionary file <a href="bib-sample.dd"><tt>bib-sample.dd</tt></a> to <tt>/l1/idx/n/nyt/</tt> and
+   rename as <tt>nyt.dd</tt></li>
+<li>Edit the <tt>nyt.dd</tt> file to replace<ol>
+   <li><tt>b/bib-sample/bib-sample.sgm</tt> with <tt>n/nyt/nyt.sgm</tt></li>
+   <li><tt>b/bib-sample/bib-sample.idx</tt> with <tt>n/nyt/nyt.idx</tt></li>
+   <li>and <tt>b/bib-sample/bib-sample.init</tt> with <tt>n/nyt/nyt.init</tt></li>
+   </ol></li>
+<li>Copy the sample init file <a href="bib-sample.init"><tt>bib-sample.init</tt></a> to <tt>/l1/idx/n/nyt/</tt> and
+   rename as <tt>nyt.init</tt></li>
+<li>Index your collection using the following command, replacing the value <tt>10m</tt> with
+   an appropriate amount of memory. Please see <a href="../../xpat/index.html">XPAT
+   documentation</a> to determine how much memory to allocate.<br/>
+&#0160;&#0160;&#0160;&#0160;<tt>xpatbld -m 10m -D /l1/idx/n/nyt/nyt.dd</tt> </li>
+<li>Create your region files by issuing the following command.<br/>
+&#0160;&#0160;&#0160;&#0160;<tt>multirgn -f -D /l1/idx/n/nyt.dd -t bib-regions.tags</tt><br/>
+   The file <a href="bib-regions.tags">bib-regions.tags</a> can be located in
+   any directory and can be deleted after the regions have been indexed. DLPS
+   keeps a copy of this file in <tt>/l1/obj/lib/sgml/bib-regions.tags</tt></li>
+</ol>
+<p>You have now built indexes and region files for your collection. You can test
+   that things are properly indexed by issuing the command<br/>
+&#0160;&#0160;&#0160;&#0160;<tt>xpat /l1/idx/n/nyt/nyt.dd</tt><br/>
+   and then searching a common word (e.g., "<tt>the</tt>") and<br/>
+&#0160;&#0160;&#0160;&#0160;<tt>region A</tt><br/>
+   Strategically, it is good to test this from a directory other than the one
+   you indexed in, to ensure that relative or absolute paths are resolving appropriately.</p>
+</body>
+</html>

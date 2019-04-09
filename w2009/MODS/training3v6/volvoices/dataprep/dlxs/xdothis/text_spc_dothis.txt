@@ -1,0 +1,72 @@
+/d1/workarea/dlxs/text/spc/dothis
+
+*****STOP*****
+
+Before processing any more TEI
+
+rewrite makebib to use existing pids!!!
+
+
+****STOP!!!*******
+
+
+1)put xml files in TEI  folder, access images in obj/JPG folder
+2) chkjpg  # makes sure you have a jpeg for each one referenced
+3)run chkid to make sure internal id matches file name
+  and to verify you don't have 2 files with the same name
+
+(remember categories for these!)
+3.5) put TEI in oldTEI, and run catref on them.  Check new ones in TEI folder.
+3.75) cp done/TEI/* TEI/.  # improve on this later
+4) run transform here 
+5) cat validate and run that command to validate
+6)check ./output/spct.errors 
+
+#  this step not needed in arrowmont 7)idno   #puts id tags for spcid on
+#  took care of this too 8) cat open spct close > spct.xml  #puts tags on
+
+9) cp output/spct.xml /d1/dlxs/obj/s/spct/.
+  cp output/spc*000.xml /d1/dlxs/prep/s/spct/subfiles/.
+10) then go to /d1/dlxs/bin/s/spct and run:
+11) make convert
+12) make nodefy
+13) if you changed mappings or regions, do:
+  make singledd
+  make sgml
+  make post
+14) index 
+14.5) update  the count in the collection in collmgr
+15) make a release to production
+
+make sure jpegs are in place in /dl/dlxs/s/spct/obj/JPG/
+16)copy new xml/sgml into /d1/dlxs/prep/s/spct (needed for pageview)
+( and new single xmls to subfiles, 2nd line in #9 above, if you didn't do it then):
+ cp /d1/dlxs/obj/s/spct/spct.xml /d1/dlxs/prep/s/spct/.
+
+
+17) run make pageview
+     fix errors
+
+ and go on with the textclass stuff 
+(any browse stuff, and go into idx/ww direcotry and make all
+
+## change CHKBIB to add a dc:source section referring to the finding aid.
+## in Cochran:
+#MS 552 (idserver.utk.edu/?id=200600000000261),
+# William Cox Cochran Great Smoky Mountains Photographic Collection, 1886,
+# Special Collections Library,
+# The University of Tennessee
+
+##ALSO:  create linkfile of generated links, for use in linking Finding aid
+
+to check to make sure all are in bib, and all the bib are in text class,
+
+19) redo author stuff
+20) redo subcollection stuff
+21) check everything
+22) run ww
+23) create bib records and put them up (see dothisbib)
+23.5) run chkbib
+24) copy stuff to diglib
+25) copy stuff to store1
+

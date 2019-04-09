@@ -1,0 +1,106 @@
+<html>
+<head>
+<title>Text Class Processing Instructions</title>
+
+
+
+ <link href="../../dlxsdocs.css" rel="stylesheet" type="text/css">
+</head>         <body>
+<div class="pageTitle">Text Class Processing Instructions (PIs)</div>
+<p>Processing Instructions (PIs) are used in TextClass XML templates. They
+   are replaced by the running cgi with valid XML, sometimes a simple string
+   (e.g., a URL, or a text string), sometimes with a complex node of XML elements.
+   (For more information about PIs, see <a href="../../ui/index.html#templates"> XML
+   Templates / Processing Instructions.</a>)</p>
+<p>For example the PI <span class="command">&lt;?BOOKBAG_LINK_XML?&gt; </span>is
+   replaced by the cgi with a URL such as<br>
+      <span class="command">http://hostname/cgi/t/text/text-idx?c=sampletc;cc=sampletc;page=bbaglist</span></p>
+<p>The PI <span class="command">&lt;?RESULTS?&gt;</span> is replaced by the cgi
+   with something like:</p>
+<p class="markupsnip">&lt;Item&gt;<br>
+&lt;HEADER&gt;<br>
+&lt;FILEDESC&gt;<br>
+&lt;TITLESTMT&gt;<br>
+&lt;TITLE TYPE=&quot;245&quot;&gt;<br>
+Dalmatia : the land where East meets West. / By Holbach, Maude M.<br>
+&lt;/TITLE&gt;<br>
+&lt;AUTHOR&gt; Holbach, Maude M. &lt;/AUTHOR&gt;<br>
+&lt;/TITLESTMT&gt;<br>
+&lt;EXTENT&gt;ca. 875 kb&lt;/EXTENT&gt;<br>
+&lt;PUBLICATIONSTMT&gt;<br>
+&lt;PUBLISHER&gt;<br>
+University of Michigan Digital Library Production Services<br>
+&lt;/PUBLISHER&gt;<br>
+&lt;PUBPLACE&gt;Ann Arbor, Michigan&lt;/PUBPLACE&gt;<br>
+&lt;DATE&gt;1999&lt;/DATE&gt;<br>
+&lt;IDNO TYPE=&quot;dlps&quot;&gt;aas7611.0001.001&lt;/IDNO&gt;<br>
+&lt;AVAILABILITY&gt;<br>
+&lt;P&gt;<br>
+These pages may be freely searched and displayed. Permission must be received
+for subsequent distribution in print or electronically. Please contact moa-info@umich.edu
+for more information.<br>
+&lt;/P&gt;<br>
+&lt;/AVAILABILITY&gt;<br>
+&lt;/PUBLICATIONSTMT&gt;<br>
+&lt;SOURCEDESC&gt;<br>
+&lt;BIBLFULL&gt;<br>
+&lt;TITLESTMT&gt;<br>
+&lt;TITLE TYPE=&quot;main&quot;&gt;<br>
+Dalmatia : the land where East meets West. / By Holbach, Maude M.<br>
+&lt;/TITLE&gt;<br>
+&lt;AUTHOR&gt; Holbach, Maude M. &lt;/AUTHOR&gt;<br>
+&lt;/TITLESTMT&gt;<br>
+&lt;EDITIONSTMT&gt;<br>
+&lt;EDITION&gt; 3rd ed. &lt;/EDITION&gt;<br>
+&lt;/EDITIONSTMT&gt;<br>
+&lt;PUBLICATIONSTMT&gt;<br>
+&lt;PUBLISHER&gt;J. Lane,&lt;/PUBLISHER&gt;<br>
+&lt;PUBPLACE&gt;London :&lt;/PUBPLACE&gt;<br>
+&lt;DATE&gt;1910.&lt;/DATE&gt;<br>
+&lt;/PUBLICATIONSTMT&gt;<br>
+&lt;/BIBLFULL&gt;<br>
+&lt;/SOURCEDESC&gt;<br>
+&lt;/FILEDESC&gt;<br>
+&lt;ENCODINGDESC&gt;<br>
+&lt;EDITORIALDECL N=&quot;4&quot;&gt;<br>
+&lt;P&gt;All words that are broken by a page-break are joined and placed before
+the page-break.&lt;/P&gt;<br>
+&lt;P&gt;<br>
+In the electronic edition all footnotes have been inserted into the text at the
+place where the footnote marker appears in the printed edition.<br>
+&lt;/P&gt;<br>
+&lt;/EDITORIALDECL&gt;<br>
+&lt;/ENCODINGDESC&gt;<br>
+&lt;PROFILEDESC&gt;<br>
+&lt;TEXTCLASS&gt;<br>
+&lt;KEYWORDS&gt;<br>
+&lt;TERM&gt; Dalmatia (Croatia) Description and travel. &lt;/TERM&gt;<br>
+&lt;/KEYWORDS&gt;<br>
+&lt;CLASSCODE/&gt;<br>
+&lt;/TEXTCLASS&gt;<br>
+&lt;/PROFILEDESC&gt;<br>
+&lt;/HEADER&gt;<br>
+&lt;HitSummary&gt;<br>
+&lt;HitCount&gt;24&lt;/HitCount&gt;<br>
+&lt;HitRegion&gt;full text&lt;/HitRegion&gt;<br>
+&lt;/HitSummary&gt;<br>
+&lt;DetailHref&gt;http://pagliere.dev.umdl.umich.edu/cgi/t/text/text-idx?c=sampletc;cc=sampletc;type=simple;rgn=full%20text;q1=prince;debug=xml;view=reslist;subview=detail;sort=occur;start=1;size=25;didno=aas7611.0001.001<br>
+&lt;/DetailHref&gt;<br>
+&lt;AuthRequired&gt;false&lt;/AuthRequired&gt;<br>
+&lt;TocHref&gt;http://pagliere.dev.umdl.umich.edu/cgi/t/text/text-idx?c=sampletc;cc=sampletc;q1=prince;rgn=full%20text;debug=xml;view=toc;idno=aas7611.0001.001<br>
+&lt;/TocHref&gt;<br>
+&lt;ViewEntireTextLink&gt;http://pagliere.dev.umdl.umich.edu/cgi/t/text/text-idx?c=sampletc;cc=sampletc;q1=prince;rgn=full%20text;debug=xml;page=viewtextnote;idno=aas7611.0001.001<br>
+&lt;/ViewEntireTextLink&gt;<br>
+&lt;BookbagAddHref&gt;http://pagliere.dev.umdl.umich.edu/cgi/t/text/text-idx?c=sampletc;cc=sampletc;q1=prince;rgn=full%20text;debug=xml;bbidno=aas7611.0001.001;bbc=sampletc;bbaction=add<br>
+&lt;/BookbagAddHref&gt;<br>
+&lt;DocEncodingType&gt;monograph&lt;/DocEncodingType&gt;<br>
+&lt;ItemIdno&gt;aas7611.0001.001&lt;/ItemIdno&gt;<br>
+&lt;ItemEncodingLevel&gt;4&lt;/ItemEncodingLevel&gt;<br>
+&lt;/Item&gt;<br />
+&lt;Item&gt;<br>
+   ...<br>
+   &lt;/Item&gt;
+</p>
+</body>
+    
+</html>

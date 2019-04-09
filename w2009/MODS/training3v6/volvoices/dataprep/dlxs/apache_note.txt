@@ -1,0 +1,27 @@
+
+sudo su -
+
+service httpd restart
+
+From Paul 081009
+
+This can be done on a running server.
+
+This tells apache to make a copy of itself and restart.
+
+-----------------------------------------------------------------------
+
+make sure to THANK PAUL!
+---------------------------------------------------------
+From: Paul Cummins 
+To: Deane, Christine Haygood
+Subject: gifcvt dir
+
+ cd /d1/dlxs/web/t/text/
+
+ chown -R apache.apache gifcvtdir
+
+ that is the directory it caches the image files in.
+It gets cleared out every once in a while, but helps speed up the display.
+-----------------------------------------------------------
+

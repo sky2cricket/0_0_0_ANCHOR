@@ -1,0 +1,554 @@
+
+<html> <head> <title> page_01b </title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+<!---
+//vv_compose_page_01.js from vv_compose_tags.js    Dec 8 2009
+//accounting for new definitions in page_upper_091130.htm
+//written in conjunction with vv_reload_page_01.js
+//and called by page_01b.htm
+//as part of w2009 workbook
+--->
+
+<!--- script language=javascript src="creator_tags.js"></script -->
+<!--- script language=javascript src="vv_flextags.js"></script -->
+
+<script language=javascript src="vv_load_UF_DF_strings.js"></script>
+<script language=javascript src="vv_formvardebug.js"></script>
+<script language=javascript src="vv_build_mods_utility.js"></script>
+<script language=javascript src="vv_build_mods_page_01.js"></script>
+<!--- script language=javascript src="vv_validation.js"></script -->
+
+<script>
+function add_remove(strN,AR){
+var sN = new String(strN);
+//alert("add_remove("+sN+","+AR+")");
+
+var s0=new String();
+    s0="document.DF.creator_exist_"+sN+".value";
+var s1=new String();
+    s1="parent.U.document.UF.creator_exist_"+sN+".value";
+var op = new String();
+    op = "='"+AR+"';";
+var eval_s0=new String();
+    eval_s0=s0+op;
+eval(eval_s0);
+var eval_s1 = new String();
+    eval_s1=s1+op;
+//alert("eval_s0="+eval_s0+"\neval_s1="+eval_s1);
+eval(eval_s1);
+location.replace(location.href);
+}//end function add_remove(strN,AR)
+
+
+function clear_name_parts(num) {
+var N = new String(num);
+var last   = new String();//same for corporate and complexpers and pers
+var given  = new String();//combine first and middle
+    last   = "document.forms[0].creator_lastname_0"+N+".value";
+    given  = "document.forms[0].creator_given_0"+N+".value";
+
+var stLast = last  +'="";';
+var stGiven = given +'="";';
+
+eval(stLast);
+eval(stGiven);
+}
+//document.write('<body onload="load_DF_form();"  bgcolor="'+parent.adb_background_color+'" >');
+</script>
+</head>
+<body onload="load_DF_form()" bgcolor="bbccdd"><table  xclass="bgINNER"  border="00" cellpadding="2" cellspacing="1" width="98%" xbgcolor="99aabb">
+<tr bgcolor="bbccdd" ><td colspan="3" align="center"><font face="arial"> 
+<h2><script> document.write(parent.adb_project_name+" Workbook Page 1 - page_01b.htm");</script></h2>
+</td></tr>
+<tr class="bgstandard" ><td colspan="3"> Required Fields are <u>underlined</u>.
+Non-Required Fields are not underlined.
+w2009 v6  page_01b.htm (use with page_upper_091130.htm)
+</td></tr>
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>MODS LABEL</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+<tr class="bgstandard" >
+<td class="label13u">
+Title 
+</td>
+<td>&nbsp;
+
+<!---Civil War Salt Peter Mining--->
+<form name="DF"  >
+<input type="text" name="title" value="" size="36" 
+class="required300w"
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+>
+
+<font face='arial' size='1'>
+</td>
+<td>&nbsp</td>
+</tr>
+<tr class="greenrow">
+<td height="08" colspan="3"></td></tr>
+<tr class="bgstandard"  >
+<td colspan="3"><font face="arial" size="3">Three name and name attributes blocks allow for creation of
+up to 3 sets of mods:name tags.
+<br>The following Name Authorities are available:
+<li> LCNAF -- Complete Description at: <a href="http://authorities.loc.gov/" target="_blank">http://authorities.loc.gov/</a>
+<li> ULAN -- Complete Description at: <a href="http://www.getty.edu/research/conducting_research/vocabularies/ulan/" target="_blank">http://www.getty.edu/research/conducting_research/vocabularies/ulan/</a>
+</td><!---td>&nbsp;</td--->
+</tr>
+<tr class="bgstandard"   xbgcolor="bb8844">
+<td class="label13nou">
+Name Help from Admin DB
+</td>
+<td>&nbsp;<font face="arial" size="2"><b>>> <script>document.write(parent.adb_itemcreator)</script> <<</b></font>
+<br><font face='arial' size='1'>&nbsp;Name associated with the creation of this object as reported in the Admin DB.
+<br>&nbsp;Please use this a a guide in filling out the Name input boxes below.
+
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="greenrow">
+<td height="08" colspan="3"></td></tr>
+
+<tr class="bgstandard"   xbgcolor="bb8844">
+<td class="label13nou">
+Required Name
+<br>for 01
+</td>
+<td>
+<!--
+<input type="button" name="add_creatorname_01" value="Add Creator #1" 
+class="button160w" onclick="add_remove('01','yes')">&nbsp;&nbsp;
+<input type="button" name="remove_creatorname_01" value="Remove Creator #1" 
+class="button160w" onclick="add_remove('01','no')">&nbsp;&nbsp;
+-->
+<font face="arial" size="1">THE PRIMARY NAME ASSOCIATED WITH THE CREATION OF THIS RESOURCE IS REQUIRED.&nbsp;&nbsp;
+<input type="text" size="4" name="creator_exist_01" value="yes" READONLY> creator_exist_01
+</td>
+<td>&nbsp</td>
+</tr>
+
+<script>
+var creator_01_hide= new String(get_creator_hide("01"));
+var creator_01_show= new String(get_creator_show("01"));
+if (parent.U.document.UF.creator_exist_01.value=="no"){
+	document.write(creator_01_hide);
+}else{
+	document.write(creator_01_show);
+}
+</script>
+<!-- end creator_name_01 -->
+
+<tr class="greenrow">
+<td height="08" colspan="3"></td></tr>
+
+<tr class="bgstandard"   xbgcolor="bb8844">
+<td class="label13nou">
+Add/Remove Buttons
+<br>for 02
+</td>
+<td>
+<input type="button" name="add_creatorname_02" value="Add Creator #2"
+class="button160w" onclick="add_remove('02','yes')">&nbsp;&nbsp;
+<input type="button" name="remove_creatorname_02" value="Remove Creator #2"
+class="button160w" onclick="add_remove('02','no')">&nbsp;&nbsp;
+<br><font face="arial" size="1">
+IS THERE A SECOND NAME ASSOCIATED WITH THE CREATION OF THIS RESOURCE?
+&nbsp;&nbsp;
+<input type="text" size="4" name="creator_exist_02" value="no"> creator_exist_02
+</td>
+<td>&nbsp</td>
+</tr>
+
+<script>
+var creator_02_hide= new String(get_creator_hide("02"));
+var creator_02_show= new String(get_creator_show("02"));
+if (parent.U.document.UF.creator_exist_02.value=="no"){
+        document.write(creator_02_hide);
+}else{
+        document.write(creator_02_show);
+}
+</script>
+<!-- end creator_name_02 -->
+
+<tr class="greenrow">
+<td height="08" colspan="3"></td></tr>
+
+<tr class="bgstandard"   xbgcolor="bb8844">
+<td class="label13nou">
+Add/Remove Buttons
+<br>for 03
+</td>
+<td>
+<input type="button" name="add_creatorname_03" value="Add Creator #3"
+class="button160w" onclick="add_remove('03','yes')">&nbsp;&nbsp;
+<input type="button" name="remove_creatorname_03" value="Remove Creator #3"
+class="button160w" onclick="add_remove('03','no')">&nbsp;&nbsp;
+<br><font face="arial" size="1">
+IS THERE A THIRD NAME ASSOCIATED WITH THE CREATION OF THIS RESOURCE?
+&nbsp;&nbsp;
+<input type="text" size="4" name="creator_exist_03" value="no"> creator_exist_03
+</td>
+<td>&nbsp</td>
+</tr>
+
+<script>
+var creator_03_hide= new String(get_creator_hide("03"));
+var creator_03_show= new String(get_creator_show("03"));
+if (parent.U.document.UF.creator_exist_03.value=="no"){
+        document.write(creator_03_hide);
+}else{
+        document.write(creator_03_show);
+}
+</script>
+<!-- end creator_name_03 -->
+
+<tr class="greenrow">
+<td height="08" colspan="3"></td></tr>
+
+<tr class="bgstandard"   xbgcolor="bb8844">
+<td class="label13nou">
+Add/Remove Buttons
+<br>for 04
+</td>
+<td>
+<input type="button" name="add_creatorname_04" value="Add Creator #4"
+class="button160w" onclick="add_remove('04','yes')">&nbsp;&nbsp;
+<input type="button" name="remove_creatorname_04" value="Remove Creator #4"
+class="button160w" onclick="add_remove('04','no')">&nbsp;&nbsp;
+<br><font face="arial" size="1">
+IS THERE A FOURTH NAME ASSOCIATED WITH THE CREATION OF THIS RESOURCE?
+&nbsp;&nbsp;
+<input type="text" size="4" name="creator_exist_04" value="no"> creator_exist_04
+</td>
+<td>&nbsp</td>
+</tr>
+
+<script>
+var creator_04_hide= new String(get_creator_hide("04"));
+var creator_04_show= new String(get_creator_show("04"));
+if (parent.U.document.UF.creator_exist_04.value=="no"){
+        document.write(creator_04_hide);
+}else{
+        document.write(creator_04_show);
+}
+</script>
+<!-- end creator_name_04 -->
+
+<tr class="greenrow">
+<td height="08" colspan="3"></td></tr>
+
+<tr class="bgstandard"   xbgcolor="bb8844">
+<td class="label13nou">
+Add/Remove Buttons
+<br>for 05
+</td>
+<td>
+<input type="button" name="add_creatorname_05" value="Add Creator #5"
+class="button160w" onclick="add_remove('05','yes')">&nbsp;&nbsp;
+<input type="button" name="remove_creatorname_05" value="Remove Creator #5"
+class="button160w" onclick="add_remove('05','no')">&nbsp;&nbsp;
+<br><font face="arial" size="1">
+IS THERE A FIFTH NAME ASSOCIATED WITH THE CREATION OF THIS RESOURCE?
+&nbsp;&nbsp;
+<input type="text" size="4" name="creator_exist_05" value="no"> creator_exist_05
+</td>
+<td>&nbsp</td>
+</tr>
+
+<script>
+var creator_05_hide= new String(get_creator_hide("05"));
+var creator_05_show= new String(get_creator_show("05"));
+if (parent.U.document.UF.creator_exist_05.value=="no"){
+        document.write(creator_05_hide);
+}else{
+        document.write(creator_05_show);
+}
+</script>
+<!-- end creator_name_05 -->
+
+<tr class="greenrow">
+<td height="08" colspan="3"></td></tr>
+
+<tr class="bgstandard"   xbgcolor="bb8844">
+<td class="label13nou">
+Add/Remove Buttons
+<br>for 06
+</td>
+<td>
+<input type="button" name="add_creatorname_06" value="Add Creator #6"
+class="button160w" onclick="add_remove('06','yes')">&nbsp;&nbsp;
+<input type="button" name="remove_creatorname_06" value="Remove Creator #6"
+class="button160w" onclick="add_remove('06','no')">&nbsp;&nbsp;
+<br><font face="arial" size="1">
+IS THERE A SIXTH NAME ASSOCIATED WITH THE CREATION OF THIS RESOURCE?
+&nbsp;&nbsp;
+<input type="text" size="4" name="creator_exist_06" value="no"> creator_exist_06
+</td>
+<td>&nbsp</td>
+</tr>
+
+<script>
+var creator_06_hide= new String(get_creator_hide("06"));
+var creator_06_show= new String(get_creator_show("06"));
+if (parent.U.document.UF.creator_exist_06.value=="no"){
+        document.write(creator_06_hide);
+}else{
+        document.write(creator_06_show);
+}
+</script>
+<!-- end creator_name_06 -->
+
+
+
+<tr class="bgstandard" >
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+
+
+<tr class="bgstandard" ><td colspan="3" align="center">
+&nbsp;&nbsp;
+
+
+
+<!--- this button gives html display -->
+<input type="button" name="B_TAGS1" value="Save and View MODS TAGS(1)"
+onclick="buildModsTags(1);" class="buttonnw">
+        
+<!--- this button gives xml download txt file when you do view source -->
+<input type="button" name="B_TAGS0" value="Save and View MODS TAGS(0)"
+onclick="buildModsTags(0);" class="buttonnw">
+
+
+
+</td></tr>
+
+</table>
+
+
+
+
+
+
+</form name="forms[0]">
+
+
+<center><font face="arial">
+<h2> <script> document.write(parent.adb_project_name); </script>
+ Workbook Page 1</h2>
+</center>
+
+<hr>
+<script>
+
+/////chdchdchd
+
+//function buildModsText(){
+//alert("buildModsText");
+///what is this???
+//<form name="DF"  action="saveXML.php" method="POST">
+//}
+
+
+function load_UF_form() {
+
+////parent.U.document.UF.validate_page_01.value="0"; //no caching from previous value
+
+//////alert("load_UF_form()");
+parent.U.document.UF.title.value = document.DF.title.value;
+
+//call with some_string=get_page_01_load_UF_strings("01");
+
+///PageOneFirstName
+//var sUF = new String(get_page_01_load_UF_strings("01"));
+//alert ("sUF="+sUF);
+///PageOneFirstName
+eval(get_page_01_load_UF_strings("_01") );
+///PageOneSecondName
+eval(get_page_01_load_UF_strings("_02") );
+///PageOneThirdName
+eval(get_page_01_load_UF_strings("_03") );
+///PageOneFourthName
+eval(get_page_01_load_UF_strings("_04") );
+///PageOneFifthName
+eval(get_page_01_load_UF_strings("_05") );
+///PageOneSixthName
+eval(get_page_01_load_UF_strings("_06") );
+
+
+return;
+}
+
+
+function load_DF_form() {
+
+////////alert("load_DF_form()");
+
+
+//first time load title
+if ( parent.U.document.UF.title.value == "" ) {
+	document.DF.title.value = parent.adb_itemtitle;
+}else{
+	document.DF.title.value = parent.U.document.UF.title.value ;
+}
+
+//call with some_string=get_page_01_load_DF_strings("01");
+
+///PageOneFirstName
+//var sDF = new String(get_page_01_load_DF_strings("01"));
+//alert ("sDF="+sDF);
+///PageOneFirstName
+eval(get_page_01_load_DF_strings("_01") );
+///PageOneSecondName
+eval(get_page_01_load_DF_strings("_02") );
+///PageOneThirdName
+eval(get_page_01_load_DF_strings("_03") );
+///PageOneFourthName
+eval(get_page_01_load_DF_strings("_04") );
+///PageOneFifthName
+eval(get_page_01_load_DF_strings("_05") );
+///PageOneSixthName
+eval(get_page_01_load_DF_strings("_06") );
+
+return;
+
+}
+
+
+function buildModsTags(N) {
+
+//form_filter();
+
+////do this first so current values are loaded regardless of validation status
+load_UF_form();
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+//before writing MODS TAGS, make sure all required fields are populated
+//checkAllRequired... true  validation sets validation status to 1  -- complete
+//checkAllRequired... false validation sets validation status to 0  -- incomplete
+
+if (!parent.L.checkAllRequiredElements_Page_01() ) {
+	alert("page 1");
+	parent.L.update_page_validation(1,0);
+	return;
+}
+parent.L.update_page_validation(1,1);
+//alert ("got to here 01");
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+var num = new Number();
+    num = N;
+//num=downloadTypeN  [0 for download; 1 for html display]
+
+
+
+var aps= new Array();
+var hps= new Array();
+var cps= new Array();
+
+//downloadTypeN  [0 for download of text; 1 for html display]
+//strN "01","02"..."06"
+//function buildTagsArray_page_01(downloadTypeN,strN){
+
+
+    hps = buildTagsArray_header(num);
+    aps = buildTagsArray_page_01(num,"01");//required
+	
+    if(parent.U.document.UF.creator_exist_02.value=="yes"){
+    	aps += buildTagsArray_page_01(num,"02");
+	}
+    if(parent.U.document.UF.creator_exist_03.value=="yes"){
+    	aps += buildTagsArray_page_01(num,"03");
+	}
+    if(parent.U.document.UF.creator_exist_04.value=="yes"){
+    	aps += buildTagsArray_page_01(num,"04");
+	}
+    if(parent.U.document.UF.creator_exist_05.value=="yes"){
+    	aps += buildTagsArray_page_01(num,"05");
+	}
+    if(parent.U.document.UF.creator_exist_06.value=="yes"){
+    	aps += buildTagsArray_page_01(num,"06");
+	}
+    cps = buildTagsArray_closer(num);
+
+
+   
+
+//=================================================
+
+document.write('<input type="button" name="BBACK" onclick="javascript: history.back()" value="BACK"><P>');
+if (num==1){
+
+document.write('<font face="Elephant" size="3" color="a00000">'+parent.adb_project_name+' Workbook, Page 1<p></font>');
+//PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+document.write('Save your final file to: <font face="Elephant" size="3" color="a00000">'
++parent.U.document.UF.XMLFILENAME.value+'</font><p>');
+document.write('<font face="Elephant" size="3" color="a00000">PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+	+"This is the generated xml script.  Values you entered are highlighted in red."
+	+"<br>oNI = num ="+num
+	+"<HR>");
+}
+//document.write('< ? xml version="1.0"  ? > \r\n'); 
+///document.write("Content-Type: text/xml ")
+
+/**/
+var btag=new String("<BR>");//html display
+if (num==0){btag="";} //text download
+for (i=0;i<hps.length;i++) {
+	var vps = new String(hps[i]);
+	//if (!confirm("vps.length="+vps.length))return;
+	if (vps.length>4) {
+		document.write("<br>"+vps);
+		}
+	}
+/**/
+
+//alert("aps.length="+aps.length);
+
+document.write(aps);
+/*
+for (i=0;i<aps.length;i++) {
+	var vps = new String(aps[i]);
+	document.write("<br>"+vps);
+
+	}
+*/
+
+
+for (i=0;i<cps.length;i++) {
+	var vps = new String(cps[i]);
+	//if (!confirm("vps.length="+vps.length))return;
+	document.write("<br>"+vps);
+
+	}
+
+if(num==1){
+document.write('<p>&nbsp;<p><input type="button" name="BBACK2" onclick="javascript: history.back()" value="BACK"><P>');
+}
+
+}//end function
+
+
+
+formvardebug();
+
+
+</script>
+	
+
+
+</body>
+</html>
+
+

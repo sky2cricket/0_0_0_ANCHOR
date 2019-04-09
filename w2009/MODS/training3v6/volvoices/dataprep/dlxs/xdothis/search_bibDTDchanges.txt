@@ -1,0 +1,239 @@
+
+this file is located at
+
+diglib2: /d1/workarea/dlxs/search/bibDTDchanges
+
+last change before I wrote above cutline:
+
+[root@diglib2 search]# ls -l b*
+-rwxr-xr-x  1 diglib diglib 9788 May 18  2006 bibDTDchanges
+
+chd 080929
+
+
+=======================================================================
+Each record needs:
+
+1)  metadata  (already in bib record section A)
+2)  full text:  optional element TEXT in section A, containing 1 or more TEXTPAGES
+   a) page-level text:  in <A><TEXT><TEXTPAGE ...
+   b) link to page-level web display  in TEXTPAGE attribute WEBLINK (if exists)
+   c) link to page-level thumb in TEXTPAGE attribute THUMBLINK (if exists)
+   d) whether text is OCR'd or not;  do not display in KWIC if== "Y"
+            "Y" or "N" in TEXTPAGE attribute OCR
+3) link to thumb for entire record (not page-level): --put in THUMBLINK attribute for A
+4) link to full display for entire record: <J>...<URL> -- put in WEBLINK attribute for A
+5) link to collection:  already in 1st <REL> element? Cannot be sure.  Put in
+   <REL><COLLS><COLL><URL>
+6) name of collection:  in <J>...<COLLS><COLL>... copy to <REL><COLLS><COLL><CONTAINER>  with URL
+7) citation?  Put in <REL><PARTOF><CONTAINER>  and <URL>
+8) filename?  Put in <REL><FNAME>
+
+remove duplicate data from file;  remove YR, and use DT (yyyy-mm-dd)
+see search.dtd
+
+
+   --------------
+NEED TO SET UP INDEXING Of Each Area! and adjust maps?
+   --------------
+ADD SIDs to links!
+  ---------------
+
+Results page should display:
+  Title, Author, Date, Collection (a link), Filetype from TYPE value?,
+    KWIC if non-OCR data, thumb (a link)
+  (KWOC if search hit in metadata? nothing if OCR data?)
+  a link to view full metadata (with thumb in it)
+  a link to view the item
+
+  If a hit on a page within a document (Paul's software, for when we do finding aids)
+     -- use page link and page thumb
+  Else use full display link and record thumb
+
+If several hits in single document, display what?
+Do I sort in order of number of hits per doc?  (should if possible, do all this)
+Do I offer sorting by other values?  Title, author, date, collection, filetype?
+Do I offer sorting by other values?  Title, author, date, collection, filetype?
+Do I offer search within results?
+Offer searching within separate metadata fields?  and within full text (includes metadata?)
+Offer bookbag? 
+Offer separate results by collection?  -- NOT RIGHT NOW:  setting this up to bring a collection  together.
+
+What comes from where:
+
+Textclass
+-----------
+1) metadata:  already exists in bibclass records
+2) full text
+    TEI:  between <text></text> (case insensitive) within each record, with all <.*?> values
+            removed (after pb's collected) and all |.*?| (font tags) removed.
+   a) Page level text 
+        TEI:  between <pb .*?> and <pb .*?> or </text>  (cannot count on divs to
+               coincide with page breaks.  PBs do not have closure.)
+   b) Page level web display
+        Textclass:  same as Record level web display.  Differs for Paul's software.
+   c) Page level thumb:  NEED TO CREATE THESE!  
+          SET UP DIRECTORY /d1/dlxs/web/thumb/t/tdh/ and put them there.
+(?) look at Perry's code for including thumbs in bibclass
+          CREATE icons for non-image links (METS records)
+        Processed Textclass:  image links look like this in pb:
+        <pb ref="um001a.jpg" n="[1]" seq="00000001" res="600dpi" fmt="JPEG" ftr="1stpg">
+        pull "um001a.jpg" and attach it to directory for that collection to create link.
+     ALSO:  should thumbs be an acive link?  using value in #b?  YES
+     ALSO:  add thumb into "view long format in new window" and "view long format" displays
+   
+   d) OCR value = "N" for current textclass collections
+
+3)  Link to thumb for record?  Use first thumb for each record? NO  display appropriate icon
+       If hit is in metadata, display this?  yes 
+       if multiple hits in record (more than one page) display.. what?  1st thumb or icon?
+   ICONS:  letter, book, what else?  book icon for mets records and pav. PDF?  with download?
+   ALSO:  should thumbs be an active link (using value in #4?)  YES
+
+4)  Record Level web display 
+     Textclass:  link of the form:           
+      http://diglib.lib.utk.edu/cgi/t/text/text-idx?c=tdh;cc=tdh;rgn=main;view=text;idno=um021
+           where um021 is the record name, tdh is the collection
+           
+           NOTE:  to highlight text:
+             1) if single search term:  add ;q1=searchterm
+             2) if boolean:  Memphis and search or shaking
+              add ;q1=Memphis;q2=search;q3=shaking;op2=and;op3=or;
+             3) if phrase, put %20 in place of spaces: 
+              "shaking very" becomes ;q1=shaking%20very
+   
+   Make into live link: 
+   <a href="link">View item</a>
+   
+5) Link to collection: http://diglib.lib.utk.edu/cgi/t/text/text-idx?c=tdh;cc=tdh;
+    where collection is tdh
+6) Name of collection:  Tennessee Documentary History (in this case)
+   combine to make it a live link:
+  <a href="http://diglib.lib.utk.edu/cgi/t/text/text-idx?c=tdh;cc=tdh;" target="_blank">Tennessee Documentary History</a>
+
+
+IMAGECLASS
+------------
+
+1)  metadata  (already in bib record section A)
+2)  full text:  from ARRI collection where OCR files are a field
+   a) page-level text:  if it exists, it's in
+  <ENTRY .*?>\s*<ENTRYAUTH .*?>\s*<I .*?>\s*<ISTRUCT .*?>.*?</ISTRUCT>\s*<D>.*?<C CN="ARRI.IN" CM="IC.MISC">(.*?)</C>
+
+   b) link to page-level web display
+        link looks like:
+   http://diglib.lib.utk.edu/cgi/i/image/image-idx?c=rth;view=entry;subview=detail;cc=rth;entryid=x-roth0442;viewid=1;
+     where c = coll, cc = coll, entryid = x-filename
+
+   to add query specifications for highlighting:
+    &q1=Flora &rgn1=All+Categories
+   &op2=And &q2=fauna &rgn2=All+Categories &type=boolean
+    &op3=or &q3=landscapes+and+scenery &rgn3=All+Categories
+
+  *** BUT THESE CATEGORIES MUST MATCH THE SEARCH CATEGORIES IN THE COLLECTION!! ***
+     so for ALL HITS, create links as full-text search (ALL+Categories &type=boolean)
+
+      1)  if single search term:  add
+          &q1=searchterm&rgn1=All+Categories
+      2)  if boolean:  Flora and Fauna or (landscapes and scenery)  add:
+          &q1=Flora &rgn1=All+Categories
+          &op2=And &q2=fauna &rgn2=All+Categories &type=boolean
+          &op3=or &q3=landscapes+and+scenery &rgn3=All+Categories
+      3)  if phrase, put + in place of spaces:
+            "landscapes and scenery" becomes landscapes+and+scenery
+
+
+  Make into live link:
+     <a href="link">View item</a>
+
+  c) link to page-level thumb
+         ? SET UP DIRECTORY /d1/dlxs/web/thumb/a/arri/ and put them there.
+          CREATE icons for non-image links (METS records)
+          live links to value in (b) above
+      name of image:  from
+    <ENTRY .*?>\s*<ENTRYAUTH .*?>\s*<I .*?>\s*<ISTRUCT .*?>(.*?)</ISTRUCT>
+        -- add ".jpg" to end
+
+  d) whether text is OCR'd or not: "Y"
+
+3) link to thumb for entire record:
+    same as (2c) above.  Create icons for non-existent images, such as for mets records.
+
+4) link to full display for entire record:
+    same as (2b) above  
+   
+5) link to collection:
+     http://diglib2.lib.utk.edu/cgi/i/image/image-idx?c=arri;g=gsmc;page=index;
+
+6) name of collection:
+     "From Phi Beta Phi to Arrowmont"
+     <a href="http://diglib2.lib.utk.edu/cgi/i/image/image-idx?c=arri;g=gsmc;page=index;" target="_blank">From Phi Beta Phi to Arrowmont</a>
+
+
+MAKING FILES:
+if no text, add these sections:
+
+  into <A> add attributes 
+    WEBLINK="http://idserver.utk.edu/?id=200600000000261" THUMBLINK="http://diglib2.lib.utk.edu/thumbs/fa.jpg">
+    (taking URL out of J for weblink)
+     
+and after any existing REL, add (can add URL after CONTAINER in PARTOF):
+  <REL>
+    <COLLS>
+         <COLL>
+           <CONTAINER>Willam Cox Cochran Photographic Collection</CONTAINER>
+           <URL> http://idserver.utk.edu/?id=200600000000262</URL>
+         </COLL>
+    </COLLS>
+    <PARTOF>
+      <CONTAINER>AR 18; William Cox Cochran Great Smoky Mountains Photographic Collection, 1886; Special Collections Library, The University o
+f Tennessee</CONTAINER>
+     </PARTOF>
+    <FNAME>wcc006</FNAME>
+   </REL> 
+          
+(do I want to delete these values elsewhere in the file?  --yes
+   PARTOF is currently in <H><P>;
+   COLL is in <J><COLLS>
+   COLL and COLL URL are currently combined in REL
+   FNAME is currently in <G><AA>Document ID:
+   remove duplicated info in REL or elsewhere
+   )
+ And remove DT value, leaving YR (form:  yyyy-mm-dd )
+         
+          
+<FINDING AID CLASS
+-------------------
+1) Metadata:  use crosswalk in /home/firestar/crosswalks/EAD2DC if no OAI record
+2) Full text:  <archdesc.*?>(.*?)<\/archdesc> with all <.*?> removed.
+   a) page level text -- same.  only one page
+   b) page level web display.  same as record level web display
+   c) page level thumb:  NEED TO CREATE THESE!  Thumb of what?  Icon of finding aid... ?
+   d) OCR value = "N"
+3)  icon is active link to record displayed online
+4)  record level web display:  link of the form
+   http://beta.lib.utk.edu/cgi/f/findaid/findaid-idx?c=fa;cc=fa;view=text;rgn=main;didno=2701
+    where didno = filenumber   (MS 0552 would be didno=0552, EAD file is 0552.xml)
+
+    NOTE:  to highlight text:
+      a) if single search term, add ;q1=searchterm
+      b) if boolean, (the and Tennessee or Knoxville), add:
+             ;q1=the;q2=Tennessee;q3=Knoxville;op2=and;op3=or;
+      c) for phrase ("donated to the"), add:
+             ;q1=donated%20to%20the;
+
+5)  Link to collection: http://dlc.lib.utk.edu/f/fa
+6)  Name of collection:  Finding Aids Collection --  combine to make live link
+    <a href="http://dlc.lib.utk.edu/f/fa" target="_blank">Finding Aids Collection</a>
+
+-------------------------------------------------------------------------------------
+
+## THUMBS & ICONS ##   size:  height 120.  width?
+need icons for:
+   finding aids  -- seek.jpg  /d1/dlxs/web/thumbs/fa.jpg
+   books,  letters?   can't discriminate in things from text class.  One icon for all, unless creating thumbs.
+            --- reader.jpg    /d1/dlxs/web/thumbs/text.jpg
+
+   currently putting in /d1/dlxs/web/thumbs
+   which makes thumb link:  http://diglib2.lib.utk.edu/thumbs/wcc006.jpg
+

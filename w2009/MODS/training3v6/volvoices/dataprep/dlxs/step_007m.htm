@@ -1,0 +1,91 @@
+<html>
+<head>
+<script language=javascript src="links/vv_functions_links.js"></script>
+<title>
+char_check
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+</head>
+<!-- body  class="bg_aabbcc" -->
+<body bgcolor="aabbcc">
+<font face="arial" size="3">
+<center><font face="arial">
+<script>//document.write(dlxs_vv_header);</script>
+<p>
+</center>
+<table  class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="99aabb">
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+<tr class="bgstandardwhite" ><td colspan="3" align="left" class="step">
+<pre>
+step_007m.htm
+(using 0022_000060_000204 files as an example)
+pickupTime copies 
+vvImport/batch/02/xml          to /d1/workarea/dlxs/text/tel/ocr/mods/  
+vvImport/batch/02/JPEG         to /d1/workarea/dlxs/text/tel/ocr/jpegs/ 
+vvImport/batch/02/minithumbs   to /d1/workarea/dlxs/text/tel/ocr/minithumbs/
+vvImport/batch/02/ocr          to /d1/workarea/dlxs/text/tel/ocr/text/
+
+processing 02 files - /d1/workarea/dlxs/text/tel/ocr
+with modsTC, using <a href="xfiles/02_vvo/mods_0022_000060_000204_0000.xml.txt"
+target="_blank">mods/0022_000060_000204_0000.xml</a> as input
+
+[root@diglib2 tel]# ls /d1/workarea/dlxs/text/tel/
+0012_xml.txt  countfiles         hexmess          NOTE            repairLocserve  test
+BadColl       crossmappings      hextest          notext          search          testfiles
+badocr        done               howmany          ocr             spc             transform
+batchedOut    dothis             infotrack        olderVersions   specify         translate
+categories    dupes              linkfile         output          tei             ttout.txt
+charTest.pl   dupesInText        modsbib          preservation    teiHead         typed
+checkme       duplicates_noproc  modsTC           problems        teiHeadNoText   validate
+chkfiles      fieldtest          modsTC.20080506  rebatch         teiHeadOcrText  xtest
+chkid         fixDupes           newmods          removeOldDupes  teiTail
+[root@diglib2 tel]# 
+
+Relevant files in this directory.
+ocr/mods/
+modsbib/
+preservation/ocr/
+search/
+tei/ocr/
+linkfile
+modsTC
+6. Run the modsTC program that is in /d1/workarea/dlxs/text/tel/
+	command> perl modsTC
+	<a href="xfiles/textclass/modsTCscreencap.txt" target="_blank">screen capture</a>
+
+modsTC finds or calculates the persistant url (purl) value 
+	and uses the purl value with the input ocr/mods/ files to create output files
+	for modsbib/, preservation/ocr/, search/ and tei/ocr/.
+
+First modsTC looks for the xml base value from the mods file in linkfile.
+
+	The line for 0022_000060_000204_0000 xml base is:
+	0022_000060_000204_0000  http://idserver.utk.edu/?id=200800000001402
+	<a href="xfiles/02_vvo/linkfile.txt" target="_blank">view short version of linkfile</a>
+
+If modsTC does not find the xml base value in linkfile, the locserve 
+	database will generate a new purl value that is added to linkfile.  
+Then output files are generated.
+
+<a href="xfiles/02_vvo/02_vvo_purls.txt" target="_blank">View details about the persistant url for 0022_000060_000204_0000</a>
+
+modsTC input
+    ocr/mods/* ..................Workbook Mods <a href="xfiles/02_vvo/0022_000060_000204/mods_0022_000060_000204_0000.xml.txt" target="_blank">0022_000060_000204_0000.xml</a>
+modsTC output
+    modsbib/* ................bib class format <a href="xfiles/02_vvo/0022_000060_000204/modsbib_0022_000060_000204_0000.txt" target="_blank">0022_000060_000204_0000</a>
+    newmods/ocr/* ..............newmods format <a href="xfiles/02_vvo/0022_000060_000204/newmods_ocr_0022_000060_000204_0000.htm" target="_blank">0022_000060_000204_0000.xml</a>
+    preservation/ocr/* ....preservation format <a href="xfiles/02_vvo/0022_000060_000204/preservation_ocr_0022_000060_000204_0000.htm" target="_blank">0022_000060_000204_0000.xml</a>
+    search/*  ...................search format <a href="xfiles/02_vvo/0022_000060_000204/search_ocr_0022_000060_000204_0000.txt" target="_blank">0022_000060_000204_0000</a>
+    tei/ocr/* ......................tei format <a href="xfiles/02_vvo/0022_000060_000204/tei_ocr_0022_000060_000204_0000.xml.txt" target="_blank">0022_000060_000204_0000.xml</a>
+
+
+</pre>
+</font>
+</td></tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+</table>
+</body>
+</html>
+
+

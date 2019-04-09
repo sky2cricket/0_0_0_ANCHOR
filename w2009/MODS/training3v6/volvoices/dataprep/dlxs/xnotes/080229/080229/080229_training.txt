@@ -1,0 +1,361 @@
+  080229_training
+
+bring in workbook xml file and make
+	1. dlxs display
+	2. dlxs search
+	3. oai 
+	4. preservation mods
+	5. preservation tei
+	6. vv file for 0012 modifications for inclusions for other collections
+
+http://www.arl.org/stats/annualsurveys/arlstats/  ARL Statistics and Measurement
+
+Counter project
+
+see pdf on index_private.html
+http://diglib.lib.utk.edu/~cdeane/ARL_Emetrics_Data_Collection_Manual.pdf
+
+http://www.ii.fsu.edu/
+
+http://www.arl.org/stats/
+
+http://www.libqual.org/documents/admin/LQUpdate_Jan2008_final.pdf
+
+----------------------------------------
+Broad overview
+
+Collections for the display of digital objects
+	image class
+	text class
+	[ bib class not for display ]
+	finding aids class ( displaying transcription )
+
+We are using bib class for
+	1. tie together collections in different formats to be searched together
+	2. oai delivery
+	3. provide a location where users can search over all collections via dublin core
+		( not all collections have this ability)
+
+---------------------------------------------------------
+
+volunteer voices
+
+vvz is single images
+vvi is multiple images
+vvt is transcribed text
+vvo is ocr text
+vvb is blank text (to be transcribed)
+vvs-bib bib class where searching is done contains full text and thumbnails
+vvs-mods  the version for oai which has not yet been released
+
+except for vvs-bib, web pages named same as collection
+
+home directory is vvs for vvs-bib
+
+development is on diglib2
+production is on diglib
+/d1/dlxs/web/v/vvz 
+/d1/dlxs/web/v/vvi etc
+
+Similarly others
+
+obj object dir
+idx  index dir
+prep is preparation
+img is for images
+bin for bin
+
+In img class, there is only one bin directory for all image class collections
+/d1/dlxs/bin/i/image
+
+For txt class, bin is specific to collection
+
+For bib class, 
+	1.  normal dc via bib class
+	     the bin is /d1/dlxs/
+		processing steps in steps
+
+[root@diglib2 bib]# pwd
+/home/firestar/xpat/bib
+[root@diglib2 bib]# ls
+bibNewDTD.doc  cats  oai          steps     teiXml  vv.dtd  vv_sgml.dtd      vv_work.xml
+bibNewDTD.dtd  maps  sgml_vv.dtd  steps.bk  vv      vvfile  vv_work_new.xml  vv.xml
+[root@diglib2 bib]# 
+
+vi steps to see the steps.
+
+For search in mods bib-class, different process requires use of bin directory
+
+The bin dir associated with collection name.
+
+Older processing in /home/firestar/xpat/
+Newer under /d1/dlxs/workarea
+
+[root@diglib2 xpat]# cd /d1/dlxs/
+[root@diglib2 dlxs]# ls
+bin  CDROM-10-install  cgi  idx  img  lib  misc  obj  prep  web
+[root@diglib2 dlxs]# cd ..
+[root@diglib2 d1]# ls
+backups  inbox-sc    mnt-store1-area2  mount-ts      unmount-area2     unmount-inbox-ts
+dlxs     inbox-ts    mnt-store1-area3  store1-area2  unmount-area3     workarea
+inbox    lost+found  mount-sc          store1-area3  unmount-inbox-sc  wpa
+[root@diglib2 d1]# cd workarea
+[root@diglib2 workarea]# ls
+cya  dlxs  namechange  tests  umatic  uploads  wiley  xtf
+[root@diglib2 workarea]# 
+[root@diglib2 workarea]# cd dlxs
+[root@diglib2 dlxs]# ls
+bib  countfiles  ead  image  mail  mets  oai  search  tdh  telfiles  text  vv2spc  ww
+[root@diglib2 dlxs]# 
+
+vv2spc translate vv to spc
+
+tdh is tenn doc history
+
+[root@diglib2 dlxs]# ls -l ww
+total 612
+-rwxr-xr-x    1 firestar firestar   620362 May 14  2003 dlxs.text
+[root@diglib2 dlxs]# ls tdh
+countjpegs  dupes   pageview.dat  split     subjects2  sublinks2
+countme     newtdh  pno           subjects  sublinks
+[root@diglib2 dlxs]# cd tdh/newtdh
+[root@diglib2 newtdh]# ls
+1         3.errors  addcats  chkjpgLast  lastfiles     pav         tdh0212.xml
+1.errors  4         bib      close       nobrks        pav.errors  tdh.xml
+2         4.errors  chkbib   dothis      notes         pno         transform_all
+2.errors  5         chkid    errors      open          tdh         valall
+3         5.errors  chkjpg   idno        pageview.dat  tdh0212     validate
+[root@diglib2 newtdh]# 
+
+These are for comma delimited category lists
+[root@diglib2 newtdh]# cd addcats
+[root@diglib2 addcats]# ls
+addcats     catfiles   chkjpg    copymove  headers  newcategories  nofile
+allfiles    checknums  columns   csv       here     newcolumns     oldcsv
+
+nocats have no categories
+catfiles are the files that have categories for - these are tei with new tei tags
+
+[root@diglib2 dlxs]# ls
+bib  countfiles  ead  image  mail  mets  oai  search  tdh  telfiles  text  vv2spc  ww
+[root@diglib2 dlxs]# cd search
+[root@diglib2 search]# ls
+0099_000033_000044_0000_reload.xml  ModsToBib
+arrow                               newmods
+bibDTDchanges                       NOTE
+BibToMods                           ocrgather
+changingStuff                       Old_New_Filenames_00_Priority.txt
+CHARS                               Old_New_filenames_05_Priority.txt
+close                               open
+crosswalks                          openmods
+DBCALLS                             removetags
+dothis                              samples
+here                                search
+hexmess                             search-bib.xml
+hextest                             search-bib.xml.bk
+icons                               search.dtd
+JODYLOOK                            search.dtd.bk
+modsbib                             search-mods.xml
+modsSearch2.dtd                     spc
+modsSearch2.dtd.20061221jd          teisplit
+modsSearch2.dtd.bk                  template10_nocomments.xml
+modsSearch2.dtd_nested              templateVV10.xml
+modsSearch2.dtd.prel                testmods2
+modsSearch3.dtd                     textfiles
+modsSearch.dtd
+
+
+LOOK AT BIB2MODS and ModsToBib
+
+
+pick up for vv
+[root@diglib2 dlxs]# ls
+bib  countfiles  ead  image  mail  mets  oai  search  tdh  telfiles  text  vv2spc  ww
+[root@diglib2 dlxs]# cd telfiles
+[root@diglib2 telfiles]# ls
+BeforePickup    dothis          filemess    logs                    pickuplog   scripts
+check_incoming  duplicates      forWindows  olderVersions           pickupTime  testfiles
+dedupe          duplicates_xml  jpglist     onedirDerivatives       problems    tiflist
+done            fieldtest       listFiles   onedirDerivatives_size  results     totalSoFar
+[root@diglib2 telfiles]# pwd
+/d1/workarea/dlxs/telfiles
+[root@diglib2 telfiles]# 
+ 
+do this - pickup operations on vv files
+
+[root@diglib2 telfiles]# cd ..
+[root@diglib2 dlxs]# ls
+bib  countfiles  ead  image  mail  mets  oai  search  tdh  telfiles  text  vv2spc  ww
+[root@diglib2 dlxs]# cd image
+[root@diglib2 image]# ls
+arrowmont  gsm  roth  spc  steps  tel
+[root@diglib2 image]# ls image/tel
+ls: image/tel: No such file or directory
+[root@diglib2 image]# ls tel
+multiples  singles
+
+[root@diglib2 image]# ls tel
+multiples  singles
+[root@diglib2 image]# ls tel/singles
+15_60_227char  fixSubjects        mods                        problems
+15_60_227hex   footer             modsbib                     search
+categories     here               modsICsearchOai             spc
+catref         hex                modsICsearchOai.20070509    testfiles
+checkme        hexmess            modsICsearchOai.20070510    thumbs
+close          hextest            modsICsearchOai.20070605    titles
+countfiles     httpEncodings      modsICsearchOai.20080114jd  translate
+countfiles2    ic                 modsICsearchOai.bk          vvs-bib.xml
+done           ic.vvz.unnorm.sgm  newmods                     vvz-bib.sgm
+dothis         infotrack          NOTE                        vvzHeader
+dothisbib      jpegs              open                        vvz-mods.xml
+dothissearch   linkfile           opensearch
+entry          linkfile.bk        output
+fieldtest      minithumbs         preservation
+
+[root@diglib2 image]# ls tel/multiples
+categories     footer             mocsICsearchOai.20070605b      open
+catref         hex                mods                           opensearch
+checkme        hexmess            modsbib                        preservation
+close          hextest            modsICsearchOai.20070510jd     problems
+cochran        ic                 modsICsearchOai.20070605       problem_xml
+countfiles     ic.vvi.unnorm.sgm  modsICsearchOai.20071216       search
+countfiles2    infotrack          modsICsearchOai.bk             spc
+done           jpegs              modsICsearchOaiMusic           testfiles
+dothis         jpegsMusic         modsICsearchOaiMusic.20080120  textMusic
+dothisbib      linkfile           modsICsearchOaiMusic.20080123  thumbs
+entry          linkfile.bk        modsICsearchOaiMusic.20080131  thumbsMusic
+fake_linkfile  makebib            modsMusic                      vviHeader
+fieldtest      miniMusic          newmods                        what
+fixSubjects    minithumbs         NOTE
+[root@diglib2 image]# cd ..
+[root@diglib2 dlxs]# ls
+bib  countfiles  ead  image  mail  mets  oai  search  tdh  telfiles  text  vv2spc  ww
+[root@diglib2 dlxs]# cd text
+[root@diglib2 text]# ls
+arr4020285_0002unicode.txt  arrow  arrowArt  arrowArtMETS  emn  sgm  spc  tel
+[root@diglib2 text]# ls text/tel
+[root@diglib2 text]# ls tel
+BadColl        dirty            howmany          NOTE           problems        test
+badocr         done             infotrack        notext         rebatch         testfiles
+batchedOut     dothis           linkfile         ocr            search          transform
+categories     fieldtest        look             octal          simplify        translate
+charTest.pl    fixSubjects.old  lookhere         olderVersions  spc             ttout.txt
+checkme        fixthese         modsbib          onechar        specify         typed
+chkfiles       hexhere          modsTC           onechar_noBOM  tei             validate
+chkid          hexmess          modsTC.20080227  onefile        teiHead         what
+clean          hexstuff         modsTC_unicode   output         teiHeadNoText
+countfiles     hexstuff2        newmods          preservation   teiHeadOcrText
+crossmappings  hextest          nohup.out        preserveTEI    teiTail
+[root@diglib2 text]# 
+
+The display stuff created before bib and search.
+
+In all of these directories, after creating bib-class and search-class files, they all go to
+one dir for catenation together.
+
+[root@diglib2 dlxs]# ls
+bib  countfiles  ead  image  mail  mets  oai  search  tdh  telfiles  text  vv2spc  ww
+[root@diglib2 dlxs]# cd bib
+[root@diglib2 bib]# ls
+mods  search
+[root@diglib2 bib]# ls mods
+arrowmont  dothis  spc  vv
+[root@diglib2 bib]# ls search
+arrowmont  dothis  spc  vv
+[root@diglib2 bib]# 
+[root@diglib2 bib]# cd mods/vv
+[root@diglib2 vv]# ls
+chartest                fixSubjectsBib.20080130  OAI_modsbibToPresMods
+closebib                newPresSubxml            OAI_modsbibToPresMods_notUnicode
+DLCnewSub               newsubOAImods            openbib
+DLCpres                 newSubxml                testfiles
+dothis                  NOTE                     testme
+fixPreserveSubjectsBib  OAIDC                    vvs-mods.xml
+fixSubjects             OAI_modsbibToDC          xml
+fixSubjectsBib          OAI_modsbibToMods
+[root@diglib2 vv]# 
+
+under xml are files that have been processed and ready for catentation
+
+Also have scripts to validate and then translate to oai mods and oai dublin core
+
+DLCpres is preservation versions
+
+
+[root@diglib2 bib]# ls
+mods  search
+[root@diglib2 bib]# cd search/vv
+[root@diglib2 vv]# pwd
+/d1/workarea/dlxs/bib/search/vv
+[root@diglib2 vv]# ls
+closesearch  opensearch  testfiles  vvs-bib.xml  xml
+
+in xml is xml files that have been deposited
+ vvs-bib.xml is cat file which is copied to prep directory and 
+then begin doing dlxs processing
+
+
+categories  chkbib     copycats  dothis    idno     nocats
+[root@diglib2 addcats]# 
+
+======================================
+
+Overview 
+
+Pickyp files, visit dir one by one and test display on diglib2
+
+After displays all work, test bib and search, if all tests okay,
+transfer to live (diglib)          
+
+1. go to diglib, make sure target directory is own by diglib
+2. go to diglib2, look at source dirs and make sure ownership is ok
+    scp -r * diglib@diglib.lib.utk.edu:/d1/dlxs/entire/path
+
+3.  Will ask for diglib pwd si$de2n
+
+4.   For text coll transfer
+	prep/v/*
+	obj/v/*
+	idx/v/*
+	bib/v/*
+
+            do not copy the top folder, just the entire contents of the top folder
+
+5.   For image transfer
+	prep/v/*
+	obj/v/*
+	img/v/*
+	idx/v/*
+
+6.  For bib-mods
+	prep/v/*
+	bin/v/*
+	obj/v/*
+	idx/v/*
+
+7.   For bib ------------------for etd's
+	obj/v/*
+	idx/v/*
+
+If you change cgi scripts, copy those
+If you change other, copy those
+
+sessions table
+
+
+CLEAN UP
+
+1.  make preservation version of tei and mods
+2.  make tiffs and metadata go to store2
+3.  run info track to keep up with perstistant ids, filenames, purls
+4.  more
+5.  finding aids - which files link, which files not link
+6.  send list of not send to Elizabeth to create
+7.  take care of children
+
+
+
+
+
+
+

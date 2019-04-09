@@ -1,0 +1,137 @@
+
+
+<html><head><title>Manpage of DDGEN</title>
+<link href="../../dlxsdocs.css" rel="stylesheet" type="text/css"> </head><body>
+<h1>DDGEN</h1>
+Section: User Commands  (1)<br>Updated: November 2000<br><a href="#index">Index</a>
+<a href="http://localhost/cgi-bin/man/man2html">Return to Main Contents</a><hr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="lbAB">&nbsp;</a>
+<h2>NAME</h2>
+
+<b>ddgen</b> - XPAT Data Dictionary generator program
+<a name="lbAC">&nbsp;</a>
+<h2>SYNOPSIS</h2>
+
+<b>ddgen</b>
+[
+-v
+]
+[
+-C
+]
+[
+-c none | basic | isolatin | sgml
+]
+<i>file_prefix</i>
+<a name="lbAD">&nbsp;</a>
+<h2>DESCRIPTION</h2>
+
+<b>ddgen</b> generates a Data Dictionary and writes it into the file
+named with the given <i>file_prefix</i> and the suffix `.dd'.
+It also creates a corresponding initialization file named
+with the given <i>file_prefix</i> and the suffix `.ini'.
+These files can then be edited in preparation for a database build using
+<b>dbbuild</b>.
+<a name="lbAE">&nbsp;</a>
+<h2>OPTIONS</h2>
+
+<dl compact>
+<dt><b>-v</b><dd>
+Specify verbose mode.  If this option is specified, <b>ddgen</b> prints progress messages
+as it builds the Datab Dictionary and related files.  By default, <b>ddgen</b> works
+quietly, only printing a message if it encounters an error condition.
+<dt><b>-C</b><dd>
+consolidated Data Dictionary - generate a Data Dictionary for a consolidated database.
+By default, <b>ddgen</b> generates an MFS Data Dictionary.
+<dt><b>-c none</b><dd>
+<dt><b>-c basic</b><dd>
+<dt><b>-c isolatin</b><dd>
+<dt><b>-c sgml</b><dd>
+Data Dictionary type - specify the type of Data Dictionary to generate.  By default, <b>ddgen</b>
+generates an <b>sgml</b> Data Dictionary.
+</dl>
+<a name="lbAF">&nbsp;</a>
+<h2>EXAMPLE</h2>
+
+<p>
+
+
+<pre>
+  ddgen myfile
+</pre>
+
+
+<p>
+
+This example generates an SGML MFS Data Dictionary and writes it to the file
+`myfile.dd'.
+<p>
+
+
+<pre>
+  ddgen -c isolatin data3
+</pre>
+
+
+<p>
+
+This example generates an MFS Data Dictionary appropriate for ISO-Latin data and writes
+it into the file `data3.dd'.
+<p>
+
+
+<pre>
+  ddgen -C consolid
+</pre>
+
+
+<p>
+
+This example generates an SGML consolidated Data Dictionary and writes it to the file
+`consolid.dd'.
+<a name="lbAG">&nbsp;</a>
+<h2>SEE ALSO</h2>
+
+<b><a href="http://localhost/cgi-bin/man/man2html?1+dbbuild">dbbuild</a></b>(1)
+<p>
+
+<hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">NAME</a><dd>
+<dt><a href="#lbAC">SYNOPSIS</a><dd>
+<dt><a href="#lbAD">DESCRIPTION</a><dd>
+<dt><a href="#lbAE">OPTIONS</a><dd>
+<dt><a href="#lbAF">EXAMPLE</a><dd>
+<dt><a href="#lbAG">SEE ALSO</a><dd>
+</dl>
+<hr>
+This document was created by
+<a href="http://localhost/cgi-bin/man/man2html">man2html</a>,
+using the manual pages.<br>
+Time: 18:03:38 GMT, March 26, 2001
+</body>
+</html>

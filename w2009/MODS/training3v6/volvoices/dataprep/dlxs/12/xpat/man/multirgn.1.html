@@ -1,0 +1,631 @@
+<html>
+<head>
+<title>MULTIRGN - XPAT multiple region index builder (man page)</title>
+
+
+
+ </head>         <body>
+<div class="pageTitle">MULTIRGN - XPAT multiple region index builder (man page)</div>
+
+<h1>MULTIRGN</h1>
+Section: User Commands  (1)<br /><a href="#index">Index</a>
+<a name="lbAB"></a>
+<h2>NAME</h2>
+<p>
+
+<b>multirgn</b> - XPAT multiple region index builder
+</p>
+
+<a name="lbAC"></a>
+<h2>SYNOPSIS</h2>
+<p>
+
+<b>multirgn</b> [ <b>-v</b> | <b>-v1</b> | <b>-v2</b> ] [ <b>-f</b> ]
+
+[ <b>-merge</b> ]
+
+[ <b>-o</b> <i>output_prefix</i> ]
+[ <b>-sw</b> <i>tag_position_file</i> ]
+[ <b>-meta</b> <i>meta_structure_file</i>
+[ <b>-displayfmt</b> <i>format_name</i> ] ]
+<b>-D</b> <i>data_dictionary</i> <b>-t</b> <i>tagname_file</i>
+</p>
+
+<a name="lbAD"></a>
+<h2>DESCRIPTION</h2>
+<p>
+
+</p>
+<p>
+
+<b>multirgn</b> takes two main arguments: the <i>data_dictionary</i> and the name of a file
+identifying the tags that define the regions.
+In one pass over the text, it produces a region index
+file containing the region indices of all the
+regions specified in the <i>tagname_file</i>.  The region index file has the
+format described in the <b>regions</b>(5) man page.  By default, this region index
+file is named with the same prefix as the <i>data_dictionary</i>, and with the suffix,
+`.rgn'.  An alternate name can be specified using the <b>-o</b>
+option, described below.  <b>multirgn</b> also updates (or creates) the `Region'
+sections in the <i>data_dictionary</i> for the regions that it builds.
+
+If the .rgn file already exists at the time <b>multirgn</b> is
+invoked, <b>multirgn</b> will prompt the user to confirm that the existing
+file can be overwritten.
+
+</p>
+<p>
+
+Most text databases contain several types of <i>structural elements</i>.
+The structural elements in a newspaper database may include, for
+example, Stories, Headlines, Bylines, Dates and Paragraphs.  These
+structural elements are known in <b>xpat</b> as <i>regions</i> and, in many
+databases, are delimited by <i>tags</i>.
+The tags are usually surrounded by angle brackets
+(the characters `&lt;' and
+`&gt;') to distinguish them from the main body of the text.
+These tags commonly occur in start-end pairs, with the end tag being
+distinguished from the start tag by a slash (`/') character after
+the opening angle bracket.
+</p>
+<p>
+
+For example, headings in a text might be tagged as:
+</p>
+<p>
+
+<tt>  &lt;Heading&gt;The text of the heading&lt;/Heading&gt;</tt>
+</p>
+<p>
+
+<b>multirgn</b> only recognizes tags using the above angle bracket syntax, and will
+only write the region pointers for the regions delimited by the tags
+specified in the <i>tagname_file</i>.
+The format of that file is described below.
+</p>
+
+<a name="lbAE"></a>
+<h2>OPTIONS</h2>
+<p>
+
+<dl>
+<dt><b>-v</b></dt><dd>
+</dd><dt><b>-v1</b></dt><dd>
+Specify regular verbose mode.
+This option tells <b>multirgn</b> to produce descriptive output concerning
+its execution.  If this option is not specified, <b>multirgn</b> runs
+silently, producing no output concerning its execution.
+</dd><dt><b>-v2</b></dt><dd>
+Specify second-level verbose mode.
+This option tells <b>multirgn</b> to produce extra messages about subtler problems
+in the data.  In particular, <b>multirgn</b> prints ``Mangled Tag Error'' messages
+in <b>-v2</b> mode.  Note that in most cases, 
+``Mangled Tag Error'' messages, are not needed, so <b>-v1</b> mode is adequate.
+Refer to the section on ``Mangled Tag Errors'', below, for further
+details.
+</dd><dt><b>-f</b></dt><dd>
+Specify full pathnames.
+This option tells <b>multirgn</b> to use full paths in the `SysName' fields within
+the `Region' sections of the Data Dictionary.  The `SysName' fields
+specify the file that contains the actual region index pointers.  The
+<b>-f</b> option is
+useful to produce a Data Dictionary that can be accessed from any place in the filesystem.
+By default, <b>multirgn</b> puts just the filename of the region (`.rgn') file in the
+`SysName' fields.  In that configuration, the database can only be
+accessed from the database directory itself.
+</dd><dt><b>-o</b> <i>output_prefix</i></dt><dd>
+Specify the output file prefix.  This option specifies the prefix of
+the region pointer file that <b>multirgn</b> produces.  <b>multirgn</b> will add a `.rgn'
+suffix to the given prefix to produce the complete region index
+filename.  If the <i>output_prefix</i> already has a `.rgn'
+extension, <b>multirgn</b> will not add another one.  <b>multirgn</b> will put the complete
+filename in the `SysName' fields within the `Region' sections of the
+Data Dictionary, for the regions that <b>multirgn</b> builds.
+
+</dd><dt><b>-merge</b></dt><dd>
+
+Enable <b>multirgn</b> to merge the new regions into the existing regions.
+
+</dd><dt><b>-sw</b> <i>tag_position_file</i></dt><dd>
+Specify sort and write mode.
+This option tells <b>multirgn</b> to perform the sort and write stages only.  This
+option allows the user to bypass <b>multirgn</b>'s initial phase that identifies the
+starts and ends of regions.  This is useful in those special situations where
+<b>multirgn</b>'s region start / end identification system (which just recognizes start
+and end tags with the angle bracket syntax) is not powerful enough, and
+users wish to
+use their own custom region identification program instead.
+In this configuration, the custom program is run to identify
+the regions and to write their start and end offsets
+to a <i>tag_position_file</i>.  Then, <b>multirgn</b> is run with the
+<b>-sw</b> option to create a final region index from that
+<i>tag_position_file</i> and the <i>tagname_file</i>.
+</dd><dt></dt><dd>
+The <i>tag_position_file</i> consists of a series of five-byte entries in
+the following format: the first byte is a one-byte integer whose value
+is the 0-based entry number in the <i>tagname_file</i>.
+The remaining four bytes are a four-byte integer whose value is a
+0-based offset into the text.  These offsets are alternately interpreted
+as the starts and the ends of the regions hat the regions.
+</dd><dt></dt><dd>
+The following example shows the <i>tag_position_file</i> that <b>multirgn</b>'s region
+identification system produces (in a complete run, <b>multirgn</b> first creates a
+<i>tag_position_file</i> and then runs the sort-and-write phase
+automatically). Assume the <i>tagname_file</i> contains
+the following two lines:
+</dd><dt></dt><dd>
+<pre>
+     Hdr
+     Story
+</pre>
+
+</dd><dt></dt><dd>
+Also, assume the text consists of the following line.
+</dd><dt></dt><dd>
+<pre>
+     &lt;Story&gt;&lt;Hdr&gt;this&lt;/Hdr&gt;is&lt;Hdr&gt;done&lt;/Hdr&gt;&lt;/Story&gt;
+</pre>
+
+</dd><dt></dt><dd>
+<b>multirgn</b>'s region identification system identifies the following regions on
+the text:
+</dd><dt></dt><dd>
+<pre>
+     &lt;Story&gt;&lt;Hdr&gt;this&lt;/Hdr&gt;is&lt;Hdr&gt;done&lt;/Hdr&gt;&lt;/Story&gt;
+     ^      ^             ^  ^             ^       ^
+     |      +---- Hdr ----+  +---- Hdr ----+       |
+     |                                             |
+     +-------------------- Story ------------------+
+</pre>
+
+</dd><dt></dt><dd>
+The <i>tag_position_file</i> it builds contains the following six values:
+</dd><dt></dt><dd>
+<pre>
+  Entry  Byte 1    Bytes 2-5
+  -----  ------    ---------
+    1      0           0     (Interpreted as Start Story)
+    2      1           7     (Interpreted as Start Hdr)
+    3      1          21     (Interpreted as End Hdr)
+    2      1          24     (Interpreted as Start Hdr)
+    3      1          38     (Interpreted as End Hdr)
+    4      0          46     (Interpreted as End Story)
+</pre>
+
+</dd><dt></dt><dd>
+Under the <b>-sw</b> option, <b>multirgn</b> uses the <i>tagname_file</i>
+to determine the region names corresponding to the `Byte 1'
+values, above.  Therefore, `0' would correspond to `Hdr'
+and `1' would correspond to `Story'.
+</dd><dt><b>-meta</b> <i>meta_structure_file</i></dt><dd>
+Construct only the meta regions and the Default Data region.
+This option only applies to MFS databases.
+The <i>meta_structure_file</i> is a special file generated by <b>mfsmeta</b>.
+This file contains information that allows <b>multirgn</b> to restrict the region
+building operation to specific portions of the text.
+Refer to the <b>MFS Database Regions</b> section, below, for
+details.
+</dd><dt><b>-displayfmt</b> <i>format_name</i></dt><dd>
+Construct regions within those files having
+the same DisplayFmt as specified by <i>format_name</i>.
+This option only applies to MFS database and may only be used in
+conjunction with the `<b>-meta</b>' option.
+Refer to the <b>MFS Database Regions</b> section, below, for details.
+</dd></dl>
+</P>
+
+
+<a name="lbAF"></a>
+<h2>TAGNAME FILE FORMATS</h2>
+<p>
+
+The <i>tagname_file</i> can be in one of two formats.  In the plain-text 
+format, the bodies of the tags which enclose the different regions are listed
+in the <i>tagname_file</i>, one tag body (and hence one region) per line, with
+no other markup.
+For example, a <i>tagname_file</i> containing the lines,
+</p>
+<p>
+
+<tt>Heading
+<br />
+
+Section</tt>
+
+</p>
+<p>
+instructs <b>multirgn</b> to search for regions defined by the tag pairs
+<tt>&lt;Heading HREF=&quot;1&quot;&gt; .. &lt;/Heading&gt;</tt> ... <tt>&lt;PB&gt;&lt;Section&gt; .. &lt;/Section&gt;</tt>.
+Each region has the same name as the body of its defining tag. 
+However, this format provides no mechanism to index attributes 
+or empty tags such as &lt;PB&gt;.
+</p>
+<p>
+The second format is called the encoded-text format. Note that the
+encoding _is_ case sensitive.
+The following is an example of an encoded-text <i>tagname_file</i>.
+</p>
+<p>
+<pre>
+<tt>
+  &lt;region&gt;
+    &lt;element&gt;Heading&lt;/element&gt;
+    &lt;element&gt;Section&lt;/element&gt;
+  &lt;/region&gt;
+  &lt;region&gt;
+    &lt;tag&gt;PB&lt;/tag&gt;
+  &lt;/region&gt;
+  &lt;region&gt;
+    &lt;att&gt;HREF&lt;/att&gt;
+  &lt;/region&gt;
+</tt>
+</pre>
+
+</P>
+<p>
+In this example, the tags which define the regions are the same as the
+plain-text format example:
+&lt;Heading HREF=&quot;1&quot;&gt;..&lt;/Heading&gt; ... &lt;PB&gt;&lt;Section&gt;..&lt;/Section&gt;.
+However, this format also supports indexing of the HREF attribute (which will
+be identified with a region name of &quot;A-HREF&quot; in the <i>data_dictionary</i> file), 
+and indexing of the empty tag 
+&lt;PB&gt; element (which will be identified with a region name of &quot;PB-T&quot;
+in the <i>data_dictionary</i> file). Elements
+defined within the &lt;element&gt; region can also be defined within the &lt;tag&gt; 
+region, in order to index only the tag in addition the tag data region.
+</p>
+<p>
+<dl>
+<dt><b>Note:</b></dt><dd>
+No command line switch is necessary to tell <b>multirgn</b> what the
+<i>tagname_file</i> format is; <b>multirgn</b> detects the format
+automatically and processes the file accordingly.
+</dd></dl>
+</P>
+
+<a name="lbAG"></a>
+<h2>MFS DATABASE REGIONS</h2>
+<p>
+
+</p>
+<p>
+
+In MFS databases, the
+MFS system creates  a ``virtual text'' from the text of all the files
+in the database.  The portion of this virtual text that corresponds to
+each file consists of three pieces: the Meta-Header section, the Data
+section and the
+Meta-Trailer section.  This breakdown is illustrated in the following
+diagram:
+</p>
+<p>
+<pre>
+<tt>
+  &lt;OTDoc&gt;&lt;OTMeta&gt;....&lt;/OTMeta&gt;&lt;OTData&gt;........&lt;/OTData&gt;&lt;/OTDoc&gt;
+  |---------- Meta-Header -----------|| Data ||- Meta-Trailer -|
+  ^                                   ^       ^                ^
+  start                               start   start            end
+  header                              data    trailer          pos
+</tt>
+</pre>
+
+</P>
+<p>
+
+If <b>multirgn</b> is run over such a database,
+it will build a region index for each tag defined in the
+<i>tagname_file</i>.  It will search for these tags in all three of the
+above sections in each file.
+While this behaviour is usually adequate, the region-building process
+can usually be made more accurate and efficient by building the
+regions in several passes, restricting the build operation to specific
+sections of the text in each pass.  The <b>-meta</b> and
+<b>-displayfmt</b> options provide detailed control over this
+process.
+</p>
+<p>
+
+When the <b>-meta</b> option is specified alone (i.e., without the
+<b>-displayfmt</b> option) <b>multirgn</b> only builds regions on the text in
+the Meta-Trailer and
+Meta-Header sections.  Within those sections, it builds regions on the
+tags defined by the <i>tagname_file</i>.  It skips the Data
+sections.
+</p>
+<p>
+
+The argument to the <b>-meta</b> option is a
+<i>meta_structure_file</i>, which contains the offsets of the Meta-Header,
+Data and Meta-Tailer sections, and a few other pieces of information
+for each file.  This file is built by the <b>mfsmeta</b> program.  Refer to the
+<b>mfsmeta</b>(1) man page for further details on this file.
+</p>
+<p>
+
+This type of restriction is
+useful because the MFS system can usually produce the text of the
+Meta-Header and Meta-Trailer sections
+much faster than the text in the Data
+sections.  Also, the Data sections may not contain any regions in the
+first place, which means that scanning over that text should be
+avoided.  Under this configuration, it builds regions on the tags
+defined by the <i>tagname_file</i>.
+As such, the <i>tagname_file</i>
+should be set up with the following meta-fields:
+
+
+<pre>
+
+OTDoc
+OTMeta
+OTFile
+OTDate
+OTTime
+OTDisplayFmt
+OTFieldsSize
+OTFields
+OTData
+
+</pre>
+
+
+
+The <i>tagname_file</i> should also be set up to build regions on any
+User Meta-Data fields in the OTFields sections.
+</P>
+<p>
+
+In addition to the regions defined by the <i>tagname_file</i>, <b>multirgn</b> also
+builds a special OTDefaultData region.  This
+region defines an appropriate unit of text to send to a
+viewer program, within the Data section of each file.  For most word
+processor files, this consists of the entire Data
+section.  However, for tagged text files that contain several
+``Entries'' (e.g., newspaper Stories), an individual Entry might be
+more appropriate.  Because MFS databases may contain both type
+of files, a special
+field in the Data Dictionary may be used to control how <b>multirgn</b> builds the
+OTDefaultData region.
+</p>
+<p>
+
+Each FilterChain section in the Data Dictionary
+may contain an OTDefaultDataTag field.
+If a given FilterChain section does not contain an
+OTDefaultDataTag field, <b>multirgn</b> will make the entire Data section
+of the corresponding files the OTDefaultData
+region.  If a
+FilterChain section does have an OTDefaultDataTag field
+defined, <b>multirgn</b> will scan the corresponding files' Data sections and will
+build the OTDefaultData regions on the tags defined by the
+OTDefaultDataTag field.  In this way, the members of the
+OTDefaultData region are appropriate for each file.
+</p>
+<p>
+
+</p>
+<p>
+
+The second configuration involves specifying the
+<b>-displayfmt</b> option in addition to the <b>-meta</b> option.
+With both options specified, <b>multirgn</b> restricts the region build operation
+to the Data sections of those files whose DisplayFmt matches the
+given <i>format_name</i>.  Under such a configuration, the
+<i>tagname_file</i> should be set up with the tags that are present in
+those particular Data sections.
+</p>
+<p>
+
+By using these two configurations, the first pass can be used to
+build the meta-field tags and then one or more subsequent passes can
+be used to build regions on the Data section sections of specific
+file types.
+</p>
+<p>
+<b>&quot;NESTING PROBLEMS&quot;</b>
+
+</p>
+<p>
+</p>
+<p>
+
+<b>multirgn</b> is designed to operate on text in which the tags are properly paired and
+the tag pairs are properly nested. However, it 
+handles overlapping tag pairs and recursive nestings automatically.
+</p>
+<p>
+<b>Overlapping Pairs</b>
+
+</p>
+<p>
+</p>
+<p>
+
+Although invalid SGML, multirgn will correctly index overlapping pairs, 
+which are patterns of the form:
+</p>
+<p>
+<pre>
+<tt>  &lt;Body&gt;&lt;Tag1&gt;text text&lt;Tag2&gt;text text&lt;/Tag1&gt;text text&lt;/Tag2&gt;&lt;/Body&gt;</tt>
+
+
+<b>Recursive Nestings:</b>
+
+
+Recursive nestings are patterns of the form
+
+<tt>  &lt;Body&gt;&lt;Tag1&gt;text text&lt;Tag1&gt;text text&lt;/Tag1&gt;text text&lt;/Tag1&gt;&lt;/Body&gt;</tt> 
+</pre>
+
+</P>
+<p>
+In this case, <b>multirgn</b> will index each occurrence of the tag, but does not 
+provide any explicit indexing to assist the XPAT search engine to
+locate the inner nest (i.e. ''region Tag1 within region Tag1'').
+
+</p>
+<p>
+<b>multirgn</b> will issue a warning message if the nested tags are not symmetric:
+</p>
+<p>
+<br />
+
+<br />TryingtopopunpushedtagTag2,inputoffset53stack:/Body
+</p>
+<p>
+</p>
+<p>
+
+</p>
+
+<a name="lbAH"></a>
+<h2>MANGLED TAG ERRORS</h2>
+<p>
+
+</p>
+<p>
+
+If the <b>-v2</b> option is specified, <b>multirgn</b> will print a warning
+message whenever it encounters what it considers to be ``mangled tags''.
+<b>multirgn</b> considers opening angle brackets (`&lt;' characters) that are
+not the start of tags to be mangled tags.  Whenever it encounters
+such occurrences, it simply ignores them and keeps on processing
+(which is usually the correct behaviour).
+</p>
+<p>
+
+The following segment of text contains an example of a `&lt;'
+character in a location other than the start of a tag:
+</p>
+<p>
+
+<br />...describedbytherelation,x&lt;=y,andhavingthe...
+
+</p>
+<p>
+If the <b>-v2</b> option is specified <b>multirgn</b> would report the following
+error when it encountered the above segment of text (NNN is the
+offset of the `&lt;' character):
+</p>
+<p>
+
+<br />MangledtagerroratoffsetNNN
+
+</p>
+<p>
+This message is basically a warning to alert the Database Administrator
+that the data contains `&lt;' characters at places other than tags. 
+For this reason, the <b>-v2</b> option should only be specified if the
+data is not expected to contain `&lt;' characters in places
+other than tags.
+
+</p>
+
+<a name="lbAI"></a>
+<h2>MERGING INDEX FILES</h2>
+<p>
+
+
+Before <b>multirgn</b> starts building the regions, it scans the existing
+`Region' sections in the <i>data_dictionary</i> and verifies that the region index files
+that they reference exist.  If any of those files are missing, <b>multirgn</b>
+deletes the corresponding `Region' sections from the <i>data_dictionary</i>.  In this
+way, integrity is maintained between the <i>data_dictionary</i> and the region index
+file.
+</p>
+<p>
+
+
+If the region index file that <b>multirgn</b> writes the index to already exists,
+<b>multirgn</b> will write the new index points onto the end of the index file.
+If region pointers for a particular region already exists in the
+region index file, <b>multirgn</b> will remove them from where they exist in
+the index file and will place the new pointers on the end of the
+index file.
+
+</p>
+
+<a name="lbAJ"></a>
+<h2>MULTIRGN AND XPATRGN</h2>
+<p>
+
+</p>
+<p>
+
+In many situations, it will be necessary to use both <b>multirgn</b> and
+<b>xpatrgn</b> to define all the regions in a production database.
+While <b>multirgn</b> is vastly preferable for those regions which nest
+nicely and are unambiguously tagged (usually the majority), there are
+often other regions which are not defined unambiguously by tags or which
+may overlap other regions.
+In these situations it is best to build all the tagged regions with one <b>multirgn</b>
+run and to follow that with several <b>xpatrgn</b> runs to build the remaining
+regions.
+</p>
+
+<a name="lbAK"></a>
+<h2>FILES</h2>
+<p>
+
+
+<dl>
+<dt><b><i>data_dictionary</i></b></dt><dd>
+the Data Dictionary to be updated.
+</dd><dt><i>tagname_file</i></dt><dd>
+the <i>tagname_file</i> containing the list of region tag bodies.
+</dd><dt><b></b><i>file</i>.rgn
+
+</dt><dd>
+the resulting region index file.
+</dd><dt><b>tagint.</b><i>nnnn</i></dt><dd>
+the temporary file.
+</dd></dl>
+</P>
+
+<a name="lbAL"></a>
+<h2>DIFFERENCES BETWEEN MULTIRGN AND SGMLRGN</h2>
+<p>
+
+</p>
+<p>
+<b>multirgn</b> differs from <b>sgmlrgn</b> in several ways: 
+(1) Because it does not validate the text, it produces output much faster.
+(2) <b>multirgn</b> can possibly create smaller index files if only a subset of the regions are defined. 
+(3) <b>multirgn</b> does not fabricate new region names if regions of the same name are nested. 
+(4) <b>multirgn</b> infers an empty element if it is defined as a &lt;tag&gt; and not an &lt;element&gt;. Because of this, <b>multirgn</b> will only generate tag regions (e.g. &quot;TAG-T&quot;) and not element regions (e.g. &quot;TAG&quot;) for empty elements, while <b>sgmlrgn</b> will generate both.
+</p>
+
+<a name="lbAM"></a>
+<h2>SEE ALSO</h2>
+<p>
+
+<b><a href="xpat.1.html">xpat</a></b>(1), <b>xpatrgn</b>(1), <b><a href="sgmlrgn.1.html">sgmlrgn</a></b>(1), <b>mfsmeta</b>(1), <b><a href="regions.5.html">regions</a></b>(5), <b><a href="data_dict.5.html">data_dictionary</a></b>(5)
+</p>
+<p>
+
+
+</p>
+
+<a name="index"></a><h2>Index</h2>
+<p>
+<dl>
+<dt><a href="#lbAB">NAME</a></dt><dd>
+</dd><dt><a href="#lbAC">SYNOPSIS</a></dt><dd>
+</dd><dt><a href="#lbAD">DESCRIPTION</a></dt><dd>
+</dd><dt><a href="#lbAE">OPTIONS</a></dt><dd>
+</dd><dt><a href="#lbAF">TAGNAME FILE FORMATS</a></dt><dd>
+</dd><dt><a href="#lbAG">MFS DATABASE REGIONS</a></dt><dd>
+</dd><dt><a href="#lbAH">MANGLED TAG ERRORS</a></dt><dd>
+</dd><dt><a href="#lbAI">MERGING INDEX FILES</a></dt><dd>
+</dd><dt><a href="#lbAJ">MULTIRGN AND XPATRGN</a></dt><dd>
+</dd><dt><a href="#lbAK">FILES</a></dt><dd>
+</dd><dt><a href="#lbAL">DIFFERENCES BETWEEN MULTIRGN AND SGMLRGN</a></dt><dd>
+</dd><dt><a href="#lbAM">SEE ALSO</a></dt><dd>
+</dd></dl>
+</P>
+
+
+</body>
+
+
+</html>

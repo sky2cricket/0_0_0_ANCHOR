@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>dbconv (DB Convert) utility</title>
+
+
+
+
+
+
+
+<link href="../dlxsdocs.css" rel="stylesheet" type="text/css"> </head>         <body>
+<div class="pageTitle">dbconv (DB Convert) utility</div>
+		
+			<p>
+				<b>dbconv</b> is a Perl script designed to merge the data in the pre-CDROM#8  groups and collection tab-delimited files into CSV tables described in the <a href="collmgr.html">collmgr documentation</a> section. These new tables are CSV tables that are then accessible by <a href="collmgr.html">
+					<b>collmgr</b>
+				</a> and the middleware through the Perl <a href="../installation/index.html#reqperlmodules">DBI</a>. The tables will reside in the directory <a href="../intro/dirstruct.html#dlxsrootenv">$DLXSROOT</a>/misc/db.  All institutions that have been running DLXS and using colldb and the groups file will need to run <b>dbconv</b> to get their data from the colldb and groups files into the CSV tables that <b>collmgr</b> and the middleware will use. To run it, just enter <tt>dbconv</tt> from the command line in  <a href="../intro/dirstruct.html#dlxsrootenv">$DLXSROOT/bin/db.</a>
+			</p>
+			<p>
+				<b>Important Points</b>:</p>
+			<ul>
+				<li>This program will only need to be run once, when moving to version 8 of DLXS.  This program copies the collection metadata in colldb and groupdb into a MySQL CSV database.</li>
+				<li>There are some checks that <b>dbconv</b> performs and that you should be aware of. <ul>
+						<li>If you have collid's, or groupid's that are the same across classes you will get an error and be asked to restart the <b>dbconv</b> script.</li>
+						<li>In Text Class <i>dd</i> is a required field, and must start with "$DLXSROOT", or the script will terminate and ask you to restart.</li>
+						<li>In Text Class <i>objdir</i> and <i>wwdd</i> are not required fields, but if they exist, they must start with "$DLXSROOT" or the script will terminate and ask you to restart.</li>
+					</ul>
+				</li>
+			</ul>
+		
+	</body>
+
+</html>

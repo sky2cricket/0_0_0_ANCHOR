@@ -1,0 +1,128 @@
+<html>
+<head>
+<title>Data Conversion to Unicode/XML</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="../styles.css" type="text/css">
+</head>
+<body bgcolor="#FFFFFF" class="mainpalette" >
+         <h3 class="dayheader"> Workshop Day 2 -- Tuesday Afternoon<a
+               name="WorkshopDay2TuesdayAfternoon"> </a></h3>
+<ul>
+		<li><a name="TOCUnicodeXML" href="#DataConv">Data Conversion to Unicode and XML</a>
+		  <ul>
+			 <li> <a href="#DetermineChars">Determining the Character Encodings Present in Your Data</a></li>
+			 <li><a href="#ConvertChars">Converting Those Character Encodings to UTF-8</a></li>
+			 <li><a href="#Testing">Test Driving the Tools</a></li>
+			 <li> <a href="#ConvertSGML">Converting SGML to XML and Normalization</a> </li>
+			 <li><a href="#UnconvertedSGML">Using Unconverted Collections with Release 12 Middleware</a></li>
+		  </ul></li>
+</ul>
+<h2 class="partheader"><a name="DataConv"></a>Data Conversion to Unicode and XML </h2>
+<p>Although we've always stated that data conversion is not something we can officially support through DLXS, it's clear that this is a complex part of the process and one where we have a great deal more experience than most, so it's only fair that we do cover it, especially at this point.  DLXS Release 12 requires that you convert or otherwise handle the character entities, numeric entities, or Latin 1 8-bit characters that have been the staples of SGML (and XML, despite the default encoding of UTF-8) for so long.</p>
+<hr align="left" noshade="NOSHADE" width="100%">	 <h3 class="sectionheader"><a name="DetermineChars"></a><strong>Determining the Character Encodings Present in Your Data</strong></h3>
+<p>There are a number of possibilities you may encounter:
+<ol><li>Plain ASCII (aka the Basic Latin block)</li>
+<li>Character entity references (ISO and otherwise)</li>
+<li>Numeric character references (decimal and/or hexadecimal)</li>
+<li>Latin 1 characters</li>
+<li>UTF-8 characters</li></ol>
+
+You may very well find a mixture of 1, 2, 3, and 4 or even 2, 3, and 5 in the wild, simply because many encoders are not clear on what they should be doing with special characters.  One hopes you will not encounter a document with a mixture of Latin 1 and UTF-8 characters, although it's possible that misidentified files could end up concatenated together and create such a mess.</p>
+<p>There are a number of tools you can use to identify what you have before you.
+<dl><dt>findentities.pl</dt><dd>A perl script written by Phil, it prints the names and frequencies of the entities (CERs and NCRs) it encounters.  Fairly quick, regardless of the size of the file.  Can be run on more than one file at once, which is handy if you have a batch of texts.</dd><dt>xpatutf8check</dt><dd>Another perl script written by Phil, it exists to answer the question, "Will xpatu index this?"  It will report the line number of the first non-UTF character it encounters when it has failed and it runs very quickly, so it's great as a first step in checking your material, but it is not authoritative enough to identify all of the problems you may have.</dd><dt>jhove</dt><dd>The JSTOR/Harvard Object Validation Environment has a UTF-8 module that reports whether your document is or is not valid UTF-8, and which Unicode blocks are contained in the document.  Can be slow checking large documents, but very informative. Available at <a href="http://hul.harvard.edu/jhove/" target="external">http://hul.harvard.edu/jhove/</a> and invoked with <pre class="unixcommand">jhove -c /l/local/jhove/conf/jhove.conf -m utf8-hul file.xml</pre></dd><dt>utf8chars</dt><dd>Yet another perl script written by Phil, it identifies the characters used in a document and the Unicode blocks to which they belong.  It assumes your document is UTF-8 and will report each instance (by line number) where a non-UTF character is encountered.  Because it is identifying and counting each character in a document, it is rather slow, but very very useful.  Runs on one file at a time and prints to standard out, but can be invoked through a <tt>foreach</tt> to check many files in one command.</dd></dl></p>
+
+<hr align="left" noshade="NOSHADE" width="100%">	 <h3 class="sectionheader"><a name="ConvertChars"></a><strong>Converting Those Character Encodings to UTF-8</strong></h3>
+<p>If you have a mixed bag of encodings and entities in your documents, there's a definite order in which you want to approach the conversion task, to avoid having a mixture of Latin 1 and UTF-8 in one document at any point in the transformation.</p>
+<ol><li>First, if you have Latin 1 characters like â, run iconv, part of the Gnu C library to convert files from one encoding to another.  <pre class="unixcommand">iconv -f iso88591 -t utf8 oldfile > newfile</pre></li>
+<li>Next, convert character entity references like &amp;acirc; using isocer2utf8, a perl script written by Phil to convert character entity references to UTF-8 characters.  Although it references ISO in the name, it's been expanded to handle all the CERs we've encountered, including TEI Greek and the Chadwyck-Healey custom entities. <pre class="unixcommand">/l1/bin/t/text/isocer2utf8 oldfile > newfile</pre></li>
+<li>Finally, if you have numeric character references like &amp;#226; or &amp;#xE2;, run ncr2utf8, also written by Phil, to convert decimal and hexadecimal entities to UTF-8 characters. <pre class="unixcommand">/l1/bin/t/text/ncr2utf8 oldfile > newfile</pre></li></ol>
+<p>This would be a good point to run findentities.pl again to see what (if anything) you have left, and to re-validate using jhove or utf8chars to ensure that you have done no harm.</p>
+<hr align="left" noshade="NOSHADE" width="100%">	 <h3 class="sectionheader"><a name="Testing"></a><strong>Test Driving the Tools</strong></h3>
+<p>In the directory /l1/workshop-samples/sooty, you will find four sample files that we'll examine for character encoding and then convert to UTF-8.  Copy these to your own directory -- they are completely expendable and won't serve a purpose in tomorrow's Text Class implementation.  They are merely illustrative of all the possibilities you might encounter and how you may want to handle them.</p>
+<p>First, we'll look at which character or numeric entities, if any, are used in these documents.</p><blockquote>
+		<pre class="unixcommand">foreach file (findaid*)<br>echo $file <br>$DLXSROOT/bin/t/text/findEntities.pl $file <br>end</pre><pre class="unixcommand">foreach file (text*)<br>echo $file <br>$DLXSROOT/bin/t/text/findEntities.pl $file <br>end</pre></blockquote>
+	 <p>Since most of you are set up for bash, here are the
+		same commands in that shell:</p>
+	 <blockquote>
+		<pre class="unixcommand">for file in findaid*<br>do<br>echo $file <br>$DLXSROOT/bin/t/text/findEntities.pl $file<br>done</pre><pre class="unixcommand">for file in text*<br>do<br>echo $file <br>$DLXSROOT/bin/t/text/findEntities.pl $file<br>done</pre></blockquote>
+
+<p>We have some CERs and NCRs to deal with, aside from the five XML-approved entities (&amp;amp;, &amp;gt;, &amp;lt;, &amp;apos;, and &amp;quot;).  So, we know we'll be needing both <tt>isocer2utf</tt> and <tt>ncr2utf</tt>.  Next, we'll see what characters we have (Latin 1? UTF-8? something else?).  We'll run through all three tools, just for the sake of completeness, in the order of speediness and terseness.</p>
+<blockquote>
+		<pre class="unixcommand">foreach file (findaid*)<br>echo $file <br>xpatutf8check $file <br>end</pre><pre class="unixcommand">foreach file (text*)<br>echo $file <br>xpatutf8check  $file <br>end</pre></blockquote>
+	 <p>Since most of you are set up for bash, here are the
+		same commands in that shell:</p>
+	 <blockquote>
+		<pre class="unixcommand">for file in findaid*<br>do<br>echo $file <br>xpatutf8check  $file<br>done</pre><pre class="unixcommand">for file in text*<br>do<br>echo $file <br>xpatutf8check  $file<br>done</pre></blockquote>
+<p>We now know that both the text files are either UTF-8 or plain ASCII (because of the output of these two tests), but there's a problem with one of the finding aids.  jhove will tell us a bit more about our materials.  You'll note we don't need to echo the filename as that's part of the jhove report.  You'll also notice jhove is not so fast.</p>
+<blockquote>
+		<pre class="unixcommand">foreach file (findaid*)<br>jhove -c /l/local/jhove/conf/jhove.conf -m utf8-hul  $file <br>end</pre><pre class="unixcommand">foreach file (text*)<br>jhove -c /l/local/jhove/conf/jhove.conf -m utf8-hul  $file <br>end</pre></blockquote>
+	 <p>Since most of you are set up for bash, here are the
+		same commands in that shell:</p>
+	 <blockquote>
+		<pre class="unixcommand">for file in findaid*<br>do<br>jhove -c /l/local/jhove/conf/jhove.conf -m utf8-hul  $file<br>done</pre><pre class="unixcommand">for file in text*<br>do<br>jhove -c /l/local/jhove/conf/jhove.conf -m utf8-hul  $file<br>done</pre></blockquote>
+		<p>So, the second file in each set is plain ASCII (the Basic Latin block) with entities, the first finding aid is not UTF-8, and the first text file is.  Let's look a bit more at the two non-ASCII files with the slowest and most verbose tool of them all.  We're not doing a foreach this time, but we wouldn't need to echo the filename either, as it is again part of what the tool reports.</p>
+		<blockquote>
+		<pre class="unixcommand">utf8chars findaid1.xml</pre>
+		<pre class="unixcommand">utf8chars text1.xml</pre></blockquote>
+<p>We can see the exact problem with findaid1.xml -- there's an 8-bit Latin 1 e acute before Boekeloo on line 37.  We also can see all the UTF-8 characters in text1.xml -- this is the sort of information that is useful when time comes to map characters and encodings in the xpatu data dictionary.</p>
+<p>Now that we know which items need what character treatments, we'll convert them.  text1.xml is completely fine, so we'll leave it as is.  findaid1.xml has the one Latin 1 character, so we'll use iconv to convert it to UTF-8.  It had no entities of any kind, so we'll be done with it after this step.</p>
+<blockquote>
+		<pre class="unixcommand">iconv -f iso88591 -t utf8 findaid1.xml > findaid1.xml.utf</pre></blockquote>
+<p>Next, findaid2.xml had numeric character references.  It is fine and can be indexed as-is, but users would need to search for the hexadecimal string in the midst of words ( &amp;#xE9; for  &#xE9;, for example).  So, we'll use ncr2utf to convert the entities into the characters.  WARNING! &amp;#x26; is the ampersand (as is &amp;#38;) -- if you convert these to the character, you will run into validation problems down the road, as bare ampersands are not permitted in XML.  Don't get carried away!</p>
+<blockquote>
+		<pre class="unixcommand">ncr2utf8 findaid2.xml > findaid2.xml.utf</pre></blockquote>
+<p>Finally, text2.sgm has ISO character entity references (from Latin 1, Greek, and Publishing) that need to be converted to UTF-8 with isocer2utf.</p>
+<blockquote>
+		<pre class="unixcommand">isocer2utf8 text2.sgm > text2.sgm.utf</pre></blockquote>
+<p>Note that the ampersand CER was not processed.  This is perfectly correct.</p>
+<h3 class="sectionheader"> <i>More Documentation</i></h3>
+	 <ul>
+		<li><a href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/unicode.html" target="external">DLXS Unicode Data Preparation and Online Presentation Issues</a></li>
+		<li><a href="http://www.zvon.org/other/charSearch/PHP/search.php" target="external">Zvon Character Search</a></li>
+		<li><a href="http://www.alanwood.net/unicode/" target="external">Unicode and Multilingual Support in HTML, Fonts, Web Browsers and Other Applications</a></li>
+
+	 </ul>
+<hr align="left" noshade="NOSHADE" width="100%">	 <h3 class="sectionheader"><a name="ConvertSGML"></a><strong>Converting SGML to XML and Normalization</strong></h3>
+<p>Many of you may be in a position where you'll want to be converting your SGML files to XML.  Many of you will be fortunate enough to have files already in XML -- say, finding aids in EAD 2002.  However, these will have to be normalized, too, to avoid problems with xpatu and xmlrgn down the road by ensuring that all the attributes are in the same order as specified in the DTD.</p>
+<p>When dealing with Text Class material in SGML that needs to be converted to XML, the first thing I do is normalize and then convert.  Why?  Then I don't have to normalize the XML I create.  Because the file we want to work with is now UTF-8, we need to set some environment variables for the tools from the sp package to let them know this is UTF-8.  It doesn't matter that you've set your puTTy window to UTF-8, if you are using osx, osgmlnorm, or onsgmls, you must set your environment properly.</p><blockquote>
+		<pre class="unixcommand">setenv SP_CHARSET_FIXED YES</pre>
+		<pre class="unixcommand">setenv SP_ENCODING utf-8</pre></blockquote>
+		<p>For those of you in bash, it's</p>
+		<blockquote>
+				<pre class="unixcommand">export SP_CHARSET_FIXED=YES</pre>
+		<pre class="unixcommand">export SP_ENCODING=utf-8</pre></blockquote>
+		<p>Then we normalize, invoking a declaration to handle the non-SGML UTF-8 characters without claiming that the material itself is XML.</p>
+<blockquote>
+		<pre class="unixcommand">osgmlnorm $DLXSROOT/misc/sgml/xmlentities.dcl sample.inp text2.sgm.utf > text2.sgm.norm
+</pre>
+</blockquote>
+		<p>Now I'll test the output with one of the UTF-8 tools to make sure that it's come through unscathed, and with findEntities.pl to see what has happened with the remaining XML-friendly entities, and it's fine.  Now to convert our SGML to XML using osx.</p>
+		<blockquote>
+		<pre class="unixcommand">osx -x no-nl-in-tag -x empty -E 500 -f errors sample.inp  text2.sgm.norm > text2.xml</pre>
+		</blockquote>
+		<p>Not that we don't need to invoke a declaration of any type or declare an encoding.  That's because it's UTF-8.  Again I'll test the output with one of the UTF-8 tools to make sure that it's come through unscathed, and with findEntities.pl to see what has happened with the remaining XML-friendly entities, and again it's fine.</p>
+		<h3 class="sectionheader"> <i>More Documentation</i></h3>
+			 <ul>
+				<li><a href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/unicode.html" target="external">DLXS Unicode Data Preparation and Online Presentation Issues</a></li>
+				<li><a href="http://linuxcommand.org/man_pages/osgmlnorm1.html" target="external">osgmlnorm Documentation</a></li>
+				<li><a href="http://linuxcommand.org/man_pages/osx1.html" target="external">osx Documentation</a></li>
+				<li><a href="http://www.jclark.com/sp/" target="external">James Clark's Original sp Documentation</a></li>
+
+	 </ul>
+<hr align="left" noshade="NOSHADE" width="100%">	 <h3 class="sectionheader"><a name="UnconvertedSGML"></a><strong>Using Unconverted Collections with Release 12 Middleware</strong></h3>
+<p>Recognizing that there may be situations when you do not wish to migrate a collection to XML and UTF-8 immediately, there are mechanisms built into Release 12 to allow the middleware to handle SGML-style empty elements (aka singletons), Latin 1 characters, and character entity references.  How do you make this happen?  In DlpsUtils.pm, there is a subroutine called Sgml2XmlFilter that has a hard-coded list of empty elements (&lt;PB&gt;, &lt;LB&gt;, &lt;CAESURA&gt;, etc.) that are converted upon discovery to XML-style (&lt;PB/&gt;, &lt;LB/&gt;, &lt;CAESURA/&gt;, etc.), and a feature that converts Latin 1 (ISO-8859-1) characters to UTF-8.  This subroutine comes into play if the locale field in collmgr is not set to en_US.UTF-8 (locale used to be optional but is now required if you are using UTF-8 and xpatu).  In order to declare your entities, you need to put a file called <tt>entitiesdoctype.chnk</tt> in the web directory for your collection, declaring the entities like so:</p>
+<blockquote>
+				<pre class="unixcommand">&lt;!DOCTYPE Top [
+&lt;!ENTITY Dstrok   "&amp;#x0110;"&gt;
+&lt;!ENTITY Sacute   "&amp;#x015A;"&gt;
+&lt;!ENTITY Scaron   "&amp;#352;"&gt;
+&lt;!ENTITY Ubreve   "&amp;#x016C;"&gt;
+&lt;!ENTITY Zdot     "&amp;#x017B;"&gt;
+]&gt;
+</pre>
+</blockquote>
+
+<p>That being the case, why would anyone ever bother to go through the trouble of converting their material?  First off, the value of having UTF-8 is apparent if you have material that used more than one entity set (and even the lowliest collections have both an e acute and an em-dash in them somewhere).  Now that &amp;mdash; is one character that can be mapped to a space in the data dictionary like other punctuation, phrases that were obscured in searches now turn up, and characters that we used to flatten (transforming &#x101; to a, for example) can be displayed.  Second, this facility comes at a cost.  All of the material returned needs to be run through this filter, which will take some time.  In a results list, the lag is negligable, but in larger sections of text, it could be noticeable.  Finally, some confusion might arise when a user cuts and pastes material he received as a result and cannot retrieve it again, because the results and input are UTF-8 (which is the encoding of the search form) but the material being searched is not.</p>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+CAVEAT:
+This file was made 081105 - revised 081208
+
+If there are other bad directories found, this file
+needs to be revised.
+-----------------------------------------------------
+FIRST CLEAN OUT /d1/dlxs/obj/v/vvb/0
+
+
+ cd /d1/dlxs/obj/v/vvb 
+    THIS COMMAND IS TOO LONG! /bin/rm 0/*/*/*/* 
+    INSTEAD USE... 
+    /bin/rm 0/0/1/*/* 
+    /bin/rm 0/0/2/*/* 
+    /bin/rm 0/0/3/*/* 
+    /bin/rm 0/0/4/*/* 
+    /bin/rm 0/0/5/*/* 
+    /bin/rm 0/0/7/*/* 
+    /bin/rm 0/0/8/*/* 
+    /bin/rm 0/0/9/*/* 
+    /bin/rm 0/1/0/*/* 
+    /bin/rm 0/1/1/*/* 
+    ls 0/*/*/*/*      --------check 
+
+This is done before the step  make pv_createxmldirs 
+-----------------------------------------------------
+
+PROBABLY NO LONGER NEEDED - TEST BEFORE YOU ATTEMPT THIS
+
+And then you have to remove - if they exist - extra 
+directories created by pv_createxmldirs
+
+[root@diglib2 vvb]# ls deprXMLDIRS/
+0012_000014_000042_0000  0014_000027_000046_0000  0014_000027_000056_0000
+0012_000021_000086_0000  0014_000027_000047_0000  0014_000027_000057_0000
+0012_000021_000087_0000  0014_000027_000049_0000  0014_000033_000082_0000
+0012_000030_000080_0000  0014_000027_000051_0000  0014_000033_000083_0000
+0012_000030_000084_0000  0014_000027_000052_0000
+0014_000015_000044_0000  0014_000027_000055_0000
+
+
+
+cd /d1/dlxs/obj/v/vvb
+
+cd 0/0/1
+
+/bin/rm  0012_000014*/*
+rmdir     0012_000014*
+/bin/rm 0012_000021*/*
+rmdir    0012_000021*
+/bin/rm 0012_000030*/*
+rmdir    0012_000030*
+/bin/rm 0014_000015*/*
+rmdir    0014_000015*
+/bin/rm 0014_000027*/*
+rmdir    0014_000027*
+/bin/rm 0014_000033*/*
+rmdir    0014_000033*
+
+cd ../../..
+
+-----------one more extra directory 
+-----------because also in vvt
+vvb/0/0/1/0012_000085_000202_0000
+
+cd 0/0/1
+/bin/rm 0012_000085_000202_0000/*
+rmdir   0012_000085_000202_0000
+
+cd ../../../
+----------------------------------

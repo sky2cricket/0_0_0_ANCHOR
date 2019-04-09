@@ -1,0 +1,26 @@
+/d1/workarea/dlxs/mets/dothis
+
+  change arrowmets to read in the correct directories
+run
+arrowmets
+cat arriHeader ic/* catmeic/* footer > ic.arri.unnorm.sgm
+mv ic/* catmeic/.
+cp ic.arri.unnorm.sgm /d1/dlxs/prep/a/arri
+
+  do image class setup
+
+for bib class:
+cat open bib/* catmebib/* close > rth-bib.sgm
+mv bib/* catmebib/.
+cp rth-bib.sgm /d1/dlxs/prep/r/rth-bib/.
+follow bib class instructions
+
+hopefully you have all new dlc files in one directory alone.
+point infotrack at this directory and run it, to put info on files into
+InfoTrack database.  
+
+then do the cross-format searching....
+
+then copy new stuff to store1.
+
+

@@ -1,0 +1,183 @@
+<html>
+<head>
+<title>XML &amp; XSL in DLXS</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="../styles.css" type="text/css">
+</head>
+<body bgcolor="#FFFFFF" leftmargin="10" topmargin="10" marginwidth="10" marginheight="10" class="mainpalette">
+<h1> XML &amp; XSL in DLXS </h1>
+<p>&nbsp;</p>
+<ul>
+   <li> <a href="#principles">General Principles and Rules of Thumb</a>
+      <ul>
+         <li><a href="#principles">examples and rationales</a> </li>
+      </ul>
+   </li>
+   <li><a href="#InternalChanges">Some notes about internal changes</a> </li>
+   <li><a href="#working">Working with XML and XSL in DLXS </a>
+      <ul>
+               <li><a href="#working">debug switches</a></li>
+      </ul>
+   </li>
+   <li> <a href="#dataMigration">Data migration issues</a>      <ul>
+         <li>Data conversion </li>
+         <li>Writing your own XSL to customize your collections' look and feel </li>
+         <li>collmgr entries</li>
+         <li>Implications for users</li>
+      </ul>
+   </li>
+</ul>
+<hr size="1" width="90%" />
+
+
+ <h2><a name="principles" id="principles"></a>General
+principles and rules of thumb </h2><div class="level1"></div>
+<p>In re-architecting
+   the DLXS system to use XML and XSL, certain principles were established. These
+   guide the writing of code, the creation of XML, the writing of XSL in most
+   cases. Only when there are good reasons to break the rules, have we done so.
+   Here is a list of some of them and their respective rationales:</p>
+ 
+<table width="90%"  border="1" cellspacing="5" cellpadding="5">
+   <tr>
+      <td><div align="CENTER"><strong>Principle</strong></div></td>
+      <td><div align="CENTER"><strong>Rationale</strong></div></td>
+   </tr>
+   <tr>
+      <td>PIs are wrapped in the XML files with an XML element </td>
+      <td>The XSL templates, at least at the highest levels of the XML tree,
+         can expect tags that are explicit in the XML file. </td>
+   </tr>
+   <tr>
+      <td>XSL files to be used are listed in the XML file rather than using the
+         more conventional &lt;?xml-stylesheet ?&gt; PI </td>
+      <td>The building of a virtual stylesheet from the listed XSL files, allows
+         those XSL files to be  arrived at through fallback</td>
+   </tr>
+   <tr>
+      <td>All URLs to be used by the CGI are built by the CGI </td>
+      <td>The XSL stylesheets should not have to &quot;know&quot; anything about what URL
+      parameters are needed for the CGI to work </td>
+   </tr>
+   <tr>
+      <td>Cookie rather than URL parameter holds  session IDs </td>
+      <td>This allows for dynamic browsing (no longer need .tpl files to be built
+         for browsing); allows one session even if a user switches from one class
+      to another; cookie can be deleted with browser is quit; etc. </td>
+   </tr>
+   <tr>
+      <td>Filtering of XML data is done by the XSL stylesheets</td>
+      <td>Separation of content and display, of perl code and user interface. </td>
+   </tr>
+</table>
+<p>Most of the principles are really about division of labor between the different
+   subsystems of DLXS.</p>
+<p>There are rare exceptions to some of these principles. For example, data that
+   comes from XPat is not always well-formed and needs to be &quot;massaged&quot; into
+   well-formed-ness. Here are several instances where this occurs:</p>
+<ul>
+   <li>Query &quot;hits&quot;,
+         aka keywords in context (KWICs) are snippets of text that come from the
+      data. In earlier releases of DLXS, KWICs had all tags removed before being
+      displayed. In Release 12, while we still strip off beginning and ending &quot;half
+      tags&quot; (where an open or close tag is incomplete because of where the snippet
+      starts or ends, we now run the snippet through <span class="unixcommand">DlpsUtils::Twigify</span> which
+      will balance all existing tags and therefore result in a well-formed &quot;twig&quot;
+      of XML. This allows for the situation where collection-specific mark up, left
+      in tact as much as possible is handled downstream by a collection-specific
+      XSL stylesheet.</li>
+   <li>In Text Class, when nested DIVs are collected from XPat,  divheads are
+       retrieved. In many cases, divheads need to be twigified as well. Moreover,
+      they and their child DIVs' heads and KWICs need to be properly wrapped
+      with closing DIV tags so that it is well-formed XML and so that the XSL
+      templates can match them all properly. The proper nesting of DIVs and divheads
+      and so forth is done in the CGI. Other than nesting, the CGI no longer
+      does any filtering on DIVs or divheads. </li>
+   <li>When Text Class data retrieved from XPat contains  PB or FIGURE
+      tags, or when in Findaid Class, daos are retrieved, some CGI manipulation
+      is necessary. For example, an href for a Finding Aid's dao may need to
+      be resolved by the CGI. That href then needs to be communicated to the
+      XSL for proper link-building. In Findaid Class, the dao element is modified
+      in its href attribute, so that the XSL can build a proper link. </li>
+</ul>
+<h2><a name="InternalChanges"></a>Some notes about internal changes</h2>
+<p>Quite a lot of changes in the middleware and supporting systems were necessary
+   in the move to XML. Some examples:</p>
+<ul>
+   <li>the XPat.pm module now does some conversion, if necessary,
+            to results retrieved from XPat-indexed data in case the data stored
+      is SGML and not XML. In order for the rest of the middleware to properly
+      handle the data, it must be XML. So, SGML singleton tags are converted
+      to XML singleton tags (with a trailing /).</li>
+   <li> the dlxs database in MySQL has been changed so that data is stored UTF-8-encoded
+      and retrieved as UTF-8</li>
+   <li>a file in<span class="unixcommand"> $DLXSROOT/misc/sgml</span> called <span class="unixcommand">entitiesdoctype.chnk</span> is
+      delivered with Release 12. It is a DOCTYPE declaration that can optionally
+      be &quot;chunked in&quot; via a CHUNK <a href="../ui/index.html#procins">processing
+      instruction</a>, as an internal subset
+      if need be. It can be used if data is not yet converted to XML and still
+      has a number of character entity references. This allows the XML parser
+      to proceed as if the data were XML with all non-XML character entity references
+      converted.</li>
+   <li>The DlpsUtils::Twigify subroutine was written to convert snippets of,
+      possibly broken, XML into well-formed XML by removing tags that have been
+      truncated (as in &quot;KWICs&quot; returned in XPat queries) and by closing open
+      tags and opening closed ones, in order to arrive at a well-formed XML &quot;twig&quot;. </li>
+</ul>
+<h2><a name="working" id="working"></a>Working with XML and XSL in DLXS</h2>
+<p>Working with an XML file that
+   has not had its dynamic content filled in yet or a <em>virtual</em> XSL stylesheet
+   can be difficult. That is where two new <span class="unixcommand">debug</span> values
+   come in handy. To see the XML file, with all its dynamic content filled in,
+   that the CGI will send to be processed by the XSLT transformation engine,
+   add <span class="unixcommand">debug=xml</span>  the
+    URL. The CGI will fill in all the PIs and then send the untransformed block
+    of XML to the browser. If you use a browser that can display untransformed
+    XML, you will see the content and the form of the XML data. </p>
+ <p>Since the virtual stylesheet is created only at run time by importing a number
+    of  XSLT files, each of which is likely to have been gotten via fallback,
+    the best way to see the full paths of the files which are being imported
+    and used is to add <span class="unixcommand">debug=xslt</span> to the URL.
+    The contents of the virtual stylesheet will be delivered to the browser as
+    XML. If need be, you can copy the source and paste it into an XSLT processor
+    or debugger. </p>
+ <p>Here at DLPS, we use a variety of tools for editing and debugging XML and
+    XSL, everything from Oxygen to Dreamweaver to xemacs to Saxon to XMLSpy.
+    The debug switches allow us to get at what's inside the CGI code as it runs. </p>
+<h2><a name="dataMigration" id="dataMigration"></a>Data
+migration issues </h2><h3>Data conversion </h3>
+<p> See <a href="../conversion/index.html">Data
+   Conversion to XML / Unicode</a>. </p>
+<h3>Writing your own XSL to customize your collections' look and feel </h3>
+<p>There is no easy way to convert the HTML templates from previous releases
+   of DLXS into XSL. Your best course of action will likely be to start with
+   the XSL files that are delivered with Release 12. Then, for any collection
+   that needs a specfic look, behavior, or  filtering into
+   HTML, copy, place in the collection subdirectory, and modify only those XSL
+   files or templates that you need to modify. </p>
+<h3>collmgr entries</h3>
+<p>The dlxs database has been changed to store and retrieve UTF-8 encoded strings
+   in its tables. Therefore, when entering data into collmgr fields, be sure
+   to enter proper UTF-8. This can include the actual character, if you have
+   the ability to enter things directly through an alternate keyboard mapping;
+   a hexadecimal entity; or a decimal entity (though hex may be the best
+   choice).
+</p>
+<h3>Implications for users</h3>
+<p>You may receive a variety of questions  from users, some of which may be difficult
+   to track down. We are still learning ourselves about the vagaries of how different
+   platforms, browsers, etc. handle UTF-8. For example, if a user copies Latin
+   1 data from a web page or application and pastes it into a UTF-8 web form
+   on a DLXS search page, will their applications and operating system properly
+   transcode the pasted data into UTF-8? Will the data that is received by the
+   CGI be UTF-8 or will it be improperly encoded? Will older browsers or operating
+   systems have the fonts available to display the languages you can now index
+   and include in your collections? We've also learned that different browsers
+   handle character interpretation issues differently, with everything from the
+   classic Mac empty box to a triangle with a question mark to offering up what "seems" to
+   be the right choice (inevitably Chinese). The move to cookies for tracking
+   sessions also means that the problems with users who refuse all cookies are
+   now an issue for DLXS, as it has been for other products in the library world
+   for some time.</p>
+</body>
+</html>

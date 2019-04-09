@@ -1,0 +1,138 @@
+<html>
+<head>
+<title>Directory Structure Overview</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="../styles.css" type="text/css">
+</head>
+<body bgcolor="#FFFFFF" class="mainpalette">
+<h3>Directory Structure Overview</h3>
+<p><b>Under <span class="unixcommand">$DLXSROOT</span></b>, which during the workshop will be set to <span class="unixcommand">/l1/workshop/<em>username</em>/dlxs</span>,
+   you will find the following subdirectories:</p>
+<div align="CENTER"> 
+  <table width="300" border="0" cellpadding="10">
+    <tr> 
+      <td valign="top"> 
+          <ul>
+            <li><a href="#web">web</a></li>
+            <li><a href="#cgi">cgi</a></li>
+            <li><a href="#bin">bin</a></li>
+          </ul>
+      </td>
+      <td valign="top"> 
+        <ul>
+          <li><a href="#lib">lib</a></li>
+          <li><a href="#obj">obj</a></li>
+          <li><a href="#img">img</a></li>
+        </ul>
+      </td>
+      <td valign="top"> 
+        <ul>
+          <li><a href="#misc">misc</a></li>
+          <li><a href="#idx">idx</a></li>
+          <li><a href="#prep">prep</a></li>
+        </ul>
+      </td>
+     </tr>
+  </table>
+  <p align="LEFT">A bit more detail is given for each of these main subdirectories:</p>
+</div>
+<ul>
+  <li><a name="web"></a> <b>web/ </b>(holds all the XML files and XSL stylesheets
+    used by the middleware to create HTML pages for delivery. These files
+    are used for the cross collection interface and any collections that do not
+    have their  own specific pages.) 
+    <ul>
+      <li><i><b>c/class</b></i> (xml and xsl files, css
+        files,  graphics files) 
+      </li>
+      <li><i><b>c/collection</b></i> 
+        <ul>
+          <li>collection specific xsl files </li>
+          <li>images/ (symlink to <strong><a href="#img">img</a></strong> directory in DLXSROOT for images that are 
+            part of the collection's content</li>
+          <li> example: /DLXSROOT/web/b/bosnia/</li>
+        </ul>
+      </li>
+    </ul>
+  <li><b><a name="cgi"></a>cgi/</b> (holds all the DLXS middleware programs, their 
+    configuration files if any, and some DLXS specific Perl class modules.) 
+    <ul>
+      <li><b><i>c/class</i></b> (middleware perl scripts, related files; e.g., 
+        subclasses, cfg files) 
+        <ul>
+          <li>examples: <span class="unixcommand">DLXSROOT/cgi/t/text/, DLXSROOT/cgi/t/text/</span>, <span class="unixcommand">DLXSROOT/cgi/i/image/</span></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li> <b><a name="lib"></a>lib/</b> (holds all the DLPS-created Perl library 
+    modules used by the middleware.)</li>
+  <li><a name="obj"></a> <b>obj/ </b>(holds the XML
+    text data, any related page images) 
+    <ul>
+      <li><i><b> c/collection/ </b></i>(possible collection based organization)</li>
+      <li> <b><i>a/b/c/abc1234/ </i></b>(notis id or dlps document id based organization)</li>
+    </ul>
+  </li>
+  <li><b><a name="misc"></a>misc/</b> 
+    <ul>
+      <li><b><i>db/</i></b> (holds the CSV version of the <a href="databases.html">collection 
+        and groups databases</a>, if CSV is being used.)</li>
+      <li><i><b>c/class</b></i> 
+        <ul>
+          <li> <b><i>maps/</i></b> (holds &quot;<a href="../textclass/tcoutline.html#MakeCollectionmaps">map</a>&quot; 
+            files for all collections in the class) </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><b><a name="idx"></a>idx/</b> 
+    <ul>
+      <li> <i><b>c/collection/ </b></i>(<a href="../textclass/tcoutline.html#BuildtheXPATIndex">XPAT 
+        index files</a>; e.g., collection.dd, collection.idx. collection.rgn) 
+        <ul>
+          <li><b> <i>WW/</i></b> (XPAT index files for collection's wordwheel)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li> <b><a name="bin"></a>bin/</b> 
+    <ul>
+      <li><i><b>c/class/ </b></i> (directory maintenance, pageview preparation 
+        scripts, etc.)</li>
+      <li><b><i>c/collection/</i></b> (collection preparation scripts, data moving, 
+        etc.) 
+        <ul>
+          <li> <b><i>WW/</i></b> (preparation scripts for collection's Wordwheel) 
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><b><a name="img"></a>img/ </b> 
+    <ul>
+      <li><i><b>c/collection/</b></i> (holds any inline images for the collection.
+          The web directory /dlxs/web/c/collection/ will have a subdirectory
+         named 
+        &quot;images&quot; which is symlink-ed to this directory.)</li>
+    </ul>
+  <li><b><a name="prep"></a>prep/ </b> 
+    <ul>
+      <li><i><b>c/collection/</b></i> (acts as a workspace for data preparation; 
+        e.g., conversion from original DTD to the final &quot;delivery&quot; DTD)</li>
+    </ul>
+  </li>
+</ul>
+<p>DLXS-related miscellaneous<b> </b>directories <b>not under DLXSROOT</b></p>
+<ul>
+  <li><b>/tmp/sessions/ &amp; </b> <b>/tmp/sessionslock/</b> (Session data files 
+    and lock files.<span class="unixcommand"> /tmp/</span> is where we at DLPS keep our session files, but it could 
+    be anywhere (configured in <span class="unixcommand">lib/DlpsSession.cfg</span>). Directories and files must 
+    be owned by <b><i>nobody</i></b> (or be writable by <i>world</i>) so the web 
+    server can write to them.</li>
+  <li><span class="unixcommand">/l/local/dlxsd</span> where we
+     here at DLPS keep the dlxs <a href="othersystems.html">daemon</a> for use
+     in intermachine data sharing.</li>
+</ul>
+</body>
+</html>

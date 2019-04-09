@@ -1,0 +1,93 @@
+<html>
+<head>
+<script language=javascript src="links/vv_functions_links.js"></script>
+<title>
+char_check
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+</head>
+<!-- body  class="bg_aabbcc" -->
+<body bgcolor="aabbcc">
+<font face="arial" size="3">
+<center><font face="arial">
+<script>//document.write(dlxs_vv_header);</script>
+<p>
+</center>
+<table  class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="99aabb">
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+<tr class="bgstandardwhite" ><td colspan="3" align="left" class="step">
+<pre>
+step_005b.htm - file pickup example for single images
+
+The programs to do the pickup and checkfiles and fieldtest discussed below are in the telfiles directory.
+
+--------------------------------------------------------------------------------------------
+[root@diglib2 telfiles]# pwd
+/d1/workarea/dlxs/telfiles
+[root@diglib2 telfiles]# ls
+080909.txt                    fieldtest                          pickupTime
+080915a.txt                   filemess                           pickupTime.080905
+080915.txt                    forWindows                         pickupTime.20080311
+BeforePickup                  jpglist                            pickupTime.20080402
+check_incoming                listFiles                          problems
+CopyLive                      logs                               results
+done                          look_080915.txt                    scripts
+dothis                        olderVersions                      testfiles
+duplicates_all                olderVersions.duplicates.20080318  tiflist
+duplicates_noproc             onedirDerivatives                  totalSoFar
+duplicates_noproc_noreworked  onedirDerivatives_size
+duplicates_xml                pickuplog
+--------------------------------------------------------------------------------------------
+
+
+Files to pick up will be in
+store1/area2/volvoices/vvImport/selected_directories
+
+pickupTime copies 
+vvImport/batch/00/xml/          to /d1/workarea/dlxs/image/tel/singles/mods/  
+vvImport/batch/00/JPEG/         to /d1/workarea/dlxs/image/tel/singles/jpegs/ 
+vvImport/batch/00/minithumbs/   to /d1/workarea/dlxs/image/tel/singles/minithumbs/
+vvImport/batch/00/thumbs/       to /d1/workarea/dlxs/image/tel/singles/thumbs/
+
+For this example (0031_000050_000203_0000), 
+the files to pick up are in store1/area2/volvoices/vvImport/080303/00/
+
+Specifically:
+
+store1/area2/volvoices/vvImport/080303/00/xml/0031_000050_000203_0000.xml
+store1/area2/volvoices/vvImport/080303/00/JPEG/0031_000050_000203_0001.jpg
+store1/area2/volvoices/vvImport/080303/00/thumbs/0031_000050_000203_0001.jpg
+store1/area2/volvoices/vvImport/080303/00/minithumbs/0031_000050_000203_0001.jpg
+
+<img src="xfiles/00_vvz/pickup/080303_00_dir.JPG" border="2">
+
+What are we picking up anyway?
+
+For the example 0031_000050_000203_0000.xml in 00 directory (single images)
+
+one mods xml file from   080303/00/xml/ <a href="xfiles/00_vvz/pickup/0031_000050_000203_0000.xml" target="_blank">view 0031_000050_000203_0000.xml</a>
+one jpeg image from      080303/00/JPEG/
+one thumb image from     080303/00/thumbs/
+one minithumb image from 080303/00/minithumbs/
+===================================
+
+minithumb - John Allen McDonald at the Post Office, 1930
+<img src="xfiles/00_vvz/pickup/mini_0031_000050_000203_0001.jpg" border="2">
+
+thumb - John Allen McDonald at the Post Office, 1930
+<img src="xfiles/00_vvz/pickup/thumb_0031_000050_000203_0001.jpg" border="2">
+
+jpeg - John Allen McDonald at the Post Office, 1930
+<img src="xfiles/00_vvz/pickup/jpeg_0031_000050_000203_0001.jpg" border="2">
+
+
+
+
+</pre>
+</font>
+</td></tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+</table>
+
+

@@ -1,0 +1,21 @@
+<html>
+<body>
+<pre>
+&lt;?xml version="1.0"?> 
+&lt;xsl:stylesheet version="1.0" 
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+  &lt;xsl:template match="name">
+	&lt;br />
+    &lt;xsl:value-of select="last_name"/>, 
+    &lt;xsl:value-of select="first_name"/>
+  &lt;/xsl:template>
+
+  &lt;xsl:template match="person">
+    &lt;xsl:apply-templates select="name"/>
+  &lt;/xsl:template>
+
+&lt;/xsl:stylesheet>
+</pre>
+</body>
+</html>

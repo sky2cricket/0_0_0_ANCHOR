@@ -1,0 +1,184 @@
+<html>
+<head>
+<title>vv_popupCA</title>
+
+<link href="../vv_workbook.css" type="text/css" rel="stylesheet">
+
+
+
+
+<script language="javascript">
+
+var select_id= new String();
+function get_select_id() {
+
+var str = new String();
+    str = parent.location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  parent.window.opener.location.href="+parent.window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=get_select_id();
+
+
+
+var strSelect_PN_A = new String('');
+
+
+strSelect_PN_A = '<select name="aaa"  size="24" style="font-size:10px"> \r\n'
+	+'<option value="0" selected>No value selected</option> \r\n'
+		
+
+
+
+
+
+
+	+'<option>IBANEZ, MANUEL LUIS</option>  \r\n'
+	+'<option>IBRAHIMA, ABD AL-RAHMAN, - 1762-1829</option>  \r\n'
+	+'<option>IBSEN, HENRIK, - 1828-1906</option>  \r\n'
+	+'<option>ICKES FAMILY</option>  \r\n'
+	+'<option>ICKES, HAROLD L. - (HAROLD LECLAIR), - 1874-1952</option>  \r\n'
+	+'<option>IGASAKI, PAUL M., - 1955-</option>  \r\n'
+	+'<option>IGNATIUS, - SAINT, BP. OF ANTIOCH, - 1ST CENTURY</option>  \r\n'
+	+'<option>IMBRIE FAMILY</option>  \r\n'
+	+'<option>INGALLS FAMILY</option>  \r\n'
+	+'<option>INGE FAMILY</option>  \r\n'
+	+'<option>INGERSOLL FAMILY</option>  \r\n'
+	+'<option>INGERSOLL, JARED, - 1722-1781</option>  \r\n'
+	+'<option>INGERSOLL, ROBERT GREEN, - 1833-1899</option>  \r\n'
+	+'<option>INGHAM FAMILY</option>  \r\n'
+	+'<option>INGLEDOVE FAMILY</option>  \r\n'
+	+'<option>INGLES, MARY DRAPER, - 1732-1815</option>  \r\n'
+	+'<option>INGLES, THOMAS, - B. 1751?</option>  \r\n'
+	+'<option>INGRAHAM, DUNCAN NATHANIEL, - 1802-1891</option>  \r\n'
+	+'<option>INGRAHAM, J. H. - (JOSEPH HOLT), - 1809-1860</option>  \r\n'
+	+'<option>INGRAM FAMILY</option>  \r\n'
+	+'<option>INGRAM, BOWEN</option>  \r\n'
+	+'<option>INGRAM, ERSKINE BRONSON, - 1931-1995</option>  \r\n'
+	+'<option>INGRAM, MARTHA RIVERS, - 1935-</option>  \r\n'
+	+'<option>INGRAM, S. D.</option>  \r\n'
+	+'<option>INMAN FAMILY</option>  \r\n'
+	+'<option>INMAN, HENRY, - 1801-1846</option>  \r\n'
+	+'<option>INMAN, MYRA, - 1845-1914</option>  \r\n'
+	+'<option>INMAN, ROBERT L.</option>  \r\n'
+	+'<option>INNES, JAMES, - 1754-1798</option>  \r\n'
+	+'<option>INNESS, GEORGE, - 1825-1894</option>  \r\n'
+	+'<option>INNMAN FAMILY</option>  \r\n'
+	+'<option>INSULL, SAMUEL, - 1859-1938</option>  \r\n'
+	+'<option>IRBY FAMILY</option>  \r\n'
+	+'<option>IRBY, LOULIE W.</option>  \r\n'
+	+'<option>IREDELL FAMILY</option>  \r\n'
+	+'<option>IREDELL, JAMES, - 1751-1799</option>  \r\n'
+	+'<option>IRELAND, JOHN, - 1838-1918</option>  \r\n'
+	+'<option>IRION FAMILY</option>  \r\n'
+	+'<option>IRISH FAMILY</option>  \r\n'
+	+'<option>IRVINE, JOSEPHUS SOMERVILLE, - 1819-1876</option>  \r\n'
+	+'<option>IRVING, HENRY, - SIR, - 1838-1905</option>  \r\n'
+	+'<option>IRVING, WASHINGTON, - 1783-1859</option>  \r\n'
+	+'<option>IRWIN FAMILY</option>  \r\n'
+	+'<option>IRWIN, JARED, - 1796-1798</option>  \r\n'
+	+'<option>ISAACSON FAMILY</option>  \r\n'
+	+'<option>ISABELLA - I, - QUEEN OF SPAIN, - 1451-1504</option>  \r\n'
+	+'<option>ISAMAN FAMILY</option>  \r\n'
+	+'<option>ISBELL FAMILY</option>  \r\n'
+	+'<option>ISENBERG FAMILY</option>  \r\n'
+	+'<option>ISENBERG, HANNAH MARIA (RICE) - 1842-1867</option>  \r\n'
+	+'<option>ISENBERG, PAUL, - 1837-1903</option>  \r\n'
+	+'<option>ISHERWOOD, B. F. - (BENJAMIN FRANKLIN), - 1822-1915</option>  \r\n'
+	+'<option>ISOM FAMILY</option>  \r\n'
+	+'<option>ISOM, WILEY S. - (WILEY SAMUEL), - 1919-</option>  \r\n'
+	+'<option>ISTVAN FAMILY</option>  \r\n'
+	+'<option>ITKIN, IVAN, - 1936-</option>  \r\n'
+	+'<option>ITURBIDE, AUGUSTIN DE, - EMPEROR OF MEXICO, - 1783-1824</option>  \r\n'
+	+'<option>IVERSON, ALFRED, - 1897-1873</option>  \r\n'
+	+'<option>IVES FAMILY</option>  \r\n'
+	+'<option>IVES, BURL, - 1909- </option>  \r\n'
+	+'<option>IVES, JAMES MERRITT, - D. 1895</option>  \r\n'
+
++'</select> \r\n';
+	
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+<body class="background">
+
+
+
+
+<form name="FormOne" >
+
+
+<div name="SS" id="SS">
+<script>
+document.write(
+
+	 '<table border="1" cellpadding="4" cellspacing="0"  width="90%">\r\n'
+	+'<tr><td  bgcolor="ddeeff">\r\n'
+	///+'vv_functions.htm called by '+select_id+' <br>\r\n'
+	+'<b>Select Personal Name I</b> \r\n'
+	+'</td></tr><tr><td bgcolor="ddeeff"> \r\n' 
+	+ strSelect_PN_A
+
+	+'</td></tr></table> \r\n'
+	///+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+</script>
+	
+</div>
+
+<input type="button" onclick="showSelection();" name="B1" value="Personal Name">
+
+</form>
+
+<script>
+
+
+
+                  
+
+function showSelection() {
+
+val = new String();
+
+for ( i=0; i< document.FormOne.aaa.length; i++ ) {
+
+if ( document.FormOne.aaa[i].selected == true ) {
+  	val = document.FormOne.aaa[i].text;
+	break;
+	}
+else { val = "you never selected anything"; 
+	}
+
+}
+////////////////////////alert ("You selected " +val);
+
+switch ( select_id ) {
+
+case  "subject_name_lcsh_01" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_01.value=val;
+	parent.window.close();
+	break;
+
+case  "subject_name_lcsh_02" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_02.value=val;
+	parent.window.close();
+	break;
+}//end switch
+
+}///end function
+</script>
+

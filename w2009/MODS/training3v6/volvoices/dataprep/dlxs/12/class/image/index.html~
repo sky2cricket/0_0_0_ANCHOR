@@ -1,0 +1,138 @@
+<html>
+<head>
+<title>Image  Class</title>
+
+
+
+
+
+ <link href="../../dlxsdocs.css" rel="stylesheet" type="text/css">
+ <style type="text/css">
+<!--
+.style1 {font-size: 12px}
+.style2 {font-size: 11px}
+-->
+ </style>
+</head>         <body>
+<div class="pageTitle">Guide to Image Class Documentation</div>
+
+
+
+
+
+
+
+
+<p>See <b><a href="../../intro/index.html">DLXS, Getting
+Started</a></b> for installation of DLXS, including sample data.</p>
+
+
+<p>Read the Image Class <a href="http://www.dlxs.org/training/workshop200508/imageclass/icoutline.html">workshop
+    tutorial</a> for a useful introduction to working
+ with Image Class.</p>
+<table border="2" cellpadding="10" cellspacing="0"><tbody>
+
+<tr><td><strong>Media</strong></td><td  colspan="2" align="MIDDLE"><a href="imageloading.html">Loading Image Files</a><br /><a href="jpeg2000.html">Image Class and JPEG2000</a></td></tr>
+
+<tr>
+  <td><strong>Migration</strong></td>
+  <td colspan="2" align="MIDDLE"><a href="migration12.html">Migration to DLXS12</a></td>
+</tr>
+
+
+<tr><td><p><strong>Metadata</strong></p>
+  <p class="style1"><a href="#ImageClassSearchEngineOptions" class="style2">see options</a> </p></td><td width="275" align="MIDDLE"><p><strong>MySQL</strong><a href="mysql.html"><strong><br>
+</strong>Image Class Data Loading: MySQL<br>
+    </a><a href="mediatable.html">Media Table</a><a href="mysql.html"><br>
+    </a></p>
+  </td><td width="275" align="MIDDLE"><p><strong>XPAT/XML<br>
+  </strong><a href="datatransform.html">Data Transformation</a><br />
+          <a href="indexbuild.html">Image Class Index Building</a><br />
+          <a href="charconversion.html">Image Class Character Set Conversion</a><br />
+          <a href="dtd.html">DTD Description</a></p>
+    </td></tr>
+<tr><td><strong>Advanced</strong></td><td colspan="2" align="MIDDLE"><a href="imagestructures.html">Mapping
+      Image Structures</a></td>
+</tr>
+<tr><td><strong>General</strong></td>
+  <td align="MIDDLE" colspan="2"><p><a href="#nottobemissed">Not To Be
+        Missed</a> <br>
+  <a href="imagefilenaming.html">Image File Naming</a><br />
+          <a href="datareqs.html">Data Requirements</a><br />
+          <a href="accesstable.html">Access Control</a></p>
+    </td></tr>
+<tr><td><strong>Interface</strong></td>
+  <td align="MIDDLE" colspan="2"><p><a href="../../collmeta/browse.html">Dynamic Browse</a><br>
+  User Interface <br />
+          <a href="colldb.html">Collmgr/Collection Database</a><br />
+          </p>
+    </td></tr>
+</tbody></table>
+
+
+<h2><a name="ImageClassSearchEngineOptions"></a>Image Class Search Engine Options</h2>
+Image Class offers two options for metadata indexing and searching.
+<p><strong>Option 1: <a href="http://www.mysql.org">MySQL</a></strong> is the
+  preferred choice because Image Class data fits well into the relational database
+  model. MySQL is free.<br>
+</p>
+<p> <strong>Option 2: <a href="http://www.dlxs.org/products/xpat.html">XPAT</a></strong> is
+  also a good choice. XPat works with XML encoded metadata. There is a free version
+  of XPat, but larger databases may need the full version, which has a license
+  fee. Working with XPat has a steeper learning curve and the data preparation
+  process in general is more cumbersome than for MySQL. However if XPat is already
+  being used for other reasons, maybe it is the best choice for Image Class as
+  well. At Michigan, MySQL is used with Image Class, even though XPat is used
+  for most everything else. </p>
+<h2><a name="nottobemissed" id="nottobemissed"></a>Not To Be Missed</h2>
+<p><b><font color="RED">Worth Noting</font></b></p>
+<ul>
+<li>MySQL, by default, indexes words 4 characters or longer. Shorter
+words are therefore not searchable. This can be changed if desired. It
+requires having the following configuration directive in the [mysqld] section of the MySQL configuration file (usually /etc/my.cnf):
+<br /><br />
+<code>  ft_min_word_len=2</code>
+<br /><br />
+Once this is done, existing fulltext indexes will need to be
+rebuilt. The following command does the job nicely in MySQL.
+<br /><br />
+<code>REPAIR TABLE tbl_name QUICK</code>
+<br /></li>
+
+
+<li>There are other situations where you might need to repair tables or
+rebuild indexes. Migration of tables from one version of MySQL to
+another can be such a case. Signs of trouble may be subtle. Boolean
+searching has been known to fail quietly. In addition to the REPAIR
+command above, you can try...<br /><br />
+<code>REPAIR TABLE tbl_name USE_FRM</code>
+<br /><br />
+Thanks to Aaron Brenner for the tip and this link <a href="http://dev.mysql.com/doc/mysql/en/Fulltext_Fine-tuning.html">http://dev.mysql.com/doc/mysql/en/Fulltext_Fine-tuning.html</a>. 
+</li>
+</ul>
+
+<p><b><font color="RED">Easily Overlooked</font></b></p>
+<ul>
+<li>The amount of time it takes for thumbnail images to display in the browser can be reduced dramatically by creating a symlink for each collection like this....  <br/>
+<code>cd $DLXSROOT/web/c/coll<br/>ln -s $DLXSROOT/img/c/coll/index thumb</code><br/>
+<br/>
+The only drawback to this approach is that it bypasses the cgi and authentication <b>for thumbnails</b> by essentially putting them under the web document root. If thumbnail security is important, don't create the symlink.
+</li>
+</ul>
+
+<p><font color="RED"><b>A Common Problem</b></font></p>
+<ul>
+<li>If you get a division by zero error from the Image Class CGI when trying to view a full size image, double check the installation of mrsid_retrieve. Most likeley, it is not installed properly.</li>
+</ul> 
+
+<p>&nbsp;</p>
+
+
+
+
+
+<p> </p>
+
+</body>
+
+</html>

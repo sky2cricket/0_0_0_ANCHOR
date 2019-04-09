@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>Indexing the Collection (Finding Aids)</title>
+<link href="../../dlxsdocs.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="pageTitle">Indexing the Collection (Finding Aids)</div>
+<p>After you have followed all the steps to set up your directories and prepare
+   your files, as found in the <a href="./prep.html">finding aids preparation
+   documentation</a>, indexing the collection is fairly straightforward. To create
+   an index for use with the Findaid Class interface, you will need to index
+   the words in the collection, then index the XML (the structural metadata,
+   if you will), and then finally "fabricate" structures based on a combination
+   of elements (for example, defining what the "main entry" is, without adding
+   a &lt;MAINENTRY&gt; tag around the appropriate &lt;AUTHOR&gt; or &lt;TITLE&gt; element).
+   The following commands can be used to make the index, alone or in combination. </p>
+<ol>
+<li>Ensure that your collection data is valid by running <b>make validate</b>, which
+   will use the <tt>dlxsead2002.dtd</tt> to validate the full xml file.</li>
+<li> Ensure that your collection data is normalized by running <b>make norm</b>.  This step is done to put attributes in the order in which they were defined in the DTD.  Even thought your collection data is XML, it is a requirement of <tt>xmlrgn</tt> (part of the <tt>make xml</tt> step below) that the attributes appear in this order.</li>
+<li> <b>make singledd</b> indexes words for texts that have been concatenated
+   into one large file for a collection. Creating an index from a single file
+   (as opposed to multi file system indexing) is the recommended process for
+   reasons of speed and reliability. Use the <tt>make singledd</tt> command in
+   the Makefile stored at <tt>$DLXSROOT/bin/c/collid/Makefile</tt> .</li>
+<li> <b>make xml</b> indexes the SGML structure by reading the DTD. sgmlrgn
+   validates as it indexes, and is slower than multiregion indexing (see <a href="../../xpat/index.html">XPAT
+   documentation</a> for more information) for this reason. However, this method
+   necessary for collections that have nested elements of the same name (and
+   the EAD DTD permits this). Use the <tt>make sgml</tt> command in the Makefile
+   stored at $DLXSROOT/bin/c/collid/Makefile .</li>
+<li> <b>make post</b> builds and indexes fabricated regions based on the XPat
+   queries stored in the $DLXSROOT/prep/c/collid/{coll}.extra.srch file. Because
+   every collection is different, this file will need to be adapted after you
+   have determined what you want to use as the "main title" for a finding aid
+   (e.g., perhaps the ORIGINATION within the DID within the ARCHDESC) and how
+   many levels of components (e.g., nested to C04) you have in your collection.
+   If you try to index/build fabricated regions from elements not used in your
+   finding aids collection, you will see errors like <tt>Error found: &lt;Error&gt;syntax
+   error before: ")&lt;/Error&gt; </tt> when you use the <tt>make post</tt> command
+   in the Makefile stored at $DLXSROOT/bin/c/collid/Makefile .</li>
+</ol>
+<p>You have now built indexes and region files for your collection. You can test
+   that things are properly indexed by issuing the command <tt>xpat $DLXSROOT/idx/c/collid/collid.dd</tt> and
+   doing searches, such as <tt>region "c02"</tt> and <tt>region "main"</tt> .
+   For more information about searching, see the <a href="../../xpat/manual.html">XPAT
+   manual</a> .Strategically, it is good to test this from a directory other
+   than the one you indexed in, to ensure that relative or absolute paths are
+   resolving appropriately. </p>
+</body>
+</html>
