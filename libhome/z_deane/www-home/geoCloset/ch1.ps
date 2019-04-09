@@ -1,0 +1,5687 @@
+%!PS-Adobe-3.0
+%%BoundingBox: (atend)
+%%Pages: (atend)
+%%PageOrder: (atend)
+%%DocumentFonts: (atend)
+%%Creator: Frame 4.0
+%%DocumentData: Clean7Bit
+%%EndComments
+%%BeginProlog
+%
+% Frame ps_prolog 4.0, for use with Frame 4.0 products
+% This ps_prolog file is Copyright (c) 1986-1993 Frame Technology
+% Corporation.  All rights reserved.  This ps_prolog file may be
+% freely copied and distributed in conjunction with documents created
+% using FrameMaker, FrameBuilder and FrameViewer as long as this 
+% copyright notice is preserved.
+%
+% Frame products normally print colors as their true color on a color printer
+% or as shades of gray, based on luminance, on a black-and white printer. The
+% following flag, if set to True, forces all non-white colors to print as pure
+% black. This has no effect on bitmap images.
+/FMPrintAllColorsAsBlack             false def
+%
+% Frame products can either set their own line screens or use a printer's 
+% default settings. Three flags below control this separately for no 
+% separations, spot separations and process separations. If a flag
+% is true, then the default printer settings will not be changed. If it is
+% false, Frame products will use their own settings from a table based on
+% the printer's resolution.
+/FMUseDefaultNoSeparationScreen      true  def
+/FMUseDefaultSpotSeparationScreen    true  def
+/FMUseDefaultProcessSeparationScreen false def
+%
+% For any given PostScript printer resolution, Frame products have two sets of 
+% screen angles and frequencies for printing process separations, which are 
+% recomended by Adobe. The following variable chooses the higher frequencies
+% when set to true or the lower frequencies when set to false. This is only
+% effective if the appropriate FMUseDefault...SeparationScreen flag is false.
+/FMUseHighFrequencyScreens true def
+%
+% PostScript Level 2 printers contain an "Accurate Screens" feature which can
+% improve process separation rendering at the expense of compute time. This 
+% flag is ignored by PostScript Level 1 printers.
+/FMUseAcccurateScreens true def
+%
+% The following PostScript procedure defines the spot function that Frame
+% products will use for process separations. You may un-comment-out one of
+% the alternative functions below, or use your own.
+%
+% Dot function
+/FMSpotFunction {abs exch abs 2 copy add 1 gt 
+		{1 sub dup mul exch 1 sub dup mul add 1 sub }
+		{dup mul exch dup mul add 1 exch sub }ifelse } def
+%
+% Line function
+% /FMSpotFunction { pop } def
+%
+% Elipse function
+% /FMSpotFunction { dup 5 mul 8 div mul exch dup mul exch add 
+%		sqrt 1 exch sub } def
+%
+%
+/FMversion (4.0) def 
+/FMLevel1 /languagelevel where {pop languagelevel} {1} ifelse 2 lt def
+/FMPColor
+	FMLevel1 {
+		false
+		/colorimage where {pop pop true} if
+	} {
+		true
+	} ifelse
+def
+/FrameDict 400 dict def 
+systemdict /errordict known not {/errordict 10 dict def
+		errordict /rangecheck {stop} put} if
+% The readline in PS 23.0 doesn't recognize cr's as nl's on AppleTalk
+FrameDict /tmprangecheck errordict /rangecheck get put 
+errordict /rangecheck {FrameDict /bug true put} put 
+FrameDict /bug false put 
+mark 
+% Some PS machines read past the CR, so keep the following 3 lines together!
+currentfile 5 string readline
+00
+0000000000
+cleartomark 
+errordict /rangecheck FrameDict /tmprangecheck get put 
+FrameDict /bug get { 
+	/readline {
+		/gstring exch def
+		/gfile exch def
+		/gindex 0 def
+		{
+			gfile read pop 
+			dup 10 eq {exit} if 
+			dup 13 eq {exit} if 
+			gstring exch gindex exch put 
+			/gindex gindex 1 add def 
+		} loop
+		pop 
+		gstring 0 gindex getinterval true 
+		} bind def
+	} if
+/FMshowpage /showpage load def
+/FMquit /quit load def
+/FMFAILURE { 
+	dup = flush 
+	FMshowpage 
+	/Helvetica findfont 12 scalefont setfont
+	72 200 moveto
+	show FMshowpage 
+	FMquit 
+	} def 
+/FMVERSION {
+	FMversion ne {
+		(Frame product version does not match ps_prolog!) FMFAILURE
+		} if
+	} def 
+/FMBADEPSF { 
+	(PostScript Lang. Ref. Man., 2nd Ed., H.2.4 says EPS must not call X              )
+	dup dup (X) search pop exch pop exch pop length 
+	4 -1 roll 
+	putinterval 
+	FMFAILURE
+	} def
+/FMLOCAL {
+	FrameDict begin
+	0 def 
+	end 
+	} def 
+/concatprocs
+	{
+	/proc2 exch cvlit def/proc1 exch cvlit def/newproc proc1 length proc2 length add array def
+	newproc 0 proc1 putinterval newproc proc1 length proc2 putinterval newproc cvx
+}def
+FrameDict begin 
+/FMnone 0 def
+/FMcyan 1 def
+/FMmagenta 2 def
+/FMyellow 3 def
+/FMblack 4 def
+/FMcustom 5 def
+/FrameNegative false def 
+/FrameSepIs FMnone def 
+/FrameSepBlack 0 def
+/FrameSepYellow 0 def
+/FrameSepMagenta 0 def
+/FrameSepCyan 0 def
+/FrameSepRed 1 def
+/FrameSepGreen 1 def
+/FrameSepBlue 1 def
+/FrameCurGray 1 def
+/FrameCurPat null def
+/FrameCurColors [ 0 0 0 1 0 0 0 ] def 
+/FrameColorEpsilon .001 def	
+/eqepsilon {		
+	sub dup 0 lt {neg} if
+	FrameColorEpsilon le
+} bind def
+/FrameCmpColorsCMYK { 
+	2 copy 0 get exch 0 get eqepsilon {
+		2 copy 1 get exch 1 get eqepsilon {
+			2 copy 2 get exch 2 get eqepsilon {
+				3 get exch 3 get eqepsilon
+			} {pop pop false} ifelse
+		}{pop pop false} ifelse
+	} {pop pop false} ifelse
+} bind def
+/FrameCmpColorsRGB { 
+	2 copy 4 get exch 0 get eqepsilon {
+		2 copy 5 get exch 1 get eqepsilon {
+			6 get exch 2 get eqepsilon
+		}{pop pop false} ifelse
+	} {pop pop false} ifelse
+} bind def
+/RGBtoCMYK { 
+	1 exch sub 
+	3 1 roll 
+	1 exch sub 
+	3 1 roll 
+	1 exch sub 
+	3 1 roll 
+	3 copy 
+	2 copy 
+	le { pop } { exch pop } ifelse 
+	2 copy 
+	le { pop } { exch pop } ifelse 
+	dup dup dup 
+	6 1 roll 
+	4 1 roll 
+	7 1 roll 
+	sub 
+	6 1 roll 
+	sub 
+	5 1 roll 
+	sub 
+	4 1 roll 
+} bind def
+/CMYKtoRGB { 
+	dup dup 4 -1 roll add 						  
+	5 1 roll 3 -1 roll add 						  
+	4 1 roll add 								  
+	1 exch sub dup 0 lt {pop 0} if 3 1 roll 	  
+	1 exch sub dup 0 lt {pop 0} if exch 	      
+	1 exch sub dup 0 lt {pop 0} if exch	  		  
+} bind def
+/FrameSepInit {
+	1.0 RealSetgray
+} bind def
+/FrameSetSepColor { 
+	/FrameSepBlue exch def
+	/FrameSepGreen exch def
+	/FrameSepRed exch def
+	/FrameSepBlack exch def
+	/FrameSepYellow exch def
+	/FrameSepMagenta exch def
+	/FrameSepCyan exch def
+	/FrameSepIs FMcustom def
+	setCurrentScreen	
+} bind def
+/FrameSetCyan {
+	/FrameSepBlue 1.0 def
+	/FrameSepGreen 1.0 def
+	/FrameSepRed 0.0 def
+	/FrameSepBlack 0.0 def
+	/FrameSepYellow 0.0 def
+	/FrameSepMagenta 0.0 def
+	/FrameSepCyan 1.0 def
+	/FrameSepIs FMcyan def
+	setCurrentScreen	
+} bind def
+ 
+/FrameSetMagenta {
+	/FrameSepBlue 1.0 def
+	/FrameSepGreen 0.0 def
+	/FrameSepRed 1.0 def
+	/FrameSepBlack 0.0 def
+	/FrameSepYellow 0.0 def
+	/FrameSepMagenta 1.0 def
+	/FrameSepCyan 0.0 def
+	/FrameSepIs FMmagenta def
+	setCurrentScreen
+} bind def
+ 
+/FrameSetYellow {
+	/FrameSepBlue 0.0 def
+	/FrameSepGreen 1.0 def
+	/FrameSepRed 1.0 def
+	/FrameSepBlack 0.0 def
+	/FrameSepYellow 1.0 def
+	/FrameSepMagenta 0.0 def
+	/FrameSepCyan 0.0 def
+	/FrameSepIs FMyellow def
+	setCurrentScreen
+} bind def
+ 
+/FrameSetBlack {
+	/FrameSepBlue 0.0 def
+	/FrameSepGreen 0.0 def
+	/FrameSepRed 0.0 def
+	/FrameSepBlack 1.0 def
+	/FrameSepYellow 0.0 def
+	/FrameSepMagenta 0.0 def
+	/FrameSepCyan 0.0 def
+	/FrameSepIs FMblack def
+	setCurrentScreen
+} bind def
+ 
+/FrameNoSep { 
+	/FrameSepIs FMnone def
+	setCurrentScreen
+} bind def
+/FrameSetSepColors { 
+	FrameDict begin
+	[ exch 1 add 1 roll ]
+	/FrameSepColors  
+	exch def end
+	} bind def
+/FrameColorInSepListCMYK { 
+	FrameSepColors {  
+       		exch dup 3 -1 roll 
+       		FrameCmpColorsCMYK 
+       		{ pop true exit } if
+    	} forall 
+	dup true ne {pop false} if
+	} bind def
+/FrameColorInSepListRGB { 
+	FrameSepColors {  
+       		exch dup 3 -1 roll 
+       		FrameCmpColorsRGB 
+       		{ pop true exit } if
+    	} forall 
+	dup true ne {pop false} if
+	} bind def
+/RealSetgray /setgray load def
+/RealSetrgbcolor /setrgbcolor load def
+/RealSethsbcolor /sethsbcolor load def
+end 
+/setgray { 
+	FrameDict begin
+	FrameSepIs FMnone eq
+		{ RealSetgray } 
+		{ 
+		FrameSepIs FMblack eq 
+			{ RealSetgray } 
+			{ FrameSepIs FMcustom eq 
+			  FrameSepRed 0 eq and
+			  FrameSepGreen 0 eq and
+			  FrameSepBlue 0 eq and {
+			  	RealSetgray
+			  } {
+				1 RealSetgray pop 
+			  } ifelse
+			} ifelse
+		} ifelse
+	end
+} bind def
+/setrgbcolor { 
+	FrameDict begin
+	FrameSepIs FMnone eq
+	{  RealSetrgbcolor }
+	{
+		3 copy [ 4 1 roll ] 
+		FrameColorInSepListRGB
+		{
+				FrameSepBlue eq exch 
+			 	FrameSepGreen eq and exch 
+			 	FrameSepRed eq and
+			 	{ 0 } { 1 } ifelse
+		}
+		{
+			FMPColor {
+				RealSetrgbcolor
+				currentcmykcolor
+			} {
+				RGBtoCMYK
+			} ifelse
+			FrameSepIs FMblack eq
+			{1.0 exch sub 4 1 roll pop pop pop} {
+			FrameSepIs FMyellow eq
+			{pop 1.0 exch sub 3 1 roll pop pop} {
+			FrameSepIs FMmagenta eq
+			{pop pop 1.0 exch sub exch pop } {
+			FrameSepIs FMcyan eq
+			{pop pop pop 1.0 exch sub } 
+			{pop pop pop pop 1} ifelse } ifelse } ifelse } ifelse 
+		} ifelse
+		RealSetgray
+	} 
+	ifelse
+	end
+} bind def
+/sethsbcolor {
+	FrameDict begin
+	FrameSepIs FMnone eq 
+	{ RealSethsbcolor } 
+	{
+		RealSethsbcolor 
+		currentrgbcolor  
+		setrgbcolor 
+	} 
+	ifelse
+	end
+} bind def
+FrameDict begin
+/setcmykcolor where {
+	pop /RealSetcmykcolor /setcmykcolor load def
+} {
+	/RealSetcmykcolor {
+		4 1 roll
+		3 { 3 index add 0 max 1 min 1 exch sub 3 1 roll} repeat 
+		setrgbcolor pop
+	} bind def
+} ifelse
+userdict /setcmykcolor { 
+		FrameDict begin
+		FrameSepIs FMnone eq
+		{ RealSetcmykcolor } 
+		{
+			4 copy [ 5 1 roll ]
+			FrameColorInSepListCMYK
+			{
+				FrameSepBlack eq exch 
+				FrameSepYellow eq and exch 
+				FrameSepMagenta eq and exch 
+				FrameSepCyan eq and 
+				{ 0 } { 1 } ifelse
+			}
+			{
+				FrameSepIs FMblack eq
+				{1.0 exch sub 4 1 roll pop pop pop} {
+				FrameSepIs FMyellow eq
+				{pop 1.0 exch sub 3 1 roll pop pop} {
+				FrameSepIs FMmagenta eq
+				{pop pop 1.0 exch sub exch pop } {
+				FrameSepIs FMcyan eq
+				{pop pop pop 1.0 exch sub } 
+				{pop pop pop pop 1} ifelse } ifelse } ifelse } ifelse 
+			} ifelse
+			RealSetgray
+		}
+		ifelse
+		end
+	} bind put
+FMLevel1 not { 
+	
+	/patProcDict 5 dict dup begin
+		<0f1e3c78f0e1c387> { 3 setlinewidth -1 -1 moveto 9 9 lineto stroke 
+											4 -4 moveto 12 4 lineto stroke
+											-4 4 moveto 4 12 lineto stroke} bind def
+		<0f87c3e1f0783c1e> { 3 setlinewidth -1 9 moveto 9 -1 lineto stroke 
+											-4 4 moveto 4 -4 lineto stroke
+											4 12 moveto 12 4 lineto stroke} bind def
+		<8142241818244281> { 1 setlinewidth -1 9 moveto 9 -1 lineto stroke
+											-1 -1 moveto 9 9 lineto stroke } bind def
+		<03060c183060c081> { 1 setlinewidth -1 -1 moveto 9 9 lineto stroke 
+											4 -4 moveto 12 4 lineto stroke
+											-4 4 moveto 4 12 lineto stroke} bind def
+		<8040201008040201> { 1 setlinewidth -1 9 moveto 9 -1 lineto stroke 
+											-4 4 moveto 4 -4 lineto stroke
+											4 12 moveto 12 4 lineto stroke} bind def
+	end def
+	/patDict 15 dict dup begin
+		/PatternType 1 def		
+		/PaintType 2 def		
+		/TilingType 3 def		
+		/BBox [ 0 0 8 8 ] def 	
+		/XStep 8 def			
+		/YStep 8 def			
+		/PaintProc {
+			begin
+			patProcDict bstring known {
+				patProcDict bstring get exec
+			} {
+				8 8 true [1 0 0 -1 0 8] bstring imagemask
+			} ifelse
+			end
+		} bind def
+	end def
+} if
+/combineColor {
+    FrameSepIs FMnone eq
+	{
+		graymode FMLevel1 or not {
+			
+			[/Pattern [/DeviceCMYK]] setcolorspace
+			FrameCurColors 0 4 getinterval aload pop FrameCurPat setcolor
+		} {
+			FrameCurColors 3 get 1.0 ge {
+				FrameCurGray RealSetgray
+			} {
+				FMPColor graymode and {
+					0 1 3 { 
+						FrameCurColors exch get
+						1 FrameCurGray sub mul
+					} for
+					RealSetcmykcolor
+				} {
+					4 1 6 {
+						FrameCurColors exch get
+						graymode {
+							1 exch sub 1 FrameCurGray sub mul 1 exch sub
+						} {
+							1.0 lt {FrameCurGray} {1} ifelse
+						} ifelse
+					} for
+					RealSetrgbcolor
+				} ifelse
+			} ifelse
+		} ifelse
+	} { 
+		FrameCurColors 0 4 getinterval aload
+		FrameColorInSepListCMYK {
+			FrameSepBlack eq exch 
+			FrameSepYellow eq and exch 
+			FrameSepMagenta eq and exch 
+			FrameSepCyan eq and
+			FrameSepIs FMcustom eq and
+			{ FrameCurGray } { 1 } ifelse
+		} {
+			FrameSepIs FMblack eq
+			{FrameCurGray 1.0 exch sub mul 1.0 exch sub 4 1 roll pop pop pop} {
+			FrameSepIs FMyellow eq
+			{pop FrameCurGray 1.0 exch sub mul 1.0 exch sub 3 1 roll pop pop} {
+			FrameSepIs FMmagenta eq
+			{pop pop FrameCurGray 1.0 exch sub mul 1.0 exch sub exch pop } {
+			FrameSepIs FMcyan eq
+			{pop pop pop FrameCurGray 1.0 exch sub mul 1.0 exch sub } 
+			{pop pop pop pop 1} ifelse } ifelse } ifelse } ifelse 
+		} ifelse
+		graymode FMLevel1 or not {
+			
+			[/Pattern [/DeviceGray]] setcolorspace
+			FrameCurPat setcolor
+		} { 
+			graymode not FMLevel1 and {
+				
+				dup 1 lt {pop FrameCurGray} if
+			} if
+			RealSetgray
+		} ifelse
+	} ifelse
+} bind def
+/savematrix {
+	orgmatrix currentmatrix pop
+	} bind def
+/restorematrix {
+	orgmatrix setmatrix
+	} bind def
+/dmatrix matrix def
+/dpi    72 0 dmatrix defaultmatrix dtransform
+    dup mul exch   dup mul add   sqrt def
+	
+/freq dpi dup 72 div round dup 0 eq {pop 1} if 8 mul div def
+/sangle 1 0 dmatrix defaultmatrix dtransform exch atan def
+/dpiranges   [  2540    2400    1693     1270    1200     635      600      0      ] def
+/CMLowFreqs  [ 100.402  94.8683 89.2289 100.402  94.8683  66.9349  63.2456 47.4342 ] def
+/YLowFreqs   [  95.25   90.0    84.65    95.25   90.0     70.5556  66.6667 50.0    ] def
+/KLowFreqs   [  89.8026 84.8528 79.8088  89.8026 84.8528  74.8355  70.7107 53.033  ] def
+/CLowAngles  [  71.5651 71.5651 71.5651 71.5651  71.5651  71.5651  71.5651 71.5651 ] def
+/MLowAngles  [  18.4349 18.4349 18.4349 18.4349  18.4349  18.4349  18.4349 18.4349 ] def
+/YLowTDot    [  true    true    false    true    true     false    false   false   ] def
+/CMHighFreqs [ 133.87  126.491 133.843  108.503 102.523  100.402   94.8683 63.2456 ] def
+/YHighFreqs  [ 127.0   120.0   126.975  115.455 109.091   95.25    90.0    60.0    ] def
+/KHighFreqs  [ 119.737 113.137 119.713  128.289 121.218   89.8026  84.8528 63.6395 ] def
+/CHighAngles [  71.5651 71.5651 71.5651  70.0169 70.0169  71.5651  71.5651 71.5651 ] def
+/MHighAngles [  18.4349 18.4349 18.4349  19.9831 19.9831  18.4349  18.4349 18.4349 ] def
+/YHighTDot   [  false   false   true     false   false    true     true    false   ] def
+/PatFreq     [	10.5833 10.0     9.4055  10.5833 10.0	  10.5833  10.0	   9.375   ] def
+/screenIndex {
+	0 1 dpiranges length 1 sub { dup dpiranges exch get 1 sub dpi le {exit} {pop} ifelse } for
+} bind def
+/getCyanScreen {
+	FMUseHighFrequencyScreens { CHighAngles CMHighFreqs} {CLowAngles CMLowFreqs} ifelse
+		screenIndex dup 3 1 roll get 3 1 roll get /FMSpotFunction load
+} bind def
+/getMagentaScreen {
+	FMUseHighFrequencyScreens { MHighAngles CMHighFreqs } {MLowAngles CMLowFreqs} ifelse
+		screenIndex dup 3 1 roll get 3 1 roll get /FMSpotFunction load
+} bind def
+/getYellowScreen {
+	FMUseHighFrequencyScreens { YHighTDot YHighFreqs} { YLowTDot YLowFreqs } ifelse
+		screenIndex dup 3 1 roll get 3 1 roll get { 3 div
+			{2 { 1 add 2 div 3 mul dup floor sub 2 mul 1 sub exch} repeat
+			FMSpotFunction } } {/FMSpotFunction load } ifelse
+			0.0 exch
+} bind def
+/getBlackScreen  {
+	FMUseHighFrequencyScreens { KHighFreqs } { KLowFreqs } ifelse
+		screenIndex get 45.0 /FMSpotFunction load 
+} bind def
+/getSpotScreen {
+	getBlackScreen
+} bind def
+/getCompositeScreen {
+	getBlackScreen
+} bind def
+/FMSetScreen 
+	FMLevel1 { /setscreen load 
+	}{ {
+		8 dict begin
+		/HalftoneType 1 def
+		/SpotFunction exch def
+		/Angle exch def
+		/Frequency exch def
+		/AccurateScreens FMUseAcccurateScreens def
+		currentdict end sethalftone
+	} bind } ifelse
+def
+/setDefaultScreen {
+	FMPColor {
+		orgrxfer cvx orggxfer cvx orgbxfer cvx orgxfer cvx setcolortransfer
+	}
+	{
+		orgxfer cvx settransfer
+	} ifelse
+	orgfreq organgle orgproc cvx setscreen
+} bind def
+/setCurrentScreen {
+	FrameSepIs FMnone eq {
+		FMUseDefaultNoSeparationScreen {
+			setDefaultScreen
+		} {
+			getCompositeScreen FMSetScreen
+		} ifelse
+	} {
+		FrameSepIs FMcustom eq {
+			FMUseDefaultSpotSeparationScreen {
+				setDefaultScreen
+			} {
+				getSpotScreen FMSetScreen
+			} ifelse
+		} {
+			FMUseDefaultProcessSeparationScreen {
+				setDefaultScreen
+			} {
+				FrameSepIs FMcyan eq {
+					getCyanScreen FMSetScreen
+				} {
+					FrameSepIs FMmagenta eq {
+						getMagentaScreen FMSetScreen
+					} {
+						FrameSepIs FMyellow eq {
+							getYellowScreen FMSetScreen
+						} {
+							getBlackScreen FMSetScreen
+						} ifelse
+					} ifelse
+				} ifelse
+			} ifelse
+		} ifelse
+	} ifelse 
+} bind def
+end
+	/gstring FMLOCAL
+	/gfile FMLOCAL
+	/gindex FMLOCAL
+	/orgrxfer FMLOCAL
+	/orggxfer FMLOCAL
+	/orgbxfer FMLOCAL
+	/orgxfer FMLOCAL
+	/orgproc FMLOCAL
+	/orgrproc FMLOCAL
+	/orggproc FMLOCAL
+	/orgbproc FMLOCAL
+	/organgle FMLOCAL
+	/orgrangle FMLOCAL
+	/orggangle FMLOCAL
+	/orgbangle FMLOCAL
+	/orgfreq FMLOCAL
+	/orgrfreq FMLOCAL
+	/orggfreq FMLOCAL
+	/orgbfreq FMLOCAL
+	/yscale FMLOCAL
+	/xscale FMLOCAL
+	/edown FMLOCAL
+	/manualfeed FMLOCAL
+	/paperheight FMLOCAL
+	/paperwidth FMLOCAL
+/FMDOCUMENT { 
+	array /FMfonts exch def 
+	/#copies exch def
+	FrameDict begin
+	0 ne /manualfeed exch def
+	/paperheight exch def
+	/paperwidth exch def
+	0 ne /FrameNegative exch def 
+	0 ne /edown exch def 
+	/yscale exch def
+	/xscale exch def
+	FMLevel1 {
+		manualfeed {setmanualfeed} if
+		/FMdicttop countdictstack 1 add def 
+		/FMoptop count def 
+		setpapername 
+		manualfeed {true} {papersize} ifelse 
+		{manualpapersize} {false} ifelse 
+		{desperatepapersize} {false} ifelse 
+		{ (Can't select requested paper size for Frame print job!) FMFAILURE } if
+		count -1 FMoptop {pop pop} for
+		countdictstack -1 FMdicttop {pop end} for 
+		}
+		{{1 dict dup /PageSize [paperwidth paperheight]put setpagedevice}stopped
+		{ (Can't select requested paper size for Frame print job!) FMFAILURE } if
+		 {1 dict dup /ManualFeed manualfeed put setpagedevice } stopped pop }
+	ifelse 
+	
+	FMPColor {
+		currentcolorscreen
+			cvlit /orgproc exch def
+				  /organgle exch def 
+				  /orgfreq exch def
+			cvlit /orgbproc exch def
+				  /orgbangle exch def 
+				  /orgbfreq exch def
+			cvlit /orggproc exch def
+				  /orggangle exch def 
+				  /orggfreq exch def
+			cvlit /orgrproc exch def
+				  /orgrangle exch def 
+				  /orgrfreq exch def
+			currentcolortransfer 
+			FrameNegative {
+				1 1 4 { 
+					pop { 1 exch sub } concatprocs 4 1 roll
+				} for
+				4 copy
+				setcolortransfer
+			} if
+			cvlit /orgxfer exch def
+			cvlit /orgbxfer exch def
+			cvlit /orggxfer exch def
+			cvlit /orgrxfer exch def
+	} {
+		currentscreen 
+			cvlit /orgproc exch def
+				  /organgle exch def 
+				  /orgfreq exch def
+				  
+		currenttransfer 
+		FrameNegative {
+			{ 1 exch sub } concatprocs
+			dup settransfer
+		} if 
+		cvlit /orgxfer exch def
+	} ifelse
+	end 
+} def 
+/pagesave FMLOCAL
+/orgmatrix FMLOCAL
+/landscape FMLOCAL
+/pwid FMLOCAL
+/FMBEGINPAGE { 
+	FrameDict begin 
+	/pagesave save def
+	3.86 setmiterlimit
+	/landscape exch 0 ne def
+	landscape { 
+		90 rotate 0 exch dup /pwid exch def neg translate pop 
+	}{
+		pop /pwid exch def
+	} ifelse
+	edown { [-1 0 0 1 pwid 0] concat } if
+	0 0 moveto paperwidth 0 lineto paperwidth paperheight lineto 
+	0 paperheight lineto 0 0 lineto 1 setgray fill
+	xscale yscale scale
+	/orgmatrix matrix def
+	gsave 
+} def 
+/FMENDPAGE {
+	grestore 
+	pagesave restore
+	end 
+	showpage
+	} def 
+/FMFONTDEFINE { 
+	FrameDict begin
+	findfont 
+	ReEncode 
+	1 index exch 
+	definefont 
+	FMfonts 3 1 roll 
+	put
+	end 
+	} def 
+/FMFILLS {
+	FrameDict begin dup
+	array /fillvals exch def
+	dict /patCache exch def
+	end 
+	} def 
+/FMFILL {
+	FrameDict begin
+	 fillvals 3 1 roll put
+	end 
+	} def 
+/FMNORMALIZEGRAPHICS { 
+	newpath
+	0.0 0.0 moveto
+	1 setlinewidth
+	0 setlinecap
+	0 0 0 sethsbcolor
+	0 setgray 
+	} bind def
+	/fx FMLOCAL
+	/fy FMLOCAL
+	/fh FMLOCAL
+	/fw FMLOCAL
+	/llx FMLOCAL
+	/lly FMLOCAL
+	/urx FMLOCAL
+	/ury FMLOCAL
+/FMBEGINEPSF { 
+	end 
+	/FMEPSF save def 
+	/showpage {} def 
+% See Adobe's "PostScript Language Reference Manual, 2nd Edition", page 714.
+% "...the following operators MUST NOT be used in an EPS file:" (emphasis ours)
+	/banddevice {(banddevice) FMBADEPSF} def
+	/clear {(clear) FMBADEPSF} def
+	/cleardictstack {(cleardictstack) FMBADEPSF} def 
+	/copypage {(copypage) FMBADEPSF} def
+	/erasepage {(erasepage) FMBADEPSF} def
+	/exitserver {(exitserver) FMBADEPSF} def
+	/framedevice {(framedevice) FMBADEPSF} def
+	/grestoreall {(grestoreall) FMBADEPSF} def
+	/initclip {(initclip) FMBADEPSF} def
+	/initgraphics {(initgraphics) FMBADEPSF} def
+	/initmatrix {(initmatrix) FMBADEPSF} def
+	/quit {(quit) FMBADEPSF} def
+	/renderbands {(renderbands) FMBADEPSF} def
+	/setglobal {(setglobal) FMBADEPSF} def
+	/setpagedevice {(setpagedevice) FMBADEPSF} def
+	/setshared {(setshared) FMBADEPSF} def
+	/startjob {(startjob) FMBADEPSF} def
+	/lettertray {(lettertray) FMBADEPSF} def
+	/letter {(letter) FMBADEPSF} def
+	/lettersmall {(lettersmall) FMBADEPSF} def
+	/11x17tray {(11x17tray) FMBADEPSF} def
+	/11x17 {(11x17) FMBADEPSF} def
+	/ledgertray {(ledgertray) FMBADEPSF} def
+	/ledger {(ledger) FMBADEPSF} def
+	/legaltray {(legaltray) FMBADEPSF} def
+	/legal {(legal) FMBADEPSF} def
+	/statementtray {(statementtray) FMBADEPSF} def
+	/statement {(statement) FMBADEPSF} def
+	/executivetray {(executivetray) FMBADEPSF} def
+	/executive {(executive) FMBADEPSF} def
+	/a3tray {(a3tray) FMBADEPSF} def
+	/a3 {(a3) FMBADEPSF} def
+	/a4tray {(a4tray) FMBADEPSF} def
+	/a4 {(a4) FMBADEPSF} def
+	/a4small {(a4small) FMBADEPSF} def
+	/b4tray {(b4tray) FMBADEPSF} def
+	/b4 {(b4) FMBADEPSF} def
+	/b5tray {(b5tray) FMBADEPSF} def
+	/b5 {(b5) FMBADEPSF} def
+	FMNORMALIZEGRAPHICS 
+	[/fy /fx /fh /fw /ury /urx /lly /llx] {exch def} forall 
+	fx fw 2 div add fy fh 2 div add  translate
+	rotate
+	fw 2 div neg fh 2 div neg translate
+	fw urx llx sub div fh ury lly sub div scale 
+	llx neg lly neg translate 
+	/FMdicttop countdictstack 1 add def 
+	/FMoptop count def 
+	} bind def
+/FMENDEPSF {
+	count -1 FMoptop {pop pop} for 
+	countdictstack -1 FMdicttop {pop end} for 
+	FMEPSF restore
+	FrameDict begin 
+	} bind def
+FrameDict begin 
+/setmanualfeed {
+%%BeginFeature *ManualFeed True
+	 statusdict /manualfeed true put
+%%EndFeature
+	} bind def
+/max {2 copy lt {exch} if pop} bind def
+/min {2 copy gt {exch} if pop} bind def
+/inch {72 mul} def
+/pagedimen { 
+	paperheight sub abs 16 lt exch 
+	paperwidth sub abs 16 lt and
+	{/papername exch def} {pop} ifelse
+	} bind def
+	/papersizedict FMLOCAL
+/setpapername { 
+	/papersizedict 14 dict def 
+	papersizedict begin
+	/papername /unknown def 
+		/Letter 8.5 inch 11.0 inch pagedimen
+		/LetterSmall 7.68 inch 10.16 inch pagedimen
+		/Tabloid 11.0 inch 17.0 inch pagedimen
+		/Ledger 17.0 inch 11.0 inch pagedimen
+		/Legal 8.5 inch 14.0 inch pagedimen
+		/Statement 5.5 inch 8.5 inch pagedimen
+		/Executive 7.5 inch 10.0 inch pagedimen
+		/A3 11.69 inch 16.5 inch pagedimen
+		/A4 8.26 inch 11.69 inch pagedimen
+		/A4Small 7.47 inch 10.85 inch pagedimen
+		/B4 10.125 inch 14.33 inch pagedimen
+		/B5 7.16 inch 10.125 inch pagedimen
+	end
+	} bind def
+/papersize {
+	papersizedict begin
+		/Letter {lettertray letter} def
+		/LetterSmall {lettertray lettersmall} def
+		/Tabloid {11x17tray 11x17} def
+		/Ledger {ledgertray ledger} def
+		/Legal {legaltray legal} def
+		/Statement {statementtray statement} def
+		/Executive {executivetray executive} def
+		/A3 {a3tray a3} def
+		/A4 {a4tray a4} def
+		/A4Small {a4tray a4small} def
+		/B4 {b4tray b4} def
+		/B5 {b5tray b5} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	statusdict begin stopped end 
+	} bind def
+/manualpapersize {
+	papersizedict begin
+		/Letter {letter} def
+		/LetterSmall {lettersmall} def
+		/Tabloid {11x17} def
+		/Ledger {ledger} def
+		/Legal {legal} def
+		/Statement {statement} def
+		/Executive {executive} def
+		/A3 {a3} def
+		/A4 {a4} def
+		/A4Small {a4small} def
+		/B4 {b4} def
+		/B5 {b5} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	stopped 
+	} bind def
+/desperatepapersize {
+	statusdict /setpageparams known
+		{
+		paperwidth paperheight 0 1 
+		statusdict begin
+		{setpageparams} stopped 
+		end
+		} {true} ifelse 
+	} bind def
+/DiacriticEncoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /space /exclam /quotedbl
+/numbersign /dollar /percent /ampersand /quotesingle /parenleft
+/parenright /asterisk /plus /comma /hyphen /period /slash /zero /one
+/two /three /four /five /six /seven /eight /nine /colon /semicolon
+/less /equal /greater /question /at /A /B /C /D /E /F /G /H /I /J /K
+/L /M /N /O /P /Q /R /S /T /U /V /W /X /Y /Z /bracketleft /backslash
+/bracketright /asciicircum /underscore /grave /a /b /c /d /e /f /g /h
+/i /j /k /l /m /n /o /p /q /r /s /t /u /v /w /x /y /z /braceleft /bar
+/braceright /asciitilde /.notdef /Adieresis /Aring /Ccedilla /Eacute
+/Ntilde /Odieresis /Udieresis /aacute /agrave /acircumflex /adieresis
+/atilde /aring /ccedilla /eacute /egrave /ecircumflex /edieresis
+/iacute /igrave /icircumflex /idieresis /ntilde /oacute /ograve
+/ocircumflex /odieresis /otilde /uacute /ugrave /ucircumflex
+/udieresis /dagger /.notdef /cent /sterling /section /bullet
+/paragraph /germandbls /registered /copyright /trademark /acute
+/dieresis /.notdef /AE /Oslash /.notdef /.notdef /.notdef /.notdef
+/yen /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/ordfeminine /ordmasculine /.notdef /ae /oslash /questiondown
+/exclamdown /logicalnot /.notdef /florin /.notdef /.notdef
+/guillemotleft /guillemotright /ellipsis /.notdef /Agrave /Atilde
+/Otilde /OE /oe /endash /emdash /quotedblleft /quotedblright
+/quoteleft /quoteright /.notdef /.notdef /ydieresis /Ydieresis
+/fraction /currency /guilsinglleft /guilsinglright /fi /fl /daggerdbl
+/periodcentered /quotesinglbase /quotedblbase /perthousand
+/Acircumflex /Ecircumflex /Aacute /Edieresis /Egrave /Iacute
+/Icircumflex /Idieresis /Igrave /Oacute /Ocircumflex /.notdef /Ograve
+/Uacute /Ucircumflex /Ugrave /dotlessi /circumflex /tilde /macron
+/breve /dotaccent /ring /cedilla /hungarumlaut /ogonek /caron
+] def
+/ReEncode { 
+	dup 
+	length 
+	dict begin 
+	{
+	1 index /FID ne 
+		{def} 
+		{pop pop} ifelse 
+	} forall 
+	0 eq {/Encoding DiacriticEncoding def} if 
+	currentdict 
+	end 
+	} bind def
+FMPColor 
+	
+	{
+	/BEGINBITMAPCOLOR { 
+		BITMAPCOLOR} def
+	/BEGINBITMAPCOLORc { 
+		BITMAPCOLORc} def
+	/BEGINBITMAPTRUECOLOR { 
+		BITMAPTRUECOLOR } def
+	/BEGINBITMAPTRUECOLORc { 
+		BITMAPTRUECOLORc } def
+	}
+	
+	{
+	/BEGINBITMAPCOLOR { 
+		BITMAPGRAY} def
+	/BEGINBITMAPCOLORc { 
+		BITMAPGRAYc} def
+	/BEGINBITMAPTRUECOLOR { 
+		BITMAPTRUEGRAY } def
+	/BEGINBITMAPTRUECOLORc { 
+		BITMAPTRUEGRAYc } def
+	}
+ifelse
+/K { 
+	FMPrintAllColorsAsBlack {
+		dup 1 eq 2 index 1 eq and 3 index 1 eq and not
+			{7 {pop} repeat 0 0 0 1 0 0 0} if
+	} if 
+	FrameCurColors astore 
+	pop combineColor
+} bind def
+/graymode true def
+	/bwidth FMLOCAL
+	/bpside FMLOCAL
+	/bstring FMLOCAL
+	/onbits FMLOCAL
+	/offbits FMLOCAL
+	/xindex FMLOCAL
+	/yindex FMLOCAL
+	/x FMLOCAL
+	/y FMLOCAL
+/setPatternMode {
+	FMLevel1 {
+		/bwidth  exch def
+		/bpside  exch def
+		/bstring exch def
+		/onbits 0 def  /offbits 0 def
+		freq sangle landscape {90 add} if 
+			{/y exch def
+			 /x exch def
+			 /xindex x 1 add 2 div bpside mul cvi def
+			 /yindex y 1 add 2 div bpside mul cvi def
+			 bstring yindex bwidth mul xindex 8 idiv add get
+			 1 7 xindex 8 mod sub bitshift and 0 ne FrameNegative {not} if
+			 {/onbits  onbits  1 add def 1}
+			 {/offbits offbits 1 add def 0}
+			 ifelse
+			}
+			setscreen
+		offbits offbits onbits add div FrameNegative {1.0 exch sub} if
+		/FrameCurGray exch def
+	} { 
+		pop pop
+		dup patCache exch known {
+			patCache exch get
+		} { 
+			dup
+			patDict /bstring 3 -1 roll put
+			patDict 
+			9 PatFreq screenIndex get div dup matrix scale
+			makepattern
+			dup 
+			patCache 4 -1 roll 3 -1 roll put
+		} ifelse
+		/FrameCurGray 0 def
+		/FrameCurPat exch def
+	} ifelse
+	/graymode false def
+	combineColor
+} bind def
+/setGrayScaleMode {
+	graymode not {
+		/graymode true def
+		FMLevel1 {
+			setCurrentScreen
+		} if
+	} if
+	/FrameCurGray exch def
+	combineColor
+} bind def
+/normalize {
+	transform round exch round exch itransform
+	} bind def
+/dnormalize {
+	dtransform round exch round exch idtransform
+	} bind def
+/lnormalize { 
+	0 dtransform exch cvi 2 idiv 2 mul 1 add exch idtransform pop
+	} bind def
+/H { 
+	lnormalize setlinewidth
+	} bind def
+/Z {
+	setlinecap
+	} bind def
+	
+/PFill {
+	graymode FMLevel1 or not {
+		gsave 1 setgray eofill grestore
+	} if
+} bind def
+/PStroke {
+	graymode FMLevel1 or not {
+		gsave 1 setgray stroke grestore
+	} if
+	stroke
+} bind def
+	/fillvals FMLOCAL
+/X { 
+	fillvals exch get
+	dup type /stringtype eq
+	{8 1 setPatternMode} 
+	{setGrayScaleMode}
+	ifelse
+	} bind def
+/V { 
+	PFill gsave eofill grestore
+	} bind def
+/Vclip {
+	clip
+	} bind def
+/Vstrk {
+	currentlinewidth exch setlinewidth PStroke setlinewidth
+	} bind def
+/N { 
+	PStroke
+	} bind def
+/Nclip {
+	strokepath clip newpath
+	} bind def
+/Nstrk {
+	currentlinewidth exch setlinewidth PStroke setlinewidth
+	} bind def
+/M {newpath moveto} bind def
+/E {lineto} bind def
+/D {curveto} bind def
+/O {closepath} bind def
+	/n FMLOCAL
+/L { 
+ 	/n exch def
+	newpath
+	normalize
+	moveto 
+	2 1 n {pop normalize lineto} for
+	} bind def
+/Y { 
+	L 
+	closepath
+	} bind def
+	/x1 FMLOCAL
+	/x2 FMLOCAL
+	/y1 FMLOCAL
+	/y2 FMLOCAL
+/R { 
+	/y2 exch def
+	/x2 exch def
+	/y1 exch def
+	/x1 exch def
+	x1 y1
+	x2 y1
+	x2 y2
+	x1 y2
+	4 Y 
+	} bind def
+	/rad FMLOCAL
+/rarc 
+	{rad 
+	 arcto
+	} bind def
+/RR { 
+	/rad exch def
+	normalize
+	/y2 exch def
+	/x2 exch def
+	normalize
+	/y1 exch def
+	/x1 exch def
+	mark
+	newpath
+	{
+	x1 y1 rad add moveto
+	x1 y2 x2 y2 rarc
+	x2 y2 x2 y1 rarc
+	x2 y1 x1 y1 rarc
+	x1 y1 x1 y2 rarc
+	closepath
+	} stopped {x1 y1 x2 y2 R} if 
+	cleartomark
+	} bind def
+/RRR { 
+	/rad exch def
+	normalize /y4 exch def /x4 exch def
+	normalize /y3 exch def /x3 exch def
+	normalize /y2 exch def /x2 exch def
+	normalize /y1 exch def /x1 exch def
+	newpath
+	normalize moveto 
+	mark
+	{
+	x2 y2 x3 y3 rarc
+	x3 y3 x4 y4 rarc
+	x4 y4 x1 y1 rarc
+	x1 y1 x2 y2 rarc
+	closepath
+	} stopped
+	 {x1 y1 x2 y2 x3 y3 x4 y4 newpath moveto lineto lineto lineto closepath} if
+	cleartomark
+	} bind def
+/C { 
+	grestore
+	gsave
+	R 
+	clip
+	setCurrentScreen
+} bind def
+/CP { 
+	grestore
+	gsave
+	Y 
+	clip
+	setCurrentScreen
+} bind def
+	/FMpointsize FMLOCAL
+/F { 
+	FMfonts exch get
+	FMpointsize scalefont
+	setfont
+	} bind def
+/Q { 
+	/FMpointsize exch def
+	F 
+	} bind def
+/T { 
+	moveto show
+	} bind def
+/RF { 
+	rotate
+	0 ne {-1 1 scale} if
+	} bind def
+/TF { 
+	gsave
+	moveto 
+	RF
+	show
+	grestore
+	} bind def
+/P { 
+	moveto
+	0 32 3 2 roll widthshow
+	} bind def
+/PF { 
+	gsave
+	moveto 
+	RF
+	0 32 3 2 roll widthshow
+	grestore
+	} bind def
+/S { 
+	moveto
+	0 exch ashow
+	} bind def
+/SF { 
+	gsave
+	moveto
+	RF
+	0 exch ashow
+	grestore
+	} bind def
+/B { 
+	moveto
+	0 32 4 2 roll 0 exch awidthshow
+	} bind def
+/BF { 
+	gsave
+	moveto
+	RF
+	0 32 4 2 roll 0 exch awidthshow
+	grestore
+	} bind def
+/G { 
+	gsave
+	newpath
+	normalize translate 0.0 0.0 moveto 
+	dnormalize scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	closepath 
+	PFill fill
+	grestore
+	} bind def
+/Gstrk {
+	savematrix
+    newpath
+    2 index 2 div add exch 3 index 2 div sub exch 
+    normalize 2 index 2 div sub exch 3 index 2 div add exch 
+    translate
+    scale 
+    0.0 0.0 1.0 5 3 roll arc 
+    restorematrix
+    currentlinewidth exch setlinewidth PStroke setlinewidth
+    } bind def
+/Gclip { 
+	newpath
+	savematrix
+	normalize translate 0.0 0.0 moveto 
+	dnormalize scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	closepath 
+	clip newpath
+	restorematrix
+	} bind def
+/GG { 
+	gsave
+	newpath
+	normalize translate 0.0 0.0 moveto 
+	rotate 
+	dnormalize scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	closepath
+	PFill
+	fill
+	grestore
+	} bind def
+/GGclip { 
+	savematrix
+	newpath
+    normalize translate 0.0 0.0 moveto 
+    rotate 
+    dnormalize scale 
+    0.0 0.0 1.0 5 3 roll arc 
+    closepath
+	clip newpath
+	restorematrix
+	} bind def
+/GGstrk { 
+	savematrix
+    newpath
+    normalize translate 0.0 0.0 moveto 
+    rotate 
+    dnormalize scale 
+    0.0 0.0 1.0 5 3 roll arc 
+    closepath 
+	restorematrix
+    currentlinewidth exch setlinewidth PStroke setlinewidth
+	} bind def
+/A { 
+	gsave
+	savematrix
+	newpath
+	2 index 2 div add exch 3 index 2 div sub exch 
+	normalize 2 index 2 div sub exch 3 index 2 div add exch 
+	translate 
+	scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	restorematrix
+	PStroke
+	grestore
+	} bind def
+/Aclip {
+	newpath
+	savematrix
+	normalize translate 0.0 0.0 moveto 
+	dnormalize scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	closepath 
+	strokepath clip newpath
+	restorematrix
+} bind def
+/Astrk {
+	Gstrk
+} bind def
+/AA { 
+	gsave
+	savematrix
+	newpath
+	
+	3 index 2 div add exch 4 index 2 div sub exch 
+	
+	normalize 3 index 2 div sub exch 4 index 2 div add exch
+	translate 
+	rotate 
+	scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	restorematrix
+	PStroke
+	grestore
+	} bind def
+/AAclip {
+	savematrix
+	newpath
+    normalize translate 0.0 0.0 moveto 
+    rotate 
+    dnormalize scale 
+    0.0 0.0 1.0 5 3 roll arc 
+    closepath
+	strokepath clip newpath
+	restorematrix
+} bind def
+/AAstrk {
+	GGstrk
+} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/w FMLOCAL
+	/h FMLOCAL
+	/xx FMLOCAL
+	/yy FMLOCAL
+	/ww FMLOCAL
+	/hh FMLOCAL
+	/FMsaveobject FMLOCAL
+	/FMoptop FMLOCAL
+	/FMdicttop FMLOCAL
+/BEGINPRINTCODE { 
+	/FMdicttop countdictstack 1 add def 
+	/FMoptop count 7 sub def 
+	/FMsaveobject save def
+	userdict begin 
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	3 index neg 3 index neg translate
+	} bind def
+/ENDPRINTCODE {
+	count -1 FMoptop {pop pop} for 
+	countdictstack -1 FMdicttop {pop end} for 
+	FMsaveobject restore 
+	} bind def
+/gn { 
+	0 
+	{	46 mul 
+		cf read pop 
+		32 sub 
+		dup 46 lt {exit} if 
+		46 sub add 
+		} loop
+	add 
+	} bind def
+	/str FMLOCAL
+/cfs { 
+	/str sl string def 
+	0 1 sl 1 sub {str exch val put} for 
+	str def 
+	} bind def
+/ic [ 
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0
+	{0 hx} {1 hx} {2 hx} {3 hx} {4 hx} {5 hx} {6 hx} {7 hx} {8 hx} {9 hx}
+	{10 hx} {11 hx} {12 hx} {13 hx} {14 hx} {15 hx} {16 hx} {17 hx} {18 hx}
+	{19 hx} {gn hx} {0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12}
+	{13} {14} {15} {16} {17} {18} {19} {gn} {0 wh} {1 wh} {2 wh} {3 wh}
+	{4 wh} {5 wh} {6 wh} {7 wh} {8 wh} {9 wh} {10 wh} {11 wh} {12 wh}
+	{13 wh} {14 wh} {gn wh} {0 bl} {1 bl} {2 bl} {3 bl} {4 bl} {5 bl} {6 bl}
+	{7 bl} {8 bl} {9 bl} {10 bl} {11 bl} {12 bl} {13 bl} {14 bl} {gn bl}
+	{0 fl} {1 fl} {2 fl} {3 fl} {4 fl} {5 fl} {6 fl} {7 fl} {8 fl} {9 fl}
+	{10 fl} {11 fl} {12 fl} {13 fl} {14 fl} {gn fl}
+	] def
+	/sl FMLOCAL
+	/val FMLOCAL
+	/ws FMLOCAL
+	/im FMLOCAL
+	/bs FMLOCAL
+	/cs FMLOCAL
+	/len FMLOCAL
+	/pos FMLOCAL
+/ms { 
+	/sl exch def 
+	/val 255 def 
+	/ws cfs 
+	/im cfs 
+	/val 0 def 
+	/bs cfs 
+	/cs cfs 
+	} bind def
+400 ms 
+/ip { 
+	is 
+	0 
+	cf cs readline pop 
+	{	ic exch get exec 
+		add 
+		} forall 
+	pop 
+	
+	} bind def
+/rip { 
+	   
+	  
+	  bis ris copy pop 
+      is
+      0
+      cf cs readline pop 
+      {       ic exch get exec 
+              add 
+              } forall 
+	  pop pop 
+	  ris gis copy pop 
+	  dup is exch 
+	  
+      cf cs readline pop 
+      {       ic exch get exec 
+              add 
+              } forall 
+	  pop pop
+	  gis bis copy pop 
+	  dup add is exch 
+	  
+      cf cs readline pop 
+      {       ic exch get exec 
+              add 
+              } forall 
+      pop 
+      
+      } bind def
+/wh { 
+	/len exch def 
+	/pos exch def 
+	ws 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/bl { 
+	/len exch def 
+	/pos exch def 
+	bs 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/s1 1 string def
+/fl { 
+	/len exch def 
+	/pos exch def 
+	/val cf s1 readhexstring pop 0 get def
+	pos 1 pos len add 1 sub {im exch val put} for
+	pos len 
+	} bind def
+/hx { 
+	3 copy getinterval 
+	cf exch readhexstring pop pop 
+	} bind def
+	/h FMLOCAL
+	/w FMLOCAL
+	/d FMLOCAL
+	/lb FMLOCAL
+	/bitmapsave FMLOCAL
+	/is FMLOCAL
+	/cf FMLOCAL
+/wbytes { 
+      dup dup
+      24 eq { pop pop 3 mul }
+      { 8 eq {pop} {1 eq {7 add 8 idiv} {3 add 4 idiv} ifelse} ifelse } ifelse
+	} bind def
+/BEGINBITMAPBWc { 
+	1 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAPGRAYc { 
+	8 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAP2BITc { 
+	2 {} COMMONBITMAPc
+	} bind def
+/COMMONBITMAPc { 
+		 
+	/r exch def
+	/d exch def
+	gsave
+	
+	3 index 2 div add exch	
+	4 index 2 div add exch	
+	translate		
+	rotate			
+	1 index 2 div neg	
+	1 index 2 div neg	
+	translate		
+	scale			
+	/h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	r                    
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} image 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BEGINBITMAPBW { 
+	1 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAPGRAY { 
+	8 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAP2BIT { 
+	2 {} COMMONBITMAP
+	} bind def
+/COMMONBITMAP { 
+	/r exch def
+	/d exch def
+	gsave
+	
+	3 index 2 div add exch	
+	4 index 2 div add exch	
+	translate		
+	rotate			
+	1 index 2 div neg	
+	1 index 2 div neg	
+	translate		
+	scale			
+	/h exch def /w exch def
+	/bitmapsave save def 
+	r                    
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{cf is readhexstring pop} image
+	bitmapsave restore 
+	grestore
+	} bind def
+/ngrayt 256 array def
+/nredt 256 array def
+/nbluet 256 array def
+/ngreent 256 array def
+	/gryt FMLOCAL
+	/blut FMLOCAL
+	/grnt FMLOCAL
+	/redt FMLOCAL
+	/indx FMLOCAL
+	/cynu FMLOCAL
+	/magu FMLOCAL
+	/yelu FMLOCAL
+	/k FMLOCAL
+	/u FMLOCAL
+FMLevel1 {
+/colorsetup {
+	currentcolortransfer
+	/gryt exch def
+	/blut exch def
+	/grnt exch def
+	/redt exch def
+	0 1 255 {
+		/indx exch def
+		/cynu 1 red indx get 255 div sub def
+		/magu 1 green indx get 255 div sub def
+		/yelu 1 blue indx get 255 div sub def
+		/k cynu magu min yelu min def
+		/u k currentundercolorremoval exec def
+%		/u 0 def
+		nredt indx 1 0 cynu u sub max sub redt exec put
+		ngreent indx 1 0 magu u sub max sub grnt exec put
+		nbluet indx 1 0 yelu u sub max sub blut exec put
+		ngrayt indx 1 k currentblackgeneration exec sub gryt exec put
+	} for
+	{255 mul cvi nredt exch get}
+	{255 mul cvi ngreent exch get}
+	{255 mul cvi nbluet exch get}
+	{255 mul cvi ngrayt exch get}
+	setcolortransfer
+	{pop 0} setundercolorremoval
+	{} setblackgeneration
+	} bind def
+}
+{
+/colorSetup2 {
+	[ /Indexed /DeviceRGB 255 
+		{dup red exch get 255 div 
+		 exch dup green exch get 255 div 
+		 exch blue exch get 255 div}
+	] setcolorspace
+} bind def
+} ifelse
+	/tran FMLOCAL
+/fakecolorsetup {
+	/tran 256 string def
+	0 1 255 {/indx exch def 
+		tran indx
+		red indx get 77 mul
+		green indx get 151 mul
+		blue indx get 28 mul
+		add add 256 idiv put} for
+	currenttransfer
+	{255 mul cvi tran exch get 255.0 div}
+	exch concatprocs settransfer
+} bind def
+/BITMAPCOLOR { 
+	/d 8 def
+	gsave
+	
+	3 index 2 div add exch	
+	4 index 2 div add exch	
+	translate		
+	rotate			
+	1 index 2 div neg	
+	1 index 2 div neg	
+	translate		
+	scale			
+	/h exch def /w exch def
+	/bitmapsave save def
+	FMLevel1 {	
+		colorsetup
+		/is w d wbytes string def
+		/cf currentfile def 
+		w h d [w 0 0 h neg 0 h] 
+		{cf is readhexstring pop} {is} {is} true 3 colorimage 
+	} {
+		colorSetup2
+		/is w d wbytes string def
+		/cf currentfile def 
+		7 dict dup begin
+			/ImageType 1 def
+			/Width w def
+			/Height h def
+			/ImageMatrix [w 0 0 h neg 0 h] def
+			/DataSource {cf is readhexstring pop} bind def
+			/BitsPerComponent d def
+			/Decode [0 255] def
+		end image	
+	} ifelse
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPCOLORc { 
+	/d 8 def
+	gsave
+	
+	3 index 2 div add exch	
+	4 index 2 div add exch	
+	translate		
+	rotate			
+	1 index 2 div neg	
+	1 index 2 div neg	
+	translate		
+	scale			
+	/h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	FMLevel1 {	
+		colorsetup
+		/is im 0 lb getinterval def 
+		ws 0 lb getinterval is copy pop 
+		/cf currentfile def 
+		w h d [w 0 0 h neg 0 h] 
+		{ip} {is} {is} true 3 colorimage
+	} {
+		colorSetup2
+		/is im 0 lb getinterval def 
+		ws 0 lb getinterval is copy pop 
+		/cf currentfile def 
+		7 dict dup begin
+			/ImageType 1 def
+			/Width w def
+			/Height h def
+			/ImageMatrix [w 0 0 h neg 0 h] def
+			/DataSource {ip} bind def
+			/BitsPerComponent d def
+			/Decode [0 255] def
+		end image	
+	} ifelse
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPTRUECOLORc { 
+	/d 24 def
+        gsave
+ 	
+	3 index 2 div add exch	
+	4 index 2 div add exch	
+	translate		
+	rotate			
+	1 index 2 div neg	
+	1 index 2 div neg	
+	translate		
+	scale			
+	/h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+        /bitmapsave save def 
+        
+	/is im 0 lb getinterval def	
+	/ris im 0 w getinterval def	
+	/gis im w w getinterval def	
+	/bis im w 2 mul w getinterval def 
+        
+        ws 0 lb getinterval is copy pop 
+        /cf currentfile def 
+        w h 8 [w 0 0 h neg 0 h] 
+        {w rip pop ris} {gis} {bis} true 3 colorimage
+        bitmapsave restore 
+        grestore
+        } bind def
+/BITMAPTRUECOLOR { 
+        gsave
+		
+		3 index 2 div add exch	
+		4 index 2 div add exch	
+		translate		
+		rotate			
+		1 index 2 div neg	
+		1 index 2 div neg	
+		translate		
+		scale			
+		/h exch def /w exch def
+        /bitmapsave save def 
+        /is w string def
+        /gis w string def
+        /bis w string def
+        /cf currentfile def 
+        w h 8 [w 0 0 h neg 0 h] 
+        { cf is readhexstring pop } 
+        { cf gis readhexstring pop } 
+        { cf bis readhexstring pop } 
+        true 3 colorimage 
+        bitmapsave restore 
+        grestore
+        } bind def
+/BITMAPTRUEGRAYc { 
+	/d 24 def
+        gsave
+	
+	3 index 2 div add exch	
+	4 index 2 div add exch	
+	translate		
+	rotate			
+	1 index 2 div neg	
+	1 index 2 div neg	
+	translate		
+	scale			
+	/h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+        /bitmapsave save def 
+        
+	/is im 0 lb getinterval def	
+	/ris im 0 w getinterval def	
+	/gis im w w getinterval def	
+	/bis im w 2 mul w getinterval def 
+        ws 0 lb getinterval is copy pop 
+        /cf currentfile def 
+        w h 8 [w 0 0 h neg 0 h] 
+        {w rip pop ris gis bis w gray} image
+        bitmapsave restore 
+        grestore
+        } bind def
+/ww FMLOCAL
+/r FMLOCAL
+/g FMLOCAL
+/b FMLOCAL
+/i FMLOCAL
+/gray { 
+        /ww exch def
+        /b exch def
+        /g exch def
+        /r exch def
+        0 1 ww 1 sub { /i exch def r i get .299 mul g i get .587 mul
+			b i get .114 mul add add r i 3 -1 roll floor cvi put } for
+        r
+        } bind def
+/BITMAPTRUEGRAY { 
+        gsave
+		
+		3 index 2 div add exch	
+		4 index 2 div add exch	
+		translate		
+		rotate			
+		1 index 2 div neg	
+		1 index 2 div neg	
+		translate		
+		scale			
+		/h exch def /w exch def
+        /bitmapsave save def 
+        /is w string def
+        /gis w string def
+        /bis w string def
+        /cf currentfile def 
+        w h 8 [w 0 0 h neg 0 h] 
+        { cf is readhexstring pop 
+          cf gis readhexstring pop 
+          cf bis readhexstring pop w gray}  image
+        bitmapsave restore 
+        grestore
+        } bind def
+/BITMAPGRAY { 
+	8 {fakecolorsetup} COMMONBITMAP
+	} bind def
+/BITMAPGRAYc { 
+	8 {fakecolorsetup} COMMONBITMAPc
+	} bind def
+/ENDBITMAP {
+	} bind def
+end 
+	/ALDsave FMLOCAL
+	/ALDmatrix matrix def ALDmatrix currentmatrix pop
+/StartALD {
+	/ALDsave save def
+	 savematrix
+	 ALDmatrix setmatrix
+	} bind def
+/InALD {
+	 restorematrix
+	} bind def
+/DoneALD {
+	 ALDsave restore
+	} bind def
+/I { setdash } bind def
+/J { [] 0 setdash } bind def
+%%EndProlog
+%%BeginSetup
+(4.0) FMVERSION
+1 1 0 0 612 792 0 1 13 FMDOCUMENT
+0 0 /Helvetica FMFONTDEFINE
+1 0 /Helvetica-Bold FMFONTDEFINE
+2 0 /NewCenturySchlbk-Roman FMFONTDEFINE
+3 1 /ZapfDingbats FMFONTDEFINE
+4 0 /NewCenturySchlbk-Italic FMFONTDEFINE
+5 0 /Helvetica-Oblique FMFONTDEFINE
+32 FMFILLS
+0 0 FMFILL
+1 0.1 FMFILL
+2 0.3 FMFILL
+3 0.5 FMFILL
+4 0.7 FMFILL
+5 0.9 FMFILL
+6 0.97 FMFILL
+7 1 FMFILL
+8 <0f1e3c78f0e1c387> FMFILL
+9 <0f87c3e1f0783c1e> FMFILL
+10 <cccccccccccccccc> FMFILL
+11 <ffff0000ffff0000> FMFILL
+12 <8142241818244281> FMFILL
+13 <03060c183060c081> FMFILL
+14 <8040201008040201> FMFILL
+16 1 FMFILL
+17 0.9 FMFILL
+18 0.7 FMFILL
+19 0.5 FMFILL
+20 0.3 FMFILL
+21 0.1 FMFILL
+22 0.03 FMFILL
+23 0 FMFILL
+24 <f0e1c3870f1e3c78> FMFILL
+25 <f0783c1e0f87c3e1> FMFILL
+26 <3333333333333333> FMFILL
+27 <0000ffff0000ffff> FMFILL
+28 <7ebddbe7e7dbbd7e> FMFILL
+29 <fcf9f3e7cf9f3f7e> FMFILL
+30 <7fbfdfeff7fbfdfe> FMFILL
+%%EndSetup
+%%Page: "13" 1
+%%BeginPaperSize: Letter
+%%EndPaperSize
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 1 0 0 1 0]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+[ 0 1 1 0 1 0 0]
+ 8 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+J
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 12 Q
+0 X
+1 1 0 0 0 0 1 K
+(13) 527.24 104.25 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 14 Q
+(Mapping concepts) 417.39 716.75 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+64.34 61.25 550.34 92.25 R
+V
+1 H
+0 Z
+N
+0 0 0 0 1 1 1 K
+1 10 Q
+7 X
+0 0 0 0 1 1 1 K
+(Previous) 311.92 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 321.09 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Next) 370.82 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 369.7 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Quit) 517.49 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Go) 228.87 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Back) 223.86 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Cmnd) 416.1 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Refs) 419.43 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Master) 73.86 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 68.31 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(First) 273.59 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 272.48 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Viewer) 462.76 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Help) 468.04 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Index) 125.53 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Local) 174.14 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 165.54 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+2 14 Q
+0 X
+0 0 0 1 0 0 0 K
+0.07 (\050For further discussion, see) 90.58 692.02 S
+1 1 0 0 0 0 1 K
+1 1 0 0 0 0 1 K
+449.61 690.58 273.04 690.58 2 L
+1 1 0 0 0 0 1 K
+V
+0.85 H
+N
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(\324Crossing zonal boundaries\325) 273.04 692.02 T
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0.07 ( in \324Data) 449.61 692.02 S
+0.07 (management and analysis\325.\051) 90.58 675.02 S
+1 18 Q
+0.09 (Summary) 72.58 637.35 S
+3 10 Q
+(n) 90.58 607.02 T
+2 14 Q
+0.07 (Large scale equals large detail.) 108.58 607.02 S
+3 10 Q
+(n) 90.58 578.02 T
+2 14 Q
+0.07 (Scale, resolution, accuracy and content of a map are all related.) 108.58 578.02 S
+3 10 Q
+(n) 90.58 549.02 T
+2 14 Q
+0.07 (Map data are grouped spatially \050by map sheet or photo\051 and) 108.58 549.02 S
+0.07 (thematically \050by layers\051.) 90.58 532.02 S
+3 10 Q
+(n) 90.58 503.02 T
+2 14 Q
+0.07 (Each layer of a database is referenced to a particular base map.) 108.58 503.02 S
+3 10 Q
+(n) 90.58 474.02 T
+2 14 Q
+-0.63 0.07 (The map projection and coordinate properties of a base map define) 108.58 474.02 B
+0.07 (the original coordinate system of each map sheet layer to be) 90.58 457.02 S
+0.07 (automated.) 90.58 440.02 S
+3 10 Q
+(n) 90.58 411.02 T
+2 14 Q
+0.07 (All layers of a spatial database should be stored in a common) 108.58 411.02 S
+0.07 (coordinate system.) 90.58 394.02 S
+3 10 Q
+(n) 90.58 365.02 T
+2 14 Q
+0.07 (All sources of spatial data are referenced by some map projection.) 108.58 365.02 S
+3 10 Q
+(n) 90.58 336.02 T
+2 14 Q
+0.07 (Data automation is most often done on a layer-by-layer and map) 108.58 336.02 S
+0.07 (sheet-by-map sheet basis.) 90.58 319.02 S
+3 10 Q
+(n) 90.58 290.02 T
+2 14 Q
+0.07 (When combining data at a variety of scales, resolutions, and) 108.58 290.02 S
+0.07 (accuracies, the combined data sources should be considered to be) 90.58 273.02 S
+0.07 (only as good as the worst input.) 90.58 256.02 S
+0 0 0 1 0 0 0 K
+FMENDPAGE
+%%EndPage: "13" 1
+%%Page: "12" 2
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 1 0 0 1 0]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+[ 0 1 1 0 1 0 0]
+ 8 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 12 Q
+0 X
+1 1 0 0 0 0 1 K
+(12) 527.24 104.25 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 14 Q
+(Mapping concepts) 417.39 716.75 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+64.34 61.25 550.34 92.25 R
+V
+1 H
+0 Z
+N
+0 0 0 0 1 1 1 K
+1 10 Q
+7 X
+0 0 0 0 1 1 1 K
+(Previous) 311.92 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 321.09 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Next) 370.82 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 369.7 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Quit) 517.49 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Go) 228.87 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Back) 223.86 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Cmnd) 416.1 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Refs) 419.43 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Master) 73.86 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 68.31 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(First) 273.59 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 272.48 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Viewer) 462.76 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Help) 468.04 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Index) 125.53 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Local) 174.14 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 165.54 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+2 14 Q
+0 X
+0 0 0 1 0 0 0 K
+0.07 (Sometimes, adjacent map sheets in the same study area do not) 90.58 172.02 S
+-0.29 0.07 (conform to the same map projection definition. For example, UTM or) 90.58 155.02 B
+-0.55 0.07 (STATE PLANE zones may change between two adjacent map sheets.) 90.58 138.02 B
+72.58 125.25 540.58 701.35 C
+108.08 196.35 505.08 687.35 C
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+355.08 259.35 367.08 328.35 244.08 328.35 210.08 259.35 355.08 259.35 5 L
+7 X
+0 0 0 1 0 0 0 K
+V
+0 H
+0 Z
+0 X
+N
+0 0 0 1 0 0 0 K
+355.08 259.35 367.08 328.35 244.08 328.35 210.08 259.35 355.08 259.35 5 L
+1 H
+N
+0 0 0 1 0 0 0 K
+355.08 259.35 210.08 259.35 210.08 251.35 355.08 251.35 355.08 259.35 5 L
+3 X
+V
+0 X
+N
+0 0 0 1 0 0 0 K
+355.08 259.35 210.08 259.35 210.08 251.35 355.08 251.35 355.08 259.35 5 L
+N
+355.08 251.35 367.08 322.35 367.08 328.35 3 L
+N
+0 0 0 1 0 0 0 K
+355.08 305.35 367.08 374.35 244.08 374.35 210.08 305.35 355.08 305.35 5 L
+7 X
+V
+0 X
+N
+0 0 0 1 0 0 0 K
+355.08 305.35 367.08 374.35 244.08 374.35 210.08 305.35 355.08 305.35 5 L
+N
+336.08 369.35 343.08 355.35 2 L
+N
+331.08 360.35 342.08 364.35 2 L
+N
+334.08 356.35 345.08 361.35 2 L
+N
+332.08 367.35 339.08 354.35 2 L
+N
+330.08 363.35 341.08 366.35 2 L
+N
+330.08 363.35 312.08 359.35 304.08 357.35 295.08 354.35 285.08 349.35 265.08 336.35 245.08 322.35
+ 220.08 305.35 8 L
+N
+247.08 366.35 281.08 366.35 2 L
+N
+253.08 369.35 229.08 305.35 2 L
+N
+235.08 354.35 262.08 354.35 2 L
+N
+238.08 362.35 264.08 362.35 2 L
+N
+263.08 346.35 275.08 346.35 271.08 331.35 232.08 331.35 4 L
+N
+274.08 344.35 265.08 344.35 2 L
+N
+258.08 354.35 256.08 347.35 2 L
+N
+293.08 357.35 290.08 341.35 2 L
+N
+291.08 347.35 294.08 349.35 2 L
+N
+0 0 0 1 0 0 0 K
+294.08 356.35 290.08 358.35 287.08 360.35 288.08 364.35 290.08 366.35 297.08 367.35 300.08 367.35
+ 300.08 363.35 300.08 361.35 298.08 359.35 294.08 356.35 11 L
+7 X
+V
+0 X
+N
+0 0 0 1 0 0 0 K
+294.08 356.35 290.08 358.35 287.08 360.35 288.08 364.35 290.08 366.35 297.08 367.35 300.08 367.35
+ 300.08 363.35 300.08 361.35 298.08 359.35 294.08 356.35 11 L
+N
+287.08 360.35 291.08 360.35 2 L
+N
+288.08 363.35 294.08 363.35 2 L
+N
+294.08 366.35 297.08 364.35 2 L
+N
+300.08 367.35 298.08 365.35 2 L
+N
+300.08 361.35 297.08 362.35 2 L
+N
+296.08 358.35 294.08 361.35 2 L
+N
+224.08 335.35 235.08 321.35 2 L
+N
+220.08 326.35 231.08 326.35 2 L
+N
+224.08 326.35 220.08 315.35 2 L
+N
+215.08 316.35 248.08 316.35 2 L
+N
+213.08 312.35 243.08 312.35 2 L
+N
+212.08 309.35 248.08 309.35 2 L
+N
+235.08 321.35 227.08 321.35 224.08 309.35 3 L
+N
+233.08 324.35 242.08 324.35 243.08 331.35 3 L
+N
+239.08 324.35 236.08 309.35 2 L
+N
+246.08 316.35 245.08 309.35 2 L
+N
+223.08 316.35 221.08 309.35 2 L
+N
+217.08 312.35 216.08 309.35 2 L
+N
+223.08 323.35 233.08 324.35 2 L
+N
+230.08 321.35 229.08 316.35 2 L
+N
+229.08 343.35 239.08 335.35 2 L
+N
+249.08 331.35 248.08 316.35 2 L
+N
+242.08 324.35 248.08 316.35 2 L
+N
+242.08 327.35 249.08 327.35 2 L
+N
+238.08 321.35 248.08 321.35 2 L
+N
+238.08 318.35 248.08 318.35 2 L
+N
+242.08 325.35 249.08 325.35 2 L
+N
+245.08 327.35 245.08 322.35 2 L
+N
+241.08 315.35 239.08 309.35 2 L
+N
+231.08 326.35 237.08 327.35 2 L
+N
+259.08 374.35 256.08 367.35 2 L
+N
+340.08 374.35 339.08 370.35 346.08 356.35 3 L
+N
+366.08 369.35 339.08 370.35 328.08 368.35 3 L
+N
+364.08 362.35 346.08 357.35 336.08 353.35 3 L
+N
+324.08 374.35 343.08 340.35 352.08 339.35 358.08 324.35 4 L
+N
+0 0 0 1 0 0 0 K
+355.08 305.35 210.08 305.35 210.08 297.35 355.08 297.35 355.08 305.35 5 L
+3 X
+V
+0 X
+N
+0 0 0 1 0 0 0 K
+355.08 305.35 210.08 305.35 210.08 297.35 355.08 297.35 355.08 305.35 5 L
+N
+355.08 297.35 367.08 368.35 367.08 374.35 3 L
+N
+0 0 0 1 0 0 0 K
+355.08 351.35 367.08 420.35 244.08 420.35 210.08 351.35 355.08 351.35 5 L
+7 X
+V
+0 X
+N
+0 0 0 1 0 0 0 K
+355.08 351.35 367.08 420.35 244.08 420.35 210.08 351.35 355.08 351.35 5 L
+N
+0 0 0 1 0 0 0 K
+355.08 351.35 210.08 351.35 210.08 343.35 355.08 343.35 355.08 351.35 5 L
+3 X
+V
+0 X
+N
+0 0 0 1 0 0 0 K
+355.08 351.35 210.08 351.35 210.08 343.35 355.08 343.35 355.08 351.35 5 L
+N
+355.08 343.35 367.08 414.35 367.08 420.35 3 L
+N
+0 0 0 1 0 0 0 K
+355.08 397.35 367.08 466.35 244.08 466.35 210.08 397.35 355.08 397.35 5 L
+7 X
+V
+0 X
+N
+0 0 0 1 0 0 0 K
+355.08 397.35 367.08 466.35 244.08 466.35 210.08 397.35 355.08 397.35 5 L
+N
+315.08 426.35 321.08 429.35 327.08 430.35 341.08 428.35 348.08 428.35 5 L
+N
+327.08 430.35 337.08 425.35 348.08 422.35 3 L
+N
+0 0 0 1 0 0 0 K
+355.08 397.35 210.08 397.35 210.08 389.35 355.08 389.35 355.08 397.35 5 L
+3 X
+V
+0 X
+N
+0 0 0 1 0 0 0 K
+355.08 397.35 210.08 397.35 210.08 389.35 355.08 389.35 355.08 397.35 5 L
+N
+355.08 389.35 367.08 460.35 367.08 466.35 3 L
+N
+0 0 0 1 0 0 0 K
+355.08 443.35 367.08 512.35 244.08 512.35 210.08 443.35 355.08 443.35 5 L
+7 X
+V
+0 X
+N
+0 0 0 1 0 0 0 K
+355.08 443.35 367.08 512.35 244.08 512.35 210.08 443.35 355.08 443.35 5 L
+N
+0 0 0 1 0 0 0 K
+292.08 475.35 298.08 478.35 309.08 477.35 315.08 472.35 312.08 469.35 301.08 468.35 293.08 471.35
+ 292.08 475.35 8 L
+7 X
+V
+0 X
+N
+0 0 0 1 0 0 0 K
+292.08 475.35 298.08 478.35 309.08 477.35 315.08 472.35 312.08 469.35 301.08 468.35 293.08 471.35
+ 292.08 475.35 8 L
+N
+0 0 0 1 0 0 0 K
+355.08 443.35 210.08 443.35 210.08 435.35 355.08 435.35 355.08 443.35 5 L
+3 X
+V
+0 X
+N
+0 0 0 1 0 0 0 K
+355.08 443.35 210.08 443.35 210.08 435.35 355.08 435.35 355.08 443.35 5 L
+N
+355.08 435.35 367.08 506.35 367.08 512.35 3 L
+N
+0 0 0 1 0 0 0 K
+355.08 493.35 367.08 562.35 244.08 562.35 210.08 493.35 355.08 493.35 5 L
+7 X
+V
+0 X
+N
+0 0 0 1 0 0 0 K
+355.08 493.35 367.08 562.35 244.08 562.35 210.08 493.35 355.08 493.35 5 L
+N
+253.08 557.35 229.08 493.35 2 L
+N
+364.08 550.35 346.08 545.35 336.08 541.35 3 L
+N
+324.08 562.35 343.08 528.35 352.08 527.35 358.08 512.35 4 L
+N
+0 0 0 1 0 0 0 K
+355.08 493.35 210.08 493.35 210.08 485.35 355.08 485.35 355.08 493.35 5 L
+3 X
+V
+0 X
+N
+0 0 0 1 0 0 0 K
+355.08 493.35 210.08 493.35 210.08 485.35 355.08 485.35 355.08 493.35 5 L
+N
+355.08 485.35 367.08 556.35 367.08 562.35 3 L
+N
+0 0 0 1 0 0 0 K
+233.08 624.35 313.08 624.35 313.08 629.35 233.08 629.35 233.08 624.35 5 L
+3 X
+V
+0 X
+N
+0 0 0 1 0 0 0 K
+233.08 624.35 313.08 624.35 313.08 629.35 233.08 629.35 233.08 624.35 5 L
+N
+0 0 0 1 0 0 0 K
+305.08 584.35 498.08 584.35 457.08 666.35 251.08 666.35 233.08 629.35 313.08 629.35 305.08 584.35 7 L
+3 X
+V
+0 X
+N
+0 0 0 1 0 0 0 K
+305.08 584.35 498.08 584.35 457.08 666.35 251.08 666.35 233.08 629.35 313.08 629.35 305.08 584.35 7 L
+N
+0 0 0 1 0 0 0 K
+320.08 666.35 319.08 666.35 318.08 662.35 319.08 662.35 4 L
+7 X
+V
+0 X
+N
+318.08 658.35 317.08 658.35 317.08 654.35 318.08 654.35 4 L
+7 X
+V
+0 X
+N
+317.08 650.35 316.08 650.35 315.08 646.35 316.08 646.35 4 L
+7 X
+V
+0 X
+N
+316.08 642.35 315.08 642.35 314.08 638.35 315.08 638.35 4 L
+7 X
+V
+0 X
+N
+314.08 634.35 313.08 634.35 313.08 630.35 314.08 630.35 4 L
+7 X
+V
+0 X
+N
+388.08 666.35 387.08 666.35 388.08 662.35 389.08 662.35 4 L
+7 X
+V
+0 X
+N
+389.08 658.35 388.08 658.35 389.08 654.35 390.08 654.35 4 L
+7 X
+V
+0 X
+N
+391.08 650.35 390.08 650.35 390.08 646.35 391.08 646.35 4 L
+7 X
+V
+0 X
+N
+392.08 642.35 391.08 642.35 392.08 638.35 393.08 638.35 4 L
+7 X
+V
+0 X
+N
+393.08 634.35 392.08 634.35 393.08 630.35 394.08 630.35 4 L
+7 X
+V
+0 X
+N
+395.08 626.35 394.08 626.35 394.08 622.35 395.08 622.35 4 L
+7 X
+V
+0 X
+N
+396.08 619.35 395.08 619.35 396.08 615.35 397.08 615.35 4 L
+7 X
+V
+0 X
+N
+397.08 611.35 396.08 611.35 397.08 607.35 398.08 607.35 4 L
+7 X
+V
+0 X
+N
+399.08 603.35 398.08 603.35 398.08 599.35 399.08 599.35 4 L
+7 X
+V
+0 X
+N
+400.08 595.35 399.08 595.35 400.08 591.35 401.08 591.35 4 L
+7 X
+V
+0 X
+N
+401.08 587.35 400.08 587.35 401.08 584.35 402.08 584.35 4 L
+7 X
+V
+0 X
+N
+313.08 628.35 317.08 629.35 R
+7 X
+V
+0 X
+N
+321.08 628.35 325.08 629.35 R
+7 X
+V
+0 X
+N
+329.08 628.35 333.08 629.35 R
+7 X
+V
+0 X
+N
+337.08 628.35 341.08 629.35 R
+7 X
+V
+0 X
+N
+345.08 628.35 349.08 629.35 R
+7 X
+V
+0 X
+N
+353.08 628.35 357.08 629.35 R
+7 X
+V
+0 X
+N
+361.08 628.35 365.08 629.35 R
+7 X
+V
+0 X
+N
+369.08 628.35 373.08 629.35 R
+7 X
+V
+0 X
+N
+377.08 628.35 381.08 629.35 R
+7 X
+V
+0 X
+N
+385.08 628.35 389.08 629.35 R
+7 X
+V
+0 X
+N
+393.08 628.35 397.08 629.35 R
+7 X
+V
+0 X
+N
+401.08 628.35 405.08 629.35 R
+7 X
+V
+0 X
+N
+409.08 628.35 413.08 629.35 R
+7 X
+V
+0 X
+N
+417.08 628.35 421.08 629.35 R
+7 X
+V
+0 X
+N
+425.08 628.35 429.08 629.35 R
+7 X
+V
+0 X
+N
+433.08 628.35 437.08 629.35 R
+7 X
+V
+0 X
+N
+441.08 628.35 445.08 629.35 R
+7 X
+V
+0 X
+N
+449.08 628.35 453.08 629.35 R
+7 X
+V
+0 X
+N
+457.08 628.35 461.08 629.35 R
+7 X
+V
+0 X
+N
+465.08 628.35 469.08 629.35 R
+7 X
+V
+0 X
+N
+473.08 628.35 475.08 629.35 R
+7 X
+V
+0 X
+N
+305.08 579.35 498.08 579.35 498.08 584.35 305.08 584.35 305.08 579.35 5 L
+3 X
+V
+0 X
+N
+0 0 0 1 0 0 0 K
+305.08 579.35 498.08 579.35 498.08 584.35 305.08 584.35 305.08 579.35 5 L
+N
+0 0 0 1 0 0 0 K
+1 12 Q
+(MAP) 315.08 669.35 T
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+( SHEETS) 341.08 669.35 T
+0 0 0 1 0 0 0 K
+305.08 635.35 243.08 650.35 328.08 650.35 3 L
+N
+306.08 666.35 303.08 650.35 2 L
+N
+283.08 657.35 341.08 657.35 349.08 656.35 357.08 654.35 366.08 651.35 374.08 645.35 383.08 635.35 7 L
+N
+331.08 635.35 330.08 620.35 337.08 611.35 348.08 611.35 4 L
+N
+339.08 611.35 341.08 607.35 343.08 606.35 351.08 605.35 4 L
+N
+391.08 584.35 386.08 609.35 412.08 624.35 431.08 666.35 441.08 632.35 464.08 584.35 6 L
+N
+441.08 632.35 465.08 647.35 2 L
+N
+0 0 0 1 0 0 0 K
+447.08 654.35 445.08 651.35 449.08 647.35 454.08 644.35 460.08 646.35 459.08 650.35 455.08 652.35
+ 447.08 654.35 8 L
+7 X
+V
+0 X
+N
+0 0 0 1 0 0 0 K
+447.08 654.35 445.08 651.35 449.08 647.35 454.08 644.35 460.08 646.35 459.08 650.35 455.08 652.35
+ 447.08 654.35 8 L
+N
+249.08 648.35 242.08 629.35 2 L
+N
+291.08 659.35 285.08 629.35 2 L
+N
+300.08 640.35 296.08 629.35 2 L
+N
+320.08 613.35 322.08 626.35 313.08 626.35 3 L
+N
+450.08 666.35 445.08 658.35 439.08 650.35 430.08 645.35 418.08 643.35 407.08 645.35 400.08 644.35
+ 393.08 642.35 382.08 634.35 372.08 625.35 367.08 622.35 362.08 619.35 355.08 618.35 349.08 617.35 344.08 617.35
+ 330.08 620.35 313.08 621.35 17 L
+N
+307.08 596.35 312.08 584.35 2 L
+N
+0 0 0 1 0 0 0 K
+233.08 624.35 232.08 624.35 230.08 621.35 231.08 621.35 4 L
+7 X
+V
+0 X
+N
+229.08 617.35 228.08 617.35 226.08 613.35 227.08 613.35 4 L
+7 X
+V
+0 X
+N
+226.08 610.35 225.08 610.35 223.08 606.35 224.08 606.35 4 L
+7 X
+V
+0 X
+N
+222.08 603.35 221.08 603.35 219.08 599.35 220.08 599.35 4 L
+7 X
+V
+0 X
+N
+219.08 596.35 218.08 596.35 216.08 592.35 217.08 592.35 4 L
+7 X
+V
+0 X
+N
+215.08 588.35 214.08 588.35 212.08 585.35 213.08 585.35 4 L
+7 X
+V
+0 X
+N
+211.08 581.35 210.08 581.35 209.08 579.35 210.08 579.35 4 L
+7 X
+V
+0 X
+N
+210.08 584.35 209.08 584.35 209.08 580.35 210.08 580.35 4 L
+7 X
+V
+0 X
+N
+233.08 629.35 232.08 629.35 230.08 626.35 231.08 626.35 4 L
+7 X
+V
+0 X
+N
+229.08 622.35 228.08 622.35 226.08 619.35 227.08 619.35 4 L
+7 X
+V
+0 X
+N
+226.08 615.35 225.08 615.35 223.08 611.35 224.08 611.35 4 L
+7 X
+V
+0 X
+N
+222.08 608.35 221.08 608.35 219.08 604.35 220.08 604.35 4 L
+7 X
+V
+0 X
+N
+218.08 601.35 217.08 601.35 216.08 597.35 217.08 597.35 4 L
+7 X
+V
+0 X
+N
+215.08 594.35 214.08 594.35 212.08 590.35 213.08 590.35 4 L
+7 X
+V
+0 X
+N
+211.08 586.35 210.08 586.35 209.08 584.35 210.08 584.35 4 L
+7 X
+V
+0 X
+N
+210.08 583.35 211.08 584.35 R
+7 X
+V
+0 X
+N
+215.08 583.35 219.08 584.35 R
+7 X
+V
+0 X
+N
+223.08 583.35 227.08 584.35 R
+7 X
+V
+0 X
+N
+231.08 583.35 235.08 584.35 R
+7 X
+V
+0 X
+N
+239.08 583.35 243.08 584.35 R
+7 X
+V
+0 X
+N
+247.08 583.35 251.08 584.35 R
+7 X
+V
+0 X
+N
+255.08 583.35 259.08 584.35 R
+7 X
+V
+0 X
+N
+263.08 583.35 267.08 584.35 R
+7 X
+V
+0 X
+N
+271.08 583.35 275.08 584.35 R
+7 X
+V
+0 X
+N
+279.08 583.35 283.08 584.35 R
+7 X
+V
+0 X
+N
+287.08 583.35 291.08 584.35 R
+7 X
+V
+0 X
+N
+295.08 583.35 299.08 584.35 R
+7 X
+V
+0 X
+N
+303.08 583.35 305.08 584.35 R
+7 X
+V
+0 X
+N
+210.08 584.35 209.08 584.35 209.08 580.35 210.08 580.35 4 L
+7 X
+V
+0 X
+N
+213.08 578.35 217.08 579.35 R
+7 X
+V
+0 X
+N
+221.08 578.35 225.08 579.35 R
+7 X
+V
+0 X
+N
+229.08 578.35 233.08 579.35 R
+7 X
+V
+0 X
+N
+237.08 578.35 241.08 579.35 R
+7 X
+V
+0 X
+N
+245.08 578.35 249.08 579.35 R
+7 X
+V
+0 X
+N
+253.08 578.35 257.08 579.35 R
+7 X
+V
+0 X
+N
+261.08 578.35 265.08 579.35 R
+7 X
+V
+0 X
+N
+269.08 578.35 273.08 579.35 R
+7 X
+V
+0 X
+N
+277.08 578.35 281.08 579.35 R
+7 X
+V
+0 X
+N
+285.08 578.35 289.08 579.35 R
+7 X
+V
+0 X
+N
+293.08 578.35 297.08 579.35 R
+7 X
+V
+0 X
+N
+301.08 578.35 305.08 579.35 R
+7 X
+V
+0 X
+N
+305.08 582.35 306.08 584.35 R
+7 X
+V
+0 X
+N
+90 450 1 1 320.08 385.35 G
+90 450 1 1 320.08 385.35 A
+90 450 1 0.5 324.08 385.85 G
+90 450 1 0.5 324.08 385.85 A
+90 450 1 1 329.08 385.35 G
+90 450 1 1 329.08 385.35 A
+90 450 1 0.5 332.08 382.85 G
+90 450 1 0.5 332.08 382.85 A
+90 450 1 1 334.08 380.35 G
+90 450 1 1 334.08 380.35 A
+90 450 1 1 333.08 377.35 G
+90 450 1 1 333.08 377.35 A
+90 450 1 1 337.08 373.35 G
+90 450 1 1 337.08 373.35 A
+90 450 1 0.5 247.08 293.85 G
+90 450 1 0.5 247.08 293.85 A
+90 450 1 1 233.08 276.35 G
+90 450 1 1 233.08 276.35 A
+90 450 1 1 226.08 267.35 G
+90 450 1 1 226.08 267.35 A
+90 450 1 1 229.08 267.35 G
+90 450 1 1 229.08 267.35 A
+90 450 1 0.5 232.08 266.85 G
+90 450 1 0.5 232.08 266.85 A
+90 450 1 1 232.08 265.35 G
+90 450 1 1 232.08 265.35 A
+90 450 1 1 235.08 264.35 G
+90 450 1 1 235.08 264.35 A
+90 450 1 1 242.08 267.35 G
+90 450 1 1 242.08 267.35 A
+90 450 1 1 227.08 271.35 G
+90 450 1 1 227.08 271.35 A
+90 450 1.5 1 223.58 276.35 G
+90 450 1.5 1 223.58 276.35 A
+90 450 1 1 232.08 281.35 G
+90 450 1 1 232.08 281.35 A
+90 450 1 1 243.08 282.35 G
+90 450 1 1 243.08 282.35 A
+90 450 1 1 247.08 276.35 G
+90 450 1 1 247.08 276.35 A
+90 450 1 1 247.08 273.35 G
+90 450 1 1 247.08 273.35 A
+90 450 1 0.5 245.08 270.85 G
+90 450 1 0.5 245.08 270.85 A
+90 450 1 1 246.08 264.35 G
+90 450 1 1 246.08 264.35 A
+90 450 1 0.5 241.08 263.85 G
+90 450 1 0.5 241.08 263.85 A
+90 450 1 1 238.08 267.35 G
+90 450 1 1 238.08 267.35 A
+90 450 1.5 0.5 234.58 269.85 G
+90 450 1.5 0.5 234.58 269.85 A
+90 450 1 1 233.08 274.35 G
+90 450 1 1 233.08 274.35 A
+90 450 1 0.5 228.08 276.85 G
+90 450 1 0.5 228.08 276.85 A
+90 450 1 1 227.08 280.35 G
+90 450 1 1 227.08 280.35 A
+90 450 1 1 222.08 271.35 G
+90 450 1 1 222.08 271.35 A
+90 450 1 1 224.08 269.35 G
+90 450 1 1 224.08 269.35 A
+90 450 1.5 1 344.58 293.35 G
+90 450 1.5 1 344.58 293.35 A
+90 450 1 0.5 349.08 293.85 G
+90 450 1 0.5 349.08 293.85 A
+0 10 Q
+(LAND USE) 375.08 525.35 T
+(W) 375.08 477.35 T
+(A) 384.08 477.35 T
+(TERBODIES) 390.08 477.35 T
+(STREAMS) 375.08 429.35 T
+(WELLS) 375.08 381.35 T
+(ROADS) 375.08 333.35 T
+(BUILDINGS) 375.08 285.35 T
+(POL) 458.08 525.35 T
+(Y) 477.08 525.35 T
+(POL) 458.08 477.35 T
+(Y) 477.08 477.35 T
+(LINE) 458.08 429.35 T
+(POINT) 458.08 381.35 T
+(LINE) 458.08 333.35 T
+(POINT) 458.08 285.35 T
+1 12 Q
+(LA) 172.08 527.35 T
+(YERS) 187.08 527.35 T
+174.08 551.35 287.08 551.35 297.08 606.35 198.08 606.35 174.08 551.35 5 L
+7 X
+V
+0 X
+N
+174.08 551.35 287.08 551.35 297.08 606.35 198.08 606.35 174.08 551.35 5 L
+V
+N
+284.08 561.35 293.08 615.35 198.08 615.35 171.08 561.35 284.08 561.35 5 L
+3 X
+V
+0 X
+N
+0 0 0 1 0 0 0 K
+284.08 561.35 293.08 615.35 198.08 615.35 171.08 561.35 284.08 561.35 5 L
+N
+269.08 610.35 275.08 600.35 2 L
+N
+266.08 603.35 274.08 607.35 2 L
+N
+268.08 601.35 276.08 604.35 2 L
+N
+0 0 0 1 0 0 0 K
+235.08 586.35 240.08 588.35 248.08 587.35 252.08 586.35 253.08 583.35 251.08 581.35 242.08 580.35
+ 236.08 583.35 235.08 586.35 9 L
+7 X
+V
+0 X
+N
+0 0 0 1 0 0 0 K
+235.08 586.35 240.08 588.35 248.08 587.35 252.08 586.35 253.08 583.35 251.08 581.35 242.08 580.35
+ 236.08 583.35 235.08 586.35 9 L
+N
+253.08 583.35 258.08 585.35 262.08 587.35 273.08 585.35 279.08 585.35 5 L
+N
+262.08 587.35 270.08 583.35 279.08 580.35 3 L
+N
+266.08 609.35 272.08 599.35 2 L
+N
+265.08 606.35 273.08 609.35 2 L
+N
+265.08 606.35 251.08 603.35 237.08 599.35 230.08 595.35 214.08 585.35 198.08 574.35 179.08 561.35 7 L
+N
+199.08 609.35 226.08 609.35 2 L
+N
+204.08 611.35 185.08 561.35 2 L
+N
+190.08 599.35 212.08 599.35 2 L
+N
+193.08 605.35 213.08 605.35 2 L
+N
+212.08 593.35 221.08 593.35 218.08 580.35 187.08 580.35 4 L
+N
+220.08 591.35 213.08 591.35 2 L
+N
+208.08 599.35 206.08 594.35 2 L
+N
+235.08 601.35 233.08 589.35 2 L
+N
+234.08 594.35 236.08 595.35 2 L
+N
+0 0 0 1 0 0 0 K
+236.08 601.35 233.08 602.35 231.08 604.35 232.08 606.35 234.08 608.35 239.08 609.35 241.08 609.35
+ 241.08 606.35 239.08 602.35 236.08 601.35 10 L
+7 X
+V
+0 X
+N
+0 0 0 1 0 0 0 K
+236.08 601.35 233.08 602.35 231.08 604.35 232.08 606.35 234.08 608.35 239.08 609.35 241.08 609.35
+ 241.08 606.35 239.08 602.35 236.08 601.35 10 L
+N
+231.08 604.35 234.08 604.35 2 L
+N
+232.08 606.35 236.08 606.35 2 L
+N
+236.08 609.35 238.08 607.35 2 L
+N
+241.08 609.35 240.08 608.35 2 L
+N
+241.08 604.35 239.08 605.35 2 L
+N
+238.08 602.35 236.08 604.35 2 L
+N
+182.08 584.35 190.08 573.35 2 L
+N
+179.08 577.35 187.08 577.35 2 L
+N
+181.08 577.35 178.08 569.35 2 L
+N
+175.08 569.35 200.08 569.35 2 L
+N
+173.08 566.35 196.08 566.35 2 L
+N
+172.08 563.35 200.08 563.35 2 L
+N
+190.08 573.35 184.08 573.35 182.08 563.35 3 L
+N
+188.08 575.35 195.08 575.35 196.08 580.35 3 L
+N
+193.08 575.35 191.08 563.35 2 L
+N
+199.08 569.35 198.08 563.35 2 L
+N
+180.08 569.35 179.08 563.35 2 L
+N
+176.08 566.35 175.08 563.35 2 L
+N
+180.08 574.35 188.08 575.35 2 L
+N
+186.08 573.35 186.08 569.35 2 L
+N
+185.08 590.35 194.08 584.35 2 L
+N
+201.08 581.35 200.08 569.35 2 L
+N
+195.08 575.35 200.08 569.35 2 L
+N
+196.08 578.35 201.08 578.35 2 L
+N
+193.08 573.35 200.08 573.35 2 L
+N
+193.08 571.35 200.08 571.35 2 L
+N
+195.08 576.35 201.08 576.35 2 L
+N
+198.08 578.35 198.08 574.35 2 L
+N
+195.08 569.35 194.08 563.35 2 L
+N
+187.08 577.35 192.08 578.35 2 L
+N
+209.08 615.35 207.08 609.35 2 L
+N
+273.08 615.35 271.08 611.35 277.08 600.35 3 L
+N
+293.08 611.35 271.08 611.35 263.08 610.35 3 L
+N
+291.08 605.35 277.08 601.35 270.08 598.35 3 L
+N
+260.08 615.35 275.08 588.35 282.08 587.35 286.08 575.35 4 L
+N
+0 0 0 1 0 0 0 K
+284.08 561.35 171.08 561.35 171.08 554.35 284.08 554.35 284.08 561.35 5 L
+3 X
+V
+0 X
+N
+0 0 0 1 0 0 0 K
+284.08 561.35 171.08 561.35 171.08 554.35 284.08 554.35 284.08 561.35 5 L
+N
+0 0 0 1 0 0 0 K
+284.08 561.35 284.08 554.35 294.08 610.35 293.08 615.35 284.08 561.35 5 L
+7 X
+V
+0 X
+N
+0 0 0 1 0 0 0 K
+284.08 561.35 284.08 554.35 294.08 610.35 293.08 615.35 284.08 561.35 5 L
+N
+0 0 0 1 0 0 0 K
+72.58 125.25 540.58 701.35 C
+63 54 549 738 C
+0 0 0 1 0 0 0 K
+FMENDPAGE
+%%EndPage: "12" 2
+%%Page: "11" 3
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 1 0 0 1 0]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+[ 0 1 1 0 1 0 0]
+ 8 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 12 Q
+0 X
+1 1 0 0 0 0 1 K
+(11) 527.24 104.25 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 14 Q
+(Mapping concepts) 417.39 716.75 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+64.34 61.25 550.34 92.25 R
+V
+1 H
+0 Z
+N
+0 0 0 0 1 1 1 K
+1 10 Q
+7 X
+0 0 0 0 1 1 1 K
+(Previous) 311.92 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 321.09 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Next) 370.82 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 369.7 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Quit) 517.49 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Go) 228.87 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Back) 223.86 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Cmnd) 416.1 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Refs) 419.43 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Master) 73.86 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 68.31 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(First) 273.59 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 272.48 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Viewer) 462.76 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Help) 468.04 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Index) 125.53 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Local) 174.14 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 165.54 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0 18 Q
+0 X
+0 0 0 1 0 0 0 K
+0.09 (Data automation) 72.58 689.35 S
+2 14 Q
+0.07 (Map features are logically organized into sets of layers or themes of) 90.58 659.02 S
+0.07 (information. A base map can be organized into layers such as) 90.58 642.02 S
+0.07 (streams, soils, wells, or boundaries. Map data, regardless of how a) 90.58 625.02 S
+-0.8 0.07 (spatial database will be applied, is collected, automated, and updated) 90.58 608.02 B
+0.07 (as a series of adjacent map sheets \050or aerial photographs\051\321each) 90.58 591.02 S
+0.07 (sheet mounted on the digitizer and digitized, one sheet at a time. In) 90.58 574.02 S
+0.07 (order to be able to combine these smaller sheets into larger units or) 90.58 557.02 S
+4 F
+0.07 (study areas,) 90.58 540.02 S
+2 F
+0.07 ( the coordinates of each coverage must be transformed) 169.18 540.02 S
+0.07 (into a single common coordinate system. Once in a common) 90.58 523.02 S
+0.07 (coordinate system, attributes are associated with features. Then, as) 90.58 506.02 S
+0.07 (needed, map sheets for a layer are edgematched and joined into a) 90.58 489.02 S
+0.07 (single coverage for your study area.) 90.58 472.02 S
+0 0 0 1 0 0 0 K
+FMENDPAGE
+%%EndPage: "11" 3
+%%Page: "10" 4
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 1 0 0 1 0]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+[ 0 1 1 0 1 0 0]
+ 8 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 12 Q
+0 X
+1 1 0 0 0 0 1 K
+(10) 527.24 104.25 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 14 Q
+(Mapping concepts) 417.39 716.75 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+64.34 61.25 550.34 92.25 R
+V
+1 H
+0 Z
+N
+0 0 0 0 1 1 1 K
+1 10 Q
+7 X
+0 0 0 0 1 1 1 K
+(Previous) 311.92 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 321.09 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Next) 370.82 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 369.7 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Quit) 517.49 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Go) 228.87 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Back) 223.86 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Cmnd) 416.1 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Refs) 419.43 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Master) 73.86 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 68.31 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(First) 273.59 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 272.48 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Viewer) 462.76 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Help) 468.04 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Index) 125.53 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Local) 174.14 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 165.54 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+2 14 Q
+0 X
+0 0 0 1 0 0 0 K
+0.07 (smaller for drafting manuscripts and plotting check plots with this) 90.58 692.02 S
+0.07 (technique.) 90.58 675.02 S
+0 18 Q
+0.09 (Map extent) 72.58 637.35 S
+2 14 Q
+0.07 (The areal extent of a map is the area on the Earth\325s surface) 90.58 607.02 S
+0.07 (represented on the map. It is the limit of the area covered, usually) 90.58 590.02 S
+0.07 (defined by a rectangle just large enough to include all mapped) 90.58 573.02 S
+0.07 (features. The size of the study area depends on the map scale. The) 90.58 556.02 S
+0.07 (smaller the scale the larger the area. The maps in the scale) 90.58 539.02 S
+-0.68 0.07 (comparison example earlier in this chapter show the effect of scale on) 90.58 522.02 B
+0.07 (map extent. The smaller-scale map on the left covers a greater area) 90.58 505.02 S
+0.07 (than the more detailed larger-scale map on the right.) 90.58 488.02 S
+0 18 Q
+0.09 (Database extent) 72.58 450.35 S
+2 14 Q
+0.07 (A critical first step in building a geographic database is defining its) 90.58 420.02 S
+0.07 (extent. The areal extent of a database is the limit of the area of) 90.58 403.02 S
+-0.42 0.07 (interest for your GIS project. This usually includes the areas directly) 90.58 386.02 B
+0.07 (affected by your organization\325s responsibility \050such as assigned) 90.58 369.02 S
+0.07 (administrative units\051 as well as surrounding areas that either) 90.58 352.02 S
+0.07 (influence or are influenced by relevant activities in the) 90.58 335.02 S
+0.07 (administrative area.) 90.58 318.02 S
+0.07 (Once you have defined the extent of your database, decide on a base) 90.58 289.02 S
+0.07 (map series to which each coverage layer of your database will be) 90.58 272.02 S
+-0.03 0.07 (referenced. Such layers often register to a single map series, such as) 90.58 255.02 B
+0.07 (the USGS 7.5-minute quadrangle map sheets. But sometimes layers) 90.58 238.02 S
+0.07 (are derived from maps at a variety of scales and resolutions, so they) 90.58 221.02 S
+0.07 (need to be registered to a common base. The map projection of these) 90.58 204.02 S
+0.07 (base maps will determine which coordinate system your coverages) 90.58 187.02 S
+0.07 (will initially be stored in. Each map series provides the projection) 90.58 170.02 S
+0.07 (definition used to produce each map sheet.) 90.58 153.02 S
+0 0 0 1 0 0 0 K
+FMENDPAGE
+%%EndPage: "10" 4
+%%Page: "9" 5
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 1 0 0 1 0]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+[ 0 1 1 0 1 0 0]
+ 8 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 12 Q
+0 X
+1 1 0 0 0 0 1 K
+(9) 533.91 104.25 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 14 Q
+(Mapping concepts) 417.39 716.75 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+64.34 61.25 550.34 92.25 R
+V
+1 H
+0 Z
+N
+0 0 0 0 1 1 1 K
+1 10 Q
+7 X
+0 0 0 0 1 1 1 K
+(Previous) 311.92 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 321.09 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Next) 370.82 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 369.7 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Quit) 517.49 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Go) 228.87 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Back) 223.86 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Cmnd) 416.1 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Refs) 419.43 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Master) 73.86 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 68.31 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(First) 273.59 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 272.48 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Viewer) 462.76 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Help) 468.04 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Index) 125.53 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Local) 174.14 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 165.54 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0 12 Q
+0 X
+0 0 0 1 0 0 0 K
+0.06 ( Pen width on the ground is displayed in feet \050and meters\051.) 90 437.35 S
+2 14 Q
+-0.16 0.07 (The National Map Accuracy Standards were established for the U.S.) 90.58 410.02 B
+-0.68 0.07 (in 1941 by what is now the Office of Management and Budget \050OMB\051.) 90.58 393.02 B
+0.07 (These standards state that) 90.58 376.02 S
+3 10 Q
+(n) 90.58 347.02 T
+2 14 Q
+0.07 (No more than 10 percent of features shall be more than 1/30th of) 108.58 347.02 S
+0.07 (an inch from their intended location on maps of scale larger than) 90.58 330.02 S
+0.07 (1:20,000.) 90.58 313.02 S
+3 10 Q
+(n) 90.58 284.02 T
+2 14 Q
+0.07 (No more than 10 percent of features shall be more than 1/50th of) 108.58 284.02 S
+0.07 (an inch from their intended location on maps of scale smaller than) 90.58 267.02 S
+0.07 (1:20,000.) 90.58 250.02 S
+0.07 (One way to ensure an acceptable level of accuracy is to overlay the) 90.58 221.02 S
+-0.7 0.07 (map manuscript with a check plot of the newly digitized coverage. All) 90.58 204.02 B
+0.07 (features should be represented at a level of accuracy wherein no) 90.58 187.02 S
+0.07 (visible gap may be seen between lines on the two map sheets when) 90.58 170.02 S
+0.07 (overlaid. Any space between the manuscript line and the digitized) 90.58 153.02 S
+0.07 (line is considered unacceptable error. Use a 000 \050.25 mm\051 pen or) 90.58 136.02 S
+1 12 Q
+0.06 (Scales) 287.39 665.35 S
+0.06 (Pen Size) 100.06 641.35 S
+0 F
+0.06 (4,800) 225.47 641.35 S
+0.06 (24,000) 283.97 641.35 S
+0.06 (62,500) 337.68 641.35 S
+0.06 (100,000) 396.03 641.35 S
+0.06 (2,000,000) 456.71 641.35 S
+0.06 (000) 100.06 619.35 S
+0.06 (.0099 in) 162.47 619.35 S
+0.06 (3.9) 225.47 619.35 S
+0.06 (19.7) 283.97 619.35 S
+0.06 (51.2) 337.68 619.35 S
+0.06 (82) 396.03 619.35 S
+0.06 (1640) 456.71 619.35 S
+0.06 (\050.25 mm\051) 162.47 597.35 S
+0.06 (\0501.2\051) 225.47 597.35 S
+0.06 (\0506.0\051) 283.97 597.35 S
+0.06 (\05015.6\051) 337.68 597.35 S
+0.06 (\05025.0\051) 396.03 597.35 S
+0.06 (\050500.0\051) 456.71 597.35 S
+0.06 (00) 100.06 575.35 S
+0.06 (.01) 162.47 575.35 S
+0.06 (18 in) 178.45 575.35 S
+0.06 (4.6) 225.47 575.35 S
+0.06 (23.6) 283.97 575.35 S
+0.06 (61.7) 337.68 575.35 S
+0.06 (98.4) 396.03 575.35 S
+0.06 (1968) 456.71 575.35 S
+0.06 (\050.30 mm\051) 162.47 553.35 S
+0.06 (\0501.4\051) 225.47 553.35 S
+0.06 (\0507.2\051) 283.97 553.35 S
+0.06 (\05018.8\051) 337.68 553.35 S
+0.06 (\05030.0\051) 396.03 553.35 S
+0.06 (\050600.0\051) 456.71 553.35 S
+0.06 (0) 100.06 531.35 S
+0.06 (.0138 in) 162.47 531.35 S
+0.06 (5.5) 225.47 531.35 S
+0.06 (27.6) 283.97 531.35 S
+0.06 (71.8) 337.68 531.35 S
+0.06 (1) 396.03 531.35 S
+0.06 (14.8) 401.88 531.35 S
+0.06 (2296) 456.71 531.35 S
+0.06 (\050.35 mm\051) 162.47 509.35 S
+0.06 (\0501.7\051) 225.47 509.35 S
+0.06 (\0508.4\051) 283.97 509.35 S
+0.06 (\05021.9\051) 337.68 509.35 S
+0.06 (\05035.0\051) 396.03 509.35 S
+0.06 (\050700.0\051) 456.71 509.35 S
+0.06 (1) 100.06 487.35 S
+0.06 (.0197 in) 162.47 487.35 S
+0.06 (7.9) 225.47 487.35 S
+0.06 (39.4) 283.97 487.35 S
+0.06 (102.7) 337.68 487.35 S
+0.06 (164.0) 396.03 487.35 S
+0.06 (3281.0) 456.71 487.35 S
+0.06 (\050.50 mm\051) 162.47 465.35 S
+0.06 (\0502.4\051) 225.47 465.35 S
+0.06 (\05012.0\051) 283.97 465.35 S
+0.06 (\05031.3\051) 337.68 465.35 S
+0.06 (\05050.0\051) 396.03 465.35 S
+0.06 (\0501,000.0\051) 456.71 465.35 S
+94.06 681.1 94.06 655.85 2 L
+V
+0.5 H
+N
+94.06 654.85 94.06 633.85 2 L
+V
+1 H
+N
+94.06 632.85 94.06 457.6 2 L
+V
+0.5 H
+N
+156.47 655.85 156.47 457.1 2 L
+V
+N
+219.47 655.85 219.47 632.85 2 L
+V
+1 H
+N
+219.47 633.85 219.47 457.1 2 L
+V
+0.5 H
+N
+277.97 655.6 277.97 457.1 2 L
+V
+N
+331.68 655.6 331.68 457.1 2 L
+V
+N
+390.03 655.6 390.03 457.1 2 L
+V
+N
+450.71 655.6 450.71 457.1 2 L
+V
+N
+519.11 681.1 519.11 457.6 2 L
+V
+N
+93.81 681.35 519.36 681.35 2 L
+V
+N
+93.56 655.35 218.97 655.35 2 L
+V
+1 H
+N
+219.97 655.35 519.36 655.35 2 L
+V
+0.5 H
+N
+93.56 633.35 219.97 633.35 2 L
+V
+1 H
+N
+218.97 633.35 519.36 633.35 2 L
+V
+0.5 H
+N
+93.81 611.35 519.36 611.35 2 L
+V
+N
+93.81 589.35 519.36 589.35 2 L
+V
+N
+93.81 567.35 519.36 567.35 2 L
+V
+N
+93.81 545.35 519.36 545.35 2 L
+V
+N
+93.81 523.35 519.36 523.35 2 L
+V
+N
+93.81 501.35 519.36 501.35 2 L
+V
+N
+93.81 479.35 519.36 479.35 2 L
+V
+N
+93.81 457.35 519.36 457.35 2 L
+V
+N
+0 0 0 1 0 0 0 K
+FMENDPAGE
+%%EndPage: "9" 5
+%%Page: "8" 6
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 1 0 0 1 0]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+[ 0 1 1 0 1 0 0]
+ 8 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 12 Q
+0 X
+1 1 0 0 0 0 1 K
+(8) 533.91 104.25 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 14 Q
+(Mapping concepts) 417.39 716.75 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+64.34 61.25 550.34 92.25 R
+V
+1 H
+0 Z
+N
+0 0 0 0 1 1 1 K
+1 10 Q
+7 X
+0 0 0 0 1 1 1 K
+(Previous) 311.92 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 321.09 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Next) 370.82 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 369.7 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Quit) 517.49 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Go) 228.87 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Back) 223.86 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Cmnd) 416.1 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Refs) 419.43 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Master) 73.86 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 68.31 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(First) 273.59 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 272.48 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Viewer) 462.76 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Help) 468.04 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Index) 125.53 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Local) 174.14 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 165.54 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+2 14 Q
+0 X
+0 0 0 1 0 0 0 K
+0.07 (f = flattening the round Earth onto a two-dimensional surface) 107 692.02 S
+0.07 (\050transformation from spherical to planar geometry\051) 144 675.02 S
+-0.09 0.07 (l = accurately measuring location on Earth \050correct projection and) 107 646.02 B
+0.07 (datum information\051) 144 629.02 S
+0.07 (c = cartographic interpretation \050correct interpretation of features\051) 107 600.02 S
+0.07 (d = drafting error \050accuracy in tracing of features and width of) 107 571.02 S
+0.07 (drafting pen\051) 144 554.02 S
+0.07 (a = analog to digital conversion \050digitizing board calibration\051) 107 525.02 S
+0.07 (m =) 107 496.02 S
+-0.24 0.07 (media stability \050warping and stretching, folding, wrinkling of) 138 496.02 B
+0.07 (map\051) 144 479.02 S
+0.07 (p= digitizing processor error \050accuracy of cursor placement\051) 107 450.02 S
+0.07 (rms =) 107 421.02 S
+0.07 ( Root Mean Square \050registration accuracy of tics\051) 144.87 421.02 S
+0.07 (mp =) 107 392.02 S
+0.07 ( machine precision \050coordinate rounding by computer in) 140.14 392.02 S
+0.07 (storing and transforming\051) 144 375.02 S
+0.07 (u = additional unexplained sources error) 107 346.02 S
+-0.31 0.07 (To minimize error, consider the causes of each error factor presented) 90.58 317.02 B
+0.07 (above. To choose the pen size appropriate to your map\325s scale, for) 90.58 300.02 S
+0.07 (instance, use the following table:) 90.58 283.02 S
+0 0 0 1 0 0 0 K
+FMENDPAGE
+%%EndPage: "8" 6
+%%Page: "7" 7
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 1 0 0 1 0]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+[ 0 1 1 0 1 0 0]
+ 8 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 12 Q
+0 X
+1 1 0 0 0 0 1 K
+(7) 533.91 104.25 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 14 Q
+(Mapping concepts) 417.39 716.75 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+64.34 61.25 550.34 92.25 R
+V
+1 H
+0 Z
+N
+0 0 0 0 1 1 1 K
+1 10 Q
+7 X
+0 0 0 0 1 1 1 K
+(Previous) 311.92 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 321.09 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Next) 370.82 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 369.7 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Quit) 517.49 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Go) 228.87 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Back) 223.86 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Cmnd) 416.1 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Refs) 419.43 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Master) 73.86 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 68.31 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(First) 273.59 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 272.48 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Viewer) 462.76 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Help) 468.04 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Index) 125.53 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Local) 174.14 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 165.54 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0 18 Q
+0 X
+0 0 0 1 0 0 0 K
+0.09 (Map accuracy) 72.58 689.35 S
+2 14 Q
+0.07 (Many factors besides resolution influence how accurately features) 90.58 659.02 S
+0.07 (can be depicted, including the quality of source data, the map scale,) 90.58 642.02 S
+-0.74 0.07 (your drafting skills, and the width of lines used to represent features.) 90.58 625.02 B
+0.07 (Suppose you were drafting map features at a scale of 1:63,360.) 90.58 608.02 S
+0.07 (\050Remember that one inch on such a map represents one mile on the) 90.58 591.02 S
+0.07 (ground.\051 A fine drafting pen will draw lines 1/100 of an inch wide.) 90.58 574.02 S
+0.07 (Such a line represents a corridor on the ground which is almost 53) 90.58 557.02 S
+0.07 (feet wide.) 90.58 540.02 S
+-0.72 0.07 (In addition, human drafting errors will occur and can be compounded) 90.58 324.31 B
+0.07 (by the quality of your source maps and materials.) 90.58 307.31 S
+0.07 (Even though no maps are entirely accurate, they are still useful for) 90.58 278.31 S
+0.07 (decision-making and analysis. However, it is important to consider) 90.58 261.31 S
+0.07 (map accuracy to ensure that your data is not used inappropriately.) 90.58 244.31 S
+0.07 (Any number of factors can cause error. Note that these sources can) 90.58 215.31 S
+0.07 (have a cumulative effect.) 90.58 198.31 S
+0.07 (E = f\050f\051 + f\050l\051 + f\050c\051 + f\050d\051 + f\050a\051 + f\050m\051 + f\050p\051 + f\050rms\051 + f\050mp\051 + u) 90.58 169.31 S
+0.07 (where,) 99 140.31 S
+243.58 353.31 387.58 520.35 C
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0 X
+0 0 0 1 0 0 0 K
+%%BeginBinary:  5270     
+139 165 139 165 0 244.58 352.5
+/red <
+00112244557788AABBDDEE000000000000000000000000000000000000000011
+2244557788AABBDDEE0000000000000000000000000000000000000000000000
+0000000000000000000000003333333333333333333333333333333333333333
+3333333333333333333333333333333366666666666666666666666666666666
+6666666666666666666666666666666666666666999999999999999999999999
+999999999999999999999999999999999999999999999999CCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCFFFFFFFF
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+> store
+/green <
+00112244557788AABBDDEE00000000000000000000112244557788AABBDDEE00
+0000000000000000000000000000333333333333666666666666999999999999
+CCCCCCCCCCCCFFFFFFFFFFFF0000000000003333333333336666666666669999
+99999999CCCCCCCCCCCCFFFFFFFFFFFF00000000000033333333333366666666
+6666999999999999CCCCCCCCCCCCFFFFFFFFFFFF000000000000333333333333
+666666666666999999999999CCCCCCCCCCCCFFFFFFFFFFFF0000000000003333
+33333333666666666666999999999999CCCCCCCCCCCCFFFFFFFFFFFF00000000
+0000333333333333666666666666999999999999CCCCCCCCCCCCFFFFFFFFFFFF
+> store
+/blue <
+00112244557788AABBDDEE112244557788AABBDDEE0000000000000000000000
+000000000000000000336699CCFF00336699CCFF00336699CCFF00336699CCFF
+00336699CCFF00336699CCFF00336699CCFF00336699CCFF00336699CCFF0033
+6699CCFF00336699CCFF00336699CCFF00336699CCFF00336699CCFF00336699
+CCFF00336699CCFF00336699CCFF00336699CCFF00336699CCFF00336699CCFF
+00336699CCFF00336699CCFF00336699CCFF00336699CCFF00336699CCFF0033
+6699CCFF00336699CCFF00336699CCFF00336699CCFF00336699CCFF00336699
+CCFF00336699CCFF00336699CCFF00336699CCFF00336699CCFF00336699CCFF
+> store
+ BEGINBITMAPCOLORc
+
+>";$9"<"?%9#;"C"
+0000FF0000000000000000000000>"H"@$8%9#
+FFFFFFFFFF00FFFF0000FF7";#9#9":":"8#A"="9#:#9"
+00000000000000000000FF000000000000A$9"9$;%;#:$:"8%8%8"
+00FFFFFF00FF0000FFFF0000000000FFFF00FFFF0000FFFF00FF7(C"=%:%9$>#:#
+FF00FF00FF00FFFFFF0000FFFFFFFF00FFFF0000000000J$J$9$Bi
+>FFFF006FFFFFFFFFFFF8&J"=";"C";"BX
+FF00FF00FF60000000000A$8#A%:%8%=%8(
+FF0000FF00FF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFFFF009$8"9$8"8"8"9"8#<#:#:":#:#9"
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+Jc
+OGJ"
+OGFF
+
+J";"
+OHFFFF
+
+J"9"9"9"
+OE00FFFF00
+
+
+J$
+OJFF00FF
+
+J"
+OKFF
+J"A"
+OEFFFF
+8j
+PM9Z$8%Z
+OE00FFFFFFFFFF00KJ&9"
+OHFFFF00FFFFFFJ"9"="
+OB000000J"9"8#9"
+OBFFFF00FFFFJ"9"9#8"9"
+O@000000FF0000J"9"="9"
+O@FFFFFFFFJ"9"9&9"
+O>00000000FFFF0000J"9":"8"9"
+O>FFFFFFFFFFJ"9"9&9"
+O<00000000FFFF0000J"9":"8"9"
+O<FFFFFFFFFFJ"9&9"
+O>000000FFFF0000J":"8"9"
+O>FFFFFFFFJ"9"9"9"
+O<00000000J"9&9"
+O<FFFF00FFFFFFFFJ"9&9"
+O:0000FF00FF0000J":%9"
+O:FF00FFFFFFFFJ"9&9"
+O8000000FFFF0000J":"8"9"
+O8FFFFFFFFJ"9"9"9"
+O600000000J"9&9"
+O6FFFF00FFFFFFFFJ"9"9&9"
+O0000000FF00FF0000J"9"9&9"
+O0FFFFFF00FFFFFFFFJ"9"9&9"
+O.000000FF00FF0000J"9":%9"
+O.FFFF00FFFFFFFFJ"9"9&9"9"
+O,00000000FFFF000000J"9":"8"9"9"
+O,FFFFFFFFFFFFJ"9"8'9"
+O*0000000000FFFF0000J"9'8"9"
+O*FFFFFF00FFFFFFFFFFJ"9"8":"9"
+O(0000000000J"9&9"9"
+O(FFFF0000FFFFFFFFJ"9%:"9"
+O&00000000FF0000J"8"P9"9"
+O&FF00FFFFJ"9"9#8"9"9"
+O 000000FF000000J"9"8#9"9"9"
+O FFFF00FFFFFFFFJ"9"9#8"9"
+L000000FF0000J"9"8#9"9"
+LFFFF00FFFFFFJ"9"8$8"9"
+J00000000FF0000J"9&9"9"
+JFFFFFF00FFFFFFFFJ"9"="9"
+H00000000J"9"8#9"9"
+HFFFF00FFFFFFJ"9"9"9"
+J00000000J":"8"9"
+JFFFFFFFFJ"9"9"9"
+H00000000J"9&9"
+HFFFF00FFFFFFFFJ"9"9"9"
+F00000000J"9"9"9"
+FFFFFFFFFJ"9#8"
+H0000FF00J"="
+HFFFFJ"9&9"
+F000000FFFF0000J"9"9"9"
+FFFFFFFFFJ"9"9"
+H000000J"9"9"
+HFFFFFFJ"9"9"9"
+F00000000J"9"9"9"
+FFFFFFFFFJ"9"9"
+H000000J"9"9"
+HFFFFFFJ"9"9"9"
+F00000000J"9"9"9"
+FFFFFFFFFJ"9"9"J"
+H000000O100J"8":"J"
+HFFFFFFO1FFJ"9"9"9"J"9"9"
+F00000000O-000000J"9"9"9"J"9"9"
+FFFFFFFFFO-FFFFFFJ"="J"9"9"9"
+H0000O-00000000J"="J"9"9"9"
+HFFFFO-FFFFFFFFJ"9"9"J"9`9"
+J000000O)0000J&9"J">"8"
+JFFFFFF00FFFFO)FF00FFJ"9"9"9"J"9"="9"
+H00000000O%00000000J"9"9"9"J"9"="9"
+HFFFFFFFFO%FFFFFFFFJ"8#9"9"J"A"
+J00FF000000O%0000J"="9"J"9":"8"
+JFFFFFFO%FFFFFFFFJ&9"J"8'9"
+L00FFFF000000O)00FF00FFFFFF0000J"8":"J"9"9"9"
+LFFFFFFO)FFFFFFFFJ"9"9"9"J"9"9"9"
+J00000000O%00000000J"9"9"9"J"9"9"9"
+JFFFFFFFFO%FFFFFFFFJ":"8"9"J"9"9"
+L00000000O%000000J"9"9"9"J"9"9"
+LFFFFFFFFO%FFFFFFJ"9"9"
+O 000000J"9"9"
+O FFFFFFJ&9"
+O"00FF00FF0000J"9"9"
+O"FFFFFFJ"="9"
+O 000000J"9#8"9"
+O FFFF00FFFFJ"9"9"
+O"000000J"9"9"
+O"FFFFFFJ"9&9"
+O 0000FF00FF0000J"9"9"9"
+O FFFFFFFFJ"="9"
+O"000000J"9#8"9"
+O"FFFF00FFFFJ"9"9"
+O$000000J"9"9"
+O$FFFFFFJ"9"9"9"
+O"00000000J"9"9"9"
+O"FFFFFFFFJ"9"9"
+O$000000J"9"9"
+O$FFFFFFJ"9"9"9"
+O"00000000J"9"9"9"
+O"FFFFFFFFJ"9"9"
+O$000000J&9"
+O$FFFF00FFFFFFJ"="
+O"0000J"="
+O"FFFFJ"9"9"9"
+O 00000000J"9&9"
+O FFFF00FFFFFFFFJ"9"9"9"
+L00000000J"9&9"
+LFFFFFF00FFFFFFJ"9"="9"
+J00000000J"9"8#9"9"
+JFFFF00FFFFFF:"9"J"9"9"9"9"
+0000?0000000000:"9"J"9":"8"9"
+FFFF?FFFFFFFFFF<"9"9"I"9"9"9&9"
+0000000000000000FFFF0000<"9"9"I"9"9":"8"9"
+FFFFFFFFFFFFFFFFFF:"9"9"9"9"9"9"9"9"9"9&9"
+000000000000000000000000FFFF0000:"9"9"9"9"9"9"9"9"9'8"9"
+FFFFFFFFFFFFFFFFFFFFFF0000FFFFFFFF9%9"9"9"9"9"9"9"9'8"9"
+000000000000000000000000FF000000FF00009$a8"9"9"9"9"9"`$9"9"
+FFFFFFFFFFFFFFFFFFFFFFFFFFFF:)j'9"9"
+00FFFFFF00FFFFFF7FF00FFFFFF000000:"9"9Z9"9"9"
+FFFF9FFFFFF<"9"9"9"9"9"9"9"9"9"9"
+0000000000000000000000<"9"9"9"9"9"9"9"9"9"9"
+FFFFFFFFFFFFFFFFFFFFFF:"9"9"9"9"9"9"9"9"9"
+00000000000000000000:"9"9"9"9"9"9"9"9"9"
+FFFFFFFFFFFFFFFFFFFF<"9"9"9"9"9"9"9"
+0000000000000000<"9"9"9"9"9"9"9"
+FFFFFFFFFFFFFFFF
+
+
+
+
+
+
+
+
+
+
+
+9j
+PK
+ENDBITMAP
+%%EndBinary
+63 54 549 738 C
+0 0 0 1 0 0 0 K
+FMENDPAGE
+%%EndPage: "7" 7
+%%Page: "6" 8
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 1 0 0 1 0]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+[ 0 1 1 0 1 0 0]
+ 8 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 12 Q
+0 X
+1 1 0 0 0 0 1 K
+(6) 533.91 104.25 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 14 Q
+(Mapping concepts) 417.39 716.75 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+64.34 61.25 550.34 92.25 R
+V
+1 H
+0 Z
+N
+0 0 0 0 1 1 1 K
+1 10 Q
+7 X
+0 0 0 0 1 1 1 K
+(Previous) 311.92 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 321.09 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Next) 370.82 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 369.7 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Quit) 517.49 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Go) 228.87 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Back) 223.86 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Cmnd) 416.1 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Refs) 419.43 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Master) 73.86 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 68.31 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(First) 273.59 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 272.48 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Viewer) 462.76 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Help) 468.04 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Index) 125.53 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Local) 174.14 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 165.54 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+2 14 Q
+0 X
+0 0 0 1 0 0 0 K
+0.07 (which 1 inch = one mile\051, it is difficult to represent area features) 90.58 692.02 S
+-0.57 0.07 (smaller than 1/8 of a mile wide or 1/8 of a mile long, because they will) 90.58 675.02 B
+0.07 (be 1/8 of an inch wide or long on the map.) 90.58 658.02 S
+0.07 (As scale decreases, long narrow features such as streams and roads) 90.58 629.02 S
+-0.79 0.07 (must be represented as lines and smaller area features as points. The) 90.58 612.02 B
+0.07 (minimum sizes and dimensions are sometimes called) 90.58 595.02 S
+4 F
+0.07 (minimum) 441.01 595.02 S
+0.07 (mapping units) 90.58 578.02 S
+2 F
+0.07 (. When maps are being compiled, the minimum) 185.59 578.02 S
+0.07 (mapping units might be stated as a series of rules to follow. For) 90.58 561.02 S
+0.07 (example, \324long narrow features such as streams and rivers will be) 90.58 544.02 S
+-0.63 0.07 (represented as lines if their width is less than 1/8 inch. If a polygon is) 90.58 527.02 B
+-0.35 0.07 (smaller than 1/8 inch on a side, it will be represented as a point\325, and) 90.58 510.02 B
+0.07 (so on.) 90.58 493.02 S
+111.86 182.97 519.31 473.35 C
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0 12 Q
+0 X
+0 0 0 1 0 0 0 K
+(Scale) 127.99 454.78 T
+0 10 Q
+(1:24,000) 123.94 437.74 T
+(1:62,500) 123.94 416.48 T
+(1:100,000) 117.86 395.22 T
+(1:250,000) 117.86 373.96 T
+(1:500,000) 117.86 352.71 T
+0 12 Q
+(2 cm) 178.64 454.78 T
+0 10 Q
+(0.48 km) 175.6 437.74 T
+(1.25 km) 175.6 416.48 T
+(2.00 km) 175.6 395.22 T
+(5.00 km) 175.6 373.96 T
+(10.00 km) 170.54 352.71 T
+0 12 Q
+(4 cm) 230.31 454.78 T
+0 10 Q
+(23.04 ha) 224.23 437.74 T
+(156 ha) 232.33 416.48 T
+(400 ha) 232.33 395.22 T
+(2,500 ha) 224.23 373.96 T
+(10,000 ha) 219.16 352.71 T
+0 12 Q
+(1 in) 421.77 454.78 T
+0 10 Q
+(0.38 mi) 415.7 437.74 T
+(0.99 mi) 415.7 416.48 T
+(1.58 mi) 415.7 395.22 T
+(3.95 mi) 415.7 373.96 T
+(7.89 mi) 415.7 352.71 T
+0 12 Q
+(1 in) 473.44 454.78 T
+0 10 Q
+(91.80 ac) 474.45 437.74 T
+(623.00 ac) 469.39 416.48 T
+(1594.00 ac) 463.31 395.22 T
+(9964.00 ac) 463.31 373.96 T
+(39856.00 ac) 457.23 352.71 T
+(2) 256.65 460.06 T
+(2) 492.69 460.06 T
+(1:24,000) 123.94 299.56 T
+(1:62,500) 123.94 278.3 T
+(1:100,000) 117.86 257.04 T
+(1:250,000) 117.86 235.78 T
+(1:500,000) 117.86 214.52 T
+0 12 Q
+(0.2 cm) 173.58 316.6 T
+0 10 Q
+(0.05 km) 175.6 299.56 T
+(0.13 km) 175.6 278.3 T
+(0.20 km) 175.6 257.04 T
+(0.50 km) 175.6 235.78 T
+(1.00 km) 175.6 214.52 T
+0 12 Q
+(0.04 cm) 218.15 316.6 T
+0 10 Q
+(0.23 ha) 230.31 299.56 T
+(1.56 ha) 230.31 278.3 T
+(4.00 ha) 230.31 257.04 T
+(25.00 ha) 224.23 235.78 T
+(100.00 ha) 219.16 214.52 T
+0 12 Q
+(1/8 in) 416.71 316.6 T
+0 10 Q
+(0.38 mi) 415.7 299.56 T
+(0.99 mi) 415.7 278.3 T
+(1.58 mi) 415.7 257.04 T
+(3.95 mi) 415.7 235.78 T
+(7.89 mi) 415.7 214.52 T
+0 12 Q
+(1/16 in) 464.32 316.6 T
+0 10 Q
+(1.44 ac) 480.53 299.56 T
+(9.73 ac) 480.53 278.3 T
+(24.90 ac) 474.45 257.04 T
+(156.00 ac) 469.39 235.78 T
+(623.00 ac) 469.39 214.52 T
+(2) 261.71 322.94 T
+(2) 500.79 322.94 T
+0 0 0 1 0 0 0 K
+303.25 366.36 377.2 443.96 R
+1 H
+0 Z
+N
+0 0 0 1 0 0 0 K
+303.25 366.36 362 428.02 R
+3 X
+V
+0 X
+N
+303.25 458.84 303.25 450.34 2 L
+3 X
+V
+0 X
+N
+303.25 455.65 376.19 455.65 2 L
+3 X
+V
+0 X
+N
+376.19 458.84 376.19 450.34 2 L
+3 X
+V
+0 X
+N
+303.25 363.17 303.25 354.67 2 L
+3 X
+V
+0 X
+N
+303.25 358.92 360.99 358.92 2 L
+3 X
+V
+0 X
+N
+360.99 363.17 360.99 354.67 2 L
+3 X
+V
+0 X
+N
+328.6 451.4 352.07 459.9 R
+7 X
+V
+0.5 H
+0 X
+N
+316.94 354.67 345.8 363.17 R
+7 X
+V
+0 X
+N
+( 1 in) 330.6 451.56 T
+(2 cm) 321.48 354.83 T
+319.46 291.96 319.46 286.64 2 L
+7 X
+V
+1 H
+0 X
+N
+319.46 288.77 328.57 288.77 2 L
+7 X
+V
+0 X
+N
+(1/8 in) 315.4 296.37 T
+(0.2 cm) 315.4 255.98 T
+0 0 0 1 0 0 0 K
+319.46 273.89 329.59 284.52 R
+N
+0 0 0 1 0 0 0 K
+319.46 273.89 327.56 282.39 R
+3 X
+V
+0 X
+N
+328.57 291.96 328.57 286.64 2 L
+3 X
+V
+0 X
+N
+319.46 272.82 319.46 267.51 2 L
+3 X
+V
+0 X
+N
+319.46 269.63 326.55 269.63 2 L
+3 X
+V
+0 X
+N
+326.55 272.82 326.55 267.51 2 L
+3 X
+V
+0 X
+N
+5 F
+(Comparison of mapping units at five scales.) 117.86 191.14 T
+63 54 549 738 C
+0 0 0 1 0 0 0 K
+FMENDPAGE
+%%EndPage: "6" 8
+%%Page: "5" 9
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 1 0 0 1 0]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+[ 0 1 1 0 1 0 0]
+ 8 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 12 Q
+0 X
+1 1 0 0 0 0 1 K
+(5) 533.91 104.25 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 14 Q
+(Mapping concepts) 417.39 716.75 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+64.34 61.25 550.34 92.25 R
+V
+1 H
+0 Z
+N
+0 0 0 0 1 1 1 K
+1 10 Q
+7 X
+0 0 0 0 1 1 1 K
+(Previous) 311.92 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 321.09 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Next) 370.82 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 369.7 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Quit) 517.49 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Go) 228.87 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Back) 223.86 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Cmnd) 416.1 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Refs) 419.43 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Master) 73.86 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 68.31 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(First) 273.59 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 272.48 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Viewer) 462.76 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Help) 468.04 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Index) 125.53 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Local) 174.14 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 165.54 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+2 14 Q
+0 X
+0 0 0 1 0 0 0 K
+0.07 (MD = Map Distance) 90.58 692.02 S
+0.07 (GD = Ground Distance) 90.58 663.02 S
+0.07 (CON = Conversion Factor to relate MD and GD; thus, if MD is) 90.58 634.02 S
+-0.34 0.07 (measured in inches and GD is measured in miles, CON = 63,360 \050the) 90.58 617.02 B
+0.07 (number of inches in 1 mile\051) 90.58 600.02 S
+0.07 (The following diagram compares lengths of lines representing one) 90.58 571.02 S
+0.07 (kilometer at different map scales. The greater the scale, the longer) 90.58 554.02 S
+0.07 (the line.) 90.58 537.02 S
+0 12 Q
+0.06 (Each line represents one kilometer at its respective scale.) 90 308.17 S
+0 18 Q
+0.09 (Map resolution) 72.58 272.17 S
+2 14 Q
+0.07 (Map resolution refers to how accurately the location and shape of) 90.58 241.84 S
+0.07 (map features can be depicted for a given map scale. Scale affects) 90.58 224.84 S
+0.07 (resolution. In a larger-scale map, the resolution of features more) 90.58 207.84 S
+0.07 (closely matches real-world features because the extent of reduction) 90.58 190.84 S
+0.07 (from ground to map is less. As map scale decreases, the map) 90.58 173.84 S
+0.07 (resolution diminishes because features must be smoothed and) 90.58 156.84 S
+-0.32 0.07 (simplified, or not shown at all. For example, at a scale of 1:63,360 \050in) 90.58 139.84 B
+90.58 335.84 447.06 517.35 C
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+90.58 335.84 447.06 517.35 R
+7 X
+0 0 0 1 0 0 0 K
+V
+0 X
+%%BeginBinary:  5258     
+356 181 356 181 0 91.48 335.45
+/red <
+00112244557788AABBDDEE000000000000000000000000000000000000000011
+2244557788AABBDDEE0000000000000000000000000000000000000000000000
+0000000000000000000000003333333333333333333333333333333333333333
+3333333333333333333333333333333366666666666666666666666666666666
+6666666666666666666666666666666666666666999999999999999999999999
+999999999999999999999999999999999999999999999999CCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCFFFFFFFF
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+> store
+/green <
+00112244557788AABBDDEE00000000000000000000112244557788AABBDDEE00
+0000000000000000000000000000333333333333666666666666999999999999
+CCCCCCCCCCCCFFFFFFFFFFFF0000000000003333333333336666666666669999
+99999999CCCCCCCCCCCCFFFFFFFFFFFF00000000000033333333333366666666
+6666999999999999CCCCCCCCCCCCFFFFFFFFFFFF000000000000333333333333
+666666666666999999999999CCCCCCCCCCCCFFFFFFFFFFFF0000000000003333
+33333333666666666666999999999999CCCCCCCCCCCCFFFFFFFFFFFF00000000
+0000333333333333666666666666999999999999CCCCCCCCCCCCFFFFFFFFFFFF
+> store
+/blue <
+00112244557788AABBDDEE112244557788AABBDDEE0000000000000000000000
+000000000000000000336699CCFF00336699CCFF00336699CCFF00336699CCFF
+00336699CCFF00336699CCFF00336699CCFF00336699CCFF00336699CCFF0033
+6699CCFF00336699CCFF00336699CCFF00336699CCFF00336699CCFF00336699
+CCFF00336699CCFF00336699CCFF00336699CCFF00336699CCFF00336699CCFF
+00336699CCFF00336699CCFF00336699CCFF00336699CCFF00336699CCFF0033
+6699CCFF00336699CCFF00336699CCFF00336699CCFF00336699CCFF00336699
+CCFF00336699CCFF00336699CCFF00336699CCFF00336699CCFF00336699CCFF
+> store
+ BEGINBITMAPCOLORc
+
+
+9$B$;$?"
+00000000FF00000000008&H&
+00FFFFFF0000FFFFFF00<"a%B):#J"<";#9#9#;#9#9#
+FFFF000000FFFF0000FF0000000000G00000000000000000000000000008%8+=.8%J"<";/9/
+FF000000FFFF00FFFF00FFFFFF00FF000000FF00FFFF00FFFFFF0000FFFF00E000000FFFF00FF00FFFF00FF00FFFF0000FFFF00FF00FFFF00FF00FFFF009%>#?%9%:#J"9"8"
+FFFFFF000000FFFFFF00FFFF00000000FFF00FF8"A$>"=%:$J%D"
+0000FFFF000000FFFFFF00FF700000000FF8&=$>-9#J#
+FF000000FFFF0000FF000000FFFF0000FFFF0000FF00:FFFF9P8"8S;$8#8%8#
+FFFFFFFFFFFFFFFFFFFFFFFFJ"<5
+OG00A00FFFF0000FFFFFF0000FFFFFF0000FFFF00FFFF0000FFFFFF0000FFFFFF0000FFJ"8"9";#9#9#;#9#9#
+ODFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFJ"F"
+P FFFF
+
+
+J#
+O8FF00
+
+
+
+J#
+O9FF00
+
+
+
+J#
+O:FF00
+
+J";(9#;#9#9#
+OH0000000000FF00000000000000000000J"=-9/
+OG00FFFFFF00FFFF00FF00FFFF0000FFFF00FF00FFFF00FF00FFFF00J"9"
+OGFF00J"9#
+OKFF0000J%
+P FFFFFF00J`I"
+O600JQ"D"85
+O60000>FF0000FFFF0000FFFFFF0000FFFF00FFFF0000FFFFFF0000FFFFFF0000FFJ"8"9#8#9#;#9#9#
+OHFFFFFFFFFFFFFFFFFFFFFFFFFFFFJ"
+P.FF
+
+J#
+O<FF00
+
+
+J#
+O=FF00
+
+
+
+J#
+O>FF00
+
+
+J#
+O?FF00
+
+
+J#A";#9(;#9#9#
+O@FF0000000000000000FF0000000000000000J"=#9(9/
+OL00FF00FFFFFF00FFFF0000FFFF00FF00FFFF00FF00FFFF00J"9"8"
+OLFF00FFJ#C"9#9#
+OAFF00FF00FF0000JgG":%
+O600FFFFFF00JX"F"9"
+O600FF00J"9#85
+P"0000009FF0000FFFF0000FFFF00FFFF0000FFFFFF0000FFFFFF0000FFJ"8"8$9#8#;#9#9#
+OMFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFJ#J"
+OCFF00<FF
+
+
+J#
+ODFF00
+
+
+J#
+OEFF00
+
+J#
+OFFF00J#
+OGFF00
+
+J#
+OHFF00
+
+J#
+OIFF00J#
+OJFF00
+
+J#
+OKFF00
+J#
+OLFF00
+J#E"<"9#9#;#9#9#
+OMFF00000000000000000000000000J"<"9*9/
+P/000000FFFF00FF00FFFF0000FFFF00FF00FFFF00FF00FFFF00J"9"8"
+P/FF00FFJ#G"
+P FF00FF
+J#
+P!FF00J#E"<5
+P"FF0000:FF0000FFFFFF0000FFFF00FFFF0000FFFFFF0000FFFFFF0000FFJjC"8"9"9#9#;#9#9#
+O6;FFFFFFFFFFFFFFFFFFFFFFFFFFJZ"J"
+O6<00?FFJ#
+P$FF00J#
+P%FF00J#
+P&FF00
+J#
+P'FF00J#
+P(FF00J#
+P)FF00J#
+P*FF00J#
+P+FF00
+J#H"<#8#;(9#
+P,FF00000000000000000000FF00000000J#F"<%8#;-
+P-FF000000FFFF00FF00FFFFFF00FFFF00FF00FFFF00J#E"9"9&
+P.FF00FF000000FFFFFFJ$G"9$8#;#
+P/FF0000FFFFFF0000FF0000J$J"<%
+P0FFFF00800FFFFFF00JjJ";"
+O6L8FF00JZ"D"8%8%8.
+O6L0000FF0000FF0000FF00FF0000FFFF0000FFFFFF0000FFJ#@"8"9#8$;#8#9#
+P4FF00FFFFFFFFFFFFFFFFFFFFFFFFFFJ$J"
+P5FF00007FFJ$
+P6FFFF00J$
+P8FF0000J$
+P9FFFF00J$
+P;FF0000J$
+P<FFFF00J#
+P>FF00J%
+P?FF000000J&
+P@FFFFFF0000J%
+PCFFFF0000J%
+PEFFFF0000J%
+PGFFFF0000J%
+PIFFFF0000J%
+PKFFFF0000J&
+PMFFFF000000J'
+Q!FFFFFF000000J&
+Q$FFFFFF0000J%
+Q'FFFF0000J&
+Q)FFFF000000J'
+Q+FFFFFF000000J'J";#;":#9#9#
+Q.FFFFFF000000L00000000000000000000J(J"=#9":/
+Q1FFFFFF00000000G00FF000000FFFF00FF00FFFF00FF00FFFF00J)J"9"8":#
+Q4FFFFFFFF00000000CFF00FF00FFJ)J"9#
+Q8FFFFFFFF00000000CFF00FFJ%`J"9#
+Q<FFFFFFFFA0000FFJP`J"9%
+Q@=FF00000000JP$J"95
+QE00000060080000FFFFFFFF00FF00FFFF0000FFFFFF0000FFFFFF0000FFJj9%E"8"8$:":#9#9#
+O6P400000000FFFFFFFFFFFFFFFFFFFFFFFFJZ%J"
+O6P:00000000;FFJ%a
+R"FFFFFFFFJQ`
+R&JP$
+R,000000J(
+R1FFFFFF00000000J%b
+R4FFFFFFFFJR`
+R8JP$
+R?000000J$a
+RDFFFFFFJQ`
+RGJP$
+RM000000J$a
+S$FFFFFFJQa
+S'JQ%
+S-00000000J%a
+S3FFFFFFFFJQa
+S7JQ`J"<"9#;#9#9#
+S=O#00000000000000000000JP%J"<"9%9/
+SC00000000L000000FFFF0000FFFF00FF00FFFF00FF00FFFF00J%`J"9"8"
+SHFFFFFFFFGFF00FFJPbJ"
+SLDFFJRb
+T#JR`
+T*JP%J"<5
+T1000000004005FF0000FFFF00FFFF0000FFFFFF0000FFFFFF0000FFJ%`B"8"9"9#;#9#9#
+T6FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFJP`J"
+T:6FF8"J$?"JP`
+00800000000SEJ&JPc
+:00FFFFFF00T%<'8$8#?):#JSc
+000000FF00000000000000FFFF0000FF0000000000SK<+8%:.8%JS`
+FFFFFF0000FFFF00FFFF00FFFF00FF000000FF00FFFF00FFFFFF0000FFFF00T$=#@#<%9%:#JP`
+00000000FFFFFF00FFFF00000000T-<$@$:"=%:$JP`
+00FFFFFF00FF000000FFFFFF00FFT19':$8#<-9#Jj;%
+0000FFFF0000FF0000FF00FF000000FFFF0000FFFF0000FF009SM000000008$8%9#9#<$8#8%8#JZ
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7T)C%
+000000FFC$
+FFFFFF
+ENDBITMAP
+%%EndBinary
+63 54 549 738 C
+0 0 0 1 0 0 0 K
+FMENDPAGE
+%%EndPage: "5" 9
+%%Page: "4" 10
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 1 0 0 1 0]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+[ 0 1 1 0 1 0 0]
+ 8 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 12 Q
+0 X
+1 1 0 0 0 0 1 K
+(4) 533.91 104.25 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 14 Q
+(Mapping concepts) 417.39 716.75 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+64.34 61.25 550.34 92.25 R
+V
+1 H
+0 Z
+N
+0 0 0 0 1 1 1 K
+1 10 Q
+7 X
+0 0 0 0 1 1 1 K
+(Previous) 311.92 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 321.09 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Next) 370.82 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 369.7 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Quit) 517.49 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Go) 228.87 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Back) 223.86 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Cmnd) 416.1 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Refs) 419.43 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Master) 73.86 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 68.31 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(First) 273.59 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 272.48 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Viewer) 462.76 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Help) 468.04 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Index) 125.53 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Local) 174.14 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 165.54 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+2 14 Q
+0 X
+0 0 0 1 0 0 0 K
+-0.1 0.07 (on the map equals ten thousand meters on the ground\325, or 1.6 inches) 90.58 692.02 B
+0.07 (equals 10,000 meters.) 90.58 675.02 S
+0.07 (To convert this statement to a representative fraction, the units of) 90.58 646.02 S
+0.07 (measure being compared must be the same. For this example, both) 90.58 629.02 S
+0.07 (measurements will be in meters.) 90.58 612.02 S
+0.07 (To do this, convert 1.6 inches into meters:) 90.58 583.02 S
+0.07 (  1.6 inches x .0254 meters/inch = 0.04 meters) 99 554.02 S
+0.07 (Now you know that) 90.58 525.02 S
+0.07 (  0.04 units on the map = 10,000 units on the ground) 99 496.02 S
+0.07 (You can now state the scale as a representative fraction \050RF\051:) 90.58 467.02 S
+0.07 (  0.04:10,000) 99 438.02 S
+0.07 (Though a valid statement of scale, most cartographers would find it) 90.58 409.02 S
+-0.65 0.07 (clumsy. Traditionally, the first number in the representative fraction) 90.58 392.02 B
+0.07 (is made equal to 1:) 90.58 375.02 S
+134.45 344.58 106.92 344.58 2 L
+V
+0.85 H
+N
+0.07 (0.04) 106.92 346.02 S
+0.07 ( = 1 unit on the map =) 134.45 346.02 S
+326.96 344.58 283.73 344.58 2 L
+V
+N
+0.07 (10,000) 283.73 346.02 S
+0.07 ( units on the ground) 326.96 346.02 S
+0.07 (  0.04) 99 329.02 S
+0.07 (   0.04) 274.52 329.02 S
+0.07 (  1 unit on the map = 250,000 units on the ground) 99 300.02 S
+0.07 (After this calculation, you can see that 1 unit on the map equals) 90.58 271.02 S
+0.07 (250,000 units on the ground, or 1:250,000.) 90.58 254.02 S
+0.07 (The equation for calculating map scale is:) 90.58 225.02 S
+0.07 (RFD = Representative Fraction Denominator \050i.e., in a 1:24,000) 90.58 147.26 S
+0.07 (topographic map the RFD = 24,000\051) 90.58 130.26 S
+276.79 176.26 365.92 205.35 C
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+276.79 176.26 365.92 205.35 R
+7 X
+0 0 0 1 0 0 0 K
+V
+0 X
+%%BeginBinary:  2277     
+84 30 84 30 0 277.69 174.45
+/red <
+00112244557788AABBDDEE000000000000000000000000000000000000000011
+2244557788AABBDDEE0000000000000000000000000000000000000000000000
+0000000000000000000000003333333333333333333333333333333333333333
+3333333333333333333333333333333366666666666666666666666666666666
+6666666666666666666666666666666666666666999999999999999999999999
+999999999999999999999999999999999999999999999999CCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCFFFFFFFF
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+> store
+/green <
+00112244557788AABBDDEE00000000000000000000112244557788AABBDDEE00
+0000000000000000000000000000333333333333666666666666999999999999
+CCCCCCCCCCCCFFFFFFFFFFFF0000000000003333333333336666666666669999
+99999999CCCCCCCCCCCCFFFFFFFFFFFF00000000000033333333333366666666
+6666999999999999CCCCCCCCCCCCFFFFFFFFFFFF000000000000333333333333
+666666666666999999999999CCCCCCCCCCCCFFFFFFFFFFFF0000000000003333
+33333333666666666666999999999999CCCCCCCCCCCCFFFFFFFFFFFF00000000
+0000333333333333666666666666999999999999CCCCCCCCCCCCFFFFFFFFFFFF
+> store
+/blue <
+00112244557788AABBDDEE112244557788AABBDDEE0000000000000000000000
+000000000000000000336699CCFF00336699CCFF00336699CCFF00336699CCFF
+00336699CCFF00336699CCFF00336699CCFF00336699CCFF00336699CCFF0033
+6699CCFF00336699CCFF00336699CCFF00336699CCFF00336699CCFF00336699
+CCFF00336699CCFF00336699CCFF00336699CCFF00336699CCFF00336699CCFF
+00336699CCFF00336699CCFF00336699CCFF00336699CCFF00336699CCFF0033
+6699CCFF00336699CCFF00336699CCFF00336699CCFF00336699CCFF00336699
+CCFF00336699CCFF00336699CCFF00336699CCFF00336699CCFF00336699CCFF
+> store
+ BEGINBITMAPCOLORc
+
+
+B"
+00A"J";'<"<$:$9":"
+0070000FF00000000000000000000000000A"J%:$:&8&9"
+FF@FFFFFF0000000000FFFFFF0000FFFFFF0000J"9"<#?#9%9#
+D0000FF0000FFFFFF00FFFF00J$I#
+O&FF00FFFF00J&B"J#
+DFF00FF00FFFF5FF00
+J$=#?#9%9#:#
+EFF00FF00FFFF0000FFFF0000FFFF00B"J%A&8&<"
+FF?000000FFFF000000FFFF000000FFFFJ"8"8QC$:$9":"
+CFFFFFFFFFFFFFFFFFFFF
+J`
+:JP
+:8j;`:j
+3O 8Z;P:Z
+3O 8`9*
+00000000FF000000009&9$8%J$8%
+FFFFFFFF00FFFFFFFFFFFF00<00000000000000I#J&8%
+FF00:00FFFFFF00FFFFFF00A$J#9";#
+000000@00FFFFFF009&9$
+00000000FFFFFFFF9&J$
+FFFFFFFF00I000000I#J#
+00FF<FFFFF%J#8"<#
+000000FF:FF000000FF8":"8":%J%9%
+FFFFFFFFFFFFFF<FF0000FF000000FFJT
+O"
+
+
+
+ENDBITMAP
+%%EndBinary
+63 54 549 738 C
+0 0 0 1 0 0 0 K
+FMENDPAGE
+%%EndPage: "4" 10
+%%Page: "3" 11
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 1 0 0 1 0]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+[ 0 1 1 0 1 0 0]
+ 8 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 12 Q
+0 X
+1 1 0 0 0 0 1 K
+(3) 533.91 104.25 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 14 Q
+(Mapping concepts) 417.39 716.75 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+64.34 61.25 550.34 92.25 R
+V
+1 H
+0 Z
+N
+0 0 0 0 1 1 1 K
+1 10 Q
+7 X
+0 0 0 0 1 1 1 K
+(Previous) 311.92 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 321.09 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Next) 370.82 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 369.7 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Quit) 517.49 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Go) 228.87 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Back) 223.86 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Cmnd) 416.1 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Refs) 419.43 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Master) 73.86 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 68.31 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(First) 273.59 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 272.48 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Viewer) 462.76 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Help) 468.04 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Index) 125.53 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Local) 174.14 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 165.54 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+2 14 Q
+0 X
+0 0 0 1 0 0 0 K
+-0.44 0.07 (area. The three maps shown below illustrate the trade-off. The small-) 90.58 692.02 B
+-0.54 0.07 (scale map can show a large area because it reduces the area so much;) 90.58 675.02 B
+-0.42 0.07 (the large-scale map can only show a portion of one street, but in such) 90.58 658.02 B
+0.07 (detail that you can see the shapes of the houses.) 90.58 641.02 S
+0.07 (On certain United States Geological Survey topographic maps, the) 90.58 273.02 S
+0.07 (Universal Transverse Mercator \050UTM\051 grid tics are 10,000 meters) 90.58 256.02 S
+0.07 (apart and are shown in blue along the edge of the map. You can use) 90.58 239.02 S
+0.07 (these grid tics to verify the scale of the map by measuring the) 90.58 222.02 S
+0.07 (distance between the tics with a ruler. The distance on the map in) 90.58 205.02 S
+-0.72 0.07 (relation to the ground distance \05010,000 meters\051 gives you a statement) 90.58 188.02 B
+-0.34 0.07 (of scale. For example, the distance between the UTM tics on the map) 90.58 171.02 B
+-0.62 0.07 (is 1.6 inches, and the distance between the UTM tics on the ground is) 90.58 154.02 B
+0.07 (10,000 meters. The verbal statement of scale is \324one point six inches) 90.58 137.02 S
+80.46 297.35 532.71 609.35 C
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0 X
+0 0 0 1 0 0 0 K
+%%BeginBinary:  40750    
+450 307 450 307 0 79.58 303.96
+/red <
+00FFBF7F3F00FFBF7F3F00FFBF7F3F00FFBF7F3F00FFBF7F3F00FFBF7F3F00FF
+BF7F3F00FFBF7F3F00FFBF7F3F00FFBF7F3F00FFBF7F3F00FFBF7F3F00FFBF7F
+3F00FFBF7F3F00FFBF7F3F00FFBF7F3F00FFBF7F3F00FFBF7F3F00FFBF7F3F00
+FFBF7F3F00FFBF7F3F00FFBF7F3F00FFBF7F3F00FFBF7F3F00FFBF7F3F00EFDF
+CFB2A5988B7265584B2F1F0F0000000000000000000000000000000000000000
+000000000000000000000000FFFFFFFFFFFFFFFFFFF7DFC7AF97674F371F0700
+0000000000000000000000000000000000071F374F6797AFC7DFF7FFFFFFFFFF
+FFFFFFB44574D98C8CFFFF02FFAB6EDBC9D365B7CCF498BFE398F466B7CC00FF
+> store
+/green <
+00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFBFBFBFBFBFBF
+BFBFBFBFBFBFBFBFBFBFBFBFBFBFBFBFBFBFBF7F7F7F7F7F7F7F7F7F7F7F7F7F
+7F7F7F7F7F7F7F7F7F7F7F7F3F3F3F3F3F3F3F3F3F3F3F3F3F3F3F3F3F3F3F3F
+3F3F3F3F3F00000000000000000000000000000000000000000000000000EFDF
+CFB2A5988B7265584B2F1F0F0000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000000000000F
+27576F879FB7CFE7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFD7A78F77
+5F472FB44574BA7883EF0200DAAB6EDBC9D365B7CCF4BF98E5BFF466B7CC00FF
+> store
+/blue <
+00FFFFFFFFFFBFBFBFBFBF7F7F7F7F7F3F3F3F3F3F0000000000FFFFFFFFFFBF
+BFBFBFBF7F7F7F7F7F3F3F3F3F3F0000000000FFFFFFFFFFBFBFBFBFBF7F7F7F
+7F7F3F3F3F3F3F0000000000FFFFFFFFFFBFBFBFBFBF7F7F7F7F7F3F3F3F3F3F
+0000000000FFFFFFFFFFBFBFBFBFBF7F7F7F7F7F3F3F3F3F3F0000000000EFDF
+CFB2A5988B7265584B2F1F0F0000000000000000000000000000000000000000
+000000000000000000000000172F475F778FA7D7EFFFFFFFFFFFFFFFFFFFFFFF
+FFFFFFFFFFFFFFFFE7CFB79F876F57270F000000000000000000000000000000
+000000B445749D6675D50200B9AB6EDBC9D365B7CCF4BFB6B7BFF466B7CC00FF
+> store
+ BEGINBITMAPCOLORc
+z
+WD01
+
+9z
+R;79J"
+R>83
+<t$u+z5z*u*y(s5
+017D7D7D018501017D7D01017D017D001G7D7D017D01887D7D018A017D0101017D7D7D01017D7D017D880101017D7D01017D7D7D01017D7D0017D7D010101017D017D01887D7D7D7D7D01017D017D017D0101018201M7D7D0101010101017D7D7D7D01017D7D01010101017D01017D017D7D7D7D7D7D807D01017D7D7D7D0101010101@"9%<"9"8#8$B"9#9"9$8#>#8(9#F$8"9">$9$8"8">%8">"8$8%?';#8"9"
+7D7D017D017D0101010101017D0101010101017D017D7D01017D7D010101017D82017D017D827D017D01017D7D017D017D01017D017D017D0101017D7D0101017D01017D@"9">#D#?+8$9.9#<$E%9%=&8&8"?$<(9"E":"<"8"
+01017D887D7D017D017D7D7D7D01017D7D887D017D01017D7D0101010101017D01017D7D7D0101017D017D017D017D7D01827D7D7D010101017D01857D7D7D7D0101017D7D7D7DF#9%<#8'8):$;$9"8'8"@"J":"@"8$8"<">"8"8(8#;#@$:"9%;"
+017D7D0101017D7D7D7D017D85017D7D7D7D017D7D7D01017D01017D010101017D7D7D01825010101010101017D017D82017D010101017D01017D01010101017D7D7D7DG"9"?*9w8"8$8";#8%8":#9%J"8"=$:#="@(<&9#9"@%8#8#:"
+01010101850101010101010101010101017D7D018A017D7D7D7D017D010167D017D01010101017D017D7D7D0101017D7D017D017D01010101827D0101017DG$=";"J"8#8#9$8"9,C"=$9'9"J'A"9"H"9"8$:"B%I"8";%H"
+7D7D7D7D01>7D7D7D0101010101017D0101017D8201017D017D0101017D7D017D7D01017D6017D0101017D017D017D7D01017D7979797979797979797979C#8%="J$;(8#F"9#9+E#8#="D"9">$<#;'E"9'9"@'J'
+7D8A0101017D7D5887D7D7D7D7D7D7D0101850101017D7D7D7D017D7D7D7D017D017D018A017D7D01017D010101017D7D7D8801017D7D0101017D790101010179:790101010179<&8#A"8"8u8%8"8-8"D">$<&E*E&;&9"=">$@":#8(H"8$8":$F"9$:$=$
+857D7D7D7D01017D7D7D7D7D7D7D7D7D7D7D017D0101010101017D017D7D7D0188017D7D7D01017D7D010101017D7D7D01017D7D7D017D82017D017D017D7D017D017D7D7D0101017901797979797901797979797979797979<&G#818s";"E$?"8s#;">"8#<"B$8"8)@#="C":$8";"B$<'8&@$;&8&;&
+0101010101010101010101017D010101017D01010101010180017D7D0101017D01828801017D7D7D010101017D7D010101017D018A010185017D010179797901797901797901010179017979790101017979010101797901010179J$?":"@#9"=s)=$8$<"<"<$>$B$9"I">"<"B$9$8"B%:"8":"E%="8"
+97D010101017D7D017D017D7D7D7D7D88018A010101017D01807D0101018A01017D7D7D01017D017D01017D7D0101017979010101010179790101J$J%8$;v%>#;"8#<"8"9"8"A&@,;":"8"8"A+<$8%F$B$D$@$=$
+77D7D01:7D01017D7D7D7D017D807D01017D017D7D7D7D7D0101017D017D01017D7D7D0101807D01017D7D7D7D7D7D7D7D7D7D017D0185017D017D017D7D010179797979010179797979797979Fr#9&?"@#8&F#I#>":"D$9"@'>#9#>"9"8#t=$8"8$@"F%A"D%=%
+7D01017D7D7D7D7D7D7D7D7D7D01017D7D01010185017D01017D0101017D7D7D017D017D7D7D7D7D01017D017D7D01017979010101797901010101010101E);&?"E"9"J#I#8%<#9":#C"<"9&G$9$J"F"
+7D010101017D0101017D01010101017DM7D7D8A7D827D017D7D7D8A7D7D0101017D7D7D01017D01017D7DO)7979<'9"E"J#8":"D"J#I&:":#9+9$8";$>"D":"9"8"@'A'?'8&8':&
+7D7D7D7D7D7D017D50185010180>01010101017D01800101010101017D010101887D017D7D01807D7D7D827D7D7D01797979790101797979017901797979790101797979010179797901790179797901<'G$J+8$:";"B"I"J"8%?"8r"9#<);"B$9%9"B%9"8"8"9r8";%:$:&8"8$
+0101010101010101014017D7D01017D017D01017D7D7D8001018A5017D017D017D7D8201017D7D0101017D017D0188010101017D850101010101010101010101010101010101010101010101010101J#9%8$9#J"J&<"9%8"<";";"8"E"=$8"
+O'01017D7D7D7D0101018801F01:01017D017D8801010101017D0101017D017D017DJ"?&=#J"E#=(<"8":#8#:(8"="B">$
+O!7D01017D01017D7DG8A7D7D01017D01010180820101017D7D7D7D7D7D01017D017D01017D01J$@"?$J"C%:+8(<"8#8%:"<$J#
+M7D01017D800101G017D0101017D7D7D7D0101017D01017D017D7D01017D8801017D010101017D01018017DF$J"8"A"@":":"J&8"=$9%9'9"8"<'9";"8$E+
+7D7D7D77D017D017D82F7D017D7D7D010101017D01017D7D7D017D01017D01017D7D0101017D01017D7D7D7D7D7D7D7D01017D80=#=$J#B&C":"J"9+:"9"8"9#;"@"9#8">"F(8$
+7D8001010167D017D010101010101G7D7D7D7D7D7D017D7D017D7D7D7D7D0101017D7D017D7D010101010101017D01=#J"8"C%E"9"J'9"<$;"8"J#="9$8#8"=$?#
+0101=7D01017D7D7D7D7DG010180017D017D7D7D8A880157D7D7D807D017D7D7D7D7D01017DJ$G#F$J$8w:$9$8":"C'>#;"8(9,
+D7D0101010101017DF7D010101010101010101018501017D017D7D01017D7D017D7D017D7D7D7D7D017D7D7D017D7D01<yD&C"9%:"B"J$:":#@"9$8"9$:":";"<+
+7D8A01010185857D7D7D7D7D7DO/7D0101017D01827D7D7D7D017D7D017D7D80887D7D017D7D017D7D<yA"8"9&x:z"z8&:$J&A";#:"8$>":#="=%<"
+018801017D017D017D17D01/7D7D7D7D7D7D7D7D88<0101880101017D8001820101017D7D7D7D7D010101J"?"z8z8$v8'8%>"="@%C"8&9"9"8'9$8";"8"80D"?"=$:$9$=$:$:$
+?0185/0120101017D010101010101857D010101017D857D7D017D7D017D7D018A010101017D7D7D017D7D01010101887D0101017D7D01017D010101827979797979797979797979797979797979797979J%@"9$J#G"8"I$>"F)9#?$8#8$9$8&9#8"9"C"?"=&8,;&8&8&
+F7D7D7D01827D7D016017D0101017D7D7D017D010101017D7D017D017D7D7D01017D0101010101010101010101017D797979010101797901010179017901010179790101017979010101797901010179J"G"A"9$J"J%9"8$E";#9">.9"8#F#B":":"
+685010101017D701I0101017D7D01010101017D01017D01017D010101017D7D7D7D7D017D0101017901="D"E#G"J$F"I%8#J"9";";#8$s(J"
+850101017D?8A7D7D807D7D7D017D805017D85017D7D7D7D017D7D7D0101017DA01="B)8'G":"J$F"E"8'8"J"9"9"<$@"8"9#
+01017D7D7D7D7D7D8085017D82017D7D01>010101857D01010101017D017017D010101017D01017DJr8'G"9"J"@"B"8"=#J%:"<$>"8":#
+5010101010101010101G7D7D7D01017D;017D017D807D0101017D0185J$J"Ar;"A"J"9"8"8"9"8#<'9"
+O'7D017DI017D0101<017D018001018A7D7D01017D7D01J$JrJ&8#="<#8$;"J"@(8,9(8&8&
+O'017D01O'01O"0182017D7D7D01010101017D7D8A<797901017979790101797979010101797979017901017979790101797979010179797901J#J"J"8"8"@"?$:"J"9";"=$:$9$=$:$:$
+O'7D01OB8A=0101017D017D7D7D8010101010101010101010101010101010101010101J"J$8'=&D">";">#8#J#J#
+O'01O>807D7D7D88017D017D7D017D017D017D017D7D7D7DI790157901J";#:#;":%?'9#C";"J"J"
+PF7D7D7D7D7D7D7D017D7D7D7D017D017D017D0188H01601J#<"9"J"J"A$;#@):%9"8$="
+H7D7D807D980O(8A7D017D7D017D8201017D7D7D01017D7D7D7D7D7D7D7D<%:t$y8-J"J%9x9"A#8"9#H'
+7D7D7D807D8082827D7D7D7D7D7D8A017D7D8A017D87DO%0101010101820101017D7D01010101017D<%:&9&?$>#8u9s9s:s:s8&z9s;%8#B)9'9#8%8"
+010101010101010101010101010188018A7D7D7D7D7D7D7D7D7D85828047D7D01010101010101017D7D017D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7DI$;$9z9$9)9s:$;%B$@#A%:%:s8":";"H"="
+010101010101601010101010101017D01010101010182888582887D7D7D01828A8001807D7D7D7D7D7D887D7D7D=$8&8#?$J&Jz8z)8&:s8":":"=$
+7D017D7D7D7D7D7D7D7D0101016010101017D=2019017D010101017D010101017D010101017D01858085@%;#J$C&J$9"9#F"9"9'z$
+8A7D7D010101F01017D7D7D7D7D7DO*7D017D01017D7D010180017D017D2017D0101<"8sJ"?"B";#J$8"H":$9%9"H#:"
+7D01B7D017D7D7DO'7D7D7D7D7D017D7D7D017D0101017D7D<#A#J"?$8$J"J-G&8"8"J#8$
+01017D7DK7D01018A010101<7D901010101017D7D01017D7D0101017D7D7D01015017D017D7DI$J%>"J"J";#8#J"8"J'
+01017DJ01017D7D01@7D9010101010140101=010101017D7D<,8"8"J#8"J"J(F+B$8"?$9"8"
+7D7D7D017D7D7D017D7D7D7D85K01017DF01;7D7D7D827D7D7D857D80017D7D7D0101017D80807D7D01017D7DJ&J"8"9#J,E*E%8"8":">#8#<#;#
+67D7D7D7D7DK018A0101?01017D7D7D7D0182017D7D7D8801010101017D7D7D01017D017D7D0101017D887D7D01<'8$:"8$F$F$>#F"J*B'8">":#8#:"G"=$<%
+01010101010101010101017D017D7D7D7D7D8001827D87D7D7D7D887D7D017D7D7D7D7D7D7D7D7D01010101017D7D7D010101827D<z8w";'F$8*8";"8"<"E%9$C"F$A%:"B&@"9$
+07D7D827D0101017D7D017D7D7D017D7D017D017D7D7D7D7D7D01010101017D017D7D7D017D7D7D7D8801017D01880101017D<2s":);%C(:&8&:":&:">tA$;";%9(@&@%:";":"
+0101010101017D0101010101017D8A017D01857D7D7D7D7D7D017D7D7D7D7D017D7D85857D01807D7D7D7D7D0101017D7D7D7D017D7D0101010101017D7D7D017D017D7D85017D7D7D7D8A7D017D7D7D7D7D01B"=$>"8r(:#?"8"8&9":"9#C"J"8"8#8#8#?#8"?$B"8"9"
+0101010101017D7D7D7D7D0101017D017D01017D7D7D017D7D8082B820101017D7D01017D7D01010101017D01B*;'8r;$9':"8$9y$8"8"="J#;';#;$:&<%@$;'8"
+7D017D7D7D7D807D7D857D7D7D7D7D7D7D7D7D7D7D7D7D7D7D01010101017D7D7D7D0101A017D887D7D7D01017D7D01018A01017D7D7D017D7D7D01827D7D7D0101017D7D<):*8">)<";"?"F":"r8r8#Jr8"8"C"8":&=%@#8">$
+7D7D7D7D7D7D857D7D7D017D7D7D7D7D7D018001010101858285857D0182017D7D7D7D67D7D0101017D7D7D01010101010101017D7D7D01>v8*t:'9&8$B"@&A";#8y8'I/:t?$:"8#8$9$
+018501018285888A857D010101010101017D7D0101017D7D7D7D0101857D018A7D017D7D7D7D7D7D7D0101018082018088858A7D7D7D7D7D7D7D7D017D7D7D7D7D7D7D7D<#C"8'<"B$8)E$9'8s,y$<t8"@(v#B":"=v
+0101010101010101017D0101017D7D01017D0101017D017D7D7D017D7D0101807D0101010101017D807D017D7D7D01010101010101018A017D017D8501>"J"F"8$G(9$@#=%r$8"8'J#B%<*9*
+7D;01017D7D017D017D7D7D017D01017D01017D7D7D017D887D7D01010101010101;7D7D7D0101017D7D7D7D0101017D010101017D7D7D7D7D7D<#J"F%8"I$8$J$wJ"8"=$8$:&;%=#
+7D7D;7D010101017D017D01017D7D582017D01E7D887D7D7D7D7D7D7D010101017D7D7D7D0101=#A"D"B"=%8#B"8"8%8"H"G"J"8"</:"9):"9"
+010182017D01017D7D7D82010101010101010180A01017D7D0101017D01010101017D010185010101017D7D7D7D7D7D=#A"J"?)J"G"J)=$<">r&
+7D7D7D;0101017D7D7D01017DI7D85E7D7D7D88018501017D7D017D017D7D7D7D01<$J"8%J'J"9%9"8";&9&>"8$
+017D01O%017D01017DM7D7D7D7D7D7DL7D7D7D7D7D7D887D7D7D7D7D7D7D7D7D7D0101017D<#J&J"8":*J#;"8&H#
+7D01O'0101017D7DO!01017D7D857D7D7D7D7D7DM7D7D0188017D7D7D017D<"J"A"F&8"J#<)J#9"<$9&<";"8"
+01<7D7D01017D7D7D7DJ01010101017D01010185I7D7D01017D0101017D01017D7D01J$8#<"H%;"J"="J"J%;"
+B7D017D887D0101017D7D7DM887DH7D=017D7D7D7D>"E)8#9"<$>"8)8":"J"9'8"J#F"J%8#
+7D82017D017D7D017D827D017D017D7D7D017D017D7D017D7D01I0101017D7D7D7D01<7D7D7D8010101017D7D<#E)8#:#<":"8#8*9$8"9$F$8&:%=#J&:"B"8%;(8(9$
+7D7D7D0101017D80827D7D7D7D017D7D7D7D7D857D017D7D010101017D7D7D8A7D7D7D017D85017D7D807D857D7D0101=7D7D010101887D7D7D017D7D7D7D7D7D7D017D7D807D7D017D01017D?u8#9(<"=";"8"8#8&9"9+F"8$;':"J#;s)9$:";"8(<"
+7D7D7D7D887D01017D7D01017D010101807D7D017D7D7D7D7D7D01010101017D0101010101010101017D7D@0101017D0101017D8A7D8001010101017D7D017D01017D01J"?z8u8"Bz?t:"8#J#="8"=":'9"8(8&8#8#
+;7D/7D7D7D47D7D7D7D7D87D7D7D7D0101010101010101010101017D01017D7D0101010188017D@":$C"JrA$<z8'8r:y@t8"9*
+0101010101O67D7D7D7D/7D7D7D7D7D7D7D7D7D7D7D7D7D01017D7D7D7D7D<t$9#9$9v"w"z8%?r:tA$JuA%
+017D017D0101010101017D017D/01010101010101010101O*7D01017D7DE&9%F"9"J"<#=)>)9$9"9"=#:$Dv#w
+0101010101017D827D017D>0101010101017D7D017D7D01017D01010101010101018501858585858801857D01J$J$J"<)@&8#:">&9$8u8zC"C(:'9#
+8010101401017D68001017D01017D7D8201010101017D7D7D7D7D7D01807D7D010100101010101017D01017D01017D01010101J"8"J$J">"8'D%9$8.B"JrJ&s$
+4017D901017D4820101017D7D7D7D010101827D7D7D7D7D88017D010101017D0101017D47D87D887D01017D01017DJ"8"J%G"C"9z<#8t&I"B'8#>";(9$:$
+48801;017D7D8A010127D7D7D7D8A7D7D7D7D7D0101010101807D7D7D807D887D7D7D7D010101017D7DB)r"z";$8"J#8':"J"9z
+7D8085017D7D7D017D0127D88017D017D>01018085018501888287DR;65B'9r$Er;t)>"9"8t9"J"
+010101010101018285887D7D888A7D85820182828001017D601A"<"?z9":v#>";$9&s8'8%
+7D01:0101017D01018501887D7D7D7D7D0101010101010101018085=";)<"8'8'B'9"J$9&>"=#8,95r"y*t+wx&z#z)z+
+7D7D017D017D7D01017D7D7D7D017D7D7D7D7D017D7D8501018001017D7010101010101010185010101010101017D7D01010101801017D01010101017D7D010101017D01017D7D0101017D7D017D017D7D7D7D017D01017D017D7D7D7D7D7D010101017D017D7D7D7D7D>017D7D:01817D7D010101017D9017D010101017D7D7D017D=$;%A%8":$B"8";"8"J#?$>$:"8#=";#:"8#9'9">#:"8$8"B"8#8#uF"J"J+I":"8#
+01017D017D0101017D017D7D7D0101827D017D:7D7D7D7D7D7D7D7D887D7D01010101010101017D017D7D017D7D0101010101017D7D01810101@0197D0101017D7D7D7D7D8388017D7D>";$9";$:"<#A";":"9&8"?":"@"8#:r9&:#J%J":%9"J"J"8"I%8";"H%:"9"
+7D7D7D018A7D7D7D01010182018A01017D7D7D7D7D7D85827D7D7D7D7D7D7D7D7D;01010101G7D7D017D7D7D67D@7D807D7D01838B857D01017D7D01>*t9&9"8z:z8sJ#8"E"@&J#J"8"G'8(H%9"8&
+01017D7D85857D82887D7D7D7D7D7D7D>7D57D7DO<817D888B7D7D887D7D50189?01017D0101010101017D0101017D8301017D017D837D7D7D7D<%8':t"s9'="r"s$t5:(r(J#9"9"E":vJ#J">.=(A"<$9"9"9"
+7D7D827D820101010101017D0101010101010182017D017D017D0157D010101017D01010101018801017D0101010101010101010101017D017D017D01010101K01017D7D010157D7D?7D83017D7D017D7D897D7D017D017D017D7D7D7D7D7D7D7D017D7D01<r<$?"9&9*:"=">$<"8"=$u818&9(J"G&J$J":"8w>&@"8"<#8#:%
+01010101017D7D7D7D7D7D7D7D7D7D01017D0101018801017D018A01807D017D7D7D7D7D7D857D7D7D7D7D7D887D017D8582807D017D7D017D7D47D0101817D01O%010189@7D7D01017D7D01017D0101017D7D017D0101G"8"?&=#:$J">"?%v*<"9&=$J"I#H$J$J%="J$A#A"<"
+7D7D7D017D7D7D8A827D7D01601017D017D7D017D7D7D80010101827D7D7D7D7D7D7D7D01014010101010101?7D0101:7D017D7D01701017D017D7D7D?#8#8"8$<';r9#C-A)D"92=#J"J"J"8"9"J#C#9";"9"8$
+7D7D7D7D01017D7D7D7D7D010101017D7D7D7D7D7D88887D7D7D7D827D7D7D7D7D010101010101017D010101017D010101807D01010101017D97DO97D:01897D;7D7D017D7D7D01018301?"9+9">$8r8#8"8"<"s&A&8'J">'J"J%J#9"J%B"9":":"9"
+0101017D7D7D7D7D0101017D0101827D8001857D7D017D01010101017D017D7D7D8A7D7D7D7D801010101010101901O685010101<010101;01017D7D01017D7D01<$:&8"="9":&="9":"J#?"9$9"@&J"J#J"J"=":"
+7D8A7D7D01017D017D7D7D7D7D017D01017D7D47D807D7D7D7D017D7D7D8088P:01<7D7DE0147D017D=(>"9"<%8$9'<$9*=#<"9'9(9"9zJ#J"9"J"D#9#8":";"
+018501807D01017D017D7D7D7D7D7D8A017D80017D7D7D017D017D7D017D017D017D88017D0101010101017D7D7D7D7D017D7D/7DO7018BO1017DA017D7D7D7D010101<':"9$H#r8"9&9'8#;";"C(J#J$D$@"J"<$:(J#8"8$8#<"
+010101010101010101017D7D0101010101017D010101010101017D7D7D01017D8A017D7D50101O77D01017D7D7D7D<7D017D7D7D017D7D8B017DF01017D887D7D010188I"9$:'8":$C%@";";$D#<$8"J,8#J$rJ"8#8#>"
+018A7D7D010101010101017D7D807D017D800101017D017D85017D0101P%7D7D7D0101017D017D01817D81F01017D01K7D017D8B0101J"<"8$8"<(:"8%J%@#8(9#8):"J#I-8"<$G%=$J"9"9"
+701857D7D7D7D7D7D7D7D7D7D017D017D017D47D0182010101017D7D82017D01017D7D7D017D01017D017DO27D7D01017D7D7D018B7D7D7D017D897D017D7D7D0101017D7DO$7D7D01J#:"A&?"9&H$F&<'8(J#;#D#w<$D"8"?';#J#="
+801017D017D010101010101017D7D0101010101010101010101010101010101017D0101O201017D7D017D017D7D7D7D017D85017D7D7D7D83F7D7D89J&9$8"8"9&8%@$D$I"J#9"A"J&D"@#8#;#J"9":#
+67D7D827D7D01017D01807D7D7D7D7D0101017D01017D7D017D7DP 7D81857D601010101810101010101017DE7D010101J";#9"8">":";#:#C%I"9"J"9%<,H"8">#B'8$J"8"B":"9"B"
+8017D7D7D7D01017D7D7D017D017D01017DOK7D7D017D7D7D7D017D7D7D017D7D017D017D7D017D7D7D7D7D7D7D7D7D6838B7D7D0189<#A$8%G#A#8&A"8"J"J"8';&8#J">"C#?#9#E"8"A"8(C"
+7D7D857D7D7D82887D010101017D0101017D7D01801OK010101010101810101018501018B7010101857D017D7D01017D01887D017D010101<$?uGs8"y9"8"8"J"J&>$8$J$A&8+9$B"?#9'
+017D7D017D887D8A7D01;7DP 7D7D807D01010101010101?7D7D7D01017D8101010101017D7D7D7D7D017D7D7D7D7D7D7D7D7D7D7D7D<#@#sJ";"8":&8$@#:"8#8"8$8#@tF$J"?&9$J"J"8"8">'G">"9$8$
+88827D017D;7D8288010101010101010101017D7D7D80887D017D7D7D830183@7D7D7D7D7D7D017D01?88<7D7D0101010101017D017D017D018B0101<$@#8&8"9%r8r#x":#C#9&9"8"B#;"J$D"@";%=$<$J"G$>"8"8#;"<"8$J"9"8"8*
+7D7D017D010101010101010101017D0101887D017D887D7D7D7D7D7D7D0101017D7D0150101017D7D7D7D7D7D010101017D01>7D01010101017D7D7D0101010147D8B7D7D7D7D7D017D7D017D<#B";":$8":"8%<"D(J">#9"9"9"9(J"@(8"@#9$@"D"J%?#?#J"8%8$s8%
+01017D7D0101017D7D7D01017D7D01017D7D7D7D01585017D01820101017D7D010101B0101017D017D01010101017D0101887D77D7D7D837D7D0101>7D017D7D7D01817D017D7D017D<#B$9#8"A"8$;"8$="=#D"<"9':'9&8#J$=#>#B"D"J">"B"J"9":%@#8"
+7D7D010101017D7D7D7D7D017D7D7D7D7D017D827D7D7D7D7D017D7D7D7D7D7D7D7D7D7D7D827D7DO$01017D7D7D81010101:017D7D=7D7D0101010101017D="I"8";#9'<":"="9"8$D":#;%A$:"H"8"?"<"8"8#<"9%:#:&J'J$H%8'>$;#8#8":":"C%
+01010101010101010101010101017D017D017D010101017D7D7D7D7D7D7D7D7D7D7D7D7D0101017D7D01017D7D7D7D0177D7D017D7D7D70101017D7D7D7D7D01817D017D8101887D7D7D7D01887D8385017D<$>"J%A";":$:%:$8$<"A"8"9"9$8#8"<"8"8#:"9"?*J%J&9*:#w>$;#;$8$9"C%
+017D7D82O%7D7D01017D827D7D017D7D7D01017D01017D0101887D017D017D897D01010101017D7D7D7D7D7D7D7D017D0190101010177D017D017D7D017D017D7D7D01017D7D0101010101010101890101010101010101=#>"@$r"z:v8z9%:":$8$<":"<"8"<%8#J"9"?)J#J&9&8$;s#858$8z
+0101010101017D80/7D7D77D7D7D7D7D7D7D7D7D7D7D7D7D7D83018901010101015010101010181017D7D01>010150101018101808B7D898B7D8B897D897D581888083858889897D888B8B7D8B7D7D7D7D7D01017D7D7D97D="?"8"=#r#9v9z8u"z"z?z"z8t8$z)v8s's,C#8z8'w8z
+7D7D7D7D8201807D01301017D5017D/0187D0187D7D7D7D01/7D8B7D7D7D7D7D7D897D7D8B83858185857D897D7D7D7D898B818B897D810100101800101897D01/01<v+8%:$8"9"8%I"8#@(9,z?#u8(8#8z(8#z#s$?r%858#G"8'B#E"
+7D010101017D7D7D7D7D7D7D7D7D7D0101017D7D7D7D017D7D0101017D7D7D7D7D7D8201827D8A7D7D7D7D7D0117D017D01018881017D0101017D?018901010101017D017D101857D017D0101017D01800180101010101017D7D7D01017D017D81017D897D017D017D01018B7D7D7D017D7D01010181J$:$A#8":"F"A'9):$J";"8"9%:"8":"F"=%J#8#@r>#:&<(8$9"F";#D#8"@$
+:0101017D7D7D7D7D7D7D7D7D7D7D0101017D7D7D017D018A7D010101:8B7D7D7D01017D01817D7D7D7D0101:7D7D7D7D017D7D7D017D7D7D7D7D7D7D0101017D7D7D7D7D7D017D7D7D800101G"8"E%9$=$z8vB%J";"8"9&8"9":"F";%9(I"?#A#8&JsE"9"8$D"8"@"
+7D7D7D7D7D7D7D7D7D01010107D7D7D7D7D7DB7D0101017D7D8101018501817D8B01017D7D7D7D7D01018B017D7D7D7D010101857017D01010101010101<#9r'8$J"E":%E#:";#@%G"9"J"9#<"8#8#B"E#8$:"8"8">"8"
+0101017D7D7D0101017D7D7DP.017D7D8B7D7D897D0101017D7D01017D88601017D01010101017D7D7D01017D8B88857D80>$9%9":"="9"D$J$E$J":";"E%G"8"J"H#<"="8#8#E"A"9"8":"8"8"=#8"
+0101017D7D827D808201807D7D7D@7D7D7D7D7D7DE01017D8B0101018301:7D01017D7D7D7D7D7D7D7D0101010101010101<s8":$8"="9"I#J&:":"?$J"J$J%J"@#D"<#J"D"=#
+7D7D7D7D7D7D7D7D0101?82820180880101010101<7D8810101401897D7D:817D7D858801F01837D7D<t%:"9s>#B":"8w8s8z;"8"8#9$J&;#<$J(J"A"D"<#:#D"8"@%E">"
+017D010101880180010182010100101017D7D010101;7D7D7D7D7D7D887D01016887D7D017D010178801017D7D7D7D01017D7D01010101<w;"9s8%8#8"?$8"D#>$y#:%9"8%9"J#>"<"J"8"J"A"E"A(9":$@%J"
+7D7D7D8A7D88857D7D8A7D7D7D0101010101017D887D7D017D820101017D7D018810101018017D:80838901017D8B7D01017D7D7D817D7D7D01901<w8z8%<"C#8r$<"<,:%9(8%:$Ju:"J"8"J"A"E";#9"9&8$8$?"8"E"@#C"
+01/01010180017D017D7D8801827D7D0101010101017D0101010101018A017D7D017D7D0101017D017D7D016017D;7D80:01017D8501807D7D8B017D830189017D017D01857D7D7DI"F"8%8t;$8v?"9"A";$r8"8+G"E$J%J"J#9";)9">#8";"@"A"B%
+0101010101010101017D017D010101018201010101017D01010101010183800101;01017D7D:8BA7D7D7D7D0101017D7D0101017D7D018501017D7D7D89J"u;#J"@"9%9$J$9#8%9#J#8"J"A"J#<&9$="8#9&<"8"8";"8"@#9"
+K017D7D7D7010101010101880101E017D017D897D01858B7D01?01017D70180901017D7D0101017D7D7D7D8B017D7D7D7D7D7D88897D7D897D8BJ#9":$9#J%J"J"<"t"J#9"J"A"J#="?$="E"8"8";"8"@#8#
+K7D0101887D010101401017D7D501G80017D81?7D7D0177D7D97D7D017D7D7D01010101010101010101J"<)8"9"C"@"J$=&8"J"J"J"<">":(E0D%
+D7D017D0101017D010101017D7DO1017D7D810101010101E7D68BF01018B7D017D7D7D0101807D88017D01897D017D7D80857D81017D7D89G"J&8s8"8"G$J"J"<"8(J"J"A'@"<"9"8"9">";"8"GzC"8"
+85:01017D010101017D017D8558AG7D7D7D01818B7D7D01F0167D887D01880183898B7D017D017D010017D83G"Iy);"?">#J";(8#J'=#8"9"<"9">%:"B"J#
+7D7D017D7D7D017D7D7D01858A01O/0181010101010101017DO=7D7D7D7D7D7D7D7D7D7D7D017D7D01010101D0101J%9*9$C"8#8":":"G"J"9";&J"J"<"A#="8"@#8"9"?%@"8";";$;#8"
+D01017D01017D827D017D017D887D7D0188017D7D018001I01017D01010101O 7D:7D0101017D8B01017D01010101017D85817D01887D7D88J%9"9*C"9"8"9$9"G"J"J#>"J"8":"=#8&:"8"8"?#8#J"8";";$;&
+F807D7D01017D7D017D017D017D7D0101017D857D7D82O%01H7D7D01901017D89897D7D01018501887D017D0101801010101010101017D0101JzJ$J"J$E";$;":"=#;#="A#8"J"G"=&
+F501701010157DP'7D7D7D017D7D837D0101017D7D7D7D7D01783807D7D7D7D7DJ"G#8#J"J$E";$9$B#;#9"9"@"9"J"G"=#9"
+O/7D7D7D7D7DO57DO'0101017D017D018301017D7D010101817D0180101010181J%J":"J#J#D#;#9"9"C"J"8"
+OA01017D7DO20101O"7D7D@7D8B81817D7D7D0101O'0101J#J"J"J%B#8"A";"8&J"J"
+OB7D01O37DO(01@017D7D7D0101807D7D7D7D7D0101681?7DJ"Jz9r#9"?$J#J"?"9#8"@#;$8"J"J"
+87DG27D7D018588887D7DOM017DB01887D7D7D010101017D01885A01<#8"=":"8$J":z8r9">%D";"G"J%J$?"9"D#:$8"J"J'
+7D7D7D7D857D017D?7D401010101010101017D80O$01010101@817D7D01887D7D7D7D7D0197D=7D7D017D7D7D<#8"="9&8"A"J'J"="?"9"J"B"E";"<#;":"J"J$8"
+01010180827D017D017D7DH85017D01017DJ017D7D7DO77D7D7D7D7D7D7D01:88=018B7D8BH"9)<#9$E":#D$J)E";#8"9%J":"9"J"J"J"J#9"
+0101010101017D82017D7D01017D7D017D7D0101@7D017D7D7D7D7D7D017D7D018B017D7D5897D7DC01O&01;8B=7D7D01J'9"<"J#8$J%:$C%?&8r:*8$9";$8"J#8#:#8"?";";#J"J)
+;01017D7D7D7D0101F7D7D7D017D97D01010101017D7D7D017D88010101017D7D7D017D7D7D7D7D7D7D7D01017D7D7D7DG010101017D7D0101010101<89:887D010101018001I"?%:">"A";&A)8"?$9"D&>)8#;"<r9(;#@'H$8#8s8%>#9$8$8&J"9z8(:"
+8201010101017D7D7D7D7D7D7D0101017D0101017D7D7D018A7D018201017D7D017D010101010101017D017D010188017D0101010101010101017D7D7D887D7D0101018901010101010101010101010101D7D07D7D7D7D7D7D810101Iu);1A%<)8"8&;"8">"8"9#8"?$=%9#?#:'9';#rHz;$E"F'8$8,8$:"8-9$8#8"8"
+7D8882827D7D7D7D8880018582887D7D7D7D8885888001887D7D7D7D7D7D7D7D7D827D7D7D7D7D017D7D7D887D017D7D7D8588018081817D7D7D81888B7D7D7D7D7D7D88808983858181857D101010101017D7D7D017D7D7D7D7D7D7D017D7D7D7D7D017D7D7D7D7D7D017D01017D01887D01817D017D7D010101857DH"z#;)r8$8#A":$<"=&9"8"8&8$8">%=u"=#9%u#9&8"J';":&8#9#8";"8#9"8'8z:"8"
+7D0017D0101017D7D010101827D017D01010180017D017D7D7D7D017D7D7D7D7D7D0101017D017D0101010101817D7D01017D800185897D01017D0101O/7D7D017D7D7D7D010101017D7D7D7D7D7D7D7D7D7D7D7D010101010010101J"9(r#;"8'8"8"8"<$9#9'8#8'J%8#9";"8"9"8"?$>":%G%:$8"9"J"<#="J$8"D"@"
+M010101010101017D017D7D017D7D7D7D7D7D017D01017D0101010101017D7D0101017D7D0101017D57D7D017D7D7D7D7D017D017D7D0101017D7D7D7D7D017D7D7D7D7D7D67D7D7D7D>01017D887D7D>*8#J"9"8*9r8"9$>#8*9-B";%8$8":%:(<#:"8"8"J%:$8"9"Ir8"?"J"8"D"@"
+7D7D017D017D017D7D7D7DB017D7D8A7D7D887D01017D01017D7D827D017D01017D7D7D01017D7D017D7D01017D0101017D017D0101010101017D017D7D7D01010101017D7D7D01010101018010101010101010101017D01@01010101=#9%:"J#;"8"8"<#="9"9#8(;"8#8"8$8#B">":"=$?$:"G"J"@#9#;$>"
+7D017D01010101C8A7D7D80807D7D017D7D7D7D7D7D7D01017D7D7D7D017D7D7D017D017D01017D010101807D7DO37D837D010101010101=$9"8"J%="8";"9";";"8"<#9$<#:#J";"B":"G"J"J$8#9"A"A"@":"
+0101017D01F7D017D7D7D7D7D7D7D01017D7D01017D7D7D017D@7D01010101788>7D7D7D7D7D7D7D887D89<&9$8"E"G%9#<$8#9#9"=":"9"<";"<$8"9"G"=%J5J$8&8"F":"?)
+7D7D7D7D7D7D7D7D01017D7D7D7D7D7D7D7D01017D7D017D7D7D017D01017D0101820101017D85O&47D017D7D887D017D7D817D017D7D017D7D88017D50101010101017D7D01858501010101017D7D81J"E$B":)@"9#C":$:"8#:#J#J#Jv8"8t#J"9#?#;":"=#="J"
+C7D827D010101017D7D0101010101807D017D7D017D7D7D7D7D:010147D8B57D7D017D01>7D817D01017D7D81017D@83<v8"D"=$<$u$8%8%9"<"9";$8%9"9"8"9$9"J#I$Dz8#A':":&<#;"B">&J"
+017D7D8A7D0101017D01827D7D8580017D7D7D7D807D7D7D017D017D7D80017D7D7D7D7D857DO$010181018B07D7D7D7D7D7D7D7D887D7D7D0101017D7D88018B7D7D7D7D<01J#B"=#=(<0:";&:#9%8'r*J$9#?#8#8)I#9";%9$>"<"D$:"J"
+47D7D0101017D7D01017D7D8A01850101887D7D010101017D010101010101010101887D0101010101010101017D018001017D7D7D7D0101O77D7D7D81010101010101017D01017D010101017D0101017D817D85017D837D8B7D97DJ"J+:$8"8"9#;"<&:)>$9$8$8"J"?#9$A"D#D":"8"8"=$D"E$8$J"
+67D:7D7D0101017D0101017D7D7D01017D017D017D7D7D7D7D01827D887D7D017D010180858A010101017DO.7D010101018B018B01017D88017D7D017D7D7D017D0101901G'I$:1:&8"=">"8+8"='8"9$J$?$8#:$@"=#G#8#8"8"J#G$:":&8$
+01887D0101017D7D7D0101017D01017D7D8A01017D7D010101010101017D010101017D7D7D8A0101017D017D7D7D017D01017D010101O.0101880101010101010101017D7D7D7D018B7D7D501010185017D7D01897D7D7D7D7DH"?)<$8":$8&D&<";)9"9";'8"8#J"="="?$;#:"G$:*Jr8"8%8&8#8#9"
+8A7D8A7D827D807D820101017D01017D7D7D7D01017D017D017D017D7D0101010101010101827D010101018A7D7DO4017D7D017D7D7D7D8B7D017D7D7D7D017D7D7D7D01;7D8B7D7D7D7D7D7D7D7D7D7D7D7D7D80B#:%=(9#8"9"9%=";"=$8'8%9$?"8"8#<#J"B"B";#:%>"8"8#;"8":#:#;$;#D">"8"B"
+8A7D857D7D7D01010101017D017D7D7D017D7D01017D7D8201017D7D7D7D8A01017D01017D01857D7D01017D7DO901808301017D7D01017D01017D017D7D7D7D7D7D7D7D7D7D7D010101B";%<"?'=%>$8":(;#9#8&9":&>#J";">#8"9"="B"8$="J"9$9"8*
+01807D8801017D0101017D0101017D7D82857D01017D0101017D7D7D7D017D0101017D01827D7D7D01017D7DOB7D01857D7D7D857D017D7D01O 017D7D7D010101017D01017D0101G%B"9#8#@#;'8"8"8$>$8$8"<&8":)8#J$9%;">#A"8%>#?#8$?#8"Ar8"G&8"8"
+7D7D7D7D7D80017D0101017D0101010101887D01017D01017D7D017D7D7D7D7D7D7D017D7D017D7D0101018201O57D017D010101017D010185817D7D7D0101010101018B01010101017D7D7D7D7D0101C"9#H#F%8"8&8"9#?#83;'9&J"8"@$J"8%A#;":$C"9%>#;";#
+010101017D010101017D7D017D7D01017D017D010101017D7D828801018A7D7D7D017D017D017D7D01010101017D010101O401017D010147D887D01017D7D017D7D7D7D010101017D7D017D7DJ#;&=#9"8":$<'9$;"9";)8)8#8"9"9%8"J"J"C"?'8$:#A#8"8#9"8"Br
+57D7D7D7D7D7D7D7D017D7D7D7D7D7D7D010101017D017D01017D017D7D7D017D0101017D01010101807D80017D7D7D01857DOA019017D7D7D7D7D01010101017D7D80017D01017D0101<&8"8(<'8$;"8"8#8/:&t$8%;"8,8"8&J#C"J&>%<"<$@"9"9":"<%
+7D7D7D7D7D7D7D7D7D7D010101010101017D017D017D01017D7D017D880101010101017D7D7D7D7D017D01017D017D7D01017D7D01017D01017D017D017D7D7D01017D7D010101O8857D01?7D7D81017D7D7D7D017D01010101017D0180010101<":$8#8&8#9$9%?(<$9)8":,8";"8(;$;"J#@"8"I"?';$9$@#F"B'8"9"
+017D010101017D7D7D7D7D7D01827D7D7D01017D010101017D82010101018001017D7D7D7D017D7D7D017D7D7D7D7D01017D7D01827D7D7D0101017D7D0185O57D017D8101807D01017D7D85010101010101017D0101857D7D7D017D<";#:";'8+D&<':"8"<*>"8$>">"J"D"J%8"<#H#>">">"9&
+7D7D7D01017D7D017D8A017D857D7D82017D7D017D7D017D7D01017D7D7D7D7D017D7D01017D017D01017D017D017D7DO58501:7D7D7D7D7D01017D7D807D7D7D7D7D0101D&;"8s8#8y9"8s8":$:%9%:%8"9'9%J"8$J#@"J#:#;#8">"H"9$H#<"
+7D7D7D7D7D7D7D7D7D7D7D7D01017D7D7D7D7D017D018A01017D827D01017D8501807D7D017D01@7D7D017DD017D01;7D7D017D01017D7D89017D7D7D7D01<"<"J"9'=':%;'8%;#D"A"8$@%9#H"E$J$@"<$:#:$;";"8"C%9$
+018AO,017D01887D7D7D7D7D7D7D7D8501017D7D7D7D010101017D017D017D7D7D010101017D7D017D807D0101017D801017D017D7D017D7D7D7D7D018985897D0101010101=*<w$w.8%@"9'9"8"<#9%8$8"8"9":#;#D"8"@"8%9#J#J$;"?"8"=":$A"8"9"=$@%
+017D017D01017D7D01017D017D017D01010101017D01017D010101010101017D7D01017D7D80017D0101827D7D017D7D857D7D7D7D7D7D7D7D7D7D010101010101>7D7D<81017D010180010101017D7D01857D887D887D7D>+F"8"J)8"8":$:#8"9"9"<#8$9'<#8$;#;">%="8"8#<";"8#J#8"C%9$8"8$="9$;"B":#B4
+01010101880101010101017D401017D0101017D7D017D0101017D7D7D7D7D7D7D01010101017D7D7D0101017D0101010181017D80017D017D7D7D7D7D7D8857D7D7D7D7D7D01017D01017D0185017D7D7D7D01017D857D7D017D7D7D017D7D7D7D7D0101010101B':"8"@%@#>"9(8$8#F$9#:"<';"9";#9$>%="8$<&9"8#J#8&C$9$9"9">#9#9#>#:#=%9'8r<"
+017D017D017D7D7D017D7D7D7D7D0101017D7D7D7D800101017D017D7D7D01017D010101010101017D7D7D0101017D7D7D7D01807D7D7D0101897D010101401018B7D800101010101017D7D7D017D7D0101010101017D7D7D017D7D01017D010101017DC&8"8+=tE#9+8'B%8":"8$C#>%?%:)="8&8#8":"D"8'8#;'8#B%:">";&<%;#>#>";"
+0101010101017D7D7D7D7D7D017D7D7D7D7D7D8501017D7D7D7D7D0101010101017D017D7D7D7D7D7D7D017D7D017D7D017D010101017D01880183830185010101017D7D7D7D7D817D887D7D7D7D7D010185017D7D7D7D817D7D01897D7D7D7D7D7D7D7D7D7D7D7D018B7D7D8901F"9">$:"<%8";";#s'@r?.J(GvE"8":"G$A$<"?#:#;$:$J";"8#>"
+7D7D7D7D017D827D01010101827D017D0101850101017D7D017D7D7D7D017D85017D01401010101850101010101017D7D887D7D7D7D7D7D01017D7D7D7D7D8B90101010101F%F&8%8"8(z@%8$8"9"?"@"J$:)<);$9"9&Jr=#:"J'r5u
+0101010101010101017D7D7D7D7D7D7D7D7D7D7D8AC7D010101017D7D017D7D8801A888B8001887D7D7D7D7D7D837D7D7D7D7D7D887D7D7D7D88887D7D7D87D7D7D7D77D7D7D7D7D817D9018B8B858101818888858583857D7D81817D8B8888837D8B8B7DJ)9#>u9#8":"J"8":"8"8r8%9(z<r<'@#Jz"w&r+
+4010101017D0185017D010101017D85H7D7D88017D017D7D7D7D7D7D7D7D7D01J7D7D7D7D7D7D7D7D7D7DO51017D017D017D887D0180010101010189010101J$;"G.r,z";#8#9"9"8$9%8"8"Cs):#=w8"8&8&9'G">%<$8#>&:"8"8r&;"@$9#9#9%
+801017D7D7D7D827D7D7D7D01010101017D017D0101017D82010101017D9017D7D7D7D7D017D010101010101017D81017D857D88017D8001010101010101010101800101010101017D0101010101010101017D81018B0101017D01017D7D8B7D7D7D7D7D7D7D7D7D7D017D7D7D7D7DF"?&8#A"8(D"9#:#A"A"?%8"8$>"="='8%9'8%>"E":"8"?";$I#<#8(9%:"8-?"C":"8#:"9%
+7D01018A01017D7D7D7D7D010101010101017D857D7D7D7D7D01017D827D7D7D018B017D0101017D7D0188017D7D7D7D0101017D7D8B017D7D01010101010101017D7D0101017D7D01010181010101017D7D88807D7D7D85817D858801880101010101@";"A"9"8$9#8"9#J":%?$8rB)8"="B"8#8%8#8#9#="<"B$C"B$A$9"9":$C)8"z<"="8$9"
+7D8501017D7D7D7D7D7D01018010101017D01017D7D7D7D7D017D0101017D01017D7D7D7D017D7D7D017D017D0101850101017D0101010101817D7D7D010101017D017D7D017D2017D01017D0101D%C%9$8%J$B#>":&J&:$9"8":"J"F"9#;#D#9%:)B"9':"8%8$:$A"
+7D017D82010185017D7D7D7D010101O"8A7D7D01017D01857D7D7D60101010101897D83017D7D78B857D7D7D017D7D7D7D7D7D7D7D0101017D7D7D887D857D7D7D7D7D7D01807D7D018188010101B$s#>&:#J%=$8"9&>%:#>#8"9"9"<#8";"9#r8'9#8"8"F"F"?#C#="8";)?u:"8%8)J#=$
+7D7D017D807D017D7D01010101;7D7D7D7D7D7D7D7D7D7D7D827D0101010101017D7D7D7D7D01010101897D0101010101010101017D0101807D017D7D017D85018B01010101010101010101010101017D7D7D7D0177D7D7D8383?$8":&C$8#J";+9":&:#:#>#>"9#:";":#J"F"="8";"8"9"9"Ez"
+7D7D7D7D017D807D7D7D01807D7D?7D7D7D01017D7D7D7D7D7D7D017D010101820101017D7D010101018B010197D8301017D7D7D7DR6507D?r8r8"9#r:$?";"D%8#C,8'C"=&9&<#="="J"E"9"8"
+0101827D7D017D7D7D01017D017D7D7D7D017D017D018A7D7D7D01017D017D7D7D82017D7D7D7D7D8B7D7D7D017D7D7D8187D7D017D<z9"9&9%>(8%9"<$J#>$8"8#
+PA797901017D01010101010101017D017D7D7D7D7D7D7D8B817D01801017D7D01010101J"8"9":":$:"D#8v:&9"Jz"z"z"z"z
+Q3010101017D7D7D017D7D7D01017D01017D6C017DM017DL017DK017D=01J"J#8&8&B$9#8v@#9&
+Q"8B50101010101010101010101017D7D8301010101817D7D7D7D7D9"z9";"H$J"8(Jr
+01PC8301017D7D7D5857D7D7D0101010177D:zJ*@$9#?"@r
+PC01?7D7D8B7D017D7D017D7D7D7D0101837DJ#8"8"9"<":#8"@"u
+Q6010101017D7D01017D017DJ"8%8%:$<"8"
+Q50101010101010101017D7D01017DJ$J$8%<'<"J"8"
+PJ7D7D80B837D7D010101010101017D7D7D7DD8385J$;%J(<$<#rJ"8"
+PJ0101018B7D017D57D7D7D0101010101010101017DE7D8BJ#F+F&J%9&
+Q$018B80818B7D7D7D7D010101837D7D7D7DH890101017D01010101J$Dr@"tJ"8":#
+Q%01010101837DL81887D81J#zJ%;$
+PJ8080J7DO'7D7D7D7D7D7D7DJ#
+PJ7D7DJ%r'J$8'8&9$H$8'8&8%
+R$0101017D017D017D010183O 7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7DJzJ+;%8&F+;,J$8'8&;"J$8'8&8%C$8'9$;"
+R$17DM7D0101017D0101010101010101017D0101017D7D0101017D010101010101010101017D010101017D57D7D7D7D7D7D7D7D7D7D7D7D7D7D7D57D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7DJ">$9$J">$9$J+;%:"J+;,A+:&8#
+S4017D7D017D7D7D8017D7D017D7D7D<7D0101017D0101010101010101017D57D0101017D010101010101010101017D010101017D7D0101017D01010101017D0101017D7D7DJ$;"9&J$;"9(8$J">$9$:#J">$9$I">'9"8#
+S67D7D0101010101017D97D7D0101010101017D01017D7D014017D7D017D7D7D7D015017D7D017D7D7D017D7D01017D01010101J$I$r="?&9#:"J&9#:"<%J$;"9&8#J$;"9,D$;"9%
+R18B888801017D01017D0101017D7D017D;7D0101017D7D017D7D7D7D0177D7D0101010101017D7D0187D7D0101010101017D01017D7D7D7D7D7D01017D7D7D7DJ$?(9$D$J%J&9#:";'I&9#:"<%B&9#:&
+R17D7D7D8B0101010101017D0101850101O77D01010167D0101017D7D017D7D7D7D7D7D7D7D0101017D7D017D010101017D0101017D7D01010101017DJ+>"D$=&8#;&8&F&8#;&8&J'J"9#
+R7010101010101837D7D7D7D7D7D7D017D7D7D017D01017D7D7D01017D7D7D01017D7D7D017D01017D7D7D017D7D7D7D7DH010101017D01G7D7D01J#J'u"r<"A"E#>$9"=$:$H$9"=$8'J&8#;&J&8#;,B&8#:'
+Q$0101G83800101017D0189018101010101010101010101010101010101010101010101010101014017D7D7D017D01017D7D7D01:017D7D7D017D01017D7D7D0101017D7D7D01017D7D7D017D01017D7D7D7D01J'8z8x8'9";'C"J#J$9"=$<"J$9"=$9$D$9"<%;"
+PL88010101010120101010101010101017D7D017D017D8B;817DP$0101010101010101501010101010101010101010101010101010101J$J#C#?"="F"<"H%
+PJ010101901010101817D8883807D0101J#J":&E%9":";"="<z
+Q,7D7DD017D01010101817D01017D7D7D7DR07DJ#J"I%="<"<"8":z
+Q,0101I01017D7D7D8101017DR001J#G":"9"<"<"9"
+R,7D7D8880837D7D8BJ"J":"9"=$="
+R)7D57D01817D7D017DJ%8#J"9#9"9'
+R&7D8B01010101:8B7D7D01818801010101J%J"9">#8'
+R&0101017D:81887D7D7D7D7D7D7D7DJ"8#G#9"9"9#>$
+R)017D7D838001890101010101J"B%="8(9'
+R083857D7D7D817D7D897D01018B01017D010101J&B"="8"8%8":&
+R,01887D7D017D857D01010101897D7D7D7D7DJ#D":%8"8(9"
+R-7D01887D7D7D7D837D7D017D7D01017DJ"F"9"<"8#8"J'@#>#>#v;#J#>#>"<#J#=#?#8u
+R,7D7D7D80010101C7D7D7D7D7D7D7D7D7D7D7D017D7D7D77D7D7D7D7D7D7D47D7D7D7D7D7D7D;"="C"8"J%G"J#J#8xAuJ)>"B"?,:"J"B"C"J"?"A"9t
+6565656546565656565O<7D85O!01017D7D@7D01010101017D7D7D7D01010101017D01010101017D87D7D7D57D010101<";"G"I'J"J#J*9&J#;$>$>"J$J$>"E$I$=#=#
+656501650101010165P 7DO!7D7D<898588858581017D018B8988800167D0101017D017D7D01:017D7D6017D7D01017D7D017D7D017D7D01G$:#:"8"9&8"@"9$:$<$J#J#<$8"8":2:%J"8"@#J"8"J"8"@#A"8"H"8"
+6565656565656565016501656501656565656565656565O47D85O$01010101010101808501017D0101010101830101010101817D7D7D89G7D01017D67D0157D01017D7D017D01<#9#9&8%C':$;&8&:&J(J#8-;r%9$="J"="="9"?#J"9"J"9"?#A"9"G"9">";"
+01656501650101016565010165650165650165016565650101016565010101656501010165O.7D887D7D7D7D7DO$7D7D010101017D7D7D01010101017D017D017D7D01887D87D01017D017D6017D4017D017D017D017D7D7DJ"C"8"=%="8"J"J#<$;":v9$J'?":"B"I":"I":"B">":"F":">"=";t
+:010101010165650101O<7DO)01850101017D01010101?01017D7D7D7D7D017D7D017D017D7D017D0101017D=&;$J$@$<$J#8#?#:$C">"J)<";"?$I";"H";"?$>";"E";">"9"=t
+0165016501656565A010165656565656565P:7D7D7D7D7D017D7D7D807D8010101017D7D7D7D017D017D7D017D017D017D7D017D017D7D7D01G%J"D%<%J#C";$C%:#J&9rB"HrHrB"=rEr?";"
+01010101=656501010101010101P90101010101017D7D7D018901<0101017D7D7D017D7D017D7D0101>$?";"?"J"E"J"J"J#H#>":t=t9"Js?&:%9t<#<$=tru;#<$<#s>t>#
+01650165656596565O57D97DF7D7D7D7D7D7D7D0147D7D7D7D7D7D010101017D01017D7D7D7D017D01017D7D7D7D017D7D7D7DF&8%<%C'8&8'9&J"J$B"@#J#?"9t=*=#r#<&8"?%8$;"u:"9&8#=#8$As9"9&8#;"9r>t>#
+0165656501016565010165650101656565650101656565010165656501650165656501O87D57D7D7D897D7D@01017D010101017D01010101017D7D017D7D010101010101010101010101017D017D010101010101010101017D01017D010101010101010101010101;"9"9"9$:%8"9'8"8";%:$:r8$J$="C#?$;":$A"J">"J$<#9"="B$D"="F"="B$9"="C"="
+010101010101010101010101010101010101010101010101010101010101O,7D7D7D017D7D0101017D7D010101@7D018017D7D7D010101017D7D01010101017D7D01010101J$>$8";$C"8$:$J$;%J"r"8"A"A"C"A"B"A"A"8"A"?"A"=$>u
+PL0101010101017D857D017D8B0101017D7DL010185010101017017D017D7D017D7D7D7D017D7D7D7D017D017DJ$<"9";%:"@";%A"I"8#>$9"8"Jr9#?#9">#<":#?#B#?#9">%?#?#?#>">v
+Q!017D817D0101017D017D7D7D7D01017D7D887D7D0101017D:010101010101010101010101010101010101010101010101010101010101J"8$;"9"=";"=%<3E"9#8"<'
+PM7D010101017D8101017D0101017D7D7D7D7D7D017D83017D7D01017D01018B01017D8101017D817DJ";$<"="=&8#8#8(r:*="9#8";#9&
+PM0101010101017D017D017D887D7D7D0101010101017D01807D837D7D7D7D7D7D7D817D0101010101010101J&8#8#>"@&;"<"9#>-
+Q>010101010101010101017D7D7D7D81808B808383857D01887D7D7D7D7D7D8BJz"z;";"<z8)
+PJ>7D81B7D7D7D07D7D7D890101010101Jz8(9%9#?v:'9*<&8%
+PL601010101807D0101017D010101010101807D018801880101010101017D0101010101017D7D0101J#;"8#9"8"8*<"8$8":"9">$:'9%=%;#
+PJ0101817D7D7D887D7D0101017D7D01017D7D80017D01017D7D7D7D7D7D7D7D7D7D7D7D80010101010188J%J";%F"8"J"8#9"8"8#:"@&8#:"B$t:#G"
+O+65656565665656565656565<01010101010101017D017D7D01018801017D880101017D>"=$:$=&8$:$<'J'H"J"<t8tA%<#E"@%
+656565656565656565656565656565656565650101010165:65010101016501O!8501017D7D7D7D7D7D7D7D7D017D="=&8&=+8&:#:#8"9"9$:#A"8$:$8&9$8%J"J$>%C$=":"
+6565010101656501010165010101010165010101656501010165650101656565656565656501656565656565656565016565656565016565C01B7D01017D7D01017D7D01017D=":"<"8"J&8%;$:&8*:&8%J"J#>#A"?"8#:#
+01650101O#6501010165650101650165656501010165650101016501016501650101016565010165C7DB7D7D0101888883880101B":#<#=$J"?"<%C"E"J"J"B#?#>"8(
+0165656501656565C0101010165650101F01A017D7D7D7D0101010189018B7DF%9$=&J"C$E$8$J"@%:";";"8"8"8%
+650101656565010101010165565656565010165656565P$7D7D7D01017D017D897D01857D01F";$>"J#A%B"=%J"J"?%@";"8"8"9#
+016501016590165650101016501010101O07DA0101017D7D7D0101010101J#9$;"C"F"<"J"J#;#@&F%=z
+O)016501650165656565O)01@017D7D7D010185837D817D7D7DR07DB"8&9%9"8,8&;(8%9,;-8&9":&J$="J$<";&:">'<y"z"z"z"z"z
+650165656501656565656501656565010101656565010165656501016565656501650165650101656565016501016565010165656565010101656565010165656501650165656501@7D017D7DF8081858901010101017D7D7D0101837D017DF017DG017DF017DG017D;01>"9"9$9&=$9$:$='9%9&8%;%9$:$9%9$8"9"J$="J"8$<#J#
+010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101:01010101C807D01010101:0101J#J"C#?%
+=6501Q=7D010101017D7DJ"J&H#J";#?#:"
+=01P,7D7D7D7D7D7D7DK7D01017D8801J#I(9"J":#F#;"
+PL85010188017D7D7D887D<018901010101J%J"9"J#9#I";"
+PK0101010187D01;7D7D85808B81J"I"9#J#9#9"E%8"8"9#
+Q 80010101?010181017D857D7D7D01850101J'>#=(J*E%;'
+PK7D7D7D7D7D7D8B85810101857D0188@01017D887D7D017D01817D0101017D7D7D7D7DJ#8'<"8%J&F$9#8&
+Q$887D88810101017D017D80017DC837D010181807D7D7D80887D017D81J"8#8#9"@"J&9"F"8"8#8&
+Q!0101010101017DA7D7D857D8B017D7D0101897D857D01J'J'I"9vJz
+PK010101010101O)017D7D7D83018B7DB07DJ"J'I"8(JyJzDzJx
+Q701B7D7D017D807D888001817D017D01H01797D97DO&7DJ'G"9"J#8#I"8$<":#JzFzGzJv
+PK7D7D017D01857D01A01018801807D0101017D7DO7701701/7D601JzJ&F"8%8$9":"8"Jx
+PM=7D?7D807D8B7D7D017D010101010181017DQ)01J$s9$J&F"B$;%
+Q(8B838001010101B01017D810180017D0101010180Jz
+PJP165
+
+Jz
+PGP401
+
+JwJwJt
+TA7DF7DO47DJwJwJu
+T@01H01O201
+
+
+
+
+
+Jy
+SI7DJzJz
+SH001Q!57DJxJz
+V57D6601JvFvJz
+TM7D7D=/01JxDx
+TL0101
+
+J$8'8&9$
+SG7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7DJ+;%8&D$8'8&8&D$8'8-D$8'8&8%E$8'9$
+SF7D0101017D0101010101010101017D0101017D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D017D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7DJ">$9$9"G+;%9%C+;tE+;,C+:&8"
+SF017D7D017D7D7D017D0101017D010101010101010101010101017D0101017D0101010101017D0101017D010101010101010101017D010101017D7D0101017D01010101017D0101017D7DJ$;"9&:$C">$9$:$D">$9$;$C">$9$J">'9"8"
+SH7D7D0101010101017D7D7D01017D7D017D7D7D7D7D7D017D7D017D7D7D7D7D01017D7D017D7D7D5017D7D01017D010101J"J%G"J&9#:"<&E$;"9&8&E$;"9&;"F$;"9,F$;"9%
+PB50A5050505050OH7D0101017D7D017D7D0101017D7D7D0101010101017D010101017D7D7D0101010101017D017D7D0101010101017D01017D7D7D7D7D7D01017D7D7D7DJ'J&9#:"<"G&9#:"=#E&9#:"<%D&9#:&
+Q5500101010150Q$7D0101017D7D017D7D7D0101017D7D017D7D017D0101017D7D017D010101017D0101017D7D01010101017DJ$9$8%8$@"9$:$<$J&8#;&8&J"9#
+PJ5050505001505050015050505001505050505050505050OC017D7D7D017D01017D7D7D01017D7D7D01P37D7D01J&9(8&:$;&8&:&J$9"=$:$D&8#;&8&C&8#;&8#F&8#;,D&8#:'
+PI5001010150500101500101505001010150015050500101015050010101505001010150OC01010101010101010101017D7D7D017D01017D7D7D01017D7D7D01017D7D7D017D01017D7D7D017D01017D7D7D017D01017D7D7D0101017D7D7D01017D7D7D017D01017D7D7D7D01J"=";"B%="8"J$9"=$:$E$9"=$9"H$9"=$9$F$9"<%
+PI010101010150500101PI010101010101010101010101010101010101010101010101010101010101010101010101J$D$>$@$<$
+PJ505050505050010150505050505050J%D%:"D%<%
+PI5001010101010101505001010101010101J"<"F"E"
+Q)50505050J%8';%8&:'8&8'9&
+PC5050505001505050015001505001015050500101505050500101505050010150505001500150505001J&9r:#:$<%:$:r8$Jz
+PB01010101010101010101010101010101010101010101O-R07DJ"Jz"z"z"z"z
+Q&50P)>017DM017DL017DK017DB01J&
+Q&0150505001J$J";$;";$E";$9%:$J";$9%9%J";$9%<"J";$9%:$
+Q'010101P*7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D7D67D7D7D7D7D7D7D7D7D7D7D7D67D7D7D7D7D7D7D7D7D47D7D7D7D7D7D7D7D7D7D7DJ#;&8#;&B#;-8&I#;4I#;-:"I#;-8&
+S27D7D7D0101017D7D7D7D0101017D7D7D7D0101017D017D010101017D7D0101017D7D7D7D0101017D017D010101017D017D010101017D7D7D7D0101017D017D010101017D7D7D7D7D0101017D017D010101017D7D0101017DJ#:#9"8#J#:#9"J#:#9"J#:#9"@#I#:#9">#9"
+S201017D01010101601017D0101A01017D0101A01017D01017D0101017D01017D0101J%@&I%8"8$J%8"8&8$J%8"8$8#J%8"8$8%
+S97D7D7D7D017D7D7D017D7D7D7D017D7D01A7D7D7D7D017D7D0101017D7D01:7D7D7D7D017D7D017D01;7D7D7D7D017D7D017D7D7D7DJ&?&I&8%J&8%9%J&8%8'J&8%9&
+S9010101017D7D0101017D010101017D7D7D7D01B010101017D7D7D7D017D7D7D01;010101017D7D7D7D017D7D7D7D7D7D8010101017D7D7D7D01010101017DJ%J%9%J%9'J%
+T77D010101I7D0101017D010101B7D010101010101017D01>7D010101J&J":"="J'?&H'8&8&J'8&8&J'8&J'8-
+Q?5050505050;505050G017D7D7D7D01017D7D7D01017D7D7D7D017D7D7D7D7D017D7D7D019017D7D7D7D017D7D7D7D7D7D7D7D7D7D9017D7D7D7D017D7D7D7D7D>017D7D7D7D017D7D7D7D7D01017D7D7D7D01J"?">$9$:$<&J";"J":%;";$E":%8'9$J":%8xJ":%8';"J":%8'8%
+PE50505050505050505050500101010150@5050D0101010101010101010101010101010101010101010101601010101010150101010101010101010101014010101010101010101010101010101J"?">,8&C$9(:$J$8%
+PD50505001010150015001010150500101015050505050015001505050505050450505050015050J":":">"J&9(8&>#9#9&8%
+PD01500101=500101015050015001010150500101015001505001500101015050010150J"F#H&8"=";"J"<"
+PI015001505050500101010190101J$I%:$D$@&;$
+Q*505001010101015050505050500150015001505050J$J%D%H%
+Q)500101;500101010101010150010101J"<"@$B"
+R'505001500150J"@"9+8&B':&8&H,
+PI5050505050500101505050010150505001015050500150015050500101505050010150505001505001505001J"9";"=&8$:$;">r9$:$9":"9"9"9&8#
+PE010101010101010101010101010101010101010101010101010101010101010101J#
+Q%5001J"
+Q%01J"
+RG01
+Jz
+S0R050
+
+
+ENDBITMAP
+%%EndBinary
+63 54 549 738 C
+0 0 0 1 0 0 0 K
+FMENDPAGE
+%%EndPage: "3" 11
+%%Page: "2" 12
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 1 0 0 1 0]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+[ 0 1 1 0 1 0 0]
+ 8 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 12 Q
+0 X
+1 1 0 0 0 0 1 K
+(2) 533.91 104.25 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 14 Q
+(Mapping concepts) 417.39 716.75 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+64.34 61.25 550.34 92.25 R
+V
+1 H
+0 Z
+N
+0 0 0 0 1 1 1 K
+1 10 Q
+7 X
+0 0 0 0 1 1 1 K
+(Previous) 311.92 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 321.09 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Next) 370.82 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 369.7 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Quit) 517.49 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Go) 228.87 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Back) 223.86 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Cmnd) 416.1 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Refs) 419.43 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Master) 73.86 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 68.31 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(First) 273.59 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 272.48 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Viewer) 462.76 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Help) 468.04 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Index) 125.53 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Local) 174.14 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 165.54 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0 18 Q
+0 X
+0 0 0 1 0 0 0 K
+0.09 (Area feature) 72.58 689.35 S
+2 14 Q
+0.07 (An area feature is a closed figure whose boundary encloses a) 90.58 659.02 S
+0.07 (homogeneous area, such as a state, county, soil type or lake.) 90.58 642.02 S
+1 18 Q
+0.09 (Map characteristics) 72.58 604.35 S
+2 14 Q
+0.07 (In addition to feature locations and their attributes, the other) 90.58 574.02 S
+0.07 (technical characteristics that define maps and their use include) 90.58 557.02 S
+0.07 (scale, resolution, accuracy, and projection.) 90.58 540.02 S
+0 18 Q
+0.09 (Map scale) 72.58 502.35 S
+2 14 Q
+0.07 (To show a portion of the Earth\325s surface on a map, the area must be) 90.58 472.02 S
+-0.7 0.07 (reduced. Map scale, or the extent of reduction, is expressed as a ratio.) 90.58 455.02 B
+-0.54 0.07 (The number on the left indicates distance on the map; the number on) 90.58 438.02 B
+0.07 (the right indicates distance on the ground. The following three) 90.58 421.02 S
+0.07 (statements show the same scale:) 90.58 404.02 S
+0.07 (1 inch = 2,000 feet) 207 375.02 S
+0.07 (1 inch = 24,000 inches) 207 358.02 S
+0.07 (1:24,000) 207 341.02 S
+0.07 (The latter is known as a representative fraction \050RF\051 because the) 90.58 312.02 S
+0.07 (amounts on either side of the colon are equivalent; that is, \3241:24,000\325) 90.58 295.02 S
+-0.19 0.07 (means \3241 inch equals 24,000 inches\325 or \3241 foot equals 24,000 feet\325 or \3241) 90.58 278.02 B
+0.07 (meter equals 24,000 meters\325, and so on.) 90.58 261.02 S
+0.07 (Map scale indicates how much the given area was reduced. For the) 90.58 232.02 S
+0.07 (same size map, features on a small-scale map \0501:1,000,000\051 will be) 90.58 215.02 S
+0.07 (smaller than those on a large-scale map \0501:1,200\051.) 90.58 198.02 S
+0.07 (So each scale represents a different trade-off. With a small-scale) 90.58 169.02 S
+0.07 (map, you\325ll be able to show a large area without much detail. With a) 90.58 152.02 S
+-0.21 0.07 (large-scale map, you\325ll be able to show a lot of detail but not as much) 90.58 135.02 B
+0 0 0 1 0 0 0 K
+FMENDPAGE
+%%EndPage: "2" 12
+%%Page: "1" 13
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 1 0 0 1 0]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+[ 0 1 1 0 1 0 0]
+ 8 FrameSetSepColors
+FrameNoSep
+1 1 0 0 0 0 1 K
+64.34 61.25 550.34 92.25 R
+0 X
+1 1 0 0 0 0 1 K
+V
+1 H
+0 Z
+N
+0 0 0 0 1 1 1 K
+1 10 Q
+7 X
+0 0 0 0 1 1 1 K
+(Previous) 311.92 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 321.09 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Next) 370.82 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 369.7 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Quit) 517.49 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Go) 228.87 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Back) 223.86 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Cmnd) 416.1 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Refs) 419.43 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Master) 73.86 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 68.31 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(First) 273.59 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 272.48 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Viewer) 462.76 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Help) 468.04 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 12 Q
+0 X
+1 1 0 0 0 0 1 K
+(1) 532.91 103.25 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+1 10 Q
+7 X
+0 0 0 0 1 1 1 K
+(Index) 125.53 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Local) 174.14 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 165.54 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+1 24 Q
+0 X
+0 0 0 1 0 0 0 K
+0.12 (Mapping concepts) 71.58 713 S
+2 14 Q
+-0.58 0.07 (A map represents geographic features or other spatial phenomena by) 89.58 682.67 B
+0.07 (graphically conveying information about locations and attributes.) 89.58 665.67 S
+0.07 (Locational information describes the position of particular) 89.58 648.67 S
+0.07 (geographic features on the Earth\325s surface, as well as the spatial) 89.58 631.67 S
+-0.1 0.07 (relationships between features, such as the shortest path from a fire) 89.58 614.67 B
+-0.67 0.07 (station to a library, the proximity of competing businesses, and so on.) 89.58 597.67 B
+0.07 (Attribute information describes characteristics of the geographic) 89.58 580.67 S
+0.07 (features represented, such as the feature type, its name or number,) 89.58 563.67 S
+0.07 (and quantitative information such as its area or length.) 89.58 546.67 S
+1 18 Q
+0.09 (Map features) 71.58 509 S
+2 14 Q
+-0.09 0.07 (Locational information is usually represented by points \050for features) 89.58 478.67 B
+-0.78 0.07 (such as wells and telephone pole locations\051, lines \050for features such as) 89.58 461.67 B
+-0.37 0.07 (streams, pipelines, and contour lines\051 and areas \050for features such as) 89.58 444.67 B
+0.07 (lakes, counties, and census tracts\051.) 89.58 427.67 S
+0 18 Q
+0.09 (Point feature) 71.58 390 S
+2 14 Q
+0.07 (A point feature represents a single location. It defines a map object) 89.58 359.67 S
+0.07 (too small to show as a line or area feature. A special symbol or label) 89.58 342.67 S
+0.07 (usually depicts a point location.) 89.58 325.67 S
+0 18 Q
+0.09 (Line feature) 71.58 288 S
+2 14 Q
+-0.2 0.07 (A line feature is a set of connected, ordered coordinates representing) 89.58 257.67 B
+-0.34 0.07 (the linear shape of a map object that may be too narrow to display as) 89.58 240.67 B
+-0.35 0.07 (an area, such as a road, or a feature with no width, such as a contour) 89.58 223.67 B
+0.07 (line.) 89.58 206.67 S
+0 0 0 1 0 0 0 K
+FMENDPAGE
+%%EndPage: "1" 13
+%%Trailer
+%%BoundingBox: 0 0 612 792
+%%PageOrder: Descend
+%%Pages: 13
+%%DocumentFonts: Helvetica
+%%+ Helvetica-Bold
+%%+ NewCenturySchlbk-Roman
+%%+ ZapfDingbats
+%%+ NewCenturySchlbk-Italic
+%%+ Helvetica-Oblique
+%%EOF

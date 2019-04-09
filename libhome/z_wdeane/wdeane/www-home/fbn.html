@@ -1,0 +1,104 @@
+<HTML>
+<HEAD>
+<TITLE>
+CGI EXAMPLE FORM SUBMISSION
+</TITLE>
+</HEAD>
+
+<BODY BACKGROUND="clouds.jpg" TEXT="000000">
+<CENTER>
+<H1>
+<EM>
+FLY-BY-NIGHT COMPUTER COMPANY, INC.
+<HR SIZE=5 WIDTH=395 NOSHADE>
+<P>
+Featuring The New Septium 786!
+<P>
+Custom Configure Your Own Computer
+<BR>
+And Then Get A Price Quote
+<BR>
+</EM>
+</H1>
+<H3>
+(Remember send cash!  No checks!)
+<BR>
+<BR>
+
+<FORM METHOD="post" ACTION="http://www.cs.utk.edu/~bdeane/cgi-bin/build.cgi">
+
+<TABLE>
+<TH> CPU <TH> Memory <TH> Hard Disk
+<TR>
+
+<TD>
+<SELECT NAME="CPU">
+<OPTION VALUE="S333">Septium 333
+<OPTION VALUE="S250">Septium 250
+<OPTION VALUE="S200">Septium 200
+</SELECT>
+
+<TD>
+<SELECT NAME="Memory">
+<OPTION VALUE="96MEG">96 MEG
+<OPTION VALUE="64MEG">64 MEG
+<OPTION VALUE="32MEG">32 MEG
+</SELECT>
+
+<TD>
+<SELECT NAME="Disk">
+<OPTION VALUE="3.6GIGIDE"> 3.6 GIG IDE
+<OPTION VALUE="2.4GIGIDE"> 2.4 GIG IDE
+<OPTION VALUE="1.2GIGIDE"> 1.2 GIG IDE
+</SELECT>
+
+</TABLE>
+
+<TABLE>
+<TH> Video Card <TH> Monitor <TH> CD ROM <TH> Modem
+<TR>
+
+<TD>
+<SELECT NAME="Video">
+<OPTION VALUE="8MEG"> 8 MEG
+<OPTION VALUE="6MEG"> 6 MEG 
+<OPTION VALUE="4MEG"> 4 MEG
+</SELECT>
+
+<TD>
+<SELECT NAME="Monitor">
+<OPTION VALUE="24 INCH"> 24 INCH 
+<OPTION VALUE="21 INCH"> 21 INCH 
+<OPTION VALUE="19 INCH"> 19 INCH 
+</SELECT>
+
+<TD>
+<SELECT NAME="CD-ROM">
+<OPTION VALUE="8X CDROM"> 8X CD-ROM
+<OPTION VALUE="4x CDROM"> 4X CD-ROM 
+<OPTION VALUE="CDNONE"> NONE 
+</SELECT>
+
+<TD>
+<SELECT NAME="Modem">
+<OPTION VALUE="44.4 MODEM"> 44.4 MODEM 
+<OPTION VALUE="36.6 MODEM"> 36.6 MODEM 
+<OPTION VALUE="MODEMNONE"> NONE 
+</SELECT>
+
+<TR>
+</TABLE>
+
+<BR>
+<INPUT TYPE="submit" VALUE="Get Current Price">
+<INPUT TYPE="reset">
+</FORM>
+</CENTER>
+<BR>
+(Use view document source to see HTML source code for this page.
+<P>
+<A HREF="cgi-bin/build.txt">Source code for CGI/perl reply program.</A>
+
+</H3>
+</BODY>
+</HTML>

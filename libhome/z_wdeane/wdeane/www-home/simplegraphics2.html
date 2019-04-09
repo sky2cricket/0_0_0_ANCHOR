@@ -1,0 +1,41 @@
+<HTML>
+<HEAD>
+<TITLE>
+SOURCE CODE
+</TITLE>
+</HEAD>
+<BODY>
+<PRE>
+<H3>
+// simplegraphics.java
+// creates rectangles, ovals (or circles) & lines
+
+import java.awt.*;
+import java.applet.*;
+
+public class simplegraphics extends Applet
+{
+ public void paint(Graphics g)
+ {
+  // first pair of numbers positions drawing in applet window
+  // second pair defines size of figure
+  g.drawRect(25, 25, 50, 50);
+  g.drawOval(75, 100, 100, 75);
+
+  g.setColor(Color.red);
+  g.drawLine(25, 250, 425, 425);
+
+  g.setColor(Color.blue);
+  g.fillRect(250, 25, 100, 35);
+
+  g.setColor(Color.orange);
+  // make circle using drawOval or fillOval
+  g.fillOval(205, 125, 150, 150);
+
+ }
+} //end
+</PRE>
+</H3>
+</BODY>
+</HTML>
+

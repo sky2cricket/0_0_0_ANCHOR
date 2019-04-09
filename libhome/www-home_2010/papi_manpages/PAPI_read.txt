@@ -1,0 +1,62 @@
+PAPI_read               PerfAPI LIBRARY                 PAPI_read
+
+
+
+NAME
+     PAPI_read - start counting events contained in an EventSet
+
+SYNOPSIS
+     int PAPI_read (int EventSet, unsigned long long *values)
+
+     int EventSet --  a reference to an EventSetInfo structure
+
+     unsigned long long *values -- array to contain counts
+
+DESCRIPTION
+     PAPI_read() This function  copies  the  running  or  stopped
+     counters  in  EventSet  into  the  values  array.   Internal
+     counters will not be re-initialized to zero.
+
+     The return value is an integer that  indicates  whether  the
+     call succeeded (PAPI_OK) or failed (not PAPI_OK).
+
+CROSS-REFERENCE WITH OTHER PerfAPI FUNCTIONS
+
+     PAPI_read may be called by:
+
+          the user application program
+          PAPI_read_counters
+
+     PAPI_read contains calls to:
+
+          lookup_EventSet
+          handle_error
+          _papi_hwd_read ( a substrate function )
+
+SEE ALSO
+     The PerfAPI Draft:
+          http://icl.cs.utk.edu/projects/papi/api/
+
+BUGS
+     This function has no known bugs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PAPI Release 0.99   Last change: 28 July 1999                   1
+
+

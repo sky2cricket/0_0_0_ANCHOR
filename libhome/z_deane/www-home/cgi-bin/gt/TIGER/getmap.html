@@ -1,0 +1,65 @@
+
+<html>
+<head>
+<title>getmap.html</title>
+</head>
+<body bgcolor="ddffdd" text="000000" >
+<font face="arial" size="2">
+<p>
+<b>getmap.html</b>
+<p>
+<form name="FormOne" method="GET" action="getmap.asp">
+<table width="90%" border="1" cellpadding="2"
+cellspacing ="0">
+<tr>
+<td valign="top" align="right">
+<font face="arial" size="2">
+enter latitude:
+</td>
+<td valign="top" align="left">
+<font face="arial" size="2">
+<input type="text" size="6" name="mapLat" value>
+</td>
+</tr>
+
+<tr>
+<td valign="top" align="right">
+<font face="arial" size="2">
+enter longitude:
+</td>
+<td valign="top" align="left">
+<font face="arial" size="2">
+<input type="text" size="6" name="mapLon" value>
+</td>
+</tr>
+<tr>
+<td valign="top" align="right">
+<font face="arial" size="2">
+enter title:
+</td>
+<td valign="top" align="left">
+<font face="arial" size="2">
+<input type="text" size="26" name="mapTitle" value>
+</td>
+</tr>
+<tr>
+<td colspan="2"  valign="top" align="center">
+<font face="arial" size="2">
+<input type="submit"  name="mapsubmit" value=" SUBMIT ">
+</td>
+</tr>
+</table>
+</form>
+
+</body>
+</html>
+
+<!---
+
+want a string like
+http://tiger.census.gov/cgi-bin/mapbrowse-tbl/&map=36&lon=78
+
+OR
+
+http://tiger.census.gov/cgi-bin/mapsurfer?infact=2&outfact=2&act=move&on=CITIES&on=GRID&on=counties&on=majroads&on=streets&on=tracts&on=interstate&on=statehwy&on=states&on=ushwy&tlevel=-&tvar=-&tmeth=i&mlat=39.0521393&mlon=-76.7753983&msym=bigdot&mlabel=MYREDDOT&murl=http%3A%2F%2Fwww.cs.utk.edu&lat=39.0485382&lon=-76.7759018&wid=0.022&ht=0.009&conf=palette2.con
+--->

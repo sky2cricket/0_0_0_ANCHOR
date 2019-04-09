@@ -1,0 +1,65 @@
+Hi Love,
+
+This page contains code for 
+  1. using a password to get into a page
+  2. changing button behavior at the  bottom
+     of the page.
+
+I tried implementing the following, which used to work:
+
+<body
+      ONLOAD="window.history.replace(window.history[1]);"
+      bgcolor="aa88ee" text="000000">
+
+You will have to fool around with this stuff.
+
+love - c!
+----------------------------------------
+plum.html
+----------------------------------------
+ 
+<html>
+<head>
+<title>the plum page</title>
+<script Language="Javascript">
+
+function securePage () {
+var username="cdeane";
+var password="cdeane";
+var msg1="Please enter your username.";
+var un = prompt(msg1,"CaSeSeNsItIvE");
+var msg2="Please enter your password.";
+var pw = prompt(msg2,"CaSeSeNsItIvE");
+var msg3="The window willnow minimize to prevent peeking."
+
+if (un == username) {
+	if(pw != password) {
+	alert("Sorry, no access." );
+	window.history.back();
+	}
+}	
+if (un != username) {
+	alert ("Sorry, no access.");  
+	window.history.back();
+}
+
+}//end function securePage
+securePage();
+</script>
+</head>
+<body bgcolor="880088" text="ffffaa" 
+      link="ffffaa" vlink="ffffaa" alink="ffffaa">
+
+<hr>
+<h3>
+Welcome to my plum page at Ntown.
+<hr>
+<p>
+<center>
+<a href="http://208.245.96.159/IISSamples/Default/welcome.htm">the new page</a>
+<p>
+<a href="http://cdeane.ntown.com/TownCrier/DanHTML/CODE2/indexKEN.html">
+alternate baby banners</a>
+
+</body>
+</html>

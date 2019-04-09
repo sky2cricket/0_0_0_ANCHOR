@@ -1,0 +1,90 @@
+<HTML>
+<HEAD>
+<TITLE>
+SOURCE CODE
+</TITLE>
+<BODY>
+<PRE>
+<H3>
+
+// jumpingletters.java
+//
+// causes lettters to move about
+// this program courtesy of Irina
+
+import java.awt.* ;
+import java.applet.* ;
+
+public class jumpingletters extends java.applet.Applet implements Runnable {
+
+        char separated[];
+        String s = null;
+        Thread killme = null;
+        int i;
+        int x_coord = 5, y_coord = 5;
+        String num;
+        int speed=5;
+        int counter =0;
+        boolean threadSuspended = false;
+
+public void init() {
+        s = getParameter("text");
+        if (s == null) {
+            s = " I  A M   G O I N G   C R A Z Y  ! ";
+        }
+
+        separated =  new char [s.length()];
+        s.getChars(1,s.length(),separated,1);
+        resize(600, 50);
+        setFont(new Font("Helvetica",Font.BOLD + Font.ITALIC, 24));
+        }
+
+public void start() {
+        if(killme == null)
+        {
+        killme = new Thread(this);
+        killme.start();
+        }
+ }
+
+public void stop() {
+        killme = null;
+ }
+
+// Thread.sleep(20) set the speed at which the letters jump
+// the bigger the number, the slower it jumps
+public void run() {
+        while (killme != null) {
+        try {Thread.sleep(20);} catch (InterruptedException e){}
+        repaint();
+        }
+        killme = null;
+ }
+
+public void paint(Graphics g) {
+        for(i=0;i<s.length();i++)
+        {
+        x_coord = (int) (Math.random()*10+15*i);
+        y_coord = (int) (Math.random()*10+36);
+        g.drawChars(separated, i,1,x_coord,y_coord);
+        g.setColor(Color.red);
+        }
+          }
+
+public boolean mouseDown(java.awt.Event evt, int x, int y) {
+        if (threadSuspended) {
+            killme.resume();
+        }
+        else {
+            killme.suspend();
+        }
+        threadSuspended = !threadSuspended;
+    return true;
+    }
+} // end
+
+</PRE>
+</H3>
+</BODY>
+</HTML>
+

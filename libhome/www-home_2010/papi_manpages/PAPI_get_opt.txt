@@ -1,0 +1,124 @@
+PAPI_get_opt            PerfAPI LIBRARY              PAPI_get_opt
+
+
+
+NAME
+     PAPI_get_opt - get option for multiplexing, debug, or  over-
+     flow
+
+SYNOPSIS
+     int PAPI_get_opt (int option, PAPI_option_t *ptr)
+
+     int option -- integer code  for  multiplexing  or  debug  or
+     overflow
+
+     PAPI_option_t *ptr -- ptr to arguments for different options
+
+DESCRIPTION
+     PAPI_get_opt()
+
+     This funtions queries the status of tunable options  in  the
+     PerfAPI  Library.   "option"  is  an input/output parameter.
+     The "ptr" structure  is  for  input  and  output.   Not  all
+     options  fill  the   PAPI_option_t structure.  This function
+     has a C binding only.
+
+     The reader is urged to carefully read the PerfAPI Draft  for
+     a complete discussion of PAPI_get_opt.  The file papi.h con-
+     tains  definitions  for  the  structures  unioned   in   the
+     PAPI_option_t structure.
+
+     The return value is an integer that  indicates  whether  the
+     call succeeded (PAPI_OK) or failed (not PAPI_OK).
+
+DEFINITION OF CONSTANTS
+     PAPI_GET_CLOCKRATE  Clock rate MHz, this platform
+     PAPI_GET_MAX_HWCTRS Max hw ctrs, this platform
+     PAPI_GET_DOMAIN     Domain for a single EventSet
+     PAPI_GET_DEFDOM     Domain for all new EventsSets
+     PAPI_GET_GRANU      Granularity for an eventset
+     PAPI_GET_DEFGRN     Granularity for all new eventsets
+     PAPI_GET_INHERIT    Get the setting for inherit
+     PAPI_GET_MPXRES     Get the current mpx interval
+     PAPI_DEBUG          Get the state of DEBUG
+     PAPI_GET_OVERFLO    Get status of overflow reporting
+
+CROSS-REFERENCE WITH OTHER PerfAPI FUNCTIONS
+
+     PAPI_get_opt may be called by:
+
+          the user application program
+          PAPI_num_events
+          PAPI_start_counters
+
+     PAPI_get_opt contains calls to:
+
+          PAPI_init
+
+
+
+PAPI Release 0.99   Last change: 28 July 1999                   1
+
+
+PAPI_get_opt            PerfAPI LIBRARY              PAPI_get_opt
+
+
+
+          handle_error
+
+SEE ALSO
+     The PerfAPI Draft:
+          http://icl.cs.utk.edu/projects/papi/api/
+
+BUGS
+     This function has no known bugs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PAPI Release 0.99   Last change: 28 July 1999                   2
+
+

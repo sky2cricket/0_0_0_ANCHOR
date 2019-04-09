@@ -1,0 +1,62 @@
+PAPI_reset              PerfAPI LIBRARY                PAPI_reset
+
+
+
+NAME
+     PAPI_reset - start counting events contained in an EventSet
+
+SYNOPSIS
+     int PAPI_reset (int EventSet)
+
+     int EventSet --  a reference to an EventSetInfo structure
+
+DESCRIPTION
+     PAPI_reset() This function initializes the internal counters
+     of the hardware Events contained in EventSet to zero.
+
+     The return value is an integer that  indicates  whether  the
+     call succeeded (PAPI_OK) or failed (not PAPI_OK).
+
+CROSS-REFERENCE WITH OTHER PerfAPI FUNCTIONS
+
+     PAPI_reset may be called by:
+
+          the user application program
+
+     PAPI_reset contains calls to:
+
+          lookup_EventSet
+          handle_error
+          _papi_hwd_read ( a substrate function )
+          _papi_hwd_reset ( a substrate function )
+
+SEE ALSO
+     The PerfAPI Draft:
+          http://icl.cs.utk.edu/projects/papi/api/
+
+BUGS
+     This function has no known bugs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PAPI Release 0.99   Last change: 28 July 1999                   1
+
+

@@ -1,0 +1,56 @@
+#!/usr/local/bin/perl 
+#program p2
+#This program prints out some network parameters.
+
+#use these 3 statements OR just the 4th below
+#$hostName = `hostname`;
+#$arpCommand = "arp $hostName";
+#open(ARPCOMMAND, "$arpCommand|");
+
+#page 146, using processes as filehandles
+open(ARPCOMMAND, "arp `hostname`|");
+
+@wordArray = <ARPCOMMAND>;
+
+print("\nresults of >>arp \`hostname\`<< command: \n$wordArray[0]"); 
+
+($s0,$s1,$s2,$s3,$s4,$s5) = unpack ('A6',$wordArray[0]);
+
+print("\n \$s0:  $s0");
+print("\n \$s1:  $s1");
+print("\n \$s2:  $s2");
+print("\n \$s3:  $s3");
+print("\n \$s4:  $s4");
+print("\n \$s5:  $s5");
+
+$hNAME = `hostname`;
+print("\n hNAME: $hNAME ");
+
+#open(GHBN, "gethostbyname($hNAME)|" ); 
+#@word2Array = <GHBN>;
+
+#page 168 -- this is not correct yet
+#($name, $aliases, $addrtype, $length, @addrs) = gethostbyname($hNAME);
+
+print("\n enter hostname: ");
+$entername = <STDIN>;
+
+print("\n You entered: $entername");
+chop($entername);
+
+($name, $aliases, $addrtype, $length, @addrs) = gethostbyname($entername);
+
+print("\nresults of >>Gethostbyname(\$entername)<< command:");
+print("\nresults of >>Gethostbyname($entername)<< command:");
+
+print("\n \$name: $name");
+print("\n \$aliases: $aliases");
+print("\n \$addrtype: $addrtype");
+print("\n \$length: $length");
+print("\n \@addrs: @addrs");
+
+($a,$b,$c,$d) = unpack('C4',$addr[0]);
+
+print("\n \$addr:   $a $b $c $d ");
+
+print("\n\n end-of-program p2\n\n");

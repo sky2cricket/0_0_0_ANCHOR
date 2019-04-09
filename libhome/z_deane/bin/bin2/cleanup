@@ -1,0 +1,25 @@
+# Do some cleanup of unnecessary files.
+
+/bin/rm -f ~/lab*/a.out ~/lab*/core ~/core ~/a.out >& /dev/null
+
+grep -s "alias chmod" ~/.aliases.all
+if ($status) then
+  echo "alias chmod 'echo CS102 Students are not allowed to change their environment.'" >> ~/.aliases.all
+endif
+
+set WHOAMI = `echo $HOME | grep -v "yellow"`
+#uncomment above line for first 3 weeks of semester and comment
+#the next line , after that, comment it back, and uncomment following 
+#line
+#set WHOAMI =
+if ! ($WHOAMI == ) then
+  echo " "
+  echo "You are using default cs102 setup.  Please edit"
+  echo "your ~/.logout file to remove the line which says"
+  echo "             ~/bin/cleanup "
+  echo "It is unnecessary for non-cs102 students as it "
+  echo "does cleanups for cs102 students only."
+  echo "This notice stays on for 5 seconds.  Will be removed"
+  echo "after one week. Thank you."
+  sleep 10
+endif

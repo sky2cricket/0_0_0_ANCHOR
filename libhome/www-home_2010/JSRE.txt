@@ -1,0 +1,146 @@
+From JavaScript@itw.itworld.com Tue Sep  4 08:03:53 2001
+Return-Path: <JavaScript@itw.itworld.com>
+Received: from kailua.clickaction.net (marvin@localhost) 
+        by cs.utk.edu with ESMTP (cf v2.9s-UTK)
+	id IAA18850; Tue, 4 Sep 2001 08:03:52 -0400 (EDT)
+From: <JavaScript@itw.itworld.com>
+Received: from kailua.clickaction.net (208.50.155.199 -> host-199.clickaction.net)
+ by cs.utk.edu (smtpshim v1.0); Tue, 4 Sep 2001 08:03:52 -0400
+Received: from kailua.clickaction.net (cs-01-out [192.168.6.200])
+	by kailua.clickaction.net (Postfix) with SMTP id 12A755B98D4
+	for <deane@cs.utk.edu>; Tue,  4 Sep 2001 05:03:49 -0700 (PDT)
+To: "Cricket Deane" <deane@cs.utk.edu>
+X-Header-Partid: 14724
+X-Header-Userid: 76028552
+X-Header-Date: 04-Sep-2001
+X-Header-Version: 4.0
+X-Header-Pitchid: 41308
+Subject: Extracting character strings
+Message-Id: <20010904120349.12A755B98D4@kailua.clickaction.net>
+Date: Tue,  4 Sep 2001 05:03:49 -0700 (PDT)
+Status: RO
+Content-Length: 4821
+
+
+JAVASCRIPT --- September 04, 2001
+Published by ITworld.com -- changing the way you view IT
+http://www.itworld.com/newsletters
+________________________________________________________________________________
+
+HIGHLIGHTS
+
+* Pulling specific character strings using regular expressions is 
+  simply a matter of spotting the right sequence of characters. 
+________________________________________________________________________________
+
+SPONSORED LINK
+
+A Newsletter Service for IT Pros
+
+FreeTechMail offers a service that enables you to preview the 
+industry's best IT newsletters, and subscribe to the ones relevant to 
+your interests -- FREE!  Newsletters topics include IT Careers, 
+Windows, Java, Security and more! Subscribe to or review your favorite 
+ITworld.com newsletter now!
+http://itw.itworld.com/GoNow/a14724a41308a76028552a0
+______________________________________________________________________________
+
+Regular Expressions: Extracting ISBNs from Amazon.com URLs
+By David Wall
+
+Let's say we have a customer who runs a bookstore. It's a real 
+bookstore, with shelves and aisles and sullen teenage attendants. 
+Nonetheless, the customer uses the database at Amazon.com as a tool for 
+locating details about books he wants to order from his distributor. 
+The customer searches for a title on Amazon, manually copies its ISBN 
+from the Amazon page that gives details on that book, and pastes it 
+into another form (in another browser window) that's submitted to the 
+distributor that supplies our customer.
+
+Copying ISBNs out of Amazon.com's detail pages is hard. They appear in 
+small print and it's easy to accidentally copy an extra carriage return 
+as well as the number. A typical Amazon detail page URL looks like 
+this: http://www.amazon.com/exec/obidos/ASIN/1558882367. 
+
+A lot of times, there's a bunch of extra information on the right-hand 
+side, as well. Notice that in the URL, the only 10-character string 
+consisting of the digits 0 through 9, plus the capital letter X, is the 
+ISBN. We need to write a function that will grab that 10-character 
+string and discard everything else. The customer needs an interface 
+that allows him to paste the whole URL into a box and extract only the 
+ISBN. JavaScript can do the job.
+
+Here is a function that uses a regular expression (a RegExp object) to 
+pick the ISBN from an Amazon.com URL.
+
+    function extractISBN() {
+
+    if (document.assignForm.isbn.value=="") {
+        var reISBNCatcher = /[0-9]{9}[0-9X]{1}/;
+        var input = document.assignForm.amazonURL.value;
+        var output = input.match(reISBNCatcher);
+        document.assignForm.isbn.value = output;
+        }
+}
+
+The first interesting line in that function is the one that sets 
+reISBNCatcher equal to /[0-9]{9}[0-9X]{1}/. In other words, the regular 
+expression matches strings in which exactly nine characters in the set 
+0-9 are followed by exactly one character in the set 0-9 plus X. 
+
+Then, the match() method is used to apply that regular expression to 
+the input field in a form, sending the results to the output field.
+
+About the author(s)
+-------------------
+David Wall works as a freelance writer, programmer, lecturer, and 
+consultant. Based near Washington, D.C., David has written and co-
+written several books, including Graphics Programming with JFC.
+________________________________________________________________________________
+
+CUSTOMER SERVICE
+
+SUBSCRIBE/UNSUBSCRIBE:
+- Go to: http://www.itworld.com/newsletters
+- Click on "View my newsletters" to log in and manage your account
+- To subscribe, check the box next to the newsletter
+- To unsubscribe, uncheck the box next to the newsletter 
+- When finished, click submit
+
+Questions? Please e-mail customer service at: mailto:support@itworld.com
+________________________________________________________________________________
+
+CONTACTS
+
+* Editorial: Andrew Santosusso, Associate Editor, Newsletters, 
+  andrew_santosusso@itworld.com
+* Advertising: Clare O'Brien, Vice President of Sales, 
+  clare_obrien@itworld.com
+* Recruitment advertising: Jamie Swartz, Eastern, Regional Sales 
+  Manager, jamie_swartz@itworld.com or Paul Duthie, Western Regional 
+  Sales Manager, paul_duthie@itworld.com
+* Other inquiries: Jodie Naze, Senior Product Marketing Manager, 
+  jodie_naze@itworld.com
+________________________________________________________________________________
+
+PRIVACY POLICY
+
+http://www.itworld.com/Privacy/
+
+Copyright 2001 ITworld.com, Inc., All Rights Reserved.
+http://www.itworld.com
+
+
+
+**SEND TO A FRIEND**
+Share this email with a friend! Click here!
+http://itw.itworld.com/GoForward/a14724a41308aSa76028552a12
+
+SUBSCRIBE/UNSUBSCRIBE
+Please click on the link below to modify your subscription, unsubscribe,
+or change your email address:
+
+http://itw.itworld.com/Change-Remove/a14724a76028552a12a41308
+
+
+

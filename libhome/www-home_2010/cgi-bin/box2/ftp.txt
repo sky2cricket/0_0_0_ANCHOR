@@ -1,0 +1,61 @@
+#!/usr/local/bin/perl -w
+#
+# a test script, helps to develop scripted ftp in perl
+# $ID = '$Id: Ftp,v 1.2 1999/08/06 15:08:42 root Exp root $';
+#
+
+#from: http://www.encephalon.com/perl/ftp.txt 
+
+use Net::FTP;
+
+my $server      = 'localhost';
+my $uid         = 'test-o';
+my $passwd      = 'passwd';
+my $source_dir  = '/tmp/tst';
+my $target_dir  = '/htdocs/tmp';
+
+my $ftp = Net::FTP->new("$server");
+
+if ( ! $ftp ) {
+        ftpquit("Connect to $server failed");
+}
+
+if ( ! $ftp->login($uid,$passwd) ) {
+        ftpquit("Can't login as $uid");
+}
+
+if ( ! $ftp->cwd($target_dir) ) {
+        ftpquit("Could not cwd to $target_dir: $!");
+}
+
+if ( ! $ftp->binary() ) {
+        ftpquit("Type command failed");
+}
+
+# make a list of files, then transfer them
+# of course using opendir/readdir/closedir would be more efficient...
+my @files = glob("${source_dir}/*") or ftpquit ("$source_dir: $!");
+
+foreach $fl (@files) {
+        next if ( !-f $fl);
+        my $shortfl = $fl;
+        $shortfl =~ s,.*/,,;
+        if ( ! $ftp->put($fl,$shortfl) ) {
+                print STDERR "Can't transfer $fl\n";
+        } else {
+                print "$fl transfered\n";
+        }
+}
+
+ftpquit("Finished!");
+
+####################################################
+sub ftpquit {
+        my $msg = shift;
+
+        print STDERR "$msg\n";
+        $ftp->quit;
+        exit;
+}
+
+

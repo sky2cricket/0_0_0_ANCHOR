@@ -1,0 +1,147 @@
+
+<html>
+<head>
+<title>ex1.1</title>
+<script language="VBScript">
+<!---
+Sub Button01_OnClick
+	Dim TheForm
+	Set TheForm = Document.BabyNameForm
+	If Len(TheForm.B_F_Name.Value)<1 Then
+	  MsgBox "Please enter Baby's first name in the text box."
+        Else
+          MsgBox "Baby's first name: "& TheForm.B_F_Name.Value 
+        End If
+End Sub 
+''''''''Button01_OnClick
+
+Sub Button02_OnClick
+	Dim TheForm
+	Set TheForm = Document.BabyNameForm
+	If Len(TheForm.B_M_Name.Value)<1 Then
+	  MsgBox "Please enter Baby's middle name in the text box."
+        Else
+          MsgBox "Baby's first name: "& TheForm.B_M_Name.Value 
+        End If
+End Sub
+''''''''Button02_OnClick
+
+Sub Button03_OnClick
+	Dim TheForm
+	Set TheForm = Document.BabyNameForm
+	If Len(TheForm.B_L_Name.Value)<1 Then
+	  MsgBox "Please enter Baby's last name in the text box."
+        Else
+          MsgBox "Baby's last name: "& TheForm.B_L_Name.Value 
+        End If
+End Sub
+''''''''Button03_OnClick
+
+'''see page 219 vbs book
+
+''' see page 250 vbs book
+Sub Button04_OnClick 
+	Dim ThisForm
+        Set ThisForm = Document.BorG
+	Dim intLength, intSelected, intCtr
+	Dim strResult     
+        Dim TextResult(3)
+	TextResult(0) = "None Selected Yet"
+        TextResult(1) = "Boy" 
+        TextResult(2) = "Girl"
+	Dim CRLF	
+	Dim objOption
+	CRLF = Chr(13) & Chr(10) '''car ret and line feed 
+	Set objSel = ThisForm.selGender
+	strResult = "Gender:    "   
+	strResult = strResult & TextResult(objSel.Options.SelectedIndex)
+        strResult = strResult & CRLF
+	
+	MsgBox strResult 
+End Sub 
+''''''''End Sub Button04_OnClick
+</script>
+</head>
+<body bgcolor="88eeff" text="000000">
+<p>
+This is an asp file.  ex1.4b.asp
+<p>
+<hr>
+<p>
+<FORM NAME="BabyNameForm">
+<br>
+<table border=2 >
+
+<td>
+Please, enter the Baby's first name:
+</td>
+<td>
+<INPUT TYPE="TEXT"     NAME="B_F_Name" SIZE=25>
+</td>
+</tr><tr>
+<td>
+Please check the spelling of the Baby's first name.  
+</td>
+<td>
+<INPUT TYPE="BUTTON"   NAME="Button01" VALUE="Check Baby's First Name">
+</td>
+</tr>
+
+<td>
+Please, enter the Baby's middle name:
+</td>
+<td>
+<INPUT TYPE="TEXT"     NAME="B_M_Name" SIZE=25>
+</td>
+</tr><tr>
+<td>
+Please check the spelling of the Baby's middle name.  
+</td>
+<td>
+<INPUT TYPE="BUTTON"   NAME="Button02" VALUE="Check Baby's Middle Name">
+</td>
+</tr>
+
+<td>
+Please, enter the Baby's last name:
+</td>
+<td>
+<INPUT TYPE="TEXT"     NAME="B_L_Name" SIZE=25>
+</td>
+</tr><tr>
+<td>
+Please check the spelling of the Baby's last name.  
+</td>
+<td>
+<INPUT TYPE="BUTTON"   NAME="Button03" VALUE="Check Baby's Last Name">
+</td>
+</tr>
+
+
+
+</table>
+</FORM> </---Form is named "BabyNameForm">
+<p>
+<hr><hr><hr>
+<p>
+
+<p>
+Using HTML Select Control
+<p>
+<Form Name="BorG">
+<Select Name="selGender">
+<Option Selected> Boy or Girl?
+<Option> Boy
+<Option> Girl
+</Select>
+<p>
+<INPUT NAME="BUTTON04" TYPE="Button" Value="ShowBabyGender">
+</FORM> </---Form is named <BorG">
+<p>
+<hr><hr>
+</body>
+</html>
+
+
+
+

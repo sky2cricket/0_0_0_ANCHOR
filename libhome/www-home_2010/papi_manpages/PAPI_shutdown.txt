@@ -1,0 +1,62 @@
+PAPI_shutdown           PerfAPI LIBRARY             PAPI_shutdown
+
+
+
+NAME
+     PAPI_shutdown - an exit function to free resources
+
+SYNOPSIS
+     int PAPI_shutdown (void)
+
+DESCRIPTION
+     PAPI_shutdown() This is an exit function used  by  the  PAPI
+     Library  to free resources and shut down when  certain error
+     conditions arise.  This call is not  necessary,  but  allows
+     the user the capability to free memory and resources used by
+     the PAPI Library.
+
+     The return value is an integer that  indicates  whether  the
+     call succeeded (PAPI_OK) or failed (not PAPI_OK).
+
+CROSS-REFERENCE WITH OTHER PerfAPI FUNCTIONS
+
+     PAPI_shutdown may be called by:
+
+          the user application program
+          handle_error
+
+     PAPI_shutdown contains calls to:
+
+          free_EventSet
+
+SEE ALSO
+     The PerfAPI Draft:
+          http://icl.cs.utk.edu/projects/papi/api/
+
+BUGS
+     This function has no known bugs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PAPI Release 0.99   Last change: 28 July 1999                   1
+
+

@@ -1,0 +1,46 @@
+/* file; getnums*/
+nums:
+
+sol2 sun4 c at hydra3a> hostid
+8035d17e
+
+sol2 sun4 c at hydra4a> hostid
+8070d318
+
+sos4 sun4 c at pebbles> !ping
+ping -s hydra4a
+PING hydra4a.cs.utk.edu: 56 data bytes
+64 bytes from HYDRA4A.CS.UTK.EDU (128.169.92.90): icmp_seq=0. time=1. ms
+64 bytes from HYDRA4A.CS.UTK.EDU (128.169.92.90): icmp_seq=1. time=1. ms
+64 bytes from HYDRA4A.CS.UTK.EDU (128.169.92.90): icmp_seq=2. time=1. ms
+64 bytes from HYDRA4A.CS.UTK.EDU (128.169.92.90): icmp_seq=3. time=1. ms
+^C
+----90.92.169.128.in-addr.arpa PING Statistics----
+4 packets transmitted, 4 packets received, 0% packet loss
+round-trip (ms)  min/avg/max = 1/1/1
+sos4 sun4 c at pebbles> ping -s hydra3a
+PING hydra3a.cs.utk.edu: 56 data bytes
+64 bytes from HYDRA3A.CS.UTK.EDU (128.169.94.133): icmp_seq=0. time=2. ms
+64 bytes from HYDRA3A.CS.UTK.EDU (128.169.94.133): icmp_seq=1. time=1. ms
+64 bytes from HYDRA3A.CS.UTK.EDU (128.169.94.133): icmp_seq=2. time=1. ms
+^C
+----133.94.169.128.in-addr.arpa PING Statistics----
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip (ms)  min/avg/max = 1/1/2
+sos4 sun4 c at pebbles>
+
+sol2 sun4 c at duncan> hostmac hydra4a
+hydra4a ethernet addr: 8:0:20:1c:5f:62
+sol2 sun4 c at duncan> hostmac hydra3a
+hydra3a ethernet addr: 8:0:20:21:63:7f
+sol2 sun4 c at duncan> hostmac hydra2a
+hydra2a ethernet addr: 8:0:20:21:a6:8e
+sol2 sun4 c at duncan> hostmac hydra1a
+hydra1a ethernet addr: 8:0:20:1c:5e:c8
+
+
+sol2 sun4 c at duncan> hostmac cs.umd.edu
+default router  name: ft-knox.cs.utk.edu
+default rtr ip  addr: 128.169.92.1
+default rtr eth addr: 8:0:20:b:11:51
+sol2 sun4 c at duncan>

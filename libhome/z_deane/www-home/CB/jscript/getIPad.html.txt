@@ -1,0 +1,33 @@
+<html>
+<title> getIPaddr.html</title>
+<body bgcolor="ffffff" text="0000090">
+<h3>
+<hr>
+<script language = javascript>
+<!-- Hide script from old browsers
+browserName = navigator.appName
+browserVers = parseInt(navigator.appVersion)
+ipAddName=""
+
+if(browserName == "Netscape" && navigator.javaEnabled()) {
+         ipAddName = java.net.InetAddress.getLocalHostName()
+
+if(ipAddName != "") {
+    document.writeln("<H1> Your IP addressByName is: "
+    + ipAddName + ".</H1>")
+    if (ipAddName.substring(0,7) == "17.254") {
+    document.writeln("<H2>Welcome, visitor from Apple!</h2>");
+    }
+}//end if(ipAddName!="")
+
+}//end if(browser name...
+
+//--- End hiding script from old browsers.-->
+</script>
+<hr>
+This is a test of javascript.
+This code taken from page 116,
+JavaScript for the World Wide Web,
+2nd edition. 1998. 
+Tom Negrino and Tory Smith.
+</html>

@@ -1,0 +1,162 @@
+From JavaScript@itw.itworld.com Tue Nov 13 08:47:47 2001
+Return-Path: <JavaScript@itw.itworld.com>
+Received: from papio.clickaction.net (marvin@localhost) 
+        by cs.utk.edu with ESMTP (cf v2.9s-UTK)
+	id IAA16450; Tue, 13 Nov 2001 08:47:46 -0500 (EST)
+From: <JavaScript@itw.itworld.com>
+Received: from papio.clickaction.net (208.50.155.175 -> host-175.clickaction.net)
+ by cs.utk.edu (smtpshim v1.0); Tue, 13 Nov 2001 08:47:46 -0500
+Received: from papio.clickaction.net (cs-01-out [192.168.6.200])
+	by papio.clickaction.net (Postfix) with SMTP id 7AE975C502C
+	for <deane@cs.utk.edu>; Tue, 13 Nov 2001 05:47:30 -0800 (PST)
+To: "Cricket Deane" <deane@cs.utk.edu>
+X-Header-Partid: 14724
+X-Header-Userid: 76028552
+X-Header-Date: 13-Nov-2001
+X-Header-Version: 4.0
+X-Header-Pitchid: 46248
+Subject: Defining functions
+Message-Id: <20011113134730.7AE975C502C@papio.clickaction.net>
+Date: Tue, 13 Nov 2001 05:47:30 -0800 (PST)
+Status: R
+Content-Length: 4405
+
+
+JAVASCRIPT --- November 13, 2001
+Published by ITworld.com -- changing the way you view IT
+http://www.itworld.com/newsletters
+________________________________________________________________________________
+
+HIGHLIGHTS
+
+* At least two alternate strategies can be used to define functions. 
+________________________________________________________________________________
+
+SPONSORED LINK
+
+ENTER TO WIN A DELL DIMENSION DREAM SYSTEM 
+
+Enter to win a fully-loaded 2GHz Dell Dimension dream system or $25,000 
+in cash. By entering, you are also eligible to receive any ITworld.com 
+newsletter. CLICK HERE for your chance to win!
+http://www.itworld.com/sweeps
+______________________________________________________________________________
+
+Functions That Have No (Immediately Obvious) Name
+By David Wall
+
+You're certainly familiar with the traditional way of declaring 
+functions. You use the following syntax all the time:
+
+function myPants (p1, p2) {
+document.write("The most important parts of my pants are the " + p1 + " 
+and the " + p2 + ".");
+}
+
+But did you know that there are other ways to do the same thing? Here's 
+one way:
+
+mySocks = function(p1) {
+document.write("I own a grand total of " + p1 + " socks.");
+}
+
+You'd call that function just like one you'd declared in the 
+traditional way:
+
+mySocks("three");
+
+The third way of declaring a function is with the Function object, 
+whose function is to define functions: 
+
+myTeeth = new Function("p1", "document.write('I have ' + p1 + ' 
+remaining teeth.');");
+
+When defining a Function object, the parameters come first (you can 
+have as many of them as you want). The last quoted string is the 
+function body itself, with statements separated by semicolons.
+
+How useful is this technique? Not terribly, as it eliminates the 
+modular aspects of functions -- one of their greatest attractions, 
+after all. Still, these are alternatives you might need someday.
+
+About the author(s)
+-------------------
+David Wall works as a freelance writer, programmer, lecturer, and 
+consultant. Based near Washington, D.C., David has written and co-
+written several books, including Graphics Programming with JFC.
+________________________________________________________________________________
+
+ADDITIONAL RESOURCES
+
+Declaring functions
+http://itw.itworld.com/GoNow/a14724a46248a76028552a2
+
+Detour from Response Dialogs
+http://itw.itworld.com/GoNow/a14724a46248a76028552a1
+
+JavaScript Programming -- A Review
+http://itw.itworld.com/GoNow/a14724a46248a76028552a0
+
+JavaScript Objects
+http://itw.itworld.com/GoNow/a14724a46248a76028552a3
+________________________________________________________________________________
+
+ITWORLD.COM NEWSLETTER ARCHIVE
+
+Index of JavaScript
+http://www.itworld.com/nl/javascript/
+
+Mixing in Some Java
+http://www.itworld.com/nl/javascript/01162001/
+
+Triggering Trig Functions Doing Advanced Calculations
+http://www.itworld.com/nl/javascript/01092001/
+________________________________________________________________________________
+
+CUSTOMER SERVICE
+
+SUBSCRIBE/UNSUBSCRIBE:
+- Go to: http://www.itworld.com/newsletters
+- Click on "View my newsletters" to log in and manage your account
+- To subscribe, check the box next to the newsletter
+- To unsubscribe, uncheck the box next to the newsletter 
+- When finished, click submit
+
+Questions? Please e-mail customer service at: mailto:support@itworld.com
+________________________________________________________________________________
+
+CONTACTS
+
+* Editorial: Andrew Santosusso, Newsletter Editor, 
+  andrew_santosusso@itworld.com
+* Advertising: Clare O'Brien, Vice President of Sales, 
+  clare_obrien@itworld.com
+* Career Corner: Janis Crowley, Vice President/General Manager, IDG 
+  Recruitment Solutions, janis_crowley@itcareers.net
+* Other inquiries: Jodie Naze, Senior Product Marketing Manager, 
+  jodie_naze@itworld.com
+
+________________________________________________________________________________
+
+PRIVACY POLICY
+
+ITworld.com has been TRUSTe certified 
+http://www.itworld.com/Privacy/
+
+Copyright 2001 ITworld.com, Inc., All Rights Reserved.
+http://www.itworld.com
+
+
+
+**SEND TO A FRIEND**
+Share this email with a friend! Click here!
+http://itw.itworld.com/GoForward/a14724a46248aSa76028552a12
+
+SUBSCRIBE/UNSUBSCRIBE
+Please click on the link below to modify your subscription, unsubscribe,
+or change your email address:
+
+http://itw.itworld.com/Change-Remove/a14724a76028552a12a46248
+
+
+

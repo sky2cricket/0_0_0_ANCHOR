@@ -1,0 +1,44 @@
+
+Summary of:  "Process: Hijacking by V.C. Zandy, B.P. Miller, M. Livny 
+by C. Deane
+date: Sept. 16, 1999 
+---------------------------------------------------------------------
+
+The authors take on the problem of hijacking ( moving code during 
+execution ) with the restriction that code is not recompiled or 
+re-linked as part of the hijack process.  This is done by treating
+the original runtime environment (the submit environment) as just
+one more resource in the distributed resource system.  
+
+The hijack process is cumbersome and slow, because the original
+process must be forked in the original runtime environment (submit 
+environment) before the hijack can be implemented.  These two "twin"
+processes remain for the duration of the run.  The first twin is 
+the "shadow process" which remains in the submit environment (on the
+submit host) and takes care of all i/o functions.  The second twin 
+is the "application process" which is automatically rewritten so 
+that all of its i/o calls are  RPG calls to the shadow process.  
+The hijacker also adds dynamic checkpointing support and is able
+to move the application process to a new remote host that might
+be in a different runtime environment.
+
+The authors justify this cumbersome approach:
+
+"Remotely executing all I/O operations on the shadow allows the
+application process to be migrated to hosts that do not have the 
+file system resources or security credentials of the submit host."
+
+This is an interesting idea, but the results presented that compare
+Hijack time to Condor time [table 1], show a huge penalty for 
+using the Hijack approach.  But discounting this penalty (because
+you get to use the nifty submit environment from the remote host),
+there are some other problems.
+
+1. When the nifty submit host crashes, you lose everything.
+2. Limitations on the types of RPG calls available
+3. Need to carefully protect the memory space given to the
+   Restart Library.
+
+I think that future use of this paper will be by people who
+like Condor and use this paper to show how Condor works better
+than the Hijack approach.  

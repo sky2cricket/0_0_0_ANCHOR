@@ -1,0 +1,109 @@
+
+Hi Alice and Charles--
+
+This is my algorithm for solving the location of radio towers problem.
+
+
+1.  For each POINT p, need  x(lat), y(long) , z (elevation), m (marker).
+    The value of m is 0 or 1 and designates if it is merely a source
+    of topological data (0) or a place where a radio tower may 
+    be located (1). 
+
+2.  These POINTS can be on a grid, but not necessary.
+
+3.  Assume that radio waves travel outward in all directions at
+    equal velocity and strength.  (This simplifies solution)
+
+4.  Calculate a TIN surface using all POINTS.  TIN stands for 
+    topologically integrated network and means you make a bunch
+    of triangle-surfaces using 3 neighbor POINTS.  The boundaries
+    of any TIN may not cross any other TIN and so you get a simple
+     continuous surface representation based upon real data points.
+    Use all POINTS to calculate TIN (m=0 and m=1)
+
+    The advantage of TIN is that you end up with a series of flat
+    surfaces and the location of every point on the surface can be
+    expressed in a simple equation based on the x-y-z location of the
+    3 apex points in 3-D space since a constant slope is assumed. 
+    This greatly simplifies calculations in the next step.
+
+5.  For each POINT p where m=1, calculate r the maximumRadius of a 
+    circle that has that POINT p as center and no part of that circle 
+    intersects a TIN surface.  The elevation of the circle will be 
+    the same as its center.  If you have some distance R that is 
+    the maximumRadius of propagation without barriors and your
+    calculated value r > R, then r=R.
+
+    I realize I am over simplifying the propagation of radio waves
+    in this step.  If there is a better way, insert here!
+
+6.  Sort the database so that the records are arranged in order of
+    decreasing elevation.  ESRI software has a button to click on
+    to do this in ARCVIEW.
+
+7.  Calculate all elements of array I, which POINT-circle includes
+    the current point.  These will be arranged with largest circles
+    first because of sorting in step 6. 
+
+8.  If there are other factors to be considered (cost, in restricted
+    area, owned by competitor, etc.), store these in array F other factors 
+
+9.  So now you have a data base where each record has the following
+    attributes:
+
+    POINT p  --- id code
+    x        --- xcoord value 
+    y        --- ycoord value 
+    z        --- elevation value
+    m        --- 0 means a data point
+             --- 1 means a data point PLUS tower location 
+    r        --- maximumRadius of circle (or maxRadius propagation R)
+             --- if (m=0), r=0
+    I        --- array of POINTcircles containing this POINT p
+    F        --- array of other factors
+    
+
+10. Now go through the list of records and select all those POINT p 
+    records not contained in a previously selected record.
+    (For example, you would get the first record p[0] because it is the 
+    highest elevation and largest circle in its own neighborhood. 
+    Then you would go down this list and look for a record p[n]
+    that is not contained in the p[0] circle.  Then look for a record
+    not in p[0] or p[n], etc)
+
+    This is a simple version of the algorithm.  We will have to test it
+    and refine to ensure full coverage.
+
+    Also, the algorithm can accomodate the data in array F.  	
+
+11. Test the coverage. 
+
+12.  Quick graphical solution:
+
+     1. Plot the POINTcircles in reverse order.  Lowest elev first.
+     2. The HIGHER circles will cover up the previous (lower) circles
+        if they contain them.
+     3. Discard the POINTS releated to covered up circles.
+
+
+
+This is a very simple approach.  You may want to think of other ways of
+sorting the data than by elevation.  You may want to partition the geographic
+area into "service zones".  There are economic (billing ) factors that 
+must be included in the analysis.  The method above just stuffs them into
+array F for safekeeping.
+
+I give this algorithm to you freely with all permissions for use in any
+manner that you see fit.  I would prefer that you do not show it to other
+people (that guy) without consulting me.  But go ahead and use it to start
+programming.
+
+-----------------------------------------------------
+
+This is Dr. Ralston's GIS Tools page.  He is partner
+with ESRI, sort of.
+
+http://www.gistools.com/ 
+
+Love-mom!
+

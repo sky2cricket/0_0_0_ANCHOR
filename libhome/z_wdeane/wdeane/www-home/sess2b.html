@@ -1,0 +1,890 @@
+<HTML>
+<HEAD>
+<META NAME="Generator" CONTENT="Corel WordPerfect 8">
+<TITLE></TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#551a8b" ALINK="#ff0000" BGCOLOR="#c0c0c0">
+
+<P><FONT SIZE="-1"><STRONG>CS - 460   DATABASE   MANAGEMENT   SYSTEMS</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>SESSION   2(b)</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG><U><CENTER>ACCESSING   DATA</CENTER>
+</U></STRONG></FONT></P>
+
+
+
+<P><FONT SIZE="-1"><STRONG>o	WAYS   OF   USING   PAYROLL   AND   OTHER   APPLICATIONS . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo (1) 	SIMPLY   LOOK   AT   A   RECORD   WITHOUT   CHANGING   IT . . </STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo (2) 	MODIFY   A   RECORD   (E.G.,   AN   EMPLOYEE'S   SALARY   RATE   CHANGES) . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo (3)	INSERT   A   NEW   RECORD (E.G.,   HIRE   A NEW   EMPLOYEE) . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo (4) 	DELETE   AN   EXISTING   RECORD   (E.G.,   AN   EMPLOYEE   LEAVES   THE   COMPANY) . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>o	ANY   OR    ALL   OF   THE   FOUR   FUNCTIONS   CAN   BE   PERFORMED BY   A    GIVEN  </STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>	 PROGRAM <U>. . .</U></STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG><U>	</U>oo	THERE   IS   A   QUESTION   OF   <U>WHICH</U>   RECORD   OR   RECORDS   THAT   MUST   BE   OPERATED  
+ON   AT   A    GIVEN   TIME .</STRONG></FONT></P>
+
+
+
+<P><FONT SIZE="-1"><STRONG>o	WE   MUST   UNDERSTAND   HOW   ARRANGING   DATA ON   A   DISK . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	SO   THAT   IT   IS   AVAILABLE   FOR   SEQUENTIAL   OR   DIRECT   RETRIEVAL    (OR   </STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>		BOTH) . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>		&gt;	IN   AN   EFFICIENT   MANNER.</STRONG></FONT></P>
+
+
+
+<P><FONT SIZE="-1"><STRONG>o	<U>FILE   ORGANIZATION</U> :    THE   WAY   THAT   DATA   IS   STORED   FOR   SUBSEQUENT   </STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>	RETRIEVAL . </STRONG></FONT></P>
+
+
+
+
+<P><FONT SIZE="-1"><STRONG>o	<U>ACCESS   METHOD</U> :   HOW    DATA   IS   RETRIEVED ,   BASED   ON   ITS   BEING   STORED   IN   A  
+<U>PARTICULAR   FILE   ORGANIZATION</U> .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>CS - 460   DATABASE   MANAGEMENT   SYSTEMS</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>SESSION   2(b)</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG><U><CENTER>FILE   ORGANIZATION / ACCESS   METHODS</CENTER>
+</U></STRONG></FONT></P>
+
+
+
+
+<P><FONT SIZE="-1"><STRONG>==================================================================================</STRONG></FONT></P>
+
+
+
+
+
+
+<P><FONT SIZE="-1"><STRONG>						FIG.   3.1</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>					       GILLENSON</STRONG></FONT></P>
+
+
+
+
+
+<P><FONT SIZE="-1"><STRONG>================================================================================</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>o	IN   THE   FIGURE . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	EACH   RECORD   CONSISTS   OF   THE   SAME   SET   OF   FIELDS . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>		&gt;	AS   <U>EVERY   OTHER   RECORD</U>   IN   THE   <U>FILE</U> .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>o	<U>ATTRIBUTES   OF   THE   PAYROLL   FILE</U> . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	(EMPLOYEE   NUMBER ,   LAST   NAME , FIRST   NAME ,   SALARY   RATE ,   HOME   CITY ,   HOME  
+STATE ,   HOME   TELEPHONE   NUMBER ) .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>o	<U>DATA   FOR   A   SPECIFIC   EMPLOYEE</U> . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	(3179, SMITH,   JOHN ,   5.50 , DETROIT,   MI,   313-555-5186) . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>		&gt;	CALLED   AN   "OCCURRENCE" OF   THAT   RECORD.</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>o	WE   WILL   CONSIDER   THE   <U>MAJOR   FILE   ORGANIZATION</U>   . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	AND   <U>ACCESS   METHOD</U>   POSSIBILITIES .</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>CS - 460   DATABASE   MANAGEMENT   SYSTEMS</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>SESSION   2(b)</STRONG></FONT></P>
+
+
+
+<P><FONT SIZE="-1"><STRONG><U><CENTER>SEQUENTIAL   FILES</U></CENTER>
+</STRONG></FONT></P>
+
+
+
+
+<P><FONT SIZE="-1"><STRONG>===============================================================================</STRONG></FONT></P>
+
+
+
+
+
+
+<P><FONT SIZE="-1"><STRONG>						FIG.   3.1</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>					        GILLENSON</STRONG></FONT></P>
+
+
+
+
+
+
+<P><FONT SIZE="-1"><STRONG>============================================================================</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>o	SIMPLEST   WAY   OF   STORING   A   COLLECTION   OF   RECORDS   IS . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	<U>ONE   LONG   LIST</U>.</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>o	IF   RECORDS   ARE   IN   SEQUENCES   (IN   TERMS   OF   ONE   OR   MORE   FIELDS) . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	CALLED   A   <U>SEQUENTIAL</U>    OR     <U>KEY - SEQUENTIAL</U>   FILE .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>o	<U>THE PAYROLL   FILE   IS   A   SEQUENTIAL   FILE</U> . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	THE   FIELD   WITH   UNIQUE   VALUES   IDENTIFYING   THE   RECORDS . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>		&gt;	IS   THE   <U>KEY   FIELD.</U></STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	IN THE   PAYROLL   FILE   THE   RECORDS   ARE   SEQUENCED   </STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>		BY   THE   <U>KEY   FIELD</U> . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>		&gt;	THIS    IS   NOT   ALWAYS   THE    CASE.</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>CS - 460   DATABASE   MANAGEMENT   SYSTEMS</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>SESSION   2(b)</STRONG></FONT></P>
+
+
+
+<P><FONT SIZE="-1"><STRONG><U><CENTER>SEQUENTIAL   FILES   (CONT.)</CENTER>
+</U></STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>================================================================================</STRONG></FONT></P>
+
+
+
+
+
+
+<P><FONT SIZE="-1"><STRONG>						FIG.    3.1</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>					       GILLENSON</STRONG></FONT></P>
+
+
+
+
+
+
+
+<P><FONT SIZE="-1"><STRONG>==================================================================================</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>o	<U>RETRIEVING   DATA</U> . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	STARTING   AT    THE   BEGINNING   OF   THE   FILE . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>		&gt;	READ   ONE   RECORD   AFTER   THE   OTHER   IN   SEQUENCE . . </STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>		&gt;	LOOK   FOR   DESIRED   RECORD .</STRONG></FONT></P>
+
+
+
+<P><FONT SIZE="-1"><STRONG>o	<U>INSERTION / DELETION   OF   RECORDS</U> . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	YOU   CAN'T   INSERT   A   NEW   RECORD . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>		&gt;	BY   PHYSICALLY   INSERTING   THE   NEW   RECORD   BETWEEN   TWO   ADJACENT  
+EXISTING   RECORDS . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	YOU   CAN'T    DELETE   A   RECORD   UNLESS   IT   IS   FIRST   FOUND.</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG><U></U></STRONG></FONT><FONT SIZE="-1"><STRONG>CS - 460   DATABASE   MANAGEMENT   SYSTEMS</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>SESSION   2(b)</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG><CENTER><U>SEQUENTIAL   FILES</CENTER>
+</U></STRONG></FONT></P>
+
+
+
+<P><FONT SIZE="-1"><STRONG>===================================================================================</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>							|</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>							|</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>							|</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>							|</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>							|</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>							|</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>							|</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>							|</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>							|</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>							|</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>							|	</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>							|</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>							|</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>							|</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>==================================================================================</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>o	BOTH   INSERTION   AND   DELETION   CAN   BE   ACCOMPLISHED   AS   SHOWN   IN   THE   FIGURE   ON   THE 
+ RIGHT . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	<U>TAPES   USED</U> :	MASTER   FILE,   TRANSACTION    FILE ,   NEW   MASTER   FILE.</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	<U>TRANSACTION   FILE</U>    CONTAINS   THE   NEW   RECORDS   TO   BE   INSERTED . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>		&gt;	AND   THE   <U>KEY   FIELD</U>   VALUES   OF   THE   RECORDS   TO   BE   DELETED (WITH   THE  
+PROPER   <U>DELETE   CODE</U>   ATTACHED .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	ALL   ARE   SORTED   IN   THE   SAME   <U>KEY   FIELD</U>    SEQUENCE   THAT   THE   MASTER   FILE   IS   IN
+. .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	THE   PROGRAM   READS   THE   TWO    TAPES   IN   TANDEM   LOOKING   FOR   MATCHES   IN   KEY  
+FIELDS . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>		&gt;	FOR   BOTH   DELETE   AND   UPDATE   OPERATIONS . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>			&gt;&gt;	AND   THE PROPER   PLACE   TO    INSERT   THE   NEW   RECORDS.</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>CS - 460   DATABASE   MANAGEMENT   SYSTEMS</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>SESSION   2(b)</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG><U><CENTER>SEQUENTIAL   FILES   (CONT.)</U> . . .</CENTER>
+</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>==================================================================================</STRONG></FONT></P>
+
+
+
+
+
+
+<P><FONT SIZE="-1"><STRONG>			FIG.   3.1						FIG.   3.2</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>		        GILLENSON					      GILLENSON</STRONG></FONT></P>
+
+
+
+
+
+
+<P><FONT SIZE="-1"><STRONG>==================================================================================</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>o	<U>UNAFFECTED   RECORDS</U>   ARE   SIMPLY   COPIED   ONTO   THE   NEW   TAPE . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>o	<U>RECORDS   TO   BE   DELETED</U>    ARE   SIMPLY   <U>NOT</U>    COPIED   ONTO    THE   NEW   TAPE .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>o	<U>RECORDS   TO   BE   INSERTED</U>   ARE   PLACED   ONTO   THE   NEW   TAPE . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	MERGED   INTO   THE CORRECT   LOCATION   TO   MAINTAIN   THE   KEY   SEQUENCE .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>o<U>	AT   THE   END   OF   THE   OPERATION</U> . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	THE   NEW   MASTER   TAPE   AND   FILE . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>		&gt;	BECOME   THE   <U>ACTIVE</U>   MASTER   TAPE   AND   FILE . </STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	THE    <U>ORIGINAL</U>   MASTER   TAPE   (AND   THE   TRANSACTION   TAPE)   CAN   BE   KEPT   FOR   BACK
+- UP   PURPOSES .</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>CS - 460   DATABASE   MANAGEMENT   SYSTEMS</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>SESSION   2(b)</STRONG></FONT></P>
+
+
+
+<P><FONT SIZE="-1"><STRONG><U><CENTER>NON - SEQUENTIAL   FILES</U></CENTER>
+</STRONG></FONT></P>
+
+
+
+<P><FONT SIZE="-1"><STRONG>o	SIMPLE   LINEAR   FILES   NOT   SEQUENCED   BY   ANY   FIELD .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>o	<U>AN   EXAMPLE</U> . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	CHRONOLOGICAL   "PILE"   IN   WHICH   EVERY   TIME   SOME   NEW   DATA   OR   RECORD   IS  
+RECEIVED . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>		&gt;	IT   IS   PLUNKED   DOWN   AT   THE   END   OF   THE   FILE . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>			&gt;&gt;	THE   DATA   IS   IN   "ARRIVAL   SEQUENCE" .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>o	<U>NON - SEQUENTIAL</U>   FILES   HAVE   ONE   ADVANTAGE . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	<U>NO   TIME   OR   EFFORT   IS   SPENT   TO   MAINTAIN   THE   FILE   IN   PHYSICAL   SEQUENCE</U> . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>		&gt;	BY   MERGING ,   SORTING ,   OR   OTHER   MANIPULATION . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>			&gt;&gt;	EITHER   WHEN   THE   FILE   IS   FIRST   CREATED . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>			&gt;&gt;	OR   LATER   ON   WHEN   NEW   RECORDS   ARE   ADDED   AT   THE   END   OF   THE  
+FILE .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>o	<U>CAN   NON - SEQUENTIAL    FILES   SERVE   A   PURPOSE</U> ? . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	CAN   THE   RECORDS   FROM   THE   FILES   BE    READ   IN   SEQUENCE . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>		&gt;	BASED   ON   THE   VALUES   OF ONE   OR   MORE   FIELDS ? . </STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	IT   MAY    SOUND   CONTRADICTORY . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>		&gt;	BUT   MECHANISMS   ARE   AVAILABLE   FOR   DIRECTLY   ACCESSING   SUCH   RECORDS .</STRONG></FONT></P>
+
+
+
+<P><FONT SIZE="-1"><STRONG>CS - 460   DATABASE   MANAGEMENT   SYSTEMS</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>SESSION   2(b)</STRONG></FONT></P>
+
+
+
+<P><FONT SIZE="-1"><STRONG><U><CENTER>INDEXED   FILES</U></CENTER>
+</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>   </STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>o	THERE   ARE   LEGITIMATE   REASONS   FOR   WANTING   TO   STORE   RECORDS . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	IN   SIMPLE   LINEAR   FILES. . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>		&gt;	AND   NOT   IN    PHYSICAL   SEQUENCE   BY   ANY   FIELD   WHILE . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>			&gt;&gt; (1)	EXPECTING   TO   BE   ABLE   TO   ACCESS   THE   RECORDS   DIRECTLY   AND . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>			&gt;&gt; (2)	EXPECTING   TO   BE   ABLE   TO   RETRIEVE   THOSE   RECORDS   IN   SEQUENCE   BY  
+SOME   FIELD . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>				.	WHETHER   OR   NOT   THE   FILE   IS   STORED   IN   PHYSICAL   SEQUENCE   BY 
+ THAT   OR   OTHER    MEANS.</STRONG></FONT></P>
+
+
+
+<P><FONT SIZE="-1"><STRONG>o	THE   PRINCIPLE   USED   IS   THE   SAME   AS   AN   INDEX   OF   A   BOOK . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	HOW   DO   YOU   FIND   THE   LOCATION   OF   SOME   SPECIFIC   PIECE   OF   MATERIAL   IN   A  
+BOOK ?? . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>		&gt;	YOU   DO   NOT   PAGE   THROUGH   THE   ENTIRE   BOOK   UNTIL   YOU   FIND   THE   ITEM . . </STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>		&gt;	YOU   LOOK   IN   THE   INDEX   AND   FIND   THE   LOCATION   OF   THE   ITEM  IN   THE  
+BOOK.</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>		&gt;	WE   NORMALLY   USE   AN   ALPHABETIC   SEARCH   THROUGH   THE   </STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>			INDEX . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>			&gt;&gt;	TO   FIND   A   <U>POINTER</U>   TO   ITS   LOCATION . </STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>CS - 460   DATABASE   MANAGEMENT   SYSTEMS</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>SESSION   2(b)</STRONG></FONT></P>
+
+
+
+<P><FONT SIZE="-1"><STRONG><U><CENTER>INDEXED   FILES   (CONT.)</U></CENTER>
+</STRONG></FONT></P>
+
+
+
+<P><FONT SIZE="-1"><STRONG>o	THE SIMPLEST   KIND   OF   <U>INDEX</U>   IS   THE   <U>SIMPLE   LINEAR   INDEX</U> .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>o	FOUR   CASES   ARE   DISTINGUISHED   BY   WHETHER   OR   NOT   A   FILE   IS   STORED   IN SEQUENCE   BY  
+SOME   FIELD . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	AND   WHETHER   THE   DESIRED   OPERATION   INVOLVES   THE   DIRECT   RETRIEVAL   OF   A   
+SINGLE   RECORD . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>		&gt;	OR   THE   RETRIEVAL   OF   ALL   RECORDS   IN   THE   FILE . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>			&gt;&gt;	IN   ORDER   BY   SOME   SET   OF   FIELD   VALUES .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>===================================================================================</STRONG></FONT></P>
+
+
+
+
+
+
+
+
+<P><FONT SIZE="-1"><STRONG>						CHART   PAGE   53</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>						     GILLENSON</STRONG></FONT></P>
+
+
+
+
+
+
+
+
+
+
+<P><FONT SIZE="-1"><STRONG>==================================================================================</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>o	<U>CASE   1</U> :    FILE   IS   <U>STORED   IN   SOME   PHYSICAL   SEQUENCE</U>   BY   SOME   FIELD   <U>AND</U> </STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>	<U>DIRECT   ACCESS   IS   NEEDED</U>   VIA   ONE   OF   THE   FIELDS . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	MAY   OR   MAY   NOT   BE   THE   SEQUENCE   FIELD .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>o	<U>WHEN   THE    SEARCH   FIELD   IS   THE   SEQUENCE   FIELD</U> . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	THE   CASE   IS   A CLASSIC   IN   THE   AREA   OF   FILE   ORGANIZATIONS . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>		&gt;	WITH   ACCESS   METHOD   CALLED   <U>INDEXED - SEQUENTIAL</U> .</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>CS - 460   DATABASE   MANAGEMENT   SYSTEMS</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>SESSION   2(b)</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>o	<U>REFER TO   TABLE ON   PAGE   53,   GILLENSON</U></STRONG></FONT></P>
+
+
+
+<P><FONT SIZE="-1"><STRONG>o	IF   THE   FILE   IS   <U>STORED   IN   PHYSICAL   SEQUENCE</U>   BY   SOME   FIELD   AND   <U>DIRECT</U>   <U>ACCESS   IS  
+REQUIRED</U> . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	BUT   THE   <U>SEARCH   FIELD</U>   IS   <U>DIFFERENT</U>   THAN   THE   SEQUENCE   FIELD . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	THE   FACT   THAT   THE   FILE   IS IN   SEQUENCE   IS   IRRELEVANT . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>		&gt;	THE   SITUATION   IS   THE   SAME   AS   CASE   3 . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>			&gt;&gt;	THE   FILE   MIGHT   AS   WELL   NOT   BE   STORED   IN   ANY    PHYSICAL   SEQUENCE  
+AT   ALL .</STRONG></FONT></P>
+
+
+
+<P><FONT SIZE="-1"><STRONG>o	<U>CASE   2</U> :	THE   FILE   IS   <U>STORED   IN   PHYSICAL   SEQUENCE   BY   SOME   FIELD</U> . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	AND   <U>THERE   IS   A    REQUIREMENT   TO   BE   ABLE   TO   RETRIEVE   THE   RECORDS   IN  
+SEQUENCE   BY   SOME   FIELD</U> .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	IF   THE   FIELD   ON   WHICH   THE   RETRIEVAL   IS   BASED . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>		&gt;	IS   THE   FIELD   THAT   THE   FILE IS   SEQUENCED   ON . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>			&gt;&gt;	<U>THEN   THIS   REQUIREMENT   AMOUNTS   SIMPLY   TO   RETRIEVING   THE   RECORDS 
+ IN   THEIR   PHYSICAL   SEQUENCE.</U></STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG><U>	</U>oo	WHEN   THE    REQUIREMENT   IS   TO   RETRIEVE   THE   RECORDS   IN   A   SEQUENCE . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>		&gt;	<U>BASED   ON   THE   VALUES   IN   A   FIELD   OTHER   THAN   THE   ONE   ON   WHICH   THE  
+FILE   IS   PHYSICALLY   SEQUENCED</U> . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>			&gt;&gt;	OTHER   CONSIDERATIONS   MUST   BE   MADE.</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>CS - 460   DATABASE   MANAGEMENT   SYSTEMS</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>SESSION   2(b)   		  </STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>	</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG><U><CENTER>INDEXED   FILES   (CONT.</CENTER>
+</U></STRONG></FONT></P>
+
+
+
+<P><FONT SIZE="-1"><STRONG>o	<U>CASE   2</U> :    <U>PHYSICAL   SEQUENCE   DIFFERENT   FROM   THE   RETRIEVAL   SEQUENCE</U>.<U></U></STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>===================================================================================</STRONG></FONT></P>
+
+
+
+
+
+
+<P><FONT SIZE="-1"><STRONG>					FIG.   3.4</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>				        GILLENSON<U></U></STRONG></FONT></P>
+
+
+
+
+
+
+<P><FONT SIZE="-1"><STRONG>==================================================================================</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>o	THE   RIGHT - HAND   SIDE   OF   THE   FIGURE   IS   IN   SEQUENCE   BY   EMPLOYEE   NUMBER . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	THE   RECORDS   HAVE   A    <U>RECORD   NUMBER</U>   FIELD   (RELATIVE    RECORD   NUMBERS ) . . </STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	<U>GIVEN   A   RELATIVE   RECORD   NUMBER . . .</U></STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG><U>		</U>&gt;<U>	THE   SYSTEMS   SOFTWARE</U>   IS   CAPABLE   OF   MAKING   SOME   ADDRESS   CALCULATIONS
+. . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG><U></U></STRONG></FONT><FONT SIZE="-1"><STRONG><U>			</U>&gt;&gt;	<U>AND   DIRECTLY   FINDING   THE   RECORD   ASSOCIATED   WITH   IT</U> .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	AGAIN,   <U>THE   PAYROLL   FILE   IS   IN   SEQUENCE   BY   EMPLOYEE   NUMBER</U> . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>		&gt;	<U>THE   LEFT - HAND   SIDE   SHOWS   A   SIMPLE   LINEAR   INDEX</U> . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>			&gt;&gt;	DESIGNED   <U>TO   PROVIDE   SEQUENTIAL    ACCESS   TO   THE   PAYROLL</U>   <U>FILE   BY  
+EMPLOYEE   LAST   NAME</U> .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>		&gt;	THE   <U>LEFT - HAND   COLUMN   OF   THE INDEX</U>   IS   <U>IDENTICAL   WITH   THE</U>   <U>EMPLOYEE  
+LAST - NAME   COLUMN</U>    OF   THE    PAYROLL   FILE . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>			&gt;&gt;	<U>BUT   IN   ALPHABETICAL   ORDER</U> .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>		&gt;	<U>THE    RIGHT - HAND   COLUMN   OF   THE   INDEX</U>   PROVIDES   THE   <U>ADDRESS  </U> <U>OF   THE  
+RECORD   IN   THE   PAYROLL   FILE</U>    CONTAINING   THE   <U>SAME</U>   <U>LAST - NAME   VALUE   AS  
+THAT   VALUE    OF   THE   INDEX</U> .<U></U></STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG> CS - 460   DATABASE   MANAGEMENT   SYSTEMS</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>SESSION   2(b) </STRONG></FONT></P>
+
+
+
+<P><FONT SIZE="-1"><STRONG>o	<U>CASE   3</U> :   <U>PHYSICAL   SEQUENCE   OTHER   THAN   RETRIEVAL   RETRIEVAL (CONT.)</U> . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>==================================================================================</STRONG></FONT></P>
+
+
+
+
+
+
+
+<P><FONT SIZE="-1"><STRONG>						FIG.   3.4</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>					       GILLENSON</STRONG></FONT></P>
+
+
+
+
+
+
+<P><FONT SIZE="-1"><STRONG>==================================================================================</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>o	<U>THE   ADDRESS</U>   (A   RELATIVE   NUMBER   HERE ) . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	CAN    ALSO    TAKE    THE   FORM   OF   AN   ABSOLUTE   OR   ACTUAL   DISK   ADDRESS .</STRONG></FONT></P>
+
+
+
+<P><FONT SIZE="-1"><STRONG>o	TO   RETRIEVE   THE   RECORDS   OF   THE    PAYROLL   FILE   ALPHABETICALLY . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	SIMPLY   READ    THE   INDEX   LINE   BY   LINE . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>		&gt;	PICK   UP   THE   RECORD   NUMBER   3   (THE   ONE   FOR   ADAMS )   IN   THE   PAYROLL FILE .
+.</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>		&gt;	FOLLOWED   BY   RECORD   NUMBER   5   (FOR   BAKER ) . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>		&gt;	ETC.</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	TWO   RECORDS   FOR   SMITH . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>		&gt;	EACH   WITH   A   DIFFERENT   INDEX .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>CS - 460   DATABASE   MANAGEMENT   SYSTEMS</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>SESSION   2(b) </STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG> 		  <U></U></STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG><U><CENTER>INDEXED   FILES   (CONT.)</CENTER>
+</U></STRONG></FONT></P>
+
+
+
+<P><FONT SIZE="-1"><STRONG>o	<U>CASE   4</U>:     THE   FILE   IS   <U>NOT   STORED   IN   ANY   PHYSICAL   SEQUENCE</U> . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	<U>BUT   DIRECT   ACCESS   IS   NEEDED   VIA   ONE   OF   THE   FIELDS</U> .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>=================================================================================</STRONG></FONT></P>
+
+
+
+
+
+
+
+
+<P><FONT SIZE="-1"><STRONG>						FIG.   3.5</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>					       GILLENSON</STRONG></FONT></P>
+
+
+
+
+
+
+<P><FONT SIZE="-1"><STRONG>================================================================================</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>o	THE FIGURE   SHOWS   SAMPLE   PAYROLL   RECORDS . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	<U>PHYSICALLY   STORED   SO   THAT   THEY   ARE   NOT   IN   SEQUENCE   BY   ANY   FIELD</U> . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	THE   INDEX   SHOWS   A   NEW   FILE   <U>BASED   ON   EMPLOYEE   LAST   NAME</U> . </STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>o	<U>REQUIRED</U> :   <U>TO   FIND   THE   PAYROLL   RECORD   FOR   JONES</U> . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	A   "SEARCH"   PROGRAM   OR   ROUTINE   FINDS   "JONES"   IN   THE INDEX . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	<U>WHEN   "JONES"   IS   FOUND</U> . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>		&gt;	THE   ASSOCIATED   INDEX   ENTRY   INDICATES   THE   RECORD   IN   THE   MAIN   FILE . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>			&gt;&gt;	WITH   EMPLOYEE   LAST   NAME   OF   "JONES"   AND   RELATIVE   RECORD   NUMBER 
+ 2 . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>		&gt;	THAT   RECORD   CAN   BE   "PICKED   UP"   FOR   PROCESSING .</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG> CS - 460   DATABASE   MANAGEMENT   SYSTEMS</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>SESSION   2(b) </STRONG></FONT></P>
+
+
+
+<P><FONT SIZE="-1"><STRONG><U><CENTER>SOME   CONCEPTUAL   CHARACTERISTICS   OF   INDEXES</U></CENTER>
+</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>o	<U>AN   INDEX   CAN   BE   BUILT</U>   BASED   ON   ANY    FIELD   OF   A   FILE . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	WHETHER   OR   NOT   THE   FILE   IS   IN   PHYSICAL   SEQUENCE   BASED   ON   THAT   OR   ANY  
+OTHER   FIELD .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>o	<U>AN   INDEX   CAN   BE   BUILT</U>   ON   A   COMBINATION   OF   FIELDS . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	EXAMPLE :   EMPLOYEE   LAST NAME   <U>AND</U>   EMPLOYEE   FIRST   NAME .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>o	<U>ANY   INDEX   CAN   BE   USED</U>   BOTH   FOR   DIRECT   ACCESS   BASED   ON   THE   SEQUENCE   ON   THE  
+INDEXED   FIELD . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	AND   FOR   SEQUENTIAL   RETRIEVAL   OF   RECORDS   BASED   ON   THE   SEQUENCE   OF   THE  
+FIELD .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>o	<U>MANY   SEPARATE   INDEXES</U>   INTO   A   FILE   CAN   EXIST   SIMULTANEOUSLY . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	EACH   BASED   ON   A   DIFFERENT   FIELD   OR   A COMBINATION   OF   FIELDS   OF   THAT   FILE . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>		&gt;	THE   INDEXES   ARE   INDEPENDENT   OF   EACH   OTHER .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>o	<U>THE   INDEXES   MUST   BE   UPDATED</U> . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	<U>WHEN   CHANGES   ARE   MADE   TO   THE   FILE</U> . </STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	<U>EXAMPLE</U> :	   IF   ONE    OF THE   FIELDS   IN   ONE   OF   THE   RECORDS   IN THE </STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>		FILE   CHANGES . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>		&gt;	AND   THERE   IS   AN   INDEX   BUILT   ON   THAT   FILE . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>			&gt;&gt;	THEN   THE   INDEX   FILE   MUST   BE   UPDATED .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	THE   CHANGES   COULD   INCLUDE   INSERTION / DELETION   OF   RECORDS ,   CHANGING   A   FIELD
+,   ETC. . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>		&gt;	WHEN   CHANGES   ARE   MADE   THE   INDEX    FILE   MUST   ACTUALLY   BE   RESORTED   
+WITH   THE   NEW   DATA . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>			&gt;&gt;	EITHER   ON   THE   SPOT   OR   AT   SOME   LATER   TIME.</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>		&gt;	THE   UPDATES   MUST   BE   KEPT   IN   A   LIST . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>			&gt;&gt;	WHICH   MUST   BE   ACCESSED   IN   CASE   A   RETRIEVAL   MUST   BE   DONE    BASED 
+ ON   ONE   OF   THE   NEW   ENTRIES . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>				.	BEFORE   THE   INDEX   IS   RESORTED .</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>		</STRONG></FONT></P>
+
+
+
+<P><FONT SIZE="-1"><STRONG>	</STRONG></FONT></P>
+
+
+
+
+
+
+
+<P><FONT SIZE="-1"><STRONG><U></U></STRONG></FONT><FONT SIZE="-1"><STRONG>	</STRONG></FONT></P>
+
+
+
+</BODY>
+</HTML>

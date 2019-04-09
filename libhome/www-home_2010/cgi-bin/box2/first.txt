@@ -1,0 +1,74 @@
+
+================================================================
+================================================================
+=====htdocs/first.html==========================================
+================================================================
+<html>
+<head>
+<title>htdocs/test4.4.html</title>
+</head>
+<body bgcolor="eeff88" text="000090">
+<hr>
+test4.4.html
+<p>
+bgpage=eeff88, bgtable=aaeeff 
+<hr>
+<p>
+<FORM NAME ="FORM1" METHOD=POST 
+      ACTION="cgi-bin/examples/p3/first.cgi">
+<p>
+<table cellpadding=10 cellspacing=15 bgcolor="aaeeff">
+<tr><td>
+Please enter your name. 
+</td><td>
+<INPUT TYPE=TEXT name=myname size=20>
+</td></tr>
+<tr><td>
+Please enter your number.     
+</td><td>
+<INPUT TYPE=TEXT name=mynumber size=20>
+</td></tr>
+<tr><td>
+Please press button to submit your login name. 
+</td><td>
+<INPUT TYPE=SUBMIT value="Submit Button" >
+</td></tr>
+</table>
+</form>
+</body>
+</html>
+================================================================
+================================================================
+=====cgi-bin/examples/p3/first.cgi==============================
+================================================================
+
+
+#!/usr/local/bin/perl5.00503 -w
+
+do "cgi-lib.pl" || die "Cannot do cgi-lib.pl\n";
+
+&ReadParse;
+
+$name=$in{'myname'};
+$number=$in{'mynumber'};
+
+
+print "Content-type: text/html\n\n";
+print "<html>";
+print "<head>";
+print "<title>first.cgi</title>";
+print "</head>";
+print "<body bgcolor=\"aa0000\" text=\"ffff00\">";
+print "<h1> This is the program first.cgi</h1>";
+print "<hr>";
+print "The data sent to this program is $name and $number.";
+print "<p>";
+print "\$ m y n a m e === $name";
+
+print "<p>";
+print "\$ m y n u m b e r === $number";
+print "<hr>";
+print "</body>";
+print "</html>";
+
+exit(0);

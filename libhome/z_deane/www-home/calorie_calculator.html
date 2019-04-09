@@ -1,0 +1,334 @@
+<html>
+<head>
+<title>Reebok University</title>
+<SCRIPT ID=clientEventHandlersJS LANGUAGE=javascript>
+<!--
+function window_onload() {
+focus()
+}
+//-->
+</SCRIPT>
+
+<SCRIPT LANGUAGE=javascript FOR=window EVENT=onload>
+<!--
+ window_onload()
+//-->
+</SCRIPT>
+
+</head>
+
+<body BGCOLOR="#ffffff" TEXT="#333333" LINK="#333333" ALINK="#333333" VLINK="#333333" TOPMARGIN="0" LEFTMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0" onload="window_onload()">
+<font face='verdana' size='3'>
+<center>
+This page adapted from:<br>
+http://www.reeboku.com/modules/calculators/calorie_calculator.html
+<p>
+<table border="1" bgcolor="cccccc" cellpadding="0" cellspacing="0" width="250">
+<TR><TD>
+<table border="1" cellpadding="0" cellspacing="0" width="250" background="images/calories_burned_back.gif">
+<!---
+  <tr valign="top"><td background="http://a872.g.akamai.net/3/872/5136/705c01fc3951c8/www.reeboku.com/modules/calculators/images/calories_burned_back.gif"><IMG alt="Calories Burned" border=0 height=37 src="http://a344.g.akamai.net/3/344/5136/0524e4168a4877/www.reeboku.com/modules/calculators/images/calories_burned_header.gif" width=250></td></tr>
+--->
+<tr valign="top"><td bgcolor="666666" align='center'><font face='verdana' size='2' color='ffffff' ><b>Calories Burned</b></font></td></tr>
+  <tr valign="top"><td>
+<FORM Name="calorieBurn">
+<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="1" WIDTH=250 background="images/shim.gif">
+<TR><TD ALIGN="CENTER">
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+var option0 = new Array(6);
+option0[0] = new Option("30 min/mi", "2.5", false, false);
+option0[1] = new Option("24 min/mi", "3.0", false, false);
+option0[2] = new Option("20 min/mi", "3.5", false, false);
+option0[3] = new Option("17 min/mi", "4.0", false, false);
+option0[4] = new Option("15 min/mi", "4.5", false, false);
+option0[5] = new Option("13 min/mi", "5.0", false, false);
+option0_total = 6;
+
+var option1 = new Array(11);
+option1[0] = new Option("12.0 min/mi", "8.0", false, false);
+option1[1] = new Option("11.5 min/mi", "9.0", false, false);
+option1[2] = new Option("10.0 min/mi", "10.0", false, false);
+option1[3] = new Option("9.0 min/mi", "11.0", false, false);
+option1[4] = new Option("8.5 min/mi", "11.5", false, false);
+option1[5] = new Option("8.0 min/mi", "12.5", false, false);
+option1[6] = new Option("7.5 min/mi", "13.5", false, false);
+option1[7] = new Option("7.0 min/mi", "14.0", false, false);
+option1[8] = new Option("6.5 min/mi", "15.0", false, false);
+option1[9] = new Option("6.0 min/mi", "16.0", false, false);
+option1[10] = new Option("5.5 min/mi", "18.0", false, false);
+option1_total = 11;
+
+var option2 = new Array(6);
+option2[0] = new Option("<10 mph", "4.0", false, false);
+option2[1] = new Option("11 mph", "6.0", false, false);
+option2[2] = new Option("13 mph", "8.0", false, false);
+option2[3] = new Option("15 mph", "10.0", false, false);
+option2[4] = new Option("17.5 mph", "12.0", false, false);
+option2[5] = new Option(">20 mph", "16.0", false, false);
+option2_total = 6;
+
+var option3 = new Array(2);
+option3[0] = new Option("50 yd/min", "8.0", false, false);
+option3[1] = new Option("75 yd/min", "11.0", false, false);
+option3_total = 2;
+
+var option4 = new Array(1);
+option4[0] = new Option("General", "5.0", false, false);
+option4_total = 1;
+
+var option5 = new Array(3);
+option5[0] = new Option("Shooting Baskets", "4.5", false, false);
+option5[1] = new Option("Non-game", "6.0", false, false);
+option5[2] = new Option("Game/competitive", "8.0", false, false);
+option5_total = 3;
+
+var option6 = new Array(5);
+option6[0] = new Option("Ballroom - Slow", "3.0", false, false);
+option6[1] = new Option("Line Dancing", "4.0", false, false);
+option6[2] = new Option("Ballroom - Fast", "5.0", false, false);
+option6[3] = new Option("Swing", "6.0", false, false);
+option6[4] = new Option("Aerobic", "7.0", false, false);
+option6_total = 5;
+
+var option7 = new Array(3);
+option7[0] = new Option("Playing Catch", "2.5", false, false);
+option7[1] = new Option("Touch/Flag", "8.0", false, false);
+option7[2] = new Option("Competitive", "9.0", false, false);
+option7_total = 3;
+
+var option8 = new Array(3);
+option8[0] = new Option("Using Golf Cart", "3.5", false, false);
+option8[1] = new Option("Pulling own clubs", "5.0", false, false);
+option8[2] = new Option("Carrying own clubs", "5.5", false, false);
+option8_total = 3;
+
+var option9 = new Array(1);
+option9[0] = new Option("General", "8.0", false, false);
+option9_total = 1;
+
+var option10 = new Array(5);
+option10[0] = new Option("Walking", "2.5", false, false);
+option10[1] = new Option("Saddling horse", "3.5", false, false);
+option10[2] = new Option("General", "4.0", false, false);
+option10[3] = new Option("Trotting", "6.5", false, false);
+option10[4] = new Option("Galloping", "8.0", false, false);
+option10_total = 5;
+
+var option11 = new Array(1);
+option11[0] = new Option("General", "10.0", false, false);
+option11_total = 1;
+
+var option12 = new Array(2);
+option12[0] = new Option("Casual", "7.0", false, false);
+option12[1] = new Option("Competitive", "10.0", false, false);
+option12_total = 2;
+
+var option13 = new Array(2);
+option13[0] = new Option("Rapelling", "8.0", false, false);
+option13[1] = new Option("Climbing", "11.0", false, false);
+option13_total = 2;
+
+var option14 = new Array(3);
+option14[0] = new Option("Slow", "8.0", false, false);
+option14[1] = new Option("Moderate", "10.0", false, false);
+option14[2] = new Option("Fast", "12.0", false, false);
+option14_total = 3;
+
+var option15 = new Array(1);
+option15[0] = new Option("General", "5.0", false, false);
+option15_total = 1;
+
+var option16 = new Array(4);
+option16[0] = new Option("Slow", "5.5", false, false);
+option16[1] = new Option("General", "7.0", false, false);
+option16[2] = new Option("Fast", "9.0", false, false);
+option16[3] = new Option("Speed/competitive", "15.0", false, false);
+option16_total = 4;
+
+var option17 = new Array(1);
+option17[0] = new Option("General", "7.0", false, false);
+option17_total = 1;
+
+var option18 = new Array(5);
+option18[0] = new Option("Slow (2.5 mph)", "7.0", false, false);
+option18[1] = new Option("Moderate (4-5 mph)", "8.0", false, false);
+option18[2] = new Option("Brisk (5-8 mph)", "9.0", false, false);
+option18[3] = new Option("Racing (>8 mph)", "14.0", false, false);
+option18[4] = new Option("Extreme(uphill,hard snow)", "16.5", false, false);
+option18_total = 5;
+
+var option19 = new Array(3);
+option19[0] = new Option("Light", "5.0", false, false);
+option19[1] = new Option("Moderate", "6.0", false, false);
+option19[2] = new Option("Vigorous/Race", "8.0", false, false);
+option19_total = 3;
+
+var option20 = new Array(1);
+option20[0] = new Option("General", "6.0", false, false);
+option20_total = 1;
+
+var option21 = new Array(1);
+option21[0] = new Option("General", "8.0", false, false);
+option21_total = 1;
+
+var option22 = new Array(2);
+option22[0] = new Option("Casual", "7.0", false, false);
+option22[1] = new Option("Competition", "10.0", false, false);
+option22_total = 2;
+
+var option23 = new Array(1);
+option23[0] = new Option("General", "3.0", false, false);
+option23_total = 1;
+
+var option24 = new Array(3);
+option24[0] = new Option("Doubles", "6.0", false, false);
+option24[1] = new Option("General", "7.0", false, false);
+option24[2] = new Option("Singles", "8.0", false, false);
+option24_total = 3;
+
+var option25 = new Array(1);
+option25[0] = new Option("General", "3.5", false, false);
+option25_total = 1;
+
+var option26 = new Array(3);
+option26[0] = new Option("Casual", "3.0", false, false);
+option26[1] = new Option("Competitive", "4.0", false, false);
+option26[2] = new Option("Beach", "8.0", false, false);
+option26_total = 3;
+
+var option27 = new Array(1);
+option27[0] = new Option("General", "10.0", false, false);
+option27_total = 1;
+
+var option28 = new Array(1);
+option28[0] = new Option("One 5-min match", "6.0", false, false);
+option28_total = 1;
+
+var option29 = new Array(3);
+option29[0] = new Option("Light/Moderate", "3.0", false, false);
+option29[1] = new Option("Vigorous", "6.0", false, false);
+option29[2] = new Option("Circuit", "8.0", false, false);
+option29_total = 3;
+
+var option30 = new Array(3);
+option30[0] = new Option("Low impact", "5.0", false, false);
+option30[1] = new Option("Med impact", "7.0", false, false);
+option30[2] = new Option("High impact", "9.0", false, false);
+option30_total = 3;
+
+var thisMET;
+var form = document.calorieBurn
+
+function updateMET(form) {
+form = document.calorieBurn		
+sidx = form.met.selectedIndex;
+sidx = form.met.selectedIndex;
+thisMET = form.met.options[sidx].value * 1;
+}
+
+function updateMenus(form) {
+form = document.calorieBurn
+sidx = form.activity.selectedIndex;
+form.met.length = 0;
+opt_total = eval("option" + (sidx) + "_total");
+  for (i = 0; i < opt_total; i++) {
+	  eval("form.met.options[i] = option" + (sidx) + "[" + i + "]");
+  }
+  form.met.selectedIndex = 0;
+  updateMET(form);
+}
+
+function calculate(form) {
+    form = document.calorieBurn
+  thisWeight = form.weight.value * 0.4536
+  thisAnswer = parseInt(thisMET * thisWeight)
+  if (isNaN(thisAnswer)) {
+  form.duration.value = "254"
+  } else {
+	 form.duration.value = parseInt(thisMET * thisWeight)
+  }
+}
+// -->
+</SCRIPT>
+<TR VALIGN="MIDDLE">
+  <TD ALIGN="CENTER">
+  <FONT SIZE="-2" COLOR="#333333" FACE="Arial,Helvetica,sans-serif">
+  Weight: </FONT><INPUT NAME="weight" TYPE="text" SIZE="3" VALUE="160">
+  <FONT SIZE="-2" COLOR="#333333" FACE="Arial,Helvetica,sans-serif">
+  lbs.</FONT></TD>
+</TR>
+
+<TR VALIGN="MIDDLE">
+  <TD ALIGN="CENTER">
+  <FONT SIZE="-2" COLOR="#333333" FACE="Arial,Helvetica,sans-serif">Activity: </FONT>
+  <SELECT NAME="activity" onChange="updateMenus()">
+  <OPTION VALUE="0" SELECTED>Walking</OPTION>
+  <OPTION VALUE="1">Running</OPTION>
+  <OPTION VALUE="2">Biking</OPTION>
+  <OPTION VALUE="3">Swimming</OPTION>
+  <OPTION VALUE="4">Baseball/Softball</OPTION>
+  <OPTION VALUE="5">Basketball</OPTION>
+  <OPTION VALUE="6">Dancing</OPTION>
+  <OPTION VALUE="7">Football</OPTION>
+  <OPTION VALUE="8">Golf</OPTION>
+  <OPTION VALUE="9">Hockey</OPTION>
+  <OPTION VALUE="10">Horseback Riding</OPTION>
+  <OPTION VALUE="11">Martial Arts</OPTION>
+  <OPTION VALUE="12">Racquetball</OPTION>
+  <OPTION VALUE="13">Rock Climbing</OPTION>
+  <OPTION VALUE="14">Rope Jumping</OPTION>
+  <OPTION VALUE="15">Skateboarding</OPTION>
+  <OPTION VALUE="16">Skating - Ice</OPTION>
+  <OPTION VALUE="17">Skating - Inline/roller</OPTION>
+  <OPTION VALUE="18">Skiing - Cross Country</OPTION>
+  <OPTION VALUE="19">Skiing - Downhill</OPTION>
+  <OPTION VALUE="20">Skiing - Water</OPTION>
+  <OPTION VALUE="21">Snow Shoeing</OPTION>
+  <OPTION VALUE="22">Soccer</OPTION>
+  <OPTION VALUE="23">Surfing</OPTION>
+  <OPTION VALUE="24">Tennis</OPTION>
+  <OPTION VALUE="25">Ultimate Frisbee</OPTION>
+  <OPTION VALUE="26">Volleyball</OPTION>
+  <OPTION VALUE="27">Water Polo</OPTION>
+  <OPTION VALUE="28">Wrestling</OPTION>
+  <OPTION VALUE="29">Strength Training</OPTION>
+  <OPTION VALUE="30">Aerobics</OPTION>
+  </SELECT></TD>
+</TR>
+
+<TR VALIGN="MIDDLE">
+  <TD ALIGN="CENTER"><FONT SIZE="-2" COLOR="#333333" FACE="Arial,Helvetica,sans-serif">Intensity: </FONT>
+  <SELECT NAME="met" onChange="focus(this.form.unit); updateMET()">
+  <OPTION VALUE="2.5">30 min/mi</OPTION>
+  <OPTION VALUE="3.0">24 min/mi</OPTION>
+  <OPTION VALUE="3.5" SELECTED>20 min/mi</OPTION>
+  <OPTION VALUE="4.0">17 min/mi</OPTION>
+  <OPTION VALUE="4.5">15 min/mi</OPTION>
+  <OPTION VALUE="5.0">13 min/mi</OPTION>
+  </SELECT></TD>
+</TR>
+
+<TR VALIGN="MIDDLE">
+  <TD ALIGN="CENTER" VALIGN="MIDDLE"><INPUT TYPE=SUBMIT VALUE="Calculate"  onClick="calculate();return false;" id=SUBMIT1 name=SUBMIT1></TD></TR>
+<TR VALIGN="MIDDLE">
+  <TD ALIGN="CENTER" VALIGN="MIDDLE"><INPUT NAME="duration" TYPE="text" SIZE="3" VALUE="254">
+  <FONT SIZE="-2" COLOR="#333333" FACE="Arial,Helvetica,sans-serif">
+  calories/hour</FONT></TD></TR>
+</TABLE>
+</FORM>
+</td></tr>
+<!---
+<tr><td background="http://a872.g.akamai.net/3/872/5136/705c01fc3951c8/www.reeboku.com/modules/calculators/images/calories_burned_back.gif"><IMG alt="" border=0 height=13 src="http://a872.g.akamai.net/3/872/5136/ca6d405b9e8084/www.reeboku.com/modules/calculators/images/calories_burned_bottom.gif" width=250></td>
+</tr>
+--->
+</table>
+<!---
+<TR><TD align="center"><A HREF="javascript:window.close();"><font SIZE="-1" COLOR="#333333" FACE="Arial,Helvetica,sans-serif">close window</font></A></TD></TR>
+--->
+</TABLE>
+
+</body>
+</html>
+

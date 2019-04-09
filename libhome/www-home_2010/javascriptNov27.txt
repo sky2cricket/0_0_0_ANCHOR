@@ -1,0 +1,156 @@
+From JavaScript@itw.itworld.com Tue Nov 27 07:11:02 2001
+Return-Path: <JavaScript@itw.itworld.com>
+Received: from poipu.clickaction.net (marvin@localhost) 
+        by cs.utk.edu with ESMTP (cf v2.9s-UTK)
+	id HAA18201; Tue, 27 Nov 2001 07:11:01 -0500 (EST)
+From: <JavaScript@itw.itworld.com>
+Received: from poipu.clickaction.net (208.50.155.172 -> host-172.clickaction.net)
+ by cs.utk.edu (smtpshim v1.0); Tue, 27 Nov 2001 07:11:01 -0500
+Received: from poipu.clickaction.net (cs-01-out [192.168.6.200])
+	by poipu.clickaction.net (Postfix) with SMTP id 94B0CBB87C5
+	for <deane@cs.utk.edu>; Tue, 27 Nov 2001 04:10:54 -0800 (PST)
+To: "Cricket Deane" <deane@cs.utk.edu>
+X-Header-Partid: 14724
+X-Header-Userid: 76028552
+X-Header-Date: 27-Nov-2001
+X-Header-Version: 4.0
+X-Header-Pitchid: 47205
+Subject: Cracking a hard-coded HTML passage
+Message-Id: <20011127121054.94B0CBB87C5@poipu.clickaction.net>
+Date: Tue, 27 Nov 2001 04:10:54 -0800 (PST)
+Status: R
+Content-Length: 4591
+
+
+JAVASCRIPT --- November 27, 2001
+Published by ITworld.com -- changing the way you view IT
+http://www.itworld.com/newsletters
+________________________________________________________________________________
+
+HIGHLIGHTS
+
+* Using the backtick character allows you to embed server directives 
+  inside other tags. 
+________________________________________________________________________________
+
+SPONSORED LINK
+
+ENTER TO WIN A DELL DIMENSION DREAM SYSTEM 
+
+Enter to win a fully-loaded 2GHz Dell Dimension dream system or $25,000 
+in cash. By entering, you are also eligible to receive any ITworld.com 
+newsletter. CLICK HERE for your chance to win!
+http://itw.itworld.com/GoNow/a14724a47205a76028552a6
+
+______________________________________________________________________________
+
+Backtick Saves the Day
+By David Wall
+
+Last time, we saw that you can use the JavaScript language on the 
+server-side by enclosing references to server-side objects in SERVER 
+tags. That works well when you want to write whole swathes of HTML that 
+result from calculations and lookups that are done on the back end, but 
+not so well when you need to enclose a little bit of server-derived 
+information inside a hard-coded HTML passage.
+
+Let's say we want a particular cell in a table to be one color if the 
+page is being displayed in a late-model browser (version 4 or later), 
+and another color if it's being displayed in an older browser. We can 
+react to the browser type by inspecting the agent property of the 
+request object. A request object comes into being on the server-side 
+every time the server receives a request for a page, and is destroyed 
+when the page is sent out in response to the request. 
+
+This is NOT legal:
+
+<TD BGCOLOR= <SERVER> request.agent.indexOf("4")==-
+1 ? "000000" : "CCCCCC" </SERVER> >
+
+You just can't enclose a pair of SERVER tags inside a hard-coded HTML 
+tag. The trick is to use the reverse apostrophe character, or backtick 
+(`), instead. Use a single backtick in place of the <SERVER> tag, and 
+another in place of the </SERVER> tag, like this:
+
+<TD BGCOLOR= `request.agent.indexOf("4")==-1 ? "000000" : "CCCCCC" `>
+
+That does the job.
+
+About the author(s)
+-------------------
+David Wall works as a freelance writer, programmer, lecturer, and 
+consultant. Based near Washington, D.C., David has written and co-
+written several books, including Graphics Programming with JFC.
+________________________________________________________________________________
+
+ADDITIONAL RESOURCES
+
+Introduction to UNIX for Web Developers
+http://itw.itworld.com/GoNow/a14724a47205a76028552a1
+
+Executing Utilities
+http://itw.itworld.com/GoNow/a14724a47205a76028552a0
+
+Basics of Server-Side JavaScript
+http://itw.itworld.com/GoNow/a14724a47205a76028552a2
+________________________________________________________________________________
+
+ITWORLD.COM NEWSLETTER ARCHIVE
+
+Index of JavaScript
+http://itw.itworld.com/GoNow/a14724a47205a76028552a5
+
+JavaScript Does Windows
+http://itw.itworld.com/GoNow/a14724a47205a76028552a3
+
+Good Communication Skills 
+http://itw.itworld.com/GoNow/a14724a47205a76028552a4
+________________________________________________________________________________
+
+CUSTOMER SERVICE
+
+SUBSCRIBE/UNSUBSCRIBE:
+- Go to: http://www.itworld.com/newsletters
+- Click on "View my newsletters" to log in and manage your account
+- To subscribe, check the box next to the newsletter
+- To unsubscribe, uncheck the box next to the newsletter 
+- When finished, click submit
+
+Questions? Please e-mail customer service at: mailto:support@itworld.com
+________________________________________________________________________________
+
+CONTACTS
+
+* Editorial: Andrew Santosusso, Newsletter Editor, 
+  andrew_santosusso@itworld.com
+* Advertising: Clare O'Brien, Vice President of Sales, 
+  clare_obrien@itworld.com
+* Career Corner: Janis Crowley, Vice President/General Manager, IDG 
+  Recruitment Solutions, janis_crowley@itcareers.net
+* Other inquiries: Jodie Naze, Senior Product Marketing Manager, 
+  jodie_naze@itworld.com
+
+________________________________________________________________________________
+
+PRIVACY POLICY
+
+ITworld.com has been TRUSTe certified 
+http://www.itworld.com/Privacy/
+
+Copyright 2001 ITworld.com, Inc., All Rights Reserved.
+http://www.itworld.com
+
+
+
+**SEND TO A FRIEND**
+Share this email with a friend! Click here!
+http://itw.itworld.com/GoForward/a14724a47205aSa76028552a12
+
+SUBSCRIBE/UNSUBSCRIBE
+Please click on the link below to modify your subscription, unsubscribe,
+or change your email address:
+
+http://itw.itworld.com/Change-Remove/a14724a76028552a12a47205
+
+
+

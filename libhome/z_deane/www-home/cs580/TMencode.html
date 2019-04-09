@@ -1,0 +1,438 @@
+<html>
+<title> TMencode.html </title>
+<body  bgcolor="ffffff" text="000000">
+<center>
+<h1> CS580 <br>Taming the Beast
+<br>by Cricket! Haygood Deane</h1>
+<h1> Encoding of Turing Machines</h1>
+</center>
+<p>
+<hr>
+<p>
+On page 182 of Hopcroft and Ullman, a method for encoding 
+Turing Machines is presented.  This method is summarized below.
+<p>
+<br>Part 0.  Introduction. 
+<br>Part 1.  Building a single move-unit binary string.
+<br>Part 2.  Using move-unit blocks to build a TM program
+<br>Part 3.  How many Turing Machines can there be anyway?
+<p>
+<math>
+Introduction.
+<p>
+The alphabet of these TMs consists of  { 0, 1, B }.
+<br>The integers 0 and 1 are used as numbers. 
+<br>The B stands for BLANK, generally the unwritten part of the
+input tape to the right of the regular input.  Zeros and ones
+can be written over Blanks.  
+<br>Other characters are introduced later in the chapter.
+<p>
+Note that TM input tapes are infinite in ONE DIRECTION ONLY.
+<br>The LEFT end of the tape is defined as an end.
+<br>The first character read is the left-most character on the tape.
+<br>It is BAD to read that first character and move to the LEFT.
+<br>The result is a move off the left end of the tape and you
+end up in the pits of nowhere.  
+<p>
+<hr>
+<p>
+Part 1.  Building a single move-unit binary string.
+<p>
+Hopcroft and Ullman present<br>
+The generic move function for a TM: &nbsp;&nbsp;&nbsp;&nbsp;
+ ( q<sub>i</sub>, X<sub>j</sub> ) = 
+                ( q<sub>k</sub>, X<sub>l</sub>, D<sub>m</sub> ) 
+<p>
+In an effort to eliminate the endless confusion caused by the
+subscript "l" (letter l, which by normal people is confused with the
+number 1), I shall replace the subscript "l" with the subscript "n" 
+for the discussion below.
+<p>
+The generic move function for a TM: &nbsp;&nbsp;&nbsp;&nbsp;
+ ( q<sub>i</sub>, X<sub>j</sub> ) = 
+                ( q<sub>k</sub>, X<sub>n</sub>, D<sub>m</sub> ) 
+<br>where:
+<p>
+<table border=1>
+<tr>
+<td>q<sub>i</sub> is the current state</td>
+<td> i represents the integer subscript</td>
+</tr>
+<tr>
+<td> X<sub>j</sub> is the input symbol</td>
+<td> X<sub>1</sub>=0; &nbsp;&nbsp;&nbsp;
+     X<sub>2</sub>=1; &nbsp;&nbsp;&nbsp;
+     X<sub>3</sub>=B; </td>
+</tr>
+<tr>
+<td>q<sub>k</sub> is the next  state</td>
+<td> k represents the integer subscript</td>
+</tr>
+<tr>
+<td> X<sub>n</sub> is the output symbol</td>
+<td> X<sub>1</sub>=0; &nbsp;&nbsp;&nbsp;
+     X<sub>2</sub>=1; &nbsp;&nbsp;&nbsp;
+     X<sub>3</sub>=B; </td>
+</tr>
+<tr>
+<td>D<sub>m</sub> is the move of the tape head</td>
+<td>m=0 means move to the left ( L )
+<br>m=1 means move to the right ( R ) </td>
+</tr>
+</table>
+<p>
+<hr>
+<p>
+This generic move function may be encoded in binary as shown below.
+I will refer to a single instance of a TM move function as a 
+"move-unit" in honor of Frank Zappa's daughter Moon Unit, who is
+making more money than any of us ever will.  Also, we'll need to
+talk about these move-units later on.  This is my term, not
+Hopcroft and Ullman's.
+<p>
+<table border=1>
+<tr>
+<td> 1 </td>
+<td> The first element of encoding is "11", two ones.
+    This means begin the move-unit.
+</td>
+</tr>
+<tr>
+<td> 2 </td>
+<td> The second element is a string of zeros to represent the
+     integer subscript i.  For example, if q<sub>i</sub>=q<sub>3</sub>,
+     then the string "000" would represent the subscript "3".
+</td>
+</tr>
+<tr>
+<td> 3 </td>
+<td> The third element is a "1" to denote the end of the i encoding.
+</td>
+</tr>
+<tr>
+<td> 4 </td>
+<td> The fourth element is a string of zeros to represent the 
+     integer subscript j.  
+     <br>X<sub>1</sub>= 0 ==> "0"
+     <br>X<sub>2</sub>= 1 ==> "00"
+     <br>X<sub>3</sub>= B ==> "000"
+</td>
+</tr>
+<tr>
+<td> 5 </td>
+<td> The fifth element is a "1" to denote the end of the j encoding.
+</td>
+</tr>
+<tr>
+<td> 6 </td>
+<td> The sixth element is a string of zeros to represent the integer
+     subscript k in q<sub>k</sub>.
+</td>
+</tr>
+<tr>
+<td> 7 </td>
+<td> The seventh element is a "1" to denote the end of the k encoding.
+</td>
+</tr>
+<tr>
+<td> 8 </td>
+<td> The eighth element is a string of zeros to represent the integer
+     subscript n in X<sub>n</sub>.
+     <br>X<sub>1</sub>= 0 ==> "0"
+     <br>X<sub>2</sub>= 1 ==> "00"
+     <br>X<sub>3</sub>= B ==> "000"
+</td>
+</tr>
+<tr>
+<td> 9 </td>
+<td> The ninth element is a "1" to denote the end of the l encoding.
+</td>
+</tr>
+<tr>
+<td> 10 </td>
+<td> The tenth element is a string of zeros to represent the integer 
+     subscript m in D<sub>m</sub>, 
+    <br>where a move to the left is represented by D<sub>1</sub> = L ==> "0",
+    <br>and&nbsp; a move to the right is represented by D<sub>2</sub> = R ==> "00".
+</td>
+</tr>
+<tr>
+<td> 11 </td>
+<td> The eleventh element is a "11" to denote the end of the move-unit.
+</td>
+</tr>
+</table>
+<p>
+
+A summary of the encoding is shown below.
+<p>
+
+<table border=1>
+<tr>
+<td> element</td>
+<td> 1&nbsp; </td>
+<td> 2&nbsp; </td>
+<td> 3&nbsp; </td>
+<td> 4&nbsp; </td>
+<td> 5&nbsp; </td>
+<td> 6&nbsp; </td>
+<td> 7&nbsp; </td>
+<td> 8&nbsp; </td>
+<td> 9&nbsp; </td>
+<td> 10 </td>
+<td> 11 </td>
+</tr>
+<tr>
+<td> symbol </td>
+<td> &nbsp;&nbsp;&nbsp;</td>
+<td> q<sub>i</sub> </td>
+<td> &nbsp;&nbsp;&nbsp;</td>
+<td> X<sub>j</sub> </td>
+<td> &nbsp;&nbsp;&nbsp;</td>
+<td> q<sub>k</sub> </td>
+<td> &nbsp;&nbsp;&nbsp;</td>
+<td> X<sub>n</sub> </td>
+<td> &nbsp;&nbsp;&nbsp;</td>
+<td> D<sub>m</sub> </td>
+<td> &nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td> binary<br>representation</td>
+<td> 11 </td>
+<td> 0<sup>i</sup> </td>
+<td> 1 </td>
+<td> 0<sup>j</sup> </td>
+<td> 1 </td>
+<td> 0<sup>k</sup> </td>
+<td> 1 </td>
+<td> 0<sup>n</sup> </td>
+<td> 1 </td>
+<td> 0<sup>m</sup> </td>
+<td> 11 </td>
+</tr>
+</table>
+<p>
+One important side-effect of this encoding scheme is that
+a state named "q<sub>0</sub> cannot be represented in this
+format and subsequently is not used when you code TMs this
+way. 
+<p>
+A convention favored by Hopcroft and Ullman (among others)
+is to use the state q<sub>1</sub> as the start state and
+to use the state q<sub>2</sub> as the final state.
+<p>
+<hr>
+<p>
+<hr>
+<p>
+Example 1:
+<p>
+Given the single move (delta): &nbsp;&nbsp;&nbsp; 
+     ( q<sub>4</sub>, 1 ) = (q<sub>5</sub>, 0, R )
+<p>
+The move-unit binary string is:  1100001001000001010011
+<p> 
+<table border=1>
+<tr>
+<td> symbol </td>
+<td>&nbsp;&nbsp;</td>
+<td>q<sub>4</sub></td>
+<td>&nbsp;&nbsp;</td>
+<td>X<sub>2</sub>=1</td>
+<td>&nbsp;&nbsp;</td>
+<td>q<sub>5</sub></td>
+<td>&nbsp;&nbsp;</td>
+<td>X<sub>1</sub>=0</td>
+<td>&nbsp;&nbsp;</td>
+<td>D<sub>2</sub>=R</td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td> binary<br>representation</td>
+<td> 11 </td>
+<td>0000</td>
+<td> 1&nbsp; </td>
+<td>00</td>
+<td> 1&nbsp; </td>
+<td>00000</td>
+<td> 1&nbsp; </td>
+<td>0</td>
+<td> 1&nbsp; </td>
+<td>00</td>
+<td> 11 </td>
+</tr>
+</table>
+<p>
+<hr>
+<p>
+Example 2:
+<p>
+
+Given the single move (delta): &nbsp;&nbsp;&nbsp; 
+     ( q<sub>5</sub>, B ) = (q<sub>6</sub>, 1, L )
+<p>
+The move-unit binary string is:  1100000100010000001001011
+<p> 
+<table border=1>
+<tr>
+<td> symbol </td>
+<td>&nbsp;&nbsp;</td>
+<td>q<sub>5</sub></td>
+<td>&nbsp;&nbsp;</td>
+<td>X<sub>3</sub>=B</td>
+<td>&nbsp;&nbsp;</td>
+<td>q<sub>6</sub></td>
+<td>&nbsp;&nbsp;</td>
+<td>X<sub>2</sub>=1</td>
+<td>&nbsp;&nbsp;</td>
+<td>D<sub>1</sub>=L</td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td> binary<br>representation</td>
+<td> 11 </td>
+<td>00000</td>
+<td> 1&nbsp; </td>
+<td>000</td>
+<td> 1&nbsp; </td>
+<td>000000</td>
+<td> 1&nbsp; </td>
+<td>00</td>
+<td> 1&nbsp; </td>
+<td>0</td>
+<td> 11 </td>
+</tr>
+</table>
+<p>
+<p> 
+<hr>
+<p>
+Part 2. Constructing a TM from move-units.
+<p>
+One  move-unit is in the form "11---mu---11".
+<p>
+A string of 3 move-units is in the form "11---mu---11---mu---11---mu---11".
+<p> 
+The "11" denotes end one move and start another.
+<p>
+The string "111" is used to denote the start and end of an entire TM program.
+<p>
+For example:
+<p>
+A Turing Machine with only 3 moves would be "111---mu---11---mu---11---mu---111". 
+<p>
+The TM with the moves shown below will accept a single 1 and nothing else.
+<br>(i.e. you cannot reach state two with any other input.)
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     ( q<sub>1</sub>,1 ) = ( q<sub>3</sub>, 0, R )
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     ( q<sub>3</sub>,B ) = ( q<sub>2</sub>, 0, R )
+<p>
+The move-unit binary string for this machine will be:
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+111010010001010011000100010010100111
+<p>
+<hr>
+<p>
+Part 3.  How many Turing Machines are there anyway?
+<p>
+There are several different ways of viewing the binary encoding of
+Turing Machines, but Dr. Langston favors the following:
+<p>
+ALL UNSIGNED POSITIVE BINARY NUMBERS CORRESPOND TO TURING MACHINES.
+This means TMs are countable, because they can be put in one-to-one
+correspondence with the set of Natural Numbers.
+<p>
+Now most of these Binary Number Turing Machines accept nothing 
+(accept the empty set) because they lack the correct format. 
+<p>
+But some of these Binary Number Turing Machines actually have the
+correct format and are able to recognize a recursively enumerable language.
+<p>
+So are the r.e. languages countable?  Yes, because each binary string
+Turing Machine can recognize at most one r.e. language, and the set
+of Turing Machines is countable.
+<p>
+Are the set of non-r.e. languages countable?  No.  Because...
+<p>
+The set of all languages is 2<sup>Sigma*</sup> and is not countable.
+<p>
+The set of all languages can be partitioned into r.e. and non-r.e. languages.
+<p>
+<table border=3>
+<tr>
+<td> not countable </td>
+<td> countable </td>
+<td> not countable </td>
+</tr>
+<tr>
+<td> Set of ALL Languages </td>
+<td> Set of r.e. Languages </td>
+<td> Set of non-r.e. Languages </td>
+</tr>
+</table>
+<p>
+An uncountably infinite set minus a countable subset leaves
+an uncountably infinite subset.
+<p> 
+Therefore the non-r.e. languages are not countably infinite.
+<p>
+Another thing, each of these Binary Encoded Turing Machines 
+corresponds to a number in base 10.  Probably the easiest way
+to figure what this number would be is to parse the number as
+follows:
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+A VALID TM ENCODING: 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+111010010001010011000100010010100111
+<p>
+First, break the string into chunks of length 4 starting from right to left.
+If the leftmost chunk has 3 or less digits, make it length 4
+by padding with additional leftmost zeros.  This padding is 
+not needed in this example.
+<p>
+Second, convert each chunk into its hexadecimal equivalent.
+This process is shown below.
+<p>
+
+<table border=l> 
+<tr>
+<td> 1110 </td>
+<td> 1001 </td>
+<td> 0001 </td>
+<td> 0100 </td>
+<td> 1100 </td>
+<td> 0100 </td>
+<td> 0100 </td>
+<td> 1010 </td>
+<td> 0111 </td>
+</tr>
+<tr>
+<td> e </td>
+<td> 9 </td>
+<td> 1 </td>
+<td> 4 </td>
+<td> c </td>
+<td> 4 </td>
+<td> 4 </td>
+<td> a </td>
+<td> 7 </td>
+</tr>
+</table>
+<p>
+This process will give the hexadecimal number:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e 914c 44a7
+<br> which is easily converted to decimal.
+<p>
+Well, sort of easily.  Like I need to get my calculator now...
+<p>
+The above method is courtesy of Dr. D. W. Straight.
+<hr>
+
+</math>
+
+</html>

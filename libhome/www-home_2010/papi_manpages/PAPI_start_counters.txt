@@ -1,0 +1,62 @@
+PAPI_start_counters     PerfAPI LIBRARY       PAPI_start_counters
+
+
+
+NAME
+     PAPI_start_counters - get number of hardware counters avail-
+     able
+
+SYNOPSIS
+     int PAPI_start_counters (int *events, int array_len)
+
+     int *events --  an  array  of  codes  for  events,  such  as
+     PAPI_INT_INS
+
+     int array_len -- the number of items in the *events array
+
+DESCRIPTION
+     PAPI_start_counters() Start counting the events named in the
+     events  array.   This function implicitly stops and initial-
+     izes any counters running as a result of a previous call  to
+     PAPI_start_coutners().   It  is the user's responsibility to
+     choose events that can be counted simultaneously by  reading
+     the vendor's documentation.  The lenght of this array should
+     be no longer than PAPI_MAX_EVENTS.
+
+     The return value is an integer that  indicates  whether  the
+     call succeeded (PAPI_OK) or failed (not PAPI_OK).
+
+CROSS-REFERENCE WITH OTHER PerfAPI FUNCTIONS
+
+     PAPI_start_counters may be called by:
+
+          the user application program
+
+     PAPI_start_counters contains calls to:
+
+          PAPI_perror
+          PAPI_get_opt
+          PAPI_add_event
+          PAPI_start
+
+SEE ALSO
+     The PerfAPI Draft:
+          http://icl.cs.utk.edu/projects/papi/api/
+
+BUGS
+     This function has no known bugs.
+
+
+
+
+
+
+
+
+
+
+
+
+PAPI Release 0.99   Last change: 28 July 1999                   1
+
+

@@ -1,0 +1,8 @@
+AuthType Basic
+AuthName CS594 Protections
+AuthUserFile /a/jones/ash/homes/jones/www-home/.htpasswd 
+AuthGroupFile /dev/null
+
+<Limit GET>
+require user netclass
+</Limit>

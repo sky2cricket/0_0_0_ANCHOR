@@ -1,0 +1,64 @@
+<HTML>
+
+<HEAD>
+<TITLE>JAVA SCROLLING MESSAGE</TITLE>
+</HEAD>
+
+<BODY TEXT = "000000" LINK = "0000FF"
+  ALINK = "0000FF" VLINK = "0000FF">
+<H1>
+Click inside white area.
+Type any alpha/numeric/punctuation character on keyboard and
+it's corresponding ASCII value will be displayed.
+<BR>
+<BR>
+<BR>
+<APPLET CODE = "keyascii.class" WIDTH = 500 HEIGHT = 150 >
+</APPLET>
+<BR>
+<BR>
+Source Code
+<P>
+</H1>
+<H3>
+<PRE>
+// keyascii.java
+//
+// tells you what letters/numbers/symbols you are typing
+// and what the cooresponding ASCII value is
+
+import java.awt.*;
+import java.applet.*;
+
+public class keyascii extends Applet
+{
+ String KeyDownEvent = null;
+
+ public void init()
+ {
+  setBackground(Color.white);
+ }
+
+ public boolean keyDown(Event event, int letter)
+ {
+  KeyDownEvent = "Keyboard = " + (char)letter + "     " + "ASCII value = " + letter;
+
+  repaint();
+  return(true);
+ }
+
+ public void paint(Graphics g)
+ {
+  Font a = new Font("TimesRoman", Font.PLAIN, 36);
+  g.setFont(a);
+  g.setColor(Color.blue);
+
+  if(KeyDownEvent != null)
+    g.drawString(KeyDownEvent, 5, 75);
+ }
+} // end
+</PRE>
+</H3>
+
+</BODY>
+</HTML>

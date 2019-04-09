@@ -1,0 +1,108 @@
+
+
+<html>
+<head>
+<title>Reebok University</title>
+<SCRIPT ID=clientEventHandlersJS LANGUAGE=javascript>
+<!--
+function window_onload() {
+focus()
+}
+//-->
+</SCRIPT>
+
+<SCRIPT LANGUAGE=javascript FOR=window EVENT=onload>
+<!--
+ window_onload()
+//-->
+</SCRIPT>
+<script LANGUAGE="JavaScript">
+
+<!--
+var thisGender;
+thisGender = 1;
+var form = document.bmrCalculator
+function updateGender() {
+var form = document.bmrCalculator
+	sidx = form.gender.selectedIndex;
+	thisGender = form.gender.options[sidx].value;
+}
+
+function calculate() {
+var form = document.bmrCalculator
+thisWeight = form.weight.value * 1;
+thisFeet = form.feet.value * 1;
+thisInches = form.inches.value * 1;
+thisAge = form.age.value * 1;
+
+thisHeight = (thisFeet * 12) + thisInches;
+
+if (thisGender == 0) {thisRMR = (4.36 * thisWeight) + (4.32 * thisHeight) - (4.7 * thisAge) + 655
+} else if (thisGender == 1) {thisRMR = (6.32 * thisWeight) + (12.7 * thisHeight) - (6.8 * thisAge) + 66
+} else {thisRMR = 0
+}
+
+form.bmr.value = parseInt(thisRMR);
+}
+//-->
+
+</script>
+
+</head>
+<body BGCOLOR="#CCCCCC" TEXT="#333333" LINK="#333333" ALINK="#333333" VLINK="#333333" TOPMARGIN="0" LEFTMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0" onload="window_onload()">
+
+<table border="0" cellpadding="0" cellspacing="0" width="181">
+<tr VALIGN="TOP"><td>
+
+<table border="0" cellpadding="0" cellspacing="0" width="181" background="images/rbm_background.gif">
+  <tr valign="top"><td><img ALT="Resting Metabolism" src="http://a344.g.akamai.net/3/344/5136/3b84ae6ec826af/www.reeboku.com/modules/calculators/images/rbm_header.gif" width="181" height="37" border="0"></td></tr>
+  <tr valign="top"><td>
+<table border="0" cellpadding="6" cellspacing="0" width="181" background="images/shim.gif">
+<tr valign="top"><td ALIGN=CENTER>
+<form Name="bmrCalculator">
+<table border="0" cellpadding="3" cellspacing="1" ALIGN=CENTER>
+<tr><td ALIGN="RIGHT"><font SIZE="-1" COLOR="#333333" FACE="Arial,Helvetica,sans-serif">Age:</font></td>
+<td><input NAME="age" TYPE="text" SIZE="2" VALUE="32">
+  <font SIZE="-1" COLOR="#333333" FACE="Arial,Helvetica,sans-serif">years</font></td></tr>
+<tr><td ALIGN="RIGHT">
+  <font SIZE="-1" COLOR="#333333" FACE="Arial,Helvetica,sans-serif">Weight:</font></td>
+<td>
+  <input NAME="weight" TYPE="text" SIZE="3" VALUE="160">
+  <font SIZE="-1" COLOR="#333333" FACE="Arial,Helvetica,sans-serif">lbs.</font></td>
+</tr>
+<tr><td ALIGN="RIGHT">
+  <font SIZE="-1" COLOR="#333333" FACE="Arial,Helvetica,sans-serif">Height:</font></td>
+<td>
+  <input NAME="feet" TYPE="text" SIZE="1" VALUE="5"><font COLOR="#333333" FACE="Arial,Helvetica,sans-serif">'</font>
+  <input NAME="inches" TYPE="text" SIZE="2" VALUE="10"><font COLOR="#333333" FACE="Arial,Helvetica,sans-serif">&quot;</font></td>
+</tr>
+<tr>
+<td ALIGN="RIGHT">
+  <font SIZE="-1" COLOR="#333333" FACE="Arial,Helvetica,sans-serif">Gender:</font></td>
+<td>
+<select NAME="gender" onChange="updateGender()">
+    <option VALUE="1" SELECTED>Male</option>
+    <option VALUE="0">Female</option>
+ </select></td>
+</tr>
+<tr VALIGN="TOP"><td ALIGN="CENTER" VALIGN="MIDDLE" COLSPAN="3">
+<INPUT TYPE=SUBMIT VALUE="Calculate"  onClick="calculate(); return false;">
+</td></tr>
+<tr><td COLSPAN="2" align="center">
+  <input NAME="bmr" TYPE="text" SIZE="4" VALUE="1748">
+  <font SIZE="-1" COLOR="#333333" FACE="Arial,Helvetica,sans-serif">Calories</font></td>
+</tr>
+</table>
+</form>
+</td></tr>
+
+</table>
+
+</td></tr>
+  <tr valign="top"><td><img ALT src="http://a344.g.akamai.net/3/344/5136/effe63f1749d85/www.reeboku.com/modules/calculators/images/rbm_bottom.gif" width="181" height="11" border="0"></td>
+</tr></table>
+<TR><TD align="center"><A HREF="javascript:window.close();"><font SIZE="-1" COLOR="#333333" FACE="Arial,Helvetica,sans-serif">close window</font></A></TD></TR>
+</table>
+</body>
+</html>
+

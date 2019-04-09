@@ -1,0 +1,20 @@
+#!/usr/local/bin/perl 
+ #from chris jepeway--a small perl script to give you the device # and
+ #the i-node number--invoke this with devino filename--e.g. devino .
+ #devino ..    devino myfile   etc.  to use this from anywhere, copy it
+ #to your /bin directory, then perhaps source or log in again...
+ #($dev, $ino) = (stat($ARGV[0] ? $ARGV[0] : '.'))[0..1];
+ #print "dev: $dev\nino: $ino\n";
+
+#use these 3 statements OR just the 4th below
+#$hostName = `hostname`;
+#$arpCommand = "arp $hostName";
+#open(ARPCOMMAND, "$arpCommand|");
+
+open(ARPCOMMAND, "arp `hostname`|");
+
+@wordArray = <ARPCOMMAND>;
+
+print("\nwordArray[0]: \n$wordArray[0]"); 
+
+print("\n end-of-program \n\n");

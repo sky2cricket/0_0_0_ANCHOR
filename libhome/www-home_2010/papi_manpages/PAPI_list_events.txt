@@ -1,0 +1,62 @@
+PAPI_list_events        PerfAPI LIBRARY          PAPI_list_events
+
+
+
+NAME
+     PAPI_list_events - remove one Event from an EventSet
+
+SYNOPSIS
+     int  PAPI_list_events  (int  EventSet,  *int   Events,   int
+     *number)
+
+     int EventSet -- a reference to an EventSetInfo structure
+
+     int *Events --  an  array  of  codes  for  events,  such  as
+     PAPI_INT_INS
+
+     int number -- how many items in the *Events array
+
+DESCRIPTION
+     PAPI_list_events() This function  decomposes  EventSet  into
+     the hardware Events it contains. number is both an input and
+     output parameter.
+
+     The return value is an integer that  indicates  whether  the
+     call succeeded (PAPI_OK) or failed (not PAPI_OK).
+
+CROSS-REFERENCE WITH OTHER PerfAPI FUNCTIONS
+
+     PAPI_list_events may be called by:
+
+          the user application program
+
+     PAPI_list_events contains calls to:
+
+          lookup_EventSet
+          handle_error
+
+SEE ALSO
+     The PerfAPI Draft:
+          http://icl.cs.utk.edu/projects/papi/api/
+
+BUGS
+     This function has no known bugs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PAPI Release 0.99   Last change: 28 July 1999                   1
+
+

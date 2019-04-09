@@ -1,0 +1,62 @@
+PAPI_add_event          PerfAPI LIBRARY            PAPI_add_event
+
+
+
+NAME
+     PAPI_add_event - set up a new or modify an existing EventSet
+
+SYNOPSIS
+     int PAPI_add_event (int *EventSet, int Event)
+
+     int *EventSet -- a reference to an EventSetInfo structure
+
+     int Event -- code for an event, such as PAPI_INT_INS
+
+DESCRIPTION
+     PAPI_add_event () This function sets up a  new  EventSet  or
+     modifies an existing one. To create a new EventSet, EventSet
+     must be set  to  PAPI_NULL.  Separate  EventSets  containing
+     events  that require use of the same hardware may exist, but
+     may not be started if a  conflicting  EventSet  is  running.
+     Returns  the  error  code  PAPI_ENOEVNT  if  Event cannot be
+     counted on this platform.  The  addition  of  a  conflicting
+     event   to   an  event  set  will  return  an  error  unless
+     PAPI_SET_MPXRES has been set. Note: EventSet 0  may  not  be
+     used; it has been reserved for internal use.
+
+     The return value is an integer that  indicates  whether  the
+     call  succeeded  (a  positive  integer  corresponding to the
+     index in the EventCodeArray where this event is  stored)  or
+     failed (an error code).
+
+CROSS-REFERENCE WITH OTHER PerfAPI FUNCTIONS
+
+     PAPI_add_event may be called by:
+
+          the user application program
+          PAPI_start_counters
+          PAPI_add_events
+
+     PAPI_add_event contains calls to:
+
+          PAPI_init
+          lookup_EventSet
+          handle_error
+          add_event
+          free_EventSet
+          remove_event
+          _papi_hwd_add_event ( a substrate function )
+
+SEE ALSO
+     The PerfAPI Draft:
+          http://icl.cs.utk.edu/projects/papi/api/
+
+BUGS
+     This function has no known bugs.
+
+
+
+
+PAPI Release 0.99   Last change: 28 July 1999                   1
+
+

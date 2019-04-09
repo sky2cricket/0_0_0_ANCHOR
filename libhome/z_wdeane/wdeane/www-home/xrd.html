@@ -1,0 +1,161 @@
+<html>
+<head>
+<title>Use of the Siemens D500 X-ray Diffractometer</title>
+</head>
+<body>
+<table width="650">
+<td>
+<tr>
+<span style="font-family: arial; ">
+
+<span style="font-weight: bold; font-size: large;">
+Use of the Siemens D500 X-Ray Diffractometer
+</span>
+<p />
+
+<span style="font-weight: bold;">
+Hardware Orientation
+</span>
+<p />
+<span style="color: red;">
+Read this section before doing anything.
+</span>
+<p />
+
+The D500 is an automated powder diffractometer with a q-q goniometer and a scintillation-counter detector. There are three sections to the control panel. Manual control of the goniometer and the shutter on the x-ray tube is located on the right of the door to the diffractometer. The DACO microprocessor is located below, on the right-hand side of the lower cabinet. The x-ray generator is on the left-hand side of the lower cabinet.
+<p />
+Each section has an on-off switch. There is the main switch (green) below the radiation enclosure. This powers the entire unit. The DACO has its own power switch (white) on the DACO, to the left of the round +- buttons. The generator is switched on or off using a key below the red light.
+<p />
+Under ordinary circumstances, the diffractometer is on with the x-ray generator on standby. Go to the section on “warm start.” If the goniometer power, the DACO (including the message “HV off”) power, or the x-ray generator is turned off, follow the procedures in the next section on “Cold Start.”
+<p />
+<span style="font-weight: bold;">
+Generator.
+</span>
+The x-ray generator has three panels. The one on the left energizes the tube. There is a key that activates the generator. Under most circumstances, the key should be left in the lock and should be turned on. If the key is missing, please see TL — something must be wrong. Under no circumstances should you take the key. If something crazy is going on, simply turn the key to the off position.
+<p />
+Under the key are three buttons, red, yellow, and green. To apply the accelerating voltage to the tube, push the yellow button. After one or two seconds, a relay should click and the green button should light. Push the green button to send current through the filament. The tube is now generating X-rays.
+<p />
+The middle panel on the generator contains an LED with two buttons beneath and two pots beneath those. The LED will read the tube (target) current if neither button is depressed. Pressing the left button displays the filament current and pressing the right button displays the accelerating voltage. The start-up values should be –5.0 mA and –20 kV. These values are the stand-by values. If no measurement is being taken, the generator should be set to these values. The pots are used to set the tube current and voltage. Always increase voltage before current and decrease current before voltage. If you are turning on the generator after a period of three or more days when the generator was off, let the tube warm up at the stand-by values for at least five minutes. Then increase the voltage (right pot) to 30 kV and wait for five minutes. Then increase it to 40 kV. Then begin to increase the tube current, slowly, to the eventual value of 30 mA. These values are normal operating values. If you have a special need for greater x-ray irradiance, let me know. The tube is rated at 2200 W, and our normal operating conditions are 1200 W. We can operate at higher wattage if necessary. Note recently, there has been arcing in the tube with the current and voltages dropping during the arcing. This happens when the tube is cold. Usually after 30 min or so, the tube stabilizes. Watch the current and make a note in the lab book if anything crazy is going on.
+<p />
+The right-hand panel of the generator contains controls for automatic shutters and timers, which are absent in our machine. These are controlled by the microprocessor.
+<p />
+There are numerous safety interlocks to the generator. If the door or any of the panels making up the radiation enclosure is ajar, the shutter on the tube closes, and the generator shuts off. There is a yellow light on the goniometer control panel that indicates x-ray. If that light is burned out, the generator will not turn on. If adequate cooling water is not available, the generator will not turn on. Accidental x-ray exposure is nearly impossible.
+<p />
+<span style="font-weight: bold;">
+DACO.
+</span>
+The DACO microprocessor controls all aspects of measurement. It controls the position of the goniometer, the length of counting time, and all detector electronics, including high voltage setting and pulse-height selection. Normally, all of these features are controlled using the software, but the DACO can be programmed independently to perform custom measurements. There is one setting that must be made separately: the high voltage. Normally the high voltage is on and there is no need to worry, unless the power to the diffractometer or to the DACO is turned off. In this case the high voltage will have to be set by a command to the DACO: “HV1.” See the section on "Cold Start" to learn how to do this.
+<p />
+<span style="font-weight: bold;">
+Goniometer.
+</span>
+Most of the control of the diffractometer is handled by the microprocessor. It rarely will be necessary to control the goniometer by the manual goniometer controls. The exception is the shutter (labeled window on the control panel). It is wise to close the shutter when not making measurements. The shutter closes automatically if the door is opened, but the generator may also be shut off by the safety circuits. This will not happen if the shutter is closed before the door is opened. You will note that the shutter will automatically open when the door is closed again.
+<p />
+There are switches for the light and fan in the radiation enclosure on the goniometer control panel.
+<p />
+The left-hand portion of the panel allows manual movement of the goniometer. You can move either the tube-side or detector-side q, or both can be moved together. The goniometer can move in a scanning mode or manually by the hand-crank. The position of the goniometer can be seen on the dials in the lower part of the goniometer stand and on the LED's at the top of the radiation enclosure.
+The right-hand part of the panel contains controls for the rotating sample holder, which is not attached, an automatic timer, which should always be off, and the window shutter.
+<p />
+The center of the panel contains the switch for synchronizing and a button for setting the goniometer. The set point for the goniometer is 2.0° qtube, 2.0° qdetector, 4.0° 2q. Pushing the set button in manual mode will send the goniometer to its set point. It is possible for those who don't think to send the goniometer to an angle greater than the maximum (>168° 2q) or less than the minimum (&lt; –4.0° 2q). Once the goniometer reaches either angle, it disengages to prevent a crash. See TL if this happens.
+<p />
+To obtain further details about the hardware, see the manuals. For routine work, this guide is sufficient. For custom projects or in case of trouble, see TL.
+<p />
+<span style="font-weight: bold;">
+Hardware Cold Start </span>
+<p />
+Status: All power is off.
+<p />
+1. Check the water chiller. If it is off, turn on the water chiller with the power switch on the front panel. The chiller is a water-to-water heat exchanger. The water that cools the x-ray tube is in a closed circuit. If there is sufficient water in the circuit, the full light will be on. If not, fill the reservoir in the chiller with water. The water in the closed circuit is cooled by water from the process-chilled water in the insulated pipes on the wall. Make sure the valves are open. WATCH FOR LEAKS! Any water that spills on the floor will leak into the room below, which houses an SEM; this makes a mess and makes people angry with us. If water spills, there is a mop and pail and a wet-dry vacuum in the sample prep room. <p />
+The diffractometer will not operate if there is insufficient cooling of the tube. An alarm will buzz and the generator will shut off if there is no cooling water. We have had problems in the past with the water-sensing circuit. Make a note in the lab book if the generator shuts off unexpectedly.
+<p />
+2. Turn on the power to the diffractometer; this is the green button below the radiation enclosure. Turn on the fan and light switches for the enclosure.
+<p />
+3. Turn on the DACO. You will be alarmed by a loud beep and a message on the DACO display to type a return. The DACO is merely conducting a self-test. The DACO will be alive after about a minute.
+<p />
+4. Turn the generator on with the key (this should not be necessary unless someone has been fooling around with the generator). If the key is missing, see TL.
+<p />
+5. Push the yellow button on the generator. When illuminated, push the green button. These activate the high voltage and tube current in the x-ray tube. The red x-ray light should be on.
+<p />
+6. Wait at least five minutes.
+<p />
+7. Turn the voltage to 30 kV; wait five minutes.
+<p />
+8. Turn the voltage to 40 kV; wait five minutes.
+<p />
+9. Turn the current to 15 mA; wait five minutes.
+<p />
+10. Turn the current to 30 mA; wait five minutes.
+<p />
+11. Log into the computer and turn on the high voltage to the detector, as described in the software section. Now you are ready to work.
+<p />
+<span style="font-weight: bold;">
+Hardware Warm Start
+</span>
+<p />
+Status: Power on, generator on standby conditions (–5.0 mA, –20 kV)
+<p />
+1. Check to see whether high voltage to the detector is on. DACO display panel should read "IDName complete" or just a “0,” indicating the counts per second. You can push the + button to see whether you get counts on the simulated ratemeter display. Usually, in this state, the high voltage is on, and you can run. If not, you will eventually see a message on the DACO display "HV OFF." You may also discover that the high voltage is off when you are running and you get an error message stating that the microprocessor is not responding. If the high voltage is off, you will have to turn it on from the computer console.
+<p />
+2. Turn the tube voltage to 40 kV. Do it slowly, but you need not wait.
+<p />
+3. Turn the tube current to 30 mA. Do it slowly, but you need not wait.
+<p />
+4. Log in and run.
+<p />
+<span style="font-weight: bold;">
+Hardware Shut Down to Standby
+</span>
+<p />
+1. At the conclusion of your measurement, if no one will run a sample immediately, decrease (it’s actually an increase if you want to be literal) the tube current to –5.0 mA. Then decrease the tube voltage to –20 kV.
+<p />
+2. Remove your sample and turn the radiation-enclosure light off. Leave the fan on.
+<p />
+3. Complete the logbook. Log off the computer.
+<p />
+Hardware Shut Down (don't do this)
+<p />
+1. If no one will run within the next two or three days (check the diffractometer schedule), then you may turn the generator off by pushing the red button. Set the goniometer: push the Synch button, then push the set button.
+<p />
+2. If no one will run for a week or more, turn off the power to the DACO. Turn off the fan. Turn off the main power.
+<p />
+3. Turn off the water chiller and shut the in-line water valve.
+<p />
+<span style="font-weight: bold;">
+Software Operation
+</span>
+<p />
+1. If necessary, log into the PC running Windows NT with the user id xrdlab and the password D500. Start two programs, DataScan and Jade 5. DataScan operates the diffractometer and collects the data. Jade is a pattern processor with many features for peak determination, phase identification, and report generation.
+<p />
+2. If there is no power to the detector, indicated on the DACO by “HV off,” go to DataScan and click on the button that says “COM.” A window with various settings for the COM port will appear. In this window, there is a button that says “Teminal,” a misspelled “Terminal.” Click the button and a terminal window will appear. Type the following:<br />
+<p />
+RC&lt;return&gt;<br />
+HV1&lt;return&gt;<br />
+HV&lt;return&gt;
+<p />
+The last command should return a value like HV = 944, indicating the close the COM window.
+<p />
+3. Starting your analysis: In DataScan, click on the Scan button. This opens a window to set up and start your scan. In the window, type a name for your data file. This has to be an old-fashioned DOS eight-character name. There is space for the scan ID where you can type some identifying information about the sample or scan. This will be printed on graphs of the data. There is also a larger space in which you can write an expanded description of the sample or experiment or whatever you want (I usually put the operating conditions there).
+<p />
+Check the directory in which the data file will be stored. This is in a button near the top of the window. If the directory is not the one you want to store your data in, click the button and navigate to the correct directory. This should be in the Users/xrdlab folder. You may create a subfolder if you want to store your data separately.
+<p />
+Note the data files in the lab notebook.
+<p />
+Now you have to set up the scan. There is a pop-up listing of scan settings you can choose from, or you can make your own by clicking on the settings button. This brings up a window in which you set the beginning and ending angles, the step size, and the dwell time. You can set multiple ranges if you like. Once you have the settings you like, you have to save the setting under a new name or an existing name if you are changing your setting. Do this and close the setting window.
+<p />
+Make sure your just-created setting is in the setting pop-up. Now you can click the Go button to start the analysis. You can also set delay times or repeats if you want. Once you click the button, the scan window will close, and the analysis will start. The data are displayed in the DataScan window as they are collected. The elapsed and remaining time, as well as goniometer location and counts per second (CPS), are shown in the status area at the bottom of the window.
+<p />
+4. Switch to Jade. The window may display a previously collected pattern, if available. Under the options menu, select the “Link to DataScan” so that the newly acquired pattern will be displayed in the Jade window.
+<p />
+5. You may process the pattern in Jade. You can find the peaks, subtract background, remove Ka2 peaks, identify unknowns, overlay patterns, and print reports. Jade has a rich variety of options. Read its manual to discover how to do what you want.
+</tr></td></table>
+<span style="font-weight: bold;">
+Schedules
+</span>
+<p />
+Sign up for diffractometer time one week ahead. The schedule determines whether the generator is to be shut down completely or put on stand-by. So, plan ahead.
+</span>
+</tr>
+</td>
+</table>
+</body>
+</html>

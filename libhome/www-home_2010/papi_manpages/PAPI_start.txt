@@ -1,0 +1,62 @@
+PAPI_start              PerfAPI LIBRARY                PAPI_start
+
+
+
+NAME
+     PAPI_start - start counting events contained in an EventSet
+
+SYNOPSIS
+     int PAPI_start (int EventSet)
+
+     int EventSet  a reference to an EventSetInfo structure
+
+DESCRIPTION
+     PAPI_start()  This  function  starts  counting  all  of  the
+     hardware  events  contained  in  EventSet.  All counters are
+     implicitly set to zero.  PAPI_start()  will  not  start  the
+     hardware  counters if a conflicting EventSet is already run-
+     ning and the counters are already in use.
+
+     The return value is an integer that  indicates  whether  the
+     call succeeded (PAPI_OK) or failed (not PAPI_OK).
+
+CROSS-REFERENCE WITH OTHER PerfAPI FUNCTIONS
+
+     PAPI_start may be called by:
+
+          the user application program
+          PAPI_start_counters
+
+     PAPI_start contains calls to:
+
+          lookup_EventSet
+          handle_error
+          _papi_hwd_merge ( a substrate function )
+
+SEE ALSO
+     The PerfAPI Draft:
+          http://icl.cs.utk.edu/projects/papi/api/
+
+BUGS
+     This function has no known bugs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PAPI Release 0.99   Last change: 28 July 1999                   1
+
+

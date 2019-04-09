@@ -1,0 +1,90 @@
+<HTML>
+<HEAD>
+<TITLE>
+SOURCE CODE
+</TITLE>
+<BODY>
+<PRE>
+<H3>
+// scrollareas.java
+//
+// demo of enhanced interface controls
+//
+// horizontal and vertical scrollbar
+// text areas
+//
+import java.applet.*;
+import java.awt.*;
+
+public class scrollareas extends java.applet.Applet
+{
+ // data members
+ List lst;
+ TextArea ta;
+ Scrollbar hsb, vsb;
+
+ // initialization
+ public void init()
+ {
+  // set layout manager
+  setLayout(new FlowLayout(FlowLayout.LEFT));
+
+  // create list controls and add to applet
+  lst = new List();
+  lst.addItem("January");
+  lst.addItem("February");
+  lst.addItem("March");
+  lst.addItem("April");
+  lst.addItem("May");
+  lst.addItem("June");
+  lst.addItem("July");
+  lst.addItem("August");
+  lst.addItem("September");
+  lst.addItem("October");
+  lst.addItem("November");
+  lst.addItem("December");
+
+  add(lst);
+
+  // create vertical and horizontal scrollbars and add to applet
+  hsb = new Scrollbar(Scrollbar.HORIZONTAL, 1, 0, 1, 100);
+  add(hsb);
+  vsb = new Scrollbar(Scrollbar.VERTICAL, 1, 0, 1, 100);
+  add(vsb);
+
+  // create text area and add to applet
+  ta = new TextArea("enter your text", 10, 60);
+  add(ta);
+ }
+
+ public boolean handleEvent(Event evt)
+ {
+  if(evt.target instanceof List)
+    {
+     System.out.print("List Item event occurred.  Selected Item =");
+     String s = ((List)evt.target).getSelectedItem();
+     System.out.println(s);
+    }
+
+  else if(evt.target instanceof Scrollbar)
+    {
+     System.out.print("Scrollbar event occurred.  Value = ");
+     int i = ((Scrollbar)evt.target).getValue();
+     System.out.println(i);
+    }
+
+  else if(evt.target instanceof TextArea)
+    {
+     System.out.print("TextArea event occurred. Text = ");
+     String s = ((TextArea)evt.target).getText();
+     System.out.println(s);
+    }
+
+  return true;
+ }
+} // end
+</PRE>
+</H3>
+</BODY>
+</HTML>
+

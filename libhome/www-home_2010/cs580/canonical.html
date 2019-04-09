@@ -1,0 +1,128 @@
+<html>
+<title> canonical.html </title>
+<body  bgcolor="ffffff" text="000000">
+<math>
+<center>
+<h1> CS580 <br>Taming the Beast
+<br>by Cricket! Haygood Deane</h1>
+<h1> Canonical Ordering of (0+1)*</h1>
+</center>
+<p>
+<hr>
+Consider the set of Natural Numbers in binary. 
+<br>
+The canonical order for this set is: 0, 1, 10, 11, 100, 101,....N
+<p>
+Consider the set (0+1)*.
+<br>
+The canonical order for this set is: lambda, 0, 1, 00, 01, 10, 11, 000, 001,....N
+<p>
+If you list the Canonical Ordering of (0+1)* and call each member of
+the list w<sub>i</sub>, where i is an integer, you can map  each 
+w<sub>i</sub> on the list to its corresponding index i.
+<p>
+<table border=3>
+<tr>
+<td>index i <br>in <br>Base 10</td>
+<td>Canonical<br>Order<br>of (0+1)*<br>w<sub>i</sub> </td>
+<td>index i <br>in <br>binary</td>
+</tr>
+<tr><td>1</td><td>lambda</td><td>  1   </td></tr>
+<tr><td>2</td><td> 0    </td><td>  10  </td></tr>   
+<tr><td>3</td><td> 1    </td><td>  11   </td></tr>   
+<tr><td>4</td><td> 00   </td><td>  100 </td></tr>   
+<tr><td>5</td><td> 01   </td><td>  101 </td></tr>   
+<tr><td>6</td><td> 10   </td><td>  110 </td></tr>   
+<tr><td>7</td><td> 11   </td><td>  111 </td></tr>   
+<tr><td>8</td><td> 000  </td><td>  1000 </td></tr>   
+<tr><td>9</td><td> 001  </td><td>  1001 </td></tr>   
+<tr><td>10</td><td> 010 </td><td>  1010 </td></tr>   
+<tr><td>11</td><td> 011 </td><td>  1011 </td></tr>   
+</table>
+<p>
+From the above table, you can see the relationship
+between w<sub>i</sub> and the index i. <br>  The relationship is:
+<p>
+Given w<sub>i</sub>: <br> the value for index i may be determined by
+adding a 1 to the right end of the string w<sub>i</sub>.
+<p>
+Conversely, given the value for index i: <br>the value for string
+w<sub>i</sub> may be determined by chopping off the rightmost 1
+from the string i.
+<p>
+<hr>
+<p>
+<h1> Where is Canonical Ordering applied?</h1>
+<p>
+In Chapter 8 of Hopcraft and Ullman, they start talking about Turing
+Machine Encodings as binary numbers. 
+<a href="TMencode.html">See the TM Encoding Page</a> for a detailed
+explanation of how this encoding works.
+<p>
+There are several different ways of viewing the binary encoding of
+Turing Machines, but Dr. Langston favors the following:
+<p>
+ALL UNSIGNED POSITIVE BINARY NUMBERS CORRESPOND TO TURING MACHINES.
+This means TMs are countable, because they can be put in one-to-one
+correspondence with the set of Natural Numbers.
+<p>
+A Turing Machine M<sub>i</sub> corresponds to the integer i.
+<p>
+Then Hopcraft and Ullman define two languages Ld and barLd (complement of Ld).
+<p>
+<center>
+<b>
+Ld = { < M<sub>i</sub>, w<sub>i</sub> > | M<sub>i</sub> not accept w<sub>i</sub> }
+<p>
+barLD = { < M<sub>i</sub>, w<sub>i</sub> >| M<sub>i</sub> accept w<sub>i</sub> }
+</b>
+</center>
+<p>
+You have to be able to decode M<sub>i</sub> and w<sub>i</sub> to begin to have
+a clue what they are talking about! 
+<br>See the table below.
+<hr>
+<p>
+<table border=3>
+<tr>
+<td>index i <br>in <br>Base 10</td>
+<td>input string<br>w<sub>i</sub> </td>
+<td>Turing Machine<br>M<sub>i</sub></td>
+<td> M<sub>i</sub> accept w<sub>i</sub> ? </td>
+</tr>
+<tr><td>1</td><td>lambda</td><td>  1   </td><td> No </td></tr>
+<tr><td>2</td><td> 0    </td><td>  10  </td><td> No </td></tr>   
+<tr><td>3</td><td> 1    </td><td>  11   </td><td> No </td></tr>   
+<tr><td>4</td><td> 00   </td><td>  100 </td><td> No </td></tr>   
+<tr><td>5</td><td> 01   </td><td>  101 </td><td> No </td></tr>   
+<tr><td>6</td><td> 10   </td><td>  110 </td><td> No </td></tr>   
+<tr><td>7</td><td> 11   </td><td>  111 </td><td> No </td></tr>   
+<tr><td>8</td><td> 000  </td><td>  1000 </td><td> No </td></tr>   
+<tr><td>9</td><td> 001  </td><td>  1001 </td><td> No </td></tr>   
+<tr><td>10</td><td> 010 </td><td>  1010 </td><td> No </td></tr>   
+<tr><td>11</td><td> 011 </td><td>  1011 </td><td> No </td></tr>   
+<tr><td> ............. </td> 
+    <td> ............. </td> 
+    <td> ............. </td>
+    <td> No </td></tr>
+<tr><td> some number </td>
+    <td> &nbsp;1101010010100111 </td>
+    <td>      11101010010100111 </td>
+    <td> No </td> </tr>
+<tr><td> some number </td>
+    <td> &nbsp;11010010010100111 </td>
+    <td>      111010010010100111 </td>
+    <td> Yes </td> </tr>
+</table>
+<p>
+
+<hr>
+<p>
+For you to figure out:
+<p> 1. The base 10 values of the strings that I denote with "some number".
+<p> 2. The moves for the TM in the last row of the table (the only
+        one with the yes answer.) You should read the explanation
+        in Chapter 8 of Hopcraft and Ullman of how to encode TMs
+         and my page about this.
+
+</html>

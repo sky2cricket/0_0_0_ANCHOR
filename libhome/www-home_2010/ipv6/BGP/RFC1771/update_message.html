@@ -1,0 +1,404 @@
+<html>
+<title>ipv6/BGP/RFC1771/update_message.html</title>
+<body bgcolor="ffffff" text="000000">
+<hr>
+This information lifted directly from 
+<a href="http://www.globecom.net/(nobg,sv)/ietf/rfc/rfc1771.shtml">RFC1771.</a>
+<hr>
+<h1>
+4.3 UPDATE Message Format
+</h1>
+
+<p>
+   UPDATE messages are used to transfer routing information between BGP
+   peers.  The information in the UPDATE packet can be used to construct
+   a graph describing the relationships of the various Autonomous
+   Systems.  By applying rules to be discussed, routing information
+   loops and some other anomalies may be detected and removed from
+   inter-AS routing.
+<p>
+
+   An UPDATE message is used to advertise a single feasible route to a
+   peer, or to withdraw multiple unfeasible routes from service (see
+   3.1). An UPDATE message may simultaneously advertise a feasible route
+   and withdraw multiple unfeasible routes from service.  The UPDATE
+   message always includes the fixed-size BGP header, and can optionally
+   include the other fields as shown below:
+<p>
+
+<pre>
+       0                   1                   2                   3
+       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |                                                               |
+      +                                                               +
+      |                                                               |
+      +                                                               +
+      |                           Marker                              |
+      +                                                               +
+      |                                                               |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |          Length               |    Type=2     |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |   Unfeasible Routes Length    |
+      |   (2 octets)                  |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |  Withdrawn Routes (variable)                                  |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |   Total Path Attribute Length |
+      |   (2 octets)                  |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |    Path Attributes (variable)                                 |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |   Network Layer Reachability Information (variable)           |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</pre>
+
+<p>
+      Unfeasible Routes Length:
+<p>
+
+         This 2-octets unsigned integer indicates the total length of
+         the Withdrawn Routes field in octets.  Its value must allow the
+         length of the Network Layer Reachability Information field to
+         be determined as specified below.
+
+<p>
+         A value of 0 indicates that no routes are being withdrawn from
+         service, and that the WITHDRAWN ROUTES field is not present in
+         this UPDATE message.
+<p>
+
+      Withdrawn Routes:
+<p>
+
+<p>
+         This is a variable length field that contains a list of IP
+         address prefixes for the routes that are being withdrawn from
+         service.  Each IP address prefix is encoded as a 2-tuple of the
+         form &lt;length, prefix&gt;, whose fields are described below:
+<p>
+
+
+<pre>
+                  +---------------------------+
+                  |   Length (1 octet)        |
+                  +---------------------------+
+                  |   Prefix (variable)       |
+                  +---------------------------+
+</pre>
+<p>
+
+         The use and the meaning of these fields are as follows:
+
+<p>
+         a) Length:
+
+<p>
+            The Length field indicates the length in bits of the IP
+            address prefix. A length of zero indicates a prefix that
+            matches all IP addresses (with prefix, itself, of zero
+            octets).
+<p>
+
+         b) Prefix:
+<p>
+
+            The Prefix field contains IP address prefixes followed by
+            enough trailing bits to make the end of the field fall on an
+            octet boundary. Note that the value of trailing bits is
+            irrelevant.
+<p>
+
+      Total Path Attribute Length:
+<p>
+
+         This 2-octet unsigned integer indicates the total length of the
+         Path Attributes field in octets.  Its value must allow the
+         length of the Network Layer Reachability field to be determined
+         as specified below.
+<p>
+
+         A value of 0 indicates that no Network Layer Reachability
+         Information field is present in this UPDATE message.
+
+<p>
+      Path Attributes:
+<p>
+
+         A variable length sequence of path attributes is present in
+         every UPDATE.  Each path attribute is a triple &lt;attribute type,
+         attribute length, attribute value&gt; of variable length.
+<p>
+
+         Attribute Type is a two-octet field that consists of the
+         Attribute Flags octet followed by the Attribute Type Code
+         octet.
+<p>
+
+<pre>
+                0                   1
+                0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
+               +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+               |  Attr. Flags  |Attr. Type Code|
+               +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</pre>
+
+
+         The high-order bit (bit 0) of the Attribute Flags octet is the
+         Optional bit.  It defines whether the attribute is optional (if
+         set to 1) or well-known (if set to 0).
+<p>
+
+         The second high-order bit (bit 1) of the Attribute Flags octet
+         is the Transitive bit.  It defines whether an optional
+         attribute is transitive (if set to 1) or non-transitive (if set
+         to 0).  For well-known attributes, the Transitive bit must be
+         set to 1.  (See Section 5 for a discussion of transitive
+         attributes.)
+<p>
+
+         The third high-order bit (bit 2) of the Attribute Flags octet
+         is the Partial bit.  It defines whether the information
+         contained in the optional transitive attribute is partial (if
+         set to 1) or complete (if set to 0).  For well-known attributes
+         and for optional non-transitive attributes the Partial bit must
+         be set to 0.
+
+<p>
+         The fourth high-order bit (bit 3) of the Attribute Flags octet
+         is the Extended Length bit.  It defines whether the Attribute
+         Length is one octet (if set to 0) or two octets (if set to 1).
+         Extended Length may be used only if the length of the attribute
+         value is greater than 255 octets.
+
+<p>
+         The lower-order four bits of the Attribute Flags octet are .
+         unused. They must be zero (and must be ignored when received).
+
+<p>
+         The Attribute Type Code octet contains the Attribute Type Code.
+         Currently defined Attribute Type Codes are discussed in Section
+         5.
+
+<p>
+         If the Extended Length bit of the Attribute Flags octet is set
+         to 0, the third octet of the Path Attribute contains the length
+         of the attribute data in octets.
+
+<p>
+         If the Extended Length bit of the Attribute Flags octet is set
+         to 1, then the third and the fourth octets of the path
+         attribute contain the length of the attribute data in octets.
+
+<p>
+         The remaining octets of the Path Attribute represent the
+         attribute value and are interpreted according to the Attribute
+         Flags and the Attribute Type Code. The supported Attribute Type
+         Codes, their attribute values and uses are the following:
+
+<p>
+
+         a)   ORIGIN (Type Code 1):
+<p>
+
+            ORIGIN is a well-known mandatory attribute that defines the
+            origin of the path information.   The data octet can assume
+            the following values:
+<p>
+
+                  Value      Meaning
+<p>
+
+<p>
+                  0         IGP - Network Layer Reachability Information
+                               is interior to the originating AS
+
+<p>
+                  1         EGP - Network Layer Reachability Information
+                               learned via EGP
+
+<p>
+                  2         INCOMPLETE - Network Layer Reachability
+                               Information learned by some other means
+
+<p>
+            Its usage is defined in 5.1.1
+<p>
+
+         b) AS_PATH (Type Code 2):
+<p>
+
+            AS_PATH is a well-known mandatory attribute that is composed
+            of a sequence of AS path segments. Each AS path segment is
+            represented by a triple &lt;path segment type, path segment
+            length, path segment value&gt;.
+<p>
+
+
+            The path segment type is a 1-octet long field with the
+            following values defined:
+<p>
+
+                  Value      Segment Type
+<p>
+
+                  1         AS_SET: unordered set of ASs a route in the
+                               UPDATE message has traversed
+<p>
+
+                  2         AS_SEQUENCE: ordered set of ASs a route in
+                               the UPDATE message has traversed
+<p>
+
+            The path segment length is a 1-octet long field containing
+            the number of ASs in the path segment value field.
+
+<p>
+            The path segment value field contains one or more AS
+            numbers, each encoded as a 2-octets long field.
+
+<p>
+            Usage of this attribute is defined in 5.1.2.
+
+<p>
+         c)   NEXT_HOP (Type Code 3):
+<p>
+
+            This is a well-known mandatory attribute that defines the IP
+            address of the border router that should be used as the next
+            hop to the destinations listed in the Network Layer
+            Reachability field of the UPDATE message.
+<p>
+
+            Usage of this attribute is defined in 5.1.3.
+<p>
+
+         d) MULTI_EXIT_DISC (Type Code 4):
+<p>
+
+            This is an optional non-transitive attribute that is a four
+            octet non-negative integer. The value of this attribute may
+            be used by a BGP speaker's decision process to discriminate
+            among multiple exit points to a neighboring autonomous
+            system.
+<p>
+
+            Its usage is defined in 5.1.4.
+<p>
+
+         e) LOCAL_PREF (Type Code 5):
+<p>
+
+            LOCAL_PREF is a well-known discretionary attribute that is a
+            four octet non-negative integer. It is used by a BGP speaker
+            to inform other BGP speakers in its own autonomous system of
+            the originating speaker's degree of preference for an
+            advertised route. Usage of this attribute is described in
+            5.1.5.
+<p>
+
+         f) ATOMIC_AGGREGATE (Type Code 6)
+<p>
+
+            ATOMIC_AGGREGATE is a well-known discretionary attribute of
+            length 0. It is used by a BGP speaker to inform other BGP
+            speakers that the local system selected a less specific
+            route without selecting a more specific route which is
+            included in it. Usage of this attribute is described in
+            5.1.6.
+<p>
+
+         g) AGGREGATOR (Type Code 7)
+<p>
+
+            AGGREGATOR is an optional transitive attribute of length 6.
+            The attribute contains the last AS number that formed the
+            aggregate route (encoded as 2 octets), followed by the IP
+            address of the BGP speaker that formed the aggregate route
+            (encoded as 4 octets).  Usage of this attribute is described
+            in 5.1.7
+<p>
+
+      Network Layer Reachability Information:
+<p>
+
+         This variable length field contains a list of IP address
+         prefixes.  The length in octets of the Network Layer
+         Reachability Information is not encoded explicitly, but can be
+         calculated as:
+<p>
+
+            UPDATE message Length - 23 - Total Path Attributes Length -
+            Unfeasible Routes Length
+<p>
+
+         where UPDATE message Length is the value encoded in the fixed-
+         size BGP header, Total Path Attribute Length and Unfeasible
+         Routes Length  are the values encoded in the variable part of
+         the UPDATE message, and 23 is a combined length of the fixed-
+         size BGP header, the Total Path Attribute Length field and the
+         Unfeasible Routes Length field.
+<p>
+
+         Reachability information is encoded as one or more 2-tuples of
+         the form &lt;length, prefix&gt;, whose fields are described below:
+
+<pre>
+                  +---------------------------+
+                  |   Length (1 octet)        |
+                  +---------------------------+
+                  |   Prefix (variable)       |
+                  +---------------------------+
+
+</pre>
+
+<p>
+         The use and the meaning of these fields are as follows:
+
+<p>
+         a) Length:
+<p>
+
+            The Length field indicates the length in bits of the IP
+            address prefix. A length of zero indicates a prefix that
+            matches all IP addresses (with prefix, itself, of zero
+            octets).
+<p>
+
+         b) Prefix:
+<p>
+
+            The Prefix field contains IP address prefixes followed by
+            enough trailing bits to make the end of the field fall on an
+            octet boundary. Note that the value of the trailing bits is
+            irrelevant.
+<p>
+
+   The minimum length of the UPDATE message is 23 octets -- 19 octets
+   for the fixed header + 2 octets for the Unfeasible Routes Length + 2
+   octets for the Total Path Attribute Length (the value of Unfeasible
+   Routes Length is 0  and the value of Total Path Attribute Length is
+   0).
+<p>
+
+   An UPDATE message can advertise at most one route, which may be
+   described by several path attributes. All path attributes contained
+   in a given UPDATE messages apply to the destinations carried in the
+   Network Layer Reachability Information field of the UPDATE message.
+<p>
+
+   An UPDATE message can list multiple routes to be withdrawn from
+   service.  Each such route is identified by its destination (expressed
+   as an IP prefix), which unambiguously identifies the route in the
+   context of the BGP speaker - BGP speaker connection to which it has
+   been previously been advertised.
+<p>
+
+   An UPDATE message may advertise only routes to be withdrawn from
+   service, in which case it will not include path attributes or Network
+   Layer Reachability Information. Conversely, it may advertise only a
+   feasible route, in which case the WITHDRAWN ROUTES field need not be
+   present.
+<p>
+</html>

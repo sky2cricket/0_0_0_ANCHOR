@@ -1,0 +1,127 @@
+/* ---------------------------------------------------------------------------------- */
+/* PAPI2_notes4 -- PerfAPI Functions [ function numbers match PAPI2.c ]               */
+/* CHDeane, April 23, 1998.                                                           */
+/* ---------------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------------- */
+/* PerfAPI functions for Allocation of the Global Table ----------------------------- */
+/*                                                                                    */
+/* func___ 01  static int  initialize(void)                                           */
+/* func___ 02  int PAPI_init(void)                                                    */
+/* ---------------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------------- */
+/* PerfAPI functions for Removing an EventSet from the Global Table ----------------- */
+/*                                                                                    */
+/* func___ 03  static void free_EventSet(EventSetInfo *ESI)                           */
+/* func___ 04  static int  remove_EventSet(EventSetInfo *ESI)                         */
+/* ---------------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------------- */
+/* PerfAPI functions for Shutting down the Global Table ----------------------------- */
+/*                                                                                    */
+/* func___ 05  void PAPI_shutdown(void)                                               */
+/* ---------------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------------- */
+/* PerfAPI functions for Error Handling --------------------------------------------- */
+/*                                                                                    */
+/* func___ 06  static int   handle_error(int PAPI_errorCode, char *errorMessage)      */
+/* func___ 07  static char *get_error_string(int errorCode)                           */
+/* func___ 08  int   PAPI_perror(int code, char *destination, int length)             */
+/* ---------------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------------- */
+/* PerfAPI utility functions -------------------------------------------------------- */
+/*                                                                                    */
+/* func___ 09  static EventSetInfo *lookup_EventSet(int eventset)                     */
+/* func___ 10  static int event_is_in_eventset(int event, EventSetInfo *ESI)          */
+/* func___ 11  static int num_counters(EventSetInfo *ESI)                             */
+/* func___ 12  static unsigned long long *get_space_for_counters(EventSetInfo *ESI)   */
+/* func___ 13  int PAPI_get_lowestEmptySlot(void)                                     */
+/* ---------------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------------- */
+/* PerfAPI functions for adding EventSet(s) to the Global Table --------------------- */
+/*                                                                                    */
+/* func___ 14  static int expand_dynamic_array(DynamicArray *DA)                      */
+/* func___ 15  static int add_EventSet(EventSetInfo *ESI)                             */
+/* func___ 16  static EventSetInfo *allocate_EventSet                                 */
+/* func___ 17  static EventSetInfo *deploy_EventSet(void)                             */
+/* ---------------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------------- */
+/* PerfAPI functions for adding Event(s) to an EventSet ----------------------------- */
+/*                                                                                    */
+/* func___ 18  static int add_event(EventSetInfo *ESI, int EventCode)                 */
+/* func___ 19  static int add_pevent(EventSetInfo *ESI,int pEventCode,void *inout)    */
+/* func___ 20  int PAPI_add_event (int *EventSetIndex, int EventCode)                 */
+/* func___ 21  int PAPI_add_events(int *EventSetIndex,int *EventCodes,int number)     */
+/* func___ 22  int PAPI_add_pevent(int *EventSetIndex,int pEventCode,void *inout)     */
+/* ---------------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------------- */
+/* PerfAPI functions for removing Event(s) from an EventSet ------------------------- */
+/*                                                                                    */
+/* func___ 23  static int remove_event(EventSetInfo *ESI, int EventCode)              */
+/* func___ 24  static int remove_one_event_by_index(EventSetInfo *ESI,int EventIndex) */
+/* func___ 25  static int remove_one_event_by_code(EventSetInfo *ESI,int EventCode)   */
+/* func___ 26  int PAPI_rem_event(int EventSet, int Event)                            */
+/* func___ 27  int PAPI_rem_events(int EventSet,int *Events,int number)               */
+/* ---------------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------------- */
+/* PerfAPI functions for Multiplex Control ------------------------------------------ */
+/*                                                                                    */
+/* func___ 28  static int set_multiplex(PAPI_option_t *ptr)                           */
+/* func___ 29  static int get_multiplex(PAPI_option_t *ptr)                           */
+/* ---------------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------------- */
+/* PerfAPI functions for Overflow Control ------------------------------------------- */
+/*                                                                                    */
+/* func___ 30  static int overflow_is_active(EventSetInfo *ESI)                       */
+/* func___ 31  static int set_overflow(PAPI_option_t *ptr)                            */
+/* func___ 32  static int get_overflow(PAPI_option_t *ptr)                            */
+/* ---------------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------------- */
+/* PerfAPI functions for Granularity Control ---------------------------------------- */
+/*                                                                                    */
+/* func___ 33  static int set_granularity(PAPI_option_t *ptr)SECOND VERSION           */
+/* func___ 34  static int set_defgranularity(PAPI_option_t *ptr)                      */
+/* func___ 35  static int get_defgranularity(PAPI_option_t *ptr)                      */
+/* func___ 36  static int get_granularity(PAPI_option_t *ptr)                         */
+/* ---------------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------------- */
+/* PerfAPI functions for Domain Control --------------------------------------------- */
+/*                                                                                    */
+/* func___ 37  static int set_domain(PAPI_option_t *ptr)                              */
+/* func___ 38  static int get_defdomain(PAPI_option_t *ptr)                           */
+/* func___ 39  static int get_domain(PAPI_option_t *ptr)                              */
+/* func___ 40  static int set_defdomain(PAPI_option_t *ptr)                           */
+/* ---------------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------------- */
+/* PerfAPI functions for Option Control --------------------------------------------- */
+/*                                                                                    */
+/* func___ 41  int PAPI_set_opt(int option, PAPI_option_t *ptr)                       */
+/* func___ 42  int PAPI_set_opt(int option, PAPI_option_t *ptr)SECOND VERSION         */
+/* func___ 43  int PAPI_get_opt(int option, PAPI_option_t *ptr)                       */
+/* ---------------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------------- */
+/* PerfAPI functions for Direct Use by Application Program -------------------------- */
+/*                                                                                    */
+/* func___ 44   int PAPI_set_domain(int domain)                                       */
+/* func___ 45  int PAPI_set_granularity(PAPI_option_t *ptr)                           */
+/* func___ 46  int PAPI_start(int EventSet)                                           */
+/* func___ 47  int PAPI_stop(int EventSet, unsigned long long *values)                */
+/* func___ 48  int PAPI_reset(int EventSet)                                           */
+/* func___ 49  int PAPI_read(int EventSet, unsigned long long *values)                */
+/* func___ 50  int PAPI_accum(int EventSet, unsigned long long *values)               */
+/* func___ 51  int PAPI_write(int EventSet, unsigned long long *values)               */
+/* func___ 52  int PAPI_state(int EventSetIndex, int *status)                         */
+/* func___ 53  int PAPI_list_events(int EventSet, int *EventCodes, int *number)       */
+/* ---------------------------------------------------------------------------------- */

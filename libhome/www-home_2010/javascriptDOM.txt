@@ -1,0 +1,188 @@
+From JavaScript@itw.itworld.com Tue Nov  6 06:02:25 2001
+Return-Path: <JavaScript@itw.itworld.com>
+Received: from niihau.clickaction.net (marvin@localhost) 
+        by cs.utk.edu with ESMTP (cf v2.9s-UTK)
+	id GAA22851; Tue, 6 Nov 2001 06:02:23 -0500 (EST)
+From: <JavaScript@itw.itworld.com>
+Received: from niihau.clickaction.net (208.50.155.187 -> host-187.clickaction.net)
+ by cs.utk.edu (smtpshim v1.0); Tue, 6 Nov 2001 06:02:23 -0500
+Received: from niihau.clickaction.net (cs-01-out [192.168.6.200])
+	by niihau.clickaction.net (Postfix) with SMTP id B9DD085AFC6
+	for <deane@cs.utk.edu>; Tue,  6 Nov 2001 03:02:18 -0800 (PST)
+To: deane@cs.utk.edu
+MIME-Version: 1.0
+Content-type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7Bit
+X-Header-Partid: 14724
+X-Header-Userid: 76028552
+X-Header-Date: 06-Nov-2001
+X-Header-Version: 6.2
+X-Header-Pitchid: 45441
+Subject: Dickering over DOMs
+Message-Id: <20011106110218.B9DD085AFC6@niihau.clickaction.net>
+Date: Tue,  6 Nov 2001 03:02:18 -0800 (PST)
+Status: R
+Content-Length: 5792
+
+
+JAVASCRIPT --- November 06, 2001
+Published by ITworld.com -- changing the way you view IT
+http://www.itworld.com/newsletters
+________________________________________________________________________________
+
+HIGHLIGHTS
+
+* You can use the prototype property to add new features to objects.
+________________________________________________________________________________
+
+SPONSORED LINK
+
+THE INTERNET TRUST COMPANY
+
+Protect Your Servers With 128-Bit SSL Encryption! Get Our Free 
+Guide, "Strong Security In Multiple Server Environments". You 
+Will Learn How To Secure Information Exchange Between Servers, 
+Client Browsers, Load-Balancing Devices, SSL Accelerators, And 
+Intranets And Extranets. Download Your Free Guide Right Now!
+Click here: 
+http://ad.doubleclick.net/clk;3531417;6494184;l
+______________________________________________________________________________
+
+When Existing Methods Aren't Enough
+By David Wall
+
+JavaScript exists, essentially, for manipulating a Document Object 
+Model (DOM). DOMs are so great, so blindingly *excellent*, that the 
+JavaScript powers have come up with several different DOMs for us to 
+work with in various environments. But dickering over DOMs is not the 
+point of this column. Instead, let's talk about the prototype property 
+that's part of most JavaScript objects. It allows us to extend objects, 
+adding additional properties and methods to them, as we require. This 
+helps make our code more compact and easier to read.
+
+Let's say we have a function that returns true when an array sent to it 
+contains at least one element that's not evenly divisible by zero. We 
+want to make this a supplementary method -- the containsOdd() method -- 
+of the standard Array object. Here is the function:
+
+    function containsOdd() { 
+      for (var i = 1; i < this.length; i++) {
+         if ((this[i] % 2) != 0) return true;
+      }
+      return false;
+    }
+
+The only thing unusual about that function is that it obviously 
+operates on an Array object, but there's no parameter specified in the 
+parenthesis on the first line. A parameter is not required because it 
+employs the keyword. You'll see how that works in a second.
+
+To attach that function to Array as a method, we have to invoke the 
+prototype property. Essentially, prototype means "the object as it is," 
+and implies that we can stick additional methods and properties to the 
+existing definition. The syntax for doing that is as follows:
+
+    Array.prototype.containsOdd = containsOdd;
+
+Now, assuming that oddArray is an array that contains at least one odd 
+element, this code...
+
+    flag = oddArray.containsOdd();
+
+    ...will leave flag set to true.
+
+________________________________________________________________________________
+
+SPONSORED LINK
+
+NEW! WORLDWIDE IT TRENDS & BENCHMARK REPORT, 2002 EDITION
+
+How does your IT organization compare to competitors? META 
+Group's "Worldwide IT Trends and Benchmark Report" is an authoritative 
+reference that provides the facts -- not conjecture -- about the global 
+IT management environment. The report provides hundreds of charts and 
+graphs on a wide range of topics. For details, call(800)498-META (6382).
+
+http://ad.doubleclick.net/clk;3532190;4146647;g
+
+________________________________________________________________________________
+
+
+About the author(s)
+-------------------
+David Wall works as a freelance writer, programmer, lecturer, and 
+consultant. Based near Washington, D.C., David has written and co-
+written several books, including Graphics Programming with JFC.
+________________________________________________________________________________
+
+ADDITIONAL RESOURCES
+
+Document Object Model (DOM)
+http://itw.itworld.com/GoNow/a14724a45441a76028552a5
+
+Using the prototype object to add custom properties to objects	
+http://itw.itworld.com/GoNow/a14724a45441a76028552a3
+
+The Effect of Prototypes on JavaScript's Performance
+http://itw.itworld.com/GoNow/a14724a45441a76028552a0
+________________________________________________________________________________
+
+ITWORLD.COM NEWSLETTER ARCHIVE
+
+Index of JavaScript
+http://itw.itworld.com/GoNow/a14724a45441a76028552a4
+
+Getting Your Cookies Back Accessing Cookies
+http://itw.itworld.com/GoNow/a14724a45441a76028552a2
+
+Keeping Constant
+http://itw.itworld.com/GoNow/a14724a45441a76028552a1
+________________________________________________________________________________
+
+CUSTOMER SERVICE
+
+SUBSCRIBE/UNSUBSCRIBE:
+- Go to: http://www.itworld.com/newsletters
+- Click on "View my newsletters" to log in and manage your account
+- To subscribe, check the box next to the newsletter
+- To unsubscribe, uncheck the box next to the newsletter 
+- When finished, click submit
+
+Questions? Please e-mail customer service at: mailto:support@itworld.com
+________________________________________________________________________________
+
+CONTACTS
+
+* Editorial: Andrew Santosusso, Newsletter Editor, 
+  andrew_santosusso@itworld.com
+* Advertising: Clare O'Brien, Vice President of Sales, 
+  clare_obrien@itworld.com
+* Career Corner: Janis Crowley, Vice President/General Manager, IDG 
+  Recruitment Solutions, janis_crowley@itcareers.net
+* Other inquiries: Jodie Naze, Senior Product Marketing Manager, 
+  jodie_naze@itworld.com
+
+________________________________________________________________________________
+
+PRIVACY POLICY
+
+ITworld.com has been TRUSTe certified 
+http://www.itworld.com/Privacy/
+
+Copyright 2001 ITworld.com, Inc., All Rights Reserved.
+http://www.itworld.com
+
+
+
+**SEND TO A FRIEND**
+Share this email with a friend! Click here!
+http://itw.itworld.com/GoForward/a14724a45441aSa76028552a12
+
+SUBSCRIBE/UNSUBSCRIBE
+Please click on the link below to modify your subscription, unsubscribe,
+or change your email address:
+
+http://itw.itworld.com/Change-Remove/a14724a76028552a12a45441
+
+
+

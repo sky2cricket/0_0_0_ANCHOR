@@ -1,0 +1,391 @@
+From cdeane@dsgy01.ntown.com Thu Nov  4 18:00:48 1999
+Return-Path: <cdeane@dsgy01.ntown.com>
+Received: from dsgy01.ntown.com (marvin@localhost) 
+        by CS.UTK.EDU with ESMTP (cf v2.9s-UTK)
+	id SAA22803; Thu, 4 Nov 1999 18:00:40 -0500 (EST)
+Received: from dsgy01.ntown.com (208.245.96.70 -> mail.ntown.com)
+ by CS.UTK.EDU (smtpshim v1.0); Thu, 4 Nov 1999 18:00:44 -0500
+Received: (from cdeane@localhost)
+	by dsgy01.ntown.com (8.9.3/8.9.3) id RAA23668
+	for deane@cs.utk.edu; Thu, 4 Nov 1999 17:59:46 -0500 (EST)
+Date: Thu, 4 Nov 1999 17:59:46 -0500 (EST)
+From: tNnNrKrM0Zg= <cdeane@ntown.com>
+Message-Id: <199911042259.RAA23668@dsgy01.ntown.com>
+To: deane@cs.utk.edu
+Content-Length: 7536
+
+<html>
+<head>
+<title>both.html</title>
+
+<script Language="Javascript">
+<!---
+
+//////GLOBAL VALUES
+var prevDate; //save last entry of baby birth date
+var LOGIN_NAME, LOGIN_NUMBER;
+
+
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+//define makeArray function to initialize arrays
+var arrayLen;
+function makeArray(arrayLen) {
+   for (var i=0;i<arrayLen;i++) this[i]=null;
+   this.length=arrayLen;
+   }                                                 
+
+/////This function from x6.html
+/////The encryption code used here has been tested in
+/////the program confirm.c for up to 100 characters.
+////////////////////////////////////////////////////////////////
+//////This function makes the loginName into an array of chars 
+function verify4( form ) {
+
+var i,k,N,msgStr,enValue,factor,baseValue,NFACTOR, myNum;
+var msgStr, msgStr2, msgSt3,msgSt4,msgSt5; 
+testStr = form.loginName.value +"x";
+testOBJ = new String(testStr);
+if (testOBJ.length==1) {
+   str1 = " x" ;
+   LOGIN_NAME=" ";
+   }
+else {
+   str1= form.loginName.value + "x";
+   LOGIN_NAME=form.loginName.value;
+   }
+
+strOBJ = new String(str1);
+
+j= strOBJ.length -1;  /////do not go to x end of string in forloop
+
+msgStr="ARRAY NUM:  ";
+msgSt2="\nARRAY CHR: ";
+msgSt4="\n AR NUM+1: ";
+msgSt5="\n NFACTOR :  "; 
+enValue=0;
+baseValue=8192*8192;
+factor=baseValue;
+myNum=0;
+NFACTOR=1;
+
+for(i=0;i<j;i++) {
+   k=i+1;
+   msgStr= msgStr + " [ " + strOBJ.charCodeAt(i)  +" ] ";
+   msgSt2= msgSt2 + " [  " + strOBJ.substring(i,k) +" ] "; 
+   myNum = strOBJ.charCodeAt(i) +1;
+   msgSt4= msgSt4 + " [  " + myNum +" ] "; 
+  
+   myNum = myNum -1;
+   NFACTOR=factor+i ;
+   msgSt5= msgSt5 + " i="+i +"  "+NFACTOR;
+   enValue = enValue + (NFACTOR*myNum );
+   if( factor < 1030 ) { 
+   	factor = baseValue; 
+	}
+   else { 
+	factor = factor/4; 
+	}
+   }
+
+msgSt3= "\n enValue:  " + enValue ;
+
+LOGIN_NUM = enValue;
+
+MESSAGE = "LoginName:  "+LOGIN_NAME+"\n LoginNum: "+LOGIN_NUM;
+
+///////alert( msgStr + msgSt4 + msgSt2 + msgSt3 + msgSt5   );
+alert(MESSAGE);
+}
+//////end verify4
+
+
+////////////////////////////////////////////////////////////////
+//function to get the seconds since Jan 1, 1970 
+//for input from select menus
+//BOU = birth of unix (Jan 1, 1970)
+function getSecsSinceBOU(form) {
+
+var NineMonths=23601600000;//approx seconds in NineMonths
+var NineMonthsd2=2360160;//divided by 10000
+
+///DOM = DayOfMonth
+var DOM = new makeArray(32);
+    DOM[ 0]=32;
+    DOM[ 1]=1;
+    DOM[ 2]=2;
+    DOM[ 3]=3;
+    DOM[ 4]=4;
+    DOM[ 5]=5;
+    DOM[ 6]=6;
+    DOM[ 7]=7;
+    DOM[ 8]=8;
+    DOM[ 9]=9;
+    DOM[10]=10;
+    DOM[11]=11;
+    DOM[12]=12;
+    DOM[13]=13;
+    DOM[14]=14;
+    DOM[15]=15;
+    DOM[16]=16;
+    DOM[17]=17;
+    DOM[18]=18;
+    DOM[19]=19;
+    DOM[20]=20;
+    DOM[21]=21;
+    DOM[22]=22;
+    DOM[23]=23;
+    DOM[24]=24;
+    DOM[25]=25;
+    DOM[26]=26;
+    DOM[27]=27;
+    DOM[28]=28;
+    DOM[29]=29;
+    DOM[30]=30;
+    DOM[31]=31;
+
+///MOY=MonthOfYear
+var MOY = new makeArray(13);
+    MOY[ 0]=13;
+    MOY[ 1]=1;
+    MOY[ 2]=2;
+    MOY[ 3]=3;
+    MOY[ 4]=4;
+    MOY[ 5]=5;
+    MOY[ 6]=6;
+    MOY[ 7]=7;
+    MOY[ 8]=8;
+    MOY[ 9]=9;
+    MOY[10]=10;
+    MOY[11]=11;
+    MOY[12]=12;
+
+///MOY=MonthOfYear
+var Y4D = new makeArray(12);
+    Y4D[ 0]=12;
+    Y4D[ 1]=1999;
+    Y4D[ 2]=2000;
+    Y4D[ 3]=2001;
+    Y4D[ 4]=2002;
+    Y4D[ 5]=2003;
+    Y4D[ 6]=2004;
+    Y4D[ 7]=2005;
+    Y4D[ 8]=2006;
+    Y4D[ 9]=2007;
+    Y4D[10]=2008;
+    Y4D[11]=2009;
+
+var theYear4=0; ///the selected 4 digit year (Y4D)
+var theMonth=0; ///the selected month of year (MOY)
+var theDayOM=0; ///the selected day of month (DOM)
+
+var indexY4D =1;
+var indexMOY =1;
+var indexDOM =1;
+
+indexY4D= form.selYEAR.selectedIndex;
+indexMOY= form.selMOY.selectedIndex ;
+indexDOM= form.selDOM.selectedIndex ;
+theYear4=Y4D[indexY4D];
+theMonth=MOY[indexMOY];
+theDayOM=DOM[indexDOM];
+
+strDATE= theMonth+"/"+theDayOM+"/"+theYear4
+strSECS = Date.parse( strDATE );
+
+if( isNaN( prevDate )== true ) {
+ 	prevDate = 0;
+ 	}
+diff=strSECS - prevDate;
+d2 = diff/10000;
+result="\nGOOD: prev date more than 9 months ago";
+if( d2 < NineMonthsd2 ) 
+   result = "\n BAD: prev date less than 9 months ago ";
+if( diff == 0 )
+   result = "\n CONGRATULATIONS! You Had Twins!"
+
+msgStr=" current date:   " + strSECS +"\n previous date:  "+prevDate+result;	
+
+prevDate=strSECS;
+alert (  msgStr ); 
+}
+///////end function getSecsSinceBOU
+
+
+function showBOTH (form ) {
+
+if( isNaN( prevDate )== true ) {
+ 	prevDate = 0;
+ 	}
+
+testStr = "x" + form.loginName.value;
+testOBJ = new String(testStr);
+if (testOBJ.length==1) {
+   LOGIN_NAME="none entered yet";
+   LOGIN_NUM = 0;
+   }
+else {
+   LOGIN_NAME=form.loginName.value;
+   }
+
+msg1 =  "  LOGIN_NAME:   " + LOGIN_NAME;
+msg2 = "\n  LOGIN_NUM:   " + LOGIN_NUM;
+msg3 = "\n  BabyBirthDate in Seconds:  " + prevDate;
+
+alert (msg1 + msg2 + msg3 );
+}
+/////////end function showBOTH
+
+
+
+
+---->
+</script>
+
+</head>
+
+</---body bgcolor="ccff88" text="000000">
+<body bgcolor="aaddff" text="00090" 
+      link="900090" alink="900090" vlink="900090"> 
+<p>
+This is a program to convert the Baby Birth Date to 
+<br>an integer value corresponding to seconds after Jan 1, 1970.
+<p>
+The previous entry is "saved" and a comparison between the current value
+and the previous value is performed.
+<p>
+If the difference between the two values is "less than Nine Months",
+a message is written for BAD.  <br>If the difference is "greater than
+Nine Months", the message is written for GOOD.
+<p>
+<br>BabyAnnouncement database.  
+<br> First enter ntown login name -- to be saved as numeric value
+<br> Then enter baby birth date -- to be saved as date seconds
+<hr>
+<form Name="Form 1">
+<table border=2 cellpadding=5 >
+<tr>
+<td> Please enter Login Name:  &nbsp;&nbsp;&nbsp; </td>
+<td> <input NAME="loginName" type="TEXT" size=12  </td>
+</tr>
+<tr>
+<td> Please click button to see saved numeric value.</td>
+<td> 
+<Input type="BUTTON" Value="Verify4" onClick="verify4(this.form);">
+</td>
+</tr>
+</table>
+
+<p>
+<hr>
+<p>
+Enter Baby Birth Date by selecting month, day, and year.
+<p>
+<table border=2>
+<tr><td>
+Please select Month [mm]
+</td><td>
+Please select day-of-month [dd]
+</td><td>
+Please select Year [yy].
+</td></tr>
+
+<tr><td>
+<SELECT Name="selMOY">
+<OPTION SELECTED> MM 
+<OPTION>January
+<OPTION>February
+<OPTION>March
+<OPTION>April    
+<OPTION>May
+<OPTION>June
+<OPTION>July     
+<OPTION>August
+<OPTION>September
+<OPTION>October  
+<OPTION>November
+<OPTION>December
+</SELECT>
+</td><td>
+
+<Select Name="selDOM">
+<OPTION SELECTED>DD
+<OPTION> 1
+<OPTION> 2
+<OPTION> 3
+<OPTION> 4
+<OPTION> 5
+<OPTION> 6
+<OPTION> 7
+<OPTION> 8
+<OPTION> 9
+<OPTION> 10
+<OPTION> 11
+<OPTION> 12
+<OPTION> 13
+<OPTION> 14
+<OPTION> 15
+<OPTION> 16
+<OPTION> 17
+<OPTION> 18
+<OPTION> 19
+<OPTION> 20
+<OPTION> 21
+<OPTION> 22
+<OPTION> 23
+<OPTION> 24
+<OPTION> 25
+<OPTION> 26
+<OPTION> 27
+<OPTION> 28
+<OPTION> 29
+<OPTION> 30
+<OPTION> 31
+</select>
+</td><td>
+<SELECT NAME="selYEAR">
+<OPTION SELECTED>YY
+<OPTION>1999
+<OPTION>2000
+<OPTION>2001
+<OPTION>2002
+<OPTION>2003
+<OPTION>2004
+<OPTION>2005
+<OPTION>2006
+<OPTION>2007
+<OPTION>2008
+<OPTION>2009
+</select>
+</SELECT>
+</td></tr>
+
+<tr><td>
+Please click the button to see the result.          
+</td><td>
+mm-dd-yy
+</td><td>
+<INPUT NAME="Button05d" TYPE="Button" Value="Do the date thing again." onClick="getSecsSinceBOU(this.form);" >
+</td></tr>
+
+<tr>
+<td>
+Please click the VERIFY button to see all results at once.
+</td>
+<td>
+<INPUT NAME="bothButton" TYPE="BUTTON" Value="VERIFY" onClick="showBOTH(this.form);">
+</td>
+</tr>
+</table>
+</form>
+<p>
+<hr>
+
+<hr>
+</body>
+</html>
+
+
+
+
+

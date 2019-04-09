@@ -1,0 +1,85 @@
+<html>
+<head>
+<title>jtest</title>
+<script Language="Javascript">
+function makeNum(){
+var x=new String(document.forms[0].nStr.value);
+var regComma = new RegExp (",","g"); 
+var dollar="\\$";
+var regDollar= new RegExp (dollar,"g");
+var BigX="X";
+var regX= new RegExp (BigX,"g");
+var BigA="";
+var regEmpty= new RegExp("");
+var y=x.replace(regComma,BigX );
+var z=x.replace(regDollar,BigX);
+var w=y.replace(regDollar,BigX);
+var v=w.replace(regX,BigA);
+
+var N=x.replace(regDollar,BigA);
+N=N.replace(regComma,BigA);
+
+alert("x="+x+"\ny="+y+"\nz="+z+"\nw="+w+"\nv="+v +"\nN="+N);
+}
+
+function matchBraces() {
+var b=new String(document.forms[0].bStr.value);
+
+//var mytree = new Array;
+    mytree = ["end", "xend"];
+alert(" begin>> mytree="+mytree);
+var i=0,k=0,m=0;
+var Lbr="{";
+var Rbr="}"; 
+var newL = new String();
+var newR = new String();
+
+var regL = new RegExp(Lbr);
+var regR = new RegExp(Rbr);
+
+   alert(       mytree.push ("Aaaa","Bbbb"));  
+
+
+for (var j=0; j<b.length - 1; j++) {
+if (b.substr(j,j+1)==Lbr) {
+	newL=Lbr+i;
+        k=mytree.push ("aaa","bbb");  i++;
+	b.replace( Lbr, newL);
+	}		
+
+} alert ("b="+b);
+alert ("k="+k);
+alert("mytree="+mytree);
+
+i=0;
+	
+for (var j=0; j<b.length; j++) {
+if (b.substr(j,j+1)==Lbr) {
+	i++;
+	}
+
+if(b.substr(j,j+1)==Rbr) {
+	newR=Rbr+i; i--;
+	b.replace( Rbr,newR );
+	}
+} alert("b="+b); 	
+
+}
+
+
+</script>
+</head>
+<body >
+<b>jtest</b>
+<p>
+<form name="formone" method="post">
+<abc>
+Enter string here: <input type="text" name="nStr" size=10 onchange="makeNum()">
+<p>
+Enter brace string here:<br>
+<input type="text" name="bStr" size=30 onchange="matchBraces()">
+</form>
+
+<p>
+</body>
+</html>

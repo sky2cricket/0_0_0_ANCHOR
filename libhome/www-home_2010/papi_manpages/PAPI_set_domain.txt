@@ -1,0 +1,62 @@
+PAPI_set_domain         PerfAPI LIBRARY           PAPI_set_domain
+
+
+
+NAME
+     PAPI_set_domain - set the execution domain in  which  events
+     are counted
+
+SYNOPSIS
+     int PAPI_set_domain (int domain)
+
+     int domain -- an integer to select the domain
+
+DESCRIPTION
+     PAPI_set_domain() This function sets the execution domain in
+     which  events  are  counted.  Here domain is one of the con-
+     stants   PAPI_DOM_USER,    PAPI_DOM_MIN,    PAPI_DOM_KERNEL,
+     PAPI_DOM_OTHER,      PAPI_DOM_ALL,      PAPI_DOM_MAX,     or
+     PAPI_DOM_HWSPEC as defined in the header file.   These  con-
+     stants  are listed below and can also be found in the online
+     PerfAPI Draft.  The return value is an  integer  that  indi-
+     cates  whether  the  call succeeded (PAPI_OK) or failed (not
+     PAPI_OK).
+
+DEFINITION OF CONSTANTS
+     PAPI_DOM_USR        User context counted
+     PAPI_DOM_MIN        Minimum Domain value
+     PAPI_DOM_KERNEL     Kernel/OS context counted
+     PAPI_DOM_OTHER      Exception/transiant mode
+     PAPI_DOM_ALL        All contexts counted
+     PAPI_DOM_MAX        Maximum Domain value, all contexts counted
+     PAPI_DOM_HWSPEC     Flag to indicate special substrate
+
+CROSS-REFERENCE WITH OTHER PerfAPI FUNCTIONS
+
+     PAPI_set_domain may be called by:
+
+          the user application program
+
+     PAPI_set_domain contains calls to:
+
+          PAPI_set_opt
+
+SEE ALSO
+     The PerfAPI Draft:
+          http://icl.cs.utk.edu/projects/papi/api/
+
+BUGS
+     This function has no known bugs.
+
+
+
+
+
+
+
+
+
+
+PAPI Release 0.99   Last change: 28 July 1999                   1
+
+

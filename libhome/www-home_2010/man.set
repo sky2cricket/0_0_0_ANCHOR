@@ -1,0 +1,396 @@
+
+
+
+set(1)                    User Commands                    set(1)
+
+
+
+NAME
+     set, unset, setenv, unsetenv, export - shell built-in  func-
+     tions  to  determine  the  characteristics for environmental
+     variables of the current shell and its descendents
+
+SYNOPSIS
+  sh
+     set [ --aefhkntuvx [ argument ... ] ]
+
+     unset [ name ... ]
+
+     export [ name ... ]
+
+  csh
+     set [var [ = value ] ]
+     set var[n] = word
+
+     unset pattern
+
+     setenv [ VAR [ word ] ]
+
+     unsetenv variable
+
+  ksh
+     set [ _aefhkmnopstuvx ] [ _o option ]... [ _A name ]  [  arg
+     ... ]
+
+     unset [ -f ] name ...
+
+     **
+     export [ name[=value] ] ...
+
+AVAILABILITY
+     SUNWcsu
+
+DESCRIPTION
+  sh
+     The set built-in command has the following options:
+
+     -a    Mark variables  which  are  modified  or  created  for
+          export.
+
+     -e    Exit immediately if a command exits  with  a  non-zero
+          exit status.
+
+     -f    Disable file name generation.
+
+     -h    Locate and remember function commands as functions are
+          defined  (function  commands  are normally located when
+          the function is executed).
+
+     -k    All keyword arguments are placed  in  the  environment
+
+
+
+SunOS 5.5.1         Last change: 13 Feb 1996                    1
+
+
+
+
+
+
+set(1)                    User Commands                    set(1)
+
+
+
+          for  a command, not just those that precede the command
+          name.
+
+     -n    Read commands but do not execute them.
+
+     -t    Exit after reading and executing one command.
+
+     -u    Treat unset variables as an error when substituting.
+
+     -v    Print shell input lines as they are read.
+
+     -x    Print commands and their arguments as  they  are  exe-
+          cuted.
+
+     --     Do not change any of the flags; useful in setting  $1
+          to -.
+
+     Using + rather than - causes these flags to be  turned  off.
+     These  flags  can also be used upon invocation of the shell.
+     The current set of flags may be found in $-.
+     The remaining arguments are positional  parameters  and  are
+     assigned,  in  order,  to  $1,  $2, .... If no arguments are
+     given the values of all names are printed.
+
+     For each name, unset removes the corresponding  variable  or
+     function  value.   The  variables PATH, PS1, PS2, MAILCHECK,
+     and IF cannot be unset.
+
+     With the export built-in, the given  names  are  marked  for
+     automatic export to the environment of subsequently executed
+     commands.  If no arguments are given,  variable  names  that
+     have  been marked for export during the current shell's exe-
+     cution are listed.  (Variable names exported from  a  parent
+     shell  are listed only if they have been exported again dur-
+     ing the current shell's execution.)  Function names are  not
+     exported.
+
+  csh
+     With no arguments, set displays  the  values  of  all  shell
+     variables.     Multiword   values   are   displayed   as   a
+     parenthesized  list.   With  the  var  argument  alone,  set
+     assigns  an  empty  (null)  value to the variable var.  With
+     arguments of the form var = value set assigns value to  var,
+     where value is one of:
+
+          word        A single word (or quoted string).
+          (wordlist)  A space-separated list of words enclosed in
+                      parentheses.
+
+     Values  are  command  and  filename  expanded  before  being
+     assigned.  The form set var[n] = word replaces the n'th word
+     in a multiword value with word.
+
+
+
+SunOS 5.5.1         Last change: 13 Feb 1996                    2
+
+
+
+
+
+
+set(1)                    User Commands                    set(1)
+
+
+
+     unset removes variables whose names match (filename  substi-
+     tution)  pattern.   All  variables are removed by `unset *';
+     this has noticeably distasteful side effects.
+
+     With no arguments, setenv  displays  all  environment  vari-
+     ables.   With  the VAR argument, setenv sets the environment
+     variable VAR to an  empty  (null)  value.   (By  convention,
+     environment  variables are normally given upper-case names.)
+     With both VAR and word arguments specified, setenv sets  VAR
+     to  word,  which  must  be  either a single word or a quoted
+     string.  The PATH variable can take multiple word arguments,
+     separated  by  colons (see EXAMPLES). The most commonly used
+     environment variables, USER, TERM, and PATH,  are  automati-
+     cally  imported to and exported from the csh variables user,
+     term, and path.  Use setenv if  you  need  to  change  these
+     variables.   In addition, the shell sets the PWD environment
+     variable from the  csh  variable  cwd  whenever  the  latter
+     changes.
+
+     The environment variables  LC_CTYPE,  LC_MESSAGES,  LC_TIME,
+     LC_COLLATE,   LC_NUMERIC,  and  LC_MONETARY  take  immediate
+     effect when changed within the C shell.  See environ(5)  for
+     descriptions of these environment variables.
+
+     unsetenv removes variable from  the  environment.   As  with
+     unset, pattern matching is not performed.
+
+  ksh
+     The flags for the set built-in have meaning as follows:
+
+     -A       Array assignment.   Unset  the  variable  name  and
+             assign values sequentially from the list arg.  If +A
+             is used, the variable name is not unset first.
+
+     -a       All  subsequent  variables  that  are  defined  are
+             automatically exported.
+
+     -e       If a command has a non-zero  exit  status,  execute
+             the  ERR  trap, if set, and exit.  This mode is dis-
+             abled while reading profiles.
+
+     -f       Disables file name generation.
+
+     -h       Each command becomes a  tracked  alias  when  first
+             encountered.
+
+     -k       All variable assignment arguments are placed in the
+             environment  for a command, not just those that pre-
+             cede the command name.
+
+     -m       Background jobs will  run  in  a  separate  process
+             group  and  a  line will print upon completion.  The
+
+
+
+SunOS 5.5.1         Last change: 13 Feb 1996                    3
+
+
+
+
+
+
+set(1)                    User Commands                    set(1)
+
+
+
+             exit status of background jobs is reported in a com-
+             pletion  message.  On systems with job control, this
+             flag is  turned  on  automatically  for  interactive
+             shells.
+
+     -n       Read commands and check them for syntax errors, but
+             do   not  execute  them.   Ignored  for  interactive
+             shells.
+
+     -o       The following argument can be one of the  following
+             option names:
+
+             allexport
+                     Same as -a.
+
+             errexit Same as -e.
+
+             bgnice  All background  jobs  are  run  at  a  lower
+                     priority.   This is the default mode.  emacs
+                     Puts you in an emacs  style  in-line  editor
+                     for command entry.
+
+             gmacs   Puts you in a gmacs style in-line editor for
+                     command entry.
+
+             ignoreeof
+                     The shell will not exit on end-of-file.  The
+                     command exit must be used.
+
+             keyword Same as -k.
+
+             markdirs
+                     All directory names resulting from file name
+                     generation have a trailing / appended.
+
+             monitor Same as -m.
+
+             noclobber
+                     Prevents  redirection  >   from   truncating
+                     existing  files.   Require  >| to truncate a
+                     file when turned on.
+
+             noexec  Same as -n.
+
+             noglob  Same as -f.
+
+             nolog   Do not save function definitions in  history
+                     file.
+
+             nounset Same as -u.
+
+             privileged
+
+
+
+SunOS 5.5.1         Last change: 13 Feb 1996                    4
+
+
+
+
+
+
+set(1)                    User Commands                    set(1)
+
+
+
+                     Same as -p.
+
+             verbose Same as -v.
+
+             trackall
+                     Same as -h.
+
+             vi      Puts you in insert mode of a  vi  style  in-
+                     line  editor  until you hit escape character
+                     033.  This puts  you  in  control  mode.   A
+                     return sends the line.
+
+             viraw   Each character is processed as it  is  typed
+                     in vi mode.
+
+             xtrace  Same as -x.
+
+     If no option name is supplied then the current  option  set-
+     tings are printed.
+
+     -p       Disables processing of the $HOME/.profile file  and
+             uses  the  file /etc/suid_profile instead of the ENV
+             file.  This mode is on whenever the effective uid is
+             not equal to the real uid, or when the effective gid
+             is not equal to the  real  gid.   Turning  this  off
+             causes  the  effective  uid and gid to be set to the
+             real uid and gid.
+
+     -s       Sort the positional parameters lexicographically.
+
+     -t       Exit after reading and executing one command.
+
+     -u       Treat unset parameters as an error when  substitut-
+             ing.
+
+     -v       Print shell input lines as they are read.
+
+     -x       Print commands and their arguments as they are exe-
+             cuted.
+
+     -        Turns off -x and -v flags and stops examining argu-
+             ments for flags.
+
+     --        Do not change any of the flags; useful in  setting
+             $1  to  a  value  beginning with -.  If no arguments
+             follow this flag then the positional parameters  are
+             unset.
+
+     Using + rather than - causes these flags to be  turned  off.
+     These  flags  can also be used upon invocation of the shell.
+     The current set of flags may be found in $-.  Unless - A  is
+     specified, the remaining arguments are positional parameters
+
+
+
+SunOS 5.5.1         Last change: 13 Feb 1996                    5
+
+
+
+
+
+
+set(1)                    User Commands                    set(1)
+
+
+
+     and are assigned, in order, to $1 $2 ....  If  no  arguments
+     are  given  then  the  names and values of all variables are
+     printed on the standard output.
+
+     The variables given by the list  of  names  are  unassigned,
+     i.e.,  their  values  and  attributes  are erased.  readonly
+     variables cannot be unset.  If the -f, flag is set, then the
+     names  refer to function names.  Unsetting  ERRNO,  LINENO,
+     MAILCHECK,  OPTARG,  OPTIND,  RANDOM,  SECONDS,  TMOUT,  and
+     _  removes  their  special  meaning  even if they are subse-
+     quently assigned.
+
+     When using unset, the variables given by the list  of  names
+     are  unassigned,  i.e.,  their  values  and  attributes  are
+     erased.  readonly variables cannot be unset.  If  the   - f,
+     flag is set, then the names refer to function names.  Unset-
+     ting  ERRNO,  LINENO,  MAILCHECK,  OPTARG,  OPTIND,  RANDOM,
+     SECONDS,  TMOUT, and _ removes their special meaning even if
+     they are subsequently assigned.
+
+     With the export built-in, the given  names  are  marked  for
+     automatic export to the environment of subsequently-executed
+     commands.
+
+     On this man page, ksh(1) commands that are preceded  by  one
+     or  two * (asterisks) are treated specially in the following
+     ways:
+     1.   Variable assignment lists preceding the command  remain
+          in effect when the command completes.
+     2.   I/O redirections are processed after  variable  assign-
+          ments.
+     3.   Errors cause a script that contains them to abort.
+     4.   Words, following a command preceded by ** that  are  in
+          the  format of a variable assignment, are expanded with
+          the same rules as a variable  assignment.   This  means
+          that  tilde  substitution is performed after the = sign
+          and word splitting and file  name  generation  are  not
+          performed.
+
+EXAMPLES
+  csh
+     The following example sets the PATH variable to  search  for
+     files  in  the  /bin,  /usr/bin, /usr/sbin, and /usr/ucb/bin
+     directories, in that order.
+
+          setenv PATH "/bin:/usr/bin:/usr/sbin:usr/ucb/bin"
+
+SEE ALSO
+     csh(1), ksh(1), read(1), sh(1), typeset(1), environ(5)
+
+
+
+
+
+
+SunOS 5.5.1         Last change: 13 Feb 1996                    6
+
+
+

@@ -1,0 +1,41 @@
+#!/bin/csh -f 
+
+# tpwd 
+# 
+# WRITTEN 
+#       BY : Don Sparkman
+#            University of Tennessee
+#            April 1992 
+#
+
+
+#insure that the * and ~ are left as * and ~ 
+set noglob 
+
+#if any arguments are entered on the command line print 
+#the tilde directory for the argument string 
+#other wise print the tilde directory for the cwd 
+
+if ($#argv>0) then 
+   set cwd = $argv[1]
+
+#insure  that cwd is set 
+   else if($?cwd <1) set cwd = `pwd`
+
+endif 
+
+#use sed to strip out the leading /stuff/homes/ and replace with a ~
+
+set tpwd = ` echo  $cwd | sed  s/".*\/homes\/"/"~"/ `
+
+#since ~ is thought to $HOME 
+# so if the path is just "/stuff/homes/" sed converts is to 
+#a ~ and since this is not $HOME print out the un edited string
+
+
+if ("$tpwd" == "~") then
+   echo $cwd 
+else
+   echo $tpwd 
+endif 
+

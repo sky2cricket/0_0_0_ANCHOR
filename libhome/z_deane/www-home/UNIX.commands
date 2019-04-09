@@ -1,0 +1,1787 @@
+UNIX commands
+
+
+view a file  >vi filename   see vilecommands.text for vi commands
+             >vi ./bin/tpwd* see file tpwd in bin directory
+
+print a file  >lpr -Pprintername filename
+              example >lpr -Pcslab humanlangcomputers
+            OR        >lpr humanlangcomputers
+             (...gives default printer)
+            -h  suppresses header page
+            >lpr -h humanlangetcv ...prints at default printer
+                                     with suppressed headerpage 
+        
+            >lpr -Pa3 filename   ... west side of bld printer
+
+            >lpr -h filename  ...suppress printing of burst page 
+
+
+	   >lpr -w80  filename  ....set page width to 80 cols
+	   >lpr -w 30 filename  ....set page width to 30 cols
+
+
+print a copy of your program output that would otherwise
+appear on screen
+           >a.out >filename
+           >lpr  filename
+
+copy a file >cp fileoriginal filetarget
+
+append a file >vi file1 file2
+               in file 1 "a6Y  ...yank 6 lines
+                         :n    ...go to file 2
+               in file2  "ap   ...dumps the 6 lines from a
+
+make a directory  >mkdir ~/TAGNET  ...creates directory named TAGNET
+make sub-dir      >mkdir ~/cs360/08-24  ...creates sub-directory
+                              named 08-24 inside directory named cs360
+ 
+
+
+move files        >mv tagnet* TAGNET/  ...moves files starting with "tagnet"
+                                          into directory named TAGNET
+                                       This is a destructive teqnique, so if
+                                        you screw up it is gone.
+
+                  >mv file1 file2    moves file1 to file2, destroys file1
+               OR >cp file1 file2    moves file1 to file2, saves file1
+
+
+listing things   >ls   lists all your files
+                 >ls  topete*  lists all files starting with "topete"
+                 >ls  TAGNET/  lists files in TAGNET directory
+                 >ls -a  ...lists files plus .files
+                 >ls -a >filelist ....writes your list to file named filelist!
+                 >ls -ld looks at dates, from DARRYL
+                 >ls .*  ...lists a whole bunch of files, like all
+                              green homes directory 
+                 >ls ./* ...lists all of deane directories
+                 >ls ../* ...lists all directories for all those people
+                              listed in ls .* (all green homes)
+
+                >ls lab8*/*.h   ...lists all the files ending in
+                                  .h in lab8a/ lab8b/ lab8x 
+                                in current directory (360 dir)
+
+Removing things  >rm filename ... you will be prompted, after you say "y", bye-bye
+                 >rm tag* ... remove all files starting with "tag", with prompt
+
+                 >rmdir  TAGNET/  remove directory named TAGNET
+
+make file from screen  >script filename
+                       computer replies script started
+                       >exit
+                       computer replies script is done file is filename
+                       ** if no filename given, default scripttext
+
+12/20/94 utkcs-passwd
+
+get into somebody else's directory
+      >cd ~plank/cs360/notes
+         the reply is 01-11 which is a subdirectory under notes
+         this will give you all the files in that directory
+      >ls 01-11
+         this will give you all the files under 01-11
+          which is material associated with the jan 11 lecture
+
+      >vi ~plank/cs360/notes/01-11/lecture
+         allows you to read the lecture file
+
+      >cp ~plank/cs360/notes/01-11/lecture cs360.lecture
+
+you have to be in your own directory to put the file there
+get back to your own directory
+    >cd /green/homes/deane
+    >cd enter-key
+ 
+COMMAND LINE ARGUMENTS with C program
+    >gcc walrus2.c -o walrus2.exec
+    >walrus2.exec walrusin walrusout
+   
+/* file walrus2.c */
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+void main(int argc, char *argv[])
+ { FILE  *fpinput, *fpoutput;
+   char  indata[80]; int loop1,loop2,loop3;
+   argc=2;
+   fpinput=fopen(argv[0],"r");
+   if((fpoutput=fopen(argv[1],"w"))==NULL)
+    {printf("\n cannot open output file\n"); exit(1);}
+  for (loop1=0;loop1<5;loop1++)
+   { fgets(indata,80,fpinput); fputs(indata,fpoutput); }
+    fclose(fpinput); fclose(fpoutput);
+  printf("\n read and wrote 5 lines of text\n  normal termination \n");
+  } /* end main */
+  
+  to make programs run better on mt-dew> rsh duncan
+
+
+  >ls -lag  long show all give groups
+  
+
+   >chmod abc
+     a=permissions for me       read-write-execute
+     b=permissions for group
+     c=permissions for world
+
+   >chmod abc filename 
+
+   >chmod go-rwx * will remove read, write, and execute for both group
+                   and others for all files in current directory
+                    page 104 Unix system4release5
+
+  look at cs112 files
+   cd ~dws112/cs112
+   ls
+     it ends up listing a whole bunch of stuff
+
+
+
+          >la -lg submitcom
+  prints  lrwxrwxrwx 1 deane graduate 29 Jan 27 08:23 -> /green/homes/cs112/bin/submitcom
+
+          >ls submitcom
+  prints  submitcom@     the @ indicates a link to another directory
+
+
+          >ln -s ~cs112/bin/submit  submitcom
+  puts a linked copy of ~cs112/bin/submit into your dir
+  and names it submitcom
+
+     format for program sumitcom   >submitcom 2
+     It will go to your 112/lab2 dir and get a c program
+      which should be named doctors.c
+:wq
+
+  go look at some error stuff
+
+  >cd /usr/sys/sys
+  >less errno.h      gives header files for error messages
+                      for system calls 
+x  >lint paname.c   gives error messages even if
+                    program does not  compile
+
+TA STUFF
+     how to get to attendance files
+    >cd ~records/allgrades
+    >vi 1          ........because section 1
+:wq
+       march 10 -95
+       some commands from watts for tour of unix
+
+      >xman &
+      >cd /usr/include
+      >view stdio.h
+      >ls
+      >cd sys
+      >ls
+      >view types.h
+      >view unistd.h
+      >view file.h
+
+      we ended up looking at the structure
+      that a file pointer points to
+    
+
+
+    >lpq    ..........list print queue
+
+
+
+
+    pushd  push directory
+    popd   pop directory
+    dirs   
+
+
+    >pushd  /usr/include
+    >pushd  /a/
+    >pushd  /s/c 
+
+    >dirs .........prints out the stack
+
+    >pushd  (with no args, flips top and bottome
+             members of stack)
+ 
+
+    >popd   rips off top one
+
+
+****************************************************************
+TA STUFF
+   latex compliments of Greg Wroble
+
+   file manual3.tex is the original file
+
+   >latex manual3.tex    ....creates the vi file
+                             named manual3.dvi
+                         ....creates a transcript
+                             named manual3.log
+
+   >lpr -d manual3.dvi   ....prints dvi file
+
+   >dvips manual3.dvi -o  manual3.ps   ....creates the
+                                        postscript file
+                                        named manual3.ps
+                     
+   >lpr manual3.ps    .......prints out postscript file
+
+
+   >cd ..     go back to one level higher directory
+               (i.e. back-up)
+
+   >ghostview manual3.ps  .... display to screen what
+                          would be printed
+****************************************************************
+
+    >man lpr  ....look at man page for lpr
+
+   >lpr -#3 filename   .... prints 3 copies of filename
+****************************************************************
+
+
+  some mail commands
+   mail a file to deane
+    >mail deane <filename
+
+   look at time stamp on files starting with "part"
+     >ls -l part*
+
+
+  ************************************
+   
+   sequent symmetry  with dian witter!
+   march 29, 1995
+  
+    >rsh tonka
+    > asked for password, reply regular password
+    >cc tonka430.c
+    > got compile errors
+    
+     need library links as follows 
+       cc filename -lpps -lseq -lm
+   -lpps  parallel library
+             so you can use m_myid   
+   -lseq  for sequential something
+   -lm    for math library
+**********************************
+
+
+  forward from where you are type
+  
+   /patternyouwant hitreturn
+     
+    n gives next one  forward
+
+  backward from where you are
+  
+  ?patternyouwant hitreturn
+
+    n gives next one backwards
+
+    N changes direction and continues pattern search 
+******************************
+
+
+    ftp wam.umd.edu
+     cd   change into alice directory   lcd   my local directory
+     after that cd above >binary
+                         >get alicefilename.c
+        (maybe ascii instead of binary )
+     cm57@umd5.umd.edu
+*********************what I tried first time************************
+cetus5e>ftp wam.umd.edu
+Connected to wam.umd.edu.
+220 rac5.wam.umd.edu FTP server (Versn 4.162 Tue Nov ! 10:50:37 PST a988) ready.
+Name(wam.umd.edu:deane): ecila.        ......I typed in ecila.
+331 Password required for ecila.
+Password:                              ......I typed in selarhc
+530 Login incorrect.
+Login failed.
+ftp>quit
+221 Goodbye.      
+cetus5e>
+****************************************************************
+       called charles.......ripped  cm79 pookie
+         ch cm79 ripped al cm57 pookie
+
+LISP LISP LISP LISP
+
+Chuck -- I just ripped that thing open.  Thank you!
+Do you know what the compiler for LISP is around 
+here?  You know I'll be annoying you with questions
+about this stuff this summer.  Thanks again. cricket!
+
+No es problema! LISP is my life. You can get LISP on these
+machines by typing akcl at the unix prompt. Most people put
+this line:
+
+		alais lisp 'akcl'
+
+	in one of thier dot files so they can type "lisp"
+to enter lisp. Let me know if you have any problems or questions.
+
+   >ls -a ~witter/mail/../
+             lists all of dian's .a files
+
+**************************8
+
+retrieve a lost mail file
+
+  >cd /var/tmp
+  >ls tmp
+  >   shows file names of blown away files
+
+  >cd /var            
+  >ls         shows a bunch of other kind of files.
+
+go to csh430 director
+  >chmod 777 lab1   changes protections on all lab1 files
+
+
+************
+ sequent symmetry
+ >first rsh tonka and login
+ > no backspaces!
+ >cc input16.c -lpps -lseq -lm       :wq
+
+when you lose things
+ go to directory junk
+
+  
+rename directory  >cp * newname 
+   copies all files from current directory to newname
+
+RECURSIVE REMOVE OF ENTIRE DIRECTORY
+   >rm -r directoryname   .........page94, UNIXsvr4
+
+RECURSIVE COPY OF ENTIRE DIRECTORY
+copy whole directory at once
+   >cd ~dws112/c++
+   >cp * ~/112/lab8/
+                            this puts contents of the 
+                             entire dir dws112/c++
+                            into MY ~/112/lab8/
+
+   >mkdir ~/plank360
+   >cd ~plank/cs360/notes
+   >cp -R * ~/plank360    .........courtesy QUENTIN
+   >rm -r directoryname   .........page94, UNIXsvr4
+   >chmod -R u+rwx 112/lab8 .......page 103,UNIXsvr4
+
+   >cat *  cat everything in directory
+
+   copy one file named VARIATIONS from seymour's directory
+             into your cs530/lab1 dir
+   >cd ~seymour/pub/dhyrstone
+   >cp  VARIATIONS $HOME/cs530/lab1
+******************8
+
+       from dian
+       >mytest test.file1
+:wq
+**************************
+  >ls -l|grep Apr\ 24 *
+   do a grep on all ls -l files for Apr 24 date
+   |grep means pipe to grep
+
+
+MORE GREP:
+
+ /usr/bin/grep -i -n -l lavender * 
+
+look for the pattern "lavender" in all (*) files
+in this dir and 
+  -i case insensitive
+  -n list a line number
+  -l list each filename on separate line
+
+
+spacegripe stuff
+    >du  space by directories
+    >du -s total space your home area 
+ 
+
+Append file two to rear end of file one
+
+    >cat one two >temp
+    >cp temp one
+    >overwrite one? y
+    >rm temp
+
+which utkcs-password .........chng paswd
+
+
+   replace stringold with stringnew 
+
+    :%s/stringold/stringnew/g   g=global
+
+   get rid of latex junk
+   note that the  thing is created by
+            Cntl-v Cntl-h and means backspace
+    :%s/.//g
+
+
+    >cp aa1* /my_make  .... copies all files starting with aa1
+                            from main dir into my_make dir
+
+    >rm aa1*           .... remove all files starting with aa1
+
+From straight@cs.utk.edu Fri May 12 15:47:13 1995
+Date: Fri, 12 May 1995 15:47:07 -0400
+Message-Id: <199505121947.PAA07281@straight.cs.utk.edu>
+To: deane@cs.utk.edu
+Subject: sun keyboard commands
+Status: RO
+
+saying xset -r  prevents key bounce on the suns
+saying click -y gives you key clicks
+--i don't think you have have both going at once
+
+
+
+************************************************
+removing a file named -l in main directory
+   >rm ~deane/-l
+The reason you have to do it this way is that
+-l is an option for the remove command.  Putting
+the -l into ~deane/-l identifies it as a filename
+
+______________________________________________________
+how to do talk mode from Chris Hastings
+just type talk hastings@duncan at the UNIX prompt :)
+______________________________________________________
+
+   >chmod  go-rwx   dir.name/*   .....make all files
+                                      inside directory
+                                      rwx only by user
+        from page 102 unix.svr4 
+
+__________________________________
+from chris  
+  look at load  >ps
+       or       >w
+
+
+-------------------------------------------------------------
+-------------------------------------------------------------
+How to inflict MELTDOWN on someone..........
+
+
+ crush>xhost + duncan
+ crush>rsh duncan
+ duncan>setenv DISPLAY crush:0.0
+-------------------------------------------------------------
+From jgilbert@cs.utk.edu Fri Oct 11 13:14:32 1996
+To: deane@cs.utk.edu
+Subject: Displays
+Date: Fri, 11 Oct 1996 13:14:23 -0400
+From: John Michael Gilbert <jgilbert@cs.utk.edu>
+Status: R
+
+
+This works and is a lot of fun for you and for someone
+sitting next to you:
+_____________________________________________________________
+
+using your conventions:
+crush is the local machine you are on.
+duncan is the name of the display you want to modify.
+
+crush>xhost + duncan
+crush>setenv DISPLAY duncan:0.0
+
+
+then type ( on duncan or wherever )
+
+duncan>xhost + crush
+
+At that time you can run display changing programs on crush
+which appear on duncan's display.
+
+
+-------------------------------------------------------------
+-------------------------------------------------------------
+  how to get sybyl 
+     CHEMISTRY molecular cartoons
+
+     james chenault 
+           chenault@cs.utk.edu
+           chenault@novell.chem
+
+____________________-
+machine information
+  > cd /etc   
+   or
+  > rlogin jones (remote login)
+  > more /etc/motd.local
+
+_______________________-
+getting ta information TA_STUFF
+
+   >cd ~cs102
+   >cd spring-1995
+   >cp filename ~deane/TA_STUFF  copies file from ~cs102/spring-1995
+                                 to my dir TA_STUFF
+____________________________
+
+    >ps -gauxww | more    get process information
+    >ps -gauxww | grep deane  get list of MY processes
+ 
+_____________________________
+    >use emacs
+
+
+cat -n ftod1.c   get line numbers
+
+
+vi -r
+vi -r filename RESTORE lost vi file
+
+_______________________________________
+
+  >vi ~cs102/spring-1995/lab1/answers/PERFECT-ANSWERS
+_____________________________
+
+    >lpq  ......see print queue
+    >lprm #of job .......remove job from print queue
+------------------------------
+
+printing stuff half size (2 pages to a sheet)
+
+   >enscript -2r frimemo.sep22
+______________________________
+
+
+   from david  /usr/include/sys    
+___________________________________________________
+From root@duncan.cs.utk.edu Sat Sep 30 05:09:45 1995
+Return-Path: <root@duncan.cs.utk.edu>
+Received: from duncan.cs.utk.edu by CS.UTK.EDU with ESMTP (cf v2.9s-UTK)
+	id FAA18232; Sat, 30 Sep 1995 05:09:41 -0400
+From: Operator <root@duncan.cs.utk.edu>
+Received:  by duncan.cs.utk.edu (cf v2.11c-UTK)
+          id FAA00471; Sat, 30 Sep 1995 05:09:37 -0400
+Date: Sat, 30 Sep 1995 05:09:37 -0400
+Message-Id: <199509300909.FAA00471@duncan.cs.utk.edu>
+Subject: editor saved ``nice8.c''
+Apparently-To: deane@cs.utk.edu
+Status: R
+
+You were editing the file "nice8.c"
+at <Thu Sep 21 19:51> on the machine ``duncan''
+when the system went down.
+
+You can retrieve most of your changes to this file
+using the "recover" command of the editor.
+An easy way to do this is to give the command "vi -r nice8.c".
+This method also works using "ex" and "edit".
+----------------------------------------------------------------
+WHEN YOU GET ONE OF THESE -r MESSAGES, YOU HAVE TO SAVE THE
+FILE THE FIRST TIME YOU ACCESS IT.  IF YOU DON'T LIKE THE
+FILENAME OR ARE AFAID OF WRITING OVER SOMETHING, DO THE
+FOLLOWING:
+             "a234Y .....(234 or number of lines in file)
+             :next! .....new_file (this pops you to new empty file)
+             "ap    .....(puts 234 lines from buffer a into new_file)
+             :wq    .....save_em
+
+
+    how to get header files into your object deck
+
+    >gcc -c progh.c -Lh1.h -Lh2.h
+        produces
+                progh.o
+
+    >gcc progh.o 
+         produces  a.out
+ 
+    >a.out 
+         produces  output
+
+    >b.out  
+
+     use >gcc program.c -o b.out
+     to get b.out instead of a.out
+--------------------------------------------
+
+How to display digolog on crush
+
+   >xhost +cetus2a
+   >rsh    cetus2a
+   >setenv DISPLAY crush=0.0
+
+------------------------------------------------------------------------------
+How_to_print from dws
+View these files as follows:
+
+.dvi files: use xdvi.               e.g.  ``xdvi factsheet.dvi''
+.ps files: use gs or ghostview.     e.g.  ``gs syllabus.ps''
+                                          ``ghostview syllabus.ps''
+.txt files: use vi or more          e.g.  ``vi README''
+                                          ``more README''
+.tr files: User nroff -man          e.g.  ``nroff -man socket.tr''
+
+
+If you have to print out files:
+
+.dvi files: use lpr -d               e.g.  ``lpr -d factsheet.dvi''
+.ps files: use lpr                   e.g.  ``lpr syllabus.ps''
+.txt files: use enscript -2r         e.g.  ``enscript -2r README''
+.tr files: User nroff -man | lpr     e.g.  ``nroff -man socket.tr | lpr''
+
+end How_to_print from dws
+------------------------------------------------------------------------------
+
+how to get netscape on sun 3/60 terminal
+
+    >xhost +hydra1f .......................choose a spark host
+    >rsh    hydra1f .......................rsh to that host
+    >setenv DISPLAY yoohoo:0.0 ............set the env display parameter
+                                           on machine you are at
+    >netscape       .......................go for netscape
+
+------------------------------------------------------------------------------
+look at man curses for UNIX curse information
+------------------------------------------------------------------------------
+CURSES(3V)             C LIBRARY FUNCTIONS             CURSES(3V)
+
+
+
+FILES
+     .login
+
+     .profile
+
+SYSTEM V FILES
+     /usr/share/lib/terminfo
+
+SEE ALSO
+     cc(1V), ld(1), ioctl(2), getenv(3V),  plot(3X),  printf(3V),
+     putc(3S),   scanf(3V),   stdio(3V),  system(3),  varargs(3),
+     vprintf(3V),  termio(4),   tty(4),   term(5V),   termcap(5),
+     terminfo(5V), tic(8V)
+
+SYSTEM V WARNINGS
+     The  plotting  library  plot(3X)  and  the  curses   library
+     curses(3V)  both  use  the  names  erase()  and move().  The
+     curses versions are macros.  If you need both libraries, put
+     the  plot(3X)  code  in   a  different  source file than the
+     curses(3V) code, and/or `#undef move' and `#undef erase'  in
+     the plot(3X) code.
+
+     Between the time a call to initscr() and endwin()  has  been
+     issued,  use only the routines in the curses library to gen-
+     erate output.  Using system calls or the "standard I/O pack-
+     age"  (see  stdio(3V)) for output during that time can cause
+     unpredictable results.
+end curses
+------------------------------------------------------------------------------
+
+
+look at /usr/xpg2include/sys
+  >ls
+  >dirent.h stat.h
+
+------------------------------------------------------------------------------
+gui command from bret
+
+rsh karait /usr/scan/deskscan -display <machine_name>:0
+
+
+------------------------------------------------------------------------------
+
+murder death kill
+
+courtesy of chad minhier
+to find and kill rogue processes
+
+a  >ps gauxw | grep deane  .....shows all my processes
+b  >ps gauxw | grep deane | awk '{print $2}' ......prints list of pids
+c  >ps gauxw | grep deane | awk '{print $2}' | xargs kill -9 
+                    ...kills em all
+
+How to use this.  
+
+    1.  login at YOUR machine (i.e. crush>`)
+    2.  rsh to duncan  (location of rogue processes)
+    3.  issue command a to see how many pids you have going
+    4.  issue command c
+    5.  this will exit you from duncan (since one of the
+        processes you kill is your rush process)
+    6.  rsh to duncan again
+    7.  issue command a to see what is left
+    8.  exit from duncan
+
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+AUG 21, 1998:  To really kill something: unix> kill -9 26069
+(when kill alone does not work)
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+more murder death kill
+From mucci@cs.utk.edu Sat Jan 20 20:38:28 1996
+Return-Path: <mucci@cs.utk.edu>
+Received: from thud.cs.utk.edu by CS.UTK.EDU with ESMTP (cf v2.9s-UTK)
+	id UAA05218; Sat, 20 Jan 1996 20:38:27 -0500
+From: Philip Mucci <mucci@cs.utk.edu>
+Received:  by thud.cs.utk.edu (cf v2.11c-UTK)
+          id UAA25981; Sat, 20 Jan 1996 20:38:25 -0500
+Date: Sat, 20 Jan 1996 20:38:25 -0500
+Message-Id: <199601210138.UAA25981@thud.cs.utk.edu>
+To: deane@cs.utk.edu
+Subject: Re:  Please kill this process on cetus1a...
+Status: R
+
+Well, I wrote a script that will let you run a command on all of the hydra
+or cetus machines. 
+
+The commands are:
+"~mucci/usr/local/bin/on_all_[cetus/hydra]"
+
+-Phil
+
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+graphics stuff xinit
+the machine rios upstairs is always on and it only has one window.
+login.
+then....
+
+   >xinit
+   (wait for windows)
+   >xhost + karait
+   >rsh karait
+   >setenv DISPLAY rios:0.0
+   > /usr/scan/deskscan
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+
+go into framemaker      >maker
+print a postscript file >lpr -Pcslab NoName.ps
+
+
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+manpage stuff
+
+   >man lpr >man.lpr  ...writes the manpage for lpr to
+                         a file named man.lpr
+
+   >man 2v lpr    ....looks for lpr in section 2v of manpages
+
+   >man -s 3C strcat  look for strcat in vol 3 
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+large print
+huge typesize
+big letters--
+
+   prompt> xterm -fn 12x24 .....gives largest standard font.
+
+>lpr -Pa3 or6.c
+
+
+rsh to alphard for big print jobs because
+alphard is the print server
+tyco is NEW print server alphard is gone.........
+
+------------------------------------------------------------------------------
+java
+
+   >rsh mattel
+    blah blah blah
+    You have mail.
+    unknown mode: new
+   >cd /opt
+cricket at mattel> 
+cricket at mattel> cd /opt
+cricket at mattel> ls
+JDK@         SUNWgmfu@    SUNWsdk@     gnu@         req-1.2@
+JWS@         SUNWguide@   SUNWspro@    java@        utkcs@
+SUNWabe/     SUNWits/     SUNWtcx/     lost+found/
+SUNWclnv8@   SUNWleo/     TeX@         matlab@
+SUNWdbg4x@   SUNWmfwm@    X11R6@       mh@
+SUNWdxlib/   SUNWrtvc/    apunix/      new@
+cricket at mattel> 
+cricket at mattel> cd java
+cricket at mattel> ls
+COPYRIGHT    bin/         include/     lib/
+README       demo/        index.html   src.zip
+cricket at mattel> 
+
+------------------------------------------------------------------------------
+
+
+netscape3
+
+ ftp ftp.netscape.com login anon
+
+ or
+ 
+ cd ~larson/bin/sun4/
+ ls shows netscape3 and Mosaic-sun-2.7b4
+
+ or 
+ UNIX> netscape3
+
+
+===============
+dvi2tty 
+
+
+==================================================
+
+/usr/local/doc/  ...........useful directory with perl5 docs
+
+
+==================================================
+
+Courtesy of Scotty Whittemire
+
+nroff -man filename | more
+
+nroff -man dlxcc.1 > lpr
+
+This will print the file dlxcc.1 from ~byler/pub/cs530/dlxsim/dlxcc.1
+=============================================================
+
+how to read pdf files
+
+   cd /usr/local/bin
+
+   acroread ~byler/pub/cs530/errata.pdf
+
+
+   The adobe window comes up and you select print.
+
+    I used : sos4 sun4 c at pebbles> acroread sc98.pdf
+    and the acroread window came up.
+
+=============================================================
+From mynhier@cs.utk.edu Wed Oct 23 11:17:20 1996
+Return-Path: <mynhier@cs.utk.edu>
+Received: from duff.cs.utk.edu (DUFF.CS.UTK.EDU [128.169.92.142]) 
+        by CS.UTK.EDU with ESMTP (cf v2.9s-UTK)
+	id LAA12515; Wed, 23 Oct 1996 11:17:06 -0400
+Received: from LOCALHOST.cs.utk.edu by duff.cs.utk.edu with SMTP (cf v2.11c-UTK)
+          id LAA05842; Wed, 23 Oct 1996 11:17:55 -0400
+Message-Id: <199610231517.LAA05842@duff.cs.utk.edu>
+To: deane@cs.utk.edu
+Cc: labreq@cs.utk.edu
+X-Request-Do: 
+Subject: [CS Help #2888] xv, ghostview
+Date: Wed, 23 Oct 1996 11:17:54 -0400
+From: Chad Mynhier <mynhier@cs.utk.edu>
+Status: R
+
+
+>Hi Help --
+>   I am working at baby-ruth (frisbee) and  I cannot use
+>xv or  ghostview here.  I need to use both of them.  I
+>have tried using -xhost and env things and rsh to a hydra maching
+>and this does not work either.  The message is
+> "Client is not authorized to connect to Server"
+>Is there anything I can do aside  from walking over  to hydra
+>lab and logging in over there???
+>Thanks.
+>cricket!
+
+
+Try the following:  
+
+	xrsh duncan xv
+
+This should take care of all of the environment and authorization
+stuff transparently.  Let me know if this doesn't work.
+
+Chad Mynhier <mynhier@cs.utk.edu>
+Lab Engineer, CS Department        
+University of Tennessee, Knoxville                   
+----------------------------------------------
+to get library catalog at home
+
+   unix> telnet opac.utk.edu
+----------------------------------------------
+
+  Postscript files exist for each chapter in KHOROS_HOME/manual
+  subdirectories.  Note that the postscript files are in compressed
+  format, and must be uncompressed to print.  The following command
+  will also work in printing the compressed postscript files, leaving
+  them in compressed format when completed.
+
+  % uncompress -c chapter.ps.Z | lpr -Plw
+
+  where,   lpr  - is the printer command for most BSD Unix systems
+
+           lw  - is an example of a printer name (please select the
+                 printer name for your site).
+
+  ------------------------------------------------------
+===================================================================
+HOW TO USE ZIP and UNZIP with files from INTERNET
+This dir contains zip version of phd thesis for Dr. Rajesh Pankaj who
+graduated from MIT in 1992 and is now at Univ of Toronoto Canada.
+All information from http://www.comm.utoronto.ca/~pankaj
+
+His email address: pankaj@comm.toronto.edu
+
+
+Z means compressed
+gz means gnu-compressed
+ps means uncompressed postscript
+
+use gunzip thesis_phd1.ps.gz
+and create ps file thesis.PS1
+
+What to do:
+ 1.    Visit Dr. Pankej excellent website.
+ 2.    Download his 3 phd thesis files.
+ 3.    These are named
+                 thesis_phd1.ps.gz
+                 thesis_phd2.ps.gz
+                 thesis_phd3.ps.gz
+ 4.    Uncompress the gz files with the gunzip command
+        unix> gunzip thesis_phd1.ps.gz
+        unix> gunzip thesis_phd2.ps.gz
+        unix> gunzip thesis_phd3.ps.gz
+        
+ 5.    Now you will have 3 new files named
+                 thesis.PS1
+                 thesis.PS2
+                 thesis.PS3
+       The .gz files are gone.
+ 
+ 6.    Print with
+        unix>lpr -Pa5b thesis.PS1
+        unix>lpr -Pa5b thesis.PS2
+        unix>lpr -Pa5b thesis.PS3
+  
+ 7.    Get rid of space hog files.
+===================================================================
+some system stuff
+unix> cd ../../../../../../
+unix> cd usr/ucb
+unix> ls
+and especially unix> apropos ul
+===================================================================
+ 
+to get rid of junk on manpages
+
+unix> man lpr | col -b > man.lpr
+===================================================================
+
+awk script for converting from ethel's class roll to cs100
+attendance sheets.
+
+  unix> awk '{ print $4, $5, $6 }' roll.28710 > r.28710
+
+===================================================================
+>>>>>>>>>from Ray Byler<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+for cs530
+
+An easy way to add figures to your latex source is to
+use the following piece of code.
+
+
+\begin{figure}[hbt]
+\centerline{\psfig{figure=f100trn.eps,height=3.3in,width=4.0in}}
+\caption{Function Flattening}
+\end{figure}
+
+
+If you scan in figures, you can use xv to convert the gif or
+tiff files to encapsulated postscript (.eps).  The figure itself
+can be stretched using the height and width settings.
+
+
+Ray Byler
+
+
+>>>>>>>>>from Ray Byler<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+THE GREAT ESCAPE
+>From byler@cs.utk.edu Mon Feb 10 11:18:31 1997
+Subject: ANSI escape sequences
+This was email to the neural nets class that
+bill is in.  cs420
+
+Since a number of you were having problems with the
+ANSI escape sequences, I decided to just give you
+those two functions in C.
+
+
+#include<stdio.h>
+
+
+void clear_screen()
+{
+  /*Erase screen, leave cursor at home.   */
+  printf("\033[f\033[2J");
+}
+
+
+void GoToXY(int X, int Y)
+{
+  /*X = column number, Y = row number.    */
+  printf("\n\033[");
+  if (Y < 10)
+    printf("%d", Y);
+  else
+    printf("%2d", Y);
+  putchar(';');
+
+  if (X < 10)
+    printf("%d", X);
+  else
+    printf("%2d", X);
+  putchar('H');
+}
+
+main()
+{
+  /* ANSI escape sequence demo */
+  
+  /* clear screen and home cursor */
+  clear_screen();
+  
+  /* print * at row 1, col 5 */
+  GoToXY(5,1);
+  printf("*");
+  
+  /* print * at row 1, col 10 */
+  GoToXY(10,1);
+  printf("*");
+  
+  /* print * at row 3, col 6 */
+  GoToXY(6,3);
+  printf("*");
+
+  /* print * at row 3, col 11 */
+  GoToXY(11,3);
+  printf("*");
+
+  printf("\n");
+
+}
+
+
+
+Ray
+
+
+>>>>>>>>>from Ray Byler<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+To do square root need:
+
+    unix> gcc prog.c -lm
+    to access the math library
+
+    and 
+    in  your prog.c file
+    #include <math.h> 
+
+>>>>>>>>>from managing projects with make<<<<<<<<<<<<<<<<<<<<<<<<<
+by Oram and Talbott -- O'Reilly
+page  7
+
+to see where tabs and end-of-lines are
+   unix> cat -v -t -e makefile
+
+tabs only:  unix> cat -v -t makefile
+eol only:   unix> cat -v -e makefile
+
+>>>>>>>>>>>HTML hint<<<<<<<<<<<<<<<<<<<<<<
+
+To print a special character use  &#NNN;
+where NNN=ascii value of character
+
+To print
+Arrow pointing up:-->> &#094; <<--
+
+In <pre>&#094;</pre> you get tiny carot
+
+in <html>&#094;</html> you get a big carot
+
+
+>>>>>>>>>>>mail hint<<<<<<<<<<<<<<<<<<<<<<
+from IRINA
+
+to include a document in a mail thing
+
+~r filename  [hit return]
+"filename"   267/8813 [this line is generated by pgm and tells you the size of the file name
+.            [make a dot and hit return]
+EOT
+
+
+>>>>>>>>>>>>>from the mind of JohnGilbert<<<<<<<<<<<<<
+
+xmag -- magnifier 
+
+stty erase {backspace key} ... sets backspace key
+
+unix> tcsh .......go to tc shell
+unix> xm   .......print out all commands starting with xm
+xmag      xmahjongg xman      xmbind    xmgr      xmh       xmkmf     xmodmap (these are the commands)
+unix> exit .......get out of tc shell
+
+
+xrsh hack   (Dr. Berry's spark 20)
+
+
+echo $path   {lists all your paths}
+
+set path=($path /mix/usr/local/bin)
+rehash
+     {these two add a path}
+
+cricket at hydra4a> uname -a
+SunOS hydra4a 5.5.1 Generic_103640-05 sun4m sparc SUNW,SPARCstation-5
+ This means you are on a solaris machine.
+ You have to be on a solaris machine to do sockets.
+
+cricket at duncan> uname -a
+SunOS duncan 4.1.4 2 sun4m
+  This means you are on a sun machine.
+  You have to go to a solaris machine to do sockets.
+
+
+-------------------------------------------------------------------------
+From: Cheryl Rohrer <rohrer@cs.utk.edu>
+To compile a fortran program :
+	UNIX> f77 file.f
+-------------------------------------------------------------------------
+   To get final grades, students can use netscape to view
+   http://www.getgrades.com/ 
+   UTK 4 digit code is 3324
+   The phone number is 1 800 528-3324.
+-------------------------------------------------------------------------
+
+MANPAGE STUFF
+ unix>man time gives the FORTRAN version of time. 
+ FORTRAN 77 Reference Manual
+     itime(3F), idate(3F), fdate(3F)
+     ctime(3C) in Solaris 2.x
+     ctime(3V) in Solaris 1.x
+
+ For this C version of ctime, type:  man -M /usr/man ctime
+
+ When compiling multithread programs, see Intro(3), Notes  On
+      Multithread Applications.
+
+ to see that page, type:
+ man -s 3 intro 
+
+----------------------------------------------
+ls /usr/local/java gives java stuff
+------------------------------------------------
+From rohrer@cs.utk.edu Wed Feb 11 18:38:22 1998
+Subject: Re: [CS Help #6183] path to f77 
+In-reply-to: Message from Christine Deane <deane@cs.utk.edu> 
+
+> Hi Help --
+>    I want to put the following in my .cshrc
+> 
+> 
+>          /usr/lang/f77/
+> 
+> But I can't even find this directory on the system.
+> Help!
+> Thanks!
+> cricket!
+
+Cricket,
+	It depends with OS your are on.  /usr/lang
+is where SunOS stores its compilers.  /opt/SUNWspro
+is where Solaris stores its compilers.  You should
+be able to append /bin on either of those paths and
+get the Sun compilers.  
+
+I assume you know that /usr/lang/f77 will get you the 
+fortan compiler.
+
+ Cheryl Rohrer   Internet: rohrer@cs.utk.edu
+ Labstaff, Department of Computer Science Labs
+ University of Tennessee, Knoxville
+
+==================================================================
+
+What to do once you have downloaded tar.gz files.
+
+
+Example:  the atlas.tgz file:
+
+step 1:
+
+  unix> gunzip atlas.tgz
+  This will create atlas.tar file.
+  The atlas.tgz file is no longer in existence.
+
+  [also worked for: unix> gunzip Jama.tar.gz]
+
+step 2:
+  unix> tar -xvf atlas.tar
+  This will create the ATLAS directory and all files it contains.
+  The atlas.tar file remains.
+
+For the atlas.ps.gz
+
+   unix> gunzip atlas.ps.gz
+   This will create atlas.ps file. (which I deleted after printing)
+   The atlas.ps.gz is no longer in existence.
+
+==================================================================
+==================================================================
+==================================================================
+for file in *.gz
+do
+   gunzip -c $file | tar xvf -
+done
+
+==================================================================
+==================================================================
+==================================================================
+METACHARACTER CIRCUS
+
+What is a metacharacter???  Short answer: print control character
+that does not display in printout.
+
+Examples of metacharacters:
+
+    ^H backspace
+    ^L new page
+    ^M endline [aka return]
+
+If you use the command >>od -C filename<< and the file filename
+contains metacharacters ^H, ^L, ^M, these will be refleced in
+the display as:
+
+     ^H == \b
+     ^L == \f
+     ^M == \r 
+
+Metacharacters are great tools for print control, but
+sometimes you don't want to see them on the screen.
+
+For script files and for other files where you
+want to GET RID OF METACHARACTERS:
+
+[1] Metacharacter for endline in script files
+
+    generally you will see ^M at the end of script 
+    file lines.  That carot in the line above is
+    from uppercase 6 and is not the "real" thing
+    you would get in the metacharacter, but looks
+    like it.  To eliminate the real ^M in script files,
+    type the sequence: 
+
+    :%s /cntl-vcntl-M//g 
+
+    Explanation:
+
+    :%s /oldstring/newstring/g  is a vi command to
+                                replace oldstring with
+                                newstring.  The g stands
+                                for global, so all instances
+                                will be done. In the example
+                                above, the newstring is empty,
+                                so the "replacement" is really
+ 	                        a removal. 
+
+    cntl-v  is done by depressing the cntl key and keeping it
+            down, then type v.  
+            This results in a screen display of a character 
+            that looks like the carot ^ but is really the 
+            FIRST HALF of the metacharacter ^M
+
+     
+    cntl-m  is done by depressing the cntl key and keeping it
+            down, then type m.  
+            This results in a screen display of a character 
+            that looks like the character M  but is really the 
+            SECOND HALF of the metacharacter ^M
+
+            unix> vi typescript
+
+screen display in vi
+--------------------------------------------------------------------
+Script started on Sun Oct 11 11:23:30 1998
+sol2 sun4 c at duncan> short^M
+sol2 sun4 c at duncan> test^M
+sol2 sun4 c at duncan> on^M
+sol2 sun4 c at duncan> metacharacter^M
+sol2 sun4 c at duncan> display^M
+sol2 sun4 c at duncan> exit^M
+sol2 sun4 c at duncan>
+script done on Sun Oct 11 11:24:14 1998
+--------------------------------------------------------------------
+
+screen display in vi after the :%s /^M//g
+--------------------------------------------------------------------
+Script started on Sun Oct 11 11:23:30 1998
+sol2 sun4 c at duncan> short
+sol2 sun4 c at duncan> test
+sol2 sun4 c at duncan> on
+sol2 sun4 c at duncan> metacharacter
+sol2 sun4 c at duncan> display
+sol2 sun4 c at duncan> exit
+sol2 sun4 c at duncan>
+script done on Sun Oct 11 11:24:14 1998
+--------------------------------------------------------------------
+
+  [2] Metacharacter for backspace seen when you do something like:
+
+            unix> man dump > man.dump
+            unix> vi man.dump
+
+screen display in vi
+--------------------------------------------------------------------
+dump(1)                   User Commands                   dump(1)
+
+
+
+NAME
+ dump - dump selected parts of an object file
+
+SYNOPSIS
+dump [ -aCcDfghLlorstV ] [ -T _^Hi_^Hn_^Hd_^He_^Hx [ , _^Hi_^Hn_^Hd_^He_^Hx_^Hn ] ]
+          _^Hf_^Hi_^Hl_^He_^Hn_^Ha_^Hm_^He ...
+     dump [ -afhorstL [ v ] ] _^Hf_^Hi_^Hl_^He_^Hn_^Ha_^Hm_^He ...
+     dump [ -hsr [ -d _^Hn_^Hu_^Hm_^Hb_^He_^Hr [ , _^Hn_^Hu_^Hm_^Hb_^He_^Hr_^Hn ] ] ] _^H
+f_^Hi_^Hl_^He_^Hn_^Ha_^Hm_^He ...
+     dump [ -hsrt [ -n _^Hn_^Ha_^Hm_^He ] ] _^Hf_^Hi_^Hl_^He_^Hn_^Ha_^Hm_^He ...
+
+AVAILABILITY
+     SUNWbtool
+--------------------------------------------------------------------
+ 
+  vi command to get rid of backspace AND underscore 
+
+    a.  This method says get rid of any character that preceeds a 
+        backspace and get rid of the backspace
+        -- the . is wildcard character
+
+    :%s /.cntl-vcntl-H//g 
+
+    b.  This method says get rid of all occurrences of the 
+        string >>underscoreBackspace<<  
+
+    :%s /_cntl-vcntl-H//g 
+
+    Method a. is safer and easier to type
+
+screen display after using :%s /.^H//g command in vi
+--------------------------------------------------------------------
+dump(1)                   User Commands                   dump(1)
+
+
+
+NAME
+ dump - dump selected parts of an object file
+
+SYNOPSIS
+dump [ -aCcDfghLlorstV ] [ -T index [ , indexn ] ]
+          filename ...
+     dump [ -afhorstL [ v ] ] filename ...
+     dump [ -hsr [ -d number [ , numbern ] ] ] filename ...
+     dump [ -hsrt [ -n name ] ] filename ...
+
+AVAILABILITY
+     SUNWbtool
+--------------------------------------------------------------------
+end METACHARACTER CIRCUS
+==================================================================
+==================================================================
+==================================================================
+
+rup -- find out usage
+sol2 sun4 c at cetus3a> rup cetus3a
+     cetus3a    up 74 days,  6:47,    load average: 0.02, 0.05, 0.19
+sol2 sun4 c at cetus3a> rup cetus3e
+     cetus3e    up  8 days,  3:09,    load average: 2.55, 2.05, 1.41
+sol2 sun4 c at cetus3a> rup cetus3b
+     cetus3b    up 74 days,  6:47,    load average: 1.02, 1.01, 1.02
+sol2 sun4 c at cetus3a> rup cetus3d
+     cetus3d    up 40 days,  1:34,    load average: 0.91, 0.93, 0.61
+sol2 sun4 c at cetus3a> rup cetus3f
+     cetus3f    up 74 days,  6:45,    load average: 1.70, 1.20, 0.73
+sol2 sun4 c at cetus3a> 
+===================================================================
+Date: Wed, 21 Oct 1998 13:00:10 -0400
+From: Jeffrey Russell Horner <jhorner@cs.utk.edu>
+Cricket,
+
+Here is a simple test I did to build atlas as a shared library.
+
+cd ATLAS/lib/US2200/
+mkdir tmp
+cd tmp
+ar -x ../libatlas.a
+cd ..
+cc -G -o libatlas.so tmp/*.o
+
+Hope this helps.
+
+****************************************************************
+
+xhost stuff:
+
+To get hydra2e to display like pebbles:
+
+
+ 	c at.pebbles> xhost +hydra2e
+	c at.pebbles> rsh nala
+        ---blah blah blah------
+        c at.nala> setenv DISPLAY pebbles:0.0
+
+-----------------------
+abdobe file   file.pdf
+need usr/local/abdobe
+
+ /usr/local/adobe/bin/acroread chapter.pdf
+
+
+----------------------------------------------
+---CReate an ARchive named libFLBAS.a 
+---from all *.o files in the current directory
+
+ ar cr libFBLAS.a *.o   -- create
+
+ ar -d libFBLAS.a filename  --delete one file
+ ar -r libFBLAS.a filename  --replace one file
+       if no file of that name exists in the archive, 
+       the file is added to the archive
+ ar -t libFBLAS.a filename  --print table of contents 
+
+ ar -x lib.a filename -- extract filename from archive
+
+----------------------------------------------
+
+
+ pebbles>xhost + cetus2e
+ pebbles>rsh cetus2e
+ cetus2e>setenv DISPLAY pebbles:0.0
+ cetus2e>netscape4j
+
+
+free.cetus free.hydra free.anybody
+rusers machineName
+
+
+nscd -g
+-g        Prints current  configuration  and  statistics  to
+               standard  output.  This is the only option execut-
+               able by non-root users.
+
+ nscd - name service cache daemon
+
+SYNOPSIS
+     /usr/sbin/nscd [ -f configuration-file  ]  [  - g  ]  [  - e
+     cachename, yes|no ] [ -i cachename ]
+---------------------------------------------------------------
+sharfile :  see /courses/plank/spr99/howto.sharfile
+
+
+---------------------------------------------------------------
+soft links:
+
+making a  soft link to planetJava
+
+ln -s ~/planetJava planetJava 
+ln -s ~/planetJava/PACKS/org org 
+
+
+soft link to executable
+sol2 sun4 c at cetus2e> ln -s ../Vtest/SEYgo SEYgo
+sol2 sun4 c at cetus2e> SEYgo Prntab.class
+
+soft link to  ATLAS/lib/US140/tmp
+ln -s ~/icl/atlas/ATLASa1.1/ATLAS/lib/US140/tmp US140tmp
+---------------------------------------------------------------
+
+
+info
+
+info ? get info help
+info cccp get info about cccp
+
+I found out about info from:
+
+http://www.tc.cornell.edu/UserDoc/Software/ProgLang/#util
+
+which contains:
+
+"IBM's Optimization and Tuning Guide for Fortran, C, and C++
+   can be seen online by typing: info -l xlf   "
+
+
+=================================================================
+blueberry
+setenv PATH /usr/sbin:/usr/bsd:/usr/bin:/bin:/usr/bin/X11
+setenv MANPATH /usr/share/catman:/usr/catman:/usr/share/man:/usr/local/man
+from mucci.cshrc
+=================================================================
+
+shar tar 
+===============================================================
+===============================================================
+Rich --
+
+Thank you for sending me the sharfile.
+
+
+These are the instructions you included with the email.
+You may wish to revise them.
+# To extract the files from this archive, save it to some FILE, remove
+# everything before the `!/bin/sh' line above, then type `sh FILE'.
+This is the result of following the instructons:
+sos4 sun4 c at pebbles> sh rich.sharfile
+IFS: Undefined variable.
+I used the following which worked.
+sos4 sun4 c at pebbles> unshar rich.sharfile
+It unpacked them to P006.pdf, P058.pdf.
+I accessed and printed them with
+sos4 sun4 c at pebbles> acroread P006.pdf
+sos4 sun4 c at pebbles> acroread P058.pdf
+This is acroread 3.0 at:
+/usr/local/adobe/bin/acroread
+
+We have other acroreads on the local system, but
+this currently seems to be the best one.
+ 
+cheers!
+cricket!
+========================================================================
+#!/bin/sh
+# This is a shell archive (produced by GNU sharutils 4.2).
+# To extract the files from this archive, save it to some FILE, remove
+# everything before the `!/bin/sh' line above, then type `sh FILE'.
+#
+# Made on 1999-02-23 11:34 EST by <rich@fzr600>.
+# Source directory was `/home/rich/reviews/HPDC8'.
+#
+# Existing files will *not* be overwritten unless `-c' is specified.
+#
+# This shar contains:
+# length mode       name
+# ------ ---------- ------------------------------------------
+#  97930 -rw-r--r-- P058.pdf
+# 172632 -rw-r--r-- P006.pdf
+#
+save_IFS="${IFS}"
+IFS="${IFS}:"
+gettext_dir=FAILED
+locale_dir=FAILED
+first_param="$1"
+for dir in $PATH
+do
+  if test "$gettext_dir" = FAILED && test -f $dir/gettext \
+     && ($dir/gettext --version >/dev/null 2>&1)
+  then
+    set `$dir/gettext --version 2>&1`
+    if test "$3" = GNU
+    then
+      gettext_dir=$dir
+    fi
+  fi
+  if test "$locale_dir" = FAILED && test -f $dir/shar \
+     && ($dir/shar --print-text-domain-dir >/dev/null 2>&1)
+  then
+    locale_dir=`$dir/shar --print-text-domain-dir`
+  fi
+done
+IFS="$save_IFS"
+if test "$locale_dir" = FAILED || test "$gettext_dir" = FAILED
+then
+  echo=echo
+else
+  TEXTDOMAINDIR=$locale_dir
+  export TEXTDOMAINDIR
+  TEXTDOMAIN=sharutils
+  export TEXTDOMAIN
+  echo="$gettext_dir/gettext -s"
+fi
+touch -am 1231235999 $$.touch >/dev/null 2>&1
+if test ! -f 1231235999 && test -f $$.touch; then
+  shar_touch=touch
+else
+  shar_touch=:
+  echo
+  $echo 'WARNING: not restoring timestamps.  Consider getting and'
+  $echo "installing GNU \`touch', distributed in GNU File Utilities..."
+  echo
+fi
+rm -f 1231235999 $$.touch
+#
+if mkdir _sh00664; then
+  $echo 'x -' 'creating lock directory'
+else
+  $echo 'failed to create lock directory'
+  exit 1
+fi
+# ============= P058.pdf ==============
+if test -f 'P058.pdf' && test "$first_param" != -c; then
+  $echo 'x -' SKIPPING 'P058.pdf' '(file already exists)'
+else
+  $echo 'x -' extracting 'P058.pdf' '(compressed)'
+  sed 's/^X//' << 'SHAR_EOF' | uudecode &&
+begin 600 _sh00664/cmp
+M'YV,):`0,=(BA@L9#124$#?NV;2$,D#``/%&C)J$/'@D?,&DC)LS=-"`F!%C
+MAHV-1M*PH5-&#H@71MB$84FDS)@W9,HD].$CX1PZ<LJ$:9,022)&5Y8YVJ9#
+M0K<;T/X!*T6`%H4D?MZ9N&<@&;-NS`"T"V*A1Q9D$MJLB#9LA+)V^-Z]J99"
+etc.
+===============================================================
+===============================================================
+
+irix6 mips
+manpages on picasso:
+
+setenv MANPATH /usr/share/catman:/usr/local/man
+--------------------
+
+sol2 sun4 c at cetus2e> man signal
+
+this gets you the default manpage:
+signal(3C)             C Library Functions             signal(3C)
+
+
+But at the end of the 3c manpage it says...
+SEE ALSO
+     kill(2),  pause(2),   sigaction(2),   sigsend(2),   wait(2),
+     waitid(2), signal(5)
+
+
+so to get signal(5) manpage, you have to type:
+
+ man -s5 signal
+
+
+signal(5)          Headers, Tables, and Macros          signal(5)
+
+NAME
+     signal - base signals
+
+which is a non-default manpage.
+
+--------------------------------------------------------july8,1999----
+
+name of printer in A100:  yoyo
+-----------------------------------
+
+
+away from my mail
+vacation program
+there is a manpage
+
+type "vacation" to activate
+
+------------------------------------------------------
+HOW TO SAVE
+
+ 
+1. Get the file to display on netscape.
+
+2. Click on File, drop down menu to SAVE_AS.
+
+3. Select Drive A.
+
+4. Make sure the filename is correct.
+
+5. Click on okay.
+
+
+MSDOS Command:
+
+see prompt:    C:>
+C:> A:
+A:>
+
+
+So you have changed from the C drive to the A drive.
+
+
+also:  tar -cf ATMpaper.tar ATM
+
+creates the tarfile for ATM directory recursive to all sub dir
+--------------------------------------------------------
+This is how to get the print headers on explorer: 
+Need the page setup dialog box. 
+Header: &w&bPage &p of &P 
+Footer: &u&b&d 
+***
+************************************************************************
+This is error_log, eee file for cgi records.
+---------------------------------------------
+INFORMATION FROM JEFF PARKER.
+
+cp /dev/null filename
+This will keep the filename but remove the contens of the file
+Need to use this for the err_log file.
+---------------------------------------------
+************************************************************************
+
+
+
+
+--------------------------------------------------------
+
+how_to_print file
+
+View these files as follows:
+
+.dvi files: use xdvi.               e.g.  ``xdvi factsheet.dvi''
+.ps files: use gs or ghostview.     e.g.  ``gs syllabus.ps''
+                                          ``ghostview syllabus.ps''
+.txt files: use vi or more          e.g.  ``vi README''
+                                          ``more README''
+.tr files: User nroff -man          e.g.  ``nroff -man socket.tr''
+
+
+If you have to print out files:
+
+.dvi files: use lpr -d               e.g.  ``lpr -d factsheet.dvi''
+.ps files: use lpr                   e.g.  ``lpr syllabus.ps''
+.txt files: use enscript -2r         e.g.  ``enscript -2r README''
+.tr files: User nroff -man | lpr     e.g.  ``nroff -man socket.tr | lpr''
+--------------------------------------------------------
+
+IN VI MATCH PARENTHESES....
+From straight@cs.utk.edu Mon Mar 19 19:49:47 2001
+X-Authentication-Warning: kenner.cs.utk.edu: straight owned process doing -bs
+Date: Mon, 19 Mar 2001 19:49:45 -0500 (EST)
+From: David Straight <straight@cs.utk.edu>
+To: Christine Deane <deane@cs.utk.edu>
+Subject: Re: vi question
+MIME-Version: 1.0
+
+On Mon, 19 Mar 2001, Christine Deane wrote:
+position the cursor over a brace, paren, etc--hit %--that finds the
+match
+> Hi David --
+>
+> What is the vi command to match braces?
+>
+> (THat part of my brain has evaporated...)
+>
+> Thanks!
+> cricket!
+>
+----------------------------------------------------
+mail command hanging...
+
+Christine,
+
+I killed all the defunct processes on duncan.  If they appear again, you
+can see them with "ps -ef | grep deane", and kill them with "kill -9 <pid>"
+where <pid> is the process id of the process you are trying to kill.  Then
+remove the lock file, and everything should be okay.
+
+from William A Kotas [kotas@cs.utk.edu]
+
+
+
+alias  rmmaillock 'rm /var/spool/mail/deane.lock'

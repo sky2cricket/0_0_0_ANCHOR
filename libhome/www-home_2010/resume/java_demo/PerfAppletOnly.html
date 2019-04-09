@@ -1,0 +1,60 @@
+<html>
+<title>PerfApplet</title>
+<body bgcolor="aaccff" text="000000">
+<b> PerfAPI PerfAppletOnly </b>
+<hr>
+All code for this page written by C. H. Deane for Phil Mucci as
+part of the PerfAPI project.
+<p>
+<a href="PerfometerApplet.html">Click here for full demo page.</a>  This provides
+all code, explanations of how code works, and links to the PerfAPI project. 
+<p>
+A static snapshot of PerfometerApplet is shown first, then a dynamic
+copy, which can take a while to down load. 
+<p>
+<table border=0 CELLPADDING=5>
+<tr>
+<td>
+To the right is a snapshot of the display created by  the java application program
+<b>Perfometer.java</b>.
+<br> The first number [<b>209000</b>] is time in milliseconds.
+<br> The second number [<b>6797884</b>] is raw counts on PAPI_FP_INS for the 1000 ms timing interval starting at <b>209000</b>.
+<br> The bars in the histogram should reflect the latest count value, with the newest value coming in on the right.
+<br> Scaling is based on 2*highest_count_value.
+</td>
+<td>
+the snapshot<br>
+<IMG SRC="Perfometer.gif">
+</td>
+</tr>
+</table>
+<br>&nbsp;
+<p>
+<table border=0 CELLPADDING=5>
+<tr>
+<td>
+If you have a java enabled browser, a running copy of 
+the applet display should appear to the right.
+This display is created by the program
+<b> PerfometerApplet.java</b>.
+</td>
+<td>
+the dynamic PerfometerApplet<br>
+<APPLET CODE="PerfometerApplet.class" 
+        WIDTH=280 
+        HEIGHT=200 >
+<alt>
+<table border=2 CELLPADDING=2>
+<tr><td>
+Sorry, you need a java enabled browser to view the applet
+as it runs.  
+</td></tr></table>
+</alt>
+</applet>
+</td></tr></table>
+<hr>
+</body>
+</html>
+
+
+

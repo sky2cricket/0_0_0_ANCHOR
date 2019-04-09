@@ -1,0 +1,62 @@
+PAPI_perror             PerfAPI LIBRARY               PAPI_perror
+
+
+
+NAME
+     PAPI_perror - report errors
+
+SYNOPSIS
+     int PAPI_perror (int code,char *destination,int length)
+
+     int code -- an error code
+
+     char *destination -- "the error message in quotes"
+
+     int length -- either 0 or strlen(destination)
+
+DESCRIPTION
+     PAPI_perror() This function copies length worth of the error
+     description  string  corresponding to code into destination.
+     The resulting string is always null terminated. If length is
+     0,  then  the string is printed on stderr.  The return value
+     is an integer that  indicates  whether  the  call  succeeded
+     (PAPI_OK) or failed (not PAPI_OK).
+
+CROSS-REFERENCE WITH OTHER PerfAPI FUNCTIONS
+
+     PAPI_perror may be called by:
+
+          the user application program
+          PAPI_start_counters
+          PAPI_read_counters
+          PAPI_stop_counters
+
+     PAPI_perror contains calls to:
+
+          get_error_string
+
+SEE ALSO
+     The PerfAPI Draft:
+          http://icl.cs.utk.edu/projects/papi/api/
+
+BUGS
+     This function has no known bugs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PAPI Release 0.99   Last change: 28 July 1999                   1
+
+

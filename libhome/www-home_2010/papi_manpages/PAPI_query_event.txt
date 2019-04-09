@@ -1,0 +1,62 @@
+PAPI_query_event        PerfAPI LIBRARY          PAPI_query_event
+
+
+
+NAME
+     PAPI_query_event - see if an Event is supported by the local
+     substrate
+
+SYNOPSIS
+     int PAPI_query_event (int EventCode)
+
+     int EventCode -- the numeric value of a PerfAPI Event
+
+DESCRIPTION
+     PAPI_query_event() This function tests if the  event  desig-
+     nated by EventCode is supported by the current substrate.
+
+     If the answer is yes, the function returns PAPI_OK.  If  the
+     answer is no, the function returns an error code.
+
+
+CROSS-REFERENCE WITH OTHER PerfAPI FUNCTIONS
+
+     PAPI_query_event may be called by:
+
+          the user application program
+
+     PAPI_query_event contains calls to:
+
+          handle_error
+
+SEE ALSO
+     The PerfAPI Draft:
+          http://icl.cs.utk.edu/projects/papi/api/
+
+BUGS
+     This function has no known bugs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PAPI Release 0.99   Last change: 28 July 1999                   1
+
+

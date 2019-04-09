@@ -1,0 +1,61 @@
+<HTML>
+
+<HEAD>
+<TITLE>JAVA CHOOSE COLOR VIA BUTTONS</TITLE>
+</HEAD>
+
+<BODY TEXT = "000000" LINK = "0000FF"
+  ALINK = "0000FF" VLINK = "0000FF">
+
+<H1>
+Click on button to select background color
+<BR>
+<BR>
+<APPLET CODE = "button2.class" WIDTH = 300 HEIGHT = 300 >
+</APPLET>
+<BR>
+<H1>
+Source Code
+</H1>
+<PRE>
+<H3>
+// button2.java
+//
+// uses buttons to select background color
+
+import java.applet.*;
+import java.awt.*;
+
+public class button2 extends Applet
+{
+ public void init()
+ {
+  add(new Button("Red"));
+  add(new Button("Orange"));
+  add(new Button("Yellow"));
+  add(new Button("Green"));
+  add(new Button("Blue"));
+ }
+
+ public boolean action(Event evt, Object whatAction)
+ {
+  if(!(evt.target instanceof Button))
+    return false;
+
+  String buttonLabel = (String) whatAction;
+
+  if(buttonLabel == "Red") setBackground(Color.red);
+  if(buttonLabel == "Orange") setBackground(Color.orange);
+  if(buttonLabel == "Yellow") setBackground(Color.yellow);
+  if(buttonLabel == "Green") setBackground(Color.green);
+  if(buttonLabel == "Blue") setBackground(Color.blue);
+
+  repaint();
+  return true;
+ }
+} // end
+
+</PRE>
+</H3>
+</BODY>
+</HTML>

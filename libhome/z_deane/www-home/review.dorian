@@ -1,0 +1,195 @@
+CS594
+Rich Wolski
+October 18, 1999
+Review for Journal:
+Request Sequencing: Data Persistence in a Client/Server Model
+by Dorian C. Arnold, et al.
+-----------------------------------------------------------------
+
+The purpose of this review is to help Dorian present the
+best possible paper.
+-----------------------------------------------------------------
+
+This paper presents an interesting approach to the problem of
+scheduling in computational grids, but it could be improved by
+tightening up on the number of words in some places and by
+a logical rearrangement in other places.  I will go through this
+one section at a time.
+-----------------------------------------------------------------
+
+
+1 Introduction
+
+1.1 Background
+
+Paragraph #1.  
+REPLACE this paragraph.  It has no content.  It must be replaced 
+by a "grabber" that puts the concept of REQUEST SEQUENCING on
+its feet.  
+
+Paragraph #2.
+You could probably cut out half the words in this paragraph and
+still say the same thing. 
+
+1.2 Goals
+
+This entire section is okay. 
+
+2 Related Work
+
+Paragraph #1. 
+You introduce the Ninf meta-computing environment in the first sentence
+of this paragraph.  WHY IS NINF NOT MENTIONED IN THE INTRODUCTION?????
+
+Paragraph #2.
+Nice comparison of CONDOR to NetSolve and Ninf.
+
+Paragraph #3.  [not in existence... yet]
+This would be a nice place to review how requests are handled by
+Globus and Legion.  You might even want to round up all the "Related
+Work" information into a table.
+
+
+3 Netsolve Overview
+
+This entire section is okay. 
+
+3.1 The Status of NetSolve
+
+Paragraph #1. Okay.
+
+4 Sequencing Desing and Implementation
+
+Paragraph #1. Okay.
+
+4.1 Application Programming Interface
+
+This entire section is okay. 
+
+4.2 Interface Restrictions
+
+This entire section is okay. 
+
+4.3 Data Analysis
+
+Paragraph #1.
+It would be a nice touch to have a figure that shows what a
+Directed Acyclic Graph is at this point in the paper.
+
+4.4 Reduncancy Check Algorithm
+
+This entire section is okay. 
+
+4.5 Execution Scheduling at the Server
+
+This entire section is okay. 
+
+4.6 Discussion
+
+Paragraph #1.
+
+The words in the paragraph are fine but Figure 3 is a Disaster.
+Break the figure 3 into 2 figures and give non-confusing labels.  
+
+For example:
+	Figure 3a.  Data Flow Without Request Sequencing
+    	Figure 3b.  Data Flow With Request Sequencing
+
+This may seem to be a fairly brain-dead comment on my part, but the
+purpose of this paper is communication and Figure 3, as it stands
+now, will confuse some people.
+
+Paragraph #2.
+The sentence in quotes below should be rewritten to be more clear.  It
+might be better to have 2 shorter sentences.
+
+"This means that even though certain modules can be executed together, 
+they will contend for the same machine, and therefore, speedup will
+not be as much as if they were not."
+
+
+Paragraph #3.  Okay.
+
+5 Applications and Results.
+
+Paragraph #1.  Okay.
+
+-------------------------------------------------------------------
+This is the part where I believe some rearrangement is in order.
+Each paragraph and figure recieves a distinct lower case letter,
+which is used in the rearranged structure.
+
+The current structure is as follows:
+
+	5 Applications and Results.
+
+		a. Paragraph #1. [ Introduce using Req. Seq. in applications] 
+
+	5.1 Linear Sequence: Principle Component Analysis
+		b. Paragraph #1 [ Introduce PCA ]
+		c. Paragraph #2 [ Show use of PCA ]
+		d. Figure 4: Application of PCA
+
+	5.2 Parallel Sequence: Clustering
+		e. Paragraph #1 [ Introduce Clustering ]
+		f. Figure 5: Multimoday Image Clustering
+
+	5.3 Experimental Results
+		g. Paragraph #1  [ test environment ]
+		h. Paragraph #2  [ i/o description  ]
+	 	i. Paragraph #3  [ bandwidth measurments ]
+	 	j. Figure 6: PCA Results
+		k. Paragraph #4  [ discuss PCA results ]
+		l. Figure 7: Clustering Results
+		m. Paragraph #5  [ discuss Clustering Results ]  
+		n. Paragraph #6  [ discuss variance in Fig. 7 ]
+		o. Paragraph #7  [ Compare Fig. 6 and Fig. 7  ]
+		p. Figure 8: Reduction in Exec Time due to Req. Seq.
+
+SUGGESTED REARRANGEMENT.
+
+	5 Applications and Results.
+
+		a. Paragraph #1. [ Introduce using Req. Seq. in applications] 
+		g. Paragraph #1  [ test environment ]
+		h. Paragraph #2  [ i/o description  ]
+	 	i. Paragraph #3  [ bandwidth measurments ]
+
+	5.1 Linear Sequence: Principle Component Analysis
+		b. Paragraph #1 [ Introduce PCA ]
+		c. Paragraph #2 [ Show use of PCA ]
+		d. Figure 4: Application of PCA
+	 	j. Figure 6: PCA Results
+		k. Paragraph #4  [ discuss PCA results ]
+
+
+	5.2 Parallel Sequence: Clustering
+		e. Paragraph #1 [ Introduce Clustering ]
+		f. Figure 5: Multimoday Image Clustering
+		l. Figure 7: Clustering Results
+		m. Paragraph #5  [ discuss Clustering Results ]  
+		n. Paragraph #6  [ discuss variance in Fig. 7 ]
+
+		
+	5.3 Experimental Results
+		o. Paragraph #7  [ Compare Fig. 6 and Fig. 7  ]
+		p. Figure 8: Reduction in Exec Time due to Req. Seq.
+	        new R.  Paragraph: [ discuss impact of Req. Sequencing ]	
+-------------------------------------------------------------------------------
+
+The purpose of the rearrangement is:
+	a. Make this section less choppy and easier to read 
+	b. Allow the focus of  5.3 Experimental Results be
+           a discussion of Request Sequencing, rather than a
+           discussion of PCA and Clustering. 
+-------------------------------------------------------------------------------
+
+6. Conclusion and Future Work
+
+This entire section is okay. 
+
+
+References -- Very well done.
+
+Overall, this is a very well written paper.
+

@@ -1,0 +1,62 @@
+PAPI_state              PerfAPI LIBRARY                PAPI_state
+
+
+
+NAME
+     PAPI_state - start counting events contained in an EventSet
+
+SYNOPSIS
+     int PAPI_state (int EventSet, int *status)
+
+     int EventSet --  a reference to an EventSetInfo structure
+
+DESCRIPTION
+     PAPI_state() This function returns the state of  the  entire
+     EventSet  in  status.   If the call succeeds, then status is
+     either PAPI_RUNNING or PAPI_STOPPED.
+
+     The return value is an integer that  indicates  whether  the
+     call succeeded (PAPI_OK) or failed (not PAPI_OK).
+
+CROSS-REFERENCE WITH OTHER PerfAPI FUNCTIONS
+
+     PAPI_state may be called by:
+
+          the user application program
+
+     PAPI_state contains calls to:
+
+          lookup_EventSet
+          handle_error
+
+SEE ALSO
+     The PerfAPI Draft:
+          http://icl.cs.utk.edu/projects/papi/api/
+
+BUGS
+     This function has no known bugs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PAPI Release 0.99   Last change: 28 July 1999                   1
+
+

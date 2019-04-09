@@ -1,0 +1,505 @@
+/* ---------------------------------------------------------------------------------- */
+/* PAPI2_notes2 -- PerfAPI Functions [ function numbers match PAPI2.c ]               */
+/* CHDeane, April 22, 1998.                                                           */
+/* ---------------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------------- */
+/* PerfAPI functions for Allocation of the Global Table ----------------------------- */
+/*                                                                                    */
+/* func___ 01  static int  initialize(void)                                           */
+/*             called by:  PAPI_init                                                  */
+/*	   	   calls:  _papi_hwd_init                                             */
+/*               returns:  PAPI_OK || errorCode                                       */
+/*                                                                                    */
+/* func___ 02  int PAPI_init(void)                                                    */
+/*             called by:  application_pgm                                            */
+/*                         add_EventSet                                               */
+/*                         deploy_EventSet                                            */
+/*                         PAPI_set_opt                                               */
+/*                         PAPI_get_opt                                               */
+/*	   	   calls:  initialize                                                 */
+/*               returns:  PAPI_OK || errorCode                                       */
+/* ---------------------------------------------------------------------------------- */
+
+
+/* ---------------------------------------------------------------------------------- */
+/* PerfAPI functions for Removing an EventSet from the Global Table ----------------- */
+/*                                                                                    */
+/* func___ 03  static void free_EventSet(EventSetInfo *ESI)                           */
+/*             called by:  remove_EventSet                                            */
+/*                         allocate_EventSet                                          */
+/*	   	   calls:  --no PerfAPI function--                                    */
+/*               returns:  void                                                       */
+/*                                                                                    */
+/* func___ 04  static int  remove_EventSet(EventSetInfo *ESI)                         */
+/*             called by:   remove_event                                              */
+/*                          PAPI_shutdown                                             */
+/*	   	   calls:   free_EventSet                                             */
+/*               returns:   PAPI_OK                                                   */
+/* ---------------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------------- */
+/* PerfAPI functions for Shutting down the Global Table ----------------------------- */
+/*                                                                                    */
+/* func___ 05  void PAPI_shutdown(void)                                               */
+/*             called by:  application_pgm                                            */
+/*                         handle_error                                               */
+/*	   	   calls:  remove_EventSet                                            */
+/*               returns:  void                                                       */
+/* ---------------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------------- */
+/* PerfAPI functions for Error Handling --------------------------------------------- */
+/*                                                                                    */
+/* func___ 06  static int   handle_error(int PAPI_errorCode, char *errorMessage)      */
+/*             called by:   initialize                                                */
+/*                          expand_dynamic_array                                      */
+/*                          deploy_EventSet                                           */
+/*                          PAPI_add_event                                            */
+/*                          PAPI_add_events                                           */
+/*                          PAPI_add_pevent                                           */
+/*                          add_event                                                 */
+/*                          PAPI_rem_event                                            */
+/*                          PAPI_rem_event                                            */
+/*                          PAPI_set_opt                                              */
+/*                          PAPI_get_opt                                              */
+/*                          set_multiplex                                             */
+/*                          get_multiplex                                             */
+/*                          set_overflow                                              */
+/*                          get_overflow                                              */
+/*                          PAPI_set_granularity                                      */
+/*                          set_granularity                                           */
+/*                          set_domain                                                */
+/*                          get_domain                                                */
+/*                          PAPI_start                                                */
+/*                          PAPI_stop                                                 */
+/*                          PAPI_reset                                                */
+/*                          PAPI_read                                                 */
+/*                          PAPI_accum                                                */
+/*                          PAPI_write                                                */
+/*                          PAPI_state                                                */
+/*                          PAPI_list_events                                          */
+/*                          event_is_in_eventset                                      */
+/*	   	   calls:   PAPI_shutdown                                             */
+/*               returns:   PAPI_errorCode                                            */
+/*                                                                                    */
+/* func___ 07  static char *get_error_string(int errorCode)                           */
+/*             called by:   PAPI_perror                                               */
+/*	   	   calls:   --nothing from PerfAPI--                                  */
+/*               returns:   papi_errStr[errorCode]                                    */
+/*                                                                                    */
+/* func___ 08  int   PAPI_perror(int code, char *destination, int length)             */
+/*             called by:   application_pgm                                           */
+/*	   	   calls:   get_error_string                                          */
+/*               returns:   PAPI_OK                                                   */
+/* ---------------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------------- */
+/* PerfAPI utility functions -------------------------------------------------------- */
+/*                                                                                    */
+/* func___ 09  static EventSetInfo *lookup_EventSet(int eventset)                     */
+/*             called by:  PAPI_rem_event                                             */
+/*                         PAPI_set_opt                                               */
+/*                         set_multiplex                                              */
+/*                         get_multiplex                                              */
+/*                         set_overflow                                               */
+/*                         get_overflow                                               */
+/*                         set_granularity                                            */
+/*                         set_domain                                                 */
+/*                         PAPI_start                                                 */
+/*                         PAPI_stop                                                  */
+/*                         PAPI_reset                                                 */
+/*                         PAPI_read                                                  */
+/*                         PAPI_accum                                                 */
+/*                         PAPI_write                                                 */
+/*                         PAPI_list_events                                           */
+/*	   	   calls:  --no PerfAPI function--                                    */
+/*               returns:  EventSetInfo *ESI || NULL                                  */
+/*                                                                                    */
+/* func___ 10  static int event_is_in_eventset(int event, EventSetInfo *ESI)          */
+/*             called by:  set_overflow                                               */
+/*	   	   calls:  --no PerfAPI function--                                    */
+/*               returns:  index of event in eventset || errorCode                    */
+/*                                                                                    */
+/* func___ 11  static int num_counters(EventSetInfo *ESI)                             */
+/*             called by:  get_space_for_counters                                     */
+/*                         PAPI_accum                                                 */
+/*	   	   calls:  --no PerfAPI function--                                    */
+/*               returns:  _papi_system_info.num_cntrs                                */
+/*                                                                                    */
+/* func___ 12  static unsigned long long *get_space_for_counters(EventSetInfo *ESI)   */
+/*             called by:  --no PerfAPI function--                                    */
+/*	   	   calls:  num_counters                                               */
+/*               returns:  true and the memory allocated for counters                 */
+/*                                                                                    */
+/* func___ 13  int PAPI_get_lowestEmptySlot(void)                                     */
+/*             called by:  --no PerfAPI function--                                    */
+/*	   	   calls:  --no PerfAPI function--                                    */
+/*               returns:  PAPI_EVENTSET_MAP.lowestEmptySlot                          */
+/* ---------------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------------- */
+/* PerfAPI functions for adding EventSet(s) to Global Table ------------------------- */
+/*                                                                                    */
+/* func___ 14  static int expand_dynamic_array(DynamicArray *DA)                      */
+/*             called by:  add_EventSet                                               */
+/*	   	   calls:  handle_error                                               */
+/*               returns:  PAPI_OK || errorCode                                       */
+/*                                                                                    */
+/* func___ 15  static int add_EventSet(EventSetInfo *ESI)                             */
+/*             called by:  deploy_eventSet                                            */
+/*	   	   calls:  PAPI_init                                                  */
+/*                         expand_dynamic_array                                       */
+/*               returns:  PAPI_OK || errorCode                                       */
+/*                                                                                    */
+/* func___ 16  static EventSetInfo *allocate_EventSet                                 */
+/*             called by:  deploy_eventSet                                            */
+/*	   	   calls:  free_EventSet(ESI)                                         */
+/*               returns:  EventSetInfo *ESI || NULL                                  */
+/*                                                                                    */
+/* func___ 17  static EventSetInfo *deploy_EventSet(void)                             */
+/*             called by:  PAPI_add_event                                             */
+/*                         PAPI_add_events                                            */
+/*                         PAPI_add_pevent                                            */
+/*	   	   calls:  PAPI_init                                                  */
+/*                         allocate_EventSet                                          */
+/*                         add_EventSet                                               */
+/*                         remove_EventSet                                            */
+/*                         handle_error                                               */
+/*               returns:  EventSetInfo *ESI || NULL                                  */
+/* ---------------------------------------------------------------------------------- */
+
+
+/* ---------------------------------------------------------------------------------- */
+/* PerfAPI functions for adding Event(s) to an EventSet ----------------------------- */
+/*                                                                                    */
+/* func___ 18  static int add_event(EventSetInfo *ESI, int EventCode)                 */
+/*             called by:  PAPI_add_event                                             */
+/*                         PAPI_add_events                                            */
+/*	   	   calls:  deploy_EventSet                                            */
+/*	   	           handle_error                                               */
+/*               returns:  hwd_errorCode                                              */
+/*                                                                                    */
+/* func___ 19  static int add_pevent(EventSetInfo *ESI,int pEventCode,void *inout)    */
+/*             called by:  PAPI_add_pevent                                            */
+/*	   	   calls:  handle_error                                               */
+/*                         _papi_hwd_add_prog_event                                   */
+/*                         STUB FUNCTION UNDER CONSTRUCTION                           */
+/*               returns:  hwd_errorCode                                              */
+/*                                                                                    */
+/* func___ 20  int PAPI_add_event (int *EventSetIndex, int EventCode)                 */
+/*             called by:  application_pgm                                            */
+/*	   	   calls:  deploy_EventSet                                            */
+/*                         handle_error                                               */
+/*                         remove_EventSet                                            */
+/*                         _papi_hwd_add_event                                        */
+/*                         remove_EventSet                                            */
+/*                         add_event                                                  */
+/*                         _papi_hwd_rem_event                                        */
+/*               returns:  hwd_returnCode                                             */
+/*                                                                                    */
+/* func___ 21  int PAPI_add_events(int *EventSetIndex,int *EventCodes,int number)     */
+/*             called by:  application_pgm                                            */
+/*	   	   calls:  deploy_EventSet                                            */
+/*                         handle_error                                               */
+/*                         remove_EventSet                                            */
+/*                         _papi_hwd_add_event                                        */
+/*                         remove_EventSet                                            */
+/*                         add_event                                                  */
+/*                         _papi_hwd_rem_event                                        */
+/*               returns:  hwd_returnCode                                             */
+/*                                                                                    */
+/* func___ 22  int PAPI_add_pevent(int *EventSetIndex,int pEventCode,void *inout)     */
+/*             called by:  application_pgm                                            */
+/*                 calls:  deploy_EventSet                                            */
+/*                         handle_error                                               */
+/*                         remove_EventSet                                            */
+/*                         _papi_hwd_add_prog_event                                   */
+/*                         remove_EventSet                                            */
+/*                         add_pevent                                                 */
+/*                         _papi_hwd_rem_event                                        */
+/*               returns:  hwd_returnCode                                             */
+/* ---------------------------------------------------------------------------------- */
+
+
+/* ---------------------------------------------------------------------------------- */
+/* PerfAPI functions for removing Event(s) from an EventSet ------------------------- */
+/*                                                                                    */
+/* func___ 23  static int remove_event(EventSetInfo *ESI, int EventCode)              */
+/*             called by:  remove_one_event_by_index                                  */
+/*                         remove_one_event_by_code                                   */
+/*	   	   calls:  _papi_hwd_rem_event                                        */
+/*                         remove_EventSet                                            */
+/*               returns:  hwd_returnCode                                             */
+/*                                                                                    */
+/* func___ 24  static int remove_one_event_by_index(EventSetInfo *ESI,int EventIndex) */
+/*             called by:  --no PerfAPI function--                                    */
+/*	   	   calls:  remove_event                                               */
+/*               returns:  PAPI_OK || errorCode                                       */
+/*                                                                                    */
+/* func___ 25  static int remove_one_event_by_code(EventSetInfo *ESI,int EventCode)   */
+/*             called by:  PAPI_rem_event                                             */
+/*                         PAPI_rem_events                                            */
+/*	   	   calls:  remove_event                                               */
+/*               returns:  PAPI_OK || errorCode                                       */
+/*                                                                                    */
+/* func___ 26  int PAPI_rem_event(int EventSet, int Event)                            */
+/*             called by:  application_pgm                                            */
+/*	   	   calls:  lookup_EventSet                                            */
+/*                         handle_error                                               */
+/*                         remove_one_event_by_code                                   */
+/*                         _papi_hwd_rem_event                                        */
+/*               returns:  hwd_errorCode                                              */
+/*                                                                                    */
+/* func___ 27  int PAPI_rem_events(int EventSet,int *Events,int number)               */
+/*             called by:  application_pgm                                            */
+/*	   	   calls:  handle_error                                               */
+/*                         remove_one_event_by_code                                   */
+/*               returns:  ECODE                                                      */
+/* ---------------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------------- */
+/* PerfAPI functions for Multiplex Control ------------------------------------------ */
+/*                                                                                    */
+/* func___ 28  static int set_multiplex(PAPI_option_t *ptr)                           */
+/*             called by:  PAPI_set_opt                                               */
+/*	   	   calls:  lookup_EventSet                                            */
+/*                         handle_error                                               */
+/*                         _papi_hwd_ctl                                              */
+/*               returns:  PAPI_OK || errorCode                                       */
+/*                                                                                    */
+/* func___ 29  static int get_multiplex(PAPI_option_t *ptr)                           */
+/*             called by:  PAPI_get_opt                                               */
+/*	   	   calls:  lookup_EventSet                                            */
+/*                         handle_error                                               */
+/*               returns:  PAPI_OK || errorCode                                       */
+/* ---------------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------------- */
+/* PerfAPI functions for Overflow Control ------------------------------------------- */
+/*                                                                                    */
+/* func___ 30  static int overflow_is_active(EventSetInfo *ESI)                       */
+/*             called by:  set_overflow                                               */
+/*	   	   calls:  --no PerfAPI function--                                    */
+/*               returns:  integer flag                                               */
+/*                                                                                    */
+/* func___ 31  static int set_overflow(PAPI_option_t *ptr)                            */
+/*             called by:  PAPI_set_opt                                               */
+/*	   	   calls:  lookup_EventSet                                            */
+/*                         event_is_in_eventset                                       */
+/*                         handle_error                                               */
+/*                         overflow_is_active                                         */
+/*                         _papi_hwd_ctl                                              */
+/*               returns:  PAPI_OK || errorCode                                       */
+/*                                                                                    */
+/* func___ 32  static int get_overflow(PAPI_option_t *ptr)                            */
+/*             called by:  PAPI_get_opt                                               */
+/*	   	   calls:  lookup_EventSet                                            */
+/*                         handle_error                                               */
+/*               returns:  PAPI_OK || errorCode                                       */
+/* ---------------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------------- */
+/* PerfAPI functions for Granularity Control ---------------------------------------- */
+/*                                                                                    */
+/* func___ 33  static int set_granularity(PAPI_option_t *ptr)SECOND VERSION           */
+/*             called by:  PAPI_set_opt                                               */
+/*	   	   calls:  handle_error                                               */
+/*                         lookup_EventSet                                            */
+/*                         _papi_hwd_ctl                                              */
+/*               returns:  PAPI_OK || errorCode                                       */
+/*                                                                                    */
+/* func___ 34  static int set_defgranularity(PAPI_option_t *ptr)                      */
+/*             called by:  PAPI_set_opt                                               */
+/*	   	   calls:  STUB FUNCTION UNDER CONSTRUCTION                           */
+/*               returns:  PAPI_OK || errorCode                                       */
+/*                                                                                    */
+/* func___ 35  static int get_defgranularity(PAPI_option_t *ptr)                      */
+/*             called by:  PAPI_get_opt                                               */
+/*	   	   calls:  STUB FUNCTION UNDER CONSTRUCTION                           */
+/*               returns:  PAPI_OK || errorCode                                       */
+/*                                                                                    */
+/* func___ 36  static int get_granularity(PAPI_option_t *ptr)                         */
+/*             called by:  PAPI_get_opt                                               */
+/*	   	   calls:  STUB FUNCTION UNDER CONSTRUCTION                           */
+/*               returns:  PAPI_OK || errorCode                                       */
+/* ---------------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------------- */
+/* PerfAPI functions for Domain Control --------------------------------------------- */
+/*                                                                                    */
+/* func___ 37  static int set_domain(PAPI_option_t *ptr)                              */
+/*             called by:  PAPI_set_opt                                               */
+/*	   	   calls:  handle_error                                               */
+/*                         lookup_EventSet                                            */
+/*                         _papi_hwd_ctl                                              */
+/*               returns:  PAPI_OK || errorCode                                       */
+/*                                                                                    */
+/* func___ 38  static int get_defdomain(PAPI_option_t *ptr)                           */
+/*             called by:  PAPI_get_opt                                               */
+/*	   	   calls:  STUB FUNCTION UNDER CONSTRUCTION                           */
+/*               returns:  PAPI_OK || errorCode                                       */
+/*                                                                                    */
+/* func___ 39  static int get_domain(PAPI_option_t *ptr)                              */
+/*             called by:  PAPI_get_opt                                               */
+/*	   	   calls:  handle_error                                               */
+/*               returns:  PAPI_OK || errorCode                                       */
+/*                                                                                    */
+/* func___ 40  static int set_defdomain(PAPI_option_t *ptr)                           */
+/*             called by:  PAPI_set_opt                                               */
+/*	   	   calls:  STUB FUNCTION UNDER CONSTRUCTION                           */
+/*               returns:  PAPI_OK || errorCode                                       */
+/* ---------------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------------- */
+/* PerfAPI functions for Option Control --------------------------------------------- */
+/*                                                                                    */
+/* func___ 41  int PAPI_set_opt(int option, PAPI_option_t *ptr)                       */
+/*             called by:   application_pgm                                           */
+/*                          PAPI_set_granularity                                      */
+/*                          PAPI_set_domain                                           */
+/*	   	   calls:   PAPI_init                                                 */
+/*                          handle_error                                              */
+/*                          set_defdomain                                             */
+/*                          set_domain                                                */
+/*                          set_defgranularity                                        */
+/*                          set_granularity                                           */
+/*                          set_multiplex                                             */
+/*                          set_overflow                                              */
+/*               returns:   PAPI_OK || errorCode                                      */
+/*                                                                                    */
+/* func___ 42  int PAPI_set_opt(int option, PAPI_option_t *ptr)SECOND VERSION         */
+/*             called by:                                                             */
+/*	   	   calls:                                                             */
+/*               returns:                                                             */
+/*                                                                                    */
+/* func___ 43  int PAPI_get_opt(int option, PAPI_option_t *ptr)                       */
+/*             called by:  application_pgm                                            */
+/*	   	   calls:  PAPI_init                                                  */
+/*                         handle_error                                               */
+/*                         get_multiplex                                              */
+/*                         get_overflow                                               */
+/*                         get_domain                                                 */
+/*                         get_defdomain                                              */
+/*                         get_granularity                                            */
+/*                         get_defgranularity                                         */
+/*               returns:  PAPI_OK || errorCode                                       */
+/* ---------------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------------- */
+/* PerfAPI functions for Direct Use by Application Program -------------------------- */
+/*                                                                                    */
+/* func___ 44   int PAPI_set_domain(int domain)                                       */
+/*             called by:  application_pgm                                            */
+/*	   	   calls:  PAPI_set_opt                                               */
+/*               returns:  PAPI_set_opt(PAPI_SET_DEFDOM,&opt)                         */
+/*                                                                                    */
+/* func___ 45  int PAPI_set_granularity(PAPI_option_t *ptr)                           */
+/*             called by:  application_pgm                                            */
+/*	   	   calls:  PAPI_set_opt                                               */
+/*                         handle_error                                               */
+/*               returns:  PAPI_OK || errorCode                                       */
+/*                                                                                    */
+/* func___ 46  int PAPI_start(int EventSet)                                           */
+/*             called by:  application_pgm                                            */
+/*	   	   calls:  handle_error                                               */
+/*                         _papi_hwd_start                                            */
+/*               returns:  PAPI_OK || errorCode                                       */
+/*                                                                                    */
+/* func___ 47  int PAPI_stop(int EventSet, unsigned long long *values)                */
+/*             called by:  application_pgm                                            */
+/*	   	   calls:  lookup_EventSet                                            */
+/*                         handle_error                                               */
+/*                         _papi_hwd_stop                                             */
+/*                         _papi_hwd_reset                                            */
+/*               returns:  PAPI_OK || errorCode                                       */
+/*                                                                                    */
+/* func___ 48  int PAPI_reset(int EventSet)                                           */
+/*             called by:  application_pgm                                            */
+/*	   	   calls:  lookup_EventSet                                            */
+/*                         handle_error                                               */
+/*                         _papi_hwd_reset                                            */
+/*               returns:  PAPI_OK || errorCode                                       */
+/*                                                                                    */
+/* func___ 49  int PAPI_read(int EventSet, unsigned long long *values)                */
+/*             called by:  application_pgm                                            */
+/*	   	   calls:  lookup_EventSet                                            */
+/*                         handle_error                                               */
+/*                         _papi_hwd_read                                             */
+/*               returns:  PAPI_OK || errorCode                                       */
+/*                                                                                    */
+/* func___ 50  int PAPI_accum(int EventSet, unsigned long long *values)               */
+/*             called by:  application_pgm                                            */
+/*	   	   calls:  lookup_EventSet                                            */
+/*                         handle_error                                               */
+/*                         _papi_hwd_read                                             */
+/*                         _papi_hwd_reset                                            */
+/*               returns:  PAPI_OK || errorCode                                       */
+/*                                                                                    */
+/* func___ 51  int PAPI_write(int EventSet, unsigned long long *values)               */
+/*             called by:  application_pgm                                            */
+/*	   	   calls:  lookup_EventSet                                            */
+/*                         handle_error                                               */
+/*                         _papi_hwd_write                                            */
+/*               returns:  PAPI_OK || errorCode                                       */
+/*                                                                                    */
+/* func___ 52  int PAPI_state(int EventSetIndex, int *status)                         */
+/*             called by:  application_pgm                                            */
+/*	   	   calls:  handle_error                                               */
+/*               returns:  PAPI_OK || errorCode                                       */
+/*                                                                                    */
+/* func___ 53  int PAPI_list_events(int EventSet, int *EventCodes, int *number)       */
+/*             called by:  application_pgm                                            */
+/*	   	   calls:  handle_error                                               */
+/*               returns:  PAPI_OK || errorCode                                       */
+/* ---------------------------------------------------------------------------------- */
+
+
+There were 2 data structures that are slightly revised to agree
+with conventions in PAPI2.c.  The revised forms are shown below.
+
+
+/* ---------------------------------------------------------------------------------- */
+   The change to DynamicArray is change of type on "dataSlotArray".
+   old:  EventSetInfo **dataSlotArray
+   new:  void         **dataSlotArray
+/* ---------------------------------------------------------------------------------- */
+typedef struct _dynamic_array{
+        void   **dataSlotArray; /* array of ptrs to EventSets */
+        int    totalSlots;      /* number of slots in dataSlotArrays      */
+        int    availSlots;      /* number of open slots in dataSlotArrays */
+        int    fullSlots;       /* number of full slots in dataSlotArray    */
+        int    lowestEmptySlot; /* index of lowest empty dataSlotArray    */
+} DynamicArray;
+/* ---------------------------------------------------------------------------------- */
+
+
+/* ---------------------------------------------------------------------------------- */
+   The change to EventSetInfo is the addition of the member "MaxCounters".
+/* ---------------------------------------------------------------------------------- */
+typedef struct _EventSetInfo {
+  int EventSetIndex;     /* Index of the EventSet in the array  */
+  int NumberOfCounters;  /* Number of counters added to EventSet */
+  int MaxCounters;       /* Maxcounters number this platform has:
+                         MaxCounters=_papi_system_info.num_gp_cntrs
+                                    +_papi_system_info.num_sp_cntrs; */
+  int *EventCodeArray;   /* PAPI/Native codes for events in this set */
+  void *machdep;         /* A pointer to memory of size MaxCounters. This
+                         will contain the encoding necessary for the hardware
+                         to set the counters to the appropriate conditions*/
+  unsigned long long *start;   /* Array of length MaxCounters.
+                                  This will likely
+                                  be zero for most cases*/
+  unsigned long long *stop;    /* Array of length MaxCounters, but containing
+                                  the values of the counters when stopped */
+  unsigned long long *latest;  /* Array of length MaxCounters, containing
+                                  the values of the counters when last read */
+  int state;          /* The state of this entire EventSet; can be
+                         PAPI_RUNNING or PAPI_STOPPED. */
+
+  _papi_int_alloptions_t all_options; /* All options */
+
+} EventSetInfo;
+/* ---------------------------------------------------------------------------------- */
+
+end

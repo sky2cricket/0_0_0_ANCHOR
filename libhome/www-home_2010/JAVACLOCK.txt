@@ -1,0 +1,206 @@
+From JavaScript@itw.itworld.com Tue May 22 08:16:01 2001
+Return-Path: <JavaScript@itw.itworld.com>
+Received: from nuuanu.clickaction.net (marvin@localhost) 
+        by cs.utk.edu with ESMTP (cf v2.9s-UTK)
+	id IAA08366; Tue, 22 May 2001 08:15:56 -0400 (EDT)
+From: <JavaScript@itw.itworld.com>
+Received: from nuuanu.clickaction.net (208.50.155.202)
+ by cs.utk.edu (smtpshim v1.0); Tue, 22 May 2001 08:15:56 -0400
+Received: from nuuanu.clickaction.net (ono [192.168.4.117])
+	by nuuanu.clickaction.net (Postfix) with SMTP id AA47CDA84FF
+	for <deane@cs.utk.edu>; Tue, 22 May 2001 04:46:25 -0700 (PDT)
+To: deane@cs.utk.edu
+X-Header-Partid: 14724
+X-Header-Userid: 76028552
+X-Header-Date: 22-May-2001
+X-Header-Version: 4.0
+X-Header-Pitchid: 35220
+Subject: Keeping time
+Message-Id: <20010522114625.AA47CDA84FF@nuuanu.clickaction.net>
+Date: Tue, 22 May 2001 04:46:25 -0700 (PDT)
+Status: R
+Content-Length: 6921
+
+
+JAVASCRIPT --- May 22, 2001
+Published by ITworld.com -- changing the way you view IT
+http://www.itworld.com/newsletters
+________________________________________________________________________________
+
+HIGHLIGHTS
+
+* David shows us how track the time when buttons are clicked.
+* Editor's Note: Periods have been added inside the left brackets to 
+  prevent code from executing in the mail.
+
+SERVICES
+
+* Career Corner: Challenging opportunities with reputable companies. 
+________________________________________________________________________________
+
+SPONSORED LINK
+
+DO YOU LIKE THIS NEWSLETTER?
+
+We hope you enjoy receiving this newsletter. ITworld.com strives to 
+bring you the best news possible. Visit ITworld.com TODAY and sign up 
+for more. There are 40+ other IT newsletters just waiting for your 
+attention! Click here:
+http://itw.itworld.com/GoNow/a14724a35220a76028552a0
+______________________________________________________________________________
+
+Building a Crude Clock
+By David Wall
+
+JavaScript keeps track of dates and times in an unusual way. JavaScript 
+thinks of a particular date and time as a single number - the number of 
+milliseconds since January 1, 1970, 12:00:01 AM. A millisecond is 
+1/1000 of a second.
+
+Needless to say, thinking of dates and times in this way is awkward for 
+most people who are comfortable referring to dates as dates - November 
+1, 1997, for example. The JavaScript method of managing dates has its 
+advantages though, and besides, JavaScript gives you some tools for 
+converting "people time" into "JavaScript time" and vice-versa. The 
+following exercises show you the ropes of telling time with the 
+JavaScript Date object.
+
+By means of the Date object, JavaScript makes it easy for you to access 
+the current date and time, as defined by the system clock in the 
+surfer's computer. This exercise shows you the barest essentials of the 
+date object-including how to create an instance of it and how to format 
+it in a basic way-by creating a very simple, semi-useful clock.
+
+    <.HTML>
+    <.HEAD>
+    <.TITLE>Displaying The Date and Time<./TITLE>
+    <.SCRIPT LANGUAGE = "JavaScript">
+    function UpdateDate()
+    {
+    var Today = new Date
+    document.DateForm.TodaysDate.value = Today.toLocaleString()
+    }
+    <./SCRIPT>
+    <./HEAD>
+    <.BODY>
+    <.H1>The Current Date and Time<./H1>
+    <.FORM NAME = "DateForm">
+    <.P>The Local Time and Date: <.INPUT TYPE = "TEXT" NAME 
+        = "TodaysDate" VALUE = " " SIZE = "17">
+    <.P><.INPUT TYPE = BUTTON VALUE = "Update" onClick = "UpdateDate()">
+    <./FORM>
+    <./BODY>
+    <./HTML>
+
+The interesting action in this exercise takes place in the UpdateDate() 
+function. In that function, you see this line:
+
+    var Today = new Date
+
+That creates a new variable called Today, and makes it an instance of 
+the Date object. Whenever you create an instance of the Date object, it 
+automatically contains information about the current date and time.
+
+Then, you see this line:
+
+    document.DateForm.TodaysDate.value = Today.toLocaleString()
+
+That line sets the text field on the page equal to Today. But since 
+Today is only a number (the number of milliseconds since January 1, 
+1970, 12:00:01 AM), some formatting is needed. The toLocaleString() 
+method of the Date object formats the date and time like something like 
+this (the actual appearance depends upon the surfer's computer and the 
+surfer's country's way of formatting dates and times):
+
+    05/05/01 01:24:31
+
+That's not a great-looking format for a date, but it's better than the 
+JavaScript native format. At least you know what it means. You'll learn 
+how to format dates more attractively later in this chapter
+
+________________________________________________________________________________
+
+ADDITIONAL RESOURCES
+
+Python: The one-size-fits-all programming language 
+Create code that is more readable and easier to maintain 
+http://www.itworld.com/jump/javscr_nl/www.itworld.com/AppDev/4073/LWD010518penguin3/
+
+Forrester: The Web will die 
+Iconoclastic firm predicts "The X Internet," a more active, interactive 
+and embedded version of the Web 
+http://www.itworld.com/jump/javscr_nl/www.itworld.com/Tech/3494/Forrester:TheWebwill388/
+________________________________________________________________________________
+
+AUDIOCASTS
+ITworld.com brings you interviews on the on IT topics you've asked for.
+
+Delphi 6.0 supports XML services 
+http://www.itworld.com/jump/javscr_nl/mithras.itworld.com/media/hearit/0501/010507vaughan_swindellrm.html
+
+SilverStream CTO looks at SOAP, UDDI 
+http://www.itworld.com/jump/javscr_nl/www.itworld.com/Webcasts/Editorial/epstein_silverstream.html
+________________________________________________________________________________
+
+CAREER CORNER
+
+ECONOMIC CRISIS? HOT WEB DEVELOPMENT OPPORTUNITIES STILL AVAILABLE
+
+Despite so many layoffs, Web developer jobs with reliable, established 
+companies are as hot as ever. Things may be changing, but the Web is 
+still growing. LeadersOnline has exclusive career opportunities from 
+$75K-$200K. Submit your profile and we'll match your background with 
+quality opportunities that meet your specific requirements. Brought to 
+you by Heidrick & Struggles, the world's leading executive search firm. 
+http://ad.doubleclick.net/clk;2856638;5704271;p
+________________________________________________________________________________
+
+CUSTOMER SERVICE
+
+SUBSCRIBE/UNSUBSCRIBE:
+- Go to: http://itw.itworld.com/GoNow/a14724a35220a76028552a0
+- Enter your email address under "Current subscriber" to log in
+- Uncheck the box next to the newsletter you want to unsubscribe from
+- Or check the box next to the newsletter you want to subscribe to
+- Submit
+
+If you have questions, please send email to customer service at:
+mailto:support@itworld.com
+________________________________________________________________________________
+
+CONTACTS
+
+* For editorial comments, write Andrew Santosusso, Associate Editor, 
+  Newsletters at: andrew_santosusso@itworld.com
+* For advertising information, write Dan Chupka, Account Executive at:
+  dan_chupka@itworld.com
+* For recruitment advertising information, write Jamie Swartz, Eastern
+  Regional Sales Manager at: jamie_swartz@itworld.com or Paul Duthie,
+  Western Regional Sales Manager at: paul_duthie@itworld.com
+* For all other inquiries, write Jodie Naze, Product Manager, 
+  Newsletters at: jodie_naze@itworld.com
+________________________________________________________________________________
+
+PRIVACY POLICY
+
+http://www.itworld.com/Privacy/
+
+Copyright 2001 ITworld.com, Inc., All Rights Reserved.
+http://www.itworld.com
+
+
+
+
+
+**SEND TO A FRIEND**
+Share this email with a friend! Click here!
+http://itw.itworld.com/GoForward/a14724a35220aSa76028552a12
+
+SUBSCRIBE/UNSUBSCRIBE
+Please click on the link below to modify your subscription, unsubscribe,
+or change your email address:
+
+http://itw.itworld.com/Change-Remove/a14724a76028552a12
+
+
+

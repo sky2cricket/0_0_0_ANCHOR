@@ -1,0 +1,104 @@
+< html>
+< head>
+< meta name="title" content="JavaScript onMouseOver 
+onMouseOut onMouseDown onMouseUp examples - Coolnerds">
+< meta name="description" content="JavaScript onMouseOver 
+onMouseOut onMouseDown onMouseUp examples using animated button 
+show or hide graphic image">
+< meta name="keywords" content="JavaScript onMouseOver 
+onMouseOut onMouseDown onMouseUp examples animated button 
+show or hide graphic image">
+< meta name="author" content="Alan Simpson -- www.coolnerds.com">
+< meta name="robots" content="All">
+< title>Coolnerds JavaScript onMouseOver onMouseOut 
+onMouseDown onMouseUp examples usinganimated button
+< /title>
+< !-- Here's the JavaScript code that handles the animation -->
+< script language="JavaScript">  
+ function showInButton(objName) {      
+   objName.src="inbttn.gif"   }   
+ function showOutButton(objName) {        
+   objName.src="outbttn.gif"   }  
+   
+//These next two functions are used only by the "toilet paper" example.   
+  function showPic() {      
+    document.images[5].src="../images/tp.gif"  
+    }  
+  function hidePic() {     
+    document.images[5].src="../images/transp.gif"   
+    }
+< /script>
+< /head>
+< !-- 
+Web authors - The tiny 1x1 pixel image at the end of the next paragraph 
+is the inbttn.gif image. To the visitor, it just looks like a period 
+at the end of the paragraph. Putting the image into the document this way 
+preloads the picture onto the client PC, so there's no download delay when 
+switching from one image to the next. In your own page, change src=inbttn.gif 
+so that it points to the name of the image that you want to display 
+when the mouse pointer is on the original image/ 
+-->
+< p>This page demonstrates using the JavaScript onMouseOver, 
+onMouseOut, onMouseDown, and onMouseUp events with two graphic images. 
+One image (outbttn.gif) looks like a normalbutton, 
+the other (inbttn.gif) looks like a pushed-in button. 
+The two images are shownbelow.
+< /p>
+< div align="center">
+< center>
+< table border="0" width="200">  
+< tr>    
+< td width="50%" align="center">
+
+< img src="outbttn.gif" alt="outbttn.gif (1250 bytes)" 
+WIDTH="60" HEIGHT="48">
+< /td>   
+
+< td width="50%" align="center">
+< img src="inbttn.gif" alt="inbttn.gif (1304 bytes)" 
+WIDTH="60" HEIGHT="48">
+< /td>  
+
+< /tr>  < tr>    
+< td width="50%" align="center">outbttn.gif< /td>    
+
+< td width="50%" align="center">inbttn.gif< /td>  
+< /tr>
+< /table>
+< /center>
+< /div>
+< p>
+When you touch your mouse pointer to the button image below, 
+it turns into thepushed-in image. 
+This example uses onMouseOver and onMouseOut to determine 
+when the imagechanges
+< img src="inbttn.gif" width="1" height="1">
+< /p>
+< !-- 
+Here's the first example's button, outbttn.gif, which changes 
+to inbttn.gif when pointed to in IE or NS 
+The image is referred to as images[1] because it's the second image 
+in this document. 
+
+The img tag tags above define the first three images -- 
+   images[0], images[1], and images[2] -- in this document 
+--> 
+< p align="center">
+< a name="here">
+< /a>
+< a href="onmouse.htm#here" 
+onMouseOver="showInButton(document.images[3])" 
+onMouseOut="showOutButton(document.images[3])">
+< img src="outbttn.gif" 
+border="0" alt="Magic button" WIDTH="60" HEIGHT="48">
+< /a>
+< /p>
+< P>
+< HR>
+< P>
+
+Art389 C Tutorial < A HREF="../ART389C/linker.html">Links< /A>.
+
+
+< /body>
+< /html>

@@ -1,0 +1,53 @@
+
+Between the cutlines is a shell script that will protect the 
+following commands from unwanted attention:
+
+mail
+ls
+cd
+chmod
+pwd
+clear
+vi
+
+If you have an .aliases.all file you should put the script in that file.
+
+If not, put in your .cshrc file -- first make a backup copy of your 
+.cshrc file, just in case this does not work on your system.
+
+After inserting the script, do a source on .cshrc as shown below. 
+
+unix> source .cshrc
+
+
+To turn on the protection, use
+
+unix> mylockon
+
+To turn off the protection, use
+
+unix> mylockoff
+
+---------------------------------------------------------------------------------
+#script by cricket haygood deane ( deane@cs.utk.edu ) free to copy
+alias p_mail  'alias mail  "How_dare_you_attempt_to_use_mail_?"; '
+alias o_mail  'unalias mail'
+alias p_ls    'alias ls "How_dare_you_attempt_to_use_ls_?" '
+alias o_ls    'unalias ls'
+alias p_cd    'alias cd "How_dare_you_attempt_to_use_cd_?" '
+alias o_cd    'unalias cd'
+alias p_chmod 'alias chmod "How_dare_you_attempt_to_use_chmod_?" '
+alias o_chmod 'unalias chmod'
+alias p_pwd   'alias pwd "How_dare_you_attempt_to_use_pwd_?" '
+alias o_pwd   'unalias pwd'
+alias p_clear 'alias clear "How_dare_you_attempt_to_use_clear_?" '
+alias o_clear 'unalias clear'
+alias p_vi    'alias vi "How_dare_you_attempt_to_use_vi_?" '
+alias o_vi    'unalias vi'
+
+
+alias mylockon  'p_mail; p_ls; p_cd; p_chmod; p_pwd; p_clear; p_vi; '
+alias mylockoff 'o_mail; o_ls; o_cd; o_chmod; o_pwd; o_clear; o_vi; '
+---------------------------------------------------------------------------------
+
+

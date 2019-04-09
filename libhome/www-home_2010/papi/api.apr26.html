@@ -1,0 +1,2169 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.05 [en] (X11; I; SunOS 5.5.1 sun4u) [Netscape]">
+   <TITLE>Draft of the perfAPI</TITLE>
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#CCCCCC" LINK="#0000EE" VLINK="#551A8B" ALINK="#FF0000">
+
+<CENTER><B><FONT SIZE=+4>PerfAPI Draft</FONT></B></CENTER>
+<BR>&nbsp;
+<H3>
+<A NAME="TableOfContents"></A>PerfAPI Table Of Contents</H3>
+<p>
+<table>
+<tr><td><a href="#overview">Overview</a></td></tr>
+<tr><td><a href="#how">Description</a></td></tr>
+<tr><td><a href="#const">Introduction to PerfAPI Constants</a></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#common">Table 1: Standardized Event Definitions</a></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#return">Table 2: Return Codes</a></td></tr>
+<tr><td><a href="#lowlevel">The Low Level API</a></td></tr>
+<tr><td><a href="#highlevel">The High Level API</a></td></tr>
+<tr><td><a href="#future">Appendix A: Issues For Discussion</a></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#implem">Notes</a></td></tr>
+<tr><td><a href="#AppendixB">Appendix B: Examples</a></td></tr>
+<tr><td><A href="#AppendixC">Appendix C: Machine Dependent HWD Functions</a></td></tr>
+<tr><td><A href="#AppendixD">Appendix D: PerfAPI Data Structures</a></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<A href="#EventSetInfo_struct">EventSetInfo Data Structure</a>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<A href="#papi_system_info_struct">_papi_system_info Data Structure</a>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<A href="#PAPI_option_t_struct">PAPI_option_t Data Structure</a>
+<tr><td><a href="#AppendixE">Appendix E: PerfAPI Tables.</a></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<A href="#generalConstants">Table 3: General Constants</a>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<A href="#multiplexingConstants">Table 4: Multiplexing Constants</a>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<A href="#overflowConstants">Table 5: Overflow Constants</a>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<A href="#DomainDefs">Table 6: Domain Definitions</A>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<A href="#GranularityDefs">Table 7: Granularity Definitions</A>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<A href="#threadDefs">Table 8: Thread Definitions</A>
+<tr><td><a href="#AppendixF">Appendix F: Index of PerfAPI Constants</a></td></tr>
+</table>
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<HR SIZE=10 WIDTH="100%">
+<BR>&nbsp;
+<table width=100%><tr>
+<td > <A NAME="overview"></A><h3>Overview</H3> </td>
+<td align=right><a href="#TableOfContents">&nbsp;</--Back To Top></a></td>
+</tr></table>
+The purpose of the <B>PerfAPI</B> project is to specify a standard application
+programming interface (API) for accessing hardware performance counters
+available on most modern microprocessors. These counters exist as a small
+set of registers that count <I>Events</I>, occurrences of specific signals
+related to the processor's function. Monitoring these events facilitates
+correlation between the structure of source/object code and the efficiency
+of the mapping of that code to the underlying architecture. This correlation
+has a variety of uses in performance analysis including hand tuning, compiler
+optimization, debugging, benchmarking, monitoring and performance modeling.
+In addition, it is hoped that this information will prove useful in the
+development of new compilation technology as well as in steering architectural
+development towards alleviating commonly occurring bottlenecks in high
+performance computing.
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<table width=100%><tr>
+<td > <A NAME="how"></A><h3>Description</H3> </td>
+<td align=right><a href="#TableOfContents">&nbsp;</--Back To Top></a></td>
+</tr></table>
+
+The <B>PerfAPI</B> provides two interfaces to the underlying counter hardware;
+a simple, high level interface for the acquisition of simple measurements
+and a fully programmable, low level interface directed towards users with
+more sophisticated needs. The low level <B>PerfAPI</B> deals with hardware
+events in&nbsp; groups called <I>EventSets</I>. EventSets reflect how the
+counters are most frequently used, such as taking simultaneous measurements
+of different hardware events and relating them to one another. For example,
+relating cycles to memory references or flops to level 1 cache misses can
+indicate poor locality and memory management. In addition, EventSets allow
+a highly efficient implementation which translates to more detailed and
+accurate measurements. EventSets are fully programmable and have features
+such as guaranteed thread safety, writing of counter values, multiplexing
+and notification on threshold crossing, as well as processor specific features.
+The high level interface simply provides the ability to start, stop and
+read specific events, one at a time.
+
+<P>The <B>PerfAPI</B> provides portability across different platforms.
+It uses the same routines with similar argument lists to control and access
+the counters for every architecture. As part of the <B>PerfAPI,</B> we
+have predefined a set of events that we feel represents the lowest common
+denominator of every <I>good</I> counter implementation. Our intent is
+that the same source code will count <I>similar and possibly comparable</I>
+events when run on different platforms.&nbsp; If the programmer chooses
+to use this set of standardized events, then the source code need not be
+changed and only a fresh compilation and link is necessary. However, should
+the developer wish to access machine specific events, the low level API
+provides access to all available events and counting modes. If an event
+or feature does not exist on the current platform, the <B>PerfAPI</B> returns
+an appropriate error code. This significantly reduces the porting effort
+of code using the <B>PerfAPI </B>because the semantics of each call to
+the <B>PerfAPI </B>remains the same, just the argument lists need updating.&nbsp;
+In addition to the standard set, each<B> PerfAPI</B> implementation supports
+<I>all native events </I>through the ability to directly accept platform
+specific counter numbers. Definitions for most, if not all of these, are
+included as conditional macros in the header file. In this way, the <B>PerfAPI</B>
+avoids having inefficient code to translate all events for all platforms
+into a uniform representation and back again. This translation is only
+done for the relatively few events defined in the standardized set.
+
+<P>Some processors like those in the <B>Cray Vector </B>and the <B>POWER</B>
+series have counter groups. They enable access to specific groups of counters,
+instead of individual events. This presents a serious portability problem,
+thus the <B>PerfAPI</B> abstracts hardware counters from their groups with
+a packed naming scheme. Each counter control value or event is made up
+of the counter group number and the number of the specific counter in that
+group.
+
+<P>The <B>PerfAPI</B> can be divided into two layers of software. The upper
+layer consists of the API and machine independent support functions. The
+lower layer defines and exports a machine independent interface to machine
+dependent functions and data structures. These functions access the <I>substrate</I>,
+which may consist of the operating system, a kernel extension or assembly
+functions to directly access the processors registers. The<B> PerfAPI</B>
+tries to use the most efficient and flexible of the three, depending on
+what is available. Naturally, the functionality of the upper layers heavily
+depends on that provided by the substrate. In cases where the substrates
+do not provide highly desirable features, the <B>PerfAPI </B>attempts to
+emulate them as described below. However, one particular difficulty the
+<B>PerfAPI</B> cannot solve is the issue of thread/processor affinity.
+Event though the API is thread safe, it cannot guarantee that the same
+processor runs the same thread on every context switch. Thus for implementations
+of the <B>PerfAPI</B> without per thread counter functionality in the kernel,
+some anomalies may result. This rarely happens in practice, as operating
+system schedulers give preference to the previous processor in order to
+minimize cache thrashing and bus traffic.
+
+<P>The <B>PerfAPI</B> has the capability to internally multiplex hardware
+events if the operating system or counter interface does not support it.
+This functionality presents the developer with the view that <I>all events
+are countable all the time.</I> Naturally, the multiplexing of counter
+events incurs a small amount of overhead and can adversely affect the accuracy
+of reported counter values. Nevertheless, similar features have proved
+quite successful in commercial implementations of counter software found
+in <B>SGI's IRIX 6.x </B>and <B>DEC's Digital Unix v4.x.</B> Multiplexing
+has been shown to be especially useful in the performance tuning process
+as a means of looking for outstanding bottlenecks when first analyzing
+an unfamiliar code. When multiplexing is enabled and subsequently activated
+through the request of an event, the user is informed through a specific
+success code. In this way, the user is cautioned in deriving any performance
+data that may not be entirely accurate.
+
+<P>The <B>PerfAPI</B> guards against overflow of counter values. Each counter
+can potentially be incremented multiple times in a single clock cycle.
+This combined with increasing clock speeds and the small precision of some
+of the physical counters means that overflow is likely to occur on platforms
+where 64-bit counters are not supported in hardware or by the operating
+system. In those cases, the <B>PerfAPI</B> implements 64-bit counters in
+software by using the same interrupt mechanism as for multiplexing although
+with much less frequency and overhead. Such an implementation allows us
+to provide a portable implementation of the advanced functionality available
+on the <B>SGI</B> and <B>DEC</B> platforms. Specifically, asynchronous
+notification when counters exceed some <I>user specified</I> value. Doing
+so allows the generation of a histogram of the frequency of overflows for
+a region of code. This functionality provides the basis for all source
+level performance analysis software, from the antiquated days of <B>AT
+&amp; T's</B> <B>prof</B> to <B>SGI's SpeedShop. </B><I>Thus for any architecture
+with even the most rudimentary access to hardware performance counters,
+the <B>PerfAPI</B> provides the foundation for a truly portable, source
+level, performance analysis tool based on real processor statistics.</I>
+<BR>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<HR SIZE=5 WIDTH="100%">
+<table width=100%><tr>
+<td ><H3> <A NAME="const"></A>Introduction to PerfAPI Constants</H3>  </td>
+<td align=right><a href="#TableOfContents">&nbsp;</--Back To Top></a></td>
+</tr></table>
+The <b>PerfAPI</b> constants are defined in the header files:
+<p>&nbsp;
+ <li> <B><TT>papiStdEventDefs.h</TT></B>
+ <li> <B><TT>papi.h</TT> (c header file)</B>
+ <li> <B><TT>papi.inc</TT> (fortran header file)</B>
+<p>
+The header file <b>papiStdEventDefs.h</b> contains 
+platform specific constants. These constants are presented 
+in <a href="#common">Table 1: Standard Event Definitions</a> 
+below.  The user should read the documentation that accompanies 
+this table for an explantion of these constants.
+<p>
+The remaining header file <b>papi.h</b> (or <b>papi.inc</b> )
+contains the platform independent <b>PerfAPI</b> constants, which
+should <b>never</b> be changed by the user.  This includes
+the constants in <a href="#returnCodes">Table 2: Return Codes</a>
+and the constants in 
+<a href="#AppendixE">Appendix E: PerfAPI Tables</a>. which
+contains Tables 3 through 8. 
+<p>
+A further guide to <b>PerfAPI</b> Constants is 
+<a href="#AppendixF">Appendix F: Index of PerfAPI Constants</a>,
+which provides an alphabetized list of all PAPI constants.  Each 
+entry in the Index is a hypertext link.  Clicking on the name of a
+particular constant will take the user to the table containing the 
+definition of that constant.  
+<BR>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<HR SIZE=5 WIDTH="100%">
+<table width=100%><tr>
+<td > <H3> <A NAME="common"></A>Standardized Event Definitions</H3> </td>
+<td align=right><a href="#TableOfContents">&nbsp;</--Back To Top></a></td>
+</tr></table>
+
+The following is a table of hardware events deemed relevant and useful
+in tuning application performance. These events have identical assignments
+in the header files on different platforms<I> however they may differ in
+their actual semantics. In addition, all of these events are not guaranteed
+to be present on all platforms. Please check your platform's documentation
+carefully.</I> Note: these values should not be changed by the user.
+<DL>&nbsp;
+<A NAME="standardEvtDefs"></a> 
+<CENTER>
+<Table border=0> <tr><td>
+<TABLE BORDER=5 NOSAVE >
+<TR NOSAVE>
+<TD NOSAVE><B>Value&nbsp;</B></TD>
+
+<TD NOSAVE><B>Symbol</B></TD>
+
+<TD><B>Description</B></TD>
+</TR>
+
+<TR NOSAVE>
+<TD NOSAVE><TT>0x80000000</TT></TD>
+
+<TD NOSAVE><TT>PAPI_L1_DCM</TT></TD>
+
+<TD>Level 1 data cache misses</TD>
+</TR>
+
+<TR NOSAVE>
+<TD NOSAVE><TT>0x80000001</TT></TD>
+
+<TD><TT>PAPI_L1_ICM</TT></TD>
+
+<TD NOSAVE>Level 1 instruction cache misses</TD>
+</TR>
+
+<TR NOSAVE>
+<TD NOSAVE><TT>0x80000002</TT></TD>
+
+<TD><TT>PAPI_L2_DCM</TT></TD>
+
+<TD NOSAVE>Level 2 data cache misses</TD>
+</TR>
+
+<TR NOSAVE>
+<TD NOSAVE><TT>0x80000003</TT></TD>
+
+<TD><TT>PAPI_L2_ICM</TT></TD>
+
+<TD NOSAVE>Level 2 instruction cache misses</TD>
+</TR>
+
+<TR>
+<TD NOSAVE><TT>0x80000004</TT></TD>
+
+<TD><TT>PAPI_L3_DCM</TT></TD>
+
+<TD>Level 3 data cache misses</TD>
+</TR>
+
+<TR>
+<TD NOSAVE><TT>0x80000005</TT></TD>
+
+<TD><TT>PAPI_L3_ICM</TT></TD>
+
+<TD>Level 3 instruction cache misses</TD>
+</TR>
+
+<TR>
+<TD NOSAVE><TT>0x8000000A</TT></TD>
+
+<TD><TT>PAPI_CA_SHR</TT></TD>
+
+<TD>Request for access to shared cache line (SMP)</TD>
+</TR>
+
+<TR>
+<TD NOSAVE><TT>0x8000000B</TT></TD>
+
+<TD><TT>PAPI_CA_CLN</TT></TD>
+
+<TD>Request for access to clean cache line (SMP)</TD>
+</TR>
+
+<TR>
+<TD NOSAVE><TT>0x8000000C</TT></TD>
+
+<TD><TT>PAPI_CA_INV</TT></TD>
+
+<TD>Cache Line Invalidation (SMP)</TD>
+</TR>
+
+<TR>
+<TD NOSAVE><TT>0x80000014</TT></TD>
+
+<TD><TT>PAPI_TLB_DM</TT></TD>
+
+<TD>Data translation lookaside buffer misses</TD>
+</TR>
+<TR>
+<TD NOSAVE><TT>0x80000015</TT></TD>
+
+<TD><TT>PAPI_TLB_IM</TT></TD>
+
+<TD>Instruction translation lookaside buffer misses</TD>
+</TR>
+
+<TR>
+<TD NOSAVE><TT>0x8000001E</TT></TD>
+
+<TD><TT>PAPI_TLB_SD</TT></TD>
+
+<TD>Translation lookaside buffer shootdowns (SMP)</TD>
+</TR>
+
+<TR>
+<TD NOSAVE><TT>0x80000028</TT></TD>
+
+<TD><TT>PAPI_BRI_MSP</TT></TD>
+
+<TD>Branch instructions mispredicted</TD>
+</TR>
+
+<TR>
+<TD NOSAVE><TT>0x80000029</TT></TD>
+
+<TD><TT>PAPI_BRI_TKN</TT></TD>
+
+<TD>Branch instructions taken</TD>
+</TR>
+
+<TR>
+<TD NOSAVE><TT>0x8000002A</TT></TD>
+
+<TD><TT>PAPI_BRI_NTK</TT></TD>
+
+<TD>Branch instructions not taken</TD>
+</TR>
+
+<TR>
+<TD NOSAVE><TT>0x80000032</TT></TD>
+
+<TD><TT>PAPI_TOT_INS</TT></TD>
+
+<TD>Total instructions executed</TD>
+</TR>
+
+<TR>
+<TD NOSAVE><TT>0x80000033</TT></TD>
+
+<TD><TT>PAPI_INT_INS</TT></TD>
+
+<TD>Integer instructions executed</TD>
+</TR>
+
+<TR>
+<TD NOSAVE><TT>0x80000034</TT></TD>
+
+<TD><TT>PAPI_FP_INS</TT></TD>
+
+<TD>Floating point instructions executed</TD>
+</TR>
+
+<TR>
+<TD NOSAVE><TT>0x80000035</TT></TD>
+
+<TD><TT>PAPI_LD_INS</TT></TD>
+
+<TD>Load instructions executed&nbsp;</TD>
+</TR>
+
+<TR>
+<TD NOSAVE><TT>0x80000036</TT></TD>
+
+<TD><TT>PAPI_SR_INS</TT></TD>
+
+<TD>Store instructions executed&nbsp;</TD>
+</TR>
+
+<TR>
+<TD NOSAVE><TT>0x80000037</TT></TD>
+
+<TD><TT>PAPI_CND_INS</TT></TD>
+
+<TD>Branch instructions executed</TD>
+</TR>
+
+<TR NOSAVE>
+<TD NOSAVE>0<TT>x80000038</TT></TD>
+
+<TD><TT>PAPI_VEC_INS</TT></TD>
+
+<TD NOSAVE>Vector/SIMD instructions executed</TD>
+</TR>
+
+<TR>
+<TD NOSAVE><TT>0x80000039</TT></TD>
+
+<TD><TT>PAPI_FLOPS</TT></TD>
+
+<TD>Floating Point Instructions executed per second</TD>
+</TR>
+
+<TR>
+<TD NOSAVE><TT>0x8000003C</TT></TD>
+
+<TD><TT>PAPI_TOT_CYC</TT></TD>
+
+<TD>Total cycles</TD>
+</TR>
+
+<TR>
+<TD NOSAVE><TT>0x8000003D</TT></TD>
+
+<TD><TT>PAPI_MIPS</TT></TD>
+
+<TD>Millions of Instructions executed per second</TD>
+</TR>
+</TABLE>
+</td><tr>
+<tr><td>
+<h3><center>Table 1: Standardized Event Definitions<center> </H3>
+</td></tr></table>
+</CENTER>
+<BR>&nbsp;
+<BR>&nbsp;
+<BR>&nbsp;
+&nbsp;</DL>
+<table width=100%><tr>
+<td ><H3> <A NAME="return"></A>Return Codes</H3> </td>
+<td align=right><a href="#TableOfContents">&nbsp;</--Back To Top></a></td>
+</tr></table>
+<FONT COLOR="#000000">All of the functions contained in the <B>PerfAPI</B>
+return standardized error codes. Values greater than or equal to zero indicate
+success, less than zero indicates failure.</FONT>
+<BR>&nbsp;
+<A NAME="returnCodes"></A> 
+<Table border=0> <tr><td>
+<CENTER><TABLE BORDER=5 NOSAVE >
+<TR>
+<TD><B>Value</B></TD>
+
+<TD><B>Symbol</B></TD>
+
+<TD><B>Definition</B></TD>
+</TR>
+
+<TR>
+<TD><TT>1</TT></TD>
+
+<TD><TT>PAPI_OK_MPX</TT></TD>
+
+<TD>No error, multiplexing has been enabled and is now active</TD>
+</TR>
+
+<TR>
+<TD><TT>0</TT></TD>
+
+<TD><TT>PAPI_OK</TT></TD>
+
+<TD>No error</TD>
+</TR>
+
+<TR>
+<TD><TT>-1</TT></TD>
+
+<TD><TT>PAPI_EINVAL</TT></TD>
+
+<TD>Invalid argument</TD>
+</TR>
+
+<TR>
+<TD><TT>-2</TT></TD>
+
+<TD><TT>PAPI_ENOMEM</TT></TD>
+
+<TD>Insufficient memory</TD>
+</TR>
+
+<TR>
+<TD><TT>-3</TT></TD>
+
+<TD><TT>PAPI_ESYS</TT></TD>
+
+<TD>A System or C library call failed, please check <TT>errno</TT></TD>
+</TR>
+
+<TR>
+<TD><TT>-4</TT></TD>
+
+<TD><TT>PAPI_ESBSTR</TT></TD>
+
+<TD>Substrate returned an error, usually the result of an unimplemented
+feature</TD>
+</TR>
+
+<TR>
+<TD><TT>-5</TT></TD>
+
+<TD><TT>PAPI_ECLOST</TT></TD>
+
+<TD>Access to the counters was lost or interrupted</TD>
+</TR>
+
+<TR>
+<TD><TT>-6</TT></TD>
+
+<TD><TT>PAPI_EBUG</TT></TD>
+
+<TD>Internal error, please send mail to the developers</TD>
+</TR>
+
+<TR>
+<TD><TT>-7</TT></TD>
+
+<TD><TT>PAPI_ENOEVNT</TT></TD>
+
+<TD>Hardware Event does not exist</TD>
+</TR>
+
+<TR>
+<TD><TT>-8</TT></TD>
+
+<TD><TT>PAPI_ECNFLCT</TT></TD>
+
+<TD>Hardware Event exists, but cannot be counted due to counter resource
+limitations</TD>
+</TR>
+
+<TR>
+<TD><TT>-9</TT></TD>
+
+<TD><TT>PAPI_ENOTRUN</TT></TD>
+
+<TD>No Events or EventSets are currently counting</TD>
+</TR>
+
+<TR>
+<TD><TT>-10</TT></TD>
+
+<TD><TT>PAPI_EMISC</TT></TD>
+
+<TD>Call to PAPI_error with unknown error code</TD>
+</TR>
+</TABLE>
+</td></tr> <tr><td>
+<center><H3>Table 2: Return Codes </H3></center>
+</td></tr></table>
+</CENTER>
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<HR SIZE=5 WIDTH="100%">
+<table width=100%><tr>
+<td > <H3> <A NAME="lowlevel"></A>The Low Level API</H3></td>
+<td align=right><a href="#TableOfContents">&nbsp;</--Back To Top></a></td>
+</tr></table>
+<FONT COLOR="#000000">The following functions represent the low level portion
+of the <b>PerfAPI</b>. These functions provide greatly increased efficiency and
+functionality over the high level API presented in the next section. All
+of the following functions are callable from both C and Fortran except
+where noted. As mentioned in the introduction, the low level API is only
+as powerful as the substrate upon which it is built. Thus some features
+may not be available on every platform. The converse may also be true,
+that more advanced features may be available and defined in the header
+file. The user is encouraged to read the documentation carefully.</FONT>
+
+<P><TT><FONT COLOR="#000000"><b>int PAPI_set_granularity(int granularity)</b></FONT></TT>
+<BLOCKQUOTE><FONT COLOR="#000000">&nbsp;&nbsp;&nbsp;&nbsp; This function
+sets the <I>measurement granularity</I> in which the counters function.
+Here <TT>granularity</TT> is one of the constants, <TT>PAPI_PER_THR, PAPI_PER_PROC,
+PAPI_PER_CPU</TT> or <TT>PAPI_PER_NODE</TT> as defined in the header file.
+These constants correspond to their descriptions in the above table. By
+default, the granularity is set to the most restrictive supported by the
+substrate.</FONT></BLOCKQUOTE>
+<TT><FONT COLOR="#000000"><b>int PAPI_set_context(int context)</b></FONT></TT>
+<BLOCKQUOTE><FONT COLOR="#000000">&nbsp;&nbsp;&nbsp; This function sets
+the <I>execution context</I> in which events are counted. Here <TT>context</TT>
+is one of the constants <TT>PAPI_USER, PAPI_KERNEL, PAPI_SYSTEM</TT> as
+defined in the header file.</FONT></BLOCKQUOTE>
+<TT><b>int PAPI_perror(int code, char *destination, int length)</b></TT>
+<BLOCKQUOTE>&nbsp;&nbsp;&nbsp; This function copies <TT>length</TT> worth
+of the error description string corresponding to <TT>code</TT> into <TT>destination.</TT>
+The resulting string is always null terminated. If <TT>length</TT> is 0,
+then the string is printed on <TT>stderr</TT>.</BLOCKQUOTE>
+<TT><b>int PAPI_add_event(int *EventSet, int Event)</b></TT>
+<BLOCKQUOTE>&nbsp;&nbsp;&nbsp;&nbsp; This function 
+sets up a new EventSet <I>or</I> modifies an existing one. To create
+a new EventSet, <TT>EventSet</TT> must be set to <TT>PAPI_NULL</TT>. Separate
+EventSets containing events that require use of the same hardware may exist,
+but may not be started if a conflicting EventSet is running. Returns <TT>PAPI_ENOEVNT</TT>
+if <TT>Event</TT> cannot be counted on this platform. The addition of a
+conflicting event to an event set will return an error unless <TT>PAPI_SET_MPXRES
+</TT>has been set. Note: EventSet 0 may not be used; it has been reserved
+for internal use.</BLOCKQUOTE>
+<TT><b>int PAPI_add_events(int *EventSet, int *Events, int number)</b></TT>
+<BLOCKQUOTE>&nbsp;&nbsp;&nbsp; Same as above for a vector of events. If
+one or more of <TT>Events</TT> cannot be counted on this platform, then
+this call fails and <TT>PAPI_ENOEVNT</TT> is returned. In addition, the
+invalid entries in the <TT>Events</TT> array are set to <TT>PAPI_NULL</TT>
+such that the user can successfully reissue the call.</BLOCKQUOTE>
+<TT><b>int PAPI_add_pevent(int *EventSet, int code, void *inout)</b></TT>
+<BLOCKQUOTE>&nbsp;&nbsp;&nbsp; This function allocates a new EventSet for
+a native programmable Event. Such EventSets can only consist of one event,
+namely that which is specified in this call. Its semantics are very similar
+to that of <TT>ioctl()</TT> system call. <TT>inout</TT> points to an opaque
+data structure that is specific to the value in <TT>code</TT>. Higher level
+macros may be provided in the header file. Please check the documentation
+for each substrate. This function has a C binding only.</BLOCKQUOTE>
+<TT><b>int PAPI_rem_event(int EventSet, int Event)</b></TT>
+<BLOCKQUOTE>&nbsp;&nbsp;&nbsp; This function removes the hardware counter
+<TT>Event</TT> from <TT>EventSet</TT>.</BLOCKQUOTE>
+<TT><b>int PAPI_rem_events(int EventSet, int *Events, int number)</b></TT>
+<BLOCKQUOTE>&nbsp;&nbsp;&nbsp; This function performs the same as above
+except for a vector of hardware Events.</BLOCKQUOTE>
+<TT><b>int PAPI_list_events(int EventSet, int *Events, int *number)</b></TT>
+<BLOCKQUOTE>&nbsp;&nbsp;&nbsp; This function decomposes <TT>EventSet</TT>
+into the hardware Events its contains. <TT>number</TT> is both an input
+and output parameter.</BLOCKQUOTE>
+<TT><b>int PAPI_start(int EventSet)</b></TT>
+<BLOCKQUOTE>&nbsp;&nbsp;&nbsp; This function starts counting all the hardware
+Events contained in <TT>EventSet</TT>. All counts are implicitly initialized
+to zero. As mentioned before, separate EventSets containing events that
+require use of the same hardware may exist, but may not be started if a
+conflicting EventSet is running.</BLOCKQUOTE>
+<TT><b>int PAPI_stop(int EventSet, unsigned long long *values)</b></FONT></TT>
+<BLOCKQUOTE>&nbsp;&nbsp;&nbsp; This function terminates the counting of
+all hardware Events contained in <TT>EventSet</TT>. In addition, the counters
+contained in that EventSet are copied into the <TT>values</TT> array.</BLOCKQUOTE>
+<TT><b>int PAPI_read(int EventSet, unsigned long long *values)</b></TT>
+<BLOCKQUOTE>&nbsp;&nbsp;&nbsp; This function copies the running or stopped
+counters in <TT>EventSet</TT> into the <TT>values</TT> array. Internal
+counters will <I>not</I> be re-initialized to zero.</BLOCKQUOTE>
+<TT><b>int PAPI_accum(int EventSet, unsigned long long *values)</b></TT>
+<BLOCKQUOTE>&nbsp;&nbsp;&nbsp; This function accumulates the running or
+stopped counters in <TT>EventSet</TT> into the values array. In addition,
+it initializes the internal counters to zero.</BLOCKQUOTE>
+<TT><b>int PAPI_write(int EventSet, unsigned long long *values)</b></TT>
+<BLOCKQUOTE>&nbsp;&nbsp;&nbsp; This function assigns the values contained
+in <TT>values</TT> to the internal counters of the Events contained in
+<TT>EventSet</TT>.</BLOCKQUOTE>
+<TT><b>int PAPI_reset(int EventSet)</b></TT>
+<BLOCKQUOTE>&nbsp;&nbsp;&nbsp; This function initializes the internal counters
+of the hardware Events contained in <TT>EventSet</TT> to zero.</BLOCKQUOTE>
+<TT><b>int PAPI_cleanup(int *EventSet)</b></TT>
+<BLOCKQUOTE>&nbsp;&nbsp;&nbsp; This function effectively removes <TT>EventSet</TT>
+from existence. The EventSet must be stopped in order for this call to
+succeed.</BLOCKQUOTE>
+<TT><b>int PAPI_state(int EventSet, int *status)</b></TT>
+<BLOCKQUOTE>&nbsp;&nbsp;&nbsp; This function returns the state of the <I>entire</I>
+EventSet in <TT>status</TT>. If the call succeeds, then status is either
+<TT>PAPI_RUNNING </TT>or <TT>PAPI_STOPPED.</TT></BLOCKQUOTE>
+<TT><b>int PAPI_set_opt(int option, PAPI_option_t *ptr)</b></TT>
+<BLOCKQUOTE>&nbsp;&nbsp;&nbsp; This function sets specific options of the
+<B>PerfAPI</B> library, its substrate, or specific EventSets. The <TT>PAPI_option_t
+</TT>structure represents a union of all the structures that can be arguments
+to the different options. In addition, there may exist machine specific
+options so please check the header file and documentation. This function
+has a C binding only.</BLOCKQUOTE>
+
+<BLOCKQUOTE>The following options are defined:
+
+<P><TT>PAPI_SET_MPXRES</TT>
+
+<P>&nbsp;&nbsp;&nbsp; This option sets the multiplexing interval to <TT>value</TT>.
+<TT>value</TT> represents the time in microseconds between successive updates
+of the counting hardware. Values less than 1 millisecond may be rounded
+to the nearest possible resolution. A value of 0 disables multiplexing
+completely, placing all EventSets in the <TT>PAPI_STOPPED</TT> state. <TT>ptr</TT>
+should be set to <TT>NULL.</TT>
+
+<P><TT>PAPI_DEBUG</TT>
+
+<P>&nbsp;&nbsp;&nbsp; This option turns on internal error reporting so
+that when one of the <B>PerfAPI</B> functions returns an error code,<TT>
+PAPI_perror(code,NULL,0)</TT> is called implicitly before the function
+returns. Here <TT>value</TT> is one of <TT>PAPI_QUIET</TT>, <TT>PAPI_VERB_ECONT</TT>
+or <TT>PAPI_VERB_ESTOP.</TT> By default, this option is set to <TT>PAPI_QUIET</TT>,
+do nothing and return the error code to the calling function.
+
+<P><TT>PAPI_SET_OVRFLO</TT>
+
+<P>&nbsp;&nbsp;&nbsp; This option enables the <b>PerfAPI</b> to asynchronously
+deliver notification that the counter for a hardware Event has exceeded
+a user defined threshold. Here <TT>value</TT> represents the EventSet in
+which to enable this option.
+
+</BLOCKQUOTE>
+<TT><b>int PAPI_get_opt(int option, int *value, PAPI_option_t *ptr)</b></TT>
+<BLOCKQUOTE>&nbsp;&nbsp;&nbsp; This function queries the status of tunable
+options in the <b>PerfAPI</b> library. <TT>value</TT> is an input/output parameter.
+The <TT>ptr</TT> structure is for input and output. Not all options fill the
+<TT>PAPI_option_t </TT>structure. This function has a C binding only.
+
+<P>The following options are defined:
+
+<P><TT>PAPI_DEBUG</TT>
+
+<P>&nbsp;&nbsp;&nbsp; This option returns the state of internal error reporting
+in <TT>value</TT>. It is be one of <TT>PAPI_QUIET</TT>, <TT>PAPI_VERB_ECONT</TT>
+or <TT>PAPI_VERB_ESTOP.</TT> 
+
+<P><TT>PAPI_GET_MPXRES</TT>
+
+<P>&nbsp;&nbsp;&nbsp; This option returns the current multiplexing interval
+in microseconds in <TT>value</TT>. An interval of 0 means that multiplexing
+is not enabled.
+
+<P><TT>PAPI_GET_OVRFLO</TT>
+
+<P>&nbsp;&nbsp;&nbsp; This option fills the <TT>overflow</TT> member of
+the <TT>PAPI_option_t</TT> union structure as defined above. <TT>value</TT>
+is an input parameter defined as the EventSet to query.</BLOCKQUOTE>
+
+<P><TT><b>int PAPI_num_events()</b></TT>
+<BLOCKQUOTE>This function returns the optimal length of the <TT>values</TT> array used in the high level routines.</BLOCKQUOTE>
+
+<P><TT><b>void PAPI_shutdown (void)</b></TT>
+<BLOCKQUOTE>An exit function used by the PAPI library to free resources and shut down when certain error conditions arise. Not necessary for user unless all memory and resources used by the PAPI library needs to be freed.
+</BLOCKQUOTE>
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<HR SIZE=5 WIDTH="100%">
+<table width=100%><tr>
+<td ><H3> <A NAME="highlevel"></A>The High Level API</H3> </td>
+<td align=right><a href="#TableOfContents">&nbsp;</--Back To Top></a></td>
+</tr></table>
+<FONT COLOR="#000000">The simple interface implemented by the following
+three routines allows the user to access and count specific hardware events
+from both C and Fortran. It should be noted that this API can be used <I>in
+conjunction with the low level API.</I> If counter multiplexing is enabled
+by the user, the high level API is only able to access those events countable
+simultaneously by the underlying hardware.</FONT>
+
+<P><TT><FONT COLOR="#000000"><b>int PAPI_start_counters(int *events, int array_len)</b></FONT></TT>
+
+<BLOCKQUOTE>
+<P><FONT COLOR="#000000">&nbsp;&nbsp;&nbsp; Start counting the events named
+in the <TT>events</TT> array. This function implicitly stops and initializes
+any counters running as the result of a previous call to <TT>PAPI_start_counters().</TT>
+It is the user's responsibility to choose events that can be counted simultaneously
+by reading the vendor's documentation. The length of this array should
+be no longer than <TT>PAPI_MAX_EVNTS.</TT></FONT>
+</BLOCKQUOTE>
+
+<P><TT><FONT COLOR="#000000"><b>int PAPI_read_counters(long long *values,
+int array_len)</b></FONT></TT>
+
+<BLOCKQUOTE>
+<P><FONT COLOR="#000000">&nbsp;&nbsp;&nbsp; Read the running counters into
+the <TT>values</TT> array. 
+This call implicitly
+initializes the internal counters to zero and lets them continue to run
+upon return.</FONT>
+</BLOCKQUOTE>
+
+<P><TT><FONT COLOR="#000000"><b>int PAPI_stop_counters(long long *values,
+int array_len)</b></FONT></TT>
+
+<BLOCKQUOTE>
+<P><FONT COLOR="#000000">&nbsp;&nbsp;&nbsp; Stop the running counters and
+copy the counts into the <TT>values</TT> array. 
+</FONT>
+</BLOCKQUOTE>
+<BR>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<HR SIZE=5 WIDTH="100%">
+
+<A NAME="#AppendixA"></a>
+<table width=100%><tr>
+<td ><H3><A NAME="future"></A>Appendix A: Issues For Discussion</H3> </td>
+<td align=right><a href="#TableOfContents">&nbsp;</--Back To Top></a></td>
+</tr></table>
+<BLOCKQUOTE>
+<A HREF="mailto:mucci@cs.utk.edu">My</A> comments are in <I>()'s</I>
+<BR>&nbsp;
+<BR>&nbsp;
+<UL>
+<LI>
+<FONT COLOR="#000000">Do we want to make multiplexing available in the
+high level API?</FONT></LI>
+
+<LI>
+<FONT COLOR="#000000">What kind of functionality do we really want <TT>PAPI_read()</TT>,
+<TT>PAPI_accum()</TT>, <TT>PAPI_stop()</TT> and <TT>PAPI_reset()</TT> to
+have. Should they all be orthogonal?<I> (No, for reasons of efficiency.
+But I'm not entirely convinced.)</I></FONT></LI>
+
+<LI>
+<FONT COLOR="#000000">There are some additional events that would be useful
+to have, but that do not seem to be generally available on many platforms.
+Should they be included in the standard set so as to coax hardware engineers
+in the right direction?</FONT></LI>
+
+<UL>
+<LI>
+<FONT COLOR="#000000">Cycles FPU pipeline stalled<I> (YES)</I></FONT></LI>
+
+<LI>
+<FONT COLOR="#000000">Cycles ALU pipeline stalled<I> (YES)</I></FONT></LI>
+
+<LI>
+<FONT COLOR="#000000">Cycles processor idle <I>(YES)</I></FONT></LI>
+
+<LI>
+<FONT COLOR="#000000">Cycles processor stalled due to memory subsystem<I>
+(YES)</I></FONT></LI>
+
+<LI>
+<FONT COLOR="#000000">Cycles processor stalled due to resource conflicts
+<I>(YES)</I></FONT></LI>
+
+<LI>
+<FONT COLOR="#000000">Cycles FPU's busy<I> (YES)</I></FONT></LI>
+
+<LI>
+<FONT COLOR="#000000">Cycles ALU's busy <I>(YES)</I></FONT></LI>
+
+<LI>
+<FONT COLOR="#000000">Cycles memory bus busy<I> (YES)</I></FONT></LI>
+</UL>
+
+<LI>
+<FONT COLOR="#000000">Timing routines fit naturally into this project and
+are needed for performance measurements along with hardware counter values.
+A separate Ptools project, the Portable Timing Routines, has defined a
+platform independent interface for timing routines. Therefore, we have
+not included timing routines in the <b>PerfAPI</b>.<I> (That project is years
+old and still no-one's done it. I don't like the standard either.)</I></FONT></LI>
+
+<LI>
+<FONT COLOR="#000000">Are counts of ISSUED instructions for dynamic, speculative
+processors relevant and useful? <I>(Not for 99.9% of us)</I></FONT></LI>
+
+<LI>
+<FONT COLOR="#000000">If yes, then can we find a consistent definition
+of ISSUED instructions across platforms? or on some platforms does ISSUED
+mean that the instruction has been decoded (where this might make a difference:
+load and store instructions may be reissued on the R10K -- e.g., due to
+a data cache miss or a way mispredictions, and in this case are they counted
+once or twice?) <I>(I seriously doubt if this will ever be consistent.
+The pipeline stage when ISSUED counter signals are set high is highly dependent
+on the architecture.)</I></FONT></LI>
+
+<LI>
+<FONT COLOR="#000000">It would be nice to provide a function that would
+give the user some information about the underlying hardware. <I>(Here's
+my suggestion. </I></FONT><I>While the goal is to make all of the following
+information available, there will likely be some variations depending on
+the platform.</I> <I><FONT COLOR="#000000">)</FONT></I></LI>
+
+
+<P><TT>int PAPI_sysinfo (INFO **info)</TT>
+
+<P>&nbsp;&nbsp;&nbsp; Returns a pointer to a static data structure/array
+consisting of:
+
+<P>&nbsp;&nbsp;&nbsp; <TT>typedef struct _info {</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct _proc_id proc_id;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// id struct containing name, serial, version</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int proc;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// number of processors</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int clock;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// processor clock speed</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int fpu;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// number floating point units</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int madd;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// number mult/add units</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct _mem mem;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// memory info struct defined below</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct _cache cache[MAXCACHE];&nbsp;
+// cache info struct defined below</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct _tlb tlb[MAXTLB];&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// tlb info struct defined below</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct _vector vu;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// vector info struct defined below</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp; } INFO;</TT>
+
+<P><TT>&nbsp;&nbsp;&nbsp; struct _proc_id {</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char name[MAXNAME];</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int serial;</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int version;</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp; }</TT>
+
+<P><TT>&nbsp;&nbsp;&nbsp; struct _mem {</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int size;</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int interleave;</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int speed;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// speed in cycles of bus</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp; }</TT>
+
+<P><TT>&nbsp;&nbsp;&nbsp; struct _cache {</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int size;</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int line;</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int block;</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int way;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// associativity</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int type;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// unified, instruction, data</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int speed;</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp; }</TT>
+
+<P><TT>&nbsp;&nbsp;&nbsp; struct _tlb {</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int size;</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int type;</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int entries;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// number of entries</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int page;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// pages per entry</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp; }</TT>
+
+<P><TT>&nbsp;&nbsp;&nbsp; struct _vector {</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int type;</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int size;</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp; }</TT>
+<BR>&nbsp;</UL>
+</BLOCKQUOTE>
+
+<table width=100%><tr>
+<td ><H3> <A NAME="implem"></A>Notes</H3> </td>
+<td align=right><a href="#TableOfContents">&nbsp;</--Back To Top></a></td>
+</tr></table>
+&nbsp;
+<BLOCKQUOTE>
+<UL>
+<LI>
+<B>PerfAPI </B>emulates kernel level multiplexing by setting up a high
+resolution interval timer with a tunable interval. At each interrupt, a
+handler accumulates the relevant counts into a per-CPU structure, updates
+the counting hardware's control registers, and then continues. The resolution
+defaults to 1ms, but this can be changed by the user through the option
+calls. The multiplexing layer is a portable module separate from any implementation
+specific features.</LI>
+
+<LI>
+<TT>PAPI_add_pevent()</TT> may be implemented as a call to the <TT>PAPI_set_opt()</TT>.</LI>
+</UL>
+</BLOCKQUOTE>
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<HR SIZE=5 WIDTH="100%">
+<A NAME="AppendixB"></a>
+<table width=100%><tr>
+<td ><A NAME="examples"></A><H3>Appendix B: Examples</H3> </td>
+<td align=right><a href="#TableOfContents">&nbsp;</--Back To Top></a></td>
+</tr></table>
+<p>
+<HR>
+<B>Example 1: Pseudo code for a program that measures the cycles,
+floating point instructions and L1 data cache misses for the whole 
+program and one segment of code.</B>
+
+
+<P><TT>#include "papi.h"</TT>
+
+<P><TT>main()</TT>
+<BR><TT>{</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp; int EventSet = PAPI_NULL;</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp; long long first[2] = {0, 0}, total[2] = {0,
+0};</TT>
+
+<P><TT>&nbsp;&nbsp;&nbsp; PAPI_add_event(&amp;EventSet, PAPI_L1_DCM);</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp; PAPI_add_event(&amp;EventSet, PAPI_FP_INS);</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp; PAPI_add_event(&amp;EventSet, PAPI_TOT_CYC);</TT>
+
+<P><TT>&nbsp;&nbsp;&nbsp; PAPI_start(EventSet);</TT>
+
+<P><TT>&nbsp;&nbsp;&nbsp; /* Do something that's really slow; */</TT>
+
+<P><TT>&nbsp;&nbsp;&nbsp; PAPI_accum(EventSet, first);</TT>
+
+<P><TT>&nbsp;&nbsp;&nbsp; /* Do something else even slower; */</TT>
+
+<P><TT>&nbsp;&nbsp;&nbsp; PAPI_stop(EventSet, total);</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp; PAPI_cleanup(&amp;EventSet);</TT>
+<BR><TT>}</TT>
+<hr>
+<P>
+<HR>
+<B>Example 2: Pseudo code for a program that generates a histogram
+of where overflows occur for L1 cache misses.</B>
+
+
+<P><TT>#include &lt;signal.h></TT>
+<BR><TT>#include "papi.h"</TT>
+
+<P><TT>void handler(int signal, siginfo_t *si, void *ucontext, int EventSet,
+int Event, int count)</TT>
+<BR><TT>{</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp; /* Get text address from si->xxxx;</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp; Get thread context from ucontext;</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp; Hash text address for our context into hash
+bucket;</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp; Add count for Events to our hash bucket; */</TT>
+
+<P><TT>&nbsp;&nbsp;&nbsp; return;</TT>
+<BR><TT>}</TT>
+
+<P><TT>main()</TT>
+<BR><TT>{</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp; int L1_Cache_Misses = PAPI_NULL;</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp; PAPI_option_t options = { 0, };</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp; long long total[2] = { 0, 0 };</TT>
+
+<P><TT>&nbsp;&nbsp;&nbsp; PAPI_add_event(&amp;L1_Cache_Misses, PAPI_L1_DCM);</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp; PAPI_add_event(&amp;L1_Cache_Misses, PAPI_L1_ICM);</TT>
+
+<P><TT>&nbsp;&nbsp;&nbsp; options.overflow.handler = handler;</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp; options.overflow.count = 10001;</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp; options.oveflow.signal = SIGPROF;</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp; options.oveflow.flag = 0x0;</TT>
+
+<P><TT>&nbsp;&nbsp;&nbsp; PAPI_set_opt(PAPI_SET_OVRFLO, L1_Cache_Misses,
+&amp;options);</TT>
+
+<P><TT>&nbsp;&nbsp;&nbsp; PAPI_start(EventSet);</TT>
+
+<P><TT>&nbsp;&nbsp;&nbsp; /* do_something; */</TT>
+
+<P><TT>&nbsp;&nbsp;&nbsp; PAPI_stop(EventSet, total);</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp; PAPI_cleanup(EventSet);</TT>
+
+<P><TT>&nbsp;&nbsp;&nbsp; /* decode hash table's addresses into source
+lines;</TT>
+<BR><TT>&nbsp;&nbsp;&nbsp; print histogram of lines vs. overflows; */</TT>
+
+<P><TT>&nbsp;&nbsp;&nbsp; exit(0);</TT>
+<BR><TT>}</TT>
+<hr>
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<HR SIZE=5 WIDTH="100%">
+<table width=100%><tr>
+<td ><H3> <A NAME="AppendixC"></A>Appendix C: Machine Dependent HWD Functions</H3> </td>
+<td align=right><a href="#TableOfContents">&nbsp;</--Back To Top></a></td>
+</tr></table>
+<FONT COLOR="#000000">The following functions represent the substrate 
+interface portion of the <b>PerfAPI</b>.  There is one substrate file for
+each platform supported by <b>PerfAPI</b>. The substrate file contains
+Machine Dependent HWD Functions.  But these functions will have 
+identical prototypes, so for the user writing code, accessing a 
+hardware event will seem the same regardless of platform.
+<p>
+<TT><b>int _papi_hwd_init(EventSetInfo *zero)</b></TT>
+<BLOCKQUOTE>
+&nbsp;&nbsp;&nbsp;&nbsp; This function initializes
+the EventSetInfo structure reserved for internal use,
+EventSet <TT>zero</TT>.
+The higher level library allocates and reserves this EventSet.
+EventSet <TT>zero</TT> is used to keep track of overlapping multiple
+running EventSets.   The members start, stop, and latest are not
+defined.</BLOCKQUOTE>
+
+<TT><b>
+int _papi_hwd_add_event(EventSetInfo *machdep, unsigned int event)</b></TT>
+<BLOCKQUOTE>
+&nbsp;&nbsp;&nbsp;&nbsp; This function loads the event to
+the hardware counter and updates the <TT>EventSetInfo->machdep</TT>
+structure.  Upon success, a value of <TT>PAPI_OK</TT> is returned.
+If there is any problem ( no counters available, conflict with
+another event in the EventSet, event not supported on current platform ), 
+the event is not loaded and a value of <TT>PAPI_ENCNFLCT</TT> is returned.
+</BLOCKQUOTE>
+
+<TT><b>
+int _papi_hwd_rem_event(EventSetInfo *machdep, unsigned int event)</b></TT>
+<BLOCKQUOTE>
+&nbsp;&nbsp;&nbsp;&nbsp; This function determines if the event
+is in the EventSet.  If not, the function returns <TT>PAPI_ENOTRUN</TT>. If
+true, the function removes the event from the hardware counters and returns
+<TT>PAPI_OK</TT>.
+</BLOCKQUOTE>
+                                                                                        
+<TT><b>
+int _papi_hwd_add_prog_event
+(EventSetInfo *machdep, unsigned int event, void *extra)</b></TT>
+<BLOCKQUOTE>
+&nbsp;&nbsp;&nbsp;&nbsp; This function loads the user programmed event 
+to the hardware counter and updates the <TT>EventSetInfo->machdep</TT>
+structure.  Upon success, a value of <TT>PAPI_OK</TT> is returned.
+If the event is not supported on the current platform, the event is not
+loaded and a value of <TT>PAPI_ESBSTR</TT> is returned. If there is any 
+other problem ( no counters available, conflict with
+another event in the EventSet ), the event is not loaded and a value 
+of <TT>PAPI_ENCNFLCT</TT> is returned.
+</BLOCKQUOTE>
+
+<TT><b>int _papi_hwd_start(EventSetInfo *)</b></TT>
+<BLOCKQUOTE>
+&nbsp;&nbsp;&nbsp;&nbsp; This function initializes all
+available hardware counters for the EventSet.  If any of these
+initial values is out of range, the function 
+returns <TT>PAPI_EBUG</TT>.  
+</BLOCKQUOTE>
+
+<TT><b>
+int _papi_hwd_stop(EventSetInfo *, unsigned long long events[])</b></TT>
+<BLOCKQUOTE>
+&nbsp;&nbsp;&nbsp;&nbsp; This function stops all the hardware event
+counters for the target EventSet and copies the hardware counter values to 
+the <TT>events</TT> array.  If any value is bad, the function 
+returns <TT>PAPI_EBUG</TT>.
+</BLOCKQUOTE>
+
+<TT><b>int _papi_hwd_reset(EventSetInfo *)</b></TT>
+<BLOCKQUOTE>
+&nbsp;&nbsp;&nbsp;&nbsp; This function checks for the existence
+of hardware events in this EventSet.  If none are found, the function returns
+<TT>PAPI_ENOTRUN</TT>.  Else, all the hardware event counters are reset to
+start over again.
+</BLOCKQUOTE>
+
+<TT><b>
+int _papi_hwd_read(EventSetInfo *, unsigned long long events[])</b></TT>
+<BLOCKQUOTE>
+&nbsp;&nbsp;&nbsp;&nbsp; This function checks for existence of
+hardware counters in this EventSet.  If there are none, it returns 
+<TT>PAPI_ENOTRUN</TT>.  Else this function reads the values on the 
+hardware counters for this EventSet and copies them to the <TT>events</TT> 
+array. If any bad counter value is encountered, the function returns
+<TT>PAPI_EBUG</TT>.  Upon successful completion of task, the function
+returns <TT>PAPI_OK</TT>.  
+</BLOCKQUOTE>
+
+<TT><b>
+int _papi_hwd_write(EventSetInfo *, unsigned long long events[])</b></TT>
+<BLOCKQUOTE>
+&nbsp;&nbsp;&nbsp;&nbsp; This function checks for the existence of
+hardware counters in this EventSet.  If there are none, it returns
+<TT>PAPI_ENOTRUN</TT>. Else this function writes the values in the
+<TT>events</TT> array to the hardware counters.  If there is a failure
+in any of these write attempts, the function returns <TT>PAPI_EBUG</TT>.
+</BLOCKQUOTE>
+
+<TT><b>
+int _papi_hwd_ctl(int code, _papi_int_option_t *option)</b></TT>
+<BLOCKQUOTE>
+&nbsp;&nbsp;&nbsp;&nbsp; This function sets the specified 
+option in the EventSet option table.
+</BLOCKQUOTE>
+
+<P>
+<HR SIZE=5 WIDTH="100%">
+<table width=100%><tr>
+<td ><H3> <A NAME="AppendixD"></A>Appendix D: PerfAPI Data Structures</H3> </td>
+<td align=right><a href="#TableOfContents">&nbsp;</--Back To Top></a></td>
+</tr></table>
+
+<P>
+
+<HR>
+<table width=100%><tr>
+<td ><A NAME="EventSetInfo_struct"></a> 
+<TT><b> EventSetInfo Data Structure</b> </TT> </td>
+<td align=right><a href="#TableOfContents">&nbsp;</--Back To Top></a></td>
+</tr></table>
+<BLOCKQUOTE>&nbsp;&nbsp;&nbsp;&nbsp; This structure carries 
+all the information needed to describe a specific EventSet.
+
+<pre>
+typedef struct _EventSetInfo {
+  int EventSetIndex;       /* Index of the EventSet in the array  */
+
+  int NumberOfCounters;    /* Number of counters added to EventSet */
+
+  int *EventCodeArray;     /* PAPI/Native codes for events in this set */
+  void *machdep;      /* A pointer to memory of size
+                         _papi_system_info.size_machdep bytes. This
+                         will contain the encoding necessary for the
+                         hardware to set the counters to the appropriate
+                         conditions*/
+  unsigned long long *start;   /* Array of length _papi_system_info.num_gp_cntrs
+                         + _papi_system_info.num_sp_cntrs
+                         This will most likely be zero for most cases*/
+  unsigned long long *stop;    /* Array of the same length as above, but
+                         containing the values of the counters when
+                         stopped */
+  unsigned long long *latest;  /* Array of the same length as above, containing
+                         the values of the counters when last read */
+  int state;          /* The state of this entire EventSet; can be
+                         PAPI_RUNNING or PAPI_STOPPED. */
+
+  _papi_int_alloptions_t all_options; /* All options */
+
+} EventSetInfo;
+</pre>
+</BLOCKQUOTE>
+<hr>
+
+
+<p>
+<HR>
+<table width=100%><tr>
+<td ><A NAME="papi_system_info_struct"></a>
+<TT> <b>_papi_system_info Data Structure</b> </TT> </td>
+<td align=right><a href="#TableOfContents">&nbsp;</--Back To Top></a></td>
+</tr></table>
+<BLOCKQUOTE> This structure carries all the information
+needed to describe a single platform.
+<p>
+<pre>
+typedef struct _papi_mdi {
+  char substrate[81]; /* Name of the substrate we're using */
+  float version;      /* Version of this substrate */
+  int ncpu;           /* Number of CPU's on an Node */
+  int nnodes;         /* Number of Nodes in an SMP */
+  int type;           /* Vendor number of CPU */
+  int cpu;            /* Model number of CPU */
+  int mhz;            /* Cycle time of this CPU, to be estimated at
+                         init time with a quick timing routine */
+ 
+/* The following variables define the length of the arrays in the
+   EventSetInfo structure. Each array is of length num_gp_cntrs +
+   num_sp_cntrs * sizeof(long long) */
+
+  int num_cntrs;      /* Number of counters returned by a 
+                         substrate read/write */
+
+  int num_gp_cntrs;   /* Number of general purpose counters or 
+                         counters per group */
+  int total_groups;   /* Number of counter groups, zero for no groups */
+  int num_sp_cntrs;   /* Number of special purpose counters, like
+                         Time Stamp Counter on IBM or Pentium */
+
+  int total_presets;  /* Number of preset events supported */
+  int total_events;   /* Number of native events supported. */
+  int size_machdep;   /* Size of the substrate's control structure 
+                         in bytes */
+  EventSetInfo *zero; /* First element in EventSet array of higher
+                         level, to be maintained for internal use,
+                         such as keeping track of multiple running
+                         EventSets with overlapping events. Will not
+                         have elements start, stop, and latest
+                         defined */
+} papi_mdi;
+
+papi_mdi _papi_system_info;
+</pre>
+</BLOCKQUOTE>
+<HR>
+
+<p>
+<HR>
+<table width=100%><tr>
+<td ><A NAME="PAPI_option_t_struct"></a>
+<TT><b> PAPI_option_t Data Structure</b> </TT> </td>
+<td align=right><a href="#TableOfContents">&nbsp;</--Back To Top></a></td>
+</tr></table>
+<BLOCKQUOTE> This structure carries all the information
+associated with user selected options.  There are eight
+different option types unioned together, under the
+PAPI_option_t umbrella so to speak, in order that the
+information which arrives in different formats
+may be accessed in a uniform fashion.
+<p>
+<pre>
+
+/* PAPI_option_t structure */
+typedef union {
+  PAPI_overflow_option_t overflow;
+  PAPI_multiplex_option_t multiplex;
+  PAPI_defgranularity_option_t defgranularity;
+  PAPI_granularity_option_t granularity;
+  PAPI_defdomain_option_t defdomain;
+  PAPI_domain_option_t domain;
+  int num_substrate_counters;
+  int debug; } PAPI_option_t;
+
+
+/* structures under the PAPI_option_t umbrella */ 
+
+typedef struct _papi_overflow_option {
+  int eventset;
+  int event;
+  unsigned long long threshold;
+  void (*handler)(void *, void *); } PAPI_overflow_option_t;
+
+typedef struct _papi_multiplex_option {
+  int eventset;
+  int milliseconds; } PAPI_multiplex_option_t;
+
+typedef struct _papi_domain_option {
+  int eventset;
+  int domain; } PAPI_domain_option_t;
+
+typedef struct _papi_defdomain_option {
+  int domain; } PAPI_defdomain_option_t;
+
+typedef struct _papi_granularity_option {
+  int eventset;
+  int granularity; } PAPI_granularity_option_t;
+
+typedef struct _papi_defgranularity_option {
+  int granularity; } PAPI_defgranularity_option_t;
+
+</pre>
+</BLOCKQUOTE>
+<HR>
+
+<P>&nbsp;
+<P>&nbsp;
+<P>&nbsp;
+<HR SIZE=5 WIDTH="100%">
+<table width=100%><tr>
+<td ><H3> <a name="AppendixE"></a> Appendix E: PerfAPI Tables.  </h3> </td>
+<td align=right><a href="#TableOfContents">&nbsp;</--Back To Top></a></td>
+</tr></table>
+<p>
+All <b>PerfAPI</b> constants are defined in one of the eight tables listed below. 
+Click on the table name to select a table. 
+<p>
+For the alphabetized index of <b>PerfAPI</b> constants, go to
+<a href="#AppendixF">Appendix F: Index of PerfAPI Constants</a>. 
+<P>&nbsp;
+<table border=0>
+<tr><td>
+<li><A href="#standardEvtDefs"> Table 1: Standardized Event Definitions </a>
+</td><td>
+<li><A href="#overflowConstants">Table 5: Overflow Constants</a>
+</td></tr><tr><td>
+<li><A href="#returnCodes"> Table 2: Return Codes </a>
+</td><td>
+<li><A href="#DomainDefs">Table 6: Domain Definitions</A>
+</td></tr><tr><td>
+<li><A href="#generalConstants">Table 3: General Constants</a>
+</td><td>
+<li><A href="#GranularityDefs">Table 7: Granularity Definitions</A>
+</td></tr><tr><td>
+<li><A href="#multiplexingConstants">Table 4: Multiplexing Constants</a>
+</td><td>
+<li><A href="#threadDefs">Table 8: Thread Definitions</A>
+</td></tr>
+</table>
+<BR>&nbsp;
+<BR>&nbsp;
+<BR>&nbsp;
+<table width=100%><tr>
+<td ><A NAME="generalConstants"></a>&nbsp; </td>
+<td align=right><a href="#TableOfContents">&nbsp;</--Back To Top></a></td>
+</tr></table>
+<CENTER>
+<Table border=0> <tr><td>
+<TABLE BORDER=5 NOSAVE >
+<TR NOSAVE>
+<TD><B>Value</B></TD>
+<TD><B>Symbol</B></TD>
+<TD NOSAVE><B>Description</B></TD>
+</TR>
+
+<TR>
+<TD><TT>-1</TT></TD>
+<TD><TT>PAPI_NULL</TT></TD>
+<TD>A nonexistent hardware event used as a place holder&nbsp;</TD>
+</TR>
+
+<TR>
+<TD><TT>3</TT></TD>
+<TD><TT>PAPI_DEBUG</TT></TD>
+<TD>Option to turn on debugging features of the PAPI library</TD>
+</TR>
+
+<TR>
+<TD><TT>0x00</TT></TD>
+<TD><TT>PAPI_STOPPED</TT></TD>
+<TD>EventSet is stopped</TD>
+</TR>
+
+<TR>
+<TD><TT>0x01</TT></TD>
+<TD><TT>PAPI_RUNNING</TT></TD>
+<TD>EventSet is running</TD>
+</TR>
+
+<TR>
+<TD><TT>0x02</TT></TD>
+<TD><TT>PAPI_PAUSED</TT></TD>
+<TD> EventSet temp. disabled by the library</TD>
+</TR>
+
+<TR>
+<TD><TT>0x04</TT></TD>
+<TD><TT>PAPI_NOT_INIT</TT></TD>
+<TD> EventSet defined, but not initialized</TD>
+</TR>
+
+
+<TR>
+<TD><TT>0x40</TT></TD>
+<TD><TT>PAPI_ACCUMULATING</TT></TD>
+<TD> EventSet has accumulating enabled</TD>
+</TR>
+
+<TR>
+<TD><TT>11</TT></TD>
+<TD><TT>PAPI_NUM_ERRORS</TT></TD>
+<TD>Number of error messages specified</TD>
+</TR>
+
+<TR>
+<TD><TT>0</TT></TD>
+<TD><TT>PAPI_QUIET</TT></TD>
+<TD>Option to not do any automatic error reporting to <TT>stderr</TT></TD>
+</TR>
+
+<TR>
+<TD><TT>1</TT></TD>
+<TD><TT>PAPI_VERB_ECONT</TT></TD>
+<TD>Option to automatically report any return codes &lt; 0 to <TT>stderr</TT></TD>
+</TR>
+
+<TR>
+<TD><TT>2</TT></TD>
+<TD><TT>PAPI_VERB_ESTOP</TT></TD>
+<TD>Option to automatically report any return codes &lt; 0 to <TT>stderr</TT>
+and call <TT>exit(PAPI_ERROR)</TT></TD>
+</TR>
+
+<TR>
+<TD><TT>16</TT></TD>
+<TD><TT>PAPI_MAX_EVNTS</TT></TD>
+<TD>The maximum number of simultaneous events countable by the platform
+specific hardware <I>without multiplexing.</I></TD>
+</TR>
+
+<TR>
+<TD><TT>64</TT></TD>
+<TD><TT>PAPI_INIT_SLOTS</TT></TD>
+<TD>Number of initialized slots in Dynamic Array of EventSets.</TD>
+</TR>
+
+<TR>
+<TD><TT>24</TT></TD>
+<TD><TT>PAPI_GET_NUMCTRS</TT></TD>
+<TD> The number of counters returned by reading this eventset</TD>
+</TR>
+
+<TR>
+<TD><TT>123</TT></TD>
+<TD><TT>PAPI_ERROR</TT></TD>
+<TD>Exit code for <B>PerfAPI</B> executables that have <TT>PAPI_VERB_ESTOP</TT>
+option set</TD>
+</TR>
+
+<TR>
+<TD><TT>16</TT></TD>
+<TD><TT>PAPI_MAX_ERRMS</TT></TD>
+<TD>Number of internal error messages</TD>
+</TR>
+
+<TR>
+<TD><TT>10</TT></TD>
+<TD><TT>PAPI_MAX_ERROR</TT></TD>
+<TD>Highest number of defined error messages</TD>
+</TR>
+
+</table>
+</td></tr> <tr><td>
+<center><H3>Table 3: General Constants</H3></center>
+</td></tr></table>
+</center>
+<BR>&nbsp;
+<BR>&nbsp;
+<BR>&nbsp;
+<CENTER>
+<table width=100%><tr>
+<td ><A NAME="multiplexingConstants"></a> &nbsp; </td>
+<td align=right><a href="#TableOfContents">&nbsp;</--Back To Top></a></td>
+</tr></table>
+<Table border=0> <tr><td>
+<TABLE BORDER=5 NOSAVE >
+<TR NOSAVE>
+<TD><B>Value</B></TD>
+<TD><B>Symbol</B></TD>
+<TD NOSAVE><B>Description</B></TD>
+</TR>
+
+<TR>
+<TD><TT>0x20</TT></TD>
+<TD><TT>PAPI_MULTIPLEXING</TT></TD>
+<TD> EventSet has multiplexing enabled </TD>
+</TR>
+
+<TR>
+<TD><TT>1000</TT></TD>
+<TD><TT>PAPI_DEF_MPXRES</TT></TD>
+<TD>Default resolution in microseconds of the multiplexing software</TD>
+</TR>
+
+<TR>
+<TD><TT>1</TT></TD>
+<TD><TT>PAPI_SET_MPXRES</TT></TD>
+<TD>Option to enable and set the resolution of the multiplexing software</TD>
+</TR>
+
+<TR>
+<TD><TT>2</TT></TD>
+<TD><TT>PAPI_GET_MPXRES</TT></TD>
+<TD>Option to query the status of the multiplexing software</TD>
+</TR>
+</table>
+</td></tr> <tr><td>
+<center><H3>Table 4: Multiplexing Constants</H3></center>
+</td></tr></table>
+</center>
+<BR>&nbsp;
+<BR>&nbsp;
+<BR>&nbsp;
+<table width=100%><tr>
+<td ><A NAME="overflowConstants"></A> &nbsp; </td>
+<td align=right><a href="#TableOfContents">&nbsp;</--Back To Top></a></td>
+</tr></table>
+<CENTER>
+<Table border=0> <tr><td>
+<TABLE BORDER=5 NOSAVE >
+
+<TR NOSAVE>
+<TD><B>Value</B></TD>
+<TD><B>Symbol</B></TD>
+<TD NOSAVE><B>Description</B></TD>
+</TR>
+
+<TR>
+<TD><TT>0x10</TT></TD>
+<TD><TT>PAPI_OVERFLOWING</TT></TD>
+<TD>EventSet has overflowing enabled.</TD>
+</TR>
+
+<TR>
+<TD><TT>1</TT></TD>
+<TD><TT>PAPI_ONESHOT</TT></TD>
+<TD>Option to have the overflow handler called once</TD>
+</TR>
+
+<TR>
+<TD><TT>2</TT></TD>
+<TD><TT>PAPI_RANDOMIZE</TT></TD>
+<TD>Option to have the threshold of the overflow handler randomized</TD>
+</TR>
+
+<TR>
+<TD><TT>4</TT></TD>
+<TD><TT>PAPI_SET_OVRFLO</TT></TD>
+<TD>Option to turn on the overflow reporting software</TD>
+</TR>
+
+<TR>
+<TD><TT>5</TT></TD>
+<TD><TT>PAPI_GET_OVRFLO</TT></TD>
+<TD>Option to query the status of the overflow reporting software</TD>
+</TR>
+</TABLE>
+</td></tr> <tr><td>
+<center><H3>Table 5: Overflow Constants</H3></center>
+</td></tr></table>
+</CENTER>
+<BR>&nbsp;
+<BR>&nbsp;
+<BR>&nbsp;
+<table width=100%><tr>
+<td ><A NAME="DomainDefs"></A> &nbsp; </td>
+<td align=right><a href="#TableOfContents">&nbsp;</--Back To Top></a></td>
+</tr></table>
+<Table border=0> <tr><td>
+<CENTER>
+<TABLE BORDER=5 NOSAVE >
+<TR NOSAVE>
+<TD><B>Value</B></TD>
+<TD><B>Symbol</B></TD>
+<TD NOSAVE><B>Description</B></TD>
+</TR>
+
+<TR NOSAVE>
+<TD><TT>0x1</TT></TD>
+<TD><TT>PAPI_DOM_USER</TT></TD>
+<TD>User context counted</TD>
+</TR>
+
+<TR NOSAVE>
+<TD><TT>PAPI_DOM_USER</TT></TD>
+<TD><TT>PAPI_DOM_MIN<TT></TD>
+<TD>Minimum Domain value (supplied by user)</TD>
+</TR>
+
+<TR NOSAVE>
+<TD><TT>0x2</TT></TD>
+<TD><TT>PAPI_DOM_KERNEL</TT></TD>
+<TD>Kernel/OS context counted</TD>
+</TR>
+
+<TR NOSAVE>
+<TD><TT>0x4</TT></TD>
+<TD><TT>PAPI_DOM_OTHER</TT></TD>
+<TD>Exception/trasiant mode (like user TLB misses)</TD>
+</TR>
+
+<TR NOSAVE>
+<TD><TT>0x7</TT></TD>
+<TD><TT>PAPI_DOM_ALL</TT></TD>
+<TD>All contexts counted</TD>
+</TR>
+
+<TR NOSAVE>
+<TD><TT>PAPI_DOM_USER</TT></TD>
+<TD><TT>PAPI_DOM_DEFAULT</TT></TD>
+<TD>Default Domain value (supplied by user)</TD>
+</TR>
+
+<TR NOSAVE>
+<TD><TT>PAPI_DOM_ALL</TT></TD>
+<TD><TT>PAPI_DOM_MAX</TT></TD>
+<TD>Maximum Domain value, all contexts counted</TD>
+</TR>
+
+<TR NOSAVE>
+<TD><TT>0x80000000</TT></TD>
+<TD><TT>PAPI_DOM_HWSPEC</TT></TD>
+<TD>Flag to indicate special substrate counters (i.e. SGI HUB counters)</TD>
+</TR>
+
+<TR NOSAVE>
+<TD><TT>6</TT></TD>
+<TD><TT>PAPI_SET_DEFDOM</TT></TD>
+<TD>Domain for all new eventsets</TD>
+</TR>
+
+<TR NOSAVE>
+<TD><TT>7</TT></TD>
+<TD><TT>PAPI_GET_DEFDOM</TT></TD>
+<TD>Domain for all new eventsets</TD>
+</TR>
+
+<TR NOSAVE>
+<TD><TT>8</TT></TD>
+<TD><TT>PAPI_SET_DOMAIN</TT></TD>
+<TD>Domain for a single eventset</TD>
+</TR>
+
+<TR NOSAVE>
+<TD><TT>9</TT></TD>
+<TD><TT>PAPI_GET_DOMAIN</TT></TD>
+<TD>Domain for a single eventset</TD>
+</TR>
+</table>
+</td></tr> <tr><td>
+<center><H3>Table 6: Domain Definitions</H3></center>
+</td></tr></table>
+</center>
+<BR>&nbsp;
+<BR>&nbsp;
+<BR>&nbsp;
+<table width=100%><tr>
+<td ><A NAME="GranularityDefs"></A> &nbsp; </td>
+<td align=right><a href="#TableOfContents">&nbsp;</--Back To Top></a></td>
+</tr></table>
+<CENTER>
+<Table border=0> <tr><td>
+<TABLE BORDER=5 NOSAVE >
+<TR NOSAVE>
+<TD><B>Value</B></TD>
+
+<TD><B>Symbol</B></TD>
+
+<TD NOSAVE><B>Description</B></TD>
+</TR>
+<TR NOSAVE>
+<TD><TT>0x1</TT></TD>
+<TD><TT>PAPI_GRN_THR</TT></TD>
+<TD>PAPI counters for each individual thread</TD>
+</TR>
+<TR NOSAVE>
+<TD><TT>PAPI_GRN_THR</TT></TD>
+<TD><TT>PAPI_GRN_MIN</TT></TD>
+<TD>Minimum value for granularity.</TD>
+</TR>
+<TR NOSAVE>
+<TD><TT>0x2</TT></TD>
+<TD><TT>PAPI_GRN_PROC</TT></TD>
+<TD>PAPI counters for each individual process</TD>
+</TR>
+<TR NOSAVE>
+<TD><TT>0x4</TT></TD>
+<TD><TT>PAPI_GRN_PROCG</TT></TD>
+<TD>PAPI counters for each individual process group</TD>
+</TR>
+<TR NOSAVE>
+<TD><TT>0x8</TT></TD>
+<TD><TT>PAPI_GRN_SYS</TT></TD>
+<TD>PAPI counters for the current CPU, are you bound?</TD>
+</TR>
+
+<TR NOSAVE>
+<TD><TT>0x10</TT></TD>
+<TD><TT>PAPI_GRN_SYS_CPU</TT></TD>
+<TD>PAPI counters for all CPU's individually</TD>
+</TR>
+
+<TR NOSAVE>
+<TD><TT>10</TT></TD>
+<TD><TT>PAPI_SET_DEFGRN</TT></TD>
+<TD>Granularity for all new eventsets </TD>
+</TR>
+
+<TR NOSAVE>
+<TD><TT>11</TT></TD>
+<TD><TT>PAPI_GET_DEFGRN</TT></TD>
+<TD>Granularity for all new eventsets </TD>
+</TR>
+
+<TR NOSAVE>
+<TD><TT>12</TT></TD>
+<TD><TT>PAPI_SET_GRANUL</TT></TD>
+<TD> Granularity for an eventset</TD>
+</TR>
+
+<TR NOSAVE>
+<TD><TT>13</TT></TD>
+<TD><TT>PAPI_GET_GRANUL</TT></TD>
+<TD> Granularity for an eventset</TD>
+</TR>
+
+<TR NOSAVE>
+<TD><TT>PAPI_GRN_SYS_CPU</TT></TD>
+<TD><TT>PAPI_GRN_MAX</TT></TD>
+<TD>Maximum value for granularity</TD>
+</TR>
+
+<TR NOSAVE>
+<TD><TT>1</TT></TD>
+<TD><TT>PAPI_PER_CPU</TT></TD>
+<TD>Counts are accumulated on a per cpu basis</TD>
+</TR>
+
+<TR>
+<TD><TT>2</TT></TD>
+<TD><TT>PAPI_PER_NODE</TT></TD>
+<TD>Counts are accumulated on a per node or processor basis</TD>
+</TR>
+
+<TR NOSAVE>
+<TD><TT>3</TT></TD>
+<TD><TT>PAPI_SYSTEM</TT></TD>
+<TD>Counts are accumulated for events occuring in either the user 
+context or the kernel context</TD>
+</TR>
+</table>
+</td></tr> <tr><td>
+<center><H3>Table 7: Granularity Definitions</H3></center>
+</td></tr></table>
+</center>
+<BR>&nbsp;
+<BR>&nbsp;
+<BR>&nbsp;
+<table width=100%><tr>
+<td ><A NAME="threadDefs"></A> &nbsp; </td>
+<td align=right><a href="#TableOfContents">&nbsp;</--Back To Top></a></td>
+</tr></table>
+<CENTER>
+<Table border=0> <tr><td>
+<TABLE BORDER=5 NOSAVE >
+<TR NOSAVE>
+<TD><B>Value</B></TD>
+
+<TD><B>Symbol</B></TD>
+
+<TD NOSAVE><B>Description</B></TD>
+</TR>
+
+<TR>
+<TD><TT>0</TT></TD>
+<TD><TT>PAPI_PER_THR</TT></TD>
+<TD>Counts are accumulated on a per kernel thread basis</TD>
+</TR>
+<TR>
+<TD><TT>1</TT></TD>
+<TD><TT>PAPI_PER_PROC</TT></TD>
+<TD>Counts are accumulated on a per process basis</TD>
+</TR>
+
+<TR NOSAVE>
+<TD><TT>15</TT></TD>
+<TD><TT>PAPI_SET_WAIT</TT></TD>
+<TD> Do we wait for threads/processes to exit before summing their values?</TD>
+</TR>
+<TR NOSAVE>
+<TD><TT>16</TT></TD>
+<TD><TT>PAPI_GET_WAIT</TT></TD>
+<TD>Do we wait for threads/processes to exit before summing their values?</TD>
+</TR>
+<TR NOSAVE>
+<TD><TT>17</TT></TD>
+<TD><TT>PAPI_SET_BIND</TT></TD>
+<TD> Set the function that binds our thread to the CPU it's on</TD>
+</TR>
+<TR NOSAVE>
+<TD><TT>18</TT></TD>
+<TD><TT>PAPI_GET_BIND</TT></TD>
+<TD>Get the function that binds our thread to the CPU it's on</TD>
+</TR>
+<TR NOSAVE>
+<TD><TT>19</TT></TD>
+<TD><TT>PAPI_SET_THRID</TT></TD>
+<TD>Set the function that returns an int of the current thread</TD>
+</TR>
+<TR NOSAVE>
+<TD><TT>20</TT></TD>
+<TD><TT>PAPI_GET_THRID</TT></TD>
+<TD>Get the function that returns an int of the current thread</TD>
+</TR>
+<TR NOSAVE>
+<TD><TT>21</TT></TD>
+<TD><TT>PAPI_GET_CPUS</TT></TD>
+<TD> Return the maximum number of CPU's usable/detected</TD>
+</TR>
+<TR NOSAVE>
+<TD><TT>21</TT></TD>
+<TD><TT>PAPI_SET_CPUS</TT></TD>
+<TD> Set the maximum number of CPU's usable/detected</TD>
+</TR>
+<TR NOSAVE>
+<TD><TT>23</TT></TD>
+<TD><TT>PAPI_GET_THREADS</TT></TD>
+<TD>Return the number of threads usable/detected by PAPI</TD>
+</TR>
+<TR NOSAVE>
+<TD><TT>22</TT></TD>
+<TD><TT>PAPI_SET_THREADS</TT></TD>
+<TD>Set the maximum number of threads usable by PAPI</TD>
+</TR>
+
+</TABLE>
+</td></tr> <tr><td>
+<center><H3>Table 8: Thread Definitions</H3></center>
+</td></tr></table>
+</CENTER>
+<BR>&nbsp;
+<BR>&nbsp;
+<BR>&nbsp;
+<HR SIZE=5 WIDTH="100%">
+
+
+<table width=100%><tr>
+<td > <h3><A NAME="AppendixF"></A>Appendix F: Index of PerfAPI Constants</H3> </td>
+<td align=right><a href="#TableOfContents">&nbsp;</--Back To Top></a></td>
+</tr></table>
+<p>
+<br>The index below contains all of the <b>PerfAPI</b> constants.
+Click on the constant name to go to the table containing the 
+definition for that constant.
+<p>
+For a complete listing of <b>PerfAPI</b> Tables, go to 
+<a href="#AppendixE">Appendix E: PerfAPI Tables</a>.  
+<br>&nbsp;
+<br>&nbsp;
+<p>
+<center>
+<Table border=0> <tr><td>
+<table border=5>
+<tr><td>
+</--001><a href="#generalConstants">PAPI_ACCUMULATING</a>
+</td><td>
+</--027><a href="#generalConstants">PAPI_ERROR</a>
+</td><td>
+</--053><a href="#standardEvtDefs">PAPI_L1_DCM</a>
+</td><td>
+</--079><a href="#generalConstants">PAPI_RUNNING</a>
+</td></tr> 
+
+<tr><td>
+</--002><a href="#standardEvtDefs">PAPI_BRI_MSP</a>
+</td><td>
+</--028><a href="#returnCodes">PAPI_ESBSTR</a>
+</td><td>
+</--054><a href="#standardEvtDefs">PAPI_L1_ICM</a>
+</td><td>
+</--080><a href="#threadDefs">PAPI_SET_BIND</a>
+</td></tr> 
+
+<tr><td>
+</--003><a href="#standardEvtDefs">PAPI_BRI_NTK</a>
+</td><td>
+</--029><a href="#returnCodes">PAPI_ESYS</a>
+</td><td>
+</--055><a href="#standardEvtDefs">PAPI_L2_DCM</a>
+</td><td>
+</--081><a href="#threadDefs">PAPI_SET_CPUS</a>
+</td></tr> 
+
+<tr><td>
+</--004><a href="#standardEvtDefs">PAPI_BRI_TKN</a>
+</td><td>
+</--030><a href="#standardEvtDefs">PAPI_FLOPS</a>
+</td><td>
+</--056><a href="#standardEvtDefs">PAPI_L2_ICM</a>
+</td><td>
+</--082><a href="#DomainDefs">PAPI_SET_DEFDOM</a>
+</td></tr> 
+
+<tr><td>
+</--005><a href="#standardEvtDefs">PAPI_CA_CLN</a>
+</td><td>
+</--031><a href="#standardEvtDefs">PAPI_FP_INS</a>
+</td><td>
+</--057><a href="#standardEvtDefs">PAPI_L3_DCM</a>
+</td><td>
+</--083><a href="#GranularityDefs">PAPI_SET_DEFGRN</a>
+</td></tr> 
+
+<tr><td>
+</--006><a href="#standardEvtDefs">PAPI_CA_INV</a>
+</td><td>
+</--032><a href="#threadDefs">PAPI_GET_BIND</a>
+</td><td>
+</--058><a href="#standardEvtDefs">PAPI_L3_ICM</a>
+</td><td>
+</--084><a href="#DomainDefs">PAPI_SET_DOMAIN</a>
+</td></tr> 
+
+<tr><td>
+</--007><a href="#standardEvtDefs">PAPI_CA_SHR</a>
+</td><td>
+</--033><a href="#threadDefs">PAPI_GET_CPUS</a>
+</td><td>
+</--059><a href="#standardEvtDefs">PAPI_LD_INS</a>
+</td><td>
+</--085><a href="#GranularityDefs">PAPI_SET_GRANUL</a>
+</td></tr> 
+
+<tr><td>
+</--008><a href="#standardEvtDefs">PAPI_CND_INS</a>
+</td><td>
+</--034><a href="#DomainDefs">PAPI_GET_DEFDOM</a>
+</td><td>
+</--060><a href="#generalConstants">PAPI_MAX_ERRMS</a>
+</td><td>
+</--086><a href="#multiplexingConstants">PAPI_SET_MPXRES</a>
+</td></tr> 
+
+<tr><td>
+</--009><a href="#generalConstants">PAPI_DEBUG</a>
+</td><td>
+</--035><a href="#GranularityDefs">PAPI_GET_DEFGRN</a>
+</td><td>
+</--061><a href="#generalConstants">PAPI_MAX_ERROR</a>
+</td><td>
+</--087><a href="#overflowConstants">PAPI_SET_OVRFLO</a>
+</td></tr> 
+
+<tr><td>
+</--010><a href="#multiplexingConstants">PAPI_DEF_MPXRES</a>
+</td><td>
+</--036><a href="#DomainDefs">PAPI_GET_DOMAIN</a>
+</td><td>
+</--062><a href="#generalConstants">PAPI_MAX_EVNTS</a>
+</td><td>
+</--088><a href="#threadDefs">PAPI_SET_THREADS</a>
+</td></tr> 
+
+<tr><td>
+</--011><a href="#DomainDefs">PAPI_DOM_ALL</a>
+</td><td>
+</--037><a href="#GranularityDefs">PAPI_GET_GRANUL</a>
+</td><td>
+</--063><a href="#standardEvtDefs">PAPI_MIPS</a>
+</td><td>
+</--089><a href="#threadDefs">PAPI_SET_THRID</a>
+</td></tr> 
+
+<tr><td>
+</--012><a href="#DomainDefs">PAPI_DOM_DEFAULT</a>
+</td><td>
+</--038><a href="#multiplexingConstants">PAPI_GET_MPXRES</a>
+</td><td>
+</--064><a href="#multiplexingConstants">PAPI_MULTIPLEXING</a>
+</td><td>
+</--090><a href="#threadDefs">PAPI_SET_WAIT</a>
+</td></tr> 
+
+<tr><td>
+</--013><a href="#DomainDefs">PAPI_DOM_HWSPEC</a>
+</td><td>
+</--039><a href="#generalConstants">PAPI_GET_NUMCTRS</a>
+</td><td>
+</--065><a href="#generalConstants">PAPI_NOT_INIT</a>
+</td><td>
+</--091><a href="#standardEvtDefs">PAPI_SR_INS</a>
+</td></tr> 
+
+<tr><td>
+</--014><a href="#DomainDefs">PAPI_DOM_KERNEL</a>
+</td><td>
+</--040><a href="#overflowConstants">PAPI_GET_OVRFLO</a>
+</td><td>
+</--066><a href="#generalConstants">PAPI_NULL</a>
+</td><td>
+</--092><a href="#generalConstants">PAPI_STOPPED</a>
+</td></tr> 
+
+<tr><td>
+</--015><a href="#DomainDefs">PAPI_DOM_MAX</a>
+</td><td>
+</--041><a href="#threadDefs">PAPI_GET_THREADS</a>
+</td><td>
+</--067><a href="#generalConstants">PAPI_NUM_ERRORS</a>
+</td><td>
+</--093><a href="#GranularityDefs">PAPI_SYSTEM</a>
+</td></tr> 
+
+<tr><td>
+</--016><a href="#DomainDefs">PAPI_DOM_MIN</a>
+</td><td>
+</--042><a href="#threadDefs">PAPI_GET_THRID</a>
+</td><td>
+</--068><a href="#returnCodes">PAPI_OK</a>
+</td><td>
+</--094><a href="#standardEvtDefs">PAPI_TLB_DM</a>
+</td></tr> 
+
+<tr><td>
+</--017><a href="#DomainDefs">PAPI_DOM_OTHER</a>
+</td><td>
+</--043><a href="#threadDefs">PAPI_GET_WAIT</a>
+</td><td>
+</--069><a href="#returnCodes">PAPI_OK_MPX</a>
+</td><td>
+</--095><a href="#standardEvtDefs">PAPI_TLB_IM</a>
+</td></tr> 
+
+<tr><td>
+</--018><a href="#DomainDefs">PAPI_DOM_USER</a>
+</td><td>
+</--044><a href="#GranularityDefs">PAPI_GRN_MIN</a>
+</td><td>
+</--070><a href="#overflowConstants">PAPI_ONESHOT</a>
+</td><td>
+</--096><a href="#standardEvtDefs">PAPI_TOT_CYC</a>
+</td></tr> 
+
+<tr><td>
+</--019><a href="#returnCodes">PAPI_EBUG</a>
+</td><td>
+</--045><a href="#GranularityDefs">PAPI_GRN_MAX</a>
+</td><td>
+</--071><a href="#overflowConstants">PAPI_OVERFLOWING</a>
+</td><td>
+</--097><a href="#standardEvtDefs">PAPI_TLB_SD</a>
+</td></tr> 
+
+<tr><td>
+</--020><a href="#returnCodes">PAPI_ECLOST</a>
+</td><td>
+</--046><a href="#GranularityDefs">PAPI_GRN_PROC</a>
+</td><td>
+</--072><a href="#generalConstants">PAPI_PAUSED</a>
+</td><td>
+</--098><a href="#standardEvtDefs">PAPI_TOT_INS</a>
+</td></tr> 
+
+<tr><td>
+</--021><a href="#returnCodes">PAPI_ECNFLCT</a>
+</td><td>
+</--047><a href="#GranularityDefs">PAPI_GRN_PROCG</a>
+</td><td>
+</--073><a href="#GranularityDefs">PAPI_PER_CPU</a>
+</td><td>
+</--099><a href="#standardEvtDefs">PAPI_VEC_INS</a>
+</td></tr> 
+
+<tr><td>
+</--022><a href="#returnCodes">PAPI_EINVAL</a>
+</td><td>
+</--048><a href="#GranularityDefs">PAPI_GRN_SYS</a>
+</td><td>
+</--074><a href="#GranularityDefs">PAPI_PER_NODE</a>
+</td><td>
+</--100><a href="#generalConstants">PAPI_VERB_ECONT</a> 
+</td></tr> 
+
+<tr><td>
+</--023><a href="#returnCodes">PAPI_EMISC</a>
+</td><td>
+</--049><a href="#GranularityDefs">PAPI_GRN_SYS_CPU</a>
+</td><td>
+</--075><a href="#threadDefs">PAPI_PER_PROC</a>
+</td><td>
+</--101><a href="#generalConstants">PAPI_VERB_ESTOP</a>
+</td></tr> 
+
+<tr><td>
+</--024><a href="#returnCodes">PAPI_ENOMEM</a>
+</td><td>
+</--050><a href="#GranularityDefs">PAPI_GRN_THR</a>
+</td><td>
+</--076><a href="#threadDefs">PAPI_PER_THR</a>
+</td><td>
+</102>&nbsp;
+</td></tr> 
+
+<tr><td>
+</--025><a href="#returnCodes">PAPI_ENOEVNT</a>
+</td><td>
+</--051><a href="#generalConstants">PAPI_INIT_SLOTS</a>
+</td><td>
+</--077><a href="#generalConstants">PAPI_QUIET</a>
+</td><td>
+</--103>&nbsp;
+</td></tr> 
+
+<tr><td>
+</--026><a href="#returnCodes">PAPI_ENOTRUN</a>
+</td><td>
+</--052><a href="#standardEvtDefs">PAPI_INT_INS</a>
+</td><td>
+</--078><a href="#overflowConstants">PAPI_RANDOMIZE</a>
+</td><td>
+</--104>&nbsp;
+</td></tr> 
+</table>
+</td></tr> <tr><td>
+<center><h3>Index of PerfAPI Constants</h3></center>
+</td></tr></table>
+</center>
+<table width=100%><tr>
+<td > &nbsp; </td>
+<td align=right><a href="#TableOfContents">&nbsp;</--Back To Top></a></td>
+</tr></table>
+
+
+<P>&nbsp;
+<P>&nbsp;
+<P>&nbsp;
+<HR SIZE=5 WIDTH="100%">
+<P><SCRIPT LANGUAGE="JavaScript">
+<!--
+        document.write("Last modified " + document.lastModified);
+// -->
+</SCRIPT>
+
+</BODY>
+</HTML>
+<TR NOSAVE>
+<TD><TT></TT></TD>
+<TD><TT></TT></TD>
+<TD></TD>
+</TR>

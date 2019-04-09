@@ -1,0 +1,301 @@
+#! /bin/csh -f
+
+#  Test a student's program or subprogram,
+#  printing only what we want.
+#  The TEACHER must supply, to test file X in Lab Y,
+#  a subdirectory  labY/X containing
+#    filenames:
+#      how many test cases exist;
+#      how many times it is OK to run tester on this file;
+#      names of files needed.
+#    tester_counters:
+#      publically writeable directory with how many times
+#      each student has run tester on this file.
+#    in_1, in_2, ...:    files of input.
+#    out_1, out_2, ...:  files of output.
+#    TEACHER_...: programs supplied by the teacher.
+#    diff_options:  options to use with  diff
+
+#  Written by Andrew Pearson.
+#  Adapted by David Mutchler.
+#  User-friendlyness & ^C stuff added: Howard Bampton
+
+set TESTER_DIR = ~cs102/tester    # Where everything lives.
+onintr -   # Turn off Control-C so they can't cheat as easily
+
+
+#  ----------------------------------------------------------------
+#  STEP 1: Set up a good working environment, ready for run-test.
+#  ----------------------------------------------------------------
+
+set nonomatch
+unset noclobber
+unalias rm
+
+set CPU_LIMIT = 01:00    # 1 minute
+set DISK_LIMIT = 2k    # 2 kilobytes
+alias RUN ~cs102/tester/run-test $CPU_LIMIT $DISK_LIMIT '\!\!:1*:p'
+
+
+#  ----------------------------------------------------------------
+#  STEP 2: CHECK FOR VALID USAGE.
+#  ----------------------------------------------------------------
+
+#  The name of the current directory tells which lab is involved.
+#  Students must be in   ~/lab*.
+#  TAs are in ~/cs102/mylabs/lab*.
+
+set labname  = $cwd:t
+set username = $cwd:h
+set username = $username:t
+if ! (($username == $user || $username == mylabs) && $labname =~ lab*) then
+  echo ""
+  echo "You are not using the tester correctly."
+  echo "You must run tester from within one of your LAB directories,"
+  echo "for example, within lab2 or lab5."
+  echo "Check that you are in the directory you intend."
+  echo "Ask a TA for help if you are confused."
+  echo ""
+  goto exit_label
+endif
+set LAB        = $cwd:t
+
+#  Argument 1 = which file to test.
+#  Make sure they gave an argument, and a valid one.
+
+set WHICH_FILE = $1
+set TEACHER_DIR = $TESTER_DIR/$LAB/$WHICH_FILE
+
+if ($#argv != 1) then
+  echo ""
+  echo "You are not using the tester correctly."
+  echo "Type     tester BLAH     where you replace BLAH"
+  echo "by the filename you want to test."
+  echo "Ask a TA for help if you are confused."
+  echo ""
+  goto exit_label
+endif
+
+if ! ( -w $TEACHER_DIR/tester_counters ) then
+  echo "**** There is a file protection problem."
+  echo "**** Please ask your TA to fix this."
+  exit 1
+endif
+
+
+if ! (-e $TEACHER_DIR && -d $TEACHER_DIR) then
+  echo ""
+  echo "You are not using the tester correctly."
+  echo "You cannot test file $1."
+  echo "Perhaps you are not in the directory you intend?"
+  echo "Or perhaps you named the file wrong?"
+  echo "Or perhaps you misspelled the file?"
+  echo "Ask a TA for help if you are confused."
+  echo ""
+  goto exit_label
+endif
+
+#  ----------------------------------------------------------------
+#  STEP 3: MOVE TO THE TESTING DIRECTORY.
+#  ----------------------------------------------------------------
+
+#  Testing is done in subdirectory  test_tmp
+#  of the student's current dir.  Get there now.
+
+set TEST_DIR    = test_tmp
+if (-e $TEST_DIR) then
+  /bin/rm -f $TEST_DIR/*
+else
+  mkdir $TEST_DIR
+endif
+
+cd $TEST_DIR
+
+#  ----------------------------------------------------------------
+#  STEP 4: GET THE RELEVANT FILES.
+#  ----------------------------------------------------------------
+
+#  Get the names of the files to be used.
+
+set FILES = (`cat $TEACHER_DIR/filenames`)
+set TESTCASES    = $FILES[1]
+set TESTER_LIMIT = $FILES[2]
+shift FILES
+shift FILES
+
+#  Check to see that tester has been configured with a non-zero number
+#  of allowable runs (TESTER_LIMIT=0 -> set up for TA's or grading software
+#  only!)
+
+if ( $TESTER_LIMIT == 0 ) then
+  echo ""
+  echo "You may not use tester to test $WHICH_FILE."
+  echo "Please re-read your lab."
+  echo ""
+  goto exit_label
+endif
+
+#  Check that the student has the required files.
+
+foreach file ($FILES)
+  if (($file !~ TEACHER_*) && (! -e ../$file)) then
+    echo ""
+    echo -n "One file you need for running tester $WHICH_FILE"
+    echo    "   is $file."
+    echo "There is no file by that name in the current directory."
+    echo "Perhaps you gave me the wrong file name?"
+    echo "Or perhaps you have named a file incorrectly?"
+    echo "Or perhaps you are in the wrong directory?"
+    echo "Ask a TA for help if you are confused."
+    echo ""
+    goto exit_label
+  endif
+end
+
+#  Copy the relevant files to the temporary directory.
+
+foreach file ($FILES)
+  if ($file =~ TEACHER_*) then
+    /bin/cp  $TEACHER_DIR/$file  .
+  else
+    /bin/cp  ../$file  .
+  endif
+end
+
+#  ----------------------------------------------------------------
+#  STEP 5:  LIMIT THE NUMBER OF TESTS A STUDENT CAN RUN.
+#  ----------------------------------------------------------------
+
+set COUNT_FILE = $TEACHER_DIR/tester_counters/$user
+if (-e $TEACHER_DIR/tester_counters/$user) then
+  set count = `cat $COUNT_FILE`
+else
+  set count = 0
+endif
+
+@ count ++
+@ TRYS_LEFT = $TESTER_LIMIT - $count
+if ($TRYS_LEFT < 0) then
+  echo ""
+  echo "I am sorry.  I do not think it is productive for you"
+  echo "to continue using tester on file $WHICH_FILE in $LAB."
+  echo "Look closely at your program, and if you do not understand it,"
+  echo "GET HELP FROM A TA\!  Good luck\!"
+  echo ""
+  goto exit_label
+else
+  echo ""
+  echo -n "You have used tester $count times on file $WHICH_FILE"
+  echo    " in $LAB."
+  echo "You may use it at most $TRYS_LEFT more times after this one."
+  echo ""
+  echo "Do NOT use this tester unless you UNDERSTAND your program."
+  echo ""
+  echo "If you do not understand your program, get help"
+  echo "from a TA (during lab) or anyone (outside of lab)."
+  echo "Remember -- YOUR goal here is to LEARN Pascal,"
+  echo "not just to get your program working."
+  echo ""
+endif
+
+echo $count >! $COUNT_FILE
+
+#  ----------------------------------------------------------------
+#  STEP 6:  COMPILE THE MAIN PROGRAM (FIRST FILE NAMED).
+#  ----------------------------------------------------------------
+
+echo "I am compiling your file now..."
+
+# uncomment out this line and comment out two lines following for nasty version
+#if (`pc $FILES[2] | wc -l` != 0) then
+
+pc $FILES[1]  > /tmp/$$
+if (`cat /tmp/$$ | wc -l` != 0) then
+  echo ""
+  echo "I get compiler errors when I tried to compile."
+  echo "Something is wrong with your program"
+  echo "(or maybe its interface with the main program)."
+  echo "Look it over and find the problem."
+  echo "Compare your program against a similar program."
+  echo "Ask a TA for help if you are confused."
+  echo ""
+  sleep 2
+  echo "Your errors, as reported by the compiler were:"
+  echo ""
+  cat /tmp/$$
+  rm /tmp/$$
+  goto exit_label
+endif
+
+#  ----------------------------------------------------------------
+#  STEP 7:  RUN THROUGH THE TESTS.  STOP AS SOON AS ONE FAILS.
+#  ----------------------------------------------------------------
+
+@ tindex  = 1    # start with the first test case.
+
+while ($tindex <= ${TESTCASES})
+
+  echo "I am running test case $tindex now..."
+  # files for the input, correct output, and actual output.
+  set input   = $TEACHER_DIR/in_$tindex
+  set output  = $TEACHER_DIR/out_$tindex
+  set outfile =              out_$tindex
+
+  # run the program, trapping loops and large files
+  RUN a.out $input >& $outfile
+
+  if ($status == 152) then
+    echo ""
+    echo "Your program ran for a long time."
+    echo "Perhaps it is in an infinite loop?"
+    echo "Very likely, something is wrong with your program."
+    echo "Look it over and find the problem."
+    echo "Ask a TA for help if you are confused."
+    echo ""
+    goto exit_label
+  else if ($status == 153) then
+    echo ""
+    echo "Your program created a larger-than-expected output."
+    echo "Perhaps it is in an infinite loop?"
+    echo "Very likely, something is wrong with your program."
+    echo "Look it over and find the problem."
+    echo "Ask a TA for help if you are confused."
+    echo ""
+    goto exit_label
+  endif
+
+  # check the output
+  set DIFF_OPTIONS = `cat $TEACHER_DIR/diff_options`
+  diff  $DIFF_OPTIONS  $outfile  $output > /dev/null
+  if ($status != 0) then
+    echo ""
+    echo "Your program compiled OK, but produced wrong"
+    echo "output on my test case #$tindex."
+    echo "Look it over and find the problem."
+    echo "Ask a TA for help if you are confused."
+    echo ""
+    goto exit_label
+  endif
+
+  # on to the next test case
+  @ tindex++
+end
+
+echo ""
+echo "Your program compiled OK and gave correct output"
+echo "on the few test cases I ran."
+echo "Of course, this does NOT mean your program is"
+echo "definitely correct.  Only YOU can make that determination."
+echo "Why don't you look it over one more time?"
+echo ""
+
+#  Exits from the script pass through here.
+#  Return to the original directory and remove all traces.
+
+exit_label:
+
+if ($?TEST_DIR) then
+  cd ..
+  /bin/rm -f -r $TEST_DIR
+  /bin/rm -f /tmp/$$
+endif

@@ -1,0 +1,167 @@
+#!/usr/bin/perl
+
+# This is my library of extremely useful routines
+
+
+sub parse_and_name {
+
+	if ($ENV{'CONTENT_LENGTH'} > 0) {    
+		# read POST data from STDIN
+		read STDIN, $temp, $ENV{'CONTENT_LENGTH'};    
+		# add in the GET data:
+		$temp.="&".$ENV{'QUERY_STRING'} if length $ENV{'QUERY_STRING'};
+
+	} else {
+
+		# read only the GET data
+		$temp=$ENV{'QUERY_STRING'};
+	}
+
+	# separate each keyword
+
+	$count=0;
+
+	foreach ( split( /&/, $temp ) ) {
+		# separate the keys and values
+		( $key, $val ) = split( /=/, $_, 2 );
+    
+		
+		# translate + to spaces    
+		$key=~s/\+/ /g;    
+		$val=~s/\+/ /g;
+		
+
+		# translate %xx codes to characters
+		$key=~s/%([0-9a-f]{2})/pack("c",hex($1))/gie;
+		$val=~s/%([0-9a-f]{2})/pack("c",hex($1))/gie;
+
+		# name variables by keys with values
+		${$key}=$val;
+		$ALL_NAMES[$count]=$key;
+		$count++;
+	}
+
+}
+
+
+
+##############################################################################
+
+
+sub x_www_form_urlencode {
+
+        if ($_[0]){
+        @ARR=@_;
+                foreach $i (0..$#ARR){
+
+                        $ARR[$i]=~s/([^a-z0-9-$&@.*_ ])/'%'.unpack("H*",$1)/gie;
+                        $ARR[$i]=~s/ /'+'/gie;
+
+                }
+        return(@ARR);
+        }
+        #exit;
+
+
+        foreach $i (0..$#ALL_NAMES){
+                ${$ALL_NAMES[$i]}=~s/([^a-z0-9-$&@.*_ ])/'%'.unpack("H*",$1)/gie;
+                ${$ALL_NAMES[$i]}=~s/ /'+'/gie;
+
+        }
+
+}
+
+
+##############################################################################
+
+
+sub hidden_form_encode {
+
+        if ($_[0]){
+        	
+		@ARR=@_;
+
+              	foreach $i (0..$#ARR){
+			$ARR[$i]=~s/\x27/'&#0039'/gie;
+       			$ARR[$i]=~s/\x22/'&#0034'/gie;
+               	}
+
+ 	return(@ARR);
+
+	} else {
+
+        	foreach $i (0..$#ALL_NAMES){
+               		${$ALL_NAMES[$i]}=~s/\x27/'&#0039'/gie;
+               		${$ALL_NAMES[$i]}=~s/\x22/'&#0034'/gie;
+       		}
+	}
+}
+
+
+
+##############################################################################
+
+sub javascript_encode{
+
+	foreach $i (0..$#ALL_NAMES){
+
+		${$ALL_NAMES[$i]}=~s/\x27/"\\'"/gie;
+	        ${$ALL_NAMES[$i]}=~s/\x22/'\\"'/gie;
+		${$ALL_NAMES[$i]}=~s/\r/'\\n'/gie;
+		${$ALL_NAMES[$i]}=~s/\n/''/gie;
+	}
+
+}
+
+
+##############################################################################
+
+
+sub decode_all {
+
+	if ($_[0]){
+
+                @ARR=@_;
+
+                foreach $i (0..$#ARR){
+                        $ARR[$i]=~s/'&#0039'/"'"/gie;
+                        $ARR[$i]=~s/'&#0034'/'"'/gie;
+			$ARR[$i]=~s/"\\'"/"'"/gie;
+                	$ARR[$i]=~s/'\\"'/'"'/gie;
+			$ARR[$i]=~s/'\\\\'/'\\'/gie;
+                }
+
+        return(@ARR);
+
+        } else {
+
+		foreach $i (0..$#ALL_NAMES){
+			${$ALL_NAMES[$i]}=~s/"\\'"/"'"/gie;
+                	${$ALL_NAMES[$i]}=~s/'\\"'/'"'/gie;
+			${$ALL_NAMES[$i]}=~s/'&#0039'/"'"/gie;
+                        ${$ALL_NAMES[$i]}=~s/'&#0034'/'"'/gie;
+                	${$ALL_NAMES[$i]}=~s/'\\\\'/'\\'/gie;
+#                	${$ALL_NAMES[$i]}=~s/'\\\-'/'\-'/gie;
+
+		}
+	}
+}
+
+
+##############################################################################
+
+
+
+sub mysql_encode {
+
+	foreach $i (0..$#ALL_NAMES){
+		${$ALL_NAMES[$i]}=~s/\x5c/'\\\\'/gie;
+		${$ALL_NAMES[$i]}=~s/\x27/"\\'"/gie;
+		${$ALL_NAMES[$i]}=~s/\x22/'\\"'/gie;
+#		${$ALL_NAMES[$i]}=~s/'\-'/'\\\-'/gie;
+
+	}
+
+}
+
+1;

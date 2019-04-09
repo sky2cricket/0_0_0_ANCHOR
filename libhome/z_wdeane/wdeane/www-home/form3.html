@@ -1,0 +1,42 @@
+<HTML>
+<HEAD>
+<TITLE>
+HTML FORM FOR EMAIL SUBMISSION
+</TITLE>
+</HEAD>
+
+<BODY>
+<H1>
+FORM USING E-MAIL SUBMISSION
+</H1>
+
+<H3>
+<P>
+<HR SIZE=10>
+<P>
+
+<FORM METHOD="POST" ACTION="http://www.cs.utk.edu/~bdeane/cgi-bin/formmail.cgi">
+
+<INPUT TYPE=HIDDEN NAME="recipient" VALUE="bdeane@cs.utk.edu">
+
+<PRE>
+Name:           <INPUT NAME="realname" TYPE="TEXT" SIZE="20" MAXLENGTH="30">
+<BR>
+E-mail address: <INPUT NAME="email" TYPE="TEXT" SIZE="20" MAXLENGTH="30">
+<BR>
+Subject:        <INPUT NAME="subject TYPE="TEXT" SIZE="20" MAXLENGTH="30">
+<BR>
+message:
+<TEXTAREA NAME="comments" ROWS="6" COLS="50">
+</TEXTAREA>
+</PRE>
+
+<INPUT TYPE="SUBMIT" VALUE="Send email">
+<INPUT TYPE="RESET">
+<P>
+(Use view document source to see HTML source code)
+</H3>
+</FORM>
+</BODY>
+</HTML>
+

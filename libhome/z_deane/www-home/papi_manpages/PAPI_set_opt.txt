@@ -1,0 +1,124 @@
+PAPI_set_opt            PerfAPI LIBRARY              PAPI_set_opt
+
+
+
+NAME
+     PAPI_set_opt - set option for multiplexing, debug, or  over-
+     flow
+
+SYNOPSIS
+     int PAPI_set_opt (int option, PAPI_option_t *ptr)
+
+     int option -- integer code  for  multiplexing  or  debug  or
+     overflow
+
+     PAPI_option_t *ptr -- ptr to arguments for different options
+
+DESCRIPTION
+     PAPI_set_opt()
+
+     This funtion sets specific options of the  PerfAPI  Library,
+     its  substrate,  or  specific  EventSets.  The PAPI_option_t
+     structure represents a union of all the structures that  can
+     be  arguments  to the different options.  In addition, there
+     may exist machine  specific  options  so  please  check  the
+     header  file for documentation.  This function has a C bind-
+     ing only.
+
+     The reader is urged to carefully read the PerfAPI Draft  for
+     a complete discussion of PAPI_set_opt.  The file papi.h con-
+     tains  definitions  for  the  structures  unioned   in   the
+     PAPI_option_t structure.
+
+     The return value is an integer that  indicates  whether  the
+     call succeeded (PAPI_OK) or failed (not PAPI_OK).
+
+DEFINITION OF CONSTANTS
+     PAPI_SET_DOMAIN     Domain for a single EventSet
+     PAPI_SET_DEFDOM     Domain for all new EventsSets
+     PAPI_SET_GRANU      Granularity for an EventSet
+     PAPI_SET_DEFGRN     Granularity for all new EventSets
+     PAPI_SET_INHERIT    Set inherit for child threads
+     PAPI_SET_MPXRES     Enable, set resolution of mpx
+     PAPI_SET_DEBUG      Turn on debugging for PerfAPI
+     PAPI_SET_OVERFLO    Turn on overflow reporting
+
+CROSS-REFERENCE WITH OTHER PerfAPI FUNCTIONS
+
+     PAPI_set_opt may be called by:
+
+          the user application program
+          PAPI_set_granularity
+          PAPI_set_domain
+
+     PAPI_set_opt contains calls to:
+
+          lookup_EventSet
+
+
+
+PAPI Release 0.99   Last change: 28 July 1999                   1
+
+
+PAPI_set_opt            PerfAPI LIBRARY              PAPI_set_opt
+
+
+
+          handle_error
+          _papi_hwd_cntl ( a substrate function )
+
+SEE ALSO
+     The PerfAPI Draft:
+          http://icl.cs.utk.edu/projects/papi/api/
+
+BUGS
+     This function has no known bugs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PAPI Release 0.99   Last change: 28 July 1999                   2
+
+

@@ -1,0 +1,175 @@
+<html>
+<title>ipv6/BGP/attribute_list.html</title>
+<body bgcolor="ffffff" text="000000">
+<hr>
+This information lifted in part from 
+<a href="http://www.globecom.net/(nobg,sv)/ietf/rfc/rfc2042.shtml">RFC2042.</a>
+<hr>
+<h1>
+BGP Attribute List
+</h1>
+<hr>
+This file is at http://www.cs.utk.edu/~deane/ipv6/BGP/attribute_list.html
+<hr>
+   Currently in use attribute type codes are listed below:
+<p>
+<table border=3>
+<tr>
+<td> Value </td>
+<td> Mandatory? </td>
+<td> Code  </td>
+<td> Meaning </td>
+<td> Reference </td>
+</tr>
+<tr>
+<td> 1 </td>
+<td> YES </td> 
+<td> ORIGIN </td>
+<td> Identifies the AS that originated the associated routing information. </td>
+<td> <a href="http://www.globecom.net/(nobg,sv)/ietf/rfc/rfc1771.shtml">[1]</a></td>
+</tr>
+<tr>
+<td> 2 </td>
+<td> YES </td> 
+<td> AS_PATH </td>
+<td> Identifies the ASs through which routing information carried
+     in this UPDATE has passed. </td>
+<td> <a href="http://www.globecom.net/(nobg,sv)/ietf/rfc/rfc1771.shtml">[1]</a></td>
+</tr>
+<tr>
+<td> 3 </td>
+<td> NO </td> 
+<td> NEXT_HOP </td>
+<td> Defines the IP address of the border router that should be used as the
+     next hop to the destinations listed in the UPDATE message. </td>
+<td> <a href="http://www.globecom.net/(nobg,sv)/ietf/rfc/rfc1771.shtml">[1]</a></td>
+</tr>
+<tr>
+<td> 4 </td>
+<td> NO </td> 
+<td> MULTI_EXIT_DISC </td>
+<td> Used on external (inter-AS) links to discriminate among multiple exit or entry
+     points to the same neighboring AS.</td>
+<td> <a href="http://www.globecom.net/(nobg,sv)/ietf/rfc/rfc1771.shtml">[1]</a></td>
+</tr>
+<tr>
+<td> 5 </td>
+<td> NO </td> 
+<td> LOCAL_PREF </td>
+<td> Included in all UPDATE messages that a given BGP speaker sends to the
+     other BGP speakers located in its own AS to help in the Decision Process. </td>
+<td> <a href="http://www.globecom.net/(nobg,sv)/ietf/rfc/rfc1771.shtml">[1]</a></td>
+</tr>
+<tr>
+<td> 6 </td>
+<td> NO </td> 
+<td> ATOMIC_AGGREGATE </td>
+<td> Used to help sort out overlapping routes when there is a question about
+     choosing a more specific versus a less specific route. </td>
+
+<td> <a href="http://www.globecom.net/(nobg,sv)/ietf/rfc/rfc1771.shtml">[1]</a></td>
+</tr>
+<tr>
+<td> 7 </td>
+<td> NO </td> 
+<td> AGGREGATOR </td>
+<td> An optional transitive attribute which may be included in UPDATES which are
+     formed by aggregation. </td>
+<td> <a href="http://www.globecom.net/(nobg,sv)/ietf/rfc/rfc1771.shtml">[1]</a></td>
+</tr>
+<tr>
+<td> 8 </td>
+<td> NO </td> 
+<td> COMMUNITY </td>
+<td> An optional transitive attribute which may be used to control which routing
+     information is accepted, prefered, or distributedto other neighbors. </td>
+<td> <a href="http://www.globecom.net/(nobg,sv)/ietf/rfc/rfc1997.shtml">[2]</a></td>
+</tr>
+<tr>
+<td> 9 </td>
+<td> NO </td> 
+<td> ORIGINATOR_ID </td>
+<td> Non-transitive attribute created by a route reflector that carries the
+     ROUTER_ID of the originator of the route in the local AS. </td>
+<td> <a href="http://www.globecom.net/(nobg,sv)/ietf/rfc/rfc1998.shtml">[3]</a>
+<br> <a href="http://www.globecom.net/(nobg,sv)/ietf/rfc/rfc1966.shtml">[3a]</a>
+</td>
+</tr>
+<tr>
+<td> 10 </td>
+<td> NO </td> 
+<td> CLUSTER_LIST </td>
+<td> Non-transitive attribute containing a sequence of CLUSTER_ID vlaues representing
+     the reflection path that the route has passed.  </td>
+<td> <a href="http://www.globecom.net/(nobg,sv)/ietf/rfc/rfc1998.shtml">[3]</a>
+<br> <a href="http://www.globecom.net/(nobg,sv)/ietf/rfc/rfc1966.shtml">[3a]</a>
+</td>
+</tr>
+<tr>
+<td> 11 </td>
+<td> NO </td> 
+<td> DPA </td>
+<td> Destination Preference Attribute. (This is from a work in progress.) </td>
+<td> [4] </td>
+</tr>
+<tr>
+<td> 12 </td>
+<td> NO </td> 
+<td> ADVERTISER </td>
+<td> Non-transitive attribute that defines the identifying address of the border router
+     which originally submitted the route to a router server in order for it to be
+     relayed to other Route Server Clients.  </td>
+<td> <a href="http://www.globecom.net/(nobg,sv)/ietf/rfc/rfc1863.shtml">[5]</a></td>
+</tr>
+<tr>
+<td> 13 </td>
+<td> NO </td> 
+<td> RCID_PATH </td>
+<td> Non-transitive attribute that is composed of a sequence of RS Cluster Identifiers (RCID)
+     that identifies each RS Cluster through which routing information carried in the
+     UPDATE message has passed. </td>
+<td> <a href="http://www.globecom.net/(nobg,sv)/ietf/rfc/rfc1863.shtml"> [5]</a></td>
+</tr>
+<tr>
+<td> ...255 </td>
+<td> ... </td> 
+<td> (reserved) </td>
+<td> reserved for future attributes </td>
+<td> ... </td>
+</tr>
+</table>
+<p>
+References:
+<p>
+
+   [1] Rekhter, Y., and Li, T., "A Border Gateway Protocol 4 (BGP-4)",
+       <a href="http://www.globecom.net/(nobg,sv)/ietf/rfc/rfc1771.shtml">
+       RFC 1771, March 1995.</a>
+<p>
+
+   [2] Chandra, R., Traina, P., and T. Li, "BGP Communities
+       Attribute", 
+       <a href="http://www.globecom.net/(nobg,sv)/ietf/rfc/rfc1997.shtml">
+       RFC 1997, August 1996.</a>
+<p>
+
+   [3] Bates, T., Chandra, R, "BGP Route Reflection An alternative
+       to full mesh IBGP", 
+       <a href="http://www.globecom.net/(nobg,sv)/ietf/rfc/rfc1998.shtml">
+       RFC 1998, June 1996.</a>
+       <p> 
+   [3a] Also See:
+       <a href="http://www.globecom.net/(nobg,sv)/ietf/rfc/rfc1966.shtml">
+       RFC 1966, June 1996.</a>
+<p>
+
+   [4] Chen, E., Bates, T., "Destination Preference Attribute for BGP",
+       Work in progress, March 1996.
+<p>
+
+   [5] Haskin, D., "A BGP/IDRP Route Server alternative to a full mesh
+       Routing", 
+       <a href="http://www.globecom.net/(nobg,sv)/ietf/rfc/rfc1863.shtml">
+        RFC 1863, October 1995.</a>
+
+</html>

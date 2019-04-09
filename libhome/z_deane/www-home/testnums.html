@@ -1,0 +1,128 @@
+
+
+<html>
+<head>
+<title>work.html</title>
+<script language="Javascript">
+
+function makeNum0() {
+
+var n = new String(document.forms[0].eAmt0.value);
+
+var comma = ",";
+var empty = "";
+
+var regComma  = new RegExp(comma,  "g");
+
+
+document.forms[0].nAmt0.value = n.replace(regComma,empty);
+
+}
+
+function makeNum1() {
+
+var n = new String(document.forms[0].eAmt1.value);
+
+
+var dollar = "\\$";
+var empty  = "";
+
+var regDollar = new RegExp(dollar, "g");
+
+
+document.forms[0].nAmt1.value = n.replace(regDollar,empty);
+
+}
+
+function makeNum2() {
+
+var n = new String(document.forms[0].eAmt2.value);
+
+var comma = ",";
+var dollar = "\\$";
+var both   = "\\$,";
+var regComma  = new RegExp(comma,  "g");
+var regDollar = new RegExp(dollar, "g");
+var regBoth   = new RegExp(both,   "g");//does not work
+
+
+//n=n.replace(regComma,"");
+
+
+//document.forms[0].nAmt2.value = n.replace(regDollar,"");
+//document.forms[0].nAmt2.value =n.substr(1).replace(regComma,"");
+
+document.forms[0].nAmt2.value = n.replace(regComma,"").replace(regDollar,"");
+
+}
+
+</script>
+
+
+
+</head>
+<body bgcolor="ffffff" text="000000"
+ alink="a00000" vlink="000099" link="a000a0">
+
+<!---
+
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+
+<td><font size="2">
+<b>Cricket's work page -- <a style="text-decoration: none;color: #000000" href="default.html">Cricket's homepage</a>
+  -- 
+<a style="text-decoration: none;color: #000000"
+href="http://dev.marketlinx.net/users/Cricket/helpDocs/helpCloset.html">Cricket's Help Notes</a>
+  -- 
+<a style="text-decoration: none;color: #000000"
+target="docsWindow"
+href="C:\inetpub\wwwroot\deane\">docs</a>  
+-- 
+<a style="text-decoration: none;color: #000000"
+target="hdocsWindow"
+href="C:\inetpub\wwwroot\deane\hdocs\">hdocs</a>
+  -- 
+<a style="text-decoration: none;color: #000000"
+target="sdocsWindow"
+href="C:\inetpub\wwwroot\deane\sdocs\">sdocs</a>
+--
+<a style="text-decoration: none;color: #000000"
+href="http://dev.marketlinx.net/Users/Cricket/">Cricket cafe</a>
+</td></tr>
+</table>
+----------->
+<p>
+
+<form name="f1" method="post">
+<table border="1" cellpadding="5" cellspacing="0">
+<tr><td>
+<b>Replace Comma</b><br>
+Enter amount here: &nbsp;&nbsp;
+<input type="text" name="eAmt0" value="" size=12 onchange="makeNum0()">
+&nbsp;&nbsp;&nbsp;
+Number amount here: 
+<input type="text" name="nAmt0" value="" size=12>
+</td></tr>
+
+<tr><td>
+<b>Replace Dollar</b><br>
+Enter amount here: &nbsp;&nbsp;
+<input type="text" name="eAmt1" value="" size=12 onchange="makeNum1()">
+&nbsp;&nbsp;&nbsp;
+Number amount here: 
+<input type="text" name="nAmt1" value="" size=12>
+</td></tr>
+
+<tr><td>
+<b>Replace Both</b><br>
+Enter amount here: &nbsp;&nbsp;
+<input type="text" name="eAmt2" value="" size=12 onchange="makeNum2()">
+&nbsp;&nbsp;&nbsp;
+Number amount here: 
+<input type="text" name="nAmt2" value="" size=12>
+</td></tr></table>
+</form>
+<p>
+<!---run icq-->
+</body></htmL>

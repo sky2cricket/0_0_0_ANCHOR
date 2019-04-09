@@ -1,0 +1,62 @@
+PAPI_save               PerfAPI LIBRARY                 PAPI_save
+
+
+
+NAME
+     PAPI_save - save the state of PAPI and hardware counters
+
+SYNOPSIS
+     int PAPI_save (void)
+
+DESCRIPTION
+     PAPI_save() PAPI_save and  PAPI_restore  are  for  use  with
+     external  libraries  that wish to preserve the state of PAPI
+     and the hardware counters. For instance a  C++  instrumenta-
+     tion  library  will  probably  want to call PAPI_save() upon
+     entry to it's functions and PAPI_restore() upon exit.
+
+     These function calls map to whatever is the  most  efficient
+     on the underlying platform for saving and restoring.
+
+     The return value is an integer that  indicates  whether  the
+     call succeeded (PAPI_OK) or failed (not PAPI_OK).
+
+CROSS-REFERENCE WITH OTHER PerfAPI FUNCTIONS
+
+     PAPI_save may be called by:
+
+          the user application program
+
+     PAPI_save contains calls to:
+
+          ( this code in development )
+
+SEE ALSO
+     The PerfAPI Draft:
+          http://icl.cs.utk.edu/projects/papi/api/
+
+BUGS
+     This function has no known bugs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PAPI Release 0.99   Last change: 28 July 1999                   1
+
+

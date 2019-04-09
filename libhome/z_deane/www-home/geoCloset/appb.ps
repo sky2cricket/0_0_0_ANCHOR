@@ -1,0 +1,5188 @@
+%!PS-Adobe-3.0
+%%BoundingBox: (atend)
+%%Pages: (atend)
+%%PageOrder: (atend)
+%%DocumentFonts: (atend)
+%%Creator: Frame 4.0
+%%DocumentData: Clean7Bit
+%%EndComments
+%%BeginProlog
+%
+% Frame ps_prolog 4.0, for use with Frame 4.0 products
+% This ps_prolog file is Copyright (c) 1986-1993 Frame Technology
+% Corporation.  All rights reserved.  This ps_prolog file may be
+% freely copied and distributed in conjunction with documents created
+% using FrameMaker, FrameBuilder and FrameViewer as long as this 
+% copyright notice is preserved.
+%
+% Frame products normally print colors as their true color on a color printer
+% or as shades of gray, based on luminance, on a black-and white printer. The
+% following flag, if set to True, forces all non-white colors to print as pure
+% black. This has no effect on bitmap images.
+/FMPrintAllColorsAsBlack             false def
+%
+% Frame products can either set their own line screens or use a printer's 
+% default settings. Three flags below control this separately for no 
+% separations, spot separations and process separations. If a flag
+% is true, then the default printer settings will not be changed. If it is
+% false, Frame products will use their own settings from a table based on
+% the printer's resolution.
+/FMUseDefaultNoSeparationScreen      true  def
+/FMUseDefaultSpotSeparationScreen    true  def
+/FMUseDefaultProcessSeparationScreen false def
+%
+% For any given PostScript printer resolution, Frame products have two sets of 
+% screen angles and frequencies for printing process separations, which are 
+% recomended by Adobe. The following variable chooses the higher frequencies
+% when set to true or the lower frequencies when set to false. This is only
+% effective if the appropriate FMUseDefault...SeparationScreen flag is false.
+/FMUseHighFrequencyScreens true def
+%
+% PostScript Level 2 printers contain an "Accurate Screens" feature which can
+% improve process separation rendering at the expense of compute time. This 
+% flag is ignored by PostScript Level 1 printers.
+/FMUseAcccurateScreens true def
+%
+% The following PostScript procedure defines the spot function that Frame
+% products will use for process separations. You may un-comment-out one of
+% the alternative functions below, or use your own.
+%
+% Dot function
+/FMSpotFunction {abs exch abs 2 copy add 1 gt 
+		{1 sub dup mul exch 1 sub dup mul add 1 sub }
+		{dup mul exch dup mul add 1 exch sub }ifelse } def
+%
+% Line function
+% /FMSpotFunction { pop } def
+%
+% Elipse function
+% /FMSpotFunction { dup 5 mul 8 div mul exch dup mul exch add 
+%		sqrt 1 exch sub } def
+%
+%
+/FMversion (4.0) def 
+/FMLevel1 /languagelevel where {pop languagelevel} {1} ifelse 2 lt def
+/FMPColor
+	FMLevel1 {
+		false
+		/colorimage where {pop pop true} if
+	} {
+		true
+	} ifelse
+def
+/FrameDict 400 dict def 
+systemdict /errordict known not {/errordict 10 dict def
+		errordict /rangecheck {stop} put} if
+% The readline in PS 23.0 doesn't recognize cr's as nl's on AppleTalk
+FrameDict /tmprangecheck errordict /rangecheck get put 
+errordict /rangecheck {FrameDict /bug true put} put 
+FrameDict /bug false put 
+mark 
+% Some PS machines read past the CR, so keep the following 3 lines together!
+currentfile 5 string readline
+00
+0000000000
+cleartomark 
+errordict /rangecheck FrameDict /tmprangecheck get put 
+FrameDict /bug get { 
+	/readline {
+		/gstring exch def
+		/gfile exch def
+		/gindex 0 def
+		{
+			gfile read pop 
+			dup 10 eq {exit} if 
+			dup 13 eq {exit} if 
+			gstring exch gindex exch put 
+			/gindex gindex 1 add def 
+		} loop
+		pop 
+		gstring 0 gindex getinterval true 
+		} bind def
+	} if
+/FMshowpage /showpage load def
+/FMquit /quit load def
+/FMFAILURE { 
+	dup = flush 
+	FMshowpage 
+	/Helvetica findfont 12 scalefont setfont
+	72 200 moveto
+	show FMshowpage 
+	FMquit 
+	} def 
+/FMVERSION {
+	FMversion ne {
+		(Frame product version does not match ps_prolog!) FMFAILURE
+		} if
+	} def 
+/FMBADEPSF { 
+	(PostScript Lang. Ref. Man., 2nd Ed., H.2.4 says EPS must not call X              )
+	dup dup (X) search pop exch pop exch pop length 
+	4 -1 roll 
+	putinterval 
+	FMFAILURE
+	} def
+/FMLOCAL {
+	FrameDict begin
+	0 def 
+	end 
+	} def 
+/concatprocs
+	{
+	/proc2 exch cvlit def/proc1 exch cvlit def/newproc proc1 length proc2 length add array def
+	newproc 0 proc1 putinterval newproc proc1 length proc2 putinterval newproc cvx
+}def
+FrameDict begin 
+/FMnone 0 def
+/FMcyan 1 def
+/FMmagenta 2 def
+/FMyellow 3 def
+/FMblack 4 def
+/FMcustom 5 def
+/FrameNegative false def 
+/FrameSepIs FMnone def 
+/FrameSepBlack 0 def
+/FrameSepYellow 0 def
+/FrameSepMagenta 0 def
+/FrameSepCyan 0 def
+/FrameSepRed 1 def
+/FrameSepGreen 1 def
+/FrameSepBlue 1 def
+/FrameCurGray 1 def
+/FrameCurPat null def
+/FrameCurColors [ 0 0 0 1 0 0 0 ] def 
+/FrameColorEpsilon .001 def	
+/eqepsilon {		
+	sub dup 0 lt {neg} if
+	FrameColorEpsilon le
+} bind def
+/FrameCmpColorsCMYK { 
+	2 copy 0 get exch 0 get eqepsilon {
+		2 copy 1 get exch 1 get eqepsilon {
+			2 copy 2 get exch 2 get eqepsilon {
+				3 get exch 3 get eqepsilon
+			} {pop pop false} ifelse
+		}{pop pop false} ifelse
+	} {pop pop false} ifelse
+} bind def
+/FrameCmpColorsRGB { 
+	2 copy 4 get exch 0 get eqepsilon {
+		2 copy 5 get exch 1 get eqepsilon {
+			6 get exch 2 get eqepsilon
+		}{pop pop false} ifelse
+	} {pop pop false} ifelse
+} bind def
+/RGBtoCMYK { 
+	1 exch sub 
+	3 1 roll 
+	1 exch sub 
+	3 1 roll 
+	1 exch sub 
+	3 1 roll 
+	3 copy 
+	2 copy 
+	le { pop } { exch pop } ifelse 
+	2 copy 
+	le { pop } { exch pop } ifelse 
+	dup dup dup 
+	6 1 roll 
+	4 1 roll 
+	7 1 roll 
+	sub 
+	6 1 roll 
+	sub 
+	5 1 roll 
+	sub 
+	4 1 roll 
+} bind def
+/CMYKtoRGB { 
+	dup dup 4 -1 roll add 						  
+	5 1 roll 3 -1 roll add 						  
+	4 1 roll add 								  
+	1 exch sub dup 0 lt {pop 0} if 3 1 roll 	  
+	1 exch sub dup 0 lt {pop 0} if exch 	      
+	1 exch sub dup 0 lt {pop 0} if exch	  		  
+} bind def
+/FrameSepInit {
+	1.0 RealSetgray
+} bind def
+/FrameSetSepColor { 
+	/FrameSepBlue exch def
+	/FrameSepGreen exch def
+	/FrameSepRed exch def
+	/FrameSepBlack exch def
+	/FrameSepYellow exch def
+	/FrameSepMagenta exch def
+	/FrameSepCyan exch def
+	/FrameSepIs FMcustom def
+	setCurrentScreen	
+} bind def
+/FrameSetCyan {
+	/FrameSepBlue 1.0 def
+	/FrameSepGreen 1.0 def
+	/FrameSepRed 0.0 def
+	/FrameSepBlack 0.0 def
+	/FrameSepYellow 0.0 def
+	/FrameSepMagenta 0.0 def
+	/FrameSepCyan 1.0 def
+	/FrameSepIs FMcyan def
+	setCurrentScreen	
+} bind def
+ 
+/FrameSetMagenta {
+	/FrameSepBlue 1.0 def
+	/FrameSepGreen 0.0 def
+	/FrameSepRed 1.0 def
+	/FrameSepBlack 0.0 def
+	/FrameSepYellow 0.0 def
+	/FrameSepMagenta 1.0 def
+	/FrameSepCyan 0.0 def
+	/FrameSepIs FMmagenta def
+	setCurrentScreen
+} bind def
+ 
+/FrameSetYellow {
+	/FrameSepBlue 0.0 def
+	/FrameSepGreen 1.0 def
+	/FrameSepRed 1.0 def
+	/FrameSepBlack 0.0 def
+	/FrameSepYellow 1.0 def
+	/FrameSepMagenta 0.0 def
+	/FrameSepCyan 0.0 def
+	/FrameSepIs FMyellow def
+	setCurrentScreen
+} bind def
+ 
+/FrameSetBlack {
+	/FrameSepBlue 0.0 def
+	/FrameSepGreen 0.0 def
+	/FrameSepRed 0.0 def
+	/FrameSepBlack 1.0 def
+	/FrameSepYellow 0.0 def
+	/FrameSepMagenta 0.0 def
+	/FrameSepCyan 0.0 def
+	/FrameSepIs FMblack def
+	setCurrentScreen
+} bind def
+ 
+/FrameNoSep { 
+	/FrameSepIs FMnone def
+	setCurrentScreen
+} bind def
+/FrameSetSepColors { 
+	FrameDict begin
+	[ exch 1 add 1 roll ]
+	/FrameSepColors  
+	exch def end
+	} bind def
+/FrameColorInSepListCMYK { 
+	FrameSepColors {  
+       		exch dup 3 -1 roll 
+       		FrameCmpColorsCMYK 
+       		{ pop true exit } if
+    	} forall 
+	dup true ne {pop false} if
+	} bind def
+/FrameColorInSepListRGB { 
+	FrameSepColors {  
+       		exch dup 3 -1 roll 
+       		FrameCmpColorsRGB 
+       		{ pop true exit } if
+    	} forall 
+	dup true ne {pop false} if
+	} bind def
+/RealSetgray /setgray load def
+/RealSetrgbcolor /setrgbcolor load def
+/RealSethsbcolor /sethsbcolor load def
+end 
+/setgray { 
+	FrameDict begin
+	FrameSepIs FMnone eq
+		{ RealSetgray } 
+		{ 
+		FrameSepIs FMblack eq 
+			{ RealSetgray } 
+			{ FrameSepIs FMcustom eq 
+			  FrameSepRed 0 eq and
+			  FrameSepGreen 0 eq and
+			  FrameSepBlue 0 eq and {
+			  	RealSetgray
+			  } {
+				1 RealSetgray pop 
+			  } ifelse
+			} ifelse
+		} ifelse
+	end
+} bind def
+/setrgbcolor { 
+	FrameDict begin
+	FrameSepIs FMnone eq
+	{  RealSetrgbcolor }
+	{
+		3 copy [ 4 1 roll ] 
+		FrameColorInSepListRGB
+		{
+				FrameSepBlue eq exch 
+			 	FrameSepGreen eq and exch 
+			 	FrameSepRed eq and
+			 	{ 0 } { 1 } ifelse
+		}
+		{
+			FMPColor {
+				RealSetrgbcolor
+				currentcmykcolor
+			} {
+				RGBtoCMYK
+			} ifelse
+			FrameSepIs FMblack eq
+			{1.0 exch sub 4 1 roll pop pop pop} {
+			FrameSepIs FMyellow eq
+			{pop 1.0 exch sub 3 1 roll pop pop} {
+			FrameSepIs FMmagenta eq
+			{pop pop 1.0 exch sub exch pop } {
+			FrameSepIs FMcyan eq
+			{pop pop pop 1.0 exch sub } 
+			{pop pop pop pop 1} ifelse } ifelse } ifelse } ifelse 
+		} ifelse
+		RealSetgray
+	} 
+	ifelse
+	end
+} bind def
+/sethsbcolor {
+	FrameDict begin
+	FrameSepIs FMnone eq 
+	{ RealSethsbcolor } 
+	{
+		RealSethsbcolor 
+		currentrgbcolor  
+		setrgbcolor 
+	} 
+	ifelse
+	end
+} bind def
+FrameDict begin
+/setcmykcolor where {
+	pop /RealSetcmykcolor /setcmykcolor load def
+} {
+	/RealSetcmykcolor {
+		4 1 roll
+		3 { 3 index add 0 max 1 min 1 exch sub 3 1 roll} repeat 
+		setrgbcolor pop
+	} bind def
+} ifelse
+userdict /setcmykcolor { 
+		FrameDict begin
+		FrameSepIs FMnone eq
+		{ RealSetcmykcolor } 
+		{
+			4 copy [ 5 1 roll ]
+			FrameColorInSepListCMYK
+			{
+				FrameSepBlack eq exch 
+				FrameSepYellow eq and exch 
+				FrameSepMagenta eq and exch 
+				FrameSepCyan eq and 
+				{ 0 } { 1 } ifelse
+			}
+			{
+				FrameSepIs FMblack eq
+				{1.0 exch sub 4 1 roll pop pop pop} {
+				FrameSepIs FMyellow eq
+				{pop 1.0 exch sub 3 1 roll pop pop} {
+				FrameSepIs FMmagenta eq
+				{pop pop 1.0 exch sub exch pop } {
+				FrameSepIs FMcyan eq
+				{pop pop pop 1.0 exch sub } 
+				{pop pop pop pop 1} ifelse } ifelse } ifelse } ifelse 
+			} ifelse
+			RealSetgray
+		}
+		ifelse
+		end
+	} bind put
+FMLevel1 not { 
+	
+	/patProcDict 5 dict dup begin
+		<0f1e3c78f0e1c387> { 3 setlinewidth -1 -1 moveto 9 9 lineto stroke 
+											4 -4 moveto 12 4 lineto stroke
+											-4 4 moveto 4 12 lineto stroke} bind def
+		<0f87c3e1f0783c1e> { 3 setlinewidth -1 9 moveto 9 -1 lineto stroke 
+											-4 4 moveto 4 -4 lineto stroke
+											4 12 moveto 12 4 lineto stroke} bind def
+		<8142241818244281> { 1 setlinewidth -1 9 moveto 9 -1 lineto stroke
+											-1 -1 moveto 9 9 lineto stroke } bind def
+		<03060c183060c081> { 1 setlinewidth -1 -1 moveto 9 9 lineto stroke 
+											4 -4 moveto 12 4 lineto stroke
+											-4 4 moveto 4 12 lineto stroke} bind def
+		<8040201008040201> { 1 setlinewidth -1 9 moveto 9 -1 lineto stroke 
+											-4 4 moveto 4 -4 lineto stroke
+											4 12 moveto 12 4 lineto stroke} bind def
+	end def
+	/patDict 15 dict dup begin
+		/PatternType 1 def		
+		/PaintType 2 def		
+		/TilingType 3 def		
+		/BBox [ 0 0 8 8 ] def 	
+		/XStep 8 def			
+		/YStep 8 def			
+		/PaintProc {
+			begin
+			patProcDict bstring known {
+				patProcDict bstring get exec
+			} {
+				8 8 true [1 0 0 -1 0 8] bstring imagemask
+			} ifelse
+			end
+		} bind def
+	end def
+} if
+/combineColor {
+    FrameSepIs FMnone eq
+	{
+		graymode FMLevel1 or not {
+			
+			[/Pattern [/DeviceCMYK]] setcolorspace
+			FrameCurColors 0 4 getinterval aload pop FrameCurPat setcolor
+		} {
+			FrameCurColors 3 get 1.0 ge {
+				FrameCurGray RealSetgray
+			} {
+				FMPColor graymode and {
+					0 1 3 { 
+						FrameCurColors exch get
+						1 FrameCurGray sub mul
+					} for
+					RealSetcmykcolor
+				} {
+					4 1 6 {
+						FrameCurColors exch get
+						graymode {
+							1 exch sub 1 FrameCurGray sub mul 1 exch sub
+						} {
+							1.0 lt {FrameCurGray} {1} ifelse
+						} ifelse
+					} for
+					RealSetrgbcolor
+				} ifelse
+			} ifelse
+		} ifelse
+	} { 
+		FrameCurColors 0 4 getinterval aload
+		FrameColorInSepListCMYK {
+			FrameSepBlack eq exch 
+			FrameSepYellow eq and exch 
+			FrameSepMagenta eq and exch 
+			FrameSepCyan eq and
+			FrameSepIs FMcustom eq and
+			{ FrameCurGray } { 1 } ifelse
+		} {
+			FrameSepIs FMblack eq
+			{FrameCurGray 1.0 exch sub mul 1.0 exch sub 4 1 roll pop pop pop} {
+			FrameSepIs FMyellow eq
+			{pop FrameCurGray 1.0 exch sub mul 1.0 exch sub 3 1 roll pop pop} {
+			FrameSepIs FMmagenta eq
+			{pop pop FrameCurGray 1.0 exch sub mul 1.0 exch sub exch pop } {
+			FrameSepIs FMcyan eq
+			{pop pop pop FrameCurGray 1.0 exch sub mul 1.0 exch sub } 
+			{pop pop pop pop 1} ifelse } ifelse } ifelse } ifelse 
+		} ifelse
+		graymode FMLevel1 or not {
+			
+			[/Pattern [/DeviceGray]] setcolorspace
+			FrameCurPat setcolor
+		} { 
+			graymode not FMLevel1 and {
+				
+				dup 1 lt {pop FrameCurGray} if
+			} if
+			RealSetgray
+		} ifelse
+	} ifelse
+} bind def
+/savematrix {
+	orgmatrix currentmatrix pop
+	} bind def
+/restorematrix {
+	orgmatrix setmatrix
+	} bind def
+/dmatrix matrix def
+/dpi    72 0 dmatrix defaultmatrix dtransform
+    dup mul exch   dup mul add   sqrt def
+	
+/freq dpi dup 72 div round dup 0 eq {pop 1} if 8 mul div def
+/sangle 1 0 dmatrix defaultmatrix dtransform exch atan def
+/dpiranges   [  2540    2400    1693     1270    1200     635      600      0      ] def
+/CMLowFreqs  [ 100.402  94.8683 89.2289 100.402  94.8683  66.9349  63.2456 47.4342 ] def
+/YLowFreqs   [  95.25   90.0    84.65    95.25   90.0     70.5556  66.6667 50.0    ] def
+/KLowFreqs   [  89.8026 84.8528 79.8088  89.8026 84.8528  74.8355  70.7107 53.033  ] def
+/CLowAngles  [  71.5651 71.5651 71.5651 71.5651  71.5651  71.5651  71.5651 71.5651 ] def
+/MLowAngles  [  18.4349 18.4349 18.4349 18.4349  18.4349  18.4349  18.4349 18.4349 ] def
+/YLowTDot    [  true    true    false    true    true     false    false   false   ] def
+/CMHighFreqs [ 133.87  126.491 133.843  108.503 102.523  100.402   94.8683 63.2456 ] def
+/YHighFreqs  [ 127.0   120.0   126.975  115.455 109.091   95.25    90.0    60.0    ] def
+/KHighFreqs  [ 119.737 113.137 119.713  128.289 121.218   89.8026  84.8528 63.6395 ] def
+/CHighAngles [  71.5651 71.5651 71.5651  70.0169 70.0169  71.5651  71.5651 71.5651 ] def
+/MHighAngles [  18.4349 18.4349 18.4349  19.9831 19.9831  18.4349  18.4349 18.4349 ] def
+/YHighTDot   [  false   false   true     false   false    true     true    false   ] def
+/PatFreq     [	10.5833 10.0     9.4055  10.5833 10.0	  10.5833  10.0	   9.375   ] def
+/screenIndex {
+	0 1 dpiranges length 1 sub { dup dpiranges exch get 1 sub dpi le {exit} {pop} ifelse } for
+} bind def
+/getCyanScreen {
+	FMUseHighFrequencyScreens { CHighAngles CMHighFreqs} {CLowAngles CMLowFreqs} ifelse
+		screenIndex dup 3 1 roll get 3 1 roll get /FMSpotFunction load
+} bind def
+/getMagentaScreen {
+	FMUseHighFrequencyScreens { MHighAngles CMHighFreqs } {MLowAngles CMLowFreqs} ifelse
+		screenIndex dup 3 1 roll get 3 1 roll get /FMSpotFunction load
+} bind def
+/getYellowScreen {
+	FMUseHighFrequencyScreens { YHighTDot YHighFreqs} { YLowTDot YLowFreqs } ifelse
+		screenIndex dup 3 1 roll get 3 1 roll get { 3 div
+			{2 { 1 add 2 div 3 mul dup floor sub 2 mul 1 sub exch} repeat
+			FMSpotFunction } } {/FMSpotFunction load } ifelse
+			0.0 exch
+} bind def
+/getBlackScreen  {
+	FMUseHighFrequencyScreens { KHighFreqs } { KLowFreqs } ifelse
+		screenIndex get 45.0 /FMSpotFunction load 
+} bind def
+/getSpotScreen {
+	getBlackScreen
+} bind def
+/getCompositeScreen {
+	getBlackScreen
+} bind def
+/FMSetScreen 
+	FMLevel1 { /setscreen load 
+	}{ {
+		8 dict begin
+		/HalftoneType 1 def
+		/SpotFunction exch def
+		/Angle exch def
+		/Frequency exch def
+		/AccurateScreens FMUseAcccurateScreens def
+		currentdict end sethalftone
+	} bind } ifelse
+def
+/setDefaultScreen {
+	FMPColor {
+		orgrxfer cvx orggxfer cvx orgbxfer cvx orgxfer cvx setcolortransfer
+	}
+	{
+		orgxfer cvx settransfer
+	} ifelse
+	orgfreq organgle orgproc cvx setscreen
+} bind def
+/setCurrentScreen {
+	FrameSepIs FMnone eq {
+		FMUseDefaultNoSeparationScreen {
+			setDefaultScreen
+		} {
+			getCompositeScreen FMSetScreen
+		} ifelse
+	} {
+		FrameSepIs FMcustom eq {
+			FMUseDefaultSpotSeparationScreen {
+				setDefaultScreen
+			} {
+				getSpotScreen FMSetScreen
+			} ifelse
+		} {
+			FMUseDefaultProcessSeparationScreen {
+				setDefaultScreen
+			} {
+				FrameSepIs FMcyan eq {
+					getCyanScreen FMSetScreen
+				} {
+					FrameSepIs FMmagenta eq {
+						getMagentaScreen FMSetScreen
+					} {
+						FrameSepIs FMyellow eq {
+							getYellowScreen FMSetScreen
+						} {
+							getBlackScreen FMSetScreen
+						} ifelse
+					} ifelse
+				} ifelse
+			} ifelse
+		} ifelse
+	} ifelse 
+} bind def
+end
+	/gstring FMLOCAL
+	/gfile FMLOCAL
+	/gindex FMLOCAL
+	/orgrxfer FMLOCAL
+	/orggxfer FMLOCAL
+	/orgbxfer FMLOCAL
+	/orgxfer FMLOCAL
+	/orgproc FMLOCAL
+	/orgrproc FMLOCAL
+	/orggproc FMLOCAL
+	/orgbproc FMLOCAL
+	/organgle FMLOCAL
+	/orgrangle FMLOCAL
+	/orggangle FMLOCAL
+	/orgbangle FMLOCAL
+	/orgfreq FMLOCAL
+	/orgrfreq FMLOCAL
+	/orggfreq FMLOCAL
+	/orgbfreq FMLOCAL
+	/yscale FMLOCAL
+	/xscale FMLOCAL
+	/edown FMLOCAL
+	/manualfeed FMLOCAL
+	/paperheight FMLOCAL
+	/paperwidth FMLOCAL
+/FMDOCUMENT { 
+	array /FMfonts exch def 
+	/#copies exch def
+	FrameDict begin
+	0 ne /manualfeed exch def
+	/paperheight exch def
+	/paperwidth exch def
+	0 ne /FrameNegative exch def 
+	0 ne /edown exch def 
+	/yscale exch def
+	/xscale exch def
+	FMLevel1 {
+		manualfeed {setmanualfeed} if
+		/FMdicttop countdictstack 1 add def 
+		/FMoptop count def 
+		setpapername 
+		manualfeed {true} {papersize} ifelse 
+		{manualpapersize} {false} ifelse 
+		{desperatepapersize} {false} ifelse 
+		{ (Can't select requested paper size for Frame print job!) FMFAILURE } if
+		count -1 FMoptop {pop pop} for
+		countdictstack -1 FMdicttop {pop end} for 
+		}
+		{{1 dict dup /PageSize [paperwidth paperheight]put setpagedevice}stopped
+		{ (Can't select requested paper size for Frame print job!) FMFAILURE } if
+		 {1 dict dup /ManualFeed manualfeed put setpagedevice } stopped pop }
+	ifelse 
+	
+	FMPColor {
+		currentcolorscreen
+			cvlit /orgproc exch def
+				  /organgle exch def 
+				  /orgfreq exch def
+			cvlit /orgbproc exch def
+				  /orgbangle exch def 
+				  /orgbfreq exch def
+			cvlit /orggproc exch def
+				  /orggangle exch def 
+				  /orggfreq exch def
+			cvlit /orgrproc exch def
+				  /orgrangle exch def 
+				  /orgrfreq exch def
+			currentcolortransfer 
+			FrameNegative {
+				1 1 4 { 
+					pop { 1 exch sub } concatprocs 4 1 roll
+				} for
+				4 copy
+				setcolortransfer
+			} if
+			cvlit /orgxfer exch def
+			cvlit /orgbxfer exch def
+			cvlit /orggxfer exch def
+			cvlit /orgrxfer exch def
+	} {
+		currentscreen 
+			cvlit /orgproc exch def
+				  /organgle exch def 
+				  /orgfreq exch def
+				  
+		currenttransfer 
+		FrameNegative {
+			{ 1 exch sub } concatprocs
+			dup settransfer
+		} if 
+		cvlit /orgxfer exch def
+	} ifelse
+	end 
+} def 
+/pagesave FMLOCAL
+/orgmatrix FMLOCAL
+/landscape FMLOCAL
+/pwid FMLOCAL
+/FMBEGINPAGE { 
+	FrameDict begin 
+	/pagesave save def
+	3.86 setmiterlimit
+	/landscape exch 0 ne def
+	landscape { 
+		90 rotate 0 exch dup /pwid exch def neg translate pop 
+	}{
+		pop /pwid exch def
+	} ifelse
+	edown { [-1 0 0 1 pwid 0] concat } if
+	0 0 moveto paperwidth 0 lineto paperwidth paperheight lineto 
+	0 paperheight lineto 0 0 lineto 1 setgray fill
+	xscale yscale scale
+	/orgmatrix matrix def
+	gsave 
+} def 
+/FMENDPAGE {
+	grestore 
+	pagesave restore
+	end 
+	showpage
+	} def 
+/FMFONTDEFINE { 
+	FrameDict begin
+	findfont 
+	ReEncode 
+	1 index exch 
+	definefont 
+	FMfonts 3 1 roll 
+	put
+	end 
+	} def 
+/FMFILLS {
+	FrameDict begin dup
+	array /fillvals exch def
+	dict /patCache exch def
+	end 
+	} def 
+/FMFILL {
+	FrameDict begin
+	 fillvals 3 1 roll put
+	end 
+	} def 
+/FMNORMALIZEGRAPHICS { 
+	newpath
+	0.0 0.0 moveto
+	1 setlinewidth
+	0 setlinecap
+	0 0 0 sethsbcolor
+	0 setgray 
+	} bind def
+	/fx FMLOCAL
+	/fy FMLOCAL
+	/fh FMLOCAL
+	/fw FMLOCAL
+	/llx FMLOCAL
+	/lly FMLOCAL
+	/urx FMLOCAL
+	/ury FMLOCAL
+/FMBEGINEPSF { 
+	end 
+	/FMEPSF save def 
+	/showpage {} def 
+% See Adobe's "PostScript Language Reference Manual, 2nd Edition", page 714.
+% "...the following operators MUST NOT be used in an EPS file:" (emphasis ours)
+	/banddevice {(banddevice) FMBADEPSF} def
+	/clear {(clear) FMBADEPSF} def
+	/cleardictstack {(cleardictstack) FMBADEPSF} def 
+	/copypage {(copypage) FMBADEPSF} def
+	/erasepage {(erasepage) FMBADEPSF} def
+	/exitserver {(exitserver) FMBADEPSF} def
+	/framedevice {(framedevice) FMBADEPSF} def
+	/grestoreall {(grestoreall) FMBADEPSF} def
+	/initclip {(initclip) FMBADEPSF} def
+	/initgraphics {(initgraphics) FMBADEPSF} def
+	/initmatrix {(initmatrix) FMBADEPSF} def
+	/quit {(quit) FMBADEPSF} def
+	/renderbands {(renderbands) FMBADEPSF} def
+	/setglobal {(setglobal) FMBADEPSF} def
+	/setpagedevice {(setpagedevice) FMBADEPSF} def
+	/setshared {(setshared) FMBADEPSF} def
+	/startjob {(startjob) FMBADEPSF} def
+	/lettertray {(lettertray) FMBADEPSF} def
+	/letter {(letter) FMBADEPSF} def
+	/lettersmall {(lettersmall) FMBADEPSF} def
+	/11x17tray {(11x17tray) FMBADEPSF} def
+	/11x17 {(11x17) FMBADEPSF} def
+	/ledgertray {(ledgertray) FMBADEPSF} def
+	/ledger {(ledger) FMBADEPSF} def
+	/legaltray {(legaltray) FMBADEPSF} def
+	/legal {(legal) FMBADEPSF} def
+	/statementtray {(statementtray) FMBADEPSF} def
+	/statement {(statement) FMBADEPSF} def
+	/executivetray {(executivetray) FMBADEPSF} def
+	/executive {(executive) FMBADEPSF} def
+	/a3tray {(a3tray) FMBADEPSF} def
+	/a3 {(a3) FMBADEPSF} def
+	/a4tray {(a4tray) FMBADEPSF} def
+	/a4 {(a4) FMBADEPSF} def
+	/a4small {(a4small) FMBADEPSF} def
+	/b4tray {(b4tray) FMBADEPSF} def
+	/b4 {(b4) FMBADEPSF} def
+	/b5tray {(b5tray) FMBADEPSF} def
+	/b5 {(b5) FMBADEPSF} def
+	FMNORMALIZEGRAPHICS 
+	[/fy /fx /fh /fw /ury /urx /lly /llx] {exch def} forall 
+	fx fw 2 div add fy fh 2 div add  translate
+	rotate
+	fw 2 div neg fh 2 div neg translate
+	fw urx llx sub div fh ury lly sub div scale 
+	llx neg lly neg translate 
+	/FMdicttop countdictstack 1 add def 
+	/FMoptop count def 
+	} bind def
+/FMENDEPSF {
+	count -1 FMoptop {pop pop} for 
+	countdictstack -1 FMdicttop {pop end} for 
+	FMEPSF restore
+	FrameDict begin 
+	} bind def
+FrameDict begin 
+/setmanualfeed {
+%%BeginFeature *ManualFeed True
+	 statusdict /manualfeed true put
+%%EndFeature
+	} bind def
+/max {2 copy lt {exch} if pop} bind def
+/min {2 copy gt {exch} if pop} bind def
+/inch {72 mul} def
+/pagedimen { 
+	paperheight sub abs 16 lt exch 
+	paperwidth sub abs 16 lt and
+	{/papername exch def} {pop} ifelse
+	} bind def
+	/papersizedict FMLOCAL
+/setpapername { 
+	/papersizedict 14 dict def 
+	papersizedict begin
+	/papername /unknown def 
+		/Letter 8.5 inch 11.0 inch pagedimen
+		/LetterSmall 7.68 inch 10.16 inch pagedimen
+		/Tabloid 11.0 inch 17.0 inch pagedimen
+		/Ledger 17.0 inch 11.0 inch pagedimen
+		/Legal 8.5 inch 14.0 inch pagedimen
+		/Statement 5.5 inch 8.5 inch pagedimen
+		/Executive 7.5 inch 10.0 inch pagedimen
+		/A3 11.69 inch 16.5 inch pagedimen
+		/A4 8.26 inch 11.69 inch pagedimen
+		/A4Small 7.47 inch 10.85 inch pagedimen
+		/B4 10.125 inch 14.33 inch pagedimen
+		/B5 7.16 inch 10.125 inch pagedimen
+	end
+	} bind def
+/papersize {
+	papersizedict begin
+		/Letter {lettertray letter} def
+		/LetterSmall {lettertray lettersmall} def
+		/Tabloid {11x17tray 11x17} def
+		/Ledger {ledgertray ledger} def
+		/Legal {legaltray legal} def
+		/Statement {statementtray statement} def
+		/Executive {executivetray executive} def
+		/A3 {a3tray a3} def
+		/A4 {a4tray a4} def
+		/A4Small {a4tray a4small} def
+		/B4 {b4tray b4} def
+		/B5 {b5tray b5} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	statusdict begin stopped end 
+	} bind def
+/manualpapersize {
+	papersizedict begin
+		/Letter {letter} def
+		/LetterSmall {lettersmall} def
+		/Tabloid {11x17} def
+		/Ledger {ledger} def
+		/Legal {legal} def
+		/Statement {statement} def
+		/Executive {executive} def
+		/A3 {a3} def
+		/A4 {a4} def
+		/A4Small {a4small} def
+		/B4 {b4} def
+		/B5 {b5} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	stopped 
+	} bind def
+/desperatepapersize {
+	statusdict /setpageparams known
+		{
+		paperwidth paperheight 0 1 
+		statusdict begin
+		{setpageparams} stopped 
+		end
+		} {true} ifelse 
+	} bind def
+/DiacriticEncoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /space /exclam /quotedbl
+/numbersign /dollar /percent /ampersand /quotesingle /parenleft
+/parenright /asterisk /plus /comma /hyphen /period /slash /zero /one
+/two /three /four /five /six /seven /eight /nine /colon /semicolon
+/less /equal /greater /question /at /A /B /C /D /E /F /G /H /I /J /K
+/L /M /N /O /P /Q /R /S /T /U /V /W /X /Y /Z /bracketleft /backslash
+/bracketright /asciicircum /underscore /grave /a /b /c /d /e /f /g /h
+/i /j /k /l /m /n /o /p /q /r /s /t /u /v /w /x /y /z /braceleft /bar
+/braceright /asciitilde /.notdef /Adieresis /Aring /Ccedilla /Eacute
+/Ntilde /Odieresis /Udieresis /aacute /agrave /acircumflex /adieresis
+/atilde /aring /ccedilla /eacute /egrave /ecircumflex /edieresis
+/iacute /igrave /icircumflex /idieresis /ntilde /oacute /ograve
+/ocircumflex /odieresis /otilde /uacute /ugrave /ucircumflex
+/udieresis /dagger /.notdef /cent /sterling /section /bullet
+/paragraph /germandbls /registered /copyright /trademark /acute
+/dieresis /.notdef /AE /Oslash /.notdef /.notdef /.notdef /.notdef
+/yen /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/ordfeminine /ordmasculine /.notdef /ae /oslash /questiondown
+/exclamdown /logicalnot /.notdef /florin /.notdef /.notdef
+/guillemotleft /guillemotright /ellipsis /.notdef /Agrave /Atilde
+/Otilde /OE /oe /endash /emdash /quotedblleft /quotedblright
+/quoteleft /quoteright /.notdef /.notdef /ydieresis /Ydieresis
+/fraction /currency /guilsinglleft /guilsinglright /fi /fl /daggerdbl
+/periodcentered /quotesinglbase /quotedblbase /perthousand
+/Acircumflex /Ecircumflex /Aacute /Edieresis /Egrave /Iacute
+/Icircumflex /Idieresis /Igrave /Oacute /Ocircumflex /.notdef /Ograve
+/Uacute /Ucircumflex /Ugrave /dotlessi /circumflex /tilde /macron
+/breve /dotaccent /ring /cedilla /hungarumlaut /ogonek /caron
+] def
+/ReEncode { 
+	dup 
+	length 
+	dict begin 
+	{
+	1 index /FID ne 
+		{def} 
+		{pop pop} ifelse 
+	} forall 
+	0 eq {/Encoding DiacriticEncoding def} if 
+	currentdict 
+	end 
+	} bind def
+FMPColor 
+	
+	{
+	/BEGINBITMAPCOLOR { 
+		BITMAPCOLOR} def
+	/BEGINBITMAPCOLORc { 
+		BITMAPCOLORc} def
+	/BEGINBITMAPTRUECOLOR { 
+		BITMAPTRUECOLOR } def
+	/BEGINBITMAPTRUECOLORc { 
+		BITMAPTRUECOLORc } def
+	}
+	
+	{
+	/BEGINBITMAPCOLOR { 
+		BITMAPGRAY} def
+	/BEGINBITMAPCOLORc { 
+		BITMAPGRAYc} def
+	/BEGINBITMAPTRUECOLOR { 
+		BITMAPTRUEGRAY } def
+	/BEGINBITMAPTRUECOLORc { 
+		BITMAPTRUEGRAYc } def
+	}
+ifelse
+/K { 
+	FMPrintAllColorsAsBlack {
+		dup 1 eq 2 index 1 eq and 3 index 1 eq and not
+			{7 {pop} repeat 0 0 0 1 0 0 0} if
+	} if 
+	FrameCurColors astore 
+	pop combineColor
+} bind def
+/graymode true def
+	/bwidth FMLOCAL
+	/bpside FMLOCAL
+	/bstring FMLOCAL
+	/onbits FMLOCAL
+	/offbits FMLOCAL
+	/xindex FMLOCAL
+	/yindex FMLOCAL
+	/x FMLOCAL
+	/y FMLOCAL
+/setPatternMode {
+	FMLevel1 {
+		/bwidth  exch def
+		/bpside  exch def
+		/bstring exch def
+		/onbits 0 def  /offbits 0 def
+		freq sangle landscape {90 add} if 
+			{/y exch def
+			 /x exch def
+			 /xindex x 1 add 2 div bpside mul cvi def
+			 /yindex y 1 add 2 div bpside mul cvi def
+			 bstring yindex bwidth mul xindex 8 idiv add get
+			 1 7 xindex 8 mod sub bitshift and 0 ne FrameNegative {not} if
+			 {/onbits  onbits  1 add def 1}
+			 {/offbits offbits 1 add def 0}
+			 ifelse
+			}
+			setscreen
+		offbits offbits onbits add div FrameNegative {1.0 exch sub} if
+		/FrameCurGray exch def
+	} { 
+		pop pop
+		dup patCache exch known {
+			patCache exch get
+		} { 
+			dup
+			patDict /bstring 3 -1 roll put
+			patDict 
+			9 PatFreq screenIndex get div dup matrix scale
+			makepattern
+			dup 
+			patCache 4 -1 roll 3 -1 roll put
+		} ifelse
+		/FrameCurGray 0 def
+		/FrameCurPat exch def
+	} ifelse
+	/graymode false def
+	combineColor
+} bind def
+/setGrayScaleMode {
+	graymode not {
+		/graymode true def
+		FMLevel1 {
+			setCurrentScreen
+		} if
+	} if
+	/FrameCurGray exch def
+	combineColor
+} bind def
+/normalize {
+	transform round exch round exch itransform
+	} bind def
+/dnormalize {
+	dtransform round exch round exch idtransform
+	} bind def
+/lnormalize { 
+	0 dtransform exch cvi 2 idiv 2 mul 1 add exch idtransform pop
+	} bind def
+/H { 
+	lnormalize setlinewidth
+	} bind def
+/Z {
+	setlinecap
+	} bind def
+	
+/PFill {
+	graymode FMLevel1 or not {
+		gsave 1 setgray eofill grestore
+	} if
+} bind def
+/PStroke {
+	graymode FMLevel1 or not {
+		gsave 1 setgray stroke grestore
+	} if
+	stroke
+} bind def
+	/fillvals FMLOCAL
+/X { 
+	fillvals exch get
+	dup type /stringtype eq
+	{8 1 setPatternMode} 
+	{setGrayScaleMode}
+	ifelse
+	} bind def
+/V { 
+	PFill gsave eofill grestore
+	} bind def
+/Vclip {
+	clip
+	} bind def
+/Vstrk {
+	currentlinewidth exch setlinewidth PStroke setlinewidth
+	} bind def
+/N { 
+	PStroke
+	} bind def
+/Nclip {
+	strokepath clip newpath
+	} bind def
+/Nstrk {
+	currentlinewidth exch setlinewidth PStroke setlinewidth
+	} bind def
+/M {newpath moveto} bind def
+/E {lineto} bind def
+/D {curveto} bind def
+/O {closepath} bind def
+	/n FMLOCAL
+/L { 
+ 	/n exch def
+	newpath
+	normalize
+	moveto 
+	2 1 n {pop normalize lineto} for
+	} bind def
+/Y { 
+	L 
+	closepath
+	} bind def
+	/x1 FMLOCAL
+	/x2 FMLOCAL
+	/y1 FMLOCAL
+	/y2 FMLOCAL
+/R { 
+	/y2 exch def
+	/x2 exch def
+	/y1 exch def
+	/x1 exch def
+	x1 y1
+	x2 y1
+	x2 y2
+	x1 y2
+	4 Y 
+	} bind def
+	/rad FMLOCAL
+/rarc 
+	{rad 
+	 arcto
+	} bind def
+/RR { 
+	/rad exch def
+	normalize
+	/y2 exch def
+	/x2 exch def
+	normalize
+	/y1 exch def
+	/x1 exch def
+	mark
+	newpath
+	{
+	x1 y1 rad add moveto
+	x1 y2 x2 y2 rarc
+	x2 y2 x2 y1 rarc
+	x2 y1 x1 y1 rarc
+	x1 y1 x1 y2 rarc
+	closepath
+	} stopped {x1 y1 x2 y2 R} if 
+	cleartomark
+	} bind def
+/RRR { 
+	/rad exch def
+	normalize /y4 exch def /x4 exch def
+	normalize /y3 exch def /x3 exch def
+	normalize /y2 exch def /x2 exch def
+	normalize /y1 exch def /x1 exch def
+	newpath
+	normalize moveto 
+	mark
+	{
+	x2 y2 x3 y3 rarc
+	x3 y3 x4 y4 rarc
+	x4 y4 x1 y1 rarc
+	x1 y1 x2 y2 rarc
+	closepath
+	} stopped
+	 {x1 y1 x2 y2 x3 y3 x4 y4 newpath moveto lineto lineto lineto closepath} if
+	cleartomark
+	} bind def
+/C { 
+	grestore
+	gsave
+	R 
+	clip
+	setCurrentScreen
+} bind def
+/CP { 
+	grestore
+	gsave
+	Y 
+	clip
+	setCurrentScreen
+} bind def
+	/FMpointsize FMLOCAL
+/F { 
+	FMfonts exch get
+	FMpointsize scalefont
+	setfont
+	} bind def
+/Q { 
+	/FMpointsize exch def
+	F 
+	} bind def
+/T { 
+	moveto show
+	} bind def
+/RF { 
+	rotate
+	0 ne {-1 1 scale} if
+	} bind def
+/TF { 
+	gsave
+	moveto 
+	RF
+	show
+	grestore
+	} bind def
+/P { 
+	moveto
+	0 32 3 2 roll widthshow
+	} bind def
+/PF { 
+	gsave
+	moveto 
+	RF
+	0 32 3 2 roll widthshow
+	grestore
+	} bind def
+/S { 
+	moveto
+	0 exch ashow
+	} bind def
+/SF { 
+	gsave
+	moveto
+	RF
+	0 exch ashow
+	grestore
+	} bind def
+/B { 
+	moveto
+	0 32 4 2 roll 0 exch awidthshow
+	} bind def
+/BF { 
+	gsave
+	moveto
+	RF
+	0 32 4 2 roll 0 exch awidthshow
+	grestore
+	} bind def
+/G { 
+	gsave
+	newpath
+	normalize translate 0.0 0.0 moveto 
+	dnormalize scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	closepath 
+	PFill fill
+	grestore
+	} bind def
+/Gstrk {
+	savematrix
+    newpath
+    2 index 2 div add exch 3 index 2 div sub exch 
+    normalize 2 index 2 div sub exch 3 index 2 div add exch 
+    translate
+    scale 
+    0.0 0.0 1.0 5 3 roll arc 
+    restorematrix
+    currentlinewidth exch setlinewidth PStroke setlinewidth
+    } bind def
+/Gclip { 
+	newpath
+	savematrix
+	normalize translate 0.0 0.0 moveto 
+	dnormalize scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	closepath 
+	clip newpath
+	restorematrix
+	} bind def
+/GG { 
+	gsave
+	newpath
+	normalize translate 0.0 0.0 moveto 
+	rotate 
+	dnormalize scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	closepath
+	PFill
+	fill
+	grestore
+	} bind def
+/GGclip { 
+	savematrix
+	newpath
+    normalize translate 0.0 0.0 moveto 
+    rotate 
+    dnormalize scale 
+    0.0 0.0 1.0 5 3 roll arc 
+    closepath
+	clip newpath
+	restorematrix
+	} bind def
+/GGstrk { 
+	savematrix
+    newpath
+    normalize translate 0.0 0.0 moveto 
+    rotate 
+    dnormalize scale 
+    0.0 0.0 1.0 5 3 roll arc 
+    closepath 
+	restorematrix
+    currentlinewidth exch setlinewidth PStroke setlinewidth
+	} bind def
+/A { 
+	gsave
+	savematrix
+	newpath
+	2 index 2 div add exch 3 index 2 div sub exch 
+	normalize 2 index 2 div sub exch 3 index 2 div add exch 
+	translate 
+	scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	restorematrix
+	PStroke
+	grestore
+	} bind def
+/Aclip {
+	newpath
+	savematrix
+	normalize translate 0.0 0.0 moveto 
+	dnormalize scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	closepath 
+	strokepath clip newpath
+	restorematrix
+} bind def
+/Astrk {
+	Gstrk
+} bind def
+/AA { 
+	gsave
+	savematrix
+	newpath
+	
+	3 index 2 div add exch 4 index 2 div sub exch 
+	
+	normalize 3 index 2 div sub exch 4 index 2 div add exch
+	translate 
+	rotate 
+	scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	restorematrix
+	PStroke
+	grestore
+	} bind def
+/AAclip {
+	savematrix
+	newpath
+    normalize translate 0.0 0.0 moveto 
+    rotate 
+    dnormalize scale 
+    0.0 0.0 1.0 5 3 roll arc 
+    closepath
+	strokepath clip newpath
+	restorematrix
+} bind def
+/AAstrk {
+	GGstrk
+} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/w FMLOCAL
+	/h FMLOCAL
+	/xx FMLOCAL
+	/yy FMLOCAL
+	/ww FMLOCAL
+	/hh FMLOCAL
+	/FMsaveobject FMLOCAL
+	/FMoptop FMLOCAL
+	/FMdicttop FMLOCAL
+/BEGINPRINTCODE { 
+	/FMdicttop countdictstack 1 add def 
+	/FMoptop count 7 sub def 
+	/FMsaveobject save def
+	userdict begin 
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	3 index neg 3 index neg translate
+	} bind def
+/ENDPRINTCODE {
+	count -1 FMoptop {pop pop} for 
+	countdictstack -1 FMdicttop {pop end} for 
+	FMsaveobject restore 
+	} bind def
+/gn { 
+	0 
+	{	46 mul 
+		cf read pop 
+		32 sub 
+		dup 46 lt {exit} if 
+		46 sub add 
+		} loop
+	add 
+	} bind def
+	/str FMLOCAL
+/cfs { 
+	/str sl string def 
+	0 1 sl 1 sub {str exch val put} for 
+	str def 
+	} bind def
+/ic [ 
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0
+	{0 hx} {1 hx} {2 hx} {3 hx} {4 hx} {5 hx} {6 hx} {7 hx} {8 hx} {9 hx}
+	{10 hx} {11 hx} {12 hx} {13 hx} {14 hx} {15 hx} {16 hx} {17 hx} {18 hx}
+	{19 hx} {gn hx} {0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12}
+	{13} {14} {15} {16} {17} {18} {19} {gn} {0 wh} {1 wh} {2 wh} {3 wh}
+	{4 wh} {5 wh} {6 wh} {7 wh} {8 wh} {9 wh} {10 wh} {11 wh} {12 wh}
+	{13 wh} {14 wh} {gn wh} {0 bl} {1 bl} {2 bl} {3 bl} {4 bl} {5 bl} {6 bl}
+	{7 bl} {8 bl} {9 bl} {10 bl} {11 bl} {12 bl} {13 bl} {14 bl} {gn bl}
+	{0 fl} {1 fl} {2 fl} {3 fl} {4 fl} {5 fl} {6 fl} {7 fl} {8 fl} {9 fl}
+	{10 fl} {11 fl} {12 fl} {13 fl} {14 fl} {gn fl}
+	] def
+	/sl FMLOCAL
+	/val FMLOCAL
+	/ws FMLOCAL
+	/im FMLOCAL
+	/bs FMLOCAL
+	/cs FMLOCAL
+	/len FMLOCAL
+	/pos FMLOCAL
+/ms { 
+	/sl exch def 
+	/val 255 def 
+	/ws cfs 
+	/im cfs 
+	/val 0 def 
+	/bs cfs 
+	/cs cfs 
+	} bind def
+400 ms 
+/ip { 
+	is 
+	0 
+	cf cs readline pop 
+	{	ic exch get exec 
+		add 
+		} forall 
+	pop 
+	
+	} bind def
+/rip { 
+	   
+	  
+	  bis ris copy pop 
+      is
+      0
+      cf cs readline pop 
+      {       ic exch get exec 
+              add 
+              } forall 
+	  pop pop 
+	  ris gis copy pop 
+	  dup is exch 
+	  
+      cf cs readline pop 
+      {       ic exch get exec 
+              add 
+              } forall 
+	  pop pop
+	  gis bis copy pop 
+	  dup add is exch 
+	  
+      cf cs readline pop 
+      {       ic exch get exec 
+              add 
+              } forall 
+      pop 
+      
+      } bind def
+/wh { 
+	/len exch def 
+	/pos exch def 
+	ws 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/bl { 
+	/len exch def 
+	/pos exch def 
+	bs 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/s1 1 string def
+/fl { 
+	/len exch def 
+	/pos exch def 
+	/val cf s1 readhexstring pop 0 get def
+	pos 1 pos len add 1 sub {im exch val put} for
+	pos len 
+	} bind def
+/hx { 
+	3 copy getinterval 
+	cf exch readhexstring pop pop 
+	} bind def
+	/h FMLOCAL
+	/w FMLOCAL
+	/d FMLOCAL
+	/lb FMLOCAL
+	/bitmapsave FMLOCAL
+	/is FMLOCAL
+	/cf FMLOCAL
+/wbytes { 
+      dup dup
+      24 eq { pop pop 3 mul }
+      { 8 eq {pop} {1 eq {7 add 8 idiv} {3 add 4 idiv} ifelse} ifelse } ifelse
+	} bind def
+/BEGINBITMAPBWc { 
+	1 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAPGRAYc { 
+	8 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAP2BITc { 
+	2 {} COMMONBITMAPc
+	} bind def
+/COMMONBITMAPc { 
+		 
+	/r exch def
+	/d exch def
+	gsave
+	
+	3 index 2 div add exch	
+	4 index 2 div add exch	
+	translate		
+	rotate			
+	1 index 2 div neg	
+	1 index 2 div neg	
+	translate		
+	scale			
+	/h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	r                    
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} image 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BEGINBITMAPBW { 
+	1 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAPGRAY { 
+	8 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAP2BIT { 
+	2 {} COMMONBITMAP
+	} bind def
+/COMMONBITMAP { 
+	/r exch def
+	/d exch def
+	gsave
+	
+	3 index 2 div add exch	
+	4 index 2 div add exch	
+	translate		
+	rotate			
+	1 index 2 div neg	
+	1 index 2 div neg	
+	translate		
+	scale			
+	/h exch def /w exch def
+	/bitmapsave save def 
+	r                    
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{cf is readhexstring pop} image
+	bitmapsave restore 
+	grestore
+	} bind def
+/ngrayt 256 array def
+/nredt 256 array def
+/nbluet 256 array def
+/ngreent 256 array def
+	/gryt FMLOCAL
+	/blut FMLOCAL
+	/grnt FMLOCAL
+	/redt FMLOCAL
+	/indx FMLOCAL
+	/cynu FMLOCAL
+	/magu FMLOCAL
+	/yelu FMLOCAL
+	/k FMLOCAL
+	/u FMLOCAL
+FMLevel1 {
+/colorsetup {
+	currentcolortransfer
+	/gryt exch def
+	/blut exch def
+	/grnt exch def
+	/redt exch def
+	0 1 255 {
+		/indx exch def
+		/cynu 1 red indx get 255 div sub def
+		/magu 1 green indx get 255 div sub def
+		/yelu 1 blue indx get 255 div sub def
+		/k cynu magu min yelu min def
+		/u k currentundercolorremoval exec def
+%		/u 0 def
+		nredt indx 1 0 cynu u sub max sub redt exec put
+		ngreent indx 1 0 magu u sub max sub grnt exec put
+		nbluet indx 1 0 yelu u sub max sub blut exec put
+		ngrayt indx 1 k currentblackgeneration exec sub gryt exec put
+	} for
+	{255 mul cvi nredt exch get}
+	{255 mul cvi ngreent exch get}
+	{255 mul cvi nbluet exch get}
+	{255 mul cvi ngrayt exch get}
+	setcolortransfer
+	{pop 0} setundercolorremoval
+	{} setblackgeneration
+	} bind def
+}
+{
+/colorSetup2 {
+	[ /Indexed /DeviceRGB 255 
+		{dup red exch get 255 div 
+		 exch dup green exch get 255 div 
+		 exch blue exch get 255 div}
+	] setcolorspace
+} bind def
+} ifelse
+	/tran FMLOCAL
+/fakecolorsetup {
+	/tran 256 string def
+	0 1 255 {/indx exch def 
+		tran indx
+		red indx get 77 mul
+		green indx get 151 mul
+		blue indx get 28 mul
+		add add 256 idiv put} for
+	currenttransfer
+	{255 mul cvi tran exch get 255.0 div}
+	exch concatprocs settransfer
+} bind def
+/BITMAPCOLOR { 
+	/d 8 def
+	gsave
+	
+	3 index 2 div add exch	
+	4 index 2 div add exch	
+	translate		
+	rotate			
+	1 index 2 div neg	
+	1 index 2 div neg	
+	translate		
+	scale			
+	/h exch def /w exch def
+	/bitmapsave save def
+	FMLevel1 {	
+		colorsetup
+		/is w d wbytes string def
+		/cf currentfile def 
+		w h d [w 0 0 h neg 0 h] 
+		{cf is readhexstring pop} {is} {is} true 3 colorimage 
+	} {
+		colorSetup2
+		/is w d wbytes string def
+		/cf currentfile def 
+		7 dict dup begin
+			/ImageType 1 def
+			/Width w def
+			/Height h def
+			/ImageMatrix [w 0 0 h neg 0 h] def
+			/DataSource {cf is readhexstring pop} bind def
+			/BitsPerComponent d def
+			/Decode [0 255] def
+		end image	
+	} ifelse
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPCOLORc { 
+	/d 8 def
+	gsave
+	
+	3 index 2 div add exch	
+	4 index 2 div add exch	
+	translate		
+	rotate			
+	1 index 2 div neg	
+	1 index 2 div neg	
+	translate		
+	scale			
+	/h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	FMLevel1 {	
+		colorsetup
+		/is im 0 lb getinterval def 
+		ws 0 lb getinterval is copy pop 
+		/cf currentfile def 
+		w h d [w 0 0 h neg 0 h] 
+		{ip} {is} {is} true 3 colorimage
+	} {
+		colorSetup2
+		/is im 0 lb getinterval def 
+		ws 0 lb getinterval is copy pop 
+		/cf currentfile def 
+		7 dict dup begin
+			/ImageType 1 def
+			/Width w def
+			/Height h def
+			/ImageMatrix [w 0 0 h neg 0 h] def
+			/DataSource {ip} bind def
+			/BitsPerComponent d def
+			/Decode [0 255] def
+		end image	
+	} ifelse
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPTRUECOLORc { 
+	/d 24 def
+        gsave
+ 	
+	3 index 2 div add exch	
+	4 index 2 div add exch	
+	translate		
+	rotate			
+	1 index 2 div neg	
+	1 index 2 div neg	
+	translate		
+	scale			
+	/h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+        /bitmapsave save def 
+        
+	/is im 0 lb getinterval def	
+	/ris im 0 w getinterval def	
+	/gis im w w getinterval def	
+	/bis im w 2 mul w getinterval def 
+        
+        ws 0 lb getinterval is copy pop 
+        /cf currentfile def 
+        w h 8 [w 0 0 h neg 0 h] 
+        {w rip pop ris} {gis} {bis} true 3 colorimage
+        bitmapsave restore 
+        grestore
+        } bind def
+/BITMAPTRUECOLOR { 
+        gsave
+		
+		3 index 2 div add exch	
+		4 index 2 div add exch	
+		translate		
+		rotate			
+		1 index 2 div neg	
+		1 index 2 div neg	
+		translate		
+		scale			
+		/h exch def /w exch def
+        /bitmapsave save def 
+        /is w string def
+        /gis w string def
+        /bis w string def
+        /cf currentfile def 
+        w h 8 [w 0 0 h neg 0 h] 
+        { cf is readhexstring pop } 
+        { cf gis readhexstring pop } 
+        { cf bis readhexstring pop } 
+        true 3 colorimage 
+        bitmapsave restore 
+        grestore
+        } bind def
+/BITMAPTRUEGRAYc { 
+	/d 24 def
+        gsave
+	
+	3 index 2 div add exch	
+	4 index 2 div add exch	
+	translate		
+	rotate			
+	1 index 2 div neg	
+	1 index 2 div neg	
+	translate		
+	scale			
+	/h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+        /bitmapsave save def 
+        
+	/is im 0 lb getinterval def	
+	/ris im 0 w getinterval def	
+	/gis im w w getinterval def	
+	/bis im w 2 mul w getinterval def 
+        ws 0 lb getinterval is copy pop 
+        /cf currentfile def 
+        w h 8 [w 0 0 h neg 0 h] 
+        {w rip pop ris gis bis w gray} image
+        bitmapsave restore 
+        grestore
+        } bind def
+/ww FMLOCAL
+/r FMLOCAL
+/g FMLOCAL
+/b FMLOCAL
+/i FMLOCAL
+/gray { 
+        /ww exch def
+        /b exch def
+        /g exch def
+        /r exch def
+        0 1 ww 1 sub { /i exch def r i get .299 mul g i get .587 mul
+			b i get .114 mul add add r i 3 -1 roll floor cvi put } for
+        r
+        } bind def
+/BITMAPTRUEGRAY { 
+        gsave
+		
+		3 index 2 div add exch	
+		4 index 2 div add exch	
+		translate		
+		rotate			
+		1 index 2 div neg	
+		1 index 2 div neg	
+		translate		
+		scale			
+		/h exch def /w exch def
+        /bitmapsave save def 
+        /is w string def
+        /gis w string def
+        /bis w string def
+        /cf currentfile def 
+        w h 8 [w 0 0 h neg 0 h] 
+        { cf is readhexstring pop 
+          cf gis readhexstring pop 
+          cf bis readhexstring pop w gray}  image
+        bitmapsave restore 
+        grestore
+        } bind def
+/BITMAPGRAY { 
+	8 {fakecolorsetup} COMMONBITMAP
+	} bind def
+/BITMAPGRAYc { 
+	8 {fakecolorsetup} COMMONBITMAPc
+	} bind def
+/ENDBITMAP {
+	} bind def
+end 
+	/ALDsave FMLOCAL
+	/ALDmatrix matrix def ALDmatrix currentmatrix pop
+/StartALD {
+	/ALDsave save def
+	 savematrix
+	 ALDmatrix setmatrix
+	} bind def
+/InALD {
+	 restorematrix
+	} bind def
+/DoneALD {
+	 ALDsave restore
+	} bind def
+/I { setdash } bind def
+/J { [] 0 setdash } bind def
+%%EndProlog
+%%BeginSetup
+(4.0) FMVERSION
+1 1 0 0 612 792 0 1 15 FMDOCUMENT
+0 0 /Helvetica FMFONTDEFINE
+1 0 /Helvetica-Bold FMFONTDEFINE
+2 0 /NewCenturySchlbk-Roman FMFONTDEFINE
+3 0 /Courier FMFONTDEFINE
+4 0 /Courier-Oblique FMFONTDEFINE
+5 0 /Times-Bold FMFONTDEFINE
+6 0 /Times-Roman FMFONTDEFINE
+7 1 /ZapfDingbats FMFONTDEFINE
+32 FMFILLS
+0 0 FMFILL
+1 0.1 FMFILL
+2 0.3 FMFILL
+3 0.5 FMFILL
+4 0.7 FMFILL
+5 0.9 FMFILL
+6 0.97 FMFILL
+7 1 FMFILL
+8 <0f1e3c78f0e1c387> FMFILL
+9 <0f87c3e1f0783c1e> FMFILL
+10 <cccccccccccccccc> FMFILL
+11 <ffff0000ffff0000> FMFILL
+12 <8142241818244281> FMFILL
+13 <03060c183060c081> FMFILL
+14 <8040201008040201> FMFILL
+16 1 FMFILL
+17 0.9 FMFILL
+18 0.7 FMFILL
+19 0.5 FMFILL
+20 0.3 FMFILL
+21 0.1 FMFILL
+22 0.03 FMFILL
+23 0 FMFILL
+24 <f0e1c3870f1e3c78> FMFILL
+25 <f0783c1e0f87c3e1> FMFILL
+26 <3333333333333333> FMFILL
+27 <0000ffff0000ffff> FMFILL
+28 <7ebddbe7e7dbbd7e> FMFILL
+29 <fcf9f3e7cf9f3f7e> FMFILL
+30 <7fbfdfeff7fbfdfe> FMFILL
+%%EndSetup
+%%Page: "19" 1
+%%BeginPaperSize: Letter
+%%EndPaperSize
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 1 0 0 1 0]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+[ 0 1 1 0 1 0 0]
+ 8 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+J
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 12 Q
+0 X
+1 1 0 0 0 0 1 K
+(19) 527.24 104.25 T
+0 0 0 1 0 0 0 K
+72.58 98.25 540.58 116.25 C
+276.16 98.25 337.01 98.25 C
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+72.58 98.25 540.58 116.25 C
+63 54 549 738 C
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 14 Q
+0 X
+1 1 0 0 0 0 1 K
+(Datums and datum conversion) 341.15 716.75 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+64.34 61.25 550.34 92.25 R
+V
+1 H
+0 Z
+N
+0 0 0 0 1 1 1 K
+1 10 Q
+7 X
+0 0 0 0 1 1 1 K
+(Previous) 311.92 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 321.09 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Next) 370.82 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 369.7 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Quit) 517.49 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Go) 228.87 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Back) 223.86 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Cmnd) 416.1 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Refs) 419.43 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Master) 73.86 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 68.31 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(First) 273.59 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 272.48 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Viewer) 462.76 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Help) 468.04 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Index) 125.53 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Local) 174.14 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 165.54 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+1 18 Q
+0 X
+0 0 0 1 0 0 0 K
+0.09 (Further considerations) 72.58 689.35 S
+2 14 Q
+0.07 (Datum adjustment raises a number of important questions about) 90.58 659.02 S
+0.07 (how to maintain geographic data in ARC/INFO. For example: \322How) 90.58 642.02 S
+-0.49 0.07 (are new map features automated to update ED50 coverages?\323, \322What) 90.58 625.02 B
+0.07 (base map is to be used?\323, \322If my base map is out of date \050i.e., in) 90.58 608.02 S
+0.07 (NAD27 coordinates\051, what process do I use to add new features?\323,) 90.58 591.02 S
+0.07 (and so on. Consider each of these issues when refining your) 90.58 574.02 S
+0.07 (processing procedures to incorporate a new datum. Check the) 90.58 557.02 S
+1 1 0 0 0 0 1 K
+1 1 0 0 0 0 1 K
+166.53 538.58 90.58 538.58 2 L
+1 1 0 0 0 0 1 K
+V
+0.85 H
+N
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(\324References\325) 90.58 540.02 T
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0.07 ( for more detailed information on datums.) 166.53 540.02 S
+0 0 0 1 0 0 0 K
+FMENDPAGE
+%%EndPage: "19" 1
+%%Page: "18" 2
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 1 0 0 1 0]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+[ 0 1 1 0 1 0 0]
+ 8 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 12 Q
+0 X
+1 1 0 0 0 0 1 K
+(18) 527.24 104.25 T
+0 0 0 1 0 0 0 K
+72.58 98.25 540.58 116.25 C
+276.16 98.25 337.01 98.25 C
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+72.58 98.25 540.58 116.25 C
+63 54 549 738 C
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 14 Q
+0 X
+1 1 0 0 0 0 1 K
+(Datums and datum conversion) 341.15 716.75 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+64.34 61.25 550.34 92.25 R
+V
+1 H
+0 Z
+N
+0 0 0 0 1 1 1 K
+1 10 Q
+7 X
+0 0 0 0 1 1 1 K
+(Previous) 311.92 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 321.09 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Next) 370.82 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 369.7 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Quit) 517.49 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Go) 228.87 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Back) 223.86 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Cmnd) 416.1 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Refs) 419.43 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Master) 73.86 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 68.31 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(First) 273.59 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 272.48 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Viewer) 462.76 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Help) 468.04 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Index) 125.53 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Local) 174.14 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 165.54 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+2 14 Q
+0 X
+0 0 0 1 0 0 0 K
+-0.63 0.07 (However, it is possible to project data from a projection on a datum to) 90.58 692.02 B
+-0.54 0.07 (a projection on a sphere. This will degrade the data by putting it onto) 90.58 675.02 B
+0.07 (a spherical representation of the Earth, and can be done by the) 90.58 658.02 S
+0.07 (DATUM NONE option, and specifying the SPHEROID as SPHERE.) 90.58 641.02 S
+0.07 (The following projection file would convert a UTM, NAD83 data set) 90.58 612.02 S
+0.07 (to Mollweide on a sphere.) 90.58 595.02 S
+3 12 Q
+0.06 (INPUT) 90.58 567.35 S
+0.06 (PROJECTION UTM) 90.58 552.35 S
+0.06 (UNITS METERS) 90.58 537.35 S
+0.06 (DATUM NAD83 NADCON) 90.58 522.35 S
+0.06 (ZONE 12) 90.58 507.35 S
+0.06 (PARAMETERS) 90.58 492.35 S
+0.06 (OUTPUT) 90.58 477.35 S
+0.06 (PROJECTION MOLLWEIDE) 90.58 462.35 S
+0.06 (UNITS METERS) 90.58 447.35 S
+0.06 (DATUM NONE) 90.58 432.35 S
+0.06 (SPHEROID SPHERE) 90.58 417.35 S
+0.06 (PARAMETERS) 90.58 402.35 S
+0.06 (-110 00 00) 90.58 387.35 S
+0.06 (END) 90.58 372.35 S
+2 14 Q
+0.07 (The following projections are supported only on a sphere:) 90.58 344.02 S
+0.07 (Azimuthal Equidistant) 90.58 315.02 S
+0.07 (Bipolar Oblique Conic Conformal) 315 315.02 S
+0.07 (Chamberlin Trimetric) 90.58 298.02 S
+0.07 (Craster Parabolic) 315 298.02 S
+0.07 (Cylindrical Equal-area) 90.58 281.02 S
+0.07 (Eckert 4) 315 281.02 S
+0.07 (Eckert 6) 90.58 264.02 S
+0.07 (Equirectangular) 315 264.02 S
+0.07 (Flat Polar Quartic) 90.58 247.02 S
+0.07 (Gall Stereographic) 315 247.02 S
+0.07 (Gnomonic) 90.58 230.02 S
+0.07 (Grinten) 315 230.02 S
+0.07 (Hammer-Aitoff) 90.58 213.02 S
+0.07 (Lambert Azimuthal) 315 213.02 S
+0.07 (Miller) 90.58 196.02 S
+0.07 (Mollweide) 315 196.02 S
+0.07 (Orthographic) 90.58 179.02 S
+0.07 (Sinusoidal) 315 179.02 S
+0.07 (Stereographic) 90.58 162.02 S
+0.07 (Times) 315 162.02 S
+0.07 (Vertical Near Side Perspective) 90.58 145.02 S
+0 0 0 1 0 0 0 K
+FMENDPAGE
+%%EndPage: "18" 2
+%%Page: "17" 3
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 1 0 0 1 0]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+[ 0 1 1 0 1 0 0]
+ 8 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 12 Q
+0 X
+1 1 0 0 0 0 1 K
+(17) 527.24 104.25 T
+0 0 0 1 0 0 0 K
+72.58 98.25 540.58 116.25 C
+276.16 98.25 337.01 98.25 C
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+72.58 98.25 540.58 116.25 C
+63 54 549 738 C
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 14 Q
+0 X
+1 1 0 0 0 0 1 K
+(Datums and datum conversion) 341.15 716.75 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+64.34 61.25 550.34 92.25 R
+V
+1 H
+0 Z
+N
+0 0 0 0 1 1 1 K
+1 10 Q
+7 X
+0 0 0 0 1 1 1 K
+(Previous) 311.92 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 321.09 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Next) 370.82 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 369.7 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Quit) 517.49 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Go) 228.87 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Back) 223.86 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Cmnd) 416.1 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Refs) 419.43 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Master) 73.86 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 68.31 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(First) 273.59 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 272.48 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Viewer) 462.76 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Help) 468.04 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Index) 125.53 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Local) 174.14 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 165.54 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+1 14 Q
+0 X
+0 0 0 1 0 0 0 K
+0.07 (Step 4:  Convert the adjusted data set into an appropriate map) 90.58 692.02 S
+0.07 (projection) 90.58 675.02 S
+2 F
+0.07 (Make sure to use the output datum for the new projection for the) 90.58 646.02 S
+0.07 (coverage. For example, use the following projection file to transform) 90.58 629.02 S
+0.07 (a coverage in latitude-longitude to State Plane Coordinate System) 90.58 612.02 S
+0.07 (zone 3426:) 90.58 595.02 S
+3 12 Q
+0.06 (INPUT) 90.58 567.35 S
+0.06 (PROJECTION GEOGRAPHIC) 90.58 552.35 S
+0.06 (UNITS DD) 90.58 537.35 S
+0.06 (DATUM NAD83) 90.58 522.35 S
+0.06 (PARAMETERS) 90.58 507.35 S
+0.06 (OUTPUT) 90.58 492.35 S
+0.06 (PROJECTION STATEPLANE) 90.58 477.35 S
+0.06 (ZONE 3426) 90.58 462.35 S
+0.06 (DATUM NAD83) 90.58 447.35 S
+0.06 (UNITS FEET) 90.58 432.35 S
+0.06 (PARAMETERS) 90.58 417.35 S
+0.06 (END) 90.58 402.35 S
+1 18 Q
+0.09 (Projections on a sphere) 72.58 365.35 S
+2 14 Q
+-0.41 0.07 (Not all map projections use a spheroidal representation of the Earth.) 90.58 335.02 B
+0.07 (Some projections are only supported on a sphere. These projections) 90.58 318.02 S
+-0.14 0.07 (are meant to be used at small scales, where the difference between a) 90.58 301.02 B
+-0.1 0.07 (spherical and spheroidal representation of the Earth is smaller than) 90.58 284.02 B
+0.07 (the acceptable error of the map.) 90.58 267.02 S
+0.07 (You should not try to project data from a projection on a sphere to a) 90.58 238.02 S
+0.07 (projection on a spheroid and datum. The mathematical) 90.58 221.02 S
+0.07 (transformation does not exist. It is not possible to improve the) 90.58 204.02 S
+0.07 (geodetic precision of data by simply putting it onto a spheroidal) 90.58 187.02 S
+0.07 (representation of the Earth.) 90.58 170.02 S
+0 0 0 1 0 0 0 K
+FMENDPAGE
+%%EndPage: "17" 3
+%%Page: "16" 4
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 1 0 0 1 0]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+[ 0 1 1 0 1 0 0]
+ 8 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 12 Q
+0 X
+1 1 0 0 0 0 1 K
+(16) 527.24 104.25 T
+0 0 0 1 0 0 0 K
+72.58 98.25 540.58 116.25 C
+276.16 98.25 337.01 98.25 C
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+72.58 98.25 540.58 116.25 C
+63 54 549 738 C
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 14 Q
+0 X
+1 1 0 0 0 0 1 K
+(Datums and datum conversion) 341.15 716.75 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+64.34 61.25 550.34 92.25 R
+V
+1 H
+0 Z
+N
+0 0 0 0 1 1 1 K
+1 10 Q
+7 X
+0 0 0 0 1 1 1 K
+(Previous) 311.92 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 321.09 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Next) 370.82 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 369.7 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Quit) 517.49 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Go) 228.87 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Back) 223.86 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Cmnd) 416.1 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Refs) 419.43 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Master) 73.86 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 68.31 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(First) 273.59 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 272.48 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Viewer) 462.76 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Help) 468.04 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Index) 125.53 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Local) 174.14 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 165.54 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+2 14 Q
+0 X
+0 0 0 1 0 0 0 K
+0.07 (If you know the coordinate locations of the from- and to-points, then) 90.58 692.02 S
+0.07 (type them in. Using the screen cursor to graphically select control) 90.58 675.02 S
+0.07 (points can be inaccurate.) 90.58 658.02 S
+1 F
+0.07 (Step 3:  Perform the adjustment on the desired data set) 90.58 430.72 S
+2 F
+0.07 (This is done with the ADJUST command and the link coverage) 90.58 401.72 S
+0.07 (generated in Step 2. ADJUST performs rubber sheeting using a link) 90.58 384.72 S
+0.07 (coverage\325s from- and to-coordinates. The result is a coverage in) 90.58 367.72 S
+0.07 (latitude-longitude coordinates based upon the new datum.) 90.58 350.72 S
+0.07 (Before using ADJUST, you should decide whether or not to adjust) 90.58 321.72 S
+0.07 (tics in the output coverage. You must explicitly tell ADJUST to) 90.58 304.72 S
+0.07 (include tics in the adjustment; otherwise, the output coverage will) 90.58 287.72 S
+0.07 (maintain the original tic locations. This is an important) 90.58 270.72 S
+-0.03 0.07 (consideration because your adjusted map will no longer overlay \050i.e.,) 90.58 253.72 B
+-0.24 0.07 (register to\051 the original source map, which was based upon the input) 90.58 236.72 B
+0.07 (datum.) 90.58 219.72 S
+217.74 457 413.43 638.35 C
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+217.74 457 413.43 638.35 R
+7 X
+0 0 0 1 0 0 0 K
+V
+0 X
+%%BeginBinary:  3035     
+207 190 207 190 0 218.64 447.45 BEGINBITMAPBWc
+
+
+;&
+FDDDDDDDDD8"8&
+FDFFFFFFFDFF8%8$x
+F5777777FEFFF7778%:P"R"
+FBFFFFFFF7FE>#;"="
+FF7FFBFDJ"
+7FB8"<"C"
+F7BFF7E"<#
+FDF7CF8#j"
+D7C033D8#P(Q#
+0FDFDFFFFFEFFFFFFDE03F8"<";"="
+03E9FEBF8"<"<";#
+00E18FC03F8"<"<"<"
+01810F3D8"<";"<#
+0301F8803F8"<"B#
+078181BF8"<";"<"
+0FC1FC1F8"<";"<#
+1FE1FEFFBD8"<";"="
+3FF1FFBF8"<"<"
+7FF98F8"<"<"
+FFFDCF7"="<"<"
+FDFFEFBD7"@"9"<"
+FFE3FFBFB#
+EC7FB#
+EF8F7"A"?"
+FDF3BD7"A"8#;"
+FFFDF00FBF7"A&
+F7FE3FFFCFF17"A'
+FFFFDFFF3FFE7FD&:"
+EFFEFFFF3FBDD#8":"
+F3FDDFBF7"B#8"
+F7FDFBEF7"C"8"
+FFF7F77"B#8":"
+DFFEEFFBBD7"B#="
+FFFF5FBFE"
+3FH"
+FDB"8"8":"
+DFBFFEBDE"="
+DFBF7"
+7F7"
+FFB";#9"
+BFFF7FBDJ"
+7BFE"
+EF=":"
+7F7F"<"9%>"
+FDBFFEFFFFFCBD"@"9"="
+FFFD5FBF"<"9"9"
+F7DFFB1F#;"9"
+FFF8D9E78":#8"9"="
+018603CF0FAD8":&9"="
+072FFC0FFE3F07A7$9'9"="
+F7F80FFCEFFFF001FF03A3$9&:"="
+FFC41FF9F47FFFFE0FA1$9#8#9"="
+DE3C3FF3F0FF7F1F20$9#9"8#<$
+F1FEFFF7C0BFFF9FF8A07F#:#9"9"9"8$
+FFFFE780DFAFBFC7A03F<#=";%
+EFC02FFE3FA0FF"<"="9&
+DFE06F9FFFF9FFA1";#9"9"9&
+FFCFF0EF77DFFFC7FFBE";#9"8#9$
+F7DFF8F7FEF7EFFF3F"<"<#9&
+FFFCFCFFF3F8FFFFBF="9"8":#8"
+FEFBFDFC07BD=#8"8":#8"
+FFFFFDFBFFFFBF"C"?"
+F7F37F"C"?"
+FFF7FFA"8"
+FEEF
+"C"?"
+F7DF7F"C"?"
+FF8FFFD"
+31<"=#
+CF7E3F";"<$>"
+F7EFFEFFCF7F"B$>"
+FFFCFFF3FFC%="
+FDFFF803DF<":(<"
+F7FCFFFBFFFE7C1FFF"@(
+F7FDFFF7FFFFBFE7";"<"9"
+FFFBE7F3";":$8#<"
+FDFDFBFFCFDFFCDF";"<"9"<"
+FFFE9FFEFF<#;"8$
+FF7F3FEFFF3FA$:"
+F7FE7FBF"8"9"9$:";"
+FDC1BFEFFDFFDFDF"8">"9$;"
+FFDDFBF7FFCFFF9"=#;";"
+DEDFF7EFF79#<#9$;"
+DF7FBFE7FBFFF7FF"9"8"9#
+FDBFDF3FEF"9";$9$
+FFDFFE7FF7FDFFF3A"<":#
+FFFBBDF7="8$9"<#
+9FFDFFF3FEB9FF"9"8"8$;":#
+FDEFBFFBFFFBFDB0FB"9";$9#;#
+FFF7F7FFFDFF7FA0E7"9";$:";#
+FBFBEFFFFCBF8017"9"8"8'8";"
+FDFD3FDFFFFE7FF80FFE7F"9"8#9)9#
+FEFC7FFBFF7FFC01FFDFFE3F007D#8&;'8$
+FF3FFE7FFEFFE1FE03FFE7F8C7FE007F7"8(<$8#
+5FFF3FFDFF81FFBFF7F7F9FFBF7"9%;(9"
+EF8FE3FE01FF07FFF9E7FE3FFF7#8':'9"
+F39FE01FF800039F81FFFEEFFFCFFD7#819"
+FD0FFFFFFE01FFDFFFFEFFFF8EFFFF1FFFF7FF7";#<'
+FEFF81FF3FFFFFFFF38";"9"9"9"
+07E3FDDFFC7"<&9"9#8"
+DEFBFFEFFFF9E7FE7FFD7#;"9"9"9"9"
+FC03FFFBFFFFFF7">$>"9"
+F6F7FFE7BF7F7#=$>"9"
+FFE1F3FFEFDFFF8"=$
+FFFBFF9F@$>"
+FDFFBFEF7">$>&
+F7FCFE7FF0F83FFF7F7">$>&
+FFFE7CFFFF07BFFFFF7">#@"
+FDFF63FF7"?"
+FF1FA"C"
+BF7FJ"
+9FF7"J"
+FD7DF7"J"
+FF7FF8"
+7F8"
+FFJ"
+9DFJ$
+7B003FF8">"A"
+7F3FB88">"A#
+FF7FBC078"="B$
+DF9FBE07DF8"="D"
+FF8FFF@"B$
+87BF0BF7@"C#
+829CFF8"="C#
+EF80FF3F8">":">"
+E71FF3CF8#j$
+E3C033FF7778"R"P"T
+E181C38"=";"<#
+E08383DDDF9"<";"<#
+7FFB03FFFF9"A"<#
+3FFE777F9"<"A#
+7FFDFFFF8#A#9#
+E1FFFF83FDDD8"C"9#
+FEA3FFFF9"<#:"8#
+7F767F7FF7779"<#=#
+FFFEFFFFFF8#8(;#
+FF7FDDDDDDDDFFDDDDDDDF<R8&
+FEFFFFFFFF9%<#8#
+7777777F7777777F9%<'
+FFFFFFFFFFFFFDFFFFFFD$
+FDDDDDD$
+FFFFFF
+
+
+
+
+
+
+
+
+
+
+
+B#
+F77FB#
+FFFFA&
+FDDFFDDDDDAP
+A"
+F7A"
+FFA"9"
+DFFDA"9"
+FFFF
+
+9"="9"
+DFDFFD9$;"9$:#
+BFDEFEFFFFFFF8BFF59#<";#
+7FDF7FF77F8&:";(
+FEFFDEA6DFFFEFF34DD9BBAED58"8#>"8&
+7D9ABFFDED35D6D7967#8#>"9%
+FE1BBA7FFF76B0EFB68">":"9"
+077F7FB77#9":":)
+FC0FBFFFFFF76D7776D7B6958&:";(
+07FFC2BADFDFF8F37779BBB7557"8$:";R
+F8FFFFFFFFF"
+7F7#C"
+F03FFF7#>"
+F1FFDF7"?"
+FFFFA":"
+F77FA":"
+FFFFF"
+DFF"
+FFA'
+F7F77FFF777FAQ
+A%
+FDDFFDDDA%
+FFFFFFFF
+
+
+ENDBITMAP
+%%EndBinary
+63 54 549 738 C
+0 0 0 1 0 0 0 K
+FMENDPAGE
+%%EndPage: "16" 4
+%%Page: "15" 5
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 1 0 0 1 0]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+[ 0 1 1 0 1 0 0]
+ 8 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 12 Q
+0 X
+1 1 0 0 0 0 1 K
+(15) 527.24 104.25 T
+0 0 0 1 0 0 0 K
+72.58 98.25 540.58 116.25 C
+276.16 98.25 337.01 98.25 C
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+72.58 98.25 540.58 116.25 C
+63 54 549 738 C
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 14 Q
+0 X
+1 1 0 0 0 0 1 K
+(Datums and datum conversion) 341.15 716.75 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+64.34 61.25 550.34 92.25 R
+V
+1 H
+0 Z
+N
+0 0 0 0 1 1 1 K
+1 10 Q
+7 X
+0 0 0 0 1 1 1 K
+(Previous) 311.92 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 321.09 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Next) 370.82 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 369.7 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Quit) 517.49 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Go) 228.87 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Back) 223.86 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Cmnd) 416.1 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Refs) 419.43 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Master) 73.86 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 68.31 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(First) 273.59 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 272.48 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Viewer) 462.76 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Help) 468.04 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Index) 125.53 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Local) 174.14 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 165.54 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+2 14 Q
+0 X
+0 0 0 1 0 0 0 K
+-0.57 0.07 (The) 90.58 692.02 B
+1 1 0 0 0 0 1 K
+1 1 0 0 0 0 1 K
+177.43 690.58 119.08 690.58 2 L
+1 1 0 0 0 0 1 K
+V
+0.85 H
+N
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+-0.56 (ADJUST) 119.08 692.02 P
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+-0.57 0.07 ( command can be used for datum conversion if errors on) 177.43 692.02 B
+-0.55 0.07 (the order of more than 1 meter are acceptable. In these cases, use the) 90.58 675.02 B
+0.07 (process described here to perform the adjustment.) 90.58 658.02 S
+1 F
+0.07 (Step 1:  Project the data set to be adjusted into geographic) 90.58 629.02 S
+0.07 (\050latitude-longitude\051 coordinates) 90.58 613.02 S
+2 F
+0.07 (The adjustment must take place in coordinates of decimal degrees.) 90.58 585.02 S
+0.07 (Here is a sample projection file for converting a coverage from the) 90.58 568.02 S
+0.07 (State Plane coordinate system:) 90.58 551.02 S
+3 12 Q
+0.06 (INPUT) 90.58 523.35 S
+0.06 (PROJECTION STATEPLANE) 90.58 508.35 S
+0.06 (ZONE 3426) 90.58 493.35 S
+0.06 (UNITS FEET) 90.58 478.35 S
+0.06 (PARAMETERS) 90.58 463.35 S
+0.06 (OUTPUT) 90.58 448.35 S
+0.06 (PROJECTION GEOGRAPHIC) 90.58 433.35 S
+0.06 (UNITS DD) 90.58 418.35 S
+0.06 (PARAMETERS) 90.58 403.35 S
+0.06 (END) 90.58 388.35 S
+1 14 Q
+0.07 (Step 2:  Establish a set of links to be used for the datum) 90.58 360.02 S
+0.07 (adjustment) 90.58 343.02 S
+2 F
+0.07 (Each link has a control point for its from-location and ends at a) 90.58 314.02 S
+0.07 (control point \050i.e., its new location\051. These links provide the from-) 90.58 297.02 S
+0.07 (and to-points for the coverage adjustment.) 90.58 280.02 S
+-0.47 0.07 (Enough links should be used so that the extent of the entire coverage) 90.58 251.02 B
+-0.41 0.07 (to be converted is enclosed in a convex hull created by connecting the) 90.58 234.02 B
+-0.37 0.07 (outermost links. Feature coordinates outside the convex hull will not) 90.58 217.02 B
+-0.17 0.07 (be adjusted, so use links from surrounding areas for the adjustment.) 90.58 200.02 B
+0.07 (When adjusting smaller-scale coverages \050such as those based upon) 90.58 183.02 S
+0.07 (1:63,360 and 1:250,000 scale maps\051, use links at each 7 1/2-minute) 90.58 166.02 S
+0.07 (interval. This will help generate a more accurate adjustment of all) 90.58 149.02 S
+0.07 (features in the coverage.) 90.58 132.02 S
+0 0 0 1 0 0 0 K
+FMENDPAGE
+%%EndPage: "15" 5
+%%Page: "14" 6
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 1 0 0 1 0]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+[ 0 1 1 0 1 0 0]
+ 8 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 12 Q
+0 X
+1 1 0 0 0 0 1 K
+(14) 527.24 104.25 T
+0 0 0 1 0 0 0 K
+72.58 98.25 540.58 116.25 C
+276.16 98.25 337.01 98.25 C
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+72.58 98.25 540.58 116.25 C
+63 54 549 738 C
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 14 Q
+0 X
+1 1 0 0 0 0 1 K
+(Datums and datum conversion) 341.15 716.75 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+64.34 61.25 550.34 92.25 R
+V
+1 H
+0 Z
+N
+0 0 0 0 1 1 1 K
+1 10 Q
+7 X
+0 0 0 0 1 1 1 K
+(Previous) 311.92 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 321.09 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Next) 370.82 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 369.7 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Quit) 517.49 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Go) 228.87 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Back) 223.86 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Cmnd) 416.1 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Refs) 419.43 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Master) 73.86 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 68.31 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(First) 273.59 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 272.48 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Viewer) 462.76 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Help) 468.04 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Index) 125.53 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Local) 174.14 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 165.54 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+2 14 Q
+0 X
+0 0 0 1 0 0 0 K
+0.07 (equivalent datum keywords. The available datums for North) 90.58 692.02 S
+-0.04 0.07 (America are listed in) 90.58 675.02 B
+1 1 0 0 0 0 1 K
+1 1 0 0 0 0 1 K
+287.17 673.58 231.44 673.58 2 L
+1 1 0 0 0 0 1 K
+V
+0.85 H
+N
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+-0.04 (Table 14) 231.44 675.02 P
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+-0.04 0.07 ( in the PROJECT command reference.) 287.17 675.02 B
+-0.31 0.07 (The STATEPLANE projection does not allow non-NADCON datums,) 90.58 658.02 B
+0.07 (so the projection parameters for the SPCS zone are used \050see) 90.58 641.02 S
+1 1 0 0 0 0 1 K
+1 1 0 0 0 0 1 K
+188.6 622.58 90.58 622.58 2 L
+1 1 0 0 0 0 1 K
+V
+N
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+-0.14 (STATEPLANE) 90.58 624.02 P
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+-0.15 0.07 ( for a fuller explanation\051. The following projection file) 188.6 624.02 B
+0.07 (will convert data from WGS84 to NAD83.) 90.58 607.02 S
+3 12 Q
+0.06 (INPUT) 90.58 579.35 S
+0.06 (PROJECTION GEOGRAPHIC) 90.58 564.35 S
+0.06 (UNITS DD) 90.58 549.35 S
+0.06 (DATUM WGS84) 90.58 534.35 S
+0.06 (PARAMETERS) 90.58 519.35 S
+0.06 (OUTPUT) 90.58 504.35 S
+0.06 (PROJECTION TRANSVERSE) 90.58 489.35 S
+4 F
+0.06 (\050Projection parameters are) 315 489.35 S
+3 F
+0.06 (UNITS METERS) 90.58 474.35 S
+4 F
+0.06 ( equivalent to SPCS 83,) 315 474.35 S
+3 F
+0.06 (DATUM NAR_C) 90.58 459.35 S
+4 F
+0.06 ( Georgia West zone.\051) 315 459.35 S
+3 F
+0.06 (PARAMETERS) 90.58 444.35 S
+0.06 (0.9999) 90.58 429.35 S
+0.06 (-84 10 00) 90.58 414.35 S
+0.06 (30 00 00) 90.58 399.35 S
+0.06 (700000.0) 90.58 384.35 S
+0.06 (0.0) 90.58 369.35 S
+0.06 (END) 90.58 354.35 S
+1 18 Q
+0.09 (Datum conversion using ADJUST) 72.58 317.35 S
+2 14 Q
+0.07 (When ARC/INFO-supported methods cannot convert to a required) 90.58 287.02 S
+0.07 (input or output datum, you can build links between common points) 90.58 270.02 S
+0.07 (on both data sets and perform an ADJUST. This could introduce a) 90.58 253.02 S
+0.07 (distortion of 1 to 5 meters or more into the transformed coordinate) 90.58 236.02 S
+0.07 (values \050accuracy depends upon the accuracy of the original data and) 90.58 219.02 S
+0.07 (establishment of the links\051. This value is reasonable for most data) 90.58 202.02 S
+0.07 (sets\321a recent survey by the National Geodetic Survey found that) 90.58 185.02 S
+-0.68 0.07 (many map databases \050including those which were digitized from map) 90.58 168.02 B
+-0.04 0.07 (sources of varying quality\051 had absolute positional errors as large as) 90.58 151.02 B
+0.07 (75 to 100 feet.) 90.58 134.02 S
+0 0 0 1 0 0 0 K
+FMENDPAGE
+%%EndPage: "14" 6
+%%Page: "13" 7
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 1 0 0 1 0]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+[ 0 1 1 0 1 0 0]
+ 8 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 12 Q
+0 X
+1 1 0 0 0 0 1 K
+(13) 527.24 104.25 T
+0 0 0 1 0 0 0 K
+72.58 98.25 540.58 116.25 C
+276.16 98.25 337.01 98.25 C
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+72.58 98.25 540.58 116.25 C
+63 54 549 738 C
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 14 Q
+0 X
+1 1 0 0 0 0 1 K
+(Datums and datum conversion) 341.15 716.75 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+64.34 61.25 550.34 92.25 R
+V
+1 H
+0 Z
+N
+0 0 0 0 1 1 1 K
+1 10 Q
+7 X
+0 0 0 0 1 1 1 K
+(Previous) 311.92 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 321.09 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Next) 370.82 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 369.7 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Quit) 517.49 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Go) 228.87 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Back) 223.86 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Cmnd) 416.1 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Refs) 419.43 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Master) 73.86 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 68.31 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(First) 273.59 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 272.48 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Viewer) 462.76 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Help) 468.04 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Index) 125.53 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Local) 174.14 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 165.54 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+1 18 Q
+0 X
+0 0 0 1 0 0 0 K
+0.09 (NAD to WGS) 72.58 689.35 S
+2 14 Q
+0.07 (There are two cases in which it may be necessary to use the three-) 90.58 659.02 S
+0.07 (parameter transformation for datum transformation in North) 90.58 642.02 S
+0.07 (America: when data needs to be converted to or from a datum other) 90.58 625.02 S
+0.07 (than NAD27 or NAD83 \050such as WGS72\051, or when the data falls in) 90.58 608.02 S
+-0.41 0.07 (an area not covered by United States or Canadian solutions. In these) 90.58 591.02 B
+0.07 (cases, the results of the three-parameter transformation will result) 90.58 574.02 S
+-0.58 0.07 (in errors or uncertainty up to 50 m, which is adequate for mapping at) 90.58 557.02 B
+0.07 (1:65,000 or smaller.) 90.58 540.02 S
+0.07 (Examples include changing the datum of a three arc-second DEM in) 90.58 511.02 S
+0.07 (WGS72 to match a database stored in NAD83, or to transform from) 90.58 494.02 S
+0.07 (NAD27 to NAD83 in Mexico, Central America, Greenland, or the) 90.58 477.02 S
+0.07 (Caribbean.) 90.58 460.02 S
+0.07 (The following projection file would convert a WGS72 data set to an) 90.58 431.02 S
+0.07 (NAD83 data set.) 90.58 414.02 S
+3 12 Q
+0.06 (INPUT) 90.58 386.35 S
+0.06 (PROJECTION GEOGRAPHIC) 90.58 371.35 S
+0.06 (UNITS DS) 90.58 356.35 S
+0.06 (DATUM WGS72 SEVEN) 90.58 341.35 S
+0.06 (PARAMETERS) 90.58 326.35 S
+0.06 (OUTPUT) 90.58 311.35 S
+0.06 (PROJECTION UTM) 90.58 296.35 S
+0.06 (UNITS METERS) 90.58 281.35 S
+0.06 (DATUM NAR_D THREE) 90.58 266.35 S
+0.06 (ZONE 17) 90.58 251.35 S
+0.06 (PARAMETERS) 90.58 236.35 S
+0.06 (END) 90.58 221.35 S
+2 14 Q
+0.07 (The datum keywords supported by NADCON \050NAD27, NAD83,) 90.58 193.02 S
+0.07 (HPGN, ALASKAN_ISLANDS, and OLD_HAWAIIAN\051 cannot be) 90.58 176.02 S
+-0.56 0.07 (used with the other datum conversion methods. Therefore, to convert) 90.58 159.02 B
+0.07 (from WGS84 and NAD83, for example, it is necessary to use) 90.58 142.02 S
+0 0 0 1 0 0 0 K
+FMENDPAGE
+%%EndPage: "13" 7
+%%Page: "12" 8
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 1 0 0 1 0]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+[ 0 1 1 0 1 0 0]
+ 8 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 12 Q
+0 X
+1 1 0 0 0 0 1 K
+(12) 527.24 104.25 T
+0 0 0 1 0 0 0 K
+72.58 98.25 540.58 116.25 C
+276.16 98.25 337.01 98.25 C
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+72.58 98.25 540.58 116.25 C
+63 54 549 738 C
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 14 Q
+0 X
+1 1 0 0 0 0 1 K
+(Datums and datum conversion) 341.15 716.75 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+64.34 61.25 550.34 92.25 R
+V
+1 H
+0 Z
+N
+0 0 0 0 1 1 1 K
+1 10 Q
+7 X
+0 0 0 0 1 1 1 K
+(Previous) 311.92 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 321.09 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Next) 370.82 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 369.7 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Quit) 517.49 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Go) 228.87 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Back) 223.86 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Cmnd) 416.1 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Refs) 419.43 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Master) 73.86 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 68.31 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(First) 273.59 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 272.48 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Viewer) 462.76 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Help) 468.04 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Index) 125.53 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Local) 174.14 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 165.54 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+2 14 Q
+0 X
+0 0 0 1 0 0 0 K
+0.07 (PROJECT command is CNT. This transformation and its) 90.58 692.02 S
+0.07 (implementation are similar to the NADCON program used in the) 90.58 675.02 S
+0.07 (United States.) 90.58 658.02 S
+0.07 (The Canadian National Transformation predicts to within 0.01) 90.58 629.02 S
+0.07 (m of) 506.38 629.02 S
+-0.62 0.07 (the actual difference for 74% of the cases, and within 0.5 m for 93% of) 90.58 612.02 B
+0.07 (the cases.) 90.58 595.02 S
+0.07 (ARC/INFO Version 7 uses Rev 1.0 of the Canadian National) 90.58 566.02 S
+0.07 (Transformation. Future releases will include updates to this) 90.58 549.02 S
+-0.03 0.07 (program as they become available. Rev 2.0, not in general release as) 90.58 532.02 B
+0.07 (of this printing, will include a higher density grid spacing for the) 90.58 515.02 S
+0.07 (transformation in areas of particular interest. This will result in a) 90.58 498.02 S
+0.07 (more reliable transformation in major urban centers, or other areas) 90.58 481.02 S
+0.07 (that are densified.) 90.58 464.02 S
+0.07 (The following projection file would convert an NAD27 data set to an) 90.58 435.02 S
+0.07 (NAD83 data set.) 90.58 418.02 S
+3 12 Q
+0.06 (INPUT) 90.58 390.35 S
+0.06 (PROJECTION UTM) 90.58 375.35 S
+0.06 (UNITS METERS) 90.58 360.35 S
+0.06 (DATUM NAD27 CNT) 90.58 345.35 S
+0.06 (ZONE 15) 90.58 330.35 S
+0.06 (PARAMETERS) 90.58 315.35 S
+0.06 (OUTPUT) 90.58 300.35 S
+0.06 (PROJECTION UTM) 90.58 285.35 S
+0.06 (UNITS METERS) 90.58 270.35 S
+0.06 (DATUM NAD83 CNT) 90.58 255.35 S
+0.06 (ZONE 15) 90.58 240.35 S
+0.06 (PARAMETERS) 90.58 225.35 S
+0.06 (END) 90.58 210.35 S
+0 0 0 1 0 0 0 K
+FMENDPAGE
+%%EndPage: "12" 8
+%%Page: "11" 9
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 1 0 0 1 0]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+[ 0 1 1 0 1 0 0]
+ 8 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 12 Q
+0 X
+1 1 0 0 0 0 1 K
+(11) 527.24 104.25 T
+0 0 0 1 0 0 0 K
+72.58 98.25 540.58 116.25 C
+276.16 98.25 337.01 98.25 C
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+72.58 98.25 540.58 116.25 C
+63 54 549 738 C
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 14 Q
+0 X
+1 1 0 0 0 0 1 K
+(Datums and datum conversion) 341.15 716.75 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+64.34 61.25 550.34 92.25 R
+V
+1 H
+0 Z
+N
+0 0 0 0 1 1 1 K
+1 10 Q
+7 X
+0 0 0 0 1 1 1 K
+(Previous) 311.92 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 321.09 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Next) 370.82 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 369.7 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Quit) 517.49 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Go) 228.87 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Back) 223.86 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Cmnd) 416.1 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Refs) 419.43 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Master) 73.86 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 68.31 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(First) 273.59 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 272.48 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Viewer) 462.76 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Help) 468.04 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Index) 125.53 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Local) 174.14 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 165.54 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+2 14 Q
+0 X
+0 0 0 1 0 0 0 K
+0.07 (Alabama) 108.58 692.02 S
+0.07 (Louisiana) 243 692.02 S
+0.07 (Oregon) 387 692.02 S
+0.07 (Arizona) 108.58 675.02 S
+0.07 (Maine) 243 675.02 S
+0.07 (Puerto Rico) 387 675.02 S
+0.07 (Colorado) 108.58 658.02 S
+0.07 (Maryland) 243 658.02 S
+0.07 (Tennessee) 387 658.02 S
+0.07 (Delaware) 108.58 641.02 S
+0.07 (Montana) 243 641.02 S
+0.07 (Virgin Islands) 387 641.02 S
+0.07 (Florida) 108.58 624.02 S
+0.07 (New Mexico) 243 624.02 S
+0.07 (Washington) 387 624.02 S
+0.07 (Idaho) 108.58 607.02 S
+0.07 (Oklahoma) 243 607.02 S
+0.07 (Wisconsin) 387 607.02 S
+0.07 (As other states are completed, they will be included in future) 90.58 578.02 S
+0.07 (releases of the software.) 90 561.02 S
+1 F
+0.07 (Why Y-coordinates may seem 200 meters too large) 72.58 526.02 S
+2 F
+0.07 (Nearly all published statements about the amount of shift between) 90.58 497.02 S
+0.07 (NAD27 and NAD83 are shifts measured in meters on unprojected) 90.58 480.02 S
+0.07 (\050latitude-longitude\051 data. When two data sets are projected into) 90.58 463.02 S
+-0.2 0.07 (planar coordinates \050such as UTM or State Plane\051 and the differences) 90.58 446.02 B
+0.07 (between locations in NAD27 and NAD83 are measured, the) 90.58 429.02 S
+-0.75 0.07 (Y-) 90.58 412.02 B
+-0.75 0.07 (coordinate is often approximately 200 meters larger than expected.) 105.24 412.02 B
+0.07 (This is a result of the difference between the size and origin of the) 90.58 395.02 S
+0.07 (two spheroids upon which the data is being projected.) 90.58 378.02 S
+0.07 (To prove this to yourself, you can create a coverage of a single arc,) 90.58 349.02 S
+0.07 (running along a meridian from the equator to your point of interest) 90.58 332.02 S
+0.07 (in the coterminous United States. By default, it will be created on) 90.58 315.02 S
+0.07 (the Clarke 1866 spheroid. Now PROJECT it and change the datum) 90.58 298.02 S
+0.07 (to NAD83. The arc should be approximately 200 meters longer.) 90.58 281.02 S
+0 18 Q
+0.09 (Canadian method \050CNT\051) 72.58 243.35 S
+2 14 Q
+0.07 (Canada\325s standard transformation program between NAD27 and) 90.58 213.02 S
+-0.43 0.07 (NAD83 was developed by the Canadian Geodetic Survey. It is known) 90.58 196.02 B
+-0.61 0.07 (locally as the National Transformation, and will be referred to in this) 90.58 179.02 B
+0.07 (document and the software as the Canadian National) 90.58 162.02 S
+-0.39 0.07 (Transformation. The {method} keyword for the DATUM option of the) 90.58 145.02 B
+0 0 0 1 0 0 0 K
+FMENDPAGE
+%%EndPage: "11" 9
+%%Page: "10" 10
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 1 0 0 1 0]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+[ 0 1 1 0 1 0 0]
+ 8 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 12 Q
+0 X
+1 1 0 0 0 0 1 K
+(10) 527.24 104.25 T
+0 0 0 1 0 0 0 K
+72.58 98.25 540.58 116.25 C
+276.16 98.25 337.01 98.25 C
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+72.58 98.25 540.58 116.25 C
+63 54 549 738 C
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 14 Q
+0 X
+1 1 0 0 0 0 1 K
+(Datums and datum conversion) 341.15 716.75 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+64.34 61.25 550.34 92.25 R
+V
+1 H
+0 Z
+N
+0 0 0 0 1 1 1 K
+1 10 Q
+7 X
+0 0 0 0 1 1 1 K
+(Previous) 311.92 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 321.09 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Next) 370.82 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 369.7 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Quit) 517.49 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Go) 228.87 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Back) 223.86 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Cmnd) 416.1 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Refs) 419.43 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Master) 73.86 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 68.31 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(First) 273.59 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 272.48 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Viewer) 462.76 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Help) 468.04 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Index) 125.53 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Local) 174.14 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 165.54 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+1 14 Q
+0 X
+0 0 0 1 0 0 0 K
+0.07 (Accuracy and uncertainty) 72.58 692.02 S
+2 F
+-0.29 0.07 (Following is a statement from the release notes of NADCON Version) 90.58 663.02 B
+0.07 (2.1, October, 1993.) 90.58 646.02 S
+0.07 (\322The accuracy of the transformation should be viewed with some) 90.58 617.02 S
+0.07 (caution. At the 67 percent confidence level, this method introduces) 90.58 600.02 S
+0.07 (approximately 0.15 m uncertainty within the coterminous United) 90.58 583.02 S
+-0.26 0.07 (States, 0.50 m uncertainty within Alaska, 0.20 m uncertainty within) 90.58 566.02 B
+0.07 (Hawaii, and 0.50 m uncertainty within Puerto Rico and the Virgin) 90.58 549.02 S
+0.07 (Islands. In areas of sparse geodetic data coverage NADCON may) 90.58 532.02 S
+0.07 (yield less accurate results, but seldom in excess of 1.0 m.) 90.58 515.02 S
+0.07 (Transformations between NAD83 and the States/Regions with High) 90.58 498.02 S
+-0.28 0.07 (Accuracy Reference Networks \050HARN\051 introduce approximately 0.05) 90.58 481.02 B
+0.07 (m uncertainty. Transformations between old datums \050NAD27, Old) 90.58 464.02 S
+-0.06 0.07 (Hawaiian, Puerto Rico, etc.\051 and HARN could combine uncertainties) 90.58 447.02 B
+0.07 (\050i.e., NAD27 to HARN equals 0.15m + 0.05m = 0.20m\051. In near) 90.58 430.02 S
+0.07 (offshore regions, results will be less accurate but seldom in excess of) 90.58 413.02 S
+0.07 (5.0 m. Farther offshore, NAD27 was undefined. Therefore, the) 90.58 396.02 S
+0.07 (NADCON computed transformations are extrapolations and no) 90.58 379.02 S
+0.07 (accuracy can be stated.\323) 90.58 362.02 S
+1 F
+0.07 (State readjustments \050HPGN / HARN\051) 72.58 327.02 S
+2 F
+0.07 (There is an ongoing effort at the state level to readjust the NAD83) 90.58 298.02 S
+0.07 (datum to a higher level of accuracy using state-of-the-art surveying) 90.58 281.02 S
+0.07 (techniques that were not widely available when the NAD83 datum) 90.58 264.02 S
+0.07 (was being developed. This project, known as the High Accuracy) 90.58 247.02 S
+0.07 (Reference Network \050HARN\051, or High Precision GPS Network) 90.58 230.02 S
+0.07 (\050HPGN\051 is a cooperative project between the National Geodetic) 90.58 213.02 S
+0.07 (Survey and the individual states.) 90.58 196.02 S
+0.07 (To convert a data set in NAD27 or NAD83 to this newly readjusted) 90.58 167.02 S
+0.07 (network, use the DATUM option HPGN. The following states are) 90.58 150.02 S
+0.07 (currently available in ARC/INFO:) 90.58 133.02 S
+0 0 0 1 0 0 0 K
+FMENDPAGE
+%%EndPage: "10" 10
+%%Page: "9" 11
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 1 0 0 1 0]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+[ 0 1 1 0 1 0 0]
+ 8 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 12 Q
+0 X
+1 1 0 0 0 0 1 K
+(9) 533.91 104.25 T
+0 0 0 1 0 0 0 K
+72.58 98.25 540.58 116.25 C
+276.16 98.25 337.01 98.25 C
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+72.58 98.25 540.58 116.25 C
+63 54 549 738 C
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 14 Q
+0 X
+1 1 0 0 0 0 1 K
+(Datums and datum conversion) 341.15 716.75 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+64.34 61.25 550.34 92.25 R
+V
+1 H
+0 Z
+N
+0 0 0 0 1 1 1 K
+1 10 Q
+7 X
+0 0 0 0 1 1 1 K
+(Previous) 311.92 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 321.09 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Next) 370.82 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 369.7 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Quit) 517.49 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Go) 228.87 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Back) 223.86 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Cmnd) 416.1 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Refs) 419.43 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Master) 73.86 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 68.31 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(First) 273.59 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 272.48 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Viewer) 462.76 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Help) 468.04 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Index) 125.53 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Local) 174.14 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 165.54 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+3 12 Q
+0 X
+0 0 0 1 0 0 0 K
+0.06 (PARAMETERS) 90.58 693.35 S
+0.06 (OUTPUT) 90.58 678.35 S
+0.06 (PROJECTION STATEPLANE) 90.58 663.35 S
+0.06 (UNITS METERS) 90.58 648.35 S
+0.06 (ZONE 3426) 90.58 633.35 S
+0.06 (DATUM NAD83 NADCON) 90.58 618.35 S
+0.06 (PARAMETERS) 90.58 603.35 S
+0.06 (END) 90.58 588.35 S
+2 14 Q
+0.07 (The following keywords \050and associated regional coverage\051 are valid) 90.58 560.02 S
+0.07 (datum names when using the NADCON method for datum) 90.58 543.02 S
+0.07 (transformation.) 90.58 526.02 S
+0.07 (Use OLD_HAWAIIAN and ALASKAN_ISLAND keywords to) 90.58 243.02 S
+0.07 (transform from the old island datum to NAD83. If your data is) 90.58 226.02 S
+0.07 (already in NAD27, do not use these options.) 90.58 209.02 S
+1 12 Q
+0.06 (Keyword) 104.54 495.35 S
+0.06 (Region) 223.57 495.35 S
+0.06 (Latitude) 338.51 495.35 S
+0.06 (Longitude) 452.82 495.35 S
+0 F
+0.06 (NAD27) 76.58 473.35 S
+0.06 (Coterminous) 191.58 473.35 S
+0.06 (United States) 191.58 459.35 S
+0.06 (20 through 50) 304.58 473.35 S
+0.06 (-63 through -131) 427.58 473.35 S
+0.06 (Alaska) 191.58 439.35 S
+0.06 (46 through 77) 304.58 439.35 S
+0.06 (-128 through 166) 427.58 439.35 S
+0.06 (Puerto Rico and) 191.58 419.35 S
+0.06 (the V) 191.58 405.35 S
+0.06 (irgin Islands) 219.69 405.35 S
+0.06 (17 through 19) 304.58 419.35 S
+0.06 (-64 through -68) 427.58 419.35 S
+0.06 (OLD_HA) 76.58 385.35 S
+0.06 (W) 124.51 385.35 S
+0.06 (AIIAN) 135.46 385.35 S
+0.06 (Hawaii) 191.58 385.35 S
+0.06 (18 through 23) 304.58 385.35 S
+0.06 (-154 through -161) 427.58 385.35 S
+0.06 (ALASKAN_ISLAND) 76.58 365.35 S
+0.06 (St. George) 191.58 365.35 S
+0.06 (56 through 57) 304.58 365.35 S
+0.06 (-169 through -171) 427.58 365.35 S
+0.06 (St. Lawrence) 191.58 345.35 S
+0.06 (62 through 64) 304.58 345.35 S
+0.06 (-168 through -172) 427.58 345.35 S
+0.06 (St. Paul) 191.58 325.35 S
+0.06 (57 through 58) 304.58 325.35 S
+0.06 (-169 through -171) 427.58 325.35 S
+0.06 (NAD83) 76.58 305.35 S
+-0.08 0.06 (Encompasses all the) 304.58 305.35 B
+0.06 (above listed areas) 304.58 291.35 S
+0.06 (HPGN) 76.58 271.35 S
+0.06 (See list of supported states in the following section.) 191.58 271.35 S
+72.58 510.85 72.58 265.85 2 L
+V
+N
+187.58 511.85 187.58 264.85 2 L
+V
+N
+300.58 511.85 300.58 284.35 2 L
+V
+N
+423.58 511.85 423.58 284.35 2 L
+V
+N
+540.58 510.85 540.58 265.85 2 L
+V
+N
+72.08 511.35 541.08 511.35 2 L
+V
+N
+73.08 488.6 540.08 488.6 2 L
+V
+0.5 H
+N
+73.08 486.1 540.08 486.1 2 L
+V
+N
+72.08 399.35 541.08 399.35 2 L
+V
+2 H
+N
+72.08 379.35 541.08 379.35 2 L
+V
+N
+72.08 319.35 541.08 319.35 2 L
+V
+N
+72.08 285.35 541.08 285.35 2 L
+V
+N
+72.08 265.35 541.08 265.35 2 L
+V
+1 H
+N
+0 0 0 1 0 0 0 K
+FMENDPAGE
+%%EndPage: "9" 11
+%%Page: "8" 12
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 1 0 0 1 0]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+[ 0 1 1 0 1 0 0]
+ 8 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 12 Q
+0 X
+1 1 0 0 0 0 1 K
+(8) 533.91 104.25 T
+0 0 0 1 0 0 0 K
+72.58 98.25 540.58 116.25 C
+276.16 98.25 337.01 98.25 C
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+72.58 98.25 540.58 116.25 C
+63 54 549 738 C
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 14 Q
+0 X
+1 1 0 0 0 0 1 K
+(Datums and datum conversion) 341.15 716.75 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+64.34 61.25 550.34 92.25 R
+V
+1 H
+0 Z
+N
+0 0 0 0 1 1 1 K
+1 10 Q
+7 X
+0 0 0 0 1 1 1 K
+(Previous) 311.92 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 321.09 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Next) 370.82 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 369.7 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Quit) 517.49 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Go) 228.87 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Back) 223.86 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Cmnd) 416.1 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Refs) 419.43 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Master) 73.86 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 68.31 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(First) 273.59 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 272.48 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Viewer) 462.76 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Help) 468.04 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Index) 125.53 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Local) 174.14 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 165.54 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+2 14 Q
+0 X
+0 0 0 1 0 0 0 K
+0.07 (mathematical equation. A number of methods have been proposed) 90.58 692.02 S
+0.07 (for performing the datum adjustment. The currently accepted) 90.58 675.02 S
+0.07 (method is an error-averaging, rubber sheeting approach. A regular) 90.58 658.02 S
+0.07 (grid of control points whose datum shifts are known is used to) 90.58 641.02 S
+0.07 (estimate the shift at other locations.) 90.58 624.02 S
+0.07 (Two such methods for transforming between NAD27 and NAD83) 90.58 595.02 S
+0.07 (have been developed by the United States and Canada for use in) 90.58 578.02 S
+0.07 (their respective countries.) 90.58 561.02 S
+0 18 Q
+0.09 (United States method \050NADCON\051) 72.58 523.35 S
+2 14 Q
+0.07 (The datum transformation program known as NADCON, created by) 90.58 493.02 S
+0.07 (the U.S. National Geodetic Survey \050NGS\051, has been implemented) 90.58 476.02 S
+0.07 (within the) 90.58 459.02 S
+1 1 0 0 0 0 1 K
+1 1 0 0 0 0 1 K
+230.08 457.58 162.4 457.58 2 L
+1 1 0 0 0 0 1 K
+V
+0.85 H
+N
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(PROJECT) 162.4 459.02 T
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0.07 ( command. A minimum curvature-derived) 230.08 459.02 S
+0.07 (surface based upon the National Geodetic Reference System) 90.58 442.02 S
+0.07 (determines the transformation of points and has an approximate) 90.58 425.02 S
+0.07 (accuracy of 0.15 to 0.5 meters. The accepted national standard,) 90.58 408.02 S
+0.07 (NADCON is the fastest, simplest, and most accurate datum) 90.58 391.02 S
+0.07 (transformation for mapping at scales of 1:200 and smaller.) 90.58 374.02 S
+0.07 (NADCON, an acronym for North American Datum CONversion, is) 90.58 357.02 S
+0.07 (suitable for the United States, Puerto Rico, and the Virgin Islands,) 90.58 340.02 S
+0.07 (but only for conversion between the NAD27, the NAD83, the High) 90.58 323.02 S
+0.07 (Precision GPS Network \050HPGN\051 readjustment of NAD83, and) 90.58 306.02 S
+0.07 (selected local island datums discussed below.) 90.58 289.02 S
+-0.43 0.07 (To transform datums specify different input and output datums with) 90.58 260.02 B
+0.07 (the DATUM subcommand. The following projection file would) 90.58 243.02 S
+0.07 (convert an NAD27 data set to an NAD83 data set.) 90.58 226.02 S
+3 12 Q
+0.06 (INPUT) 90.58 198.35 S
+0.06 (PROJECTION STATEPLANE) 90.58 183.35 S
+0.06 (UNITS FEET) 90.58 168.35 S
+0.06 (ZONE 3426) 90.58 153.35 S
+0.06 (DATUM NAD27 NADCON) 90.58 138.35 S
+0 0 0 1 0 0 0 K
+FMENDPAGE
+%%EndPage: "8" 12
+%%Page: "7" 13
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 1 0 0 1 0]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+[ 0 1 1 0 1 0 0]
+ 8 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 12 Q
+0 X
+1 1 0 0 0 0 1 K
+(7) 533.91 104.25 T
+0 0 0 1 0 0 0 K
+72.58 98.25 540.58 116.25 C
+276.16 98.25 337.01 98.25 C
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+72.58 98.25 540.58 116.25 C
+63 54 549 738 C
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 14 Q
+0 X
+1 1 0 0 0 0 1 K
+(Datums and datum conversion) 341.15 716.75 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+64.34 61.25 550.34 92.25 R
+V
+1 H
+0 Z
+N
+0 0 0 0 1 1 1 K
+1 10 Q
+7 X
+0 0 0 0 1 1 1 K
+(Previous) 311.92 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 321.09 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Next) 370.82 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 369.7 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Quit) 517.49 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Go) 228.87 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Back) 223.86 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Cmnd) 416.1 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Refs) 419.43 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Master) 73.86 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 68.31 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(First) 273.59 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 272.48 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Viewer) 462.76 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Help) 468.04 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Index) 125.53 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Local) 174.14 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 165.54 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+2 14 Q
+0 X
+0 0 0 1 0 0 0 K
+0.07 (1800s. These calculations were done manually and in sections over) 90.58 692.02 S
+0.07 (many years. Therefore, errors varied from station to station.) 90.58 675.02 S
+0 18 Q
+0.09 (NAD83) 72.58 637.35 S
+2 14 Q
+0.07 (Many technological advances in surveying and geodesy since the) 90.58 607.02 S
+0.07 (establishment of NAD27\321electronic theodolites, GPS satellites,) 90.58 590.02 S
+0.07 (Very Long Baseline Interferometry, and Doppler systems\321revealed) 90.58 573.02 S
+0.07 (weaknesses in the existing network of control points. Differences) 90.58 556.02 S
+0.07 (became particularly noticeable when linking existing control with) 90.58 539.02 S
+-0.27 0.07 (newly established surveys. The establishment of a new datum would) 90.58 522.02 B
+0.07 (allow for a single datum to cover consistently North America and) 90.58 505.02 S
+0.07 (surrounding areas.) 90.58 488.02 S
+0.07 (The North American Datum of 1983 is based upon both Earth and) 90.58 459.02 S
+0.07 (satellite observations, using the GRS80 spheroid. The origin for this) 90.58 442.02 S
+-0.19 0.07 (datum is the Earth\325s center of mass. This affects the surface location) 90.58 425.02 B
+-0.04 0.07 (of all latitude-longitude values enough to cause locations of previous) 90.58 408.02 B
+0.07 (control points in North America to shift, sometimes as much as 500) 90.58 391.02 S
+0.07 (feet. A ten-year multinational effort tied together a network of) 90.58 374.02 S
+0.07 (control points for the United States, Canada, Mexico, Greenland,) 90.58 357.02 S
+0.07 (Central America, and the Caribbean.) 90.58 340.02 S
+1 18 Q
+0.09 (Transforming between NAD27 and NAD83) 72.58 302.35 S
+2 14 Q
+0.07 (Adoption of the North American Datum of 1983 requires that users) 90.58 272.02 S
+0.07 (store and use their map data in a coordinate system based upon) 90.58 255.02 S
+-0.42 0.07 (NAD83. However, many of these users automated their original data) 90.58 238.02 B
+0.07 (layers using NAD27 and continue to do so, primarily because most) 90.58 221.02 S
+0.07 (source data is collected from maps based upon NAD27.) 90.58 204.02 S
+0.07 (Due to differences in the method for defining each datum, as well as) 90.58 175.02 S
+0.07 (variations in distortion, the relationship between the NAD27 and) 90.58 158.02 S
+0.07 (NAD83 datum cannot be defined at every location by a single) 90.58 141.02 S
+0 0 0 1 0 0 0 K
+FMENDPAGE
+%%EndPage: "7" 13
+%%Page: "6" 14
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 1 0 0 1 0]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+[ 0 1 1 0 1 0 0]
+ 8 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 12 Q
+0 X
+1 1 0 0 0 0 1 K
+(6) 533.91 104.25 T
+0 0 0 1 0 0 0 K
+72.58 98.25 540.58 116.25 C
+276.16 98.25 337.01 98.25 C
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+72.58 98.25 540.58 116.25 C
+63 54 549 738 C
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 14 Q
+0 X
+1 1 0 0 0 0 1 K
+(Datums and datum conversion) 341.15 716.75 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+64.34 61.25 550.34 92.25 R
+V
+1 H
+0 Z
+N
+0 0 0 0 1 1 1 K
+1 10 Q
+7 X
+0 0 0 0 1 1 1 K
+(Previous) 311.92 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 321.09 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Next) 370.82 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 369.7 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Quit) 517.49 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Go) 228.87 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Back) 223.86 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Cmnd) 416.1 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Refs) 419.43 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Master) 73.86 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 68.31 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(First) 273.59 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 272.48 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Viewer) 462.76 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Help) 468.04 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Index) 125.53 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Local) 174.14 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 165.54 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+2 14 Q
+0 X
+0 0 0 1 0 0 0 K
+0.07 (The following projection file would convert a WGS72 data set in) 90.58 692.02 S
+0.07 (Central America to an NAD83 data set.) 90.58 675.02 S
+3 12 Q
+0.06 (INPUT) 90.58 649.35 S
+0.06 (PROJECTION GEOGRAPHIC) 90.58 634.35 S
+0.06 (UNITS DD) 90.58 619.35 S
+0.06 (DATUM USER_DEFINED 0, 0, 4.5, 0, 0, -0.554, 0.227) 90.58 604.35 S
+0.06 (SPHEROID WGS72) 90.58 589.35 S
+0.06 (PARAMETERS) 90.58 574.35 S
+0.06 (OUTPUT) 90.58 559.35 S
+0.06 (PROJECTION GEOGRAPHIC) 90.58 544.35 S
+0.06 (UNITS DD) 90.58 529.35 S
+0.06 (DATUM NAR_D) 90.58 514.35 S
+0.06 (PARAMETERS) 90.58 499.35 S
+0.06 (END) 90.58 484.35 S
+2 14 Q
+0.07 (Note: This could also have been done using) 90.58 456.02 S
+3 12 Q
+0.06 (DATUM WGS72 SEVEN) 90.58 430.35 S
+2 14 Q
+0.07 (instead of) 90.58 402.02 S
+3 12 Q
+0.06 (DATUM USER_DEFINED 0, 0, 4.5, 0, 0, -0.554, 0.227) 90.58 376.35 S
+1 18 Q
+0.09 (North American datums) 72.58 339.35 S
+2 14 Q
+0.07 (There are two horizontal datums used almost exclusively in North) 90.58 309.02 S
+-0.61 0.07 (America. These are the North American Datum of 1927 \050NAD27\051 and) 90.58 292.02 B
+0.07 (the North American Datum of 1983 \050NAD83\051.) 90.58 275.02 S
+0 18 Q
+0.09 (NAD27) 72.58 237.35 S
+2 14 Q
+-0.61 0.07 (The North American Datum of 1927 uses the Clarke spheroid of 1866) 90.58 207.02 B
+0.07 (to represent the shape of the Earth. The origin of this datum is a) 90.58 190.02 S
+0.07 (point on the Earth referred to as Meades Ranch in Kansas. Many) 90.58 173.02 S
+-0.64 0.07 (NAD27 control points were calculated from observations taken in the) 90.58 156.02 B
+0 0 0 1 0 0 0 K
+FMENDPAGE
+%%EndPage: "6" 14
+%%Page: "5" 15
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 1 0 0 1 0]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+[ 0 1 1 0 1 0 0]
+ 8 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 12 Q
+0 X
+1 1 0 0 0 0 1 K
+(5) 533.91 104.25 T
+0 0 0 1 0 0 0 K
+72.58 98.25 540.58 116.25 C
+276.16 98.25 337.01 98.25 C
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+72.58 98.25 540.58 116.25 C
+63 54 549 738 C
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 14 Q
+0 X
+1 1 0 0 0 0 1 K
+(Datums and datum conversion) 341.15 716.75 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+64.34 61.25 550.34 92.25 R
+V
+1 H
+0 Z
+N
+0 0 0 0 1 1 1 K
+1 10 Q
+7 X
+0 0 0 0 1 1 1 K
+(Previous) 311.92 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 321.09 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Next) 370.82 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 369.7 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Quit) 517.49 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Go) 228.87 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Back) 223.86 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Cmnd) 416.1 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Refs) 419.43 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Master) 73.86 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 68.31 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(First) 273.59 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 272.48 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Viewer) 462.76 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Help) 468.04 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Index) 125.53 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Local) 174.14 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 165.54 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0 18 Q
+0 X
+0 0 0 1 0 0 0 K
+0.09 (Seven parameter \050SEVEN\051) 72.58 689.35 S
+2 14 Q
+0.07 (The seven-parameter transformation is also known as a Bursa-Wolf) 90.58 659.02 S
+-0.53 0.07 (transformation. This transformation accounts for the shifts in origin,) 90.58 642.02 B
+0.07 (as well as rotation about each of the three axes and a difference in) 90.58 625.02 S
+0.07 (scale.) 90.58 608.02 S
+0.07 (The currently supported datums and keywords for the seven) 90.58 579.02 S
+0.07 (parameter transformation are:) 90.58 562.02 S
+0.07 (WGS72) 90.58 533.02 S
+0.07 (WGS84) 90.58 516.02 S
+0.07 (The values for these transformations were taken from \050Soler and) 90.58 487.02 S
+0.07 (Hothem, 1989\051.) 90.58 470.02 S
+0 18 Q
+0.09 (User-defined datums \050USER_DEFINED\051) 72.58 432.35 S
+2 14 Q
+0.07 (In addition to supporting transformation between over two hundred) 90.58 402.02 S
+0.07 (known datums, there is a USER_DEFINED option to the DATUM) 90.58 385.02 S
+0.07 (subcommand. By supplying the correct shift parameters to get to or) 90.58 368.02 S
+0.07 (from WGS84, the intermediate datum, this option will allow you to) 90.58 351.02 S
+0.07 (transform between any two datums.) 90.58 334.02 S
+0.07 (The parameters to be supplied are:) 90.58 305.02 S
+0.07 (<dx, dy, dz> {rx, ry, rz, ds}) 90.58 278.02 S
+0.07 (The first three required parameters, measured in meters, are the) 90.58 249.02 S
+-0.58 0.07 (shifts of the origin; the other four optional parameters are rotation in) 90.58 232.02 B
+0.07 (decimal seconds about each axis, and the change in scale, measured) 90.58 215.02 S
+0.07 (in parts per million. When using the USER_DEFINED option,) 90.58 198.02 S
+0.07 (specify the spheroid with the SPHEROID subcommand or as the) 90.58 181.02 S
+0.07 (semi-major and semi-minor axis of the spheroid on the) 90.58 164.02 S
+0.07 (PARAMETERS line.) 90.58 147.02 S
+0 0 0 1 0 0 0 K
+FMENDPAGE
+%%EndPage: "5" 15
+%%Page: "4" 16
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 1 0 0 1 0]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+[ 0 1 1 0 1 0 0]
+ 8 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 12 Q
+0 X
+1 1 0 0 0 0 1 K
+(4) 533.91 104.25 T
+0 0 0 1 0 0 0 K
+72.58 98.25 540.58 116.25 C
+276.16 98.25 337.01 98.25 C
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+72.58 98.25 540.58 116.25 C
+63 54 549 738 C
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 14 Q
+0 X
+1 1 0 0 0 0 1 K
+(Datums and datum conversion) 341.15 716.75 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+64.34 61.25 550.34 92.25 R
+V
+1 H
+0 Z
+N
+0 0 0 0 1 1 1 K
+1 10 Q
+7 X
+0 0 0 0 1 1 1 K
+(Previous) 311.92 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 321.09 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Next) 370.82 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 369.7 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Quit) 517.49 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Go) 228.87 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Back) 223.86 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Cmnd) 416.1 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Refs) 419.43 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Master) 73.86 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 68.31 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(First) 273.59 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 272.48 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Viewer) 462.76 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Help) 468.04 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Index) 125.53 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Local) 174.14 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 165.54 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+2 14 Q
+0 X
+0 0 0 1 0 0 0 K
+0.07 (axes at the center of the Earth. This in essence is like sliding the) 90.58 692.02 S
+0.07 (latitude-longitude graticule across the surface of the Earth. The) 90.58 492.02 S
+-0.63 0.07 (implementation used is slightly modified to improve the performance) 90.58 475.02 B
+0.07 (of the transformation near the poles.) 90.58 458.02 S
+0.07 (The following projection file would convert a data set from Scotland) 90.58 429.02 S
+0.07 (in the European datum of 1950 \050ED50\051 to the Ordnance Survey of) 90.58 412.02 S
+0.07 (Great Britain datum of 1936, using the three-parameter) 90.58 395.02 S
+0.07 (transformation.) 90.58 378.02 S
+3 12 Q
+0.06 (INPUT) 90.58 350.35 S
+0.06 (PROJECTION GEOGRAPHIC) 90.58 335.35 S
+0.06 (UNITS DD) 90.58 320.35 S
+0.06 (DATUM EUR_K THREE) 90.58 305.35 S
+0.06 (PARAMETERS) 90.58 290.35 S
+0.06 (OUTPUT) 90.58 275.35 S
+0.06 (PROJECTION GEOGRAPHIC) 90.58 260.35 S
+0.06 (UNITS DD) 90.58 245.35 S
+0.06 (DATUM OGB_C THREE) 90.58 230.35 S
+0.06 (PARAMETERS) 90.58 215.35 S
+0.06 (END) 90.58 200.35 S
+72.58 125.25 540.58 701.35 C
+186.08 504.35 427.08 687.35 C
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0.5 H
+0 Z
+0 X
+0 0 0 1 0 0 0 K
+90 450 88.71 66.54 305.92 579.96 A
+2 Z
+0 90 73.93 81.32 298.52 565.17 A
+90 180 59.14 81.32 305.92 565.17 A
+0 Z
+90 450 88.71 22.18 305.92 579.96 A
+302.61 649.74 305.92 661.28 309.23 649.74 305.92 649.74 4 Y
+V
+305.92 579.96 305.92 649.74 2 L
+N
+398.83 563.43 409.41 557.78 397.44 556.96 398.14 560.2 4 Y
+V
+305.92 579.96 398.14 560.2 2 L
+N
+214.42 550.38 202.42 550.39 212.6 556.74 213.51 553.56 4 Y
+V
+305.92 579.96 213.51 553.55 2 L
+N
+1 14 Q
+(X) 191.42 542.08 T
+(Z) 301.42 665.08 T
+(Y) 412.42 550.08 T
+72.58 125.25 540.58 701.35 C
+63 54 549 738 C
+0 0 0 1 0 0 0 K
+FMENDPAGE
+%%EndPage: "4" 16
+%%Page: "3" 17
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 1 0 0 1 0]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+[ 0 1 1 0 1 0 0]
+ 8 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 12 Q
+0 X
+1 1 0 0 0 0 1 K
+(3) 533.91 104.25 T
+0 0 0 1 0 0 0 K
+72.58 98.25 540.58 116.25 C
+276.16 98.25 337.01 98.25 C
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+72.58 98.25 540.58 116.25 C
+63 54 549 738 C
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 14 Q
+0 X
+1 1 0 0 0 0 1 K
+(Datums and datum conversion) 341.15 716.75 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+64.34 61.25 550.34 92.25 R
+V
+1 H
+0 Z
+N
+0 0 0 0 1 1 1 K
+1 10 Q
+7 X
+0 0 0 0 1 1 1 K
+(Previous) 311.92 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 321.09 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Next) 370.82 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 369.7 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Quit) 517.49 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Go) 228.87 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Back) 223.86 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Cmnd) 416.1 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Refs) 419.43 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Master) 73.86 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 68.31 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(First) 273.59 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 272.48 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Viewer) 462.76 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Help) 468.04 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Index) 125.53 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Local) 174.14 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 165.54 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+2 14 Q
+0 X
+0 0 0 1 0 0 0 K
+-0.06 0.07 (parameter transformations, respectively. These transformations use) 90.58 692.02 B
+0.07 (parameters published by the U.S. Defense Mapping Agency \050DMA,) 90.58 675.02 S
+0.07 (1991\051.) 90.58 658.02 S
+1 1 0 0 0 0 1 K
+1 1 0 0 0 0 1 K
+272.11 656.58 134.65 656.58 2 L
+1 1 0 0 0 0 1 K
+V
+0.85 H
+N
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(Tables 10 through 19) 134.65 658.02 T
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0.07 ( of the PROJECT command reference) 272.11 658.02 S
+-0.53 0.07 (lists the name, keyword, spheroid, and applicable area for nearly 200) 90.58 641.02 B
+-0.62 0.07 (supported datums. Datum keywords are reserved for use with one or,) 90.58 624.02 B
+0.07 (possibly, two methods.) 90.58 607.02 S
+0 12 Q
+0.06 (*Convert data on NAD27 or NAD83 to WGS72 or WGS84 with) 112.18 311.35 S
+0.06 (equivalent keywords from) 112.18 297.35 S
+1 1 0 0 0 0 1 K
+1 1 0 0 0 0 1 K
+299.75 296.19 253.06 296.19 2 L
+1 1 0 0 0 0 1 K
+V
+0.88 H
+N
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(Table 14) 253.06 297.35 T
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0.06 (. For a more complete explanation,) 299.75 297.35 S
+0.06 (see) 112.18 283.35 S
+1 1 0 0 0 0 1 K
+1 1 0 0 0 0 1 K
+213.79 282.11 135.1 282.11 2 L
+1 1 0 0 0 0 1 K
+V
+0.73 H
+N
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+2 F
+(\324NAD to WGS\325) 135.1 283.35 T
+0 0 0 1 0 0 0 K
+0 F
+0 0 0 1 0 0 0 K
+0.06 (.) 213.79 283.35 S
+2 14 Q
+0.07 (See the) 90.58 256.02 S
+1 1 0 0 0 0 1 K
+1 1 0 0 0 0 1 K
+187.87 254.58 142.75 254.58 2 L
+1 1 0 0 0 0 1 K
+V
+0.85 H
+N
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(Datum) 142.75 256.02 T
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0.07 ( subcommand section of the PROJECT command) 187.87 256.02 S
+0.07 (reference for more information.) 90.58 239.02 S
+0 18 Q
+0.09 (Three parameter \050THREE\051) 72.58 201.35 S
+2 14 Q
+0.07 (The three-parameter version of the Bursa-Wolf transformation is) 90.58 171.02 S
+0.07 (similar to the traditional Molodensky transformation. This) 90.58 154.02 S
+0.07 (transformation accounts for shifts in the origin of the X, Y, and Z) 90.58 137.02 S
+5 F
+( Datum transformation keywords and methods:) 164.06 581.02 T
+(which ones ar) 224.07 569.02 T
+(e compatible?) 306.27 569.02 T
+1 12 Q
+-0.23 ({method}) 180.91 546.35 P
+(<name>) 116.58 532.35 T
+6 F
+(CNT) 256.58 539.35 T
+(NADCON) 307.92 539.35 T
+(THREE) 383.5 539.35 T
+(SEVEN) 450 539.35 T
+(NAD27) 116.58 510.35 T
+7 F
+(4) 263.51 510.35 T
+(4) 328.51 510.35 T
+6 F
+(*) 399.83 510.35 T
+(NAD83) 116.58 488.35 T
+7 F
+(4) 263.51 488.35 T
+(4) 328.51 488.35 T
+6 F
+(*) 399.83 488.35 T
+(HPGN) 116.58 466.35 T
+7 F
+(4) 328.51 466.35 T
+6 F
+(ALASKAN_ISLANDS) 116.58 444.35 T
+7 F
+(4) 328.51 444.35 T
+6 F
+(OLD_HA) 116.58 422.35 T
+(W) 163.61 422.35 T
+(AIIAN) 173.61 422.35 T
+7 F
+(4) 328.51 422.35 T
+6 F
+(WGS72) 116.58 400.35 T
+7 F
+(4) 397.76 400.35 T
+(4) 464.26 400.35 T
+6 F
+(WGS84) 116.58 378.35 T
+7 F
+(4) 397.76 378.35 T
+(4) 464.26 378.35 T
+6 F
+-0.58 (Datums not listed above) 116.58 356.35 P
+(from T) 116.58 342.35 T
+(ables 10-18.) 149.4 342.35 T
+7 F
+(4) 397.76 356.35 T
+110.58 560.1 110.58 334.6 2 L
+V
+0.5 H
+N
+238.33 560.1 238.33 525.85 2 L
+V
+N
+240.83 560.1 240.83 523.35 2 L
+V
+N
+239.58 522.85 239.58 334.1 2 L
+V
+2 H
+N
+297.58 560.6 297.58 334.1 2 L
+V
+0.5 H
+N
+369.58 560.6 369.58 334.1 2 L
+V
+N
+436.08 560.6 436.08 334.1 2 L
+V
+N
+502.58 560.1 502.58 334.6 2 L
+V
+N
+110.33 560.35 502.83 560.35 2 L
+V
+N
+110.83 525.6 238.58 525.6 2 L
+V
+N
+110.83 523.1 241.08 523.1 2 L
+V
+N
+241.08 524.35 502.83 524.35 2 L
+V
+2 H
+N
+110.33 502.35 502.83 502.35 2 L
+V
+0.5 H
+N
+110.33 480.35 502.83 480.35 2 L
+V
+N
+110.33 458.35 502.83 458.35 2 L
+V
+N
+110.33 436.35 502.83 436.35 2 L
+V
+N
+110.33 414.35 502.83 414.35 2 L
+V
+N
+110.33 392.35 502.83 392.35 2 L
+V
+N
+110.33 370.35 502.83 370.35 2 L
+V
+N
+110.33 334.35 502.83 334.35 2 L
+V
+N
+110 560 236 527 2 L
+0.25 H
+2 Z
+N
+0 0 0 1 0 0 0 K
+FMENDPAGE
+%%EndPage: "3" 17
+%%Page: "2" 18
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 1 0 0 1 0]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+[ 0 1 1 0 1 0 0]
+ 8 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 12 Q
+0 X
+1 1 0 0 0 0 1 K
+(2) 533.91 104.25 T
+0 0 0 1 0 0 0 K
+72.58 98.25 540.58 116.25 C
+276.16 98.25 337.01 98.25 C
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+72.58 98.25 540.58 116.25 C
+63 54 549 738 C
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 14 Q
+0 X
+1 1 0 0 0 0 1 K
+(Datums and datum conversion) 341.15 716.75 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+64.34 61.25 550.34 92.25 R
+V
+1 H
+0 Z
+N
+0 0 0 0 1 1 1 K
+1 10 Q
+7 X
+0 0 0 0 1 1 1 K
+(Previous) 311.92 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 321.09 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Next) 370.82 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 369.7 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Quit) 517.49 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Go) 228.87 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Back) 223.86 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Cmnd) 416.1 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Refs) 419.43 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Master) 73.86 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 68.31 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(First) 273.59 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 272.48 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Viewer) 462.76 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Help) 468.04 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Index) 125.53 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Local) 174.14 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 165.54 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+1 18 Q
+0 X
+0 0 0 1 0 0 0 K
+0.09 (Datum transformation) 72.58 361.35 S
+2 14 Q
+0.07 (ARC/INFO supports two types of datum transformation methods.) 90.58 331.02 S
+0.07 (One type uses grids to calculate the coordinate differences between) 90.58 314.02 S
+-0.39 0.07 (datums. The most widely used methods in North America, NADCON) 90.58 297.02 B
+0.07 (and CNT, are of this type and will be discussed in) 90.58 280.02 S
+1 1 0 0 0 0 1 K
+1 1 0 0 0 0 1 K
+515.5 278.57 419.58 278.57 2 L
+1 1 0 0 0 0 1 K
+V
+0.85 H
+N
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(\324Transforming) 419.58 280.02 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+1 1 0 0 0 0 1 K
+279.12 261.57 90.58 261.57 2 L
+V
+N
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(between NAD27 and NAD83\325) 90.58 263.02 T
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0.07 (.) 279.12 263.02 S
+-0.23 0.07 (The second type uses equations to model the differences between the) 90.58 234.02 B
+-0.52 0.07 (coordinate systems. WGS84 provides a very convenient intermediary) 90.58 217.02 B
+-0.44 0.07 (with this method because its coordinate system is defined as \0500, 0, 0\051.) 90.58 200.02 B
+0.07 (Any datum whose relationship to WGS84 is known can be) 90.58 183.02 S
+0.07 (transformed in ARC/INFO. There are two equation-based) 90.58 166.02 S
+-0.27 0.07 (transformations available. They are based upon the Molodensky and) 90.58 149.02 B
+0.07 (Bursa-Wolf transformations, referred to as three- and seven-) 90.58 132.02 S
+72.58 125.25 540.58 701.35 C
+99.3 394.35 513.86 687.35 C
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0 1 1 0 1 0 0 K
+[15.953 9.97] 0 I
+1 H
+0 Z
+0 X
+0 1 1 0 1 0 0 K
+90 450 108 72 306.3 579.35 A
+1 1 0 0 0 0 1 K
+J
+108.3 426.35 144.3 426.35 2 L
+2 H
+2 Z
+1 1 0 0 0 0 1 K
+N
+0 0 0 1 0 0 0 K
+108.3 444.35 144.3 444.35 2 L
+0 0 0 1 0 0 0 K
+N
+0 1 1 0 1 0 0 K
+108.3 408.35 144.3 408.35 2 L
+1 H
+2 X
+0 1 1 0 1 0 0 K
+N
+0 0 0 1 0 0 0 K
+0 14 Q
+0 X
+0 0 0 1 0 0 0 K
+(Earth\325) 162.3 435.35 T
+(s Surface) 198.62 435.35 T
+(Earth-centered datum \050WGS84\051) 162.3 421.35 T
+(Local datum \050NAD27\051) 162.3 407.35 T
+1 1 0 0 0 0 1 K
+2 H
+0 Z
+1 1 0 0 0 0 1 K
+90 450 108 72 315.3 570.35 A
+311.99 666.82 315.3 678.35 318.61 666.82 315.3 666.82 4 Y
+V
+318.61 464.89 315.3 453.35 311.99 464.89 315.3 464.89 4 Y
+V
+315.3 666.82 315.3 464.89 2 L
+1 H
+N
+155.84 567.04 144.3 570.35 155.84 573.66 155.84 570.35 4 Y
+V
+456.77 573.66 468.3 570.35 456.77 567.04 456.77 570.35 4 Y
+V
+155.84 570.35 456.77 570.35 2 L
+N
+0 1 1 0 1 0 0 K
+309.61 482.89 306.3 471.35 302.99 482.89 306.3 482.89 4 Y
+1 X
+0 1 1 0 1 0 0 K
+V
+302.99 657.82 306.3 669.35 309.61 657.82 306.3 657.82 4 Y
+V
+306.3 482.89 306.3 657.82 2 L
+N
+438.77 582.66 450.3 579.35 438.77 576.04 438.77 579.35 4 Y
+V
+173.84 576.04 162.3 579.35 173.84 582.66 173.84 579.35 4 Y
+V
+438.77 579.35 173.84 579.35 2 L
+N
+0 0 0 1 0 0 0 K
+291.12 592.22 288.3 579.35 283.88 591.76 287.5 591.98 4 Y
+0 X
+0 0 0 1 0 0 0 K
+V
+2 Z
+8.07 90 81 90 207.3 579.35 A
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+(Local datum) 117.3 668.14 T
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+(coordinate system) 117.3 654.14 T
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+(Earth-centered datum) 360.3 470.42 T
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+(coordinate system) 360.3 456.42 T
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+327.26 539.56 315.3 543.35 327.45 546.47 327.35 543.01 4 Y
+V
+0 83.59 108 54 315.3 489.35 A
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+315.3 651.28 M
+ 291.31 650.14 265.9 646.16 245.96 639.71 D
+ 237.27 636.9 236.78 623.18 228.48 621.74 D
+ 211.13 618.74 199.54 598.2 191.58 579.59 D
+ 186.85 568.53 190.53 549.66 198.2 540.9 D
+ 223.67 511.79 259.21 497.07 289.68 493.17 D
+ 324.16 488.75 366.29 480.35 384.6 509.03 D
+ 401.37 535.3 450.99 557.31 431.11 584.14 D
+ 420.77 598.11 420.33 619.29 401.15 625.87 D
+ 384.28 631.65 366.28 641.91 348.7 647.3 D
+ 337.7 650.67 327.45 653.07 315.91 650.15 D
+2 H
+N
+72.58 125.25 540.58 701.35 C
+63 54 549 738 C
+0 0 0 1 0 0 0 K
+FMENDPAGE
+%%EndPage: "2" 18
+%%Page: "1" 19
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 1 0 0 1 0]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+[ 0 1 1 0 1 0 0]
+ 8 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 12 Q
+0 X
+1 1 0 0 0 0 1 K
+(1) 532.91 103.25 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+64.34 61.25 550.34 92.25 R
+V
+1 H
+0 Z
+N
+0 0 0 0 1 1 1 K
+1 10 Q
+7 X
+0 0 0 0 1 1 1 K
+(Previous) 311.92 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 321.09 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Next) 370.82 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 369.7 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Quit) 517.49 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Go) 228.87 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Back) 223.86 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Cmnd) 416.1 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Refs) 419.43 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Master) 73.86 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 68.31 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(First) 273.59 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Page) 272.48 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Viewer) 462.76 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Help) 468.04 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Index) 125.53 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Local) 174.14 79.58 T
+1 1 0 0 0 0 1 K
+0 0 0 0 1 1 1 K
+(Contents) 165.54 68.58 T
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+1 24 Q
+0 X
+0 0 0 1 0 0 0 K
+0.12 (Datums and datum conversion) 71.58 713 S
+2 14 Q
+0.07 (A datum is a set of parameters defining a coordinate system, and a) 89.58 682.67 S
+-0.4 0.07 (set of control points whose geometric relationships are known, either) 89.58 665.67 B
+0.07 (through measurement or calculation \050Dewhurst 1990\051. A datum is) 89.58 648.67 S
+0.07 (defined by a spheroid, which approximates the shape of the Earth,) 89.58 631.67 S
+0.07 (and the spheroid\325s position relative to the center of the Earth.) 89.58 614.67 S
+0.07 (There are many spheroids representing the shape of the Earth, and) 89.58 585.67 S
+0.07 (many more datums based upon them. For a thorough discussion of) 89.58 568.67 S
+0.07 (spheroids, refer to the section titled) 89.58 551.67 S
+1 1 0 0 0 0 1 K
+1 1 0 0 0 0 1 K
+480.96 550.22 326.16 550.22 2 L
+1 1 0 0 0 0 1 K
+V
+0.85 H
+N
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(\324The shape of the Earth\325) 326.16 551.67 T
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0.07 ( in \324Map) 480.96 551.67 S
+0.07 (projection concepts\325.) 89.58 534.67 S
+0.07 (A horizontal datum provides a frame of reference for measuring) 89.58 505.67 S
+0.07 (locations on the surface of the Earth. It defines the origin and) 89.58 488.67 S
+0.07 (orientation of latitude and longitude lines. A local datum aligns its) 89.58 471.67 S
+-0.16 0.07 (spheroid to closely fit the Earth\325s surface in a particular area and its) 89.58 454.67 B
+0.07 (\322origin point\323 is located on the surface of the Earth. The coordinates) 89.58 437.67 S
+-0.44 0.07 (of the \322origin point\323 are fixed and all other points are calculated from) 89.58 420.67 B
+0.07 (this control point. The coordinate system origin of a local datum is) 89.58 403.67 S
+0.07 (not at the center of the Earth. NAD27 and the European Datum of) 89.58 386.67 S
+0.07 (1950 are local datums.) 89.58 369.67 S
+0.07 (In the last fifteen years, satellite data has provided geodesists with) 89.58 340.67 S
+0.07 (new measurements to define the best Earth-fitting ellipsoid, which) 89.58 323.67 S
+-0.32 0.07 (relates coordinates to the Earth\325s center of mass. An Earth-centered,) 89.58 306.67 B
+0.07 (or geocentric, datum does not have an initial point of origin like a) 89.58 289.67 S
+-0.43 0.07 (local datum. The Earth\325s center of mass is, in a sense, the origin. The) 89.58 272.67 B
+0.07 (most recently developed and widely used datum is the World) 89.58 255.67 S
+0.07 (Geodetic System of 1984 \050WGS84\051. It serves as the framework for) 89.58 238.67 S
+0.07 (supporting locational measurement worldwide. GPS measurements) 89.58 221.67 S
+0.07 (are based upon the WGS84 datum.) 89.58 204.67 S
+0 0 0 1 0 0 0 K
+FMENDPAGE
+%%EndPage: "1" 19
+%%Trailer
+%%BoundingBox: 0 0 612 792
+%%PageOrder: Descend
+%%Pages: 19
+%%DocumentFonts: Helvetica
+%%+ Helvetica-Bold
+%%+ NewCenturySchlbk-Roman
+%%+ Courier
+%%+ Courier-Oblique
+%%+ Times-Bold
+%%+ Times-Roman
+%%+ ZapfDingbats
+%%EOF

@@ -1,0 +1,62 @@
+PAPI_init               PerfAPI LIBRARY                 PAPI_init
+
+
+
+NAME
+     PAPI_init - start counting events contained in an EventSet
+
+SYNOPSIS
+     int PAPI_init (void)
+
+DESCRIPTION
+     PAPI_init() This function checks if  the  PAPI_EVENTSET_INFO
+     structure  has  been  initialized.  If  it has, the function
+     returns PAPI_OK. If not, the function calls for  initializa-
+     tion  of  the  PAPI_EVENTSET_INFO structure and then returns
+     PAPI_OK.
+
+     The return value is an integer that  indicates  whether  the
+     call succeeded (PAPI_OK) or failed (not PAPI_OK).
+
+CROSS-REFERENCE WITH OTHER PerfAPI FUNCTIONS
+
+     PAPI_init may be called by:
+
+          the user application program
+          PAPI_add_event
+          PAPI_get_opt
+          PAPI_add_pevent
+
+     PAPI_init contains calls to:
+
+          check_initialize
+
+SEE ALSO
+     The PerfAPI Draft:
+          http://icl.cs.utk.edu/projects/papi/api/
+
+BUGS
+     This function has no known bugs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PAPI Release 0.99   Last change: 28 July 1999                   1
+
+

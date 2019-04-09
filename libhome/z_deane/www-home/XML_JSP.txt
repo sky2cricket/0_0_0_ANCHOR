@@ -1,0 +1,252 @@
+From XML_in_Practice@itw.itworld.com Thu May  3 07:34:32 2001
+Return-Path: <XML_in_Practice@itw.itworld.com>
+Received: from kehena.clickaction.net (marvin@localhost) 
+        by cs.utk.edu with ESMTP (cf v2.9s-UTK)
+	id HAA28481; Thu, 3 May 2001 07:34:31 -0400 (EDT)
+From: <XML_in_Practice@itw.itworld.com>
+Received: from kehena.clickaction.net (208.50.155.207)
+ by cs.utk.edu (smtpshim v1.0); Thu, 3 May 2001 07:34:31 -0400
+Received: from kehena.clickaction.net (ulua [192.168.4.119])
+	by kehena.clickaction.net (Postfix) with SMTP id 02EB0653951
+	for <deane@cs.utk.edu>; Thu,  3 May 2001 04:34:59 -0700 (PDT)
+To: deane@cs.utk.edu
+X-Header-Partid: 14724
+X-Header-Userid: 76028552
+X-Header-Date: 03-May-2001
+X-Header-Version: 4.0
+X-Header-Pitchid: 34315
+Subject: XML and JSP
+Message-Id: <20010503113459.02EB0653951@kehena.clickaction.net>
+Date: Thu,  3 May 2001 04:34:59 -0700 (PDT)
+Status: R
+Content-Length: 9125
+
+
+
+XML IN PRACTICE --- May 03, 2001
+Published by ITworld.com -- changing the way you view IT
+http://www.itworld.com/newsletters
+________________________________________________________________________________
+
+HIGHLIGHTS
+
+* Making JSP pages well-formed using their alternate XML sytax.
+
+COMMUNITY DISCUSSIONS
+
+* XML & Java: Help a forum member get Tomcat and JAXP under control.
+
+SERVICES
+
+* Career Corner: Challenging opportunities with reputable companies. 
+________________________________________________________________________________
+
+SPONSORED LINK
+
+New Free Tool, IT Product Finder
+
+Find IT solutions faster, with a tool that is absolutely free. 
+ITworld.com and KnowledgeStorm have joined forces to bring you a free, 
+fast way to find software using our Product Finder. Click on the link 
+below to register and get started.
+http://ad.doubleclick.net/clk;2629636;5552373;p
+______________________________________________________________________________
+
+XML and JSP: Make them work together
+By Mark Johnson
+
+Sun Microsystems created JSP (JavaServer Pages) technology for building 
+Web pages on the fly on a server. Sun's original dynamic content 
+technology was "servlets" -- server-side plugin Java programs that 
+produce dynamic content usually using HTML. Many servlets, particularly 
+early ones, were mostly "print" statements, which printed out HTML and 
+substituted dynamic information where appropriate. Microsoft's ASP 
+(Active Server Pages technology turned that idea on its head. An ASP is 
+an HTML page containing special markup that embeds pieces of scripts. 
+Though a good idea, ASPs were Microsoft-specific so Sun created 
+JavaServer Pages to compete with ASPs in the cross-platform arena, 
+providing freedom of choice to systems designers.
+
+A JavaServer Page (or, simply "JSP page") combines HTML tags with HTML-
+tag-like markup to produce HTML (or XML) when run on a server. For 
+example, a JSP page containing code like this:
+
+    <TABLE><TR>
+    <% for (int i = 1; i < 5; i++) { %>
+    <TD><%= i %></TD>
+    <% } %>
+    </TD></TABLE>
+
+..will produce HTML that looks like this:
+
+    <TABLE><TR>
+    <TD>1</TD>
+    <TD>2</TD>
+    <TD>3</TD>
+    <TD>4</TD>
+    </TR></TABLE>
+
+JSP pages, for all their usefulness, have some problems. First, they're 
+very difficult to maintain when they're not written cleanly. Second, 
+they're seldom written cleanly; therefore, maintenance is usually an 
+issue for JSPs of nontrivial complexity. To make matters worse, you 
+might have noticed something about the JSP page fragment above: it's 
+not even well-formed markup. Don't bother trying to parse something 
+that looks like <%= i %> with an XML parser. It just won't work. The 
+XML specification doesn't allow such a string to form an element.
+
+Why is this a problem? Controlling the structure of the document 
+contents is one of the benefits of validating marked-up documents using 
+DTDs. You can eliminate a whole class of problems with markup (though, 
+of course, not all problems) by validating the document with a DTD. 
+However, structural safeguards that a validating XML parser could 
+provide to a JSP page aren't available to it, because the JSP notation 
+shown above can't possibly be well-formed.
+
+Fortunately, the designers of JSP technology have provided an alternate 
+XML syntax for JSP pages. Every XML-like, non-well-formed markup 
+structure (like the <%= %> structure used for expressions), can also be 
+expressed as a well-formed XML tag. JSP's designers also defined a DTD 
+for that markup, so you can create well-formed *and* valid JSP pages, 
+improve the quality of your documents, and simplify the maintenance 
+process.
+
+The code sample above, in JSP XML notation, looks like this:
+
+    <TABLE><TR>
+    <jsp:scriptlet>
+    for (int i = 1; i < 5; i++) {
+    </jsp:scriptlet>
+    <TD><jsp:expression>i</jsp:expression></TD>
+    <jsp:scriptlet>}</jsp:scriptlet>
+    </TD></TABLE>
+
+This JSP page may not be particularly readable, but it *is* a well-
+formed XML fragment and it *can* be validated against a DTD. As for the 
+readability problem, that's a concern of JSPs in general rather than 
+the notation, and can be addressed with other techniques. At least this 
+form provides JSP developers with a way to create JSP pages that can be 
+validated against a DTD.
+
+Each application's designer that uses JSP technology will need to 
+choose between the original JSP notation's pseudo-markup (which is the 
+most widely-known, and more concise), and the XML-based alternate 
+notation. However, knowing you have the choice is nice when choosing to 
+use JSP pages.
+
+About the author(s)
+-------------------
+Mark Johnson is president of elucify technical communications (etc), a 
+Colorado-based training and consulting corporation dedicated to 
+clarifying novel or complex ideas through clear explanation and
+examples.
+________________________________________________________________________________
+
+ADDITIONAL RESOURCES
+
+JSP syntax reference card (original syntax)
+http://www.itworld.com/jump/xml_nl/www.javasoft.com/products/jsp/tags/11/tags11.html
+
+WebLogic JSP implementation, including a reference table for the XML 
+JSP notation.
+http://www.itworld.com/jump/xml_nl/www.weblogic.com/docs45/classdocs/API_jsp.html
+
+JSP home page at Sun Microsystems. Lots of links to using JSP with XML.
+http://www.itworld.com/jump/xml_nl/java.sun.com/products/jsp/index.html
+
+Good resource for using XML and JSP together, including creating XML 
+using JSP pages.
+http://www.itworld.com/jump/xml_nl/www.jdance.com/jspxml.shtm
+
+Book excerpt on JSP XML notation
+http://www.itworld.com/jump/xml_nl/www.wrox.com/Consumer/Store/Books/285/28581002.htm
+
+Using XML and JSP together 
+Two great tastes that taste great together
+http://www.javaworld.com/jjw/xml_nl/jw-03-2000/jw-0331-ssj-jspxml.html
+
+Combine the power of XPath and JSP tag libraries 
+Achieve simple data access in JSPs using XPath expressions 
+http://www.javaworld.com/jjw/xml_nl/jw-01-2001/jw-0126-xpath.html
+
+Backgrounder: ASP and JSP
+http://www.itworld.com/jump/xml_nl/www.itworld.com/AppDev/4065/CWSTO58756
+________________________________________________________________________________
+
+COMMUNITY DISCUSSION
+
+XML & Java
+XML is starting to take off as a practical way to represent data. Even 
+as more Websites (including this one) are employing it, it's also 
+finding uses in software modeling and design and other non-publishing 
+contexts. How are you using it? What's keeping you from using it? What 
+are the best tools? This is the place to share ideas about how to take 
+advantage of this emerging technology. Moderated by Mark Johnson.
+http://www.itworld.com/jump/xml_nl/forums.itworld.com/webx?14@@.ee6b78f/221!skip=160
+________________________________________________________________________________
+
+CAREER CORNER
+
+ECONOMIC CRISIS? HOT WEB DEVELOPMENT OPPORTUNITIES STILL AVAILABLE
+
+Despite so many layoffs, Web developer jobs with reliable, established 
+companies are as hot as ever. Things may be changing, but the Web is 
+still growing. LeadersOnline has exclusive career opportunities from 
+$75K-$200K. Submit your profile and we'll match your background with 
+quality opportunities that meet your specific requirements. Brought to 
+you by Heidrick & Struggles, the world's leading executive search firm.
+http://ad.doubleclick.net/clk;2760376;5704271;i
+________________________________________________________________________________
+
+ITWORLD.COM SERVICES
+
+FORUMS: Don't reinvent the wheel! Ask the IT experts that know
+
+Catch up with new technology and network with some of the high tech 
+industry's "whiz kids."  ITworld.com offers forums for all of your 
+areas of interest. Ask experts questions in our interview forums, Java 
+forum, networking forum and MORE!
+http://itw.itworld.com/GoNow/a14724a34315a76028552a0
+________________________________________________________________________________
+
+CUSTOMER SERVICE
+
+If you have questions, please send email to customer service at:
+mailto:support@itworld.com
+________________________________________________________________________________
+
+CONTACTS
+
+* For editorial comments, write Andrew Santosusso, Associate Editor, 
+  Newsletters at: andrew_santosusso@itworld.com
+* For advertising information, write Dan Chupka, Account Executive at:
+  dan_chupka@itworld.com
+* For recruitment advertising information, write Jamie Swartz, Eastern
+  Regional Sales Manager at: jamie_swartz@itworld.com or Paul Duthie,
+  Western Regional Sales Manager at: paul_duthie@itworld.com
+* For all other inquiries, write Jodie Naze, Product Manager, 
+  Newsletters at: jodie_naze@itworld.com
+________________________________________________________________________________
+
+PRIVACY POLICY
+
+http://www.itworld.com/Privacy/
+
+Copyright 2001 ITworld.com, Inc., All Rights Reserved.
+http://www.itworld.com
+
+
+
+
+**SEND TO A FRIEND**
+Share this email with a friend! Click here!
+http://itw.itworld.com/GoForward/a14724a34315aSa76028552a39
+
+SUBSCRIBE/UNSUBSCRIBE
+Please click on the link below to modify your subscription, unsubscribe,
+or change your email address:
+
+http://itw.itworld.com/Change-Remove/a14724a76028552a39
+
+
+

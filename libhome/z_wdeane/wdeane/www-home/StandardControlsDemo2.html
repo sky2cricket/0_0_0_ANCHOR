@@ -1,0 +1,114 @@
+<HTML>
+<HEAD>
+<TITLE>
+SOURCE CODE
+</TITLE>
+</HEAD>
+<BODY>
+<PRE>
+<H3>
+// StandardControlsDemo.java
+//
+// creates and displays all the standard interface controls in java
+//
+// static label
+// button
+// checkbox
+// radio button
+// choice menu
+// text field
+
+import java.applet.*;
+import java.awt.*;
+
+public class StandardControlsDemo extends java.applet.Applet
+{
+ // data members
+ Label lbl;
+ Button but;
+ Checkbox chk;
+ Checkbox rb1, rb2, rb3;
+ CheckboxGroup cbg;
+ Choice ch;
+ TextField tf;
+
+ // initialization
+ public void init()
+ {
+  // set layout manager
+  setLayout(new FlowLayout(FlowLayout.LEFT));
+
+  // create label and add it to applet
+  lbl = new Label("This is a static label");
+  add(lbl);
+
+  // create button and add it to applet
+  but = new Button("Ok");
+  add(but);
+
+  // create new checkbox and add it to applet
+  chk = new Checkbox("Checkboxes are for boolean values");
+  add(chk);
+
+  // create a group of radio buttons and add to applet
+  cbg = new CheckboxGroup();
+  rb1 = new Checkbox("RadioButton1", cbg, true);
+  rb2 = new Checkbox("RadioButton2", cbg, true);
+  rb3 = new Checkbox("RadioButton3", cbg, false);
+  add(rb1);
+  add(rb2);
+  add(rb3);
+
+  // create choice menu items and add to applet
+  Choice ch = new Choice();
+
+  ch.addItem("One");
+  ch.addItem("Two");
+  ch.addItem("Three");
+  ch.addItem("Four");
+  add(ch);
+ 
+  // create text field and add to applet
+  tf = new TextField(20);
+  add(tf);
+ }
+
+ public boolean action(Event evt, Object arg)
+ {
+  if(evt.target instanceof Button)
+   {
+    System.out.print("Button control pressed.  Argument =");
+    System.out.println(arg);
+   }
+
+  else if(evt.target instanceof Checkbox)
+   {
+    System.out.print("Checkbox toggled.  Label =");
+    // get label of checkbox and display it
+    String x = ((Checkbox)evt.target).getLabel();
+    System.out.print(x);
+    // display argument (true or false)
+    System.out.print(" Argument =");
+    System.out.println(arg);
+   }
+
+  else if(evt.target instanceof Choice)
+   {
+    System.out.print("Choice box selected  Argument =");
+    System.out.println(arg);
+   }
+
+  else if(evt.target instanceof TextField)
+   {
+    System.out.print("Textfield action.  Argument =");
+    System.out.println(arg);
+   }
+
+  return true;
+ }
+} // end
+
+</PRE>
+</H3>
+</BODY>
+</HTML>

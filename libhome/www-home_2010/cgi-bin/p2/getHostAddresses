@@ -1,0 +1,28 @@
+#!/usr/local/bin/perl5 -w
+#by Cricket! Haygood Deane, summer 98 
+#program getHostAddresses by Cricket Haygood Deane
+#This program prints out ip and eth addresses for a host.
+
+#usage:  
+#     [1]  unix> getHostAddresses  hydra2e
+#          in this case, command line argv[0] identifies target
+#     [2]  unix> getHostAddresses
+#          in this case, the default target is localhost 
+
+if($ARGV[0]) {
+$targetHostname=$ARGV[0];#command line input
+open(ARPCOM2, "ping $targetHostname|");#ensure icmp connection for arp
+} 
+else {
+$targetHostname = `hostname`;
+chop($targetHostname);#get rid of \n character
+}
+
+open(ARPCOM2, "arp  $targetHostname|");#reuse variable name ARPCOM2
+@arpString = <ARPCOM2>; #use filehandle for system command
+chop(@arpString);#get rid of \n char
+@arpWord = split (/[ ,\(,\)]/, $arpString[0]);#use regular expr for parsing
+print ("\n targetHostname:  $targetHostname ");
+print ("\n $targetHostname   ip address: $arpWord[2] ");
+print ("\n $targetHostname  eth address: $arpWord[5] \n\n\n");
+#end-of-file

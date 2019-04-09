@@ -1,0 +1,984 @@
+<HTML>
+<HEAD>
+<META NAME="Generator" CONTENT="Corel WordPerfect 8">
+<TITLE></TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#551a8b" ALINK="#ff0000" BGCOLOR="#c0c0c0">
+
+<P><FONT SIZE="-1"><STRONG>CS - 460   DATABASE   MANAGEMENT</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>SESSION   2</STRONG></FONT></P>
+
+
+
+<P><STRONG></STRONG><STRONG><U><CENTER>DATA   STORAGE    CONCEPTS</U></STRONG><U> </CENTER>
+</U></P>
+
+
+<P>o	<U>DATA   REPRESENTATION</U> . . .</P>
+
+
+<P>	oo	BITS . .</P>
+
+
+<P>	oo	BYTES :   GROUPS   OF   BITS . .</P>
+
+
+<P>	oo	WORDS :   GROUPS   OF   BYTES .</P>
+
+
+
+<P>o	<U>METHODS   OF   STORING   NUMERIC   DATA</U> . . .</P>
+
+
+<P>	oo	<U>BINARY</U> . . .</P>
+
+
+<P>		&gt;	0111001    =    DECIMAL   57</P>
+
+
+<P>	oo	<U>DECIMAL   NUMBERS</U>   REPRESENTED   BY   ARRANGEMENTS   OF   BITS   IN   </P>
+
+<P>		BYTES . . .</P>
+
+
+<P>		&gt;	1110101   =   DECIMAL   5</P>
+
+
+<P>		&gt;	1110111   =   DECIMAL   7.</P>
+
+
+<P>		&gt;	1110101   1110111   =   DECIMAL   57 .</P>
+
+
+<P>			&gt;&gt;	CAN BE   COMPRESSED   TO   01010111   SINCE   ONE   BYTE   CAN  
+REPRESENT   A   DECIMAL   NUMBER. . .</P>
+
+
+<P>				.	CALLED   "PACKED   DECIMAL" .</P>
+
+
+<P>			&gt;&gt;	AN   ADDITIONAL   BYTE   MAY   BE   REQUIRED   TO   REPRESENT   THE  
+"SIGN"   OF   THE   NUMBER.</P>
+
+
+<P>	oo	<U>FLOATING   POINT   NUMBERS</U> . . .</P>
+
+
+<P>		&gt;	USED   FOR   SCIENTIFIC   APPLICATIONS . . .</P>
+
+
+<P>			&gt;&gt;	WHICH   REQUIRE   BOTH VERY   SMALL   AND   VERY   LARGE  
+NUMBERS .</P>
+
+
+<P>		&gt;	CONSISTS   OF   THREE   PARTS . . .</P>
+
+
+<P>			&gt;&gt;	SIGN,   CHARACTERISTIC,   FRACTION .</P>
+
+
+<P>		&gt;	<U>EXAMPLE</U> :   5E243   (BASE   10   RAISED   TO   THE   POWER   OF   5  
+MULTIPLIED   BY   .243 =   24,300 .</P>
+
+<P><FONT SIZE="-1"><STRONG>CS - 460   DATABASE   MANAGEMENT</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>SESSION   2</STRONG></FONT></P>
+
+
+
+<P><STRONG></STRONG><STRONG><U><CENTER>DATA   STORAGE    CONCEPTS</U></STRONG><U> (CONT.)</CENTER>
+</U></P>
+
+
+<P>o	<U>METHODS   OF   STORING   DATA   (CONT.)</U> . . .</P>
+
+
+<P>	oo	CHARACTERS   REPRESENTED   BY   "CODES" . . .</P>
+
+
+<P>		&gt;	<U>EXTENDED   BINARY   CODED   DECIMAL   INTERCHANGE   CODE   (EBCDIC)</U> . . </P>
+
+
+<P>			&gt;&gt;	EACH   CHARACTER   IS REPRESENTED   BY   EIGHT   BITS    (ONE  
+BYTE) .</P>
+
+
+<P>		&gt;	<U>AMERICAN   STANDARD   CODE   FOR   INFORMATION </U></P>
+
+<P><U>			INTERCHANGE   (ASCII)</U> . . .</P>
+
+
+<P>			&gt;&gt;	USES   SEVEN - BIT   CODE .</P>
+
+
+<P>	oo	<U>EBCDIC</U> :   BIT   SEQUENCES   11000001   REPRESENTS   THE   CHARACTER   <U>A</U> . . .</P>
+
+
+<P>		&gt;	11000010    REPRESENTS   THE   CHARACTER   <U>B</U> .</P>
+
+
+<P>		&gt;  	REPRESENTING   THE   WORD   <U>SMITH</U>   WOULD   REQUIRE   <U>FIVE   BYTES</U>   OF  
+STORAGE . . .</P>
+
+
+<P>			&gt;&gt;	FIRST   BYTE :   S</P>
+
+
+<P>			&gt;&gt;	SECOND   BYTE : M</P>
+
+
+<P>			&gt;&gt;	ETC.</P>
+
+<P><FONT SIZE="-1"><STRONG>CS - 460   DATABASE   MANAGEMENT</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>SESSION   2</STRONG></FONT></P>
+
+
+
+<P><FONT SIZE="-1"><STRONG><U><CENTER></U></STRONG></FONT><STRONG><U>DATA   STORAGE    CONCEPTS</U></STRONG><U> (CONT.)</U><FONT SIZE="-1"><STRONG></CENTER>
+</STRONG></FONT></P>
+
+
+
+<P>===================================================================================</P>
+
+
+
+<P>						FIG.   2.2</P>
+
+<P>						GILLENSON</P>
+
+
+
+<P>==================================================================================</P>
+
+
+<P>o	<U>STORING   A   RECORD   IN   A   COMPUTER'S   MEMORY</U> . . .</P>
+
+
+<P>	oo	IS   A   MATTER   OF A   PROGRAM   CAUSING   THE CORRECT   BIT   PATTERN . . .</P>
+
+
+<P>		&gt;	FOR   ALPHABETIC   FIELDS . .</P>
+
+
+<P>		&gt;	AND   FOR   NUMERIC   FIELDS .</P>
+
+
+<P>o	<U>THE   RECORD   FOR   SMITH</U>   WOULD   REQUIRE . . .</P>
+
+
+<P>	oo	SEVERAL   BYTES   TO   REPRESENT   THE   EMPLOYEE   NUMBER   31719 . . .</P>
+
+
+<P>		&gt;IN,   PROBABLY,   <U>PACKED   DECIMAL   FORM</U>.</P>
+
+
+<P>	oo	FIVE   BYTES   FOR   <U>SMITH</U>   (POSSIBLY   BLANK   BYTES   FOR   THE   TOTAL  
+ATTRIBUTE ) . .</P>
+
+
+<P>	oo	ETC.</P>
+
+
+<P>	oo	THE   REMAINDER   OF   THE   FIELD   WOULD   FOLLOW   EACH   OTHER   IN  
+MEMORY . . .</P>
+
+
+<P>		&gt;	BOTH   <U>PRIMARY</U>   AND   <U>SECONDARY</U> .</P>
+
+
+
+
+<P><U></U><FONT SIZE="-1"><STRONG>CS - 460   DATABASE   MANAGEMENT</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>SESSION   2</STRONG></FONT></P>
+
+
+
+<P><FONT SIZE="-1"><STRONG><U><CENTER></U></STRONG></FONT><STRONG><U>DATA   STORAGE    CONCEPTS</U></STRONG><U> (CONT.)</U></CENTER>
+</P>
+
+
+<P>o	<U>PRIMARY   MEMORY</U> . . .</P>
+
+
+<P>	oo	A   PLACE   TO   CONTAIN . . .</P>
+
+
+<P>		&gt;	DATA   BEING   PROCESSED . .</P>
+
+
+<P>		&gt;	PROGRAMS   BEING   EXECUTED . .</P>
+
+
+<P>		&gt;	PORTIONS   OF   THE   SYSTEM   COORDINATING   AND   CONTROL  
+PROGRAMS . . .</P>
+
+
+<P>			&gt;&gt;	E.G.,    OPERATING   SYSTEM,   DBMS,   NETWORK   CONTROL
+SOFTWARE,   ETC.</P>
+
+
+<P>o	EACH   STORAGE   LOCATION   CAN   BE   <U>SINGLED   OUT</U>   AND   <U>DIRECTLY   REACHED</U> . . .</P>
+
+
+<P>	oo	AT   THE    <U>BYTE</U>   AND/OR   THE   <U>WORD</U>   LEVEL . . .</P>
+
+
+<P>	oo	AND   REACHED   BY   THE   CPU.</P>
+
+
+<P>o	<U>PRIMARY   MEMORY   MUST   BE   FAST</U> . . .</P>
+
+
+<P>	oo	FOR   STORAGE   AND   RETRIEVAL   PURPOSES . . </P>
+
+
+<P>	oo	REQUIRES   COMPARATIVELY   EXPENSIVE   TECHNOLOGIES   AND   ADDRESSING  
+SCHEMES . . .</P>
+
+
+<P>		&gt;	LIMITS   THE   SIZE   OF   PRIMARY   MEMORY .</P>
+
+
+<P>		&gt;	CAN   STORE   ONLY   A SMALL   FRACTION   OF   SYSTEMS   PROGRAMS   AND  
+DATA   FILES.</P>
+
+
+<P>	oo	SPEED   INCREASED   BY   USE   OF   IC   TECHNOLOGIES.</P>
+
+
+<P>o	EACH   BYTE   OR   WORD   HAS   AN   ADDRESS . . .</P>
+
+
+<P>	oo	CAN   BE   RAPIDLY   ACCESSED   BY   THE   CPU . . .</P>
+
+
+<P>		&gt;	TO    STORE   AND   ACCESS   EXISTING   DATA.</P>
+
+<P><FONT SIZE="-1"><STRONG>CS - 460   DATABASE   MANAGEMENT</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>SESSION   2</STRONG></FONT></P>
+
+
+
+<P><STRONG></STRONG><STRONG><U><CENTER>SECONDARY   MEMORY</CENTER>
+</U></STRONG></P>
+
+
+<P><STRONG>o	DUE   TO   THE   SCARCITY   OF   PRIMARY   MEMORY . . .</STRONG></P>
+
+
+<P><STRONG>	oo	VAST   VOLUMES   OF   DATA   AND   PROGRAMS   THAT    PROCESS   THE   DATA . . .</STRONG></P>
+
+
+<P><STRONG>		&gt;	ARE   MUST   BE   STORED   ON   SECONDARY MEMORY   DEVICES (E.G.  MAG -</STRONG></P>
+
+<P><STRONG>			NETIC   DISKS) .</STRONG></P>
+
+
+<P><STRONG>o	INDIVIDUAL   RECORDS   OR   GROUPS   OF   RECORDS   OF   A   FILE   AND   OF  
+PROGRAMS . . .</STRONG></P>
+
+
+<P><STRONG>	oo	 ARE   LOADED   FROM   PRIMARY   MEMORY   TO   SECONDARY   MEMORY <U></U></STRONG></P>
+
+<P><STRONG><U>	</U>	WHEN   REQUIRED   FOR   PROCESSING.</STRONG></P>
+
+
+<P><STRONG>o	THERE   ARE   FUNDAMENTALLY   ONLY    TWO   KINDS   OF   ACCESS   TO   STORED  
+DATA . . .</STRONG></P>
+
+
+<P><STRONG>	oo	REGARDLESS   OF   THE   NUMBER   OF   VARIATIONS   OF   PROCESSING  
+APPLICATIONS . . .</STRONG></P>
+
+
+<P><STRONG>		&gt;	SEQUENTIAL   ACCESS . .</STRONG></P>
+
+
+<P><STRONG>		&gt;	DIRECT   ACCESS    (DASD) .</STRONG></P>
+
+
+<P><STRONG>o	<U>SEQUENTIAL</U> : ALL   OR   A   PORTION   OF   THE   RECORD   OF   A   FILE . . .</STRONG></P>
+
+
+<P><STRONG>	oo	MUST   BE   RETRIEVED   ONE   AFTER   ANOTHER . . .</STRONG></P>
+
+
+<P><STRONG>		&gt;	UNTIL   THE   DESIRED   RECORD   IS FOUND . . .</STRONG></P>
+
+
+<P><STRONG>			&gt;&gt;	OR   UNTIL   ALL   RECORDS   HAVE   BEEN   PROCESSED .</STRONG></P>
+
+
+<P><STRONG>	oo	<U>EXAMPLE   OF   SEQUENTIAL   PROCESSING</U> . . .</STRONG></P>
+
+
+<P><STRONG>	</STRONG>	&gt;	IN   A   COMPANY   ALL   EMPLOYEES   MUST   BE   PAID   WEEKLY . .</P>
+
+
+<P>		&gt;	THE   APPLICATION   PROGRAM   PLOWS   THROUGH   ALL   OF   THE  
+EMPLOYEES'   PAYROLL   FILES . . .</P>
+
+
+<P>			&gt;&gt;	ONE   AFTER   ANOTHER   UNTIL   A   PAYROLL   CHECK   IS  
+GENERATED   FOR   EVERY   EMPLOYEE .</P>
+
+
+<P>		&gt;	ORDERING   THE   RECORDS   BY PAYROLL   NUMBER . . .</P>
+
+
+<P>			&gt;&gt;	WOULD   HELP   IN   FINDING,   ACCESSING,   AND   UPDATING   ONE   OR 
+ MORE   RECORDS .</P>
+
+<P><FONT SIZE="-1"><STRONG>CS - 460   DATABASE   MANAGEMENT</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>SESSION   2</STRONG></FONT></P>
+
+
+<P><U><CENTER>SECONDARY   MEMORY   (CONT.)</U> </CENTER>
+</P>
+
+
+
+<P>o	<U>DIRECT   ACCESS</U> . . .	</P>
+
+
+<P>	oo	DESCRIBED   AS   THE   NEED   TO   FIND   ONE   SPECIFIC   RECORD   IN   A   FILE . . .</P>
+
+
+<P>		&gt;	AND   RETRIEVE IT   VERY   QUICKLY . . .</P>
+
+
+<P>			&gt;&gt;	EITHER   TO   PRESENT   THE   DATA   TO   SOME   USER . . </P>
+
+
+<P>			&gt;&gt;	OR   TO   PROCESS   THE   DATA . .</P>
+
+
+<P>			&gt;&gt;	OR   TO   MODIFY   THE   DATA .</P>
+
+
+<P>	oo	<U>EXAMPLE</U> :   AIRLINE   RESERVATION   SYSTEM . . .</P>
+
+
+<P>		&gt;	THOUSANDS   OF   RECORDS   DESCRIBING   FLIGHTS   DURING   THE   DAY . .</P>
+
+
+<P>		&gt;	POSSIBLE   CONNECTING   FLIGHTS   TO   THE   DESTINATION . .</P>
+
+
+<P>		&gt;	SEATS   AVAILABLE   AND RESERVATIONS.</P>
+
+
+<P>		&gt;	A    CUSTOMER   REQUESTS   RESERVATIONS   OR   TO   GET   INFORMATION 
+ON   A   FLIGHT   ON   A    DATE . .</P>
+
+
+<P>		&gt;	RESERVATIONS   CLERK   MUST   BE   ABLE   TO   QUICKLY   RETRIEVE   THE  
+REQUIRED   DATA.</P>
+
+
+<P>	oo	<U>ANOTHER   EXAMPLE</U> :    EMPLOYEE   PAYROLL   DATABASE . . .</P>
+
+
+<P>		&gt;	RECORDING   AN   INCREASE   IN   SALARY   OF   A   SPECIFIC   EMPLOYEE . . .</P>
+
+
+<P>			 &gt;&gt;	REQUIRES   ACCESS   TO   THAT   ONE   EMPLOYEE'S   RECORD . .</P>
+
+
+<P>			&gt;&gt;	AND   TO   NO   OTHER .</P>
+
+
+<P>	oo	PRIMARILY   USED    ON   DISK   STORAGE   DEVICES .</P>
+
+
+<P><FONT SIZE="-1"><STRONG>CS - 460   DATABASE   MANAGEMENT</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>SESSION   2</STRONG></FONT></P>
+
+
+<P><U><CENTER>DATA   STORAGE   DEVICES</CENTER>
+</U></P>
+
+
+<P>o	DISK   DEVICES   FULFILL   <U>THREE   REQUIREMENTS</U>   FOR   DATA   SYSTEMS . . .</P>
+
+
+<P>	oo (1)	VERY   LARGE   IN   STORAGE   CAPACITY . .</P>
+
+
+<P>	oo (2)	VERY   FAST   ACCESS   TIMES (BUT   NOT   AS   FAST   AS   PRIMARY   MEMORY) . .</P>
+
+
+<P>	oo (3)	PROVIDES   DIRECT   ACCESS   TO   DATA .</P>
+
+
+<P>	oo	SECONDARY   STORAGE   DEVICES   ARE   ALSO   LESS   EXPENSIVE   THAN  
+PRIMARY   MEMORY .</P>
+
+
+<P>=================================================================================</P>
+
+
+
+<P>						FIG.   2.5</P>
+
+<P>					        GILLENSON</P>
+
+
+
+<P>===============================================================================</P>
+
+
+
+<P>						FIG.   2.6</P>
+
+<P>					      GILLENSON</P>
+
+
+
+<P>===============================================================================</P>
+
+
+<P><FONT SIZE="-1"><STRONG>CS - 460   DATABASE   MANAGEMENT</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>SESSION   2</STRONG></FONT><U></U></P>
+
+
+
+<P><U><CENTER>MAGNETIC   DISKS</U> </CENTER>
+</P>
+
+
+
+
+<P>==================================================================================</P>
+
+<P>							|</P>
+
+<P>							|</P>
+
+<P>							|</P>
+
+<P>							|</P>
+
+<P>							|</P>
+
+<P>							|</P>
+
+<P>							|</P>
+
+<P>							|</P>
+
+<P>							|</P>
+
+<P>							|</P>
+
+<P>							|</P>
+
+<P>							|</P>
+
+<P>							|</P>
+
+<P>							|</P>
+
+<P>=================================================================================</P>
+
+
+<P>o	A   DISK   PACK   IS   KNOWN   AS   A   DISK   DRIVE . . .</P>
+
+
+<P>	oo	WHICH INCLUDES   READ / WRITE   HEADS   CAPABLE   OF . . .</P>
+
+
+<P>		&gt;	WRITING   (STORING)   DATA   ONTO   THE   DISK   SURFACES . .</P>
+
+
+<P>		&gt;	READING   (RETRIEVING)    DATA   FROM   THE   DISK   SURFACES .</P>
+
+
+
+<P>o	A   DISK   PACK   SPINS   AT   2400 - 3600   RPM.</P>
+
+<P><FONT SIZE="-1"><STRONG>CS - 460   DATABASE   MANAGEMENT</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>SESSION   2</STRONG></FONT></P>
+
+
+<P><U><CENTER>MAGNETIC   DISKS   (CONT.)</U></CENTER>
+</P>
+
+
+
+<P>===================================================================================</P>
+
+
+
+<P>							FIG.   2.7   </P>
+
+<P>						      GILLENSON</P>
+
+
+
+<P>==================================================================================</P>
+
+
+<P>o	<U>DATA   ARE   STORED   SERIALLY,   BIT   BY   BIT</U> . . .</P>
+
+
+<P>	oo	ON CONCENTRIC   TRACKS   ON   THE   DISKS'   SURFACES . .</P>
+
+
+<P>	oo	THE   NUMBER   OF   TRACKS   ON   THE   DISK   IS    DETERMINED   BY . . .</P>
+
+
+<P>		&gt;	THE BIT   DENSITY   AND   TRACK   RESOLUTION.</P>
+
+
+<P>o	<U>DATA   ARE   STORED   IN   CYLINDERS</U> . . .</P>
+
+
+<P>===============================================================================</P>
+
+
+
+<P>						FIG.   2.6			</P>
+
+<P>					      GILLENSON</P>
+
+
+
+<P>===============================================================================</P>
+
+
+<P>	oo	A   CONCENTRIC   CIRCLE   OF   TRACKS   FROM   TOP   TO   BOTTOM,    ONE   PER  
+SURFACE . . .</P>
+
+
+<P>		&gt;	EACH   RIGHT   OVER   THE OTHER . .</P>
+
+
+<P>		&gt;	SPEEDS   READING / WRITING.</P>
+
+<P><FONT SIZE="-1"><STRONG>CS - 460   DATABASE   MANAGEMENT</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>SESSION   2</STRONG></FONT></P>
+
+
+
+<P><CENTER><U>MAGNETIC   DISKS   (CONT.)</CENTER>
+</U></P>
+
+
+<P>=================================================================================</P>
+
+
+
+<P>						FIG.   2.6</P>
+
+<P>					      GILLENSON</P>
+
+
+
+<P>===============================================================================</P>
+
+
+<P>o	<U>REASON   FOR   EMPHASIS   ON   THE   CYLINDER   CONCEPT</U> . . .</P>
+
+
+<P>	oo	INVOLVES   READ / WRITE   HARDWARE   ON   THE   DISK   DRIVE . .</P>
+
+
+<P>	oo	THE   <U>READ / WRITE   HEADS</U>   MOVE   TOGETHER,   ONE   PER   SURFACE . . .</P>
+
+
+<P>		&gt;	HEADS   ARE   SELECTABLE   BY   THE   DISK   DRIVE . . .</P>
+
+
+<P>			&gt;&gt;	CANNOT   HAVE   THE   HEAD   FOR   SURFACE   0   TO   BE   POSITIONED  
+AT   TRACK   10    . . </P>
+
+
+<P>			&gt;&gt;	AND   HEAD    FOR   SURFACE   3   POSITIONED   AT   TRACK   35 .</P>
+
+
+<P>		&gt;	HOLDS   DOWN   COSTS AND   COMPLEXITY   OF   THE   DISK   DRIVE . .</P>
+
+
+<P>		&gt;	CREATES   THE   CONCEPT   OF   A   "LOGICAL   CYLINDER" .</P>
+
+<P><FONT SIZE="-1"><STRONG>CS - 460   DATABASE   MANAGEMENT</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>SESSION   2</STRONG></FONT></P>
+
+
+<P><U><CENTER>MAGNETIC   DISKS   (CONT.)</CENTER>
+</U></P>
+
+
+<P>=================================================================================</P>
+
+<P>							|</P>
+
+<P>							|</P>
+
+<P>							|</P>
+
+<P>							|</P>
+
+<P>							|</P>
+
+<P>							|</P>
+
+<P>							|</P>
+
+<P>							|</P>
+
+<P>							|</P>
+
+<P>							|</P>
+
+<P>							|</P>
+
+<P>							|</P>
+
+<P>							|</P>
+
+<P>=================================================================================</P>
+
+
+<P>o	FOUR   MAJOR    STEPS   OR   TIMING   CONSIDERATIONS   IN   THE   TRANSFER   OF  </P>
+
+<P>	 DATA . . .</P>
+
+
+<P>	oo (1)	<U>SEEK   TIME</U> :	MOVING   THE   ACCESS   ARM   ASSEMBLY   TO   THE   CORRECT  
+CYLINDER   FROM   THE   PRESENT   POSITION (THE   GREATEST  
+DELAY) . .</P>
+
+
+<P>	oo (2)	<U>HEAD   SWITCHING</U> :   SELECTING   THE   READ / WRITE   HEAD   THAT   ACCESSES   THE   PARTICULAR   TRACK   OF   THE   CYLINDERS   ON   WHICH   THE DATA  
+RESIDES (VIRTUALLY   ZERO   TIME) .<U></U></P>
+
+
+<P><U>	</U>oo (3)   <U>ROTATIONAL   DELAY</U> :    WAITING   FOR   THE   DESIRED   DATA   TO    ARRIVE   UNDER   THE   READ / WRITE   HEAD   AS   THE   DISK   PACK   SPINS (ON   AVERAGE,   ONE -
+HALF   OF   THE   ROTATIONAL   TIME ).</P>
+
+
+<P>	oo (4)	<U>TRANSFER   TIME</U> :    THE   TIME   TO   ACTUALLY   MOVE   THE   DATA   FROM   THE  
+			DISK    TO   PRIMARY   MEMORY   ONCE   STEPS   1 - 3   HAVE  
+BEEN   COMPLETED   (RATHER    FAST,   DEPENDING   ON THE  
+SPEED   OF   THE   INTERFACES ) .</P>
+
+
+
+<P>o	IF   ALL   DATA   ARE   STORED   INITIALLY   BY   FILLING   ALL   TRACKS   ON   ONE  
+CYLINDER . . .</P>
+
+
+<P>	oo	<U>ALL   DATA   CAN   BE   RETRIEVED   WITHOUT   HAVING   TO   MOVE   THE   ACCESS 
+ ARM.</U></P>
+
+<P><FONT SIZE="-1"><STRONG>CS - 460   DATABASE   MANAGEMENT</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>SESSION   2</STRONG></FONT><U></U></P>
+
+
+<P><U><CENTER>MAGNETIC   DISKS   (CONT.)</U></CENTER>
+</P>
+
+
+<P>o	<U>MODERN   IMPROVEMENTS   IN   DISK   TECHNOLOGY</U> . . .</P>
+
+
+<P>	oo	<U>ONE   TO   16    DISKS   PER   DISK   PACK</U> . . .<U></U></P>
+
+
+<P><U>		&gt;	</U>RESULTS   IN   2   TO   30   TRACKS   PER   CYLINDER (TOP   SURFACE    OF   TOP 
+<U> </U>DISK   AND   BOTTOM   SURFACE   OF   THE   BOTTOM   DISK   NOT   USED ) .</P>
+
+
+<P>	oo	<U>REMOVABLE   DISK   PACKS</U> . . .</P>
+
+
+<P>		&gt;	CAN   BE   REMOVED / REPLACED   AS   DESIRED . . .</P>
+
+
+<P>			&gt;&gt;	SOME   HAVE   PERMANENTLY   MOUNTED   DISKS . . .</P>
+
+
+<P>				.	PERMITS   BETTER   ENGINEERING   TOLERANCES,   ALLOWING  
+HIGHER   DATA   DENSITY .</P>
+
+
+<P>	oo	IN SOME   UNITS   THE   ACCESS   ARM   ASSEMBLY   (WITH   R/W   HEADS)   IS   PART  
+OF   THE    DISK   DRIVE   UNIT . . .</P>
+
+
+<P>		&gt;	IN   OTHERS,   IT   IS   PART   OF   THE   DISK   PACK   ITSELF.</P>
+
+
+<P>	oo	UTILIZATION   OF   MORE   THAN   ONE   ACCESS   ARM   REACHING   ALL   DATA  
+ON   THE   DISK   PACK . . .</P>
+
+
+<P>		&gt;	SOME   ACCESS   DIFFERENT   CYLINDERS.</P>
+
+
+<P>	oo	ADVENT   OF   THE   DISKETTE ,   PARTICULARLY IN   THE   FIELD   OF  
+MICROCOMPUTERS . . .</P>
+
+
+<P>		&gt;	A   VARIATION   OF   A   SINGLE   DISK   WITH   TWO   SURFACES . . .</P>
+
+
+<P>			&gt;&gt;	MADE   OF    IRON   OXIDE   PLASTIC   BASE . </P>
+
+
+<P>	oo	<U>USE   OF   MAGNETIC   DRUMS</U> . . .</P>
+
+
+<P>		&gt;	CYLINDRICAL   WITH   CIRCULAR   TRACKS   WRAPPED   AROUND   IT . .</P>
+
+
+<P>		&gt;	USES   ONE   R/W   HEAD   PER   TRACK . .	</P>
+
+
+<P>		&gt;	EXTREMELY   FAST   BUT   HAVE   LIMITED   STORAGE   CAPACITY . .</P>
+
+
+<P>		&gt;	USUALLY   USED   FOR   SYSTEM   PROGRAMS   AND   ASSOCIATED   DATA.</P>
+
+<P><FONT SIZE="-1"><STRONG>CS - 460   DATABASE   MANAGEMENT</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>SESSION   2</STRONG></FONT></P>
+
+
+<P><U><CENTER>DATA / DISK   FORMATS</U></CENTER>
+</P>
+
+
+
+<P>o	HOW   IS   DATA   ARRANGED   ON   THE   DISKS ?? . . .</P>
+
+
+<P>==================================================================================</P>
+
+
+
+<P>						FIG.   2.2</P>
+
+<P>					       GILLENSON</P>
+
+
+
+<P>===================================================================================</P>
+
+
+<P>	oo	RECORDS   IN   FIGURE   ARE   <U>FIXED   LENGTH   RECORDS</U> . . .</P>
+
+
+<P>		&gt;	EACH   RECORD   IS   THE   SAME   LENGTH . .</P>
+
+
+<P>		&gt;	ALL   FIELDS   IN   ALL   RECORDS   ARE THE   SAME   SIZE   AND   APPEAR   IN  
+THE   SAME   ORDER .</P>
+
+
+<P>	oo	<U>VARIABLE   LENGTH   RECORDS</U> . . .</P>
+
+
+<P>		&gt;	EACH   RECORD   CONSISTS   OF   DIFFERENT   FIELDS . . </P>
+
+
+<P>		&gt;	EACH   RECORD   MAY   VARY   IN   LENGTH   WITH   A   SPECIFIC   RANGE .</P>
+
+
+<P>	oo	EACH   RECORD   IN   THE   FIGURE   IS   CALLED   A   <U>LOGICAL   RECORD</U> . . .</P>
+
+
+<P>		&gt;	NORMALLY   READ   AS   NEEDED   INTO   PRIMARY   MEMORY   FROM  
+SECONDARY   MEMORY . . .</P>
+
+
+<P>			&gt;&gt;	EACH   LOGICAL   RECORD   CAN   THEN   BE   EXAMINED   AND / OR  
+PROCESSED   AS    REQUIRED   BY   THE   EXECUTING   PROGRAM .</P>
+
+<P><FONT SIZE="-1"><STRONG>CS - 460   DATABASE   MANAGEMENT</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>SESSION   2</STRONG></FONT></P>
+
+
+<P><U><CENTER>TRACK   FORMATS</U></CENTER>
+</P>
+
+
+
+<P>==================================================================================</P>
+
+
+
+<P>						FIG.   2.8a</P>
+
+<P>					        GILLENSON</P>
+
+
+
+<P>==================================================================================</P>
+
+<P>    </P>
+
+<P>o	HOW   ARE   DATA   RECORDS    PLACED   ON   THE   DISK   TRACKS?? . . .</P>
+
+
+<P>	oo	THEY   MUST   BE   FOUND   ONCE   THE   SYSTEM   HAS   DETERMINED   WHICH  
+TRACK THEY   ARE   ON .</P>
+
+
+<P>o	<U>SHOWN   IN   THE    FIGURE</U> . . .</P>
+
+
+<P>	oo	<U>COUNT - DATA   FORMAT</U> . . .</P>
+
+
+<P>		&gt;	THE   BEGINNING   OF   A   TRACK   IS   DENOTED   BY   AN   "INDEX   POINT" . .</P>
+
+
+<P>		&gt;	FOLLOWING    THAT   IS   A   SMALL   GAP . . .</P>
+
+
+<P>			&gt;&gt;	GAPS    OF   DIFFERENT   LENGTHS   SEPARATE   THE   DIFFERENT  
+ITEMS   ON   THE   TRACK . . /</P>
+
+
+<P>				.	THEY   GIVE   THE   DISK   DRIVER   TIME   TO   PERFORM  
+CERTAIN   FUNCTIONS .</P>
+
+
+<P>		&gt;	NEXT,   THE   <U>"HOME   ADDRESS"</U> . . .</P>
+
+
+<P>			&gt;&gt;	INCLUDES   THE   CYLINDER   NUMBER,   TRACK   NUMBER,   AND  
+FLAG   INDICATING   WHETHER    OR   NOT   THE   TRACK   IS  
+DEFECTIVE.</P>
+
+
+<P>		&gt;	NEXT,    A   SPECIAL   RECORD   CALLED   "TRACK   DESCRIPTOR   RECORD" . .</P>
+
+
+<P>			&gt;&gt;	CONTAIN   THE   NUMBER   OF   BYTES   LEFT   ON   THE   TRACK  
+AFTER   THE   LAST   RECORD . .</P>
+
+
+<P>			&gt;&gt;	ALSO,   IF   THE   TRACK   IS    DEFECTIVE,   THE   ADDRESS   OF   THE  
+ALTERNATE   TRACK   CONTAINING   THE   DISPLACED   DATA .</P>
+
+<P><FONT SIZE="-1"><STRONG>CS - 460   DATABASE   MANAGEMENT</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>SESSION   2</STRONG></FONT></P>
+
+
+<P><U><CENTER>TRACK   FORMATS   (CONT.)</U></CENTER>
+</P>
+
+
+
+<P>===================================================================================</P>
+
+
+<P>					FIG.   2.8 a</P>
+
+
+<P>=================================================================================</P>
+
+
+<P>	oo	<U>COUNT - DATA   FORMAT   (CONT.)</U> . . .</P>
+
+
+<P>		&gt;	<U>DATA   RECORDS</U> . . .</P>
+
+
+<P>			&gt;&gt;	CONSISTS     OF   "ADDRESS   MARKER" ,   A   "COUNT    AREA" ,   AND   A  
+"DATA   AREA" .</P>
+
+
+<P>			&gt;&gt;	<U>ADDRESS   AREA</U> :   IDENTIFIES   THE   BEGINNING   OF   THE   </P>
+
+<P>				RECORD . . </P>
+
+
+<P>			&gt;&gt;	<U>COUNT   AREA</U> :   REPEATS   THE   CYLINDER   AND   TRACK   </P>
+
+<P>				NUMBERS . . .</P>
+
+
+<P>				.	AND   WHETHER   OR   NOT   THE   TRACK   IS   DEFECTIVE,  
+RECORD   NUMBER   OF   RECORDS   ON   THE   TRACK,   LENGTH  
+OF   THE   DATA   AREA    TO   FOLLOW,   IDENTIFICATION   OF  
+THE   FILE   AS   "COUNT   AREA" .</P>
+
+
+<P>			&gt;&gt;	<U>DATA   AREA</U> :   CONTAINS   ACTUAL   DATA   OF   A   PHYSICAL  
+RECORD   OR   BLOCK.</P>
+
+<P><FONT SIZE="-1"><STRONG>CS - 460   DATABASE   MANAGEMENT</STRONG></FONT></P>
+
+<P><FONT SIZE="-1"><STRONG>SESSION   2</STRONG></FONT></P>
+
+
+
+<P><U><CENTER>TRACK   FORMATS   (CONT.)</U> </CENTER>
+</P>
+
+
+
+<P>==================================================================================</P>
+
+
+
+<P>						FIG.   2.8b</P>
+
+
+<P>=================================================================================</P>
+
+
+<P>o	<U>COUNT - KEY - DATA   FORMAT</U> . . .</P>
+
+
+<P>	oo	SAME   AS   <U>COUNT - DATA   FORMAT</U> . . .</P>
+
+
+<P>	oo	<U>DIFFERENCE</U> :    THE   "KEY"   AREA   IS   IN AND   BETWEEN   THE   <U>COUNT</U>   AND  
+<U>DATA</U>   AREA OF   EACH   DATA   RECORD . . .</P>
+
+
+<P>		&gt;	AND   AN   INDICATION   IN   THE   COUNT   AREA   OF   THE <U>LENGTH   OF   THE 
+ KEY</U> . . .</P>
+
+
+<P>	oo	THE   <U>KEY   AREA</U> :    USUALLY   CONTAINS   THE   VALUE   OF   THE   HIGHEST   KEY  
+KEY   AMONG   THE   KEY   VALUES . . .</P>
+
+
+<P>		&gt;	OF   THE    LOGICAL   RECORDS   IN   THE   BLOCK . . .</P>
+
+
+<P>		&gt;	CAN   BE   USED   TO   MORE   QUICKLY   LOCATE   RECORDS   ON   THE   BASIS 
+ OF   KEY   VALUES .</P>
+
+<P>  </P>
+
+<P>	<U></U></P>
+
+
+<P>   </P>
+
+
+
+</BODY>
+</HTML>

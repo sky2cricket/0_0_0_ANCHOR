@@ -1,0 +1,81 @@
+<HTML>
+<HEAD>
+<TITLE>
+SOURCE CODE
+</TITLE>
+</HEAD>
+<BODY>
+<PRE>
+<H3>
+// font1.java
+// allows you to change font
+
+import java.awt.*;
+import java.applet.*;
+
+public class font1 extends Applet
+{
+ public void paint(Graphics gc)
+ {
+  // you can combine   Font.ITALIC + Font.BOLD
+  // the 24 is the font size, you can set it from 1 to 36
+
+  Font aardvark11 = new Font("Courier", Font.PLAIN, 24);
+  gc.setFont(aardvark11);
+  String phrase1 = "Courier";
+  gc.drawString(phrase1, 35, 35);
+
+  Font aardvark12 = new Font("Courier", Font.BOLD, 24);
+  gc.setFont(aardvark12);
+  gc.drawString(phrase1, 185, 35);
+
+  Font aardvark13 = new Font("Courier", Font.ITALIC, 24);
+  gc.setFont(aardvark13);
+  gc.drawString(phrase1, 335, 35);
+
+  Font aardvark21 = new Font("Helvetic", Font.PLAIN, 24);
+  gc.setFont(aardvark21);
+  String phrase2 = "Helvetic";
+  gc.drawString(phrase2, 35, 75);
+
+  Font aardvark22 = new Font("Helvetic", Font.BOLD, 24);
+  gc.setFont(aardvark22);
+  gc.drawString(phrase2, 185, 75);
+
+  Font aardvark23 = new Font("Helvetic", Font.ITALIC, 24);
+  gc.setFont(aardvark23);
+  gc.drawString(phrase2, 335, 75);
+
+  Font aardvark31 = new Font("TimesRoman", Font.PLAIN, 24);
+  gc.setFont(aardvark31);
+  String phrase3 = "Times Roman";
+  gc.drawString(phrase3, 35, 115);
+
+  Font aardvark32 = new Font("TimesRoman", Font.BOLD, 24);
+  gc.setFont(aardvark32);
+  gc.drawString(phrase3, 185, 115);
+
+  Font aardvark33 = new Font("TimesRoman", Font.ITALIC, 24);
+  gc.setFont(aardvark33);
+  gc.drawString(phrase3, 335, 115);
+
+  Font aardvark41 = new Font("Dialogue", Font.PLAIN, 24);
+  gc.setFont(aardvark41);
+  String phrase4 = "Dialogue";
+  gc.drawString(phrase4, 35, 155);
+
+  Font aardvark42 = new Font("Dialogue", Font.BOLD, 24);
+  gc.setFont(aardvark42);
+  gc.drawString(phrase4, 185, 155);
+
+  Font aardvark43 = new Font("Dialogue", Font.ITALIC, 24);
+  gc.setFont(aardvark43);
+  gc.drawString(phrase4, 335, 155);
+
+ }
+} // end
+
+</PRE>
+</H3>
+</BODY>
+</HTML>

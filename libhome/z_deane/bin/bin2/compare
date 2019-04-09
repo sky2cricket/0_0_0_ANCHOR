@@ -1,0 +1,173 @@
+#! /bin/csh -f
+
+#  Compare your files versus the teacher's files.
+#  For each pair, put them up in a pair of windows (using VIEW),
+#  which go away when you exit VIEW.
+
+#  The first argument says what lab files to compare:
+#      compare 3   means compare the files for Lab 3, for example.
+#  The second (optional) argument is a filename:
+#      compare 5 array2.p
+#  means do ONLY array2.p from Lab 5, for example.
+#  COMPARE_DIR/labX  contains the files to compare for Lab X.
+
+#  Written by David Mutchler.
+#  Changed 12/17/93  Ember Uziel
+#     staff is now defined by the gta.names file.
+
+set COMPARE_DIR = ~cs102/compare  # Where everything lives.
+set STAFF = ~cs102/usernames/gta.names    # Names of CS 102 staff.
+set TMP   = /tmp/tmp-compare.$$
+
+
+#  ----------------------------------------------------------------
+#  STEP 1: CHECK FOR VALID USAGE.
+#  ----------------------------------------------------------------
+
+#  The first argument says what lab files to compare:
+#      compare 3   means compare the files for Lab 3, for example.
+
+if ! ($#argv =~ [12]  &&  ("$1" =~ [1-9] || "$1" =~ 1[0-9])) then
+  echo ""
+  echo "You are not using  COMPARE  correctly."
+  echo ""
+  echo "The first argument tells me what Lab files to view."
+  echo "For example,"
+  echo "    compare 5"
+  echo "means compare the files you did in Lab 5"
+  echo "to the perfect answers for Lab 5."
+  echo ""
+  echo "The second (optional) argument means to compare only"
+  echo "a single file.  For example,"
+  echo "    compare 5  array2.p"
+  echo "means compare the array2.p you did in Lab 5"
+  echo "to the perfect array2.p."
+  echo ""
+  echo "Ask a TA for help if you are confused."
+  echo ""
+  goto exit_label
+endif
+
+set LAB_NUMBER = $1
+set LAB        = lab$1
+
+#       Step 1a: Make sure that the file prots are correct.
+if ! (-w $COMPARE_DIR/accounting/compare_${LAB} ) then
+  echo "There is a file protection problem."
+  echo "Please ask your TA to fix this."
+  exit 1
+endif
+
+#  TAs files are in a special place.
+
+grep -s -x $USER $STAFF > /dev/null
+
+if  ($status) then
+  set STUDENT_DIR = ~/$LAB
+else
+  set STUDENT_DIR = ~/cs102/mylabs/$LAB
+endif
+
+set PERFECT_DIR = $COMPARE_DIR/compare_$LAB
+
+if ! (-e $PERFECT_DIR) then
+  echo ""
+  echo "Comparing is not prepared for Lab $LAB_NUMBER."
+  echo "Perhaps you gave the wrong number?"
+  echo "Ask a TA for help if you are confused."
+  echo ""
+  goto exit_label
+endif
+
+#  The second (optional) argument is a filename:
+#      compare 5 array2.p
+#  means do ONLY array2.p from Lab 5, for example.
+
+set FILES = `/bin/ls $PERFECT_DIR`
+
+if ($#argv == 2) then
+  /bin/ls -1 $PERFECT_DIR >! $TMP
+  grep -s "^$2"\$ $TMP
+  if ($status) then
+    /bin/rm -f $TMP
+    echo ""
+    echo "You are not using  COMPARE  correctly."
+    echo "There is no file $2 to compare."
+    echo ""
+    echo "Ask a TA for help if you are confused."
+    echo ""
+    goto exit_label
+  endif
+  /bin/rm -f $TMP
+  set FILES = $2
+endif
+
+#  ----------------------------------------------------------------
+#  STEP 2: COMPARE THE FILES, PAIR BY PAIR.
+#  ----------------------------------------------------------------
+
+echo ""
+echo "OK, let's compare the files you did for Lab $LAB_NUMBER."
+echo "For each file you created for that lab,"
+echo "I will create a pair of windows:"
+echo "     the left  window will contain your file;"
+echo "     the right window will contain my perfect (?) answer."
+echo "In each window you will be in VI, but in read-only mode,"
+echo "so that you cannot accidentally damage your files."
+echo ""
+echo "When you are finished making the comparison,"
+echo "exit VI in each window with   :q   (or :q\!) as usual (NOT :wq)."
+echo "When you exit a window, it will disappear."
+echo "Soon after both windows have disappeared,"
+echo "the next pair of files will appear on two new windows."
+echo ""
+echo "It will take me about 10 seconds to create each pair of windows."
+echo ""
+echo "Strike a RETURN when you are ready to begin."
+echo ""
+set xxx = $<
+
+foreach file ($FILES)
+  /usr/bin/X11/xterm -j -sb -vb -geometry 80x55-60+150 \
+    -fn 6x13 -title "PERFECT $file" \
+    -e view $PERFECT_DIR/$file &
+  if ! (-e $STUDENT_DIR/$file) then
+    touch $TMP
+    echo "" >> $TMP
+    echo "I cannot find file $file in $STUDENT_DIR." >> $TMP
+    echo "Did you do that assignment?" >> $TMP
+    echo "Ask a TA for help if you are confused." >> $TMP
+    echo "" >> $TMP
+    echo "Exit this window with  :q  or  :q!  as usual" >> $TMP
+    echo "when you are ready." >> $TMP
+    /usr/bin/X11/xterm -j -sb -vb -geometry 80x55+60+150 \
+      -fn 6x13 -title "YOUR $file" \
+      -e view $TMP &
+  else
+    /usr/bin/X11/xterm -j -sb -vb -geometry 80x55+60+150 \
+      -fn 6x13 -title "YOUR $file" \
+      -e view $STUDENT_DIR/$file &
+  endif
+  wait
+  /bin/rm -f $TMP
+end
+
+#  ----------------------------------------------------------------
+#  STEP 3:  RECORD THAT THE STUDENT HAS DONE THIS, TO GET CREDIT.
+#  ----------------------------------------------------------------
+
+if ($#argv == 1) then
+  touch $COMPARE_DIR/accounting/compare_${LAB}/$USER
+endif
+
+echo ""
+echo "Thanks for comparing your files against the perfect versions."
+echo "If you have questions about any of them,"
+echo "please ask a TA NOW."
+echo ""
+
+#  Exits from the script pass through here.
+#  Return to the original directory and remove all traces.
+
+exit_label:
+

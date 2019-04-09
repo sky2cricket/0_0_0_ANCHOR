@@ -1,0 +1,62 @@
+PAPI_stop               PerfAPI LIBRARY                 PAPI_stop
+
+
+
+NAME
+     PAPI_stop - start counting events contained in an EventSet
+
+SYNOPSIS
+     int PAPI_stop (int EventSet, unsigned long long *values)
+
+     int EventSet --  a reference to an EventSetInfo structure
+
+     unsigned long long *values -- array to contain counts
+
+DESCRIPTION
+     PAPI_stop() This function terminates  the  counting  of  all
+     hardware  events  contained  in  EventSet.  In addition, the
+     counters contained in that  EventSet  are  copied  into  the
+     values array.
+
+     The return value is an integer that  indicates  whether  the
+     call succeeded (PAPI_OK) or failed (not PAPI_OK).
+
+CROSS-REFERENCE WITH OTHER PerfAPI FUNCTIONS
+
+     PAPI_stop may be called by:
+
+          the user application program
+          PAPI_stop_counters
+
+     PAPI_stop contains calls to:
+
+          lookup_EventSet
+          handle_error
+          _papi_hwd_unmerge ( a substrate function )
+
+SEE ALSO
+     The PerfAPI Draft:
+          http://icl.cs.utk.edu/projects/papi/api/
+
+BUGS
+     This function has no known bugs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PAPI Release 0.99   Last change: 28 July 1999                   1
+
+

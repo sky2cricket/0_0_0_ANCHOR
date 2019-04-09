@@ -1,0 +1,124 @@
+PAPI_overflow           PerfAPI LIBRARY             PAPI_overflow
+
+
+
+NAME
+     PAPI_overflow  -  start  counting  events  contained  in  an
+     EventSet
+
+SYNOPSIS
+     int PAPI_overflow (int EventSet, int EventCode,  int  thres-
+     hold, int flags, void *handler)
+
+     int EventSet -- a reference to an EventSetInfo structure
+
+     int EventCode -- integer value for a PAPI Event
+
+     int    threshold    --    threshold     value     in     the
+     EventSetOverflowInfo_t structure
+
+     int flags  --  flags  value  in  the  EventSetOverflowInfo_t
+     structure
+
+     void *handler -- handler value in the EventSetOverflowInfo_t
+     structure
+
+
+DESCRIPTION
+     PAPI_overflow() sets up an EventSet such  that  when  it  is
+     PAPI_start()'ed,  it  begins  to  register  overflows.  This
+     EventSet may only have multiple events in it, but only 1 can
+     be  an  overflow  trigger. Subsequent calls to PAPI_overflow
+     replace earlier calls. To turn off overflow, set the handler
+     to NULL.
+
+     The return value is an integer that  indicates  whether  the
+     call succeeded (PAPI_OK) or failed (not PAPI_OK).
+
+CROSS-REFERENCE WITH OTHER PerfAPI FUNCTIONS
+
+     PAPI_overflow may be called by:
+
+          the user application program
+
+     PAPI_overflow contains calls to:
+
+          lookup_EventSet
+          handle_error
+          _papi_hwd_set_overflow ( a substrate function )
+
+SEE ALSO
+     The PerfAPI Draft:
+          http://icl.cs.utk.edu/projects/papi/api/
+
+BUGS
+     This function has no known bugs.
+
+
+
+
+PAPI Release 0.99   Last change: 28 July 1999                   1
+
+
+PAPI_overflow           PerfAPI LIBRARY             PAPI_overflow
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PAPI Release 0.99   Last change: 28 July 1999                   2
+
+
+
+
+

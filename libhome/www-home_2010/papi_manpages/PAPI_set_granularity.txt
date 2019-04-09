@@ -1,0 +1,62 @@
+PAPI_set_granularity    PerfAPI LIBRARY      PAPI_set_granularity
+
+
+
+NAME
+     PAPI_set_granularity - set the  measurement  granularity  in
+     which the counters function.
+
+SYNOPSIS
+     int PAPI_set_granularity (int granularity)
+
+     int granularity -- an integer to select the granularity
+
+DESCRIPTION
+     PAPI_set_granularity() This function  sets  the  measurement
+     granularity in which the counters function. Here granularity
+     is one of  the  constants  shown  in  the  list  below.   By
+     default, the granularity is set to the most restrictive sup-
+     ported by the substrate.
+
+     The return value is an integer that  indicates  whether  the
+     call succeeded (PAPI_OK) or failed (not PAPI_OK).
+
+DEFINITION OF CONSTANTS
+     PAPI_GRN_THR        PAPI cnters for each thread
+     PAPI_GRN_MIN        Minimum value for granularity
+     PAPI_GRN_MAX        Maximum value for granularity
+     PAPI_GRN_PROC       PAPI cnters for each process
+     PAPI_GRN_PROCG      PAPI cnters for each proc-group
+     PAPI_GRN_SYS        PAPI cnters for current CPU
+     PAPI_GRN_SYS_CPU    PAPI cnters for each CPU
+
+CROSS-REFERENCE WITH OTHER PerfAPI FUNCTIONS
+
+     PAPI_set_granularity may be called by:
+
+          the user application program
+
+     PAPI_set_granularity contains calls to:
+
+          PAPI_set_opt
+
+SEE ALSO
+     The PerfAPI Draft:
+          http://icl.cs.utk.edu/projects/papi/api/
+
+BUGS
+     This function has no known bugs.
+
+
+
+
+
+
+
+
+
+
+
+PAPI Release 0.99   Last change: 28 July 1999                   1
+
+

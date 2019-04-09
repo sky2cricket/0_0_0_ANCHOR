@@ -1,0 +1,100 @@
+<HTML>
+<HEAD>
+<TITLE>
+SOURCE CODE
+</TITLE>
+</HEAD>
+<BODY>
+<PRE>
+<H3>
+// Dog.java
+//
+// this java program uses 6 drawings to create an animated
+// sequence of a running dog
+//
+// they are:
+// dog0.jpg dog1.jpg dog2.jpg dog3.jpg dog4.jpg dog5.jpg
+//
+// these 6 .jpg files must be in the same directory as Dog.class
+
+import java.awt.*;
+import java.applet.*;
+
+public class Dog extends Applet implements Runnable
+{
+  Image dogpics[] = new Image[6];
+  String dogsrc[] = { "dog0.jpg", "dog1.jpg", "dog2.jpg",
+                       "dog3.jpg", "dog4.jpg", "dog5.jpg" };
+  Image currentimg;
+  Thread runner;
+  int xpos;
+  int ypos = 50;
+  int increment = 100;    // x position increment between pictures
+  int delay = 100;        // time delay between display of pictures
+
+  public void start()
+    {
+     if(runner == null)
+       {
+        runner = new Thread(this);
+        runner.start();
+       }
+    }
+
+  public void stop()
+    {
+     if(runner != null)
+       {
+        runner.stop();
+        runner = null;
+       }
+    }
+
+  // gets each picture in sequence dogsrc[]
+  // and stores them for quick access in dogpics[]
+  public void run()
+    {
+     for(int i=0; i < dogpics.length; i++)
+       dogpics[i] = getImage(getCodeBase(), dogsrc[i]);
+
+     setBackground(Color.white);
+     // sets the width of the dog track
+     dogrun(0, 600);
+     run();
+    }
+
+  // causes the animation to run endlessly
+  void dogrun(int start, int end)
+    {
+     for(int i = start; i < end; i+=increment)
+       {
+        this.xpos = i;
+
+        for(int j = 0; j < dogpics.length; ++j)
+          {
+           // stores each image in currentimg for display
+           currentimg = dogpics[j];
+           repaint();
+           pause(delay);
+          }
+       }
+    }
+
+  void pause(int time)
+    {
+     try { Thread.sleep(time); }
+     catch (InterruptedException e) { }
+    }
+
+  // displays each drawing
+  public void paint(Graphics g)
+    {
+     g.drawImage(currentimg, xpos, ypos, this);
+    }
+
+} // end
+</PRE>
+</H3>
+</BODY>
+</HTML>
+

@@ -1,0 +1,153 @@
+<html>
+<head>
+<title>colorbox</title>
+<script language="Javascript">
+
+////////////////////////////////////////////////////////////////
+//define makeArray function to initialize arrays
+
+var len;
+
+function makeArray(len) {
+   for (var i=0;i<len;i++) this[i]=null;
+   this.length=len;
+   }
+
+
+
+////////////////////////////////////////////////////////////////
+  function newBg (form,num) {
+
+
+var col = new makeArray(8);
+    col[0]=8;
+    col[1]="9";
+    col[2]="a";
+    col[3]="b";
+    col[4]="c";
+    col[5]="d";
+    col[6]="e";
+    col[7]="f";
+   
+
+  c1="ffffff"
+  var s1="";
+  if (num < 5) {
+  if (num == 1) {c1="aaddff";}
+  if (num == 2) {c1="ffaaff";}
+  if (num == 3) {c1="ffffaa";}
+  if (num == 4) {c1="aaffaa";}
+
+document.write("<HTML><BODY bgcolor=\""+s1+"\"  Text=\"000000\" >"
+        + "<b> test output with newBg(this.form,num) </b>"
+        + "<P>" 
+        + "added the button<P>"
+        + "color=<b>"+s1 +"</b>"
+        + "<p>The Button: <p><form>"
+        +" <INPUT TYPE=BUTTON VALUE=\"FIVE\" onclick=\"newBg(this.form,5);\">"
+        +"</form>" 
+        +"<p> End the Button."
+        + "<P>" + c1 +"<P><HR></BODY></HTML>");
+   }
+
+   else {
+   c1="ffaaaa";
+
+   T=new Date();
+   Ts=T.getTime();
+   T0=Ts%1000000;
+   T1=T0<<5;
+   T1a=T1>>5;
+
+   T2=T0>>1;
+   T2a=T2<<4;
+   T2b=T2a>>4;
+
+   T3=T0>>2;
+   T3a=T3<<3;
+   T3b=T3a>>3;
+
+   T4=T0>>3;
+   T4a=T4<<2;
+   T4b=T4a>>2;
+
+   T5=T0>>4;
+   T5a=T5<<1;
+   T5b=T5a>>1;
+
+   T6=T0>>5;
+    
+
+   T1=T0<<4;
+   T1a=T1>>4;
+   T2=T0>>2;
+   T2a=T2<<2;
+   T2b=T2>>2;
+   T3=T0>>4;
+   t1=T1;
+   t2=T2b;
+   t3=T3;
+
+   RR=t1;
+   GG=t2;
+   BB=t3;
+
+
+   r1=(T1a%7)+1;
+   r2=(T2b%7)+1;
+   g1=(T3b%7)+1;
+   g2=(T4b%7)+1;
+   b1=(T5b%7)+1;
+   b2=(T6%7)+1;
+
+   s1=col[r1];
+   s1=s1+col[r2];
+   s1=s1+col[g1];
+   s1=s1+col[g2];
+   s1=s1+col[b1];
+   s1=s1+col[b2];
+
+document.write("<HTML><BODY bgcolor=\""+s1+"\"  Text=\"000000\" >"
+        + "<b> test output with newBg(this.form,num) </b>"
+        + "<P>" 
+        + "<p>current bgcolor=<b>" +s1 +"</b>"
+        + "<p>col[r1]= <b>" +col[r1] +"</b>"
+        + "<P>" + c1 +"<P><HR>"
+        + "<a href=\"colorbox.html\">back</a>"
+        + "<p>The Button: <p><form>"
+        +" <INPUT TYPE=BUTTON VALUE=\"FIVE\" onclick=\"newBg(this.form,5);\">"
+        +"</form>" 
+        +"<p> End the Button."
+        +"</BODY></HTML>");
+   }
+
+   
+
+}
+
+   
+
+
+</script>
+</head>
+<body bgcolor="ffffff" text="000000">
+<table width=550><tr><td>
+<b>colorbox</b>
+<p>
+<form>
+<table cellpadding=5><tr>
+<td> <INPUT TYPE=BUTTON NAME="color" VALUE="ONE" onclick="newBg(this.form,1);"> </td>
+<td> <INPUT TYPE=BUTTON NAME="color" VALUE="TWO" onclick="newBg(this.form,2);"> </td>
+<td> <INPUT TYPE=BUTTON NAME="color" VALUE="THREE" onclick="newBg(this.form,3);"> </td>
+<td> <INPUT TYPE=BUTTON NAME="color" VALUE="FOUR" onclick="newBg(this.form,4);"> </td>
+<td> <INPUT TYPE=BUTTON NAME="color" VALUE="FIVE" onclick="newBg(this.form,5);"> </td>
+</tr></table>
+</form>
+<p>
+
+
+</tr></td></table></body></html>
+
+
+  
+   

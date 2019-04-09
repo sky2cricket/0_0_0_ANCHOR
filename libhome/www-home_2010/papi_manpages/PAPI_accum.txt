@@ -1,0 +1,62 @@
+PAPI_accum              PerfAPI LIBRARY                PAPI_accum
+
+
+
+NAME
+     PAPI_accum - start counting events contained in an EventSet
+
+SYNOPSIS
+     int PAPI_accum (int EventSet, unsigned long long *values)
+
+     int EventSet --  a reference to an EventSetInfo structure
+
+     unsigned long long *values -- array to contain counts
+
+DESCRIPTION
+     PAPI_accum()  This  function  accumulates  the  running   or
+     stopped  counters  in  EventSet  into  the values array.  In
+     addition, it re-initializes the internal counters to zero.
+
+     The return value is an integer that  indicates  whether  the
+     call succeeded (PAPI_OK) or failed (not PAPI_OK).
+
+CROSS-REFERENCE WITH OTHER PerfAPI FUNCTIONS
+
+     PAPI_accum may be called by:
+
+          the user application program
+
+     PAPI_accum contains calls to:
+
+          lookup_EventSet
+          handle_error
+          _papi_hwd_read ( a substrate function )
+          _papi_hwd_reset ( a substrate function )
+
+SEE ALSO
+     The PerfAPI Draft:
+          http://icl.cs.utk.edu/projects/papi/api/
+
+BUGS
+     This function has no known bugs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PAPI Release 0.99   Last change: 28 July 1999                   1
+
+

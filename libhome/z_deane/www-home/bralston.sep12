@@ -1,0 +1,66 @@
+From bralston@utk.edu Sun Sep 12 15:34:02 1999
+Return-Path: <bralston@utk.edu>
+Received: from mailhost.cas.utk.edu (marvin@localhost) 
+        by CS.UTK.EDU with ESMTP (cf v2.9s-UTK)
+	id PAA28052; Sun, 12 Sep 1999 15:34:01 -0400 (EDT)
+Received: from mailhost.cas.utk.edu (128.169.76.44 -> MAILHOST.CAS.UTK.EDU)
+ by CS.UTK.EDU (smtpshim v1.0); Sun, 12 Sep 1999 15:34:01 -0400
+Received: from utk.edu (NCHM02A5.RMT.UTK.EDU [128.169.249.5])
+	by mailhost.cas.utk.edu (8.9.2/8.9.0) with ESMTP id PAA27317
+	for <deane@cs.utk.edu>; Sun, 12 Sep 1999 15:33:59 -0400 (EDT)
+Message-ID: <37DBFF88.EC3213B6@utk.edu>
+Date: Sun, 12 Sep 1999 15:31:20 -0400
+From: Bruce Ralston <bralston@utk.edu>
+X-Mailer: Mozilla 4.61 [en] (Win95; I)
+X-Accept-Language: en
+MIME-Version: 1.0
+To: Christine Deane <deane@cs.utk.edu>
+Subject: Re: export to jpeg
+References: <199909121917.PAA11113@duncan.cs.utk.edu>
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+Status: R
+Content-Length: 1528
+
+Hi-
+The machines in the library should work.  You would have to write a script (something
+we have not covered in 411, and probably won't until the end of the semester--the
+second class, 517, is all about scripts).  Here is a sample script I just ran and it
+does create the proper file
+
+'---start script
+theView = av.GetProject.FindDoc("View1")
+theView.ExporttoGeoJPEG(90,"d:\canada.jpg".asFileName)
+'---end script
+
+What probably would be easier is to use the ArcView Internet Map Server.  We are
+supposed to have it on campus, but I have yet to get a copy.  I will ask the software
+procurement people about it again tomorrow.
+
+BR
+
+Christine Deane wrote:
+
+> Dear Dr. Ralston,
+>
+> On one of the ArcView Help pages, they mention that you can use the function
+> View.ExportToJPEG to copy a view to a jpeg file that can be displayed on the
+> web.  I tried adding some graphics extensions to implement this, with no success.
+> So before I waste a lot of time attempting to do the possibly impossible, do
+> you know if ArcView 3.1 as available to me in Geog 411 has support for the
+> function View.ExportToJPEG ??
+>
+> I am working at the UTK Library and realize that the software at the GIS Lab
+> may be bigger than better than here.
+>
+> What I want to do is to write some client/server code so that I can be a server
+> with a local database and clients log into me and specify map parameters and
+> I use ArcView to build the display and return the display to the client as a
+> JPEG file.
+>
+> Thanks!
+>
+> Yours truly,
+> Cricket Deane
+
+

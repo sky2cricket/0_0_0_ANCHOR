@@ -1,0 +1,62 @@
+PAPI_profil             PerfAPI LIBRARY               PAPI_profil
+
+
+
+NAME
+     PAPI_profil - set values in the EventSetProfileInfo_t strct.
+
+SYNOPSIS
+     int PAPI_profil (void *buf, int bufsiz, int offset, unsigned
+     int  scale,  int EventSet, int EventCode, int threshold, int
+     flags)
+
+     void *buf -- buf val of EventSetProfileInfo_t strct.
+
+     int bufsiz -- bufsiz val of EventSetProfileInfo_t strct.
+
+     int offset -- offset val of EventSetProfileInfo_t strct.
+
+     unsigned int scale -- scale val EventSetProfileInfo_t strct.
+
+     int EventSet -- a reference to an EventSetInfo structure
+
+     int EventCode -- the numeric value of the Event
+
+     int threshold -- threshold val EventSetProfileInfo_t strct.
+
+     int flags -- flags val of EventSetProfileInfo_t strct.
+
+DESCRIPTION
+     PAPI_profil()  This  function  sets  the   values   in   the
+     EventSetProfileInfo_t  structure,  if  profiling  is  to  be
+     enabled for this EventSet.  The  EventSet  must  be  in  the
+     stopped state for this call to succeed.
+
+     The return value is an integer that  indicates  whether  the
+     call succeeded (PAPI_OK) or failed (not PAPI_OK).
+
+CROSS-REFERENCE WITH OTHER PerfAPI FUNCTIONS
+
+     PAPI_profil may be called by:
+
+          the user application program
+
+     PAPI_profil contains calls to:
+
+          lookup_EventSet
+          handle_error
+          _papi_hwd_set_profile ( a substrate function )
+
+SEE ALSO
+     The PerfAPI Draft:
+          http://icl.cs.utk.edu/projects/papi/api/
+
+BUGS
+     This function has no known bugs.
+
+
+
+
+PAPI Release 0.99   Last change: 28 July 1999                   1
+
+

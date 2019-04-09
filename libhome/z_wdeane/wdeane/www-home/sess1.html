@@ -1,0 +1,1520 @@
+<HTML>
+<HEAD>
+<META NAME="Generator" CONTENT="Corel WordPerfect 8">
+<TITLE></TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#551a8b" ALINK="#ff0000" BGCOLOR="#c0c0c0">
+
+<P><FONT SIZE="+1"><STRONG></STRONG></FONT><FONT SIZE="-1"><STRONG><CENTER>CS-541:   DATABASE MANAGEMENT SYSTEMS</STRONG></CENTER>
+</FONT></P>
+
+
+
+<P><FONT SIZE="-1">Some questions to be discussed:</FONT></P>
+
+
+<P><FONT SIZE="-1">1.	What is a database?</FONT></P>
+
+<P><FONT SIZE="-1">2.	What is a database system?</FONT></P>
+
+<P><FONT SIZE="-1">3.	What are the major components of a database system?</FONT></P>
+
+<P><FONT SIZE="-1">4.	What are the major characteristics of a database system?</FONT></P>
+
+<P><FONT SIZE="-1">5.	What user-to-database facilities does a Database Management System provide 	a user?</FONT></P>
+
+<P><FONT SIZE="-1">6.	What are the components of a database system?</FONT></P>
+
+<P><FONT SIZE="-1">7.	What three classes of users are normally related to a DBMS?</FONT></P>
+
+<P><FONT SIZE="-1">8.	Provide a definition (and  example) of Operational Data.</FONT></P>
+
+<P><FONT SIZE="-1">9.  	What are the characteristics of Relational Data?</FONT></P>
+
+<P><FONT SIZE="-1">10.	Define  "data dependence" and "data independence"?</FONT></P>
+
+<P><FONT SIZE="-1">11.	What does it mean to say that a database system is "relational?"</FONT></P>
+
+<P><FONT SIZE="-1">12.	What are the three levels of architecture of database systems?</FONT></P>
+
+<P><FONT SIZE="-1">13.	Show and explain how the three levels of architecture of database systems 	interact.</FONT></P>
+
+<P><FONT SIZE="-1">14.	Explain external/conceptual  mapping.</FONT></P>
+
+<P><FONT SIZE="-1">15.	Describe the functions of a database administrator.</FONT></P>
+
+<P><FONT SIZE="-1">16.	Describe the concept of a database management system (DBMS).</FONT></P>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<P><FONT SIZE="+1"></FONT><FONT SIZE="+1">CS-541 Session 1</FONT></P>
+
+
+
+<P><FONT SIZE="+1">o	</FONT><FONT SIZE="-1"><STRONG><U>WHAT IS A DATABASE</U> ?</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	A COLLECTION OF STORED OPERATIONAL DATA . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>		&gt;	USED BY APPLICATION PROGRAMS . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>		&gt;	AND FOR A PARTICULAR COMPANY, 					ENTERPRISE, OR INDIVIDUAL.</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>	oo	PROVIDES A USER THE ABILITY TO PERFORM A 			VARIETY OF
+OPERATIONS ON A FILE . . .</STRONG></FONT></P>
+
+
+<P><FONT SIZE="-1"><STRONG>		&gt;	ADDING NEW (EMPTY)  FILES TO THE DB . </STRONG>.</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	INSERTING NEW DATA INTO EXISTING FILES . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	RETRIEVING  DATA  FROM  EXISTING  FILES . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	UPDATING DATA IN EXISTING FILES . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	DELETING DATA FROM EXISTING FILES . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	REMOVING EXISTING FILES (EMPTY OR NOT) 				FROM THE DATABASE.</FONT></P>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<P><FONT SIZE="-1">CS-460 - Session 1</FONT></P>
+
+
+<P><FONT SIZE="-1">o	<U>WHAT IS A DATABASE SYSTEM</U>??</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	A COMPUTERIZED SYSTEM WHOSE PURPOSE IS TO </FONT></P>
+
+<P><FONT SIZE="-1">		MAINTAIN INFORMATION . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	AND TO MAKE THE INFORMATION AVAILABLE ON </FONT></P>
+
+<P><FONT SIZE="-1">			DEMAND . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	THE INFORMATION CAN BE ANYTHING REQUIRED </FONT></P>
+
+<P><FONT SIZE="-1">			FOR AN INDIVIDUAL OF AN ORGANIZATION . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">			&gt;&gt;	TO ASSIST IN MAKING DECISIONS.</FONT></P>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<P><FONT SIZE="-1">  </FONT></P>
+
+
+
+
+
+
+
+
+<P><FONT SIZE="-1">CS-460   Session 1</FONT></P>
+
+
+
+<P><FONT SIZE="-1">o	<U>WHAT ARE THE MAJOR COMPONENTS OF A DATABASE</U> </FONT></P>
+
+<P><FONT SIZE="-1">	</FONT></P>
+
+<P><FONT SIZE="-1">	<U>SYSTEM</U> ???</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	DATA . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	HARDWARE</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	SOFTWARE</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	USERS</FONT></P>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<P><FONT SIZE="-1">CS-460 - Session 1</FONT></P>
+
+
+
+<P><FONT SIZE="-1">o	<U>MAJOR COMPONENTS OF A DATABASE SYSTEM (CONT.)</U> . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	<U>DATA</U> . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	CAN BE "MULTI-USER" OR "SINGLE-USER" . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	NORMALLY "INTEGRATED" OR ""SHARED" . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">			&gt;&gt;	<U>INTEGRATED</U>: A UNIFICATION OF SEVERAL </FONT></P>
+
+
+<P><FONT SIZE="-1">				OTHERWISE DISTINCT DATA FILES . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">				-	ALL REDUNDANCY ELIMINATED . .</FONT></P>
+
+
+<P><FONT SIZE="-1">				-	SOME HAVE SUBSETS OF DATA THAT</FONT></P>
+
+
+<P><FONT SIZE="-1">					INTERSECT.</FONT></P>
+
+
+<P><FONT SIZE="-1">			&gt;&gt;	<U>SHARED DATA</U>: INDIVIDUAL PIECES OF DATA 			</FONT></P>
+
+<P><FONT SIZE="-1">				CAN BE SHARED BY SEVERAL USERS . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">				-	SOMETIMES CONCURRENTLY.</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	<U>HARDWARE</U> . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	NORMALLY MOVING-HEAD DISKS (I.E., 					SECONDARY STORAGE) . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	DEVICE CONTROLLERS . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	I/O CHANNELS . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	NOT NECESSARILY PECULIAR TO THE DATABASE.</FONT></P>
+
+
+
+
+
+
+<P><FONT SIZE="-1">CS-460 - Session 1</FONT></P>
+
+
+
+<P><FONT SIZE="-1">o	<U>MAJOR COMPONENTS OF A DATABASE SYSTEM (CONT.)</U>  . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	<U>SOFTWARE</U> . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	RESIDES BETWEEN DATABASE ITSELF AND THE 			USER .
+.</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	REFERRED TO AS "DATABASE MANAGER" . .</FONT></P>
+
+
+<P><FONT SIZE="-1">			&gt;&gt; 	OF THE DATABASE MANAGEMENT SYSTEM.</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	<U>MAJOR FUNCTION</U>:  TO SHIELD THE DATABASE 			USERS
+FROM THE HARDWARE-LEVEL DETAILS . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">			&gt;&gt;	DBMS PROVIDES USERS A "VIEW" OF THE 				DATABASE THAT IS ELEVATED SOMEWHAT </FONT></P>
+
+<P><FONT SIZE="-1">				ABOVE THE HARDWARE LEVEL.</FONT></P>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<P><FONT SIZE="-1">CS-460 - Session 1</FONT></P>
+
+
+<P><FONT SIZE="-1">o	<U>MAJOR COMPONENTS OF A DATABASE SYSTEM (CONT.)</U> . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	<U>USERS</U></FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	<U>APPLICATIONS PROGRAMMERS</U></FONT></P>
+
+
+<P><FONT SIZE="-1">			&gt;&gt;	WRITE THE PROGRAMS (EITHER "BATCH" OR 				"ON-LINE")  THAT USE THE DATABASE.</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	<U>END USERS</U>	</FONT></P>
+
+
+<P><FONT SIZE="-1">			&gt;&gt;	INTERACT WITH THE DATABASE FROM ON-				LINE TERMINALS . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">				-	EITHER THROUGH PROGRAMS WRITTEN 					BY APPLICATIONS PROGRAMMERS OR . . </FONT></P>
+
+
+<P><FONT SIZE="-1">				-	THROUGH INTERFACES PROVIDED AS 					INTEGRAL PART OF THE DATABASE 					SYSTEM (I.E., QUERY LANGUAGE).</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	<U>DATABASE ADMINISTRATORS (DBA)</U> . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">			&gt;&gt;	ESTABLISHES, MANAGES, PROTECTS DATA.</FONT></P>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<P><FONT SIZE="-1">CS-460 - Session 1</FONT></P>
+
+
+
+<P><FONT SIZE="-1">o	<U>WHAT IS OPERATIONAL DATA </U>???</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	DISTINGUISHED FROM INPUT, OUTPUT, ETC., DATA . .</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	DATA USED BY APPLICATION SYSTEMS OF SOME 			PARTICULAR
+ENTERPRISE . .</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	EXAMPLES . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">	                 <U>ENTERPRISE</U>                             <U>OPERATIONAL DATA</U></FONT></P>
+
+
+<P><FONT SIZE="-1">	 MANUFACTURING COMPANY        PRODUCT   DATA/SALES</FONT></P>
+
+<P><FONT SIZE="-1">	 BANK  				                ACCOUNT   DATA/FINANCE</FONT></P>
+
+<P><FONT SIZE="-1">	 HOSPITAL			                PATIENT     DATA/FINANCE</FONT></P>
+
+<P><FONT SIZE="-1">	 UNIVERSITY				      STUDENT    DATA</FONT></P>
+
+<P><FONT SIZE="-1">	 GOVERNMENT DEPARTMENT	      PLANNING  DATA</FONT></P>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<P><FONT SIZE="-1">CS-541 - Session 1</FONT></P>
+
+
+
+<P><FONT SIZE="-1">o	<U>RELATIONSHIPS LINKING BASIC ENTITIES</U></FONT></P>
+
+
+<P><FONT SIZE="-1">=========================================================</FONT></P>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<P><FONT SIZE="-1"><CENTER>FIG.  1.5</CENTER>
+</FONT></P>
+
+
+
+
+
+
+
+
+
+
+
+<P><FONT SIZE="-1">==========================================================</FONT></P>
+
+
+
+
+
+
+
+
+
+<P><FONT SIZE="-1">CS-460 - Session 1</FONT></P>
+
+
+<P><FONT SIZE="-1"><CENTER><U>HOW ARE RELATIONSHIPS USED</U> ???</CENTER>
+</FONT></P>
+
+
+<P><FONT SIZE="-1">===========================================================</FONT></P>
+
+
+
+
+<P><FONT SIZE="-1"><CENTER>FIG.  1.5</CENTER>
+</FONT></P>
+
+
+
+
+
+
+
+
+<P><FONT SIZE="-1">===========================================================</FONT></P>
+
+
+<P><FONT SIZE="-1">o	<U>SUPPLIERS  -- PARTS</U></FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	SUPPLIERS SUPPLY PARTS . .</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	CERTAIN PARTS ARE SUPPLIED BY CERTAIN SUPPLIERS.</FONT></P>
+
+
+
+
+<P><FONT SIZE="-1">o	<U>PROJECTS  -- PARTS</U></FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	PROJECTS USE PARTS . .</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	CERTAIN PARTS ARE USED BY CERTAIN PROJECTS.</FONT></P>
+
+
+
+
+
+
+
+
+
+
+<P><FONT SIZE="-1">CS-460 - Session 1</FONT></P>
+
+
+
+<P><FONT SIZE="-1">o	<U>WHAT ARE THE CHARACTERISTICS OF RELATIONAL DATA</U> ??</FONT></P>
+
+
+<P><FONT SIZE="-1">===========================================================</FONT></P>
+
+
+
+
+
+
+
+<P><FONT SIZE="-1"><CENTER>FIG.  1.5</CENTER>
+</FONT></P>
+
+
+
+
+
+
+<P><FONT SIZE="-1">===========================================================</FONT></P>
+
+
+<P><FONT SIZE="-1">o	IN THE FIGURE . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo   	THE  RELATIONSHIPS ARE <U>BIDIRECTIONAL</U> . .</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	MOST RELATIONSHIPS ARE <U>BINARY</U> . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	THEY INVOLVE TWO TYPES OF ENTITY.</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	ONE  RELATIONSHIP  IS  <U>TERTIARY </U>. . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	IT INVOLVES THREE TYPES OF ENTITY . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">			&gt;&gt;	EXAMPLE:   SUPPLIERS,  PARTS,  PROJECTS.</FONT></P>
+
+
+
+
+
+
+
+
+<P><FONT SIZE="-1">CS-460 - Session 1</FONT></P>
+
+
+
+<P><FONT SIZE="-1">o	<U>RELATIONSHIPS</U> . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">===========================================================<U>EXAMPLE</U>:</FONT></P>
+
+
+<P><FONT SIZE="-1">	A.	SMITH SUPPLIES MONKEY WRENCHES TO THE 			MANHATTAN
+PROJECT . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">.........	<U>TELLS US MORE THAN</U> . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">	B.	SMITH SUPPLIES MONKEY WRENCHES . .</FONT></P>
+
+
+<P><FONT SIZE="-1">	C.	MONKEY WRENCHES ARE USED ON THE 					MANHATTAN PROJECT . .	</FONT></P>
+
+<P><FONT SIZE="-1">		</FONT></P>
+
+<P><FONT SIZE="-1">	D.	THE MANHATTAN PROJECT IS SUPPLIED BY SMITH.</FONT></P>
+
+<P><FONT SIZE="-1">==========================================================</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	CANNOT  DEDUCE  <U>A</U>.  FROM  <U>B</U>,  <U>C</U>,  AND  <U>D</U> . .</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	<U>FOR INSTANCE,  KNOWING ONLY  B,  C, AND   D</U> . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		1.	SMITH SUPPLIES MONKEY WRENCHES TO SOME 			PROJECTS . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		2.	SOME SUPPLIER SUPPLIES MONKEY WRENCHES 			THAT
+ARE USED ON THE MANHATTAN PROJECT . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		3.	SMITH SUPPLIES SOME THINGS TO THE 					MANHATTAN PROJECT.</FONT></P>
+
+
+
+
+
+
+
+
+<P><FONT SIZE="-1">CS-460 - Session 1</FONT></P>
+
+
+<P><FONT SIZE="-1">o	<U>CHARACTERISTICS OF OPERATIONAL DATA (CONT.)</U> . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">===========================================================</FONT></P>
+
+
+
+
+
+
+
+
+
+<P><FONT SIZE="-1"><CENTER>FIG. 1.5</CENTER>
+</FONT></P>
+
+
+
+
+
+<P><FONT SIZE="-1">===========================================================</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	NOTICE  THAT  THERE  IS  ONLY  ONE  ARROW  ON 			"PARTS" . </FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	STILL BINARY . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">			&gt;&gt;	SOME PARTS INCLUDE OTHER PARTS AS 				COMPONENTS . . .</FONT></P>
+
+<P><FONT SIZE="-1"> </FONT></P>
+
+<P><FONT SIZE="-1">				-	E.G.,  SCREW IN A HINGE ASSEMBLY.</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	TWO TYPES OF THE SAME ENTITY ARE LINKED 			TOGETHER . .
+.</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	PARTS ARE LINKED TO PARTS . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	JUST HAPPEN TO BE CALLED THE SAME.</FONT></P>
+
+
+
+
+
+<P><FONT SIZE="-1">CS-460 - Session 1</FONT></P>
+
+
+
+<P><FONT SIZE="-1">o	<U>WHAT  ARE  THE  ADVANTAGES  OF  DATABASE  SYSTEMS</U> ???</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	<U>ADVANTAGES</U> . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	<U>COMPACTNESS</U>  - FEW PAPER FILES . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	<U>SPEED</U> - SPUR OF THE MOMENT QUERIES, 				ANSWERED QUICKLY . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	<U>LESS DRUDGERY</U> - MECHANICAL TASKS ARE DONE 			BY MACHINE . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	<U>CURRENCY</U> - ACCURATE,  UP-TO-DATE 					INFORMATION</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	THE DATABASE SYSTEM PROVIDES THE ENTERPRISE 		WITH
+<U>CENTRALIZED CONTROL OF OPERATIONAL</U> </FONT></P>
+
+<P><FONT SIZE="-1">		<U>DATA</U> . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	REDUNDANCY REDUCED . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	INCONSISTENCY AVOIDED . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	DATA CAN BE SHARED . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	STANDARDS CAN BE ENFORCED . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	SECURITY RESTRICTIONS CAN BE APPLIED . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	INTEGRITY CAN BE MAINTAINED . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	CONFLICTING REQUIREMENTS CAN BE 			                   
+BALANCED.</FONT></P>
+
+
+
+
+
+<P><FONT SIZE="-1">CS-460 - Session 1</FONT></P>
+
+
+<P><FONT SIZE="-1">o	<U>DEFINE "DATA  DEPENDENCE" AND "DATA  INDEPENDENCE"</U>. </FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	<U>DATA DEPENDENCE</U> . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	DATA ORGANIZED IN SECONDARY STORAGE TO BE 			ACCESSED IN A SPECIFIC WAY BY THE 					APPLICATION
+IN QUESTION . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	IMPOSSIBLE TO CHANGE THE STORAGE 					STRUCTURE . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	EXAMPLE (MOUSE PROGRAM).</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	<U>DATA  INDEPENDENCE</U> . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	DIFFERENT APPLICATIONS NEED DIFFERENT 			 	VIEWS OF THE DATA . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	THE DBA MUST HAVE THE FREEDOM TO CHANGE 			THE STORAGE STRUCTURE . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">			&gt;&gt;	OR THE ACCESS STRATEGY TO MEET 					CHANGING REQUIREMENTS.</FONT></P>
+
+
+
+
+
+
+
+
+
+
+<P><FONT SIZE="-1">	</FONT></P>
+
+
+
+
+
+
+<P><FONT SIZE="-1">CS-460 - Session 2</FONT></P>
+
+
+
+<P><FONT SIZE="-1">o	<U>SOME DEFINITIONS RELATED TO STORED DATA</U> . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	<U>STORED FIELD</U> </FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	SMALLEST UNIT OF STORED DATA . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	EXAMPLES: PART NUMBER, KIND OF PART, ETC.</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	<U>STORED RECORD</U></FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	NAME OF A COLLECTION OF STORED FIELDS . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	A GROUP OF  RELATED STORED FIELD 					OCCURRENCES . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	EXAMPLE IN "PARTS" DATABASE:</FONT></P>
+
+
+<P><FONT SIZE="-1">			&gt;&gt;	PART_NUMBER</FONT></P>
+
+
+<P><FONT SIZE="-1">			&gt;&gt;	PART_NAME</FONT></P>
+
+
+<P><FONT SIZE="-1">			&gt;&gt;	PART_COLOR</FONT></P>
+
+
+<P><FONT SIZE="-1">			&gt;&gt;	PART_WEIGHT</FONT></P>
+
+
+
+<P><FONT SIZE="-1">	oo	<U>STORED FILE</U> . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	A  NAMED  COLLECTION OF ALL OCCURRENCES 			OF
+ALL TYPES OF STORED  RECORDS.</FONT></P>
+
+
+
+
+
+
+
+
+<P><FONT SIZE="-1">CS-460 - Session 2</FONT></P>
+
+
+
+<P><FONT SIZE="-1">o	<U>WHAT DOES IT MEAN TO SAY THAT A DATABASE SYSTEM IS</U> 	<U>RELATIONAL</U> ???</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	THE <U>DATA</U> IS PERCEIVED BY THE USER AS <U>TABLES</U> . .</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	OPERATORS USED FOR DATA RETRIEVAL ARE AT THE 		USERS'
+DISPOSAL . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	NEW "TABLES" CAN BE GENERATED FROM OLD 			ONES.</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	<U>A SIMPLE EXAMPLE</U>:</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	ASSUME FIELDS OF STORED RECORDS ARE:</FONT></P>
+
+
+<P><FONT SIZE="-1">			(PART_NUMBER, COLOR), (PART_NUMBER, 				WEIGHT)</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	THESE CAN BE COMBINED TO GIVE A TABLE 				WHOSE  RECORDS HAVE FIELDS (PART_NUMBER, 			COLOR,
+WEIGHT) ..</FONT></P>
+
+
+<P><FONT SIZE="-1">			&gt;&gt;	WHICH CAN BE BROKEN DOWN TO TWO 					TABLES HAVING RECORDS WITH FIELDS:</FONT></P>
+
+
+<P><FONT SIZE="-1">				(PART_NUMBER, COLOR)</FONT></P>
+
+<P><FONT SIZE="-1">				(PART_NUMBER, WEIGHT).</FONT></P>
+
+
+
+
+
+
+
+
+
+
+
+<P><FONT SIZE="-1">CS-460 - Session 2</FONT></P>
+
+
+
+<P><FONT SIZE="-1"><U>AN EXAMPLE OF DATA STRUCTURES AND OPERATORS IN A</U> </FONT></P>
+
+<P><FONT SIZE="-1"><U>RELATIONAL SYSTEM</U>	</FONT></P>
+
+
+<P><FONT SIZE="-1">==========================================================</FONT></P>
+
+
+
+
+
+
+
+
+
+
+<P><FONT SIZE="-1">				FIG. 1.6</FONT></P>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<P><FONT SIZE="-1">===========================================================</FONT></P>
+
+
+
+
+
+
+
+
+<P><FONT SIZE="-1">CS-541 - Session 2</FONT></P>
+
+
+
+<P><FONT SIZE="-1">o	<U>WHAT ARE THE THREE LEVELS OF ARCHITECTURE OF</U> 	<U>	DATABASE SYSTEMS</U>
+???</FONT></P>
+
+
+
+<P><FONT SIZE="-1">	oo	<U>INTERNAL LEVEL</U></FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	THE ONE CLOSEST TO THE PHYSICAL LEVEL . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	THE ONE CONCERNED WITH <U>HOW DATA ARE</U> 				<U>ACTUALLY STORED</U> ON A STORAGE UNIT . .</FONT></P>
+
+
+<P><FONT SIZE="-1">			&gt;&gt;	FILES, RECORDS, ETC.</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	<U>EXTERNAL LEVEL</U></FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	THE ONE CLOSEST TO THE USER . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	CONCERNED WITH <U>THE WAY THE DATA IS VIEWED</U></FONT></P>
+
+<P><FONT SIZE="-1">			BY INDIVIDUAL USERS . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	VIEWS.</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	<U>CONCEPTUAL LEVEL</U></FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	"<U>LEVEL OF INDIRECTION</U>" BETWEEN THE OTHER 			TWO . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	CAN BE REGARDED AS <U>CONCERNED WITH A</U> 				<U>COMMUNITY USER VIEW</U>.</FONT></P>
+
+
+
+
+
+
+
+
+
+
+
+<P><FONT SIZE="-1">CS-460 - Session 2</FONT></P>
+
+
+<P><FONT SIZE="-1"><CENTER>THREE LEVELS OF ARCHITECTURE</CENTER>
+</FONT></P>
+
+<P><FONT SIZE="-1">===========================================================</FONT></P>
+
+
+
+
+
+
+
+<P><FONT SIZE="-1"><CENTER>FIG. 2.1</CENTER>
+</FONT></P>
+
+
+
+
+
+
+<P><FONT SIZE="-1">===========================================================</FONT></P>
+
+
+<P><FONT SIZE="-1">o	<U>MANY EXTERNAL VIEWS CAN OCCUR</U> . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	EACH CONSISTING OF <U>ONE OR MORE ABSTRACT</U> 			<U>REPRESENTATIONS</U> . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	<U>OF A PORTION OF THE DATABASE</U></FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	A SINGLE USER IS INTERESTED IN ONLY A PORTION OF 		THE
+DATABASE.</FONT></P>
+
+
+<P><FONT SIZE="-1">o	 <U>ONLY ONE CONCEPTUAL VIEW OCCURS</U> . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	CONSISTS OF AN ABSTRACT REPRESENTATION </FONT></P>
+
+<P><FONT SIZE="-1">		(I.E., <U>LOGICAL RECORDS AND FIELDS</U> )OF THE ENTIRE 		DATABASE. </FONT></P>
+
+
+<P><FONT SIZE="-1">o	<U>ONE INTERNAL VIEW OCCURS</U>. . .</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	STORAGE OF THE DATA ON DISK.</FONT></P>
+
+
+
+
+
+<P><FONT SIZE="-1">CS-460 - Session 2</FONT></P>
+
+
+<P><FONT SIZE="-1"><CENTER><U>EXAMPLE OF THE THREE LEVELS</U></CENTER>
+</FONT></P>
+
+<P><FONT SIZE="-1"><CENTER><U>OF ARCHITECTURE</U></CENTER>
+</FONT></P>
+
+<P><FONT SIZE="-1">===========================================================</FONT></P>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<P><FONT SIZE="-1">					FIG. 2.2</FONT></P>
+
+
+
+
+
+
+
+
+
+
+
+<P><FONT SIZE="-1">===========================================================</FONT></P>
+
+
+
+
+
+
+
+
+
+
+
+<P><FONT SIZE="-1">CS-460 - Session 2</FONT></P>
+
+
+
+<P><FONT SIZE="-1">o	<U>EXAMPLE OF THE THREE LEVELS (CONT.)</U>. . .</FONT></P>
+
+
+<P><FONT SIZE="-1">===========================================================</FONT></P>
+
+
+
+
+
+
+<P><FONT SIZE="-1"><CENTER>FIG.  2.2</CENTER>
+</FONT></P>
+
+
+
+
+
+
+
+<P><FONT SIZE="-1">===========================================================</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	<U>CONCEPTUAL LEVEL</U>:   DATABASE CONTAINS INFORM-</FONT></P>
+
+<P><FONT SIZE="-1">		ATION CONCERNING AN ENTITY CALLED "EMPLOYEE" . </FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	FIFTEEN (15) BYTES TOTAL.</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	<U>INTERNAL LEVEL</U>: EMPLOYEES REPRESENTED BY 			STORED RECORDS CALLED "STORED_EMP" . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	RECORD IS 15  BYTES  LONG.</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	<U>EXTERNAL LEVEL</U>: PROVIDES VIEW FOR PL/I AND 			COBOL . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	NOTE  BREAKDOWN OF  RECORDS.</FONT></P>
+
+
+
+
+
+
+
+<P><FONT SIZE="-1">CS-460 - Session 2</FONT></P>
+
+
+
+<P><FONT SIZE="-1">===========================================================</FONT></P>
+
+
+
+
+
+
+<P><FONT SIZE="-1"><CENTER>FIG.  2.2</CENTER>
+</FONT></P>
+
+
+
+
+
+
+
+<P><FONT SIZE="-1">===========================================================</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	CORRESPONDING  OBJECTS  IN  DIFFERENT  LEVELS 		HAVE 
+DIFFERENT  NAMES . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	PL/I:	 EMPLOYEE NUMBER  --------&gt;   EMP#</FONT></P>
+
+<P><FONT SIZE="-1">		</FONT></P>
+
+<P><FONT SIZE="-1">		&gt;	COBOL: EMPLOYEE NUMBER -----&gt;   EMPNO</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	CONCEPTUAL VIEW ------------&gt; EMPLOYEE_NUMBER</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	INTERNAL VIEW ------------------&gt;	EMP#</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	DATABASE  MUST  BE  TOLD THAT COBOL FIELD 			"EMPNO" IS
+DERIVED  FROM  CONCEPTUAL</FONT></P>
+
+<P><FONT SIZE="-1">		OBJECT "EMPLOYEE_NUMBER". </FONT></P>
+
+<P><FONT SIZE="-1">	</FONT></P>
+
+<P><FONT SIZE="-1">		&gt;	AND THAT STORED FIELD <U>EMP#</U> CORRESPONDS 			TO
+THE CONCEPTUAL FIELD <U>EMPLOYEE_NUMBER</U>.</FONT></P>
+
+
+
+
+
+
+<P><FONT SIZE="-1">CS-460 - Session 2</FONT></P>
+
+
+<P><FONT SIZE="-1">o	<U>LEVELS IN RELATIONAL SYSTEMS</U> . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	<U>CONCEPTUAL LEVEL IS RELATIONAL</U></FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	OBJECTS VISIBLE AT THAT LEVEL ARE 					RELATIONAL TABLES . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	OPERATORS ON DATA ARE "RELATIONAL 				OPERATORS".</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	<U>EXTERNAL LEVEL IS RELATIONAL (OR CLOSE)</U> . .</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	<U>INTERNAL LEVEL IS NOT RELATIONAL</U> . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	USES  STORED  RECORDS,  POINTERS, INDEXES,</FONT></P>
+
+<P><FONT SIZE="-1">			HASHES,  ETC. . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	RELATIONAL THEORY AS SUCH SAYS  NOTHING 			ABOUT
+THE INTERNAL LEVEL.</FONT></P>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<P><FONT SIZE="-1">CS-460 - Session 2</FONT></P>
+
+
+<P><FONT SIZE="-1"><CENTER>DETAILED SYSTEM ARCHITECTURE</CENTER>
+</FONT></P>
+
+
+
+<P><FONT SIZE="-1">===========================================================</FONT></P>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<P><FONT SIZE="-1"><CENTER>FIG. 2.3</CENTER>
+</FONT></P>
+
+
+
+
+
+
+
+
+
+
+
+
+<P><FONT SIZE="-1">			</FONT></P>
+
+
+
+
+
+
+<P><FONT SIZE="-1">CS-460 - Session 2</FONT></P>
+
+
+<P><FONT SIZE="-1">===========================================================</FONT></P>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<P><FONT SIZE="-1"><CENTER>FIG.  2.3</CENTER>
+</FONT></P>
+
+
+
+
+
+
+
+<P><FONT SIZE="-1">===========================================================</FONT></P>
+
+
+<P><FONT SIZE="-1">o	<U>EXTERNAL LEVEL</U>:	INDIVIDUAL USERS' LEVEL . .</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	APPLICATION PROGRAM OR PC USER . .</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	EACH USER HAS A LANGUAGE AT HIS/HER DISPOSAL . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	COBOL/ PL/I  PROPRIETARY  LANGUAGE.</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	END-USERS HAVE A QUERY  LANGUAGE  OR 				SPECIAL-PURPOSE LANGUAGE TO CONVERSE 			WITH  THE 
+DATABASE . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">			&gt;&gt;	SQL, FORMS, MENU-BASED QUERIES 	</FONT></P>
+
+
+
+
+<P><FONT SIZE="-1">CS460- Session 2</FONT></P>
+
+
+
+<P><FONT SIZE="-1">o	EXTERNAL LEVEL (CONT.) . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	LANGUAGES INCLUDE A <U>DATA SUB-LANGUAGE</U> . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	A SUBSET OF THE TOTAL LANGUAGE THAT IS 			CONCERNED SPECIFICALLY WITH . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">			&gt;&gt;	DATABASE OBJECTS AND DATABASE 					OPERATIONS.</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	THE DATA SUB-LANGUAGE IS EMBEDDED WITHIN 			THE CORRESPONDING "HOST LANGUAGE" . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">			&gt;&gt;	THE TWO MAY BE INDISTINGUISHABLE FROM 				THE USERS POINT OF VIEW.</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	<U>SUB-LANGUAGES</U> PROVIDE LOCAL (TEMPORARY) 			VARIABLES, COMPUTATIONAL OPERATIONS, <EM>IF-THEN-</EM>		<EM>ELSE</EM> LOGIC, ETC . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	DATABASE SUPPORTS MULTIPLE  HOST  SUB-			  	LANGUAGES  AND  DATA  SUB-LANGUAGES.</FONT></P>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<P><FONT SIZE="-1">CS-460 - Session 2</FONT></P>
+
+
+<P><FONT SIZE="-1">===========================================================</FONT></P>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<P><FONT SIZE="-1">==========================================================</FONT></P>
+
+
+<P><FONT SIZE="-1">o	<U>CONCEPTUAL LEVEL</U> . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	REPRESENTATION OF ENTIRE INFORMATION CONTENT 		OF THE
+DATABASE . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	INTENDED TO BE A VIEW OF DATA "AS IT REALLY 			IS" . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">			&gt;&gt;	RATHER THAN HOW USERS ARE FORCED TO 				SEE IT BY THE CONSTRAINTS OF THE 					HARDWARE OR SOFTWARE BEING USED.</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	<U>CONCEPTUAL LEVEL</U> IS DEFINED (OR DESCRIBED) BY A 		"CONCEPTUAL SCHEMA" . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	INCLUDES THE DEFINITION OF EACH OF THE 			VARIOUS TYPES OF CONCEPTUAL RECORDS . .</FONT></P>
+
+
+
+
+
+<P><FONT SIZE="-1">CS-460 - Session 2</FONT></P>
+
+
+<P><FONT SIZE="-1">===========================================================</FONT></P>
+
+
+
+
+
+
+
+<P><FONT SIZE="-1"><CENTER></CENTER>
+</FONT></P>
+
+<P><FONT SIZE="-1"><CENTER>FIG. 2.3</CENTER>
+</FONT></P>
+
+
+
+
+<P><FONT SIZE="-1">===========================================================</FONT></P>
+
+
+<P><FONT SIZE="-1">o	<U>CONCEPTUAL LEVEL (CONT.)</U></FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	CONCEPTUAL SCHEMA ARE WRITTEN BY ANOTHER 		"DATA
+DEFINITION" LANGUAGE . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	CALLED THE "CONCEPTUAL DATA DEFINITION 			LANGUAGE (DDL) ".</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	THE DDL MUST CONTAIN NO INFORMATION ABOUT THE 		STORAGE STRUCTURE AND ACCESS STRATEGY . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	FOR DATA INDEPENDENCE THEY MUST BE 				DEFINITIONS OF INFORMATION CONTENT OF THE 			CONCEPTUAL
+RECORDS ONLY . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	NO REFERENCE TO STORED FIELD REPRESENT- 			ATIONS, STORED RECORD SEQUENCES, HASHING, 			ETC.</FONT></P>
+
+
+
+
+
+
+
+<P><FONT SIZE="-1">CS-460 - Session 2</FONT></P>
+
+
+<P><FONT SIZE="-1">o	THE DATABASE MANAGEMENT SYSTEM . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">	oo	SOFTWARE THAT HANDLES ALL ACCESSES TO THE 		DATABASE . . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	USER ISSUES AN ACCESS REQUEST, USING SOME 			PARTICULAR DATA SUB-LANGUAGE (E.G., SQL) . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	THE DBMS INTERCEPTS THE REQUEST AND 				ANALYZES IT . .</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	THE DBMS INSPECTS THE FOLLOWING:</FONT></P>
+
+
+<P><FONT SIZE="-1">			&gt;&gt;	EXTERNAL SCHEMA FOR THAT USER, </FONT></P>
+
+
+<P><FONT SIZE="-1">			&gt;&gt;	THE CORRESPONDING EXTERNAL/CONCEPTUAL 		MAPPING,</FONT></P>
+
+
+<P><FONT SIZE="-1"> 			&gt;&gt;	THE CONCEPTUAL SCHEMA, </FONT></P>
+
+
+<P><FONT SIZE="-1">			&gt;&gt;	THE CONCEPTUAL/INTERNAL MAPPING,</FONT></P>
+
+
+<P><FONT SIZE="-1">			&gt;&gt;<CENTER>                             THE STORAGE STRUCTURE DEFINITION.</CENTER>
+</FONT></P>
+
+
+<P><FONT SIZE="-1">		&gt;	THE DBMS EXECUTES THE NECESSARY 					OPERATIONS ON THE DATABASE.</FONT></P>
+
+<P><FONT SIZE="-1">			 </FONT></P>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</BODY>
+</HTML>

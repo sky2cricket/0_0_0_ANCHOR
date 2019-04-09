@@ -1,0 +1,81 @@
+<HTML>
+<HEAD>
+<TITLE>
+SOURCE CODE
+</TITLE>
+</HEAD>
+<BODY>
+<PRE>
+<H3>
+// movingmessage.java
+//
+// creates a message that moves across the screen
+// use with appletviewer movingmessage.html width = 300 height = 200
+
+import java.awt.*;
+import java.applet.*;
+
+public class movingmessage extends Applet implements Runnable
+{
+ Thread MarqueeThread = null;
+ // you can put any message you wish
+ String Message = "HI, IRINA!";
+ Font font = new Font("TimesRoman", Font.BOLD, 36);
+ int x, y;
+
+ public void init()
+   {
+    x = 300;
+    y = 50;
+   }
+
+ public void start()
+   {
+    if(MarqueeThread == null)
+      {
+       MarqueeThread = new Thread(this);
+       MarqueeThread. start();
+      }
+   }
+
+ // x = x -5 repositions the message by 5 pixels
+ //
+ // if(x == -170) lets the entire message disappear
+ // before starting back at x = 300
+ //
+ // in MarqueeThread.sleep(100) the 100 is how many
+ // micro second the message appears before it is repositioned
+ //
+ public void run()
+   {
+    while(true)
+      {
+       x = x - 5;
+       if(x == -170)
+         x = 300;
+
+       repaint();
+       try
+         {
+          MarqueeThread.sleep(100);
+         }
+       catch(InterruptedException e)
+         {
+         }
+      }
+   }
+
+ public void paint(Graphics g)
+   {
+    g.setFont(font);
+    g.setColor(Color.blue);
+    g.drawString(Message, x, y);
+   }
+
+} //end
+
+</PRE>
+</H3>
+</BODY>
+</HTML>
+

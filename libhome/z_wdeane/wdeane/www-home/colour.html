@@ -1,0 +1,81 @@
+<HTML>
+<HEAD>
+<TITLE>
+SOURCE CODE
+</TITLE>
+</HEAD>
+<BODY>
+<PRE>
+<H3>
+// colour.java
+// prints out phrase in color you choose
+
+import java.awt.*;
+import java.applet.*;
+
+public class colour extends Applet
+{
+ public void paint(Graphics gc)
+ {
+  Font aardvark = new Font("TimesRoman", Font.ITALIC, 36);
+  gc.setFont(aardvark);
+
+  gc.setColor(Color.red);
+  String phrase1 = "Red";
+  gc.drawString(phrase1, 35, 25);
+
+  gc.setColor(Color.orange);
+  String phrase2 = "Orange";
+  gc.drawString(phrase2, 35, 55);
+
+  gc.setColor(Color.yellow);
+  String phrase3 = "Yellow";
+  gc.drawString(phrase3, 35, 85);
+
+  gc.setColor(Color.green);
+  String phrase4 = "Green";
+  gc.drawString(phrase4, 35, 115);
+
+  gc.setColor(Color.blue);
+  String phrase5 = "Blue";
+  gc.drawString(phrase5, 35, 145);
+
+  gc.setColor(Color.cyan);
+  String phrase6 = "Cyan";
+  gc.drawString(phrase6, 35, 175);
+
+  gc.setColor(Color.magenta);
+  String phrase7 = "Magenta";
+  gc.drawString(phrase7, 35, 205);
+
+  gc.setColor(Color.pink);
+  String phrase8 = "Pink";
+  gc.drawString(phrase8, 35, 235);
+
+  gc.setColor(Color.black);
+  String phrase9 = "Black";
+  gc.drawString(phrase9, 35, 275);
+
+  gc.setColor(Color.white);
+  String phrase10 = "White";
+  gc.drawString(phrase10, 35, 315);
+
+  gc.setColor(Color.darkGray);
+  String phrase11 = "Dark Gray";
+  gc.drawString(phrase11, 35, 355);
+
+  gc.setColor(Color.gray);
+  String phrase12 = "Gray";
+  gc.drawString(phrase12, 35, 395);
+
+  gc.setColor(Color.black);
+  String phrase13 = "Also Light Gray";
+  gc.drawString(phrase13, 35, 435);
+ }
+} // end
+
+</PRE>
+</H3>
+</BODY>
+</HTML>
+

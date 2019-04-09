@@ -1,0 +1,62 @@
+PAPI_write              PerfAPI LIBRARY                PAPI_write
+
+
+
+NAME
+     PAPI_write - start counting events contained in an EventSet
+
+SYNOPSIS
+     int PAPI_write (int EventSet, unsigned long long *values)
+
+     int EventSet --  a reference to an EventSetInfo structure
+
+     unsigned long long *values -- array to contain counts
+
+DESCRIPTION
+     PAPI_write() This function assigns the values  contained  in
+     the values array to the internal counters of the Events con-
+     tained in the EventSet.
+
+     The return value is an integer that  indicates  whether  the
+     call succeeded (PAPI_OK) or failed (not PAPI_OK).
+
+CROSS-REFERENCE WITH OTHER PerfAPI FUNCTIONS
+
+     PAPI_write may be called by:
+
+          the user application program
+
+     PAPI_write contains calls to:
+
+          lookup_EventSet
+          handle_error
+          _papi_hwd_write ( a substrate function )
+
+SEE ALSO
+     The PerfAPI Draft:
+          http://icl.cs.utk.edu/projects/papi/api/
+
+BUGS
+     This function has no known bugs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PAPI Release 0.99   Last change: 28 July 1999                   1
+
+

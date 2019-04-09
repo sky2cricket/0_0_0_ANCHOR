@@ -1,0 +1,370 @@
+<html>
+<head><title>Intro JavaScript</title></head>
+<body bgcolor="ffbbff">
+<h4>Getting Started with JavaScript
+<br>By Cricket Haygood Deane 
+<br> deane@cs.utk.edu
+<hr><hr><hr>
+</h4>
+<p>
+Javascript is a serious language, with syntax and operators and
+objects and all sorts of heavy duty equipment. <br> It is also a way
+to do "perl-cgi" web pages without cgi permissions. 
+<p>
+I wrote this page is so that you can take Javascript  out for 
+a test drive and see if you like it.  <br>I give
+references below for those who wish to go further.    
+<p>
+Enjoy!
+
+
+
+<hr><hr><hr>
+
+This page includes some very simple examples.
+<p>
+<li> <a  href="J2.html#TEXT">Text Input</a>
+<li> <a  href="J2.html#RADIO">Radio Buttons</a>
+<li> <a  href="J2.html#MENU">Select Menu</a>
+<li> <a  href="J2.html#DATE">Javascript Date Utility</a> 
+<li> <a  href="J2.html#MODTIME">Javascript Latest Modification Time Utility</a>
+<li> <a  href="J2.html#BROWSER">Browser Detection</a>
+<li> <a  href="J2.html#SPECIAL">Open A Special Window</a>
+<p>
+If you are on Netscape, 
+<a href="http://www.cs.utk.edu/~deane/resume/J2.text">
+click here to see the code for this page.
+</a>
+<br> If you are on Internet Explorer, use "View Source".
+<p>
+Buttons are labelled with the names of the functions they call.
+<p>
+Note the 2 reset buttons, named "RESET" and "Reset". 
+Each one only clears the form in which
+it resides.  These 2 buttons behave differently.  
+Experiment and figure out why.
+<p>
+See if you can find the rhinoceros on this page.
+<hr><hr><hr>
+
+I used the following books to  figure out how to write this page:
+<p>
+<table  >
+<tr><td>
+<li> Designing with JavaScript, by Nick Heinle, O'Reiley Press.
+<br>
+This book includes tons of glitzy examples if you want to go ahead and
+jump in at the deep end of the pool.<br> [ This was the first book I read about
+Javascript.  I bought it because the cover looked so cool. ]</td> </tr> 
+</td></tr>
+<tr><td>
+<li> JavaScript, the Definitive Guide, 3rd edition, by David Flanagan, O'Reiley Press.
+<br>
+This book has code examples, explanation of the structure of the Javascript
+language, and a complete language reference as the second half of the book.
+Flanagan also explains the differences between using Javascript
+on Netscape versus Internet Explorer, great for those of us who are attempting
+to reach clients in both universes. [ I bought this book when I decided 
+I should understand the code in the cool book. ]
+</td></tr><tr><td>
+<li>Standard warning on computer books:
+<br>
+Javascript is an evolving language, so books recommended
+today may be out of date in 6 months.  Your best bet is to do
+a web search, find more examples of code and the latest books.
+</td></tr></table>
+
+
+<a NAME="TEXT">
+<script language="JavaScript">
+function show_alert(form) {
+alert(form.stuff.value + " " + form.stuff2.value);
+}
+
+function show_alert2(form) {
+s1 = "default=rhinoceros";
+for(var i=0; i<form.favorite.length; i++) {
+if( form.favorite[i].checked==true ) s1=form.favorite[i].value;
+}
+alert(s1);
+}
+
+function writeSome(form) {
+
+s1 = form.stuff.value;
+s2 = form.stuff2.value;
+if(  (s1.length + s2.length) < 1 ) s1="No input for either text input area!"
+
+document.write("<HTML><BODY bgcolor=\"ff55ff\" Text=\"ffffff\" >"
+	+ "<h1> test output with writeSome() </h1>"
+        + "<HR>"
+        + " To return to Getting Started with JavaScript page, <br> click on browser BACK button "
+        + '<a href="http://www.cs.utk.edu/~deane/resume/J2.html#TEXT">or click here</a>'
+        + "<P><HR><P><H4>" 
+	+ s1 
+        + "<P>" + s2 +"<P><HR></BODY></HTML>");
+
+}
+
+function writeSome2(form) {
+
+s1 = form.favorite[0].value;
+n=-1;
+for(var i=0; i<form.favorite.length; i++) {
+if( form.favorite[i].checked==true ) {
+    s1=form.favorite[i].value;
+    n=i;
+    }
+}
+if( (n < 0) || (n==4) ) s1="You have not selected a favorite pet!" 
+
+s2=document.lastModified;
+
+document.write("<HTML><BODY bgcolor=\"aaeeff\" Text=\"000000\" >"
+        + "<h1> test output with writeSome2() </h1>"
+        + "<HR>"
+        + " To return to Getting Started with Javascript page, <br> click on browser BACK button "
+        + '<a href="http://www.cs.utk.edu/~deane/resume/J2.html#RADIO">or click here</a>'
+        + "<P><HR><P><H4>"
+        + " Favorite pet: " + s1
+        + "<P><HR> ");
+
+}
+</script>
+
+<hr><hr><hr>
+TEXT INPUT -- show_alert does alert -- WriteSome creates a new web page
+<form name="simple">
+<INPUT TYPE=TEXT     NAME="stuff"  SIZE=4>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<INPUT TYPE=TEXT     NAME="stuff2" SIZE=4>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<INPUT TYPE=BUTTON   VALUE="show_alert"  onClick="show_alert(this.form);">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<INPUT TYPE=BUTTON   VALUE="WriteSome"  onClick="writeSome(this.form);">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<INPUT TYPE=BUTTON   VALUE="RESET"  onClick="this.form.reset();"> 
+
+</form>
+
+<A NAME="RADIO">
+<hr><hr><hr>
+
+RADIO BUTTONS ---
+
+Which is your favorite pet? [only one at a time]
+
+<form name="R">
+
+<input type="radio" name="favorite" value="dog"  
+		onClick="show_alert2(this.form);"> Dog
+
+<input type="radio" name="favorite" value="cat" 
+		onClick="show_alert2(this.form);"> Cat
+
+<input type="radio" name="favorite" value="fish"  
+		onClick="show_alert2(this.form);"> Fish
+
+<input type="radio" name="favorite" value="bird"  
+		onClick="show_alert2(this.form);"> Bird
+
+<input type="radio" name="favorite" value="reset"
+                onClick="this.form.reset();"> Reset
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<INPUT TYPE=BUTTON   VALUE="show_alert2"  onClick="show_alert2(this.form);">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<INPUT TYPE=BUTTON   VALUE="WriteSome2"  onClick="writeSome2(this.form);">
+</FORM>
+<p>
+<A NAME="MENU">
+<hr><hr><hr>
+
+<script language="javascript"> 
+   
+   var profName=new makeArray(5);
+   profName[0]="CS Faculty";
+   profName[1]="Dr. Ward";
+   profName[2]="Dr. Straight";
+   profName[3]="Dr. Plank";
+   profName[4]="Dr. Gregor";
+
+   var profSpeciality=new makeArray(6);
+   profSpeciality[0]="Prof Speciality";
+   profSpeciality[1]="Numerical linear algebra, scientific computing.";
+   profSpeciality[2]="LANS architecture, parallel processing. ";
+   profSpeciality[3]="Fault-tolerance, checkpointing, op systems.";
+   profSpeciality[4]="Parallel and distributed computing, I2DSI.";
+   profSpeciality[5]="Pattern and image analysis, computed imaging.";
+   profSpeciality[6]="Metacomputing, performance forecasting.";
+
+   
+   var ProfTitle=new makeArray(6);
+   ProfTitle[0]="Official Title, History";
+   ProfTitle[1]="Professor and Department Head; Ph.D., Virginia.";
+   ProfTitle[2]="Assistant Professor; Ph.D., Texas. ";
+   ProfTitle[3]="Assistant Professor; Ph.D., Princeton. ";
+   ProfTitle[4]="Computer Science Research Associate; Ph.D., Cornell.";
+   ProfTitle[5]="Associate Professor; Ph.D., Aalborg (Denmark). ";
+   ProfTitle[6]="Assistant Professor; Ph.D., California, Davis. "; 
+
+function makeArray(len) {
+   for (var i=0;i<len;i++) this[i]=null;
+   this.length=len;
+   }
+
+
+function verify(form) {
+alert(form.PICK.value);
+}
+
+
+function PickaProf(form,profSpeciality,ProfTitle) {
+form.PICK.value=form.proflist.options[form.proflist.selectedIndex].value;
+form.SPECIALITY.value=profSpeciality[form.proflist.selectedIndex];
+form.TITLE.value=ProfTitle[form.proflist.selectedIndex];
+}
+
+</script>
+<p>
+<form name="PROFS">
+<p> SELECT MENU -- Select a CS Faculty Member.
+<select name="proflist" onChange="PickaProf(this.form,profSpeciality,ProfTitle)">
+<option value="Pick a Prof!"> Pick a Prof!
+<option value="Dr. Ward" > Dr. Ward
+<option value="Dr. Straight" > Dr. Straight
+<option value="Dr. Plank" > Dr Plank
+<option value="Dr. Beck" > Dr Beck 
+<option value="Dr. Gregor" > Dr. Gregor
+<option value="Dr. Wolski"> Dr. Wolski 
+</select>
+<INPUT TYPE=BUTTON   VALUE="Verify"  onClick="verify(this.form);">
+<table border=2>
+<tr><td>
+ Faculty Name <br>
+<INPUT TYPE="text" NAME="PICK" SIZE=48 >
+</td></tr><tr><td>
+ Area of Specialization <br>
+<INPUT TYPE="text" NAME="SPECIALITY"  SIZE=48 >
+</td></tr><tr><td>
+<p> Official Title <br>
+<INPUT TYPE="text" NAME="TITLE"  SIZE=48>
+</td></tr></table>
+<p>
+</form>
+
+<A NAME="DATE">
+<hr><hr><hr>
+JAVASCRIPT DATE UTILITY --
+This is the script I wrote to display the current time and date on my homepage.
+<p>
+<SCRIPT language="JavaScript">
+d=new Date();
+s1=d.toLocaleString();
+s2=d.toGMTString();
+dh=d.getHours(d);
+if (dh<5)
+ s3=" ... Hi there, night owl!";
+if( (dh>4) && (dh<12) )
+ s3=" ... Good Morning!  ";
+if( (dh>11) && (dh<18 ) )
+ s3=" ... Good Afternoon! ";
+if( (dh>17) )
+ s3=" ... Good Evening! ";
+s4=s2.substring(0,16) + ',  ' + s1.substring(9,18) + s3 ;
+document.write(' <h4> ' + s4 );
+</script>
+
+</h4>
+
+<A NAME="MODTIME">
+<hr><hr><hr>
+JAVASCRIPT LAST MODIFICATION TIME UTILITY --- This displays the time of last update
+of this page.  
+
+<p>
+<h4>
+Last Update:
+<SCRIPT language="JavaScript">
+document.write(document.lastModified);
+</script>
+</h4>
+
+<A NAME="BROWSER">
+<hr><hr><hr>
+BROWSER DETECTION --- Make your web page display compatable with the
+current client.  Use JavaScript to detect the browser and then use the detected
+values to select code appropriate to the current browser. (See the next example 
+---OPEN A SPECIAL WINDOW--- for implementation of browser detection to control 
+JavaScript code.)
+<p>
+The table below is generated by a series of JavaScript document.write commands.
+The values that appear in this table (middle column below) will depend upon 
+the browser you are using.
+<p>
+<SCRIPT language="JavaScript">
+document.write("<H4><P>");
+document.write("<TABLE BORDER=2 CELLPADDING=5>");
+document.write("<tr><td><h4>Browser</td>");
+document.write("    <td><h4>Value</td>");
+document.write("    <td><h4>JavaScript Code</td></tr>");
+document.write("<tr><td><h4>Name</td>");
+document.write("    <td><h4>"+navigator.appName+"</td>");
+document.write("    <td><h4>  navigator.appName </td></tr>");
+document.write("<tr><td><h4>Version</td>");
+document.write("    <td><h4>"+navigator.appVersion+"</td>" );
+document.write("    <td><h4>  navigator.appVersion </td></tr>");
+document.write("<tr><td><h4>UserAgent</td>");
+document.write("    <td><h4>"+navigator.userAgent+"</td>" );
+document.write("    <td><h4>  navigator.userAgent </td></tr></table>");
+</SCRIPT>
+
+</h4>
+<A NAME="SPECIAL">
+<hr><hr><hr>
+OPEN A SPECIAL WINDOW ---  You can use JavaScript to open a new
+specialized window with size and properties specified by you.  (size of window,
+tool bars, location of window relative to current window, etc. ) 
+<p>
+With Netscape 3 and higher, you can keep the special window in the front of
+the display (focus method) or cause it to be hidden behind the current window
+(blur method).
+<p>
+This example also shows why Browser Detection should be used with your JavaScript
+code. Here, if the browser version is detected to be less than 3, the focus and
+blur methods are not available and will not applied.  If you do not take care of 
+this detail, users with older browsers will be penalized by errors produced by 
+your JavaScript code.
+<p>
+Hiding the special window puts it out of view.  Closing the special window frees 
+all resources associated with it.  When you write code to open special windows,
+you should always provide a close option because you do not know the memory 
+resources of your client. 
+<p>
+<SCRIPT language="JavaScript">
+var SWopts = "toolbar=0,location=0,directories=0,status=0,menubar=0,scrollbars=0,copyhistory=0,resizable=0,width=200,height=400"
+var bVer=parseInt(navigator.appVersion);
+function DisplaySpecialWindow(href_name,Nchoice){
+  SWname = "SpecialWindow";
+  SWwindow = window.open(href_name,SWname,SWopts);
+  if(bVer > 2) { 
+	if(Nchoice==1) SWwindow.focus(); 
+        if(Nchoice==2) SWwindow.blur();
+	}
+  if(Nchoice==0)SWwindow.close();
+}
+</script>
+
+<h4>
+OPEN Special Window with JAVASCRIPT: <a href="javascript:DisplaySpecialWindow('J2spec1.html',1)">Click here to OPEN the special window.</a>
+<p>
+HIDE Special Window with JAVASCRIPT: <a href="javascript:DisplaySpecialWindow('J2spec1.html',2)">Click here to HIDE the special window.</a>
+<p>
+CLOSE Special Window with JAVASCRIPT: <a href="javascript:DisplaySpecialWindow('J2spec1.html',0)">Click here to CLOSE the special window.</a>
+<p>
+<hr><hr><hr>
+<hr><hr><hr>
+
+
+
+</BODY>
+</HTML>

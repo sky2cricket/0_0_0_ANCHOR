@@ -1,0 +1,303 @@
+Hi Love --
+
+This is the frames stuff.
+
+To print that thing I gave you yesterday, go to
+
+http://web.utk.edu/~chrg3/deane/may17_page/siteMap/TX/TU/tutorial/EX2.html
+
+
+To see the "live" frames, go to
+
+http://web.utk.edu/~chrg3/deane/may17_page/siteMap/TX/TU/tutorial/tmpl/FB.html
+
+
+All of the files that go with the frames, including the frame control file
+FB.html, appear below.
+
+Love C! 
+
+//////////////////////////////////////////////////////////////////////////////////////
+//////File FB.html
+//////////////////////////////////////////////////////////////////////////////////////
+<html>
+
+<frameset cols=100% rows="45,220,150,*" border="1"  frameborder="0" framespacing="0">
+
+<!---row 0----->
+<frame name="row0FullFrame" src="../f0.html"> <!---window.parent.frames[0]--->
+
+<!---row 1-------->
+<frameset cols="300,*" border="0"  frameborder="0" framespacing="0">
+<frame name="row1LeftFrame"   src="LB/f1.html" > <!---window.parent.frames[1]--->
+<frame name="row1RightFrame"  src="LB/f2.html" > <!---window.parent.frames[2]--->
+</frameset>
+
+<!---row 2-------->
+<frame name="row2FullFrame"  src="LB/f3.html"> <!---window.parent.frames[3]--->
+
+<!---row 3-------->
+<frameset cols="430,*" frameborder="0" framespacing="0">
+<frame name="row3LeftFrame"  src="LB/f4.html"> <!---window.parent.frames[4]--->
+<frame name="row3RightFrame" src="LB/f5.html"> <!---window.parent.frames[5]--->
+</frameset>
+
+</frameset>
+
+</html>
+
+<!--- 
+
+
+FRAME_CONTROL.html  
+
+tutorial frames
+
+overall:  cols=100%, rows="75,138,67,*" pixels
+
+
+row 0: 75 pixels
+	col 0: 100% ----------------w.p.frames[0]	
+
+row 1: 138 pixels
+	col 0: 240 pixels ----------w.p.frames[1]
+	col 1: * -------------------w.p.frames[2]
+
+row 2: 67 pixels
+	col 0: 100 % ---------------w.p.frames[3]
+
+row 3: * pixels
+	col 0: 240 pixels ----------w.p.frames[4]
+	col 1: * -------------------w.p.frames[5]
+
+
+------------------------------------------------------------
+These files span three directories:
+
+frameControl  ==> TOP/tmpl/FB.html
+w.p.frames[0] ==> TOP/f0.html
+w.p.frames[1] ==> TOP/tmpl/LB/f1.html
+w.p.frames[2] ==> TOP/tmpl/LB/f2.html
+w.p.frames[3] ==> TOP/tmpl/LB/f3.html
+w.p.frames[4] ==> TOP/tmpl/LB/f4.html
+w.p.frames[5] ==> TOP/tmpl/LB/f5.html
+
+------------------------------------------------------------
+
+--->
+
+//////////////////////////////////////////////////////////////////////////////////////
+//////File f0.html
+//////////////////////////////////////////////////////////////////////////////////////
+<html>
+<head>
+<title>f0</title>
+</head>
+<body bgcolor="ffccff" text="000000">
+
+<table border="0" cellpadding="0" cellspaing="0" >
+<tr>
+
+<td align="center" width=80%><H3>
+Using frames -- f0.html window.parent.frames[0] ONLOAD=NULL</h3></td>
+
+</tr></table>
+</body>
+</html>
+
+//////////////////////////////////////////////////////////////////////////////////////
+//////File f1.html
+//////////////////////////////////////////////////////////////////////////////////////
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>f1</title>
+
+<script Language="Javascript">
+
+function LOAD_3 () {
+//alert ("GOT TO THE FUNCTION LOAD_3" );	 
+window.parent.frames[3].location=
+"http://web.utk.edu/~chrg3/deane/may17_page/siteMap/TX/TU/tutorial/tmpl/LB/f3.html";
+	 }
+</script>
+
+</head>
+
+<body bgcolor="ffffcc" text="000000" 
+ link="000000" vlink="000000" alink="000000"
+ ONLOAD="LOAD_3(); " >
+<h3>f1.html window.parent.frames[1]
+<br>
+ONLOAD=LOAD_3;
+</h3>
+<table align="left" border="0" bgcolor="ffffff" 
+ cellpadding="10" cellspacing="0"  >
+<tr>
+<td><pre>
+< script Language="Javascript">
+function LOAD_3 () {
+window.parent.frames[3].location=
+"http://full/path/f3.html";
+ }
+< /script></pre>
+</td></tr></table>
+</body></html>
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////
+//////File f2.html
+//////////////////////////////////////////////////////////////////////////////////////
+
+<html>
+<head><title>f2</title>
+
+<script language="javascript">
+function LOAD_1 () {
+//alert ("GOT TO THE FUNCTION LOAD_l" );	 
+window.parent.frames[1].location=
+"http://web.utk.edu/~chrg3/deane/may17_page/siteMap/TX/TU/tutorial/tmpl/LB/f1.html";
+	 }
+</script>
+
+</head>
+<body bgcolor="a00000" text="000000"
+ link="000000" vlink="000000" alink="000000"
+ ONLOAD="LOAD_1()" >
+
+<font style="Verdana" size="3" color="ffffff">
+<h3>f2.html  window.parent.frames[2] ONLOAD=LOAD_1</h3> 
+</font>
+
+
+<table align="left" border="0" bgcolor="ffffff" 
+ cellpadding="10" cellspacing="0"  >
+<tr>
+<td><pre>
+< script language="javascript">
+function LOAD_1 () { 
+window.parent.frames[1].location=
+"http://full/path/f1.html"; }
+< /script></pre>
+</td>
+</tr>
+
+</table>
+
+</body></html>
+
+
+//////////////////////////////////////////////////////////////////////////////////////
+//////File f3.html
+//////////////////////////////////////////////////////////////////////////////////////
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>f3</title>
+
+<script Language="Javascript">
+
+function LOAD_4() {
+//alert ("GOT TO THE FUNCTION LOADbl_RowFrame" );	 
+window.parent.frames[4].location=
+"http://web.utk.edu/~chrg3/deane/may17_page/siteMap/TX/TU/tutorial/tmpl/LB/f4.html";
+	 }
+</script>
+
+</head>
+
+<body bgcolor="0000a0" text="ffffff" 
+ link="000000" vlink="000000" alink="000000"
+ ONLOAD="LOAD_4(); " >
+
+<h3> f3.html window.parent.frames[3] ONLOAD=LOAD_4</h3>
+
+
+<table align="left" border="0" bgcolor="ffffff" 
+ cellpadding="10" cellspacing="0"  >
+<tr>
+<td>
+<font color="000000">
+<pre>
+< script Language="Javascript"> function LOAD_4() { 
+window.parent.frames[4].location="http://full/path/f4.html"; }
+< /script></pre></font>
+</td>
+</tr>
+
+</table>
+
+</body></html>
+
+
+//////////////////////////////////////////////////////////////////////////////////////
+//////File f4.html
+//////////////////////////////////////////////////////////////////////////////////////
+
+
+<html>
+<head>
+<title>f4</title>
+
+<script Language="Javascript">
+
+function LOAD_5() {
+//alert ("GOT TO THE FUNCTION LOAD_5" );	 
+window.parent.frames[5].location=
+"http://web.utk.edu/~chrg3/deane/may17_page/siteMap/TX/TU/tutorial/tmpl/LB/f5.html";
+	 }
+</script>
+
+
+
+</head>
+<body bgcolor="88ddaa" text="000000" 
+ link="000000" vlink="000000" alink="000000"
+ ONLOAD="LOAD_5(); " >
+
+
+<h3>f4.html window.parent.frames[4] ONLOAD=LOAD_5</h3>
+<table border="0"  cellpadding="5" cellspacing="0"
+ bgcolor="ffffff">
+<tr>
+<td>
+<pre>
+< script Language="Javascript">
+function LOAD_5() {
+//alert ("GOT TO THE FUNCTION LOAD_5" );	 
+window.parent.frames[5].location=
+"http://full/path/f5.html";
+ }
+< /script></pre>
+</td></tr></table>
+</body>
+</html>
+
+//////////////////////////////////////////////////////////////////////////////////////
+//////File f5.html
+//////////////////////////////////////////////////////////////////////////////////////
+
+
+<html>
+<head>
+<title>br_1a</title>
+</head>
+<body bgcolor="ddffff" text="000000">
+
+<h3>f5.html 
+<br>window.parent.frames[5] <br>ONLOAD=NULL</h3>
+<table border="1"  cellpadding="5" cellspacing="0"
+ bgcolor="ffffff">
+<td bgcolor="ffffff" align="left">
+
+ONLOAD=NULL 
+
+</td></tr></table>
+</body>
+</html>
+
+//////////////////////////////////////////////////////////////////////////////////////
+//////the end      
+//////////////////////////////////////////////////////////////////////////////////////

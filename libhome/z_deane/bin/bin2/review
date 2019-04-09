@@ -1,0 +1,105 @@
+#! /bin/csh -f
+
+#	Review the files for a lab.
+#	The current directory says what lab to review.
+#	REVIEW_DIR/files_labX  lists the files to review for Lab X.
+
+#	Written by David Mutchler.
+#       Changed 12/17/93 Ember Uziel
+#	  staff is now defined by gta.names file.
+
+set REVIEW_DIR = ~cs102/review		# Where everything lives.
+set STAFF = ~cs102/usernames/gta.names	# Names of CS 102 staff.
+
+#	----------------------------------------------------------------
+#	STEP 1: CHECK FOR VALID USAGE.
+#	----------------------------------------------------------------
+
+#	The name of the current directory tells which lab is involved.
+#	Students must be in   ~/lab*.
+#	TAs are in ~/cs102/mylabs/lab*.
+
+set labname  = $cwd:t
+set username = $cwd:h
+set username = $username:t
+if ! (($username == $user || $username == mylabs) && $labname =~ lab*) then
+	echo ""
+	echo "You are not using the  review  correctly."
+	echo "You must run  review  from within one of your LAB directories,"
+	echo "for example, within lab2 or lab5."
+	echo "Check that you are in the directory you intend."
+	echo "Ask a TA for help if you are confused."
+	echo ""
+	goto exit_label
+endif
+set LAB        = $cwd:t
+
+if ! ( -w $REVIEW_DIR/accounting/${LAB} ) then
+  echo "You either cannot run review at this time,"
+  echo "are using incorrectly, or"
+  echo "there is a file protection problem."
+  echo "Please reread your lab before calling a TA"
+  exit 1
+endif
+
+
+#	----------------------------------------------------------------
+#	STEP 2: VIEW THE FILES.
+#	----------------------------------------------------------------
+
+echo "OK, let's review the files you have done for $LAB."
+echo "I will put you in VI, but in read-only mode,"
+echo "so that you cannot accidentally damage your files."
+echo "Exit VI with   :q  or  :q\!  as usual (NOT :wq)."
+echo "If you see something you wish to change, invoke VI"
+echo "on the file yourself, after the review."
+echo ""
+echo "Strike a RETURN when you are ready to begin."
+echo ""
+set xxx = $<
+
+if ! (-e $REVIEW_DIR/files_$LAB) then
+		echo ""
+		echo "Reviewing is not prepared for $LAB."
+		echo "Perhaps you are in the wrong directory?"
+		echo "Ask a TA for help if you are confused."
+		echo ""
+		goto exit_label
+	endif
+
+foreach file (`cat $REVIEW_DIR/files_$LAB`)
+	if ! (-e $file) then
+		echo ""
+		echo "I cannot find file $file."
+		echo "Perhaps you are in the wrong directory?"
+		echo "Or perhaps you have named a file incorrectly?"
+		echo "Or perhaps you omitted part of the lab?"
+		echo "Ask a TA for help if you are confused."
+		echo ""
+		echo "I will continue the review."
+		echo "Be sure to come back and review $file later."
+		echo "Strike a RETURN when you are ready to continue."
+		echo ""
+		set xxx = $<
+	else
+		view $file
+	endif
+end
+
+#	----------------------------------------------------------------
+#	STEP 3:  RECORD THAT THE STUDENT HAS DONE THIS, TO GET CREDIT.
+#	----------------------------------------------------------------
+
+touch $REVIEW_DIR/accounting/${LAB}/$USER
+
+echo ""
+echo "Thanks for reviewing your files."
+echo "If you have questions about any of them,"
+echo "please ask a TA NOW."
+echo ""
+
+#	Exits from the script pass through here.
+#	Return to the original directory and remove all traces.
+
+exit_label:
+

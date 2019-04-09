@@ -1,0 +1,1084 @@
+
+<html><head>
+<title>cricketErrorCodes</title>
+</head>
+<body bgcolor="eeFfff" text="000090">
+<b>cricket's error codes</b>
+<hr>
+<a href="http://www.w3.org/Protocols/HTTP/1.1/draft-ietf-http-v11-spec-01">HTTP 1.1 draft specs</a>
+<br>The above link is as good a place as any to get the regular error codes.
+<br>The list below was copied from HTTP 1.1 draft specs.
+<table border="1" width="400"
+bgcolor="ffffee" cellpadding="2" cellspacing="0">
+<tr><td><pre>
+9.  Status Code Definitions
+    9.1  Informational 1xx
+         100 Continue
+         101 Switching Protocols
+    9.2  Successful 2xx
+         200 OK
+         201 Created
+         202 Accepted
+         203 Non-Authoritative Information
+         204 No Content
+         205 Reset Content
+         206 Partial Content
+    9.3  Redirection 3xx
+         300 Multiple Choices
+         301 Moved Permanently
+         302 Moved Temporarily
+         303 See Other
+         304 Not Modified
+         305 Use Proxy
+    9.4  Client Error 4xx
+         400 Bad Request
+         401 Unauthorized
+         402 Payment Required
+         403 Forbidden
+         404 Not Found
+         405 Method Not Allowed
+         406 None Acceptable
+         407 Proxy Authentication Required
+         408 Request Timeout
+         409 Conflict
+         410 Gone
+         411 Length Required
+         412 Unless True
+    9.5  Server Error 5xx
+         500 Internal Server Error
+         501 Not Implemented
+         502 Bad Gateway
+         503 Service Unavailable
+         504 Gateway Timeout
+</pre></td></tr>
+</table>
+<p>
+These are from errors I have gotten and figured out.
+<br>In the tradition of backwards engineering.......
+<br>In no particular order
+<hr>
+error '8007052e'
+<br>This happened when I tried to write a file to a remote server location.
+<br>The proxy permissions were looking for "local machine" which was not the
+case.  
+<br>How to fix: ???
+<hr>
+error  80004005
+<br>or Response object error 'ASP 0156: 80004005'
+<br> Header error, you probably put some lines of code inside the http header.
+<hr>
+error  80004005
+<br>Can also be caused by needing to have a Response.Buffer
+for your asp page.
+<br> To get a Response.Buffer use this code:
+<pre>
+< % @ Language=JAVASCRIPT % >
+< % Response.Buffer = true % > 
+__________OR__________________
+< % @ Language=VBSCRIPT % >
+< % response.Buffer = True % ></pre>
+<HR>
+COMPILATION ERROR - they give you a hint
+<br>
+Microsoft JScript compilation error '800a03f1' 
+<br>
+Expected '}' 
+<br>
+/dir/adir/File.asp line 136  [where the error occurred]
+<HR>
+SYNTAX ERROR - they give you a hint
+<br>
+Microsoft JScript compilation error '800a03ea' 
+<br>
+Syntax error 
+<br>
+/dir/adir/File.asp, line 146 
+<br>
+} else   {
+^
+<br>
+------
+
+<br>
+Microsoft JScript compilation error '800a03ea' 
+<br>
+
+Syntax error 
+<br>
+
+/dir/adir/File2.inc, line 607 
+<br>
+
+}
+^
+<br>
+The error line 146, File.asp was actually caused by
+<br>
+Syntax Error in line 607, File2.inc.  I had to eliminate
+<br>
+all possible causes of the error in File.asp, then force
+<br>
+File2.inc to be called.
+
+<hr>
+
+
+Microsoft OLE DB Provider for SQL Server error '80040e07' 
+<br>
+
+Syntax error converting the varchar value 'CDEANE' to a column of data type int. 
+<br>
+
+/dir/RecSet.inc, line 838 
+<br>
+This is triying to pull a col from the database.
+
+<HR>
+Microsoft JScript compilation error '800a03f4' 
+<BR>
+Expected '/' 
+<br>
+/dir/Reports.inc, line 680 
+<br>
+/*//name->newname
+<br>
+------------^
+
+<br>
+This error is due to a comment that starts with /*
+<br>
+but has no closing */
+<hr>
+I turned on the <b> javascript Debug</b> and got one line,
+<br>
+which identifies a MISSING FUNCTION that is being called
+<br> by checkData.asp line 203
+<br>
+aItemList = SqlStatementRes();
+<br>
+Microsoft JScript runtime error '800a138f' 
+<br>
+Object expected 
+<br>
+/dir/adir/checkData.asp, line 203 
+<hr>
+
+Microsoft JScript runtime error '800a138f' 
+<br>
+Object expected 
+<br>
+/dir/Report.asp, line 110 
+<br>
+Coming in to an asp page from a different path where
+the expected object is not created.
+
+<hr>
+error '80040211' 
+<br>
+/dirEmail/SendMail.asp, line 69 
+<br>
+Error to do with sending email from a form.
+<hr>
+
+
+Microsoft JScript runtime error '800a01b6' 
+<br>
+Object doesn't support this property or method 
+<br>
+
+/dirEmail/SendMail.asp, line 47 
+<br>
+I added objMail.Debug = true;
+<p>
+Another time this happened, I MISSPELLED the VALUE
+<br>
+in an input tag where the input str was sent to
+an if statement...
+<hr>
+Microsoft OLE DB Provider for SQL Server error '80040e37' 
+<br>
+Invalid object name 'SDPUB'. 
+<br>
+/dir/RecSet.inc, line 839 
+<br>
+misspell database field name
+<hr>
+Microsoft OLE DB Provider for SQL Server error '80040e14' 
+<br>
+Incorrect syntax near the keyword 'ORDER'. 
+<br>
+/dir/RecSet.inc, line 839 
+<br>
+caused by lack of cgi variable ( <input type="hidden"... > )
+<hr>
+Microsoft JScript runtime error '800a01b6' 
+<br>
+Object doesn't support this property or method 
+<br>
+/dir/nt.asp, line 50 
+<br>
+bad field name somewhere
+<hr>
+Microsoft OLE DB Provider for SQL Server error '80040e37' 
+<br>
+Invalid object name 'TRnk'. 
+<br>
+/dir/nt.inc, line 839 
+<br>
+needed to include a function named function TRnk()
+<hr>
+Microsoft JScript runtime error '800a01b6' 
+<br>
+Object doesn't support this property or method 
+<br>
+/dir/nt.asp, line 50 
+<br>
+I forgot to included this name in the if statement
+<hr>
+Microsoft JScript runtime error '800a1391' 
+<br>
+'thisHistTable' is undefined 
+<br>
+/dir/hist.asp, line 206 
+<br>
+tried to read an undefined var name
+<br>
+<  input type="hidden" name="HistTableName" value="< % =thisHistTable % >" >
+<hr>
+Microsoft JScript runtime error '800a01b6' 
+<br>
+Object doesn't support this property or method 
+<br>
+/dir/nt.asp, line 50 
+<br>
+I added document.formone.VQR.value="new" instead of using default...
+<hr>
+Microsoft JScript runtime error '800a01bd' 
+<br>
+Object doesn't support this action 
+<br>
+/dir/Hist.asp, line 57 
+<br>
+trying to dynamically build a function name...
+<br>
+using a var defined from a Request("tableName")
+<br>
+var strName= new String(request("tableName"))
+<br>
+myTable= new strName();
+
+<hr>
+Microsoft JScript runtime error '800a01b6' 
+<br>
+Object doesn't support this property or method 
+<br>
+/Tax/Scripts/Rankin/List.asp, line 59 
+<br>
+mytable = new Request("tableName")();
+<hr>
+Microsoft JScript runtime error '800a01c2' 
+<br>
+Wrong number of arguments or invalid property assignment 
+<br>
+/Tax/Scripts/Rankin/List.asp, line 60 
+<br>
+tried this:
+<br>
+myTable = new %>+strName+ < % ();
+<hr>
+Microsoft OLE DB Provider for SQL Server error '80040e14' 
+<br>
+Invalid column name 'TTin'. 
+<br>
+/dir/RecSet.inc, line 839 
+<br>
+undefined field name in database table
+<hr>
+
+<hr>
+Microsoft JScript runtime error '800a01b6' 
+<br>
+Object doesn't support this property or method 
+<br>
+/dir/download.asp, line 50 
+<br>
+MIssing a cgi hidden variable that the download.asp file
+was expecting to receive
+<hr>
+Microsoft OLE DB Provider for SQL Server error '80040e14' 
+<br>
+The column prefix 'n' does not match with a table name or alias name used in the query. 
+<br>
+/dir/RecSet.inc, line 839 
+<br>
+Bad Sql Query String
+<hr>
+ Microsoft JScript runtime error '800a1391' 
+<br>
+'myMax' is undefined 
+<br>
+/dir/nt.asp, line 61 
+<br> 
+This was looking for a function named myMax() 
+<hr>
+Microsoft JScript runtime error '800a01b6' 
+<br>
+Object doesn't support this property or method 
+<br>
+/dir/nt.asp, line 48 
+<Hr>
+Active Server Pages error 'ASP 0116' 
+<br>
+Missing close of script delimiter 
+<br>
+/dir/nt.inc, line 31 
+<br>
+The Script block lacks the close of script tag (%>). 
+<br>
+This one has a hint...
+<hr>
+Microsoft JScript compilation error '800a03ea' 
+<br>
+Syntax error 
+<br>
+/dir/nta.asp, line 69 
+<br>
+Using LIKE instead of IN in a sql query...
+<hr>
+Microsoft OLE DB Provider for SQL Server error '80040e14' 
+<br>
+The column prefix 'oi' does not match with a table name or alias name used in the query. 
+<br>
+/dir/nt.inc, line 839 
+<br>
+In a sql query used oi.Name instead of tbl.Name
+<hr>
+Microsoft OLE DB Provider for SQL Server error '80004005' 
+<br>
+[DBNETLIB][ConnectionRead (recv()).]General network error. Check your network documentation. 
+<br>
+/dir/nt.inc, line 839 
+<br>
+The network crashed during a sql query.
+<hr>
+Microsoft JScript compilation error '800a03ea' 
+<br>
+Syntax error 
+<br>
+/dir/prt.asp, line 514 
+<br>
+}
+^
+<br>
+I commented out code and cut out code carelessly.
+
+<hr>
+DODB.Recordset error '800a0bb9' 
+<br>
+Arguments are of the wrong type, are out of acceptable range, or are in conflict with one another. 
+<br>
+/dir/nt.inc, line 834 
+<br>
+Used index less than zero....
+<hr>
+Microsoft OLE DB Provider for SQL Server error '80040e37' 
+<br>
+Invalid object name 'ABCDE'. 
+<br>
+/dir/nt.inc, line 839 
+<br>
+
+
+<hr>
+Microsoft OLE DB Provider for SQL Server error '80040e14' 
+<br>
+Could not continue scan with NOLOCK due to data movement. 
+<br>
+/dir/nt.inc, line 839 
+<br>
+
+<hr>
+Microsoft JScript compilation error '800a03ea' 
+<br>
+Syntax error 
+<br>
+/dir/nt.asp, line 381 
+<br>
+Response.Write(Grec.Field(i) );</td>
+<br>
+-------------------------------^
+<br>
+Forgot closing % > 
+<hr>
+Microsoft JScript compilation error '800a03ea' 
+<br>
+Syntax error 
+<br>
+/dir/rt.asp, line 381 
+<br>
+< t r >
+<br>
+^
+<br>
+Mangled scripting
+<hr>
+Microsoft JScript compilation error '800a03ee' 
+<br>
+Expected ')' 
+<br>
+/dir/rt.inc, line 99 
+<br>
+parsing error
+<hr>
+Microsoft JScript compilation error '800a03ee' 
+<br>
+Expected ')' 
+<br>
+/dir/rts.inc, line 468 
+<br>
+
+'String(OBJi.Field(obj.A)) +' -- ' + String( OBJi.Field(obj.D) )',
+<br>
+---------------------------------^
+<br>
+???
+<hr>
+Microsoft OLE DB Provider for SQL Server error '80040e07' 
+<br>
+Syntax error converting the varchar value '+5' to a column of data type int. 
+<br>
+/dir/nt.inc, line 839 
+<br>
+Incorrect phrase in sql query
+<hr>
+Microsoft JScript runtime error '800a01b6' 
+<br>
+Object doesn't support this property or method 
+<br>
+/dir/rp.inc, line 62 
+<br>
+passing wrong list of cgi vars to function
+<hr>
+
+Microsoft JScript runtime error '800a138f' 
+<br>
+Object expected 
+<br>
+/dir/nt.asp, line 146 
+<br>
+calling non-existent function, I think
+
+<hr>
+Microsoft OLE DB Provider for SQL Server error '80040e07' 
+<br>
+Syntax error converting the varchar value '+5' to a column of data type int. 
+<br>
+/dir/nt.inc, line 839 
+<br>
+bad sql query
+
+<hr>
+Microsoft JScript compilation error '800a03f7' 
+<br>
+Unterminated string constant 
+<br>
+/dir/rts.inc, line 52 
+<br>
+String("n")',"center");
+<br>
+-----------------------^
+<br>
+the word String above needs single quote (')  preceeding it,
+<br>
+because the phrase 'String("n")' is an argument to a function
+
+
+<hr>
+Microsoft JScript runtime error '800a01b6' 
+<br>
+Object doesn't support this property or method 
+<br>
+/dir/rts.inc, line 42 
+<br>
+
+<hr>
+Microsoft JScript runtime error '800a138f' 
+<br>
+Object expected 
+<br>
+/dir/rts.inc, line 43 
+<br>
+tried to use alert with previous problem 
+<hr>
+Microsoft OLE DB Provider for SQL Server error '80040e14' 
+<br>
+The column prefix 'Pxtbl' does not match with a table name or alias name used in the query. 
+<br>
+/dir/nt.inc, line 839 
+<br>
+???
+<hr>
+Microsoft JScript compilation error '800a03ee' 
+<br>
+Expected ')' 
+<br>
+/dir/rt.inc, line 75 
+<br>
+if(( C.WANTHEADER != "undefined") AND (C.WANTHEADER == "1")) {
+----------------------------------^
+<br>
+Should have used && instead of AND
+
+<hr>
+Microsoft JScript compilation error '800a03ea' 
+<br>
+Syntax error 
+<br>
+/SearchDetail/Scripts/Cma/Common/CMAReport.inc, line 176 
+<br>
++myText='</td></tr>\r\n');
+<br>
+-------^
+<br>
+typo, that = should be +
+<hr>
+Total number of properties found: 
+<br>
+Microsoft OLE DB Provider for SQL Server error '80040e14' 
+<br>
+Line 1: Incorrect syntax near ')'. 
+<br>
+/dir/et.inc, line 839 
+<br>
+???
+<br>
+<hr>
+Microsoft OLE DB Provider for SQL Server error '80040e14' 
+<br>
+Could not continue scan with NOLOCK due to data movement. 
+<br>
+/ShareServer/RecSet.inc, line 839 
+<br>
+Someone is manipulating the database (probably importing data in this case)
+<br>
+during attempt to run query.
+<br>
+<hr>
+<a href="http://msdn.microsoft.com/library/wcedoc/adoce31/ado30ref_103.htm">
+Microsoft SQL errors</a>
+<hr>
+Microsoft OLE DB Provider for SQL Server error '80040e37' 
+<br>
+Invalid object name 'Member'. 
+<br>
+/dir/et.inc, line 839 
+<br>
+???
+<br>
+<hr>
+Microsoft JScript compilation error '800a03f7' 
+
+Unterminated string constant 
+
+/SearchDetail/Scripts/Cma/Custom/CMACustReports.inc, line 368 
+
+'AFloat("C", String(A.Field(C.CA))),
+------------------------------------^
+<br>
+parse error
+<hr>
+Total number of properties found: 241 
+Click on link to view one property: 
+<br>         
+Microsoft OLE DB Provider for SQL Server error '80040e14' 
+<br>
+Ambiguous column name 'Nts'. 
+<br>
+/dir/et.inc, line 839 
+<br>
+join 2 tables , both have field named Nts, then attempt query
+using Nts
+<hr>
+Microsoft JScript compilation error '800a03ee' 
+
+Expected ')' 
+
+/dir/de.inc, line 65 
+
+sumOfAdjustments += parseInt((Number(Request(sqftavg)));
+-------------------------------------------------------^
+
+<hr>
+Total number of properties found: 19774 
+Click on link to view one property: 
+         
+Microsoft JScript runtime error '800a138f' 
+
+'PrpInfo.TableHeaders[...].length' is null or not an object 
+
+/Search/Scripts/Srh.asp, line 140 
+
+<hr>
+Microsoft JScript compilation error '800a03f1' 
+<br>
+Expected '}' 
+<br>
+/dir/ta.asp, line 289 
+<br>
+missing function
+
+<hr>
+Active Server Pages error 'ASP 0128' 
+<br>
+Missing File or Virtual attribute 
+<br>
+/dir/nt.inc, line 68 
+<br>
+The Include file name must be specified using either the File or Virtual attribute. 
+<br>
+I did   #include filex="FILENAME" in an attempt to not include the file.
+
+<hr>
+Microsoft JScript runtime error '800a138f' 
+<br>
+Object expected 
+<br>
+/dir/rt.inc, line 148 
+<br>
+misspelled the name of a function
+ 
+<hr>
+Microsoft JScript compilation error '800a03ea' 
+<br>
+Syntax error 
+<br>
+/dir/nf.inc, line 492 
+<br>
+,"Address"
+<br>
+
+Had 2 commas in a row ( Name,,Address )
+<hr>
+Active Server Pages error 'ASP 0141' 
+<br>
+Page Command Repeated 
+<br>
+/dir/rt.inc, line 1 
+<br>
+The @ command can only be used once within the Active Server Page. 
+<br>
+oops...
+<hr>
+Microsoft JScript compilation error '800a03f7' 
+<br>
+Unterminated string constant 
+<br>
+/dir/rt.inc, line 100 
+<br>
+'String("&nbsp;"),"center");
+<br>
+----------------------------^
+<br>
+'arg',nextArg supposed to be in argList, but have 'arg, nextArg
+<hr>
+Microsoft JScript compilation error '800a03ee' 
+<br>
+Expected ')' 
+<br>
+/dir/rt.asp, line 133 
+<br>
+Response.Write(parseInt(rc.Field(""SCH")));
+<br>
+-------------------------------------^
+
+<hr>
+Active Server Pages error 'ASP 0126' 
+<br>
+Include file not found 
+<br>
+dir/nt.asp, line 112 
+<br>
+The include file 'dir/ES.inc' was not found. 
+<br>
+<hr>
+Microsoft OLE DB Provider for SQL Server error '80040e31' 
+<br>
+Timeout expired 
+<br>
+/dir/nt.inc, line 839 
+<br>
+<hr>
+Microsoft OLE DB Provider for SQL Server error '80040e37' 
+<br>
+Invalid object name 'Activity'. 
+<br>
+/dir/nt.inc, line 839 
+<br>
+<hr>
+Microsoft OLE DB Provider for SQL Server error '80040e4d' 
+<br>
+Login failed for user 'TriadRead'. 
+<br>
+/ShareServer/RecSet.inc, line 131 
+<br>
+<hr>
+Microsoft JScript compilation error '800a03f1' 
+<br>
+Expected '}' 
+<br>
+/SearchDetail/Scripts/PrtAgt4/PrtAgt4.asp, line 34 
+<br>
+<hr>
+Microsoft OLE DB Provider for SQL Server error '80040e4d' 
+
+Login failed for user 'TriadRead'. 
+
+/ShareServer/RecSet.inc, line 131 
+
+<hr>
+Microsoft OLE DB Provider for SQL Server error '80040e07' 
+
+Syntax error converting the varchar value '101-3' to a column of data type int. 
+
+/ShareServer/RecSet.inc, line 839 
+
+<hr>
+Microsoft JScript compilation error '800a03ec' 
+
+Expected ';' 
+
+/Tax/Scripts/Guilford/GuilList.asp, line 248 
+
+Response.Write(Request('County')))
+---------------------------------^
+
+<hr>
+Microsoft JScript runtime error '800a138b' 
+
+Cannot assign to a function result 
+
+/SearchDetail/Scripts/PrtAgt4/PrtAgt4.asp, line 19 
+
+<hr>
+Active Server Pages error 'ASP 0138' 
+
+Nested Script Block 
+
+/SearchDetail/Scripts/ArchiveRpt.asp, line 133 
+
+A script block cannot be placed inside another script block. 
+<hr>
+Microsoft JScript compilation error '800a03ea' 
+
+Syntax error 
+
+/SearchDetail/Scripts/ArchiveRpt.asp, line 92 
+
+WriteMlsPrpSANDICOR(Prp.Field("MlsNum"),Prp.Field("MlsNumOrig"), /*Prp.Field("PrpTableName")*/);
+----------------------------------------------------------------------------------------------^
+<hr>
+Microsoft JScript runtime error '800a1391' 
+
+'AAmlsnumnum' is undefined 
+
+/SearchDetail/Scripts/ArchiveRpt.asp, line 107 
+<br>
+<hr>
+ADODB.Recordset error '800a0bcd' 
+Either BOF or EOF is True, or the current record has been deleted. Requested operation requires a current record. 
+
+/ShareServer/RecSet.inc, line 756 
+<hr>
+Microsoft JScript runtime error '800a1391' 
+
+'RapattoniServerPathDEV' is undefined 
+
+/StfMaint/Scripts/RapattoniBL/RapBL03.asp, line 83 
+
+<hr>
+Microsoft JScript runtime error '800a01b6' 
+
+Object doesn't support this property or method 
+
+/Search/Scripts/Download/Information.asp, line 49 
+<br>
+Tried to do "orderby" with invalid col name in sql
+<hr> 
+ADODB.Fields error '800a0cc1' 
+Item cannot be found in the collection corresponding to the requested name or ordinal. 
+
+<br>
+out of range index on fields collection
+<hr>
+Microsoft OLE DB Provider for SQL Server error '80004005' 
+
+[DBNETLIB][ConnectionOpen (Connect()).]SQL Server does not exist or access denied. 
+
+/ShareServer/RecSet.inc, line 131 
+<hr>
+Microsoft JScript compilation error '800a03ec' 
+
+Expected ';' 
+
+/SearchDetail/Scripts/Cma/Common/CMAReport.inc, line 136 
+<br>
+An extra closing parenthesis
+<hr>
+Microsoft OLE DB Provider for SQL Server error '80040e14' 
+
+The correlation name 'oi' is specified multiple times in a FROM clause. 
+
+/ShareServer/RecSet.inc, line 839 
+
+<hr>
+Microsoft JScript compilation error '800a03ed' 
+
+Expected '(' 
+
+/Custom/ShareServer/Tables.inc, line 393 
+
+function TaxOkDownload {
+-----------------------^
+
+<hr>
+Microsoft JScript compilation error '800a03ec' 
+
+Expected ';' 
+
+/Tax/Scripts/EnglishWords.asp, line 32 
+<hr>
+Application object error 'ASP 0197 : 80004005' 
+
+Disallowed object use 
+
+/Tax/Scripts/EnglishWords.asp, line 29 
+
+Cannot add object with apartment model behavior to the application intrinsic object
+
+<hr>
+Microsoft JScript runtime error '800a1391' 
+
+'g' is undefined 
+
+/SearchDetail/Scripts/Cma/Custom/ProspectsCma.asp, line 58 
+<br>
+mangled replace regular expression
+<hr>
+Active Server Pages error 'ASP 0113' 
+
+Script timed out 
+
+/Tax/Scripts/PrtMaricopa.asp 
+
+The maximum amount of time for a script to execute was exceeded. You can change this limit by specifying a new value for the property Server.ScriptTimeout or by changing the value in the IIS administration tools. 
+
+<hr>
+Application object error 'ASP 0197 : 80004005' 
+
+Disallowed object use 
+
+/Tax/Scripts/EnglishWords.asp, line 30 
+
+Cannot add object with apartment model behavior to the application intrinsic object. 
+
+<hr>
+Creating C:\Inetpub\Sandicor\Custom\ShareServer\ThirdPartyIncLnd.asp on server. 
+Microsoft JScript runtime error '800a0046' 
+
+Permission denied 
+
+/GenDb/PrpCode/DownLoadFields.asp, line 31 
+<hr>
+Starting to rebuild English words ...
+
+ADODB.Fields error '800a0cc1' 
+
+Item cannot be found in the collection corresponding to the requested name or ordinal. 
+
+/Tax/Scripts/EnglishWords.asp, line 26 
+<br>
+Left "County" off itemlist
+<hr>
+Starting to rebuild English words ...
+
+Application object error 'ASP 0197 : 80004005' 
+
+Disallowed object use 
+
+/Tax/Scripts/EnglishWords.asp, line 36 
+
+Cannot add object with apartment model behavior to the application intrinsic object. 
+
+<hr>
+Active Server Pages error 'ASP 0113' 
+
+Script timed out 
+<br>
+The maximum amount of time for a script to execute was exceeded. You can change this limit by specifying a new value for the property Server.ScriptTimeout or by changing the value in the IIS administration tools. 
+
+
+<hr>
+Response object error 'ASP 0156 : 80004005' 
+
+Header Error 
+
+/thirdparty/Scripts/GetData.asp, line 14 
+
+The HTTP headers are already written to the client browser. Any HTTP header modifications must be made before writing page content. 
+
+<hr>
+Microsoft OLE DB Provider for SQL Server error '80040e4d' 
+
+Login failed for user 'sa'. 
+
+/ShareServer/RecSet.inc, line 131 
+<br>
+cannot access database due to login failure.
+<hr>
+Microsoft OLE DB Provider for SQL Server error '80004005' 
+
+[DBNETLIB][ConnectionOpen (Connect()).]SQL Server does not exist or access denied. 
+
+/ShareServer/RecSet.inc, line 76 
+<hr>
+Response object error 'ASP 0156 : 80004005' 
+
+Header Error 
+
+/thirdparty/Scripts/GetData.asp, line 14 
+
+The HTTP headers are already written to the client browser. Any HTTP header modifications must be made before writing page content. 
+<hr>
+Active Server Pages error 'ASP 0126' 
+
+Include file not found 
+
+/SearchDetail/Scripts/Cma/Custom/CMACustForPrint.inc, line 7 
+
+The include file 'SubjectDesc/CmaForPrintRES.inc' was not found. 
+<hr>
+Microsoft JScript compilation error '800a03ec' 
+
+Expected ';' 
+
+/ShareServer/Aggregate.inc, line 7 
+<hr>
+Microsoft OLE DB Provider for SQL Server error '80004005' 
+
+[DBNETLIB][ConnectionOpen (Connect()).]SQL Server does not exist or access denied. 
+
+/Shareserver/RecSet.inc, line 76 
+<hr>
+Microsoft OLE DB Provider for SQL Server error '80004005' 
+
+Unspecified error 
+
+/ShareServer/RecSet.inc, line 851 
+<hr>
+Active Server Pages error 'ASP 0113' 
+Script timed out 
+
+/Tax/Scripts/MaricopaList.asp 
+
+The maximum amount of time for a script to execute was exceeded. You can change this limit by specifying a new value for the property Server.ScriptTimeout or by changing the value in the IIS administration tools. 
+<hr>
+Microsoft OLE DB Provider for SQL Server error '80040e14' 
+
+Column 'm.MTaxId' is invalid in the select list because it is not contained in an aggregate function and there is no GROUP BY clause. 
+
+/Tax/Scripts/Davidson/ListDav.asp, line 68 
+
+<hr>
+sql = set quoted_identifier off Select a.actyrbuilt , count (distinct (m.mtaxid)) as PropCount from masterdata m (nolock) left join appraisal a (nolock) on (m.parcelid = a.parcelid) where (Address_St Like 'Rawlings%' )
+
+
+Total number of properties found: 
+Microsoft OLE DB Provider for SQL Server error '80040e0c' 
+
+Command text was not set for the command object. 
+
+/Tax/Scripts/Davidson/ListDav.asp, line 96 
+
+<br>
+The rsCount.Open() was commented out...
+<hr>
+Microsoft OLE DB Provider for SQL Server error '80004005' 
+
+Unspecified error 
+
+/ShareServer/RecSet.inc, line 931 
+<hr>
+Active Server Pages error 'ASP 0137' 
+
+Invalid Global Script 
+
+/Tax/Scripts/EnglishWords.asp, line 1 
+
+Script blocks must be one of the allowed Global.asa procedures. Script directives within <% ... %> are not allowed within the Global.asa file. The allowed procedure names are Application_OnStart, Application_OnEnd, Session_OnStart, or Session_OnEnd. 
+<hr>
+Provider error '80020005' 
+
+Type mismatch. 
+
+/Tax/Scripts/Bergen2/BKeyCheck.asp, line 38 
+<br>
+caused by:<BR>
+   szSQL     = " Select " + szItemList + szTable + szWhere;/// + szOrderBy;
+<br>
+   Trec.ActiveConnection = oConn;
+<br>
+   Trec.Source = szSQL;
+<br>
+   Trec.Open ( "GsmlsAssessor", oConn, null,null,null );
+<hr>
+Microsoft JScript compilation error '800a03ec' 
+
+Expected ';' 
+
+/Tax/Scripts/EnglishWords.asp, line 26 
+<hr>:w
+error '8002802b' 
+Element not found. 
+
+/Tax/Scripts/EnglishWords.asp, line 32 
+
+<hr>
+Microsoft JScript compilation error '800a03ec' 
+
+Expected ';' 
+
+/Tax/Scripts/EnglishWords.asp, line 34 
+<hr>
+Response object error 'ASP 0156 : 80004005' 
+
+Header Error 
+
+/Tax/Scripts/Bergen/List.asp, line 34 
+
+The HTTP headers are already written to the client browser. Any HTTP header modifications must be made before writing page content. 
+<hr>
+Microsoft OLE DB Provider for SQL Server error '80040e07' 
+
+Syntax error converting the varchar value 'undefined' to a column of data type int. 
+
+/ShareServer/RecSet.inc, line 931 
+<hr>
+ADODB.Recordset error '800a0bcd' 
+
+Either BOF or EOF is True, or the current record has been deleted. Requested operation requires a current record. 
+
+/ShareServer/RecSet.inc, line 875 
+
+<hr>
+ADODB.Field error '800a0bcd' 
+<br>
+Either BOF or EOF is True, or the current record has been deleted. Requested operation requires a current record. 
+<br>
+/ShareServer/RecSet.inc, line 1456 
+<hr>
+
+
+<hr>
+</body>
+</html>
+

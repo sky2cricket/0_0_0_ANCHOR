@@ -1,0 +1,31 @@
+The files in this dir are to test
+new things in perl.
+
+
+this is the beginning of colorbox.cgi
+------------------------------------------------------
+#!/usr/local/bin/perl5.00503 -w
+#colorbox.cgi by cricket
+
+do "readPost.pl" || die "Cannot do readPost.pl\n";
+&subReadPostedValues;
+
+#do "cgi-lib.pl" || die "Cannot do cgi-lib.pl\n";
+#&ReadParse;
+------------------------------------------------------
+
+
+FindMatch directory contains 
+    program FindMatch.cgi.
+    input   Qlist.html
+    output  t2temp
+
+Match a string defined in FindMatch.cgi and
+the line containing that string will not be
+printed to t2temp.
+
+Else, it will be printed for t2temp.
+
+This is for updating online files like Qlist.html.
+
+

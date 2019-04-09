@@ -1,0 +1,29 @@
+#! /bin/csh -f
+#
+#  The wizard will need to change review_labs and compare_labs
+#      for this to work correctly.
+#  State whether or not the student has done REVIEW and COMPARE.
+
+set REVIEW_DIR  = ~cs102/review/accounting
+set COMPARE_DIR = ~cs102/compare/accounting
+
+set review_labs = (3 4 5 6 7 8 9 10)  # Labs to check.
+set compare_labs = (4 6 7 8 9 10)    # Labs to check.
+
+echo ""
+foreach lab ($review_labs)
+  if (-e $REVIEW_DIR/lab$lab/$user) then
+    echo "You HAVE done review $lab"
+  else
+    echo "You have NOT done review $lab"
+  endif
+end
+
+echo ""
+foreach lab ($compare_labs)
+  if (-e $COMPARE_DIR/compare_lab$lab/$user) then
+    echo You HAVE done \"compare $lab\"
+  else
+    echo You have NOT done \"compare $lab\"
+  endif
+end

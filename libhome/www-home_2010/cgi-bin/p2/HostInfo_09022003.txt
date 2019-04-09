@@ -1,0 +1,91 @@
+#!/usr/local/bin/perl5
+#HostInfo.cgi
+#by Cricket! Haygood Deane, summer 98 
+#This program adapted from guestbook program page 198 of Learning Perl
+#by Schwartz and Christiansen, O'Reilly.
+
+use 5.004;
+use strict;
+use CGI qw(:standard);
+use Fcntl qw(:flock);
+
+sub bail {
+  my $error = "@_";
+  print h1("Unexpected Error"), p($error), end_html;
+  die $error;
+}
+
+my (
+  $FILENAME,
+  $MAXSAVE,
+  $TITLE,
+  $cur,
+  @entries,
+  $entry,
+  $ARPCOM,
+  @arpWord,
+  $targetHname,
+  $arpString, 
+  @arpString,
+  $ARPstring, 
+);
+
+$TITLE = "Host Address Information";
+$FILENAME = "/polar/homes/deane/www-home/temp/HostInfoFile";
+$MAXSAVE = 10;
+
+print header, 
+start_html($TITLE), 
+h1("Network Concepts IV <br>$TITLE");
+
+  
+$cur = CGI->new();
+if ($cur->param("targethostname")) {
+  $cur->param("date", scalar localtime);
+  $targetHname=$cur->param("targethostname");
+  open(ARPCOM, "ping $targetHname|"); 
+  open(ARPCOM, "arp  $targetHname|"); 
+  @arpString = <ARPCOM>;
+  chop(@arpString);
+  $cur->param("ARPstring",scalar $arpString[0]);
+  @arpWord = split (/[ ,\(,\)]/, $arpString[0]);
+  $cur->param("ipAd", scalar $arpWord[2]);
+  $cur->param("ethAd", scalar $arpWord[5]);
+  @entries = ($cur);
+}
+ 
+open(CHANDLE, "+< $FILENAME") || bail("cannot open $FILENAME: $!");
+flock(CHANDLE, LOCK_EX) || bail("cannot flock $FILENAME: $!");
+
+while(!eof(CHANDLE) && @entries < $MAXSAVE) {
+  $entry = CGI->new(\*CHANDLE);
+  push @entries, $entry;
+}
+
+seek (CHANDLE, 0, 0) || bail("cannot rewind $FILENAME: $!");
+foreach $entry (@entries) {
+  $entry->save(\*CHANDLE); 
+}
+truncate(CHANDLE, tell(CHANDLE)) || bail("cannot truncate $FILENAME: $!");
+close (CHANDLE) || bail("cannot close $FILENAME: $!");
+
+print hr,hr,hr,hr;
+print start_form;
+print p h4("Please enter Target Hostname: ", 
+$cur->textfield( -NAME => "targethostname", -SIZE => 32));
+print p(submit("Submit request for host address information")); 
+print end_form;
+print hr,hr,hr,hr;
+
+print h2("Host Address Information");
+foreach $entry (@entries) {
+  print hr;
+  printf("hostname [%s] --- ip address[%s] --- ethernet address[%s]", 
+   $entry->param("targethostname"),
+   $entry->param("ipAd"),
+   $entry->param("ethAd"));
+  print br();
+}
+print hr,hr,hr,hr;
+print end_html;
+#end-of-program  

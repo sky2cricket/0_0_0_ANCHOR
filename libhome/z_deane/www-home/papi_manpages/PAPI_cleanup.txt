@@ -1,0 +1,62 @@
+PAPI_cleanup            PerfAPI LIBRARY              PAPI_cleanup
+
+
+
+NAME
+     PAPI_cleanup - remove EventSet from existence
+
+SYNOPSIS
+     int PAPI_cleanup (int *EventSet)
+
+     int *EventSet --  a reference to an EventSetInfo structure
+
+DESCRIPTION
+     PAPI_cleanup() This function effectively removes the  target
+     EventSet  from  existence.  The  EventSet must be stopped in
+     order for this call to succeed.
+
+     The return value is an integer that  indicates  whether  the
+     call succeeded (PAPI_OK) or failed (not PAPI_OK).
+
+CROSS-REFERENCE WITH OTHER PerfAPI FUNCTIONS
+
+     PAPI_cleanup may be called by:
+
+          the user application program
+
+     PAPI_cleanup contains calls to:
+
+          lookup_EventSet
+          handle_error
+          cleanup_EventSet
+
+SEE ALSO
+     The PerfAPI Draft:
+          http://icl.cs.utk.edu/projects/papi/api/
+
+BUGS
+     This function has no known bugs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PAPI Release 0.99   Last change: 28 July 1999                   1
+
+

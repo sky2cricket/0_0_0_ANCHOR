@@ -1,0 +1,55 @@
+<HTML>
+<HEAD>
+<TITLE>
+EXAMPLE OF HTML FORM
+</TITLE>
+</HEAD>
+
+<BODY>
+<H1>
+EXAMPLE OF HTML FORM
+<P>
+Sends search information to a CGI file
+</H1>
+<HR SIZE=5>
+
+<H3>
+<FORM ACTION="http://www.cs.utk.edu/~bdeane/cgi-bin/script1">
+<P>
+Search string: <INPUT TYPE="text" NAME="search_string" SIZE=24>
+<P>
+Search Type:
+<SELECT NAME="search_type">
+<OPTION> Insensitive Substring
+<OPTION SELECTED> Exact Match
+<OPTION> Sensitive Substring
+<OPTION> Regular Expression
+</SELECT>
+<P>
+Search databases in:
+[<INPUT TYPE="checkbox" NAME="servers" VALUES="Canada" CHECKED>Canada]
+[<INPUT TYPE="checkbox" NAME=servers" VALUE="Russia">Russia]
+[<INPUT TYPE="checkbox" NAME=servers" VALUE="Sweden">Sweden]
+[<INPUT TYPE="checkbox" NAME=servers" VALUE="USA">USA]
+<BR>
+<I>(multiple items can be selected.)</I>
+<BR>
+<BR>
+<BR>
+Limit query to:
+<MENU>
+<LI><INPUT TYPE="radio" NAME="Limit_query_to" VALUE="Less than 10" Checked>Less than 10
+<LI><INPUT TYPE="radio" NAME="Limit_query_to" VALUE="Less than 20">
+Less than 20
+<LI><INPUT TYPE="radio" NAME="Limit_query_to" VALUE="Less than 30">
+Less than 30
+</MENU>
+<P>
+<INPUT TYPE="submit"> <INPUT TYPE="reset">
+</FORM>
+
+<P>
+(Use view document source to see HTML source code) 
+</H3>
+</BODY>
+</HTML>

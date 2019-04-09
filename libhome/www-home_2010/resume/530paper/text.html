@@ -1,0 +1,344 @@
+<html>
+<h2>
+<center>
+<center> <IMG SRC="prevere2.gif"> </center>
+<hr>
+Comparison of Electronic Switches  with Optical Switches for 
+High Speed Packet Switching.
+<br> Submitted by  C. H. Deane
+<br>  CS530
+</center>
+</h2>
+<hr>
+<h3>
+I. Introduction
+</h3>
+<h4>
+<p>
+The need for remote communications predates computer networks,
+telephones, telegraphs, and even the pony express.  One early
+example of remote communication is the famous signal "One if by 
+land.  Two if by sea." designed by Paul Revere.   The 
+signal was carried over roads with power supplied by horses. Paul
+Revere also dabbled in fault tolerance.  There were three riders
+ on that midnight ride: Paul Revere, William Dawes, and Samuel 
+Prescott. Revere and Dawes were arrested by the British before they
+reached Lexington, but Prescott made it through.  Some people say
+ that Revere only got credit because he had a good press agent
+ (the poet Longfellow), but Paul Revere designed a binary coding
+  system and it worked.  
+<hr>
+<p>
+<center><IMG SRC="gigarev2.gif"></center>
+<br> This figure lifted from
+<br> Digital's Network Communications Catalog
+on the Internet at:
+<br>http://www.networks.digital.com/npb/html/products_guide/cat_toc.html
+<p>
+<hr>
+<p>
+Remote communications today include radio, telephone, television,
+computer networks, and satellite communications, just to name a few. 
+The figure above illustrates how fiber optic and ATM networks can
+be connected in a manner that is transparent to the user. 
+The network above contains both optical and electronic switches.
+This paper examines both kinds of switches, in part to compare them
+and in part to show how they can work together.
+<p>
+</h4>
+<hr>
+<h3>
+II. Electronic Networks versus Optical Networks
+</h3>
+<h4>
+A. Physical Behavior of Electronic versus Photonic Systems
+<p>
+If the laws of physics were the only consideration in network design,
+optical networks would win hands down.  The speed of electrons through
+metal wire is 2 x 10^8.   The speed of photons through fiber optic 
+channels is very close to 3 x 10^8, the speed of light. (Unfortunately, 
+even light cannot achieve the speed of light unless travelling through
+a vacuum.) These speed translates into electronic network throughput
+being measured in Mbytes per second and photonic network throughput
+being measured in Tbytes per second, an order of magnitude improvement.
+<p>
+The switching time of the fastest GaAs transistor is
+about 20 picoseconds. The switching time for a photonic transistor 
+is 1 picosecond or less. The switching power for an electronic component
+power for an electronic component is about 1 microWatt, for a photonic
+component, the switching power is measured in nanoWatts.  The figure
+shown below displays this information in graphic terms.  When I first 
+saw this diagram, I was tempted to label electronic components as 
+"the past" and photonic components as "the future". Of course the 
+situation is not that simple, but no technological breakthrough can 
+overcome the basic physical limits of electronic performance.
+<p>
+<center><IMG SRC="fig12.1ab.gif"></center>
+<p>
+But there are some advantages  available to electronic networks
+that are fairly important.  For a simple analogy to compare buffering
+capabilities, take a garden hose.   This hose can carry either water or,
+if  it is held perfectly straight, a beam of light.  If a bucket
+is placed at the output end of the hose, the water or light
+beam will land in the bucket.  The difference between the two is
+immediately apparent:  water may be collected in the bucket and 
+stored for later use, while the light just goes away. 
+<p> 
+Thus, an electronic signal is  composed of physical objects (admittedly very
+small physical objects), electrons, while a photonic signal is a transient 
+wave phenomena that is associated with electromagnetic characteristics.
+This is why buffers are easily incorporated into electronic switches and not
+used at all in photonic switches. 
+<p>
+<center><IMG SRC="p95.gif"></center>
+<p>
+The above illustration comes from Tannenbaum, page 95.
+<p>
+
+A second difference is the frequency range observed in each type of network,
+and in this photonics win.
+BANDWIDTH:w
+
+The electronic signals in twisted pair operate in the range 10^4 to 5x10^6.
+This limits the bandwidth to no more than 5x10^6 frequencies.  Fiber optics
+operate in the frequency range 10^14 to 10^15.  This gives a bandwidth of
+9x10^14 to work with.  Because of the interactions between certain lightwave
+frequencies and the fiber optic cables (specifically adsorption and polarization
+behavior), some frequencies are "forbidden".  But even if half of the 
+frequencies were lost, there would still be over 10^14 left.  Clearly fiber 
+optics offers a much greater bandwidth than twisted pair [6].
+<p> 
+The articles discussed below reflect these basic physical properties.
+Electronic switching research seems to concentrate on queueing strategies
+and buffer management.  Photonic switching research focuses on using
+the least number of switches possible and using propogation delay to
+substitute for non-existent buffers.  In some places the term "buffer"
+is used to describe a photonic component.  This is never a buffer, but
+merely a hardware strategy to enable continued signal propogation.
+ Because these delay lines affect signals in the same way as queues,
+buffer management calculatons and strategies may be borrowed from 
+electronic circuit theory and applied to photonic networks, but one
+must always keep in mind that there is no such thing as a photonic
+buffer.
+<p>
+B. Design and Cost Considerations
+<p>
+<center><IMG SRC="figcost2.a.gif"></center>
+This figure comes from page 70 of Fisher and Bahl [8].
+<p>
+If money were not an issue, researchers could happily load up on photonic
+cross-bar switches and propogate away. Photons are faster than electrons.
+Unfortunately the price of each photonic switch is astronomical when 
+compared to that of its electronic counterpart.  The figure above shows
+costs per square mm for electronic chips.  Cruz and Tsai report that a
+single 2x2 photonic cross-bar switch costs $2000.  And this switch needs
+an amplifier that costs just as much if you want to really use it.
+Why are the costs for optical switches so high?
+<p>
+Electronic circuits use silicon chips to perform logic functions.  No matter
+how simple or complex, these silicon chips contain no moving parts.  This 
+makes the silicon chip cheap to manufacture and relatively easy to maintain.
+The electronic switch is built from a series of logic elements.  Noise is 
+filtered out, signals are demultiplexed into discrete packets, and routing 
+decisions are made with no moving parts.  If there is a burst of traffic, 
+the packets are simply off-loaded to buffers to wait their turn.
+<p>
+In a photonic switch, wavelength division demultiplexing  is  achieved
+by using the property of diffraction (see Figure 11.11 a diffraction
+grating multiplexor) or refraction (see Figure 12.3, a mechanically 
+controlled device that rotates until the index of refraction of the 
+lightwave matches the index of refraction of the standard). Both of these 
+devices are difficult to calibrate, expensive to manufacture, and
+easily thrown out of adjustment.  The second device has the added
+disadvantage of being slow (switching time measured in milliseconds). 
+<p>
+<center><iMG SRC="fig11.11a.gif"></center>
+This figure comes from page 228 of Yeh[7].
+<p>
+<center><IMG SRC="fig12.3.gif"></center>
+This figure comes from page 254 of Yeh[7].
+<p>
+Figure 12.4 below shows an electro-optic cross-bar switch.  This simple
+hybrid switch is cheaper than purely photonic and faster than electronic,
+with switch time measured in nano-seconds.  This is the "smart cross-bar"
+switch that Cruz et al use in their Cascaded Optical Delay lines.
+Disadvantages of this switch include sensitivity to polarization and the
+need for power boosting (that pricey amplifier!) because of going 
+back and forth between electronic and optical logic.  This switch
+is also used by Chlamtac and Suh in research below.  It costs $2000.  
+<p>
+<center><IMG SRC="fig12.4.gif"></center>
+<p>
+This figure comes from page 255 of Yeh[7].
+</h4>
+<p>
+<hr>
+<h3> III. Switching in Optical and Electronic Networks
+</h3>
+<h4>
+<center><IMG SRC="figwave.a.gif"></center>
+This figure comes from Jeong and Ayanoglu[1].
+<p>
+Jeong and Ayanoglu test two distinct types of wavelength switching
+in their work on optical switches:  Wavelength-Selective (WS) and
+Wavelength-Interchange (WI).  Both approaches avoid the 
+"buffer problem" altogether by treating the optical part of the
+network as a virtural circuit. And in both approaches, they assume 
+that the optical network is connected to "users" by electronic
+network segments.  The figure above shows both designs.
+<p>  In the Wavelength-Selective design, when the
+sender signal reaches the junction of optical and electronic, it is
+demultiplexed in electronic mode (taking advantage of electronic
+buffering) and then each seperated packet is tagged and assigned
+a wavelength that it uses for the duration of the optical network.
+The advantage is that this is a very fast method because packets
+are routed by assigned wavelength through the optical portion of
+the system.  Header information is only read only when the packet
+is loaded on to the optic network (by electronic switches) and 
+when the packed is taken off the optic network (by electronic
+switches). The disadvantage is that blocking can occur at one
+wavelength even while others are free due to the preassigned
+wavelengths.  Blocking is a serious problem in this design,
+because blocked packets are lost.
+<p> 
+In the Wavelength-Interchange method, blocking is avoided
+by using a greedy algorithm to reassign wavelengths at each
+optical switch.  This greatly reduces blocking and improves
+performance.   The optical part of the network is still treated as
+a virtual circuit, so packets are routed by wavelength, not
+by header information.
+<p>
+While these methods may seem wasteful  in terms of dedicating a
+wavepath for one message, one must remember that in fiber optics
+there is an almost unlimited supply of wavelengths to work with.
+Also, designer chemistry continues to come up with new materials
+that display predetermined optical properties ordered by the client.
+In this field, look for new platics for fiber optics in the near 
+future.  Optic cabling composed of multiple fibers, each with unique
+wavelength characteristics is already available.  This is an industry
+where money talks, and more bandwidth means more money[7].
+<p>
+<center><IMG SRC="figdl1.a.gif"></center>
+<p>
+This figure comes from Chlamtac and Suh[2].
+<p>
+<center><IMG SRC="figdl2.gif"></center>
+<p>
+This figure comes from Chlamtac and Suh[2].
+<p>
+The above figures show Chlamtac and Suh's  design to create
+pseudo-buffering in optical switches by using optical delay
+lines.  Each delay line takes one time slot of wave propogation.
+If there is one delay line associated with a crossbar switch,
+the switch effectively "holds" two packets.  They tried many different
+configurations and found that with three switches and a total
+of 11 delay lines they were able to practically eliminate packet
+loss.  By queueing theory, they were able to show that the
+eleven delay lines worked best when broken into 2 sets that were
+relatively prime to one another.  
+<p> The disadvantage of this method is that once this system is
+in place, the signal must traverse all the delay lines whether
+there is heavy traffic or not.  The advantage is that the signal
+travels so fast that this enforced delay is no problem.  The
+main advantage of this approach is cost.  Adding a few feet or a
+few hundred feet of fiber optic cable is free compared to the
+cost of adding another $2000 switch!
+<p> Both of these systems achieved a packet loss rate of less
+than a ten percent chance of a single packet lost in 400,000 
+time slots.
+<p>
+<p>
+Cruz and Tsai use the same crossbar switch as  Chlamtac and Suh, but
+the strategy is to intelligently re-route excess packets through extra
+switches during times of heavy traffic.  This is shown in the figures below.  If two packets are in contention
+for the same output of the switch, the newer packet is deflected into the
+cascaded delay line while the older packet wins the route.  The path that
+circulates through the crossbar switches may be thought of as a FIFO queue.  
+Two different COD designs were tested, TC and TCC.  For both designs,
+a chain of TC (or TCC) modules was used to simulate buffering. The TC 
+modules are simpler and cheaper.  The TCC modules were more effective
+in preventing packet loss.
+<center><IMG SRC="figcod1.a.gif"></center>
+<p>
+This figure comes from Cruz and Tsai[3].
+<p>
+<center><IMG SRC="figcod1.b.gif"></center>
+This figure comes from Cruz and Tsai[3].
+<p>
+<center><IMG SRC="figcod1.c.gif"></center>
+This figure comes from Cruz and Tsai[3].
+<p>
+Cruz and Tsai also incorporate some delay lines in the same way as the
+previous authors, but do not show them in the drawings because this is not the
+focus of their work.  They report a loss probability rate of less than
+one tenth of one percent for one packet at 90% network utilization if 
+a chain of 2 or more TCC modules are used.
+<p>
+An electronic switching system.
+<center><IMG SRC="figbuf1.a.gif"></center>
+This figure is from Law and Leon-Garcia[4].
+<p>
+The figure shown above is meant to be a "generic" electronic design.
+It is a shared loop control buffering system.
+Note how many switches and buffers are used! For this buffer design,
+Law and Leon-Garcia achieve a packet loss probability of 10^-6 
+under heavy use conditions.  If this circuit appears complicated,
+well, it is.  The math and queueing theory that support it are
+even more complicated.
+<p> In the survey article by Awdeh and Mouftah[4],
+a wide variety of  electronic switching architectures are described.
+The common trait is the lavish use of components.  There are no simple
+streamlined systems, because electronic designers are attempting to
+squeeze every last ounce of performance out of their systems.
+<p>
+</h4>
+<hr>
+<h3> IV. Conclusions </h3>
+<h4>
+The  physical properties inherent in fiber optic networks (greater
+bandwidth, higher rate of transmission) will ultimately make fiber
+optics the network of choice for most applications.  The main disadvantages
+seen today are cost and lack of buffer capability in fiber optic switches.
+The cost issue will be  resolved in the marketplace, just as it was
+for semiconductor components.  The lack of buffering is on the verge
+of being solved, as shown in the articles above.  The revolution in
+fiber optics is upon us already.  Anyone interested in computer networks
+would be well advised to learn all about fiber optics immediately.
+But the mass of electronic networking systems in place mandates the
+development of networks that can use the old (electronic) and the
+new (photonic) together.
+<hr>
+<p>
+<h3> Bibliography </h3>
+<h4>
+1. Jeong, G. and Ayanoglu, E., "Comparison of Wavelength-Interchanging and
+Wavelength-Selective Cross-Connects in Multiwavelength All-Optical Networks",
+IEEE Infocomm'96, vol. 1, pages 156-163.
+<br>
+2. Chlamtac,I. and Fumagalli, A., Suh, C.-J., "A Delay Line Receiver 
+ Architecture for All-Optical Networks", IEEE Infocomm'96, vol. 2,
+pages 419-426.
+<br>
+3. Cruz, R.L. and Tsai, J.-T., "COD: Alternative Architectures for High
+Speed Packet Switching," IEEE/ACM Trans. on Networking, vol. 4, no.1, Feb. 1996,
+pages 11-21.
+<br>
+4. Law, K.L.E. and Leon-Garcia, A., ATM Multiplexers and Output Port Controllers
+with Distributed Control and Flexible Queueing Disciplines", IEEE Infocomm'96,
+vol. 2, pages 663-670.
+<br>
+5. Awdeh, R.Y. and Mouftah, H.T., "Survey of ATM Switch Architectures", Computer
+Networks and ISDN Systems, no. 27 (1995), pages 1567-1613.
+<br>
+6. Tanenbaum, A.S. and Computer Networks (Third Edition), Prentice Hall, 1996,
+814 pages.
+<br>
+7. Yeh, C., Applied Photonics, Academic Press, 1994, 337 pages.
+<br>
+8. Fisher, D. and Bahl, I., Gallium Arsenide IC Applications Handbook, Vol 1,
+Academic Press, 1995, 369 pages.
+</h4>
+
+<p>
+<center><IMG SRC="prevere2.gif"></center>
+</html>

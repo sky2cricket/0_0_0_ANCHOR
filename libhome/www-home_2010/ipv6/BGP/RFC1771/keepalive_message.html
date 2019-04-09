@@ -1,0 +1,47 @@
+<html>
+<title>ipv6/BGP/RFC1771/keepalive_message.html</title>
+<body bgcolor="ffffff" text="000000">
+<hr>
+This information lifted directly from
+<a href="http://www.globecom.net/(nobg,sv)/ietf/rfc/rfc1771.shtml">RFC1771.</a>
+<hr>
+<h1>
+4.4 KEEPALIVE Message Format
+</h1>
+
+   BGP does not use any transport protocol-based keep-alive mechanism to
+   determine if peers are reachable.  Instead, KEEPALIVE messages are
+   exchanged between peers often enough as not to cause the Hold Timer
+   to expire.  A reasonable maximum time between KEEPALIVE messages
+   would be one third of the Hold Time interval.  KEEPALIVE messages
+   MUST NOT be sent more frequently than one per second.  An
+   implementation MAY adjust the rate at which it sends KEEPALIVE
+
+
+   messages as a function of the Hold Time interval.
+
+   If the negotiated Hold Time interval is zero, then periodic KEEPALIVE
+   messages MUST NOT be sent.
+
+   KEEPALIVE message consists of only message header and has a length of
+   19 octets.
+
+<pre>
+
+       0                   1                   2                   3
+       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |                                                               |
+      +                                                               +
+      |                                                               |
+      +                                                               +
+      |                           Marker                              |
+      +                                                               +
+      |                                                               |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |          Length               |    Type=4     |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+</pre>
+
+</html>

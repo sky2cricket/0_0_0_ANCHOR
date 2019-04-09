@@ -1,0 +1,62 @@
+PAPI_describe_event     PerfAPI LIBRARY       PAPI_describe_event
+
+
+
+NAME
+     PAPI_describe_event - identify an Event by name or number
+
+SYNOPSIS
+     int PAPI_describe_event (char *name,  int  *EventCode,  char
+     *description)
+
+     char *name -- the name of the Event in question
+
+     int *EventCode -- the numeric value of the Event in question
+
+     char *description -- a description of the Event in question
+
+DESCRIPTION
+     PAPI_describe_event () This function identifies a PAPI_Event
+     in one of two ways.
+
+     Given the name of the Event (i.e. "PAPI_INT_INS"), the func-
+     tion  will  write  the corresponding value in EventCode (51)
+     and a descriptive string  ("Integer  Instructions")  to  the
+     description buffer.
+
+     Given the integer value of EventCode (51), the function will
+     write  the string value of the EventName ("PAPI_INT_INS") to
+     the name buffer and a descriptive string ("Integer  Instruc-
+     tions") to the description buffer.
+
+     Set *description to NULL if the description is not needed.
+
+     The return value is an integer that  indicates  whether  the
+     call succeeded (PAPI_OK) or failed (not PAPI_OK).
+
+CROSS-REFERENCE WITH OTHER PerfAPI FUNCTIONS
+
+     PAPI_describe_event may be called by:
+
+          the user application program
+
+     PAPI_describe_event contains calls to:
+
+          no PerfAPI function
+
+SEE ALSO
+     The PerfAPI Draft:
+          http://icl.cs.utk.edu/projects/papi/api/
+
+BUGS
+     This function has no known bugs.
+
+
+
+
+
+
+
+PAPI Release 0.99   Last change: 28 July 1999                   1
+
+

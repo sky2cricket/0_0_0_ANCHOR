@@ -1,0 +1,41 @@
+#! /bin/csh -f
+
+#       Remove files, stashing them into a junk directory.
+#       A program that runs at logout, or once a day, can
+#       then remove all such files, or those untouched for X days.
+
+set files = ()
+set options = ()
+set dashfiles = no
+
+top:
+if ($#argv > 0) then
+    switch ($1)
+
+    case -:                 # The remaining filenames are all input files.
+            set dashfiles = yes
+            shift argv
+            goto top
+
+    case -[if]:             # Option.
+            set options = ($options $1)
+            shift argv
+            goto top
+
+    case -*:
+            echo "Option  $1  is not recognized by my 'safe' rm."
+            echo "Nothing removed.  Try again."
+            exit (1) 
+
+    default:                # File name.
+            set files = ($files $1)
+            shift argv
+            goto top
+
+    endsw
+endif
+
+foreach file ($files)
+    set file = `echo $file | sed 's/\/$//'`
+    mv -i $options $file ~/junk/${file:t}.$$
+end

@@ -1,0 +1,232 @@
+#!/usr/local/bin/perl5
+#BH.cgi
+#by Cricket! Haygood Deane, summer 98
+#This program adapted from guestbook program page 198 of Learning Perl
+#by Schwartz and Christiansen, O'Reilly.
+
+use 5.004;
+use strict;
+use CGI qw(:standard);
+use Fcntl qw(:flock);
+
+sub bail {
+  my $error = "@_";
+  print h1("Unexpected Error"), p($error), end_html;
+  die $error;
+}
+
+my $autoBCV = param("BackgroundColorValue");
+my $autoTCV = param("TextColorValue");
+my $autoLCV = param("LinkColorValue");
+
+my (
+  $AUTOHTML, # .html file for display
+  $FILENAME, #file to hold BHInfoFile data
+  $MAXSAVE,
+  $TITLEA,
+  $TITLEB,
+  $cur,
+  @entries,
+  $entry,
+  @arrayBCV,
+  @arrayTCV,
+  @arrayLCV,
+);
+
+
+$TITLEA = "BuildHomepage.html";
+$TITLEB = "Build your first homepage, NOW!";
+$FILENAME = "/polar/homes/deane/temp/BHInfoFile";
+$AUTOHTML = "/polar/homes/deane/www-home/cgi-bin/p2/auto.index.html";
+$MAXSAVE = 1;
+
+print header, 
+start_html($TITLEA), 
+h1("$TITLEB");
+
+  
+$cur = CGI->new();
+if ($cur->param("autoname")) {
+  $cur->param("date", scalar localtime);
+  #$cur->param("autobgcolor")   = $autoBCV;
+  #$cur->param("autotextcolor") = $autoTCV;
+  #$cur->param("autolinkcolor") = $autoLCV;
+  @arrayBCV = split (/#/,$autoBCV);
+  @arrayTCV = split (/#/,$autoTCV);
+  @arrayLCV = split (/#/,$autoLCV);
+  @entries = ($cur);
+
+#---start-using-auto.index.html------------------------------------
+open(OUT, ">$AUTOHTML") || bail("cannot open $AUTOHTML: $!");
+flock(OUT, LOCK_EX) || bail("cannot flock $AUTOHTML: $!");
+seek (OUT, 0, 0) || bail("cannot rewind $AUTOHTML: $!");
+
+print (OUT "<html>","\n");
+print (OUT "<head>","\n");
+print (OUT "<title>auto.index.html</title>","\n");
+print (OUT "</head>","\n");
+print (OUT "<body bgcolor=$arrayBCV[1] text=$arrayTCV[1] link=$arrayLCV[1]","\n");
+print (OUT "<center>","\n");
+printf(OUT "<h1>Welcome to the homepage for %s! </h1>",$cur->param("autoname"));
+print (OUT "\n","</center>","\n");
+print (OUT "<hr>","\n");
+printf(OUT "<h3> My major area of study is %s.", $cur->param("automajor"));
+print (OUT "\n");
+printf(OUT "<br> I am also interested in %s. ", $cur->param("automajor2"));
+print (OUT "\n");
+printf(OUT "<br> I am planning to graduate in %s. ", $cur->param("autograd"));
+print (OUT "\n");
+printf(OUT "<br> After college I would like %s. ", $cur->param("autocareer"));
+print (OUT "\n");
+print (OUT "<br> My favorite internet link is: ","\n");
+printf(OUT "<a href=\"%s\">", $cur->param("autolink"));
+printf(OUT "%s</a>", $cur->param("autolink")); 
+print (OUT "\n");
+printf(OUT "<br> My email address is:  %s ", $cur->param("autoemail"));
+print (OUT "\n");
+printf(OUT "<hr>");
+print (OUT "\n");
+printf(OUT "This page last updated: &nbsp;&nbsp;&nbsp; %s", $cur->param("date")); 
+print (OUT "\n");
+printf(OUT "<hr>");
+print (OUT "\n");
+printf(OUT "</body>");
+print (OUT "\n");
+printf(OUT "</html>");
+
+truncate(OUT, tell(OUT)) || bail("cannot truncate $AUTOHTML: $!");
+close (OUT) || bail("cannot close $AUTOHTML: $!");
+#-----end-using-auto.index.html------------------------------------
+
+}
+ 
+#---start-using-BHInfoFile-----------------------------------------
+open(CHANDLE, "+< $FILENAME") || bail("cannot open $FILENAME: $!");
+flock(CHANDLE, LOCK_EX) || bail("cannot flock $FILENAME: $!");
+
+while(!eof(CHANDLE) && @entries < $MAXSAVE) {
+  $entry = CGI->new(\*CHANDLE);
+  push @entries, $entry;
+}
+
+seek (CHANDLE, 0, 0) || bail("cannot rewind $FILENAME: $!");
+
+foreach $entry (@entries) {
+  $entry->save(\*CHANDLE); 
+}
+truncate(CHANDLE, tell(CHANDLE)) || bail("cannot truncate $FILENAME: $!");
+close (CHANDLE) || bail("cannot close $FILENAME: $!");
+#-----end-using-BHInfoFile-----------------------------------------
+
+print hr,hr,hr,hr;
+print start_form;
+
+print p h4("Please enter your name: ", 
+$cur->textfield( -NAME => "autoname", -SIZE => 32));
+
+print p h4("Please select a background color: &nbsp;&nbsp;&nbsp;",
+            popup_menu("BackgroundColorValue",
+           ['white #ffffff', 
+           'turquoise #aaffff',
+           'light blue #aaccff',
+           'pale yellow #ffffaa',
+           'very dark blue #000090',
+           'lavender #eeaaff']));
+
+print p h4("Please select a text color: &nbsp;",
+           "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
+           "&nbsp;&nbsp;&nbsp;&nbsp;",
+            popup_menu("TextColorValue",
+           ['black #000000',
+            'white #ffffff',
+            'very dark blue #000090',
+            'violet #500090',
+            'dark red #a00000',
+            'dark green #009000']));
+
+print p h4("Please select a link color: &nbsp;",
+           "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
+           "&nbsp;&nbsp;&nbsp;&nbsp;",
+           popup_menu("LinkColorValue",
+          ['black #000000',
+           'white #ffffff',
+          'very dark blue #000090',
+          'violet #500090',
+          'dark red #a00000',
+          'dark green #009000']));
+ 
+
+print p h4("Please finish the sentences listed below.");
+
+print p h4("My major area of study is... ", 
+           "&nbsp;&nbsp;&nbsp;&nbsp;",
+            $cur->textfield( -NAME => "automajor", -SIZE => 32));
+
+print p h4("I am also interested in... ", 
+           "&nbsp;&nbsp;&nbsp;&nbsp;",
+            $cur->textfield( -NAME => "automajor2", -SIZE => 32));
+
+print p h4("I plan to graduate... ",
+           "&nbsp;&nbsp;&nbsp;&nbsp;",
+            $cur->textfield( -NAME => "autograd", -SIZE => 32));
+
+print p h4("After college, I would like to... ",
+           "&nbsp;&nbsp;&nbsp;&nbsp;",
+            $cur->textfield( -NAME => "autocareer", -SIZE => 32));
+
+print p h4("Fill in the textarea below with a FULL internet path name.");
+print p h4("For example: http://www.cs.utk.edu/~cs100");
+print p h4("An incorrect internet address will result in a dead link on your page!"); 
+print p h4("My favorite Internet link is... ",
+           "&nbsp;&nbsp;&nbsp;&nbsp;",
+            $cur->textfield( -NAME => "autolink", -SIZE => 48));
+
+print p h4("My email address is... ",
+           "&nbsp;&nbsp;&nbsp;&nbsp;",
+            $cur->textfield( -NAME => "autoemail", -SIZE => 32));
+
+
+
+print p(submit("Submit webpage information Now.")); 
+print end_form;
+print hr;
+print h2("<a href=\"http://www.cs.utk.edu/~deane/cgi-bin/p2/auto.index.html\">Look at your page.</a>");
+
+print h2(" HTML CODE FOR YOUR HOMEPAGE APPEARS BELOW");
+print hr;
+print ("< h t m l ><br>< h e a d ><br>");
+print ("< t i t l e >auto.index.html< /t i t l e >");
+print ("<br>< /h e a d > <br>");
+printf("< b o d y &nbsp;&nbsp;&nbsp;  b g c o l o r = \"%s\" &nbsp;&nbsp;&nbsp;  t e x t = \"%s\" &nbsp;&nbsp;&nbsp;  l i n k = \"%s\" >",
+  $arrayBCV[1],
+  $arrayTCV[1],
+  $arrayLCV[1]);
+print ("<br>< c e n t e r ><br>");
+printf("< h 1 >Welcome to the HomePage for %s!< /h 1 >", 
+  $cur->param("autoname"));
+print ("<br>< /c e n t e r ><br>");
+print ("<br> < h r >");
+print ("<br> < h 3 >");
+printf("<br> < b r > My major area of study is  %s. ",
+  $cur->param("automajor"));
+printf("<br> < b r > I am also interested in  %s. ",
+  $cur->param("automajor2"));
+printf("<br> < b r > I am planning to graduate in  %s. ",
+  $cur->param("autograd"));
+printf("<br> < b r > After college I would like  %s. ",
+  $cur->param("autocareer"));
+print ("<br> < b r > My favorite internet link is: "); 
+printf("<br> < a &nbsp;&nbsp; href=\"%s\">%s< /a > ",
+  $cur->param("autolink"),$cur->param("autolink"));
+printf("<br> < b r > My email address is:  %s ",
+  $cur->param("autoemail"));
+
+
+print ("<br> < h r > <br>");
+printf ("This page last updated: %s ",
+  $cur->param("date"));
+print ("<br> < h r > <br>");
+print ("<br>< /b o d y ><br>< /h t m l >");
+print hr,hr,hr,hr;
+print end_html;
+#end-of-program  

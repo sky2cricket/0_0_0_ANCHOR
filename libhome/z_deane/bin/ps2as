@@ -1,0 +1,25 @@
+# /usr/local/bin/perl 
+########################################################
+# ps2ascii: look through a PostScript file for ASCII strings
+#
+# Usage:
+#     ps2ascii <inputfile.ps>
+#
+########################################################
+
+$out = "";
+while(<>)
+{
+  $line = $_;
+  while($line =~/\((.*)\)(.*)/) {
+       $line = $2;
+       if(length($out)+length($1) > 76) {
+         print "$out\n";
+         $out="";
+       }
+       $out=$out." ".$1;
+  }
+}
+print "$out\n";
+
+

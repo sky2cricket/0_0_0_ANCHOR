@@ -1,0 +1,426 @@
+<html>
+<title>ipv6/BGP/top.html</title>
+<body bgcolor="ffffff" text="000000">
+<h1>
+BGP
+</h1>
+<hr>
+This file is at http://www.cs.utk.edu/~deane/ipv6/BGP/top.html
+<hr>
+ This summary of BGP information derives mainly
+from <a href="http://www.globecom.net/(nobg,sv)/ietf/rfc/rfc1771.shtml">
+RFC1771</a> (the definition of BGP-4) and from other
+RFC documents noted in the text.  Other references 
+are noted where they are used and in the References
+Section at the end.  I built the tables
+from RFC1771 information except for the CIDR table
+that was adapted from Dr. Halabi's book. 
+The illustration of the BGP finite automata also
+comes from <a href="http://www.cisco.com/cpress/home/home.htm">
+"Internet Routing Architectures by Bassam Halabi.</a>
+<hr>
+In the original specification for 
+Border Gateway Protocol (June, 1989) the authors state:
+<p>
+The Border Gateway Protocol (BGP) is an inter-autonomous system
+   routing protocol.  It is built on experience gained with EGP... 
+<p>
+This was a nice way of saying that EGP (Exterior Gateway
+Protocol) had run out of gas.  EGP had worked well, but no one
+could have predicted (or planned for) the explosive growth of the 
+Internet.  The original BGP specification was quickly followed 
+by others.  We are now at BGP-4.  These revisions are not due 
+to any deficiency in the design of BGP, but rather are a
+ reflection of how BGP can grow and evolve to accomodate the
+ rapidly changing needs of the Internet.
+<p>
+<hr>
+Links to the RFCs are given below.
+<p>
+<li><a href="http://www.globecom.net/(nobg)/ietf/rfc/rfc1105.shtml">BGP-1 RFC1105, June 1989. </a>
+<li><a href="http://www.globecom.net/(nobg)/ietf/rfc/rfc1163.shtml">BGP-2 RFC1163, June 1990. </a>
+<li><a href="http://www.globecom.net/(nobg)/ietf/rfc/rfc1267.shtml">BGP-3 RFC1267, October 1991.</a>
+<li><a href="http://www.globecom.net/(nobg)/ietf/rfc/rfc1771.shtml">BGP-4 RFC1771, August 1996.</a> 
+<p>
+<hr>
+The main problems that drove the creation of BGP in 1989 were:
+<p>
+<li> Exhaustion of Class B address space. This problem mandated
+ the CIDR approach to routing.  Martin talked about CIDR
+last week. (Click here for <a href="cidrtable.html">CIDR
+Translation Table.</a>) 
+<li> Ultimate exhaustion of address space in general.  This one of the reasons to migrate to IPv6.  EGP is not
+set up to handle the explosion of addresses that will occur when IPv6 really takes off.
+<li> Enormity of Routing Tables. It is now estimated that the full Internet Routing Information Base contains over 21,000 entries.  There is no mechanism to collapse this
+information in EGP.
+<li> The desire of the business community to have more
+control over routing, to treat Internet routes as commodoties for sale to the highest bidder.
+<p>
+<hr><hr>
+BGP can accomodate:
+<p>
+<Table BORDER=3>
+<tr>
+<td> Feature </td>
+<td> Discussion </td>
+</tr>
+<tr>
+<td> CIDR aggregation </td>
+<td> This is the lumping of addresses with common prefixes together.  
+See <a href="http://www.globecom.net/(nobg,sv)/ietf/rfc/rfc1518.shtml">RFC1518, September 1993</a>.
+</td>
+</tr>
+<tr>
+<td>Community Addressing. </td>
+<td>A community is a group of
+destinations which share some common property.  
+See <a href="http://www.globecom.net/(nobg,sv)/ietf/rfc/rfc1997.shtml">RFC1997,August 1996</a>.
+</td>
+</tr>
+<tr>
+<td> Confederation Addressing. </td>
+<td> A confederation is a group of
+Autonomous Systems which, for routing purposes, appear to be
+a single AS to those BGP speakers outside of the confederation.   See <a href="http://www.globecom.net/(nobg,sv)/ietf/rfc/rfc1965.sh
+tml">RFC1965, June 1996</a>.
+</td>
+</tr>
+<tr>
+<td> Full Mesh Routing. </td>
+<td>  All UPDATE messages are passed from all
+BGP speakers to all of their next hop neighbors.  This method of
+route information exchange is used when there are security or
+policy reasons to prevent Route Reflection.
+</td>
+</tr>
+<tr>
+<td> Route Reflection. </td> 
+<td> Route Reflection involves designating one
+BGP speaker to pass along UPDATE information to a list of BGP
+speakers, even though the speakers on the list can all talk to
+one another. This is an alternative to Full Mesh Routing that is
+used to cut down on UPDATE traffic.
+See <a href="http://www.globecom.net/(nobg,sv)/ietf/rfc/rfc1966.sh
+tml">RFC1966, June 1996</a>.
+</td>
+</tr>
+<tr>
+<td> Mobile Computing </td>
+<td> Because BGP can dynamically UPDATE routes, there are 
+     several methods for changing the path to a particular
+     host as that host changes its geographic position.  One
+     method is to statically list the host in all possible
+     AS locations.  BGP will check for the existence of the
+     host during route authentication.  If the host is found,
+     the address is advertised.  If the host is not found, the
+     address is discarded from the advertisement list. </td>
+</tr>
+<tr>
+<td> Loopback Interfaces </td>
+<td> The Loopback Interface is a virtual connection that 
+     can be used to overcome situations in which a particular
+     host drops out of the route.  The substitue route is
+     brought up immediately so that users have no break in
+     service. </td> 
+</tr>
+<tr>
+<td> Flapping Penalties </td>
+<td> A BGP speaker that flaps (comes up and fails repeatedly) is a
+     horrendous burden to its neighbors because routing tables must
+     be updated each time.  After a certain number of "flaps", a
+     speaker is penalized by being denied admission to the peer group
+     for a certain length of time.  Penalties increase with continued
+     flapping.  This feature is supported by policy rather than by
+     an attribute. </td>
+</tr>
+<td> Current Attribute List</td>
+<td> BGP currently supports the following  
+     <a href="attribute_list.html">attributes.</a>
+<tr>
+<td> Future Features.</td>
+<td>  Because of the design of BGP
+message packets, new ATTRIBUTES can be defined and added in the
+future.  See <a href="http://www.globecom.net/(nobg,sv)/ietf/rfc/rfc2042.sh
+tml">RFC2042, June 1996</a>, Registring New Attribute types.
+</td>
+</tr>
+</table>
+<hr><hr>
+BGP Speakers:
+<p>
+Any host that uses BGP routing protocol is called a "BGP speaker".
+On page 4 of RFC1771, it is stated that "The hosts executing the Border Gateway Protocol need not be routers."
+I have found no other mention in the RFCs of "non-router" BGP speakers.
+<p>
+There are 2 kinds of BGP speakers.
+<p>
+<li> NON-TRANSIT.  Also called stub and multi-home.
+These speakers serve their own AS and provide connection to
+the outside world via one (stub) or more than one (multi-home)
+route.  Non-transit routers do not carry packets unless the
+source or destination address lies inside their own personal
+AS.
+<li> TRANSIT.  These speakers serve any packet that comes through.
+<p>
+When a BGP Speaker is in full operation, the other BGP Speakers
+with which it communicates are called its BGP peers. (Some peers
+are more equal than other peers.  See the discussion of Route
+Reflection further down in this document.)
+<p>
+<hr><hr>
+BGP Initialization:
+<p>
+A BGP Speaker always starts in the IDLE state.  There are 
+several steps before the BGP Speaker is ready to accept
+packets, including:
+<li> making a TCP connection with at least one peer.  Port #179
+     is reserved for BGP connections
+<li> loading the routing tables (a routing table is here called 
+an RIB, for Routing Information Base)
+<li> setting all the timers (up to 5 timers)
+<li> entering the Established State
+<p>
+<hr>
+The figure below shows the Finite Automata that describes
+initialization of a BGP Speaker.
+<p>
+This figure from page 108, "Internet Routing Architectures",
+by Bassam Halabi, CISCO Press, 1997.
+<IMG SRC="bgpfa.gif">
+<p>
+<hr><hr>
+BGP Timers:
+<p>
+<TABLE BORDER=3>
+<tr>
+<td> Timer </td>
+<td> Definition </td>
+</tr>
+<tr>
+<td> Initial Timer </td>
+<td> Set when IDLE state changes to CONNECT state. This
+     timer determines interval between attempting
+     initializations.
+ </td>
+</tr>
+<tr>
+<td> ConnectRetry </td>
+<td> Set when TCP message sent to peer.  If TCP connect fails,
+     ConnectRetry timer reset and the host enters ACTIVE state
+     and begins listening for connect request from peer. </td>
+</tr>
+<tr>
+<td> Hold Timer </td>
+<td> The Hold Timer initially set at a large value (like 4 minutes) when BGP
+     Speaker enters OPENSENT state.  One Hold Timer is set for each peer-to-peer
+     connection and this value must be negotiated.  This negotiation occurs
+     by means of OPEN and KeepAlive Messages that take the BGP speaker from
+     OPENSENT state to OPENCONFIRM state to ESTABLISHED state. 
+     If the Hold Timer is set to ZERO, it means that no KeepAlive messages
+     will be exchanged peer-to-peer.  
+     Otherwise, the value of the Hold Timer determines how often KeepAlive 
+     messages will be sent between peers. A BGP speaker may have different
+     Hold Timer values for different peers. </td>
+</tr>
+<tr>
+<td> KeepAlive </td>
+<td> The reset value for the KeepAlive timer is set with the Hold Timer.
+     A value of ZERO means that KeepAlive messages will not be sent.  If
+     the Hold Timer has a value greater than zero, the KeepAlive timer will
+     be reset each time an UPDATE message is sent or recieved or each time
+     the KeepAlive timer expires.  The purpose of the KeepAlive timer is to
+     refresh the connections between  peers, absent any other traffic.
+     </td>
+</tr>
+<tr>
+<td> MinRoute Advertisement Interval </td>
+<td> This timer blocks an UPDATE message from being sent out too often.  This limit
+     does not apply to IBGP (Internal BGP) messages, since fast convergence of
+     RIB's (Routing Information Bases) for all BGP Speakers in same AS is
+     a good thing.</td>
+</tr>
+<tr>
+<td> MinAS Origination Interval </td>
+<td> This timer blocks an UPDATE message from being sent out too often.  This limit
+     applies to IBGP (Internal BGP) messages.
+     </td>
+</tr>
+</table>
+<p>
+<hr><hr>
+BGP Timer-State Summary
+<p>
+<TABLE BORDER=3>
+<tr>
+<td> State </td>
+<td> Timer </td>
+<td> Suggested Value </td>
+<td> Action if timer expires </td>
+</tr>
+<tr>
+<td> IDLE </td>
+<td> initial timer </td>
+<td> 60 seconds </td>
+<td> The time should be doubled for each consecutive retry. </td>
+</tr>
+<tr>
+<td> CONNECT </td>
+<td> ConnectRetry </td>
+<td> 90 seconds  </td>
+<td> Release BGP resources. Return to IDLE state. </td>
+</tr>
+<tr>
+<td> ACTIVE </td>
+<td> ConnectRetry </td>
+<td> 90 seconds  </td>
+<td> Release BGP resources. Return to IDLE state. </td>
+</tr>
+<tr>
+<td> OPENSENT </td>
+<td> Hold Timer </td>
+<td> 90 seconds  </td>
+<td> Send NOTIFICATION message with error code Hold Timer Exprired. 
+     Return to IDLE state. </td>
+</tr>
+<tr>
+<td> OPENSENT </td>
+<td> KeepAlive </td>
+<td> 30 seconds  </td>
+<td> Send KeepAlive Message and reset KeepAlive Timer. </td>
+</tr>
+<tr>
+<td> OPENCONFIRM </td>
+<td> Hold Timer </td>
+<td> 90 seconds  </td>
+<td> Send NOTIFICATION message with error code Hold Timer Exprired. 
+     Return to IDLE state. </td>
+</tr>
+<tr>
+<td> OPENCONFIRM </td>
+<td> KeepAlive  </td>
+<td> 30 seconds  </td>
+<td> Send KeepAlive Message and reset KeepAlive Timer. </td>
+</tr>
+<tr>
+<td> ESTABLISHED </td>
+<td> Hold Timer </td>
+<td> 90 seconds  </td>
+<td> Send NOTIFICATION message with error code Hold Timer Exprired. 
+     Return to IDLE state. </td>
+</tr>
+<tr>
+<td> ESTABLISHED </td>
+<td> KeepAlive  </td>
+<td> 30 seconds  </td>
+<td> Send KeepAlive Message and reset KeepAlive Timer. </td>
+</tr>
+<tr>
+<td> ESTABLISHED </td>
+<td> MinASOriginationInterval </td>
+<td> 15 seconds  </td>
+<td> Allowed to send next UPDATE Message to peer outside LOCAL AS </td>
+</tr>
+<tr>
+<td> ESTABLISHED </td>
+<td> MinRouteAdvertisementInterval </td>
+<td> 30 seconds  </td>
+<td> Allowed to send UPDATE to peer inside LOCAL AS </a>
+</tr>
+</table>
+<p>
+<hr><hr>
+BGP Routes:
+<p>
+Routes are advertised between a pair of BGP Speakers in  UPDATE messages.
+The UPDATE messages contain
+<li> Network Layer Reachability Information (NLRI)
+<li> Path and Path Attribute Information
+<p>
+Routes are stored in Routing Information Bases (RIBs).  Each BGP Speaker
+maintains 3 RIBs.
+<p>
+<TABLE BORDER=3>
+<tr>
+<td> RIB </td>
+<td> Purpose </td>
+</tr>
+<tr>
+<td> Adj-RIBs-In </td>
+<td> The Adj-RIBs-In store routing information that has been learned
+      from inbound UPDATE messages. Their contents represent routes
+      available as an input to the Decision Process. </td>
+</tr>
+<tr>
+<td> Loc-RIB </td>
+<td> The Loc-RIB contians the local routing information
+     that the BGP speaker has selected by applying its
+     local policies to the routing information contained in
+     its Adj-RIBs-In. </td>
+</tr>
+<tr>
+<td> Adj-RIBs-Out </td>
+<td> The Adj-RIBs-Out store the information that the local BGP 
+     speaker has selected for advertisement to its peers.  The
+     routing information stored in the Adj-RIBS-Out will be carried in
+     the local BGP speaker's UPDATE messages and advertised to
+     its peers.
+      </td>
+</tr>
+</table>
+
+<p>
+<hr><hr>
+BGP Messages:
+<p>
+All BGP Messages have the same header. 
+<p>
+<table BORDER=3>
+<tr>
+<td> TYPE </td>
+<td> Message Name </td>
+<td> Message Purpose </td>
+<td> Message Format <td>
+</tr>
+<tr>
+<td> varies </td>
+<td> Message Header </td>
+<td> All BGP messages  from one BGP speaker to a particular
+     peer have the same MARKER information in the message header.
+     This provides a consistent format for sending,
+     receiving, authenticating, and synchronizing BGP messages.
+     Note the TYPE field in the message header.  This is an unsigned integer
+     designating the type of message to follow.</td>  
+<td> <a href="RFC1771/message_header.html">Message Header Format</a> </td>
+</tr>
+<tr>
+<td> 1 </td>
+<td> OPEN </td>
+<td> Once a TCP connection is established, the first message sent by
+     each side is an OPEN message. If the OPEN message is acceptable,
+     a KEEPALIVE </td>
+<td> <a href="RFC1771/open_message.html">OPEN <br>Message Format</a> </td>
+</tr>
+<tr>
+<td> 2 </td>
+<td> UPDATE </td>
+<td> To send Adj-RIB-Out information to peers. </td>
+<td> <a href="RFC1771/update_message.html">UPDATE <br>Message Format</td>
+</tr>
+<tr>
+<td> 3 </td>
+<td> NOTIFICATION </td>
+<td> Error condition or a BGP Speaker CEASES intentionally. </td>
+<td> <a href="RFC1771/notification_message.html">NOTIFICATION <br>Message Format</a> </td>
+</tr>
+<tr>
+<td> 4 </td>
+<td> KEEPALIVE </td>
+<td> A KEEPALIVE message is sent as a reply to an OPEN message when a peer-to-peer
+     connection has first been established.  Later, KEEPALIVE is used to 
+     periodically refresh the  connection with a peer. </td>
+<td> <a href="RFC1771/keepalive_message.html">KEEPALIVE <br>Message Format</a> </td>
+</tr>
+
+</table>
+
+</html>

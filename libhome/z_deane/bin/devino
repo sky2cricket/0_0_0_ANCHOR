@@ -1,0 +1,8 @@
+#!/usr/local/bin/perl 
+ #from chris jepeway--a small perl script to give you the device # and
+ #the i-node number--invoke this with devino filename--e.g. devino .
+ #devino ..    devino myfile   etc.  to use this from anywhere, copy it
+ #to your /bin directory, then perhaps source or log in again...
+
+($dev, $ino) = (stat($ARGV[0] ? $ARGV[0] : '.'))[0..1];
+print "dev: $dev\nino: $ino\n";

@@ -1,0 +1,51 @@
+1. Describe (in detail) one of the most significant achievements, accomplishments, or 
+   work projects you have completed which required you to exhibit this characteristic.
+
+   In Spring 1998, I was one of 2 teaching assistants for the course CS360.  
+   This is a course about the Unix Operating System and each week each student
+   must submit all of the programs he has written to complete the lab requirements.
+   The submission must be made via email.
+
+   Since there were up to 12 program files to be submitted by a total of up
+   to 24 students in each Lab Section, having the files submitted on an
+   individual basis would have been an email nightmare.
+
+   I took an existing perl script for program submission and rewrote it to
+   fulfill the needs of the CS360 course.  I revised a second script for use
+   by the teaching assistants to "unpack" the email files.
+
+2. Describe specifically how you exhibited this characteristic when completing
+   the accomplishment, or work project.
+
+   First, I had to learn some perl, a scripting language like AWK. 
+
+   The existing perl script for submit would compress the files into a 
+   single "tar" file and then automatically email them to the person
+   who wrote the original script.  That automatic email address had to be
+   fixed so the tar file would go to the correct teaching assistant.  
+
+   The existing perl script for unpack merely unpacked the file to whatever
+   directory that you were in.  I wanted something a little more automatic,
+   so I did the following.
+      1. Added code to the submit program to have a phrase at the
+         top of the email message including the student name and 
+         the 360 Lab Number. ( Since late labs were accepted, so your
+         email could include labs from several different weeks. )
+      2. Added code to the unpack program to create a directory keyed
+         to student name and 360 Lab Number.
+      3. Added code to the unpack program that automatically sent an
+         email message to the student saying that "Your 360 Lab N has
+         been received."
+
+3. Describe the outcome or results of your actions. 
+
+      It was much easier to receive and grade the labs.
+
+
+	
+
+
+
+
+
+page8
