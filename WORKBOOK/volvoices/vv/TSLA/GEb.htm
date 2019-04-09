@@ -1,0 +1,375 @@
+<html>
+<head>
+<title>vv_popupCA</title>
+
+<link href="../vv_workbook.css" type="text/css" rel="stylesheet">
+
+
+
+
+<script language="javascript">
+
+var select_id= new String();
+function get_select_id() {
+
+var str = new String();
+    str = parent.location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  parent.window.opener.location.href="+parent.window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=get_select_id();
+
+
+
+var strSelect_GE_A = new String('');
+
+strSelect_GE_A = '<select name="aaa"  size="24" style="font-size:10px"> \r\n'
+	+'<option  selected>No Value Selected</option> \r\n'	
+
+
+
+	+'<option>BACON FARM SITE (TENN.)</option>  \r\n'
+	+'<option>BAG END FARM (WILLIAMSON COUNTY, TENN.)</option>  \r\n'
+	+'<option>BAILEY SITE (TENN.)</option>  \r\n'
+	+'<option>BAKERVILLE (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>BANKS AND BANKING - TENNESSEE - DRESDEN</option>  \r\n'
+	+'<option>BANKS III SITE (TENN.)</option>  \r\n'
+	+'<option>BAPTISTS - TENNESSEE - WARREN COUNTY</option>  \r\n'
+	+'<option>BARKLEY, LAKE (KY. AND TENN.)</option>  \r\n'
+	+'<option>BARKLEY, LAKE (KY. AND TENN.) - NAVIGATION</option>  \r\n'
+	+'<option>BARKLEY, LAKE (KY. AND TENN.) - RECREATIONAL USE</option>  \r\n'
+	+'<option>BARKLEY, LAKE, REGION (KY. AND TENN.) - HISTORY</option>  \r\n'
+	+'<option>BARTLETT (TENN.) - ECONOMIC CONDITIONS</option>  \r\n'
+	+'<option>BARTLETT (TENN.) - HISTORY</option>  \r\n'
+	+'<option>BARTLETT (TENN.) - HISTORY - CIVIL WAR, 1861-1865 - SOURCES</option>  \r\n'
+	+'<option>BARTLETT (TENN.) - LOCATION</option>  \r\n'
+	+'<option>BARTLETT (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>BAXTER (TENN.) - HISTORY</option>  \r\n'
+	+'<option>BAYS MOUNTAIN (TENN.) - HISTORY</option>  \r\n'
+	+'<option>BEALE STREET (MEMPHIS, TENN.)</option>  \r\n'
+	+'<option>BEALE STREET (MEMPHIS, TENN.) - HISTORY</option>  \r\n'
+	+'<option>BEALE STREET (MEMPHIS, TENN.) - PICTORIAL WORKS</option>  \r\n'
+	+'<option>BEAN STATION TAVERN (TENN.)</option>  \r\n'
+	+'<option>BEAR SPRING (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>BEAR SPRING (TENN.) - HISTORY</option>  \r\n'
+	+'<option>BEDFORD COUNTY (TENN.)</option>  \r\n'
+	+'<option>BEDFORD COUNTY (TENN.) - ANTIQUITIES</option>  \r\n'
+	+'<option>BEDFORD COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>BEDFORD COUNTY (TENN.) - CENSUS, 1820</option>  \r\n'
+	+'<option>BEDFORD COUNTY (TENN.) - CENSUS, 1850</option>  \r\n'
+	+'<option>BEDFORD COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>BEDFORD COUNTY (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>BEDFORD COUNTY (TENN.) - CHURCH HISTORY - SOURCES</option>  \r\n'
+	+'<option>BEDFORD COUNTY (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>BEDFORD COUNTY (TENN.) - ECONOMIC CONDITIONS</option>  \r\n'
+	+'<option>BEDFORD COUNTY (TENN.) - ECONOMIC CONDITIONS - STATISTICS</option>  \r\n'
+	+'<option>BEDFORD COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>BEDFORD COUNTY (TENN.) - GENEALOGY - PERIODICALS</option>  \r\n'
+	+'<option>BEDFORD COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>BEDFORD COUNTY (TENN.) - GENEALOGY - SOURCES - INDEXES</option>  \r\n'
+	+'<option>BEDFORD COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>BEDFORD COUNTY (TENN.) - HISTORY - PERIODICALS</option>  \r\n'
+	+'<option>BEDFORD COUNTY (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>BEDFORD COUNTY (TENN.) - HISTORY, LOCAL</option>  \r\n'
+	+'<option>BEDFORD COUNTY (TENN.) - MAPS</option>  \r\n'
+	+'<option>BEDFORD COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>BEDFORD COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>BEDFORD COUNTY (TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+	+'<option>BEECH GROVE (TENN.) - HISTORY</option>  \r\n'
+	+'<option>BEECH RIVER WATERSHED (TENN.)</option>  \r\n'
+	+'<option>BEERSHEBA SPRINGS (TENN.)</option>  \r\n'
+	+'<option>BEERSHEBA SPRINGS (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>BEERSHEBA SPRINGS (TENN.) - HISTORY</option>  \r\n'
+	+'<option>BEERSHEBA SPRINGS (TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+	+'<option>BELL BUCKLE (TENN.) - POETRY</option>  \r\n'
+	+'<option>BELL\'S DEPOT (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>BELLE MEADE (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>BELLE MEADE (TENN.) - BUILDINGS, STRUCTURES, ETC.</option>  \r\n'
+	+'<option>BELLE MEADE (TENN.) - HISTORY</option>  \r\n'
+	+'<option>BELLE MEADE PLANTATION (TENN.)</option>  \r\n'
+	+'<option>BELLE MEADE PLANTATION (TENN.) - CONSERVATION AND RESTORATION</option>  \r\n'
+	+'<option>BELLE MEADE PLANTATION (TENN.) - EXHIBITIONS</option>  \r\n'
+	+'<option>BELLE MEADE PLANTATION (TENN.) - HISTORY</option>  \r\n'
+	+'<option>BELLE MEADE PLANTATION (TENN.) - PERIODICALS</option>  \r\n'
+	+'<option>BELLEVILLE (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>BELLEVILLE (TENN.) - HISTORY</option>  \r\n'
+	+'<option>BELLEVUE (TENN.) - CITY PLANNING</option>  \r\n'
+	+'<option>BELLEVUE (TENN.) - HISTORY</option>  \r\n'
+	+'<option>BELLEVUE (TENN.) - HISTORY - PERIODICALS</option>  \r\n'
+	+'<option>BELLEVUE REGION (TENN.) - HISTORY</option>  \r\n'
+	+'<option>BELLEVUE REGION (TENN.) - HISTORY - PERIODICALS</option>  \r\n'
+	+'<option>BELLEVUE REGION (TENN.) - HISTORY - PICTORIAL WORKS</option>  \r\n'
+	+'<option>BELLS (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>BELLSBURG (TENN.) - HISTORY</option>  \r\n'
+	+'<option>BELMONT (NASHVILLE, TENN.) - PERIODICALS</option>  \r\n'
+	+'<option>BEMIS (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>BENTON  COUNTY (TENN.) - BIBLIOGRAPHY</option>  \r\n'
+	+'<option>BENTON (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>BENTON (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>BENTON (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>BENTON (TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+	+'<option>BENTON COUNTY (TENN.)</option>  \r\n'
+	+'<option>BENTON COUNTY (TENN.) - ANTIQUITIES</option>  \r\n'
+	+'<option>BENTON COUNTY (TENN.) - BIBLIOGRAPHY</option>  \r\n'
+	+'<option>BENTON COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>BENTON COUNTY (TENN.) - CENSUS, 1840</option>  \r\n'
+	+'<option>BENTON COUNTY (TENN.) - CENSUS, 1850</option>  \r\n'
+	+'<option>BENTON COUNTY (TENN.) - CENSUS, 1860</option>  \r\n'
+	+'<option>BENTON COUNTY (TENN.) - CENSUS, 1870</option>  \r\n'
+	+'<option>BENTON COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>BENTON COUNTY (TENN.) - ECONOMIC POLICY</option>  \r\n'
+	+'<option>BENTON COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>BENTON COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>BENTON COUNTY (TENN.) - GENEALOGY - SOURCES - INDEXES</option>  \r\n'
+	+'<option>BENTON COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>BENTON COUNTY (TENN.) - HISTORY - MISCELLANEA</option>  \r\n'
+	+'<option>BENTON COUNTY (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>BENTON COUNTY (TENN.) - HISTORY - SOURCES - INDEXES</option>  \r\n'
+	+'<option>BENTON COUNTY (TENN.) - MAPS</option>  \r\n'
+	+'<option>BENTON COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>BENTON COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>BENTON COUNTY (TENN.) - POLITICS AND GOVERNMENT</option>  \r\n'
+	+'<option>BERRY FIELD (NASHVILLE, TENN.) - PERIODICALS</option>  \r\n'
+	+'<option>BETHESDA CEMETERY (HAMBLEN COUNTY, TENN.)</option>  \r\n'
+	+'<option>BETSY WILLIS CEMETERY (COFFEE COUNTY, TENN.)</option>  \r\n'
+	+'<option>BICENTENNIAL MALL (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>BIG CYPRESS TREE STATE NATURAL AREA (TENN.)</option>  \r\n'
+	+'<option>BIG HATCHIE RIVER (TENN.)</option>  \r\n'
+	+'<option>BIG HILL POND STATE PARK (TENN.)</option>  \r\n'
+	+'<option>BIG IVY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>BIG IVY (TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+	+'<option>BIG RIDGE STATE PARK (TENN.)</option>  \r\n'
+	+'<option>BIG SANDY (TENN.) - MAPS</option>  \r\n'
+	+'<option>BIG SOUTH FORK NATIONAL RIVER AND RECREATION AREA (TENN. AND KY)</option>  \r\n'
+	+'<option>BIG SOUTH FORK NATIONAL RIVER AND RECREATION AREA (TENN. AND KY.)</option>  \r\n'
+	+'<option>BIG SOUTH FORK NATIONAL RIVER AND RECREATION AREA (TENN. AND KY.) - CIVILIZATION - 20TH CENTURY</option>  \r\n'
+	+'<option>BIG SOUTH FORK NATIONAL RIVER AND RECREATION AREA (TENN. AND KY.) - ENVIRONMENTAL ASPECTS</option>  \r\n'
+	+'<option>BIG SOUTH FORK NATIONAL RIVER AND RECREATION AREA (TENN. AND KY.) - GUIDEBOOKS</option>  \r\n'
+	+'<option>BIG SOUTH FORK NATIONAL RIVER AND RECREATION AREA (TENN. AND KY.) - MAPS</option>  \r\n'
+	+'<option>BIG SOUTH FORK NATIONAL RIVER AND RECREATION AREA (TENN. AND KY.) - PICTORIAL WORKS</option>  \r\n'
+	+'<option>BINFIELD (TENN.) - HISTORY</option>  \r\n'
+	+'<option>BLEDSOE COUNTY (TENN.) - CENSUS RECORDS</option>  \r\n'
+	+'<option>BLEDSOE COUNTY (TENN.) - CENSUS, 1840</option>  \r\n'
+	+'<option>BLEDSOE COUNTY (TENN.) - CENSUS, 1850</option>  \r\n'
+	+'<option>BLEDSOE COUNTY (TENN.) - CENSUS, 1860</option>  \r\n'
+	+'<option>BLEDSOE COUNTY (TENN.) - CENSUS, 1870</option>  \r\n'
+	+'<option>BLEDSOE COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>BLEDSOE COUNTY (TENN.) - CENSUS, 1900</option>  \r\n'
+	+'<option>BLEDSOE COUNTY (TENN.) - CENSUS, 1910</option>  \r\n'
+	+'<option>BLEDSOE COUNTY (TENN.) - CENSUS, 1920</option>  \r\n'
+	+'<option>BLEDSOE COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>BLEDSOE COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>BLEDSOE COUNTY (TENN.) - GENEALOGY - SOURCES - INDEXES</option>  \r\n'
+	+'<option>BLEDSOE COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>BLEDSOE COUNTY (TENN.) - MAPS, MANUSCRIPT</option>  \r\n'
+	+'<option>BLEDSOE COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>BLEDSOE COUNTY (TENN.) - PICTORIAL WORKS</option>  \r\n'
+	+'<option>BLEDSOE COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>BLEDSOE CREEK STATE PARK (TENN.)</option>  \r\n'
+	+'<option>BLEDSOE STATE FOREST (TENN.)</option>  \r\n'
+	+'<option>BLEDSOESBOROUGH (TENN.) - HISTORY</option>  \r\n'
+	+'<option>BLOOMINGTON SPRINGS (TENN.) - DESCRIPTION AND TRAVEL - VIEWS</option>  \r\n'
+	+'<option>BLOUNT COUNTY (TENN.)</option>  \r\n'
+	+'<option>BLOUNT COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>BLOUNT COUNTY (TENN.) - CENSUS, 1830</option>  \r\n'
+	+'<option>BLOUNT COUNTY (TENN.) - CENSUS, 1840</option>  \r\n'
+	+'<option>BLOUNT COUNTY (TENN.) - CENSUS, 1860</option>  \r\n'
+	+'<option>BLOUNT COUNTY (TENN.) - CENSUS, 1870</option>  \r\n'
+	+'<option>BLOUNT COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>BLOUNT COUNTY (TENN.) - DESCRIPTION AND TRAVEL - VIEWS</option>  \r\n'
+	+'<option>BLOUNT COUNTY (TENN.) - ECONOMIC CONDITIONS</option>  \r\n'
+	+'<option>BLOUNT COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>BLOUNT COUNTY (TENN.) - GENEALOGY - PERIODICALS</option>  \r\n'
+	+'<option>BLOUNT COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>BLOUNT COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>BLOUNT COUNTY (TENN.) - HISTORY - PERIODICALS</option>  \r\n'
+	+'<option>BLOUNT COUNTY (TENN.) - MAPS</option>  \r\n'
+	+'<option>BLOUNT COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>BLOUNT COUNTY (TENN.) - PERIODICALS</option>  \r\n'
+	+'<option>BLOUNT COUNTY (TENN.) - PICTORIAL WORKS</option>  \r\n'
+	+'<option>BLOUNT COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>BLOUNT COUNTY (TENN.) - REGISTERS</option>  \r\n'
+	+'<option>BLOUNT COUNTY (TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+	+'<option>BLOUNT COUNTY (TENN.) - TRANSIT SYSTEM</option>  \r\n'
+	+'<option>BLOUNTVILLE (TENN.)</option>  \r\n'
+	+'<option>BLOUNTVILLE (TENN.) - HISTORY</option>  \r\n'
+	+'<option>BLOUNTVILLE (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>BLUFF CITY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>BOLIVAR (TENN.)</option>  \r\n'
+	+'<option>BOLIVAR (TENN.) - CHURCH HISTORY - 20TH CENTURY</option>  \r\n'
+	+'<option>BOLIVAR (TENN.) - CHURCH HISTORY - SOURCES</option>  \r\n'
+	+'<option>BOLIVAR (TENN.) - DESCRIPTION AND TRAVEL - VIEWS</option>  \r\n'
+	+'<option>BOLIVAR (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>BOLIVAR (TENN.) - FLOODS</option>  \r\n'
+	+'<option>BOLIVAR (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>BOLIVAR (TENN.) - HISTORY</option>  \r\n'
+	+'<option>BOLIVAR (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>BOLIVAR (TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+	+'<option>BON AIR (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>BOONE LAKE (TENN.)</option>  \r\n'
+	+'<option>BOONSHILL (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>BOONSHILL (TENN.) - HISTORY</option>  \r\n'
+	+'<option>BOWLING GREEN (TENN.) - HISTORY</option>  \r\n'
+	+'<option>BRADEN (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>BRADFORD (TENN.) - DESCRIPTION AND TRAVEL - VIEWS</option>  \r\n'
+	+'<option>BRADFORD (TENN.) - HISTORY - PICTORIAL WORKS</option>  \r\n'
+	+'<option>BRADFORD (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>BRADLEY COUNTY (TENN.)</option>  \r\n'
+	+'<option>BRADLEY COUNTY (TENN.) - ANTIQUITIES</option>  \r\n'
+	+'<option>BRADLEY COUNTY (TENN.) - APPROPRIATIONS AND EXPENDITURES</option>  \r\n'
+	+'<option>BRADLEY COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>BRADLEY COUNTY (TENN.) - CENSUS, 1840</option>  \r\n'
+	+'<option>BRADLEY COUNTY (TENN.) - CENSUS, 1850</option>  \r\n'
+	+'<option>BRADLEY COUNTY (TENN.) - CENSUS, 1860</option>  \r\n'
+	+'<option>BRADLEY COUNTY (TENN.) - CENSUS, 1870</option>  \r\n'
+	+'<option>BRADLEY COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>BRADLEY COUNTY (TENN.) - CENSUS, 1900 - INDEXES</option>  \r\n'
+	+'<option>BRADLEY COUNTY (TENN.) - CHURCHES</option>  \r\n'
+	+'<option>BRADLEY COUNTY (TENN.) - ECONOMIC CONDITIONS</option>  \r\n'
+	+'<option>BRADLEY COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>BRADLEY COUNTY (TENN.) - GENEALOGY - PERIODICALS</option>  \r\n'
+	+'<option>BRADLEY COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>BRADLEY COUNTY (TENN.) - GENEALOGY - SOURCES - INDEXES</option>  \r\n'
+	+'<option>BRADLEY COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>BRADLEY COUNTY (TENN.) - HISTORY - PERIODICALS</option>  \r\n'
+	+'<option>BRADLEY COUNTY (TENN.) - HISTORY - PICTORIAL WORKS</option>  \r\n'
+	+'<option>BRADLEY COUNTY (TENN.) - MAPS</option>  \r\n'
+	+'<option>BRADLEY COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>BRADLEY COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>BRADLEY COUNTY (TENN.) - SOCIETIES, ETC - PERIODICALS</option>  \r\n'
+	+'<option>BRAINERD (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>BRANDYWINE POINTE SITE (DAVIDSON COUNTY, TENN.)</option>  \r\n'
+	+'<option>BRENTWOOD (TENN.)</option>  \r\n'
+	+'<option>BRENTWOOD (TENN.) - HISTORY</option>  \r\n'
+	+'<option>BRENTWOOD (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>BRICEVILLE (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>BRICEVILLE (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>BRICEVILLE (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>BRICEVILLE (TENN.) - HISTORY</option>  \r\n'
+	+'<option>BRISTOL (TENN.)</option>  \r\n'
+	+'<option>BRISTOL (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>BRISTOL (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>BRISTOL (TENN.) - ECONOMIC CONDITIONS</option>  \r\n'
+	+'<option>BRISTOL (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>BRISTOL (TENN.) - HISTORY</option>  \r\n'
+	+'<option>BRISTOL (TENN.) - HISTORY - CIVIL WAR, 1861-1865</option>  \r\n'
+	+'<option>BRISTOL (TENN.) - HISTORY - PICTORIAL WORKS</option>  \r\n'
+	+'<option>BRISTOL (TENN.) - HISTORY, MILITARY</option>  \r\n'
+	+'<option>BRISTOL (TENN.) - MAPS</option>  \r\n'
+	+'<option>BRISTOL (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>BRISTOL (TENN.) - PERIODICALS</option>  \r\n'
+	+'<option>BRISTOL (TENN.) - PUBLIC SCHOOLS</option>  \r\n'
+	+'<option>BRISTOL (TENN.) - STATISTICS</option>  \r\n'
+	+'<option>BROADWAY AVENUE (NASHVILLE, TENN.) - PICTORIAL WORKS</option>  \r\n'
+	+'<option>BROWNSVILLE (TENN.)</option>  \r\n'
+	+'<option>BROWNSVILLE (TENN.) - CHURCH HISTORY - SOURCES</option>  \r\n'
+	+'<option>BROWNSVILLE (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>BROWNSVILLE (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>BROWNSVILLE (TENN.) - HISTORY - GUIDEBOOKS</option>  \r\n'
+	+'<option>BROWNSVILLE (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>BRUCE GAP (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>BRUCETON (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>BRUNSWICK (TENN.) - HISTORY</option>  \r\n'
+	+'<option>BUCKSNORT (TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+	+'<option>BUENA VISTA (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>BUFFALO COVE (TENN.) - HISTORY</option>  \r\n'
+	+'<option>BUFFALO RIVER (TENN.)</option>  \r\n'
+	+'<option>BUMPERS COVE (TENN.)</option>  \r\n'
+	+'<option>BURGESS FALLS STATE NATURAL AREA (TENN.)</option>  \r\n'
+	+'<option>BURNS (TENN.) - HISTORY</option>  \r\n'
+	+'<option>BURNS (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>BURWOOD (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>BURWOOD (TENN.) - HISTORY</option>  \r\n'
+	+'<option>BUSINESS ENTERPRISES - FINANCE - TENNESSEE - HANDBOOKS, MANUALS, ETC.</option>  \r\n'
+	+'<option>BUTLER (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>BUTLER (TENN.) - HISTORY</option>  \r\n'
+	+'<option>BYRDSTOWN (TENN.) - NEWSPAPERS</option>  \r\n'
+
++'</select> \r\n';
+	
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+<body class="background">
+
+
+
+
+<form name="FormOne" >
+
+
+<div name="SS" id="SS">
+<script>
+document.write(
+
+	 '<table border="1" cellpadding="4" cellspacing="0"  width="90%">\r\n'
+	+'<tr><td  bgcolor="ddeeff">\r\n'
+	///+'vv_functions.htm called by '+select_id+' <br>\r\n'
+	+'<b>Select Geographic Subject B  </b> \r\n'
+	+'</td></tr><tr><td bgcolor="ddeeff"> \r\n' 
+	+ strSelect_GE_A
+
+	+'</td></tr></table> \r\n'
+	///+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+</script>
+	
+</div>
+
+<input type="button" onclick="showSelection();" name="B1" value="Geographic Name">
+
+</form>
+
+<script>
+
+
+
+                  
+
+function showSelection() {
+
+val = new String();
+
+for ( i=0; i< document.FormOne.aaa.length; i++ ) {
+
+if ( document.FormOne.aaa[i].selected == true ) {
+  	val = document.FormOne.aaa[i].text;
+	break;
+	}
+else { val = "you never selected anything"; 
+	}
+
+}
+////////////////////////alert ("You selected " +val);
+
+switch ( select_id ) {
+
+case  "subject_geographic_lcsh_01" :
+	parent.window.opener.document.forms[0].subject_geographic_lcsh_01.value=val;
+	parent.window.close();
+	break;
+
+case  "subject_geographic_lcsh_02" :
+	parent.window.opener.document.forms[0].subject_geographic_lcsh_02.value=val;
+	parent.window.close();
+	break;
+
+}//end switch
+
+}///end function
+</script>
+

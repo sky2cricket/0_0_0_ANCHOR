@@ -1,0 +1,1461 @@
+<html>
+<head>
+<title>DLXS Collection Manager field descriptions</title>
+
+
+
+ </head>         <body>
+<div class="pageTitle">Collection Manager (collmgr) Field Descriptions</div> 
+     
+      <table cellpadding="2" cellspacing="0" width="100%">
+        <tbody>
+          <tr>
+            <td align="LEFT"><a id="collid" name="collid"></a>
+            <p>  </p>
+            <span class="normalfont"><b>collid</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format:</i>string</span><br />
+              <i>class: </i>all
+              <p>The unique ID string used for the collection. Usually corresponds to
+                the directory name holding the collection files.</p>
+              <p>Collids should consist only of letters, numbers and underscores.  Collmgr restricts the allowable characters in a collid to just those typically permitted in programming languages.  For example, hyphens, *, +, %, etc. are not permitted.  </p>
+              <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="collname" name="collname"></a>
+            <p>  </p>
+            <span class="normalfont"><b>collname</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format:</i>string</span><br />
+              <i>class: </i>all
+              <p>The collection name as it will appear on the cross-collection results
+                lists, in the collection picker (sorted alphabetically), and on the home page for the collection.</p>
+              <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="contactlink" name="contactlink"></a>
+            <p>  </p>
+            <span class="normalfont"><b>contactlink</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>optional</i><br />
+                <i>value/format:</i>string</span><br />
+              <i>class: </i>image, text, findaid
+              <p>For constructing the contact mailto link; contains the content of the
+                HREF attribute of the A element (e.g., &quot;mailto:help@some.edu/&quot;)</p>
+            <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="contacttext" name="contacttext"></a>
+            <p>  </p>
+            <span class="normalfont"><b>contacttext</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>optional</i><br />
+                <i>value/format:</i>string</span><br />
+              <i>class: image, text, findaid</i>
+              <p>For constructing the contact mailto link; contains the content of the
+                A element that will appear as the link text (e.g. &quot;Help/&quot;).</p>
+            <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="defaultgroupid" name="defaultgroupid"></a>
+            <p>  </p>
+            <span class="normalfont"><b>defaultgroupid</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>optional</i><br />
+                <i>value/format:</i>string</span><br />
+              <i>class: </i>all
+              <p>For assigning a default group to a collection. Causes group templates, etc. to be used for a collection even when a "g" (group) parameter is not on the URL.</p>
+
+              <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="orglink" name="orglink"></a>
+            <p>  </p>
+            <span class="normalfont"><b>orglink</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>optional</i><br />
+                <i>value/format:</i>string</span><br />
+              <i>class: </i>all
+              <p>For constructing the organization mailto link; contains the content of the
+                HREF attribute of the A element (e.g., &quot;mailtoorginfo@umich.edu/&quot;)</p>
+            <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="orgtext" name="orgtext"></a>
+            <p>  </p>
+            <span class="normalfont"><b>orgtext</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>optional</i><br />
+                <i>value/format:</i>string</span><br />
+              <i>class: </i>all
+              <p>For constructing the organization mailto link; contains the content of the
+                A element that will appear as the link text (e.g. &quot;org-info@umich.edu/&quot;).</p>
+            <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="querylanguage" name="querylanguage"></a>
+            <p>  </p>
+            <span class="normalfont"><b>querylanguage</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>optional</i><br />
+                <i>value/format:</i>string</span><br />
+              <i>class: </i>text, image
+              <p><b>Text:</b> This value indicates whether the searches requested by the user for this
+                collection will be done using the xpat engine or the CGM protocol.  The CGM
+                protocol was developed by UM, Cornell, and the University of Goettingen in
+                Germany, to facilitate interoperable communication.  The possible values for
+                this parameter are 'cgm' or 'xpat', with 'xpat' being the default.</p>
+              <p><b>Image:</b> If using MySQL to search image collections set the value to 'sql' otherwise 'xpat', with 'xpat' being the default.</p>
+              <p>  </p>
+          </td>
+          </tr>
+          
+          <tr>
+            <td align="LEFT"><a id="rendering" name="rendering"></a>
+            <p>  </p>
+            <span class="normalfont"><b>rendering</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format:</i>string</span><br />
+              <i>class: </i>bib
+              <p>This value configures the default html rendering mechanism for the collection. If set to &quot;perl&quot;,
+                the CGI program will use HTML templates and create data results in HTML for output. If set to &quot;xslt&quot;,
+                the CGI program will call the XLST engine to render the XML templates and to render XML data results into HTML for output.</p>
+              <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="perlpifillermodule" name="perlpifillermodule"></a>
+            <p>  </p>
+            <span class="normalfont"><b>perlpifillermodule</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format:</i>string</span><br />
+              <i>class: </i>Findaid, Text
+              <p>The module name (without .pm suffix) of the PerlPIFiller Object (which handles application level or user
+                interface filtering) or the subclass thereof for the collection. Supply one of TextAppPerlPIFiller for the
+                default TextApp behavior or a subclass if one has been written for the collection.
+                Same for FindaidAppPerlPIFiller. BibApp and ImageApp are not configured to use this mechanism yet.</p>
+              <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="xlstpifillermodule" name="xlstpifillermodule"></a>
+            <p>  </p>
+            <span class="normalfont"><b>xlstpifillermodule</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format:</i>string</span><br />
+              <i>class: </i>Findaid, Text
+              <p>The module name (without .pm suffix) of the XsltPIFiller Object (which handles application level or user
+                interface filtering) or the subclass thereof for the collection. Supply one of TextAppXsltPIFiller for the
+                default TextApp behavior or a subclass if one has been written for the collection. Same for
+                FindaidAppXsltPIFiller. BibApp and ImageApp are not configured to use this mechanism yet.</p>
+              <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="homesite" name="homesite"></a>
+            <p>  </p>
+            <span class="normalfont"><b>homesite</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format:</i>string</span><br />
+              <i>class: </i>text, bib
+              <p>The URL for the host webserver hosting the middleware for this collection. (e.g. &quot;http//www.hti.umich.edu&quot;).  The value &quot;localhost&quot; can be supplied which will resolve to whatever machine the middleware happens to be running on.</p>
+            <p>Occasionally, the need may be for a URL other than that of the middleware host.  For example, the collection may have a home page from another institution to which the user should be directed such as http://historical.library.cornell.edu/math/.  These non-local URLs should be flagged by prepending "foreign:" so that the middleware will not append local cgi script names to the URL string. </p>
+            <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="host" name="host"></a>
+            <p>  </p>
+            <span class="normalfont"><b>host</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format:</i>string</span><br />
+              <i>class: </i>all
+              <p>The virtual host name for the machine hosting the collection data and data indexes.
+                This is usually the same host hosting the middleware. </p>
+              <p>To make the middleware access data on the same machine the middleware itself is running on, the value should agree with the value of the HTTP_HOST environment variable
+                set by a webserver running on that machine. (e.g., &quot;www.hti.umich.edu&quot;).  The value &quot;localhost&quot; can also be be supplied which will resolve to whatever machine the middleware happens to be running on. If the value is not &quot;localhost&quot; and is different from the value of the HTTP_HOST environment variable, the middleware will attempt to set up a socket connection to the machine named here to send commands to an XPAT process running on that remote machine.  This requires that the XPAT daemon be properly configured on that remote machine.</p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="pageviewhost" name="pageviewhost"></a>
+            <p>  </p>
+            <span class="normalfont"><b>pageviewhost</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>optional</i><br />
+                <i>value/format:</i>string</span><br />
+              <i>class: </i>text
+              <p>The virtual host name for the machine hosting the page image data files.  If no value is supplied pageviewhost defaults to the value in the 'host' field (which is usually the same host as that hosting the middleware). Note that if the value of pageviewhost is different than both the middleware host and the xpat data host then the remote daemon (dlxsd) must be configured to run on the host specified for pageviewhost.  This is necessary in order for the pageviewer cgi to send commands to that remote page image data host to run programs (if necessary) to transform, for example, TIFF files to GIF for web display.  See also the the explanation for 'host'.  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="dd" name="dd"></a>
+            <p>  </p>
+            <span class="normalfont"><b>dd</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format: </i>array</span><br />
+              <i>class:</i> all
+              <p>A list of one or more  XPAT dd files for the collection specified as full paths relative to the value in the DLXSROOT environment variable.</p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format: </i>string</span><br />
+              <i>class:</i> bib, image
+              <p>The directory containing the XPAT dd file or files (specified  in the dd field) for the collection. </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="ignoreon" name="ignoreon"></a>
+            <p>  </p>
+            <span class="normalfont"><b>ignoreon</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>optional</i><br />
+                <i>value/format:</i>array</span><br />
+              <i>class: </i>all
+              <p>The name or names of the virtual hosts you do not want this collection or group to appear on. The names can be the full name e.g. prod.somewhere.edu or just a part of the name e.g. somewhere.edu or just the token &quot;all&quot; which will ignore the colletion or group regardless of host.  This is useful if you have a collection or group in the database that is skeletal, i.e. just present to hold values to be read directly from the database for UI purposes. Or perhaps the collection or group is not fully implemented for production use but you want it to appear for development purposes.
+                If you are running the middleware on multiple servers this allows you to hide the collection or group on one or more of your hosts even though the collection or group is listed in the database and, in the case of a collection, authorized in the AUTHZD_COLL environment variable.</p>
+              <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="locale" name="locale"></a>
+            <p>  </p>
+            <span class="normalfont"><b>locale</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>optional</i><br />
+                <i>value/format:</i>string</span><br />
+              <i>class: </i>all
+              <p>This optional field specifies a IANA standard locale value.  <i>Currently, for virtually all collections, it can be left blank under the assumption that the collection character data is encoded using one of the ISO-8859-* coded character sets such as ISO-8859-1 (Latin1).</i>   </p>
+              <p> Note that <b>all</b> collections must be in a single encoding, either all ISO-8859-* or all Unicode UTF-8 for cross collection functionality to work.  Single collection functionality supports either ISO-8859-* or UTF-8 encodings.</p>
+              <p>If the locale specifies Unicode UTF-8 encoding (e.g. en_US.UTF-8) the middleware will expect collection data to be Unicode UTF-8 encoded.   If blank, the default is equivalent to entering "en_US.ISO-8859-1".  At a UNIX command prompt type <tt>locale -a</tt> to see the locale values installed on your system.
+              </p>
+              <p>A UTF-8 locale setting affects several areas of functionality in the middleware.</p>
+                <ul>
+                  <li>The middleware will use <b>xpatu</b> search engine to search the collection data.   This implies that the data was indexed by <b>xpatbldu</b> and <b>xmlrgn/multirgn</b>. This does not apply to ImageClass which is migrating to MySQL searching.  DLXS release 11 was the first release offering xpatu and xpatbldu.  </li>
+            <li>The middleware will expect user input to be UTF-8 encoded.</li>
+            <li>The middleware will change occurrences of charset=iso-8859-1 (if present) to charset=UTF-8 when outputting processed HTML templates.  Tempates intended to support Unicode character data should have the META tag (&lt;meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"&gt;) in their headers.  </li>
+            <li>Perl's internal UTF-8 flag is set on string data in the middleware to handle multi-byte characters. </li>
+          </ul>
+          
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="map" name="map"></a>
+            <p>  </p>
+            <span class="normalfont"><b>map</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format:</i>string</span><br />
+              <i>class: </i>all
+              <p>The location of the TerminologyMapper map file for the collection.</p>
+              <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="objdir" name="objdir"></a>
+            <p>  </p>
+            <span class="normalfont"><b>objdir</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>optional</i><br />
+                <i>value/format:</i>string</span><br />
+              <i>class: </i>text
+              <p>The directory where page image files are stored. Only necessary for
+                collections with page images.  Typically, "/obj" relative to DLXSROOT. The pageviewer middleware appends an additional path component based on the IDNO of the text object when accessing a given page.  For example, at UM, for the IDNO "aas7611.0001.001" the additional path component is "/a/a/s/aas7611.0001.001" relative to "/obj" relative to DLXSROOT giving "/l1/obj/a/a/s/aas7611.0001.001/". Images for the individual pages of "aas7611.0001.001" reside within this final directory path.</p>
+            <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="port" name="port"></a>
+            <p>  </p>
+            <span class="normalfont"><b>port</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>optional</i><br />
+                <i>value/format:</i>number</span><br />
+              <i>class: </i>all
+              <p>The access port for the XPAT daemon on the machine identified in &quot;host&quot;
+                above. Only necessary for collections where data and indexes are on a different machine than the middleware (CGI program).</p>
+              <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="browseable" name="browseable"></a>
+            <p>  </p>
+            <span class="normalfont"><b>browseable</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>optional</i><br />
+                <i>value/format:</i>string</span><br />
+              <i>class: </i>text, findaid
+              <p>The field takes &quot;yes&quot; or &quot;no&quot; as a value. If &quot;yes&quot;
+                the navbar browse link will appear and if clicked, browse.tpl will be
+                served from the collection-specific web dir.</p>
+              <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="webdir" name="webdir"></a>
+            <p>  </p>
+            <span class="normalfont"><b>webdir</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format:</i>string</span><br />
+              <i>class: </i>all
+              <p>The directory path relative to the DLXSROOT environment variable for the collection (usually in the form
+              /c/collid).</p>
+            <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="wwdd" name="wwdd"></a>
+            <p>  </p>
+            <span class="normalfont"><b>wwdd</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>optional</i><br />
+                <i>value/format:</i>string</span><br />
+              <i>class: </i>text
+              <p>The location of the XPAT data dictionary for the collection word wheel/word
+            index, if there is one.  For example, /idx/c/coll/WW/coll.ww.dd</p>
+            <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="extendedname" name="extendedname"></a>
+            <p>  </p>
+            <span class="normalfont"><b>extendedname</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format:</i>string </span><br />
+              <i>class: </i>bib
+              <p>If a value other than default is supplied for the extendedname, the value
+                will appear on individual search pages (e.g., simple or advanced) above
+                the search input boxes. </p>
+              <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="minmaxyearend" name="minmaxyearend"></a>
+            <p>  </p>
+            <span class="normalfont"><b>minmaxyearend</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format:</i>number </span><br />
+              <i>class: </i>bib
+              <p>The maximum valid year value to be used to check user input for date searches. </p>
+              <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="minmaxyearinc" name="minmaxyearinc"></a>
+            <p>  </p>
+            <span class="normalfont"><b>minmaxyearinc</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>optional</i><br />
+                <i>value/format:</i>number </span><br />
+              <i>class: </i>bib
+              <p>The year increment value to be used for date searches. </p>
+              <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="minmaxyearstart" name="minmaxyearstart"></a>
+            <p>  </p>
+            <span class="normalfont"><b>minmaxyearstart</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format:</i>number </span><br />
+              <i>class: </i>bib
+              <p>The minimum valid year value to be used to check user input for date searches. </p>
+              <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="primaryhref" name="primaryhref"></a>
+            <p>  </p>
+            <span class="normalfont"><b>primaryhref</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>optional</i><br />
+                <i>value/format:</i>string </span><br />
+              <i>class: </i>bib
+              <p>The primarytitle can be presented as a link. If a value other than default
+                appears in the database, the template renders that value as a link. (See primarytitle)</p>
+              <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="primarytitle" name="primarytitle"></a>
+            <p>  </p>
+            <span class="normalfont"><b>primarytitle</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format:</i>value/format: string</span><br />
+              <i>class: </i>all
+              <p>The first title (or graphical banner) that appears at the top of the
+                initial web page. Text strings must be preceded by &quot;text:&quot; and graphical
+                banners must be preceded by &quot;graphic:&quot;. The template and database permit
+                either a textual title or a graphical banner, but not both.  (See primaryhref).  If the primarytitle is a graphic and not just a string, then the "webdir" field must be filled in as well.</p>
+              <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="secondarytitle" name="secondarytitle"></a>
+            <p>  </p>
+            <span class="normalfont"><b>secondarytitle</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format:</i>string </span><br />
+              <i>class: </i>all
+              <p>A textual second title, appearing below the primarytitle. If the value
+                default appears, no secondary title is displayed. </p>
+              <p>  </p>
+          </td>
+          </tr>
+          
+          <tr>
+            <td align="LEFT"><a id="briefcollname" name="briefcollname"></a>
+            <p>  </p>
+            <span class="normalfont"><b>briefcollname</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format:</i>string </span><br />
+              <i>class: </i>image
+              <p>A brief version of the collection name. Used for display beneath thumbnail
+                images in results view.</p>
+              <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="brwsimg" name="brwsimg"></a>
+            <p>  </p>
+            <span class="normalfont"><b>brwsimg</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format:</i>string </span><br />
+              <i>class: </i>image
+              <p>Used to configure the &quot;browse images&quot; link on collection
+                specific index pages. Enter &quot;default&quot; to retrieve all records
+                with images (with MySQL collid_all field must include the collid). Leave the field blank to omit the link completely. Enter
+                any single word search term (e.g., &quot;snow&quot;) to retrieve sample records
+                that match the term.</p>
+              <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="brwsrec" name="brwsrec"></a>
+            <p>  </p>
+            <span class="normalfont"><b>brwsrec</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format:</i>string </span><br />
+              <i>class: </i>image
+              <p>Used to configure the &quot;browse records&quot; link on collection
+                specific index pages. Enter &quot;default&quot; to retrieve all records
+                (with or without images)  (with MySQL collid_all field must include the collid). Leave the field blank to omit the link completely.
+                Enter any search term (e.g., &quot;snow&quot;) to retrieve sample records
+                that match the term.</p>
+              <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="viewtabform" name="viewtabform"></a>
+            <p>  </p>
+            <span class="normalfont"><b>viewtabform</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format:</i>string </span><br />
+              <i>class: </i>image
+	      <p>Dictates whether the tabs for changing views on results pages are a graphic (default) or text/HTML. Values are: graphic, text. Using text facilitates color scheme changes with css and without the need to edit graphics.</p>
+            <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="data_table" name="data_table"></a>
+            <p>  </p>
+            <span class="normalfont"><b>data_table</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format:</i>string </span><br />
+              <i>class: </i>image
+	      <p>The name of the MySQL table in the DLXS database with the collection's principle data.</p>
+              <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="media_table" name="media_table"></a>
+            <p>  </p>
+            <span class="normalfont"><b>media_table</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format:</i>string </span><br />
+              <i>class: </i>image
+	      <p>The name of the MySQL table in the DLXS database with the collection's media file data. A media table is not always necessary, but neverhurts. See Image Class documentation.</p>
+              <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="dfltentryflds" name="dfltentryflds"></a>
+            <p>  </p>
+            <span class="normalfont"><b>dfltentryflds</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format:</i>default or array </span><br />
+              <i>class: </i>image
+              <p>The list of fields (as abbreviations) to display in entry (full record)
+                views. To display all fields, enter the value &quot;default&quot;.</p>
+              <p>For details about the full range of options, please see the appropriate <a href="http://docs.dlxs.org/class/image/image-colldb.html">Image Class documentation</a>.</p>
+              <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="dfltresentryflds" name="dfltresentryflds"></a>
+            <p>  </p>
+            <span class="normalfont"><b>dfltresentryflds</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format:</i>default or array </span><br />
+              <i>class: </i>image
+              <p>The list of fields (as abbreviations) to display in the results view
+                that includes the full record (i.e., thumbfull view). To display all fields,
+                enter the value &quot;default&quot;.</p>
+              <p>For details about the full range of options, please see the appropriate <a href="http://docs.dlxs.org/class/image/image-colldb.html">Image Class documentation</a>.</p>
+              <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="dfltsrchflds" name="dfltsrchflds"></a>
+            <p>  </p>
+            <span class="normalfont"><b>dfltsrchflds</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format:</i>default or array </span><br />
+              <i>class: </i>image
+              <p>The list of fields (as abbreviations) that may be searched. These are
+                the fields that show up in the search form. to display all fields, enter
+                the value &quot;default&quot;.If the ability to search across all fields is desired, include collid_all here.</p>
+              <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="entrydivs" name="entrydivs"></a>
+            <p>  </p>
+            <span class="normalfont"><b>entrydivs</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format:</i>array </span><br />
+              <i>class: </i>image
+              <p>The entry/record display uses HTML DIVs to provide two different display
+            modes (i.e., &quot;full image&quot; and &quot;description&quot;). The user can flip back and
+            forth between the two display modes. If a collection has records with
+            images and descriptions, you will want to include both, (e.g., full image,
+            on one line, and description, on another ). For a collection that has
+            descriptions but no images, you probably want to only include &quot;description.&quot;</p>
+            <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="entrydivsdefault" name="entrydivsdefault"></a>
+            <p>  </p>
+            <span class="normalfont"><b>entrydivsdefault</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format:</i>string </span><br />
+              <i>class: </i>image
+              <p>The default display mode for the entry/record display. When the record
+            is first displayed, should the &quot;full image&quot; view be shown first, or the
+            &quot;description&quot; view?</p>
+            <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="imgqual" name="imgqual"></a>
+            <p>  </p>
+            <span class="normalfont"><b>imgqual</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format:</i> string</span><br />
+              <i>class: </i>image
+              <p>The default size for image display. There are several ways to specify
+                the quality.</p>
+              <p>Examples:</p>
+              <blockquote>
+                <ul>
+                  <li>h600 -- height no larger than 600 pixels</li>
+                  <li>w500 -- width no larger than 600 pixels</li>
+                  <li>m800 -- max dimension of image no larger than 800 pixels</li>
+                  <li>min -- smallest available</li>
+                  <li>max -- largest available</li>
+                  <li>mid -- mid-size among available</li>
+                  <li>preview -- defined in imageclass.cfg ($gDefaultPreviewImageSize)</li>
+                  <li>screen -- defined in imageclass.cfg ($gDefaultScreenImageSize)</li>
+                  <li>integer value -- MrSID res value</li>
+                </ul>
+              </blockquote>
+
+              <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="imgsizemax" name="imgsizemax"></a>
+            <p>  </p>
+            <span class="normalfont"><b>imgsizemax</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>optional</i><br />
+                <i>value/format:</i>string </span><br />
+              <i>class: </i>image
+              <p>Allows a restriction to be put on the maximum full size image displayed.
+                Definable in terms similar to imgqual. Leave field blank for no restriction.</p>
+              <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="imgsizemin" name="imgsizemin"></a>
+            <p>  </p>
+            <span class="normalfont"><b>imgsizemin</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>optional</i><br />
+                <i>value/format:</i>string </span><br />
+              <i>class: </i>image
+              <p>Allows a restriction to be put on the maximum full size image displayed.
+                Definable in terms similar to imgqual. Leave field blank for no restriction.</p>
+              <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="mediaonly" name="mediaonly"></a>
+            <p>  </p>
+            <span class="normalfont"><b>mediaonly</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format:</i>string </span><br />
+              <i>class: </i>image
+              <p>Controls the presence and default status of the &quot;media only&quot; restriction
+                in the search form. Possible values: on, off, on hidden, off hidden</p>
+              <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="mediahost" name="mediahost"></a>
+            <p>  </p>
+            <span class="normalfont"><b>mediahost</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format:</i>string </span><br />
+              <i>class: </i>image
+	      <p>The host server for Image Class media files. The host server must be running DLXS middleware (or at least Image Class). Defaults to global configuration in imageclass.cfg.</p>
+              <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="numqs" name="numqs"></a>
+            <p>  </p>
+            <span class="normalfont"><b>numqs</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format:</i>number </span><br />
+              <i>class: </i>image
+              <p>The number of text fields to display in search form.</p>
+              <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="relviewmenu" name="relviewmenu"></a>
+            <p>  </p>
+            <span class="normalfont"><b>relviewmenu</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format:</i>string </span><br />
+              <i>class: </i>image
+              <p>Related view menu. Set to &quot;on&quot; to display a pop-up menu in the entry/record
+            view that allows navigation to any of the images associated with the entry/record
+            (the record must have multiple images). Useful as a page-flipping mechanism.
+            e.g.: &quot;off&quot;.</p>
+            <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="relviewmenuinstruct" name="relviewmenuinstruct"></a>
+            <p>  </p>
+            <span class="normalfont"><b>relviewmenuinstruct</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format:</i>string </span><br />
+              <i>class: </i>image
+              <p>String of instruction text to precede the related view menu (relviewmenu).
+                e.g.: &quot;default&quot;.</p>
+              <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="relviewmenuprefx" name="relviewmenuprefx"></a>
+            <p>  </p>
+            <span class="normalfont"><b>relviewmenuprefx</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format:</i>string </span><br />
+              <i>class: </i>image
+              <p>String of text to precede <strong>each item</strong> in the related view menu (relviewmenu)
+                e.g.: &quot;default.&quot;</p>
+              <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="relviewmenuvals" name="relviewmenuvals"></a>
+            <p>  </p>
+            <span class="normalfont"><b>relviewmenuvals</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format:</i>string </span><br />
+              <i>class: </i>image
+
+              <p>The SGML ISTRUCT attribute to use for display values in the
+                related view menu (relviewmenu)</p>
+
+              <blockquote><p>e.g.: &quot;default&quot; (same as &quot;CAPTIONS&quot;).</p></blockquote>
+
+              <p>In addition to &quot;CAPTIONS&quot;, any of the ISTRUCT attribute names are valid (e.g., &quot;FACE&quot;).</p>
+              <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="resfldtrim" name="resfldtrim"></a>
+            <p>  </p>
+            <span class="normalfont"><b>resfldtrim</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format:</i>number </span><br />
+              <i>class: </i>image
+              <p>Maximum character string length for each field in dfltresflds. This is
+                used for trimming long fields down to the specified number of characters
+                when being displayed under thumbnail images. e.g.: &quot;50&quot;.</p>
+              <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="reslistresflds" name="reslistresflds"></a>
+            <p>  </p>
+            <span class="normalfont"><b>reslistresflds</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format:</i>default or array </span><br />
+              <i>class: </i>image
+              <p>The list of fields (as abbreviations) to display in &quot;captions only &quot;
+                results view. To display all fields, enter the value &quot;default&quot;.</p>
+              <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="resultsviews" name="resultsviews"></a>
+            <p>  </p>
+            <span class="normalfont"><b>resultsviews</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format:</i>array </span><br />
+              <i>class: </i>image
+              <p>The list of results views to be made available to users. Legal values
+                are any combination of: thumbnail, thumbfull, reslist. Order is not important.
+              </p>
+              <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="resultsviewsdefault" name="resultsviewsdefault"></a>
+            <p>  </p>
+            <span class="normalfont"><b>resultsviewsdefault</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format:</i>string </span><br />
+              <i>class: </i>image
+              <p>The default result view. Legal values (choose one): thumbnail, thumbfull,
+                reslist</p>
+              <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="sortflds" name="sortflds"></a>
+            <p>  </p>
+            <span class="normalfont"><b>sortflds</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format:</i>array </span><br />
+              <i>class: </i>image, text, findaid
+              <p><b>Image:</b> The list of field abbreviations that should be provided as options for
+                sorting. Sort fields for multiple collections is configured in the groups
+                database. &quot;none&quot; must always be the first value. </p>
+              <p><b>Text:</b> The list of field abbreviations  that should be provided as options for
+                sorting. The possible values are &quot;occur&quot;, &quot;datea&quot;, &quot;dated&quot;,
+                &quot;author&quot;, &quot;title&quot;, &quot;freq&quot; which correspond to the pulldown menu
+                items: &quot;NONE&quot;, &quot;date ascending&quot; ,&quot;date descending&quot;,
+                &quot;author&quot;, &quot;title&quot; and &quot;frequency&quot;.  The menu items will appear in
+                the order listed in the collmgr field. </p>
+
+              <p><b>Finding Aids:</b> The list of field abbreviations  that should be provided as options for
+                sorting. The possible values are &quot;occur&quot;, &quot;title&quot;, &quot;creator&quot;, &quot;freq&quot; which correspond to the pulldown menu
+                items: &quot;NONE&quot;, &quot;title&quot;, &quot;creator&quot; and &quot;frequency&quot;.  The menu items will appear in
+                the order listed in the collmgr field. </p>
+              <p>In single collection mode, the middleware defaults to the first item listed here.  If no field abbreviations are specified, the sort selection menu will not appear in the user interface.  This makes sense for a collection by a single author with a single publication date where every title is identical or nearly so.  For example, &quot;Collected Works of Abraham Lincoln, Vol. 1&quot; published in 1953. If a single field (other than &quot;occur&quot;) is supplied the menu will display the single field and that sort will always be done.
+              </p>
+              <p>In cross-collection mode, these fields are not used.  Instead the values in %gSortFields and @gSortFieldsOrder in DLXSROOT/cgi/t/text/textclass.cfg are used and the sort order defaults to the first element of @gSortFieldsOrder (probably 'occur').  Note, for example, when lincoln is part of a cross collection search the sort menu is constructed from @gSortFields which may specify a sort order not specified for the lincoln collection in single-collection mode.  In this case, lincoln will sort by author, title, date among the items from the other collections in the search results but only if author, title, date mappings are present in the lincoln.map file. If no mapping for the given sort order exists the item will sort to the end of the list.
+          </p>
+
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="field_labels" name="field_labels"></a>
+            <p>  </p>
+            <span class="normalfont"><b>field_labels</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format:</i>default or array </span><br />
+              <i>class: </i>image
+              <p>Complete list of all field abbreviations with matching display labels. Must be in the form abbrev:::field label, one per line. Individual field labels may be overriden in any Collmgr field that includes abbreviations, allowing a field label to be changed for the context.. Dots "." are not allowed in the field abbreviation. If using XPAT, and If the SGML uses the dot character in field abbreviations, use underscore here. If there is a field combining all fields, be sure to include it.</p>
+              <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="field_xcoll_maps" name="field_xcoll_maps"></a>
+            <p>  </p>
+            <span class="normalfont"><b>field_xcoll_maps</b></span></td>
+          </tr>
+          <tr>
+            <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                <i>value/format:</i>default or array </span><br />
+              <i>class: </i>image
+	      <p>For mapping collection specific fields to group or class level fields for cross collection searching. Form is xcoll_abbrev:::collabbrev. Each <strong>xcoll_abbrev</strong> starts a new line. Multiple <strong>collection abbreviations</strong> can be listed on a line with a single space between each. Cross collection fields can be arbitrarily added as long as they are added to the group Collmgr record or imageclass.cfg for class level configuration. If using XPAT, the mappings in the SGML must be included here as well.  If using MySQL, mappings only need to be here, and nowhere else. If there is a field combined of all fields, map it to ic_all. </p>
+              <p>  </p>
+          </td>
+          </tr>
+          <tr>
+            <td align="LEFT"><a id="field_admin_maps" name="field_admin_maps"></a>
+            <p>  </p>
+            <span class="normalfont"><b>field_admin_maps</b></span></td>
+        </tr>
+        <tr>
+              <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                  <i>value/format:</i>default or array </span><br />
+                <i>class: </i>image
+                <p>Required only if using MySQL.</p>
+		<p>For mapping collection specific fields to "administrative" fields. Form is admin_abbrev:::collabbrev.  Admin fields are <strong>ic_id</strong>, <strong>ic_fn</strong>, <strong>ic_exact</strong>.  Map ic_id to the field in the data_table containing record IDs. Map ic_fn to the field in the data_table containing image/media filenames.<strong>ic_exact</strong> is only used with MySQL collections, and is optional. <strong>ic_exact</strong> forces a field to be searched as a an exact phrase, and is intended for searching fields that include data such as IDs that include characters that are usually treated as spaces by MySQL.</p>
+              <p> It is recommended that collections previously deployed with XPAT, and now with MySQL, include a field in the <strong>data_table</strong> holding IDs prepped as they were in the SGML for XPAT. There are two reasons. First, to provide an accurate key for values in the media_table m_id field. Second, to maintain backward compatability with the entryid parameter of URLS, as well as IDs stored in Portfolios. If you use icsgml2mysql.pl to convert data, it will include an ic_id field in the data_table for this purpose.</p>
+              <p><strong>ic_vi</strong> mappings are not necessary a this time.</p>
+              <p><strong>ic_fn</strong> is only necessary if the collection does not have a <strong>media_table</strong> in MySQL.</p>
+	      <p>  </p>
+            </td>
+            </tr>
+            <tr>
+              <td align="LEFT"><a id="thumbfullresflds" name="thumbfullresflds"></a>
+              <p>  </p>
+              <span class="normalfont"><b>thumbfullresflds</b></span></td>
+            </tr>
+            <tr>
+              <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                  <i>value/format:</i>default or array </span><br />
+                <i>class: </i>image
+                <p>The list of fields (as abbreviations) To display in &quot;thumbnail with full
+                  record&quot; results view. to display all fields, enter the value &quot;default&quot;.
+                </p>
+                <p>  </p>
+            </td>
+            </tr>
+            <tr>
+              <td align="LEFT"><a id="thumbnailresflds" name="thumbnailresflds"></a>
+              <p>  </p>
+              <span class="normalfont"><b>thumbnailresflds</b></span></td>
+            </tr>
+            <tr>
+              <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                  <i>value/format:</i>default or array </span><br />
+                <i>class: </i>image
+                <p>The list of fields (as abbreviations) to display in &quot;thumbnail with captions&quot;
+                  results view. To display all fields, enter the value &quot;default&quot;.</p>
+                <p>  </p>
+            </td>
+            </tr>
+            <tr>
+              <td align="LEFT"><a id="bibsearch" name="bibsearch"></a>
+              <p>  </p>
+              <span class="normalfont"><b>bibsearch</b></span></td>
+            </tr>
+            <tr>
+              <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                  <i>value/format:</i>array </span><br />
+                <i>class: </i>text
+                <p>The regions in which citation searches are conducted (minimally, citation).
+                </p>
+                <p>  </p>
+            </td>
+            </tr>
+            <tr>
+              <td align="LEFT"><a id="charfilters" name="charfilters"></a>
+              <p>  </p>
+              <span class="normalfont"><b>charfilters</b></span></td>
+            </tr>
+            <tr>
+              <td align="LEFT" valign="TOP"><span class="normalfont"><i>optional</i><br />
+                  <i>value/format:</i></span><br />
+                <i>class: </i>text
+                <p>Supply one or more of 'isogreek', 'pldgreek', 'chgreek', 'ipa', or 'misc'
+                  to filter each class of character entity references (if present in the
+                  collection data).</p>
+                <p>  </p>
+            </td>
+            </tr>
+            <tr>
+              <td align="LEFT"><a id="divheadrange" name="divheadrange"></a>
+              <p>  </p>
+              <span class="normalfont"><b>divheadrange</b></span></td>
+            </tr>
+            <tr>
+              <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                  <i>value/format:</i></span><br />
+                <i>class: </i>text
+                <p>A number indicating the deepest level of encoding present in the collection,
+                  e.g. &quot;4&quot; if the lowest division is &lt;DIV4&gt;</p>
+                <p>  </p>
+            </td>
+            </tr>
+            <tr>
+              <td align="LEFT"><a id="firstpublishedstart" name="firstpublishedstart"></a>
+              <p>  </p>
+              <span class="normalfont"><b>firstpublishedstart</b></span></td>
+            </tr>
+            <tr>
+              <td align="LEFT" valign="TOP"><span class="normalfont"><i>optional</i><br />
+                  <i>value/format:</i>string </span><br />
+                <i>class: </i>text
+                <p>Indicates whether there are maps for dates of first publication, if available,
+                  in the form YYYY where YYYY is the earliest publication date. Derived
+                  from markup in the collection. Must be supported by entries in the collection
+                  map.</p>
+                <p>  </p>
+            </td>
+            </tr>
+            <tr>
+              <td align="LEFT"><a id="firstpublishedend" name="firstpublishedend"></a>
+              <p>  </p>
+              <span class="normalfont"><b>firstpublishedend</b></span></td>
+            </tr>
+            <tr>
+              <td align="LEFT" valign="TOP"><span class="normalfont"><i>optional</i><br />
+                  <i>value/format:</i>string</span><br />
+                <i>class: </i>text
+                <p>Indicates whether there are maps for dates of first publication, if available,
+                  in the form YYYY where YYYY is the latest publication date. Must be supported
+                  by entries in the collection map.</p>
+                <p>  </p>
+            </td>
+            </tr>
+            <tr>
+              <td align="LEFT"><a id="firstpublishedinc" name="firstpublishedinc"></a>
+              <p>  </p>
+              <span class="normalfont"><b>firstpublishedinc</b></span></td>
+            </tr>
+            <tr>
+              <td align="LEFT" valign="TOP"><span class="normalfont"><i>optional</i><br />
+                  <i>value/format:</i>string</span><br />
+                <i>class: </i>text
+                <p>Indicates whether there are maps for dates of first publication, if available,
+                  X where X is increment in the number of years between firstpublishedstart
+                  and firstpublishedend. Derived from markup in the collection. Must be
+                  supported by entries in the collection map.</p>
+                <p>  </p>
+            </td>
+            </tr>
+            <tr>
+              <td align="LEFT"><a id="fisheyethreshold" name="fisheyethreshold"></a>
+              <p>  </p>
+              <span class="normalfont"><b>fisheyethreshold</b></span></td>
+            </tr>
+            <tr>
+              <td align="LEFT" valign="TOP"><span class="normalfont"><i>reserved for future use</i><br />
+                  <i>value/format:</i></span><br />
+                <i>class: </i>text
+                <p>Not currently used. </p>
+                <p>  </p>
+            </td>
+            </tr>
+            <tr>
+              <td align="LEFT"><a id="notemaxdivhead" name="notemaxdivhead"></a>
+              <p>  </p>
+              <span class="normalfont"><b>notemaxdivhead</b></span></td>
+            </tr>
+            <tr>
+              <td align="LEFT" valign="TOP"><span class="normalfont"><i>optional</i><br />
+                  <i>value/format:</i></span><br />
+                <i>class: </i>text
+                <p>If collection contains notes this field must have a value greater than 0 otherwise it does not need to be set.  This is the number of the most deeply nested
+                  division enclosing either a &lt;NOTE&gt; or the target of a &lt;PTR&gt;, e.g.
+                  &quot;3&quot; if &lt;DIV3&gt; is the lowest division containing &lt;NOTE&gt; or the target
+                  of a &lt;PTR&gt;.</p>
+                <p>  </p>
+            </td>
+            </tr>
+            <tr>
+              <td align="LEFT"><a id="notesfilters" name="notesfilters"></a>
+              <p>  </p>
+              <span class="normalfont"><b>notesfilters</b></span></td>
+            </tr>
+            <tr>
+              <td align="LEFT" valign="TOP"><span class="normalfont"><i>optional</i><br />
+                  <i>value/format:</i></span><br />
+                <i>class: </i>text
+                <p>Supply either or both of 'inline' or 'ptr' to filter each kind of note
+                  (if present in the collection data) corresponding to &lt;NOTE&gt; and &lt;PTR&gt;
+                  elements.</p>
+                <p>  </p>
+            </td>
+            </tr>
+            <tr>
+              <td align="LEFT"><a id="qtytext" name="qtytext"></a>
+              <p>  </p>
+              <span class="normalfont"><b>qtytext</b></span></td>
+            </tr>
+            <tr>
+              <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                  <i>value/format:</i>number </span><br />
+                <i>class: </i>text, findaid
+                <p><b>Text:</b> The number of DLPSTEXTCLASS regions in the collection. This is basically the number of text items in the collection.</p>
+                <p><b>FindAid:</b> The number of EAD regions  in the collection. This is basically the number of entire finding aids in the collection.</p>
+                <p>  </p>
+            </td>
+            </tr>
+            <tr>
+              <td align="LEFT"><a id="regionsearch" name="regionsearch"></a>
+              <p>  </p>
+              <span class="normalfont"><b>regionsearch</b></span></td>
+            </tr>
+            <tr>
+              <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                  <i>value/format:</i>array </span><br />
+                <i>class: </i>text, bib
+                <p>The regions which are retrieved for Boolean searches (minimally, &quot;work&quot;).
+                </p>
+                <p>  </p>
+            </td>
+            </tr>
+            <tr>
+              <td align="LEFT"><a id="singlegender" name="singlegender"></a>
+              <p>  </p>
+              <span class="normalfont"><b>singlegender</b></span></td>
+            </tr>
+            <tr>
+              <td align="LEFT" valign="TOP"><span class="normalfont"><i>optional</i><br />
+                  <i>value/format:</i>string </span><br />
+                <i>class: </i>text
+                <p>'mappped' indicates that there are maps for specific assigned genders for a
+                  single collection, used to create restrictions for searches if available. Otherwise blank.
+                  Derived from markup in the collection. Must be supported by entries in
+                  the collection map.</p>
+                <p>  </p>
+            </td>
+            </tr>
+            <tr>
+              <td align="LEFT"><a id="singlegenre" name="singlegenre"></a>
+              <p>  </p>
+              <span class="normalfont"><b>singlegenre</b></span></td>
+            </tr>
+            <tr>
+              <td align="LEFT" valign="TOP"><span class="normalfont"><i>optional</i><br />
+                  <i>value/format:</i>string </span><br />
+                <i>class: </i>text
+                <p>'mapped' indicates that there are maps for specific assigned genres for a single
+                  collection, used to create restrictions for searches if available. Otherwise blank.  Derived
+                  from markup in the collection. Must be supported by entries in the collection
+                  map.</p>
+                <p>  </p>
+            </td>
+            </tr>
+            <tr>
+              <td align="LEFT"><a id="singleperiod" name="singleperiod"></a>
+              <p>  </p>
+              <span class="normalfont"><b>singleperiod</b></span></td>
+            </tr>
+            <tr>
+              <td align="LEFT" valign="TOP"><span class="normalfont"><i>optional</i><br />
+                  <i>value/format:</i>string </span><br />
+                <i>class: </i>text
+                <p>'mapped' indicates that there are maps for specific assigned periods for a
+                  single collection, used to create restrictions for searches, if available. Otherwise blank.
+                  Derived from markup in the collection. Must be supported by entries in
+                  the collection map.</p>
+                <p>  </p>
+            </td>
+            </tr>
+            <tr>
+              <td align="LEFT"><a id="sortthreshold" name="sortthreshold"></a>
+              <p>  </p>
+              <span class="normalfont"><b>sortthreshold</b></span></td>
+            </tr>
+            <tr>
+              <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                  <i>value/format:</i></span><br />
+                <i>class: </i>text, findaid
+                <p>Number of results above which results obtained from a search
+                  are not sorted.(e.g. &quot;1000&quot;). Currently not used in BibClass or ImageClass which are configured globaly in their respective .cfg files.  Note that there is still a global setting for FindaidClass and TextClass in effect from their respective .cfg files when the results are across more than one collection.  </p>
+                <p>  </p>
+            </td>
+            </tr>
+            <tr>
+              <td align="LEFT"><a id="subclass" name="subclass"></a>
+              <p>  </p>
+              <span class="normalfont"><b>subclass</b></span></td>
+            </tr>
+            <tr>
+              <td align="LEFT" valign="TOP"><span class="normalfont"><i>reserved for future
+                  use</i><br />
+                  <i>value/format:</i></span><br />
+                <i>class: </i>text
+                <p>Not currently used</p>
+                <p>  </p>
+            </td>
+            </tr>
+            <tr>
+              <td align="LEFT"> <a id="subclassmodule" name="subclassmodule"></a>
+              <p>  </p>
+              <span class="normalfont"><b>subclassmodule</b></span></td>
+            </tr>
+            <tr>
+              <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                  <i>value/format:</i>string </span><br />
+                <i>class: </i>bib, text
+                <p>The name of the subclass module (without the '.pm' suffix) that defines
+                  the subclass of the TextClass or BibClass object for the collection. </p>
+                <p>Many text collections will simply use the value &quot;TextClass&quot; and, likewise,
+                  many bib collections will use the value &quot;BibClass.&quot; For others
+                  with a specific subclass, the convention is &quot;collidTC&quot; (&quot;collidBC&quot;
+                  for bib) corresponding to the file collidTC.pm or collidBC.pm. These
+                  modules are located in the TextClass cgi directory for Text Class or BibClass for Bib Class. (e.g., The subclass should be entered as &quot;TextClass/collidTC&quot;).</p>
+            </td>
+            </tr>
+            <tr>
+              <td align="LEFT"> <a id="appmodule" name="appmodule"></a>
+              <p>  </p>
+              <span class="normalfont"><b>appmodule</b></span></td>
+            </tr>
+            <tr>
+              <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                  <i>value/format:</i>string </span><br />
+                <i>class: </i>all
+                <p>The module name (without .pm suffix) of the Application Object or subclass
+                  thereof supporting the basic application functionality for a given class (Text, Image, Bib)
+                  of the middleware.  Supply one of TextApp, ImageApp or BibApp for the default application behavior or a subclass if one has been written for this collection. (e.g., the subclass should be entered as &quot;TextApp/FooTCApp&quot;.)  The subclass for Image Class using MySQL is ImageApp/mysqlImageApp.</p>
+            </td>
+            </tr>
+            <tr>
+              <td align="LEFT"> <a id="pvappmodule" name="pvappmodule"></a>
+              <p>  </p>
+              <span class="normalfont"><b>pvappmodule</b></span></td>
+            </tr>
+            <tr>
+              <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                  <i>value/format:</i>string </span><br />
+                <i>class: </i>text
+                <p>The module name (without .pm suffix) of the PVApp object or subclass
+                  thereof supporting the pageviewer application for this collection. Use
+                  &quot;PVApp&quot; unless a subclass has been written for this collection. (e.g., the subclass should be entered as &quot;PVApp/FooPVApp&quot;.)</p>
+            </td>
+            </tr>
+            <tr>
+              <td align="LEFT"><a id="termsearch" name="termsearch"></a>
+              <p>  </p>
+              <span class="normalfont"><b>termsearch</b></span></td>
+            </tr>
+            <tr>
+              <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                  <i>value/format:</i>array </span><br />
+                <i>class: </i>text
+                <p>The regions in which simple searches are conducted, as they appear in the simple search pull-down menu (minimally, full text).</p>
+                <p>  </p>
+            </td>
+            </tr>
+            <tr>
+              <td align="LEFT"><a id="wwappmodule" name="wwappmodule"></a>
+              <p>  </p>
+              <span class="normalfont"><b>wwappmodule</b></span></td>
+            </tr>
+            <tr>
+              <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                  <i>value/format:</i></span><br />
+                <i>class: </i>text
+                <p>The module name (without .pm suffix) of the WWApp object or subclass
+                  thereof supporting the wordwheel application for this collection. Use
+                  &quot;WWApp&quot; unless a subclass has been written for this collection. (e.g., subclass should be entered as &quot;WWApp/FooWWApp&quot;.)</p>
+              <p>  </p>
+            </td>
+            </tr>
+            <tr>
+              <td align="LEFT"><a id="pageviewmodule" name="pageviewmodule"></a>
+              <p>  </p>
+              <span class="normalfont"><b>pageviewmodule</b></span></td>
+            </tr>
+            <tr>
+              <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                  <i>value/format:</i></span><br />
+                <i>class: </i>text
+                <p>The module name (without .pm suffix) of the PageView object or subclass
+                  thereof supporting the database access and image transformation function for the page viewer application for this collection. Use &quot;PageView&quot; unless a subclass has been written for this collection.(e.g., subclass should be entered as &quot;PageView/FooPV&quot;.)</p>
+              <p>  </p>
+            </td>
+            </tr>
+            <tr>
+              <td align="LEFT"><a id="wwrealms" name="wwrealms"></a>
+              <p>  </p>
+              <span class="normalfont"><b>wwrealms</b></span></td>
+            </tr>
+            <tr>
+              <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                  <i>value/format:</i>array (TITLE, AUTHOR, TEXT)</span><br />
+                <i>class: </i>text
+                <p>The SGML regions from which word wheel/word index words are gathered
+              if a word wheel/word index is built. </p>
+              <p>  </p>
+            </td>
+            </tr>
+            <tr>
+              <td align="LEFT"><a id="wwrealmseng" name="wwrealmseng"></a>
+              <p>  </p>
+              <span class="normalfont"><b>wwrealmseng</b></span></td>
+            </tr>
+            <tr>
+              <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                  <i>value/format:</i>array. (title, author, full text) </span><br />
+                <i>class: </i>text
+                <p>The values that appear (i.e., the displayed labels) with radio buttons
+                  on the word wheel/word index search template. Must correspond to wwrealms.
+            </p>
+              <p>  </p>
+            </td>
+            </tr>
+            <tr>
+              <td align="LEFT"><a id="pageimages" name="pageimages"></a>
+              <p>  </p>
+              <span class="normalfont"><b>pageimages</b></span></td>
+            </tr>
+            <tr>
+              <td align="LEFT" valign="TOP"><span class="normalfont"><i>optional</i><br />
+                  <i>value/format:</i>string</span><br />
+                <i>class: </i>text
+                <p>Enter 1 if the collection has page images for viewing under page viewer,
+                  0 otherwise.</p>
+                <p>  </p>
+            </td>
+            </tr>
+            <tr>
+              <td align="LEFT"><a id="defaultpageview" name="defaultpageview"></a>
+              <p>  </p>
+              <span class="normalfont"><b>defaultpageview</b></span></td>
+            </tr>
+            <tr>
+              <td align="LEFT" valign="TOP"><span class="normalfont"><i>optional</i><br />
+                  <i>value/format:</i>string. </span><br />
+                <i>class: </i>text
+                <p>If the collection has page images, enter one of 'image, 'text' or 'pdf'
+                  to control which view of the page the page viewer will offer by default.</p>
+                <p>  </p>
+            </td>
+            </tr>
+            <tr>
+              <td align="LEFT"><a id="pageviewselectvalues" name="pageviewselectvalues"></a>
+              <p>  </p>
+              <span class="normalfont"><b>pageviewselectvalues</b></span></td>
+            </tr>
+            <tr>
+              <td align="LEFT" valign="TOP"><span class="normalfont"><i>optional</i><br />
+                  <i>value/format:</i>array </span><br />
+                <i>class: </i>text
+                <p>If the collection has page images, enter one or more of 'image, 'text' or 'pdf'
+                  to control which viewing formats will be displayed in the page viewer pulldown list.</p>
+                <p>  </p>
+            </td>
+            </tr>
+            <tr>
+              <td align="LEFT"><a id="pdfchunk" name="pdfchunk"></a>
+              <p>  </p>
+              <span class="normalfont"><b>pdfchunk</b></span></td>
+            </tr>
+            <tr>
+              <td align="LEFT" valign="TOP"><span class="normalfont"><i>optional</i><br />
+                  <i>value/format:</i>string. </span><br />
+                <i>class: </i>text
+                <p>If the collection has pdf, enter the number of image files which are to
+                  be bundled into a single pdf file for viewing under page viewer.</p>
+                <p>  </p>
+            </td>
+            </tr>
+            <tr>
+              <td align="LEFT"><a id="pageviewimageformat" name="pageviewimageformat"></a>
+              <p>  </p>
+              <span class="normalfont"><b>pageviewimageformat</b></span></td>
+            </tr>
+            <tr>
+              <td align="LEFT" valign="TOP"><span class="normalfont"><i>optional</i><br />
+                  <i>value/format:</i>string. </span><br />
+                <i>class: </i>text
+                <p>The format of the object which should be generated from the stored object, e.g. 'gif', 'pdf', 'tif'.</p>
+                <p>  </p>
+            </td>
+            </tr>
+            <tr>
+              <td align="LEFT"><a id="storedimageformat" name="storedimageformat"></a>
+              <p>  </p>
+              <span class="normalfont"><b>storedimageformat</b></span></td>
+            </tr>
+            <tr>
+              <td align="LEFT" valign="TOP"><span class="normalfont"><i>optional</i><br />
+                  <i>value/format:</i>string. </span><br />
+                <i>class: </i>text
+                <p>The format of the the stored object representing a page, e.g. 'gif', 'pdf', 'tif'.  This is the source of the transformation whose output is specified by the pageviewimageformat field.</p>
+                <p>  </p>
+            </td>
+            </tr>
+            <tr>
+              <td align="LEFT"><a id="encodingtype" name="encodingtype"></a>
+              <p>  </p>
+              <span class="normalfont"><b>encodingtype</b></span></td>
+            </tr>
+            <tr>
+              <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                  <i>value/format:</i>string. </span><br />
+                <i>class: </i>text
+                <p>The encoding type of documents in the collection.  The possible values are &quot;monograph&quot;,
+                  &quot;serialissue&quot; or &quot;serialarticle&quot;.  A collection of encoding type &quot;monograph&quot; is structured into one or more documents each of which has a HEADER and a TEXT region. A typical document might be a book by a single author.  A collection of encoding type &quot;serialissue&quot; is structured into journals each of which has a HEADER and a TEXT region.  Within the TEXT region must occur one or more DIV1 regions representing articles in the given issue of the journal.  A collection of encoding type &quot;serialarticle&quot; is a single virtual or <i>born-digital</i> journal structured as a series of articles each of which has a HEADER and a TEXT region.
+                </p>
+                <p>  </p>
+            </td>
+            </tr>
+            <tr>
+              <td align="LEFT"><a id="detailviewtype" name="detailviewtype"></a>
+              <p>  </p>
+              <span class="normalfont"><b>detailviewtype</b></span></td>
+            </tr>
+            <tr>
+              <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                  <i>value/format:</i>string. </span><br />
+                <i>class: </i>text
+                <p>The type of the view used to display the detailed results for a single item in the result list.  The possible values are &quot;kwic&quot;
+                  or &quot;summary&quot;.   The &quot;kwic&quot; detail view displays bibliographic data for the item followed by a list of Key Words in Context (KWIC).  The key word or words are the search terms highlighted in red centered within a context of 100 characters before and after the search term.  The  &quot;summary&quot; detail view also starts wth the bibliographic data for the item but is followed by a one line summary of the number of hits of the search term within the given item or subregion of the item.  For eaxmple, &quot;3 matches of dog in 5 of 20 poems&quot;.</p>
+                <p>  </p>
+            </td>
+            </tr>
+            <tr>
+              <td align="LEFT"><a id="detailviewlayout" name="detailviewlayout"></a>
+              <p>  </p>
+              <span class="normalfont"><b>detailviewlayout</b></span></td>
+            </tr>
+            <tr>
+              <td align="LEFT" valign="TOP"><span class="normalfont"><i>required</i><br />
+                  <i>value/format:</i>string. </span><br />
+                <i>class: </i>text
+                <p>The layout of DIVs or PAGEs that scopes either the summary or KWIC as selected in the &quot;detailviewtype&quot; field above.  The possible values are &quot;breadcrumb&quot; or &quot;outline&quot;.  The &quot;outline&quot; layout is more or less self-explanitory.  Each DIV or PAGE that scopes a KWIC or summary is indented to its proper level as one proceeds down the page.  The &quot;breadcrumb&quot; layout is expressed as a path from an upper level DIV down through lower level DIVs all on a single line.  For example, 20th Century History&gt;Europe&gt;France followed on the next line by the summary or KWIC display of hits within &quot;France&quot;.</p>
+                <p>  </p>
+            </td>
+            </tr>
+            <tr>
+              <td align="LEFT"><a id="printondemand" name="printondemand"></a>
+              <p>  </p>
+              <span class="normalfont"><b>printondemand</b></span></td>
+            </tr>
+            <tr>
+              <td align="LEFT" valign="TOP"><span class="normalfont"><i>optional</i><br />
+                  <i>value/format:</i>string. </span><br />
+                <i>class: </i>text
+                <p>Toggles the existence of a &quot;order a reprint&quot; button that can appear on a bibliographic header/T.O.C. display.
+              When field value is &quot;yes&quot; the link appears; if &quot;no&quot; the link does not appear.</p>
+              <p>  </p>
+            </td>
+            </tr>
+            
+            <tr>
+              <td align="LEFT"><a id="hold" name="hold"></a>
+              <p>  </p>
+              <span class="normalfont"><b>hold</b></span></td>
+            </tr>
+            <tr>
+              <td align="LEFT" valign="TOP"><span class="normalfont"><i>optional</i><br />
+                  <i>value/format:</i>string. </span><br />
+                <i>class: </i>all
+                <p>Used to restrict collections in release from moving to a production machine.
+                  When field value is &quot;yes&quot; a collection is prevented from moving to production; when set
+                  to &quot;no&quot; the collection is not held. When hold is set to &quot;yes&quot; individual collection rows may not be moved to production.</p>
+                <p>  </p>
+            </td>
+            </tr>
+        </tbody>
+      </table>
+      
+      <br />
+      
+     
+  </body>
+
+
+</html>

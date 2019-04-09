@@ -1,0 +1,31 @@
+<html>
+<body>
+<pre>
+&lt;?xml version="1.0"?> 
+&lt;xsl:stylesheet version="1.0" 
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+  &lt;xsl:template match="people">
+    &lt;html>
+      &lt;head>&lt;title>Famous Scientists&lt;/title>&lt;/head>
+      &lt;body>
+        &lt;xsl:apply-templates/>
+      &lt;/body>
+    &lt;/html>
+  &lt;/xsl:template>
+
+  &lt;xsl:template match="name">
+    &lt;p>&lt;xsl:value-of select="last_name"/>, 
+    &lt;xsl:value-of select="first_name"/>&lt;/p>
+  &lt;/xsl:template>
+
+  &lt;xsl:template match="person">
+    &lt;xsl:apply-templates select="name"/>
+  &lt;/xsl:template>
+
+
+&lt;/xsl:stylesheet>
+</pre>
+</body>
+</html>
+

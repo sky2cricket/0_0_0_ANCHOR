@@ -1,0 +1,222 @@
+<html>
+  <head>
+    <meta name="generator" content="HTML Tidy, see www.w3.org">
+      <title>Unicode in DLXS</title>
+      <meta http-equiv="Content-Type" content=
+        "text/html; charset=iso-8859-1">
+        <link rel="stylesheet" href="../styles.css" type="TEXT/CSS">
+  </head>
+  <body bgcolor="#FFFFFF" leftmargin="10" topmargin="10"
+    marginwidth="10" marginheight="10" class="mainpalette">
+    <h3><a name="top"></a>Unicode in DLXS</h3>
+
+    <p>This topic touches on XPAT indexing, data preparation and middleware configuration and behavior as they relate to Unicode in DLXS.</p>
+
+    <ul>
+      <li><a href="#unicodegeneral"><b>Unicode in General</b></a>
+      </li>
+
+      <li><a href="#unicodedataprep"><b>DLXS data preparation and Unicode</b></a>
+      </li>
+
+      <li><a href="#unicodexpatindexing"><b>Unicode XPAT indexing</b></a>
+      </li>
+
+      <li><a href="#unicodemidconfig"><b>Middleware configuration, requirements and behavior for Unicode</b></a>
+      </li>
+    </ul>
+
+    <p>Documentation on this topic can also be found at:</p> 
+    <blockquote><a href= "http://docs.dlxs.org/class/unicode.html" target= "external">http://docs.dlxs.org/class/unicode.html (Release 11a)</a>
+      <br />
+        <a href= "http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/unicode.html" target= "external">http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/unicode.html (Release 12)</a>
+    </blockquote>
+
+    <hr width="50%">
+      <h3><a name="unicodegeneral"></a>Unicode in General</h3>
+      <p>There is a lot of fuzziness in talk about characters. "Character set" considered harmful.</p>
+      <h4><span class="sectionheader">Definitions</span></h4>
+      <ul>
+        <li><i>Character Repertoire</i> - collection of abstract characters independent of how they look when printed.</li>
+        <li><i>Coded Character Set</i> - assignment of a unique number to each character in a Character Repertoire.</li>
+
+        <li><i>Code Point</i> - the unique number assigned to a character in a Coded Character Set.</li>
+        <li><i>ISO/IEC 10646</i> - The Coded Character Set for Unicode.  The Unicode standard specifies additional properties for each character.</li>
+        <li><i>Character Encoding Scheme</i> - or Encoding for short,  specifies how the number assigned to a character is stored in a file or in computer memory.
+          <ul>
+            <li>UTF-8, UTF-16</li>
+            <li>UTF-8 is a multi-byte variable length encoding. A byte is <b>not a character</b>, mostly.</li>
+            <li>ASCII is UTF-8 by design</li>
+            <li>Basic multilingual plane. 65536 characters. Divided into blocks of varying size by alphabet.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h4><span class="sectionheader">DLXS multi-lingual character support before Unicode</span></h4>
+      <p>The ASCII encoding only supports 127 characters.  The ISO-8859-* encodings support 256 characters but only one set of 256 characters at a time. Latin2 covers German and Polish.  Latin5 covers German and Turkish. There is no single-byte encoding covering German and Russian. </p>
+      <ul>
+        <li>Use of .gif images of characters and <tt>&lt;img src="<b>Agrave.gif</b>"&gt;</tt> tags.
+          <ul>
+            <li>Not font dependent.</li>
+            <li>Not searchable, not scalable, slow. A lot of work to generate</li>
+          </ul>
+        </li>
+        <li>Character Entity References (CER), e.g. <tt><b>&amp;Agrave;</b></tt> in SGML for LATIN CAPITAL LETTER A WITH GRAVE
+          <ul>
+            <li>Font dependent.</li>
+            <li>Not searchable.  Not easily entered bu the user. Not XML. Less support in browsers than for NCR</li>
+          </ul>
+        </li>
+        <li>Numeric character references (NCR), e.g. <tt><b>&amp;#00C0;</b></tt> is the Unicode Code Point for LATIN CAPITAL LETTER A WITH GRAVE
+          <ul>
+            <li>Font dependent.</li>
+            <li>Not searchable.  Not easily entered by the user.</li>
+          </ul></li>
+        <li>Convert NCR and CER to iso8859-1 encoding.
+          <ul>
+            <li>Font dependent.</li>
+            <li>Searchable.  Easily entered by the user via XPAT mapping functionality.</li>
+            <li>Limited to one alphabet per document.</li>
+          </ul></li>
+      </li>
+      </ul>
+
+      <h4><span class="sectionheader">Reasons to use Unicode</span></h4>
+      <ul>
+        <li>See previous section.</li>
+        <li>Can represent more than one alphabet in a single document or web page.</li>
+        <li>Searchable. (xpatu)</li>
+        <li>Programming is simpler.</li>
+        <li>Latin characters can be easily entered by users via XPAT mapping functionality.</li>
+        <li>Non-ASCII characters can be entered by users via national keyboards, virtual keyboards, IMEs, copy/paste.</li>
+        <li>Can be collated.</li>
+        <li>Fundamental to XML.</li>
+        <li>Better font support than for character entity references.</li>
+      </ul>
+  <!-- #BeginLibraryItem "/Library/back to top.lbi" -->
+      <a href="#top"><i>Back to top</i></a> <!-- #EndLibraryItem -->
+
+   <h3><a name="unicodedataprep"></a>DLXS data preparation and Unicode</h3>
+      <p>Tools are getting better, more plentiful every day.</p>
+      <h4><span class="sectionheader">Terminal emulators</span></h4>
+      <ul>
+        <li>The Ã© (instead of é) problem. </li>
+        <li>Linux
+          <ul>
+            <li>GNOME terminal</li>
+            <li><tt>xterm -u8 -fn '-misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1'</tt></li>
+            <li>Bitstream Cyberbit and MS Arial Unicode fonts</li>
+          </ul>
+        </li>
+        <li>Windows
+          <ul>
+            <li><a target="external" href="http://www.chiark.greenend.org.uk/~sgtatham/putty">PuTTY</a> with Hummingbird Exceed X Server version 8 or higher on Windows</li>
+            <li>MS Arial Unicode</li>
+            <li>XMLSpy</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h4><span class="sectionheader">Tools</span></h4>
+      <p>The goal is to get your data into UTF-8 encoded XML.  You need to know
+        how characters in your data have been encoded in order to transform to
+        another encoding.</p>
+      <ul>
+        <li><tt>iconv -c -f ISO-8859-1 -t UTF-8 -o outfile infile</tt></li>
+        <li><tt>DLXSROOT/bin/t/text/ncr2utf8</tt></li>
+        <li><tt>DLXSROOT/bin/t/text/isocer2utf8</tt></li>
+        <li>OpenSP <tt>osx</tt></li>
+        <li>XMLSpy</li>
+      </ul>
+  <!-- #BeginLibraryItem "/Library/back to top.lbi" -->
+      <a href="#top"><i>Back to top</i></a> <!-- #EndLibraryItem -->
+      
+      <h3><a name="unicodexpatindexing"></a>Unicode XPAT indexing</h3>
+      <p>More when we talk about data preparation more fully.  For now this is just to highlight some differences in programs and processes.</p>
+      <ul>
+        <li><tt><b>xpatbldu</b></tt>, <tt><b>xpatu</b></tt> and <tt><b>xmlrgn</b></tt> are used instead of <tt>xpatbld</tt>, <tt>xpat</tt> and <tt>sgmlrgn</tt>. </li>
+        <li>Sample <tt>Makefile</tt> in <tt>DLXSROOT/bin/s/sampletc_utf8</tt> </li>
+        <li><tt>&lt;?xml version="1.0" encoding="UTF-8"?&gt;</tt>  Important for <tt>xmlrgn</tt> </li>
+        <li>Index point meta characters (e.g. <tt>&amp;Greek.</tt> or <tt>&amp;Cyrillic.</tt>) are based on the <a target="external" href="http://www.unicode.org/Public/UNIDATA/Blocks.txt">Unicode block definitions</a>, Perl unicode lib (e.g. <a href="Latin.txt">lib/5.8.3/unicore/lib/Latin.pl</a>) and modified as described in the <a target="external" href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/xpat/datadict.html#sec1.4.2">XPAT data dictionary document</a>.</li>
+        <li>Specify index points in the data dictionary (.dd file) based on the alphabets in your data.
+          <blockquote>
+            <pre>
+            &lt;IndexPoints&gt;
+            &lt;IndexPt&gt; &printable.&lt;/IndexPt&gt;
+            &lt;IndexPt&gt;&printable.-&lt;/IndexPt&gt;
+            &lt;IndexPt&gt;-&printable.&lt;/IndexPt&gt;
+            &lt;IndexPt&gt;&printable.&lt.&lt;/IndexPt&gt;
+            &lt;IndexPt&gt;&printable.&amp.&lt;/IndexPt&gt;
+
+            &lt;IndexPt&gt; &Latin.&lt;/IndexPt&gt;
+            &lt;IndexPt&gt;&Latin.-&lt;/IndexPt&gt;
+            &lt;IndexPt&gt;-&Latin.&lt;/IndexPt&gt;
+            &lt;IndexPt&gt;&Latin.&lt.&lt;/IndexPt&gt;
+
+            &lt;IndexPt&gt; &Greek.&lt;/IndexPt&gt;
+            &lt;IndexPt&gt;&Greek.-&lt;/IndexPt&gt;
+            &lt;IndexPt&gt;-&Greek.&lt;/IndexPt&gt;
+            &lt;IndexPt&gt;&Greek.&lt.&lt;/IndexPt&gt;
+            &lt;/IndexPoints&gt;
+            </pre>
+          </blockquote>
+        </li>
+        <li>Specify character mappings in the data dictionary also based on the characters that occur in your data.  Note U+XXXX notation. Refer to the <a target="external" href="http://www.unicode.org/Public/UNIDATA/UnicodeData.txt">Unicode character database</a>.   This is mainly for case mapping for alphabets that have case.
+          <blockquote>
+            <pre>
+            ...
+            &lt;Map&gt;&lt;From&gt;U+0391&lt;/From&gt;&lt;To&gt;U+03B1&lt;/To&gt;&lt;/Map&gt;
+            &lt;Map&gt;&lt;From&gt;U+0392&lt;/From&gt;&lt;To&gt;U+03B2&lt;/To&gt;&lt;/Map&gt;
+            &lt;Map&gt;&lt;From&gt;U+0393&lt;/From&gt;&lt;To&gt;U+03B3&lt;/To&gt;&lt;/Map&gt;
+            &lt;Map&gt;&lt;From&gt;U+0394&lt;/From&gt;&lt;To&gt;U+03B4&lt;/To&gt;&lt;/Map&gt;
+            &lt;Map&gt;&lt;From&gt;U+0395&lt;/From&gt;&lt;To&gt;U+03B5&lt;/To&gt;&lt;/Map&gt;
+            ...
+            </pre>
+          </blockquote>
+
+        </li>
+        <li>Run Makefile</li>
+      </ul>
+
+      <h4><span class="sectionheader">DLPS Unicode examples</span></h4>
+      <ul>
+        <li><a target="external" href="http://oaister.umdl.umich.edu/cgi/b/bib/bib-idx?c=oaister;page=simple">OAIster</a> is %100 UTF-8 encoded XML indexed by xpatbldu and multirgn and searched using xpatu.</li>
+        <li>Supports Latin, Greek, Cyrillic, Han, Hiragana, Katakana and Hangul characters.</li>
+        <li>Highlighting based on .dd file character mappings.</li>
+        <li><a target="external" href="oaisterdatadict.html">OAIster data dictionary</a></li>
+
+      </ul>
+      <ul>
+        <li><a target="external" href="http://pfarber.ws.umdl.umich.edu/cgi/t/text/text-idx?c=sampletc_utf8;page=simple">Workshop example</a> is %100 UTF-8 encoded XML containing French and indexed by xpatbldu and xmlrgn and searched using xpatu.  Unicode wordwheel.</li>
+      </ul>
+  <!-- #BeginLibraryItem "/Library/back to top.lbi" -->
+      <a href="#top"><i>Back to top</i></a> <!-- #EndLibraryItem -->
+      <h3><a name="unicodemidconfig"></a>Middleware configuration, requirements and behavior for Unicode</h3>
+      <p>XPAT version 5.3.2
+        <ul>
+          <li>5.3 XPAT can read 5.2 indexes, i.e. 5.3 is backward compatible</li>
+          <li>5.2 XPAT <b>cannot</b> read 5.3 indexes</li>
+        </ul>
+      </p>
+      <p>Perl 5.8.3 or higher is required.</p>
+
+      <h4>Configuration and behavior</h4>
+      <p>The middleware will transcode <i>all</i> user input that is not valid UTF-8 from Latin1 to UTF-8 under the assumption that the input was Latin1.  This implies that non-ASCII searches will fail in Latin1 collections.  Unaccented searches will still work because of XPAT mapping in the data dictionary. </p>
+      <p>The collection manager (collmgr) <tt>locale</tt> field should be set to <tt><b>en_US.UTF-8</b></tt>.  Any value not including "UTF-8" means the middleware will assume Latin1 encoding and will:
+        <ul>
+          <li>use <tt>xpat</tt> instead of <tt>xpatu</tt> to read the index.</li>
+          <li>transcode XPAT results from Latin1 encoding to UTF-8.</li>
+          <li>change SGML-style singletons (e.g. &lt;LB&gt;) to XML-style singletons (e.g. &lt;LB/&gt;).</li>
+        </ul>
+      </p>
+
+      <p>All XML templates have <tt>&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;</tt> elements to ensure user input is UTF-8 and to tell the browser to use UTF-8 encoding for the page.</p>
+      <p>The middleware supports collections with different character encodings in <i>cross-collection mode</i>. This fact is due to the transcoding Latin1 -&gt; UTF-8 on input and Latin1 -&gt; UTF-8 on output.</p>
+    
+  <!-- #BeginLibraryItem "/Library/back to top.lbi" -->
+      <a href="#top"><i>Back to top</i></a> <!-- #EndLibraryItem -->
+
+  </body>
+</html>
+
+

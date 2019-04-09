@@ -1,0 +1,75 @@
+
+FILE LISTINGS FOR imageprep
+
+input:  /d1/dlxs/img/v/vvz/large/
+	/d1/dlxs/img/v/vvz/thumb/
+
+output: /d1/dlxs/img/v/vvz/index/
+
+
+[root@diglib2 image]# ls /d1/dlxs/img/v/vvz
+index  large  thumb
+[root@diglib2 image]# ls /d1/dlxs/img/v/vvz/thumb/0031_000050*
+thumb/0031_000050_000200_0001.jpg  thumb/0031_000050_000203_0001.jpg
+thumb/0031_000050_000201_0001.jpg  thumb/0031_000050_000204_0001.jpg
+thumb/0031_000050_000202_0001.jpg
+[root@diglib2 vvz]# ls /d1/dlxs/img/v/vvz/large/0031_000050*
+large/0031_000050_000200_0001.jpg  large/0031_000050_000203_0001.jpg
+large/0031_000050_000201_0001.jpg  large/0031_000050_000204_0001.jpg
+large/0031_000050_000202_0001.jpg
+[root@diglib2 1]# ls /d1/dlxs/img/v/vvz/index/0/0/1/0031_000050*
+0031_000050_000200_0001.inf
+0031_000050_000200_0001.jpg
+0031_000050_000201_0001.inf
+0031_000050_000201_0001.jpg
+0031_000050_000202_0001.inf
+0031_000050_000202_0001.jpg
+0031_000050_000203_0001.inf
+0031_000050_000203_0001.jpg
+0031_000050_000204_0001.inf
+0031_000050_000204_0001.jpg
+
+======================================================================
+About the input:
+There are two copies of each image, 
+one in the thumb directory and one in the large directory.
+
+These are the files that you copied with the commands
+cp /d1/workarea/dlxs/image/tel/singles/thumbs/* /d1/dlxs/img/v/vvz/thumb/
+cp /d1/workarea/dlxs/image/tel/singles/jpegs/* /d1/dlxs/img/v/vvz/large/
+======================================================================
+
+About the output:
+
+2 output files are created in the index directory for each each image 
+by running /d1/dlxs/bin/i/image/imageprep vvz
+
+The example below is for 0031_000050_000203
+which is a digital object containing one image to display.
+
+[root@diglib2 vv]# cd  /d1/dlxs/img/v/vvz/index/0/0/1/
+[root@diglib2 1]# ls 0031_000050_000203*
+0031_000050_000203_0001.inf
+0031_000050_000203_0001.jpg -> ../../../../thumb/0031_000050_000203_0001.jpg
+
+
+FILE #1 is an index file (.inf)
+
+0031_000050_000203_0001.inf
+(this is an index file to make cgi work faster.)
+
+FILE # 2 is a link to a thumb jpg.
+
+0031_000050_000203_0001.jpg -> ../../../../thumb/0031_000050_000203_0001.jpg
+(this is a link to the jpg file of the same name)
+
+
+The inf file contains 2 lines, shown below, which describe the large and the thumb images.
+
+<F F="JPG" C="0" D="600">large/0031_000050_000203_0001.jpg</F>
+<T M="image/jpg" F="JPG" C="0">/0/0/1/0031_000050_000203_0001.jpg</T>
+
+
+
+
+

@@ -1,0 +1,191 @@
+
+//=================================================================
+//=================================================================
+function process_abstract() {
+
+//alert("process_abstract str:\n"+str);
+var s = new String(parent.U.document.U2.mods_abstract.value);
+var w = new String();
+var M = new String();
+var Mmsg = new String(" abstract Mmsg:");
+var temp = new String();
+if ( s.length == 0 ) { return (""); }
+
+var Aab = new Array();
+    Aab = s.split("<mods:");
+
+for (i=1;i<Aab.length;i++) {
+        M = "<mods:"+Aab[i];
+        Mmsg += "\n Aab["+i+"]="+M;
+        temp = getEntityData(M);
+        if (temp.length == 0 ) { temp = "empty_string"; }
+        w += parent.U.split_token + temp;
+        }
+//alert(Mmsg);
+w = w.substring(parent.U.split_token.length);
+parent.U.document.UF.ab_block_list.value = w;
+
+
+}//end function process_abstract
+
+//=================================================================
+//=================================================================
+///returns the ps array
+function buildTagsArray_abstract(N){
+//alert("buildTagsArray_abstract");
+
+set_output_option(N);
+
+var ps=new Array();
+
+///////////////////////////////////////////////////// <mods:abstract
+
+var str = new String(parent.U.document.UF.ab_block_list.value);
+var Aab = new Array();
+    Aab = str.split(parent.U.split_token);
+    /// test for valid data
+    vtest =0;
+    for (i=0;i<Aab.length;i++){
+        if (Aab[i] != "empty_string") vtest++;
+        }
+    if (vtest == 0 ) { return (ps); }
+var a = 0;//counter for Alang
+var Nab = new Number( parent.L.get_block_iteration("abstract"));
+var strAbstract = new String("");
+
+//ps[ps.length]= new String(obrak+'mods:language>\r\n');
+
+for (i=0;i<Nab;i++){
+strAbstract = Aab[a++];
+
+        if ( strAbstract != "" && strAbstract != "empty_string" ){
+                ps[ps.length]= new String(obrak+'mods:abstract>'
+                + bfont + strAbstract + efont
+                + obrak +'/mods:abstract>\r\n'
+                );
+        }
+}//end for
+
+
+return(ps);
+
+
+}///end function buildTagsArray_abstract()
+
+//=================================================================
+//=================================================================
+function process_physicalDescription() {
+
+//alert("process_physicalDescription str:\n"+str);
+var s = new String(parent.U.document.U2.mods_physicalDescription.value);
+if (s.length==0) {return;}
+
+/* contents of pd_block_list
+DIGITAL ORIGIN    Apd[0]=born digital
+FORMTYPEMED AUTH  Apd[1]=aat
+FORMTYPEMED VAL   Apd[2]=aaaaaaaaaaaaaaaa
+FORMTYPETEC AUTH  Apd[3]=_zero
+FORMTYPETEC VAL   Apd[4]=bbbbbbbbbbbbbbbbbbbb
+INTERNETMEDIATYPE Apd[5]=image/png
+PHYSDESC EXTENT   Apd[6]=ccccccccccccccccccccc
+PHYSDESC NOTE     Apd[7]=ddddddddddd ddddddddddddd ddddddddddddd
+
+---------------------------
+physicalDescription Mmsg:
+ Mpd[0]=<mods:
+ Mpd[1]=<mods:physicalDescription>
+ Mpd[2]=<mods:form type="technique" authority="aat">something</mods:form>
+ Mpd[3]=<mods:form type="medium" authority="aat">medium</mods:form>
+ Mpd[4]=<mods:digitalOrigin>born digital</mods:digitalOrigin>
+ Mpd[5]=<mods:internetMediaType>image/jpeg</mods:internetMediaType>
+ Mpd[6]=<mods:extent>extebt</mods:extent>
+ Mpd[7]=<mods:note>niote</mods:note>
+</mods:physicalDescription>
+*/
+
+var Mpd = new Array();
+    Mpd = s.split("<mods:");
+var Mmsg = new String("physicalDescription Mmsg:");
+
+//initial values for Apd loaded
+var Apd = new Array(
+ "_zero"
+,"_zero"
+,"empty_string"
+,"_zero"
+,"empty_string"
+,"empty_string"
+,"empty_string"
+);
+
+var w = new String();
+
+for (i=0;i<Mpd.length;i++) {
+        Mpd[i] = "<mods:"+Mpd[i];
+        Mmsg += "\n Mpd["+i+"]="+Mpd[i];
+        }
+alert(Mmsg);
+
+alert("got to here xxx Mpd.length="+Mpd.length);
+
+for (i=0;i<Mpd.length;i++) {
+
+//===============Apd[0]===digitalOrigin
+if (Mpd[i].indexOf("digitalOrigin")>-1) {
+        Apd[0]=getEntityData(Mpd[i]);
+        }
+
+//===============Apd[1]===authority for type="medium"
+//===============Apd[2]===value for type="medium"
+
+if (Mpd[i].indexOf("medium")>-1) {
+        Apd[2]=getEntityData(Mpd[i]);
+        if (Mpd[i].indexOf('authority="aat"') >-1) {
+                Apd[1] = "aat";
+                }
+        }
+
+
+//===============Apd[3]===authority for type="technique"
+//===============Apd[4]===value for type="technique"
+
+if (Mpd[i].indexOf("technique")>-1) {
+        Apd[4]=getEntityData(Mpd[i]);
+        if (Mpd[3].indexOf('authority="aat"') >-1) {
+                Apd[1] = "aat";
+                }
+        }
+
+
+//===============Apd[5]===internetmediatype
+if (Mpd[i].indexOf("internetMediaType")>-1) {
+        Apd[5]=getEntityData(Mpd[i]);
+        }
+
+//===============Apd[6]===extent
+if (Mpd[i].indexOf("mods:extent")>-1) {
+        Apd[6]=getEntityData(Mpd[i]);
+        }
+
+//===============Apd[7]===note
+
+if (Mpd[i].indexOf("mods:note")>-1) {
+        Apd[7]=getEntityData(Mpd[i]);
+        }
+
+
+}///end for
+
+for (i=0;i<Apd.length;i++) {
+        w += parent.U.split_token + Apd[i];
+        }
+
+w = w.substring(parent.U.split_token.length);
+alert("pd_block_list w=\n"+w);
+
+parent.U.document.UF.pd_block_list.value = w;
+
+return;
+}//end function process_physicalDescription
+
+

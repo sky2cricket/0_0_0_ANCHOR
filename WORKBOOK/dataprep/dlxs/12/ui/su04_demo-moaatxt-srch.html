@@ -1,0 +1,1048 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Untitled Document</title>
+<style type="text/css">
+<!--
+.codeblock {
+	font-family: "Courier New", Courier, mono;
+	font-size: 12px;
+	padding: 8px;
+	border: 1px solid #666666;
+	width: 680px;
+}
+.nhblock {
+	padding: 3px;
+	border: 1px solid #FF6666;
+	background-color: #FFCCCC;
+	width: 95%;
+}
+
+.jsblock {
+	padding: 3px;
+	border: 1px solid #0000ff;
+	background-color: #99FFFF;
+	width: 95%;
+}
+
+.searchblock {
+	padding: 3px;
+	border: 1px solid #333333;
+	background-color: #E5E5E5;
+	width: 95%;
+}
+
+.footerblock {
+	padding: 3px;
+	border: 1px solid #006633;
+	background-color: #CCFF99; /* #99CC66 */
+	width: 95%;
+}
+
+
+.custom {
+	padding: 3px;
+	margin-right: 10px;
+	border: 1px solid #000000;
+	background-color: #FFFFCC;
+}
+
+.genlabel,.customlabel {
+	margin: 5px;
+	font-weight:bold;
+	font-family: verdana;
+	font-size: 16px;
+	float:right;
+	color:#000000;
+
+}
+
+.nhlabel {
+	margin: 5px;
+	font-weight:bold;
+	font-family: verdana;
+	font-size: 16px;
+	float:right;
+	color:#FF3333;
+
+}
+
+.jslabel {
+	margin: 5px;
+	font-weight:bold;
+	font-family: verdana;
+	font-size: 16px;
+	float:right;
+	color:#003399;
+
+}
+
+.searchlabel {
+	margin: 5px;
+	font-weight:bold;
+	font-family: verdana;
+	font-size: 16px;
+	float:right;
+	color:#000000;
+
+}
+
+.footerlabel {
+	margin: 5px;
+	font-weight:bold;
+	font-family: verdana;
+	font-size: 16px;
+	float:right;
+	color:#006633;
+
+}
+-->
+</style>
+</head>
+
+<body>
+<p>Show this page as <a href="http://www.hti.umich.edu/cgi/t/text/text-idx?page=simple&c=moaatxt" target="_new">rendered by the browser</a></p>
+<div class="codeblock">
+<div class="genlabel">moaatxt customized search.tpl</div>
+<br>
+<br>
+&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;<br>
+&lt;html&gt;<br>
+&lt;!-- template: search.tpl --&gt;<br>
+&lt;head&gt;<br>
+&lt;title&gt;Making of Ann Arbor Text Collection&lt;/title&gt;<br>
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=iso-8859-1&quot;&gt;<br>
+&lt;link rel=&quot;stylesheet&quot; href=&quot;/t/text/textclass.css&quot; type=&quot;text/css&quot;&gt;<br>
+&lt;link rel=&quot;stylesheet&quot; href=&quot;/m/moaatxt/textclass-specific.css&quot; type=&quot;text/css&quot;&gt;<br>
+&lt;script src=&quot;/t/text/search.js&quot; type=&quot;text/javascript&quot; language=&quot;Javascript&quot;&gt;&lt;/script&gt;<br>
+&lt;script src=&quot;/t/text/bbagWindow.js&quot; type=&quot;text/javascript&quot; language=&quot;javascript&quot;&gt;&lt;/script&gt;<br>
+&lt;script type=&quot;text/javascript&quot; language=&quot;javascript&quot;&gt;<br>
+&lt;!-- <br>
+<br>
+window.name = &quot;mainwindow&quot;;<br>
+function setnavarrow(){<br>
+document.navmenuarrow.src = '/t/text/graphics/navdwnarrow-grey.gif';<br>
+}<br>
+//--&gt;<br>
+&lt;/script&gt;<br>
+ <br>
+&lt;style type=&quot;text/css&quot;&gt;<br>
+&lt;!-- <br>
+	.submitbuttonstyle1 {<br>
+	font-family: Verdana, Arial, Helvetica, sans-serif;<br>
+	font-size: 11px;<br>
+	padding-top: 5px;<br>
+	padding-left: 0px;<br>
+	padding-bottom: 5px;<br>
+	padding-right: 0px;<br>
+	background-image: url(/t/text/graphics/searchbuttonDS-blank.gif);<br>
+	background-repeat: no-repeat;<br>
+	margin: 0px;<br>
+	height: 28px;<br>
+	width: 69px;<br>
+	border-top-width: 0px;<br>
+	border-right-width: 0px;<br>
+	border-bottom-width: 0px;<br>
+	border-left-width: 0px;<br>
+	border-top-style: none;<br>
+	border-right-style: none;<br>
+	border-bottom-style: none;<br>
+	border-left-style: none;<br>
+	border-top-color: #0066CC;<br>
+	border-right-color: #0066CC;<br>
+	border-bottom-color: #0066CC;<br>
+	border-left-color: #0066CC;<br>
+	background-color: #e5e5e5;<br>
+	font-weight: bold;<br>
+	color: #000000;<br>
+	}<br>
+	// --&gt;<br>
+&lt;/style&gt; <br>
+	<br>
+&lt;!-- This (mostly Dreamweaver code) would be good in <br>
+	a separate .js file, but doesn't work unless included<br>
+	directly in the html. So, it is inserted as a parsed .chnk file --&gt;<br>
+	<br>
+	
+<div class="jsblock">	
+<div class="jslabel">jsheader.chnk</div>
+<br><br>
+<br clear="all">
+
+<div class="custom">
+<div class="customlabel">moaatxt customization</div>
+&lt;script type=&quot;text/javascript&quot; language=&quot;JavaScript&quot;&gt;<br>
+&lt;!--<br>
+var ez_codePath = &quot;http://moaa.aadl.org/PictHistory/code/&quot;;<br>
+	var arrButton = new Array();<br>
+	arrButton[&quot;A_Author&quot;]=&quot;ex. child, julia&quot;;<br>
+	arrButton[&quot;A_Title&quot;]=&quot;ex. french chef&quot;;<br>
+	arrButton[&quot;A_Subject&quot;]=&quot;ex. cookery, french&quot;;<br>
+	arrButton[&quot;K_CCL&quot;]=&quot;ex. french cooking&quot;;<br>
+	arrButton[&quot;K_Keyword&quot;]=&quot;ex. julia child and french&quot;;
+	<p>function setVal(item)<br>
+	{<br>
+	document.getElementById('query').value=arrButton[item];<br>
+	}</p>
+<p>//--&gt;<br>
+&lt;/script&gt;</p>
+</div>
+<p>&lt;script language=&quot;JavaScript&quot; type=&quot;text/JavaScript&quot;&gt;</p>
+<p>&lt;!--</p>
+<p>// MM functions<br>
+</p>
+<p>function MM_nbGroup(event, grpName) { //v6.0<br>
+	var i,img,nbArr,args=MM_nbGroup.arguments;<br>
+	if (event == &quot;init&quot; &amp;&amp; args.length &gt; 2) {<br>
+	if ((img = MM_findObj(args[2])) != null &amp;&amp; !img.MM_init) {<br>
+	img.MM_init = true; img.MM_up = args[3]; img.MM_dn = img.src;<br>
+	if ((nbArr = document[grpName]) == null) nbArr = document[grpName] = new Array();<br>
+	nbArr[nbArr.length] = img;<br>
+	for (i=4; i &lt; args.length-1; i+=2) if ((img = MM_findObj(args[i])) != null)
+	{<br>
+	if (!img.MM_up) img.MM_up = img.src;<br>
+	img.src = img.MM_dn = args[i+1];<br>
+	nbArr[nbArr.length] = img;<br>
+	} }<br>
+	} else if (event == &quot;over&quot;) {<br>
+	document.MM_nbOver = nbArr = new Array();<br>
+	for (i=1; i &lt; args.length-1; i+=3) if ((img = MM_findObj(args[i])) != null)
+	{<br>
+	if (!img.MM_up) img.MM_up = img.src;<br>
+	img.src = (img.MM_dn &amp;&amp; args[i+2]) ? args[i+2] : ((args[i+1])?args[i+1]
+	: img.MM_up);<br>
+	nbArr[nbArr.length] = img;<br>
+	}<br>
+	} else if (event == &quot;out&quot; ) {<br>
+	for (i=0; i &lt; document.MM_nbOver.length; i++) { img = document.MM_nbOver[i];
+	img.src = (img.MM_dn) ? img.MM_dn : img.MM_up; }<br>
+	} else if (event == &quot;down&quot;) {<br>
+	nbArr = document[grpName];<br>
+	if (nbArr) for (i=0; i &lt; nbArr.length; i++) { img=nbArr[i]; img.src = img.MM_up;
+	img.MM_dn = 0; }<br>
+	document[grpName] = nbArr = new Array();<br>
+	for (i=2; i &lt; args.length-1; i+=2) if ((img = MM_findObj(args[i])) != null)
+	{<br>
+	if (!img.MM_up) img.MM_up = img.src;<br>
+	img.src = img.MM_dn = (args[i+1])? args[i+1] : img.MM_up;<br>
+	nbArr[nbArr.length] = img;<br>
+	} }<br>
+	}</p>
+<p>function MM_preloadImages() { //v3.0<br>
+	var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();<br>
+	var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i&lt;a.length;
+	i++)<br>
+	if (a[i].indexOf(&quot;#&quot;)!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}<br>
+	}</p>
+<p>function MM_swapImgRestore() { //v3.0<br>
+	var i,x,a=document.MM_sr; for(i=0;a&amp;&amp;i&lt;a.length&amp;&amp;(x=a[i])&amp;&amp;x.oSrc;i++)
+	x.src=x.oSrc;<br>
+	}</p>
+<p>&nbsp;</p>
+<p>function MM_swapImage() { //v3.0<br>
+	var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i&lt;(a.length-2);i+=3)<br>
+	if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src;
+	x.src=a[i+2];}<br>
+	}</p>
+<p>function MM_reloadPage(init) { //reloads the window if Nav4 resized<br>
+	if (init==true) with (navigator) {if ((appName==&quot;Netscape&quot;)&amp;&amp;(parseInt(appVersion)==4))
+	{<br>
+	document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage;
+	}}<br>
+	else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();<br>
+	}<br>
+	MM_reloadPage(true);</p>
+<p>function MM_findObj(n, d) { //v4.01<br>
+	var p,i,x; if(!d) d=document; if((p=n.indexOf(&quot;?&quot;))&gt;0&amp;&amp;parent.frames.length)
+	{<br>
+	d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}<br>
+	if(!(x=d[n])&amp;&amp;d.all) x=d.all[n]; for (i=0;!x&amp;&amp;i&lt;d.forms.length;i++)
+	x=d.forms[i][n];<br>
+	for(i=0;!x&amp;&amp;d.layers&amp;&amp;i&lt;d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);<br>
+	if(!x &amp;&amp; d.getElementById) x=d.getElementById(n); return x;<br>
+	}</p>
+<p>function MM_showHideLayers() { //v6.0<br>
+	var i,p,v,obj,args=MM_showHideLayers.arguments;<br>
+	for (i=0; i&lt;(args.length-2); i+=3) if ((obj=MM_findObj(args[i]))!=null) {
+	v=args[i+2];<br>
+	if (obj.style) { obj=obj.style; v=(v=='show')?'visible':(v=='hide')?'hidden':v;
+	}<br>
+	obj.visibility=v; }<br>
+	}<br>
+</p>
+<p>function MM_goToURL() { //v3.0<br>
+	var i, args=MM_goToURL.arguments; document.MM_returnValue = false;<br>
+	for (i=0; i&lt;(args.length-1); i+=2) eval(args[i]+&quot;.location='&quot;+args[i+1]+&quot;'&quot;);<br>
+	}</p>
+<p>function deltoP7() {</p>
+<p> var timeoutID;<br>
+	timeoutID = setTimeout(&quot;P7_autoLayers(&quot;+deltoP7.arguments[0]+&quot;)&quot;,1500);<br>
+	}<br>
+</p>
+<p>// P7 functions </p>
+<p>function P7_autoLayers() { //v1.2 by PVII<br>
+	var g,b,k,f,args=P7_autoLayers.arguments;<br>
+	var a = parseInt(args[0]);if(isNaN(a))a=0;<br>
+	if(!document.p7setc) {p7c=new Array();document.p7setc=true;<br>
+	for (var u=0;u&lt;10;u++) {p7c[u] = new Array();}}<br>
+	for(k=0; k&lt;p7c[a].length; k++) {<br>
+	if((g=MM_findObj(p7c[a][k]))!=null) {<br>
+	b=(document.layers)?g:g.style;b.visibility=&quot;hidden&quot;;}}<br>
+	for(k=1; k&lt;args.length; k++) {<br>
+	if((g=MM_findObj(args[k])) != null) {<br>
+	b=(document.layers)?g:g.style;b.visibility=&quot;visible&quot;;f=false;<br>
+	for(j=0;j&lt;p7c[a].length;j++) {<br>
+	if(args[k]==p7c[a][j]) {f=true;}}<br>
+	if(!f) {p7c[a][p7c[a].length++]=args[k];}}}<br>
+	}</p>
+<p>function P7_ReDoIt() { //v1.21 by PVII<br>
+	if(document.layers) {MM_reloadPage(false);}<br>
+	}</p>
+<p>function P7_Snap() { //v2.63 by PVII<br>
+	var x,y,ox,bx,oy,p,tx,a,b,k,d,da,e,el,tw,q0,xx,yy,w1,pa='px',args=P7_Snap.arguments;a=parseInt(a);<br>
+	if(document.layers||window.opera){pa='';}for(k=0;k&lt;(args.length);k+=4){<br>
+	if((g=MM_findObj(args[k]))!=null){if((el=MM_findObj(args[k+1]))!=null){<br>
+	a=parseInt(args[k+2]);b=parseInt(args[k+3]);x=0;y=0;ox=0;oy=0;p=&quot;&quot;;tx=1;<br>
+	da=&quot;document.all['&quot;+args[k]+&quot;']&quot;;if(document.getElementById){<br>
+	d=&quot;document.getElementsByName('&quot;+args[k]+&quot;')[0]&quot;;if(!eval(d)){<br>
+	d=&quot;document.getElementById('&quot;+args[k]+&quot;')&quot;;if(!eval(d)){d=da;}}<br>
+	}else if(document.all){d=da;}if(document.all||document.getElementById){while(tx==1){<br>
+	p+=&quot;.offsetParent&quot;;if(eval(d+p)){x+=parseInt(eval(d+p+&quot;.offsetLeft&quot;));<br>
+y+=parseInt(eval(d+p+&quot;.offsetTop&quot;));<br>
+	}else{tx=0;}}ox=parseInt(g.offsetLeft);oy=parseInt(g.offsetTop);tw=x+ox+y+oy;<br>
+	if(tw==0||(navigator.appVersion.indexOf(&quot;MSIE 4&quot;)&gt;-1&amp;&amp;navigator.appVersion.indexOf(&quot;Mac&quot;)&gt;-1)){<br>
+	ox=0;oy=0;if(g.style.left){x=parseInt(g.style.left);y=parseInt(g.style.top);}else{<br>
+	w1=parseInt(el.style.width);bx=(a&lt;0)?-5-w1:-10;a=(Math.abs(a)&lt;1000)?0:a;b=(Math.abs(b)&lt;1000)?0:b;<br>
+	x=document.body.scrollLeft+event.clientX+bx;y=document.body.scrollTop+event.clientY;}}<br>
+	}else if(document.layers){x=g.x;y=g.y;q0=document.layers,dd=&quot;&quot;;for(var
+	s=0;s&lt;q0.length;s++){<br>
+	dd='document.'+q0[s].name;if(eval(dd+'.document.'+args[k])){x+=eval(dd+'.left');<br>
+	y+=eval(dd+'.top');<br>
+	break;}}}e=(document.layers)?el:el.style;xx=parseInt(x+ox+a),yy=parseInt(y+oy+b);<br>
+	if(navigator.appVersion.indexOf(&quot;MSIE 5&quot;)&gt;-1 &amp;&amp; navigator.appVersion.indexOf(&quot;Mac&quot;)&gt;-1){<br>
+	xx+=parseInt(document.body.leftMargin);yy+=parseInt(document.body.topMargin);}<br>
+	e.left=xx+pa;e.top=yy+pa;}}}<br>
+	}<br>
+</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>//<br>
+	// name: | openHIndex<br>
+	// purpose: | takes a url path and/or a file name and opens a <br>
+	// help window pointing to either<br>
+	// input: | a url path and an optional filename.<br>
+	// returns: | sets the location of the new window in the form<br>
+	// | index.html?xc=[mode]&amp;optionalhelp=[pageref]<br>
+	//</p>
+<p>function openHIndex(newpath,helppg)<br>
+	{</p>
+<p> var idxurl; // this will be the go to url for the help window<br>
+	var mode = ''; // mode flag . i.e., xcoll or stand alone?<br>
+	if (self.location.search)<br>
+	{ <br>
+	// we want to parse the url of the current page to see if we <br>
+	// are in xc mode or not. If so, set xc=1, else set xc=0</p>
+<p> var search = self.location.search; <br>
+	(search.indexOf('c=')==-1||search.indexOf('xg=')!=-1) ? mode ='xc=1' : mode
+		='xc=0';<br>
+	//alert('mode='+mode);<br>
+	}<br>
+	if (!helppg)<br>
+	{<br>
+	idxurl = newpath+'/index.html?'+mode;<br>
+	} else {<br>
+	idxurl = newpath+'/index.html?'+mode+'&amp;help='+helppg;<br>
+	}<br>
+	// self.location = idxurl;<br>
+	window.open(idxurl,'helpwin');<br>
+	}<br>
+</p>
+<p>function setsearchlayer() {<br>
+	var typeparam = new Array();<br>
+	var pageparams = new Array();<br>
+	var stypelayer;<br>
+	stypelayer = document.search.type.value;<br>
+	MM_showHideLayers(stypelayer,'','show');<br>
+	}<br>
+</p>
+
+<div class="custom">
+<div class="customlabel">moaatxt customization</div>
+<p>MM_preloadImages(<br>
+	'http://moaa.aadl.org/images/texts_f2.jpg',<br>
+	'http://moaa.aadl.org/images/texts_f4.jpg',<br>
+	'http://moaa.aadl.org/images/texts_f3.jpg',<br>
+	'http://moaa.aadl.org/images/maps_f2.jpg',<br>
+	'http://moaa.aadl.org/images/maps_f4.jpg',<br>
+	'http://moaa.aadl.org/images/maps_f3.jpg',<br>
+	'http://moaa.aadl.org/images/pc_f2.jpg',<br>
+	'http://moaa.aadl.org/images/pc_f4.jpg',<br>
+	'http://moaa.aadl.org/images/pc_f3.jpg',<br>
+	'http://moaa.aadl.org/images/hb_f2.jpg',<br>
+	'http://moaa.aadl.org/images/hb_f4.jpg',<br>
+	'http://moaa.aadl.org/images/hb_f3.jpg',<br>
+	'http://production.aadl.org/newsite/images/homepageraw_r3_c3_f3.gif',<br>
+	'http://production.aadl.org/newsite/images/homepageraw_r3_c3_f2.gif',<br>
+	'http://production.aadl.org/newsite/images/homepageraw_r3_c6_f3.gif',<br>
+	'http://production.aadl.org/newsite/images/homepageraw_r3_c6_f2.gif',<br>
+	'http://production.aadl.org/newsite/images/homepageraw_r3_c8_f3.gif',<br>
+	'http://production.aadl.org/newsite/images/homepageraw_r3_c8_f2.gif',<br>
+	'http://production.aadl.org/newsite/images/homepageraw_r3_c10_f3.gif',<br>
+	'http://production.aadl.org/newsite/images/homepageraw_r3_c10_f2.gif',<br>
+	'http://production.aadl.org/newsite/images/homepageraw_r3_c12_f3.gif',<br>
+	'http://production.aadl.org/newsite/images/homepageraw_r3_c12_f2.gif',<br>
+	'http://production.aadl.org/newsite/images/homepageraw_r3_c14.gif',<br>
+	'http://production.aadl.org/newsite/images/homepageraw_r3_c14_f2.gif',<br>
+	'http://production.aadl.org/newsite/images/homepageraw_r3_c14_f3.gif',<br>
+	'http://production.aadl.org/newsite/images/homepageraw_r3_c16_f3.gif',<br>
+	'http://production.aadl.org/newsite/images/homepageraw_r3_c16_f2.gif');</p>
+<p>//--&gt;<br>
+&lt;/script&gt;<br>
+&lt;script type=&quot;text/javascript&quot; language=&quot;JavaScript&quot; src=&quot;http://moaa.aadl.org/PictHistory/ezdata.js&quot;&gt;&lt;/script&gt;<br>
+&lt;script type=&quot;text/javascript&quot; language=&quot;JavaScript&quot; src=&quot;http://moaa.aadl.org/PictHistory/code/ezloader.js&quot;&gt;&lt;/script&gt;</p>
+<p>&lt;script language=&quot;JavaScript&quot;&gt;<br>
+&lt;!--<br>
+	function pload(){</p>
+<p>if (!ez_NN4) { onresize = function() { location.reload()} }<br>
+	var height, width; <br>
+	if (document.all) { <br>
+	height = document.body.offsetHeight; <br>
+	width = document.body.offsetWidth; <br>
+	} <br>
+	else { <br>
+	height = window.innerHeight; <br>
+	width = window.innerWidth; <br>
+	} </p>
+<p>&nbsp;</p>
+<p>}</p>
+<p>function runOnload(){<br>
+	P7_Snap('menuanchor','lmarginmenu',-80,55);<br>
+	if (!ez_NN4) { onresize = function() { location.reload()} }<br>
+	var height, width; <br>
+	if (document.all) { <br>
+	height = document.body.offsetHeight; <br>
+	width = document.body.offsetWidth; <br>
+	} <br>
+	else { <br>
+	height = window.innerHeight; <br>
+	width = window.innerWidth; <br>
+	} </p>
+<p>menusGo();<br>
+	return;<br>
+	}</p>
+<p>function runOnresize(){<br>
+	P7_ReDoIt();<br>
+	P7_Snap('leftanchor','closer',0,0,'leftanchor','ddsearchmenu',0,0);<br>
+	P7_Snap('menuanchor','lmarginmenu',-80,55);</p>
+<p>}</p>
+<p>window.onload = runOnload;<br>
+	window.onResize = runOnresize;</p>
+<p>//--&gt;<br>
+&lt;/script&gt;</p>
+</div>b
+</div>
+
+<p> <br>
+&lt;!-- reference to external css file to handle <br>
+	colors of nav-bar's search tab and browse tab --&gt;<br>
+&lt;link rel=&quot;STYLESHEET&quot; type=&quot;text/css&quot; href=&quot;/t/text/searchtabstyles.css&quot;&gt;</p>
+<p> &lt;/head&gt;<br>
+  	<br>
+&lt;body leftmargin=&quot;0&quot; topmargin=&quot;0&quot; marginwidth=&quot;0&quot; 
+marginheight=&quot;0&quot; bgcolor=&quot;#FFFFFF&quot; 
+onResize=&quot;P7_ReDoIt();P7_Snap('leftanchor','closer',0,0,'leftanchor','ddsearchmenu',0,0)&quot; 
+onLoad=&quot;PageInit(location.search);<span style="color:red;font-weight:bold">runOnload();</span>setnavarrow()&quot;&gt;<br>
+&lt;!-- insert header.chnk --&gt;<br>
+	<br>
+	</p>
+<div class="nhblock">
+<div class="nhlabel">navheader.chnk</div>
+<p>&lt;div style=&quot;position:absolute; left:15px; top:70px; width:420px; height:22px;
+	z-index:3; visibility: hidden;&quot; id=&quot;ddsearchmenu&quot;&gt; <br>
+&lt;table width=&quot;420&quot; border=&quot;0&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot;&gt;<br>
+&lt;tr&gt; <br>
+&lt;td bgcolor=&quot;#666666&quot;&gt; &lt;table width=&quot;100%&quot; border=&quot;0&quot; cellspacing=&quot;1&quot; cellpadding=&quot;0&quot;&gt;<br>
+&lt;tr&gt; <br>
+&lt;td class=&quot;mencellup&quot; height=&quot;22&quot; bgcolor=&quot;#E5E5E5&quot; nowrap&gt;&amp;nbsp;<br>
+&lt;span class=&quot;smallformfont&quot;&gt;&lt;a class=&quot;menunav&quot; href=&quot;http://www.hti.umich.edu/cgi/t/text/text-idx?c=moaatxt;sid=7b5bc5e64ba797a19ecd3be61e7acee2;page=simple&quot;&gt;Basic&lt;/a&gt;<br>&lt;/span&gt;<br>
+&amp;nbsp;|&amp;nbsp;<br>
+&lt;span class=&quot;smallformfont&quot;&gt;&lt;a class=&quot;menunav&quot; href=&quot;http://www.hti.umich.edu/cgi/t/text/text-idx?c=moaatxt;sid=7b5bc5e64ba797a19ecd3be61e7acee2;page=boolean&quot;&gt;Boolean&lt;/a&gt;<br>&lt;/span&gt;<br>
+&amp;nbsp;|&amp;nbsp;<br>
+		<br>
+&lt;span class=&quot;smallformfont&quot;&gt;&lt;a class=&quot;menunav&quot; href=&quot;http://www.hti.umich.edu/cgi/t/text/text-idx?c=moaatxt;sid=7b5bc5e64ba797a19ecd3be61e7acee2;page=proximity&quot;&gt;Proximity&lt;/a&gt;<br>&lt;/span&gt;<br>
+&amp;nbsp;|&amp;nbsp;<br>
+		<br>
+&lt;span class=&quot;smallformfont&quot;&gt;&lt;a class=&quot;menunav&quot; href=&quot;http://www.hti.umich.edu/cgi/t/text/text-idx?c=moaatxt;sid=7b5bc5e64ba797a19ecd3be61e7acee2;page=bib&quot;&gt;Bibliographic&lt;/a&gt;<br>&lt;/span&gt;<br>
+&amp;nbsp;|&amp;nbsp;<br>
+		<br>
+&lt;span class=&quot;smallformfont&quot;&gt;&lt;a class=&quot;menunav&quot; href=&quot;http://www.hti.umich.edu/cgi/t/text/text-idx?c=moaatxt;sid=7b5bc5e64ba797a19ecd3be61e7acee2;page=history&quot;&gt;Search
+	History&lt;/a&gt;&lt;/span&gt;&amp;nbsp;<br>
+&lt;/td&gt;<br>
+&lt;/tr&gt;<br>
+&lt;/table&gt;&lt;/td&gt;<br>
+&lt;/tr&gt;<br>
+&lt;/table&gt;<br>
+&lt;/div&gt;<br>
+&lt;div id=&quot;closer&quot; style=&quot;position:absolute; left:3px; top:70px;
+	width:460px; height:50px; z-index:2; visibility: hidden;&quot;&gt;&lt;a href=&quot;javascript:;&quot; onMouseOver=&quot;deltoP7(0)&quot;&gt;&lt;img
+	src=&quot;/t/text/graphics/plug.gif&quot; name=&quot;Image1&quot; width=&quot;460&quot; height=&quot;50&quot; hspace=&quot;0&quot; vspace=&quot;0&quot; border=&quot;0&quot; id=&quot;Image1&quot; alt=&quot;design
+	graphic&quot;&gt;&lt;/a&gt;&lt;/div&gt;<br>
+&lt;!-- end menu divs --&gt;</p>
+<div class="custom">
+<div class="customlabel">moaatxt customization</div>
+<p>&lt;div align=&quot;center&quot;&gt;<br>
+&lt;div class=&quot;pframe&quot;&gt;</p>
+<p> &lt;table border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;<br>
+&lt;tr&gt;<br>
+<span style="color:#000000;font-weight:bold">&lt;td id=&quot;bannercell1&quot;&gt;</span><br>
+&lt;table width=&quot;758&quot; border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;<br>
+&lt;tr&gt; <br>
+&lt;td&gt;&lt;a href=&quot;http://www.aadl.org/&quot;&gt;&lt;img name=&quot;homepageraw_r2_c2&quot; src=&quot;/m/moaatxt/graphics/spacer.gif&quot; width=&quot;477&quot; height=&quot;74&quot; border=0
+alt=&quot;Ann Arbor District Library&quot;&gt;&lt;/a&gt;&lt;/td&gt;<br>
+&lt;td valign=&quot;middle&quot; bgcolor=&quot;#ffffff&quot;&gt;<br>
+&lt;table width=&quot;100%&quot; height=&quot;24&quot; border=&quot;0&quot;&gt;<br>
+&lt;form name=&quot;qsearch&quot; action=&quot;http://catalog.aadl.org/web2/tramp2.exe/form/guest?&quot; method=&quot;post&quot;&gt;<br>
+&lt;input type=hidden value=English name=SETTING_KEY&gt; <br>
+&lt;input type=hidden value=5 name=location_group_filter&gt; <br>
+&lt;input type=hidden value=&quot;1home&quot; name=servers&gt; <br>
+&lt;input type=hidden name=&quot;buttons&quot; value=&quot;A_Author=do_authority_search
+default_value=search_button_easy index=au search_button_easy=A_Author&quot;&gt; <br>
+&lt;input type=hidden name=&quot;buttons&quot; value=&quot;A_Title=do_authority_search
+default_value=search_button_easy index=ti search_button_easy=A_Title&quot;&gt;<br>
+&lt;input type=hidden name=&quot;buttons&quot; value=&quot;A_Subject=do_authority_search
+default_value=search_button_easy index=su search_button_easy=A_Subject&quot;&gt; <br>
+&lt;input type=hidden name=&quot;buttons&quot; value=&quot;K_Keyword=do_keyword_search
+default_value=search_button_easy index=default search_button_easy=K_Keyword&quot;&gt;<br>
+&lt;input type=hidden name=&quot;buttons&quot; value=&quot;K_CCL=do_ccl_search
+default_value=search_button_easy index=default search_button_easy=K_CCL&quot;&gt;<br>
+&lt;tr&gt; <br>
+&lt;td width=&quot;155&quot; valign=&quot;top&quot;&gt; &lt;font size=&quot;2&quot; face=&quot;Verdana,
+Arial, Helvetica, sans-serif&quot;&gt;Search the Catalog&lt;/font&gt; <br>
+&lt;input name=&quot;query&quot; id=&quot;query&quot; size=&quot;25&quot; value=&quot;&quot; onFocus=&quot;window.document.search.query.select();&quot; style=&quot;font:
+10px 'verdana'; height: 16px; border: 1px inset #DDD&quot;&gt;<br>
+&lt;br&gt; &lt;select select name=&quot;button_clicked&quot; id=&quot;button_clicked&quot; onChange=&quot;setVal(this.value);&quot; style=&quot;font:11px
+'verdana'; height:16px width:16px border:1px inset #DDD&quot;&gt;<br>
+&lt;option value=&quot;A_Author&quot;&gt;Author&lt;/option&gt;<br>
+&lt;option value=&quot;A_Title&quot;&gt;Title&lt;/option&gt;<br>
+&lt;option value=&quot;A_Subject&quot;&gt;Subject&lt;/option&gt;<br>
+&lt;option value=&quot;K_CCL&quot;&gt;Phrase&lt;/option&gt;<br>
+&lt;option value=&quot;K_Keyword&quot; selected&gt;Keyword&lt;/option&gt;<br>
+&lt;/select&gt;<br>
+&lt;input type=&quot;submit&quot; style=&quot;height:18px; font:10px inset #DDD&quot; value=&quot;Go&quot;&gt; <br>
+&lt;/td&gt;<br>
+&lt;td class=&quot;smallfont&quot; width=&quot;115&quot;&gt; &lt;a href=&quot;http://catalog.aadl.org/web2/tramp2.exe/log_in?SETTING_KEY=English&amp;screen=MyAccount.html&quot; target=&quot;_new&quot;&gt;renew <br>
+	an item&lt;/a&gt;&lt;br&gt; &lt;a href=&quot;http://catalog.aadl.org/web2/tramp2.exe/log_in?SETTING_KEY=English&amp;screen=MyAccount.html&quot; target=&quot;_new&quot;&gt;my <br>
+	account&lt;/a&gt;&lt;br&gt; &lt;a href=&quot;http://www.aadl.org/aadlAnytime&quot;&gt;ask
+	aadlAnytime&lt;/a&gt;&lt;br&gt; <br>
+&lt;a href=&quot;http://www.aadl.org/classes&quot;&gt;computer classes&lt;/a&gt; &lt;/td&gt;<br>
+&lt;/tr&gt;<br>
+&lt;/form&gt;<br>
+&lt;/table&gt;<br>
+&lt;/td&gt;<br>
+&lt;/tr&gt; <br>
+&lt;/table&gt;<br>
+&lt;table width=&quot;758&quot; border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;<br>
+&lt;tr&gt;<br>
+&lt;td valign=&quot;top&quot;&gt;&lt;img class=&quot;navfiller&quot; src=&quot;/m/moaatxt/graphics/spacer.gif&quot; width=&quot;107&quot; height=&quot;20&quot; alt=&quot;Ann
+Arbor District Library&quot;&gt;&lt;/td&gt;<br>
+&lt;td&gt;&lt;a href=&quot;http://www.aadl.org/books&quot; target=&quot;_top&quot; onClick=&quot;MM_nbGroup('down',
+'navbar1',
+'homepageraw_r3_c3',
+'http://production.aadl.org/newsite/images/homepageraw_r3_c3_f3.gif',1)&quot; onMouseOver=&quot;MM_nbGroup('over',
+'homepageraw_r3_c3',
+'http://production.aadl.org/newsite/images/homepageraw_r3_c3_f2.gif',
+'http://production.aadl.org/newsite/images/homepageraw_r3_c3_f3.gif',1)&quot; onMouseOut=&quot;MM_nbGroup('out');&quot;&gt;&lt;img
+name=&quot;homepageraw_r3_c3&quot; src=&quot;http://production.aadl.org/newsite/images/homepageraw_r3_c3.gif&quot; width=&quot;91&quot; height=&quot;22&quot; border=0
+alt=&quot;books&quot;&gt;&lt;/a&gt;&lt;/td&gt;<br>
+&lt;td&gt;&lt;img name=&quot;homepageraw_r3_c5&quot; src=&quot;http://production.aadl.org/newsite/images/homepageraw_r3_c5.gif&quot; width=&quot;2&quot; height=&quot;22&quot; border=0
+alt=&quot;&quot;&gt;&lt;/td&gt;<br>
+&lt;td&gt;&lt;a href=&quot;http://www.aadl.org/videos&quot; target=&quot;_top&quot; onClick=&quot;MM_nbGroup('down',
+'navbar1',
+'homepageraw_r3_c6',
+'http://production.aadl.org/newsite/images/homepageraw_r3_c6_f3.gif',1)&quot; onMouseOver=&quot;MM_nbGroup('over',
+'homepageraw_r3_c6',
+'http://production.aadl.org/newsite/images/homepageraw_r3_c6_f2.gif',
+'http://production.aadl.org/newsite/images/homepageraw_r3_c6_f3.gif',1)&quot; onMouseOut=&quot;MM_nbGroup('out');&quot;&gt;&lt;img
+name=&quot;homepageraw_r3_c6&quot; src=&quot;http://production.aadl.org/newsite/images/homepageraw_r3_c6.gif&quot; width=&quot;91&quot; height=&quot;22&quot; border=0
+alt=&quot;videos&quot;&gt;&lt;/a&gt;&lt;/td&gt;<br>
+&lt;td&gt;&lt;img name=&quot;homepageraw_r3_c7&quot; src=&quot;http://production.aadl.org/newsite/images/homepageraw_r3_c7.gif&quot; width=&quot;2&quot; height=&quot;22&quot; border=0
+alt=&quot;&quot;&gt;&lt;/td&gt;<br>
+&lt;td&gt;&lt;a href=&quot;http://www.aadl.org/music&quot; target=&quot;_top&quot; onClick=&quot;MM_nbGroup('down',
+'navbar1',
+'homepageraw_r3_c8',
+'http://production.aadl.org/newsite/images/homepageraw_r3_c8_f3.gif',1)&quot; onMouseOver=&quot;MM_nbGroup('over',
+'homepageraw_r3_c8',
+'http://production.aadl.org/newsite/images/homepageraw_r3_c8_f2.gif',
+'http://production.aadl.org/newsite/images/homepageraw_r3_c8_f3.gif',1)&quot; onMouseOut=&quot;MM_nbGroup('out');&quot;&gt;&lt;img
+name=&quot;homepageraw_r3_c8&quot; src=&quot;http://production.aadl.org/newsite/images/homepageraw_r3_c8.gif&quot; width=&quot;91&quot; height=&quot;22&quot; border=0
+alt=&quot;music&quot;&gt;&lt;/a&gt;&lt;/td&gt;<br>
+&lt;td&gt;&lt;img name=&quot;homepageraw_r3_c9&quot; src=&quot;http://production.aadl.org/newsite/images/homepageraw_r3_c9.gif&quot; width=&quot;2&quot; height=&quot;22&quot; border=0
+alt=&quot;&quot;&gt;&lt;/td&gt;<br>
+&lt;td&gt;&lt;a href=&quot;http://www.aadl.org/research&quot; target=&quot;_top&quot; onClick=&quot;MM_nbGroup('down',
+'navbar1',
+'homepageraw_r3_c10',
+'http://production.aadl.org/newsite/images/homepageraw_r3_c10_f3.gif',1)&quot; onMouseOver=&quot;MM_nbGroup('over',
+'homepageraw_r3_c10',
+'http://production.aadl.org/newsite/images/homepageraw_r3_c10_f2.gif',
+'http://production.aadl.org/newsite/images/homepageraw_r3_c10_f3.gif',1)&quot; onMouseOut=&quot;MM_nbGroup('out');&quot;&gt;&lt;img
+name=&quot;homepageraw_r3_c10&quot; src=&quot;http://production.aadl.org/newsite/images/homepageraw_r3_c10.gif&quot; width=&quot;91&quot; height=&quot;22&quot; border=0
+alt=&quot;research&quot;&gt;&lt;/a&gt;&lt;/td&gt;<br>
+&lt;td&gt;&lt;img name=&quot;homepageraw_r3_c11&quot; src=&quot;http://production.aadl.org/newsite/images/homepageraw_r3_c11.gif&quot; width=&quot;2&quot; height=&quot;22&quot; border=0
+alt=&quot;&quot;&gt;&lt;/td&gt;<br>
+&lt;td&gt;&lt;a href=&quot;http://www.aadl.org/events&quot; target=&quot;_top&quot; onClick=&quot;MM_nbGroup('down',
+'navbar1',
+'homepageraw_r3_c12',
+'http://production.aadl.org/newsite/images/homepageraw_r3_c12_f3.gif',1)&quot; onMouseOver=&quot;MM_nbGroup('over',
+'homepageraw_r3_c12',
+'http://production.aadl.org/newsite/images/homepageraw_r3_c12_f2.gif',
+'http://production.aadl.org/newsite/images/homepageraw_r3_c12_f3.gif',1)&quot; onMouseOut=&quot;MM_nbGroup('out');&quot;&gt;&lt;img
+name=&quot;homepageraw_r3_c12&quot; src=&quot;http://production.aadl.org/newsite/images/homepageraw_r3_c12.gif&quot; width=&quot;91&quot; height=&quot;22&quot; border=0
+alt=&quot;events&quot;&gt;&lt;/a&gt;&lt;/td&gt;<br>
+&lt;td&gt;&lt;img name=&quot;homepageraw_r3_c13&quot; src=&quot;http://production.aadl.org/newsite/images/homepageraw_r3_c13.gif&quot; width=&quot;2&quot; height=&quot;22&quot; border=0
+alt=&quot;&quot;&gt;&lt;/td&gt;<br>
+&lt;td&gt;&lt;a href=&quot;http://www.aadl.org/community&quot; target=&quot;_top&quot; onClick=&quot;MM_nbGroup('down',
+'navbar1',
+'homepageraw_r3_c14',
+'http://production.aadl.org/newsite/images/homepageraw_r3_c14_f3.gif',1)&quot; onMouseOver=&quot;MM_nbGroup('over',
+'homepageraw_r3_c14',
+'http://production.aadl.org/newsite/images/homepageraw_r3_c14_f2.gif',
+'http://production.aadl.org/newsite/images/homepageraw_r3_c14_f3.gif',1)&quot; onMouseOut=&quot;MM_nbGroup('out');&quot;&gt;&lt;img
+name=&quot;homepageraw_r3_c14&quot; src=&quot;http://production.aadl.org/newsite/images/homepageraw_r3_c14_f3.gif&quot; border=0
+alt=&quot;community&quot; onload=&quot;MM_nbGroup('init',
+'navbar1',
+'homepageraw_r3_c14',
+'http://production.aadl.org/newsite/images/homepageraw_r3_c14.gif',1)&quot;&gt;&lt;/a&gt;&lt;/td&gt;<br>
+&lt;td&gt;&lt;img name=&quot;homepageraw_r3_c15&quot; src=&quot;http://production.aadl.org/newsite/images/homepageraw_r3_c15.gif&quot; width=&quot;2&quot; height=&quot;22&quot; border=0
+alt=&quot;&quot;&gt;&lt;/td&gt;<br>
+&lt;td&gt;&lt;a href=&quot;http://www.aadl.org/about&quot; target=&quot;_top&quot; onClick=&quot;MM_nbGroup('down',
+'navbar1',
+'homepageraw_r3_c16',
+'http://production.aadl.org/newsite/images/homepageraw_r3_c16_f3.gif',1)&quot; onMouseOver=&quot;MM_nbGroup('over',
+'homepageraw_r3_c16',
+'http://production.aadl.org/newsite/images/homepageraw_r3_c16_f2.gif',
+'http://production.aadl.org/newsite/images/homepageraw_r3_c16_f3.gif',1)&quot; onMouseOut=&quot;MM_nbGroup('out');&quot;&gt;&lt;img
+name=&quot;homepageraw_r3_c16&quot; src=&quot;http://production.aadl.org/newsite/images/homepageraw_r3_c16.gif&quot; width=&quot;91&quot; height=&quot;22&quot; border=0
+alt=&quot;about us&quot;&gt;&lt;/a&gt;&lt;/td&gt;<br>
+&lt;td&gt;&lt;img name=&quot;homepageraw_r3_c17&quot; src=&quot;http://production.aadl.org/newsite/images/homepageraw_r3_c17.gif&quot; width=&quot;2&quot; height=&quot;22&quot; border=0
+alt=&quot;&quot;&gt;&lt;/td&gt;<br>
+&lt;/tr&gt;<br>
+&lt;/table&gt;&lt;/td&gt; <br>
+&lt;/tr&gt;<br>
+&lt;tr&gt;<br>
+&lt;td bgcolor=&quot;#FFFFFF&quot;&gt;<br>
+&lt;div style=&quot;margin-left:1px;margin-right:0px&quot;&gt;<br>
+&lt;table width=&quot;755&quot; border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;<br>
+&lt;tr&gt;<br>
+&lt;td&gt;&lt;img src=&quot;http://moaa.aadl.org/images/spacer.gif&quot; width=&quot;207&quot; height=&quot;1&quot; border=0
+alt=&quot;&quot;&gt;&lt;/td&gt;<br>
+&lt;td&gt;&lt;img src=&quot;http://moaa.aadl.org/images/spacer.gif&quot; width=&quot;55&quot; height=&quot;1&quot; border=0
+alt=&quot;&quot;&gt;&lt;/td&gt;<br>
+&lt;td&gt;&lt;img src=&quot;http://moaa.aadl.org/images/spacer.gif&quot; width=&quot;68&quot; height=&quot;1&quot; border=0
+alt=&quot;&quot;&gt;&lt;/td&gt;<br>
+&lt;td&gt;&lt;img src=&quot;http://moaa.aadl.org/images/spacer.gif&quot; width=&quot;86&quot; height=&quot;1&quot; border=0
+alt=&quot;&quot;&gt;&lt;/td&gt;<br>
+&lt;td&gt;&lt;img src=&quot;http://moaa.aadl.org/images/spacer.gif&quot; width=&quot;151&quot; height=&quot;1&quot; border=0
+alt=&quot;&quot;&gt;&lt;/td&gt;<br>
+&lt;td&gt;&lt;img src=&quot;http://moaa.aadl.org/images/spacer.gif&quot; width=&quot;188&quot; height=&quot;1&quot; border=0
+alt=&quot;&quot;&gt;&lt;/td&gt;<br>
+&lt;td&gt;&lt;img src=&quot;http://moaa.aadl.org/images/spacer.gif&quot; width=&quot;1&quot; height=&quot;1&quot; border=0
+alt=&quot;&quot;&gt;&lt;/td&gt;<br>
+&lt;/tr&gt;<br>
+	<br>
+&lt;tr&gt;<br>
+&lt;td colspan=&quot;6&quot;&gt;&lt;a href=&quot;http://moaa.aadl.org/index.php&quot; border=0&gt;&lt;img
+name=&quot;mainstreet2_r1_c1&quot; src=&quot;/m/moaatxt/graphics/mainstreet2_r1_c1.jpg&quot; width=&quot;755&quot; height=&quot;102&quot; border=0
+alt=&quot;The Making of Ann Arbor&quot;&gt;&lt;/a&gt;&lt;/td&gt;<br>
+&lt;td&gt;&lt;img src=&quot;http://moaa.aadl.org/images/spacer.gif&quot; width=&quot;1&quot; height=&quot;102&quot; border=0
+alt=&quot;&quot;&gt;&lt;/td&gt;<br>
+&lt;/tr&gt;<br>
+&lt;tr&gt;<br>
+&lt;td&gt;&lt;a onMouseOver=&quot;deltoP7(0)&quot;&gt;&lt;img name=&quot;mainstreet2_r2_c1&quot; src=&quot;http://moaa.aadl.org/images/mainstreet2_r2_c1.jpg&quot; width=&quot;207&quot; height=&quot;28&quot; border=0
+alt=&quot;&quot;&gt;&lt;/a&gt;&lt;/td&gt;<br>
+&lt;td&gt;&lt;a href=&quot;http://moaa.aadl.org/texts.php&quot; target=&quot;_top&quot; onClick=&quot;MM_nbGroup('down',
+'navbar1',
+'texts',
+'http://moaa.aadl.org/images/texts_f3.jpg',
+'texts',
+'http://moaa.aadl.org/images/texts_f2.jpg',1);&quot; onMouseOver=&quot;deltoP7(0);MM_nbGroup('over',
+'texts',
+'http://moaa.aadl.org/images/texts_f2.jpg',
+'http://moaa.aadl.org/images/texts_f4.jpg',1);&quot; onMouseOut=&quot;MM_nbGroup('out');&quot;&gt;&lt;img
+name=&quot;texts&quot; src=&quot;http://moaa.aadl.org/images/texts.jpg&quot; width=&quot;55&quot; height=&quot;28&quot; border=0
+alt=&quot;Ann Arbor History Texts Collection&quot;&gt;&lt;/a&gt;&lt;/td&gt;<br>
+&lt;td&gt;&lt;a href=&quot;http://moaa.aadl.org/maps.php&quot; target=&quot;_top&quot; onClick=&quot;MM_nbGroup('down',
+'navbar1',
+'maps',
+'http://moaa.aadl.org/images/maps_f3.jpg',
+'maps',
+'http://moaa.aadl.org/images/maps_f2.jpg',1);&quot; onMouseOver=&quot;deltoP7(0);MM_nbGroup('over',
+'maps',
+'http://moaa.aadl.org/images/maps_f2.jpg',
+'http://moaa.aadl.org/images/maps_f4.jpg',1);&quot; onMouseOut=&quot;MM_nbGroup('out');&quot;&gt;&lt;img
+name=&quot;maps&quot; src=&quot;http://moaa.aadl.org/images/maps.jpg&quot; width=&quot;68&quot; height=&quot;28&quot; border=0
+alt=&quot;Maps&quot;&gt;&lt;/a&gt;&lt;/td&gt;<br>
+&lt;td&gt;&lt;a href=&quot;http://moaa.aadl.org/postcards.php&quot; target=&quot;_top&quot; onClick=&quot;MM_nbGroup('down',
+'navbar1',
+'pc',
+'http://moaa.aadl.org/images/pc_f3.jpg',
+'pc',
+'http://moaa.aadl.org/images/pc_f2.jpg',1);&quot; onMouseOver=&quot;MM_nbGroup('over',
+'pc',
+'http://moaa.aadl.org/images/pc_f2.jpg',
+'http://moaa.aadl.org/images/pc_f4.jpg',1);&quot; onMouseOut=&quot;MM_nbGroup('out');&quot;&gt;&lt;img
+name=&quot;pc&quot; src=&quot;http://moaa.aadl.org/images/pc.jpg&quot; width=&quot;86&quot; height=&quot;28&quot; border=0
+alt=&quot;Postcards&quot;&gt;&lt;/a&gt;&lt;/td&gt;<br>
+&lt;td&gt;&lt;a href=&quot;http://moaa.aadl.org/hb.php&quot; target=&quot;_top&quot; onClick=&quot;MM_nbGroup('down',
+'navbar1',
+'hb',
+'http://moaa.aadl.org/images/hb_f3.jpg',
+'hb',
+'http://moaa.aadl.org/images/hb_f2.jpg',1);&quot; onMouseOver=&quot;MM_nbGroup('over',
+'hb',
+'http://moaa.aadl.org/images/hb_f2.jpg',
+'http://moaa.aadl.org/images/hb_f4.jpg',1);&quot; onMouseOut=&quot;MM_nbGroup('out');&quot;&gt;&lt;img
+name=&quot;hb&quot; src=&quot;http://moaa.aadl.org/images/hb.jpg&quot; width=&quot;151&quot; height=&quot;28&quot; border=0
+alt=&quot;Historic Buildings&quot;&gt;&lt;/a&gt;&lt;/td&gt;<br>
+&lt;td&gt;&lt;img name=&quot;mainstreet2_r2_c6&quot; src=&quot;http://moaa.aadl.org/images/mainstreet2_r2_c6.jpg&quot; width=&quot;188&quot; height=&quot;28&quot; border=0
+alt=&quot;&quot;&gt;&lt;/td&gt;<br>
+&lt;td&gt;&lt;img src=&quot;http://moaa.aadl.org/images/spacer.gif&quot; width=&quot;1&quot; height=&quot;28&quot; border=0
+alt=&quot;&quot;&gt;&lt;/td&gt;<br>
+&lt;/tr&gt;<br>
+&lt;/table&gt;<br>
+&lt;/div&gt;&lt;/td&gt; <br>
+&lt;/tr&gt;<br>
+	<br>
+&lt;!-- insert --&gt;<br>
+&lt;tr&gt; <br>
+&lt;td align=&quot;left&quot; height=&quot;23&quot; nowrap&gt;<br>
+	<br>
+&lt;div class=&quot;navbar&quot;&gt;<br>
+&lt;table border=&quot;0&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot; id=&quot;mainnav&quot;&gt;<br>
+&lt;tr&gt; <br>
+&lt;!-- left anchor --&gt;<br>
+&lt;td width=&quot;1&quot;&gt;&lt;img src=&quot;/t/text/graphics/plug.gif&quot; width=&quot;1&quot; height=&quot;23&quot; border=&quot;0&quot; vspace=&quot;0&quot; hspace=&quot;0&quot; alt=&quot;design
+graphic&quot; name=&quot;leftanchor&quot; id=&quot;leftanchor&quot;&gt;&lt;/td&gt;<br>
+	<br>
+&lt;!-- home --&gt;<br>
+&lt;td class=&quot;mainnavcell&quot; width=&quot;70&quot; height=&quot;23&quot; align=&quot;center&quot; nowrap&gt;&lt;span
+class=&quot;navlinks&quot;&gt;&lt;a href=&quot;http://www.hti.umich.edu/cgi/t/text/text-idx?c=moaatxt;cc=moaatxt;sid=7b5bc5e64ba797a19ecd3be61e7acee2;tpl=home.tpl&quot; class=&quot;nav&quot; onMouseOver=&quot;deltoP7(0)&quot;&gt;Home&lt;/a&gt;&lt;/span&gt;&lt;/td&gt;<br>
+&lt;td class=&quot;blank&quot; id=&quot;sep1&quot; width=&quot;1&quot;&gt;&lt;img
+src=&quot;/t/text/graphics/plug.gif&quot; width=&quot;1&quot; height=&quot;23&quot; border=&quot;0&quot; vspace=&quot;0&quot; hspace=&quot;0&quot; name=&quot;menuanchor&quot; id=&quot;menuanchor&quot; alt=&quot;design
+graphic&quot;&gt;&lt;/td&gt;<br>
+&lt;!-- search --&gt;<br>
+&lt;!-- this nav bar tab is conditionally included by the cgi --&gt;<br>
+	<br>
+&lt;td class=&quot;mainnavcell&quot; id=&quot;searchtab&quot; width=&quot;90&quot; height=&quot;23&quot; align=&quot;center&quot; nowrap&gt;<br>
+&lt;span class=&quot;navlinks&quot;&gt;&lt;a id=&quot;searchlink&quot; href=&quot;http://www.hti.umich.edu/cgi/t/text/text-idx?c=moaatxt;sid=7b5bc5e64ba797a19ecd3be61e7acee2;page=simple&quot; class=&quot;nav&quot; onMouseOver=&quot;P7_Snap('menuanchor',
+'closer',-70,25,
+'menuanchor',
+'ddsearchmenu',-50,25);P7_autoLayers(0,
+'ddsearchmenu',
+'closer')&quot;&gt;Search&lt;img
+name=&quot;navmenuarrow&quot; src=&quot;/t/text/graphics/navdwnarrow.gif&quot; alt=&quot;design
+graphic&quot; width=&quot;16&quot; height=&quot;8&quot; border=&quot;0&quot;&gt;&lt;/a&gt;&lt;/span&gt;&lt;/td&gt;<br>
+&lt;td class=&quot;blank&quot; id=&quot;sep2&quot; width=&quot;1&quot;&gt;&lt;img
+src=&quot;/t/text/graphics/plug.gif&quot; width=&quot;1&quot; height=&quot;1&quot; border=&quot;0&quot; alt=&quot;design
+graphic&quot;&gt;<br>
+&lt;/td&gt;<br>
+	<br>
+&lt;!-- browse --&gt;<br>
+	<br>
+&lt;td class=&quot;mainnavcell&quot; id=&quot;browsetab&quot; width=&quot;90&quot; height=&quot;23&quot; align=&quot;center&quot; nowrap&gt;&lt;span
+class=&quot;navlinks&quot;&gt;&lt;a id=&quot;browselink&quot; href=&quot;http://www.hti.umich.edu/cgi/t/text/text-idx?c=moaatxt;sid=7b5bc5e64ba797a19ecd3be61e7acee2;tpl=browse.tpl&quot; class=&quot;nav&quot; onMouseOver=&quot;deltoP7(0)&quot;&gt;Browse&lt;/a&gt;&lt;/span&gt;&lt;/td&gt;<br>
+&lt;td class=&quot;blank&quot; id=&quot;sep3&quot; width=&quot;1&quot;&gt;&lt;img
+src=&quot;/t/text/graphics/plug.gif&quot; width=&quot;1&quot; height=&quot;1&quot; border=&quot;0&quot; alt=&quot;design
+graphic&quot;&gt;&lt;/td&gt;</p>
+<p> &lt;!-- blankspace --&gt;<br>
+&lt;!--&lt;td width=&quot;50&quot; height=&quot;23&quot; align=&quot;center&quot; nowrap&gt;&lt;a
+href=&quot;javascript:;&quot; onMouseOver=&quot;deltoP7(0)&quot;&gt;&lt;img src=&quot;/t/text/graphics/plug.gif&quot; border=&quot;0&quot; width=&quot;50&quot; height=&quot;23&quot;&gt;&lt;/a&gt;&lt;/td&gt; --&gt;<br>
+&lt;!-- help --&gt;<br>
+&lt;td class=&quot;mainnavcell&quot; width=&quot;70&quot; height=&quot;23&quot; align=&quot;center&quot; nowrap&gt;&lt;font
+class=&quot;navlinks&quot; color=&quot;#ffffff&quot;&gt;&lt;a href=&quot;javascript:openHIndex('/t/text/help')&quot; class=&quot;nav&quot; onMouseOver=&quot;P7_autoLayers(0)&quot;&gt;Help&lt;/a&gt;&lt;/font&gt;&lt;/td&gt;<br>
+&lt;/tr&gt;<br>
+&lt;/table&gt;<br>
+&lt;/div&gt;<br>
+&lt;/td&gt;<br>
+&lt;/tr&gt; <br>
+	<br>
+&lt;!-- insert --&gt;<br>
+	<br>
+&lt;/table&gt;<br>
+&lt;div id=&quot;lmarginmenu&quot; style=&quot;position:absolute; left:15px;
+top:265px; width:120px; height:383px; z-index:1;visibility: visible;&quot;&gt;<br>
+&lt;table width=&quot;103&quot; border=&quot;0&quot; align=&quot;center&quot; id=&quot;leftcolmenu&quot;&gt;<br>
+&lt;tr&gt;<br>
+&lt;td height=&quot;20&quot;&gt;&lt;div class=&quot;leftcolmenuitem&quot;&gt;&lt;a
+href=&quot;http://moaa.aadl.org/PictHistory/footnote.php#Annarbour&quot;&gt;Naming<br>
+	of&lt;br&gt; Ann Arbor&lt;/a&gt;&lt;/div&gt;&lt;/td&gt;<br>
+&lt;/tr&gt;<br>
+&lt;tr&gt;<br>
+&lt;td height=&quot;20&quot;&gt;&amp;nbsp;&lt;/td&gt;<br>
+&lt;/tr&gt;<br>
+&lt;tr&gt;<br>
+&lt;td width=&quot;97&quot;&gt;<br>
+&lt;div class=&quot;leftcolmenuitem&quot;&gt;<br>
+&lt;a href=&quot;http://images.umdl.umich.edu/cgi/i/image/image-idx?q1=moaa*;type=boolean;rgn1=ic_all;view=thumbnail;med=1;g=moaaic;xc=1&quot;&gt;Browse
+all images&lt;/a&gt;&lt;/div&gt;&lt;/td&gt;<br>
+&lt;/tr&gt;<br>
+&lt;tr&gt;<br>
+&lt;td height=&quot;20&quot;&gt;&amp;nbsp;&lt;/td&gt;<br>
+&lt;/tr&gt;<br>
+&lt;tr&gt;<br>
+&lt;td height=&quot;33&quot;&gt;&lt;div class=&quot;leftcolmenuitem&quot;&gt;&lt;a
+href=&quot;http://images.umdl.umich.edu/cgi/i/image/image-idx?xc=1;page=searchgroup;g=moaaic&quot;&gt;Search<br>
+	all images&lt;/a&gt;&lt;/div&gt;&lt;/td&gt;<br>
+&lt;/tr&gt;<br>
+&lt;tr&gt;<br>
+&lt;td height=&quot;20&quot;&gt;&amp;nbsp;&lt;/td&gt;<br>
+&lt;/tr&gt;<br>
+	<br>
+&lt;tr&gt;<br>
+&lt;td height=&quot;33&quot;&gt;&lt;div class=&quot;leftcolmenuitem&quot;&gt;<br>
+&lt;a href=&quot;http://moaa.aadl.org/PictHistory/PictHis.php&quot;&gt;Pictorial
+History&lt;br&gt; of Ann Arbor: &lt;br&gt;1824-1974&lt;/a&gt;<br>
+&lt;/div&gt;&lt;/td&gt;<br>
+&lt;/tr&gt;<br>
+&lt;tr&gt;<br>
+&lt;td height=&quot;20&quot;&gt;&amp;nbsp;&lt;/td&gt;<br>
+&lt;/tr&gt;<br>
+	<br>
+	<br>
+&lt;tr&gt;<br>
+&lt;td height=&quot;20&quot;&gt;&lt;div class=&quot;leftcolmenuitem&quot;&gt;&lt;a
+href=&quot;http://moaa.aadl.org/moaabib.php&quot;&gt;Additional<br>
+	Resources&lt;/a&gt;&lt;/div&gt;&lt;/td&gt;<br>
+&lt;/tr&gt;<br>
+&lt;tr&gt;<br>
+&lt;td height=&quot;20&quot;&gt;&amp;nbsp;&lt;/td&gt;<br>
+&lt;/tr&gt;<br>
+&lt;tr&gt;<br>
+&lt;td height=&quot;20&quot;&gt;&lt;div class=&quot;leftcolmenuitem&quot;&gt;&lt;a
+href=&quot;http://moaa.aadl.org/aboutus.php&quot;&gt;About<br>
+	MoAA&lt;/a&gt;&lt;/div&gt;&lt;/td&gt;<br>
+&lt;/tr&gt;<br>
+&lt;tr&gt;<br>
+&lt;td height=&quot;20&quot;&gt;&amp;nbsp;&lt;/td&gt;<br>
+&lt;/tr&gt;<br>
+&lt;tr&gt;<br>
+&lt;td height=&quot;20&quot;&gt;&lt;div class=&quot;leftcolmenuitem&quot;&gt;&lt;a
+href=&quot;http://moaa.aadl.org/feedback.php&quot;&gt;Feedback&lt;/a&gt;&lt;/div&gt;&lt;/td&gt;<br>
+&lt;/tr&gt;<br>
+&lt;tr&gt;<br>
+&lt;td height=&quot;20&quot;&gt;&amp;nbsp;&lt;/td&gt;<br>
+&lt;/tr&gt;<br>
+&lt;/table&gt;<br>
+&lt;/div&gt;<br>
+</p>
+</div>
+</div>
+<p>&lt;div class=&quot;maincontent&quot;&gt;<br>
+&lt;table width=&quot;100%&quot; border=&quot;0&quot; cellspacing=&quot;1&quot; cellpadding=&quot;5&quot;&gt;<br>
+&lt;tr&gt;<br>
+&lt;td&gt;&lt;span class=&quot;greysubheader&quot;&gt;Basic Search&lt;/span&gt;&lt;hr
+size=&quot;1&quot;&gt;&lt;/td&gt;&lt;/tr&gt;<br>
+&lt;tr&gt;<br>
+&lt;td valign=&quot;top&quot;&gt;<br>
+&lt;div class=&quot;srchrestriction&quot;&gt;<br>
+	<br>
+&lt;/div&gt;<br>
+&lt;/td&gt;<br>
+&lt;/tr&gt;<br>
+&lt;/table&gt;</p>
+<p> &lt;table border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;<br>
+&lt;!--DWLayoutTable--&gt;<br>
+&lt;tr&gt; </p>
+<p>&lt;!-- GROUPS SELECTION INSERTS START HERE --&gt;<br>
+</p>
+<p>&lt;!-- END OF GROUPS SELECTION INSERT --&gt;</p>
+<p> &lt;td valign=&quot;top&quot; align=&quot;left&quot;&gt; </p>
+<p>&lt;!-- begin table for search form proper --&gt;<br>
+&lt;div class=&quot;searchblock&quot;&gt;</p>
+<p> &lt;form method=&quot;GET&quot; action=&quot;/cgi/t/text/text-idx?&quot; name=&quot;search&quot; &gt;<br>
+&lt;table border=&quot;0&quot; cellspacing=&quot;0&quot; cellpadding=&quot;4&quot;&gt;<br>
+&lt;tr&gt; <br>
+&lt;input type=&quot;hidden&quot; name=&quot;type&quot; value=&quot;simple&quot; /&gt;<br>
+&lt;input type=&quot;hidden&quot; name=&quot;c&quot; value=&quot;moaatxt&quot; /&gt;&lt;input
+type=&quot;hidden&quot; name=&quot;cc&quot; value=&quot;moaatxt&quot; /&gt;<br>
+&lt;input type=&quot;hidden&quot; name=&quot;sid&quot; value=&quot;7b5bc5e64ba797a19ecd3be61e7acee2&quot; /&gt;<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+</p>
+<p> &lt;td colspan=&quot;2&quot; align=&quot;left&quot; valign=&quot;top&quot; bgcolor=&quot;ffffff&quot;&gt; </p>
+<div class="searchblock">
+<div class="searchlabel">simplesearchform.chnk</div>
+<p> &lt;!-- SEARCH FORM --&gt;<br>
+
+&lt;!-- BEGIN CHUNK CONTENT --&gt;<br>
+	<br>
+&lt;table border=&quot;0&quot; cellspacing=&quot;0&quot; cellpadding=&quot;7&quot;&gt;<br>
+&lt;tr bgcolor=&quot;#e5e5e5&quot;&gt; <br>
+&lt;td align=&quot;right&quot; nowrap&gt;&lt;span class=&quot;formfont&quot;&gt;Search
+in:&lt;/span&gt;&lt;/td&gt;<br>
+&lt;td colspan=&quot;2&quot; align=&quot;left&quot;&gt; </p>
+<p> &lt;select name=&quot;rgn&quot; class=&quot;selectmenu&quot;&gt;<br>
+&lt;option selected=&quot;selected&quot; value=&quot;full text&quot;&gt;full
+text&lt;/option&gt;<br>
+&lt;option value=&quot;_________________________&quot;&gt;_________________________&lt;/option&gt;<br>
+&lt;/select&gt;</p>
+<p> &lt;/td&gt;<br>
+&lt;/tr&gt;<br>
+&lt;tr bgcolor=&quot;#e5e5e5&quot;&gt; <br>
+&lt;td align=&quot;right&quot;&gt;&lt;span class=&quot;formfont&quot;&gt;Find:&lt;/span&gt;&lt;/td&gt;<br>
+&lt;td align=&quot;left&quot; nowrap&gt;</p>
+<p> &lt;input type=&quot;text&quot; name=&quot;q1&quot; size=&quot;30&quot; class=&quot;formhilite&quot; /&gt;</p>
+<p> &lt;/td&gt;<br>
+&lt;td align=&quot;left&quot;&gt; <br>
+&lt;input name=&quot;Submit&quot; type=&quot;submit&quot; class=&quot;submitbuttonstyle1&quot; value=&quot;Search&quot;&gt;<br>
+&lt;/td&gt;<br>
+&lt;/tr&gt;<br>
+&lt;TR BGCOLOR=&quot;#e5e5e5&quot;&gt; <br>
+&lt;td align=&quot;RIGHT&quot; VALIGN=&quot;TOP&quot; nowrap&gt;&lt;strong&gt;&lt;span
+class=&quot;formfont&quot; style=&quot;color:cc0000&quot;&gt;Tip:&lt;/SPAN&gt;&lt;/strong&gt;&lt;/td&gt;<br>
+&lt;td colspan=&quot;2&quot; align=&quot;left&quot; VALIGN=&quot;TOP&quot;&gt; &lt;p&gt;&lt;span
+CLASS=&quot;smallformfont&quot;&gt;work* <br>
+	finds &amp;quot;worker,&amp;quot; &amp;quot;working,&amp;quot; <br>
+	etc.&lt;/span&gt;&lt;br&gt;<br>
+&lt;span CLASS=&quot;smallformfont&quot;&gt;war and peace <br>
+	finds &amp;quot;war and peace&amp;quot;&lt;/span&gt;&lt;/p&gt;<br>
+&lt;span class=&quot;smallformfont&quot;&gt;&lt;a href=&quot;javascript:openHIndex('/t/text/help',
+'srch-tips.html')&quot;&gt;more
+tips&lt;/a&gt;&lt;/span&gt;<br>
+&lt;/td&gt;<br>
+	<br>
+&lt;/TR&gt;</p>
+<p> &lt;tr bgcolor=&quot;#e5e5e5&quot;&gt; <br>
+&lt;td align=&quot;right&quot; valign=&quot;top&quot; nowrap bgcolor=&quot;#e5e5e5&quot;&gt;&lt;span
+class=&quot;formfont&quot;&gt;Limit <br>
+	to:&lt;/span&gt;&lt;/td&gt;<br>
+&lt;td colspan=&quot;2&quot; align=&quot;left&quot;&gt;<br>
+	<br>
+&lt;input type=&quot;text&quot; name=&quot;cite1&quot; size=&quot;30&quot; class=&quot;formhilite&quot; /&gt;</p>
+<p> &amp;nbsp;&lt;font class=&quot;formfont&quot;&gt;in&lt;/font&gt;&amp;nbsp;</p>
+<p> &lt;select name=&quot;cite1restrict&quot; &gt;<br>
+&lt;option value=&quot;title&quot;&gt;title&lt;/option&gt;<br>
+&lt;option value=&quot;author&quot;&gt;author&lt;/option&gt;<br>
+&lt;option value=&quot;citation&quot;&gt;citation&lt;/option&gt;<br>
+&lt;/select&gt;</p>
+<p> <br>
+&amp;nbsp; &lt;div class=&quot;formfont&quot; style=&quot;margin:3px&quot;&gt;&amp;nbsp;and&lt;/div&gt;<br>
+	<br>
+&lt;input type=&quot;text&quot; name=&quot;cite2&quot; size=&quot;30&quot; class=&quot;formhilite&quot; /&gt;</p>
+<p> &amp;nbsp;&lt;font class=&quot;formfont&quot;&gt;in&lt;/font&gt;&amp;nbsp;</p>
+<p> &lt;select name=&quot;cite2restrict&quot; &gt;<br>
+&lt;option value=&quot;title&quot;&gt;title&lt;/option&gt;<br>
+&lt;option value=&quot;author&quot;&gt;author&lt;/option&gt;<br>
+&lt;option value=&quot;citation&quot;&gt;citation&lt;/option&gt;<br>
+&lt;/select&gt;</p>
+<p> <br>
+&lt;/td&gt;<br>
+&lt;/tr&gt;<br>
+</p>
+<p>&lt;!-- Begin collection specific restrictions --&gt;<br>
+&lt;!-- --&gt;<br>
+&lt;!-- --&gt;<br>
+&lt;!-- --&gt;<br>
+&lt;!-- --&gt;</p>
+<p>&lt;!-- End collection specific restrictions --&gt;<br>
+&lt;tr bgcolor=&quot;#e5e5e5&quot;&gt;<br>
+&lt;td valign=&quot;top&quot; align=&quot;right&quot; nowrap&gt;&lt;span class=&quot;formfont&quot;&gt;&amp;#8226;Other
+searches:<br>
+&lt;/span&gt;&lt;/td&gt;<br>
+&lt;td colspan=&quot;2&quot; align=&quot;left&quot; nowrap&gt;<br>
+&lt;span class=&quot;formfont&quot;&gt;&lt;strong&gt;&lt;a href=&quot;http://www.hti.umich.edu/cgi/t/text/text-idx?c=moaatxt;cc=moaatxt;sid=7b5bc5e64ba797a19ecd3be61e7acee2;page=boolean&quot;&gt;Boolean&lt;/a&gt;&lt;/strong&gt;<br>
+&lt;/span&gt;<br>
+	<br>
+&lt;span class=&quot;formfont&quot;&gt;, &lt;strong&gt;&lt;a href=&quot;http://www.hti.umich.edu/cgi/t/text/text-idx?c=moaatxt;cc=moaatxt;sid=7b5bc5e64ba797a19ecd3be61e7acee2;page=proximity&quot;&gt;Proximity&lt;/a&gt;&lt;/strong&gt;<br>
+&lt;/span&gt;<br>
+	<br>
+	<br>
+&lt;span class=&quot;formfont&quot;&gt;, &lt;strong&gt;&lt;a href=&quot;http://www.hti.umich.edu/cgi/t/text/text-idx?c=moaatxt;cc=moaatxt;sid=7b5bc5e64ba797a19ecd3be61e7ac
+searches:<br>
+&lt;/span&gt;&lt;/td&gt;<br>
+&lt;td colspan=&quot;2&quot; align=&quot;left&quot; nowrap&gt;<br>
+&lt;span class=&quot;formfont&quot;&gt;&lt;strong&gt;&lt;a href=&quot;http://www.hti.umich.edu/cgi/t/text/text-idx?c=moaatxt;cc=moaatxt;sid=7b5bc5e64ba797a19ecd3be61e7acee2;page=boolean&quot;&gt;Boolean&lt;/a&gt;&lt;/strong&gt;<br>
+&lt;/span&gt;<br>
+	<br>
+&lt;span class=&quot;formfont&quot;&gt;, &lt;strong&gt;&lt;a href=&quot;http://www.hti.umich.edu/cgi/t/text/text-idx?c=moaatxt;cc=moaatxt;sid=7b5bc5e64ba797a19ecd3be61e7acee2;page=proximity&quot;&gt;Proximity&lt;/a&gt;&lt;/strong&gt;<br>
+&lt;/span&gt;<br>
+	<br>
+	<br>
+&lt;span class=&quot;formfont&quot;&gt;, &lt;strong&gt;&lt;a href=&quot;http://www.hti.umich.edu/cgi/t/text/text-idx?c=moaatxt;cc=moaatxt;sid=7b5bc5e64ba797a19ecd3be61e7acee2;page=bib&quot;&gt;Bibliographic&lt;/a&gt;&lt;/strong&gt;<br>
+&lt;/span&gt;<br>
+	<br>
+&lt;span class=&quot;formfont&quot;&gt;, &lt;strong&gt;&lt;a href=&quot;http://www.hti.umich.edu/cgi/t/text/text-idx?c=moaatxt;sid=7b5bc5e64ba797a19ecd3be61e7acee2;page=history&quot;&gt;Search
+History&lt;/a&gt;&lt;/strong&gt;<br>
+&lt;/span&gt;</p>
+<p> <br>
+&lt;/td&gt;<br>ee2;page=bib&quot;&gt;Bibliographic&lt;/a&gt;&lt;/strong&gt;<br>
+&lt;/span&gt;<br>
+	<br>
+&lt;span class=&quot;formfont&quot;&gt;, &lt;strong&gt;&lt;a href=&quot;http://www.hti.umich.edu/cgi/t/text/text-idx?c=moaatxt;sid=7b5bc5e64ba797a19ecd3be61e7acee2;page=history&quot;&gt;Search
+History&lt;/a&gt;&lt;/strong&gt;<br>
+&lt;/span&gt;</p>
+<p> <br>
+&lt;/td&gt;<br>
+&lt;/tr&gt;<br>
+&lt;/table&gt;</p>
+<p> &lt;!-- END SEARCH FORM --&gt;</p>
+</div>
+<p> &lt;/td&gt;<br>
+&lt;/tr&gt;</p>
+<p> <br>
+&lt;/table&gt;<br>
+	<br>
+&lt;/form&gt;<br>
+&lt;/div&gt; <br>
+&lt;/td&gt;<br>
+&lt;/tr&gt;<br>
+&lt;/table&gt;<br>
+	<br>
+&lt;/div&gt;<br>
+<div class="footerblock">
+<div class="footerlabel">footernolist.chnk</div>
+&lt;!-- FOOTER NO LIST --&gt;</p>
+<p> &lt;br&gt; &lt;br&gt; &lt;br&gt;<br>
+  	<br>
+  	<br>
+&lt;div align=center&gt;<br>
+&lt;table border=0 cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;<br>
+&lt;tr bordercolor=&quot;#cccccc&quot; bgcolor=&quot;#cccccc&quot;&gt;<br>
+&lt;td height=21&gt;<br>
+<div class="custom">
+<div class="customlabel">moaatxt customization</div>
+&lt;div class=&quot;footernav&quot;&gt;<br>
+&lt;a href=&quot;http://moaa.aadl.org/index.php&quot;&gt;MoAA Home&lt;/a&gt; | <br>
+&lt;a href=&quot;http://moaa.aadl.org/moaabib.php&quot;&gt;Additional Resources&lt;/a&gt; | <br>
+&lt;a href=&quot;http://www.aadl.org/genealogy&quot;&gt;Research Genealogy&lt;/a&gt; | <br>
+&lt;a href=&quot;http://moaa.aadl.org/feedback.php&quot;&gt;Feedback&lt;/a&gt;<br>
+&lt;/div&gt;&lt;/td&gt;<br>
+&lt;/tr&gt;<br>
+&lt;/table&gt;<br>
+&lt;/div&gt;<br>
+
+</div>
+&lt;p&gt;&lt;span class=&quot;smallfont&quot;&gt;<br>
+	For technical assistance: &lt;a href=&quot;*&quot; onMouseOver=&quot;this.href='m'+'a'+'i'+'l'+'t'+'o'+':'+'d'+'l'+'p'+'s'+'-'+'h'+'e'+'l'+'p'+'@'+'u'+'m'+'i'+'c'+'h'+'.'+'e'+'d'+'u'&quot;&gt;UMDL<br>
+	Help&lt;/a&gt;&lt;/span&gt;<br>
+&lt;/p&gt;<br>
+&lt;p align=&quot;center&quot;&gt;&lt;img height=&quot;1&quot; src=&quot;http://production.aadl.org/newsite/images/spacer.gif&quot; width=&quot;1&quot;&gt;<br>
+&lt;span class=&quot;smallfont&quot;&gt;&amp;#169;2003,<br>
+	Ann Arbor District Library. All Rights Reserved.&lt;br&gt;<br>
+	343 S. Fifth Ave, Ann Arbor, MI. 48104&lt;br&gt;<br>
+	(734)327-4200&lt;br&gt;&lt;/span&gt;&lt;/p&gt;<br>
+	<br>
+&lt;/div&gt;<br>
+&lt;/div&gt;</p>
+&lt;!-- /END FOOTER --&gt;<br>
+</div>
+&lt;/body&gt;<br>
+&lt;/html&gt;</p>
+</div>
+</body>
+</html>

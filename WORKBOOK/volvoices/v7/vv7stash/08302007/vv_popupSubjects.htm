@@ -1,0 +1,1470 @@
+<!--
+    This code is issued under the GNU General Public License, 
+    version 3, 29 June 2007.
+
+    The DLC-MODS Workbook provides a series of web pages to help you 
+    generate a MODS metadata record that follows the Digital Library 
+    Federation Implementation Guidelines for Shareable MODS Records, 
+    as described in the DLF Aquifer Guidlines November 2006.  These 
+    Guidelines and the specific MODS Profile are documented on the 
+    MODS Profile Page of the DLC-MODS Workbook.
+
+    Copyright (C) 2007 
+    Christine Haygood Deane 
+    University of Tennessee Libraries
+    Digital Library Center
+ 
+
+    This program is free software: you can redistribute it and/or modify    
+    it under the terms of the GNU General Public License as published by    
+    the Free Software Foundation, version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see http://www.gnu.org/licenses/
+-->
+
+<HTML>
+<HEAD>
+<TITLE>vv_popupSubjects.htm</TITLE>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+<script>
+var TOKEN = new String(); //"_01","_02","_03",etc.
+var select_id= new String();
+var select_id_textarea= new String();
+var select_id_button=new String();
+
+function get_select_id() {
+
+var str = new String();
+    str = location.href;
+    str = str.substring( str.indexOf("=") );
+    ///alert(str);
+    select_id= str.substr(2);
+    //alert("select_id="+select_id);
+//alert("vv_functions.htm:  window.opener.location.href="+window.opener.location.href );
+return(select_id);
+
+}//end function
+
+
+
+function get_select_id_subject(N) {
+var num = new Number(N);
+var str = new String();
+    str = location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+
+//take care of dyn_name_role_0TOKEN and dyn_name_dobTOKEN and dyn_name_dodTOKEN
+if ( str.indexOf ("dyn_name_") > -1) {
+	str = str.replace(/dyn_name_/g,"");
+	}
+
+
+    select_id= str.substr(2);
+    select_id_textarea= str.substr(7);
+    select_id_button = str.substr(2,4);
+    alert("select_id="+select_id+"\nselect_id_textarea="+select_id_textarea+"\nselect_id_button="+select_id_button);
+//alert("vv_functions.htm:  window.opener.location.href="+window.opener.location.href );
+if (num ==0){
+    //alert("select_id="+select_id+"\nselect_id_textarea="+select_id_textarea+"\nselect_id_button="+select_id_button);
+	return(select_id_textarea);
+}else{
+	return(select_id_button);
+}
+}///end function
+
+select_id=get_select_id();
+select_id_textarea=get_select_id_subject(0);//id for textarea
+select_id_button=get_select_id_subject(1);//id for button
+TOKEN = select_id.substring(select_id.indexOf("_0"));
+
+
+
+</script>
+<script language=javascript src="vv_compose_subject_tags.js"></script>
+
+</HEAD>
+<BODY bgcolor="eeffee" >
+
+<script language="javascript">
+
+function PersonDateNotAvail() {
+document.popupform.datestring.value="not available";
+document.popupform.subElement_temp.value="not available";
+}///end function
+
+function PersonStillAlive() {
+document.popupform.datestring.value="living";
+document.popupform.subElement_temp.value="living";
+}///end function
+
+function clearDate() {
+document.popupform.datestring.value="";
+document.popupform.subElement_temp.value="";
+}
+
+function createTextInit() {//initialize when you select authority
+
+var auth= new String(document.forms[0].subject_auth.value);
+var firstLine= new String();
+var lastLine= new String();
+
+if (auth=="none") {
+	firstLine='<mods:subject>\r\n';
+}else{
+	firstLine='<mods:subject authority="'+auth+'">\r\n';
+}
+
+document.forms[0].firstLine.value=firstLine;
+lastLine = '</mods:subject>\r\n';
+document.popupform.LOCTA.value= firstLine+lastLine; 
+}//end function
+
+
+
+function createText_cart(){
+var str= new String(buildTagsArray_cart());
+str = str.replace(/,</g,"<");
+document.popupform.LOCTA.value= str;
+}//end function
+
+function createText_cgeo(){
+var str= new String(buildTagsArray_cgeo());
+str = str.replace(/,</g,"<");
+document.popupform.LOCTA.value= str;
+}//end function
+
+function createText_geog(){
+var str= new String(buildTagsArray_geog());
+str = str.replace(/,</g,"<");
+document.popupform.LOCTA.value= str;
+}//end function
+
+function createText_hgeo(){
+var str= new String(buildTagsArray_hgeo());
+str = str.replace(/,</g,"<");
+document.popupform.LOCTA.value= str;
+}//end function
+
+function createText_genr(){
+var str= new String(buildTagsArray_genr());
+str = str.replace(/,</g,"<");
+str = str.replace(/ authority="none"/g,"");
+document.popupform.LOCTA.value= str;
+}//end function
+
+
+function createText_namc(){
+var str= new String(buildTagsArray_namc());
+str = str.replace(/,</g,"<");
+str = str.replace(/ authority="none"/g,"");
+document.popupform.LOCTA.value= str;
+}//end function
+
+function createText_namm(){
+var str= new String(buildTagsArray_namm());
+str = str.replace(/,</g,"<");
+str = str.replace(/ authority="none"/g,"");
+document.popupform.LOCTA.value= str;
+}//end function
+
+function createText_namp(){
+var str= new String(buildTagsArray_namp());
+str = str.replace(/,</g,"<");
+str = str.replace(/ authority="none"/g,"");
+document.popupform.LOCTA.value= str;
+}//end function
+
+function createText_occu(){
+var str= new String(buildTagsArray_occu());
+str = str.replace(/,</g,"<");
+document.popupform.LOCTA.value= str;
+}//end function
+
+function createText_temp(){
+var str= new String(buildTagsArray_temp());
+str = str.replace(/,</g,"<");
+document.popupform.LOCTA.value= str;
+}//end function
+
+function createText_titl(){
+var str= new String(buildTagsArray_titl());
+str = str.replace(/,</g,"<");
+document.popupform.LOCTA.value= str;
+}//end function
+
+function createText_topi(){
+var str= new String(buildTagsArray_topi());
+str = str.replace(/,</g,"<");
+document.popupform.LOCTA.value= str;
+}//end function
+
+function subject_auth_pop() {
+for (i=0;i<document.forms[0].selectAuth.length;i++){
+	if ( document.forms[0].selectAuth[i].selected == true) {
+		document.forms[0].subject_auth.value = document.forms[0].selectAuth[i].value;
+		}
+}
+return;
+}//end function
+
+
+function titleInfo_auth_pop() {
+for (i=0;i<document.forms[0].titleInfo_auth.length;i++){
+	if ( document.forms[0].titleInfo_auth[i].selected == true) {
+		document.forms[0].titl_auth.value = document.forms[0].titleInfo_auth[i].value;
+		}
+}
+return;
+}//end function
+
+function titleInfo_type_pop() {
+for (i=0;i<document.forms[0].titleInfo_type.length;i++){
+	if ( document.forms[0].titleInfo_type[i].selected == true) {
+		document.forms[0].titl_type.value = document.forms[0].titleInfo_type[i].value;
+		}
+}
+return;
+}//end function
+
+function clearYear(){
+document.forms[0].year.value="";
+}
+// Only let numbers in the  Year field, max length=4
+function testYear(event,sbox) {
+var e = event;
+var KS; //keystroke value
+var rmc = 2; //right mouse click IE
+   // KS the keystroke entered
+  if ( typeof(e.which) != 'undefined' ) {//netscape
+	KS = e.which; 
+  	rmc = 3; //right mouse click netscape
+   }else { 
+	KS = e.keyCode; 
+   }
+
+   if (sbox.value.length >3 ) { 
+	alert("You may not type more than 4 digits for the year."); 
+	return false; 
+	} 
+
+   if ((KS > 47) && (KS < 58)) { return true;} //integer
+   if (KS == 8) return true; // Backspace
+   if (KS == 9) return true; // Tab
+   ////if (KS == 32) return true; //whitespace
+
+   alert("Only integer numbers are allowed in the Year field.");
+   return false;
+}
+
+function getTheYear(sbox,N) {
+
+if (document.popupform.year.value.length < 4) {
+	alert("The value for Year must have 4 digits.");
+	return;
+	}
+
+document.popupform.datestring.value = document.popupform.year.value;
+document.popupform.subElement_temp.value = document.popupform.year.value;
+}
+
+function getTheDate(sbox,N) {
+
+///alert("getDate_sbox.name="+sbox.name+"\nsbox.value="+sbox.value);
+var d= new Date();
+var MONTH = d.getMonth();
+    MONTH = MONTH + 1;
+///alert("Today is: \nyear"+d.getFullYear()+"\ndayofmonth="+d.getDate()+"\nmonth="+MONTH);
+
+var iDate = 0
+   ,iMonth = 0
+   ,trueMonth =1
+   ,iYear =0
+   ;
+
+
+
+if ( N == "0" ) {//Single Date
+
+	iDate= d.getDate()-1;///the index of the date number displayed in drop down box
+	rDate= d.getDate();///the real date number- the date number displayed in the drop down box
+	iMonth = d.getMonth();
+        trueMonth = iMonth +1;
+	iYear = d.getFullYear();
+
+	document.popupform.dayofmonth[iDate].selected=true;
+	document.popupform.month[iMonth].selected = true;
+	document.popupform.year.value = iYear;
+} else if (N=="1") {//start date
+////////alert("getTheDate N=1");
+	for (i=0;i<31;i++ ) {
+		if ( document.popupform.dayofmonth[i].selected==true ) {
+		iDate=i;//the index of the date number displayed in the drop down box
+		rDate=i+1;//the real date number displayed in drop down box		
+		}
+	}
+
+	for (i=0;i<12;i++ ) {
+		if ( document.popupform.month[i].selected==true ) {
+		trueMonth=i+1;
+                
+		}
+	}
+
+	iYear = document.popupform.year.value;
+
+
+}//end else
+var str_iDate= new String(rDate) ///use the date displayed in the list box, not the index of the date displayed in the listbox
+   ,str_iMonth = new String(trueMonth)
+   ,str_iYear = new String(iYear)	
+   ;
+
+if ( str_iDate.length ==1 ) str_iDate = "0"+str_iDate;
+if ( str_iMonth.length ==1 ) str_iMonth = "0"+str_iMonth;
+
+document.popupform.datestring.value = str_iYear+"-"+str_iMonth+"-"+str_iDate;
+document.popupform.subElement_temp.value = str_iYear+"-"+str_iMonth+"-"+str_iDate;
+}///end function
+
+
+
+//this should take care of all of the popup windows where you click on something to select it
+
+//function installSelectedValues(select_id){
+function installSelectedValues(select_id_textarea){
+//alert("window.opener.location.href="+window.opener.location.href );
+
+if ( typeof(document.popupform.aaa) != 'undefined' ) {
+
+//alert("document.popupform.hidden_select_id.value="+document.popupform.hidden_select_id.value
+	//+"\n document.popupform.aaa.type ="+document.popupform.aaa.type)
+
+var valtext=new String();
+var valval = new String();
+if ( document.popupform.aaa.type == 'select-one') {
+	for ( i=0; i<document.popupform.aaa.length;i++ ) {
+     		if ( document.popupform.aaa[i].selected == true ) {
+		valtext = document.popupform.aaa[i].text;
+		valval  = document.popupform.aaa[i].value;
+		}//end if
+     	}//end for
+
+}else if ( document.popupform.aaa.type == 'select-multiple' ) {
+	var countSelectedOptions = 0;
+	for ( i=0; i<document.popupform.aaa.length;i++ ) {
+     		if ( document.popupform.aaa[i].selected == true && countSelectedOptions < 3) {
+		valtext  += "; "+ document.popupform.aaa[i].text;
+		valval  += "; "+ document.popupform.aaa[i].value;
+		countSelectedOptions ++;
+		}//end if
+     	}//end for
+	valtext=valtext.substring(2);
+	valval =valval.substring(2);
+}//end else
+
+}//end if ( typeof(document.popupform.aaa) != 'undefined')
+           
+//alert("window.opener.parent.D.document.forms[0]."+document.popupform.hidden_select_id.value+".value="+valval);
+//alert("window.opener.parent.D.document.forms[0]."+document.popupform.hidden_select_id.value+"_display.value="+valtext);
+
+
+//alert("document.popupform.hidden_select_id.value="+document.popupform.hidden_select_id.value);
+var select_id_type = new String(document.popupform.hidden_select_id.value);
+    index_sid = select_id_type.indexOf("_0");
+    alert("select_id_type="+select_id_type);
+    select_id_type = select_id_type.substring(0,index_sid); //token stripped off
+    //alert("select_id_type="+select_id_type);
+
+var a = new String();//temp subject
+var b = new String();//temp subject_auth
+var c = new String();//temp subject_auth_close
+//switch(document.popupform.hidden_select_id.value) {
+alert("select_id_type="+select_id_type);
+switch(select_id_type) {
+
+case "xauth_subject_01" :
+	window.opener.parent.D.document.forms[0].subject_01_auth.value = document.forms[0].firstLine.value;
+	window.opener.parent.D.document.forms[0].subject_01_auth_close.value = "</mods:subject>";
+	window.close();
+	break;
+
+case "role" :
+	b = "window.opener.parent.D.document.DF.dyn_name_role"+TOKEN+".value = valval;";
+	eval(b);
+	window.close();
+	break;
+
+case "ydob" :
+	b = "window.opener.parent.D.document.DF.dyn_name_ydob"+TOKEN+".value = document.forms[0].datestring.value;";
+	eval(b);
+	window.close();
+	break;
+
+case "ydod" :
+	b = "window.opener.parent.D.document.DF.dyn_name_ydod"+TOKEN+".value = document.forms[0].datestring.value;";
+	eval(b);
+	window.close();
+	break;
+
+
+case "auth_subject" :
+	b = "window.opener.parent.D.document.DF.subject"+TOKEN+"_auth.value = document.forms[0].firstLine.value;";
+	c = "window.opener.parent.D.document.DF.subject"+TOKEN+"_auth_close.value = '</mods:subject>';";
+	eval(b);
+	eval(c);
+	window.close();
+	break;
+
+case "cart_subject" :
+	a="window.opener.parent.D.document.DF.subject"+TOKEN+".value+= document.forms[0].LOCTA.value";
+	eval(a);
+	window.close();
+	break;
+
+case "cgeo_subject" :
+	a="window.opener.parent.D.document.DF.subject"+TOKEN+".value+= document.forms[0].LOCTA.value";
+	eval(a);
+	window.close();
+
+case "auth_subject" :
+	b = "window.opener.parent.D.document.DF.subject"+TOKEN+"_auth.value = document.forms[0].firstLine.value;";
+	c = "window.opener.parent.D.document.DF.subject"+TOKEN+"_auth_close.value = '</mods:subject>';";
+	eval(b);
+	eval(c);
+	window.close();
+	break;
+
+case "cart_subject" :
+	a="window.opener.parent.D.document.DF.subject"+TOKEN+".value+= document.forms[0].LOCTA.value";
+	eval(a);
+	window.close();
+	break;
+
+case "cgeo_subject" :
+	a="window.opener.parent.D.document.DF.subject"+TOKEN+".value+= document.forms[0].LOCTA.value";
+	eval(a);
+	window.close();
+	break;
+
+case "geog_subject" :
+	a="window.opener.parent.D.document.DF.subject"+TOKEN+".value+= document.forms[0].LOCTA.value";
+	eval(a);
+	window.close();
+	break;
+
+case "hgeo_subject" :
+	a="window.opener.parent.D.document.DF.subject"+TOKEN+".value+= document.forms[0].LOCTA.value";
+	eval(a)
+	window.close();
+	break;
+
+case "genr_subject" :
+	a="window.opener.parent.D.document.DF.subject"+TOKEN+".value+= document.forms[0].LOCTA.value";
+	eval(a);
+	window.close();
+	break;
+
+case "namc_subject" :
+	a="window.opener.parent.D.document.DF.subject"+TOKEN+".value+= document.forms[0].LOCTA.value";
+	eval(a)
+	window.close();
+	break;
+
+case "namm_subject" :
+	a="window.opener.parent.D.document.DF.subject"+TOKEN+".value+= document.forms[0].LOCTA.value";
+	eval(a);
+	window.close();
+	break;
+
+case "namp_subject" :
+	a="window.opener.parent.D.document.DF.subject"+TOKEN+".value+= document.forms[0].LOCTA.value";
+	eval(a);
+	window.close();
+	break;
+
+case "occu_subject" :
+	a="window.opener.parent.D.document.DF.subject"+TOKEN+".value+= document.forms[0].LOCTA.value";
+	eval(a);
+	window.close();
+	break;
+
+case "temp_subject" :
+	a="window.opener.parent.D.document.DF.subject"+TOKEN+".value+= document.forms[0].LOCTA.value";
+	eval(a)
+	window.close();
+	break;
+
+case "titl_subject" :
+	a="window.opener.parent.D.document.DF.subject"+TOKEN+".value+= document.forms[0].LOCTA.value";
+	eval(a);
+	window.close();
+	break;
+
+case "topi_subject" :
+	a="window.opener.parent.D.document.DF.subject"+TOKEN+".value+= document.forms[0].LOCTA.value";
+	eval(a);
+	window.close();
+	break;
+
+
+}///end switch
+///////////window.close();//this has to depend on validation of individual formvars in the case statements
+
+}///end function
+
+
+function cancelSelect(){
+window.close();
+}
+
+</script>
+<form name="popupform" >
+<script> 
+document.write("select_id="+select_id+" -- select_id_textarea="+select_id_textarea+" -- select_id_button="+select_id_button+"<br>");
+document.write("TOKEN="+TOKEN);
+document.write("<!---select_id="+select_id+"---><hr>");
+
+
+if (   select_id_button == "auth" ) {
+document.write(
+         '<font color="00ffee">vv_popupSubjects.htm called by '+select_id+' </font>\r\n'
+        +'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ddeeff">\r\n'
+        +'<tr><td class="popcell_12">\r\n'
+        +'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ffeeff">\r\n'
+        +'<tr><td colspan="3" class="popcell_12">\r\n'
+        +'<b>Select Subject Authority</b> \r\n'
+ 	+'<br>The list below is a complete list of Subject Authority codes from the Library of Congress.\r\n'
+	+'<br>Code explanations have been shortened for display in the list box.\n\n'
+	+'<br>For full information go to <a href="http://www.loc.gov/marc/sourcecode/subject/subjectsource.html" target="_blank">Source Codes for Subjects</a>\r\n'
+	+'<br>Network Development and MARC Standards Office Library of Congress.\r\n'
+	+'</td></tr>\r\n'
+	+'<tr><td colspan="3" class="popcell_12">\r\n'
+	+'<select name="selectAuth" size="15" onchange="subject_auth_pop()">\r\n'
+	+window.opener.parent.L.getSelectList(window.opener.parent.L.aSubjectAuthority,-1)
+	//+'<option value="none" >none</option>\r\n'
+	//+'<option value="lcsh">lcsh</option>\r\n'
+	//+'<option value="tgm">tgm</option>\r\n'
+	//+'<option value="local">local</option>\r\n'
+	//+'<option value="other">other</option>\r\n'
+	+'</select>'
+	+'<br>Your selection code:&nbsp;<input type="text" size="8" name="subject_auth" value="">\r\n'
+	+'<tr><td colspan="3">\r\n'
+	+'the end\r\n'
+        +'</td></tr></table> \r\n'
+        +'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	+'<p>&nbsp;\r\n'
+	+'<textarea rows="3" cols="60" name="LOCTA" EADONLY></textarea><br>\r\n'
+	+'<input type="button" class="button140w" name="B2" value="Create Initial Text" onclick="createTextInit()"><p>\r\n'
+	+'<input type="hidden" name="firstLine" value="">\r\n'
+        );
+
+}else if (   select_id_button == "cart" ) {
+document.write(
+         '<font color="00ffee">vv_popupSubjects.htm called by '+select_id+' </font>\r\n'
+        +'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ddeeff">\r\n'
+        +'<tr><td>\r\n'
+        +'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ffeeff">\r\n'
+        +'<tr><td colspan="3" class="popcell_12">\r\n'
+        +'<b>SUBJECT BLOCK for Cartographics</b> \r\n'
+	+'<br>This subelement has no attributes. \r\n'
+	+'<br>DLF Aquifer Guidelines, page 57.\r\n'
+	+'</td></tr>\r\n'
+
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;coordinates> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_cart_coordinates" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+        +'&lt;/coordinates> \r\n'
+	+'</td></tr>\r\n'
+
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;scale> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_cart_scale" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+        +'&lt;/scale> \r\n'
+	+'</td></tr>\r\n'
+
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;projection> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_cart_projection" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+        +'&lt;/projection> \r\n'
+	+'</td></tr>\r\n'
+
+	+'<tr><td colspan="3" class="popcell_12">\r\n'
+	+'the end\r\n'
+        +'</td></tr></table> \r\n'
+        +'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	+'<p>&nbsp;\r\n'
+	+'<textarea rows="8" cols="60" name="LOCTA" EADONLY></textarea><br>\r\n'
+	+'<input type="button" class="button140w" name="B2" value="Create Text" onclick="createText_cart()"><p>\r\n'
+        );
+
+} else if (   select_id_button == "cgeo" ) {
+document.write(
+         '<font color="00ffee">vv_popupSubjects.htm called by '+select_id+' </font>\r\n'
+        +'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ddeeff">\r\n'
+        +'<tr><td>\r\n'
+        +'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ffeeff">\r\n'
+	+'<tr><td colspan="3" class="popcell_12">\r\n'
+        +'<b>SUBJECT BLOCK for Geographic Code</b> \r\n'
+	+'<br>This subelement must have an authority attribute that indicates the encoding scheme.\r\n'
+	+'<br>These Guidelines recommend <b>iso3166</b> authority.\r\n'
+	+'<br>DLF Aquifer Guidlines, page 57-58.\r\n'
+        +'</td></tr>\r\n'
+	+'<tr><td colspan="3" class="popcell_12">\r\n'
+	+'Select Geographic Code Authority: <select name="cgeo_auth" size="3">\r\n'
+	+'<option value="marcgac">marcgac</option>\r\n'
+	+'<option value="marccountry">marccountry</option>\r\n'
+	+'<option value="iso3166" selected>iso3166</option>\r\n'
+	+'</select>\r\n'
+	+'</td></tr>\r\n'
+	
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;geographicCode> \r\n'
+	+'</td><td class="popcell_12">\r\n'
+        +'<input type="text" size="40" name="subElement_cgeo" value="">\r\n'
+	+'</td><td>\r\n'
+        +'&lt;/geographicCode> \r\n'
+	+'</td></tr>\r\n'
+
+	+'<tr><td class="popcell_12"> \r\n'
+	+'the end\r\n'
+        +'</td></tr></table> \r\n'
+        +'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	+'<p>&nbsp;\r\n'
+	+'<textarea rows="8" cols="60" name="LOCTA" EADONLY></textarea><br>\r\n'
+	+'<input type="button" class="button140w"  name="B2" value="Create Text" onclick="createText_cgeo()"><p>\r\n'
+        );
+
+} else if (   select_id_button == "geog" ) {
+document.write(
+         '<font color="00ffee">vv_popupSubjects.htm called by '+select_id+' </font>\r\n'
+        +'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ddeeff">\r\n'
+        +'<tr><td>\r\n'
+        +'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ffeeff">\r\n'
+	+'<tr><td colspan="3" class="popcell_12">\r\n'
+        +'<b>SUBJECT BLOCK for Geographic</b> \r\n'
+	+'<br>This subelement has no attributes.\r\n'
+	+'<br>If a controlled subject term is used, indicate authority at the subject level.\r\n'
+	+'<br>DLF Aquifer Guidlines, page 55.\r\n'
+        +'</td></tr>\r\n'
+
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;geographic> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_geog_01" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+        +'&lt;/geographic> \r\n'
+	+'</td></tr>\r\n'
+
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;geographic> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_geog_02" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+        +'&lt;/geographic> \r\n'
+	+'</td></tr>\r\n'
+
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;geographic> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_geog_03" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+        +'&lt;/geographic> \r\n'
+	+'</td></tr>\r\n'
+
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;geographic> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_geog_04" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+        +'&lt;/geographic> \r\n'
+	+'</td></tr>\r\n'
+
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;geographic> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_geog_05" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+        +'&lt;/geographic> \r\n'
+	+'</td></tr>\r\n'
+
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;geographic> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_geog_06" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+        +'&lt;/geographic> \r\n'
+	+'</td></tr>\r\n'
+
+	+'<tr><td colspan="3" class="popcell_12">\r\n'
+	+'the end\r\n'
+        +'</td></tr></table> \r\n'
+        +'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	+'<p>&nbsp;\r\n'
+	+'<textarea rows="8" cols="60" name="LOCTA" EADONLY></textarea><br>\r\n'
+	+'<input type="button" class="button140w" name="B2" value="Create Text" onclick="createText_geog()"><p>\r\n'
+        );
+
+} else if (   select_id_button == "hgeo" ) {
+document.write(
+         '<font color="00ffee">vv_popupSubjects.htm called by '+select_id+' </font>\r\n'
+        +'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ddeeff">\r\n'
+        +'<tr><td>\r\n'
+        +'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ffeeff">\r\n'
+	+'<tr><td colspan="3" class="popcell_12">\r\n'
+        +'<b>SUBJECT BLOCK for Hierarchical Geographic</b> \r\n'
+	+'<br>This subelement has no attributes.\r\n'
+	+'<br>The Authority should be specified at the subject level.\r\n'
+	+'<br>DLF Aquifer Guidlines, page 56.\r\n'
+        +'</td></tr>\r\n'
+
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;continent> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_hgeo_continent" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+        +'&lt;/continent> \r\n'
+	+'</td></tr>\r\n'
+
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;country> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_hgeo_country" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+        +'&lt;/country> \r\n'
+	+'</td></tr>\r\n'
+
+
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;province> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_hgeo_province" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+        +'&lt;/province> \r\n'
+	+'</td></tr>\r\n'
+
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;region> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_hgeo_region" value="">\r\n'
+	+'</td><td class="popcell_12"> \r\n'
+        +'&lt;/region> \r\n'
+	+'</td></tr>\r\n'
+
+
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;state> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_hgeo_state" value="">\r\n'
+	+'</td><td class="popcell_12"> \r\n'
+        +'&lt;/state> \r\n'
+	+'</td></tr>\r\n'
+
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;territory> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_hgeo_territory" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+        +'&lt;/territory> \r\n'
+	+'</td></tr>\r\n'
+
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;county> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_hgeo_county" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+        +'&lt;/county> \r\n'
+	+'</td></tr>\r\n'
+
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;city> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_hgeo_city" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+        +'&lt;/city> \r\n'
+	+'</td></tr>\r\n'
+
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;island> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_hgeo_island" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+        +'&lt;/island> \r\n'
+	+'</td></tr>\r\n'
+
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;area> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_hgeo_area" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+        +'&lt;/area> \r\n'
+	+'</td></tr>\r\n'
+
+
+	+'<tr><td colspan="3" class="popcell_12">\r\n'
+	+'the end\r\n'
+        +'</td></tr></table> \r\n'
+        +'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	+'<p>&nbsp;\r\n'
+	+'<textarea rows="8" cols="60" name="LOCTA" EADONLY></textarea><br>\r\n'
+	+'<input type="button" class="button140w"  name="B2" value="Create Text" onclick="createText_hgeo()"><p>\r\n'
+        );
+
+} else if (   select_id_button == "genr" ) {
+document.write(
+         '<font color="00ffee">vv_popupSubjects.htm called by '+select_id+' </font>\r\n'
+        +'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ddeeff">\r\n'
+        +'<tr><td>\r\n'
+        +'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ffeeff">\r\n'
+	+'<tr><td colspan="3" class="popcell_12">\r\n'
+        +'<b>SUBJECT BLOCK for Genre</b> \r\n'
+	+'<br>This subelement must have an authority attribute that indicates the controlled vocabulary.\r\n'
+	+'<br>DLF Aquifer Guidlines, page 56 and pages 27-28.\r\n'
+        +'</td></tr>\r\n'
+	+'<tr><td colspan="3" class="popcell_12">\r\n'
+	+'Genre Authority is Required.\r\n'
+	+'<select name="genr_auth" size="5">\r\n'
+	+'<option value="none">none</option>\r\n'
+	+'<option value="aat">marcgac</option>\r\n'
+	+'<option value="gsafd">marccountry</option>\r\n'
+	+'<option value="lcsh">lcsh</option>\r\n'
+	+'<option value="marcgt">marcgt</option>\r\n'
+	+'</select>\r\n'
+	+'</td></tr>\r\n'
+	
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;genre> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_genr" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+        +'&lt;/genre> \r\n'
+	+'</td></tr>\r\n'
+
+	+'<tr><td colspan="3" class="popcell_12">\r\n'
+	+'the end\r\n'
+        +'</td></tr></table> \r\n'
+        +'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	+'<p>&nbsp;\r\n'
+	+'<textarea rows="8" cols="60" name="LOCTA" EADONLY></textarea><br>\r\n'
+	+'<input type="button" class="button140w" name="B2" value="Create Text" onclick="createText_genr()"><p>\r\n'
+        );
+
+} else if (   select_id_button == "namp" ) {
+document.write(
+         '<font color="00ffee">vv_popupSubjects.htm called by '+select_id+' </font>\r\n'
+        +'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ddeeff">\r\n'
+        +'<tr><td>\r\n'
+        +'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ffeeff">\r\n'
+        +'<tr><td colspan="3" class="popcell_12">\r\n'
+        +'<b>SUBJECT BLOCK for Name type="personal"</b> \r\n'
+	//+'<font face="arial" size="2">\r\n'
+	+'<br>This subelement must have an authority attribute that indicates the controlling authority.\r\n'
+	+'<br>DLF Aquifer Guidlines, page 56 and page 14.\r\n'
+	//+'</font>\r\n'
+        +'</td></tr>\r\n'
+	+'<tr><td colspan="3" class="popcell_12">\r\n'
+	+'Select authority for name: \r\n'
+	+'<select name="namp_auth" size="3">\r\n'
+	+'<option selected value="none">none</option>\r\n'
+	+'<option value="ulan">ulan</option>\r\n'
+	+'<option value="lcnaf">lcnaf</option>\r\n'
+	+'</select>\r\n'
+        +'</td></tr>\r\n'
+
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;namePart type="family"> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_namp_family" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+	+'&lt;/namePart>\r\n'
+	+'</td></tr>\r\n'
+
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;namePart type="given"> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_namp_given" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+	+'&lt;/namePart>\r\n'
+	+'</td></tr>\r\n'
+
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;namePart type="termsOfAddress"> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_namp_termsOfAddress" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+	+'&lt;/namePart>\r\n'
+	+'</td></tr>\r\n'
+
+
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;namePart type="date"> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_namp_date" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+	+'&lt;/namePart>\r\n'
+	+'</td></tr>\r\n'
+
+	///+'<input type="hidden" name="namp_role" value="">\r\n'
+
+	+'<tr><td colspan="3" class="popcell_12">\r\n'
+	+'the end\r\n'
+        +'</td></tr></table> \r\n'
+        +'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	+'<p>&nbsp;\r\n'
+	+'<textarea rows="8" cols="60" name="LOCTA" EADONLY></textarea><br>\r\n'
+	+'<input type="button" class="button140w"  name="B2" value="Create Text" onclick="createText_namp()"><p>\r\n'
+        );
+
+
+} else if (   select_id_button == "namc" ) {
+document.write(
+         '<font color="00ffee">vv_popupSubjects.htm called by '+select_id+' </font>\r\n'
+        +'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ddeeff">\r\n'
+        +'<tr><td>\r\n'
+        +'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ffeeff">\r\n'
+	+'<tr><td colspan="3" class="popcell_12">\r\n'
+        +'<b>SUBJECT BLOCK for Name type="corporate"</b> \r\n'
+	+'<br>This subelement is recommended to have an authority attribute<br>that indicates the controlling authority.\r\n'
+	+'<br>DLF Aquifer Guidlines, page 56 and page 14.\r\n'
+        +'</td></tr>\r\n'
+	+'<tr><td colspan="3" class="popcell_12">\r\n'
+	+'Select authority for name: \r\n'
+	+'<select name="namc_auth" size="3">\r\n'
+	+'<option selected value="none">none</option>\r\n'
+	+'<option value="ulan">ulan</option>\r\n'
+	+'<option value="lcnaf">lcnaf</option>\r\n'
+	+'</select>\r\n'
+        +'</td></tr>\r\n'
+
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;namePart> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_namc" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+	+'&lt;/namePart>\r\n'
+	+'</td></tr>\r\n'
+
+	+'<tr><td colspan="3" class="popcell_12">\r\n'
+	+'the end\r\n'
+        +'</td></tr></table> \r\n'
+        +'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	+'<p>&nbsp;\r\n'
+	+'<textarea rows="8" cols="60" name="LOCTA" EADONLY></textarea><br>\r\n'
+	+'<input type="button" class="button140w"  name="B2" value="Create Text" onclick="createText_namc()"><p>\r\n'
+        );
+
+
+} else if (   select_id_button == "namm" ) {
+document.write(
+         '<font color="00ffee">vv_popupSubjects.htm called by '+select_id+' </font>\r\n'
+        +'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ddeeff">\r\n'
+        +'<tr><td>\r\n'
+        +'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ffeeff">\r\n'
+	+'<tr><td colspan="3" class="popcell_12">\r\n'
+        +'<b>SUBJECT BLOCK for Name type="conference"</b> \r\n'
+	+'<br>This subelement is recommended to have an authority attribute<br>that indicates the controlling authority.\r\n'
+	+'<br>DLF Aquifer Guidlines, page 56 and page 14.\r\n'
+        +'</td></tr>\r\n'
+	+'<tr><td colspan="3" class="popcell_12">\r\n'
+	+'Select authority for name: \r\n'
+	+'<select name="namm_auth" size="3">\r\n'
+	+'<option selected value="none">none</option>\r\n'
+	+'<option value="ulan">ulan</option>\r\n'
+	+'<option value="lcnaf">lcnaf</option>\r\n'
+	+'</select>\r\n'
+        +'</td></tr>\r\n'
+
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;namePart> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_namm" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+	+'&lt;/namePart>\r\n'
+	+'</td></tr>\r\n'
+
+	+'<tr><td colspan="3" class="popcell_12">\r\n'
+	+'the end\r\n'
+        +'</td></tr></table> \r\n'
+        +'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	+'<p>&nbsp;\r\n'
+	+'<textarea rows="8" cols="60" name="LOCTA" EADONLY></textarea><br>\r\n'
+	+'<input type="button" class="button140w" name="B2" value="Create Text" onclick="createText_namm()"><p>\r\n'
+        );
+
+
+
+} else if (   select_id_button == "occu" ) {
+document.write(
+         '<font color="00ffee">vv_popupSubjects.htm called by '+select_id+' </font>\r\n'
+        +'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ddeeff">\r\n'
+        +'<tr><td>\r\n'
+        +'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ffeeff">\r\n'
+	+'<tr><td colspan="3" class="popcell_12">\r\n'
+        +'<b>SUBJECT BLOCK for Occupation</b> \r\n'
+	+'<br>This subelement has no attributes.\r\n'
+	+'<br>The Authority should be specified at the subject level.\r\n'
+	+'<br>DLF Aquifer Guidlines, page 58.\r\n'
+        +'</td></tr>\r\n'
+	
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;occupation> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_occu_01" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+        +'&lt;/occupation> \r\n'
+	+'</td></tr>\r\n'
+
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;occupation> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_occu_02" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+        +'&lt;/occupation> \r\n'
+	+'</td></tr>\r\n'
+
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;occupation> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_occu_03" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+        +'&lt;/occupation> \r\n'
+	+'</td></tr>\r\n'
+
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;occupation> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_occu_04" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+        +'&lt;/occupation> \r\n'
+	+'</td></tr>\r\n'
+
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;occupation> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_occu_05" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+        +'&lt;/occupation> \r\n'
+	+'</td></tr>\r\n'
+
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;occupation> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_occu_06" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+        +'&lt;/occupation> \r\n'
+	+'</td></tr>\r\n'
+
+
+	+'<tr><td colspan="3" class="popcell_12">\r\n'
+	+'the end\r\n'
+        +'</td></tr></table> \r\n'
+        +'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	+'<p>&nbsp;\r\n'
+	+'<textarea rows="8" cols="60" name="LOCTA" EADONLY></textarea><br>\r\n'
+	+'<input type="button" class="button140w" name="B2" value="Create Text" onclick="createText_occu()"><p>\r\n'
+        );
+
+
+} else if (   select_id_button == "titl" ) {
+document.write(
+         '<font color="00ffee">vv_popupSubjects.htm called by '+select_id+' </font>\r\n'
+        +'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ddeeff">\r\n'
+        +'<tr><td >\r\n'
+        +'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ffeeff">\r\n'
+        +'<tr><td colspan="3" class="popcell_12">\r\n'
+        +'<b>SUBJECT BLOCK for Title Info</b> \r\n'
+	+'<br>This subelement must have an authority attribute that indicates the controlling authority.\r\n'
+	+'<br>DLF Aquifer Guidlines, page 56 and page 14.\r\n'
+        +'</td></tr>\r\n'
+
+	+'<tr><td colspan="3" class="popcell_12">\r\n'
+	+'Select authority for titlInfo: <br>\r\n'
+	+'<select name="titleInfo_auth" size="3" onchange="titleInfo_auth_pop()">\r\n'
+	+'<option value="none">none </option>\r\n'
+	+'<option value="naf">naf -- NACO authority file</option>\r\n'
+	+'<option value="sanb">sanb -- South African national bibliographic authority file</option>\r\n'
+	+'</select>\r\n'
+	+'<br>Your selection for authority for titleInfo: <input name="titl_auth" size="24">\r\n'
+        +'</td></tr>\r\n'
+
+	+'<tr><td colspan="3" class="popcell_12">\r\n'
+	+'Select type for titlInfo: <br>\r\n'
+	+'<select name="titleInfo_type" size="5" onchange="titleInfo_type_pop()">\r\n'
+	+'<option value="none">none </option>\r\n'
+	+'<option value="abbreviated">abbreviated</option>\r\n'
+	+'<option value="translated">translated</option>\r\n'
+	+'<option value="alternative">alternative</option>\r\n'
+	+'<option value="uniform">uniform</option>\r\n'
+	+'</select>\r\n'
+	+'<br>Your selection for type for titleInfo: <input name="titl_type" size="24">\r\n'
+        +'</td></tr>\r\n'
+
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;nonSort> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_titl_nonSort" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+        +'&lt;/nonSort> \r\n'
+	+'</td></tr>\r\n'
+
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;title> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_titl_title" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+        +'&lt;/title> \r\n'
+	+'</td></tr>\r\n'
+
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;subTitle> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_titl_subTitle" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+        +'&lt;/subTitle> \r\n'
+	+'</td></tr>\r\n'
+
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;partNumber> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_titl_partNumber" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+        +'&lt;/partNumber> \r\n'
+	+'</td></tr>\r\n'
+
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;partName> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_titl_partName" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+        +'&lt;/partName> \r\n'
+	+'</td></tr>\r\n'
+
+	+'<tr><td colspan="3" class="popcell_12">\r\n'
+	+'the end\r\n'
+        +'</td></tr></table> \r\n'
+        +'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	+'<p>&nbsp;\r\n'
+	+'<textarea rows="8" cols="60" name="LOCTA" EADONLY></textarea><br>\r\n'
+	+'<input type="button" class="button140w" name="B2" value="Create Text" onclick="createText_titl()"><p>\r\n'
+        );
+
+
+
+} else if (   select_id_button == "topi" ) {
+document.write(
+         '<font color="00ffee">vv_popupSubjects.htm called by '+select_id+' </font>\r\n'
+        +'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ddeeff">\r\n'
+        +'<tr><td>\r\n'
+        +'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ffeeff">\r\n'
+	+'<tr><td colspan="3" class="popcell_12">\r\n'
+        +'<b>SUBJECT BLOCK for Topic</b> \r\n'
+	+'<br>This subelement has no attributes.\r\n'
+	+'<br>The Authority should be specified at the subject level.\r\n'
+	+'<br>DLF Aquifer Guidlines, pages 54-55.\r\n'
+        +'</td></tr>\r\n'
+	
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;topic> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_topi_01" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+        +'&lt;/topic> \r\n'
+	+'</td></tr>\r\n'
+
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;topic> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_topi_02" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+        +'&lt;/topic> \r\n'
+	+'</td></tr>\r\n'
+
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;topic> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_topi_03" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+        +'&lt;/topic> \r\n'
+	+'</td></tr>\r\n'
+
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;topic> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_topi_04" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+        +'&lt;/topic> \r\n'
+	+'</td></tr>\r\n'
+
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;topic> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_topi_05" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+        +'&lt;/topic> \r\n'
+	+'</td></tr>\r\n'
+
+	+'<tr><td class="popcell_12"> \r\n'
+        +'&lt;topic> \r\n'
+	+'</td><td>\r\n'
+        +'<input type="text" size="40" name="subElement_topi_06" value="">\r\n'
+	+'</td><td class="popcell_12">\r\n'
+        +'&lt;/topic> \r\n'
+	+'</td></tr>\r\n'
+
+
+	+'<tr><td colspan="3" class="popcell_12">\r\n'
+	+'the end\r\n'
+        +'</td></tr></table> \r\n'
+        +'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	+'<p>&nbsp;\r\n'
+	+'<textarea rows="8" cols="60" name="LOCTA" EADONLY></textarea><br>\r\n'
+	+'<input type="button" class="button140w" name="B2" value="Create Text" onclick="createText_topi()"><p>\r\n'
+        );
+
+} else if (   select_id_button == "temp" ) {
+
+document.write(
+         '<font color="00ffee">vv_popupSubjects.htm called by '+select_id+' </font>\r\n'
+        +'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ddeeff">\r\n'
+        +'<tr><td>\r\n'
+        +'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ffeeff">\r\n'
+        +'<tr><td colspan="3" class="popcell_12">\r\n'
+        +'<b>SUBJECT BLOCK for Temporal</b> \r\n'
+	+'<br>This subelement has no attributes.\r\n'
+	+'<br>The Authority should be specified at the subject level.\r\n'
+	+'<br>The supported encoding is w3cdtf (ISO 8601 profile).\r\n'
+	+'<br>DLF Aquifer Guidlines, pages 54-55.\r\n'
+        +'</td></tr>\r\n'
+	+'<tr><td>  \r\n'
+	+'<table border="1" cellpadding="8" cellspacing="0" bgcolor="ddeeff">\r\n'
+	+'<tr><td valign="top" align="center" class="popcell_12"><p>Year (must be 4 digits)\r\n'
+	+'<br> <input type="text"  name="year" value=""   '
+	+'onKeypress="return testYear(event,this)">\r\n'
+	+'<p> <input type="button" class="button140w" name="clear_year" value="Clear Year" onclick="clearYear()">\r\n'
+	+'<p>Type of Date.<br>\r\n'
+	+'<select name="subElement_temp_date_type" size="3">\r\n'
+	+'<option value="singleDate" selected>Single Date</option>\r\n'
+	+'<option value="beginDate">Begin Date</option>\r\n'
+	+'<option value="endDate">End Date</option>\r\n'
+	+'</select>\r\n'
+	+' </td>\r\n'
+	
+	+'<td class="popcell_12"><p>Month <br>\r\n'
+	+'<select name="month" size="12">\r\n'
+	+'	<option value="01" selected>January</option>\r\n'
+	+'	<option value="02" >February</option>\r\n'
+	+'	<option value="03" >March</option>\r\n'
+	+'	<option value="04" >April</option>\r\n'
+	+'	<option value="05" >May</option>\r\n'
+	+'	<option value="06" >June</option>\r\n'
+	+'	<option value="07" >July</option>\r\n'
+	+'	<option value="08" >August</option>\r\n'
+	+'	<option value="09" >September</option>\r\n'
+	+'	<option value="10" >October</option>\r\n'
+	+'	<option value="11" >November</option>\r\n'
+	+'	<option value="12" >December</option>\r\n'
+	+'</select>\r\n'
+	+'<td class="popcell_12">Day of Month<br>\r\n'
+	+'<select name="dayofmonth" size="12" style="width:100px">\r\n'
+	+'	<option value="01" selected>1</option>\r\n'
+	+'	<option value="02" >2</option>\r\n'
+	+'	<option value="03" >3</option>\r\n'
+	+'	<option value="04" >4</option>\r\n'
+	+'	<option value="05" >5</option>\r\n'
+	+'	<option value="06" >6</option>\r\n'
+	+'	<option value="07" >7</option>\r\n'
+	+'	<option value="08" >8</option>\r\n'
+	+'	<option value="09" >9</option>\r\n'
+	+'	<option value="10" >10</option>\r\n'
+	+'	<option value="11" >11</option>\r\n'
+	+'	<option value="12" >12</option>\r\n'
+	+'	<option value="13" >13</option>\r\n'
+	+'	<option value="14" >14</option>\r\n'
+	+'	<option value="15" >15</option>\r\n'
+	+'	<option value="16" >16</option>\r\n'
+	+'	<option value="17" >17</option>\r\n'
+	+'	<option value="18" >18</option>\r\n'
+	+'	<option value="19" >19</option>\r\n'
+	+'	<option value="20" >20</option>\r\n'
+	+'	<option value="21" >21</option>\r\n'
+	+'	<option value="22" >22</option>\r\n'
+	+'	<option value="23" >23</option>\r\n'
+	+'	<option value="24" >24</option>\r\n'
+	+'	<option value="25" >25</option>\r\n'
+	+'	<option value="26" >26</option>\r\n'
+	+'	<option value="27" >27</option>\r\n'
+	+'	<option value="28" >28</option>\r\n'
+	+'	<option value="29" >29</option>\r\n'
+	+'	<option value="30" >30</option>\r\n'	
+	+'	<option value="31" >31</option>\r\n'			
+	+'</select>\r\n'
+	+'</td></tr>\r\n'
+	+'<tr><td colspan="3" class="popcell_12">  \r\n'
+	+'&nbsp;&nbsp;<input type="button" class="button140w" name="B11" value="Enter Full Date" onclick="getTheDate(this,1)" xstyle="width:200px;" >\r\n'
+	+'<br>&nbsp;&nbsp;<input type="button" class="button140w" name="B12" value="Enter Year Only" onclick="getTheYear(this,1)" xstyle="width:200px;" >\r\n'
+	+' <input type="hidden" name="datestring" value="" READONLY> \r\n'
+	+' <input type="text" name="subElement_temp" value="" READONLY> \r\n'
+	+'<br>&nbsp;&nbsp;<input type="button" class="button140w" name="B13" value="Clear Date" onclick="clearDate()" xstyle="width:200px">\r\n'
+	
+
+	+'</td></tr>  \r\n'
+	+'<tr><td colspan="3">\r\n'
+	+'the end\r\n'
+        +'</td></tr></table> \r\n'
+        +'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	+'<p>&nbsp;\r\n'
+	+'<textarea rows="8" cols="60" name="LOCTA" EADONLY></textarea><br>\r\n'
+	+'<input type="button" class="button140w" name="B2" value="Create Text" onclick="createText_temp()"><p>\r\n'
+	
+	+'</td></tr></table></table> \r\n'
+	);
+
+} else if (   select_id_button == "ydod" || select_id_button == "ydob" ) {
+var msg1 = new String();
+var msg2 = new String();
+if ( select_id_button ==  "ydob"){
+        msg1="<b>Please select a Year of Birth for this person.</b>";
+        msg2="<b>Date of Birth for this person:</b>";
+}else if ( select_id_button == "ydod" ){
+        msg1="<b>Please select a Year of Death for this person.</b>";
+        msg2="<b>Date of Death for this person:</b>";
+}
+
+document.write(
+         '<font color="eeffee">vv_functions.htm called by '+select_id+'</font>\r\n'
+        +'<table border="1" cellpadding="4" cellspacing="0" width="90%" >\r\n'
+        +'<tr><td>\r\n'
+        + msg1+' \r\n'
+        +'</td></tr><tr><td>  \r\n'
+        +'<table border="1" cellpadding="8" cellspacing="0" bgcolor="ddeeff">\r\n'
+        +'<tr><td valign="top" align="center"><p>Year (must be 4 digits)\r\n'
+        +'<br> <input type="text"  name="year" value=""  onblur="PersonCheckDataLengthMin(this,4)" '
+        +'onKeypress="return testYear(event,this)">\r\n'
+        +'<p> <input type="button" name="clear_year" value=" Clear \nYear" onclick="clearYear()">\r\n'
+        +'<p> <input type="button" name="noDate" value="Person\nStill\nLiving" onclick="PersonStillAlive()"> \r\n'
+        +'<p> <input type="button" name="noDate2" value="Date\nNot\nAvailable" onclick="PersonDateNotAvail()"> </td>\r\n'
+        +'</td></tr></table>\r\n'
+        +'</td></tr><tr><td colspan="4">  \r\n'
+        //+'<input type="button" name="B10" value="Enter Today\'s Date" onclick="getTheDate(this,0)" >\r\n'
+        +'&nbsp;&nbsp;<input type="button" name="B11" value="Enter Year Below" onclick="getTheYear(this)" >\r\n'
+        +'&nbsp;&nbsp;<input type="button" name="B13" value="Clear Year Below" onclick="clearDate()">\r\n'
+
+        +'</td></tr><tr><td colspan="4">  \r\n'
+        + msg2+' <input type="text" name="datestring" value="" READONLY> \r\n'
+
+	+' <input type="hidden" name="subElement_temp" value="" READONLY> \r\n'
+        +'</td></tr></table></table> \r\n'
+        +'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+        );
+
+
+} else if (   select_id_button == "role" ) {
+
+document.write(
+         '<font color="00ffee">vv_popupSubjects.htm called by '+select_id+' </font>\r\n'
+        +'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ddeeff">\r\n'
+        +'<tr><td>\r\n'
+        +'<b>Select Up to 3 Role Terms: </b> \r\n'
+        +'</td></tr><tr><td>  \r\n'
+        +'<select name="aaa" size="20" multiple> \r\n'
+        +window.opener.parent.L.getSelectList(window.opener.parent.L.aRole,-1)
+        +'</select> \r\n'
+        +'</td></tr></table> \r\n'
+	//+'<br>send value to window.opener.parent.D.document.DF.dyn_name_role'+TOKEN+'.value\r\n'
+        +'<p>&nbsp;&nbsp;To select more than one Role Term, <br>&nbsp;&nbsp;hold down the <b>CNTL</b> button while you click on terms.<p> \r\n'
+        +'&nbsp;&nbsp;Complete Role Descriptions from <a href="http://www.loc.gov/marc/sourcecode/relator/relatorlist.html" target="blank">MARK Relatorlist</a>.<p> \r\n'
+        +'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+        );
+
+
+}//end else  if block
+
+</script>
+<input type="button" class="button140w" name="B0" value="Submit" onclick="installSelectedValues()">
+&nbsp;&nbsp;
+<input type="button"  class="button140w" name="B1" value="Cancel" onclick="cancelSelect()">
+</form>
+<script>
+
+function fdg() {
+//return;
+
+var BEGINFORM = 0;
+var ENDFORM   = document.forms.length;
+
+document.write("<div id='formdebug' align='left'><font face='arial' size='1' color='a00000'>");
+for ( jj=BEGINFORM; jj<ENDFORM; jj++ ) {
+document.write('<hr> document.forms['+jj+'].name='+document.forms[jj].name+'<br>');
+document.write(' document.forms['+jj+'].method='+document.forms[jj].method+'<br>');
+document.write(' document.forms['+jj+'].action='+document.forms[jj].action+'<br>');
+
+for(i=0;i<document.forms[jj].length;i++)
+{
+document.write( 'document.forms['+jj+']::'+ document.forms[jj].name+".elements["+i+"]::"
+			  +' ------name: '+document.forms[jj].elements[i].name
+			  +' ------type: '+document.forms[jj].elements[i].type
+			  +' -----value: '+document.forms[jj].elements[i].value
+			  )
+			  if ( typeof(document.forms[jj].elements[i].tabindex) != 'undefined') {
+			  document.write( ' -----tabindex: '+ document.forms[jj].elements[i].tabindex )
+			  }
+			  if ( typeof(document.forms[jj].elements[i].onblur) != 'undefined') {
+			  document.write( ' -----onblur: '+ document.forms[jj].elements[i].onblur )
+			  }
+			  if ( document.forms[jj].elements[i].type == 'button' ) {
+			  document.write( ' -----onclick: '+ document.forms[jj].elements[i].onclick )
+			  }
+			  if ( document.forms[jj].elements[i].type == 'radio' ) {
+			  document.write( ' -----checked: '+ document.forms[jj].elements[i].checked )
+			  }
+document.write('<br>')
+			  
+			  }}
+
+
+
+
+document.write("<HR>");
+document.write(	" location.href = "+location.href+"<BR>");
+document.write('document.location.href='+document.location.href+'<BR>');
+document.write(	" parent.location.href = "+parent.location.href+"<BR>");
+document.write("<HR>");
+
+
+
+for ( i=0; i<parent.frames.length; i++ ) 
+{
+document.write(	" parent.frames["+i+"] :: "
+			+ " ------name: "+parent.frames[i].name
+			+ " ------location.href: "+ parent.frames[i].location.href
+			+ "<br>"
+			);
+			}
+
+document.write("<HR>");
+document.write("</font></div>");
+
+}///end function fdg()
+
+fdg();
+</script>
+
+
+</BODY>
+</HTML>
+
+

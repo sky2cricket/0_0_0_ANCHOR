@@ -1,0 +1,296 @@
+<html>
+<head>
+<title>vv_popupCA</title>
+
+<link href="../vv_workbook.css" type="text/css" rel="stylesheet">
+
+
+
+
+<script language="javascript">
+
+var select_id= new String();
+function get_select_id() {
+
+var str = new String();
+    str = parent.location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  parent.window.opener.location.href="+parent.window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=get_select_id();
+
+
+
+var strSelect_PN_A = new String('');
+
+
+strSelect_PN_A = '<select name="aaa"  size="24" style="font-size:10px"> \r\n'
+	+'<option value="0" selected>No value selected</option> \r\n'
+		
+
+
+	+'<option>CAIRO CHURCH OF CHRIST (ALAMO, TENN.)</option>  \r\n'
+	+'<option>CALEDONIAN SOCIETY (NASHVILLE,TENN.)</option>  \r\n'
+	+'<option>CALVARY CUMBERLAND PRESBYTERIAN CHURCH (JACKSON, TENN.)</option>  \r\n'
+	+'<option>CAMP BON AIR (WHITE COUNTY, TENN.)</option>  \r\n'
+	+'<option>CAMPBELL COUNTY HISTORICAL SOCIETY (TENN.)</option>  \r\n'
+	+'<option>CANAAN CUMBERLAND PRESBYTERIAN CHURCH (BOLIVAR, TENN.)</option>  \r\n'
+	+'<option>CANDAY\'S CREEK BAPTIST CHURCH (BRADLEY COUNTY, TENN.)</option>  \r\n'
+	+'<option>CARL R. ROBERTS FUNERAL HOME (KNOXVILLE, TENN.)</option>  \r\n'
+	+'<option>CARNTON (FRANKLIN, TENN.)</option>  \r\n'
+	+'<option>CARR-ERWIN FUNERAL HOME (PULASKI, TENN.)</option>  \r\n'
+	+'<option>CARRICK ACADEMY (WINCHESTER, TENN.)</option>  \r\n'
+	+'<option>CARROLL REECE MUSEUM (JOHNSON CITY, TENN.)</option>  \r\n'
+	+'<option>CARTER HOUSE (FRANKLIN, TENN.)</option>  \r\n'
+	+'<option>CARTHAGE UNITED METODIST CHURCH (CARTHAGE, TENN.)</option>  \r\n'
+	+'<option>CARY LAWN (DRESDEN, TENN.)</option>  \r\n'
+	+'<option>CASTLE HEIGHTS MILITARY ACADEMY (LEBANON, TENN.)</option>  \r\n'
+	+'<option>CATHOLIC CHURCH - DIOCESE OF MEMPHIS (TENN.)</option>  \r\n'
+	+'<option>CATHOLIC CHURCH - DIOCESE OF NASHVILLE (TENN.)</option>  \r\n'
+	+'<option>CATHOLIC CHURCH - EDUCATION - HISTORY - TENNESSEE</option>  \r\n'
+	+'<option>CATHOLIC CHURCH - HISTORY - TENNESSEE</option>  \r\n'
+	+'<option>CATHOLIC CHURCH - HISTORY - TENNESSEE - CEDAR HILL</option>  \r\n'
+	+'<option>CATHOLIC CHURCH - TENNESSEE</option>  \r\n'
+	+'<option>CATHOLIC CHURCH - TENNESSEE - JACKSON</option>  \r\n'
+	+'<option>CATHOLIC CHURCH - TENNESSEE - NASHVILLE</option>  \r\n'
+	+'<option>CAVE CREEK PRIMITIVE BAPTIST CHURCH (ROANE COUNTY, TENN.)</option>  \r\n'
+	+'<option>CAVE SPRINGS HOME-SCHOOL FOR HANDICAPPED YOUTH (TENN.)</option>  \r\n'
+	+'<option>CENTENARY COLLEGE (CLEVELAND, TENN.)</option>  \r\n'
+	+'<option>CENTERVILLE CEMETERY (HICKMAN COUNTY, TENN.)</option>  \r\n'
+	+'<option>CENTRAL CHRISTIAN CHURCH (MURFREESBORO, TENN.)</option>  \r\n'
+	+'<option>CENTRAL HIGH SCHOOL (COLUMBIA, TENN.)</option>  \r\n'
+	+'<option>CENTRAL HIGH SCHOOL (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>CENTRAL HIGH SCHOOL (SAVANNAH, TENN.)</option>  \r\n'
+	+'<option>CENTRAL HIGH SCHOOL (WOODBURY, TENN.)</option>  \r\n'
+	+'<option>CENTRAL RAILROAD OF TENNESSEE</option>  \r\n'
+	+'<option>CENTRAL TENNESSEE COLLEGE (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>CENTURY III COMMISSION (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>CHAMBER OF COMMERCE (JOHNSON CITY, TENN.)</option>  \r\n'
+	+'<option>CHATTANOOGA (TENN.) - DEPT. OF HEALTH</option>  \r\n'
+	+'<option>CHATTANOOGA BAPTIST CHURCH (CHATTANOOGA, TENN.)</option>  \r\n'
+	+'<option>CHERRY, MORROW & CO. (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>CHICKAMAUGA AND CHATTANOOGA NATIONAL MILITARY PARK (GA. AND TENN.)</option>  \r\n'
+	+'<option>CHRIST CHURCH (BROWNSVILLE, TENN.)</option>  \r\n'
+	+'<option>CHRIST CHURCH EPISCOPAL (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>CHRIST CHURCH EPISCOPAL (SOUTH PITTSBURG, TENN.)</option>  \r\n'
+	+'<option>CHRIST CHURCH PENTECOSTAL (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>CHRIST UNITED METHODIST CHURCH (MEMPHIS, TENN.)</option>  \r\n'
+	+'<option>CHRISTIAN BROTHERS COLLEGE (MEMPHIS, TENN.)</option>  \r\n'
+	+'<option>CHRISTIAN CHURCH (DISCIPLES OF CHRIST) - TENNESSEE</option>  \r\n'
+	+'<option>CHRISTIANBURG BAPTIST CHURCH (MONROE COUNTY, TENN.)</option>  \r\n'
+	+'<option>CHURCH OF CHRIST (BAKERVILLE, TENN.)</option>  \r\n'
+	+'<option>CHURCH OF CHRIST AT FLAT CREEK (BEDFORD COUNTY, TENN.)</option>  \r\n'
+	+'<option>CHURCH OF GOD (CLEVELAND, TENN.)</option>  \r\n'
+	+'<option>CHURCH OF THE ADVENT (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>CHURCH OF THE ASSUMPTION (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>CHURCH OF THE HOLY INNOCENTS (ARLINGTON, TENN.)</option>  \r\n'
+	+'<option>CHURCH OF THE NAZARENE - TENNESSEE DISTRICT</option>  \r\n'
+	+'<option>CHURCH STREET METHODIST CHURCH (KNOXVILLE, TENN.)</option>  \r\n'
+	+'<option>CHURCH STREET UNITED METHODIST CHURCH (KNOXVILLE, TENN.)</option>  \r\n'
+	+'<option>CHURCH WOMEN UNITED IN TENNESSEE</option>  \r\n'
+	+'<option>CHURCHES OF CHRIST</option>  \r\n'
+	+'<option>CITY CEMETERY (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>CITY CEMETERY (WINCHESTER, TENN.)</option>  \r\n'
+	+'<option>CLARK MEMORIAL METHODIST CHURCH (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>CLARKSVILLE-MONTGOMERY COUNTY PUBLIC LIBRARY (CLARKSVILLE, TENN.)</option>  \r\n'
+	+'<option>CLEAR CREEK CHRISTIAN CHURCH (MCNAIRY COUNTY, TENN.)</option>  \r\n'
+	+'<option>CLEVELAND CEMETERY (CLEVELAND, TENN.)</option>  \r\n'
+	+'<option>CLEVELAND STATE COMMUNITY COLLEGE (TENNESSEE)</option>  \r\n'
+	+'<option>CLINCH RIVER BREEDER REACTOR DEMONSTRATION POWER PLANT (TENN.)</option>  \r\n'
+	+'<option>CLINTON SENIOR HIGH SCHOOL (TENN.)</option>  \r\n'
+	+'<option>CLOVER BOTTOM DEVELOPMENTAL CENTER (TENN.)</option>  \r\n'
+	+'<option>CLOVER CREEK BAPTIST CHURCH (HARDEMAN COUNTY, TENN.)</option>  \r\n'
+	+'<option>CLUB OF CRITICS (LEBANON, TENN.)</option>  \r\n'
+	+'<option>COFFEE COUNTY CENTRAL HIGH SCHOOL (MANCHESTER, TENN.)</option>  \r\n'
+	+'<option>COFFEE COUNTY HISTORICAL SOCIETY (TENN.)</option>  \r\n'
+	+'<option>COFFEE HOUSE CLUB (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>COLBACH-PRICE FUNERAL HOME (HAWKINS COUNTY, TENN.)</option>  \r\n'
+	+'<option>COLLEGE GROVE PRESBYTERIAN CHURCH (COLLEGE GROVE, TENN.)</option>  \r\n'
+	+'<option>COLONNA CLUB (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>COLORED METHODIST EPISCOPAL CHURCH</option>  \r\n'
+	+'<option>COLORED ORPHAN ASYLUM (MEMPHIS, TENN.)</option>  \r\n'
+	+'<option>COLORED UNITED BAPTIST ASSOCIATION OF TENNESSEE</option>  \r\n'
+	+'<option>COLUMBIA ATHENAEUM (COLUMBIA, TENN.)</option>  \r\n'
+	+'<option>COLUMBIA MILITARY ACADEMY (COLUMBIA, TENN.)</option>  \r\n'
+	+'<option>COMMERCE UNION BANK OF RUTHERFORD COUNTY (TENN.)</option>  \r\n'
+	+'<option>COMMUNITY CHEST OF NASHVILLE (TENN.)</option>  \r\n'
+	+'<option>CONCORD BAPTIST CHURCH (CHATTANOOGA, TENN.)</option>  \r\n'
+	+'<option>CONCORD METHODIST EPISCOPAL CHURCH, SOUTH (CONCORD, TENN.)</option>  \r\n'
+	+'<option>CONCORD UNITED METHODIST CHURCH (CONCORD, TENN.)</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - DEPT. OF TENNESSEE</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE ARTILLERY REGIMENT, 1ST</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE BRIGADE</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE CAVALRY</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE CAVALRY BATTALION, 9TH (GANTT\'S) - COMPANY F.</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE CAVALRY REGIMENT, 11TH - COMPANY E</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE CAVALRY REGIMENT, 12TH</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE CAVALRY REGIMENT, 1ST</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE CAVALRY REGIMENT, 2ND</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE CAVALRY REGIMENT, 3RD</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE CAVALRY REGIMENT, 4TH</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE CAVALRY REGIMENT, 5TH</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE CAVALRY REGIMENT, 6TH</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE CAVALRY REGIMENT, 7TH</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE CAVALRY REGIMENT, 7TH - COMPANY G</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE CAVALRY REGIMENT, 9TH</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE CONFEDERATE VOLUNTEERS, 3RD</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE INFANTRY REGIMENT, 10TH</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE INFANTRY REGIMENT, 12TH</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE INFANTRY REGIMENT, 12TH - COMPANY B</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE INFANTRY REGIMENT, 13TH</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE INFANTRY REGIMENT, 14TH</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE INFANTRY REGIMENT, 14TH - COMPANY I</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE INFANTRY REGIMENT, 154TH (SENIOR)</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE INFANTRY REGIMENT, 15TH</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE INFANTRY REGIMENT, 16TH</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE INFANTRY REGIMENT, 19TH</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE INFANTRY REGIMENT, 1ST</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE INFANTRY REGIMENT, 1ST - COMPANY H</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE INFANTRY REGIMENT, 20TH</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE INFANTRY REGIMENT, 20TH - COMPANY H</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE INFANTRY REGIMENT, 23RD</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE INFANTRY REGIMENT, 24TH</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE INFANTRY REGIMENT, 28TH</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE INFANTRY REGIMENT, 28TH - COMPANY A.</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE INFANTRY REGIMENT, 28TH - COMPANY F</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE INFANTRY REGIMENT, 29TH</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE INFANTRY REGIMENT, 2ND</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE INFANTRY REGIMENT, 30TH</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE INFANTRY REGIMENT, 31ST</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE INFANTRY REGIMENT, 32ND</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE INFANTRY REGIMENT, 35TH</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE INFANTRY REGIMENT, 3RD</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE INFANTRY REGIMENT, 41ST</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE INFANTRY REGIMENT, 43RD</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE INFANTRY REGIMENT, 45TH</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE INFANTRY REGIMENT, 48TH</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE INFANTRY REGIMENT, 49TH</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE INFANTRY REGIMENT, 4TH</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE INFANTRY REGIMENT, 52ND</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE INFANTRY REGIMENT, 59TH</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE INFANTRY REGIMENT, 5TH</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE INFANTRY REGIMENT, 6TH</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE INFANTRY REGIMENT, 7TH</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE INFANTRY REGIMENT, 84TH</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE INFANTRY REGIMENT, 8TH</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE INFANTRY REGIMENT, 9TH</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE LIGHT ARTILLERY - MORTON\'S BATTERY</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE LIGHT ARTILLERY BATTALION, 1ST</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE LIGHT ARTILLERY, POLK\'S BATTERY</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE LIGHT ARTILLERY, RUTLEDGE\'S BATTERY</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY - TENNESSEE SENIOR INFANTRY REGIMENT, 154TH</option>  \r\n'
+	+'<option>CONFEDERATE STATES OF AMERICA - ARMY OF TENNESSEE</option>  \r\n'
+	+'<option>CONFEDERATE VETERANS ASSOCIATION OF UPPER EAST TENNESSEE</option>  \r\n'
+	+'<option>CONSTITUTIONAL CONVENTIONS - TENNESSEE, 1965</option>  \r\n'
+	+'<option>COOKEVILLE COLLEGIATE INSTITUTE (COOKEVILLE, TENN.)</option>  \r\n'
+	+'<option>COOKEVILLE DEPOT (COOKEVILLE, TENN.)</option>  \r\n'
+	+'<option>COOPER FUNERAL HOME (SCOTT COUNTY, TENN.)</option>  \r\n'
+	+'<option>COPPER ROLLING WORKS (CLEVELAND, TENN.)</option>  \r\n'
+	+'<option>CORNERSVILLE CHURCH OF CHRIST (CORNERSVILLE, TENN.)</option>  \r\n'
+	+'<option>COTTON STATES BUILDING (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>COUNCIL OF COMMUNITY SERVICES (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>COUNTY OFFICIALS ASSOCIATION OF TENNESSEE</option>  \r\n'
+	+'<option>COURT AVENUE CUMBERLAND PRESBYTERIAN CHURCH (SELMER, TENN.)</option>  \r\n'
+	+'<option>COVINGTON STATE AREA VOCATIONAL-TECHNICAL SCHOOL (TENN.)</option>  \r\n'
+	+'<option>COX & SON FUNERAL HOME (JELLICO, TENN.)</option>  \r\n'
+	+'<option>CRAIGMILES (CLEVELAND, TENN.)</option>  \r\n'
+	+'<option>CROSS PLAINS UNITED METHODIST CHURCH (CROSS PLAINS, TENN.)</option>  \r\n'
+	+'<option>CUMBERLAND COLLEGE (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>CUMBERLAND FEMALE COLLEGE (MCMINNVILLE, TENN.)</option>  \r\n'
+	+'<option>CUMBERLAND MOUNTAIN SANATORIUM (PLEASANT HILL, TENN.)</option>  \r\n'
+	+'<option>CUMBERLAND MOUNTAIN SCHOOL (CROSSVILLE, TENN.)</option>  \r\n'
+	+'<option>CUMBERLAND PRESBYTERIAN CHURCH (CLIFTON, TENN.)</option>  \r\n'
+	+'<option>CUMBERLAND PRESBYTERIAN CHURCH (COLUMBIA, TENN.)</option>  \r\n'
+	+'<option>CUMBERLAND PRESBYTERIAN CHURCH (MURFREESBORO, TENN.)</option>  \r\n'
+	+'<option>CUMBERLAND PRESBYTERIAN CHURCH - PRESBYTERY OF WEST TENNESSEE</option>  \r\n'
+	+'<option>CUMBERLAND PRESBYTERIAN CHURCH - SYNOD OF TENNESSEE</option>  \r\n'
+	+'<option>CUMBERLAND PRESBYTERIAN CHURCH - TENNESSEE</option>  \r\n'
+	+'<option>CUSTOM HOUSE (KNOXVILLE, TENN.)</option>  \r\n'
+
++'</select> \r\n';
+	
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+<body class="background">
+
+
+
+
+<form name="FormOne" >
+
+
+<div name="SS" id="SS">
+<script>
+document.write(
+
+	 '<table border="1" cellpadding="4" cellspacing="0"  width="90%">\r\n'
+	+'<tr><td  bgcolor="ddeeff">\r\n'
+	///+'vv_functions.htm called by '+select_id+' <br>\r\n'
+	+'<b>Select Corporate Author A</b> \r\n'
+	+'</td></tr><tr><td bgcolor="ddeeff"> \r\n' 
+	+ strSelect_PN_A
+
+	+'</td></tr></table> \r\n'
+	///+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+</script>
+	
+</div>
+
+<input type="button" onclick="showSelection();" name="B1" value="Corporate Author">
+
+</form>
+
+<script>
+
+
+
+                  
+
+function showSelection() {
+
+val = new String();
+
+for ( i=0; i< document.FormOne.aaa.length; i++ ) {
+
+if ( document.FormOne.aaa[i].selected == true ) {
+  	val = document.FormOne.aaa[i].text;
+	break;
+	}
+else { val = "you never selected anything"; 
+	}
+
+}
+////////////////////////alert ("You selected " +val);
+
+switch ( select_id ) {
+
+case  "subject_name_lcsh_01" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_01.value=val;
+	parent.window.close();
+	break;
+
+case  "subject_name_lcsh_02" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_02.value=val;
+	parent.window.close();
+	break;
+}//end switch
+
+}///end function
+</script>
+

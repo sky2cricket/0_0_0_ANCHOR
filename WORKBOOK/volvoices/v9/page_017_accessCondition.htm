@@ -1,0 +1,385 @@
+<!--
+    This code is issued under the GNU General Public License, 
+    version 3, 29 June 2007.
+
+    The DLC-MODS Workbook provides a series of web pages to help you 
+    generate a MODS metadata record that follows the Digital Library 
+    Federation Implementation Guidelines for Shareable MODS Records, 
+    as described in the DLF Aquifer Guidlines November 2006.  These 
+    Guidelines and the specific MODS Profile are documented on the 
+    MODS Profile Page of the DLC-MODS Workbook.
+
+    Copyright (C) 2007 
+    Christine Haygood Deane 
+    University of Tennessee Libraries
+    Digital Library Center
+ 
+
+    This program is free software: you can redistribute it and/or modify    
+    it under the terms of the GNU General Public License as published by    
+    the Free Software Foundation, version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see http://www.gnu.org/licenses/
+-->
+
+<html>
+<head>
+<title>
+accessCondition
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+<script>
+var split_token=parent.U.split_token;
+parent.L.thisDocument = parent.D.document;
+
+
+function addOneAccessConditionBlock() {
+//alert("addOneAccessConditionBlock");
+if (!confirm("You have chosen to add one Access Condition Block.\n\nDo you wish to continue?")){return;}
+buildModsTags(11);
+var N = new Number( parent.U.document.UF.numAccessConditionBlocks.value);
+N=N+1;
+parent.U.document.UF.numAccessConditionBlocks.value = N;
+parent.U.document.UF.VVcomment_02e.value = "<!-- NUMBER_OF_ACCESS_CONDITIONS: "+N+": -->";
+parent.D.location.replace("page_017_accessCondition.htm");
+}//end function
+
+
+function subtractOneAccessConditionBlock() {
+//alert("subtractOneAccessConditionBlock");
+var N = new Number( parent.U.document.UF.numAccessConditionBlocks.value);
+if (N==0) {
+        alert("You have no Access Condition to remove.");
+        return;
+        }
+if (!confirm("You have chosen to remove one Access Condition Block.\n\nDo you wish to continue?")){return;}
+N=N-1;
+parent.U.document.UF.numAccessConditionBlocks.value = N;
+parent.U.document.UF.VVcomment_02e.value = "<!-- NUMBER_OF_ACCESS_CONDITIONS: "+N+": -->";
+parent.D.location.replace("page_017_accessCondition.htm");
+}//end function
+
+
+
+
+</script>
+
+</head>
+
+<script> document.write('<body onload="load_DF_form();"  bgcolor="'+parent.adb_background_color+'" >'); </script>
+
+
+<font face="arial" size="3">
+<center><font face="arial">
+<h2><script> document.write(parent.adb_project_name); </script>
+&lt;accessCondition></h2>
+</center>
+
+<form name="DF"  action="">
+
+<table class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="ddeeff">
+<tr class="bgstandard"><td colspan="3">
+Required Fields have yellow-highlighted input box. 
+</td></tr>
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>MODS LABEL</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+
+<!-- sentiinel_00.value = number of elements in an accessCondition_block
+     sentinel_00.name signals that the set(s) of accessCondition_block elements starts with next element -->
+<input type="hidden" name="sentinel_00" value="2">
+<script>
+var numAC = new Number(parent.U.document.UF.numAccessConditionBlocks.value);
+var  j=0;
+for (i=0;i<numAC;i++) {
+j=i+1;//for display
+document.write(
+ '<tr class="bgstandard">\r\n'
++'<td  class="label13u"> Access Condition # '+j+'</td>\r\n'
++'<td>&nbsp;\r\n'
++'<select name="dyn_access_condition_type_0'+i+'" size="1" style="background:#ffffff;">\r\n'
++'<option  value="useAndReproduction">useAndReproduction</option>\r\n'
++'<option value="restrictionOnAccess">restrictionOnAccess</option>\r\n'
++'</select> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n'
++'<input type="text" name="dyn_access_condition_text_0'+i+'" value="" size="50" \r\n'
++'style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:300px; background:#ffffff">\r\n'
++'<br><font face="arial" size="1">&nbsp;&nbsp;access condition type (required)\r\n'
++'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;\r\n'
++'access condition, URL (required, should be valid URL including http://)\r\n'
++'</font>\r\n'
++'</td><td>&nbsp</td></tr>\r\n'
++'<tr class="greenrow"> <td height="08" colspan="3"></td></tr>\r\n'
+);
+}//end for
+</script>
+<!-- sentiinel_01.value = 0, verification
+     sentinel_01.name signals that the set(s) of accessCondition_block elements ends here -->
+<input type="hidden" name="sentinel_01" value="0">
+<input type="hidden" name="ac_block_list" value="">
+<tr class="bgstandard"><td colspan="3">&nbsp;</td></tr>
+
+<tr class="bgstandard">
+<td  class="label13u">
+&nbsp;
+</td>
+<td>&nbsp;
+<font face="arial" size="2"><b>&nbsp;&nbsp;
+<a href="localRights.htm" target="_blank" width="500">Click here for more information.</a>
+<input type="hidden" name="use_and_reproduction" value="localRights.htm">
+</b>
+</font>
+	
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td class="label13u">Add or Remove<br>One Access Condition</td><td colspan="3">&nbsp;
+<input type="button" name="AddOneACBlock" 
+value="Add One Access Condition" class="buttonnw" onClick="addOneAccessConditionBlock();">
+<input type="button" name="SubtractOneACBlock" 
+value="Remove One Access Condition" class="buttonnw" onClick="subtractOneAccessConditionBlock();">
+
+</td><td>&nbsp;</td>
+</tr>
+
+
+<tr class="greenrow"><td colspan="3">&nbsp;</td></tr>
+
+
+
+
+<tr class="bgstandard"><td colspan="3" align="center">
+&nbsp;&nbsp;
+<!--
+<input type="button" name="B_UF" value="Save" class="buttonnw" onclick="buildModsTags(10);">
+-->
+<!---input type="button" name="B_DF" value="Reset"  class="buttonnw" onclick="load_DF_form();"--->
+
+<input type="button" name="B2" 
+value="Save Data and View MODS TAGS" class="buttonnw"
+onclick="buildModsTags(1)">
+
+
+</td></tr>
+
+<tr class="bgstandard" >
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+</table>
+
+
+
+
+
+
+
+</form name="forms[0]">
+
+<center><font face="arial">
+<h2><script> document.write(parent.adb_project_name); </script></h2>
+</center>
+
+
+<script>
+
+
+/////<input type="hidden" name="ac_block_list" value="">
+function load_UF_form() {
+
+parent.U.document.forms[0].ac_block_list.value = document.DF.ac_block_list.value;
+
+return;
+}
+
+
+function load_DF_form() {
+var beginIndex=0;
+var endIndex=0;
+beginIndex=parent.L.returnElementIndex("0","sentinel_00");
+beginIndex=beginIndex+1;
+endIndex=parent.L.returnElementIndex("0","sentinel_01");
+parent.L.populate_DF_from_UF_block_list("ac_block_list");
+
+if (parent.U.document.UF.ac_block_list.value == "" ) {
+        return;
+        }
+
+document.DF.ac_block_list.value = parent.U.document.UF.ac_block_list.value;
+///if(!confirm("continue?"))return;
+
+
+
+var split_token=parent.U.split_token;
+
+document.DF.ac_block_list.value = parent.U.document.UF.ac_block_list.value;
+//alert("document.DF.ac_block_list.value = \n"+document.DF.ac_block_list.value);
+
+var str_ac_block = new String(parent.U.document.UF.ac_block_list.value);
+var Aac = new Array();
+    Aac = str_ac_block.split(split_token);
+
+//for (i=0;i<Aac.length;i++){
+        //alert("page_017_accessCondition: Aac["+i+"]="+Aac[i]);
+        //}
+
+//if (!confirm("Continue?")){return;}
+var numAC = new Number(parent.U.document.UF.numAccessConditionBlocks.value);
+var m=0; //counter for Aac[m] array
+var mm = 0 ; //counter for ac_blocks
+for(i=0;i<document.DF.length;i++)
+{
+var sbox = document.DF.elements[i];
+//alert("document.DF.elements["+i+"].name="+sbox.name+"\ndocuments.DF.elements["+i+"].value="+sbox.value);
+if ( sbox.name.indexOf("dyn_access") == 0 ) {
+                if (Aac[m] == "empty_string"|| Aac[m] == "" ) {
+                                sbox.value ="";
+                                m++;
+                }else{
+                        sbox.value = Aac[m++];
+                }
+                //alert("document.DF.elements["+i+"].name="+sbox.name+"\ndocuments.DF.elements["+i+"].value="+sbox.value);
+	if (m == Aac.length) {break;}
+        }
+
+}//end for
+
+return;
+
+}//end function load_DF_form() 
+
+
+function buildModsTags(N) {
+
+var split_token=parent.U.split_token;
+
+var acAll = new String("");
+var s = new String("");
+var temp = new String("");
+var count_ac_block = 0;
+for(i=0;i<document.DF.length;i++)
+{
+s = document.DF.elements[i].name;
+//alert("document.DF.elements["+i+"].name="+document.DF.elements[i].name
+ //  +"\ndocument.DF.elements["+i+"].value="+document.DF.elements[i].value);
+
+if ( s.indexOf("dyn_access") == 0 ) {
+        temp = document.DF.elements[i].value;
+        if ( temp == "") { temp = "empty_string"; }
+        acAll += split_token + temp;
+        //alert("page_017_accessCondition function buildModsTags"
+        //+"\n AC document.DF.elements["+i+"].name="+s
+        //+"\n AC document.DF.elements["+i+"].value = "+document.DF.elements[i].value
+        //+"\nacAll=\n"+acAll);
+        }
+
+}
+
+acAll = acAll.substring(split_token.length);
+
+//load hidden values
+document.DF.ac_block_list.value = acAll;
+
+
+
+
+////do this first so current values are loaded regardless of validation status
+load_UF_form();
+
+var num = new Number();
+    num = N;
+
+if (num == 11) {return;} //no validation required.
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+//before writing MODS TAGS, make sure all required fields are populated
+//checkAllRequired... true  validation sets validation status to N  -- complete
+//checkAllRequired... false validation sets validation status to n  -- incomplete
+
+if (!parent.L.checkAllRequiredElements_Page_accessCondition() ) {
+	parent.L.update_page_validation('accessCondition','n');
+	return;
+}
+parent.L.update_page_validation('accessCondition','N');
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+
+if (num == 10) {
+        alert("Values have been saved.");
+        return;
+        }
+
+
+var aps= new Array();
+var hps= new Array();
+var cps= new Array();
+    
+    hps = parent.L.buildTagsArray_header(num);
+    aps = parent.L.buildTagsArray_accessCondition(num);
+    cps = parent.L.buildTagsArray_closer(num);
+
+
+//=================================================
+
+document.write('<input type="button" name="BBACK" onclick="javascript: history.back()" value="BACK"><P>');
+document.write('<font face="Elephant" size="3" color="a00000">'+parent.adb_project_name+' &lt;accessCondition> <p></font>');
+//PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+document.write( "This is the generated xml script.  Values you entered are highlighted in red.<HR>");
+
+//document.write('< ? xml version="1.0"  ? > \r\n'); 
+///document.write("Content-Type: text/xml ")
+
+
+
+for (i=0;i<hps.length;i++) {
+	var vps = new String(hps[i]);
+ 	document.write("<br>"+vps);
+	}
+
+
+
+for (i=0;i<aps.length;i++) {
+	var vps = new String(aps[i]);
+	document.write("<br>"+vps);
+	}
+
+
+
+for (i=0;i<cps.length;i++) {
+	var vps = new String(cps[i]);
+	document.write("<br>"+vps);
+
+	}
+
+
+
+}//end function
+
+</script>
+	
+<script language=javascript src="fdg.js"></script>
+<script>fdg();</script>
+
+
+</body>
+</html>
+

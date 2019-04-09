@@ -1,0 +1,99 @@
+<html>
+<head>
+<title>Itemviewer Image Conversion</title>
+
+
+
+
+
+
+
+<link href="../../dlxsdocs.css" rel="stylesheet" type="text/css"> </head>         <body>
+<div class="pageTitle">Itemviewer Image Conversion </div>
+		
+			<ul>
+			   <li><a href="#GeneralInfo">General Information</a> </li>
+               <li><a href="#HandlerResolution">Handler Resolution</a> </li>
+               <li><a href="#Scenarios">Scenarios</a></li>
+			</ul>
+			<h1><a name="GeneralInfo"></a>General Information</h1>
+			<p><span class="command">Itemview.pm</span> is a DLXS Perl class module,
+			   found in <span class="command">$DLXSROOT/lib</span>. It contains, among
+			   other things, the methods (handlers) that may invoke external
+			   image conversion programs. <span class="command">$DLXSROOT/cgi/t/text/Pageview.pm</span>
+			   and <span class="command">$DLXSROOT/cgi/t/text/Clipview.pm</span> are both
+			   subclasses of it, and so therefore inherit those methods.</p>
+			<h1><a name="HandlerResolution" id="HandlerResolution"></a>Handler Resolution </h1>
+			<p> After a <span class="command">Pageview</span> or <span class="command">ClipView</span> object
+			   is instantiated, it contains information about every page in the
+			   document, including how many and what kinds of image files are
+			   stored for each page. Based on the CGI's request for a particular
+			   output format in which to view a page image (whether to retrieve
+			   and display a PDF or a GIF or a JPG file) and the types of file
+			   formats available for that page, the application object can determine
+			   which conversion &quot;helper&quot; program to use. </p>
+			<h1><a name="Scenarios" id="Scenarios"></a>Scenarios</h1>
+			<ul>
+			   <li>General information about scenarios</li>
+			   <li>Scenario 1: &quot;image&quot; requested</li>
+			   <li>Scenario 2: &quot;pdf&quot; requested </li>
+</ul>
+           <h3>General information about scenarios</h3>
+           <p>In the running
+               of <span class="command">pageviewer-idx</span> and its running
+               of <span class="command">PVApp</span>, a <span class="command">Pageview</span> object
+               is instantiated. By using the <span class="command">Pageview</span> table
+               in the <span class="command">dlxs</span> database, and querying by the document's
+               idno and the page's sequence number, the object is loaded up with
+               all the page information necessary for a particular document.
+               Therefore, it reflects every page and which file formats are stored
+               on disk for each page.</p>
+           <p><span class="command">PVApp</span>, invoked by <span class="command">pagevewer-idx</span> and
+              through its parent object, <span class="command">ItemViewApp</span>,
+              would look at the &quot;stored image format&quot; and the &quot;requested
+              image format&quot;, and using a hash found in <span class="command">$DLXSROOT/lib/ItemView.cfg</span>,
+           would determine the proper method to invoke the conversion, which
+              is in turn coded to use a particular helper app. </p>
+           <h3>Scenario 1: &quot;image&quot;  requested</h3>
+           <p>Assume that the CGI requests &quot;image&quot;. First, the application
+              checks the <span class="command">%gStoredFilePriorityMap</span> hash
+              in <span class="command">ItemView.cfg</span>. This hash says that
+              if the CGI is requesting an &quot;image&quot; file, the first file format
+              to look for, stored on disk, is &quot;jp2&quot;. If there is a JP2 file on
+              disk, it will be used, then the <span class="command">Jp2ToJpgHandler</span> would
+              be used, which in turn, would use the helper app <span class="command">kdu_expand_jpg</span> which
+              is a wrapper script we provide to run <span class="command">kdu_expand_jpg</span> with
+              the proper parameters. </p>
+           <p>If there is no JP2 file on disk, the next file format to look for
+              is &quot;sid&quot;; that is, MrSid. If there is a MrSid file on disk, then
+              the <span class="command">SidToJpgHandler</span> would be used,
+              which in turn, would use the helper app <span class="command">mr_sid_retrieve.</span></p>
+           <p>If there is no MrSid file on disk, the next file format to look
+              for is &quot;jpg&quot;. If there is a JPG file
+              on disk, then the requested and stored file formats match. Whenever
+              this is the case, <span class="command">DeliverFileHandler</span> is
+              used, which simply copies the file from its storage location (<span class="command">$DLXSROOT/obj/... </span>to
+              the cached image directory <span class="command">$DLXSROOT/web/t/text/gifcvtdir/...</span>).</p>
+           <p>Finally, if there is no JPG file available on disk, a TIF file
+              is looked for. If there is a TIF file, available, then the <span class="command">TifTGifHandler</span> is
+              called which in turn uses <span class="command">tif2web</span>.</p>
+           <h3>Scenario 2:  &quot;pdf&quot;  requested</h3>
+            <p>Assume that the CGI requests &quot;pdf&quot;. First, the application
+               checks the <span class="command">%gStoredFilePriorityMap</span> hash
+               in <span class="command">ItemView.cfg</span>. This
+               hash says that if the CGI is requesting a pdf file, the first
+               file format to look for (on disk, known via the <span class="command">Pageview</span> database
+               table and therefore via the <span class="command">PageView</span> or <span class="command">ItemView
+               object</span>), is PDF.</p>
+            <p>If there is a PDF file, then the requested
+                  format matches the stored image format and the <span class="command">DeliverFileHandler</span> method
+                  is called, which simply copies the file from its storage location
+                  (<span class="command">$DLXSROOT/obj/... </span>to
+                  the cached image directory <span class="command">$DLXSROOT/web/t/text/gifcvtdir/...</span>).</p>
+            <p>If
+                     there is no PDF file stored, then the <span class="command">%gStoredFilePriorityMap</span> says
+                     to look for a TIF file. If there is one stored, then the <span class="command">Tif2PdfHandler</span> is
+                     called which in turn uses <span class="command">c42pdf</span>.</p>
+            </body>
+
+</html>

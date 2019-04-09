@@ -1,0 +1,399 @@
+<!--
+    This code is issued under the GNU General Public License, 
+    version 3, 29 June 2007.
+
+    The DLC-MODS Workbook provides a series of web pages to help you 
+    generate a MODS metadata record that follows the Digital Library 
+    Federation Implementation Guidelines for Shareable MODS Records, 
+    as described in the DLF Aquifer Guidlines November 2006.  These 
+    Guidelines and the specific MODS Profile are documented on the 
+    MODS Profile Page of the DLC-MODS Workbook.
+
+    Copyright (C) 2007 
+    Christine Haygood Deane 
+    University of Tennessee Libraries
+    Digital Library Center
+ 
+
+    This program is free software: you can redistribute it and/or modify    
+    it under the terms of the GNU General Public License as published by    
+    the Free Software Foundation, version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see http://www.gnu.org/licenses/
+-->
+
+<HTML>
+<HEAD>
+<TITLE>vv_popupLists.htm</TITLE>
+
+<script>
+var select_id= new String();
+function get_select_id() {
+
+var str = new String();
+    str = location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  window.opener.location.href="+window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=get_select_id();
+
+
+
+</script>
+
+</HEAD>
+<BODY bgcolor="eeffee" >
+
+<script language="javascript">
+
+function createText() {
+
+//alert("create text");
+document.popupform.LOCTA.value="insert  here";
+
+}//end function
+
+
+
+
+
+function popLang() {
+
+var valtext=new String();
+var valval = new String();
+for ( i=0; i<document.popupform.aaa.length;i++ ) {
+     if ( document.popupform.aaa[i].selected == true ) {
+	valtext = document.popupform.aaa[i].text;
+	valval = document.popupform.aaa[i].value;
+	}
+     }
+
+document.popupform.lang_code.value=valval;
+document.popupform.lang_desc.value=valtext;
+
+
+}///end function
+
+
+
+//this should take care of all of the popup windows where you click on something to select it
+
+function installSelectedValues(select_id){
+//alert("window.opener.location.href="+window.opener.location.href );
+
+if ( typeof(document.popupform.aaa) != 'undefined' ) {
+
+//alert("document.popupform.hidden_select_id.value="+document.popupform.hidden_select_id.value
+	//+"\n document.popupform.aaa.type ="+document.popupform.aaa.type)
+
+var valtext=new String();
+var valval = new String();
+if ( document.popupform.aaa.type == 'select-one') {
+	for ( i=0; i<document.popupform.aaa.length;i++ ) {
+     		if ( document.popupform.aaa[i].selected == true ) {
+		valtext = document.popupform.aaa[i].text;
+		valval  = document.popupform.aaa[i].value;
+		}//end if
+     	}//end for
+
+}else if ( document.popupform.aaa.type == 'select-multiple' ) {
+	var countSelectedOptions = 0;
+	for ( i=0; i<document.popupform.aaa.length;i++ ) {
+     		//if ( document.popupform.aaa[i].selected == true && countSelectedOptions < 3) {
+		//take limit off type_of_resource_all
+     		if ( document.popupform.aaa[i].selected == true ) {
+		valtext  += "; "+ document.popupform.aaa[i].text;
+		valval  += "; "+ document.popupform.aaa[i].value;
+		countSelectedOptions ++;
+		}//end if
+     	}//end for
+	valtext=valtext.substring(2);
+	valval =valval.substring(2);
+}//end else
+
+}//end if ( typeof(document.popupform.aaa) != 'undefined')
+           
+//alert("window.opener.parent.D.document.forms[0]."+document.popupform.hidden_select_id.value+".value="+valval);
+//alert("window.opener.parent.D.document.forms[0]."+document.popupform.hidden_select_id.value+"_display.value="+valtext);
+
+
+switch(document.popupform.hidden_select_id.value) {
+
+
+
+case "language_of_cataloging" :
+	window.opener.parent.D.document.forms[0].language_of_cataloging.value=document.popupform.lang_code.value;
+	window.opener.parent.D.document.forms[0].language_of_cataloging_display.value = document.popupform.lang_desc.value;
+	window.close();
+	break;
+
+case "language" :
+	window.opener.parent.D.document.forms[0].language.value=document.popupform.lang_code.value;
+	window.opener.parent.D.document.forms[0].language_display.value = document.popupform.lang_desc.value;
+	window.close();
+	break;
+
+case "type_of_resource_all" :
+	window.opener.parent.D.document.forms[0].type_of_resource_all.value=valval;
+	window.close();
+	break;
+
+
+case "internetmediatype" :
+	window.opener.parent.D.document.forms[0].internetmediatype.value=valval;
+	window.close();
+	break;
+
+case "mods_genre" :
+	//auto genre authority menu when click select button for marc
+	window.opener.parent.D.document.forms[0].mods_genre_authority.value = "marcgt";
+	window.opener.parent.D.document.forms[0].mods_genre.value=valval;
+	window.close();
+	break;
+
+
+}///end switch
+///////////window.close();//this has to depend on validation of individual formvars in the case statements
+
+}///end function
+
+
+function cancelSelect(){
+window.close();
+}
+
+</script>
+<form name="popupform" >
+<script> 
+document.write("<!---select_id="+select_id+"---><hr>");
+if (   select_id == "subject_topical_4"     || select_id == "subject_topic_lcsh_01" 
+    || select_id == "subject_topic_lcsh_02" || select_id == "subject_topic_lcsh_03"
+    || select_id == "subject_topic_vv_01" || select_id == "subject_topic_vv_02"
+
+    || select_id == "subject_topic_tgm_01" ) { 
+document.write(
+	 '<font color="eeffee">vv_functions.htm called by '+select_id+' </font>\r\n'
+	+'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ddeeff">\r\n'
+	+'<tr><td>\r\n'
+	+'<b>Select 1 of 15 Topical Categories for Item </b> \r\n'
+	+'</td></tr><tr><td> \r\n' 
+	+'<select name="aaa"  size="16"> \r\n'
+	+window.opener.parent.L.getSelectList(window.opener.parent.L.aVVtopic,-1)
+	+'</select> \r\n'
+	+'</td></tr></table> \r\n'
+	+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+}else if (   select_id == "subject_topic_vv_03" || select_id == "subject_topic_vv_04"
+          || select_id == "subject_topic_vv_05"
+      ) {
+document.write(
+	 '<font color="eeffee">vv_functions.htm called by '+select_id+' </font>\r\n'
+        +'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ddeeff">\r\n'
+        +'<tr><td>\r\n'
+        +'<b>Select 1 of 25 Subject Categories for Item </b> \r\n'
+        +'</td></tr><tr><td> \r\n'
+        +'<select name="aaa"  size="25"> \r\n'
+	+window.opener.parent.L.getSelectList(window.opener.parent.L.aVVbroadtopic,-1)
+        +'</select> \r\n'
+        +'</td></tr></table> \r\n'
+        +'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+        );
+
+}else if (   select_id == "subject_topic_spc_01" || select_id == "subject_topic_spc_02"
+          || select_id == "subject_topic_spc_03"
+      ) {
+document.write(
+	 '<font color="eeffee">vv_functions.htm called by '+select_id+' </font>\r\n'
+        +'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ddeeff">\r\n'
+        +'<tr><td>\r\n'
+        +'<b>Select 1 of 12 SPC Topical Categories for Item </b> \r\n'
+        +'</td></tr><tr><td> \r\n'
+        +'<select name="aaa"  size="14"> \r\n'
+	+window.opener.parent.L.getSelectList(window.opener.parent.L.aSPCtopic,-1)
+        +'</select> \r\n'
+        +'</td></tr></table> \r\n'
+        +'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+
+} else if (   select_id == "subject_time_period_01"   ||  select_id == "subject_time_period_02"
+           || select_id == "subject_temporal_lcsh_01" || select_id == "subject_temporal_lcsh_02"
+           || select_id == "subject_temporal_vv_01" || select_id == "subject_temporal_vv_02"
+
+	  ) { 
+
+document.write(
+	 '<font color="eeffee">vv_functions.htm called by '+select_id+' </font>\r\n'
+	+'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ddeeff">\r\n'
+	+'<tr><td>\r\n'
+	+'<b>Select 1 of 10 Temporal Categories</b> \r\n'
+	+'</td></tr><tr><td>  \r\n'
+	+'<select name="aaa" size="11"> \r\n'
+	+window.opener.parent.L.getSelectList(window.opener.parent.L.aVVtemporal,0)
+	+'</select> \r\n'
+	+'</td></tr></table> \r\n'
+	+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+}
+
+else if (   select_id == "subject_geographic_county"  || select_id == "institution_county" 
+         || select_id == "subject_geographic_lcsh_01" || select_id == "subject_geographic_lcsh_02"
+         || select_id == "subject_geographic_vv_01"   || select_id == "subject_geographic_vv_02"
+	 || select_id == "physical_location_county"   || select_id == "subject_geographic_none_01"
+	) { 
+
+document.write(
+	 '<font color="eeffee">vv_functions.htm called by '+select_id+' </font>\r\n'
+	+'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ddeeff">\r\n'
+	+'<tr><td>\r\n'
+	+'<b>Select 1 Tennessee County for Subject: Geographic: (County)</b> \r\n'
+	+'</td></tr><tr><td>  \r\n'
+	+'<select name="aaa" size="11"> \r\n'
+	+window.opener.parent.L.getSelectList(window.opener.parent.L.aVVcounty,-1)
+	+'</select> \r\n'
+	+'</td></tr></table> \r\n'
+	+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+
+}else if (select_id == "type_of_resource_all" ) { 
+
+document.write(
+	 '<font color="eeffee">vv_functions.htm called by '+select_id+' </font>\r\n'
+	+'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ddeeff">\r\n'
+	+'<tr><td>\r\n'
+	+'<b>Select the Type(s) of Resource that apply: </b> \r\n'
+	+'</td></tr><tr><td>  \r\n'
+	+'<select multiple name="aaa" size="11"> \r\n'
+	+window.opener.parent.L.getSelectList(window.opener.parent.L.aResource,-1)
+	+'</select> \r\n'
+	+'</td></tr></table> \r\n'
+	+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+
+
+}else if (select_id == "internetmediatype" ) { 
+
+document.write(
+	 '<font color="eeffee">vv_functions.htm called by '+select_id+' </font>\r\n'
+	+'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ddeeff">\r\n'
+	+'<tr><td>\r\n'
+	+'<b>Select 1 value for Internet Media Type: </b> \r\n'
+	+'</td></tr><tr><td>  \r\n'
+	+'<select name="aaa" size="13"> \r\n'
+	+window.opener.parent.L.getSelectList(window.opener.parent.L.aInternetmediatype,-1)
+	+'</select> \r\n'
+        +'<br>For more complete information, please go to <a href="http://www.iana.org/assignments/media-types/" target="_blank">IANA.ORG</a>.\r\n'
+	+'</td></tr></table> \r\n'
+	+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+
+}else if (select_id == "language_of_cataloging" || select_id == "language" ) { 
+
+document.write(
+	 '<font color="eeffee">vv_functions.htm called by '+select_id+' </font>\r\n'
+	+'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ddeeff">\r\n'
+	+'<tr><td>\r\n'
+	+'<b>Select 1 Language: </b> \r\n'
+	+'</td></tr><tr><td>  \r\n'
+	+'<select name="aaa" size="15" onClick="popLang()"> \r\n'
+	+window.opener.parent.L.getSelectList(window.opener.parent.L.aLanguage,2)
+	+'</select>\r\n'
+	+'<p> Select another <a href="http://www.loc.gov/standards/iso639-2/php/code_list.php" target="_blank">iso639-2 Code/Desc</a> not listed here.\r\n'
+	+'<p>Code: <input type="text" name="lang_code" value="eng" size="2">\r\n'
+	+'<br>Desc: <input type="text" name="lang_desc" value="English" size="20">\r\n'
+	+'</td></tr></table> \r\n'
+	+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+} else if (select_id == "mods_genre" ) {
+
+var adb_value = new String();
+    adb_value = "|"+window.opener.parent.adb_itemgenre+"|";
+var term = new String("");
+
+
+document.write(
+	 '<font color="eeffee">vv_functions.htm called by '+select_id+' </font>\r\n'
+	//+'<br>admindb value for this item: <b>'+window.opener.parent.adb_itemgenre + '</b>\r\n'
+	+'<br>'+term+'\r\n'
+	+'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ddeeff">\r\n'
+	+'<tr><td >\r\n'
+	+'<b>Select the  Genre Type(s) that apply: </b> \r\n'
+	+'</td></tr><tr><td>  \r\n'
+	+'<select multiple name="aaa" size="11" > \r\n'
+	+window.opener.parent.L.getSelectList2(window.opener.parent.L.aGenre,window.opener.parent.adb_itemgenre)
+	+'</select> \r\n'
+	+'</td></tr></table> \r\n'
+	+'&nbsp;&nbsp;Complete Genre Descriptions from <a href="http://www.loc.gov/marc/sourcecode/genre/genrelist.html " target="blank">MARC Genrelist</a>.<p> \r\n'
+	+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+} else if (   select_id == "xxmods_subject_LOC_0001" ) {
+document.write(
+         '<font color="00ffee">vv_popupSubjects.htm called by '+select_id+' </font>\r\n'
+        +'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ddeeff">\r\n'
+        +'<tr><td>\r\n'
+        +'<table border="1" cellpadding="4" cellspacing="0" width="90%" bgcolor="ffeeff">\r\n'
+        +'<tr><td colspan="2">\r\n'
+        +'<b>LOC SUBJECT BLOCK</b> \r\n'
+        +'</td></tr><tr><td> \r\n'
+        +'<select name="subElementName_01"  size="1"> \r\n'
+        +window.opener.parent.L.getSelectList(window.opener.parent.L.aLocsubject,-1)
+        +'</select> \r\n'
+        +'<td><input type="text" size="40" name="subElementValue_01" value="">\r\n'
+        +'</td></tr><tr><td> \r\n'
+        +'<select name="subElementName_02"  size="1"> \r\n'
+        +window.opener.parent.L.getSelectList(window.opener.parent.L.aLocsubject,-1)
+        +'</select> \r\n'
+        +'<td><input type="text" size="40" name="subElementValue_02" value="">\r\n'
+        +'</td></tr><tr><td> \r\n'
+        +'<select name="subElementName_03"  size="1"> \r\n'
+        +window.opener.parent.L.getSelectList(window.opener.parent.L.aLocsubject,-1)
+        +'</select> \r\n'
+        +'<td><input type="text" size="40" name="subElementValue_03" value="">\r\n'
+        +'</td></tr><tr><td> \r\n'
+        +'<select name="subElementName_04"  size="1"> \r\n'
+        +window.opener.parent.L.getSelectList(window.opener.parent.L.aLocsubject,-1)
+        +'</select> \r\n'
+        +'<td><input type="text" size="40" name="subElementValue_04" value="">\r\n'
+        +'</td></tr><tr><td> \r\n'
+        +'<select name="subElementName_05"  size="1"> \r\n'
+        +window.opener.parent.L.getSelectList(window.opener.parent.L.aLocsubject,-1)
+        +'</select> \r\n'
+        +'<td><input type="text" size="40" name="subElementValue_05" value="">\r\n'
+        +'</td></tr><tr><td> \r\n'
+        +'<select name="subElementName_06"  size="1"> \r\n'
+        +window.opener.parent.L.getSelectList(window.opener.parent.L.aLocsubject,-1)
+        +'</select> \r\n'
+        +'<td><input type="text" size="40" name="subElementValue_06" value="">\r\n'
+        +'</td></tr></table> \r\n'
+        +'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	+'<p>&nbsp;\r\n'
+	+'<textarea rows="8" cols="60" name="LOCTA" READONLY></textarea><br>\r\n'
+	+'<input type="button" name="B2" value="Create Text" onclick="createText()"><p>\r\n'
+        );
+
+}
+
+</script>
+<input type="button" name="B0" value="submit" onclick="installSelectedValues()">
+&nbsp;&nbsp;
+<input type="button" name="B1" value="cancel" onclick="cancelSelect()">
+</form>
+
+
+
+
+</BODY>
+</HTML>
+

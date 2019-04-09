@@ -1,0 +1,176 @@
+<html>
+<head>
+<title>
+page_08_finalA
+</title>
+
+</head>
+
+
+<body onload="buildModsTags(2);"> 
+
+
+
+<script>
+
+
+function buildModsTags(N) {
+
+var temp = parent.L.get_page_validation("titleInfo");
+//alert("get_page_validation titleInfo temp="+temp);
+
+var num = new Number();
+    num = N;
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+if (num==2) num=1;
+
+load_UF_form();
+
+var aps_01= new Array();
+var aps_02= new Array();
+var aps_03= new Array();
+var aps_04= new Array();
+var aps_05= new Array();
+var aps_06= new Array();
+var aps_07= new Array();
+var aps_08= new Array();
+var aps_09= new Array();
+var aps_10= new Array();
+var aps_11= new Array();
+var aps_12= new Array();
+var aps_13= new Array();
+var aps_14= new Array();
+
+var hps= new Array();
+var cps= new Array();
+    
+    hps    = parent.L.buildTagsArray_header(num);
+    aps_01 = parent.L.buildTagsArray_titleInfo(num);
+    aps_02 = parent.L.buildTagsArray_name(num);
+    aps_03 = parent.L.buildTagsArray_typeOfResource(num);
+    aps_04 = parent.L.buildTagsArray_genre(num);
+    aps_05 = parent.L.buildTagsArray_originInfo(num);
+    aps_06 = parent.L.buildTagsArray_language(num);
+    aps_07 = parent.L.buildTagsArray_physicalDescription(num);
+    aps_08 = parent.L.buildTagsArray_abstract(num);
+    aps_09 = parent.L.buildTagsArray_subject(num);
+    aps_10 = parent.L.buildTagsArray_relatedItem(num);
+    aps_11 = parent.L.buildTagsArray_identifier(num);
+    aps_12 = parent.L.buildTagsArray_location(num);
+    aps_13 = parent.L.buildTagsArray_accessCondition(num);
+    aps_14 = parent.L.buildTagsArray_recordInfo(num);
+    cps    = parent.L.buildTagsArray_closer(num);
+
+//alert("aps_06=\n"+aps_06);
+//=================================================
+
+
+var  abreak = new String("");
+
+if (num != "0") {
+    abreak = "<BR>";
+	}
+
+for (i=0;i<hps.length;i++) {
+	var vps = new String(hps[i]);
+ 	document.write(abreak+vps);
+	}
+
+
+
+
+
+for (i=0;i<aps_01.length;i++) {
+	var vps = new String(aps_01[i]);
+	document.write(abreak+vps);
+	}
+
+for (i=0;i<aps_02.length;i++) {
+	var vps = new String(aps_02[i]);
+	document.write("<br>"+vps);
+	}
+
+for (i=0;i<aps_03.length;i++) {
+	var vps = new String(aps_03[i]);
+	document.write(abreak+vps);
+	}
+
+for (i=0;i<aps_04.length;i++) {
+	var vps = new String(aps_04[i]);
+	document.write(abreak+vps);
+	}
+
+for (i=0;i<aps_05.length;i++) {
+	var vps = new String(aps_05[i]);
+	document.write("<br>"+vps);
+	}
+
+
+for (i=0;i<aps_06.length;i++) {
+	var vps = new String(aps_06[i]);
+	document.write(abreak+vps);
+	}
+
+for (i=0;i<aps_07.length;i++) {
+        var vps = new String(aps_07[i]);
+        document.write(abreak+vps);
+        }
+
+for (i=0;i<aps_08.length;i++) {
+        var vps = new String(aps_08[i]);
+        document.write(abreak+vps);
+        }
+
+for (i=0;i<aps_09.length;i++) {
+        var vps = new String(aps_09[i]);
+        document.write(abreak+vps);
+        }
+
+for (i=0;i<aps_10.length;i++) {
+        var vps = new String(aps_10[i]);
+        document.write(abreak+vps);
+        }
+
+for (i=0;i<aps_11.length;i++) {
+        var vps = new String(aps_11[i]);
+        document.write(abreak+vps);
+        }
+
+for (i=0;i<aps_12.length;i++) {
+        var vps = new String(aps_12[i]);
+        document.write(abreak+vps);
+        }
+
+for (i=0;i<aps_13.length;i++) {
+        var vps = new String(aps_13[i]);
+        document.write(abreak+vps);
+        }
+
+for (i=0;i<aps_14.length;i++) {
+        var vps = new String(aps_14[i]);
+        document.write(abreak+vps);
+        }
+
+
+for (i=0;i<cps.length;i++) {
+	var vps = new String(cps[i]);
+	document.write(abreak+vps);
+	}
+
+
+
+}//end function
+
+
+
+
+</script>
+
+
+
+</body>
+</html>
+

@@ -1,0 +1,420 @@
+<!--
+    This code is issued under the GNU General Public License, 
+    version 3, 29 June 2007.
+
+    The DLC-MODS Workbook provides a series of web pages to help you 
+    generate a MODS metadata record that follows the Digital Library 
+    Federation Implementation Guidelines for Shareable MODS Records, 
+    as described in the DLF Aquifer Guidlines November 2006.  These 
+    Guidelines and the specific MODS Profile are documented on the 
+    MODS Profile Page of the DLC-MODS Workbook.
+
+    Copyright (C) 2007 
+    Christine Haygood Deane 
+    University of Tennessee Libraries
+    Digital Library Center
+ 
+
+    This program is free software: you can redistribute it and/or modify    
+    it under the terms of the GNU General Public License as published by    
+    the Free Software Foundation, version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see http://www.gnu.org/licenses/
+-->
+
+<html>
+<head>
+<title>
+ztest
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+<script>
+var split_token=parent.U.split_token;
+parent.L.thisDocument = parent.D.document;
+
+var bfont = new String('<font face="arial" size="2" color="a00000">');
+var efont = new String('</font>');
+
+function myclear(str) {
+var s=new String();
+    s=str;
+//alert("str="+s);//return;
+if (s=='inn') {
+	document.DF.inn.value="";
+}else if(s=='out') {
+	document.DF.out.value="";
+}
+return;
+}//end function clear
+
+
+
+function process00(){
+//alert("process00"); return;
+
+
+var s = new String(document.DF.inn.value);
+var t = new String(document.DF.out.value);
+
+alert("inn="+s+"\nout="+t);
+
+//t=s.replace(/="loc/,'="xxx');
+
+//t=s.replace(/="*[^']/,'="z')
+
+//t=s.replace(/="[*^"]/,'="z');
+
+//t=s.replace(/="*^["]/,'="z');
+///t=s.replace(/="*^[a-z]/,'="z')
+//t=s.replace(/="/,'="+bfont+"');
+
+t=s.replace(/="/g,'=XXXXXYYYYY+bfont+YYYYY');
+t=t.replace(/"/g,'YYYYY+efont+YYYYYXXXXX');
+t=t.replace(/XXXXX/g,'"');
+t=t.replace(/YYYYY/g,"'");
+t=t+"'";
+
+
+
+alert("inn="+s+"\nout="+t);
+document.DF.out.value=t;
+
+//authority="loc"
+//authority="+bfont+"loc"+efont
+
+}
+
+function process01(str) {
+//alert("process01(str)"); return;
+
+var s = new String(document.DF.inn.value);
+var t = new String(document.DF.out.value);
+
+var a = new String(); 
+    a = "'"+str+'="';
+var r = new String();
+    r = "x";
+
+alert("a="+a);
+
+alert("inn="+s+"\nout="+t+"\na="+a);
+//t=s.replace(/(="|")/g,'="'+bfont+'"');
+t=s;
+t=t.replace(a,a+bfont+'"');
+//t=t.replace(/"/g,'YYYYY+efont+YYYYYXXXXX');
+//t=t.replace(/XXXXX/g,'"');
+//t=t.replace(/YYYYY/g,"'");
+//t=t+"'";
+
+
+
+alert("inn="+s+"\nout="+t);
+document.DF.out.value=t;
+
+
+}
+
+</script>
+
+</head>
+
+<script> document.write('<body xonload="load_DF_form();"  bgcolor="'+parent.adb_background_color+'" >'); </script>
+
+
+<font face="arial" size="3">
+<center><font face="arial">
+<h3><script> document.write(parent.adb_project_name); </script>
+ztest</h3>
+</center>
+
+<form name="DF"  action="">
+
+<table class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="ddeeff">
+
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>MODS LABEL</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+
+<!-- sentiinel_00.value = number of  elements in an accessCondition_block
+     sentinel_00.name signals that the set(s) of accessCondition_block elements starts with next element -->
+&lt;mods:name authority="loc" type="personal">
+<input type="hidden" name="sentinel_00" value="0">
+<br><input type="text" size="50" name="inn" value='<mods:name authority="LCNAF" type="personal">'>
+<br><input type="text" size="100" name="out" value="">
+
+<!-- sentiinel_01.value = 0, verification
+     sentinel_01.name signals that the set(s) of accessCondition_block elements ends here -->
+<input type="hidden" name="sentinel_01" value="0">
+<input type="hidden" name="ac_block_list" value="">
+
+
+<!---
+<tr class="bgstandard"><td colspan="3">&nbsp;</td></tr>
+
+<tr class="greenrow"><td colspan="3">&nbsp;</td></tr>
+--->
+
+
+
+<tr class="bgstandard"><td colspan="3" align="center">
+<input type="button" name="c_inn" value="clear inn" onclick="myclear('inn');">
+<input type="button" name="c_out" value="clear out" onclick="myclear('out');">
+<input type="button" name="b00" value="process00" onclick="process00();">  
+<input type="button" name="b01" value="process01" onclick="process01('authority');">
+</td></tr>
+
+<tr class="bgstandard" >
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+</table>
+
+
+
+
+
+
+
+</form name="forms[0]">
+
+<center><font face="arial">
+<h3><script> document.write(parent.adb_project_name); </script></h3>
+</center>
+
+
+<script>
+
+
+/////<input type="hidden" name="ac_block_list" value="">
+function load_UF_form() {
+parent.U.document.forms[0].ac_block_list.value = document.DF.ac_block_list.value;
+return;
+}
+
+
+function load_DF_form() {
+
+if (parent.U.document.UF.ac_block_list.value == "" ) {
+        return;
+        }
+
+parent.L.populate_DF_webform_from_UF_blocklist("ac_block_list");
+document.DF.ac_block_list.value = parent.U.document.UF.ac_block_list.value;
+return;
+}//end function load_DF_form() 
+
+
+function buildModsTags(N) {
+
+document.DF.ac_block_list.value = parent.L.populate_DF_blocklist_from_DF_webform("ac_block_list");
+
+
+////do this first so current values are loaded regardless of validation status
+load_UF_form();
+
+var num = new Number();
+    num = N;
+
+if (num == 11) {return;} //no validation required.
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+//before writing MODS TAGS, make sure all required fields are populated
+//checkAllRequired... true  validation sets validation status to N  -- complete
+//checkAllRequired... false validation sets validation status to n  -- incomplete
+
+if (!parent.L.checkAllRequiredElements_Page_accessCondition() ) {
+	parent.L.update_page_validation('accessCondition','n');
+	return;
+}
+parent.L.update_page_validation('accessCondition','N');
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+
+if (num == 10) {
+        alert("Values have been saved.");
+        return;
+        }
+
+
+var aps= new Array();
+var hps= new Array();
+var cps= new Array();
+    
+    hps = parent.L.buildTagsArray_header(num);
+    aps = parent.L.buildTagsArray_accessCondition(num);
+    cps = parent.L.buildTagsArray_closer(num);
+
+
+//=================================================
+
+document.write('<input type="button" name="BBACK" onclick="javascript: history.back()" value="BACK"><P>');
+document.write('<font face="Elephant" size="3" color="a00000">'+parent.adb_project_name+' &lt;accessCondition> <p></font>');
+//PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+document.write(parent.adb_workbook_version+'<p>');
+document.write( "This is the generated xml script.  Values you entered are highlighted in red.<HR>");
+
+//document.write('< ? xml version="1.0"  ? > \r\n'); 
+///document.write("Content-Type: text/xml ")
+
+
+
+for (i=0;i<hps.length;i++) {
+	var vps = new String(hps[i]);
+ 	document.write("<br>"+vps);
+	}
+
+
+
+for (i=0;i<aps.length;i++) {
+	var vps = new String(aps[i]);
+	document.write("<br>"+vps);
+	}
+
+
+
+for (i=0;i<cps.length;i++) {
+	var vps = new String(cps[i]);
+	document.write("<br>"+vps);
+
+	}
+
+
+
+}//end function
+
+</script>
+	
+<script language=javascript src="elements.js"></script>
+<script>elements();</script>
+
+<hr><hr>notes about summary<hr>
+targetAudience -- attr  authority  -- subelements none
+
+<hr style="width:50%; align:left">
+SUMMARY OF \REQUIREMENTS
+The DLF/Aquifer Implementation Guidelines for Shareable MODS Records recommend 
+the use of at least one &lt;targetAudience> element when applicable, 
+and a controlled vocabulary when available. <li>This element is repeatable.
+<hr style="width:50%; align:left">
+
+Level 5
+at least &lt;targetAudience> element, with @authority attribute when applicable 
+
+
+<hr>
+note  -- attr type, displayLabel  subelements none
+
+<hr style="width:50%; align:left">
+SUMMARY OF REQUIREMENTS
+The DLF/Aquifer Implementation Guidelines for Shareable MODS Records recommend using &lt;note> if applicable. <li>This element is repeatable.
+<hr style="width:50%; align:left">
+Level 5 -
+&lt;note> element, containing information that cannot be encoded in a more specific element, when applicable 
+
+<hr>
+classification -- attr authority, edition   subelements none
+<hr style="width:50%; align:left">
+SUMMARY OF REQUIREMENTS
+The DLF/Aquifer Implementation Guidelines for Shareable MODS Records state that the use of the &lt;classification> element is optional. 
+<li>This element is repeatable.
+<hr style="width:50%; align:left">
+LEvel 5 -
+@edition attribute on the &lt;classification> element, when applicable 
+
+<hr>
+<pre>
+part
+attributes:
+type
+order
+type - &lt;detail>
+order - &lt;detail>
+unit - &lt;extent>
+encoding - &lt;date>
+point - &lt;date>
+keyDate - &lt;date>
+qualifier - &lt;date>
+
+subelements
+<detail>
+<extent>
+<date>
+<text>
+</pre>
+<hr style="width:50%; align:left">
+SUMMARY OF REQUIREMENTS
+The DLF/Aquifer Implementation Guidelines for Shareable MODS Records recommend that the &lt;part> element be used in cases where the part of a resource being represented is a physical or structural part of another resource. Examples include an issue of a journal or a single story from a collection. 
+<li>This element is repeatable.
+<hr style="width:50%; align:left">
+Level 5 -
+&lt;part> element, and all recommended subelements and attributes, when applicable 
+
+
+<hr>
+extension no attr no subelements
+
+
+<hr style="width:50%; align:left">
+SUMMARY OF REQUIREMENTS
+The DLF/Aquifer Implementation Guidelines for Shareable MODS Records generally recommend against the use of the MODS &lt;extension> element because any subelements within it will likely not be understandable to OAI service providers. Exceptions to this recommendation are the use of well-documented community-based information for which there is not another appropriate place within the MODS schema. An example of this is the use of the asset action package. <li>This element is repeatable.
+<hr style="width:50%; halign:left">
+
+<hr>
+Level 5 for all <p>
+The fifth and highest level of adoption includes information a user would review to make a final evaluation as to whether the resource is relevant to his or her needs. Often this information is only present on the contributing institution's site, but its inclusion in shared records helps enhance the user's experience for the aggregation.
+
+<pre>
+@type attribute on &lt;titleInfo>, when applicable
+&lt;nonSort> subelement of &lt;title>, when applicable
+@authority attribute on &lt;titleInfo>, when applicable
+&lt;subTitle>, &lt;partNumber>, and &lt;partName> subelements of &lt;title>, when applicable
+@collection and/or @manuscript on &lt;typeOfResource>, when applicable
+@qualifier element on appropriate date elements within &lt;originInfo>
+Note
+at least &lt;targetAudience> element, with @authority attribute when applicable
+RecordInfo
+&lt;place> element within &lt;originInfo>, with all recommendations for subelements and attributes, when applicable
+&lt;publisher> element within &lt;originInfo>
+&lt;edition> subelement within &lt;originInfo>, when applicable
+&lt;extent> subelement within &lt;physicalDescription>, when applicable
+&lt;tableOfContents> element
+@xlink attribute on &lt;tableOfContents>, when applicable
+&lt;note> subelement within &lt;physicalDescription>, when applicable
+&lt;note> element, containing information that cannot be encoded in a more specific element, when applicable
+@edition attribute on the &lt;classification> element, when applicable
+&lt;relatedItem> element, with all recommended attributes, in the cases outlined in the guidelines
+&lt;identifier> (if applicable)
+@type attribute on every &lt;identifier> element present
+@invalid attribute on &lt;identifier>, when applicable
+@access attribute on &lt;location> subelement &lt;url>
+@authority attribute on &lt;location> subelement &lt;physicalLocation>, when applicable
+@type on &lt;accessCondition> containing the value "useAndReproduction"
+&lt;part> element, and all recommended subelements and attributes, when applicable
+&lt;recordContentSource> element, with @authority attribute, in &lt;recordInfo>
+@source attribute for &lt;recordInfo>/&lt;recordIdentifier>, when present
+&lt;recordOrigin> in &lt;recordInfo>
+
+</pre>
+
+
+
+
+
+
+
+
+</body>
+</html>
+

@@ -1,0 +1,12 @@
+<VirtualHost 141.211.000.000:80>
+  ServerName username.dev.umdl.umich.edu
+  ServerAlias username username.dev username.dev.umdl
+
+  DocumentRoot          /l1/dev/username/web
+  ScriptAlias   /cgi/   /l1/dev/username/cgi/
+
+  SetEnv DLXSROOT       /l1/dev/username
+  SetEnv DLXSDATAROOT   /l1
+  SetEnv DLPS_DEV       username
+  SetEnv REMOTE_USER    username
+</VirtualHost>

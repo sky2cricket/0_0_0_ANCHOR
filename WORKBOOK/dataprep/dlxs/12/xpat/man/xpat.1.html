@@ -1,0 +1,143 @@
+<html>
+<head>
+<title>XPAT database search engine (man page)</title>
+
+
+
+ </head>         <body>
+<div class="pageTitle">XPAT database search engine (man page)</div>
+    
+    <a href="#index">Index</a>
+    <p>
+    <b><a name="name" id="name"></a> </b></p>
+      <h2>NAME</h2>
+      <p><b>xpat</b> - XPAT database search engine
+      </p>
+      <a name="lbAC"></a>
+        <h2>SYNOPSIS</h2>
+        <p><b>xpat, xpatu</b>
+          [
+          -v
+          ][
+          -m
+          <i>memory</i>
+          <b>k</b> | <b>K</b>
+          |
+          <b>m</b> | <b>M</b>
+          ] [
+          -h
+          <i>historysize</i> 
+          ] 
+          [
+          -q
+          ] 
+          [
+          -e
+          ] 
+          [ <b>-label</b> <i>label_name</i> ]
+          [
+          -I
+          <i>index_name</i>]
+          <i>data_dictionary</i>
+        </p>
+        <p>
+        </p>
+      
+      <a name="lbAD"></a>
+        <h2>DESCRIPTION</h2>
+        <p><b>xpat</b> reads database queries from the standard input and produces
+          results on the standard output.  The query
+          expressions must be in the form of XPat Command Language commands
+          (refer to the <i>XPat Reference Manual and Tutorial</i> for a description of this language).
+          <b>xpat</b> searches for word prefixes, words, phrases or ranges of any of these.
+          <b>xpat</b> supports many different operations for combining the results of 
+          searches.  In addition, <b>xpat</b> supports structural operations which allow
+          queries to be restricted to specific user-defined regions in the
+          database.  These `region' operations also support inclusion operations
+          on query results.
+        </p>
+        <p><b>xpat</b> uses several indices to perform the queries
+          on the text database.  Refer to the <i>Database Administration Guide</i> for more details on these 
+          indices and the methods to build them.
+        </p>
+        <p>The central component of a text database is the Data Dictionary file, which
+          specifies the text and index files that make up the database.  Users search
+          a particular database by passing that database's Data Dictionary as the <i>data_dictionary</i> argument
+          to <b>xpat</b>.
+        </p>
+        <p>The Unicode enabled version of <b>xpat</b> is <b>xpatu</b>.  The  same  command  line options  are supported.  <b>xpatu</b> uses the main index produced by <b>xpatbldu</b> to perform queries on Unicode UTF-8 encoded data.  <b>xpatu</b> can query data from  the Basic Multilingual Plane (Plane 0), i.e., UCS code point values up to #FFFF.
+</p>
+      
+      <a name="lbAE"></a>
+        <h2>OPTIONS</h2>
+        <p><dl>
+          <dt><b>-v</b></dt><dd>
+            Specify verbose mode.  This option tells <b>xpat</b> to produce some
+            additional messages concerning the execution.</dd><dt><b>-m</b> <i>memory</i> [ <b>k</b> | <b>K</b> | <b>m</b> | <b>M</b> ]</dt><dd>Specify the memory.  This option tells <b>xpat</b> to use <i>memory</i>
+            <b>k</b>ilobytes or <b>m</b>egabytes for index and text caching.</dd><dt><b>-h</b> <i>historysize</i></dt><dd>
+            Specify the history size.  This option sets the history list size.
+            <b>xpat</b> defaults to having a maximum history of 300 queries.  This means that <b>xpat</b>
+            will only remember the latest 300 queries entered.
+            Use this option to increase the number of queries in the history list.
+          </dd><dt><b>-q</b></dt><dd>
+            Specify quiet mode.  This option tells <b>xpat</b> to output results in a
+            tagged ASCII, machine readable format that other programs can process
+            more easily.  See the <i>Database Administration Guide</i> and the <i>XPat Reference Manual and Tutorial</i> for further details.
+          </dd><dt><b>-e</b></dt><dd>
+            Specify echo mode.  This option tells <b>xpat</b> to echo the input to
+            standard output.  This option is useful to echo the output to a
+            log file when reading input from a script file.
+          </dd><dt><b>-label</b> <i>label_name</i></dt><dd>
+            Specify the label.  This option assigns <i>label_name</i> to the
+            database for the current session of <b>xpat</b>.
+          </dd><dt><b>-I</b><i> index_name</i></dt><dd>
+            Specify the index name.  This option tells <b>xpat</b> to use the
+            index with the name <i>index_name</i>
+            in the <i>data_dictionary</i> for string searches.  By default, <b>xpat</b> uses
+            the first index in the <i>data_dictionary</i>.
+          </dd></dl>
+    </P>
+  
+    <a name="lbAF"></a>
+      <h2>EXAMPLE</h2>
+      <p>
+      <pre>        Digital Library eXtension Service, XPAT, Release 5.3
+        COPYRIGHT (c) 2003 The Regents of the University of Michigan
+        All Rights Reserved&gt;&gt; love
+  1: 462 matches&gt;&gt; hate
+  2: 263 matches&gt;&gt; love near hate
+  3: 47 matches&gt;&gt; pr sample
+       .
+       .
+       .
+&gt;&gt; love fby hate
+  4: 36 matches&gt;&gt; quit
+      </pre>
+    </P>
+    
+    
+    <a name="lbAG"></a>
+      <h2>SEE ALSO</h2>
+      
+      <p>(1), <b>xpatrgn</b>(1), <b><a href="multirgn.1.html">multirgn</a></b>(1), <b><a href="sgmlrgn.1.html">sgmlrgn</a></b>(1), <b><a href="regions.5.html">regions</a></b>(5), <b><a href="data_dict.5.html">data_dictionary</a></b>(5), <b><a href="xpat_export.5.html">xpat_export</a></b>(5)
+      </p>
+      <p>
+      </p>
+    
+    <a name="index"></a>
+      <h2>Index</h2>
+      <p>
+      <dl>
+        <dt><a href="#name">NAME</a></dt><dd>
+        </dd><dt><a href="#lbAC">SYNOPSIS</a></dt><dd>
+        </dd><dt><a href="#lbAD">DESCRIPTION</a></dt><dd>
+        </dd><dt><a href="#lbAE">OPTIONS</a></dt><dd>
+        </dd><dt><a href="#lbAF">EXAMPLE</a></dt><dd>
+        </dd><dt><a href="#lbAG">SEE ALSO</a></dt><dd>
+        </dd></dl>
+    </P>
+    
+    
+  </body>
+
+</html>

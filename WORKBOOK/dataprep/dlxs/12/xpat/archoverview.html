@@ -1,0 +1,124 @@
+<html>
+<head>
+<title>The DLXS XPAT Database Architecture:  Text Databases</title>
+
+
+
+
+
+
+
+<link href="../dlxsdocs.css" rel="stylesheet" type="text/css"> </head>         <body>
+<div class="pageTitle">1. The DLXS XPAT Database Architecture:  Text Databases [DRAFT]</div>
+
+<h1>1. Overview</h1>
+
+<h2>1.1.  Introduction</h2>
+<p>This section provides a conceptual overview of a "text database" as used by XPAT.  A key aspect of DLXS XPAT is its database approach to text access and management.  Coupled with its ability to access text structures at a sub-document level (which will be discussed in the following sections), DLXS XPAT provides the basis to build systems that provide shared access to reusable text.</p>
+<p>When providing access to textual data, DLXS XPAT has been designed to provide database operations and semantics without requiring the user to "own" the text. Textual data that is indexed and mounted for searching by DLXS XPAT is not placed in a proprietary format or relinquished to a traditional database. The text files are left on disk, in their original format and with their original file names and characteristics.</p>
+<p>The indexing process for DLXS XPAT involves the specification of searchable text files and the running of the appropriate index-building tools. These index-building tools scan the text files and create indices that contain pointers into the text files that are to be searched. The text files are not altered.</p>
+<p>Leaving the text files in their native format has a number of clear advantages:</p>
+<ul>
+<li>The text is not "owned" by the text database. The site is free to alter its text database approach without being concerned about their primary resource, text, being trapped in a proprietary format.</li>
+<li>Maintaining the text in its original format allows third party tools to also process the text and legacy systems to operate undisturbed. Third party tools may, for example, be workflow products that require control of the repository text for access control/security purposes; SGML/XMLparsers that parse and validate the text; and countless other application tools.</li></ul>
+<p>So far, a DLXS XPAT database consists of the text files that are made available for searching and the indices that regulate and accelerate access to these texts. The final component of a text database is the set of control files. The control files contain parameters that control the index-building utilities, such as: case sensitivity; criteria for word and phrase definitions; criteria for text structures; and metadata associated with the text.</p>
+<p>Thus, the components of a text database are:</p>
+<ol>
+<li>The <i>source data</i> files</li>
+<li>The <i>control</i> files</li>
+<li>The database <i>indices</i></li></ol>
+<p>In addition to its traditional capabilities in handling structured data in a single file, known as a consolidated database, DLXS XPAT supports source data that is in multiple files. This feature is known as MFS (Multi-File System).</p>
+
+
+<h2>1.2.  Structured Source Data (e.g., SGML/XML or XML)</h2>
+<p>A significant advantage of DLXS XPAT is its ability to handle SGML- and XML-type documents. SGML/XML has become a favored method of hierarchically structuring portions of source data. DLXS XPAT fully supports native storing of SGML/XML data and its access at an attribute and element level (though does not yet support Unicode or other multi-byte characters).  Criteria for extracting elements and attributes can include containing elements, attributes and their values, and full text phrases qualified by their elements and attributes.</p>
+<p>DLXS XPAT databases can consist of varying degrees of structure. Many SGML/XML files are highly structured, but do range greatly in their structure. The units of structure are generally referred to as "regions" in DLXS XPAT. For those of you already familiar with relational databases, a region is analogous to a field. (Also, a document is analogous to a record and a set of documents is analogous to a table.) A region can be a single field or a set of fields. A region may also contain one or more regions.</p>
+<p>Example text that is frequently used in this documentation is from a U.S. Patent Applications database. Each patents application contains information about the title for the patent, the name of the inventor, the filing date of the application, an abstract containing a brief description of the invention, a detailed description of the invention, and other data regions. The title and inventor regions are also "fields" since the have no hierarchy. The abstract and the detailed description regions, however, each consist of a set of paragraph fields. The following figure illustrates:</p>
+<p>[need graphic for US Patent example]</p>
+<p>Region may sometimes be referred to in this manual as a "nested section". In SGML/XML, a region is usually called an "element". From a very generic viewpoint, DLXS XPAT may also refer to a region as a "structure". However, for most discussions, this documentation will use the term region.</p>
+
+
+<h2>1.3.  Control Files</h2>
+<p>The index-building process requires a number of parameters to control the behavior of the index build. The database administrator chooses some of these parameters through each command in the index building process. The remaining parameters are provided through a set of control files. A database administrator can use default control files supplied with the distribution files, or control parameters can be modified to produce customized index builds. The three most important control files are described below.</p>
+<ol>
+<li><b>Data Dictionary</b>:  The Data Dictionary is a database's main control file. The information contained in this file is required for every index-building session. The Data Dictionary contains information about the source data's files and hierarchy, and instructions for handling special character sets. As each phase of an index build completes, the Data Dictionary is updated to record index information. Thus, the Data Dictionary reflects the current state of a database system.</li>
+<li><b>Region Tags File</b>: The Region Tags control file lists the data regions for which indices should be built.  For example, if the source data consists of patent application documents, then each document might be marked by the begin tag &lt;uspatapp&gt; and the end tag &lt;/uspatapp&gt;.  These two tags surround the region of source text that represents a single patent application document. Within this region, there may be other regions, such as patent #, patent title, inventor name, etc., marked by appropriate begin and end tags. (This approach builds the region index based on the element; additionally, one may build indices on attributes or tag names.) If indices are to be built for any of these regions, that information should be listed in the Region Tags file. A region tag need only be listed once in the Tags file.</li> </ol>
+<p>Alternatively, one may build indexes on <i>all</i> elements and attributes reflected in a document's Document Type Definition, or DTD. The DTD file, extension .INP file, contains a line specifying the DTD. The INP file is a DLXS XPAT control file. The DTD is an SGML/XML standard. It describes the hierarchy of tagged data regions in the SGML/XML source data. </p>
+
+
+<h2>1.4.  User Metadata</h2>
+<p>The User Metadata control file is only used for MFS databases (i.e., whenever there is more than one source data file). This file can be generated automatically by the index-building process or produced by the database administrator. The term 'metadata' means "information about information." In this case, special region tags are generated for each source file and for each source document.</p>
+<p>System-generated metadata typically contains information about when the file was created and other administrative details (see example below). The database administrator can add more information in the meta region OTFields.</p>
+<p><tt>&lt;OTDoco&lt;OTMeta&gt;&lt;OTFile&gt;patentsl. txt&lt;/OTFile&gt;&lt;OTDisplayFmt&gt;txt&lt;/OTDisplayFmt&gt;&lt;OTDate&gt;1994/01/l&lt;/OTDate&gt;&lt;OTTime&gt;10:34</tt><br/><tt>&lt;/OTTime&gt;&lt;OTFieidsSize&gt;49&lt;/OTFieldsSize&gt;&lt;OTFields&gt;This is miscellaneous information region for this tagged ASCII text file called 'patentsl.txt'&lt;/OTFields&gt;&lt;OTData&gt;This is the text component of the file. All the uspatapp documents of the original file go here.&lt;/OTData&gt;&lt;/OTDoc&gt;</tt></p>
+<p>All original source files will have these extra metadata regions automatically "wrapped" around the source data. Each original source file will have one set of the regions OTMeta, OTFile, OTDisplayFmt, OTTime, OTFieldsSize, and OTFields. Each document within each source file will have its own OTData region. Remember that the original source files are not altered. These meta-fields are placed in a temporary file used during the index-building process.</p>
+
+
+<h2>1.5.  Index Building</h2>
+<p>The DLXS XPAT index-building process is handled in one of two ways, dependent on whether the database is consolidated or MFS. The two lists below show the sequence of index- building steps for each type of database:</p>
+
+<h3>Consolidated Databases</h3>
+<ol>
+<li>Build XPAT index</li>
+<li>Build RGN (Region) indices</li></ol>
+
+
+<h3>MFS Databases</h3>
+<ol>
+<li>Create FileMap: catalogs the files (skip this step if using a consolidated database)</li>
+<li>Build XPAT index</li>
+<li>Build FF (Fast Find) indices</li>
+<li>Build RGN (Region) indices</li>
+<li>Build FR (Fast Region) indices [optional]</li></ol>
+<p>Notice that the index-building process involves the creation of specific smaller indices, each of which has its own function. Both consolidated and MFS databases build the Main (XPAT) Index, followed by the Region indices. Other indices, such as Fast Find (FF) and Fast Region (FR), are optional. For MFS databases, an "index" known as the FileMap is created first. The FileMap catalogues all the source data files and adds essential metadata information.</p>
+
+
+
+<h2>1.6.  Summary</h2>
+<p>This chapter highlights the philosophy and the architecture of DLXS XPAT databases. Topics discussed here are explored in further detail later in this documentation, with an occasional reference to other documents. It is suggested that the <i>XPAT Configuration and Index Building</i> be consulted first before this documentation. Afterwards, when your database installation is more mature and the database administrator more experienced, this documentation can be consulted to provide more of the index-building theory presented briefly in the <i>XPAT Configuration and Index Building</i> guide.</p>
+
+
+
+<h1>2.	DLXS XPAT DATABASE STRUCTURE</h1>
+<p>This section expands upon the some of the DLXS XPAT database philosophy discussed in section 1. Specifically, The following sections describe the file hierarchy for a typical DLXS XPAT database, plus a discussion of the various indices that can be built and a brief description of their function.</p>
+<p>A DLXS XPAT text database consists of three main parts: the <i>text, </i>the <i>data dictionary, </i>and<i> index </i>files. The text consists of a (possibly large) group of relatively small files, in one or more directories. These files may be in SGML or XML. Using the text files and data dictionary, DLXS XPAT builds an index (either convention or MFS) for the text. DLXS XPAT's indices support various types of searches on the text. The following diagram illustrates the different files that are part of MFS databases. These files are discussed in more detail in the sections following the diagram.</p>
+<p>[Need example diagram]</p>
+
+<h2>2.1.	THE DATA DICTIONARY</h2>
+<p>The <i>Data Dictionary </i>(DD) is a special file that simplifies the organization of a database by keeping track of all the different text and index files that are part of the database. As you will see later on in this guide, the DD is a tagged ASCII file that can be easily read and edited by both humans and computers alike. The DD is usually named with a prefix selected by the database administrator. The suffix of this file is '.dd'. The user can either create a new DD or modify one of the example DDs provided in the distribution. See [need ref] for more information on the DD.</p>
+
+
+<h2>2.2.	THE MAIN INDEX</h2>
+<p>The <i>Main Index </i>provides string search capabilities for the text. The Main Index file is usually named with the same prefix as the DD, and with the suffix '.idx'. This file is built by the <i>xpatbld </i>program. This program is described in detail in [need ref].</p>
+
+
+<h2>2.3.	THE REGION INDICES</h2>
+<p><i>The Region Indices </i>provide structure-based query capabilities by defining <i>regions </i>in the database. Regions are conceptually powerful constructs that can be thought of as a general case of fields. Their proper use creates a powerful text retrieval system. For SGML/XML users, regions are a more general case of elements. In its most basic form, a region may correspond to a document. In more advanced configurations, regions may be used to define substructures within a document. For example, in a report, regions may correspond to Sections, Sub-sections and Paragraphs. In a newspaper database, regions may correspond to Stories, Headlines, Bylines and Datelines.</p>
+<p>The region index building programs are as follows:</p>
+<table border="1"><tbody>
+<tr><td><b>index builder</b></td>
+<td><b>index built</b></td>
+<td><b>section to refer to</b></td></tr>
+<tr><td>multirgn</td>
+<td>Main region index, based on specified elements, tag names, and attributes described in a configuration file</td>
+<td>[need reference]</td></tr>
+<tr><td>xpatrgn</td>
+<td>Supplementary region indices</td>
+<td>[need reference]</td></tr>
+<tr><td>sgmlrgn</td>
+<td>Main region index, based on the inherent SGML as described in a DTD; all elements, tag names, and attributes in the DTD are reflected in the index.</td>
+<td>[need reference]</td></tr>
+<tr><td>xmlrgn</td>
+<td>Main region index, based on the inherent XML as described in a DTD; all elements, tag names, and attributes in the DTD are reflected in the index</td>
+<td>[need reference]</td></tr>
+</tbody></table>
+<p>Note:     The region indices are all placed in the same <i>'.rgn' </i>file.</p>
+<p>Most databases have one main Region index file. This file is usually named with the same prefix as the DD, and with the suffix '.rgn'. It is built by <i>multirgn</i>, sgmlrgn, or <i>xmlrgn</i>.</p>
+<p>While <i>multirgn </i>is enough to build the region indices in most databases, some databases require regions whose content or relationships are best described by a DTD (and so may require you to use <i>sgmlrgn</i> or <i>xmlrgn</i>), and other databases may require supplementary "custom" regions whose exact nature cannot be defined by a tag pair (and so may require you to use xpatrgn or other strategies outlined in [need reference]). In the case of <i>xpatrgn</i>, these extra indices are usually placed in separate files whose naming conventions may vary.</p>
+
+
+<h2>2.4.	DATABASE STRUCTURE SUMMARY</h2>
+<p>A complete DLXS XPAT database consists of three elements: source data, control files, and the index files. Source data is provided by the content manager and may consist of a single consolidated SGML- or XML-encoded file, or it may consist of several such files. Control files provide the index-building utilities with necessary parameters, some of which can be generated by utilities provided with the DLXS XPAT distribution. Index files are created by the index-building utilities provided with the DLXS XPAT distribution. Before setting up a text database, it is important that you understand its structure. This chapter introduced the topic of text structure, including the source data files, the index files, and the DLXS XPAT programs that build the indices. In succeeding chapters, details for each of the index files and index-building programs will be provided in order to illustrate their functionality.</p> 
+
+</body>
+
+</html>

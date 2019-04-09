@@ -1,0 +1,48 @@
+/d1/workarea/dlxs/telfiles/dothis
+
+first, go to /d1 and mount area2 of store1.
+Then check for oddly-named directories, for which you will have to change scripts.
+
+the commands in:
+Before_Pickup
+  are to clean out the directories where you will be depositing materials, putting
+older (already processed) files into the subdirectories where they will be needed.
+They will need to be modified to move 0012* files into an SPC subdirectory in each 
+area, for preprocessing for inclusion in SPC.  The OAI and preservation copies of
+these files will belong to SPC, and should NOT be in VV.
+
+check_incoming
+
+deprecated:duplicates (checks Receive0 directories); duplicates_xml checks xml directories
+
+onedirDerivatives
+
+depricated:duplicates_xml > ./results/dupeCheck121707  (today's date)
+duplicates_noproc_noreworked > results/duplicates_noproc_noreworked_080401.txt
+
+fieldtest 
+
+Correct problems
+
+
+pickupTime
+
+Go to each directory and work the files.
+
+/d1/workarea/dlxs/image/tel/singles
+/d1/workarea/dlxs/image/tel/multiples
+/d1/workarea/dlxs/text/tel/
+
+
+
+listFiles   (send results to Cricket)
+tiflist  (send results to Tiffani)
+jpglist (ditto)
+
+
+after processing, the following counts xml from bib/mods/vv/xml directory, for current count for Tiffani
+totalSoFar
+
+next, copy things live:
+follow instructions in /d1/workarea/dlxs/telfiles/CopyLive
+

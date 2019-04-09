@@ -1,0 +1,112 @@
+<html>
+<head>
+<title>Page Image Access Mechanisms</title>
+
+
+
+
+
+
+
+<link href="../../dlxsdocs.css" rel="stylesheet" type="text/css">
+</head>         <body>
+<div class="pageTitle">Page Image Access Mechanisms</div>
+		
+			<h1>Introduction</h1>
+			<p>This document describes the mechanisms and programs used by DLXS for accessing and viewing images of pages that correspond to pages in TextClass documents (and possibly other classes). It also explains the particular metadata requirements that exist for this
+functionality to be possible and shows a sample pageview.dat file.  The pageview.dat mechanisms are now deprecated, but still useful for importing information into the Pageview table (see instructions below in Populating the Pageview Table).</p>
+			<ul>
+			   <li><a href="#GeneralInfo">General Information</a> 
+			      <ul>
+			         <li><a href="ivimageconversion.html">Itemviewer Image Conversion</a> </li>
+		          </ul>
+			   </li>
+               <li><a href="#pb">The Page Break (PB) Element and Page Image Metadata</a> </li>
+               <li><a href="#pageviewTable">Populating the Pageview Table</a></li>
+               <li><a href="#pageviewDat">Creating pageview.dat Files</a> </li>
+</ul>
+			<h1><a name="GeneralInfo"></a>General Information</h1>
+			<p>For collections where the middleware delivers page images rather than or in addition to the text content of the pages, the main mechanism for viewing the pages is the
+pageviewer-idx CGI program. 
+ In order  to link from the SGML/XML text to the corresponding image, this CGI expects that page images are stored in directories based on (1) the DLXSROOT value, (2) the object directory recorded in the collection manager, and (3) the unique identifier assigned to the SGML/XML text and stored in the IDNO element, and that there are page break elements in the document referencing the images. In addition, there must be a Pageview table in the <a href="../../collmeta/colldatabases.html">dlxs metadata database</a> that should contain a column for each page image, listing the image file name, its sequence in the SGML/XML text, the page number (if any) specified on the page, the OCR confidence value (if available), and a three-letter code for any special features of the page (the default value for no special feature is UNS; see below for more information).</p>
+			<p><span class="command">pageviewer-idx</span> connects to the database and
+			   retrieves the name and location of the page image file from the
+			   Pageview table. <span class="command">pageviewer-idx</span> then decides
+how to deliver the page. If the stored file format is different from the requested
+			   format as recorded in the collection manager (e.g., stored as
+			   tiff and requested as gif), a separate program, tif2web, is started
+			   to convert the image on the fly. <em>For more information
+			   about how pageviewer-idx does its work in deciding how
+			   to deliver the page image, see <a href="ivimageconversion.html">Itemviewer
+			   Image Conversion </a>. </em></p>
+			<h1><a name="pb"></a>The Page Break Element and Page Image Metadata</h1>
+			<p>The PB tag in the SGML data, representing a page break, has this form in Text Class:
+
+</p><pre>&lt;PB REF="00000009.tif" SEQ="00000009" RES="600dpi" FMT="TIFF6.0" FTR="TPG" CNF="856" N=iiii"&gt;
+</pre><p>
+The attributes are:
+
+ </p><ul><li>    REF: file name of page image</li><li> 
+     SEQ: the sequence number of the page in the series, from start to finish, of all the pages in the document.</li><li> 
+     RES: the resolution of the page image. 
+     </li><li>FMT: the file format of the page image.</li><li> 
+     FTR: the feature of the page, given as a three letter code. Possible values are listed below. 
+     </li><li>CNF: the confidence value of the OCR for the page, given by the OCR software.</li><li> 
+     N: the page number, not as a sequence, but rather the number as printed on the page (e.g., 3, 96, ix, etc.).  This may be left blank, but the attribute cannot be omitted.</li></ul><p>
+The information in this PB tag allows the Text Class middleware to create a URL to call the pageviewer-idx program with the parameters necessary to
+retrieve and display the corresponding page image. pageviewer-idx uses the Pageview table of the dlxs metadata database to do so.
+</p><p>The following are examples of  feature codes and their expanded definitions that have been used in various collections mounted by DLPS.  You may redefine these or use other codes, but will need to add or change the values in the PageView.cfg file found in the Text Class cgi directory.  To see an example of these codes in use in the Text Class interface, go to <a href="http://www.hti.umich.edu/cgi/t/text/pageviewer-idx?c=moa;cc=moa;seq=00000019;idno=AGH8649.0001.001">this page from <i>The Use of the Barometer</i></a> in the Making of America and note the variety of features in the upper right hand pull down menu labeled "go to."  If UNS is the sole feature recorded, no special features will be listed in this menu.</p>
+			<ul>
+				<li>'1stpg' =&gt; 'First Page'</li>
+				<li>'ADV' =&gt; 'Advertisement'</li>
+				<li>'BIB' =&gt; 'Bibliography'</li>
+				<li>'BLP' =&gt; 'Blank Pages'</li>
+				<li>'CTP' =&gt; 'Cover Title Page'</li>
+				<li>'ERR' =&gt; 'Errata'</li>
+				<li>'IND' =&gt; 'Comprehensive Index'</li>
+				<li>'LOI' =&gt; 'List of Illustrations'</li>
+				<li>'LOT' =&gt; 'List of Tables'</li>
+				<li>'PNI' =&gt; 'Author or Name Index'</li>
+				<li>'PNT' =&gt; 'Production Note'</li>
+				<li>'REF' =&gt; 'References'</li>
+				<li>'SPI' =&gt; 'Special Index'</li>
+				<li>'SUI' =&gt; 'Subject Index'</li>
+				<li>'TOC' =&gt; 'Table of Contents'</li>
+				<li>'TPG' =&gt; 'Title Page'</li>
+				<li>'UNS' =&gt; 'Unspecified'</li>
+				<li>'VES' =&gt; 'Volume End Sheets'</li>
+				<li>'VLI' =&gt; 'Volume List of Illus'</li>
+				<li>'VOI' =&gt; 'Volume Index'</li>
+				<li>'VTP' =&gt; 'Volume Title Page'</li>
+				<li>'VTV' =&gt; 'Volume Title Page Verso'</li>
+			</ul>
+		
+			<h1><a name="pageviewTable"></a>Populating the Pageview Table</h1>
+			<p>In DLXS releases prior to CD-ROM 8, the pageview.dat, a tab-delimited ASCII file used to locate page images associated with a text, was stored in the directory with the page images for a particular collection.  If you have created pageview.dat files and would like to migrate them to the Pageview table, <a href="../../data/pageview.html">instructions can be found here.</a>  Otherwise, metadata about page images for a collection should be entered directly into the Pageview table.</p><h1><a name="pageviewDat"></a>Creating pageview.dat Files (For Information Only)</h1>
+			<p>The pageview.dat file for a particular SGML/XML text can be automatically generated provided that the metadata required is stored as attributes in the page break (PB) elements in the text.  On the distribution CD-ROM, in the directory /l1/bin/t/text/, you will find a perl script named makepageviewdata.pl.  When run with a directory path as its sole argument, it will work through the subdirectories, creating pageview.dat files for all files with a .sgm* extension.  (For XML files, you will need to edit lines 27 and 51 to point the script to files with the extension .xml.)  For example, </p>
+			<pre>/l1/bin/t/text/makepageviewdata.pl /l1/obj/a/</pre>
+			<p>will run through <strong>all</strong> the subdirectories below /l1/obj/a/ and report on the files it finds and work it is doing:
+</p>
+			<pre>Working on xml files in directory: /l1/obj/a/j/l/ajl7777.0001.001
+Working on file: /l1/obj/a/j/l/ajl7777.0001.001/ajl7777.0001.001.xml
+Working on PB tag for sequence: 0001
+Working on PB tag for sequence: 0002
+Working on PB tag for sequence: 0003
+Working on PB tag for sequence: 0004</pre>
+<p>Working with a document containing these four page break tags:</p>
+<pre>&lt;PB REF="00000001.tif" SEQ="00000001" RES="600dpi" FMT="TIFF6.0" FTR="TPG" CNF="852" N="1"/&gt;
+&lt;PB REF="00000002.tif" SEQ="00000002" RES="600dpi" FMT="TIFF6.0" FTR="UNSPEC" CNF="100" N="2"/&gt;
+&lt;PB REF="00000003.tif" SEQ="00000003" RES="600dpi" FMT="TIFF6.0" FTR="UNSPEC" CNF="884" N="3"/&gt;
+&lt;PB REF="00000004.tif" SEQ="00000004" RES="600dpi" FMT="TIFF6.0" FTR="UNSPEC" CNF="872" N="4"/&gt;</pre>
+<p>would result in a pageview.dat file that contained this data:</p>
+<pre>## File:        /l1/obj/b/a/b/bab3633.0001.001/pageview.dat
+## Created:     Mon Aug  6 11:32:55 EDT 2001
+##
+#filename       seq       pagenum confid  feature
+00000001.tif    00000001        00000001        852     TPG
+00000002.tif    00000002        00000002        100     UNS
+00000003.tif    00000003        00000003        884     UNS
+00000004.tif    00000004        00000004        872     UNS</pre>
+		</body>
+
+</html>

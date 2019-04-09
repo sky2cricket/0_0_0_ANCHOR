@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>FindaidClass Makefile</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="../styles.css" type="TEXT/CSS">
+</head>
+<body class="mainpalette"> 
+<h3 class="sectionheader"> Build the XPAT Index using the Makefile </h3> 
+<p>The Makefile in the <span class="unixcommand">bin</span> directory contains
+   the commands necessary to build the index, and can be executed easily.</p> 
+<p>To create an index for use with the Findaid Class interface, you will need
+   to index the words in the collection, then index the XML (the structural metadata,
+   if you will), and then finally "fabricate" structures based on a combination
+   of elements (for example, defining what the "main title " is: the text between
+   open &lt;origination&gt; tag and the closing &lt;/unittitle&gt; tag). </p> 
+<p><strong>What to do: </strong></p> 
+<p>After editing the variables at the top of the Makefile (all named using capital
+   letters), the following commands can be given at the command line to prepare
+   the data and make the varioius indexes needed by XPAT.</p> 
+<p><b>make validateeach </b> validates the individual ead2002 XML files against
+   the ead2002 DTD </p> 
+<p><b>make prepdocs </b> removes the XML and DOCTYPE declarations, changes IDs
+   to be unique across all files, and concatenates all the XML files into one,
+   wrapping all the <span class="unixcommand">ead</span> elements in a <span class="unixcommand">COLL</span> element </p> 
+<p><b>make validate</b> validates the new, concatenated file against the dlxsead2002
+   DTD </p> 
+<p><b>make singledd</b> indexes the full text of the full file </p> 
+<p><b>make xml </b> indexes the XML structure while at the same time validating.
+   The use of <span class="unixcommand">xmlrgn</span> by this command is slower
+   than <span class="unixcommand">multirgn</span> because of this validation.</p> 
+<p><b>make post</b> builds and indexes fabricated regions based on the XPAT queries
+   stored in the <span class="unixcommand">samplefa.extra.srch</span> file.</p> 
+<hr> 
+<p><strong><a href="makefile.txt">Click here for the text of an example Makefile</a></strong></p> 
+
+
+<pre>&nbsp; 
+</pre>
+</body>
+</html>

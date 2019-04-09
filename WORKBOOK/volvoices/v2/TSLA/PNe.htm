@@ -1,0 +1,399 @@
+<html>
+<head>
+<title>vv_popupPN</title>
+
+<link href="../vv_workbook.css" type="text/css" rel="stylesheet">
+<script language=javascript src="../vv_functions_tsla.js"></script>
+
+
+
+
+<script language="javascript">
+
+var select_id= new String();
+function get_select_id() {
+
+var str = new String();
+    str = parent.location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  parent.window.opener.location.href="+parent.window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=get_select_id();
+
+
+
+var strSelect_PN_A = new String('');
+
+
+strSelect_PN_A = '<select name="aaa"  size="24" style="font-size:10px"> \r\n'
+	+'<option value="0" selected>No value selected</option> \r\n'
+		
+
+
+	+'<option>EADS, JAMES BUCHANAN, - 1820-1887</option>  \r\n'
+	+'<option>EAGER FAMILY</option>  \r\n'
+	+'<option>EAGER, GEORGE BOARDMAN, - 1847-1929</option>  \r\n'
+	+'<option>EAGLE, MARY KAVANAUGH OLDHAM, - D. 1903</option>  \r\n'
+	+'<option>EAGLE, W. H. - (WILLIAM HENRY), - 1887-</option>  \r\n'
+	+'<option>EAGLETON, WILLIAM</option>  \r\n'
+	+'<option>EAKER FAMILY</option>  \r\n'
+	+'<option>EAKIN FAMILY</option>  \r\n'
+	+'<option>EAKIN, ALEXANDER</option>  \r\n'
+	+'<option>EAKIN, JANE RODGERS, - 1772-1846</option>  \r\n'
+	+'<option>EAKIN, JOHN, - 1761-1825</option>  \r\n'
+	+'<option>EAKIN, JOHN, - D. 1849</option>  \r\n'
+	+'<option>EAKIN, MARY JANE, - FL. 1853</option>  \r\n'
+	+'<option>EAKIN, THOMAS, - D. 1874</option>  \r\n'
+	+'<option>EAKIN, WILLIAM, - 1810-1849</option>  \r\n'
+	+'<option>EAKINS, THOMAS, - 1844-1916</option>  \r\n'
+	+'<option>EAMES, WILLIAM MARK, - 1827-1884</option>  \r\n'
+	+'<option>EANES FAMILY</option>  \r\n'
+	+'<option>EARL, RALPH, - 1751-1801</option>  \r\n'
+	+'<option>EARLE FAMILY</option>  \r\n'
+	+'<option>EARLE, STEVE</option>  \r\n'
+	+'<option>EARLEY, CHARITY ADAMS, - 1918-</option>  \r\n'
+	+'<option>EARLY FAMILY</option>  \r\n'
+	+'<option>EARLY, JEREMIAH, - D. 1795</option>  \r\n'
+	+'<option>EARLY, JUBAL ANDERSON, - 1816-1894</option>  \r\n'
+	+'<option>EARLY, WILLIAM</option>  \r\n'
+	+'<option>EARP FAMILY</option>  \r\n'
+	+'<option>EARP, WYATT, - 1848-1929</option>  \r\n'
+	+'<option>EASLEY FAMILY</option>  \r\n'
+	+'<option>EASLY FAMILY                                                             </option>  \r\n'
+	+'<option>EASON FAMILY</option>  \r\n'
+	+'<option>EAST FAMILY</option>  \r\n'
+	+'<option>EAST, EDINE H., - 1870-1900</option>  \r\n'
+	+'<option>EAST, EDWARD HAZZARD, - 1830-1904</option>  \r\n'
+	+'<option>EAST, JOHN P.</option>  \r\n'
+	+'<option>EAST, PERCY DALE</option>  \r\n'
+	+'<option>EASTERLY FAMILY</option>  \r\n'
+	+'<option>EASTMAN FAMILY</option>  \r\n'
+	+'<option>EASTMAN, CARRIE C.</option>  \r\n'
+	+'<option>EASTMAN, ELBRIDGE GERRY</option>  \r\n'
+	+'<option>EASTMAN, J. W.</option>  \r\n'
+	+'<option>EASTMAN, SETH, - 1808-1875</option>  \r\n'
+	+'<option>EASTON, JOHN JAY, - 1943-</option>  \r\n'
+	+'<option>EASTON, JOHN, - 1829-1906</option>  \r\n'
+	+'<option>EATON FAMILY</option>  \r\n'
+	+'<option>EATON, GORDON P.</option>  \r\n'
+	+'<option>EATON, JOHN HENRY, - 1790-1856</option>  \r\n'
+	+'<option>EATON, JOHN, - 1829-1906</option>  \r\n'
+	+'<option>EATON, JOSEPH H., - 1812-1859</option>  \r\n'
+	+'<option>EATON, PEGGY, - 1799?-1879</option>  \r\n'
+	+'<option>EATON, WILLIAM, - 1764-1811</option>  \r\n'
+	+'<option>EAVES, T. C. DUNCAN - (THOMAS CARY DUNCAN), - 1918-</option>  \r\n'
+	+'<option>EBERHARD, ERIC DRAKE, - 1945-</option>  \r\n'
+	+'<option>EBERLY FAMILY</option>  \r\n'
+	+'<option>EBERT, ALBERT ETHELBERT, - 1840-1906</option>  \r\n'
+	+'<option>EBLING FAMILY</option>  \r\n'
+	+'<option>ECHOLS FAMILY</option>  \r\n'
+	+'<option>ECKEL FAMILY</option>  \r\n'
+	+'<option>ECROYD FAMILY</option>  \r\n'
+	+'<option>ECTOR, MATHEW DUNCAN, - 1822-1879</option>  \r\n'
+	+'<option>EDDINGS FAMILY</option>  \r\n'
+	+'<option>EDDY FAMILY</option>  \r\n'
+	+'<option>EDDY, MARY BAKER, - 1821-1910</option>  \r\n'
+	+'<option>EDGAR, JOHN T.</option>  \r\n'
+	+'<option>EDGAR, JOHN TODD, - 1792-1860</option>  \r\n'
+	+'<option>EDGEMON FAMILY</option>  \r\n'
+	+'<option>EDGEWORTH, MARIA, - 1767-1849</option>  \r\n'
+	+'<option>EDINGER FAMILY</option>  \r\n'
+	+'<option>EDISON, THOMAS A. - (THOMAS ALVA), - 1847-1931</option>  \r\n'
+	+'<option>EDMANDS, BENJAMIN FRANKLIN</option>  \r\n'
+	+'<option>EDMINSTER FAMILY</option>  \r\n'
+	+'<option>EDMISTON FAMILY</option>  \r\n'
+	+'<option>EDMONDS FAMILY</option>  \r\n'
+	+'<option>EDMONDSON FAMILY</option>  \r\n'
+	+'<option>EDMONDSON, BELLE, - 1840-1873</option>  \r\n'
+	+'<option>EDMONDSON, EDWIN CATESBY, - 1833-1909</option>  \r\n'
+	+'<option>EDMONDSON, WILLIAM, - 1882?-1951</option>  \r\n'
+	+'<option>EDMONDSTON, CATHERINE DEVEREUX</option>  \r\n'
+	+'<option>EDMUNDSON, JOHN, - FL. 1835-1852</option>  \r\n'
+	+'<option>EDSON FAMILY</option>  \r\n'
+	+'<option>EDSON, NATHAN, - 1739?-1825</option>  \r\n'
+	+'<option>EDWARD - III, - KING OF ENGLAND, - 1312-1377</option>  \r\n'
+	+'<option>EDWARD - VII, - KING OF GREAT BRITAIN, - 1841-1910</option>  \r\n'
+	+'<option>EDWARD, - PRINCE OF WALES, - 1330-1376</option>  \r\n'
+	+'<option>EDWARDS FAMILY</option>  \r\n'
+	+'<option>EDWARDS, CLAYTON</option>  \r\n'
+	+'<option>EDWARDS, JOHN NEWMAN, - 1839-1889</option>  \r\n'
+	+'<option>EDWARDS, JONATHAN, - 1703-1758</option>  \r\n'
+	+'<option>EDWARDS, NINIAN, - 1775-1833</option>  \r\n'
+	+'<option>EDWARDS, RALPH LEE - 1924-</option>  \r\n'
+	+'<option>EGGLESTON FAMILY</option>  \r\n'
+	+'<option>EGGLESTON, RICHARD</option>  \r\n'
+	+'<option>EHRLICH, EVERETT M.</option>  \r\n'
+	+'<option>EILERT, RICK</option>  \r\n'
+	+'<option>EINSTEIN, ALBERT, - 1879-1955</option>  \r\n'
+	+'<option>EISELEY, LOREN C., - 1907-1977</option>  \r\n'
+	+'<option>EISENHARD FAMILY</option>  \r\n'
+	+'<option>EISENHOWER FAMILY</option>  \r\n'
+	+'<option>EISENHOWER, DWIGHT D. - (DWIGHT DAVID), - 1890-1969</option>  \r\n'
+	+'<option>EISENHOWER, JOHN S. D., - 1922-</option>  \r\n'
+	+'<option>EISENHOWER, MAMIE DOUD, - 1896-</option>  \r\n'
+	+'<option>EIZENSTAT, STUART</option>  \r\n'
+	+'<option>ELAM FAMILY</option>  \r\n'
+	+'<option>ELAM, DANIEL</option>  \r\n'
+	+'<option>ELAM, R. H.</option>  \r\n'
+	+'<option>ELAM, THOMAS</option>  \r\n'
+	+'<option>ELBERT, SAMUEL, - 1743-1788</option>  \r\n'
+	+'<option>ELDER FAMILY</option>  \r\n'
+	+'<option>ELDER, BENJAMIN FRANKLIN, - 1857-</option>  \r\n'
+	+'<option>ELDRIDGE FAMILY</option>  \r\n'
+	+'<option>ELDRIDGE, ARISTOTLE</option>  \r\n'
+	+'<option>ELDRIDGE, EDWIN</option>  \r\n'
+	+'<option>ELDRIDGE, GEORGE</option>  \r\n'
+	+'<option>ELDRIDGE, WILLIAM</option>  \r\n'
+	+'<option>ELEANOR, - OF AQUITAINE, QUEEN, CONSORT OF HENRY II, KING OF ENGLAND, - 1122?-1204</option>  \r\n'
+	+'<option>ELGIN, JAMES BRUCE, - EARL OF, - 1811-1863</option>  \r\n'
+	+'<option>ELIJAH, - (BIBLICAL PROPHET)</option>  \r\n'
+	+'<option>ELIOT, SAMUEL ATKINS, - 1798-1862</option>  \r\n'
+	+'<option>ELIOT, T. S., - 1888-1965</option>  \r\n'
+	+'<option>ELIOT, THOMAS D. - (THOMAS DAWES), - 1808-1870</option>  \r\n'
+	+'<option>ELISABETH, - EMPRESS, CONSORT OF FRANZ JOSEPH I, EMPEROR OF AUSTRIA, - 1837-1898</option>  \r\n'
+	+'<option>ELISHA, - THE PROPHET</option>  \r\n'
+	+'<option>ELIZABETH - I, - QUEEN OF ENGLAND, - 1533-1603</option>  \r\n'
+	+'<option>ELIZABETH - II, - QUEEN OF GREAT BRITAIN, - 1926-</option>  \r\n'
+	+'<option>ELIZABETH, - EMPRESS CONSORT OF FRANCIS I, EMPEROR OF AUSTRIA, - 1837-1898</option>  \r\n'
+	+'<option>ELKINS FAMILY</option>  \r\n'
+	+'<option>ELKINS, FRANK CALLIHAN, - 1939-1966</option>  \r\n'
+	+'<option>ELKINS, STANLEY M.</option>  \r\n'
+	+'<option>ELKINS, WILLIAM MCINTIRE, - 1882-1947</option>  \r\n'
+	+'<option>ELLER FAMILY</option>  \r\n'
+	+'<option>ELLERY FAMILY</option>  \r\n'
+	+'<option>ELLEY, GEORGE W.</option>  \r\n'
+	+'<option>ELLIFF FAMILY</option>  \r\n'
+	+'<option>ELLINGTON FAMILY</option>  \r\n'
+	+'<option>ELLINGTON, BUFORD, - 1909-1972 </option>  \r\n'
+	+'<option>ELLIOT, EDITH FARMER</option>  \r\n'
+	+'<option>ELLIOTT FAMILY</option>  \r\n'
+	+'<option>ELLIOTT, COLLINS D., - 1810-1899</option>  \r\n'
+	+'<option>ELLIOTT, GEORGE R., - 1821-1864</option>  \r\n'
+	+'<option>ELLIOTT, ROBERT BROWN, - 1842-1884</option>  \r\n'
+	+'<option>ELLIOTT, STEPHEN, - BISHOP, - 1806-1866</option>  \r\n'
+	+'<option>ELLIS FAMILY</option>  \r\n'
+	+'<option>ELLIS, DANIEL, - 1827-</option>  \r\n'
+	+'<option>ELLIS, DANIEL, - B. 1827</option>  \r\n'
+	+'<option>ELLIS, E.</option>  \r\n'
+	+'<option>ELLIS, JERRY</option>  \r\n'
+	+'<option>ELLIS, WILLIAM, - 1760-1800</option>  \r\n'
+	+'<option>ELLISON FAMILY</option>  \r\n'
+	+'<option>ELLISON, WILLIAM, - B. 1790</option>  \r\n'
+	+'<option>ELLSWORTH, E. E. - (ELMER EPHRAIM), - 1837-1861</option>  \r\n'
+	+'<option>ELLSWORTH, OLIVER, - 1745-1807</option>  \r\n'
+	+'<option>ELMORE FAMILY</option>  \r\n'
+	+'<option>ELRIDGE FAMILY</option>  \r\n'
+	+'<option>ELSON, LOUIS CHARLES, - 1848-1920</option>  \r\n'
+	+'<option>ELWELL FAMILY</option>  \r\n'
+	+'<option>ELY FAMILY</option>  \r\n'
+	+'<option>EMBREE, ELIHU, - 1782-1820</option>  \r\n'
+	+'<option>EMBREY FAMILY</option>  \r\n'
+	+'<option>EMBRY, BOWLING, - 1803-1880</option>  \r\n'
+	+'<option>EMERSON FAMILY</option>  \r\n'
+	+'<option>EMERSON, RALPH WALDO, - 1803-1882</option>  \r\n'
+	+'<option>EMERY FAMILY</option>  \r\n'
+	+'<option>EMERY, RALPH</option>  \r\n'
+	+'<option>EMMERSON, THOMAS, - 1773-1837</option>  \r\n'
+	+'<option>EMMET FAMILY</option>  \r\n'
+	+'<option>EMMET, JOHN PATTEN, - 1796-1842</option>  \r\n'
+	+'<option>EMMET, THOMAS ADDIS, - 1764-1827</option>  \r\n'
+	+'<option>EMMETT, DANIEL DECATUR, - 1815-1904</option>  \r\n'
+	+'<option>EMMONS FAMILY</option>  \r\n'
+	+'<option>EMORY, WILLIAM HEMSLEY, - 1846-1917</option>  \r\n'
+	+'<option>ENDSLEY FAMILY</option>  \r\n'
+	+'<option>ENGEL FAMILY</option>  \r\n'
+	+'<option>ENGELS, FRIEDRICH, - 1820-1895</option>  \r\n'
+	+'<option>ENGLAND FAMILY</option>  \r\n'
+	+'<option>ENGLAND, J. P.</option>  \r\n'
+	+'<option>ENGLAND, JOHN, - BISHOP, - 1786-1842</option>  \r\n'
+	+'<option>ENGLISH FAMILY</option>  \r\n'
+	+'<option>ENGLISH, JAMES DOUGLASS, - 1858-1929</option>  \r\n'
+	+'<option>ENGLISH, WILLIAM HAYDEN, - 1822-1896</option>  \r\n'
+	+'<option>ENLOE, B. A. - (BENJAMIN AUGUSTINE), - 1848-1922</option>  \r\n'
+	+'<option>ENLOE, BENJAMIN A. - (BENJAMINE AUGUSTINE), - 1848-1922</option>  \r\n'
+	+'<option>ENOCH FAMILY</option>  \r\n'
+	+'<option>ENSMINGER FAMILY</option>  \r\n'
+	+'<option>EPPERSON FAMILY                                                          </option>  \r\n'
+	+'<option>EPPERSON, CLARA COX, - 1869-1937</option>  \r\n'
+	+'<option>EPPES, MARY (JEFFERSON) - 1778-1804</option>  \r\n'
+	+'<option>EPPES, SUSAN BRADFORD, - 1845 OR 6-1942</option>  \r\n'
+	+'<option>EPPS FAMILY</option>  \r\n'
+	+'<option>EPPSE, MERL R. - (MERL RAYMOND), - 1893-</option>  \r\n'
+	+'<option>ERASMUS, DESIDERIUS, - D. 1536</option>  \r\n'
+	+'<option>ERB, KARL ALBERT, - 1942-</option>  \r\n'
+	+'<option>ERDREICH, BENJAMIN LEADER, - 1938-</option>  \r\n'
+	+'<option>ERICKSON FAMILY</option>  \r\n'
+	+'<option>ERICKSON, OSCAR E.</option>  \r\n'
+	+'<option>ERICKSON, THOMAS JEFFREY, - 1961-</option>  \r\n'
+	+'<option>ERNST FAMILY</option>  \r\n'
+	+'<option>ERNST, ANNA CATHARINA ANTES, - 1726-1816</option>  \r\n'
+	+'<option>ERSKINE FAMILY</option>  \r\n'
+	+'<option>ERSKINE, ALEXANDER, - 1832-1913</option>  \r\n'
+	+'<option>ERSKINE, THOMAS ERSKINE, - BARON, - 1750-1823</option>  \r\n'
+	+'<option>ERVIN, CHRISTINE A., - 1948-</option>  \r\n'
+	+'<option>ERVIN, DAVID JASPER NEWTON</option>  \r\n'
+	+'<option>ERVIN, SAM J. - (SAM JAMES), - 1896-1985</option>  \r\n'
+	+'<option>ERVINE, ST. JOHN GREER, - 1883-1971</option>  \r\n'
+	+'<option>ESHMAN, ANDREW N.</option>  \r\n'
+	+'<option>ESLINGER FAMILY</option>  \r\n'
+	+'<option>ESPENSCHIED FAMILY</option>  \r\n'
+	+'<option>ESPY FAMILY</option>  \r\n'
+	+'<option>ESPY, MIKE, - 1953-</option>  \r\n'
+	+'<option>ESSERMAN, SUSAN G., - 1952-</option>  \r\n'
+	+'<option>ESSEX, ROBERT DEVEREUX, - EARL OF, - 1566-1601</option>  \r\n'
+	+'<option>ESSLINGER, MATTIE PICKETT</option>  \r\n'
+	+'<option>ESTAING, CHARLES HENRI, - COMPTE D\', - 1729-1794</option>  \r\n'
+	+'<option>ESTEP FAMILY</option>  \r\n'
+	+'<option>ESTES FAMILY</option>  \r\n'
+	+'<option>ESTEY FAMILY</option>  \r\n'
+	+'<option>ESTIENNE FAMILY</option>  \r\n'
+	+'<option>ESTILL FAMILY</option>  \r\n'
+	+'<option>ESTILL, FELIX GRUNDY</option>  \r\n'
+	+'<option>ESTILL, WALLACE, - CA. 1790-1864</option>  \r\n'
+	+'<option>ETHERIDGE FAMILY</option>  \r\n'
+	+'<option>ETHERIDGE, EMERSON, - 1819-1902</option>  \r\n'
+	+'<option>EURIPIDES</option>  \r\n'
+	+'<option>EUSTACE FAMILY</option>  \r\n'
+	+'<option>EVANS FAMILY</option>  \r\n'
+	+'<option>EVANS, AUGUSTA J. - (AUGUSTA JANE), - 1835-1909</option>  \r\n'
+	+'<option>EVANS, CHARLES, - 1850-1935</option>  \r\n'
+	+'<option>EVANS, ELI N.</option>  \r\n'
+	+'<option>EVANS, H. CLAY - (HENRY CLAY), - 1843-1921</option>  \r\n'
+	+'<option>EVANS, HENRY CLAY, - 1843-1921</option>  \r\n'
+	+'<option>EVANS, JOHN, - FL. 1786</option>  \r\n'
+	+'<option>EVANS, JOSIAH J. - (JOSIAH JAMES), - 1786-1858</option>  \r\n'
+	+'<option>EVANS, LEWIS, - 1700?-1756</option>  \r\n'
+	+'<option>EVANS, MARY LEILA COPELAND, - 1887-1970</option>  \r\n'
+	+'<option>EVANS, ROBERT L., - FL. 1859-1875</option>  \r\n'
+	+'<option>EVANS, RUDULPH, - 1878-1960</option>  \r\n'
+	+'<option>EVANS, WALKER, - 1903-1975</option>  \r\n'
+	+'<option>EVANS, WILLIAM H., - 1850-</option>  \r\n'
+	+'<option>EVANS, WILLIAM, - FL. 1859-1883</option>  \r\n'
+	+'<option>EVANSHINE FAMILY</option>  \r\n'
+	+'<option>EVARTS, JEREMIAH, - 1781-1831</option>  \r\n'
+	+'<option>EVARTS, WILLIAM MAXWELL, - 1818-1901</option>  \r\n'
+	+'<option>EVELYN FAMILY</option>  \r\n'
+	+'<option>EVEREST FAMILY</option>  \r\n'
+	+'<option>EVERETT FAMILY</option>  \r\n'
+	+'<option>EVERETT, EDWARD, - 1794-1865</option>  \r\n'
+	+'<option>EVERETT, ELMER</option>  \r\n'
+	+'<option>EVERHART FAMILY</option>  \r\n'
+	+'<option>EVERLY FAMILY</option>  \r\n'
+	+'<option>EVERS, MEDGAR WILEY, - 1925-1963</option>  \r\n'
+	+'<option>EVETTS FAMILY</option>  \r\n'
+	+'<option>EVINS, JOE L. - (JOE LANDON), - 1910-</option>  \r\n'
+	+'<option>EWALD, JOHANN VON, - 1744-1813</option>  \r\n'
+	+'<option>EWELL FAMILY</option>  \r\n'
+	+'<option>EWELL, LIZINKA CAMPBELL BROWN, - 1820-1872</option>  \r\n'
+	+'<option>EWELL, RICHARD STODDERT, - 1817-1872</option>  \r\n'
+	+'<option>EWERS FAMILY</option>  \r\n'
+	+'<option>EWERS, JOHN CANFIELD</option>  \r\n'
+	+'<option>EWIN, HENRY C.</option>  \r\n'
+	+'<option>EWIN, WATT D.</option>  \r\n'
+	+'<option>EWING FAMILY</option>  \r\n'
+	+'<option>EWING, ANDREW, - 1740-1813</option>  \r\n'
+	+'<option>EWING, ANDREW, - 1813-1864</option>  \r\n'
+	+'<option>EWING, EDWIN H. - (EDWIN HICKMAN), - 1809-1902</option>  \r\n'
+	+'<option>EWING, FINIS, - 1773-1841</option>  \r\n'
+	+'<option>EWING, G. W., - CA. 1814-CA. 1893</option>  \r\n'
+	+'<option>EWING, HENRIETTA</option>  \r\n'
+	+'<option>EWING, HENRY, - 1840-1873</option>  \r\n'
+	+'<option>EWING, JOHN, - 1732-1802</option>  \r\n'
+	+'<option>EWING, MARGARET DAVIDSON, - 1774-1868</option>  \r\n'
+	+'<option>EWING, NATHAN, - 1776-1830</option>  \r\n'
+	+'<option>EWING, RANDAL MILTON, - 1829-1907</option>  \r\n'
+	+'<option>EWING, ROBERT, - 1849-1932</option>  \r\n'
+	+'<option>EWING, WILLIAM D.</option>  \r\n'
+	+'<option>EXUM FAMILY</option>  \r\n'
+	+'<option>EYMANN FAMILY</option>  \r\n'
+	+'<option>EYRE, EDWARD JOHN, - 1815-1901</option>  \r\n'
+	+'<option>EZZELL FAMILY</option>  \r\n'
+
++'</select> \r\n';
+	
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+<body class="background">
+
+
+
+
+<form name="FormOne" >
+
+
+<div name="SS" id="SS">
+<script>
+document.write(
+
+	 '<table border="1" cellpadding="4" cellspacing="0"  width="90%">\r\n'
+	+'<tr><td  bgcolor="ddeeff">\r\n'
+	///+'vv_functions.htm called by '+select_id+' <br>\r\n'
+	+'<b>Select Personal Name E</b> \r\n'
+	+'</td></tr><tr><td bgcolor="ddeeff"> \r\n' 
+	+ strSelect_PN_A
+
+	+'</td></tr></table> \r\n'
+	///+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+</script>
+	
+</div>
+
+<input type="button" onclick="showSelection();" name="B1" value="Personal Name">
+
+</form>
+
+<script>
+
+
+
+                  
+
+function showSelection() {
+
+val = new String();
+
+for ( i=0; i< document.FormOne.aaa.length; i++ ) {
+
+if ( document.FormOne.aaa[i].selected == true ) {
+  	val = document.FormOne.aaa[i].text;
+	break;
+	}
+else { val = "you never selected anything"; 
+	}
+
+}
+////////////////////////alert ("You selected " +val);
+val=reformatPn(val);
+
+switch ( select_id ) {
+
+case  "subject_name_lcsh_01" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_01.value=val;
+	parent.window.close();
+	break;
+
+case  "subject_name_lcsh_02" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_02.value=val;
+	parent.window.close();
+	break;
+}//end switch
+
+}///end function
+</script>
+

@@ -1,0 +1,332 @@
+<!--
+    This code is issued under the GNU General Public License, 
+    version 3, 29 June 2007.
+
+    The DLC-MODS Workbook provides a series of web pages to help you 
+    generate a MODS metadata record that follows the Digital Library 
+    Federation Implementation Guidelines for Shareable MODS Records, 
+    as described in the DLF Aquifer Guidlines November 2006.  These 
+    Guidelines and the specific MODS Profile are documented on the 
+    MODS Profile Page of the DLC-MODS Workbook.
+
+    Copyright (C) 2007 
+    Christine Haygood Deane 
+    University of Tennessee Libraries
+    Digital Library Center
+ 
+
+    This program is free software: you can redistribute it and/or modify    
+    it under the terms of the GNU General Public License as published by    
+    the Free Software Foundation, version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see http://www.gnu.org/licenses/
+-->
+
+<html>
+<head>
+<title>upper</title>
+
+<script>
+parent.L.thisDocument = parent.U.document;
+var parent_test="chd";
+
+function load_admindb_values() {
+
+if (parent.admindb_data == "" ) {return; }
+var str_admindb_data = new String();
+    str_admindb_data = parent.admindb_data;
+
+///document.forms[0].XMLBASE.value = str_admindb_data+"_";
+
+}
+
+
+</script>
+
+</head>
+<body onload="load_admindb_values()" bgcolor="ffffdd" >
+<script>
+document.write('<font face="arial" size="1">document.location.href='+document.location.href+'</font><br>');
+</script>
+<b>Initial Load Form UF<br>parent.U.document.UF</b>
+<form name="UF" >
+<hr>
+<b>Page Validation Form Elements</b>
+<!-------------------mark for deletion------------------------
+<br><input type="text"  name="validate_page_final"  value="0" size="50"> validate_page_final, set to 1 for debug
+<br><input type="text"  name="validate_page_header"     		value="a" size="50"> validate_page_header
+<br><input type="text"  name="validate_page_titleInfo"     		value="b" size="50"> validate_page_titleInfo
+<br><input type="text"  name="validate_page_name"     			value="c" size="50"> validate_page_name
+<br><input type="text"  name="validate_page_typeOfResource"     	value="d" size="50"> validate_page_typeOfResource
+<br><input type="text"  name="validate_page_genre"     			value="e" size="50"> validate_page_genre
+<br><input type="text"  name="validate_page_originInfo"     		value="f" size="50"> validate_page_originInfo
+<br><input type="text"  name="validate_page_language"     		value="g" size="50"> validate_page_language
+<br><input type="text"  name="validate_page_physicalDescription"	value="h" size="50"> validate_page_physicalDescription
+<br><input type="text"  name="validate_page_abstract"  			value="i" size="50"> validate_page_abstract
+<br><input type="text"  name="validate_page_subject"     		value="j" size="50"> validate_page_subject
+<br><input type="text"  name="validate_page_relatedItem"     		value="k" size="50"> validate_page_relatedItem
+<br><input type="text"  name="validate_page_identifier"     		value="l" size="50"> validate_page_identifier
+<br><input type="text"  name="validate_page_location"     		value="m" size="50"> validate_page_location
+<br><input type="text"  name="validate_page_accessCondition"     	value="n" size="50"> validate_page_accessCondition
+<br><input type="text"  name="validate_page_recordInfo"     		value="o" size="50"> validate_page_recordInfo
+--------------------------mark for deletion-------------------------------->
+
+
+
+<hr>
+<b>&lt;header> Page Form Elements</b>
+
+<br><input type="text"  name="VVcomment_01" value="<!-- FILENAME: -->" size="80"> VVcomment_01 filename 
+<br><input type="text"  name="VVcomment_02" value="<!-- NUMBER_OF_RELATED_ITEMS: 1: --> " size="80"> VVcomment_02 number of related items 
+<br><input type="text"  name="VVcomment_02a" value="<!-- NUMBER_OF_IDENTIFIERS: 1: -->" size="80"> VVcomment_02a number of identifiers 
+<br><input type="text"  name="VVcomment_02b" value="<!-- NUMBER_OF_SUBJECT_BLOCKS: 1: -->" size="80"> VVcomment_02b number of subject blocks  
+<br><input type="text"  name="VVcomment_02c" value="<!-- NUMBER_OF_NAME_BLOCKS: 1: -->" size="80"> VVcomment_02c number of name blocks  
+<br><input type="text"  name="VVcomment_02d" value="<!-- NUMBER_OF_LOCATION_URL_BLOCKS: 1: -->" size="80"> VVcomment_02d number of location_url blocks  
+<br><input type="text"  name="VVcomment_02e" value="<!-- NUMBER_OF_ACCESS_CONDITION_BLOCKS: 1: -->" size="80"> VVcomment_02e number of accessCondition blocks  
+
+<br><input type="text"  name="VVcomment_03" value="<!-- Reload: none -->" size="80"> VVcomment_03 reload date 
+<br><input type="text"  name="VVcomment_03c" value="<!-- Content Contributor:  -->" size="80"> VVcomment_03c : Content Contributor:  
+<br><input type="text"  name="VVcomment_03p" value="<!-- Institution:   -->" size="80"> VVcomment_03p : Institution:  
+<br><input type="text"  name="VVcomment_03d" value="<!-- Record Creation Date:   -->" size="80"> VVcomment_03d :  date of record creation 
+<br><input type="text"  name="VVcomment_04" value="<!-- PAGE VALIDATION :a:b:c:d:e:f:g:h:i:j:k:l:m:n:o: -->" size="80">VVcomment_04 validation string
+<br><input type="text"  name="VVcomment_05" value="<!-- BLOCK ITERATION :1:1:1:1:1:1:1:1:1:1:1:1:1:1:1: -->" size="80">VVcomment_05 iteration string
+
+
+<br><input type="text" name="contributorName" value="" size="50"> contributorName used in VVcomment_03c
+<br><input type="text" name="institutionName" value="" size="50"> institutionName used in VVcomment_03p
+<br><input type="text"  name="XMLmaster_simple" value="" size="50"> XMLmaster_simple  filename for download
+
+<br><input type="text"  name="numRelatedItems" value="1" size="50" > numRelatedItems
+<br><input type="text"  name="numIdentifiers" value="1" size="50" > numIdentifiers
+<br><input type="text"  name="numSubjectBlocks" value="1" size="50" > numSubjectBlocks
+<br><input type="text"  name="numNameBlocks" value="1" size="50" > numNameBlocks
+<br><input type="text"  name="numLocationUrlBlocks" value="1" size="50" > numLocationUrlBlocks
+<br><input type="text"  name="numAccessConditionBlocks" value="1" size="50" > numAccessConditionBlocks
+
+<hr>
+<b>&lt;titleInfo> Page Form Elements</b>
+
+<!---Page One Title Info--->
+<br><input type="text"  name="title_non_sort" value="" size="50"> title_non_sort
+<br><input type="text"  name="title" value="" size="50"> title
+<br><input type="text"  name="title_sub_title" value="" size="50"> title_sub_title
+<br><input type="text"  name="title_part_number" value="" size="50"> title_part_number
+<br><input type="text"  name="title_part_name" value="" size="50"> title_part_name
+
+
+<hr>
+<b>&lt;name> Page Form Elements</b>
+<br><textarea name="name_block_list" rows="8" cols="80"></textarea> name_block_list
+
+<!--------------End Page One------------------------------------------------>
+<hr>
+<b>&lt;typeOfResource> Page Form Elements</b>
+<br><input type="text" name="type_of_resource_all" value=""   size="50"> type_of_resource_all
+
+<hr>
+<b>&lt;genre> Page Form Elements</b>
+<br><select name="mods_genre_authority" size="4">
+<option value="_zero">none selected</option>
+<option value="aat">aat (aat)</option>
+<option value="nmc">Chenhall (nmc)</option>
+<option value="marcgt">MARC (marcgt)</option>
+</select> mods_genre_authority
+<br><input type="text" name="mods_genre" value=""   size="50"> mods_genre
+<br><textarea name="gt_block_list" rows="8" cols="80"></textarea> gt_block_list
+
+<hr>
+<b>&lt;originInfo> Page Form Elements</b>
+<br>
+<br><input type="text" name="date_created" value="" size="50"> date_created
+<br><input type="text" name="date_createdQ" value="" size="50"> date_createdQ qualifier
+<br><input type="text" name="date_created_begin" value="" size="50"> date_created_begin range
+<br><input type="text" name="date_created_beginQ" value="" size="50"> date_created_beginQ qualifier
+<br><input type="text" name="date_created_end" value="" size="50"> date_created_end range
+<br><input type="text" name="date_created_endQ" value="" size="50"> date_created_endQ qualifier
+
+
+<br><input type="text"  name="publisher_name" value="" size="50"> publisher_name
+<br><input type="text"  name="publisher_address" value=""  size="50"> publisher_address
+
+<br><input type="text" name="date_issued" value="" size="50"> date_issued 
+<br><input type="text" name="date_issuedQ" value="" size="50"> date_issuedQ qualifier
+
+<br><input type="text" name="place_of_origin" value=""  size="50"> place_of_origin
+
+<br><select name="place_of_origin_authority" size="5">
+<option selected>none</option>
+<option>Marc Country : text</option>
+<option>Marc Country : code</option>
+<option>ISO3166 : text</option>
+<option>ISO3166 : code</option>
+</select> place_of_origin_authority
+
+<!--------------End Page Two------------------------------------------------>
+
+
+
+<!--------------Start Page Three------------------------------------------------>
+
+<hr>
+<b>&lt;language> Page Form Elements</b>
+<br><input type="text" name="language" value="eng"   size="50" > language code
+<br><input type="text" name="language_display" value="English"   size="50"> language_display
+
+
+
+<hr>
+<b>&lt;physicalDescription> Page Form Elements</b>
+<br><select name="mods_digital_origin" size="5">
+<option selected value="">none</option>
+<option value="born digital">Born Digital</option>
+<option value="reformatted digital">Reformatted Digital</option>
+<option value="digitized microfilm">Digitized Microfilm</option>
+<option value="digitized other analog">Digitized Other Analog</option>
+</select>mods_digital_origin
+<br> <select name="technique_authority" size="2">
+<option selected value="">none</option>
+<option value="aat">aat</option>
+</select>&nbsp;&nbsp;technique_authority
+<br><input type="text" name="museum_form_type_technique" value=""   size="50"> museum_form_type_technique 
+<br>
+<select name="medium_authority" size="2">
+<option selected value="">none</option>
+<option value="aat">aat</option>
+</select>&nbsp;&nbsp;medium_authority
+<br><input type="text" name="museum_form_type_medium" value=""   size="50">  museum_form_type_medium 
+<br><input type="text" name="internetmediatype"value="image/jpeg"   size="50" > internetmediatype 
+<br><input type="text" name="mods_extent" value=""    size="50"> mods_extent 
+<br><textarea name="mods_note_physdesc"  cols="60" rows="4" ></textarea> mods_note_physdesc
+
+<hr>
+<b>&lt;abstract> Page Form Elements</b>
+<br><textarea name="mods_genre_abstract"  cols="60" rows="4" ></textarea> mods_genre_abstract
+
+<!--------------End Page Three------------------------------------------------>
+
+
+
+<!--------------Start Page Four------------------------------------------------>
+
+<hr>
+<b>&lt;subject> Page Form Elements</b>
+
+<br><textarea name="subject_block_list" rows="8" cols="80"></textarea> subject_block_list
+
+
+<!--------------End Page Four------------------------------------------------>
+
+
+
+
+<!--------------Start Page Five------------------------------------------------>
+<hr>
+<b>&lt;relatedItem> Page Form Elements</b>
+<br>This text box is filled in by page_begin.htm when <u>parent.U.document.UF.numRelatedItems.value</u> is defined.
+<br> ri stands for related item
+
+<br><textarea name="ri_block_list" cols="80" rows="5"></textarea> ri_block_list
+
+<hr>
+<b>&lt;identifier> Page Form Elements</b>
+<br> id stands for identifier
+<br><textarea name="id_block_list" cols="80" rows="5"></textarea> id_block_list
+
+<!--------------End Page Five------------------------------------------------>
+
+
+<!--------------Start Page Six------------------------------------------------>
+<hr>
+<b>&lt;location> Page Form Elements</b>
+
+
+<br><select name="access_00" size="4">
+<option value="none">none</option>
+<option value="preview">preview</option>
+<option value="raw object">raw object</option>
+<option value="object in context">object in context</option>
+</select> access_00
+<br><input type="text" name="location_url_00"  value="" size="50"> location_url_00
+
+<br><textarea rows="8" cols="80" name="lu_block_list"></textarea> lu_block_list
+
+<!--------------Start Page Seven------------------------------------------------>
+
+<hr>
+<b>&lt;accessCondition> Page Form Elements</b>
+<br><select name="access_condition_type" size="2">
+<option value="useAndReproduction">useAndReproduction</option>
+<option value="restrictionOnAccess">restrictionOnAccess</option>
+</select> access_condition_type
+<br><input type="text" name="access_condition_text" value="" size="50"> access_condition_text
+
+<br><textarea rows="8" cols="80" name="ac_block_list"></textarea> ac_block_list
+
+<hr>
+<b>&lt;recordInfo> Page Form Elements</b>
+
+<br>
+<select name="rcs_authority" size="3">
+<option value="none">none</option>
+<option value="marcorg">MARC (marcorg)</option>
+<option value="oclcorg">OCLC (oclcorg)</option>
+</select>rcs_authority
+<br><input type="text" name="record_content_source"  value="" size="50">record_content_source
+<br><textarea name="record_info_origin" rows="4" cols="50"></textarea> record_info_origin
+<br><input type="text" name="record_creation_date"  value="" size="50">record_creation_date
+<br><input type="text" name="language_of_cataloging"  value="eng" size="50">language_of_cataloging (code)
+<br><input type="text" name="language_of_cataloging_display"  value="English" size="50">language_of_cataloging_display
+
+
+<!--------------End Page Seven------------------------------------------------>
+
+
+
+
+</form name="UF">
+<hr><hr><hr>
+
+<b>Reload Form U2 <br>parent.U.document.U2</b>
+<form name="U2">
+
+<textarea name="chomp" rows="8" cols="80" style="background:#ddeeff"></textarea> chomp
+<p><textarea name="mods_header" rows="8" cols="80" style="background:#ddeeff"></textarea> mods_header 
+<p><textarea name="mods_titleInfo" rows="8" cols="80" style="background:#ddeeff"></textarea> mods_titleInfo 
+<p><textarea name="mods_name_group" rows="8" cols="80" style="background:#ddeeff"></textarea> mods_name_group - all name blocks together
+<p><textarea name="mods_typeOfResource" rows="6" cols="80" style="background:#ddeeff"></textarea> mods_typeOfResource 
+<p><textarea name="mods_genre" rows="4" cols="80" style="background:#ddeeff"></textarea> mods_genre 
+<p><textarea name="mods_originInfo" rows="8" cols="80" style="background:#ddeeff"></textarea> mods_originInfo 
+<p><textarea name="mods_language" rows="4" cols="80" style="background:#ddeeff"></textarea> mods_language  
+<p><textarea name="mods_physicalDescription" rows="8" cols="80" style="background:#ddeeff"></textarea> mods_physicalDescription 
+<p><textarea name="mods_abstract" rows="4" cols="80" style="background:#ddeeff"></textarea> mods_abstract 
+<p><textarea name="mods_subject_group" rows="8" cols="80" style="background:#ddeeff"></textarea> mods_subject_group 
+<p><textarea name="mods_ri_group" rows="8" cols="80" style="background:#ddeeff"></textarea> mods_ri_group - relatedItems 
+<p><textarea name="mods_id_group" rows="8" cols="80" style="background:#ddeeff"></textarea> mods_id_group - identifiers
+<p><textarea name="mods_location" rows="8" cols="80" style="background:#ddeeff"></textarea> mods_location
+<p><textarea name="mods_accessCondition" rows="4" cols="80" style="background:#ddeeff"></textarea> mods_accessCondition
+<p><textarea name="mods_ac_group" rows="8" cols="80" style="background:#ddeeff"></textarea> mods_ac_group - accessCondition 
+<p><textarea name="mods_recordInfo" rows="8" cols="80" style="background:#ddeeff"></textarea> mods_recordInfo
+
+</form>
+
+<script>
+
+var split_token= new String("");
+    split_token = ":::::";
+
+</script>
+
+<script language=javascript src="fdg.js"></script>
+<script>fdg();</script>
+<hr>
+
+</body>
+</head>
+

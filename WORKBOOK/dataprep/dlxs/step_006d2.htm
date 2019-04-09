@@ -1,0 +1,132 @@
+<html>
+<head>
+<script language=javascript src="links/vv_functions_links.js"></script>
+<title>
+char_check
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+</head>
+<!-- body  class="bg_aabbcc" -->
+<body bgcolor="aabbcc">
+<font face="arial" size="3">
+<center><font face="arial">
+<script>//document.write(dlxs_vv_header);</script>
+<p>
+</center>
+<table  class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="99aabb">
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+<tr class="bgstandardwhite" ><td colspan="3" align="left" class="step">
+<pre>
+
+step_006d2.htm - Image class setup
+=========================================================
+SUMMARY
+cd /d1/workarea/dlxs/image/tel/multiples
+perl /d1/dlxs/bin/i/image/idb norm vvi
+perl /d1/dlxs/bin/i/image/imageprep vvi > imgprep_date.txt
+
+/bin/rm /d1/dlxs/idx/v/vvi/*
+/bin/rmdir /d1/dlxs/idx/v/vvi 
+/d1/dlxs/bin/i/image/setupcollindex v/vvi
+
+cd /d1/dlxs/idx/v/vvi  
+make all
+
+
+imageclass release to production.
+
+http://diglib2.lib.utk.edu/cgi/c/collmgr/collmgr?type=%24TYPE&class=image&submit=release
+
+go to browser for vvi multiples and see if your files are there.
+http://diglib2.lib.utk.edu/cgi/i/image/image-idx?c=vvi
+
+for text
+go to browser and see if your files are there
+http://diglib2.lib.utk.edu/cgi/b/bib/bib-idx?c=vvs-bib;cc=vvs-bib;sid=2cd47172c0c916a069a933da8a4cdfeb;page=simple 
+without sid value
+http://diglib2.lib.utk.edu/cgi/b/bib/bib-idx?c=vvs-bib;cc=vvs-bib;page=simple 
+END SUMMARY
+=========================================================
+step_006d2.htm - Image class setup
+(using 0018_000054_000232 files as an example)
+These commands require step 5a2 file copy to be completed.
+
+The program files to do the process are in........ /d1/dlxs/bin/i/image/
+Relevant files in this directory are:
+idb
+imageprep
+setupcollindex
+
+============================================================================
+idb - normalizes the ic.vvi.unnorm.sgm file
+(create the file ic.vvi.norm.sgm)
+
+1. command> /d1/dlxs/bin/i/image/idb norm vvi
+-----------------------------------------------
+screen capture...
+[root@diglib2 multiples]# /d1/dlxs/bin/i/image/idb norm vvi
+DLXSDATAROOT = /d1/dlxs
+DLXSROOT = /d1/dlxs
+Validating and normalizing vvi SGML with sgmlnorm -E 200001.
+Done validating and normalizing vvi SGML.
+-----------------------------------------------
+
+	input:  /d1/dlxs/prep/v/vvi/ic.vvi.unnorm.sgm 
+	<a href="xfiles/01_vvi/0018_000054_000232/short_18_54_232_ic.vvi.unnorm.sgm.txt" target="_blank">view short version of ic.vvi.unnorm.sgm</a>
+	output: /d1/dlxs/prep/v/vvi/ic.vvi.norm.sgm 
+	<a href="xfiles/01_vvi/0018_000054_000232/short_18_54_232_ic.vvi.norm.sgm.txt" target="_blank">view short version of ic.vvi.norm.sgm</a>
+	<a href="xfiles/01_vvi/d1_dlxs_prep_v_vvi_files.txt" target="_blank">view file listings for idb input and output</a>
+
+imageprep - populate the directory /d1/dlxs/img/v/vvi/index/ for cgi
+2. command> /d1/dlxs/bin/i/image/imageprep vvi
+
+	input:	/d1/dlxs/idx/v/vvi/large/*
+       		/d1/dlxs/idx/v/vvi/thumb/*
+	output:	/d1/dlxs/idx/v/vvi/index/*
+	<a href="xfiles/01_vvi/imageprep_output.txt" target="_blank">short stdout for imageprep with debug turned on</a>
+	<a href="xfiles/01_vvi/imageprep_file_output.txt" target="_blank">files created by imageprep</a>
+	<a href="xfiles/01_vvi/d1_dlxs_img_v_vvi_files.txt" target="_blank">view file listings for imageprep input and output</a>
+
+setupcollindex
+5. command> rm /d1/dlxs/idx/v/vvi/*
+-----------------------------------------------
+screen capture...
+[root@diglib2 multiples]# rm /d1/dlxs/idx/v/vvi/*
+rm: remove regular file `/d1/dlxs/idx/v/vvi/image.blank.dd'? y
+rm: remove regular file `/d1/dlxs/idx/v/vvi/image.cfg'? y
+rm: remove regular file `/d1/dlxs/idx/v/vvi/image.dd'? y
+rm: remove regular file `/d1/dlxs/idx/v/vvi/image.idx'? y
+rm: remove regular file `/d1/dlxs/idx/v/vvi/image.inp'? y
+rm: remove regular file `/d1/dlxs/idx/v/vvi/image.rgn'? y
+rm: remove regular file `/d1/dlxs/idx/v/vvi/Makefile'? y
+rm: remove regular file `/d1/dlxs/idx/v/vvi/tags.txt'? y
+---------------------------------------------------
+6. command> rmdir /d1/dlxs/idx/v/vvi (this will be replaced by running setupcollindex)
+7. command> /d1/dlxs/bin/i/image/setupcollindex v/vvi
+8. command> cd /d1/dlxs/idx/v/vvi  (because you have to be in Makefile dir to run it )
+9. command> make all
+	<a href="xfiles/01_vvi/setupcollindex_screen_capture.txt" target="_blank">view screen capture of steps 5 through 9</a>
+==========================================================================
+
+
+Now you are ready for imageclass release to production.
+
+<a href="http://diglib2.lib.utk.edu/cgi/c/collmgr/collmgr?type=%24TYPE&class=image&submit=release" target = "_blank">http://diglib2.lib.utk.edu/cgi/c/collmgr/collmgr?type=%24TYPE&class=image&submit=release</a>
+<!--- uname: dlxsadm - pword: eva39 --->
+go to browser for vvi multiples and see if your files are there.
+<a href="http://diglib2.lib.utk.edu/cgi/i/image/image-idx?c=vvi" target="_blank">http://diglib2.lib.utk.edu/cgi/i/image/image-idx?c=vvi</a>
+
+
+for text
+go to browser and see if your files are there
+<a href="http://diglib2.lib.utk.edu/cgi/b/bib/bib-idx?c=vvs-bib;cc=vvs-bib;sid=2cd47172c0c916a069a933da8a4cdfeb;page=simple" target="_blank">http://diglib2.lib.utk.edu/cgi/b/bib/bib-idx?c=vvs-bib;cc=vvs-bib;sid=2cd47172c0c916a069a933da8a4cdfeb;page=simple</a> 
+without sid value
+<a href="http://diglib2.lib.utk.edu/cgi/b/bib/bib-idx?c=vvs-bib;cc=vvs-bib;page=simple" target="_blank">http://diglib2.lib.utk.edu/cgi/b/bib/bib-idx?c=vvs-bib;cc=vvs-bib;page=simple</a> 
+</pre>
+</font>
+</td></tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+</table>
+
+

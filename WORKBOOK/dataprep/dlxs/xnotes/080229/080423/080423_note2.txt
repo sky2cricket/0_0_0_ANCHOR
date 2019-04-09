@@ -1,0 +1,25 @@
+imageprep vvz > A.txt
+
+imageprep is UMICH file to do imageprep things, bad characters break it and
+	 	you have to go back to singles and take care of problems.
+
+idb norm vvz
+idb	 is UMICH file to do idb things - normalize the unnormal ic.vvz.unnorm.sgm
+
+Then you have to get rid of the existing 
+/d1/dlxs/idx/v/vvi directory
+rmdir vvi
+
+Then you can run setupcollindex (UMICH program)
+setupcollindex v/vvi > nameYourRedirect.txt
+
+Then go to the new vvi directory you just made
+
+[root@diglib2 vvi]# pwd
+/d1/dlxs/idx/v/vvi
+[root@diglib2 vvi]# ls
+image.blank.dd  image.cfg  image.dd  image.idx  image.inp  image.rgn  Makefile  tags.txt
+
+and run >> make all
+
+Then do imageclass release to production

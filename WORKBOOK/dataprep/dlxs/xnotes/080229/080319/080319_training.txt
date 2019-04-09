@@ -1,0 +1,177 @@
+080319 training
+
+At this point, go to each place where files have been deposited and do the processing.
+
+
+
+[root@diglib2 tel]# ls
+BadColl      chkid          hextest    NOTE           rebatch        teiHeadOcrText  typed
+badocr       countfiles     howmany    notext         search         teiTail         validate
+batchedOut   crossmappings  infotrack  ocr            spc            test
+categories   done           linkfile   olderVersions  specify        testfiles
+charTest.pl  dothis         modsbib    output         tei            transform
+checkme      fieldtest      modsTC     preservation   teiHead        translate
+chkfiles     hexmess        newmods    problems       teiHeadNoText  ttout.txt
+[root@diglib2 tel]# ls notext
+jpegs  minithumbs  mods  thumbs
+[root@diglib2 tel]# ls ocr
+cleantext  jpegs  minithumbs  mods  text  text_fixme  thumbs
+[root@diglib2 tel]# ls newmods
+notext  ocr  typed
+[root@diglib2 tel]# pwd
+/d1/workarea/dlxs/text/tel
+[root@diglib2 tel]# cd ../..
+[root@diglib2 dlxs]# ls
+bib  countfiles  ead  image  mail  mets  oai  search  tdh  telfiles  text  vv2spc  ww
+[root@diglib2 dlxs]# cd image/tel
+[root@diglib2 tel]# ls
+multiples  singles
+[root@diglib2 tel]# cd singles -----------------this is 00
+
+[root@diglib2 singles]# ls
+15_60_227char  done         hex                linkfile         olderVersions  testfiles
+15_60_227hex   dothis       hexmess            minithumbs       open           thumbs
+categories     entry        httpEncodings      mods             opensearch     titles
+catref         fieldtest    ic                 modsbib          preservation   translate
+close          fixSubjects  ic.vvz.unnorm.sgm  modsICsearchOai  problems       vvzHeader
+countfiles     footer       infotrack          newmods          search
+countfiles2    here         jpegs              NOTE             spc
+[root@diglib2 singles]#  vi dothis
+
+move all done files to /done !!!!!
+
+run
+modsICsearchOai ---------------------------------------------------------
+#!/usr/bin/perl
+use locale;
+use DBI;
+
+# modsICsearchOai
+# this version for single images with metadata record
+
+# to transform MODS xml files
+# into image class files AND to bib class files AND to search class files
+# jody DeRidder  10/03/06
+
+#updated 3/30/07 for modsSearch3.dtd, Melanie's version 11 MODS +
+
+
+# assigns pid and puts it in file, storing this link in
+# paul's locserve database on diglib  (after testing)
+-----------------------------------------------------------------------------
+directories before run modsICsearchOai
+[root@diglib2 singles]# ls mods
+0015_000066_000200_0000.xml  0015_000066_000202_0000.xml  0015_000066_000204_0000.xml
+0015_000066_000201_0000.xml  0015_000066_000203_0000.xml
+[root@diglib2 singles]# ls modsbib
+[root@diglib2 singles]# ls search
+[root@diglib2 singles]# ls ic
+[root@diglib2 singles]# ls newmods
+[root@diglib2 singles]# 
+--------------------------------------------------------------------------------
+entry is template for image class files
+--------------------------------------------------------------------------------
+vvzHeader is the header for all image class files
+--------------------------------------------------------------------------------
+modsICsearchOai output
+
+[root@diglib2 singles]# modsICsearchOai 
+last entry in y2008 table was 1392.
+looking at .
+looking at ..
+looking at 0015_000066_000204_0000.xml
+NOT CAPTURED YET:
+<?xml version="1.0" encoding="UTF-8" ?> <mods:mods xmlns:mods="http://www.loc.gov/mods/v3" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.loc.gov/mods/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-2.xsd" ID="MODS" version="3.2">                     <mods:identifier type="uri">http://idserver.utk.edu/?id=200700000002686</mods:identifier>   <mods:accessCondition type="useAndReproduction">For current rights information, please visit: http://idserver.utk.edu/?id=200600000001200</mods:accessCondition> </mods:mods> 
+
+looking at 0015_000066_000200_0000.xml
+NOT CAPTURED YET:
+<?xml version="1.0" encoding="UTF-8" ?> <mods:mods xmlns:mods="http://www.loc.gov/mods/v3" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.loc.gov/mods/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-2.xsd" ID="MODS" version="3.2">                    <mods:identifier type="uri">http://idserver.utk.edu/?id=200700000002683</mods:identifier>   <mods:accessCondition type="useAndReproduction">For current rights information, please visit: http://idserver.utk.edu/?id=200600000001200</mods:accessCondition> </mods:mods> 
+
+
+looking at 0015_000066_000201_0000.xml
+NOT CAPTURED YET:
+<?xml version="1.0" encoding="UTF-8" ?> <mods:mods xmlns:mods="http://www.loc.gov/mods/v3" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.loc.gov/mods/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-2.xsd" ID="MODS" version="3.2">                    <mods:identifier type="uri">http://idserver.utk.edu/?id=200700000002684</mods:identifier>   <mods:accessCondition type="useAndReproduction">For current rights information, please visit: http://idserver.utk.edu/?id=200600000001200</mods:accessCondition> </mods:mods> 
+
+looking at 0015_000066_000202_0000.xml
+NOT CAPTURED YET:
+<?xml version="1.0" encoding="UTF-8" ?> <mods:mods xmlns:mods="http://www.loc.gov/mods/v3" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.loc.gov/mods/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-2.xsd" ID="MODS" version="3.2">                    <mods:identifier type="uri">http://idserver.utk.edu/?id=200700000002685</mods:identifier>   <mods:accessCondition type="useAndReproduction">For current rights information, please visit: http://idserver.utk.edu/?id=200600000001200</mods:accessCondition> </mods:mods> 
+
+looking at 0015_000066_000203_0000.xml
+NEWFILE:  0015_000066_000203_0000
+NOT CAPTURED YET:
+<?xml version="1.0" encoding="UTF-8" ?> <mods:mods xmlns:mods="http://www.loc.gov/mods/v3" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.loc.gov/mods/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-2.xsd" ID="MODS" version="3.2">                    <mods:identifier type="uri">http://idserver.utk.edu/?id=200800000001397</mods:identifier>   <mods:accessCondition type="useAndReproduction">For current rights information, please visit: http://idserver.utk.edu/?id=200600000001200</mods:accessCondition> </mods:mods> 
+
+[root@diglib2 singles]# 
+-----------------------------------------------------------------
+directories after running script
+
+[root@diglib2 singles]# ls ic
+0015_000066_000200_0000  0015_000066_000202_0000  0015_000066_000204_0000
+0015_000066_000201_0000  0015_000066_000203_0000
+[root@diglib2 singles]# ls modsbib
+0015_000066_000200_0000  0015_000066_000202_0000  0015_000066_000204_0000
+0015_000066_000201_0000  0015_000066_000203_0000
+[root@diglib2 singles]# ls newmods
+0015_000066_000200_0000.xml  0015_000066_000202_0000.xml  0015_000066_000204_0000.xml
+0015_000066_000201_0000.xml  0015_000066_000203_0000.xml
+[root@diglib2 singles]# ls search
+0015_000066_000200_0000  0015_000066_000202_0000  0015_000066_000204_0000
+0015_000066_000201_0000  0015_000066_000203_0000
+[root@diglib2 singles]# 
+----------------------------------------------------------------------
+
+=========================================================
+remount server
+[root@diglib2 d1]# mnt-store1-area2
+[root@diglib2 d1]# ls store1-area2
+existenceCheck  PROJECTS  spcoll         temp         test-root       vasser     wil_video
+lost_found      sermons   TDH_work_area  test-diglib  Total_YRB_Proj  volvoices
+[root@diglib2 d1]# 
+then back to work
+[root@diglib2 telfiles]# pwd
+/d1/workarea/dlxs/telfiles
+
+============================================================
+check checkme for "ERROR" --------------------modsICsearchOai > checkme
+grep % mods/*
+grep x0 ic/* (hexes which must be changed to entities in /d1/dlxs/misc/sgml/image.dtd
+
+cat vvzHeader ic/* done/ic/* footer > ic.vvz.unnorm.sgm --------------overwriting old, olddata in done
+
+
+cp ic.vvz.unnorm.sgm /d1/dlxs/prep/v/vvz/. --------------------copy overwrite existing file in prep dir UNNORM
+rm /d1/dlxs/prep/v/vvz/ic.vvz.norm.sgm ------------------------remove norm
+cp thumbs/* /d1/dlxs/img/v/vvz/thumb/
+cp jpegs/* /d1/dlxs/img/v/vvz/large/
+  do image class setup
+
+separate out the newmods from institution 0012 and put in spc directory.
+/bin/mv newmods/0012* spc/mods/.
+
+for bib class:
+/bin/mv  modsbib/0012* spc/modsbib/.
+/bin/cp modsbib/* /d1/workarea/dlxs/bib/mods/vv/xml
+
+
+for search:
+/bin/cp search/0012* spc/modssearch/.
+/bin/cp search/* /d1/workarea/dlxs/bib/search/vv/xml/
+
+You will go there to put all the search and mods files from different directories up.
+scp minithumbs/* diglib@diglib.lib.utk.edu:/d1/dlxs/web/thumbs/vv/.
+(need these for search display)
+
+AFTER COMPLETING ALL COLLECTIONS from this pickup, go to /d1/workarea/telfiles
+and run "listfiles" and send Cricket the resulting list.  It runs off the newmods
+directory.  This must be done BEFORE moving the newmods to spc/mods.
+
+run fixSubjects
+
+do NOT run infotrack on these yet, as we need to relate them to their EADs,
+and alter them for crosslinking.
+
+hopefully you have all new dlc files in one directory alone.
+point infotrack at this directory and run it, to put info on files into
+InfoTrack database.  then copy new stuff to store1.
+
+

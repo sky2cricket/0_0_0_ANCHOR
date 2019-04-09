@@ -1,0 +1,684 @@
+<!DOCTYPE HTML PUBLIC "-//SoftQuad Software//DTD XMetaL 2.0::19990601::extensions to HTML 4.0//EN">
+<html>
+  <head>
+	 <title>Findaid Class Collection Implementation</title>
+	 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+	 <link rel="stylesheet" href="../styles.css" type="TEXT/CSS">
+    <style type="text/css">
+<!--
+body {
+	margin-left: 10px;
+	margin-top: 5px;
+	margin-right: 10px;
+	margin-bottom: 5px;
+}
+-->
+</style>
+  </head>
+
+  <body bgcolor="#ffffcc" class="mainpalette">
+
+   <p>&nbsp;
+   </p>
+   <h1><a name="top"></a>Findaid Class Collection Implementation</h1>
+	 <h2> <a href="../index.html">DLXS Workshop</a></h2>
+	 <h4><em><a href="../index.html">NOTE: this is information is copied from
+	 the August, 2004 workshop. What is here is still relevant
+	 even in Release 12, after the move to XSLT filtering</a>.</em></h4>
+	 <p>Findaid Class Instructors: <b>Chris Powell, Alan Pagliere, with <a href="http://www.umich.edu/%7Ebhl/bhl/general/bhlstaff.htm" target="external">Greg Kinney</a>     </b>(of the <a href="http://www.umich.edu/~bhl/" target="external">Bentley Historical
+	       Library</a>) </p>
+	 <p>This portion of the DLXS Workshop focuses on
+		implementing a collection in the Findaid Class. It is organized as a hands-on
+		lesson, with the entire process outlined in detail. All of the steps are
+		included so that it can be repeated or used as a guide later. </p>
+	 <p><span class="sectionheader"><i>More
+		   general documentation: </i><a href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/findaid/index.html"
+		  target="external">Findaid Class</a><a href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/findaid/fc-pis.html"
+		  target="external"></a></span></p>
+	 <hr align="left" noshade="NOSHADE" width="100%">
+	 <ul>
+		<li> <a href="#FindaidEncodingPractices">Findaid Class Encoding Practices and
+		      Processes</a>
+		  <ul>
+			 <li> <a href="#ead2002DTDOverview">EAD 2002
+				DTD Overview</a></li>
+
+			 <li><a href="#PracticalEADEncodingIssues">Practical EAD Encoding Issues</a></li>
+			 <li><a href="#DataPrep">Data Preparation</a></li>
+	       </ul> 
+	    </li>
+	    <li><a href="#FindaidClassIndexBuildingwithXPAT">Findaid Class Index Building
+		        with XPAT</a>
+           <ul>
+	                  <li><a href="#SetupDirectoriesforXPATIndex">Set Up Directories
+	                        and Files for XPAT Indexing</a> </li>
+	                  <li><a href="#BuildtheXPATIndex">Build the XPAT Index</a> </li>
+	                  <li><a href="#FabRegions">Fabricated Regions in FindaidClass</a></li>
+           </ul>
+        </li>
+	    <li><a href="#FindaidClassCollectiontoWeb">Findaid Class Collection to Web</a>
+      
+           <ul>
+		                       <li><a href="#ReviewtheCollectionDatabaseEntrywithCollMgr">Review
+			                         the Collection Database Entry with CollMgr </a> </li>
+		                       <li><a href="#ReviewtheGroupsDatabaseEntrywithCollMgr">Review
+		                             the Groups Database Entry with CollMgr</a> </li>
+		                       <li><a href="#MakeCollectionmaps">Make Collection Map</a> </li>
+		                       <li><a href="#SetuptheCollectionsWebDirectory">Set Up
+		                             the Collection's Web Directory</a> </li>
+		                       <li><a href="#TryItOut">Try It Out</a> </li>
+           </ul>
+        </li>
+	    <li><a href="#linking">Linking from Finding Aids Using the ID Resolver</a>
+
+
+        </li>
+	 </ul>
+	 <h2 class="partheader"><a name="FindaidEncodingPractices" id="FindaidEncodingPractices"></a>Findaid Class Encoding Practices and Processes</h2>
+	 <p align="right" class="navlink"> <a
+		href="#Top">go to table of contents</a> </p>
+	 <p> In Findaid Class Encoding Practices and Processes we discuss the elements
+		and attributes required for "out of the box" Findaid Class delivery, preparing the work environment and validating the data, and linking
+		from finding aids using DAOs. Greg Kinney,  Associate
+		Archivist, <a href="http://www.umich.edu/~bhl" target="external">Bentley
+		Historical Library</a>, will give a short presentation on the Bentley Library's
+		encoding practices from the point of view of the Library's interpretation
+		of the <a href="http://www.loc.gov/ead/" target="external">EAD 2002 DTD</a> along
+		with a description of the specific tools and workflow used to create
+		the XML encoded finding aids files.</p>
+	 <hr align="left" noshade="NOSHADE" width="100%">
+	 <h3 class="sectionheader"><a name="ead2002DTDOverview"></a>EAD 2002 DTD
+		Overview </h3>
+	 <p>It is assumed that your Finding Aids have been encoded in the XML-based <a href="http://www.loc.gov/ead/" target="external">EAD 2002
+     DTD</a>. More specific DTD topics can be found at: <a href="http://www.loc.gov/ead/tglib/index.html" target="external">http://www.loc.gov/ead/tglib/index.html</a>.</p>
+	 <p>DLPS does not have any preferred methods or quick and easy tools for this stage of the process. Only you, looking at your
+	    texts and your encoding practices, can do the intellectual work required
+	    to encode your finding aids in XML using the EAD 2002 DTD. Greg Kinney
+	    will discuss how the <a href="http://www.umich.edu/~bhl" target="external">University of
+	    Michigan's Bentley Historical Library</a> handles this process.</p>
+	 <hr align="left" noshade="NOSHADE" width="100%">
+	 <h3 class="sectionheader"> <a name="PracticalEADEncodingIssues"></a>Practical
+	 EAD Encoding Issues </h3>
+	<p>There are, however, two areas of practice that can have an effect on your online collection that are outside of hands-on encoding or conversion of word processed finding aids.  One is the use of IDs as attributes on elements.  I want to make it clear that we are NOT talking about the <span class="unixcommand">eadid</span> here, but refer to IDs used to identify the element so that it can be referred to, or referenced from, somewhere else.  You no doubt all know that each ID within a document must be unique (and the DTD enforces this).  However, you may not have thought about the consequences of joining all your finding aids into one collection.  Your IDs will need to be unique across the entire collection.  One way to ensure this is to prefix ID values with the eadid for a given document.  At this time, there is no functionality in DLXS that requires you to have IDs on any elements, but you may have used them for your own internal purposes.  We have run into this ourselves and I just wanted to give everyone a heads-up, on the theory that our problems are fairly typical.</p>
+	<p>Another issue that you might run into, especially if you are migrating finding
+	   aids from SGML EAD 1.0 to XML EAD 2002, is that of handling special characters.
+	   If you are authoring finding aids in multiple languages in XML using some
+	   XML authoring tool, this is unlikely to be a problem for you -- you are
+	   aware of the issues, UTF-8 is the default encoding for XML, you will have
+	   no problems. You'll just want to make sure to index with the <a href="../unicode/unicode.html">UTF-8
+	   enabled version of XPAT, as was discussed earlier</a>. If you have finding
+	   aids with multiple languages and/or special characters, you've probably
+	   thought this through already. However, if you have the occasionally e
+	   acute (&eacute;)
+	   in your SGML finding aid, you'll need to think about what you want to
+	   do with these characters. A straight converstion from SGML to XML will
+	   probably convert your character entities (for example, <span class="unixcommand">&amp;eacute;</span>)
+	   in your files to numeric entities (for example, <span class="unixcommand">&amp;#233;</span>).
+	   While this is valid, it will present a problem with regard to searching.
+	   XPAT will treat this as a string of characters, and in order to search
+	   for bless&eacute;d, you would need
+	   to key in bless&amp;#233;d.
+	   If all your special characters are ISO Latin 1, you can convert them to
+	   their 8-bit equivalents and index as usual. If you have a mixture, UTF-8
+	   is the way to go. Again, this is merely a heads up that will have no
+	   bearing on the sample finding aids, which were chosen for their size and
+	   linking behaviors, and which are sadly conventional in their use of character
+	   entities (ampersand only, in fact).</p>
+	 <hr align="left" noshade="NOSHADE" width="100%"> <h3 class="sectionheader"> <a name="DataPrep"></a>Data
+	 Preparation </h3>
+	 <p>For today, we are going to be working with some
+		texts that are already in Findaid Class. We will
+	    be building them into a collection we are going to call <b>workshopfa</b>.</p>
+	 <p>This documentation will make use of the concept of
+		the <span class="unixcommand">$<a href="../overview/dirstructure.html">DLXSROOT</a></span>, which is the place at which
+		your DLXS directory structure starts. We generally use <span class="unixcommand">/l1/</span>,
+		but for the workshop, we each have our own
+		<span class="unixcommand">$DLXSROOT</span> in the form of <span class="unixcommand">/l1/workshop/userX/dlxs/</span>.
+		To check your <span class="unixcommand">$DLXSROOT</span>, type
+		the following commands at the command prompt: </p>
+	 <blockquote>	 <pre class="unixcommand">cd $DLXSROOT<br>pwd</pre>
+  </blockquote>
+<p>The <span class="unixcommand">prep</span> directory under <span class="unixcommand">$DLXSROOT</span> is
+	    the space for you to take your encoded finding aids and &quot;package them
+	    up&quot; for use with the DLXS middleware. Create your basic directory <span class="unixcommand">$DLXSROOT/prep/w/workshopfa</span> and its <span class="unixcommand">data</span> subdirectory with the following command: </p>
+			 <blockquote>
+				<pre class="unixcommand">mkdir -p $DLXSROOT/prep/w/workshopfa/data</pre></blockquote>
+
+	    <p>Move into the <span class="unixcommand">prep</span> directory
+	    with the following command:
+  </p>
+	 <blockquote> <pre class="unixcommand">cd $DLXSROOT/prep/w/workshopfa</pre></blockquote>
+	 <p>This will be your staging area for all the things
+		you will be doing to your texts, and ultimately to your collection. At present,
+		all it contains is the <span class="unixcommand">data</span> subdirectory you created a moment ago. We will be
+		populating it further over the course of the next two days. Unlike the contents
+		of other collection-specific directories, everything in <span class="unixcommand">prep</span> should be ultimately expendable in the
+		production environment.</p>
+	 <p>Copy the necessary files into your <span class="unixcommand">data</span> directory
+		with the following commands:</p>
+	<blockquote> <pre class="unixcommand">cp $DLXSROOT/prep/s/samplefa/data/*.xml $DLXSROOT/prep/w/workshopfa/data/.</pre></blockquote>
+
+	<p>We'll also need a few files to get us started working.  They will need to be copied over as well, and also have paths adapted and collection identifiers changed.  Follow these commands:</p>
+
+<blockquote> <pre class="unixcommand">cp $DLXSROOT/prep/s/samplefa/validateeach.csh $DLXSROOT/prep/w/workshopfa/.</pre></blockquote>
+
+<blockquote> <pre class="unixcommand">cp $DLXSROOT/prep/s/samplefa/samplefa.text.inp $DLXSROOT/prep/w/workshopfa/workshopfa.text.inp</pre></blockquote>
+<blockquote> <pre class="unixcommand">cp $DLXSROOT/prep/s/samplefa/samplefa.inp $DLXSROOT/prep/w/workshopfa/workshopfa.inp</pre></blockquote>
+
+<blockquote><pre class="unixcommand">mkdir -p $DLXSROOT/obj/w/workshopfa</pre></blockquote>
+<blockquote><pre class="unixcommand">mkdir -p $DLXSROOT/bin/w/workshopfa</pre></blockquote>
+<blockquote> <pre class="unixcommand">cp $DLXSROOT/bin/s/samplefa/preparedocs.pl $DLXSROOT/bin/w/workshopfa/.</pre></blockquote>
+<blockquote> <pre class="unixcommand">cp $DLXSROOT/bin/s/samplefa/validate.pl $DLXSROOT/bin/w/workshopfa/.</pre></blockquote>
+
+<p>Now you'll need to edit these files to ensure that the paths match your <span class="unixcommand">$DLXSROOT</span> and that the collection name is <em>workshopfa</em> instead of <em>samplefa</em>.</p>
+
+	 <p>With the ready-to-go ead2002 encoded finding aids files in the <span class="unixcommand">data</span> directory,
+	    we are ready to begin the preparation process. This will include:</p>
+	 <ol>
+	 <li><a href="#DataPrepStep1">validating the  files individually</a> against
+	    the EAD <em>2002</em> DTD</li>
+	 <li><a href="#DataPrepStep2">concatenating the files into one larger XML file</a></li>
+	 <li><a href="#DataPrepStep3">validating the concatenated file</a> against the
+	    <em>dlxsead2002</em> DTD</li>
+  </ol>
+	 <p>These steps are generally handled via the <span class="unixcommand">Makefile</span> in <span class="unixcommand">$DLXSROOT/bin/s/samplefa</span> but
+	    during this workshop we will run through the steps &quot;manually.&quot; To
+	    see the Makefile and how it is used, <a href="makefile.html">click here</a>.</p>
+	 <hr width="75%">
+	 <p><a name="DataPrepStep1"></a><strong>Step 1: Validating the
+        files individually against the EAD 2002 DTD</strong></p>
+	 <blockquote><pre class="unixcommand">cd $DLXSROOT/prep/w/workshopfa
+./validateeach.csh</pre></blockquote>
+	 <p>What's happening: The script creates a temporary file without the public DOCTYPE declaration, runs <span class="unixcommand">onsgmls</span> on each of the resulting XML files in the <span class="unixcommand">data</span> subdirectory
+	    to make sure they conform with the EAD 2002 DTD. If validation errors
+	    occur, error files will be in the <span class="unixcommand">data</span> subdirectory with the same name as the
+	    finding aids file but with an extension of <span class="unixcommand">.err</span>.
+	    You fix the problems in the source XML files and re-run.</p>
+
+	 <p>There are not likely to be any errors with the
+		<b>workshopfa</b> data, but tell the instructor if there are. </p>
+	 <hr width="75%">
+	 <p><a name="DataPrepStep2" id="DataPrepStep2"></a><strong>Step 2: Concatentating the
+	    files into one larger XML file	</strong> <blockquote><pre class="unixcommand">cd $DLXSROOT/bin/w/workshopfa
+./preparedocs.pl $DLXSROOT/prep/w/workshopfa/data $DLXSROOT/obj/w/workshopfa/workshopfa.xml $DLXSROOT/prep/w/workshopfa/logfile.txt</pre></blockquote>
+	 <p>The Perl script finds all XML files in the <span class="unixcommand">data</span> subdirectory,
+	    checks the encoding type, removes the XML and DOCTYPE declarations, and
+	    then proceeds to add a prefix string to DAO links, removes empty <span class="unixcommand">persname</span>, <span class="unixcommand">corpname</span>,
+	    and <span class="unixcommand">famname</span> elements, and then concatenates
+	    the files and wraps them with a collection (<span class="unixcommand">&lt;COLL&gt;</span>) element.</p>
+	 <p>If your collections need to be transformed in any way, or if you do not want the transformations to take place (the DAO changes, for example), edit this file to
+	    effect the changes.</p>
+	 <p>The output of this will be the one collection named xml file which is deposited
+	    into the <span class="unixcommand">obj</span> subdirectory. </p>
+	 <hr width="75%">
+	 <p><a name="DataPrepStep3" id="DataPrepStep3"></a><strong>Step 3: Validating
+     the concatenated file against the dlxsead2002 DTD</strong> </p>
+	 <blockquote>
+	 <pre class="unixcommand">onsgmls -s -f $DLXSROOT/prep/w/workshopfa/workshopfa.errors $DLXSROOT/misc/sgml/xml.dcl $DLXSROOT/prep/w/workshopfa/workshopfa.inp $DLXSROOT/obj/w/workshopfa/workshopfa.xml</pre>  </blockquote>
+  	 <p>The <em>dlxsead2002</em> DTD is exactly the same as the <em>EAD2002</em> DTD, but adds
+  	    a wrapping element, <span class="unixcommand">&lt;COLL&gt;</span>, to be able to combine more than one
+  	    <span class="unixcommand">ead</span> element, more than one finding aid, into one file. The larger file
+  	    will be indexed with XPAT tomorrow. It is, of course, a good idea to
+  	    validate the file now before going further.</p>
+  	 <p>If there is an error, the file <span class="unixcommand">$DLXSROOT/prep/w/workshopfa/workshopfa.errors</span> will be
+  	    present and contain messages about the invalidities found. </p>
+	 <blockquote>&nbsp;</blockquote>
+	 	 <h3 class="sectionheader"> <i>More Documentation</i> </h3>
+	 	 <ul>
+	 		<li><a target="external"
+	 		  href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/findaid/findaid-dtd.html">The
+	 		      Findaid Class DTD</a></li>
+	 		<li><a target="external"
+	 		  href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/findaid/findaid-prep.html">Preparation
+	 		      for Index Building (Finding Aids)</a></li>
+         </ul>
+
+	     <p>&nbsp;</p>
+	     <h2 class="partheader"><span class="dayheader"><a
+		name="FindaidClassIndexBuildingwithXPAT"> </a></span>Findaid Class Index Building with XPAT</h2>
+	 <p align="right" class="navlink">
+		<a href="#Top">go to table of contents</a> </p>
+	 <p>In this section the <b>workshopfa</b> XML will be indexed with the XPAT search engine, preparing it for use with the DLXS middleware.</p>
+<hr align="left" noshade="NOSHADE" width="100%">
+	 <h3 class="sectionheader"><a name="SetupDirectoriesforXPATIndex"> </a>Set
+		Up Directories and Files for XPAT Indexing </h3>
+	<p>Yesterday, we did what we needed to do with our
+		materials "by hand" -- today, we will work with the materials packaged in the
+		<b>samplefa</b> collection and adapt them for use with <b>workshopfa</b>. This
+		should parallel what you'll be doing back at your institutions. First, we need
+		to create the rest of the directories in the <b>workshopfa</b> environment with
+		the following commands: </p>
+		<blockquote>
+				<pre class="unixcommand">mkdir -p $DLXSROOT/idx/w/workshopfa</pre></blockquote>
+<p>The <span class="unixcommand">bin</span> directory we created yesterday holds any scripts or tools used for the collection specifically; <span class="unixcommand">obj</span> (again, created yesterday) holds the "object" or XML file for the collection, and <span class="unixcommand">idx</span> holds the XPAT indexes. Now we need to finish populating the directories.</p>
+<blockquote>
+		<pre class="unixcommand">cp $DLXSROOT/bin/s/samplefa/Makefile $DLXSROOT/bin/w/workshopfa/Makefile<br>cp $DLXSROOT/prep/s/samplefa/samplefa.blank.dd $DLXSROOT/prep/w/workshopfa/workshopfa.blank.dd<br>cp $DLXSROOT/prep/s/samplefa/samplefa.extra.srch $DLXSROOT/prep/w/workshopfa/workshopfa.extra.srch</pre></blockquote>
+	 <p class="mainpalette">Each of these files need to be edited to reflect the
+		new collection name and the paths to your particular directories. This will be
+		true when you use these at your home institution as well, even if you use the
+		same directory architecture as we do, because they will always need to reflect
+		the unique name of each collection. Failure to change even one file can result in
+		puzzling errors, because the scripts <i>are</i> working, just not necessarily
+		in the directories you are looking at.</p>
+	 <hr align="left" noshade="NOSHADE" width="100%">
+	 <h3 class="sectionheader"> <a name="BuildtheXPATIndex"> </a>Build the XPAT
+		Index </h3>
+	 <p class="mainpalette">Everything is now set up to build the XPAT index.
+		The <span class="unixcommand">Makefile</span> in the <span class="unixcommand">bin</span> directory contains the commands necessary to build the
+		index, and can be executed easily.</p>
+	 <p class="mainpalette">To create an index for use with the Findaid Class
+		interface, you will need to index the words in the collection, then index
+	    the XML (the structural metadata, if you will), and then finally "fabricate"
+		structures based on a combination of elements (for example, defining
+		who the
+		"main author" of a finding aid is, without adding a <span class="unixcommand">&lt;mainauthor&gt;</span> tag
+		around the appropriate
+		<span class="unixcommand">&lt;author&gt;</span> in the <span class="unixcommand">eadheader</span> element).
+		The following commands can be used to make the index, alone or in combination.
+		We will be using <span class="unixcommand">make singledd</span>, <span class="unixcommand">make
+		xml</span>, and <span class="unixcommand">make post</span>.</p>
+	 <p class="mainpalette"><em><strong>Aside</strong>: note that the Makefile also
+	       contains targets for the commands you entered &quot;by hand&quot; above
+        to validate and prepare the data. Read more about the <a href="makefile.html">Makefile</a>.</em></p>
+	 <p class="mainpalette"><b>make singledd</b> indexes words for texts that
+		have been concatenated into on large file for a collection. This is the
+		recommended process. </p>
+		<p class="mainpalette"><b>make sgml</b> indexes the SGML structure by
+				reading the DTD. Validates as it indexes. Slower than mutlirgn
+		   indexing (see below) for this reason. However, necessary for collections
+		   that have nested elements of the same name. </p>
+	    <p class="mainpalette"><b>make xml</b> indexes the XML structure by
+		reading the DTD. Validates as it indexes. Slower than multirgn indexing
+	       (see below) for this reason. However, necessary for collections that
+	       have nested elements of the same name. </p>
+	    <p class="mainpalette"><b>make multi</b> (multiregion structure indexing)
+		indexes the XML structure and relies on a "tags file" (included in the sample
+		collection) to know what XML elements and attributes to index. Rarely used
+		with fully-encoded collections because of the nesting problem
+		mentioned above. </p>
+	 <p class="mainpalette"><b>make mfsdd</b> (multi-file system indexing)
+		indexes words and structure for each XML text listed in the data dictionary
+		(dd) individually. Seems like a good idea -- no redundant copies of files! --
+		but searching is slower than an index built of concatenated files. Also, if any
+		one of the files referenced changes in any way, the entire index fails. We no
+		longer use MFS indexes ourselves for this reason. </p>
+	 <p class="mainpalette"><b>make post</b> builds and indexes fabricated
+		regions based on the XPAT queries stored in the workshopfa.extra.srch file.</p>
+		<blockquote>
+				<pre class="unixcommand">make singledd</pre></blockquote>
+			 <blockquote>
+		<pre>cp /l1/workshop/test02/dlxs/prep/w/workshopfa/workshopfa.blank.dd
+	/l1/workshop/test02/dlxs/idx/w/workshopfa/workshopfa.dd
+/l/local/xpat/bin/xpatbld -m 256m -D /l1/workshop/test02/dlxs/idx/w/workshopfa/workshopfa.dd
+cp /l1/workshop/test02/dlxs/idx/w/workshopfa/workshopfa.dd
+	/l1/workshop/test02/dlxs/prep/w/workshopfa/workshopfa.presgml.dd</pre></blockquote>
+<blockquote>
+		<pre class="unixcommand">make xml</pre></blockquote>
+	 <blockquote>
+		<pre>cp /l1/workshop/test02/dlxs/prep/w/workshopfa/workshopfa.presgml.dd
+	/l1/workshop/test02/dlxs/idx/w/workshopfa/workshopfa.dd
+/l/local/xpat/bin/xmlrgn -D /l1/workshop/test02/dlxs/idx/w/workshopfa/workshopfa.dd
+	/l1/workshop/test02/dlxs/misc/sgml/xml.dcl
+	/l1/workshop/test02/dlxs/prep/w/workshopfa/workshopfa.inp
+	/l1/workshop/test02/dlxs/obj/w/workshopfa/workshopfa.xml
+
+cp /l1/workshop/test02/dlxs/idx/w/workshopfa/workshopfa.dd
+	/l1/workshop/test02/dlxs/idx/w/workshopfa/workshopfa.prepost.dd</pre></blockquote>
+<blockquote>
+		<pre class="unixcommand">make post</pre></blockquote>
+	 <blockquote>
+		<pre>cp /l1/workshop/test02/dlxs/prep/w/workshopfa/workshopfa.prepost.dd
+	/l1/workshop/test02/dlxs/idx/w/workshopfa/workshopfa.dd
+touch /l1/workshop/test02/dlxs/idx/w/workshopfa/workshopfa.init
+/l/local/xpat/bin/xpat -q /l1/workshop/test02/dlxs/idx/w/workshopfa/workshopfa.dd
+	< /l1/workshop/test02/dlxs/prep/w/workshopfa/workshopfa.extra.srch
+	| /l1/workshop/test02/dlxs/bin/t/text/output.dd.frag.pl
+	/l1/workshop/test02/dlxs/idx/w/workshopfa/
+	> /l1/workshop/test02/dlxs/prep/w/workshopfa/workshopfa.extra.dd
+/l1/workshop/test02/dlxs/bin/t/text/inc.extra.dd.pl
+	/l1/workshop/test02/dlxs/prep/w/workshopfa/workshopfa.extra.dd
+	/l1/workshop/test02/dlxs/idx/w/workshopfa/workshopfa.dd</pre></blockquote>
+
+<hr width="75%"><h3 class="sectionheader"><a name="FabRegions" id="FabRegions"> </a>Fabricated
+		Regions in FindaidClass </h3>
+		<p class="sectionheader">The post step above leads us into a discussion of
+		   the use of <strong>fabricated regions</strong> in FindaidClass. uses the
+		   <span class="unixcommand">workshopfa.extra.srch</span> file to add to the XPAT index. The Makefile
+		   in the bin directory conta</p>
+
+   <p>&quot;Fabricated&quot; is a term we use to describe what are essentially
+      virtual regions in an XPat indexed text. See a <a href="../xpat/fabregions.html">basic
+      description of what a fabricated region is and how they are created</a>. </p>
+   <p>In Finding Aids, we use fabricated regions for certain uninteresting regions
+      simply so that some code can be shared. For example, the fabricated region
+      &quot;main&quot; is set to refer to <span class="unixcommand">&lt;ead&gt;</span> in FindaidClass with:</p>
+   <pre class="unixcommand">(region ead); {exportfile "/l1/idx/b/bhlead/main.rgn"}; export; ~sync "main";
+</pre>
+   <p>whereas in TextClass
+         &quot;main&quot; can refer to <span class="unixcommand">&lt;TEXT&gt;</span>. Therfore, both FindaidClass
+         and TextClass can share the Perl code, in a higher level subclass, that
+         creates searches for &quot;main&quot;. </p>
+   <p>More interesting and more specific to FindaidClass are some of those listed
+      below, which are taken from the Bentley Historical Library's <span class="unixcommand">bhl.extra.srch</span> file.
+      (See the whole file <a href="bhl.extra.srch.txt">here</a>). You can see
+      the creation of generic regions like &quot;c0xhead&quot;, everything from a <span class="unixcommand">&lt;c0x&gt;</span>      open
+      tag to the following closing <span class="unixcommand">&lt;/did&gt;</span> tag. </p>
+   <p>Another interesting fabricated region is the add. This used to be <span class="unixcommand">&lt;ADD&gt;</span>      in
+      the EAD 1.0 DTD, but now, is created based on the ead2002 DTD's <span class="unixcommand">&lt;descgrp&gt;</span>      tag which contains a <span class="unixcommand">type</span> attribute of <span class="unixcommand">add</span>. </p>
+   <p>One of the main reasons these are used is in the creation and display of
+      the &quot;outline&quot; view. The <span class="unixcommand">FindaidClass.pm</span>'s
+      <span class="unixcommand">_initialize</span> method sets a hash called
+      &quot;tocheads&quot; whose elements correspond to most of these fabricated regions.
+      In this way, the CGI can have a shorthand way of asking XPAT to return
+      these regions, XPAT can have binary indexes ready to use for fast retrieval.</p>
+   <hr width="75%">
+   
+  <pre class="unixcommand">(((region "&lt;c01".."&lt;/did>" + region "&lt;c02".."&lt;/did>" +
+  region "&lt;c03".."&lt;/did>" +
+    region "&lt;c04".."&lt;/did>" + region "&lt;c05".."&lt;/did>" + region "&lt;c06".."&lt;/did>" +
+    region "&lt;c07".."&lt;/did>" + region "&lt;c08".."&lt;/did>" + region "&lt;c09".."&lt;/did>")
+    not incl ("level=file" + "level=item")) incl "level="); {exportfile "/l1/idx/b/bhlead/c0xhead.rgn"};
+    export; ~sync "c0xhead";
+	
+((region "&lt;origination".."&lt;/unittitle>") within ((region did within region
+    archdesc) not within region dsc)); {exportfile "/l1/idx/b/bhlead/maintitle.rgn"};
+    export; ~sync "maintitle";
+
+(region "abstract" within ((region did within region archdesc) not within region "c01"));
+    {exportfile "/l1/idx/b/bhlead/mainabstract.rgn"}; export; ~sync "mainabstract";
+	
+(region "eadid"); {exportfile "/l1/idx/b/bhlead/callnum.rgn"}; export; ~sync "callnum";
+
+(region "dsc-T"); {exportfile "/l1/idx/b/bhlead/contentslist-t.rgn"}; export;
+~sync "contentslist-t";
+
+(region dsc); {exportfile "/l1/idx/b/bhlead/contentslist.rgn"}; export; ~sync "contentslist";
+
+admininfot = (region "descgrp-T" incl (region "A-type" incl "admin")); 
+	{exportfile "/l1/idx/b/bhlead/admininfo-t.rgn"};
+	export; ~sync "admininfo-t";
+
+(region "descgrp" incl *admininfot); {exportfile "/l1/idx/b/bhlead/admininfo.rgn"};
+	export; ~sync "admininfo";
+
+addt = (region "descgrp-T" incl (region "A-type" incl "add")); 
+	{exportfile "/l1/idx/b/bhlead/add-t.rgn"};
+	export; ~sync "add-t";
+
+(region "descgrp" incl *addt); {exportfile "/l1/idx/b/bhlead/add.rgn"}; export;
+	~sync "add";
+
+region "controlaccess-T" ^ region "controlaccess"; 
+	{exportfile "/l1/idx/b/bhlead/controlaccess-t.rgn"};
+	export; ~sync "controlaccess-t";
+
+(region "controlaccess"); {exportfile "/l1/idx/b/bhlead/controlaccess.rgn"};
+	export; ~sync "controlaccess";
+
+(region "subject" + region "occupation" + region "corpname" + region "famname" +
+	region "name" + region "persname" + region "geogname"); 
+	{exportfile "/l1/idx/b/bhlead/subjects.rgn"};
+	export; ~sync "subjects";
+
+(region "corpname" + region "famname" + region "name" + region "persname"); 
+	{exportfile "/l1/idx/b/bhlead/names.rgn"};
+	export; ~sync "names";
+
+(region geogname); {exportfile "/l1/idx/b/bhlead/places.rgn"}; export; ~sync "places";
+</pre>
+
+  <p>See a <a href="bhl.extra.srch.txt" target="example">full listing of the <span class="unixcommand">extra.srch</span> file
+     of the Bentley Historical Library's finding aids</a>.</p>
+  <hr width="75%">
+
+	 <h3 class="sectionheader"> <i>More Documentation</i></h3>
+	 <ul>
+		<li><a target="external" href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/findaid/findaid-indexing.html">Indexing
+		  the Collection</a></li>
+		<li><a target="external" href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/findaid/findaid-fabrgn.html">Fabricated regions in Findaid Class</a></li>
+  </ul>
+	 <p>&nbsp;</p>
+	 <h2 class="partheader"><a
+		name="FindaidClassCollectiontoWeb"> </a>Findaid Class Collection to Web</h2>
+	 <p align="right" class="navlink"> <a
+		href="#Top">go to table of contents</a> </p>
+	 <p>These are the final steps in deploying an Findaid Class
+		collection online. Here the <b>Collection Manager</b> will be used to review
+		the <b>Collection Database</b> entry for <b>workshopfa</b> . The <b>Collection
+		Manager</b> will also be used to check the <b>Group Database</b>. Finally, we
+		need to work with the collection map and the set up the collection's web
+		directory.</p><hr align="left" noshade="NOSHADE" width="100%">
+	 <h3 class="sectionheader"><a
+		name="ReviewtheCollectionDatabaseEntrywithCollMgr"> </a>Review the Collection
+		Database Entry with CollMgr </h3>
+	 <p>Each collection has a record in the collection
+		database that holds collection specific configurations for the middleware.
+		CollMgr (Collection Manager) is a web based interface to the collection
+		database that provides functionality for editing each collection's record.
+		Collections can be checked-out for editing, checked-in for testing, and
+		released to production.<b>A collection database record for workshopfa has
+		already been created and we will edit it.</b> In general, a new collection
+		needs to have a CollMgr record created from scratch before the middleware can
+		be used. Take a look at the record to become familiar with it.</p>
+	 <p>http://username.ws.umdl.umich.edu/cgi/c/collmgr/collmgr</p>
+
+	 <p>Notice that it thinks it's the <b>samplefa</b>
+		collection. Change references to s/samplefa to w/workshopfa . Let's change the name as
+		well -- remove the reference to Sample DLXS Finding Aids Collection and change it to
+		text:whatever you want to call it.</p>
+	 <h3 class="sectionheader"> <i>More Documentation</i> </h3>
+	 <ul>
+		<li>
+		  <a target="external"
+		  href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/collmeta/collmgr-fields.html">Collection Manager
+		  Field Descriptions</a></li>
+	 </ul><hr align="left" noshade="NOSHADE" width="100%">
+	 <h3 class="sectionheader">
+		<a name="ReviewtheGroupsDatabaseEntrywithCollMgr"></a>Review the Groups
+		Database Entry with CollMgr </h3>
+	 <p>Another function of CollMgr allows the grouping of
+		collections for cross-collection searching. Any number of collection groups may
+		be created for Findaid Class. Findaid Class supports a group with the groupid "all".
+		It is not a requirement that all collections be in this group, though that's
+		the basic idea. Groups are created and modified using CollMgr. <b>For this
+		workshop, the group "all" record has already been edited to include the
+		workshopfa collection.</b> Take a look at the record to become familiar with
+		it.</p>
+	 <p
+	>http://username.ws.umdl.umich.edu/cgi/c/collmgr/collmgr</p>
+
+	 <p>We won't be doing anything with groups; I'm sure you
+		will in Image Class.</p><hr align="left" noshade="NOSHADE" width="100%">
+	 <h3 class="sectionheader"><a name="MakeCollectionmaps"> </a>Make Collection
+		Map </h3>
+	 <p>Collection mapper files exist to identify the
+		regions and operators used by the middleware when interacting with the search
+		forms. Each collection will need one, but most collections can use a fairly
+		standard map file, such as the one in the <b>samplefa</b> collection. The map
+		files for all Findaid Class collections are stored in
+		$DLXSROOT/misc/f/findaid/maps</p>
+	 <p>Map files take language that is used in the forms
+		and translates it into language for the cgi and for XPAT. For example, if you
+		want your users to be able to search within names, you would need to add a
+		mapping for how you want it to appear in the search interface (case is
+		important, as is pluralization!), how the cgi variable would be set (usually
+		all caps, and not stepping on an existing variable), and how XPAT will identify
+		and retrieve this natively (in XPAT search language).</p>
+	 <p>The first part of the map file is operator mapping, for
+		the form, the cgi, and XPAT. The second part is for region mapping, as in the
+		example above. </p>
+	 <blockquote>
+		<pre class="unixcommand">cd $DLXSROOT/misc/f/findaid/maps<br>cp samplefa.map workshopfa.map</pre></blockquote>
+
+	 <p>&nbsp;</p>
+	 <p>You might note that some of the fields that are defined in the map file
+	    correspond to some of the <a href="#FabRegions">fabricated regions</a>.</p>
+	 <h3 class="sectionheader"><i>More Documentation</i> </h3>
+	 <ul>
+		<li>
+		  <a target="external" href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/collmeta/maps.html">DLXS
+		  Map Files</a></li> 
+		<li><a target="external" href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/findaid/findaid-map.html">Collection Map Files (Finding Aids)</a></li>
+	 </ul><hr align="left" noshade="NOSHADE" width="100%">
+	 <h3 class="sectionheader"><a name="SetuptheCollectionsWebDirectory"></a>Set
+		Up the Collection's Web Directory </h3>
+	 <p>Each collection may have a <span class="unixcommand">web</span> directory
+	    with custom Cascading Style Sheets, interface templates, graphics, and
+	    javascript. The default is for a collection to use the web templates
+	    at<span class="unixcommand"> $DLXSROOT/web/f/findaid</span>.
+	    Of course, collection specific templates and other files can be placed
+	    in a collection specific web directory, and it
+	    is necessary if you have any customization at all. <em>DLXS Middleware uses	    <a href="../ui/index.html#fallback">fallback</a> to
+	    find HTML related templates, chunks, graphics, js and css files.</em></p>
+	 <p>For
+	    a minimal collection, you will want three files: <span class="unixcommand">index.html</span>, <span class="unixcommand">home.tpl</span>,
+	    and <span class="unixcommand">FindaidClass-specific.css</span>.
+	    You'll also need a <span class="unixcommand">browse.tpl</span> if you want
+	    the collection to be browseable.</p>
+	 <blockquote>
+		<pre class="unixcommand">mkdir -p $DLXSROOT/web/w/workshopfa<br>cp $DLXSROOT/web/s/samplefa/index.html $DLXSROOT/web/w/workshopfa/index.html<br>cp $DLXSROOT/web/s/samplefa/home.tpl $DLXSROOT/web/w/workshopfa/home.tpl<br>cp $DLXSROOT/web/s/samplefa/findaidclass-specific.css $DLXSROOT/web/w/workshopfa/findaidclass-specific.css</pre>
+</blockquote>
+
+	 <p>As always, we'll need to change the collection name
+		and paths. You might want to change the look radically, if your HTML
+	    skills are up to it.</p>
+
+	 <hr align="left" noshade="NOSHADE" width="100%">
+	 <h3 class="sectionheader"><a name="TryItOut"> </a>Try It Out </h3>
+	 <p class="sectionheader">http://<em>username</em>.ws.umdl.umich.edu/cgi/f/findaid/findaid-idx</p>
+  <h2 class="partheader">Linking from Finding Aids Using the ID Resolver<a
+		name="linking"> </a></h2>
+	 <p align="right" class="navlink"> <a
+		href="#Top">go to table of contents</a> </p>
+	 <p>How do you do this?</p>
+	 <font color="#0000A0">ID Resolver Data Transformation and
+	 Deployment</font></H1>
+
+	 <p>The ID Resolver is a CGI&nbsp;that takes as input a unique
+	 identifier and returns a URI. It is used, for example, by Harper's
+	 Weekly to link the text pages in Text Class&nbsp;middleware to the image
+	 pages in the Image Class middleware, and vice versa.
+
+	 <h2>
+
+	 <hr width="33%" align=left noshade>
+
+	 Master Data</h2>
+
+	 <p>Resolver master is managed in a FileMaker Pro database named
+	 "resolverdata.FP5" which is stored on the HTIWork server.
+	 <p>In order to help keep track of changes to the idresolver database, duplicate the most recent <span class="unixcommand">idresolver</span> folder. Rename the folder to include the current date <b>and your uniqname</b>. Copy the new folder to your local machine and work with it there. When done, be sure to move your copy of the FileMaker file back to the server replacing the folder with your name on it. Finally, remove your name from the folder.</p>
+	 <p>Data should be provided in a tab delimited ascii text file that
+	 has two fields.
+
+	 <ol>
+	    <li>id</li>
+
+	    <li>URI</li>
+	 </ol>
+
+	 <p>Data additions can simply be imported into new records.
+
+
+	 <p>Data updates should in most cases be done for an entire collection
+	 at a time, rather than selectively for records within a collection.
+	 In such a case, it is necessary to delete all of the existing records
+	 for a collection so that duplicate data does not end up in the
+	 system. FileMaker is not good about selectively replacing records.
+
+	 <p>In some cases IDs have been altered to achieve uniqness within the system.
+	    For example, some of the BHL IDs get prefixed with "dao-href-". There are
+	    other situations like this. So, if updating data, be aware.</p>
+
+	 <h2>
+
+	 <hr width="33%" align=left noshade>
+
+	 Export from FileMaker</h2>
+
+	 <ul>
+	    <li>Export from Filemaker the "ID" and "URI" fields as a TAB (tab
+	    delimited ascii text) file (be sure to do a "Find All" first since
+	    FileMaker only export records in the current found set).</li>
+
+	    <li>Call the file "idresolver.tab"
+	 </li>
+	 </ul>
+
+	 <h2>
+
+	 <hr width="33%" align=left noshade>
+
+	 Upload</h2>
+
+	 <ul>
+	    <li>upload the "idresolver.tab" file to
+	    the data prep server (sangria.umdl.umich.edu at  the time of writing)</li>
+
+	    <li>put it in /l1/prep/i/idresolver</li>
+	 </ul>
+
+	 <h2>
+
+	 <hr width="33%" align=left noshade>
+	 Load Data into MySQL
+	 </h2>
+	 <p>
+	 First, clean off any Macintosh line breaks (if the data was exported from Filemaker on the Macintosh).
+	 </p>
+	 <p class="unixcommand">
+	perl -pi -e 's,\x0d,\x0a,g' idresolver.tab
+	 </p>
+
+	 <p>use the <span class="unixcommand">mysqldump</span> utilitiy to drop the
+	    existing production table and to document the sql commands needed to rebuild
+	    the table without data. You'll need to know the password for the <span class="unixcommand">dlxsadm</span>	    MySQL account.</p>
+	 <p class="unixcommand">
+	 mysqldump -u dlxsadm -p -h mysql.umdl.umich.edu --add-drop-table -d dlxs idresolver > /tmp/idresolver<
+	 </p>
+	 <p>
+	 Recreate the table just dropped, except without data.
+	 </p>
+	 <p class="unixcommand">
+	mysql -u dlxsadm -p -h mysql.umdl.umich.edu dlxs < /tmp/idresolver
+	 </p>
+	 <p>
+	 load the new data to the fresh table.</p>
+	 <p class="unixcommand">
+	 mysql -u dlxsadm -p -h mysql.umdl.umich.edu dlxs
+	 </p>
+	 <p class="unixcommand">load data local infile '/l1/prep/i/idresolver/idresolver.tab' into table idresolver;
+
+	 </p>
+	 <p>Use the following as a quick test...</p>
+	 <p class="unixcommand">select * from idresolver limit 1;
+	 <br>
+	 <span class="unixcommand">select count(*) from idresolver;</span>
+	 </p>
+	 <p>
+	 Quit mysql</p>
+	 <p class="unixcommand">quit
+	 </p>
+	 <h2>
+
+	 <hr width="33%" align=left noshade>
+
+	 Test</h2>
+
+	 <p>Plug something like the following in to your web browser and you
+	 should get something back. If you choose to test middleware on a development
+	    machine that uses the id resolver, make sure that the middleware on that
+	    machine is calling the resolver on the machine with the data, and not
+	    the resolver on the production server.
+
+	 <ul>
+	    <li><a href="http://clamato.umdl.umich.edu/cgi/i/idresolver/idresolver?id=dao-bhl-bl000684">http://clamato.hti.umich.edu/cgi/i/idresolver/idresolver?id=dao-bhl-bl000684</a></li>
+
+	 <li>which should yield...<br>
+	 <code><b>&lt;ITEM MTIME="20030728142225"&gt;&lt;ID&gt;dao-bhl-bl000684 &lt;/ID&gt;&lt;URI&gt;http://images.umdl.umich.edu/cgi/i/image/image-idx?&q1=bl000684&rgn1=bhl_href&type=boolean&med=1&view=thumbnail&c=bhl &lt;/URI&gt;&lt;/ITEM&gt;</b></code>
+
+	 </li>
+	 </ul>
+</body>
+</html>

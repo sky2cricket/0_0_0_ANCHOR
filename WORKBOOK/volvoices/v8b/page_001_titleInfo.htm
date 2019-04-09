@@ -1,0 +1,355 @@
+<!--
+    This code is issued under the GNU General Public License, 
+    version 3, 29 June 2007.
+
+    The DLC-MODS Workbook provides a series of web pages to help you 
+    generate a MODS metadata record that follows the Digital Library 
+    Federation Implementation Guidelines for Shareable MODS Records, 
+    as described in the DLF Aquifer Guidlines November 2006.  These 
+    Guidelines and the specific MODS Profile are documented on the 
+    MODS Profile Page of the DLC-MODS Workbook.
+
+    Copyright (C) 2007 
+    Christine Haygood Deane 
+    University of Tennessee Libraries
+    Digital Library Center
+ 
+
+    This program is free software: you can redistribute it and/or modify    
+    it under the terms of the GNU General Public License as published by    
+    the Free Software Foundation, version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see http://www.gnu.org/licenses/
+-->
+
+<html>
+<head>
+<title>
+titleInfo
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+<script>
+
+var split_token=parent.U.split_token;
+parent.L.thisDocument = parent.D.document;
+
+function test_DF_form(){
+alert("under construction");
+}
+
+function addOneTitleInfoBlock() {
+if (!confirm("You have chosen to add one Title Info Block.\n\nDo you wish to continue?")){return;}
+buildModsTags(11);
+parent.L.update_block_iteration("titleInfo","1");
+parent.D.location.replace("page_001_titleInfo.htm");
+}//end function
+
+
+function subtractOneTitleInfoBlock() {
+if( parent.L.get_block_iteration("titleInfo")==1){
+        alert("Title Info Block #1 may not be removed.");
+        return;
+        }
+if (!confirm("You have chosen to remove one Title Info Block.\n\nDo you wish to continue?")){return;}
+parent.L.update_block_iteration("titleInfo","-1");
+parent.D.location.replace("page_001_titleInfo.htm");
+}//end function
+
+function clearPage() {//chdchd
+        if (!confirm("All data entered for this page will be cleared.\n\nDo you wish to continue?")) {return};
+        parent.U.document.UF.ti_block_list.value = "";
+	parent.L.update_block_iteration("titleInfo","0");
+	parent.L.update_page_validation('titleInfo','b');
+        parent.D.location.replace("page_001_titleInfo.htm");
+        return;
+}//end function
+
+</script>
+
+
+
+
+</head>
+
+<script>document.write('<body onload="load_DF_form();"  bgcolor="'+parent.adb_background_color+'" >');</script>
+
+<font face="arial" size="3"><center>
+<h3><script> document.write(parent.adb_project_name); </script>
+&lt;titleInfo></h3>
+</center>
+
+<form name="DF"  >
+
+<!-- sentiinel_00.value = number of elements in a titleInfo_block
+     sentinel_00.name signals that the set(s) of titleInfo_block elements starts with next element -->
+<input type="hidden" name="sentinel_00" value="0">
+
+<table  class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="99aabb">
+<tr class="bgstandard"><td colspan="3">
+Required Fields have yellow-highlighted input box. 
+</td></tr>
+<tr class="greenrow"><td colspan="3">&nbsp;</tr>
+<tr class="bgstandard">
+<td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<td><font face="arial" size="2">The DLF Aquifer Guidelines recommend using both type and authority attributes for &lt;titleInfo> when applicable.
+<br>These attributes must be used in the correct combination.
+<li> type="abbreviated" - needs authority="dnlm" or authority="hlasha"
+<li> type="translated" - should not have authority
+<li> type="alternative" - should not have authority
+<li> type="uniform" - needs authority="naf" or authority="sanb"
+<br>&nbsp;
+<br>The select menu provided below only gives valid combinations for type and authority.
+<br>Please see the DLF Aquifer Guidelines for a complete explanation.
+
+</td>
+</tr></table>
+<td>&nbsp;</td>
+</tr>
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>MODS LABEL</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+
+<script>
+var numTI = new Number( parent.L.get_block_iteration("titleInfo"));
+var j=0;//display counter
+for (i=0;i<numTI;i++) {
+j=i+1;
+document.write(
+ '<tr class="bgstandard" ><td colspan="3"> <b>Title Info Block # '+j+'</b> </td></tr>\r\n'
+
+
++'<tr class="bgstandard" >\r\n'
++'<td class="label13nou"> Display Label # '+j+' </td> \r\n'
++'<td>&nbsp; <input type="text" name="dyn_title_display_label_0'+i+'" value="" size="36" class="notrequired300w"\r\n'
++'  >\r\n'
++'</td> <td>&nbsp</td> </tr>\r\n'
+
++'<tr class="bgstandard" >\r\n'
++'<td class="label13nou"> Type/Authority # '+j+' </td> \r\n'
++'<td>&nbsp; <select name="dyn_type_auth_0'+i+'" size="1" style="color:#000080;  font-weight:bold;">\r\n'
++'<option value="_zero" selected>none selected</option>\r\n'
++'<option value="abbreviated_dnlm">type="abbreviated" authority="dnlm"</option>\r\n'
++'<option value="abbreviated_hlasja">type="abbreviated" authority="hlasja"</option>\r\n'
++'<option value="translated_no">type="translated" no authority</option>\r\n'
++'<option value="alternative_no">type="alternative" no authority</option>\r\n'
++'<option value="uniform_naf">type="uniform" authority="naf"</option>\r\n'
++'<option value="uniform_sanb">type="uniform" authority="sanb"</option>\r\n'
++'</select>\r\n'
++'</td> <td>&nbsp</td> </tr>\r\n'
+
++'<tr class="bgstandard" >\r\n'
++'<td class="label13nou"> Non Sort # '+j+' </td> \r\n'
++'<td>&nbsp; <input type="text" name="dyn_title_non_sort_0'+i+'" value="" size="36" class="notrequired300w"\r\n'
++'  >\r\n'
++'</td> <td>&nbsp</td> </tr>\r\n'
+
++'<tr class="bgstandard" >\r\n'
++'<td class="label13u"> Title # '+j+' </td> \r\n'
++'<td>&nbsp; <input type="text" name="dyn_title_0'+i+'" value="" size="36" class="required300w"\r\n'
++'  >\r\n'
++'</td> <td>&nbsp</td> </tr>\r\n'
+
++'<tr class="bgstandard" >\r\n'
++'<td class="label13nou"> Sub Title # '+j+'</td>\r\n'
++'<td>&nbsp; <input type="text" name="dyn_title_sub_title_0'+i+'" value="" size="36" class="notrequired300w"\r\n'
++' >\r\n'
++' </td> <td>&nbsp</td> </tr>\r\n'
+
++'<tr class="bgstandard" >\r\n'
++'<td class="label13nou"> Part Number # '+j+' </td>\r\n'
++'<td>&nbsp; <input type="text" name="dyn_title_part_number_0'+i+'" value="" size="36" class="notrequired300w"\r\n'
++'  >\r\n'
++'</td> <td>&nbsp</td> </tr>\r\n'
+
++'<tr class="bgstandard" >\r\n'
++'<td class="label13nou"> Part Name  # '+j+'</td>\r\n'
++'<td>&nbsp; <input type="text" name="dyn_title_part_name_0'+i+'" value="" size="36" class="notrequired300w"\r\n'
++' >\r\n'
++'</td> <td>&nbsp</td> </tr>\r\n'
+
++'<tr class="greenrow"> <td height="08" colspan="3"></td></tr>\r\n'
+);
+}//end for i
+</script>
+
+<!-- sentiinel_01.value = 0 , verify end
+     sentinel_01.name signals that the set(s) of titleInfo_block elements ends here -->
+<input type="hidden" name="sentinel_01" value="0">
+<input type="hidden" name="ti_block_list"value="">
+<tr class="bgstandard" >
+<td >&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+<tr class="bgstandard">
+<td class="label13u">Add or Remove<br>One Title Info Block</td><td colspan="1">&nbsp;
+<input type="button" name="AddOneTIBlock" 
+value="Add One titleInfo Block" class="buttonnw" onClick="addOneTitleInfoBlock();">
+<input type="button" name="SubtractOneTIBlock" 
+value="Remove One titleInfo Block" class="buttonnw" onClick="subtractOneTitleInfoBlock();">
+<br>
+</td><td>&nbsp;</td>
+</tr>
+
+
+</table>
+
+
+<table  class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="99aabb">
+
+
+<tr class="bgstandard" >
+<td >&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+<tr class="bgstandard" ><td colspan="3" align="center">
+&nbsp;&nbsp;
+<input type="button" name="B2" value="Save Data and View MODS TAGS" class="buttonnw" onclick="buildModsTags(1)">
+&nbsp;&nbsp;
+<input type="button" name="Bclear" value="Clear Data and Restart this Page" class="buttonnw" onclick="clearPage();">
+</td></tr>
+<tr class="bgstandard" >
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+</table>
+
+
+
+</form name="DF">
+
+
+<center><font face="arial">
+<h3>
+<script> document.write(parent.adb_project_name); </script>
+</h3>
+</center>
+
+<script>
+
+
+function load_UF_form() {
+
+//alert("load_UF_form()");
+///PageOneTitleInfo
+
+parent.U.document.UF.ti_block_list.value = document.DF.ti_block_list.value;
+
+return;
+
+
+}
+
+
+function load_DF_form() {
+
+////////alert("load_DF_form()");
+
+parent.L.populate_DF_webform_from_UF_blocklist("ti_block_list");
+
+
+
+return;
+}//end function load_DF_form
+
+
+function buildModsTags(N) {
+
+document.DF.ti_block_list.value = parent.L.populate_DF_blocklist_from_DF_webform("ti_block_list");
+//alert("document.DF.ti_block_list.value=\n"+document.DF.ti_block_list.value);
+//alert("parent.U.document.UF.ti_block_list.value=\n"+parent.U.document.UF.ti_block_list.value);
+
+
+
+////do this first so current values are loaded regardless of validation status
+load_UF_form();
+
+if (num == 11) {return;} //before validation check
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+//before writing MODS TAGS, make sure all required fields are populated
+//checkAllRequired... true  validation sets validation status to B  -- complete
+//checkAllRequired... false validation sets validation status to b  -- incomplete
+
+/* rewrite*/
+if (!parent.L.checkAllRequiredElements_Page_titleInfo() ) {
+parent.L.update_page_validation('titleInfo','b');
+return;
+}/**/
+parent.L.update_page_validation('titleInfo','B');
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+var num = new Number();
+num = N;
+
+if (num == 11) {return;}
+if (num == 10) {
+alert("Values have been saved.");
+return;
+}
+
+
+var aps= new Array();
+var hps= new Array();
+var cps= new Array();
+
+hps = parent.L.buildTagsArray_header(num);
+aps = parent.L.buildTagsArray_titleInfo(num);
+cps = parent.L.buildTagsArray_closer(num);
+
+
+//=================================================
+
+document.write('<input type="button" name="BBACK" onclick="javascript: history.back()" value="BACK"><P>');
+document.write('<font face="Elephant" size="3" color="a00000">'+parent.adb_project_name+' &lt;titleInfo><p></font>');
+//PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+//document.write( "This is the generated xml script.  Values you entered are highlighted in red.<HR>");
+//document.write('<font face="Elephant" size="3" color="a00000">PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+document.write(parent.adb_workbook_version+'<p>'
+	+"This is the generated xml script.  Values you entered are highlighted in red."
+	+"<HR>");
+
+//document.write('< ? xml version="1.0"  ? > \r\n'); 
+///document.write("Content-Type: text/xml ")
+
+for (i=0;i<hps.length;i++) {
+var vps = new String(hps[i]);
+document.write("<br>"+vps);
+}
+
+for (i=0;i<aps.length;i++) {
+var vps = new String(aps[i]);
+document.write("<br>"+vps);
+}
+
+for (i=0;i<cps.length;i++) {
+var vps = new String(cps[i]);
+document.write("<br>"+vps);
+
+}
+
+
+}//end function
+
+
+</script>
+
+<script language=javascript src="elements.js"></script>
+<script>elements()</script>
+
+</body>
+</html>
+

@@ -1,0 +1,553 @@
+<html>
+<head>
+<title>Index Building Concepts and Syntax</title>
+
+
+
+
+
+
+
+<link href="../dlxsdocs.css" rel="stylesheet" type="text/css"> </head>         <body>
+<div class="pageTitle">1	 INDEX BUILDING CONCEPTS &amp; SYNTAX</div>
+<h1>1.1	 INTRODUCTION</h1>
+<table border="1"><tbody><tr><td><b>[Editor's note: This text is in the process of being adapted from the original Open Text manual, chapter 12 in the DBA section. References to sections with a "12" prefix are internal to this document. The original document has a heavy emphasis on MFS index building, which has not yet been corrected, and on "dbbuild", which DLXS does not support or recommend. This text was drawn from OCR, and so many errors exist, and figures are typically no longer meaningful.]</b></td></tr></tbody></table>
+<p>A DLXS XPAT database provides fast text querying &amp; searching capabilities on a variety of source file formats. Much of the text searching power comes from the indices that are built on the source text.</p>
+<p>DLXS XPAT databases are made more powerful by the fact that the source data can come from a number of different file formats simultaneously, including word-processor, ASCII, and SGML formats. During the index-building process, a "virtual" image of the data is created by combining all the source files together. Special character handling is performed on this virtual data file, followed by the various indexing sub-phases. The original source data is not altered in anyway during the index-building process. This gives DLXS XPAT an advantage over several other text searching packages in that a company's data entry investment is preserved.</p>
+<p>In the DBBuild guide, index-building is presented as a single step using the DBBuild. Given three elements - data, control files, and index-building parameters - DBBuild builds the necessary indices, using default parameters for those not supplied by the DBA. While convenient, DBBuild produces indices for generic database situations. More direct manipulation of the index building process is possible if the database administrator is given explicit control of the various index building steps carried out by DBBuild.</p>
+<p>The DBBuild index-building process controlled by DBBuild actually consists of several smaller steps, as you have seen from reading previous chapters. Each of these steps uses a particular index- building utility. To gain control over the index-building process, a DBA can utilize each of the index- building utilities individually rather than relying on DBBuild.</p>
+<p>This chapter discusses the principles of DLXS XPAT index-building in Section 12.1. The details of each of the
+index-building utilities are discussed in Sections 12.2-12.3, along with
+examples for using the utilities. A quick reference list of all the main
+index-building utilities is provided in Section 12.5. The sgmlrgn index-building
+utility is discussed in Detailed Indexing, Part 2. Note that customized
+indexing utilities can also be used in addition to or instead of the DLXS XPAT
+utilities (see Detailed Indexing, Part 2 and the System Integrator's Guide).</p>
+
+<h1>1.2	 INDEX-BUILDING CONCEPTS</h1>
+<p>Indices for a database system can be likened to the index in the back of a book. An index allows you to find certain phrases quickly. For instance, if you are looking for the phrase, say, "computer software" in a book, you would first consult the index. Once you've located it in the book index, you would go to the page listed in the index and look for the phrase on that page. This is, of course, faster than looking for the phrase "computer software" by starting at the very first page of the book and visually scanning until you find it.</p>
+<p>A' database index performs a similar, but not exactly the same, function as a book index. The main differences are threefold. Firstly, the DBA can control what words and phrases are to be indexed. Secondly, the "page numbers" are invisible to the end user. That is, after the database has been built</p>
+<p>DLXS XPATQuery configured by the DBA, the end-user can use TextQuery to perform text queries. In doing these queries, an end-user need not know where in the source files a phrase is to find it. Finally DLXS XPAT has four types of indices and a '"file map", each of which serves to make a specific aspect of text searching faster. The table below illustrates:</p>
+<table border="1"><tbody>
+<tr><td>Index</td><td>Usage</td><td>Description</td></tr>
+<tr><td>FileMap</td><td>Compulsory</td><td>This is not a typical index. It is a list of all the files that have been indexed and the meta-data associated with them. The file map is a catalog of the database.</td></tr>
+<tr><td>Main Index</td><td>Compulsory</td><td>This is the main database index. Specific words and phrases in the source data are indexed and the information is stored in this index file.</td></tr>
+<tr><td>Region Sub-</td><td>Compulsory/Optional</td><td>These indices are built on two types of data index regions': system-defined and application-defined. Indices on system-defined regions are built automatically and are thus compulsory. Indices on application-defined regions are only built if specified and are thus optional</td></tr>
+<tr><td>FastRegion</td><td>Optional</td><td>These are supplementary indices that are built on Indices system-defined and application-defined regions specified by the DBA. They are generally built on data regions that will be frequently accessed by end-users.</td></tr>
+<tr><td>FastFind Indices</td><td>Compulsory</td><td>These are supplementary indices that must be built on the source data files whenever the data is in several files (not a consolidated database), or when the data is on CD-ROM. The FastFind indices may also be optionally built when the data is in one file (consolidated databases) in order to greatly accelerate word and phrase searches.</td></tr>
+</tbody></table>
+<p>a. Regions were discussed In Chapter 4.</p>
+<p>The indices listed in the above table must necessarily be built in a specific order, as some indices are built on others. If the DBBuild utility is used, it controls the index-building order; otherwise, the DBA must control the order using the individual index-building utilities provided with the DLXS XPAT software. Figure 12-1 shows
+the index-building prerequisites. The table below the figure lists each of the index builders (in the approximate
+order of their use), along with the index each utility ;builds, and the default file extensions of the
+indices created.</p>
+<p>Figure 12-1: Index Checklist &amp; Building Sequence</p>
+<p><b>Index Checklist Index Building Prerequisites</b></p>
+<p></p>
+<p>The rest of Section 12.1 briefly
+describes each of the indices listed in the above table in the order of their creation. The sgmlrgn utility is discussed
+in Detailed Indexing, Part 2.</p>
+<h2>1.2.1	 The Database Map</h2>
+<p>The database map contains information about the source data files and the indices in A DLXS XPAT database system. The map consists of three files: the FileMap (ASCII) and the two auxiliary support files, the Filter List (ASCII) and the Compiled FileMap (binary). These files are described in the following sections.</p>
+<h3>1.2.1.1	 The FileMap</h3>
+<p>The FileMap is a very important part of A DLXS XPAT database system, providing a catalogue of information related to the source data files: file and pathnames, time stamps, the file filters required for processing source files, and the file filters required for displaying search samples. It does not contain other index information. It only creates a "virtual view" of all the data. This virtual view is produced by combining all source data files into one "virtual" file, after any word-processor codes have been stripped out. Note that the original source files are not altered. The general format of a FileMap is shown in Figure 12-2.</p>
+<p>Figure 12-2: The FileMap</p>
+<p></p>
+<p>The following is part of a sample FileMap. Note that it contains a set of meta-data tags, all of which start with the letters 'OT' to indicate that they are system-defined and reserved for use by the DLXS XPAT software. A FileMap will contain one OTMap entry for each source file present in the database. Each OTMap segment contains information generated from the associated DD.</p>
+<p></p>
+<p>The OTFields region used above allows space for the DBA to define additional meta-data regions. These application-defined meta-data tags are created in a separate file prior to creating the FileMap with mfsbld. The information in this separate file is known as user meta-data and is discussed along with the Meta-Data File in Section
+4.2. Once generated by the mfsbld utility, the FileMap should NOT be modified in any way (including changing the
+timestamp using the Unix or DOS "touch" commands). <b>If new source
+files are added to the database, the FileMap</b><b> </b><b>must be
+rebuilt with mfsbld instead of being modified</b><b> </b><b>via a
+word-processor or text editor.</b></p>
+
+<h3>1.2.1.2	 The FilterList</h3>
+<p>The FilterList is an ASCII file containing a list of all the unique filter chain sequences used in the SearchView, DisplayView, and Raw View segments of the associated DD for the database in question. Each unique filter chain sequence specified in the DD generates exactly one OTFilterList entry in the FilterList file (sample below). Each OTFilterList segment consists of an internally- generated ID and the filter sequence being used.</p>
+<p>Figure 12-3: The FilterList File</p>
+<p></p>
+<p>As with the the FileMap, the FilterList should not be modified in any way using a word-processor. Any changes (addition or deletion of files) to the source data requires that the FilterList be rebuilt using the mfsbld utility.</p>
+
+<h3>1.2.1.3	 Compiled FileMap</h3>
+<p>This file is a binary file that contains the file map in a fast, accessible format. There is a direct, one- to-one correspondence from the FileMap to this Compiled FileMap format. Once again, this file should not be modified in any way other than by using the mfsbld utility.</p>
+
+
+<h2>1.2.2	 The Main Index</h2>
+<p>The Main Index provides rapid string search capabilities on the source text. The response time for a text search is entirely independent of the number of "hits" returned and the length of the phrase being searched for. The xpatbld utility uses command line and DD parameters to control the build process. The default file extension for the Main Index is '.idx'. See Section for details on xpatbld.</p>
+
+<h2>1.2.3	 FastFind Indices</h2>
+<p>FastFind Indices are an extension of the Main Index. They are used to accelerate text searches in two situations. The first case involves a consolidated database (a single data file) stored on a CD-ROM disc. The second case involves an MFS database (multiple source files in one or more directories, in one or more file formats). The FastFind Indices are especially important when the source data consists of word-processor files.</p>
+
+<h2>1.2.4	 The Region Sub-Indices</h2>
+<p>The Region Sub-indices provide structured query capabilities by using regions defined in the database. Regions are constructs that are a general case of 'fields' and can be used to create a powerful text retrieval system. (SGML users may be familiar with the term 'element', which is a special type of DLXS XPAT region.) Examples of Regions include Headline, Story, Dateline, Byline, . Paragraph, etc. In its basic form, a region can correspond to an entire document. In more complex forms, regions can be used to define substructures within a document. To illustrate, a sample portion of a tagged source file is shown below:</p>
+<p>&lt;I&gt;</p>
+<p>&lt;K#&gt; 1178128&lt;/Ki&gt;</p>
+<p>&lt;CS&gt;Ready&lt;/CS&gt;</p>
+<p>&lt;PA&gt;Ottawa Citizen&lt;/PA&gt;</p>
+<p>&lt;PD&gt;Tue 31 Jul 90&lt;/PD&gt;&lt;D&gt;900731&lt;/D&gt;&lt;DAY&gt;Tue&lt;/DAY&gt;</p>
+<p>&lt;ED&gt;Final&lt;/ED&gt;</p>
+<p>&lt;SEC&gt;BUSINESS&lt;/SEC&gt;&lt;PG&gt;D5&lt;/PG&gt;</p>
+<p>&lt;HL&gt;Consumer spending in U.S. up 1.0 per cent in June&lt;/HL&gt;</p>
+<p>&lt;SRC&gt;AP&lt;/SRC&gt;</p>
+<p>&lt;DL&gt;WASHINGTON&lt; / DL&gt;</p>
+<p>&lt;T&gt;</p>
+<p>&lt;P&gt;&lt;/P&gt;</p>
+<p>&lt;P&gt; WASHINGTON   (AP) -- Consumer spending in the United States</p>
+<p>jumped 1.0 per cent in June, the largest gain in five months,</p>
+<p>while personal incomes rose 0.4 per cent, the government said</p>
+<p>Monday . &lt; / P&gt;</p>
+<p>&lt;P&gt;Non-durable goods spending rose $8.2 billion for the first</p>
+<p>advance since February, while spending for services advanced</p>
+<p>$16.7 billion, the largest jump since a $20.4 billion increase in</p>
+<p>March. &lt;/P&gt;</p>
+<p>&lt;/T&gt;</p>
+<p>&lt;/I&gt;</p>
+<p>In the previous sample tagged text, the data regions are marked by tags of the form '&lt; &gt;' and '&lt;/&gt;'. For example, &lt;I&gt; and &lt;/I&gt; are the 'Story' region tags. Within the Story tags, other sub-regions have been defined, such as Section (&lt;SEC&gt;&lt;/SEC&gt;) and Dateline (&lt;DL&gt;&lt;/DL&gt;) (see Chapter 4 for more information on data regions). The tags used in the sample above are obviously somewhat cryptic. They need to be defined in a control file known as the Region Tag Names file (described in Section 4.1). This file consists of one or more
+control segments. A sample segment of a tag names file is shown below:</p>
+<p>&lt;region&gt;</p>
+<p>&lt;name&gt;Dateine&lt; /name&gt;</p>
+<p>&lt;tag&gt;DL&lt;/tag&gt;</p>
+<p>&lt;desc-&gt;Dateline for an newspaper article, delimited by 'DL'</p>
+<p>tags. &lt;/desc&gt;</p>
+<p>&lt;/region&gt;</p>
+<p>This segment defines the Dateline region as being marked by &lt;DL&gt; and &lt;/DL&gt; tags. The DLXS XPAT system uses this region definition to recognize 'Dateline' data in the source files. (Then, if a significant portion of text searches for a particular database will require information based on a Dateline criteria, the DBA can create a special FastRegion Index, described in Section , on the Dateline region. This is analogous to creating an index on a
+particular field in a relational database table.)</p>
+<p>The Region Sub-indices are built upon two types of regions: application-defined regions and system- defined mcta-data regions. Any application-defined regions to be indexed are specified in the Region Tag Names file (see Section
+4.1). System-defined meta-data regions use the tags in the table below and are indexed automatically during the
+indexing process.</p>
+<p>OTDoc                OTTime</p>
+<p>OTMeta               OTFieldsSize</p>
+<p>OTFile              OTFields</p>
+<p>OTDisplayFmt         OTData</p>
+<p>OTDate</p>
+
+<h2>1.2.5	 FastRegion Indices</h2>
+<p>FastRegion Indices, like Region Sub-indices, allow for structured searches by creating indices on frequently accessed regions in the data. These indices are somewhat like the indices built on a particular field of a relational <b>DBMS</b> table. Using the tagged text sample from above as
+an example, repeated queries of the form " 'Washington' within DATELINE"
+(amongst other Boolean operations) can be performed efficiently by building a
+FastRegion Index upon the DATELINE region of the text files. If the source data
+does not have any application-defined region tags (as is generally the case
+with word-processor files), FastRegion Indices can be built on the
+system-defined meta-data tags shown in the box above. OTDoc and OTData are the
+two most commonly indexed meta-data regions.</p>
+
+
+<h1>1.3	 COMMON COMMAND LINE OPTIONS FOR THE INDEX-BUILDING PROCESSES</h1>
+<p>Before we discuss each index building command individually, there is a common option available to all or most of the index builders. This option is discussed in Section and thus will hot be mentioned later in this chapter unless an individual command requires a lengthier discussion.</p>
+<p>During index building, no diagnostic messages are generated (default behaviour). The override option to produce diagnostics is <b>-v</b> for all of
+the index builders.</p>
+
+<h1>1.4	 SYNTAX FOR BUILDING YOUR INDICES</h1>
+<p>There are six optional/compulsory steps to indexing an DLXS XPAT database:</p>
+<p>(1)    Creating <b>the </b>FileMap
+(Section )</p>
+<p>(2)    Creating <b>the </b>Main
+Index (Section )</p>
+<p>(3)    Creating the Region Index (Section )</p>
+<p>(4)      <b>Creating the </b>Pattern-based
+Region Index (Section )</p>
+<p>(5)    Creating the FastRegion Indices (Section )</p>
+<p>(6)    <b>Creating the
+FastFind Indices</b> (Section )</p>
+<p>The command line syntax for each of these steps is detailed in the appropriate sections that follow</p>
+<h2>1.4.1	 The Database FileMap Builder Command Line Syntax</h2>
+<h3>1.4.1.1	 Building the FileMap</h3>
+<p>The mfsbld program builds the FileMap files for MFS databases. mfsbld reads in the
+FilterChain segments defined in the DD and creates a list of all the files that those segments represent. It then
+creates one entry in the FileMap file for each file in that list. If a user meta-data ('.dat') file is
+present in the directory, mfsbld will automatically incorporate the user meta-data defined in that
+file into the FileMap.</p>
+<p>Once the '.fmp' (FileMap) file is created, mfsbld creates
+the other two files that are part of the FileMap
+('.Imp' and '.xmp' files). The command
+line syntax is shown below. Refer to the mfsbld 1) man pages in Part 11
+of the DBA Reference Guide for further details.</p>
+<p>mfsbld [-v] [-t] [-s] [-f] [-o textfile] -D data_dictionary</p>
+
+<h3>1.4.1.2	 Build Options</h3>
+<h4>1.4.1.2.1	 Producing Diagnostic Messages</h4>
+<p>The standard -v option can be used to print additional messages during the execution of mfsbld. Example: Diagnostics generated when mfsbld is used to
+generate a meta-data template on a database: command:</p>
+<p>mfsbld -v -s -t -D dbsl.dd</p>
+<p>messages:</p>
+<p>Using the data dictionary 'dbsl.dd'</p>
+<p>Building MFS file map...</p>
+<p>Computing directory   ' files/netstuff'</p>
+<p>Expanding directory   'files/netstuff'</p>
+<p>(repeat above pair of lines once per file per directory}</p>
+<p>Sorting MFS file map...</p>
+<p>Completed listing MFS files in 'dbsl'.</p>
+
+<h4>1.4.1.2.2	 Sorting the FileMap Entries</h4>
+<p>You can use the -a option to specify that the FileMap entries be sorted in alphabetical order by file path. The default behaviour is to place the entries in the order that the files appear in the source directories.</p>
+
+<h4>1.4.1.2.3	 Generating a Meta-data Template File</h4>
+<p>The -t option can be used to generate a meta-data template. This is an optional step that, if taken, should be done before any of the indexing operations.</p>
+
+<h4>1.4.1.2.4	 Generating the 'Virtual' Text of Your Database</h4>
+<p>If your source data is distributed across multiple files across multiple directories, which is very likely the case, you may wish to generate a 'virtual' text file consisting of all the source files concatenated together. This virtual text can be generated and written into the file specified by the -o option.</p>
+
+
+<h3>1.4.1.3	 Examples</h3>
+<p>(1)To generate a meta-data template file on the specified DD, with diagnostics:</p>
+<p>mfsbld -v -t -D buttrfly.dd</p>
+<p>(2)To build the FileMap files on butterfly database:</p>
+<p>mfsbld -v -D buttrfly.dd</p>
+<p>(3)To build the FileMap files and generate the output 'virtual' text file:</p>
+<p>mfsbld -v -o buttrfly.vrt -D buttrfly.dd</p>
+
+
+<h2>1.4.2	 The Main Index Builder Command Line Syntax</h2>
+<h3>1.4.2.1	 Building the Main Index</h3>
+<p>The xpatbld program builds the Main Index file using information ; ' from both the xpatbid command line and from the
+DD. The DD provides the indexing parameters
+(character mappings, index point
+specifications, stopwords). The most important command line option is the memory specification. This
+memory specification is discussed in detail in Section . The index building process is illustrated
+in the following diagram.</p>
+<p>Building the Main Index</p>
+<p>Command Line   Data</p>
+<p>Options--  Dictionary</p>
+<p>patbld</p>
+<p>- Main Index Builder</p>
+<p>Text</p>
+<p>(MFS: many files   Main Index</p>
+<p>Regular: one file)   ('.idx')</p>
+<p>The command line syntax for the Main Index builder is shown below:</p>
+<p><b>patbld </b>-v] [- r] <b>[-m</b> memory k I ml [-d region_name][-i int_name]</p>
+<p>[-s mergename] [-t text_name [-o out_name] [-c
+isolation I none I basic I</p>
+<p><b>sgml]</b> <b>]</b> <b>I [[-I</b> <b>index_name]</b>
+-D data_dictionary_name]</p>
+<p>A Main Index is built on either the text file specified by the - t option (which also produces a default</p>
+<p>DD template), or it is built on the text file declared in the DD specified by the - D option.</p>
+
+<h3>1.4.2.2	 Build Options</h3>
+<h4>1.4.2.2.1	 Producing Diagnostic Messages</h4>
+<p>The standard -v option can be used to print additional messages during the execution of xpatbld.</p>
+<p>Example: Diagnostics generated when xpatbld is used to generate a sample DD:</p>
+<p><b>command:</b></p>
+<p>patbld -v -t files/netstuff/debitcrd.pst -o dbsl</p>
+<p><b>messages:</b></p>
+<p>Digital Library eXtension Service, XPAT, Release 5.2</p>
+<p>COPYRIGHT (c) 2000 The Regents of the University of Michigan</p>
+<p>All Rights Reserved</p>
+<p>Using default Data Dictionary information.</p>
+<p>Phase I - initial index building and merge calculation.</p>
+<p>Pass 1 indexing from 1 to 32668</p>
+<p>After pass 0.67 seconds used.</p>
+<p>Phase II - final index building and merging</p>
+<p>Pass 1 indexing 1 to 32668</p>
+<p>Merging 1 final index files</p>
+
+<h4>1.4.2.2.2	 Allocating Memory for the Main Index Build</h4>
+<p>Physical memory for the build operation can be allocated using the -m option, followed by the amount of memory in kilobytes (k I K I or megabytes (m I M . (See Section for a
+more thorough discussion).</p>
+
+<h4>1.4.2.2.3	 Specifying an Explicit Region for the Main Index Build</h4>
+<p>The Main Index can be built explicitly over a particular data region set by specifying the desired region set with the -d option. The region set must be built and defined in the DD.</p>
+
+<h4>1.4.2.2.4	 Temporary Output Files</h4>
+<p>Specifying Intermediate File Names</p>
+<p>patbld indexes text in three phases. In the first
+phase, it breaks up the text into chunks that will fit into memory. It then creates an intermediate partial index file
+for each chunk. These intermediate partial
+index files have the suffixes '.il', '.i2', '.i3', etc. It also creates a
+"merge instruction" file for
+each intermediate partial index file. These merge instruction files have the
+suffixes '.ml', '.m2', '.m3', etc. To
+override the default prefixes for these files, use the - i option for the - intermediate files and the - option for the
+merge files.</p>
+<p>In the second phase, xpatbld replaces the intermediate index files by final partial index files. These final partial index files have the suffixes '.tl', '.t2', '.t3', etc. As xpatbld creates each final partial index file, it removes the corresponding intermediate partial index file. In the third phase, the merge instruction files are used to merge the final partial index files into a final Main Index ('.idx') file. When xpatbld has finished writing the Main Index file it removes all the partial index files and the merge files.</p>
+
+<h4>1.4.2.2.5	 Specifying the Text File to be Indexed</h4>
+<p>The Main Index is built either on the file specified by the -t option, or on the file declared in the DD (specified by the -D option). If you use the -t option, a default DD template file ('.dd') is created, along with the Main Index (. idx) for the text file you specified. You can override the default prefix for these two output files by using the -o option in conjunction with the -t option.</p>
+
+<h4>1.4.2.2.6	 Choosing a Common Character Set</h4>
+<p>It is sometimes necessary that certain ASCII or non-ASCII characters be mapped into something else. For example, upper case characters might be mapped into lower case, punctuation and excess white space may be mapped into a blank character, etc. The xpatbld utility handles four common character mappings: none, basic, isolation, and
+sgml. The default mapping for xpatbld is sgml. To specify otherwise, use the -c option.</p>
+
+<h4>1.4.2.2.7	 Recovering From Crashes During Main Index Build</h4>
+<p>The Main Index build operation can be restarted using the -r option. xpatbld restarts after the last checkpoint in the '.log' file. See the Usage Notes section of the xpatbld(1) man
+pages in the DBA Reference Guidefor more details.</p>
+
+
+<h3>1.4.2.3	 Memory and Timing</h3>
+<h4>1.4.2.3.1	 Memory Usage Calculations</h4>
+<p>Because of the complex nature of the algorithm, it is important to carefully calculate how much memory and disk space to allocate to xpatbld when it builds a Main Index. Accurate index building time calculations are also useful to help plan the index building process of large databases. This section and the following two will discuss these memory, disk, and time calculations. In general, the more memory available to xpatbld, the faster it
+will run. However, it is important that
+the memory that you tell xpatbld to use is the available physical
+memory. The available physical memory
+is the total physical memory (RAM) installed in the machine, minus the amount taken up by the operating system and any other
+processes running on the machine. The amount of memory
+the operating system uses varies widely from machine to machine. On smaller
+machines (with 4 MB of RAM or less) the
+operating system may take up 2 MB or less, while on larger machines (64 MB of RAM or more) it can take up
+8 MB or more (due to the various buffers and other
+space that the kernel uses to manage the larger configuration).</p>
+<p>patbld uses the memory you allocate to it as follows.
+First, it uses 400 KB for internal buffers. It then
+divides the remainder into two pieces and uses one piece to load chunks of text
+and the other piece to build partial
+indices on those chunks. This means that the number of chunks that xpatbld divides the text into is equal to the total
+size of the text times 2, divided by the amount of memory you allocated (minus 400K). This also means
+that the maximum amount of memory that xpatbld needs is twice the size of the text, plus 400 KB.</p>
+<p>For example, say the text is 500 MB and you tell xpatbld to use 60 MB of memory, it will divide the text into (500 MB * 2 / (60 MB - 0.4 MB)) = 16.8 chunks (or 17 chunks, rounded to the next whole number). It also means that the maximum amount of physical memory that xpatbld would need
+to index the text is 500 MB * 2 + 0.4 MB = 1000.4 MB.</p>
+<p>Note:  In MFS databases, the size of the text in the above calculation is the size of the filtered text This amount is usually considerably less than the total size of all
+the files in the database. This is because each
+file contains a significant amount of word-processor overhead that is ignored
+for indexing purposes.</p>
+<p>The above discussion has centered around the required
+physical memory. However, when xpatbld runs, it actually allocates twice the specified memory. This amount must be available in virtual memory, so you should make sure the machine is configured with enough swap space to provide that amount of virtual memory, plus any extra required by other processes on the system. It is usually well worth monitoring xpatbld for pagefault activity as it processes the first few chunks. You should restart with less memory (if there is a lot of pagefault activity) or more memory (if there is no pagefault activity). [The ideal memory specification is just under the point where pagefaults begin. This is especially important when you are building an index on a large text file (e.g., where the size of the text file is 10 times or more the size of available physical memory). In such cases, if too much or too little memory is allocated, xpatbld will take MUCH longer than necessary.] You can monitor xpatbld's performance using the vmstat(8)and sar(8) programs (at least one of those two programs should be available on
+every type of Unix operating system).</p>
+
+<h4>1.4.2.3.2	 Disk Usage Calculations</h4>
+<b>Calculating Your Memory Requirements</b>
+<p>The size of the Main Index file, in relation to the size of the text, varies depending on the indexing parameters used to build the index. There are two broad categories of indices: word indices and the character indices. A word index has an index point at the beginning of every word, while a character index has an index point at every character. The size of the Main Index file, in bytes, is four times the number of index points in the text, plus 512 bytes for the file header. The Main Index file for a typical word index on English text is around 75% the size of the text. In contrast, the Main Index file for a character index is roughly 4 times the size of the text. Most databases have word indices built on them.</p>
+<p>While these guidelines characterize the size of the Main Index once it has been built, xpatbld requires more disk space than the final index size, while it is building the index. This extra space is required for the partial index files and the merge instruction files. For a large index it is important that the required disk space be calculated properly.</p>
+<p>The intermediate partial indices and the final partial indices will each total the size of the final complete index. However, because the final indices replace the intermediate ones, only the space equal to the size of the final index is needed for them. The merge instruction files will total about 1/4 the size of the final index. And enough space is needed for the final index. These components add up to 2 1/4 times the size of the Main Index file, or roughly 170% the size of the text, for word indices.</p>
+<b>What To Do When You Don't Have Enough Temporary Disk Space</b>
+<p>Disk space trick: In an extremely tight situation it is possible to build a word index using about 1 1/4 the size of the final index. The trick is to allow xpatbld to proceed until ALL the final partial indices have been built. At this point xpatbld will start writing the final complete index file (you can tell when this happens by regularly listing the contents of the directory where the final '.idx' file will reside and waiting until that file is created and starts to grow). When xpatbld starts writing the final index, all of the information for index building is in the partial indices and the merge files; the text is no longer needed. If the text is backed up on tape, it may be removed while xpatbld writes the final complete index. After xpatbld has finished creating the final index file, it will automatically remove all the partial index files. There will then be room to restore the text.</p>
+
+<h4>1.4.2.3.3	 Timing Calculations</h4>
+<p>In a large xpatbld run, it is useful to be able to estimate how long the complete index build will take. You can use the following method to compute this estimate. As described above, xpatbld breaks the text up into chunks that will fit into approximately half of the allocated memory. You can estimate the exact number of chunks more accurately while xpatbld is running by inspecting the contents of the log file (which has a '.log' extension). That file records exactly how many characters are processed in each chunk. The number of characters in the various chunks will not be exactly the same, but should all be relatively close to some average value. The total number of chunks is then the size of the text divided by the average chunk size.</p>
+<p>Once you have determined the number of chunks, you can move on to determine the times for the various steps in the operation. As mentioned above, xpatbld works by first building the partial index file for each chunk and then building the merge file. The partial index files all take approximately the same amount of time to build. However, the process of calculating the merge files takes longer with each successive chunk. The merge file calculation for a given chunk involves (n - 1)
+separate steps, where n is the
+chunk number. Those steps all take approximately the same amount of time.</p>
+<p>You can determine the time it takes to build the index for each chunk, and the time for each separate merge step by looking at the timestamps on the '.in' and '.mn' files. The
+following table provides an example of the
+first three chunks of a typical build:</p>
+<p>File Timestamp   Elapsed <b>Time</b></p>
+<p>demo. il  10:13</p>
+<p>demo .ml  10:13 O mins</p>
+<p>demo. i2  10:18 5 mins</p>
+<p>demo.m2   10:21 3 mins</p>
+<p>demo. i3  10:26 5 mins</p>
+<p>demo. m3  10:33 7 mins</p>
+<p>In the above example, each partial index file appears to take around 5 minutes to build, while each step in the merge file calculation appears to take around 3.5 minutes (from the sequence: 0 mins, 3 mins, 7 mins).</p>
+<p>The total time for the complete index build can be determined by the following formula. If there are n chunks, then there are n Phase 1 indexing operations, (n<sup>2 </sup>-
+n) /2 Phase I merge steps, n Phase 2 indexing
+passes and one Phase 3 merge operation. The Phase 1 and Phase 2 indexing steps
+all take approximately the same amount of
+time (5 minutes in the above example). The time for the Phase 3 merge phase is insignificant with respect to
+the total time of the other passes, so it is not included in the overall calculation. The total time is then
+given by the formula,</p>
+<p>n<sup>2</sup>-n</p>
+<p>Ix2n+Mx 2</p>
+<p>where I is the indexing time and M is the
+merge step time. In our example, n is 11, I is 5 minutes and M is 3.5 minutes, so the total time
+estimate is 302.5 minutes, or around 5 hours. Refer
+to the xpatbld(1) man page in Part II of the DBA Reference Guide for
+further details on the xpatbld program
+itself.</p>
+
+
+<h3>1.4.2.4	 Examples</h3>
+<p>(1) To <b>build</b> <b>the</b> Main Index, using 15
+Megabytes <b>of memory, on the butterfly </b>database using an ISO-LATIN
+character <b>set:</b></p>
+<p>patbld -v -m 15m -D buttrfly.dd</p>
+<p>(2) Same as above, but only on the region 'Headline':</p>
+<p>patbld -v -m 15m -d Headline -D buttrfly.dd</p>
+<p>(3) Same as above, but intermediate index files will be placed in '/data/tmp' with the filename prefix 'inter':</p>
+<p>patbld -v -m 15m -d Headline -i /data/tmp/inter</p>
+<p>(4) Same as above, but recover from a crash:</p>
+<p>patbld -v -r -m 15m -d Headline -i /data/tmp/inter</p>
+
+
+<h2>1.4.3	 The Region Index Builder Command Line Syntax</h2>
+<h3>1.4.3.1	 Building the Region Index</h3>
+<p>The Region Index is built by the multirgn command. multirgn uses the tag names file that you
+prepared in the control file preparation stage
+and builds region indices on the tagged fields defined in it. The region index building process is illustrated in
+the following diagram.</p>
+<p>Building the Region Subindex File</p>
+<p>Command Tag Names</p>
+<p>Line File</p>
+<p>Options  ('.tag')</p>
+<p>multirgn</p>
+<p>Region Subindex</p>
+<p>Builder</p>
+<p>Text Region Subindex File</p>
+<p>(MFS: many files  ('.rgn')</p>
+<p>Regular: one file)</p>
+<p>multirgn builds
+a separate region index on each region defined in the tag names file. It places
+all of these
+region indices, one after the other, in the main Region Subindex file (with the
+'.rgn' extension).
+For each such region index, it then adds an entry to the DD, similar to the one
+below. If the DD already contains an entry for a given region, that entry is
+updated:</p>
+<p>&lt;Region&gt;</p>
+<p>&lt;Name&gt;entry&lt; /Name&gt;</p>
+<p>&lt;Desc&gt;Sample Region Description&lt;/Desc&gt;</p>
+<p>&lt;File&gt;</p>
+<p>&lt;SysName&gt;/user/data/mydb. rgn&lt;/SysName&gt;</p>
+<p>&lt;ModDate&gt;761240610&lt;/ModDate&gt;</p>
+<p>&lt;Of fset&gt;0&lt;/Offset&gt;</p>
+<p>&lt;/File&gt;</p>
+<p>&lt;/Region&gt;</p>
+<p>The command line syntax for the Region Index builder is shown below. Refer to the multirgn( I) man
+page in Part II of the DBA
+Reference Guide for further details.</p>
+<p><b>multirgn</b> [-v] [- f] [-a outputjile] [-sw
+tagpositionfileJ</p>
+<p>[-meta rgn-data [-display<b> </b>fmt<b> </b>format] -D
+data_dictionary -t tagnamefile</p>
+
+<h3>1.4.3.2	 Build Options</h3>
+<h4>1.4.3.2.1	 Producing Diagnostic Messages</h4>
+<p>The standard -v option can be used to print additional messages during the execution of multirgn.</p>
+
+<h4>1.4.3.2.2	 Specifying Full Pathnames</h4>
+<p>The 'Region' segment of the DD contains a 'SysName' field which specifies a full pathname for the actual region file. This pathname can be utilized with the - f option.</p>
+
+<h4>1.4.3.2.3	 Specifying An Output Index Filename Prefix</h4>
+<p>The default Region Index filename uses the prefix of the specified DD. Then multirgn automatically
+adds a '.rgn' suffix to the output region index filename. If you prefer a
+different prefix, use the -o option. If
+your choice already ends with '.rgn', multirgn will not add another one. The complete filename will be recorded in
+the 'SysName' field of the 'Region' segment of the
+DD.</p>
+
+<h4>1.4.3.2.4	 Specifying A Tag-Position File</h4>
+<p>- <b>sw</b> option for 'sort and write' mode...</p>
+
+
+
+<h2>1.4.4	 The Pattern-based Region Index Builder Command Line Syntax</h2>
+<p>While the multirgn utility is very effective for
+regions delimited with the standard tag notation ("&lt;tagname&gt;"and "&lt;/tagname&gt;"), at times it may be desirable to
+build regions on text that is not in standard tagged text format. Regions can
+be built on text which is marked by an arbitrary fixed pattern. For example, if
+<b>":1i."</b> indicates the beginning of a title and <b>"dxd"</b>
+indicates the end of the title, then xpatrgn can be used to build the region.</p>
+<h3>1.4.4.1	 Building the Pattern Based Region Index</h3>
+<p>The Region Index is built by the xpatrgn command.
+This is documented in detail in the Database Administration Reference Guide. xpatrgn uses the patterns
+that are listed in the pattern file that you prepared
+in the control file preparation stage, and builds region indices on the tagged
+fields defined in it. The region index
+building process is illustrated in the following diagram.</p>
+<p>Building the Region Subindex File</p>
+<p>Command Pattern</p>
+<p>Line File</p>
+<p>Options   ('.ptn')</p>
+<p>xpatrgn</p>
+<p>Region Subindex</p>
+<p>Builder</p>
+<p>Text  Region Subindex File</p>
+<p>(MFS: many files  (rgn')</p>
+<p>Consolidated: one file)</p>
+<p>xpatrgn builds a single region per invocation of this
+utility. Each invocation of xpatrgn takes as an argument the name of a file containing the pattern pairs that
+delimited the region to be built. So, to build
+region indices for two regions (e.g. Abstracts and Inventors), xpatrgn must
+be run twice. The first run will take a
+pattern file containing the patterns that delimit Abstracts (there may be more
+than one set of criteria for Abstracts);
+and a second run that builds the regions for Inventors. The second run will use a different pattern file which
+contains all of the valid pattern pairs which delimit Inventor regions.</p>
+<p>xpatrgn places the region index in a file that is
+specified with the '-o' option described below. For
+each such region index, it then adds an entry to the DD, similar to the
+one below. If the DD already contains an
+entry for a given region, that entry is updated:</p>
+<p>&lt;Region&gt;</p>
+<p>&lt;Nam  en  &lt;Name&gt;en Name</p>
+<p>&lt;Desc&gt;Sample Region Description&lt;/Desc&gt;</p>
+<p>&lt;File&gt;</p>
+<p>&lt;SysNae&gt;/u  da  mydb  gn   Name&gt;userdata/mydbrgn&lt;SysName&gt;</p>
+<p>&lt;ModDate&gt;761240610&lt;/ModDate&gt;</p>
+<p>&lt;Offsec&gt;0&lt;/Offset&gt;</p>
+<p>&lt;/File&gt;</p>
+<p>&lt;/Region&gt;</p>
+<p>The command line syntax for the Region Index builder is shown below. Refer to the multirgn(I) man page in Part II of the DBA
+Reference Guide for further details..</p>
+<p>xpatrgn [-v] [-d region_description] [-r region_name]</p>
+<p>[-p regions_delimeterpatternfilename] -o regionfile -D data_dictionary</p>
+
+<h3>1.4.4.2	 Build Options</h3>
+<h4>1.4.4.2.1	 Producing Diagnostic Messages</h4>
+<p>The standard -v option can be used to print additional messages during the execution of multirgn.</p>
+
+
+
+<h2>1.4.5	 FastRegion Index Builder Command Line Syntax</h2>
+<h3>1.4.5.1	 Building FastRegion Indices</h3>
+<p>If you plan to use queries of the form" 'Super-Highway' within HEADLINE", your query performance can be improved by
+building a FastRegion Index on the HEADLINE region. This of course applies to
+any other regions that you plan to query frequently. The command line syntax for the FastRegion Index builder is shown below.
+Refer to the xpatfr(J) man page in Part II of the DBA
+Reference Guide for further details.</p>
+<p><b>xpatfr</b> -v] [ -m memory k I ml [-I index_name] [-o outputname] -r regionname -D datadict</p>
+
+<h3>1.4.5.2	 Build Options</h3>
+<h4>1.4.5.2.1	 Producing Diagnostic Messages</h4>
+<p>The standard -v option can be used to print additional messages during the execution of xpatfr.</p>
+
+<h4>1.4.5.2.2	 Allocating Memory for the Build Process</h4>
+<p>Physical memory for the build operation can be allocated using the -m option followed by the amount of memory in kilobytes (k or megabytes (m . See Section for more
+information.</p>
+
+<h4>1.4.5.2.3	 1 2.3.5.2.3Specifying the Input Index Filename</h4>
+<p>The default behaviour of xpatfr is that a FastRegion is built over the first Main Index specified in the DD. If you want to specify an alternate Main Index, use the '-I' option.</p>
+
+<h4>1.4.5.2.4	 Specifying the Output FastRegion Index Filename</h4>
+<p>The FastRegion Index filename defaults to a prefix that echoes the Region name, and a suffix of '.fri'. If the Region name has spaces or other non-alphanumeric characters in it, you must override the default prefix and provide your own. This is done with the '-o' option. (Note that you can use this option to override the default filename prefix regardless of the Region name.)</p>
+
+
+
+<h2>1.4.6	 FastFind Index Builder Command Line Syntax</h2>
+<h3>1.4.6.1	 Building FastFind Indices</h3>
+<p>The FastFind indices are built in two passes. The xpatffwprogram builds the FastFind Word List file (the '.f fw' file). The xpatffiprogram builds the FastFind Index files (the '.f f c' and '.ffi' files). The command line syntax for the FastFind Index
+builders are shown below. Refer to the xpatffw(I) and xpatffi(l) man pages in Part II
+of the DBA Reference Guide for further details.</p>
+<p>xpatffw [-v] [-m memory [k I m]] [-b blocksize] [- indexname]</p>
+<p>[-o outputname] -D data_dictionary</p>
+<p><b>xpatffi</b> [-v] [-m memory [k I m]] [-b block_size] [-I
+indexname]</p>
+<p>[-o output_name] -D data_dictionary</p>
+
+<h3>1.4.6.2	 Build Options</h3>
+<h4>1.4.6.2.1	 Producing Diagnostic Messages</h4>
+<p>The standard -v option can be used to print additional messages during the execution of either xpatffwor xpatffi.</p>
+
+<h4>1.4.6.2.2	 Specifying Compression Block Size for FastFind Indices</h4>
+<p>As the FastFind Indices are built, they are compressed. As the indices are used, they are uncompressed. If the machine that will be used to perform queries has very little memory, the uncompressed blocks should be made as small as possible. The default is 8192-byte (8K) blocks. You can override this default by using the -b option. The sizes specified for xpatffw
+and xpatffi must be the same.</p>
+
+<h4>1.4.6.2.3	 Specifying An Input Index Name</h4>
+<p>You can specify which index the FastFind Indices should be built over. For both xpatffw and xpatffi,the default is the first index indicated in the DD. Use the - I option to override the default index name.</p>
+
+<h4>1.4.6.2.4	 Specifying Output FastFind Index Names</h4>
+<p>The xpatffw utility
+creates an output file ('.ffw') whose prefix echoes the string indicated in
+the 'FastFind' segment of the DD, or takes
+the prefix of the DD filename if the DD does not contain any FastFind specifications. Likewise, xpatffi creates
+two output files ('.<b>ffc'</b> and '.ffi') that has a prefix as described above. To override this default for either xpatffwor xpatffi, use the -o option.</p>
+
+<h4>1.4.6.2.5	 Specifying a Temporary-File Directory</h4>
+<p>The <b>xpatffi</b> utility creates
+temporary files during the build operation. By default, these files are put in the local directory. To specify a temporary
+directory, use the -t option.</p>
+
+
+
+
+<h1>1.5	 CHAPTER SUMMARY</h1>
+<p>The intent of this chapter is to provide the database
+administrator with the theory behind DLXS XPAT index-building,
+along with the syntax and details of the TextSearch commands that build the
+indices. A quick-reference card of the
+index-building utilities is on the next page. Note that the sgmlrgn index building program is covered in Detailed
+Indexing, Part 2.</p>
+
+<h1>1.6	 ADVANCED INDEX-BUILDING UTILITIES QUICK REFERENCE CARD</h1>
+<p></p>
+
+</body>
+
+</html>

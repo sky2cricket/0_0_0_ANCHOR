@@ -1,0 +1,95 @@
+<html>
+<head>
+<title>Adding New Searchable Fields, Bibliographic Class</title>
+<link href="../../dlxsdocs.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="pageTitle">Adding New Searchable Fields, Bibliographic Class</div><h1>Overview</h1>
+<p>A basic set of fields has been declared in the file <a href="bib.map" ><tt>bib.map</tt></a> and
+   these can be used along with <a href="../../collmeta/collmgr.html">collmgr</a> to
+   enable or turn on searches for those fields. The basic fields currently include:</p>
+<ul>
+   <li><tt>author</tt></li>
+   <li><tt>title</tt></li>
+   <li><tt>entire record</tt></li>
+   <li><tt>publisher</tt></li>
+   <li><tt>place of publication</tt></li>
+   <li><tt>year</tt> (i.e., date of publication)</li>
+   <li><tt>series</tt></li>
+   <li><tt>notes</tt></li>
+   <li><tt>collection</tt> (i.e., collection ID)</li>
+   <li><tt>format</tt> (e.g., HTML)</li>
+   <li><tt>type</tt> (e.g., text)</li>
+   <li><tt>language</tt></li>
+   <li><tt>id</tt> (i.e., the ID of the record)</li>
+   <li><tt>dt</tt> (i.e., the OAI-specified date of last update for a record)</li>
+</ul>
+<p>and all are based on encoding that conforms to the <a href="dtd.html"><tt>bib.dtd</tt></a>.</p>
+<p>It may be necessary to define additional fields or to substitute values (based
+   on different encoding practices) for the values used in this <tt>bib.map</tt>.
+   This section outlines the steps necessary to create a new map file, and the
+   steps in the collmgr needed to take advantage of these new (i.e., additional
+   or different) fields.</p>
+<h1>Creating and Modifying the map File</h1>
+<p>Rather than modifying the file <tt>bib.map</tt>, a new map file should be
+   created for each collection. The file <tt>bib.map</tt> and the new map file
+   you will create are (or will be) located in the <tt>/{DLXSROOT}/misc</tt> directory.
+   For the purposes of this documentation, we will use the example "patent.map" for
+   a hypothetical collection with the collection ID "patent". For more information,
+   go to <a href="../../collmeta/maps.html">a generic overview of map files</a>.</p>
+<p>Each mapping element in a map file consists of the following:</p>
+<dl> <dt><tt>label</tt></dt><dd>This element determines what will display in
+the user's browser when constructing searches, and is case sensitive. It must
+match the value used in the collmgr (<a href="#collmgr">see below</a>).</dd><dt><tt>synthetic</tt></dt><dd>This
+element determines the variable name that is used in the cgi.</dd><dt><tt>native</tt></dt><dd>The "native" element
+provides an appropriate XPAT search that the system will use to discover the
+appropriate content. The search may be simple (e.g., <tt>region YR</tt>) or complex
+(e.g., <tt>(region origin within region citation) + (region publish within region
+citation)</tt>)</dd><dt><tt>nativeregionname</tt></dt><dd>This element is not
+used by Bibliographic Class and so content within the element may be omitted.</dd><dt><tt>summarylabel</tt></dt><dd>This
+element determines what will display in the user's browser when reporting the
+search and corresponding results, and is frequently used to declare an abbreviation
+such as "date" for "date of publication".</dd></dl>
+<p>Create the file <tt>patent.map</tt> with any standard text editor and copy
+   the contents of <tt>bib.map</tt> to it. Each map file consists of a section
+   of "operator" mappings (e.g., ), followed by a section of "region" mappings;
+   each section is introduced by a comment such as <tt>&lt;!-- operator mapping
+   --&gt;</tt>. An example of an operator mapping is as follows:</p>
+<pre> &lt;mapping&gt; &lt;label&gt;And&lt;/label&gt; &lt;synthetic&gt;AND&lt;/synthetic&gt; &lt;native&gt;^&lt;/native&gt; &lt;/mapping&gt; </pre>
+<p>Operator mappings use the synthetic element in Bibliographic Class; region
+   mappings do not.</p>
+<p>Begin by removing all mapping groups that are not relevant to your collection.
+   For example, let us say that our example collection, patent, consists of records
+   without authors; in this case, we would remove the region mapping for author
+   that looks like this:</p>
+<pre> &lt;mapping&gt; &lt;label&gt;author&lt;/label&gt; &lt;synthetic&gt;&lt;/synthetic&gt; &lt;native&gt;region
+L&lt;/native&gt; &lt;nativeregionname&gt;&lt;/nativeregionname&gt; &lt;summarylabel&gt;au&lt;/summarylabel&gt; &lt;/mapping&gt; </pre>
+<p>Next, add new mappings for the fields that you would like to make searchable
+   in the interface. (Remember, each Bibliographic Class record will typically
+   be searchable across <i>all</i> fields by using the mapping <tt>entire record</tt>,
+   which is mapped to <tt>region A</tt>.) In the following three examples, we
+   declare (1) a new, simple field based on a single element, (2) a re-mapping
+   of an element already declared for Bibliographic Class, and (3) a new element
+   based on the combination of two complex searches:</p>
+<ol>
+<li> <pre> &lt;mapping&gt; &lt;label&gt;patent number&lt;/label&gt; &lt;synthetic&gt;&lt;/synthetic&gt; &lt;native&gt;region
+      PATNO&lt;/native&gt; &lt;nativeregionname&gt;&lt;/nativeregionname&gt; &lt;summarylabel&gt;patent
+      #&lt;/summarylabel&gt; &lt;/mapping&gt; </pre> </li>
+<li> <pre> &lt;mapping&gt; &lt;label&gt;year&lt;/label&gt; &lt;synthetic&gt;&lt;/synthetic&gt; &lt;native&gt;region
+      YR within region citation&lt;/native&gt; &lt;nativeregionname&gt;&lt;/nativeregionname&gt; &lt;summarylabel&gt;year&lt;/summarylabel&gt; &lt;/mapping&gt; </pre> </li>
+<li> <pre> &lt;mapping&gt; &lt;label&gt;data type&lt;/label&gt; &lt;synthetic&gt;&lt;/synthetic&gt; &lt;native&gt;(region
+      geoform within region citation) + (region formname)&lt;/native&gt; &lt;nativeregionname&gt;&lt;/nativeregionname&gt; &lt;summarylabel&gt;data
+      type&lt;/summarylabel&gt; &lt;/mapping&gt; </pre> </li>
+</ol><h1><a name="collmgr"></a>collmgr Steps Needed to Support Additional Searchable
+Fields</h1>
+<p>You will need to have the colldb database point to your new map file, and
+   to declare the new searchable fields for the user interface. First, in <a href="../../collmeta/collmgr.html">collmgr</a>'s <tt>map</tt> field,
+   declare your map file (e.g., <tt>patent.map</tt>). Next, in collmgr's <tt>regionsearch</tt> field,
+   add your searchable fields. These must correspond to the <tt>label</tt> elements
+   in the mapping, described above.</p>
+<p>You may also need to support searchable fields such as date of publication
+   (e.g., for sorting) or ID (for record-oriented operations like using the bookbag),
+   but not need to show these as being searchable in the user interface. In these
+   cases, you should create mappings, but not declare the regions in collmgr.</p>
+</body>
+</html>

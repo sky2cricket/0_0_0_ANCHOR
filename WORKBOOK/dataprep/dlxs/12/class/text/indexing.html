@@ -1,0 +1,29 @@
+<html>
+<head>
+<title>Indexing the Collection (Text Class)</title>
+
+
+
+
+
+
+
+<link href="../../dlxsdocs.css" rel="stylesheet" type="text/css"> </head>         <body>
+<div class="pageTitle">Indexing the Collection (Text Class)</div><p>After you have followed all the steps to set up your directories and prepare your files, as found in the <a href="prep.html">Text Class preparation documentation</a>, indexing the collection is fairly straightforward.  To create an index for use with the Text Class
+                interface, you will need to index the words in the collection, then index the
+                SGML/XML (the structural metadata, if you will), and then finally "fabricate"
+                structures based on a combination of elements (for example, defining what the
+                "main entry" is, without adding a &lt;MAINENTRY&gt; tag around the appropriate
+                &lt;AUTHOR&gt; or &lt;TITLE&gt; element). The following commands can be used to
+                make the index, alone or in combination. </p><ol><li>Ensure that your collection SGML is valid by using the <tt>make validate</tt> command  in the Makefile stored at $DLXSROOT/bin/c/collid/Makefile</li><li><b>make singledd</b> indexes words for texts that
+                have been concatenated into one large file for a collection. This is the
+                recommended process, as a data dictionary built from a single concatenate file is faster for searching and more reliable than one built using multi-file system indexing..   Use the <tt>make singledd</tt> command  in the Makefile stored at $DLXSROOT/bin/c/collid/Makefile .</li><li><b>make sgml</b> indexes the SGML structure by
+                reading the DTD, and validates as it indexes. It is slower than multiregion indexing (see
+                <a href="../../xpat/index.html">XPAT documentation</a> for more information) for this reason. However, it is necessary for collections that have nested
+                elements of the same name (even when separated by an intervening element, such as a &lt;P&gt; within &lt;NOTE1&gt; that is itself  within a &lt;P&gt;).  Use the <tt>make sgml</tt>command  in the Makefile stored at $DLXSROOT/bin/c/collid/Makefile</li><li><b>make post</b> builds and indexes fabricated
+                regions based on the XPAT queries stored in the $DLXSROOT/prep/c/collid/collid.extra.srch file.  Because every collection is different, this file will need to be adapted after you have determined what you want to use as a "poem" for text (e.g., perhaps every DIV1 TYPE="sonnet" and DIV2 TYPE="poem" in the collection) and how many levels of division heads  you have in your collection (e.g., at least one text is nested to DIV4, so you'll need to fabricate up to div4head).  If the extra.srch file references elements not used in your text collection, you will see errors like <tt>Error found:
+&lt;Error&gt;syntax error before: ")&lt;/Error&gt;
+</tt> when you use the <tt>make post</tt>  command  in the Makefile stored at $DLXSROOT/bin/c/collid/Makefile.  Remove unnecessary lines.</li></ol><p>You have now built indexes and region files for your collection. You can test that things are properly indexed by issuing the command<tt>xpat  $DLXSROOT/idx/c/collid/collid.dd</tt> and doing searches, such as for a common word like <tt>the</tt> or an element that should appear such as <tt>region "main"</tt> or <tt>region "HEADER"</tt>.  Strategically, it is good to test this from a directory other than the one you indexed in, to ensure that relative or absolute paths are resolving
+   appropriately.
+ </p></body>
+</html>

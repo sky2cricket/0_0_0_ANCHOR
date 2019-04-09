@@ -1,0 +1,3027 @@
+<html>
+<head>
+<title>Guide to Searching XPAT Databases</title>
+
+
+
+
+
+
+
+<link href="../dlxsdocs.css" rel="stylesheet" type="text/css"> </head>         <body>
+<div class="pageTitle">DLXS XPAT Searching</div>
+<h1>Introducing DLXS XPAT</h1> <p>DLXS XPAT is a tool for
+searching text. You type a prefix, word, or phrase; DLXS XPAT tells you how
+many times it appears in the text. You can then print all or some
+fraction of the matches, each match surrounded by some context. You can
+find prefixes, words or phrases that appear near other specified text,
+or find those that appear most often. Searches can also be restricted to
+certain parts of the text. Whoever installs DLXS XPAT to work with a
+particular document defines what characters signal the beginning of a
+prefix, word, or phrase; what characters (if any) should be interpreted
+by DLXS XPAT as other characters (upper case characters to lower, for
+example); and whether DLXS XPAT should ignore certain characters completely
+(common words, for example).</p>
+
+
+<h2>How to Use This Manual</h2>
+<p><!-- keyword: getting started -->This manual was written to help you get
+started using DLXS XPAT and to serve as a reference guide once you become
+more familiar with the program. The chart on the facing page outlines
+where you can go in the manual to get the type of information you need.
+For example, if you are a new user of DLXS XPAT and are in a hurry to get
+started, you may want to turn to the section "Trying Out Commands".</p>
+
+<p>This manual was not written to help you install or set DLXS XPAT up on
+your system. For installation information, refer to the <i>DLXS XPAT Installation
+Guide.</i></p>
+
+<p>Some particulars of DLXS XPAT will vary from system to system, such as
+whether upper case characters are translated to lower case, or what
+DLXS XPAT considers a word. The section "How DLXS XPAT Searches" outlines some
+of the possibilities.</p>
+
+<p><!-- keyword: example text -->The main texts used for examples are the
+first edition of the <i>Oxford English Dictionary</i> and Sir Arthur
+Conan Doyle's <i>Hound of the Baskervilles</i>. Although your
+understanding and use of DLXS XPAT will be strongly influenced by the text
+you are searching, these two texts will
+show the characteristics of searching a straightforward text structure
+like that of <i>Hound of the Baskervilles</i> as compared with the
+highly complex text structure found in <i>The Oxford English
+Dictionary.</i></p>
+<p><!-- keyword: conventions -->This manual is divided into two-page
+spreads where the right page presents the textual or explanatory
+information and the left page presents the visual or exemplary
+information. DLXS XPAT commands that appear on the right page (in bold) are
+more fully developed in a real example on the left. Technical or
+unfamiliar uses of words appear in italics the first time they are used
+and are fully defined in the glossary.</p>  
+
+ 
+
+<h2>What is DLXS XPAT?</h2> 
+<!-- index: Tags --><!-- index: to mark components of text -->
+<dl>
+<dt>Prefix</dt><dd>In the linguistic sense, a prefix is
+an element placed before a word or stem to form another word. In
+this manual, the term is used to describe any character(s)
+(letters, numbers, or special characters) that start a word regardless
+of whether they form a grammatical prefix.</dd>
+
+<dt>Word</dt><dd>In the linguistic sense, a word is a
+meaningful element surrounded by a space on either side. In this manual,
+the term also includes elements that are not necessarily
+surrounded by a space on either side (a word that appears flush beside a
+tag, as in <i>&lt;p>The</i>, for example).  What DLXS XPAT considers a
+word is defined at the time of index building.</dd>
+
+<dt>Phrase</dt><dd>In the linguistic sense, a phrase is a
+group of words that plays a particular role in a sentence. In this
+manual, phrase refers to any sequence of characters containing more than
+one word. See
+<i>Word</i>.</dd>
+
+<dt>Tags</dt><dd>Tags are often used to label the start
+and end of an element in the text for ease of retrieval. For example,
+the tag <i>&lt;Q></i> identifies the start of a quotation
+and the tag <i>&lt;/Q></i> identifies its end.
+Tags represent descriptive markup when they describe
+what the text is rather than how it should be formatted.</dd>
+</dl>
+
+<pre>
+&lt;paper&gt;&lt;title&gt;________________________________________&lt;/title&gt;
+&lt;author&gt;_____________________________________________&lt;/author&gt;
+&lt;abstract&gt;____________________________________________________
+______________________________________________________________
+______________________________________________________________
+______________________________________________________________
+___________________________________________________&lt;/abstract&gt;
+&lt;body&gt;________________________________________________________
+______________________________________________________________
+______________________________________________________________
+______________________________________________________________
+______________________________________________________________
+______________________________________________________________
+______________________________________________________________
+______________________________________________________________
+______________________________________________________________
+______________________________________________________________
+______________________________________________________________
+______________________________________________________________
+______________________________________________________________
+______________________________________________________________
+______________________________________________________________
+______________________________________________________________
+______________________________________________________________
+______________________________________________________________
+_______________________________________________________&lt;/body&gt;
+&lt;/paper&gt;
+</pre>
+
+ <p><!-- keyword: searching text -->DLXS XPAT is a tool for searching
+text. You can use DLXS XPAT to search for <i>prefixes</i>,
+<i>words</i>, or <i>phrases</i>. DLXS XPAT can search for a lengthy
+phrase as quickly as for a single word. DLXS XPAT can also search for text
+that appears near other specified text and for text that appears
+frequently.</p>
+
+<p><!-- keyword: restricting search area -->Using DLXS XPAT, you can search
+through the entire text or only a portion. For example, a search through
+a collection of technical papers can be restricted to only the
+abstracts. Restricting searches to selected components of text is
+easiest when the text contains <i>tags</i> that mark the start and
+end of each component (<i>&lt;abstract></i> and
+<i>&lt;/abstract></i>, for example). A collection of technical
+papers that has its titles, authors, abstracts, and content marked by
+different tags can be easily segmented into portions for searching
+(see facing page).</p>
+
+<p><!-- keyword: applying DLXS XPAT -->DLXS XPAT can be used to search a variety of
+texts, everything from dictionaries, encyclopedias, or literary works to
+business texts such as insurance policies or contracts. The following
+examples show how DLXS XPAT can be used to satisfy a variety of search
+requests.</p>
+
+<ul><li>A student searches an encyclopedia for all entries that
+contain the word <i>revolution</i> near the word
+<i>french</i> or <i>France</i>.</li>
+
+<li>A statistician searches a collection of insurance files
+to find the most popular types of policies.</li>
+
+<li>A Shakespearean scholar finds the most frequently cited
+work by Shakespeare in a collection of literary journals.</li>
+
+<li>A computer scientist searches through a collection of technical
+papers, retrieving the titles of the papers written by a certain author.</li>
+
+<li>A linguist searches a dictionary for the number
+of English words that have Old Norman French in their etymology and are
+still in current use.</li>
+
+<li>A lexicographer creates a <i>concordance</i> of a text consisting of
+all words that begin with the letter <i>j</i>.</li>
+
+<li>A literary scholar searches for long repeated phrases of text in a
+work, aiming to discover the author's favourite expressions.</li>
+</ul>
+
+
+<h2>Starting and Leaving DLXS XPAT</h2>
+<!-- index: Starting DLXS XPAT -->
+<!-- index: Stopping DLXS XPAT -->
+<!-- index: Leaving DLXS XPAT -->
+<!-- index: Quitting DLXS XPAT -->
+<!-- index: Interrupting a command -->
+<!-- index: Stopping a command from finishing -->
+<dl>
+<dt>Prompt</dt><dd>A prompt is a symbol that appears on
+the screen when the computer is ready to accept commands. Prompts vary
+from system to system. The prompt within DLXS XPAT looks like
+<i>&gt;&gt;</i>.</dd>
+</dl>
+
+<pre> 
+% xpat research
+  Digital Library eXtension Service, XPAT, Release 5.2
+  COPYRIGHT (c) 2000 The Regents of the University of Michigan
+  All Rights Reserved
+
+&gt;&gt;
+</pre>
+
+<p><b>Leaving DLXS XPAT
+</b></p>
+
+<pre> 
+&gt;&gt; stop
+used 0.18 cpu seconds
+% 
+</pre>
+
+<p>Let's assume someone has installed the text file you want to search
+and the DLXS XPAT program on your system according to the
+procedures outlined in the <i>DLXS XPAT Installation Guide</i>.</p>
+
+<p><!-- keyword: starting DLXS XPAT -->To start DLXS XPAT, type <tt>pat</tt>,
+followed by the name of the file that contains the text you want to
+search. For example, if <tt>research</tt> is the name of your text
+file, the command is:</p>
+
+<pre>pat research</pre>
+
+<p>The <tt>&gt;&gt;</tt> <i>prompt</i> appears once you have
+successfully started DLXS XPAT. This means DLXS XPAT is ready for your first
+search instruction. After each instruction to DLXS XPAT, press the
+<tt>Enter</tt> or <tt>Return</tt> key.</p>
+
+<p><!-- keyword: interrupting DLXS XPAT -->To interrupt DLXS XPAT in the middle of
+a search or the printing of results, press the key or sequence of keys
+that normally performs an interrupt function on your keyboard (commonly the
+<tt>Delete</tt> key or a <tt>Control c</tt> key sequence).</p>
+
+<p><!-- keyword: leaving DLXS XPAT -->When you are ready to leave DLXS XPAT, type
+<tt>stop</tt>, <tt>quit</tt>, or <tt>done</tt> after the prompt:</p>
+
+<pre>&gt;&gt; stop</pre>
+
+<p>A message displays how much computer time you used in
+the DLXS XPAT session.</p>
+
+
+
+
+<h2>Your First Search</h2>
+<!-- index: Pattern --><!-- index: entering of -->
+<!-- index: Search pattern --><!-- index: entering of -->
+<!-- index: Set number -->
+<!-- index: <TT>pr</TT> command -->
+<!-- index: Printing results --><!-- index: one line of context -->
+<!-- index: Commands --><!-- index: <TT>pr</TT> -->
+<!-- index: Match point --><!-- index: definition of -->
+<!-- index: Number --><!-- index: of set -->
+<!-- index: Number --><!-- index: that appears when printing -->
+
+<dl>
+<dt>Match point</dt><dd>The match point is the first
+letter of the matched text. If you search for <i>car</i>, for
+example, the match point is <i>c</i>. The match point normally
+appears as the 15th character printed as the result of a <tt>pr</tt>
+command (not including the initial <i>..</i>). It serves as a
+reference point for the match. For example, the position of the match
+point (the number that appears at the beginning of a line of context)
+can be used to retrieve the match.</dd>
+
+<dt>Pattern</dt><dd>A pattern is the text that you ask
+DLXS XPAT to search for. DLXS XPAT tries to find the same sequence of characters
+in the text. If it does, a match results.</dd>
+
+<dt>Set number</dt><dd>A set number identifies a specific
+set of results. Each time you do a search, DLXS XPAT assigns the results a
+set number. You can use this number to later reference this set. The
+<tt>history</tt> command gives you a list of all your previous sets
+and their numbers.</dd>
+
+<dt>Character  </dt><dd>A character includes anything that
+can be entered on a keyboard. This includes letters, numbers, punctuation
+marks, spaces and special characters such as percent signs, hash marks,
+etc.</dd>
+</dl>
+
+<pre> 
+
+&gt;&gt; tall
+  1: 9 matches
+
+</pre>
+<p><b>Printing</b></p>
+<pre>
+
+&gt;&gt; pr
+    95641, .., and saw the tall, austere figure of Holmes standing motionless..
+   170296, ..limpse of the tall, black-bearded figure, his shoulders rounded,..
+   106780, ..-looking man, tall, handsome, with a square black beard and pale..
+   104943, .. Hall!" &lt;p&gt; A tall man had stepped from the shadow of the porch ..
+   128721, .., elegant and tall. She had a proud, finely cut face, so regular..
+   185866, ..was that of a tall, thin man. He stood with his legs a little se..
+     9050, ..He was a very tall, thin man, with a long nose like a beak, whic..
+   186167, ..he was a much taller man. With a cry of surprise I pointed him o..
+   191405, ..igure was far taller than that of Stapleton, far thinner than th..
+</pre>
+
+<p>The first time you use DLXS XPAT, the screen conventions will be
+unfamiliar. The facing page labels the important information on the
+screen.</p>
+
+<p><!-- keyword: prompt -->The <i>&gt;&gt;</i> prompt means DLXS XPAT is ready
+to accept a command. Typing a prefix, word, phrase, number or other
+text after the prompt and pressing the <tt>Enter</tt> or
+<tt>Return</tt> key starts the search, for example:</p>
+
+<pre>&gt;&gt; tall</pre>
+
+<p><!-- keyword: search pattern -->What you type is often referred to as a search pattern or
+<i>pattern</i> for short.</p>
+
+<p>After you enter a pattern, DLXS XPAT displays a line like the
+following:</p>
+
+<pre>1: 9 matches</pre>
+
+<p><!-- keyword: set number -->The number <i>1</i> is called the
+<i>set number</i>. It names a set of results with a number so you
+can use it in further searches. Following the set number is the result
+of the search. The number <i>9</i> is the number of times the
+pattern <i>tall</i> appears in the example text.</p>
+
+<p><!-- keyword: pr command -->The <tt>pr</tt> command (short for
+print) shows one line of context around each occurrence of the search
+pattern, for example:</p>
+<pre>
+95641, .., and saw the tall, austere figure of Holmes standing motionless..
+</pre>
+<p><!-- keyword: match point -->The number in front stands for the
+position of the first character of the match (referred to as
+the <i>match point</i>). In the example, the letter <i>t</i> in
+<i>tall</i> is the 95,641st character in the text.</p>
+
+<p>For each match, DLXS XPAT prints two periods followed by 64
+<i>characters</i> (14 to the left of the match point and 49 to the
+right) followed by two more periods. Note that spaces and punctuation
+as well as letters, numbers, and other symbols count as
+characters.</p>
+
+
+<h2>Trying Out Commands</h2>
+
+<!-- index: Printing results --><!-- index: of a previous set -->
+<!-- index: <TT>pr</TT> command -->
+<!-- index: Searching --><!-- index: for a word -->
+<!-- index: Searching --><!-- index: for a phrase -->
+<!-- index: Searching --><!-- index: for a prefix -->
+<!-- index: Displaying results --><!-- index: of a previous set -->
+<!-- index: Word --><!-- index: searching for -->
+<!-- index: Phrase --><!-- index: searching for -->
+<!-- index: Prefix --><!-- index: searching for -->
+<!-- index: Commands --><!-- index: <TT>pr</TT> -->
+
+<pre>
+&gt;&gt; "hound "
+  1: 70 matches
+
+&gt;&gt; "my dear Watson "
+  2: 10 matches
+
+&gt;&gt; "murder"
+  3: 13 matches
+
+&gt;&gt; pr
+   317137, ..ch in proving murder against our man. There seemed to be no alte..
+   272128, ..ase as one of murder, and the evidence may implicate not only yo..
+   242073, ..d, deliberate murder. Do not ask me for particulars. My nets are..
+   318579, .. accessory to murder. She was ready to warn Sir Henry so far as ..
+   242021, ..red -- "It is murder, Watson -- refined, cold-blooded, deliberat..
+   300400, ..the charge of murder which hung over her in connection with the ..
+   247073, ..hew have been murdered -- the one frightened to death by the ver..
+   305433, ..t to the real murderer. &lt;p&gt; "Having conceived the idea, he proce..
+   101334, .. Notting Hill murderer." &lt;p&gt; I remembered the case well, for it ..
+   309111, ..inst the real murderer. His only accomplice was one who could ne..
+   239840, ..ng face and a murderous heart. &lt;p&gt; "It is he, then, who is our e..
+   283319, .. two men, the murderous host and the unconscious guest, still ch..
+   276256, .. the Anderson murders in North Carolina, but this case possesses..
+
+&gt;&gt; pr 2
+     6043, ..nto thin air, my dear Watson, and there emerges a young fellow u..
+    69249, ..number!" &lt;p&gt; "My dear Watson, clumsy as I have been, you surely ..
+    66383, ..or the world, my dear Watson. I am perfectly satisfied with your..
+     4106, .. &lt;p&gt; "No, no, my dear Watson, not all -- by no means all. I woul..
+   232005, ..vely evening, my dear Watson," said a well-known voice. "I reall..
+     3733, .."I am afraid, my dear Watson, that most of your conclusions were..
+    55102, ..&lt;p&gt; "And yet, my dear Watson, there is so very close a connectio..
+   321800, ..lty. And now, my dear Watson, we have had some weeks of severe w..
+   320210, ..tly. And now, my dear Watson, without referring to my notes, I c..
+   256028, ..t once?" &lt;p&gt; "My dear Watson, you were born to be a man of actio..
+</pre>
+
+  <p>To practise some of the basics of DLXS XPAT and
+become familiar with the search terminology, try searches similar to 
+those that follow. If you run into difficulties, consult the error
+charts in Appendix A.</p>
+
+<p><!-- keyword: word occurrences -->Type a word to find the number of
+times it appears in the text. Make sure you put it in quotation marks
+and leave a space after it:</p>
+<pre>&gt;&gt; "hound  "</pre>
+
+<p><!-- keyword: phrase occurrences -->Similarly, to find the number
+of times a phrase appears in the text, put the phrase in quotation
+marks and leave a space after the final word:</p>
+
+<pre>&gt;&gt; "my dear Watson  "</pre>
+
+<p><!-- keyword: prefix occurrences -->To look up words that start a
+certain way, type the pattern with <i>or</i> without quotation
+marks. The following finds the number of times the word
+<i>murder</i> and words starting with <i>murder</i>
+appear:</p>
+
+<pre>&gt;&gt; "murder"</pre>
+
+<p><!-- keyword: printing the results -->To print a line of context for every
+occurrence of the previous pattern, type the following:</p>
+
+<pre>&gt;&gt; pr</pre>
+
+<p>To print results for a set other than the previous, give the set
+number:</p>
+
+<pre>&gt;&gt; pr 2</pre>
+
+<p>This prints the results of the second search.</p>
+
+
+
+
+
+<!-- index: Commands --><!-- index: <TT>sample</TT> -->
+<!-- index: Displaying results --><!-- index: only some matches -->
+<!-- index: Displaying results --><!-- index: with more context -->
+<!-- index: <TT>sample</TT> command -->
+<!-- index: Printing results --><!-- index: only some matches -->
+<!-- index: Printing results --><!-- index: with more context -->
+<!-- index: <TT>pr</TT> command -->
+<!-- index: Commands --><!-- index: <TT>pr</TT> -->
+
+<pre>
+&gt;&gt; "upon the moor "
+  4: 42 matches
+
+&gt;&gt; pr sample.5
+   182067, ..it were loose upon the moor." &lt;p&gt; We stumbled slowly along in th..
+    30696, ..him to go out upon the moor at night. Incredible as it may appea..
+   299535, ..ny have done, upon the moor! I said it in London, Watson, and I ..
+    20294, ..s we call it, upon the moor, some slinking away and some, with s..
+   131547, .., as is usual upon the moor, were stunted and nipped, and the ef..
+</pre>
+
+<p><b>Displaying More Context</b></p>
+<pre>
+&gt;&gt; "the villain "
+  5: 2 matches
+
+&gt;&gt; pr.100
+   273511, ..s lied to me, the villain, in very conceivable way. Not one word of
+ truth has he ever told me. And w..
+   248319, ..ne false move the villain may escape us yet." &lt;p&gt; "What can we do?"
+ &lt;p&gt; "There will be plenty for us..
+
+&gt;&gt; pr.200 [273511]
+   273511, ..s lied to me, the villain, in very conceivable way. Not one word of
+ truth has he ever told me. And why -- why? I imagined that all was for my own s
+ake. But now I see that I was never anything but a to..
+
+&gt;&gt; pr.200 [273411]
+   273411, ..id, "this man had offered me marriage on condition that I could get
+ a divorce from my husband. He has lied to me, the villain, in very conceivable 
+way. Not one word of truth has he ever told me. And w..
+
+&gt;&gt; pr.200 shift.-100 [273511]
+   273411, ..id, "this man had offered me marriage on condition that I could get
+ a divorce from my husband. He has lied to me, the villain, in very conceivable 
+way. Not one word of truth has he ever told me. And w..
+</pre>
+
+<p>Printing one line of context for every occurrence often provides you
+with too much or too little information: too much if you only want to
+look at a few results and too little if you require more
+than one line of context to make sense of the results.</p>
+
+<p><!-- keyword: printing fewer matches -->The <tt>sample</tt> command
+selects and prints 10 matches from the total set of results. DLXS XPAT
+chooses 10 matches that are evenly spaced throughout the text. You can
+print a different number of matches by appending a period and a number
+to the command:</p>
+
+<pre>&gt;&gt; pr sample.5</pre>
+
+<p><!-- keyword: printing more context -->The next command prints 100
+characters of context around every occurrence: the standard 14
+characters to the left of the match point and 85 characters to the
+right:</p>
+
+<pre>&gt;&gt; pr.100</pre>
+
+<p>The following command prints 200 characters of context around the
+first match only:</p>
+
+<pre>&gt;&gt; pr.200 [273511]</pre>
+
+<p>Notice that the amount of context to the left of the match point
+stays constant (14 characters no matter how many characters are
+printed). To see more to the left, decrease the character position. For
+example, to see the same amount of context as above but to centre it
+roughly around the match point, subtract 100 (half of 200) from the
+character position:</p>
+
+<pre>&gt;&gt; pr.200 [273411]</pre>
+
+<p>Another way to get the same result is to use the
+<tt>shift</tt> command to do the subtraction for you:</p>
+
+<pre>&gt;&gt; pr.200 shift.-100 [273511]</pre>
+
+
+
+
+
+<!-- index: Quotation marks --><!-- index: to represent all text -->
+<!-- index: <TT>""</TT> (pair of double quotes) --><!-- index: use of -->
+<!-- index: <TT>near</TT> command -->
+<!-- index: <TT>fby</TT> command -->
+<!-- index: <TT>signif</TT> command -->
+<!-- index: Commands --><!-- index: <TT>near</TT> -->
+<!-- index: Commands --><!-- index: <TT>fby</TT> -->
+<!-- index: Commands --><!-- index: <TT>signif</TT> -->
+<!-- index: Proximity searching -->
+<!-- index: Frequency searching --><!-- index: of most to least frequent text -->
+<!-- index: Frequency searching --><!-- index: of phrases of a specified length -->
+<!-- index: Frequency searching --><!-- index: applying to previous set -->
+
+<pre>
+&gt;&gt; hound fby black
+  6: 2 matches
+
+&gt;&gt; pr
+   146450, ..Or a spectral hound, black silent, and monstrous? Was there a hu..
+   286109, ..of the fog. A hound it was, and enormous coal-black hound, but n..
+
+&gt;&gt; hound near black
+  7: 7 matches
+
+&gt;&gt; pr
+   286169, ..ut not such a hound as mortal eyes have ever seen. Fire burst fr..
+   146450, ..Or a spectral hound, black silent, and monstrous? Was there a hu..
+   286147, ..us coal-black hound, but not such a hound as mortal eyes have ev..
+   286109, ..of the fog. A hound it was, and enormous coal-black hound, but n..
+    19588, ..nd him such a hound of hell as God forbid should ever be at my h..
+    21294, ..rger than any hound that ever mortal eye has rested upon. And ev..
+    21267, ..shaped like a hound, yet larger than any hound that ever mortal ..
+
+</pre>
+
+<p><b>Frequency Searching</b></p>
+<pre>
+&gt;&gt; signif ""
+  8: 3318 matches, text=the
+
+&gt;&gt; signif.-5 "hound "
+  9: 8 matches, text=hound of
+  10: 7 matches, text=hound of the
+  11: 6 matches, text=hound and
+  12: 5 matches, text=hound was
+  13: 4 matches, text=hound but
+
+&gt;&gt; signif.3 ""
+  14: 42 matches, text=upon the moor
+</pre>
+
+ <p><!-- keyword: proximity searching -->You can retrieve
+prefixes, words, or phrases that appear close to other prefixes, words,
+or phrases.</p>
+
+<pre>&gt;&gt; hound fby black</pre>
+
+<p><i>black</i> must follow within 80 characters
+or less of <i>hound</i>.</p>
+
+<p>The <tt>near</tt> command is similar to <tt>fby</tt> but works in
+both directions; <i>black</i> can show up on either side of
+<i>hound</i>.</p>
+
+<pre>&gt;&gt; hound near black</pre>
+
+<p>You may have to print more context for some matches to see both
+words.</p>
+
+<p><!-- keyword: frequency searching -->You can find the words and phrases
+that appear most often in the text. The following finds the most
+frequent word in the text (the characters <i>""</i> stand for the whole
+text):</p>
+
+<pre>&gt;&gt; signif ""</pre>
+
+<p>This next command finds the five most frequent words or phrases that
+follow the word <i>hound</i>:</p>
+
+<pre>&gt;&gt; signif.-5 "hound  "</pre>
+
+<p>Finally, this last command finds the most frequent phrase of a specific
+length, for example, three words long:</p>
+
+<pre>&gt;&gt; signif.3 ""</pre>
+
+
+
+
+<!-- index: <TT>region</TT> command -->
+<!-- index: <TT>including</TT> command -->
+<!-- index: <TT>within</TT> command -->
+<!-- index: Commands --><!-- index: <TT>region</TT> -->
+<!-- index: Commands --><!-- index: <TT>including</TT> -->
+<!-- index: Commands --><!-- index: <TT>within</TT> -->
+<!-- index: Components --><!-- index: searching pre-defined -->
+<!-- index: Documents --><!-- index: searching pre-defined -->
+
+<pre>
+&gt;&gt; "murderer " within region chap
+  15: 3 matches
+
+&gt;&gt; pr
+   101334, .. Notting Hill murderer." &lt;p&gt; I remembered the case well, for it ..
+   305433, ..t to the real murderer. &lt;p&gt; "Having conceived the idea, he proce..
+   309111, ..inst the real murderer. His only accomplice was one who could ne..
+</pre>
+
+<p><b>Finding Chapters That Contain a Word</b></p>
+<pre>
+&gt;&gt; region chap including "murderer "
+  16: 2 matches
+
+&gt;&gt; pr
+    92085, ..more." &lt;/chap&gt;&lt;chap&gt;&lt;no&gt;6&lt;/no&gt;&lt;ctitle&gt; BASKERVILLE HALL&lt;/ctitle&gt;..
+   299857, .. moor. &lt;/chap&gt;&lt;chap&gt;&lt;no&gt;15&lt;/no&gt;&lt;ctitle&gt; A RETROSPECTION&lt;/ctitle&gt;..
+
+</pre>
+
+ <p><!-- keyword: restricting search area -->You can find
+prefixes, words, or phrases that appear within specific components of
+the text. You can either retrieve the prefixes, words, or phrases
+themselves or retrieve the start of the specific component that contains
+them. For example:</p>
+
+<pre>&gt;&gt; "murderer  " within region chap</pre>
+
+<p>This retrieves all the occurrences of <i>murderer</i> that
+appear within text marked as part of the chapter (as opposed to text in
+other areas such as titles).</p>
+
+<p>Alternatively, you can find the starts of chapters that contain
+the word <i>murderer.</i></p>
+
+<pre>&gt;&gt; region chap including "murderer  "</pre>
+
+
+
+
+
+<h2>How DLXS XPAT Searches</h2>
+
+<p><!-- keyword: exact matching -->DLXS XPAT takes what you type and looks for
+an exact replica in the text. You can match any prefixes,
+words, or phrases that appear in the text by typing each as it appears. 
+DLXS XPAT then takes your pattern of characters and tries to find the
+same pattern in the text; DLXS XPAT has no knowledge of the meaning of the
+text and no built-in information about synonyms to words you type.</p>
+
+<p>It is important to think of DLXS XPAT strictly as a pattern matcher so
+you can interpret your results accurately. For example, if
+you are using DLXS XPAT to search an encyclopedia for references to insects,
+typing <i>insect</i> is a logical starting point. You will find
+all occurrences to the pattern <i>insect</i>; that is, all words
+that start with the characters
+<i>i</i>,<i>n</i>,<i>s</i>,<i>e</i>,<i>c</i>,<i>t</i>.</p>
+
+<p>However, there are many categories and classes of insects (bug, fly,
+vermin) not to mention specific types of insects (ladybug, louse,
+earwig) or even variant names of a specific insect (ladybug, ladybird or
+lady beetle). Furthermore, the term <i>insect</i> might be
+misspelled in the text. None of the above occurrences will be retrieved
+by searching for <i>insect</i>. You must anticipate what words
+might be used in the text to describe the type of information you are
+after. It is the person at the keyboard, not DLXS XPAT, who investigates
+and provides the appropriate search terms.</p>
+
+
+<!-- index: Suffixes -->
+<!-- index: Searching --><!-- index: for a suffix -->
+<!-- index: Index --><!-- index: of every character -->
+<!-- index: Index --><!-- index: of beginning of words -->
+<!-- index: Word --><!-- index: indexing by -->
+<dl>
+<dt>Index</dt><dd>The index determines what text can be
+matched. When texts are indexed by character, suffixes can be searched;
+when indexed by the start of a word, prefixes, words and phrases can be
+searched. An index must be built before the text can be searched with
+DLXS XPAT.</dd>
+
+<dt>Suffix</dt><dd>In the linguistic sense, a suffix is an
+element placed after a word or stem to form another word.
+In this manual, the term is used to describe any character(s) (letters,
+numbers or special characters) that are not the
+first character of a word, regardless of
+whether they form a grammatical suffix.</dd>
+</dl>
+
+<pre>
+&gt;&gt; pr light
+     3532, ..indled and a slight flush sprang into his thin cheeks.  For an i..
+    25398, ..it was like a light on a dark night. Everything which had been d..
+     1759, ..ust where the light strikes it. No, thank you, I had some supper..
+    23559, ..the circle of light thrown by the lamp, and as he did so be stop..
+     4107, ..I should be delighted." &lt;/p&gt; &lt;p&gt; "Could you go as far as Aldersh..
+     1470, .."I shall be delighted if you will stay." &lt;/p&gt; &lt;p&gt; "Thank you. I'..
+    19465, .. and the room lighted. We know, also that he ran across the lawn..
+</pre>
+<p><b>Indexing by Word Beginnings</b></p>
+<pre>
+&gt;&gt; pr light
+    25398, ..it was like a light on a dark night. Everything which had been d..
+     1759, ..ust where the light strikes it. No, thank you, I had some supper..
+    23559, ..the circle of light thrown by the lamp, and as he did so be stop..
+    19465, .. and the room lighted. We know, also that he ran across the lawn..
+
+&gt;&gt; pr bottle
+    59547, ..te pen or ink-bottle is seldom allowed to be in such a state, an..
+    59513, ..le ink in the bottle. Now, a private pen or ink-bottle is seldom..
+   228879, ..d a half-full bottle of spirits standing in the corner. In the m..
+   292576, .., your brandy-bottle! Put her in the chair! She has fainted from..
+   220729, ..ers and their bottles. Both cases decided, Dr. Watson, and both ..
+
+&gt;&gt; pr "-bottle"
+    59546, ..ate pen or ink-bottle is seldom allowed to be in such a state, a..
+   292575, ..e, your brandy-bottle! Put her in the chair! She has fainted fro..
+
+&gt;&gt; pr sample.2 "&lt;chap&gt;"
+   299857, .. moor. &lt;/chap&gt;&lt;chap&gt;&lt;no&gt;15&lt;/no&gt;&lt;ctitle&gt; A RETROSPECTION&lt;/ctitle&gt;..
+    73037, ..otel." &lt;/chap&gt;&lt;chap&gt;&lt;no&gt;5&lt;/no&gt;&lt;ctitle&gt; THREE BROKEN THREADS&lt;/cti..
+
+&gt;&gt; pr "light "
+    25398, ..it was like a light on a dark night. Everything which had been d..
+     1759, ..ust where the light strikes it. No, thank you, I had some supper..
+    23559, ..the circle of light thrown by the lamp, and as he did so be stop..
+</pre>
+
+ <p><!-- keyword: character indexing -->DLXS XPAT knows nothing about
+grammatical constructs like words or phrases. DLXS XPAT can be set up so
+that when you type a pattern like <i>light</i>, the program looks for
+this pattern <i>anywhere</i> in the text, for example, within
+<i>delighted</i>, <i>lighted</i> or as the word
+<i>light</i>. Every character in the text can be matched, or more
+technically, every character is <i>indexed</i>.  See the facing page
+for an example.</p>
+
+<p><!-- keyword: word indexing -->It is not always desirable that every
+character be indexed. The example texts used in this manual are indexed
+at the beginning of each word, tag, or hyphenated stem, for example:
+<i>l</i>ight, <i>&lt;</i>chap>, and <i>-</i>bottle or
+       <i>b</i>ottle in <i>brandy-bottle</i>. In other words, you
+can search for any pattern that starts with a <i>-</i> or
+<i>&lt;</i>, or appears in the text following a <i>-</i> or
+space. It is normally more useful to index by word beginnings (unless
+you are interested in searching <i>suffixes</i>). You specify what
+type of index you wish to build as part of the index building procedure
+for a particular text. See the <i>DLXS XPAT Installation Guide</i> for
+more details.</p>
+
+<p><!-- keyword: ends of words -->Notice that DLXS XPAT knows nothing about the
+ends of words. DLXS XPAT simply finds whatever begins with what you type.
+The pattern <i>light</i> results in anything that starts with the
+characters <i>light</i>, which accounts for the match to
+<i>lighted</i> on the facing page. Similarly, the pattern
+<i>"light  "</i> results in anything that starts with the
+characters <i>light</i> followed by a space ( DLXS XPAT does not
+understand this as a word, just as a sequence of characters, one of
+which happens to be a space).</p>
+   
+
+
+
+ 
+<!-- index: Mapping of characters --> 
+<!-- index: Upper case searching --> 
+<!-- index: Case sensitivity --> 
+<!-- index: Stop words -->
+<dl>
+<dt>Character mapping</dt><dd>Characters can be
+substituted for or mapped to other characters. For example, a period can
+be mapped to a space so that a search for a word followed by a space
+also gets occurrences of the word followed by a period. Similarly, upper
+case characters can be mapped to lower case.  Character mappings are
+defined at the time of index building.</dd>
+
+<dt>Stop words</dt><dd>Stop words are words that DLXS XPAT
+treats as if they do not exist in the text. These are often common words
+like <i>the</i> or <i>a.</i> Stop words are defined at the
+time of index building.</dd>
+</dl>
+
+<pre> 
+O' my luve's like a red, red rose That's newly sprung in June.
+
+o my luve s like a red red rose that s newly sprung in june
+
+</pre>
+
+<p><!-- keyword: character mapping -->Consider a search for the pattern
+<i>"tall  "</i>. Although your aim is to search for the word
+<i>tall</i>, DLXS XPAT is searching for an exact match to the
+characters <i>t</i>, <i>a</i>, <i>l</i>,
+<i>l</i> followed by a space. If <i>tall</i> appears at the
+end of a sentence, it may be followed with a period, question mark or
+some punctuation other than a space. Similarly, if it begins a sentence
+it may have an initial capital.</p>
+
+<p>Fortunately, DLXS XPAT can be set up at index building time to interpret
+specific characters in the text as if they were other characters. For
+example, DLXS XPAT can be told to interpret a period or question mark as a
+space or an upper case character as its lower case equivalent. This is
+called <i>character mapping.</i> The facing page shows punctuation
+marks mapped to spaces, and upper case characters to lower case
+characters. Notice that when character mapping results in two spaces in
+a row (<i>,</i> and space, for example), DLXS XPAT  condenses these to
+a single space. All characters remain as they are in the text; DLXS XPAT
+only sees the difference when searching.</p>
+
+<p>If you search for a word (by leaving a space
+after it) and get back the word with a character other than a space
+after it, it means that DLXS XPAT treats this character as a space.</p>
+
+<p><!-- keyword: stop words -->At index building time, you can also tell
+DLXS XPAT to ignore certain words completely. It is often useful to ignore
+common words, like <i>and</i> or   <i>the</i>, sometimes
+referred to as <i>stop words</i>. Here, a search for
+<i>the</i> would not result in a match. A search for <i>wind
+rain</i> would match the phrase <i>wind and rain</i>.</p>
+
+<p>Instructions for specifying these features are part of the
+installation procedure defined in the <i>DLXS XPAT Installation
+Guide.</i></p>   
+
+<h1>Basic Searching</h1> 
+
+<p>The most basic search in DLXS XPAT is simply to type some text after
+the prompt. DLXS XPAT finds all matches to that text. For example, a search
+for <i>start</i> could result in <i>start</i>,
+<i>starts</i>, <i>startle</i> or any text that begins with
+<i>start</i>. When you only want complete words, you add a space
+to the end of your search pattern and enclose it within quotation marks.
+DLXS XPAT responds to a search by displaying the number of times the pattern
+appears in the text. You can then choose to print some or all the
+matches in alphabetical order or in order of position of text, with some
+context displayed around each match. You may also choose to save your
+results in a file, rather than display them on the screen. To help you
+keep track of your progress, DLXS XPAT keeps a summary of what searches you
+have made and their results.</p>
+
+
+<h2>Searching for Text</h2>
+<!-- index: Printing results --><!-- index: one line of context -->
+<!-- index: Displaying results --><!-- index: one line of context -->
+<!-- index: Commands --><!-- index: <TT>pr</TT> -->
+<!-- index: <TT>pr</TT> command -->
+<!-- index: Phrase --><!-- index: searching for -->
+<!-- index: Word --><!-- index: searching for -->
+<!-- index: Prefix --><!-- index: searching for -->
+<!-- index: Quotation marks --><!-- index: around words or phrases -->
+<!-- index: Numbers --><!-- index: searching for -->
+<!-- index: Searching --><!-- index: for a word -->
+<!-- index: Searching --><!-- index: for a prefix -->
+<!-- index: Searching --><!-- index: for a phrase -->
+<!-- index: Searching --><!-- index: for a number -->
+<!-- index: Stopping scrolling of text -->
+<!-- index: Stopping a command from finishing -->
+<!-- index: Interrupting a command -->
+
+<pre> 
+&gt;&gt; skirt
+  1: 2 matches
+
+&gt;&gt; pr
+   174120, ..n a shawl and skirt might have been comic were it not for the in..
+    99613, ..e bridge, and skirted a noisy stream, which gushed swiftly down,..
+</pre>
+<p><b>Searching for a Word</b></p>
+<pre> 
+&gt;&gt; "autobiography "
+  2: 1 match
+
+&gt;&gt; pr
+   240303, ..true piece of autobiography upon the occasion when he first met ..
+</pre>
+
+<p><b>Searching for a Phrase</b></p>
+<pre> 
+&gt;&gt; "old autocrat "
+  3: 1 match
+
+&gt;&gt; pr
+   223873, ..re out of the old autocrat. His eyes looked malignantly at me, a..
+</pre>
+
+<p><b>Searching for a Number Prefix</b></p>
+<pre> 
+&gt;&gt; pr "18"
+    40348, ..died there in 1876 of yellow fever. Henry is the last of the Bas..
+     7098, ..ism" (Lancet, 1882), "Do We Progress?" (Journal of Psychology, M..
+     6801, ..es, M.R.C.S., 1882, Grimpen, Dartmoor, Devon. House-surgeon, fro..
+     6853, ..surgeon, from 1882 to 1884, at Charing Cross Hospital. Winner of..
+     7154, ..ology, March, 1883). Medical Officer for the parishes of Grimpen..
+     6861, .. from 1882 to 1884, at Charing Cross Hospital. Winner of the Jac..
+      658, ..ith the date "1884." It was just such a stick as the old-fashion..
+   207588, ..ive up to the 18th of October, a time when these strange events ..
+</pre>
+
+<p><!-- keyword: searching -->You start a search by typing a pattern of
+text. You can type any arrangement of characters including
+prefixes, words, phrases, and numbers.</p>
+
+<pre>&gt;&gt; skirt</pre>
+<pre>&gt;&gt; "autobiography  "</pre>
+<pre>&gt;&gt; "old autocrat  "</pre>
+<pre>&gt;&gt; "18"</pre>
+
+<p><!-- keyword: quotation marks -->If the pattern contains spaces (as in the
+second and third examples), numbers, non-letter characters like
+<i>&lt;</i>, or names of commands, you <i>must</i> put the
+pattern in quotation marks. If it contains none of the above, DLXS XPAT
+accepts it with or without quotation marks.</p>
+
+<p><!-- keyword: number of occurrences -->After a search, DLXS XPAT tells you
+how many time the pattern appears; it does not automatically display the
+results.</p>
+
+<p><!-- keyword: printing -->To display the results, use the
+<tt>pr</tt> command:</p>
+
+<pre>&gt;&gt; pr</pre>
+
+<p>You can combine a <tt>pr</tt> command and search pattern on the
+same line, as the last example on the facing page shows. However,
+when you do, no set number results. The results are not saved and you
+cannot access the results later without typing the pattern again.</p>
+
+<p><!-- keyword: stopping display -->If there is more than a screenful of
+matches, the results will scroll off the screen. Your computer has key
+sequences that allow you to stop and start scrolling (<tt>Control s</tt>
+and <tt>Control q</tt> on some systems). Check your
+computer manual.</p>
+
+<p>To stop the display of the matches completely, use the key or
+sequence of keys that normally performs an interrupt function on your
+keyboard (commonly the <tt>Delete</tt> key or a <tt>Control c</tt>
+key sequence). The DLXS XPAT prompt redisplays on your screen, awaiting
+your next search.</p>
+
+
+
+ 
+<h2>Displaying More Context</h2>
+ 
+<!-- index: <TT>pr</TT> command -->
+<!-- index: Commands --><!-- index: <TT>pr</TT> -->
+<!-- index: Displaying results --><!-- index: with more context --> 
+<!-- index: Printing results --><!-- index: with more context --> 
+<!-- index: <TT>shift</TT> command --> 
+<!-- index: Commands --><!-- index: <TT>shift</TT> -->
+<!-- index: <TT>{PrintLength <subst>number</subst>}</TT> command -->
+<!-- index: Commands --><!-- index: <TT>{PrintLength <subst>number</subst>}</TT> --> 
+<!-- index: Modifying --><!-- index: <TT>pr</TT> -->
+<dl>
+<!-- this was in a "suppress" element --> <dt>Modifier</dt><dd>A modifier qualifies a
+command. The modifier is attached to the end of a command and is
+identified by a period followed by numbers or letters. In the commands,
+<i>pr.200</i> and <i>pr.region</i> for example,
+<i>.200</i> and <i>.region</i> are the modifiers.  The first
+prints 200 lines of context, the second prints a text component that
+surrounds each match.</dd> </dl> 
+
+<pre>
+&gt;&gt; pr.100 "elementary "
+    56513, ..e of the most elementary branches of knowledge to the special exper
+t in crime, though I confess that..
+     3393, ..sting, though elementary," said he, as he returned to his favourite
+ corner of the settee. "There are..
+
+</pre>
+<p><b>Printing More to Right of One Match</b></p>
+<pre>
+&gt;&gt; pr.145 [3393]
+     3393, ..sting, though elementary," said he, as he returned to his favourite
+ corner of the settee. "There are certainly one or two indications upon the st..
+</pre>
+<p><b>Defining a New Print Length</b></p>
+<pre>
+&gt;&gt; {PrintLength 145}
+&gt;&gt; pr
+    56513, ..e of the most elementary branches of knowledge to the special exper
+t in crime, though I confess that once when I was very young I confused the Le..
+     3393, ..sting, though elementary," said he, as he returned to his favourite
+ corner of the settee. "There are certainly one or two indications upon the st..
+</pre>
+<p><b>Printing More on Both Sides</b></p>
+<pre>
+&gt;&gt; pr.200 [3293]
+     3293, ..rette, and, carrying the cane to the window, he looked over it agai
+n with a convex lens. &lt;p&gt; "Interesting, though elementary," said he, as he retur
+ned to his favourite corner of the settee. "There are..
+
+&gt;&gt; pr.200 shift.-100 [3393]
+     3293, ..rette, and, carrying the cane to the window, he looked over it agai
+n with a convex lens. &lt;p&gt; "Interesting, though elementary," said he, as he retur
+ned to his favourite corner of the settee. "There are..
+</pre>
+
+<p><!-- keyword: more to right -->DLXS XPAT normally displays 64 characters of
+context for a match, 14 before the match point and 49 after. This may
+not be enough. To increase the number of characters displayed to the
+right of the match, follow the command with a period and a number that
+serves as a <i>modifier</i>. For example, to display 100 characters
+of context (14 before and 85 after the match point):</p>
+
+<pre>&gt;&gt; pr.100 "elementary  "</pre>
+
+<p>You can also print more around one match instead of the whole set:</p>
+
+<pre>&gt;&gt; pr.145 [3393]</pre>
+
+<p>Alternatively, you can change the number of characters normally printed (from 64 to
+145, for example):</p>
+
+<pre>&gt;&gt; {PrintLength 145}</pre>
+
+<p>From now on, DLXS XPAT prints 145 characters unless you modify <tt>pr</tt> 
+or change this value.</p>
+
+<p><!-- keyword: more on both sides -->To increase the context on both sides,
+increase the number of characters printed to the right and decrease the
+position number. For example, subtract 100 from the position number and
+print forward 200.</p>
+<pre>&gt;&gt; pr.200 [3293]</pre> 
+
+<p>A second way is to use the <tt>shift</tt> command to decrease the
+position number (move the match point back). Then use the <tt>pr</tt>
+command to print forward from that point.</p>
+
+<pre>&gt;&gt; pr.200 shift.-100 [3393]</pre>
+
+<p>Simply leave out the position number if you want to see more around the
+entire set of results:</p>
+
+<pre>&gt;&gt; pr.200 shift.-100</pre>
+
+
+
+
+<!-- index: Modifying --><!-- index: <TT>shift</TT> --> 
+<!-- index: Commands --><!-- index: <TT>shift</TT> --> 
+<!-- index: <TT>shift</TT> command -->
+<!-- index: Match point --><!-- index: changing it -->
+
+<pre>
+&gt;&gt; terror
+  4: 6 matches
+
+&gt;&gt; pr
+   285897, ..ave a yell of terror and threw himself face downwards upon the g..
+    38370, ..is a reign of terror in the district, and that it is a hardy man..
+   231296, ..eness and the terror of that interview which every instant was b..
+    21892, ..own hath less terror than that which is but hinted at and guesse..
+   250402, ..a paroxysm of terror that he would risk recapture by screaming w..
+   308381, ..t disease and terror. The hound had kept upon the grassy border ..
+
+&gt;&gt; shift.10
+  5: 6 matches
+
+&gt;&gt; pr
+    21902, ..ess terror than that which is but hinted at and guessed. Nor can..
+    38380, .. of terror in the district, and that it is a hardy man who will ..
+   231306, ..the terror of that interview which every instant was bringing ne..
+   250412, .. of terror that he would risk recapture by screaming wildly for ..
+   285907, .. of terror and threw himself face downwards upon the ground. I s..
+   308391, ..and terror. The hound had kept upon the grassy border while the ..
+</pre>
+
+<p><!-- keyword: changing the match point -->The <tt>shift</tt> command changes
+the match point. At the same time, <tt>shift</tt> reorders the
+original matches in the order in which they appear in the text, rather
+than in alphabetical order. This means that what was listed first in the
+original set will not necessarily be listed first in the shifted
+set.</p>
+
+<p>When you search for a pattern, DLXS XPAT regards the first letter of the
+pattern as the match point. When you print the results of a search (see
+facing page), the match points line up at the 15th character. A
+<tt>shift</tt> command creates new match points from characters to the
+right or left of the original match points; for example:</p>
+
+<pre>&gt;&gt; shift.10</pre>
+
+<p>A shift of 10 makes a new match point 10 characters after the original
+one. (A shift of -10 makes a new match point 10 characters before
+the match point). When you print the results, the new match points
+appear at the 15th character of each line.</p>
+
+<p>A shift of a positive number allows you to see more context to the
+right of the original match and a shift of a negative number allows you
+to see more context to the left.</p>
+
+<p><!-- keyword: saving the results of a shift -->DLXS XPAT shifts the previous
+set of matches. If you print and shift on the same line, DLXS XPAT does not
+record the set (no set number results). Consequently if you shift again,
+you will shift from the original set, not the previously-displayed
+results. However, if you shift and print separately, DLXS XPAT does record
+a set and you will shift from the new results, not the original set.</p>
+
+
+
+<h2>Selecting a Sample of Results</h2> 
+<!-- index: <TT>sample</TT> command -->
+<!-- index: Modifying --><!-- index: <TT>sample</TT> -->
+<!-- index: Commands --><!-- index: <TT>sample</TT> --> 
+<!-- index: Commands --><!-- index: <TT>{SampleSize <subst>number</subst>}</TT> -->
+<!-- index: <TT>{SampleSize <subst>number</subst>}</TT> command -->
+
+<pre>
+&gt;&gt; the
+  6: 4149 matches
+
+&gt;&gt; sample
+  7: 10 matches
+
+&gt;&gt; pr
+   173114, ..d steadily in the centre of the black square framed by the windo..
+   206880, ..urred pane at the driving clouds and at the tossing outline of t..
+   294196, ..ow can he see the guiding wands tonight? We planted them togethe..
+   116169, ..lipped out of the leading article of The Times. Was that his wor..
+   100430, ..lying spur of the moor, lay in front of us. On the summit, hard ..
+   290739, ..who met us in the passage. There was no light save in the dining..
+   227280, ..barren scene, the sense of loneliness, and the mystery and urgen..
+   214523, .. &lt;p&gt; "That is the truth." &lt;p&gt; Again and again I cross-questioned..
+   273214, .. school. Read them, and see if you can doubt the identity of the..
+   176700, ..l see that if there is blame in the matter it does not lie with ..
+</pre>
+
+<p><b>Changing the Size of the Sample</b></p>
+<pre>
+&gt;&gt; pr sample.5
+   206880, ..urred pane at the driving clouds and at the tossing outline of t..
+   116169, ..lipped out of the leading article of The Times. Was that his wor..
+   290739, ..who met us in the passage. There was no light save in the dining..
+   227280, ..barren scene, the sense of loneliness, and the mystery and urgen..
+   273214, .. school. Read them, and see if you can doubt the identity of the..
+</pre>
+
+<p><b>Defining the Normal Sample Size</b></p>
+<pre>
+&gt;&gt; {SampleSize 4}
+&gt;&gt; pr sample
+   294196, ..ow can he see the guiding wands tonight? We planted them togethe..
+   100430, ..lying spur of the moor, lay in front of us. On the summit, hard ..
+   227280, ..barren scene, the sense of loneliness, and the mystery and urgen..
+   273214, .. school. Read them, and see if you can doubt the identity of the..
+</pre>
+
+ <p><!-- keyword: sample of 10 -->In a lengthy text, you
+may only need to look at a fraction of the results. You can look at 10
+matches, for example:</p>
+
+<pre>&gt;&gt; the</pre>
+<pre>&gt;&gt; sample</pre>
+<pre>&gt;&gt; pr</pre>
+
+<p>DLXS XPAT provides a sample by taking matches that are evenly spread
+throughout the text. For example, DLXS XPAT chooses 10 matches
+from a set of 100 matches by taking 1 from the first 10
+matches, 1 from the next 10, and so on.</p>
+
+<p>To see different matches, you must change the size of the sample taken;
+otherwise you get the same matches.</p>
+
+<p><!-- keyword: changing the sample size -->You can change the size of the
+sample by following the command with a number that serves as a modifier.
+For example, to get 5 matches and print the results:</p>
+
+<pre>&gt;&gt; pr sample.5</pre>
+
+<p>Without a modifier, DLXS XPAT retrieves 10 matches. You can change the
+number retrieved for a single command by using a modifier as above. You
+can also change the number DLXS XPAT normally prints without a modifier. To
+change the number normally provided to 4, type the following:</p>
+
+<pre>&gt;&gt; {SampleSize 4}</pre>
+
+<p>From this point until you leave DLXS XPAT, whenever you sample without a
+modifier, DLXS XPAT retrieves this new number of matches. However, if you
+give a modifier, DLXS XPAT gets the number you specify, regardless of the
+<tt>{SampleSize}</tt> setting.</p>
+
+
+<h2>Using Previous Match Sets</h2>
+<!-- index: Commands --><!-- index: <TT>history</TT> -->
+<!-- index: <TT>history</TT> command -->
+<!-- index: Accessing previous sets -->
+<!-- index: Sets --><!-- index: accessing previous -->
+<!-- index: Recording sets -->
+<!-- index: <TT>%</TT> (percent) --><!-- index: use of -->
+
+<pre>
+&gt;&gt; pr 2
+   240303, ..true piece of autobiography upon the occasion when he first met ..
+</pre>
+
+<p><b>Accessing the Last Set</b></p>
+<pre>
+&gt;&gt; pr shift.10 %
+   100440, .. of the moor, lay in front of us. On the summit, hard and clear ..
+   116179, .. of the leading article of The Times. Was that his work, or was ..
+   173124, .. in the centre of the black square framed by the window. &lt;p&gt; "Th..
+   176710, .. if there is blame in the matter it does not lie with my husband..
+   206890, .. at the driving clouds and at the tossing outline of the wind-sw..
+   214533, .. is the truth." &lt;p&gt; Again and again I cross-questioned her, but ..
+   227290, ..ne, the sense of loneliness, and the mystery and urgency of my t..
+   273224, ..ead them, and see if you can doubt the identity of these people...
+   290749, .. in the passage. There was no light save in the dining-room, but..
+   294206, ..see the guiding wands tonight? We planted them together, he and ..
+</pre>
+<p><b>Displaying the History of a Session</b></p>
+<pre>
+&gt;&gt; history
+  1:       2,  skirt 
+  2:       1,  "autobiography " 
+  3:       1,  "old autocrat " 
+  4:       6,  terror 
+  5:       6,  shift.10 
+  6:    4149,  the 
+  7:      10,  sample 
+</pre>
+
+<p><!-- keyword: specific set -->Previous sets can be accessed by
+referring to the set's number.  For example, to reprint the results of
+set 2:</p>
+
+<pre>&gt;&gt; pr 2</pre>
+
+<p><!-- keyword: last set -->Your last set can be accessed by the set
+number <i>or</i> a <tt>%</tt> sign, for example:</p>
+
+<pre>&gt;&gt; pr shift.10 %</pre>
+
+<p>This shifts the match point from the last set.</p>
+
+<p><!-- keyword: displaying set numbers -->To find the number of a previous
+set, use the <tt>history</tt> command:</p>
+
+<pre>&gt;&gt; history</pre>
+
+<p>DLXS XPAT displays the set number, followed by the number of matches,
+followed by the command or pattern that produced the match set. <i>Up to
+300 sets can be kept. After this limit, you have to leave DLXS XPAT and
+start it up again.</i></p>
+
+<p>Notice that the results of <tt>pr</tt> commands are not saved. If
+you expect to reuse intermediate results, you should search in steps,
+for example:</p>
+
+<pre>&gt;&gt; the</pre>
+<pre>&gt;&gt; sample</pre>
+<pre>&gt;&gt; pr</pre>
+<pre>&gt;&gt; shift.10</pre>
+<pre>&gt;&gt; pr</pre>
+
+<p>The first, second and fourth commands produce sets that can be
+reaccessed.</p>
+
+<p>Commands that change normal settings such as <tt>{PrintLength}</tt> are
+also not recorded.</p>
+
+ 
+
+
+<h2>Searching for a Range of Text</h2>
+<!-- index: Range searching -->
+<!-- index: Searching --><!-- index: for a range of characters -->
+<!-- index: Concordance -->
+<!-- index: Dates --><!-- index: searching for range of -->
+<!-- index: Quotation marks --><!-- index: to represent all text -->
+<!-- index: Numbers --><!-- index: searching for -->
+<!-- index: <TT>""</TT> (pair of double quotes) --><!-- index: use of -->
+<!-- index: Sorting --><!-- index: all words in the text -->
+<!-- index: Searching --><!-- index: for every word -->
+
+<!-- this was in a "suppress" element -->
+<dl>
+<dt>Concordance</dt><dd>A concordance is an alphabetical
+list of words occurring in a text.  You create one in DLXS XPAT by searching
+for every word start that begins with a letter: <i>"a".."z"</i>.
+Most search results are partial concordances since the <tt>pr</tt>
+command normally prints results in alphabetical order.</dd>
+
+</dl>
+
+<pre>
+&gt;&gt; pr sample.5 "be".."bu"
+   183436, ..h a bristling beard, and hung with matted hair, it might well ha..
+   209275, ..o was sitting before a Remington typewriter, sprang up with a pl..
+   113584, ..d she weep so bitterly? Already round this pale-faced, handsome,..
+   122823, ..e queer hills breaking out of it. Do you observe anything remark..
+    11659, ..s was silent, but his little darting glances showed me the inter..
+</pre>
+
+<p><b>Searching for a Range of Numbers</b></p> 
+<pre>
+&gt;&gt; pr "1880".."1890"
+     6801, ..es, M.R.C.S., 1882, Grimpen, Dartmoor, Devon. House-surgeon, fro..
+     6853, ..surgeon, from 1882 to 1884, at Charing Cross Hospital. Winner of..
+     7154, ..ology, March, 1883). Medical Officer for the parishes of Grimpen..
+     6861, .. from 1882 to 1884, at Charing Cross Hospital. Winner of the Jac..
+      658, ..ith the date "1884." It was just such a stick as the old-fashion..
+</pre>
+
+<p><b>Retrieving the Full Range of Text</b></p>
+<pre>
+&gt;&gt; pr ""
+    56188, ..ry curve, the -- " &lt;p&gt; "But this is my special hobby, and the di..
+   194789, ..ll, Barrymore -- " &lt;p&gt; "God bless you, sir, and thank you from m..
+    57282, ..it with paste -- " &lt;p&gt; "Gum," said Holmes. &lt;p&gt; "With gum on to t..
+    45136, ..inly, but how -- ?" &lt;p&gt; He laughed at my bewildered expression. ..
+   261671, ..have no doubt -- " &lt;p&gt; He stopped suddenly and stared fixedly up..
+   238874, ..tach his wife -- " &lt;p&gt; "His wife?" &lt;p&gt; "I am giving you some inf..
+    89849, ..eet and along --" &lt;p&gt; "I know," said Holmes. &lt;p&gt; "Until we got t..
+   250665, ..s are correct --" &lt;p&gt; "I presume nothing." &lt;p&gt; "Well, then, why ..
+    76905, ..such a trifle --" &lt;p&gt; "I think it's well worth troubling about."..
+    12255, ..ert in Europe -- " &lt;p&gt; "Indeed, sir! May I inquire who has the h..
+    12683, ..inadvertently -- " &lt;p&gt; "Just a little," said Holmes. "I think, D..
+    10370, ..ames Mortimer --" &lt;p&gt; "Mister, sir, Mister -- a humble M.R.C.S."..
+   173287, ..sure you, sir --" &lt;p&gt; "Move your light across the window, Watson..
+^C*** Interrupted ***
+</pre>
+
+<p><!-- keyword: concordances -->You can search for a range of patterns
+such as a range of letters or numbers. An example of a range is every
+word that starts with <i>a</i> through the alphabet to every word
+that starts with <i>z</i>. This alphabetical arrangement of words
+or phrases in a text is known as a <i>concordance</i>. To display a
+full concordance of text, type the following:</p>
+
+<pre>&gt;&gt; pr "a".."z"</pre>
+
+<p>When the list is lengthy, use the key that normally interrupts to
+stop the display (commonly the <tt>Delete</tt> key or a <tt>Control
+c</tt> key sequence). A sample of a smaller range of letters,
+<i>be</i> through <i>bu</i>, appears on the facing page.</p>
+
+<p><!-- keyword: number ranges -->An example of a search for a range of
+numbers is all text that starts with <i>1880</i> up to and
+including all text that starts with <i>1890</i>. Range searching
+on numbers can be useful for searching numeric constructs like dates.</p>
+
+<pre>&gt;&gt; pr "1880".."1890"</pre>  
+
+<p>In this example, all the numbers happen to represent dates. However,
+numbers such as <i>18801</i> or <i>18823</i> could also
+result from this search since these start with characters in the range
+<i>1880..1890</i>.</p>
+
+<p><!-- keyword: full range -->Occasionally, you may want to retrieve
+every match point in the text. Double quotation marks (<i>""</i>)
+represent the set of all match points in the text, for example:</p>
+
+<pre>&gt;&gt; pr ""</pre>
+
+<p>Since the example text is indexed by word start, this prints a sorted
+list of all words: those starting with <i>a</i> to <i>z</i>
+(the concordance example), numbers, and special characters. In the
+example on the facing page, the display was stopped after the hyphen,
+the first character sorted.</p>
+
+ 
+
+
+<h2>Saving Your Results in a File</h2>
+<!-- index: Commands --><!-- index: <TT>save</TT> -->
+<!-- index: Commands --><!-- index: <TT>{SaveFile <subst>filename</subst>}</TT> -->
+<!-- index: <TT>save</TT> command -->
+<!-- index: <TT>{SaveFile <subst>number</subst>}</TT> command -->
+<!-- index: Saving results -->
+<!-- index: Modifying --><!-- index: <TT>save</TT> command -->
+<dl>
+<dt>Default value</dt><dd>A default value is the original
+or normal value. For example, when requested to print a sample of
+results, DLXS XPAT prints 10 unless you specify otherwise.</dd>
+</dl>
+<pre>
+&gt;&gt; pr.200 handsome
+   166897, ..d make a more handsome apology than he has done." &lt;p&gt; "Did he give 
+any explanation of his conduct?" &lt;p&gt; "His sister is everything in his life, he s
+ays. That is natural enough, and I am glad that he sh..
+   113625, ..s pale-faced, handsome, black-bearded man there was gathering an at
+mosphere of mystery and of gloom. It was he who had been the first to discover t
+he body of Sir Charles, and we had only his word for ..
+     1812, ..inally a very handsome one, has been so knocked about that I can ha
+rdly imagine a town practitioner carrying it. The thick iron ferrule is worn dow
+n, so it is evident that he has done a great amount o..
+   106786, ..ng man, tall, handsome, with a square black beard and pale distingu
+ished features. &lt;p&gt; "Would you wish dinner to be served at once, sir?" &lt;p&gt; "Is i
+t ready?" &lt;p&gt; "In a very few minutes, sir. You will f..
+   210086, ..nce of a very handsome woman, and that she was asking me the reason
+s for my visit. I had not quite understood until that instant how delicate my mi
+ssion was. &lt;p&gt; "I have the pleasure," said I, "of kno..
+
+&gt;&gt; save.200 handsome
+Saving in pat.results
+</pre>
+
+<p><b>Saving in Another File</b></p>
+<pre>
+&gt;&gt; {SaveFile "references"}
+&gt;&gt; save "smoke "
+Saving in references
+</pre>
+
+<p><!-- keyword: similar to pr -->Rather than displaying the
+results of a search on the screen, you can save them in a file. The
+<i>default</i> filename is <tt>pat.results</tt>. This means that
+unless you specify otherwise (see below), results will be appended to
+the file of that name. The results appear in exactly the same format in
+the file as they would on the screen.  The <tt>save</tt> command takes
+all the same modifiers that <tt>pr</tt> does, for example:</p>
+
+<pre>&gt;&gt; save.200 handsome</pre>
+
+<p>In the above example, DLXS XPAT stores 200 characters for each match.
+The next time you save, the results will be added to the end of the
+<tt>pat.results</tt> file; any results already in this file will stay
+intact.</p>
+
+<p><!-- keyword: specify filename -->If you prefer, you can have the
+results placed in a file of your choice. The following command
+designates the file <tt>references</tt> as the place to put subsequent
+results:</p>
+
+<pre>&gt;&gt; {SaveFile "references"}</pre>
+
+<p>The results of your next <tt>save</tt> command are added to the
+file <tt>references</tt> in your current directory. This is in effect
+until you change the name again or leave the program.</p>
+
+
+
+
+<h2>Sorting of Matches: Alphabetical or by Position</h2>
+<!-- index: Commands --><!-- index: <TT>{PrintMode <subst>number</subst>}</TT> -->
+<!-- index: Alphabetical ordering of matches -->
+<!-- index: Ordering of matches -->
+<!-- index: Sorting --><!-- index: alphabetically -->
+<!-- index: Sorting --><!-- index: by position in text -->
+<!-- index: <TT>{PrintMode <subst>number</subst>} </TT>command -->
+<!-- index: Displaying results --><!-- index: alphabetically -->
+<!-- index: Displaying results --><!-- index: in order of position -->
+<!-- index: Printing results --><!-- index: alphabetically -->
+<!-- index: Printing results --><!-- index: in order of position -->
+
+<pre>
+&gt;&gt; {PrintMode 2}
+&gt;&gt; pr 6
+    21892, ..own hath less terror than that which is but hinted at and guesse..
+    38370, ..is a reign of terror in the district, and that it is a hardy man..
+   231296, ..eness and the terror of that interview which every instant was b..
+   250402, ..a paroxysm of terror that he would risk recapture by screaming w..
+   285897, ..ave a yell of terror and threw himself face downwards upon the g..
+   308381, ..t disease and terror. The hound had kept upon the grassy border ..
+</pre>
+
+<p><b>Printing in Alphabetical Order</b></p>
+<pre>
+&gt;&gt; {PrintMode 1}
+&gt;&gt; pr 6
+   285897, ..ave a yell of terror and threw himself face downwards upon the g..
+    38370, ..is a reign of terror in the district, and that it is a hardy man..
+   231296, ..eness and the terror of that interview which every instant was b..
+    21892, ..own hath less terror than that which is but hinted at and guesse..
+   250402, ..a paroxysm of terror that he would risk recapture by screaming w..
+   308381, ..t disease and terror. The hound had kept upon the grassy border ..
+</pre>
+
+<p><!-- keyword: position order -->DLXS XPAT normally sorts matches
+alphabetically, except after <tt>shift</tt> commands when the sorting
+is by position in the text (first to last). This default mode of
+printing is known as <tt>{PrintMode 0}</tt>. You can change the mode
+of printing so DLXS XPAT prints in order of position for the duration of the
+session:</p>
+
+<pre>&gt;&gt; {PrintMode 2}</pre>
+
+<p>Generating a concordance doesn't make much sense in this
+mode since the results will not be alphabetical.</p>
+
+<p><!-- keyword: alphabetical order -->DLXS XPAT will sort by position until
+you leave the program or change the mode of printing.</p>
+
+<p>You can also change the mode of printing so that DLXS XPAT prints in
+alphabetical order for the duration of the session:</p>
+
+<pre>&gt;&gt; {PrintMode 1}</pre>
+
+<p>The results now print in alphabetical order (including results of
+<tt>shift</tt> commands).</p>
+
+
+
+
+<h1>Refining Searches</h1> 
+
+<p>Searching for some patterns may yield a large set of results. You
+may wish to narrow down your set of results by making your search more
+specific. Proximity searches allow you to find only those matches to a
+pattern that are within or outside a certain distance of another
+pattern. You can also search for the most frequent occurrences of
+certain patterns or long patterns that appear more than once in the
+text.</p> 
+
+
+<h2>Searching Based on Proximity</h2>
+
+<!-- index: Proximity searching -->
+<!-- index: Searching --><!-- index: using proximity -->
+<!-- index: Commands --><!-- index: <TT>fby</TT> -->
+<!-- index: Commands --><!-- index: <TT>near</TT> -->
+<!-- index: Commands --><!-- index: <TT>not fby</TT> -->
+<!-- index: Commands --><!-- index: <TT>not near</TT> -->
+<!-- index: <TT>fby</TT> command -->
+<!-- index: <TT>near</TT> command -->
+<!-- index: <TT>not fby</TT> command -->
+<!-- index: <TT>not near</TT> command -->
+<!-- index: Proximity range -->
+<dl>
+<dt>Proximity </dt><dd>Proximity refers to the position of
+one thing in relation to another. DLXS XPAT allows you to define at what
+distance a prefix, word or phrase is proximate to another. You
+define this distance as a number of characters.</dd>
+
+<dt>Proximity range</dt><dd>Proximity range refers to the
+number of characters used to determine whether two or more patterns are
+proximate to one another. For example, the normal proximity range is
+80; that is, the first letter of the second pattern must appear 80
+characters or less from the first letter of the first pattern.</dd>
+</dl>
+<pre>
+&gt;&gt; "war " fby "peace "
+  1: 71 matches
+
+&gt;&gt; pr sample.3
+234870887, ..ive of making war and peace.  For it is held by all the writers ..
+253247094, ..5 &lt;T&gt;Does not war create or reenliven numerous branches of indus..
+312123630, ..in a state of war or in a state of peace. &lt;/T&gt;&lt;/Q&gt;&lt;Q&gt;&lt;D&gt;1890&lt;/D&gt;..
+
+&gt;&gt; pr.100 [253247094]
+253247094, ..5 &lt;T&gt;Does not war create or reenliven numerous branches of industr
+y as well as peace?&lt;/T&gt;&lt;/Q&gt;&lt;/QP&gt;&lt;/..
+</pre>
+
+<p><b>Finding Text on Either Side</b></p>
+<pre>
+&gt;&gt; "war " near "peace "
+  2: 132 matches
+
+&gt;&gt; pr sample.3
+ 72443035, ..h in peace or war. &lt;/T&gt;&lt;/Q&gt;&lt;Q&gt;&lt;D&gt;1875&lt;/D&gt; &lt;A&gt;W. S. Hayward&lt;/A&gt; &lt;..
+254046989, ..ery Nerves of War and the Regales of Peace. &lt;/T&gt;&lt;/Q&gt;&lt;Q&gt;&lt;D&gt;1773&lt;/..
+322675872, ..idized by the War Office in peace time while in their owners' ha..
+
+</pre>
+<p><b>Finding Text Not Proximate to Other Text</b></p>
+<pre>
+&gt;&gt; "war " not fby "peace "
+  3: 5992 matches
+
+&gt;&gt; "war " not near "peace "
+  4: 5931 matches
+</pre>
+
+<p><!-- keyword: proximity definition --><i>Proximity</i> is the
+closeness of one piece of text to another. DLXS XPAT has four proximity
+commands (<tt>near</tt>, <tt>fby</tt>, <tt>not near</tt> and
+<tt>not fby</tt>). An example of each follows:</p>
+
+<pre>&gt;&gt; "war  " fby "peace  "</pre>
+<pre>&gt;&gt; "war  " near "peace  "</pre>
+<pre>&gt;&gt; "war  " not fby "peace  "</pre>
+<pre>&gt;&gt; "war  " not near "peace  "</pre>
+
+<p>The first example matches on occurrences of <i>war</i> that are
+followed within 80 characters by <i>peace</i>.
+The second example matches on occurrences that are followed
+<i>or</i> preceded by <i>peace</i>. The third and fourth
+examples find occurrences of <i>war</i> that are not followed by
+or not near <i>peace</i>.</p>
+
+<p><!-- keyword: proximity range -->The number of characters used to
+determine proximity is referred to as the <i>proximity range</i>.
+Normally the proximity range is 80 characters measured from the
+<i>first letter</i> of the first pattern to the <i>first
+letter</i> of the second pattern. For <tt>near</tt> and
+<tt>fby</tt>, a match results if the two patterns are within this
+distance of each other. For <tt>not near</tt> and <tt>not fby</tt>,
+a match results if the two patterns are not within this distance of
+each other.</p>
+
+<p><!-- keyword: match point -->When you print the results of these
+searches, the first letter of the first pattern (<i>w</i>) lines
+up in the 15th column since DLXS XPAT considers it the match point. The
+second pattern (<i>peace</i>) may not appear in the display at all
+if your line length is short. Consequently, you may have to display a
+few lines of text so that you can see both references. (See the
+first example on the facing page.)</p>
+
+
+
+
+<!-- index: Proximity searching -->
+<!-- index: Proximity range -->
+<!-- index: Modifying --><!-- index: <TT>fby</TT> -->
+<!-- index: Modifying --><!-- index: <TT>near</TT> -->
+<!-- index: Modifying --><!-- index: <TT>not fby</TT> -->
+<!-- index: Modifying --><!-- index: <TT>not near</TT> -->
+<!-- index: <TT>{Proximity <subst>number</subst>}</TT> command -->
+<!-- index: Commands --><!-- index: <TT>{Proximity <subst>number</subst>}</TT> -->
+<!-- index: Searching --><!-- index: using proximity -->
+<!-- index: <TT>fby</TT> command -->
+<!-- index: <TT>near</TT> command -->
+<!-- index: <TT>not fby</TT> command -->
+<!-- index: <TT>not near</TT> command -->
+<!-- index: Commands --><!-- index: <TT>fby</TT> -->
+<!-- index: Commands --><!-- index: <TT>near</TT> -->
+<!-- index: Commands --><!-- index: <TT>not fby</TT> -->
+<!-- index: Commands --><!-- index: <TT>not near</TT> -->
+
+<pre>
+&gt;&gt; "war " fby.150 "peace "
+  5: 89 matches
+
+&gt;&gt; "war " near.150 "peace "
+  6: 161 matches
+
+&gt;&gt; "war " not fby.150 "peace "
+  7: 5974 matches
+
+&gt;&gt; "war " not near.150 "peace "
+  8: 5902 matches
+</pre>
+
+<p><b>Changing the Default Proximity Range</b></p>
+<pre>
+&gt;&gt; {Proximity 100}
+&gt;&gt; "war " fby "peace "
+  9: 75 matches
+</pre>
+
+<p><!-- keyword: changing proximity range -->You can change the
+proximity range by adding a modifier to any of the proximity commands.
+Varying the modifier can sometimes significantly change the results. To
+increase the range to 150, for example, use a modifier as follows:</p>
+
+<pre>&gt;&gt; "war  " fby.150 "peace  "</pre>
+
+<p>Notice from the facing page that this change increases the number of
+matches (89 as compared to 71 without the modifier).</p>
+
+<p><!-- keyword: changing default range -->Using a modifier changes the
+proximity range for a single command. You can also change what DLXS XPAT
+considers the default or normal proximity range (80 characters). To
+change this value to 100, the command is as follows:</p>
+
+<pre>&gt;&gt; {Proximity 100}</pre>
+
+<p>From now on, any proximity commands you type without a modifier will
+use 100 as the proximity range.</p>
+
+
+
+
+
+<h2>Searching for Text that Occurs Frequently</h2>
+
+<!-- index: <TT>signif</TT> command -->
+<!-- index: Commands --><!-- index: <TT>signif</TT> -->
+<!-- index: Modifying --><!-- index: <TT>signif</TT> -->
+<!-- index: Frequency searching --><!-- index: of phrases of a specified length -->
+<!-- index: Frequency searching --><!-- index: of most to least frequent text -->
+<!-- index: Frequency searching --><!-- index: applying to previous set -->
+<!-- index: Searching --><!-- index: for frequent text -->
+<!-- index: <TT>""</TT> (pair of double quotes) --><!-- index: use of -->
+<!-- index: Quotation marks --><!-- index: to represent all text -->
+
+<p><b>2  Finding the Most Frequent Four-Word Phrase</b></p>
+
+<p><b>3  Finding the Most Frequent Word or Phrase Within a Set</b></p>
+
+<p>Every time you search for a pattern, DLXS XPAT tells you how many times
+it appears in the text. If you're interested in the frequency of
+specific patterns, this is the easiest way to get at that information.
+However, if you're interested in the frequency of text in general, DLXS XPAT
+provides a command called <tt>signif</tt> which displays a list of the
+most frequent words or phrases in the text.</p>
+
+<p>There are three main ways to use
+this command:</p>
+
+<ol> 
+<li><p><!-- keyword: most to least frequent -->Search for the most frequent words
+or phrases in order of most to least frequent (<tt>-3</tt> stands for
+the three most frequent). Note the <i>-</i> before the number.</p>
+
+<pre>&gt;&gt; signif.-3 ""</pre>
+
+<p>From the passage on the facing page, the three most frequent words or phrases are <i>the</i>, <i>of</i>, and <i>a</i>.</p>
+</li>
+
+<li><p><!-- keyword: fixed number of words -->Search for the most frequent
+phrases of a specified length in words (<tt>4</tt> stands for a length of
+four words). There is no <i>-</i> in this form of the command.</p>
+
+<pre>&gt;&gt; signif.4 ""</pre>
+
+<p>The most frequent four-word phrase in the passage is <i>the
+date for a</i>.</p>
+</li>
+
+<li><p><!-- keyword: extending a phrase -->Search for the most frequent
+word or phrase. Then, extend the word or phrase further by searching for
+frequent words and phrases within the first set of results.</p>
+
+<pre>&gt;&gt; signif ""</pre>
+<pre>&gt;&gt; signif</pre>
+
+<p>The most frequent word or phrase in the passage is <i>the</i>.
+The most frequent word or phrase following these occurrences is
+<i>date for a</i>.</p></li>
+</ol> 
+
+<p>The following pages discuss each of the three applications in detail.</p>
+
+
+
+
+<!-- index: <TT>signif</TT> command -->
+<!-- index: Commands --><!-- index: <TT>signif</TT> -->
+<!-- index: Modifying --><!-- index: <TT>signif</TT> -->
+<!-- index: Frequency searching --><!-- index: of most to least frequent text -->
+<!-- index: Searching --><!-- index: for frequent text -->
+
+<pre>
+&gt;&gt; signif.-4 ""
+  1: 3318 matches, text=the
+  2: 1619 matches, text=and
+  3: 1585 matches, text=of
+  4: 1498 matches, text=i
+</pre>
+
+<p><b>Starting With a Prefix to a Word</b></p>
+
+<pre>
+&gt;&gt; signif.-4 the
+  5: 3318 matches, text=the
+  6: 310 matches, text=there
+  7: 151 matches, text=then
+  8: 132 matches, text=the moor
+</pre>
+
+<p><b>Starting with a Full Word</b></p>
+
+<pre>
+&gt;&gt; signif.-4 "the "
+  9: 132 matches, text=the moor
+  10: 51 matches, text=the man
+  11: 43 matches, text=the baronet
+  12: 39 matches, text=the same
+</pre>
+
+<ol>
+<li><p><!-- keyword: most to least frequent -->The first application of
+<tt>signif</tt> allows you to search for the most frequent words and
+phrases.</p>
+
+<p>For example, you can search for the four
+most frequent words or phrases within a text:</p>
+
+<pre>&gt;&gt; signif.-4 ""</pre>
+
+<p>Other words or phrases in the text may appear just as frequently
+as the last one listed. In the example above, if there were three
+phrases tied for fourth position only one would be listed.</p>
+
+<p>You can also search for the four
+most frequent words and phrases that begin as specified, for
+example:</p>
+
+<pre>&gt;&gt; signif.-4 the</pre>
+<pre>&gt;&gt; signif.-4 "the  "</pre>
+
+<p>The first command uses the prefix <i>the</i> as the starting
+point while the second uses the word <i>the</i>. Notice the
+difference between the results of these two (see facing page). DLXS XPAT
+selects the word <i>the</i> as the most frequent word or phrase
+from those beginning with the prefix <i>the</i>. DLXS XPAT selects
+the phrase <i>the moor</i> as the most frequent phrase beginning
+with the word <i>the</i>.</p>
+
+<p>The first results would be identical to the second if the prefix
+<i>the</i> only appeared as the word <i>the</i>
+(never started another word like <i>then</i> or
+<i>there</i>).</p>
+</li>
+</ol>
+
+
+
+<!-- index: Modifying --><!-- index: <TT>signif</TT> -->
+<!-- index: <TT>signif</TT> command --> 
+<!-- index: Commands --><!-- index: <TT>signif</TT> --> 
+<!-- index: Frequency searching --><!-- index: of phrases of a specified length --> 
+<!-- index: Searching --><!-- index: for frequent text -->
+
+<pre>
+&gt;&gt; signif.3 ""
+  13: 42 matches, text=upon the moor
+
+&gt;&gt; pr sample.2
+   218388, ..e is anywhere upon the moor?" "I know it because I have seen wit..
+   151473, ..g or somebody upon the moor. The night was very dark, so that I ..
+</pre>
+
+<p><b>Starting With a Prefix to a Word</b></p>
+
+<pre>
+&gt;&gt; signif.3 the
+  14: 17 matches, text=there is no
+
+&gt;&gt; pr sample.2
+    63324, ..r.Holmes, and there is no man upon earth who can prevent me from..
+    39052, ..les's will." "There is no other claimant, I presume?" "None. The..
+</pre>
+
+<p><b>Starting With a Full Word</b></p>
+
+<pre>
+&gt;&gt; signif.3 "the "
+  15: 14 matches, text=the death of
+
+&gt;&gt; pr sample.2
+    24341, ..onnected with the death of Sir Charles cannot be said to have be..
+   289364, ..morning after the death of the hound the fog had lifted and we w..
+</pre>
+<ul>
+<li><p><!-- keyword: fixed number of words -->The second application of
+<tt>signif</tt> allows you to search for the most frequent phrase of a
+specified length (in words).</p>
+
+<p>For example, you can search for the most
+frequent phrase of three words in the text:</p>
+
+<pre>&gt;&gt; signif.3 ""</pre>
+
+<p>In the example above, if three phrases tied for top position,
+only one would be listed.</p>
+
+<p>You can also search for frequent three-word phrases that
+begin as specified, for example:</p>
+
+<pre>&gt;&gt; signif.3 the</pre>
+<pre>&gt;&gt; signif.3 "the "</pre>
+
+<p>The first command uses the prefix <i>the</i> as the starting
+point while the second uses the word <i>the</i>. Notice the
+difference between the results of these two (see facing page). The most
+frequent three-word phrase beginning with the prefix
+<i>the</i> is <i>there is no</i> but the most frequent
+three-word phrase beginning with the word <i>the</i> is
+<i>the death of</i>.</p>
+
+<p>The first results would be identical to the second if the prefix
+<i>the</i> only appeared as the word <i>the</i>
+(never started another word like <i>then</i> or
+<i>there</i>).</p>
+
+<p>DLXS XPAT may return more words than you specify if the phrase continues
+to repeat after that number of words. For example, if the most frequent
+three-word phrase is <i>the death of</i> but all
+occurrences of this phrase are followed by the words <i>Sir
+Charles</i>, DLXS XPAT will return five words: <i>the death of Sir
+Charles</i>.</p></li>
+</ul>
+
+
+
+
+<!-- index: <TT>signif</TT> command -->
+<!-- index: Commands --><!-- index: <TT>signif</TT> -->
+<!-- index: Frequency searching --><!-- index: applying to previous set -->
+<!-- index: Searching --><!-- index: for frequent text -->
+
+<pre>
+&gt;&gt; signif ""
+  16: 3318 matches, text=the
+
+&gt;&gt; signif
+  17: 132 matches, text=the moor
+
+&gt;&gt; signif
+  18: 13 matches, text=the moor and
+</pre>
+
+<p><b>Starting With a Prefix to a Word</b></p>
+<pre>
+&gt;&gt; signif the
+  19: 3318 matches, text=the
+
+&gt;&gt; signif
+  20: 132 matches, text=the moor
+
+&gt;&gt; signif
+  21: 13 matches, text=the moor and
+</pre>
+
+<p><b>Starting With a Full Word</b></p>
+
+<pre>
+&gt;&gt; signif "the "
+  22: 132 matches, text=the moor
+
+&gt;&gt; signif
+  23: 13 matches, text=the moor and
+
+&gt;&gt; signif
+  24: 3 matches, text=the moor and i
+</pre>
+<ol>
+<li><p><!-- keyword: extending a phrase -->The third
+application of <tt>signif</tt> allows you to search for the most
+frequent word or phrase and extend the word or phrase further by
+searching within this new set.</p>
+
+<p>Suppose you search for the most frequent word or phrase in the text
+and the result is a set of matches to the word <i>the</i>. If you
+want to find the most frequent phrases in this set (the set of all
+phrases beginning <i>the</i>) you can reapply <tt>signif</tt>
+again. You can continue doing so until you run out of repeated sequences
+of text beginning <i>the</i>.</p>
+
+<p>For example, you can search for the most frequent
+word or phrase in the text and then extend the phrase further:</p>
+
+<pre>&gt;&gt; signif ""</pre>
+<pre>&gt;&gt; signif</pre>
+
+<p>If there is a tie for the most frequent word or phrase, only one
+is listed.</p>
+
+<p>You can also search for frequent
+words or phrases that begin as specified, for example:</p>
+
+<pre>&gt;&gt; signif the</pre>
+<pre>&gt;&gt; signif "the "</pre>
+
+<p>In each case, you can extend the phrase further by later
+<tt>signif</tt> commands with no modifiers.</p>
+
+<p><tt>signif</tt> with no modifier is exactly the same as
+<tt>signif.-1</tt>.</p>
+
+<p>Notice the difference between the results of the last two commands
+(see facing page). The most frequent word or phrase beginning with the
+prefix <i>the</i> is the word <i>the</i> but the most
+frequent phrase beginning with the word <i>the</i> is <i>the
+moor</i>.</p>
+
+<p>The first results would be identical to the second if the prefix
+<i>the</i> only appeared as the word <i>the</i>
+(never started another word like <i>then</i> or
+<i>there</i>).</p>
+</li>
+</ol>
+
+
+
+
+
+<h2>Finding Long Repetitions of Text</h2>
+<!-- index: Modifying --><!-- index: <TT>lrep</TT> -->
+<!-- index: Quotation marks --><!-- index: to represent all text -->
+<!-- index: <TT>lrep</TT> command -->
+<!-- index: Commands --><!-- index: <TT>lrep</TT> -->
+<!-- index: Searching --><!-- index: for lengthy frequent text -->
+<!-- index: Frequency searching --><!-- index: of long text sequences -->
+<!-- index: <TT>""</TT> (pair of double quotes) --><!-- index: use of -->
+
+<pre>
+&gt;&gt; lrep ""
+                The longest repetition is 88 chars long
+  25: 2 matches
+
+&gt;&gt; pr
+   193010, ..and it said: 'Please, please, as you are a gentleman, burn this ..
+   208848, ..ter. It ran, 'Please, please, as you are a gentleman, burn this ..
+</pre>
+
+<p><b>
+Finding the Longest Repetition Starting as Specified
+</b></p>
+<pre>
+&gt;&gt; lrep "one "
+                The longest repetition is 201 chars long
+  1: 2 matches
+
+&gt;&gt; pr
+324837974, ..ur bones; the one articulated to the tympanic pedicle is called ..
+151819756, ..ur bones; the one articulated to the tympanic pedicle is called ..
+</pre>
+
+<p><b>
+Giving a Minimum Length
+</b></p>
+<pre>
+&gt;&gt; lrep.50 "one "
+                The longest repetition is 201 chars long
+  2: 8 matches
+
+&gt;&gt; pr
+324837974, ..ur bones; the one articulated to the tympanic pedicle is called ..
+151819756, ..ur bones; the one articulated to the tympanic pedicle is called ..
+211986737, ..ay the end of one Brick about half way over the end of another, ..
+355769421, ..ay the end of one Brick about half way over the end of another, ..
+134563508, ..ostylism)..In one individual the flowers all have a long style a..
+ 75218845, ..ostylism)..In one individual the flowers all have a long style a..
+231415578, ..le oestrus at one or more particular times of the year (bitch), ..
+190678247, ..le oestrus at one or more particular times of the year (bitch), ..
+</pre>
+
+<p><!-- keyword: definition -->The <tt>lrep</tt> command, like
+<tt>signif</tt>, helps you find words or phrases that are repeated
+somewhere else in the text. Instead of finding frequent repetitions of
+text, <tt>lrep</tt> finds the longest repetitions in the text.</p>
+
+<p>Long repetitions of text may show that one part of the text was copied from another or perhaps reveal phrases or cliches in the language.</p>
+
+<p>The following command will find the longest repeated phrase in the text:</p>
+
+<pre>&gt;&gt; lrep ""</pre>
+
+<p>DLXS XPAT returns with a statement telling you the length of the repeated phrase and the number of matches of that length. Refer to the facing page for an example.</p>
+
+<p>You can also find the longest repeated phrase that starts as specified; for example, with the word <i>one</i>:</p>
+
+<pre>&gt;&gt; lrep "one "</pre>
+
+<p>Like <tt>signif</tt>, if you do not specify some starting text, <tt>lrep</tt> works on the previous match set.</p>
+
+<p><!-- keyword: modify length -->If you only want repeated text that is longer than a certain number of characters, you can modify the <tt>lrep</tt> command. For example, to search for repeated phrases of 50 or more characters, type:</p>
+<pre>&gt;&gt; lrep.50 "one "</pre>
+
+
+
+
+<h1>Searching Components of Text</h1><p>It is often
+useful to restrict your search to selected components of the text.  You
+may want to restrict your search to logical components of a text, such
+as titles, abstracts or chapters, for example. Or you may want to
+restrict your search to a continuous chunk of text, the first three
+chapters of a book, for example. Besides searching for and displaying a
+pattern within the restricted area, you can search for and display the
+start of the text component that contains a pattern: the start of the
+abstract or chapter that contains a word, for example. You can also
+display the complete component of text that contains the pattern: the
+complete abstract, for example. You can define the components of the
+text within which you want to search either at the time of index
+building or during a DLXS XPAT session.</p>
+
+
+<h2>Restricting Your Search Area</h2>
+
+<!-- index: Tags --><!-- index: to mark components of text -->
+
+<pre>
+
+&lt;title&gt;
+Red, Red Rose
+&lt;/title&gt;
+&lt;content&gt;
+O, my luve's like a red, red rose
+That's newly sprung in June.
+O, my luve is like the melodie
+That's sweetly played in tune.
+&lt;/content&gt;
+&lt;author&gt;
+Robert Burns
+&lt;/author&gt;
+
+</pre>
+
+<p>DLXS XPAT searches for a pattern anywhere in the text. There may be
+times, however, when you want to restrict your search to certain logical
+components of the text. In a typical novel, these components might be
+the chapter titles, the chapters, or paragraphs. In a highly-structured
+text like a dictionary, there may be many components: the main words,
+pronunciations, etymologies, definitions and quotations, to name a few
+possibilities. Or you may want to restrict your search to one chunk of
+text such as an individual chapter or all the dictionary entries for the
+letter <i>a</i>.</p>
+
+<p><!-- keyword: tags as boundaries -->You can restrict your search any way
+you like as long as you can define to DLXS XPAT where the restricted area
+starts and where it ends. This is easiest if text components like
+chapters or paragraphs are marked in the text, by tags for example. The
+poem on the facing page contains tags that mark the start
+and end of the title, contents, and author components of a poem. Assume
+that this poem is one in a collection of poems marked in the same
+manner. By giving instructions to DLXS XPAT to search only within text that
+falls between <i>&lt;title></i> and <i>&lt;/title></i> tags,
+for example, you can restrict your search to all the poem titles in the
+collection.</p>
+
+<p><!-- keyword: content as boundaries -->You don't have to use tags to
+define the area to search; you can use any text including the actual
+content. Suppose you wanted to restrict your search to an individual
+poem. The short poem on the facing page serves as a simplified example.
+You can define the content of this poem to be all text that lies between
+the phrase <i>O my luve's</i> and the word <i>tune</i>.
+Notice that a phrase shorter than <i>O my luve's</i> could not be
+used since it would repeat in the text; your start and end points must
+be unique in the entire text (not just the selected poem) or you will
+define more than one part of text.</p>
+
+<p>Heavily used text components are normally defined at index building
+time. These have the advantage of being available in any session. You
+can also define components during an individual session; however, these
+are lost upon leaving the session.</p>
+
+
+
+
+<h2>Searching Pre-Defined Components of Text</h2>
+
+<!-- index: Displaying results --><!-- index: to the end of a text component -->
+<!-- index: Printing results --><!-- index: to the end of a text component -->
+<!-- index: Documents --><!-- index: searching pre-defined -->
+<!-- index: Components --><!-- index: searching pre-defined -->
+<!-- index: Pre-defined components or documents -->
+<!-- index: Searching --><!-- index: for pre-defined components of text -->
+<!-- index: <TT>region</TT> command -->
+<!-- index: <TT>including</TT> command -->
+<!-- index: <TT>within</TT> command -->
+<!-- index: Commands --><!-- index: <TT>within</TT> -->
+<!-- index: Commands --><!-- index: <TT>including</TT> -->
+<!-- index: Commands --><!-- index: <TT>region</TT> -->
+<!-- index: Saving results -->
+<!-- index: <TT>pr.region</TT> command -->
+<!-- index: Commands --><!-- index: <TT>pr.region</TT> -->
+<dl>
+<dt>Document</dt><dd>A document is a component or portion
+of the text. Examples of documents are paragraphs, headings, or
+chapters. Documents do not have to be structural; they can consist of
+any block of text. The first few pages of a chapter or the last half of
+a book could constitute a document.</dd>
+</dl>
+<pre>
+&gt;&gt; "lrep" within region p
+  1: 4 matches
+
+&gt;&gt; pr
+    79956, ..eywd&gt;The &lt;TT&gt;lrep&lt;/TT&gt; command, like &lt;TT&gt;signif&lt;/TT&gt;, helps ..
+    80132, .. of text &lt;TT&gt;lrep&lt;/TT&gt; finds the longest repetition in the tex..
+    80923, ..ing text,&lt;TT&gt;lrep&lt;/TT&gt; works on the previous match set.&lt;/p&gt; &lt;p..
+    81109, ..dify the &lt;TT&gt;lrep&lt;/TT&gt; command. For example, to search for rep..
+</pre>
+
+<p><b>Finding Paragraphs That Contain a Pattern</b></p>
+<pre>
+&gt;&gt; region p including "lrep"
+  2: 3 matches
+
+&gt;&gt; pr 
+    79919, ..    &lt;p&gt;The &lt;TT&gt;lrep&lt;/TT&gt; co..
+    80850, ..&lt;/PRE&gt; &lt;p&gt;Like &lt;TT&gt;signif&lt;/TT&gt;, if you do not specify s..
+    80971, ..atch set.&lt;/p&gt; &lt;p&gt;If you only want re..
+</pre>
+<p><b>Printing the Complete Paragraph</b></p>
+<pre>
+&gt;&gt; pr.region.p
+    79919, ..&lt;p&gt;The &lt;TT&gt;lrep&lt;/TT&gt; command, like &lt;TT&gt; 
+signif&lt;/TT&gt;, helps you find words or phrases that are repeated somewhere else i
+n the text.  Instead of finding frequent repetitions of text &lt;TT&gt;lrep&lt;/TT&gt; fin
+ds the longest repetition in the text.&lt;/p&gt;..
+    80850, ..&lt;p&gt;Like &lt;TT&gt;signif&lt;/TT&gt;, if you do not specify some starting text
+, &lt;TT&gt;lrep&lt;/TT&gt; works on the previous match set.&lt;/p&gt;..
+    80971, ..&lt;p&gt;If you only want repeated text that 
+is longer than a certain number of characters, you can modify the &lt;TT&gt;lrep&lt;/cmd
+&gt; command. For example, to search for repeated phrases of 50 or more characters,
+ type:&lt;/p&gt;..
+</pre>
+<p>The person who installed DLXS XPAT on your system can tell you
+whether any components of text have been pre-defined and, if so, what
+they are called. Searching within components of the text can be noticeably
+slower than searching the complete text.</p>
+
+<p><!-- keyword: patterns within components -->The electronic version of
+this manual has pre-defined components of text that include headings,
+paragraphs, and examples. All are enclosed within tags. Every paragraph,
+for example, is enclosed within <i>&lt;p></i> and
+<i>&lt;/p></i> tags. Assume you want to search for all occurrences
+of the pattern <i>lrep</i> within paragraphs (called
+<i>p</i>):</p>
+
+<pre>&gt;&gt; "lrep" within region p</pre>
+
+<p>This command finds all matches to the pattern <i>lrep</i>
+that appear within paragraphs. The <i>region</i> stands for components or parts of
+text.</p>
+
+<p>The quotation marks around <tt>lrep</tt> are necessary since you
+are searching for a pattern that DLXS XPAT would normally
+treat as a command.</p>
+
+<p><!-- keyword: components containing patterns -->In addition to searching
+for a pattern within components of text, you can search for the start of
+the components that contain the pattern, for example:</p>
+
+<pre>&gt;&gt; region p including "lrep"</pre>
+
+<p>Here, the match point is on the beginning <i>&lt;p></i> tag,
+rather than the pattern.</p>
+
+<p><!-- keyword: printing components -->The <tt>pr</tt> command can be
+modified to print from the match point to the end of a defined text
+component. For example, the following command prints the entire
+paragraph that contains the match:</p>
+
+<pre>&gt;&gt; pr.region.p</pre>
+
+<p>Substituting <tt>save</tt> for <tt>pr</tt> puts
+the results in a file rather than displaying them on the screen.</p>
+
+
+
+
+<!-- index: Modifying --><!-- index: <TT>including</TT> -->
+<!-- index: Commands --><!-- index: <TT>including</TT> -->
+<!-- index: <TT>including</TT> command -->
+<!-- Chris, this is one of several examples that got mangled in transformation -->
+<pre>
+&gt;&gt; region including "{PrintMode}"
+  3: 1 match
+
+</pre>
+
+<p><b>Restricting the Number Found</b></p>
+<!-- Chris, another "bad" example -->
+<pre>
+&gt;&gt; region including "save"
+  4: 3 matches
+
+</pre>
+
+<p><!-- keyword: search default component -->The most-used component of
+text can be set up as the default component. This means you do not have
+to specify the text component you wish to search or print, for
+example:</p>
+
+<pre>&gt;&gt; region including "{PrintMode}"</pre>
+<pre>&gt;&gt; pr.region</pre>
+
+<p>In this manual, the most-used components are the sections or modules
+(text from the beginning of one main heading to the beginning of the
+next).</p>
+
+<p>The first example on the facing page searches for modules that
+include references to <tt>{Printmode}</tt>. This allows you to see the
+heading of the module and to start reading at the beginning of the
+module rather than somewhere in the middle.</p>
+
+<p><!-- keyword: restrict number of matches -->You may want to restrict
+your search to those components that contain more than a certain number
+of references to a word. For example, if you wanted to search this
+manual for information on saving search results, you would expect that
+the module with the most information would mention the word
+<i>save</i> at least more than once. To get only those modules
+that have 2 or more references to <tt>save</tt> within them, the
+command would be as follows:</p>
+
+<pre>&gt;&gt; region including.2 "save"</pre>
+
+<p>You can see on the facing page that although three modules contain
+the word <i>save</i> only one module contains more than one
+reference to the word.</p>
+
+
+
+
+<h2>Defining Your Own Components</h2>
+
+
+<!-- index: Documents --><!-- index: defining and searching your own -->
+<!-- index: Components --><!-- index: defining and searching your own -->
+<!-- index: Defining components or documents -->
+<!-- index: <TT>region</TT> command -->
+<!-- index: Commands --><!-- index: <TT>region</TT> -->
+<!-- index: <TT>*</TT> (asterisk) --><!-- index: rules for using -->
+<!-- index: Searching --><!-- index: for components you define -->
+<!-- index: <TT>including</TT> command -->
+<!-- index: <TT>within</TT> command -->
+<!-- index: Commands --><!-- index: <TT>including</TT> -->
+<!-- index: Commands --><!-- index: <TT>within</TT> -->
+
+<pre>
+&gt;&gt; chapter = region "&lt;chap&gt;".."&lt;/chap&gt;"
+  chapter = 14 matches
+
+&gt;&gt; pr
+       54, ..LLES&lt;/btitle&gt; &lt;chap&gt;&lt;no&gt;1&lt;/no&gt;&lt;ctitle&gt; MR. SHERLOCK HOLMES&lt;/ctit..
+    12902, ..ance." &lt;/chap&gt;&lt;chap&gt;&lt;no&gt;2&lt;/no&gt;&lt;ctitle&gt; THE CURSE OF THE BASKERVI..
+    34180, ..ound!" &lt;/chap&gt;&lt;chap&gt;&lt;no&gt;3&lt;/no&gt;&lt;ctitle&gt; THE PROBLEM&lt;/ctitle&gt; &lt;p&gt; ..
+    50432, ..ning." &lt;/chap&gt;&lt;chap&gt;&lt;no&gt;4&lt;/no&gt;&lt;ctitle&gt; SIR HENRY BASKERVILLE&lt;/ct..
+    73037, ..otel." &lt;/chap&gt;&lt;chap&gt;&lt;no&gt;5&lt;/no&gt;&lt;ctitle&gt; THREE BROKEN THREADS&lt;/cti..
+    92085, ..more." &lt;/chap&gt;&lt;chap&gt;&lt;no&gt;6&lt;/no&gt;&lt;ctitle&gt; BASKERVILLE HALL&lt;/ctitle&gt;..
+   111298, .. wall. &lt;/chap&gt;&lt;chap&gt;&lt;no&gt;7&lt;/no&gt;&lt;ctitle&gt; THE STAPLETONS OF MERRIPI..
+   138270, .. Hall. &lt;/chap&gt;&lt;chap&gt;&lt;no&gt;8&lt;/no&gt;&lt;ctitle&gt; FIRST REPORT OF DR. WATSO..
+   153241, ..etter&gt; &lt;/chap&gt;&lt;chap&gt;&lt;no&gt;9&lt;/no&gt;&lt;ctitle&gt; SECOND REPORT OF DR. WATS..
+   188107, ..etter&gt; &lt;/chap&gt;&lt;chap&gt;&lt;no&gt;10&lt;/no&gt;&lt;ctitle&gt; EXTRACT FROM THE DIARY O..
+   207432, ..stery. &lt;/chap&gt;&lt;chap&gt;&lt;no&gt;11&lt;/no&gt;&lt;ctitle&gt; THE MAN ON THE TOR&lt;/ctit..
+   232122, ..n in." &lt;/chap&gt;&lt;chap&gt;&lt;no&gt;12&lt;/no&gt;&lt;ctitle&gt; DEATH ON THE MOOR&lt;/ctitl..
+   255131, ..s end. &lt;/chap&gt;&lt;chap&gt;&lt;no&gt;13&lt;/no&gt;&lt;ctitle&gt; FIXING THE NETS&lt;/ctitle&gt;..
+   277326, ..isit." &lt;/chap&gt;&lt;chap&gt;&lt;no&gt;14&lt;/no&gt;&lt;ctitle&gt; THE HOUND OF THE BASKERV..
+</pre>
+<p><b>Searching Chapter Components</b></p>
+<pre>
+&gt;&gt; "mrs. lyons" within *chapter
+  2: 8 matches
+
+&gt;&gt; pr sample.3
+   212590, ..ontinued. &lt;p&gt; Mrs. Lyons flushed with anger again. &lt;p&gt; "Really, ..
+   214623, ..t point. &lt;p&gt; "Mrs. Lyons," said I, as I rose from this long and ..
+   209503, ..ssion left by Mrs. Lyons was one of extreme beauty. Her eyes and..
+
+&gt;&gt; *chapter including "mrs. lyons"
+  3: 2 matches
+
+&gt;&gt; pr
+   207432, ..stery. &lt;/chap&gt;&lt;chap&gt;&lt;no&gt;11&lt;/no&gt;&lt;ctitle&gt; THE MAN ON THE TOR&lt;/ctit..
+   255131, ..s end. &lt;/chap&gt;&lt;chap&gt;&lt;no&gt;13&lt;/no&gt;&lt;ctitle&gt; FIXING THE NETS&lt;/ctitle&gt;..
+</pre>
+
+<p>You can define your own components if your text has no pre-defined
+ones or if those that exist do not suit your purpose. However, these
+are only available for the duration of your DLXS XPAT session.</p>
+
+<p><!-- keyword: specify start and end -->You define a text component by
+specifying its starting and ending text. For example, suppose you
+wanted to define chapter components for every chapter in a book. Let's
+assume that each chapter has the following tags:</p>
+
+<pre>
+<tt>&lt;chap>&lt;no>13&lt;/no>&lt;ctitle>FIXING THE NETS&lt;/ctitle>...&lt;/chap></tt>
+</pre>
+
+<p>The <i>&lt;chap></i> tag marks the beginning of the chapter and
+the <i>&lt;/chap></i> tag marks its end. To create this text
+component, the command is as follows:</p>
+
+<pre>&gt;&gt; chapter = region "&lt;chap>".."&lt;/chap>"</pre>
+
+<p>The name to the left of the equals sign is the name you'll use later
+to search this component. The <tt>region</tt> command identifies this
+command sequence as a document definition rather than a range search.
+The first pattern is the starting text of the component and the second
+pattern is the ending text of the component.</p>
+
+<p><!-- keyword: using an asterisk -->Searching your own components differs
+slightly from searching pre-defined components. Instead of putting
+<tt>region</tt> in front of the component name, the component name is
+preceded by an asterisk. For example, to search for occurrences of a
+pattern within chapters, the command is:</p>
+
+<pre>&gt;&gt; "mrs. lyons" within *chapter</pre>
+
+<p>To search for the beginning of chapters that contain references to a
+pattern, the command is:</p>
+
+<pre>&gt;&gt; *chapter including "mrs. lyons"</pre>
+
+<p>A <tt>pr</tt> command after this example search shows that chapters
+11 and 13 contain the reference.</p>
+
+
+
+
+<!-- index: <TT>*</TT> (asterisk) --><!-- index: rules for using -->
+<!-- index: Displaying results --><!-- index: to the end of a text component -->
+<!-- index: Printing results --><!-- index: to the end of a text component -->
+<!-- index: Saving results -->
+<!-- index: <TT>pr.region</TT> command -->
+<!-- index: Commands --><!-- index: <TT>pr.region</TT> -->
+
+<pre>
+&gt;&gt; *ctitle = region "&lt;ctitle&gt;".."&lt;/ctitle&gt;"
+  ctitle = 15 matches
+
+&gt;&gt; *ctitle including holmes
+  5: 1 match
+
+&gt;&gt; pr.region.*ctitle
+       70, ..&lt;ctitle&gt; MR. SHERLOCK HOLMES&lt;..
+</pre>
+
+<p><b>Printing a Poem Defined by Content</b></p>
+<pre>
+&gt;&gt; poem = region "O, my luve's".."played in tune."
+  poem = 1 match
+
+&gt;&gt; pr.region.*poem
+       38, ..O, my luve's like a red, red rose That's newly sprung in June. O, my 
+luve is like the melodie That's sweetly p..
+</pre>
+
+<p><b>Shifting the End Point</b></p>
+<pre>
+&gt;&gt; poem = region "O, my luve's"..(shift.14"played in tune.")
+  poem = 1 match
+
+&gt;&gt; pr.region.*poem
+       38, ..O, my luve's like a red, red rose That's newly sprung in June. O, my
+ luve is like the melodie That's sweetly played in tune...
+</pre>
+
+<p><!-- keyword: printing components -->Printing your own components
+differs slightly from printing pre-defined components. Assume you have
+defined components called <i>ctitle</i> which contain chapter
+titles.</p>
+
+<p>To print out the titles that contain the word <i>holmes</i>,
+the commands would be as follows:</p>
+
+<pre>&gt;&gt; *ctitle including holmes</pre>
+<pre>&gt;&gt; pr.region.*ctitle</pre>
+
+<p>When printing a component you've defined, you need to include an
+asterisk (<i>*</i>) before its name.</p>
+
+<p>Substituting <tt>save</tt> for <tt>pr</tt> puts the results in
+a file rather than displaying them on the screen.</p>
+
+<p><!-- keyword: moving end point -->Notice that the titles end at the
+first letter of the tag rather than at the end of the closing tag. DLXS XPAT
+creates components by starting at the first character of the starting
+text (the <i>&lt;</i> in <i>&lt;ctitle></i>) and going to the
+<i>first</i> character of the ending text (the <i>&lt;</i> in
+<i>&lt;/ctitle></i>). This means that anything after the first
+character in the ending text is not included in the definition of the
+component.</p>
+
+<p>This can be a problem when you use the content of the text to define a
+component. Suppose you have defined a poem by specifying its first and
+last phrase as follows:</p>
+
+<pre>&gt;&gt; poem = region "O my luve's".."played in tune."</pre>
+
+<p>You can not search for the phrase <i>in tune</i> within
+<i>*poem</i> because the component ends at the <i>p</i> in
+<i>played</i>. To get around the problem, when defining the
+component you can use the <tt>shift</tt> command to move the match
+point to the end of the phrase:</p>
+
+<pre>&gt;&gt; poem = region "O my luve's"..(shift.14 "played in tune.")</pre>
+
+<p>This moves the match point 14 characters to the right, to the
+period after <i>tune</i>.</p>
+
+
+ 
+
+ 
+<h2>Searching a Hierarchy of Text Components</h2> 
+
+
+<!-- index: Tags --><!-- index: to mark components of text -->
+
+<p><!-- keyword: OED as example -->Some documents, such as dictionaries or
+encyclopedias, are highly structured. <i>The Oxford English
+Dictionary</i> (<i>OED</i>) is a good example of a highly
+structured text.  The entry for <i>broom-man</i> from the
+electronic version of this text appears on the facing page.</p>
+
+<p>The <i>OED</i> has many tags to label the components of the text.
+A few levels of text components have been marked in the excerpt. The
+beginning and ending entry tags <i>&lt;E></i> and
+<i>&lt;/E></i> surround the whole entry. Within the entry are many
+other tags. For example, the tags <i>&lt;ET></i> and
+<i>&lt;/ET></i> surround the etymology section of the entry, the
+part that describes the origin of the word. The <i>&lt;Q></i> and
+<i>&lt;/Q></i> tags surround each supporting quotation. Within the
+quotation tags, the <i>&lt;D></i>, <i>&lt;A></i>,
+<i>&lt;W></i> and <i>&lt;T></i> series of tags surround the
+date, author, work, and text components of the quotation,
+respectively.</p>
+
+<p>Components can exist on the same level or be nested within one
+another.</p>
+
+
+
+
+
+<!-- index: Searching --><!-- index: for pre-defined components of text -->
+<!-- index: Parentheses -->
+<!-- index: Documents --><!-- index: searching pre-defined -->
+<!-- index: Components --><!-- index: searching pre-defined -->
+<!-- index: Commands --><!-- index: <TT>region</TT> -->
+<!-- index: Commands --><!-- index: <TT>including</TT> -->
+<!-- index: Commands --><!-- index: <TT>within</TT> -->
+<!-- index: <TT>region</TT> command -->
+<!-- index: <TT>including</TT> command -->
+<!-- index: <TT>within</TT> command -->
+<!-- index: <TT>%</TT> (percent) --><!-- index: use of -->
+
+<pre>
+&gt;&gt; region Q including science
+  1: 2967 matches
+
+&gt;&gt; region E including %
+  2: 2503 matches
+
+&gt;&gt; region HL within %
+  3: 2564 matches
+
+&gt;&gt; pr.region.HL sample
+ 42619114, ..&lt;HT&gt;cipher&lt;/HT&gt;..
+ 79862157, ..&lt;HT&gt;dogmatism&lt;/HT&gt;..
+116078846, ..&lt;HT&gt;geo-&lt;/HT&gt;..
+148869689, ..&lt;HT&gt;install&lt;/HT&gt;..
+189204259, ..&lt;HT&gt;monogenetic&lt;/HT&gt;..
+221894660, ..&lt;HT&gt;phlebotomy&lt;/HT&gt;..
+253789940, ..&lt;HT&gt;refractory&lt;/HT&gt;..
+298490165, ..&lt;HT&gt;snobo.grapher&lt;/HT&gt;..
+326252481, ..&lt;HT&gt;supermu.ndal&lt;/HT&gt;..
+361110614, ..&lt;HT&gt;undo.tted&lt;/HT&gt;..
+</pre>
+
+<p><b>Combining Commands</b></p>
+<pre>
+&gt;&gt; region HL within (region E including (region Q including science))
+  4: 2564 matches
+</pre>
+
+<p>In a highly structured text like the <i>OED</i>, there
+will be times when you'll need to search through a hierarchy of
+components for a pattern. An example is a search for a component that
+contains a sub-component that contains a pattern. For example, consider
+the following problem:</p>
+
+<p><!-- keyword: step-by-step -->You would like to find the names of the
+dictionary entries that contain quotations with the pattern
+<i>science</i>. You can break this search into three steps.</p>
+
+<ol><li><p>Find quotation components that contain
+<i>science</i>.</p>
+
+<pre>&gt;&gt; region Q including science</pre>
+</li> 
+
+<li><p>Find the entry components that contain
+these quotation components.</p>
+
+<pre>&gt;&gt; region E including %</pre>
+</li> 
+
+<li><p>Find the entry name
+(headword lemma) within these entries.</p>
+
+<pre>&gt;&gt; region HL within %</pre>
+</li>
+</ol>
+
+<p><i>%</i> stands for the previous results.</p>
+
+<p>You can then use <tt>pr.region.HL</tt> to print only the headword
+lemmas.</p>
+
+<p><!-- keyword: combining steps -->An alternative way to do this search is
+to type it all on one line, using parentheses to show DLXS XPAT what steps
+it should do first:</p>
+
+<pre>&gt;&gt; region HL within (region E including (region Q including
+science))</pre>
+
+<p>DLXS XPAT searches within parentheses first. Using this set of results,
+DLXS XPAT does the final search, producing the final set of results. With
+this alternative, you don't save any intermediate results.</p>
+
+
+
+<h1>Manipulating Sets of Results</h1>
+
+<p>When doing more complex searches, you may deal with many sets of
+results. To keep track of them, you can give them descriptive names and
+refer to them by name rather than by set number. You can also do basic
+set operations. You can combine sets (union), find the difference
+between sets (difference) and find where sets share results
+(intersection).</p>
+
+
+<h2>Naming Set Results</h2>
+<!-- index: <TT>*</TT> (asterisk) --><!-- index: rules for using -->
+<!-- index: Sets --><!-- index: naming -->
+<!-- index: Naming sets -->
+
+<pre>
+&gt;&gt; bldog = "black " near "dog "
+  bldog = 40 matches
+
+&gt;&gt; "black " near "cat "
+  2: 26 matches
+
+&gt;&gt; blcat = 2
+  blcat = 26 matches
+
+&gt;&gt; blackcat = *blcat
+  blackcat = 26 matches
+</pre>
+<p><b>Using a Name in a Search</b></p>
+<pre>
+&gt;&gt; pr.200 sample.1 *bldog
+ 23379319, ..his luck..The black dog was on his back, as people say, in terrifyi
+ng nursery metaphor.&lt;/T&gt;&lt;/Q&gt;&lt;/QP&gt;&lt;/S6&gt;&lt;/S4&gt;&lt;/E&gt;&lt;E&gt;&lt;HG&gt;&lt;HT&gt;black drop..
+
+</pre>
+
+<p><!-- keyword: use equals sign -->Previous set results are frequently
+referred to by their set numbers; however, you can also refer to them by
+name. You name a set of results by preceding the search with the name
+and an equals sign, for example:</p>
+
+<pre>&gt;&gt; bldog = "black  " near "dog  "</pre>
+
+<p>The results are assigned
+to the name <i>bldog</i>. You can also name a
+previous set of results, for example:</p>
+
+<pre>&gt;&gt; blcat = 2</pre>
+
+<p>The above command assigns the name <i>blcat</i> to the results
+of set 2. You can use this name instead of the number 2 when referring
+to this set.</p>
+
+<p><!-- keyword: use asterisk -->When you refer to a set by name you must
+precede it with an asterisk; otherwise, DLXS XPAT will search for the name
+as a pattern rather than as a set of results. The only time you can
+specify the name without an asterisk is when you assign a
+value to it (when the name appears before the equals sign), for
+example:</p>
+
+<pre>&gt;&gt; blackcat=*blcat</pre>
+
+<p>With the above command, there are now three ways to refer to our
+example set: by set number, by the name <i>blcat</i> or
+<i>blackcat</i>.</p>
+
+<p>A second example of referring to a named set is as follows:</p>
+
+<pre>&gt;&gt; pr.200 sample.1 *bldog</pre>
+
+<p>The above command prints 200 characters around a single match in the set
+identified by <i>*bldog</i>.</p>
+
+<p>Names can contain any letter in the alphabet or any number;
+however, they cannot <i>start</i> with a number. You cannot use
+special characters such as <i>.</i> or <i>?</i> in your name
+unless you enclose the whole name within quotation marks:
+<i>"name?"</i>, for example.</p>
+
+
+
+
+<h2>Combining and Comparing Sets of Results</h2>
+
+<!-- index: Boolean functions -->
+<!-- index: Sets --><!-- index: finding union of -->
+<!-- index: Sets --><!-- index: finding difference between -->
+<!-- index: Sets --><!-- index: finding intersection of -->
+<!-- index: <TT>+</TT> (union) operator -->
+<!-- index: <TT>-</TT> (difference) operator -->
+<!-- index: <TT>^</TT> (intersection) operator -->
+<!-- index: Commands --><!-- index: <TT>+</TT> (union) -->
+<!-- index: Commands --><!-- index: <TT>-</TT> (difference) -->
+<!-- index: Commands --><!-- index: <TT>^</TT> (intersection) -->
+<!-- index: Union of sets -->
+<!-- index: Difference between sets -->
+<!-- index: Intersection of sets -->
+
+<dl><!-- this was in a "suppress" element -->
+<dt>Union</dt><dd>The union of sets refers to the merging
+of two sets into one. Any duplicates are eliminated from the final
+set.</dd>
+
+<dt>Difference</dt><dd>Set difference refers to the
+difference between two sets. Matches that appear in the first set that
+also appear in the second are eliminated from the final set. In other
+words, matches from the first set that do not appear in the second
+set form the new set.</dd>
+
+<dt>Intersection</dt><dd>The intersection of sets refers
+to the comparison of two sets to find common matches. These common
+matches form a new set.</dd>
+</dl>
+
+<p><b>Difference Between Sets</b></p>
+<p><b>Intersection of Sets</b></p>
+
+<p>You can further refine your search by combining or
+comparing sets. You can compare sets to find the different or common
+elements. These operations are the same as the mathematical set
+operations: <i>union</i>, <i>difference</i> and
+<i>intersection</i>.</p>
+<p><!-- keyword: union -->The pictures on this and the
+facing page may help you visualize these set operations. The circles
+beside represent sets of results. The shaded portion represents the
+result of the operation.</p>
+
+<p>The first example combines the contents of two sets into one set. The
+matches to the word <i>clue</i> are combined with the matches to
+the word <i>evidence</i> producing one set of results.</p>
+<p><!-- keyword: difference -->The second example
+finds the difference between the first and second sets. The difference
+can be defined as any matches in the first set that are not also in the
+second. Looking on the facing page, a set containing quotations dated
+1591 is compared with a set of quotations attributed to Shakespeare. The
+common match point is the <i>&lt;Q></i> tag (stands for the
+beginning of a quotation). The two quotations that appear in the first
+set but are not in the second make up the final set. These are
+quotations dated 1591 that are <i>not</i> attributed to
+Shakespeare</p>
+<p><!-- keyword: intersection -->The third example
+finds the matches common to both sets. For example, the set of
+quotations dated 1591 is compared to the set of quotations attributed to
+Shakespeare. DLXS XPAT produces a new set containing matches common to both
+sets, quotations that are both dated 1591 and are attributed to
+Shakespeare. The result is one match.</p>
+
+
+<!-- index: Commands --><!-- index: <TT>+</TT> (union) -->
+<!-- index: <TT>+</TT> (union) operator -->
+<!-- index: Sets --><!-- index: finding union of -->
+<!-- index: Boolean functions -->
+
+<pre>
+&gt;&gt; title = "mr. " + "mrs. "
+  title = 27780 matches
+
+&gt;&gt; pr sample
+270892615, ..h of blood to Mr. Dombey's face. &lt;/T&gt;&lt;/Q&gt;&lt;Q&gt;&lt;D&gt;1873&lt;/D&gt; `&lt;A&gt;Ouid..
+293441616, ..T&gt;Enquire..of Mr. Kimpson at the Castle, a *Silk-shop. &lt;/T&gt;&lt;/Q&gt;&lt;..
+134648143, ..Jan. 134/3 &lt;T&gt;Mr Scott's *hexalogy closes with what we may call ..
+392105523, ..D&gt;1846&lt;/D&gt; &lt;A&gt;Mrs. A. Marsh&lt;/A&gt; &lt;W&gt;Fr. Darcy&lt;/W&gt; xxxiv, &lt;T&gt;In a ..
+364579121, ..D&gt;1844&lt;/D&gt; &lt;A&gt;Mrs. Browning&lt;/A&gt; &lt;W&gt;Vis. Poets&lt;/W&gt; cxlii, &lt;T&gt;The ..
+397138778, ..D&gt;1779&lt;/D&gt; &lt;A&gt;Mrs. Delany&lt;/A&gt; &lt;W&gt;Let. to Mrs. Port&lt;/W&gt; 17 Apr., ..
+216295871, ..D&gt;1773&lt;/D&gt; &lt;A&gt;Mrs. Grant&lt;/A&gt; &lt;W&gt;Lett. fr. Mount.&lt;/W&gt; (1813) I. x..
+272959533, ..D&gt;1842&lt;/D&gt; &lt;A&gt;Mrs. Kirkland&lt;/A&gt; &lt;W&gt;Forest Life&lt;/W&gt; I. 180 &lt;T&gt;In ..
+374852111, ..D&gt;1789&lt;/D&gt; &lt;A&gt;Mrs. Piozzi&lt;/A&gt; &lt;W&gt;Journ. France&lt;/W&gt; II. 42, &lt;T&gt;I ..
+298915502, ..people', said Mrs. Silchester slyly.&lt;/T&gt;&lt;/Q&gt;&lt;/QP&gt;&lt;/S6&gt;&lt;/S4&gt;&lt;p&gt;&lt;S..
+
+&gt;&gt; region A including ("mrs. a. marsh" + "mrs. grant" + "mrs. kirkland")
+  2: 151 matches
+
+&gt;&gt; region Q including %
+  3: 151 matches
+
+&gt;&gt; pr.region.Q sample.4
+276705709, ..&lt;Q&gt;&lt;D&gt;1839&lt;/D&gt; &lt;A&gt;Mrs. Kirkland&lt;/A&gt; in Griswold &lt;W&gt;Prose Writers Am
+er.&lt;/W&gt; (1847) 464 &lt;T&gt;Fetch the broom, Betsey! and the scrub-broom, Betsey! &lt;/T&gt;
+&lt;/Q&gt;..
+355452981, ..&lt;Q&gt;&lt;D&gt;1805&lt;/D&gt; &lt;A&gt;Mrs. Grant&lt;/A&gt; in Campbell &lt;W&gt;Mem. &amp; Corr.&lt;/W
+&gt; (1844) I. 59 &lt;T&gt;Two hours of tweedle-dum and tweedle-dee were too much for me.
+ &lt;/T&gt;&lt;/Q&gt;..  
+367573536, ..&lt;Q&gt;&lt;D&gt;1839&lt;/D&gt; &lt;A&gt;Mrs. Kirkland&lt;/A&gt; &lt;W&gt;New Home&lt;/W&gt; xxxiv. 231 &lt;T&gt;T
+hose [ladies] who had unwarily sported silks and other unwashables, looked acid 
+and uncomfortable.&lt;/T&gt;&lt;/Q&gt;..
+383947574, ..&lt;Q&gt;&lt;D&gt;1846&lt;/D&gt; &lt;A&gt;Mrs. A. Marsh&lt;/A&gt; &lt;W&gt;Father Darcy&lt;/W&gt; xxviii, &lt;T&gt;
+ `How are the ways?'  `Deep and difficult enough, please your honour.' &lt;/T&gt;&lt;/Q&gt;..  </pre>
+<p><!-- keyword: the + operator -->Combining several sets of results into
+one is advantageous when you are interested in collective results. If
+you are interested in the number of occurrences of the word
+<i>Mrs.</i> as compared to the word <i>Mr.</i>, you can
+search for each individually, and produce two sets of results.  If,
+however, you are interested in titles in general, you can use the
+<tt>+</tt> operator, for example:</p>
+
+<pre>&gt;&gt; title = "mr.  " + "mrs.  "</pre>
+
+<p>This command finds the set of matches for <i>mr.</i> and the
+set of matches for <i>mrs.</i> and combines them in one set.</p>
+
+<p>When combining sets, duplications are eliminated. For example, if
+you combine the set of matches to <i>mrs.</i> with the set of
+matches to <i>mrs. delany</i>, your answer will be the number of
+matches to <i>mrs.</i> (since all matches to <i>mrs.
+delany</i> already appear in the first set.)</p>
+
+<p>A third example searches for quotations taken from the works of three authors:</p>
+<pre>&gt;&gt; region A including ("mrs. a. marsh" + "mrs. grant" + "mrs. kirkland")</pre>
+<pre>&gt;&gt; region Q including %</pre>
+
+
+
+
+<!-- index: Commands --><!-- index: <TT>-</TT> (difference) -->
+<!-- index: <TT>-</TT> (difference) operator -->
+<!-- index: Sets --><!-- index: finding difference between -->
+<!-- index: Boolean functions -->
+
+<pre>
+&gt;&gt; dictat - "dictator "
+  4: 520 matches
+
+&gt;&gt; pr sample.4
+341282602, .. to have been dictated by actual theophobia. &lt;/T&gt;&lt;/Q&gt;&lt;Q&gt;&lt;D&gt;1899&lt;..
+248518830, ..o follows the Dictates of his own Fancy. &lt;/T&gt;&lt;/Q&gt;&lt;/EQ&gt;&lt;Q&gt;&lt;D&gt;1791..
+ 74125842, ..Feb. 6/3 &lt;T&gt;A dictation cylinder will contain from 1,000 to 1,20..
+241598024, ../XR&gt;: cf. &lt;CF&gt;dictatorial&lt;/CF&gt;, &lt;CF&gt;senatorial&lt;/CF&gt;, etc.&lt;/ET&gt; &lt;..
+
+&gt;&gt; ("1880".."1884") - "1883"
+  5: 57438 matches
+
+&gt;&gt; pr sample.4
+384817917, ..&lt;PQP&gt;&lt;Q&gt;&lt;D&gt;C. 1880&lt;/D&gt; &lt;W&gt;Cassell's Nat. Hist.&lt;/W&gt; IV. 324 &lt;T&gt;Fa..
+143528300, ..&lt;/T&gt;&lt;/Q&gt;&lt;Q&gt;&lt;D&gt;1881&lt;/D&gt; &lt;W&gt;Athenaeum&lt;/W&gt; No. 2811. 348/1 &lt;T&gt;For H..
+231719451, ..&lt;/T&gt;&lt;/Q&gt;&lt;Q&gt;&lt;D&gt;1882&lt;/D&gt; &lt;A&gt;Ogilvie&lt;/A&gt;, &lt;T&gt;&lt;i&gt;Polyspermal, Polysp..
+112158046, ../Q&gt;&lt;/EQ&gt;&lt;Q&gt;&lt;D&gt;1884&lt;/D&gt; &lt;A&gt;G. W. Sears&lt;/A&gt; &lt;W&gt;Woodcraft&lt;/W&gt; (Cent..
+
+&gt;&gt; quotes1591 = region Q including (region D including "1591")
+  quotes1591 = 5240 matches
+
+&gt;&gt; quotesshaks = region Q including (region A including shaks)
+  quotesshaks = 32867 matches
+
+&gt;&gt; *quotes1591 - *quotesshaks
+  8: 3814 matches
+
+&gt;&gt; pr.region.Q sample.1
+144408445, ..&lt;Q&gt;&lt;D&gt;1591&lt;/D&gt; &lt;A&gt;Percivall&lt;/A&gt; &lt;W&gt;Sp. Dict.&lt;/W&gt;, &lt;T&gt;&lt;i&gt;Desatino&lt;/i
+&gt;,..rashnesse, inconsideratenesse, folly. &lt;/T&gt;&lt;/Q&gt;..
+
+&gt;&gt; region Q including %
+  9: 3814 matches
+
+&gt;&gt; "Tears of Muses" within %
+  10: 21 matches
+</pre>
+<p><!-- keyword: the - operator -->The
+<tt>-</tt> operator can be used to exclude specific matches from a
+search. For example, to find all words that begin
+with <i>dictat</i> except for the word <i>dictator</i>, the
+command is as follows:</p>
+
+<pre>&gt;&gt; dictat - "dictator  "</pre>
+
+<p>This next example excludes the number <i>1883</i> from the
+set of numbers beginning <i>1880</i> to <i>1884</i>.</p>
+
+<pre>&gt;&gt; ("1880" .. "1884") - "1883"</pre>
+
+<p>A third example searches the <i>OED</i> for all quotations dated
+1591 except those attributed to Shakespeare. You can break this search
+into three steps:</p>
+<ol><li><p>Find quotations dated 1591
+(<i>D</i> is the component defined by the <i>&lt;D></i> and
+<i>&lt;/D></i> tags: dates in this example).</p>
+
+<pre>&gt;&gt; quotes1591 = region Q including (region D including "1591")</pre></li>
+
+<li><p>Find quotations by Shakespeare (<i>A</i> is the component
+defined by the <i>&lt;A></i> and <i>&lt;/A></i> tags: authors
+in this example).</p>
+
+<pre>&gt;&gt; quotsshaks = region Q including (region A including shaks)</pre>
+</li>
+
+<li><p>Find the difference between the two sets.</p>
+
+<pre>&gt;&gt; *quotes1591 - *quotesshaks</pre>
+</li>
+</ol>
+<p>The result of any set operation is a set of match points, not a set
+of components. The result of the set difference above is a set of match
+points <i>&lt;Q></i>, not the entire <i>Q</i> components.
+For this reason, you cannot now search for a pattern within this
+set without first searching for the <i>Q</i> components that
+contain the match points. Then you can search within
+those components, for example:</p>
+
+<pre>&gt;&gt; region Q including %</pre>
+<pre>&gt;&gt; "Tears of Muses" within %</pre>
+
+
+
+
+<!-- index: Commands --><!-- index: <TT>^</TT> (intersection) -->
+<!-- index: <TT>^</TT> (intersection) operator -->
+<!-- index: Intersection of sets -->
+<!-- index: Sets --><!-- index: finding intersection of -->
+
+<pre>
+&gt;&gt; *quotes1591 ^ *quotesshaks
+  11: 1426 matches
+
+&gt;&gt; pr.region.Q sample.2
+127749138, ..&lt;Q&gt;&lt;D&gt;1591&lt;/D&gt; &lt;A&gt;Shaks.&lt;/A&gt; &lt;W&gt;Two Gent.&lt;/W&gt; &lt;sc&gt;iv. &lt;/sc&gt;ii. 136 
+&lt;T&gt;By my hallidome, I was fast asleepe. &lt;/T&gt;&lt;/Q&gt;..
+270915591, ..&lt;Q&gt;&lt;D&gt;1591&lt;/D&gt; &lt;A&gt;Shaks.&lt;/A&gt; &lt;W&gt;Two Gent.&lt;/W&gt; &lt;sc&gt;i. &lt;/sc&gt;iii. 41 &lt;
+T&gt;To-morrow..Don Alphonso, With other Gentlemen of good esteeme Are iournying, t
+o salute the Emperor, And to commend their seruice to his will. &lt;/T&gt;&lt;/Q&gt;..
+
+&gt;&gt; region Q including %
+  12: 1426 matches
+
+&gt;&gt; "1 Hen. VI" within %
+  13: 696 matches
+
+&gt;&gt; oxford = "university " fby "oxford "
+  oxford = 94 matches
+
+&gt;&gt; cambridge = "university " fby "cambridge "
+  cambridge = 56 matches
+
+&gt;&gt; *oxford ^ *cambridge
+  16: 10 matches
+
+&gt;&gt; pr.135 sample.3
+207959421, ..orator of the university of Cambridge. &lt;/T&gt;&lt;/Q&gt;&lt;Q&gt;&lt;D&gt;1899&lt;/D&gt; &lt;W&gt;Ox
+ford Univ. Cal.&lt;/W&gt; 1 &lt;T&gt;Public Orator.  1880 William Walter Merry, ..
+337249607, ..lished in the University of Cambridge, was the earliest University 
+office at Oxford [&lt;i&gt;c&lt;/i&gt; 1209].&lt;/T&gt;&lt;/Q&gt;&lt;/QP&gt;&lt;/S6&gt;&lt;/S4&gt;&lt;p&gt;&lt;S4&gt;&lt;#&gt;2&lt;..
+ 48244107, ..n the ancient University of Paris, and the ancient colleges of Oxfo
+rd and Cambridge. &lt;/DEF&gt;&lt;/S6&gt;&lt;S6&gt;&lt;#&gt;b&lt;/#&gt; &lt;DEF&gt;A foundation of the s..
+
+</pre>
+<p><!-- keyword: the ^ operator -->The <tt>^</tt> operator lets
+you determine if two or more sets share any results. In the previous
+example, set difference was used to find quotations dated 1591 not
+attributed to Shakespeare. These same two sets can be intersected to
+find quotations dated 1591 that <i>are</i> attributed to
+Shakespeare:</p>
+
+<pre>&gt;&gt; *quotes1591 ^ *quotesshaks</pre>
+
+<p>This query can also be solved by searching for quotations dated
+1591 in the way described previously and then using the command <tt>%
+including (region A including shaks)</tt> to pull out those quotations
+that also have <i>shaks</i> as the author.</p>
+
+<p>The result of any set operation is a set of match points, not a set
+of components. The result of the set intersection above is a set of
+match points <i>&lt;Q&gt;</i>, not the entire <i>Q</i>
+components. For this reason, you cannot search for a pattern within this
+set without first searching for the <i>Q</i> components that
+contain the match points. Then you can search within those components,
+for example:</p>
+
+<pre>&gt;&gt; region Q including %</pre>
+<pre>&gt;&gt; "1 Hen. VI" within %</pre>
+
+<p>Consider another example of intersection. Suppose you are interested
+in the word <i>university</i> only if it's followed by a reference
+to both <i>oxford</i> and <i>cambridge</i>. The
+first step is to look for <i>university</i> followed by
+<i>oxford</i>:</p>
+
+<pre>&gt;&gt; oxford = "university  " fby "oxford  "</pre>
+
+<p>The second step is to look for <i>university</i> followed by 
+<i>cambridge</i>:</p>
+
+<pre>&gt; cambridge = "university  " fby "cambridge  "</pre>
+
+<p>Finally, to find matches that are common to both sets of results, the
+command is as follows:</p>
+
+<pre>&gt;&gt; *oxford ^ *cambridge</pre>
+
+<p>This query can also be solved by searching for
+<i>university</i> followed by <i>oxford</i> as described and
+then typing the command <tt>% fby cambridge</tt>.</p>
+
+
+
+
+
+<h1>Appendices</h1>
+
+<p>There are some common errors that people make when using DLXS XPAT the
+first few times. It's easy to mistype command names or leave out closing
+quotation marks when you're not completely familiar with the program.
+Appendix A explains how to interpret common error messages and 
+solve common problems. Following Appendix A is a pullout
+Quick Reference Guide that lists all the commands and examples of
+each.</p>
+
+
+<h2>Appendix A:  Solving Problems</h2>
+<!-- index: Errors -->
+<!-- index: Problems -->
+
+
+
+<p><b>Figuring Out Error Messages</b></p> 
+
+<p><b>Figuring Out Error Messages cont'd</b></p>
+
+
+
+
+
+<p><b>General Problems</b></p> 
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,502 @@
+
+<html>
+<head>
+<title>
+page_ocr_
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+<script language=javascript src="vv_decompose_tags.js"></script>
+
+<script>
+
+
+
+
+
+</script>
+
+
+</head>
+
+<script>document.write('<body   bgcolor="'+parent.adb_background_color+'" >');</script>
+
+<font face="arial" size="3">
+<center><font face="arial">
+
+<h2> <script> document.write(parent.adb_project_name); </script>
+ Workbook Character Check Page</h2>
+<p>
+<a href="http://diglib.lib.utk.edu/~cdeane/WORKBOOK/dataprep/d.htm" target="_blank">reference</a>
+</center>
+
+<script>
+
+//global variables defined in vv_decompose_tags.js
+///var xmlAll = new String();
+///var xmlCursor = 0;
+///var localCursor = 0;
+
+function loadFile() {
+//alert("begin file: "+document.forms[0].begin_file.value +"\nend file: "+document.forms[0].end_file.value);
+
+for ( i=0;i<document.DF.dirSelect.length; i++) {
+if ( document.DF.dirSelect[i].selected == true ) {
+	document.DF.begin_file.value = document.DF.dirSelect[i].text;
+	break;
+	}
+}//end for
+
+}//end function
+
+function loadDirName() {
+if ( document.DF.dir_name0.value == "" ) {
+        alert("Please enter a directory name");
+	return;
+	}
+document.DF.dir_name1.value = document.DF.dir_name0.value;
+}
+
+function displayDirectoryContents() {
+
+alert ("displayDirectoryContents()");
+
+
+}
+
+
+function getDirname() {
+var str = new String(document.DF.dir_name1.value)
+return(str);
+}///end function
+
+function clearData() {
+document.forms[0].chomp.value = "";
+document.forms[0].chomp2.value = "";
+document.DF.reset();
+return;
+}
+
+function int_2_hex() {
+alert("under construction");
+return;
+n = new Number(document.forms[0].my_number.value);
+document.forms[0].my_h_number.value="";
+document.forms[0].my_h_number_0.value="0";
+document.forms[0].my_h_number_1.value="0";
+document.forms[0].my_h_number_2.value="0";
+document.forms[0].my_h_number_3.value="0";
+
+h = n.toString(16);
+alert("int_2_hex\n base 10: "+n+"\n base 16: "+h);
+document.forms[0].my_h_number.value=h;
+}
+
+function hex_2_int() {
+document.forms[0].my_h_number.value="";
+document.forms[0].my_number.value="";
+
+Hnum = new Array (
+ "0"
+,"1"
+,"2"
+,"3"
+,"4"
+,"5"
+,"6"
+,"7"
+,"8"
+,"9"
+,"a"
+,"b"
+,"c"
+,"d"
+,"e"
+,"f"
+);
+
+var num = new Array();
+var hn = new String();
+var val = new Array(0,0,0,0);
+num[0]=document.forms[0].my_h_number_0.value;
+num[1]=document.forms[0].my_h_number_1.value;
+num[2]=document.forms[0].my_h_number_2.value;
+num[3]=document.forms[0].my_h_number_3.value;
+
+
+alert ("input h \n num[0]="+num[0]
+	+"\n num[1]="+num[1]
+	+"\n num[2]="+num[2]
+	+"\n num[3]="+num[3]);
+
+for (j=0;j<4;j++) {
+	hn += num[j];
+	for(i=0;i<16;i++) {
+		if (num[j]==Hnum[i]) { val[j]=i;}
+	}
+}
+alert ("input h"
+	+"\n val[0]="+val[0]
+        +"\n val[1]="+val[1]
+        +"\n val[2]="+val[2]
+        +"\n val[3]="+val[3]);
+
+v0 = val[0]*61440;
+v1 = val[1]*4096;
+v2 = val[2]*256;
+v3 = val[3];
+
+alert ("input h"
+	+"\n val[0]*61440="+v0
+        +"\n val[1]*4096 =" +v1
+        +"\n val[2]*256  ="+v2
+        +"\n val[3]      ="+v3);
+
+var n = new Number();
+
+n = v0 + v1 + v2 +v3;
+
+
+alert("hex_2_int\n base 10:"+n+"\n base 16: "+hn);
+document.forms[0].my_number.value=n;
+document.forms[0].my_h_number.value=hn;
+}
+
+function filterChomp_01() {//all chars
+var strChomp = new String(document.forms[0].chomp.value);
+var numChars = 0;
+	for (i=0;i<strChomp.length;i++){
+	numChars++;
+	if (!confirm("option 1: view each character in the string"
+		+"\nstrChomp.charAt("+i+")="+strChomp.charAt(i)+"\nstrChomp.charCodeAt("+i+")="+strChomp.charCodeAt(i) ) ) {
+		break;
+		}
+	}//end for
+alert("option 1:\nThe number of out of characters reviewed: "+numChars);
+}//end function
+
+function filterChomp_02() {//out of range chars
+var MSG = new String("");
+var strChomp = new String(document.forms[0].chomp.value);
+var numOutOfRange=0;
+var ii = 0; 
+var iii = 0;
+var iiii = 0;
+var iiiii = 0;
+	for (i=0;i<strChomp.length;i++){
+		if ( strChomp.charCodeAt(i) > 127 || strChomp.charCodeAt(i) < 9 ) {
+			ii=i-4000;
+			iii= i+4000; 
+			iiii=i;
+			iiiii=i+1;
+			if (ii<0) ii=0;
+			numOutOfRange++;
+			MSG += "\n\noption 2: view each out of range character in the string"
+			+"\nstrChomp.charAt("+i+")=>>"+strChomp.charAt(i)+"<<\nstrChomp.charCodeAt("+i+")="+strChomp.charCodeAt(i) 
+			+"\n-----begin string--------------------------------------------------------------\n"
+			+"\n"+strChomp.substring(ii,iiii)+"\n>>"+strChomp.charAt(i)+"<<\n"+strChomp.substring(iiiii,iii)
+			+"\n-------end string--------------------------------------------------------------\n";
+			if (!confirm("option 2: view each out of range character in the string"
+			+"\nstrChomp.charAt("+i+")="+strChomp.charAt(i)+"\nstrChomp.charCodeAt("+i+")="+strChomp.charCodeAt(i) ) ) {
+			break;
+			}//end inner if
+		}//end outer if
+	}//end for
+alert("option 2:\nThe number of out of out of range characters is: "+numOutOfRange
+   + "\n\nThere are "+strChomp.length+" characters in this file.");
+
+MSG+="\n\noption 2:\nThe number of out of out of range characters is: "+numOutOfRange
+   + "\n\nThere are "+strChomp.length+" characters in this file.";
+document.forms[0].msg.value=MSG;
+}//end function
+
+function filterChomp_03() {//test ---same as _01
+var strChomp = new String(document.forms[0].chomp.value);
+var numChars = 0;
+	for (i=0;i<strChomp.length;i++){
+	numChars++;
+	if (!confirm("option 3: view each character in the string"
+		+"\nstrChomp.charAt("+i+")="+strChomp.charAt(i)+"\nstrChomp.charCodeAt("+i+")="+strChomp.charCodeAt(i) ) ) {
+		break;
+		}
+	}//end for
+alert("option 3:\nThe number of out of characters reviewed: "+numChars);
+}//end function
+
+function filterChomp_04() {//dump every other character 16 bit encoding => 8 bit
+
+//alert("filterChomp()");
+var strChomp = new String(document.forms[0].chomp.value);
+var strChomp2 = new String("z");
+for (i=0;i<strChomp.length;i++){
+	if ( i%2 == 0) strChomp2 += strChomp.charAt(i);
+	}//end for
+
+document.forms[0].chomp2.value = strChomp2.substr(1);//remove initial z 
+}//end function filterChomp_04
+
+
+function filterChomp_05() {//html chars => txt chars
+
+//alert("filterChomp()");
+var strChomp = new String(document.forms[0].chomp.value);
+var strChomp2 = new String("z");
+for (i=0;i<strChomp.length;i++){
+	strChomp2 += strChomp.charAt(i);
+	}//end for
+
+document.forms[0].chomp2.value = strChomp2.substr(1);//remove initial z 
+}//end function filterChomp_05
+
+function filterChomp() {
+
+//alert("filterChomp()");
+var strChomp = new String(document.forms[0].chomp.value);
+
+var strChomp2 = new String("z");
+var numReplace = 0;
+var numReplaceLow =0;
+var numNotReplace =0;
+for (i=0;i<strChomp.length;i++){
+
+	if ( strChomp.charCodeAt(i) == 9 ) {
+		strChomp2 += " ";//replace tab with space
+		numReplaceLow++;
+	}else if ( strChomp.charCodeAt(i) == 10 ) {
+		strChomp2 += " ";//replace \n with space
+		numReplaceLow++;
+	}else if ( strChomp.charCodeAt(i) == 12 ) {//what is 12
+		strChomp2 += " ";//replace \n with space
+		numReplaceLow++;
+	}else if ( strChomp.charCodeAt(i) == 13 ) {
+		strChomp2 += " ";//replace \r with space
+		numReplaceLow++;
+
+	}else if ( strChomp.charCodeAt(i) == 8364 ) {
+		strChomp2 += " ";//replace euro symbol with whitespace
+		numReplace++;
+	}else if ( strChomp.charCodeAt(i) == 163 ) {
+		strChomp2 += " ";//replace pound symbol with whitespace
+		numReplace++;
+	}else if ( strChomp.charCodeAt(i) == 8218 ) {
+		strChomp2 += "'"; //replace low single quote with single quote
+		numReplace++;
+	}else if ( strChomp.charCodeAt(i) == 402 ) {
+		strChomp2 += "f";// replacescript f with simple f
+		numReplace++;
+	}else if ( strChomp.charCodeAt(i) == 8222 ) {
+		strChomp2 += '"';//replace low double quote with double quote
+		numReplace++;
+	}else if ( strChomp.charCodeAt(i) == 8230 ) {
+		strChomp2 += "...";//replace horizontal ellipsis with three .
+		numReplace++;
+	}else if ( strChomp.charCodeAt(i) == 8224 ) {
+		strChomp2 += "*" //replace dagger with *;
+		numReplace++;
+	}else if ( strChomp.charCodeAt(i) == 8225 ) {
+		strChomp2 += "**"; // replace double dagger with **
+		numReplace++;
+	}else if ( strChomp.charCodeAt(i) == 710 ) {
+		strChomp2 += " ";//replace modifier letter circumflex accent with one space
+		numReplace++;
+	}else if ( strChomp.charCodeAt(i) == 8240 ) {
+		strChomp2 += "per mille"; //replace per mille sign with per mille phrase
+		numReplace++;
+	}else if ( strChomp.charCodeAt(i) == 352 ) {
+		strChomp2 += "S"; //replace Latin capital letter S with caron with simple S
+		numReplace++;
+	}else if ( strChomp.charCodeAt(i) == 8249 ) {
+		strChomp2 += "<"; //replace single left pointing quotation mark (french) with single left pointing angle bracket
+		numReplace++;
+	}else if ( strChomp.charCodeAt(i) == 338 ) {
+		strChomp2 += "OE"; //replace Latin Capital ligature OE with simple OE
+		numReplace++;
+	}else if ( strChomp.charCodeAt(i) == 381 ) {
+		strChomp2 += "Z"; //replace Latin Capital Z with caron with simple Z 
+		numReplace++;
+	}else if ( strChomp.charCodeAt(i) == 8216 ) {
+		strChomp2 += "'"; //replace left single quotation mark with simple single quotation mark 
+		numReplace++;
+	}else if ( strChomp.charCodeAt(i) == 8217 ) {
+		strChomp2 += "'"; //replace right single quotation mark with simple single quotation mark 
+		numReplace++;
+	}else if ( strChomp.charCodeAt(i) == 8220 ) {
+		strChomp2 += '"'; //replace left double quotation mark with simple double quotation mark 
+	}else if ( strChomp.charCodeAt(i) == 8221 ) {
+		strChomp2 += '"'; //replace right double quotation mark with simple double quotation mark 
+		numReplace++;
+	}else if ( strChomp.charCodeAt(i) == 8226 ) {
+		strChomp2 += "*"; //replace bullet  with star 
+		numReplace++;
+	}else if ( strChomp.charCodeAt(i) == 8211 ) {
+		strChomp2 += "-"; //replace en dash with simple dash
+		numReplace++;
+	}else if ( strChomp.charCodeAt(i) == 8212) {
+		strChomp2 += "--"; //replace em dash with simple double dash
+		numReplace++;
+	}else if ( strChomp.charCodeAt(i) == 732 ) {
+		strChomp2 += '~'; //replace small tilde with  regular tilde
+		numReplace++;
+	}else if ( strChomp.charCodeAt(i) == 8482) {
+		strChomp2 += "(TM)"; //replace TM symbol with TM letters
+		numReplace++;
+	}else if ( strChomp.charCodeAt(i) == 353) {
+		strChomp2 += "S";//replace small s with caron with simple small s
+		numReplace++;
+	}else if ( strChomp.charCodeAt(i) == 8250) {
+		strChomp2 += ">";//replace single right pointing angle quotation mark (french) with right angle bracket
+		numReplace++;
+	}else if ( strChomp.charCodeAt(i) == 339) {
+		strChomp2 += "oe"; //replace latin small ligature oe with reqular oe
+		numReplace++;
+	}else if ( strChomp.charCodeAt(i) == 382) {
+		strChomp2 += "z";//replace Latin small z with caron with regular small z
+		numReplace++;
+	}else if ( strChomp.charCodeAt(i) == 376) {
+		strChomp2 += "Y";// replace Latin capital letter Y with diaeresis with regurlar Y
+		numReplace++;
+	}else if ( strChomp.charCodeAt(i) == 169) {
+		strChomp2 += "(C)";// replace copyright symbol with character string (C)
+		numReplace++;
+	}else if ( strChomp.charCodeAt(i) == 174) {
+		strChomp2 += "(R)";// replace R in circle symbol with character string (R)
+		numReplace++;
+	}else if ( strChomp.charCodeAt(i) > 127) {
+		alert("strChomp.charAt(i)="+strChomp.charAt(i)+"\nstrChomp.charCodeAt(i)="+strChomp.charCodeAt(i) );
+		//strChomp2 += "***"+strChomp.charAt(i)+"***"; //strip these out
+		strChomp2 += " "; //replace with space
+		numNotReplace++;
+	}else{
+		strChomp2 += strChomp.charAt(i);
+	}
+}//end for
+
+        while (strChomp2.indexOf("  ") > -1 ) {
+	strChomp2 = strChomp2.replace(/  /gi," ");//replace multiple whitespace with single whitespace
+	}
+
+	alert( "filterChomp()\n\nNumber of Replacements (ascii > 127 ) = "+numReplace
+		+"\n\nNumber of Replacements ( ascii 9, 10, 12, 13 ) ="+numReplaceLow
+		+"\n\nNumber not able to replace = "+numNotReplace);
+document.forms[0].chomp2.value = strChomp2.substr(1);//remove initial z 
+}//end function
+
+
+
+function save_ocr() {
+
+document.DF.action = "saveOCR.php";
+document.DF.method = "POST";
+///////////document.DF.myfilename.value = document.DF.begin_file.value;
+document.DF.submit();
+
+}//end function
+
+</script>
+
+<form name="DF"  xaction="saveOCR.php" xmethod="POST">
+
+
+<!---table border="1" cellpadding="2" cellspacing="0" width="98%" bgcolor="ddeeff"--->
+<table  class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="99aabb">
+
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+<tr class="bgstandard" ><td colspan="1" class="label12u">
+begin_file<br>data
+</td><td class="value10nou">
+<textarea name="chomp" rows="8" cols="80" value=""></textarea> document.DF.chomp.value
+<br>
+&nbsp;
+<input type="button" name ="bChomp1top" onclick="filterChomp_01();" value="test all chars top">
+&nbsp;
+<input type="text" name="my_number" value="" size="5">
+<input type="text" name="my_h_number" value="" size="1">
+<input type="button" name ="int2hex" onclick="int_2_hex();" value="int to hex">
+&nbsp;
+<input type="text" name="my_h_number_0" value="0" size="1">
+<input type="text" name="my_h_number_1" value="0" size="1">
+<input type="text" name="my_h_number_2" value="0" size="1">
+<input type="text" name="my_h_number_3" value="0" size="1">
+<input type="button" name ="hex2int" onclick="hex_2_int();" value="hex to int">
+&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+<tr class="bgstandard" ><td colspan="1" class="label12u">
+end_file<br>data
+</td><td class="value10nou">
+<!-- textarea: document.DF.chomp.value<br-->
+<textarea name="chomp2"
+rows="8" cols="80"></textarea> document.DF.chomp2.value
+<p>
+Save file as: <input type="text" size="50" name="myfilename" value="MYFILE.txt">
+<br>Please use .txt file extension.
+<p>
+message: <textarea rows="6" cols="80" name="msg"></textarea>
+
+&nbsp;</td>
+
+<td>&nbsp;</td>
+</tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+
+
+<tr class="bgstandard" ><td colspan="3" align="left">
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+
+<input type="button" name ="bChomp0" onclick="filterChomp(0);" value="Clean Up Text">
+&nbsp;
+&nbsp;
+<input type="button" name ="bChomp1" onclick="filterChomp_01();" value="test all chars">
+&nbsp;
+&nbsp;
+<input type="button" style="width:180px;" name ="bChomp1" onclick="filterChomp_02();" value="show only out-of-range chars">
+&nbsp;
+&nbsp;
+<!--
+<input type="button" name ="bChomp1" onclick="filterChomp_03();" value="test chars">
+&nbsp;
+&nbsp;
+-->
+<input type="button" name ="bChompQ" onclick="filterChomp_04();" value="dump extra chars">
+&nbsp;
+&nbsp;
+<input type="button" name ="bChompQ" onclick="filterChomp_05();" value="html copy">
+&nbsp;
+&nbsp;
+<br>
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+<input type="button" name ="bChompR" onclick="save_ocr();" value="save file">
+&nbsp;
+&nbsp;
+<input type="button" name ="bClear" onclick="clearData();" value="Clear TextAreas">
+&nbsp;
+&nbsp;
+&nbsp;
+
+
+</td></tr>
+
+
+<tr class="bgstandard" >
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+</table>
+
+</form name="forms[0]">
+
+</body>
+</html>
+

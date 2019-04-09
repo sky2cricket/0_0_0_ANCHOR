@@ -1,0 +1,208 @@
+
+<html>
+<head>
+<title>
+page_reload
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+<!-- script language=javascript src="02_vv_decompose_tags.js"></script-->
+<!-- script language=javascript src="vv_validation.js"></script -->
+
+<script>
+
+var bgcolorWhite ="#ffffff";
+var bgcolorPink  ="#ffbbff";
+
+function checkFilenameComment() {
+
+if ( parent.U.document.UF.VVcomment_01.value == "" ) {
+	alert("There is no comment to check.\n\nPlease click Process Data Button.");
+	return;
+	}
+
+//alert("checkFilenameComment");
+document.forms[0].checkFILENAME.value = parent.U.document.UF.VVcomment_01.value;
+}
+
+function reviseFilenameComment() {
+//alert("reviseFilenameComment");
+
+
+var b0 = new String('');//from 0 to b.indexOf('FILENAME:');
+var b1 = new String('');//replacement text
+var b2 = new String('');//everything after replacement.
+var temp = new String('');//workspace
+var final = new String('');
+
+
+if (document.forms[0].reviseFILENAME.value.length==0) {
+	alert("You must enter a value for revise filename.")
+	return;
+	}
+
+var b = new String(document.forms[0].chomp.value);
+var FILENAMEstart = b.indexOf("FILENAME")+9;
+
+b0 = b.substring(0,FILENAMEstart);
+temp = b.substring(FILENAMEstart);
+b2 = temp.substring(temp.indexOf("-->"));
+b1 = document.forms[0].reviseFILENAME.value;
+//alert("b1="+b1);
+
+b1 = b1.substring(b1.indexOf("C"));
+//alert("b1="+b1);
+b1 = b1.substring(0,b1.indexOf(" "));
+//alert("b1="+b1);
+
+if(!confirm("revision=\n"+b1+"\n\nDo you wish to continue??")) return;
+
+//alert("b0="+b0 +"\n\nb1="+b1 +"\n\nb2="+b2.substring(0,500)); 
+
+final = b0+" "+b1+" "+b2;
+
+document.forms[0].chomp.value=final;
+
+}
+
+//alert("parent.L.RELOAD = "+parent.L.RELOAD);
+
+</script>
+
+
+</head>
+
+<script>document.write('<body   bgcolor="'+parent.adb_background_color+'" >');
+</script>
+<!---body bgcolor="ff44ff"--->
+
+
+<font face="arial" size="3">
+<center>
+<h2> <script> document.write(parent.adb_project_name); </script>
+ Workbook Internal Reload Page</h2>
+
+</center>
+
+<script>
+
+//global variables defined in vv_decompose_tags.js
+///var xmlAll = new String();
+///var xmlCursor = 0;
+///var localCursor = 0;
+
+
+function clearData() {
+document.forms[0].chomp.value = "";
+parent.U.document.UF.reset();
+return;
+}
+
+
+
+
+</script>
+
+<form name="DF"  action="new.xml">
+
+
+<!---table border="1" cellpadding="2" cellspacing="0" width="98%" bgcolor="ddeeff"--->
+<!---body bgcolor="ff44ff"---->
+<table border="1" cellpadding="2" cellspacing="3" width="98%"  bgcolor="000080" xbgcolor="ff44ff">
+<tr><td align="center">
+<table  class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="99aabb">
+
+<tr class="bgstandard" ><td colspan="3"><font face="arial" size="1">
+The purpose of this page is to revise an existing XML file from C:\Scan or C:Reworked directory.
+<br>So the file can be updated using the Workbook.
+<br>The FILENAME comment can be revised if it is incorrect.
+</td></tr>
+
+
+
+<tr class="bgstandard" ><td colspan="1" class="label12u">
+Reload<br>Data
+</td><td class="value10nou">
+textarea: document.DF.chomp.value<br>
+<textarea name="chomp"
+rows="8" cols="80"></textarea>
+<br>
+
+&nbsp;</td>
+
+<td>&nbsp;</td>
+</tr>
+
+
+
+
+
+<tr class="bgstandard" ><td colspan="3" align="left">
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+
+<input type="button" name ="bChomp" onclick="parent.L.testData3('1');" value="Process Data in TextArea">
+&nbsp;
+&nbsp;
+<input type="button" name ="bClear" onclick="clearData();" value="Clear TextArea">
+&nbsp;
+&nbsp;
+&nbsp;
+<input type="button" name ="bChomp3" onclick="parent.L.testData3('2');" value="Silent Reload">
+<!--input type="button" name ="bTest3" onclick="parent.L.testData3();" value="T3"-->
+
+
+</td></tr>
+
+
+<tr class="bgstandard" >
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+
+
+<tr class="bgstandard" ><td colspan="1" class="label12u">
+Revise<br>Data
+</td><td class="value10nou" colspan="2">
+parent.U.document.UF.VVcomment_01.value
+<br>
+<input type="text"  size="100" name="checkFILENAME" value="">
+<br><input type="button" name="bRevise" value="check filename comment" onclick="checkFilenameComment()">
+
+<br><input type="text"  size="100" name="reviseFILENAME" value="">
+<br><input type="button" name="bRevise" value="revise filename comment" onclick="reviseFilenameComment()">
+
+</td>
+</tr>
+
+<tr class="bgstandard" >
+<td>&nbsp</td><td><font face="arial" size="1">&nbspIf you need instructions, you should not be on this page.</td><td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard" >
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+</table>
+</td></tr></table>
+
+
+
+
+
+
+</form name="forms[0]">
+
+
+
+<script>
+//fdg();
+</script>
+	
+
+
+</body>
+</html>
+

@@ -1,0 +1,33 @@
+#!/usr/bin/perl
+
+# ##########################################
+# Takes DTD as argument.
+# Outputs elements and corresponding
+# attributes in tabular form.
+#
+# Uses SGML::DTD module by Earl Hood
+# dated September 18, 1997.
+# ##########################################
+
+use SGML::DTD;
+
+my ($infile) = $ARGV[0];
+print "Source DTD: ",$infile,"\n";
+print "Element\t\tAttributes\n";
+print "=======\t\t==========\n";
+open (FILE,$infile);
+
+$dtd = new SGML::DTD;
+$dtd->read_dtd(\*FILE);
+
+@elements = $dtd->get_elements($nosort);
+
+foreach $element (@elements) {
+    print $element, "\n";
+    %attributes = $dtd->get_elem_attr($element);
+    foreach $attribute (sort keys %attributes) {
+	print "\t\t$attribute\n";
+    }
+}
+
+close (FILE);

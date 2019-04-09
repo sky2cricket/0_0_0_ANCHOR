@@ -1,0 +1,579 @@
+note_081028.txt
+
+bonus fix:
+
+<!-- BATCH_ID: 080416 -->
+<!-- FILENAME: C:\Scan\03\xml\0022_000067_000206_0000.xml  
+<!-- NUMBER_OF_CONSTITUENT_FILES: 3: --> 
+<!-- RELOAD: Thu Oct 16 2008 16:02:14 GMT-0400 (Eastern Daylight Time) --> 
+<!-- PAGE VALIDATION :1:1:1:1:1:1:1: 
+<mods:titleInfo>
+<mods:title>[Letter] 1849 March 27 [to] Alexander D. Coffee</mods:title>
+</mods:titleInfo>
+
+I fixed the page validation comment for 080416/03/0022_000067_000206_0000.xml
+
+----------------------------
+
+
+
+
+Directories for the import.
+
+	080107/02/
+	080107/02/
+	080107/04/
+
+	080201/02/
+	080201/02/
+	080201/03/
+	080201/03/
+	080201/04/
+
+	080416/03/
+	080416/03/
+
+	080812/02/
+	080812/02/
+	080812/04/
+
+
+rep.py processing - number of files fixed
+(71 is name of temp directory)
+
+python rep.py 080107/02/xml  71	89
+python rep.py 080107/02/ocr  71	0
+python rep.py 080107/04/xml  71	60
+
+python rep.py 080201/02/xml  71	142
+python rep.py 080201/02/ocr  71	548
+python rep.py 080201/03/xml  71	178
+python rep.py 080201/03/txt  71	0
+python rep.py 080201/04/xml  71	87
+
+python rep.py 080416/03/xml  71	346
+python rep.py 080416/03/txt  71	0
+
+python rep.py 080812/02/xml  71	10
+python rep.py 080812/02/ocr  71	0
+python rep.py 080812/04/xml  71	19
+
+
+Final processing for all directories
+
+	/bin/mv xml/71/* xml/
+	rmdir   xml/71
+
+	ditto ocr
+	ditto txt
+
+---------------------------------
+
+before running from msdos command line, delete all Receive0 files
+
+/bin/rm  080107/02/Receive0/*
+/bin/rm  080107/02/Receive0/*
+/bin/rm  080107/04/Receive0/*
+
+/bin/rm  080201/02/Receive0/*
+/bin/rm  080201/02/Receive0/*
+/bin/rm  080201/03/Receive0/*
+/bin/rm  080201/03/Receive0/*
+/bin/rm  080201/04/Receive0/*
+
+/bin/rm  080416/03/Receive0/*
+/bin/rm  080416/03/Receive0/*
+
+/bin/rm  080812/02/Receive0/*
+/bin/rm  080812/02/Receive0/*
+/bin/rm  080812/04/Receive0/*
+
+
+---------------------------------
+
+before running from msdos command line, look for "extra" files in all
+directories ( i.e.  "Copy of 0012_00053_000202_0001.jpg" )
+Using windows share directory display.
+
+By visual inspection of windows share directories, checked all directories
+under directories listed below.  Removed some extra directories.
+
+        080107/02/
+        080107/02/
+        080107/04/
+
+        080201/02/
+        080201/02/
+        080201/03/
+        080201/03/
+        080201/04/
+
+        080416/03/
+        080416/03/
+
+        080812/02/
+        080812/02/
+        080812/04/
+
+
+
+
+----------------------
+
+Now run from msdos command line:
+
+	perl check_incoming.pl  (match derivatives to num constits)
+	perl duplicates.pl	(find dupes)
+	perl derivatives3.pl    (another check on derivatives)
+	perl batchname.pl	(create Receive0 files)
+	perl fieldtest.pl**     (verifiy requiered fields in xml files)
+	**linux command line, run before batchname.pl
+	
+---------------------------------
+
+==============================================
+check_incoming results:
+
+ checking ..\vvImport\080107\00\ for xml
+ checking ..\vvImport\080107\01\ for xml
+ checking ..\vvImport\080107\02\ for xml
+                working  ..\vvImport\080107\02\xml\  
+                working  ..\vvImport\080107\02\xml\  
+  *********************** done with ..\vvImport\080107\02\xml\
+********************
+
+ checking ..\vvImport\080107\03\ for xml
+ checking ..\vvImport\080107\04\ for xml
+                working  ..\vvImport\080107\04\xml\  
+                working  ..\vvImport\080107\04\xml\  
+  *********************** done with ..\vvImport\080107\04\xml\
+********************
+
+ checking ..\vvImport\080107\05\ for xml
+ checking ..\vvImport\080201\00\ for xml
+ checking ..\vvImport\080201\01\ for xml
+ checking ..\vvImport\080201\02\ for xml
+                working  ..\vvImport\080201\02\xml\  
+                working  ..\vvImport\080201\02\xml\  
+  *********************** done with ..\vvImport\080201\02\xml\
+********************
+
+ checking ..\vvImport\080201\03\ for xml
+                working  ..\vvImport\080201\03\xml\  
+                working  ..\vvImport\080201\03\xml\  
+  *********************** done with ..\vvImport\080201\03\xml\
+********************
+
+ checking ..\vvImport\080201\04\ for xml
+                working  ..\vvImport\080201\04\xml\  
+                working  ..\vvImport\080201\04\xml\  
+  *********************** done with ..\vvImport\080201\04\xml\
+********************
+
+ checking ..\vvImport\080201\05\ for xml
+ checking ..\vvImport\080416\00\ for xml
+ checking ..\vvImport\080416\01\ for xml
+ checking ..\vvImport\080416\02\ for xml
+ checking ..\vvImport\080416\03\ for xml
+                working  ..\vvImport\080416\03\xml\  
+                working  ..\vvImport\080416\03\xml\  
+  *********************** done with ..\vvImport\080416\03\xml\
+********************
+
+ checking ..\vvImport\080416\04\ for xml
+ checking ..\vvImport\080416\05\ for xml
+ checking ..\vvImport\080812\00\ for xml
+ checking ..\vvImport\080812\01\ for xml
+ checking ..\vvImport\080812\02\ for xml
+                working  ..\vvImport\080812\02\xml\  
+                working  ..\vvImport\080812\02\xml\  
+  *********************** done with ..\vvImport\080812\02\xml\
+********************
+
+ checking ..\vvImport\080812\03\ for xml
+ checking ..\vvImport\080812\04\ for xml
+                working  ..\vvImport\080812\04\xml\  
+                working  ..\vvImport\080812\04\xml\  
+  *********************** done with ..\vvImport\080812\04\xml\
+********************
+
+ checking ..\vvImport\080812\05\ for xml
+
+ ALL DONE! 
+ If any errors are listed above,
+ please repair the files and rerun this script.
+====================================================
+
+
+duplicates.pl input
+
+
+If more than one batch, enter each number on a new line.
+    Hit enter twice when done.
+
+1    070514_proc
+2    080303
+3    070510_proc
+4    temp
+5    docs
+6    080107
+7    070817_proc
+8    070101_proc
+9    070327_proc
+10    070404_proc
+11    070511_proc
+12    080201
+13    080416
+14    010101_hold_TnoX_XpriorT
+15    080812
+16    080901
+17    071115_proc
+18    CORRECTIONS_PROBLEMS
+19    080909_chd_pull
+20    080813
+21    071205_proc
+22    071215_chd_test
+23    080108
+24    080418
+25    080812_TDH_still-being-processed
+26    080202
+27    080320_reworkedMODSonly
+28    080417
+29    080204
+30    080445_chd_test
+31    080444_chd_test
+32    vvPro
+
+1
+2
+3
+6
+7
+8
+9
+10
+11
+12
+13
+15
+16
+17
+20
+21
+23
+24
+26
+28
+29
+
+ I will work this directory: ..\vvImport\070514_proc\
+ I will work this directory: ..\vvImport\080303\
+ I will work this directory: ..\vvImport\070510_proc\
+ I will work this directory: ..\vvImport\080107\
+ I will work this directory: ..\vvImport\070817_proc\
+ I will work this directory: ..\vvImport\070101_proc\
+ I will work this directory: ..\vvImport\070327_proc\
+ I will work this directory: ..\vvImport\070404_proc\
+ I will work this directory: ..\vvImport\070511_proc\
+ I will work this directory: ..\vvImport\080201\
+ I will work this directory: ..\vvImport\080416\
+ I will work this directory: ..\vvImport\080812\
+ I will work this directory: ..\vvImport\080901\
+ I will work this directory: ..\vvImport\071115_proc\
+ I will work this directory: ..\vvImport\080813\
+ I will work this directory: ..\vvImport\071205_proc\
+ I will work this directory: ..\vvImport\080108\
+ I will work this directory: ..\vvImport\080418\
+ I will work this directory: ..\vvImport\080202\
+ I will work this directory: ..\vvImport\080417\
+ I will work this directory: ..\vvImport\080204\
+
+    IS THIS CORRECT?  Please enter Y (for yes) or N (for no) and hit enter
+Y
+
+duplicates.pl output
+
+==============================
+This is the last bit of a 20,600+ line file.
+
+
+    If there are duplicate xml files within the directories 
+you selected, they are listed here: 
+0015_000077_000206_0000  is in:  
+      ..\vvImport\080416\03\xml\
+      ..\vvImport\080417\00\xml\
+0015_000077_000207_0000  is in:  
+      ..\vvImport\080416\03\xml\
+      ..\vvImport\080417\00\xml\
+0073_000050_000201_0000  is in:  
+      ..\vvImport\071205_proc\01\xml\
+      ..\vvImport\080202\00\xml\
+
+
+If ANY xml files are listed above, 
+    please reconcile them so we only have ONE copy.
+If this file has been previously processed and has been reworked,
+   it must be submitted
+   SEPARATELY from all other incoming files.
+=============================
+
+output from running duplicates on diglib2 on October 25 2008
+
+ 
+----------------------------------
+ 
+These counts do not include 0012 files, which should NOT be in this OAI
+/d1/workarea/dlxs/image/tel/singles/mods/  had 0 files;  collected 0 of them
+/d1/workarea/dlxs/image/tel/singles/done/mods/  had 1807 files;  collected
+1807 of them
+/d1/workarea/dlxs/image/tel/multiples/mods/  had 0 files;  collected 0 of them
+0073_000050_000201_0000.xml was worked in two places:
+   /d1/workarea/dlxs/image/tel/multiples/done/mods/
+   /d1/workarea/dlxs/image/tel/singles/done/mods/
+/d1/workarea/dlxs/image/tel/multiples/done/mods/  had 378 files;  collected
+377 of them
+0015_000077_000206_0000.xml was worked in two places:
+   /d1/workarea/dlxs/text/tel/typed/mods/
+   /d1/workarea/dlxs/image/tel/singles/done/mods/
+0015_000077_000207_0000.xml was worked in two places:
+   /d1/workarea/dlxs/text/tel/typed/mods/
+   /d1/workarea/dlxs/image/tel/singles/done/mods/
+/d1/workarea/dlxs/text/tel/typed/mods/  had 404 files;  collected 402 of them
+/d1/workarea/dlxs/text/tel/done/mods/typed/mods/  had 79 files;  collected 79
+of them
+/d1/workarea/dlxs/text/tel/ocr/mods/  had 238 files;  collected 238 of them
+/d1/workarea/dlxs/text/tel/done/mods/ocr/mods/  had 312 files;  collected 312
+of them
+/d1/workarea/dlxs/text/tel/notext/mods/  had 123 files;  collected 123 of them
+0014_000052_000209_0000.xml was worked in two places:
+   /d1/workarea/dlxs/text/tel/done/mods/notext/mods/
+   /d1/workarea/dlxs/text/tel/ocr/mods/
+/d1/workarea/dlxs/text/tel/done/mods/notext/mods/  had 109 files;  collected
+108 of them
+
+ tested 3446 files from xml directory, and 3446 files from mods directories
+-------------------------------------------------
+
+DUPLICATE FILES OF CONCERN
+0073_000050_000201_0000.xml 
+0015_000077_000206_0000.xml
+0015_000077_000207_0000.xml 
+0014_000052_000209_0000.xml 
+
+
+[root@store1 vvImport]# ls */*/xml/0014_000052_000209*
+080201/02/xml/0014_000052_000209_0000.xml
+
+[root@store1 vvImport]# ls */*/xml/0073_000050_000201*
+071205_proc/01/xml/0073_000050_000201_0000.xml
+080202/00/xml/0073_000050_000201_0000.xml
+
+[root@store1 vvImport]# ls */*/xml/0015_000077_000206*
+080416/03/xml/0015_000077_000206_0000.xml
+080417/00/xml/0015_000077_000206_0000.xml
+
+[root@store1 vvImport]# ls */*/xml/0015_000077_000207*
+080416/03/xml/0015_000077_000207_0000.xml
+080417/00/xml/0015_000077_000207_0000.xml
+
+Examining the differences for 0015_000077_000206* and 0015_000077_000207*
+The jpgs and xml files match.
+The 080417/00/ is online
+The 080416/03/ is not online but has transcription.
+
+
+[root@diglib2 ~]# cd /d1/workarea/dlxs/text/tel
+[root@diglib2 tel]# cd done/mods/notext/
+[root@diglib2 notext]# ls */0014_000052_000209*
+jpegs/0014_000052_000209_0001.jpg  mods/0014_000052_000209_0000.xml
+jpegs/0014_000052_000209_0002.jpg
+
+
+[root@diglib2 notext]# cd /d1/workarea/dlxs/text/tel
+[root@diglib2 tel]# cd ocr
+[root@diglib2 ocr]# ls */0014_000052_000209*
+jpegs/0014_000052_000209_0001.jpg       text/0014_000052_000209_0001.txt
+jpegs/0014_000052_000209_0002.jpg       text/0014_000052_000209_0002.txt
+minithumbs/0014_000052_000209_0001.jpg  thumbs/0014_000052_000209_0001.jpg
+minithumbs/0014_000052_000209_0002.jpg  thumbs/0014_000052_000209_0002.jpg
+mods/0014_000052_000209_0000.xml
+[root@diglib2 tel]# ls tei/notext/0014_000052_000209*
+tei/notext/0014_000052_000209_0000.xml
+[root@diglib2 tel]# ls tei/ocr/0014_000052_000209*
+tei/ocr/0014_000052_000209_0000.xml
+[root@diglib2 tel]# ls tei_output/notext/0014_000052_000209*
+tei_output/notext/0014_000052_000209_0000.xml
+[root@diglib2 tel]# ls tei_output/ocr/0014_000052_000209*
+tei_output/ocr/0014_000052_000209_0000.xml
+[root@diglib2 tel]# ls modsbib/0014_000052_000209*
+modsbib/0014_000052_000209_0000
+[root@diglib2 tel]# ls search/0014_000052_000209*
+search/0014_000052_000209_0000
+
+both instances of 0014_000052_000209__0000.xml have same title
+<mods:title>Memoranda for Mayor Crump</mods:title>
+
+So this leads me to conclude this is a case of importing once as notext (04)
+and a second time as ocr (03) of the same digital object and jpgs.
+
+on diglib2
+I have decided to remove the done/mods/notext/*/0014_000052_000209* files
+leaving the ocr in place.
+Tedius but not frightening.
+--------------------------------------------------------
+
+email 3:41 pm
+
+Hi All,
+ 
+I have examined the duplicates on STORE1/area2/volvoices2008/vvImport/
+and on diglib2.
+ 
+DUPLICATE FILES OF CONCERN
+0073_000050_000201_0000.xml --------extreme problem, 2 objects same filename
+0015_000077_000206_0000.xml --------a simple duplicate pair
+0015_000077_000207_0000.xml --------a simple duplicate pair
+0014_000052_000209_0000.xml --------a simple duplicate pair
+
+I will fix the last 3 by deciding which member of the pair to delete
+
+ 
+The 0073_000050_000201 is a much more delicate situation.
+ 
+Someone has to go to the admindb and determine which jpg matches the
+0073_000050_000201 record.
+ 
+I suspect that the one below is the correct one because of the _0002.jpg file 
+vvImport/071205_proc/01/0073_000050_000201_0001.jpg  (this second one also has
+an _0002.jpg)
+ 
+I would prefer that someone who is not me do this, because I have a lot more
+ground to cover in the file validation process and I have spent the past 2+
+hours hunting these things down and really a student could do the detective
+work in the admin db.
+ 
+If no one is available, let me know.
+
+
+email 4:22 pm
+
+Hi All,
+ 
+I have  attached 
+    1.  a screenshot of search results when using 0073_000050_000201 as search
+term in vol voices
+    2.  071205_01_0073_000050_000201_0000.xml.txt ( matches picture on left)
+    3.  080202_00_0073_000050_000201_0000.xml.txt ( matches picture on the
+right)
+ 
+After looking at the AdminDb, I believe that the #2 xml file is correct.
+ 
+The #3 xml file should be named something else, and its jpg, thumb, minithumb
+and tiff should also be renamed.  I believe that the #3 xml file is in the
+correct collection 0073_000050 (Beck Cultural Center)
+and perhaps there is already a matching admindb record in this collection.
+There are 272 records in 0073_000050 and someone with better eyesight than
+myself should do the hunt.  We may  have to make a new admindb record for this
+digital object.
+
+As #3 is already on line incorrectly, we need to fix a.s.a.p.
+-----------------------
+
+Obviously I have to nuke the #3 files that got to diglib2.
+============================================================
+
+Running batchname.pl from msdos command line.
+
+R:\volvoices2008\scripts>perl batchname.pl
+This script will move xml files to Recieve0
+and add the batchname to each file.
+For each batch you are working,
+please enter the number next to the directory name,
+ then hit enter.
+
+If more than one batch, enter each number on a new line.
+  Hit enter twice when done.
+
+1    070514_proc
+2    080303
+3    070510_proc
+4    temp
+5    docs
+6    080107
+7    070817_proc
+8    070101_proc
+9    070327_proc
+10    070404_proc
+11    070511_proc
+12    080201
+13    080416
+14    010101_hold_TnoX_XpriorT
+15    080812
+16    080901
+17    071115_proc
+18    CORRECTIONS_PROBLEMS
+19    080909_chd_pull
+20    080813
+21    071205_proc
+22    071215_chd_test
+23    080108
+24    080418
+25    080812_TDH_still-being-processed
+26    080202
+27    080320_reworkedMODSonly
+28    080417
+29    080204
+30    080445_chd_test
+31    080444_chd_test
+32    vvPro
+
+6
+12
+13
+15
+
+ I will work this directory: ..\vvImport\080107\
+ I will work this directory: ..\vvImport\080201\
+ I will work this directory: ..\vvImport\080416\
+ I will work this directory: ..\vvImport\080812\
+
+    IS THIS CORRECT?  Please enter Y (for yes) or N (for no) and hit enter
+Y
+Yes?  Then here we go.....
+
+ checking ..\vvImport\080107\02\ for xml
+ checking ..\vvImport\080107\04\ for xml
+ checking ..\vvImport\080201\02\ for xml
+ checking ..\vvImport\080201\03\ for xml
+ checking ..\vvImport\080201\04\ for xml
+ checking ..\vvImport\080416\03\ for xml
+ checking ..\vvImport\080812\02\ for xml
+ checking ..\vvImport\080812\04\ for xml
+Script completed. 931 found.
+    Please check ..\results\batchname_20081028165147.txt for results.
+Thank you!   Bye!
+
+R:\volvoices2008\scripts>
+
+RESULTS
+
+931 found and batchnames added.  
+If no filename in file, batchname is at at bottom.
+
+
+If errors are printed above, please repair the files, 
+then run this script again.
+If no errors were printed above, 
+the files were copied to Recieve0 and the batchname entered.
+
+============================================================
+Running ftest2_for_windows.pl
+
+from linux command line.
+
+[root@store1 080107]# perl ftest2_for_windows.pl > F080107.txt
+[root@store1 080201]# perl ftest2_for_windows.pl > F080201.txt
+[root@store1 080416]# perl ftest2_for_windows.pl > F081416.txt
+[root@store1 080812]# perl ftest2_for_windows.pl > F080812.txt
+
+

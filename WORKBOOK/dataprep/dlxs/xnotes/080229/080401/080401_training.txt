@@ -1,0 +1,543 @@
+080401_training.txt
+
+
+-------how to mount-----------------------------------------------------------
+[root@diglib2 d1]# ls
+backups  inbox-sc    mnt-store1-area2  mount-ts      unmount-area2     unmount-inbox-ts
+dlxs     inbox-ts    mnt-store1-area3  store1-area2  unmount-area3     workarea
+inbox    lost+found  mount-sc          store1-area3  unmount-inbox-sc  wpa
+[root@diglib2 d1]# ls store1-area2
+[root@diglib2 d1]# ----------------------------------ls yields nothing------------
+[root@diglib2 d1]# mnt-store1-area2
+[root@diglib2 d1]# ls store1-area2
+existenceCheck  Shortcut to D Drive on 'Dlcprod03' (V).lnk  test-diglib     volvoices
+lost_found      spcoll                                      test-root       wil_video
+PROJECTS        TDH_work_area                               Total_YRB_Proj
+sermons         temp                                        vasser
+[root@diglib2 d1]# 
+----------------------------------------------------------------------------------
+
+
+check_incoming
+Then we are testing the following directories:
+/d1/store1-area2/volvoices/vvimport/070514_proc/
+/d1/store1-area2/volvoices/vvimport/080303/
+/d1/store1-area2/volvoices/vvimport/070510_proc/
+/d1/store1-area2/volvoices/vvimport/080107/
+/d1/store1-area2/volvoices/vvimport/080320/
+/d1/store1-area2/volvoices/vvimport/070817_proc/
+/d1/store1-area2/volvoices/vvimport/070101_proc/
+/d1/store1-area2/volvoices/vvimport/070327_proc/
+/d1/store1-area2/volvoices/vvimport/070404_proc/
+/d1/store1-area2/volvoices/vvimport/070511_proc/
+/d1/store1-area2/volvoices/vvimport/080201/
+/d1/store1-area2/volvoices/vvimport/071115_proc/
+/d1/store1-area2/volvoices/vvimport/071205_proc/
+
+
+Results are in ./results/IncomingTest_2008041130723.txt file
+
+080303 is okay.
+
+duplicates_noproc > results/duplicates_noproc_080401.txt
+ duplicates_noproc_noreworked > results/duplicates_noproc_noreworked_080401.txt
+onedirDerivatives
+fieldtest
+
+080303 is okay.
+
+
+pickup
+If more than one batch, enter each number on a new line.
+  Hit enter twice when done.
+
+1    070514_proc
+2    080303
+3    070510_proc
+4    temp
+5    docs
+6    080107
+7    070817_proc
+8    070101_proc
+9    070327_proc
+10    070404_proc
+11    070511_proc
+12    080201
+13    010101_hold_TnoX_XpriorT
+14    071115_proc
+15    CORRECTIONS_PROBLEMS
+16    071205_proc
+17    071215_chd_test
+18    080320_reworked
+
+2
+
+ I will work this directory: /d1/store1-area2/volvoices/vvimport/080303/
+
+    IS THIS CORRECT?  Please enter Y (for yes) or N (for no) and hit enter
+y
+Yes?  Then here we go.....
+
+We have 1 directories.  Is that right? if not, Control C out!!
+
+1)  we are working /d1/store1-area2/volvoices/vvimport/080303/ and 080303
+ checking /d1/store1-area2/volvoices/vvimport/02/ for Receive0
+  working  /d1/store1-area2/volvoices/vvimport/080303/02/Receive0/  for /d1/workarea/dlxs/text/tel/ocr/
+ NOW DERIVATIVES
+/d1/store1-area2/volvoices/vvimport/080303/01_music/JPEG/ copying to /d1/workarea/dlxs/image/tel/multiples/jpegs/
+/d1/store1-area2/volvoices/vvimport/080303/01_music/txt/ copying to /d1/workarea/dlxs/image/tel/multiples/text/
+cp: cannot create regular file `/d1/workarea/dlxs/image/tel/multiples/text/0018_000054_000226_0001.txt': No such file or directory
+cp: cannot create regular file `/d1/workarea/dlxs/image/tel/multiples/text/0018_000054_000220_0001.txt': No such file or directory
+cp: cannot create regular file `/d1/workarea/dlxs/image/tel/multiples/text/0018_000054_000221_0001.txt': No such file or directory
+cp: cannot create regular file `/d1/workarea/dlxs/image/tel/multiples/text/0018_000054_000223_0001.txt': No such file or directory
+/d1/store1-area2/volvoices/vvimport/080303/01_music/ocr/ doesn't exist
+/d1/store1-area2/volvoices/vvimport/080303/01_music/thumbs/ copying to /d1/workarea/dlxs/image/tel/multiples/thumbs/
+/d1/store1-area2/volvoices/vvimport/080303/01_music/minithumbs/ copying to /d1/workarea/dlxs/image/tel/multiples/minithumbs/
+ finished with 01_music bucket
+ checking /d1/store1-area2/volvoices/vvimport/080303/01_music/Receive0/03/ for Receive0
+  working  /d1/store1-area2/volvoices/vvimport/080303/03/Receive0/  for /d1/workarea/dlxs/text/tel/typed/
+ NOW DERIVATIVES
+/d1/store1-area2/volvoices/vvimport/080303/03/JPEG/ copying to /d1/workarea/dlxs/text/tel/typed/jpegs/
+/d1/store1-area2/volvoices/vvimport/080303/03/txt/ copying to /d1/workarea/dlxs/text/tel/typed/text/
+/d1/store1-area2/volvoices/vvimport/080303/03/ocr/ doesn't exist
+/d1/store1-area2/volvoices/vvimport/080303/03/thumbs/ copying to /d1/workarea/dlxs/text/tel/typed/thumbs/
+/d1/store1-area2/volvoices/vvimport/080303/03/minithumbs/ copying to /d1/workarea/dlxs/text/tel/typed/minithumbs/
+ finished with 03 bucket
+finished with 080303 batch (1 of 1)
+bye-bye!
+[root@diglib2 telfiles]# 
+
+after pickupTime
+
+Go to each directory and work the files.
+
+/d1/workarea/dlxs/image/tel/singles
+/d1/workarea/dlxs/image/tel/multiples
+/d1/workarea/dlxs/text/tel/
+
+
+cd /d1/workarea/dlxs/image/tel/singles
+run
+modsICsearchOai >checkme
+
+this creates modsbib/*, search/*, newmods/*
+
+
+Now prepare stuff for image class
+
+cat vvzHeader ic/* done/ic/* footer > ic.vvz.unnorm.sgm
+cp ic.vvz.unnorm.sgm /d1/dlxs/prep/v/vvz/.
+rm /d1/dlxs/prep/v/vvz/ic.vvz.norm.sgm
+cp thumbs/* /d1/dlxs/img/v/vvz/thumb/
+cp jpegs/* /d1/dlxs/img/v/vvz/large/
+  do image class setup
+
+
+
+[root@diglib2 singles]# ls
+15_60_227char  countfiles2  here               jpegs            NOTE           spc
+15_60_227hex   done         hex                linkfile         olderVersions  testfiles
+categories     dothis       hexmess            minithumbs       open           thumbs
+catref         entry        httpEncodings      mods             opensearch     titles
+checkme        fieldtest    ic                 modsbib          preservation   translate
+close          fixSubjects  ic.vvz.unnorm.sgm  modsICsearchOai  problems       vvzHeader
+countfiles     footer       infotrack          newmods          search
+[root@diglib2 singles]# cat vvzHeader ic/* done/ic/* footer > ic.vvz.unnorm.sgm
+[root@diglib2 singles]# cp ic.vvz.unnorm.sgm /d1/dlxs/prep/v/vvz/.
+cp: overwrite `/d1/dlxs/prep/v/vvz/./ic.vvz.unnorm.sgm'? y
+[root@diglib2 singles]# 
+[root@diglib2 singles]# rm /d1/dlxs/prep/v/vvz/ic.vvz.norm.sgm
+rm: cannot lstat `/d1/dlxs/prep/v/vvz/ic.vvz.norm.sgm': No such file or directory
+[root@diglib2 singles]# cp thumbs/* /d1/dlxs/img/v/vvz/thumb/
+cp: overwrite `/d1/dlxs/img/v/vvz/thumb/0015_000066_000203_0001.jpg'? y
+WHEN YOU SEE AN OVERWRITE, MAKE SURE THIS IS NOT ALREADY ONLINE OR OTHER KIND OF DUPLICATE.
+[root@diglib2 singles]# cp jpegs/* /d1/dlxs/img/v/vvz/large/
+cp: overwrite `/d1/dlxs/img/v/vvz/large/0015_000066_000203_0001.jpg'? y
+
+
+
+\  do image class setup
+
+  imageprep vvz > A.txt
+
+REMOVE OLD INDEX
+[root@diglib2 image]# ls /d1/dlxs/idx/v/vvz/
+image.blank.dd  image.cfg  image.dd  image.idx  image.inp  image.rgn  Makefile  tags.txt
+[root@diglib2 image]# ls /d1/dlxs/idx/v/vvz/
+image.blank.dd  image.cfg  image.dd  image.idx  image.inp  image.rgn  Makefile  tags.txt
+[root@diglib2 image]# mkdir /d1/dlxs/idx/v/vvzBack
+[root@diglib2 image]# mv /d1/dlxs/idx/v/vvz/* /d1/dlxs/idx/v/vvzBack/
+[root@diglib2 image]# ls /d1/dlxs/idx/v/vvzBack/  /d1/dlxs/idx/v/vvz/
+/d1/dlxs/idx/v/vvz/:
+
+/d1/dlxs/idx/v/vvzBack/:
+image.blank.dd  image.cfg  image.dd  image.idx  image.inp  image.rgn  Makefile  tags.txt
+[root@diglib2 image]# rmdir /d1/dlxs/idx/v/vvz
+[root@diglib2 image]# 
+
+[root@diglib2 image]# setupcollindex v/vvz
+using /d1/dlxs.
+setting up /d1/dlxs/idx for v/vvz
+done.
+setting up /d1/dlxs/obj up for v/vvz
+done.
+[root@diglib2 image]# 
+[root@diglib2 image]# cd /d1/dlxs/idx/v/vvz
+[root@diglib2 vvz]# make all 
+echo "working..."
+working...
+rm -f ./image.ffc
+rm -f ./image.ffi
+rm -f ./image.ffw
+rm -f ./image.idx
+rm -f ./image.maps.*
+rm -f ./image.mfs
+rm -f ./image*.rgn
+rm -f ./image.str
+rm -f ./image.dd
+rm -f ../../../obj/v/vvz/image.sgm
+cat ../../../obj/v/vvz/ic.*.norm.sgm > ../../../obj/v/vvz/image.sgm
+cp ./image.blank.dd ./image.dd
+xpatbld -D ./image.dd
+multirgn -f -D ./image.dd -t ./tags.txt
+[root@diglib2 vvz]# 
+
+OPEN BROWSER TO http://diglib2.lib.utk.edu/cgi/c/collmgr/collmgr
+uname dlxsadm
+passw  eva39
+
+Select Make a release to production
+
+Select Class - image class
+
+back to command line
+[root@diglib2 idx]# cd /d1/dlxs/cgi/i/image
+[root@diglib2 image]# ls
+a                       createbookbagdb.txt  imageclass.cfg          queries
+authcoll                getimage-idx         ImageClassUtils         Searchbuild.pm
+AUTHZD_COLL             getthumbnail-idx     ImageClassUtils.pm      Sid2.pm
+Collectionmaps-last.pm  ICLocalUtils.pm      image-idx               Sidget2.pm
+Collectionmaps-new.pm   ImageApp             largeBOOK.GIF           WPAcrew_crop5.png
+Collectionmaps.pm       ImageApp.pm          makeCollectionmaps-idx
+collstats-idx           ImageClass           olderVersions
+[root@diglib2 image]#  makeCollectionmaps-idx > A.txt
+
+
+NOW RETURN TO BROWSER AT: http://diglib2.lib.utk.edu/cgi/i/image/image-idx?c=vvz
+and search to see if your images are there
+
+
+[root@diglib2 image]# 
+
+
+[root@diglib2 singles]# pwd
+/d1/workarea/dlxs/image/tel/singles
+
+from dothis
+separate out the newmods from institution 0012 and put in spc directory.
+/bin/mv newmods/0012* spc/mods/.
+[root@diglib2 singles]# /bin/mv newmods/0012* spc/mods/.
+/bin/mv: cannot stat `newmods/0012*': No such file or directory
+[root@diglib2 singles]# there weren't any                         http://diglib2.lib.utk.edu/cgi/c/collmgr/collmgr
+
+
+for bib class:
+/bin/mv  modsbib/0012* spc/modsbib/.
+/bin/cp modsbib/* /d1/workarea/dlxs/bib/mods/vv/xml
+
+
+for search:
+/bin/cp search/0012* spc/modssearch/.
+/bin/cp search/* /d1/workarea/dlxs/bib/search/vv/xml/
+
+THESE COMMANDS PUT FILES WHERE THEY WILL BE WORKED
+[root@diglib2 singles]# /bin/cp modsbib/* /d1/workarea/dlxs/bib/mods/vv/xml  OAI_version
+[root@diglib2 singles]# /bin/cp search/* /d1/workarea/dlxs/bib/search/vv/xml/ SEARCH_VERSION
+[root@diglib2 singles]# 
+
+
+Need to search sub collections from single interface
+
+scp minithumbs/* diglib@diglib.lib.utk.edu:/d1/dlxs/web/thumbs/vv/.
+
+diglib@diglib.lib.utk.edu's password: 
+0015_000066_000203_0001.jpg                                  100%   39KB   1.5MB/s   00:00    
+0031_000050_000200_0001.jpg                                  100%   35KB   3.1MB/s   00:00    
+0031_000050_000201_0001.jpg                                  100%   37KB  16.7MB/s   00:00    
+0031_000050_000202_0001.jpg                                  100%   36KB  16.1MB/s   00:00    
+0031_000050_000203_0001.jpg                                  100%   36KB  17.2MB/s   00:00    
+0031_000050_000204_0001.jpg                                  100%   41KB  18.6MB/s   00:00    
+[root@diglib2 singles]# 
+
+The receiving dir has to belong to diglib for this to work.
+
+
+[root@diglib2 vv]# pwd
+/d1/workarea/dlxs/bib/mods/vv
+
+Here make OAI and preservation MDOS
+not releaseing yet, but working them and transferring over when go live with each new batch 
+they are ready for release, simply need to add the collection to the /etc/httpd/conf/http.conf.dlxs 
+and it will go in the broker 20 sec tion
+
+  # modify or comment the following four <Directory> sections
+  # to change or disable (respectively) authorization for
+  # Broker (OAI 2.0 service), Bib class, Image class, and Text
+  # class middleware
+  #
+  # if you disable these, BE WARNED: the middleware requires
+  # some form of authorization which sets the AUTHZD_COLL and/or
+  # PUBLIC_COLL variables for proper operation!
+  <Directory "/d1/dlxs/cgi/b/broker20">
+    SetEnv DLXSROOT /d1/dlxs
+    SetEnv DLXSDATAROOT /d1/dlxs
+    *****SetEnv AUTHZD_COLL ":ar-mods:fa-bib:fa-mods:emn-mods:etd-bib:arr-mods:vvs-mods:"
+    #SetEnv AUTHZD_COLL ":uht-bib:utcat-bib:egy-bib:uky-bib:tdh-bib:fa-bib:mpm-bib:jei-bib:rth-bib:etd-bib:ual-bib:mcc-bib:"
+    ******SetEnv PUBLIC_COLL ":ar-mods:fa-bib:fa-mods:emn-mods:etd-bib:arr-mods:vvs-mods:"
+#    SetEnv PUBLIC_COLL ":wcc-bib:uht-bib:utcat-bib:egy-bib:uky-bib:tdh-bib:fa-bib:mpm-bib:jei-bib:rth-bib:etd-bib:ual-bib:mcc-bib:"
+  </Directory>
+
+
+*****These are test lines entered by Jody, but these lines will be added to the same file in diglib
+do not copy httpd.conf.dlxs from one server to another, theyare different on each server.
+
+
+
+
+
+
+/etc/initd/httpd restart to release
+
+
+Also need to go to browser coll manager to do a release to prodcution of oai
+
+http://diglib2.lib.utk.edu/cgi/c/collmgr/collmgr
+
+Manage groups
+Bib Class
+
+Select UTMODS - button edit working group
+
+vvs-mods - button submit changes
+
+
+Main menu Make a relese to produciton - button contiue
+Bib class - button release
+
+This is for oai - test oai BROWSER: 
+http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=ListRecords&metadataPrefix=mods&setSpec=UTMods:vvsmods
+
+using the resumption token coped from bottom of page
+http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=ListRecords&resumptionToken=UTMods%3Avvsmods,2200-01-01,1700-01-01,mods,vvs-mods,vvs-mods.dd,100,
+
+
+=================
+
+
+[root@diglib2 vv]# ls
+closebib   fixPreserveSubjectsBib   newSubxml          OAI_modsbibToPresMods  xml
+DLCnewSub  fixSubjectsBib           OAIDC              olderVersions
+DLCpres    fixSubjectsBib.20080130  OAI_modsbibToDC    openbib
+dothis     newPresSubxml            OAI_modsbibToMods  vvs-mods.xml
+[root@diglib2 vv]# pwd
+/d1/workarea/dlxs/bib/mods/vv
+
+view dothis
+fixSubjectsBib  (repairs subjects in xml directory, puts them in newSubxml)
+cat openbib newSubxml/* closebib >  vvs-mods.xml  - create new index for oaifix
+cp vvs-mods.xml /d1/dlxs/prep/v/vvs-mods/.
+
+
+
+
+
+
+
+
+
+do bib class setup  (run transform, and copy xml to obj directory
+	[root@diglib2 vvs-mods]# transform
+	[root@diglib2 vvs-mods]# cp vvs-mods.xml /d1/dlxs/obj/v/vvs-mods/
+	cp: overwrite `/d1/dlxs/obj/v/vvs-mods/vvs-mods.xml'? Y
+
+cp: overwrite `/d1/dlxs/prep/v/vvs-mods/./vvs-mods.xml'? y
+go to /d1/dlxs/idx/v/vvs-mods
+run: make all
+
+cd /d1/dlxs/prep/v/vvs-mods/
+make[1]: Leaving directory `/d1/dlxs/idx/v/vvs-mods'
+make validate
+make[1]: Entering directory `/d1/dlxs/idx/v/vvs-mods'
+nsgmls -s -f /d1/dlxs/prep/v/vvs-mods/vvs-mods.errors /d1/dlxs/idx/v/vvs-mods/vvs-mods.inp /d1/dlxs/obj/v/vvs-mods/vvs-mods.xml
+make[1]: Leaving directory `/d1/dlxs/idx/v/vvs-mods'
+make singledd
+make[1]: Entering directory `/d1/dlxs/idx/v/vvs-mods'
+cp /d1/dlxs/prep/v/vvs-mods/vvs-mods.single.blank.dd /d1/dlxs/idx/v/vvs-mods/vvs-mods.dd
+/usr/local/xpat/bin/xpatbld -m 256m -D /d1/dlxs/idx/v/vvs-mods/vvs-mods.dd
+cp /d1/dlxs/idx/v/vvs-mods/vvs-mods.dd /d1/dlxs/prep/v/vvs-mods/vvs-mods.presgml.dd
+make[1]: Leaving directory `/d1/dlxs/idx/v/vvs-mods'
+make multi
+make[1]: Entering directory `/d1/dlxs/idx/v/vvs-mods'
+cp /d1/dlxs/prep/v/vvs-mods/vvs-mods.presgml.dd /d1/dlxs/idx/v/vvs-mods/vvs-mods.dd
+/usr/local/xpat/bin/multirgn -f -D /d1/dlxs/idx/v/vvs-mods/vvs-mods.dd -t /d1/dlxs/idx/v/vvs-mods/bib-regions.tags
+cp /d1/dlxs/idx/v/vvs-mods/vvs-mods.dd /d1/dlxs/prep/v/vvs-mods/vvs-mods.prepost.dd
+make[1]: Leaving directory `/d1/dlxs/idx/v/vvs-mods'
+make post
+make[1]: Entering directory `/d1/dlxs/idx/v/vvs-mods'
+cp /d1/dlxs/prep/v/vvs-mods/vvs-mods.prepost.dd /d1/dlxs/idx/v/vvs-mods/vvs-mods.dd
+touch /d1/dlxs/idx/v/vvs-mods/vvs-mods.init
+/usr/local/xpat/bin/xpat -q /d1/dlxs/idx/v/vvs-mods/vvs-mods.dd < /d1/dlxs/prep/v/vvs-mods/vvs-mods.extra.srch | /d1/dlxs/bin/t/text/output.dd.frag.pl /d1/dlxs/idx/v/vvs-mods/ > /d1/dlxs/prep/v/vvs-mods/vvs-mods.extra.dd
+/d1/dlxs/bin/t/text/inc.extra.dd.pl /d1/dlxs/prep/v/vvs-mods/vvs-mods.extra.dd /d1/dlxs/idx/v/vvs-mods/vvs-mods.dd
+make[1]: Leaving directory `/d1/dlxs/idx/v/vvs-mods'
+[root@diglib2 vvs-mods]# 		           
+
+
+
+make sure it's in the httpd conf directory, restart if adding
+release to production
+
+GO TO BROWSER: http://diglib2.lib.utk.edu/cgi/c/collmgr/collmgr?type=%24TYPE&class=bib&submit=release
+Bib class -  button releesae
+
+test mods
+http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=GetRecord&metadataPrefix=mods&identifier=oai:diglib2.lib.utk.edu:0031_000050_000200_0000
+Test dc
+http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=GetRecord&metadataPrefix=oai_dc&identifier=oai:diglib2.lib.utk.edu:0031_000050_000200_0000
+
+test in OAI
+
+fixPreserveSubjectsBib    (takes files from xml, fixes subjects and category
+                           attributes  and puts them in newPresSubxml)
+OAI_modsbibToPresMods     (takes files from newPresSubxml, outputs
+                             preservation mods with unicode in DLCpres)
+
+MODS files to be preserved are now in DLCpres.  Move with preservation TEI to join
+tiffs on preservation server.
+
+OAI_modsbibToMods and OAI_modsbibToDC are for testing the broker output of the bib
+records in mods and bib, writing the results to OAIDC and DLCnewSub
+
+fixSubjects takes MODS from DLC and repairs the subjects and puts the files in DLCnewSub
+(older script not currently in use).
+
+PRESERVAION MODS
+
+[root@diglib2 vv]# pwd
+/d1/workarea/dlxs/bib/mods/vv
+
+fixPreserveSubjectsBib - fixes subjects
+
+OAI_modsbibToPresMods - outputs unicode
+
+preservations mods should validate in xml spy
+
+MODS files to be preserved are now in DLCpres.  Move with preservation TEI to join
+tiffs on preservation server.
+
+OAI_modsbibToMods and OAI_modsbibToDC are for testing the broker output of the bib
+records in mods and bib, writing the results to OAIDC and DLCnewSub
+
+fixSubjects takes MODS from DLC and repairs the subjects and puts the files in DLCnewSub
+(older script not currently in use).
+
+
+url for oai
+
+diglib2.lib.utk.edu/cgi/b/bib/bib-idx?c=vvs-mods
+http://diglib2.lib.utk.edu/cgi/b/bib/bib-idx?c=vvs-bib
+
+===============
+
+Create search index
+
+[root@diglib2 vv]# pwd
+/d1/workarea/dlxs/bib/search/vv
+
+vi ../dothis
+
+
+cat opensearch xml/* closesearch > vvs-bib.xml  (or whatever, match colleciton)
+cp vvs-bib.xml /d1/dlxs/prep/v/vvs-bib/.
+[root@diglib2 vv]# cat opensearch xml/* closesearch > vvs-bib.xml 
+[root@diglib2 vv]# cp vvs-bib.xml /d1/dlxs/prep/v/vvs-bib/.
+cp: overwrite `/d1/dlxs/prep/v/vvs-bib/./vvs-bib.xml'? y
+[root@diglib2 vv]# 
+
+
+
+
+cd /d1/dlxs/prep/v/vvs-bib
+transform
+cp vvs-bib.xml ../../../obj/v/vvs-bib
+
+[root@diglib2 vv]# cd /d1/dlxs/prep/v/vvs-bib
+[root@diglib2 vvs-bib]# transform
+[root@diglib2 vvs-bib]# cp vvs-bib.xml ../../../obj/v/vvs-bib
+cp: overwrite `../../../obj/v/vvs-bib/vvs-bib.xml'? y
+
+cd ../../../idx/v/vvs-bib
+make all
+(make a release to production:  bib class)
+
+
+[root@diglib2 vvs-bib]# cd ../../../idx/v/vvs-bib
+[root@diglib2 vvs-bib]# ls
+author.rgn                    date.rgn        loccd.rgn      repository.rgn  vvs-bib.dd
+bib-regions.tags              detail.rgn      locco.rgn      subject.rgn     vvs-bib.idx
+bib-regions.tags.modsSearch2  genre.rgn       Makefile       temporal.rgn    vvs-bib.init
+catcode.rgn                   geographic.rgn  media.rgn      textpage.rgn    vvs-bib.inp
+charents.frag                 id.rgn          name.rgn       text.rgn        vvs-bib.rgn
+collid.rgn                    ITEM.rgn        names.rgn      title.rgn
+coll.rgn                      keydate.rgn     publisher.rgn  topic.rgn
+creator.rgn                   location.rgn    record.rgn     vvcat.rgn
+[root@diglib2 vvs-bib]# make all
+cp /d1/dlxs/prep/v/vvs-bib/vvs-bib.single.blank.dd /d1/dlxs/idx/v/vvs-bib/vvs-bib.dd
+/usr/local/xpat/bin/xpatbld -m 256m -D /d1/dlxs/idx/v/vvs-bib/vvs-bib.dd
+cp /d1/dlxs/idx/v/vvs-bib/vvs-bib.dd /d1/dlxs/prep/v/vvs-bib/vvs-bib.presgml.dd
+make[1]: Leaving directory `/d1/dlxs/idx/v/vvs-bib'
+make multi
+make[1]: Entering directory `/d1/dlxs/idx/v/vvs-bib'
+cp /d1/dlxs/prep/v/vvs-bib/vvs-bib.presgml.dd /d1/dlxs/idx/v/vvs-bib/vvs-bib.dd
+/usr/local/xpat/bin/multirgn -f -D /d1/dlxs/idx/v/vvs-bib/vvs-bib.dd -t /d1/dlxs/idx/v/vvs-bib/bib-regions.tags
+cp /d1/dlxs/idx/v/vvs-bib/vvs-bib.dd /d1/dlxs/prep/v/vvs-bib/vvs-bib.prepost.dd
+make[1]: Leaving directory `/d1/dlxs/idx/v/vvs-bib'
+make post
+make[1]: Entering directory `/d1/dlxs/idx/v/vvs-bib'
+cp /d1/dlxs/prep/v/vvs-bib/vvs-bib.prepost.dd /d1/dlxs/idx/v/vvs-bib/vvs-bib.dd
+touch /d1/dlxs/idx/v/vvs-bib/vvs-bib.init
+/usr/local/xpat/bin/xpat -q /d1/dlxs/idx/v/vvs-bib/vvs-bib.dd < /d1/dlxs/prep/v/vvs-bib/vvs-bib.extra.srch | /d1/dlxs/bin/t/text/output.dd.frag.pl /d1/dlxs/idx/v/vvs-bib/ > /d1/dlxs/prep/v/vvs-bib/vvs-bib.extra.dd
+/d1/dlxs/bin/t/text/inc.extra.dd.pl /d1/dlxs/prep/v/vvs-bib/vvs-bib.extra.dd /d1/dlxs/idx/v/vvs-bib/vvs-bib.dd
+make[1]: Leaving directory `/d1/dlxs/idx/v/vvs-bib'
+[root@diglib2 vvs-bib]# 
+
+
+go to coll mgr
+manage working bib groups
+http://diglib2.lib.utk.edu/cgi/c/collmgr/collmgr?type=Groups&userid=&class=bib&submit=continue+%3E
+
+select search - button edit working group
+
+defaults selected are 
+	aar-bib
+	search bib
+	search mods
+	spc bib
+	spcd bib
+	vvs-bib
+
+button submit-changes
+
+
+Now see if I can find new stuff with search online
+
+BROWSER: 
+http://diglib2.lib.utk.edu/cgi/b/bib/bib-idx?c=vvs-bib;cc=vvs-bib;sid=a4c50afd38276bb94a4a9802050826cd;page=simple
+
+search for Dr. MacMillan, Hugh W.
+
+
+
+
+
+
+

@@ -1,0 +1,765 @@
+<!--
+    This code is issued under the GNU General Public License, 
+    version 3, 29 June 2007.
+
+    The DLC-MODS Workbook provides a series of web pages to help you 
+    generate a MODS metadata record that follows the Digital Library 
+    Federation Implementation Guidelines for Shareable MODS Records, 
+    as described in the DLF Aquifer Guidlines November 2006.  These 
+    Guidelines and the specific MODS Profile are documented on the 
+    MODS Profile Page of the DLC-MODS Workbook.
+
+    Copyright (C) 2007 
+    Christine Haygood Deane 
+    University of Tennessee Libraries
+    Digital Library Center
+ 
+
+    This program is free software: you can redistribute it and/or modify    
+    it under the terms of the GNU General Public License as published by    
+    the Free Software Foundation, version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see http://www.gnu.org/licenses/
+-->
+
+<html>
+<head>
+<title>
+page_05
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+<script language=javascript src="vv_compose_tags.js"></script>
+
+
+
+</head>
+
+<script>document.write('<body onload="load_DF_form();"  bgcolor="'+parent.adb_background_color+'" >');</script>
+
+<font face="arial" size="3">
+<center><font face="arial">
+<h2> <script> document.write(parent.adb_project_name); </script>
+ Page 5 </h2>
+</center>
+
+<script>
+///Civil War Salt Peter Mining None, LCNAF, ULAN. 
+
+
+
+
+
+</script>
+
+<script>
+/* 
+///debug help
+document.write("<hr>XMLBASE: "+parent.U.document.UF.XMLBASE.value 
+	+"<BR>XMLPATH: "+parent.U.document.UF.XMLPATH.value 
+	+"<BR>numRelatedItems: "+parent.U.document.UF.numRelatedItems.value 
+	+"<HR>");
+*/
+</script>
+
+<form name="DF"  action="new.xml" onload="load_DF_form()"  >
+
+<table class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="ddeeff">
+<tr class="bgstandard"><td colspan="5">
+
+Required Fields are <u>underlined</u>.
+Non-Required Fields are not underlined.
+</td></tr>
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>MODS LABEL</td>
+<td colspan="4"><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+</tr>
+<font face="arial">
+<script>
+
+//The Number of Related Items (numRelatedItems) is entered on the Begin Page
+
+var numRI = parent.U.document.UF.numRelatedItems.value;
+
+var str_ri_display_list = new String(parent.U.document.forms[0].ri_display_list.value);
+var str_ri_type_list = new String(parent.U.document.forms[0].ri_type_list.value);
+var str_ri_url_list = new String(parent.U.document.forms[0].ri_url_list.value);
+
+var ari_display = new Array();
+    ari_display = str_ri_display_list.split(",");
+
+var ari_type = new Array();
+    ari_type = str_ri_type_list.split(",");
+
+var ari_url = new Array();
+    ari_url = str_ri_url_list.split(",");
+
+
+for(j=0;j<numRI; j++) {
+
+
+document.write('<tr class="bgstandard"> \r\n'
++'<td class="label12u" width="15%"> \r\n'
++'Related Item</td> \r\n'
++'<td class="value12u" width="15%">&nbsp;<input type="text" name="itemDisplayLabel_0'+j+'" size="20" value="">'
++'<br><font face="arial" size="1">&nbsp;Display Label (optional)</font></td>'
++'<td class="value12u" width="15%">&nbsp;'
++'<select name="itemType_0'+j+'" size="1">'
++'<option value="none">none</option>'
++'<option value="constituent">constituent</option>'
++'<option value="host">host</option>'
++'<option value="isReferencedBy">isReferencedBy</option>'
++'<option value="original">original</option>'
++'<option value="otherFormat">otherFormat</option>'
++'<option value="otherVersion">otherVersion</option>'
++'<option value="preceeding">preceeding</option>'
++'<option value="series">series</option>'
++'<option value="succeeding">succeeding</option>'
++'</select>'
++'<br><font face="arial" size="1">&nbsp;Type (optional)</font></td>'
++'<td class="value12u" colspan="2">&nbsp;<input type="text" name="itemURL_0'+j+'" value="" size="72"  \r\n'
++'class="required300w"  >  \r\n'
++'<br><font face="arial" size="1">&nbsp;URL (required) Must be a valid URL starting with <u>http://</u></font></td>'
++'</td> \r\n'
+//+'<td>&nbsp</td> \r\n'
++'</tr> \r\n'
+);
+
+
+
+
+}//end for loop
+
+
+document.write('<input type="hidden" name="ri_display_list" value=""> \r\n');
+document.write('<input type="hidden" name="ri_type_list" value=""> \r\n');
+document.write('<input type="hidden" name="ri_url_list" value=""> \r\n');
+</script>
+
+<tr class="bgstandard">
+<td>&nbsp</td><td colspan="3">&nbsp</td><td>&nbsp</td>
+</tr>
+<tr class="bgstandard"><td colspan="5" class="value10nou">
+If you have too few or too many Related Items:
+<li>Return to the Begin Page and revise the Number of Related Items.
+<li>Save the new value.
+<li>Then come back to Page 5 and continue.
+<br>&nbsp;
+</td>
+</tr>
+
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>MODS LABEL</td>
+<td colspan="4"><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+</tr>
+
+
+<script>
+
+
+//The Number of Identifiers (numIdentifiers) is entered on the Begin Page
+
+var numID = parent.U.document.UF.numIdentifiers.value;
+
+var str_id_display_list = new String(parent.U.document.forms[0].id_display_list.value);
+var str_id_type_list = new String(parent.U.document.forms[0].id_type_list.value);
+var str_id_invalid_list = new String(parent.U.document.forms[0].id_invalid_list.value);
+var str_id_url_list = new String(parent.U.document.forms[0].id_url_list.value);
+
+var aid_display = new Array();
+    aid_display = str_id_display_list.split(",");
+
+var aid_type = new Array();
+    aid_type = str_id_type_list.split(",");
+
+var aid_type = new Array();
+    aid_type = str_id_invalid_list.split(",");
+
+var aid_url= new Array();
+    aid_url = str_id_url_list.split(",");
+
+
+for(j=0;j<numID; j++) {
+
+
+document.write('<tr class="bgstandard"> \r\n'
++'<td class="label12u" width="15%" > \r\n'
++'Identifier</td> \r\n'
++'<td class="value12u" width="15%" valign="top">&nbsp;<input type="text" name="identDisplayLabel_0'+j+'" size="20" value="">'
++'<br><font face="arial" size="1">&nbsp;Display Label (optional)</font></td>'
++'<td class="value12u" valign="top">&nbsp;'
++'<select name="identInvalid_0'+j+'" size="1"><option value="no" selected>invalid = no</option><option value="yes">invalid = yes</option></select>'
++'<br><font face="arial" size="1">&nbsp;invalid=yes for deprecated id</font></td>\r\n'
++'<td class="value12u" width="15%" valign="top">&nbsp;'
++'<select name="identType_0'+j+'" size="1">'
++'<option value="none0">none</option>'
++'<option value="none1" >Digital Types highlighted pink</option>'
++'<option value="ARK" style="background:#ffccff">Archival Res Key (ARK)</option>'
++'<option value="doi" style="background:#ffccff">Digital Res Id (doi)</option>'
++'<option value="hdl" style="background:#ffccff">Handle (hdl)</option>'
++'<option value="uri" style="background:#ffccff">Uniform Res Id (uri)</option>'
++'<option value="none2" >Analog Types highlighted green</option>'
++'<option value="isbn" style="background:#ccffee">Internat Std Book # (isbn)</option>'
++'<option value="ismn" style="background:#ccffee">Internat Std Music # (ismn)</option>'
++'<option value="isrc" style="background:#ccffee">Intnat Std Rec Code (isrc)</option>'
++'<option value="issue num" style="background:#ccffee">issue number</option>'
++'<option value="istc" style="background:#ccffee">Internat Std Text Code (istc)</option>'
++'<option value="lccn" style="background:#ccffee">LOC Control # (lccn) </option>'
++'<option value="matrix number"  style="background:#ccffee">matrix number</option>'
++'<option value="music plate"  style="background:#ccffee">music plate</option>'
++'<option value="music publisher" style="background:#ccffee">music publisher</option>'
++'<option value="sici" style="background:#ccffee">Serial Item & Contr Id (sici)</option>'
++'<option value="stock number" style="background:#ccffee">stock number</option>'
++'<option value="upc" style="background:#ccffee">Univ Prod Code (upc)</option>'
++'</select>'
++'<br><font face="arial" size="1">&nbsp;Type (required)</font></td>'
++'<td class="value12u" valign="top">'
++'&nbsp;<input type="text" name="identifier_0'+j+'" value="" size="72"  \r\n'
++'class="required300w"  >  \r\n'
++'<br><font face="arial" size="1">&nbsp;Identifier (required) Must be a valid Identifier for its type</font></td>'
++'</td> \r\n'
+//+'<td>&nbsp</td> \r\n'
++'</tr> \r\n'
+);
+
+
+
+
+}//end for loop
+
+
+document.write('<input type="hidden" name="id_display_list" value=""> \r\n');
+document.write('<input type="hidden" name="id_type_list" value=""> \r\n');
+document.write('<input type="hidden" name="id_invalid_list" value=""> \r\n');
+document.write('<input type="hidden" name="id_url_list" value=""> \r\n');
+
+</script>
+
+</script>
+
+
+
+
+
+
+
+
+
+ <!--- placeholder for consitutent_file_uri_1 that JODY makes--->
+<input type="hidden" name="constituent_file_uri_1" value="">
+
+<tr class="bgstandard">
+<td>&nbsp</td><td colspan="3">&nbsp</td><td>&nbsp</td>
+</tr>
+<tr class="bgstandard"><td colspan="5" class="value10nou">
+If you have too few or too many Identifiers:
+<li>Return to the Begin Page and revise the Number of Identifiers.
+<li>Save the new value.
+<li>Then come back to Page 5 and continue.
+<br>&nbsp;
+</td>
+</tr>
+
+<tr class="greenrow"><td colspan="5" >&nbsp;</td></tr>
+
+
+
+
+<tr class="bgstandard"><td colspan="5" align="center">
+&nbsp;&nbsp;
+
+<input type="button" name="B_page_01" class="buttonnw" onclick ="javascript:location.replace('page_00_begin_gen.htm')" value="Return to Begin Page">
+&nbsp;&nbsp;<input type="button" name="B_UF" value="Save" class="buttonnw" onclick="buildModsTags(10);">&nbsp;&nbsp;
+<!---input type="button" name="B_DF" value="Reset"  class="buttonnw" onclick="load_DF_form();"--->
+
+<input type="button" name="B2" 
+value="Save Data and View MODS TAGS" class="buttonnw"
+onclick="buildModsTags(1)">
+
+
+
+</td></tr>
+<tr class="bgstandard" >
+<td>&nbsp</td><td colspan="3">&nbsp</td><td>&nbsp</td>
+</tr>
+
+</table>
+
+
+
+</form name="forms[0]">
+
+<center><font face="arial">
+<h2> <script> document.write(parent.adb_project_name); </script></h2>
+</center>
+
+
+<script>
+
+
+function load_UF_form() {
+//alert("load_UF_form");
+
+parent.U.document.forms[0].ri_display_list.value = document.DF.ri_display_list.value;
+parent.U.document.forms[0].ri_type_list.value = document.DF.ri_type_list.value;
+parent.U.document.forms[0].ri_url_list.value = document.DF.ri_url_list.value;
+
+parent.U.document.forms[0].id_display_list.value = document.DF.id_display_list.value;
+parent.U.document.forms[0].id_type_list.value = document.DF.id_type_list.value;
+parent.U.document.forms[0].id_invalid_list.value = document.DF.id_invalid_list.value;
+parent.U.document.forms[0].id_url_list.value = document.DF.id_url_list.value;
+
+return;
+}
+
+function load_DF_form() {//page 05 gets info from page_upper
+//document.DF.constituent_file_name_1.value = parent.U.document.UF.constituent_file_name_1.value;
+//document.DF.constituent_file_uri_1.value = parent.U.document.UF.constituent_file_uri_1.value;
+
+////PROCESS RELATED ITEMS
+document.DF.ri_display_list.value = parent.U.document.UF.ri_display_list.value;
+document.DF.ri_type_list.value = parent.U.document.UF.ri_type_list.value;
+document.DF.ri_url_list.value = parent.U.document.UF.ri_url_list.value;
+
+
+var str_ri_display = new String(parent.U.document.UF.ri_display_list.value);
+var str_ri_type    = new String(parent.U.document.UF.ri_type_list.value);
+var str_ri_url     = new String(parent.U.document.UF.ri_url_list.value);
+
+var ari_display = new Array();
+var ari_type    = new Array();
+var ari_url     = new Array();
+
+ari_display = str_ri_display.split(",");   
+ari_type    = str_ri_type.split(",");   
+ari_url     = str_ri_url.split(",");   
+
+var numC = ari_type.length;//calculate this is safest 
+
+var attr_dlab = new String(""); //attribute displayLabel
+var attr_type = new String(""); //attribute type
+var attr_url = new String(""); //attribute xlink:href
+
+
+var strD = new String("");
+var strT = new String("");
+var strU = new String("");
+
+var selectList = new Array(
+ "none"
+,"constituent"
+,"host"
+,"isReferencedBy"
+,"original"
+,"otherFormat"
+,"otherVersion"
+,"preceeding"
+,"series"
+,"succeeding"
+);
+
+for (i=0; i<numC; i++) {
+    strD = "document.DF.itemDisplayLabel_0"+i+".value = ari_display["+i+"];";
+    strT = "document.DF.itemType_0"+i+".value = ari_type["+i+"];";
+    strU = "document.DF.itemURL_0"+i+".value = ari_url["+i+"];";
+
+////process text input
+    eval(strD);
+    eval(strU);
+
+
+////////process dropdown box input
+	for (j=0;j<10;j++) {
+		if(ari_type[i]==selectList[j]) {
+    			strT = "document.DF.itemType_0"+i+"["+j+"].selected = true;";
+			eval(strT)
+			break;			
+			}
+	}///end for j<10
+
+}/////////////////////////////end Related Items
+
+
+
+
+
+////PROCESS IDENTIFIERS
+document.DF.id_display_list.value = parent.U.document.UF.id_display_list.value;
+document.DF.id_type_list.value = parent.U.document.UF.id_type_list.value;
+document.DF.id_invalid_list.value =parent.U.document.UF.id_invalid_list.value;
+document.DF.id_url_list.value = parent.U.document.UF.id_url_list.value;
+
+
+var str_id_display = new String(parent.U.document.UF.id_display_list.value);
+var str_id_type    = new String(parent.U.document.UF.id_type_list.value);
+var str_id_invalid = new String(parent.U.document.UF.id_invalid_list.value);
+var str_id_url     = new String(parent.U.document.UF.id_url_list.value);
+
+var aid_display = new Array();
+var aid_type    = new Array();
+var aid_invalid = new Array();
+var aid_url     = new Array();
+
+aid_display = str_id_display.split(",");
+aid_type    = str_id_type.split(",");
+aid_invalid = str_id_invalid.split(",");
+aid_url     = str_id_url.split(",");
+
+var numID = aid_type.length;//calculate this is safest
+
+var attr_id_dlab = new String(""); //attribute id  displayLabel
+var attr_id_type = new String(""); //attribute id type
+var attr_id_invalid = new String(""); //attribute id invalid
+var attr_id_url = new String(""); //attribute id url
+
+
+var str_id_D = new String("");
+var str_id_T = new String("");
+var str_id_V = new String("");
+var str_id_U = new String("");
+
+var selectList_id = new Array(
+ "none0"
+,"none1"
+,"ARK"
+,"doi"
+,"hdl"
+,"uri"
+,"none2"
+,"isbn"
+,"ismn"
+,"isrc"
+,"issue num"
+,"istc"
+,"lccn"
+,"matrix number"
+,"music plate"
+,"music publisher"
+,"sici"
+,"stock number"
+,"upc"
+);
+
+
+for (i=0; i<numID; i++) {
+    str_id_D = "document.DF.identDisplayLabel_0"+i+".value = aid_display["+i+"];";
+    str_id_T = "document.DF.identType_0"+i+".value = aid_type["+i+"];";
+    str_id_V = "document.DF.identInvalid_0"+i+".value = aid_invalid["+i+"];";
+    str_id_U = "document.DF.identifier_0"+i+".value = aid_url["+i+"];";////identifier_0??????????????
+
+////process text input
+    eval(str_id_D);
+    eval(str_id_U);
+
+////process invalid - which only displays for invalid="yes"
+    if (str_id_V == "yes") {
+	attr_id_invalid = ' invalid="yes"';
+	}
+	
+
+////////process dropdown box input
+        for (j=0;j<selectList_id.length;j++) {
+                if(aid_type[i]==selectList_id[j]) {
+                        str_id_T = "document.DF.identType_0"+i+"["+j+"].selected = true;";
+                        eval(str_id_T)
+                        break;
+                        }
+        }///end for j<10
+
+
+}///////////////////////////////////////////////end Identifiers
+
+
+
+
+return;
+}
+
+
+function buildModsTags(N) {
+
+
+alert("buildModsTags("+N+") get to here 1");
+
+////related items
+///first, load the 3 hidden list inputs
+var numRI = parent.U.document.UF.numRelatedItems.value;
+var str_ri_display_list = new String();
+var str_ri_type_list = new String();
+var str_ri_url_list = new String();
+
+var dVal = new String(); // for display
+var tVal = new String(); // for type
+var uVal = new String(); // for url
+
+for ( k=0;k<numRI;k++) {
+	dVal = eval("document.DF.itemDisplayLabel_0"+k+".value");
+	if (dVal == "") { dVal = "none"; }
+	tVal = eval("document.DF.itemType_0"+k+".value");
+	uVal = eval("document.DF.itemURL_0"+k+".value");
+	if (uVal == "") { uVal = "none"; }
+	str_ri_display_list += ","+dVal;
+	str_ri_type_list += "," + tVal;
+	str_ri_url_list += "," + uVal;
+	}//end for
+
+str_ri_display_list = str_ri_display_list.substr(1);
+str_ri_type_list = str_ri_type_list.substr(1);
+str_ri_url_list = str_ri_url_list.substr(1);
+
+alert("str_ri_display_list = \n"+str_ri_display_list
+     +"\nstr_ri_type_list = \n"+str_ri_type_list
+     +"\nstr_ri_url_list = \n"+str_ri_url_list
+	);
+	
+
+document.DF.ri_display_list.value = str_ri_display_list;
+document.DF.ri_type_list.value = str_ri_type_list;
+document.DF.ri_url_list.value = str_ri_url_list;
+
+////////////identifiers
+///first, load the 4 hidden list inputs
+var numID = parent.U.document.UF.numIdentifiers.value;
+var str_id_display_list = new String();
+var str_id_type_list = new String();
+var str_id_invalid_list = new String();
+var str_id_url_list = new String();
+
+
+var d_id_Val = new String(); // for display
+var t_id_Val = new String(); // for type
+var v_id_Val = new String(); // for invalid
+var u_id_Val = new String(); // for url
+
+for ( k=0;k<numID;k++) {
+	d_id_Val = eval("document.DF.identDisplayLabel_0"+k+".value");
+	if (d_id_Val == "") { d_id_Val = "none"; }
+	t_id_Val = eval("document.DF.identType_0"+k+".value");
+	v_id_Val = eval("document.DF.identInvalid_0"+k+".value");
+	u_id_Val = eval("document.DF.identifier_0"+k+".value");
+	if (u_id_Val == "") { u_id_Val = "none"; }
+	str_id_display_list += ","+d_id_Val;
+	str_id_type_list += "," + t_id_Val;
+	str_id_invalid_list += "," + v_id_Val;
+	str_id_url_list += "," + u_id_Val;
+	}//end for
+
+str_id_display_list = str_id_display_list.substr(1);
+str_id_type_list = str_id_type_list.substr(1);
+str_id_invalid_list = str_id_invalid_list.substr(1);
+str_id_url_list = str_id_url_list.substr(1);
+
+
+
+alert("str_id_display_list = \n"+str_id_display_list
+     +"\nstr_id_type_list = \n"+str_id_type_list
+     +"\nstr_id_invalid_list = \n"+str_id_invalid_list
+     +"\nstr_id_url_list = \n"+str_id_url_list
+	);
+
+//load hidden values
+document.DF.id_display_list.value = str_id_display_list;
+document.DF.id_type_list.value = str_id_type_list;
+document.DF.id_invalid_list.value = str_id_invalid_list;
+document.DF.id_url_list.value = str_id_url_list;
+
+////do this first so current values are loaded regardless of validation status
+load_UF_form();
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+//before writing MODS TAGS, make sure all required fields are populated
+//checkAllRequired... true  validation sets validation status to 1  -- complete
+//checkAllRequired... false validation sets validation status to 0  -- incomplete
+
+/*
+if (!parent.L.checkAllRequiredElements_Page_05() ) {
+	parent.L.update_page_validation(5,0);
+	return;
+}
+parent.L.update_page_validation(5,1);
+*/
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+var num = new Number();
+    num = N;
+
+if (num == 10) {
+        alert("Values have been saved.");
+        return;
+        }
+
+
+
+var abreak = new String("");
+if (num != "0" && num!=10 ) {
+	abreak = "<BR>";
+	}
+
+load_UF_form();
+
+var aps= new Array();
+var aps= new Array();
+var hps= new Array();
+var cps= new Array();
+    
+    hps = buildTagsArray_header(num);
+    aps = buildTagsArray_page_05(num);
+    cps = buildTagsArray_closer(num);
+
+//=================================================
+
+document.write('<input type="button" name="BBACK" onclick="javascript: history.back()" value="BACK"><P>');
+document.write('<font face="Elephant" size="3" color="a00000">'+parent.adb_project_name+' Workbook, Page 5<p></font>');
+//PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+document.write('<font face="Elephant" size="3" color="a00000">PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+		+"This is the generated xml script.  Values you entered are highlighted in red."
+		+"<HR>");
+//document.write( "This is the generated xml script.  Values you entered are highlighted in red.<HR>");
+
+///document.write('< ? xml version="1.0"  ? > \r\n'); 
+///document.write("Content-Type: text/xml ")
+
+
+
+for (i=0;i<hps.length;i++) {
+	var vps = new String(hps[i]);
+ 	document.write(abreak+vps);
+	}
+
+
+
+for (i=0;i<aps.length;i++) {
+	var vps = new String(aps[i]);
+	document.write(abreak+vps);
+	}
+
+
+
+for (i=0;i<cps.length;i++) {
+	var vps = new String(cps[i]);
+	document.write(abreak+vps);
+	}
+
+
+}//end function
+
+
+
+
+
+</script>
+	
+<script>
+function fdg() {
+//return;
+
+var BEGINFORM = 0;
+var ENDFORM   = document.forms.length;
+
+document.write("<div id='formdebug' align='left'><font face='arial' size='1' color='a00000'>");
+for ( jj=BEGINFORM; jj<ENDFORM; jj++ ) {
+document.write('<hr> document.forms['+jj+'].name='+document.forms[jj].name+'<br>');
+document.write(' document.forms['+jj+'].method='+document.forms[jj].method+'<br>');
+document.write(' document.forms['+jj+'].action='+document.forms[jj].action+'<br>');
+
+for(i=0;i<document.forms[jj].length;i++)
+{
+document.write( 'document.forms['+jj+']::'+ document.forms[jj].name+".elements["+i+"]::"
+			  +' ------name: '+document.forms[jj].elements[i].name
+			  +' ------type: '+document.forms[jj].elements[i].type
+			  +' -----value: '+document.forms[jj].elements[i].value
+			  )
+			  if ( typeof(document.forms[jj].elements[i].tabindex) != 'undefined') {
+			  document.write( ' -----tabindex: '+ document.forms[jj].elements[i].tabindex )
+			  }
+			  if ( typeof(document.forms[jj].elements[i].onblur) != 'undefined') {
+			  document.write( ' -----onblur: '+ document.forms[jj].elements[i].onblur )
+			  }
+			  if ( document.forms[jj].elements[i].type == 'button' ) {
+			  document.write( ' -----onclick: '+ document.forms[jj].elements[i].onclick )
+			  }
+			  if ( document.forms[jj].elements[i].type == 'radio' ) {
+			  document.write( ' -----checked: '+ document.forms[jj].elements[i].checked )
+			  }
+document.write('<br>')
+			  
+			  }}
+
+
+
+
+document.write("<HR>");
+document.write(	" location.href = "+location.href+"<BR>");
+document.write('document.location.href='+document.location.href+'<BR>');
+document.write(	" parent.location.href = "+parent.location.href+"<BR>");
+document.write("<HR>");
+
+
+
+for ( i=0; i<parent.frames.length; i++ ) 
+{
+document.write(	" parent.frames["+i+"] :: "
+			+ " ------name: "+parent.frames[i].name
+			+ " ------location.href: "+ parent.frames[i].location.href
+			+ "<br>"
+			);
+			}
+
+document.write("<HR>");
+document.write("</font></div>");
+
+}///end function formvardebug()
+
+fdg();
+</script>
+
+<hr>
+</body>
+</html>
+
+<!------
+
+<html><head><style type="text/css"><!-- DIV {margin:0px;} --></style></head><body>
+<div style="font-family:arial,helvetica,sans-serif;font-size:10pt">
+<div>Hi, Cricket,
+<br><br>Here's some info on the change in page 5 and begin page (relatedItem) we discussed Monday.<br>
+<br>Begin page - Change "# of Constituent files" to "Number of related items"&nbsp; 
+Then the help text beside the entry box can say "Enter the number of related items to which you'd like to link.&nbsp; 
+Input boxes will be generated on page 5 of the workbook based on this number." <br>
+<br><span>Then on page 5, allow the user to specify the type.&nbsp; 
+Options for type attribute value should be: 
+preceding, succeeding,&nbsp; original, host,&nbsp; constituent, series, otherVersion,  otherFormat, isReferencedBy.&nbsp; 
+(per MODS guidelines 
+
+<a target="_blank"
+ href="http://www.loc.gov/standards/mods/v3/mods-userguide-elements.html#relateditem">
+http://www.loc.gov/standards/mods/v3/mods-userguide-elements.html#relateditem</a>)</span><br>
+<br>Also allow the user to specify a display label value with a free text entry box.<br>
+<br>Both of these attributes should be optional, so there should be an option to select "none" on both.&nbsp; <br>
+<br>Now here's a sample of the markup:<br><br><span>
+
+< relatedItem displaylabel="Other Version" type="otherVersion" xlink:href="&lt;a target='_blank' 
+href='http://diglib.lib.utk.edu/8976559/024'&gt;http://diglib.lib.utk.edu/8976559/024&lt;/a&gt;">< /relatedItem>
+</span><br><br>or if they opt not to use type or label:<br><br><span>
+< relatedItem xlink:href="&lt;a target='_blank' href='http://diglib.lib.utk.edu/8976559/024'&gt;http://diglib.lib.utk.edu/8976559/024&lt;/a&gt;">< /relatedItem>
+
+
+</span><br><br>Hope that makes sense.&nbsp; It's basically just what we discussed
+
+
+
+ Monday.<br><br>Thanks, Cricket.<br><br>Melanie<br></div></div>
+
+
+
+------->

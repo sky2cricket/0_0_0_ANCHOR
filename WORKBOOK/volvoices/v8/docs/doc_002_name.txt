@@ -1,0 +1,62 @@
+
+page_002_name.htm
+
+
+function addOneNameBlock() {
+function subtractOneNameBlock() {
+
+<form name="DF"  >
+
+<input type="hidden" name="sentinel_00" value="0">
+
+var numN = new Number( parent.L.get_block_iteration("name"));
+for (i=0;i<numN;i++){
+document.write(dyn_name things)
+}
+
+
+<input type="hidden" name="sentinel_01" value="0">
+
+button - addONe
+button - subtractOne
+
+button - Save Data and View MODS TAGS
+
+<input type="hidden" name="name_block_list" value="">
+
+</form name="DF">
+
+function load_UF_form() {
+parent.U.document.UF.name_block_list.value = document.DF.name_block_list.value;
+return;
+}
+
+
+function load_DF_form() {
+
+parent.L.populate_DF_webform_from_UF_blocklist("name_block_list");
+
+return;
+}//end function load_DF_form
+
+function buildModsTags(N) {
+
+document.DF.name_block_list.value = parent.L.populate_DF_blocklist_from_DF_webform("name_block_list");
+
+load_UF_form();
+
+if (!parent.L.checkAllRequiredElements_Page_name() ) {
+        parent.L.update_page_validation('name','c');
+        return;
+}
+parent.L.update_page_validation('name','C');
+
+    hps = parent.L.buildTagsArray_header(num);
+    aps = parent.L.buildTagsArray_name(num);
+    cps = parent.L.buildTagsArray_closer(num);
+
+document.write(tag things)
+
+} 
+
+elements()

@@ -1,0 +1,128 @@
+#! /usr/local/bin/perl
+require 5.003;
+use File::Basename;
+
+#- -- - - - - -- jweise@umich.edu
+#- - - - --- -- -March 12, 1999
+
+# - - This program loads all data from a cd to the local disk. 
+#- - -It can be run simultaneously with make-images.pl
+# - - This allows cd data to be queued up so that image processing can be
+# - - continuous. 
+ 
+# - -- - - - - - usage is cdcache.pl abbr
+# - -- - - - -- -where abbr is a collection abbrevation such as "musart"
+#- - - - - -- - -if no abbr is desired, then use "none"
+
+# -- -  ---- - - - if an argument is passed, assume it is a collection name abbreviation like "musart" to help 
+# -- - - - - -- - - - -link the images to a particular collection, or even an image processing method.
+$coll_abbr = shift;
+if ($coll_abbr) {
+    if ($coll_abbr eq 'none') {
+        print qq{No prefix will be used, since "none" was provided on the command line.\n};
+        $coll_abbr = '';
+    } else {
+        print qq{$coll_abbr will prefix the name of the destination directory.\n};
+    }
+} else {
+    print qq{\nError: A collection abbreviation (e.g., pap, bhl, musart) must be provided. If no abbreviation is available or needed for some strange reason, then enter "none" for the collection abbreviation and _none_ will be used.\n};
+    exit;
+}
+
+
+#- - - - - - - - - - - - - - - - - - - - Is there a CD?
+ if (-d "/cdrom/cdrom0") {
+    $cd_path = readlink "/cdrom/cdrom0";
+    @cd_things = split /\//, $cd_path; 
+    print "cdthings: @cd_things\n";
+    $cd_name = $cd_things[1];
+    $cd_path = "/cdrom/$cd_name";
+    print "Found CD $cd_name.\n";
+ } else {
+    print "Error: Can't find a CD in the drive.\nWait a few seconds and try again.\nOr, Take it out and put it in again.\nOr, put one in!\n";
+    exit;
+ }
+ 
+ my $used_limit = 75;
+ my $free_space_num = 0; 
+ $destination_disk = qq{/l1};
+
+
+#- - - - - - -- - --- - - - Housecleaning
+# - -- -remove DONE directories from masters
+
+ my $remove_DONE_cmd = qq{/bin/rm -r $destination_disk/masters/*_DONE};
+ print qq{Removing master directories labeled DONE, if any.\n};
+ print qq{The command being issued is $remove_DONE_cmd\n};
+ `$remove_DONE_cmd`;
+
+# - - --- -
+
+# -- - - --- - -- --- - - - -check free space on destination
+ my $disk_info_cmd = qq{df -k $destination_disk};
+ my $disk_info = `$disk_info_cmd`;
+ $disk_info =~ m/(\d\d\%)/; 
+ my $free_space = $1;
+ $free_space =~ s/\%//;
+ my $free_space_num = $free_space;
+ if ($free_space > $used_limit) {
+    print qq{Error: Stopping because more than $used_limit percent of disk $destination_disk is full.\n};
+    exit;
+ } else {
+    print qq{Note: $free_space percent of disk $destination_disk is used.\n};
+ }
+#- - -- - - -- - - - - - -  - - - - - - -
+
+ if ($coll_abbr) {
+     $coll_abbr_str = $coll_abbr . qq{-};
+ }
+
+
+#$cdlistpath = qq{/l1/cdlists/$coll_abbr_str$cd_name};
+$cdlistpath = qq{/l1/cdlists/loaded_log.txt};
+
+$list_files_cmd = qq{/usr/local/isbin/fullpath-recursive-files.pl '$cd_path'};
+
+## make a file with a list of the images loaded to help us later find 
+## an image on a particular cd
+ 
+$d = `date +"%Y%m%dT%H%M%S"`;
+chop($d);
+
+open (CDLIST, "$list_files_cmd $cd_path |" ) or
+           die "Error: could not list files.\n";
+
+open (CDLISTFILE, ">>$cdlistpath") or die;
+
+
+while (<CDLIST>) {
+   chop;
+   s,\/cdrom,,;
+   my ($file_name, $rest_of_cd_path, $non_cd_exten) = fileparse($_, '\..*');
+   my @parts = split(/\//, $rest_of_cd_path);
+   print CDLISTFILE qq{$_\t$parts[1]\t$file_name\t$rest_of_cd_path\t$non_cd_exten\t$coll_abbr\t$d\n};
+}
+
+close CDLISTFILE;
+close CDLIST;
+
+ $masterspath = qq{/l1/masters/} . $coll_abbr_str . $cd_name .qq{-} . $d;
+
+ if (-e $masterspath) { 
+     $masterspath_existing = $masterspath;
+     $masterspath = $masterspath . qq{_$^T}; #hang the start time of the script on the end.
+     print qq{Warning: The CD name $cdname already exists at $masterspath_existing.\nThe CD will be loaded to $masterspath instead.\n};
+ } 
+ print qq{CD $cd_name is being loaded to $masterspath.\n};
+ $masterspath_loading = $masterspath . qq{_LOADING};
+print "masterspath_loading: $masterspath_loading\n";
+
+ $cmd = qq{/bin/cp -R $cd_path '$masterspath_loading'};
+ `$cmd`;
+ rename $masterspath_loading, $masterspath; 
+ print qq{Changing permissions on $masterspath to 775.\n};
+ $cmd_chmod = qq{chmod -R 775 '$masterspath'};
+ `$cmd_chmod`;
+ print  qq{CD $cd_name is loaded and ready for processing.\n};
+ `eject`;
+ exit;

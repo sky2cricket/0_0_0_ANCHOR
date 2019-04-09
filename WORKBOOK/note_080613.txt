@@ -1,0 +1,84 @@
+
+/*error log
+ tail /var/log/httpd/phperror_log
+ tail -f /var/log/httpd/phperror_log
+ tail -100 /var/log/httpd/phperror_log
+*/
+
+/*mapping
+dbname		list	php/javascript 
+inst.idn	$?
+inst.name	$inam	$str_instname
+inst.address	$iadd	$str_instadd 
+inst.city	$icit	$str_instcity
+inst.county	$icou	$str_instcounty 
+inst.state	$ista	$str_inststate 
+inst.zip	$izip	$str_instzip
+coll.idn	$cidn	$str_collidn
+coll.idndes	$cids	$str_collidndes
+coll.name	$cnam	$str_collname 
+coll.des	$cdes	$str_colldes
+coll.extent	$cext	$str_collextent
+item.pname	$itpn	$str_itempname
+item.fbname	$itfb	$str_itemfbname
+item.title	$itti	$str_itemtitle
+item.creator	$itcr	$str_itemcreator
+item.datecreated$itda	$str_itemdate	
+item.descr	$itde	$str_itemdescr
+item.type	$itty	$str_itemtype
+item.genre	$itge	$str_itemgenre
+item.genredes	$itgdes	$str_itemgendes
+item.dimensions	$itdi	$str_itemdim 
+item.location	$itlo	$str_itemlocation 
+*/
+
+
+/*******************************************************/
+$iquery = "SELECT inst.name,inst.address,inst.city,inst.county,";
+	$iquery.= "inst.state,inst.zip,";
+	$iquery.= "coll.idn,coll.idndes,coll.name,coll.des,coll.extent,";
+	$iquery.= "item.pname,item.fbname,item.title,item.creator,item.datecreated,item.descr,";
+	$iquery.= "item.type,item.genre,item.genredes,item.dimensions,item.location ";
+        $iquery.= " FROM inst,coll,item ";
+	$iquery.= " WHERE inst.id='$instid' AND coll.instid='$instid' AND coll.id='$collid' AND item.id='$itemid' AND item.collid='$collid' ";
+
+$post_iquery = $iquery;
+$post_iquery = addslashes($post_iquery);
+
+$iresult = mysql_query($iquery, $link) or die ("Error in   query: $iquery. " .  mysql_error());
+
+
+if (mysql_num_rows($iresult))
+ {
+	while( list($inam,$iadd,$icit,$icou,$ista,$izip,$cidn,$cids,$cnam,$cdes,$cext,$itpn,$itfb,$itti,$itcr,$itda,$itde,$itty,$itge,$itgdes,$itdi,$itlo)=mysql_fetch_row($iresult))
+	{
+
+	$str_instname	= addslashes(ereg_replace("\r\n"," ",	$inam));
+	$str_instadd 	= addslashes(ereg_replace("\r\n"," ",	$iadd));
+	$str_instcity	= addslashes(ereg_replace("\r\n"," ",	$icit));
+	$str_instcounty = addslashes(ereg_replace("\r\n"," ",	$icou));
+	$str_inststate 	= addslashes(ereg_replace("\r\n"," ",	$ista));
+	$str_instzip	= addslashes(ereg_replace("\r\n"," ",	$izip));
+	$str_collidn	= addslashes(ereg_replace("\r\n"," ",	$cidn));
+	$str_collidndes	= addslashes(ereg_replace("\r\n"," ",	$cids));
+	$str_collname 	= addslashes(ereg_replace("\r\n"," ",	$cnam));
+	$str_colldes	= addslashes(ereg_replace("\r\n"," ",	$cdes));
+	$str_collextent	= addslashes(ereg_replace("\r\n"," ",	$cext));
+	$str_itempname	= addslashes(ereg_replace("\r\n"," ",	$itpn));
+	$str_itemfbname	= addslashes(ereg_replace("\r\n"," ",	$itfb));
+	$str_itemtitle	= addslashes(ereg_replace("\r\n"," ",	$itti));
+	$str_itemcreator= addslashes(ereg_replace("\r\n"," ",	$itcr));
+	$str_itemdate	= addslashes(ereg_replace("\r\n"," ",	$itda));
+	$str_itemdescr	= addslashes(ereg_replace("\r\n"," ",	$itde));
+	$str_itemtype	= addslashes(ereg_replace("\r\n"," ",	$itty));
+	$str_itemgenre	= addslashes(ereg_replace("\r\n"," ",	$itge));
+	$str_itemgendes	= addslashes(ereg_replace("\r\n"," ",	$itgdes));
+	$str_itemdim 	= addslashes(ereg_replace("\r\n"," ",	$itdi));
+	$str_itemlocation= addslashes(ereg_replace("\r\n"," ",	$itlo));
+
+	}
+}
+/*******************************************************/
+	
+
+

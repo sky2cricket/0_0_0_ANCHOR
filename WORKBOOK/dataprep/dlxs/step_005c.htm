@@ -1,0 +1,78 @@
+<html>
+<head>
+<script language=javascript src="links/vv_functions_links.js"></script>
+<title>
+char_check
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+</head>
+<!-- body  class="bg_aabbcc" -->
+<body bgcolor="aabbcc">
+<font face="arial" size="3">
+<center><font face="arial">
+<script>//document.write(dlxs_vv_header);</script>
+<p>
+</center>
+<table  class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="99aabb">
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+<tr class="bgstandardwhite" ><td colspan="3" align="left" class="step">
+<pre>
+step_005c.htm
+STEP FIVE - processing 00 files - /d1/workarea/dlxs/image/tel/singles
+locserve database processing, using 0031_000050_000203_0000 as an example
+
+The locserve database is located at:
+
+https://diglib.lib.utk.edu/pxmxap/index.php?db=locserve 
+
+Currently the locserve database contains the following tables:
+y2003
+y2004
+y2005
+y2006
+y2007
+y2008
+
+Each table has the same schema:
+	id ................int(11)
+	realurl ...........varchar(255)
+	dt ................timestamp(14)
+	hist ..............text
+
+
+Since the data for 0031_000050_000203_0000 was entered in 2008, 
+it will be in the y2008 table in the locserv database on diglib.
+
+Since the data for 0031_000050_000203_0000 has only been entered once, 
+it has only had one classification and there is only one url in the 
+hist field (which matches the realurl value).  If this digital object
+had needed a change of classification, the realurl value would have 
+been changed and the hist field would contain the "history list" of
+all realurl values that had been applied.
+
+
+Use the query shown below to see this row in locserve.y2008 <a href="xfiles/locserv_0031_000050_000203.JPG" target="_blank">view query results</a>
+
+   	SELECT * FROM `y2008` 
+	WHERE realurl LIKE '%0031_000050_000203_0000%'
+
+RESULTS:
+id ............00000001402 
+realurl .......http://diglib.lib.utk.edu/cgi/i/image/image-idx?c=vvz;view=entry;subview=detail;cc=vvz;entryid=x-0031_000050_000203_0000; 
+dt ............20080401134638 
+hist ..........http://diglib.lib.utk.edu/cgi/i/image/image-idx?c=vvz;view=entry;subview=detail;cc=vvz;entryid=x-0031_000050_000203_0000;
+
+
+The table name and id are combined to build the idserver url shown below.
+
+	http://idserver.utk.edu/?id=200800000001402
+
+The realurl value gives the location where the image is stored on diglib.
+</pre>
+</font>
+</td></tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+</table>
+
+

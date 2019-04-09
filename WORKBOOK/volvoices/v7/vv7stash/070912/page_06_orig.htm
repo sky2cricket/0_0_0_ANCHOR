@@ -1,0 +1,690 @@
+<!--
+    This code is issued under the GNU General Public License, 
+    version 3, 29 June 2007.
+
+    The DLC-MODS Workbook provides a series of web pages to help you 
+    generate a MODS metadata record that follows the Digital Library 
+    Federation Implementation Guidelines for Shareable MODS Records, 
+    as described in the DLF Aquifer Guidlines November 2006.  These 
+    Guidelines and the specific MODS Profile are documented on the 
+    MODS Profile Page of the DLC-MODS Workbook.
+
+    Copyright (C) 2007 
+    Christine Haygood Deane 
+    University of Tennessee Libraries
+    Digital Library Center
+ 
+
+    This program is free software: you can redistribute it and/or modify    
+    it under the terms of the GNU General Public License as published by    
+    the Free Software Foundation, version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see http://www.gnu.org/licenses/
+-->
+
+<html>
+<head>
+<title>
+page_06
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+<script language=javascript src="vv_compose_tags.js"></script>
+
+
+
+</head>
+
+<script> document.write('<body onload="load_DF_form();"  bgcolor="'+parent.adb_background_color+'" >'); </script>
+
+
+<font face="arial" size="3">
+<center><font face="arial">
+<h2><script> document.write(parent.adb_project_name); </script>
+ Page 6</h2>
+</center>
+
+<form name="DF"  action="">
+
+<table class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="ddeeff">
+<tr class="bgstandard"><td colspan="3">
+
+Required Fields are <u>underlined</u>.
+Non-Required Fields are not underlined.
+</td></tr>
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>MODS LABEL</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+<font face="arial">
+
+
+
+<tr class="bgstandard">
+<td class="label13nou">Location</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+<!-------------------------------------->
+<tr class="bgstandard">
+<td class="label13u">
+Contributing Institution
+</td>
+<td>&nbsp;<input type="text" name="physical_location_repository" value="Special Collections, Hoskins Library. Knoxville, TN." size="36" 
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+class="notrequired300w"
+>
+&nbsp;&nbsp;<font face="arial" size="1">&nbsp;Name of repository (library, archive, museum) in which resource resides.
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td class="label13u">
+City
+</td>
+<td>&nbsp;<input type="text" name="physical_location_city" value="Knoxville" size="36" 
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:300px; background:#ffffff"
+>
+&nbsp;&nbsp;<font face="arial" size="1">City in which the home repository is located.
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td class="label13u">
+County
+</td>
+<td>&nbsp;<input type="text" name="physical_location_county" value="Knoxville" size="36" 
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:300px; background:#ffffff"
+>
+&nbsp;&nbsp;<font face="arial" size="1">County in which the home repository is located.
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td class="label13u">
+State
+</td>
+<td>&nbsp;<input type="text" name="physical_location_state" value="Tennessee" size="36" 
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:300px; background:#ffffff"
+>
+&nbsp;&nbsp;<font face="arial" size="1">State in which the home repository is located.
+</td>
+<td>&nbsp</td>
+</tr>
+<!-------------------------------------->
+
+<tr class="bgstandard">
+<td class="label13u">
+URL #1 (Primary Display)
+</td>
+<td>&nbsp;
+<select name="access_00" size="1">
+<option value="none">none</option>
+<option value="preview">preview</option>
+<option value="raw object">raw object</option>
+<option value="object in context">object in context</option>
+</select>&nbsp;&nbsp;&nbsp;
+<input type="text" name="location_url_00" value="" size="36" 
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:300px; background:#ffffaa"
+>
+&nbsp;&nbsp;<font face="arial" size="1">Primary Display URL required. 
+<br>&nbsp;&nbsp; access (recommended)
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+URL (required, should be valid URL including http://)
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou">
+URL #2
+</td>
+<td>&nbsp;
+<select name="access_01" size="1">
+<option value="none">none</option>
+<option value="preview">preview</option>
+<option value="raw object">raw object</option>
+<option value="object in context">object in context</option>
+</select>&nbsp;&nbsp;&nbsp;
+<input type="text" name="location_url_01" value="" size="36" 
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:300px; background:#ffffff"
+>
+&nbsp;&nbsp;<font face="arial" size="1">Display URL.  Access is recommended.
+<br>&nbsp;&nbsp; access (recommended)
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+URL (should be valid URL including http://)
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou">
+URL #3
+</td>
+<td>&nbsp;
+<select name="access_02" size="1">
+<option value="none">none</option>
+<option value="preview">preview</option>
+<option value="raw object">raw object</option>
+<option value="object in context">object in context</option>
+</select>&nbsp;&nbsp;&nbsp;
+<input type="text" name="location_url_02" value="" size="36" 
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:300px; background:#ffffff"
+>
+&nbsp;&nbsp;<font face="arial" size="1">Display URL.  Access is recommended.
+<br>&nbsp;&nbsp; access (recommended)
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+URL (should be valid URL including http://)
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou">
+URL #4
+</td>
+<td>&nbsp;
+<select name="access_03" size="1">
+<option value="none">none</option>
+<option value="preview">preview</option>
+<option value="raw object">raw object</option>
+<option value="object in context">object in context</option>
+</select>&nbsp;&nbsp;&nbsp;
+<input type="text" name="location_url_03" value="" size="36" 
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:300px; background:#ffffff"
+>
+&nbsp;&nbsp;<font face="arial" size="1">Display URL.  Access is recommended.
+<br>&nbsp;&nbsp; access (recommended)
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+URL (should be valid URL including http://)
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+<tr class="greenrow">
+<td height="08" colspan="3"></td></tr>
+<tr class="bgstandard">
+<td class="label13nou">RecordInfo</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td class="label13u">
+Collection Name
+</td>
+<td>&nbsp;<script>
+document.write('<input type="text" ' 
+	+' style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:300px; " '
+	+' name="collection_id_name" '
+	+' onmousedown="return parent.L.stopCutAndPaste(this,event)" '
+	+' onkeypress="return parent.L.stopCutAndPaste(this,event)" '
+	+' onkeydown="return parent.L.stopCutAndPaste(this,event)" '
+	+' value="'+parent.adb_collname+'" >');
+</script>
+&nbsp;&nbsp;<font face="arial" size="1"> Archival Collection Name.
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13u">
+Identification Number Type
+</td>
+<td>&nbsp;<select name="collection_id_num_type" 
+	style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:300px; " 
+>
+<option value="none" selected>none selected</option>
+<option value="manuscriptNumber">Manuscript Number</option>
+<option value="archiveNumber">Archive Number</option>
+<option value="callNumber">Call Number</option>
+<option value="accessionNumber">Accession Number</option>
+<option value="otherIdentificationNumber">Other Identification Number</option>
+</select>   
+<script>
+
+
+document.write( parent.adb_collidndes )
+</script>
+&nbsp;&nbsp;<font face="arial" size="1">&nbsp;Archival Collection Number Type. Required when Collection ID Number is filled in.
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13u">
+Identification Number 
+</td>
+<td>&nbsp;<input type="text" name="collection_id_number" value="" size="36" 
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:300px; "
+>
+&nbsp;&nbsp;<font face="arial" size="1">&nbsp;Archival Collection Number.
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td class="label13u">
+Detail
+</td>
+<td>&nbsp;<input type="text" name="physical_location_detail" value="manuscript collection name, number, series, box, folder" size="36" 
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:300px"
+>
+&nbsp;&nbsp;<font face="arial" size="1">
+<br>&nbsp;Additional detail to help find the resource in the home repository.  
+<br>&nbsp;If material is organized with Box/Folder number, please include. &nbsp;&nbsp;Example:  Box 1, Folder 3. 
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td class="label13u">
+Record Content Source
+</td>
+<td><font face="arial" size="1">&nbsp;
+<select name="rcs_authority" size="1">
+<option value="none">none</option>
+<option value="marcorg">MARC (marcorg)</option>
+<option value="oclcorg">OCLC (oclcorg)</option>
+</select>&nbsp;&nbsp;&nbsp;
+<input type="text" name="record_content_source" value="digitization center" size="56"
+onmousedown="return parent.L.stopCutAndPaste(this,event)"
+onkeypress="return parent.L.stopCutAndPaste(this,event)"
+onkeydown="return parent.L.stopCutAndPaste(this,event)"
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; xwidth:300px; background:#ffffaa"
+>
+&nbsp;&nbsp;<font face="arial" size="1">
+<br>&nbsp;&nbsp;authority(recommended)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Digitization center, institution, group, or individual responsible for creating the record.
+<br>&nbsp;&nbsp;MARC Authority Codes: <a href="http://www.loc.gov/marc/organizations/org-search.php" target="_blank">http://www.loc.gov/marc/organizations/org-search.php</a>
+<br>&nbsp;&nbsp;OCLC Authority Codes: <a href="http://www.oclc.org/contacts/libraries/" target="_blank">http://www.oclc.org/contacts/libraries/</a>
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+
+<tr class="bgstandard">
+<td class="label13u">
+Record Origin
+</td>
+<td>&nbsp;<textarea name="record_info_origin" cols="50" rows="4"></textarea> 
+&nbsp;&nbsp;<font face="arial" size="1">
+<br>&nbsp;Description of origin or provenance of the record. Recommended by Aquifer.  
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13u">
+Record Creation Date<br>yyyy-mm-dd
+</td>
+<td>&nbsp;<input type="text" name="record_creation_date" value="" size="36" READONLY
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:300px; background:#ffffff"
+>
+&nbsp;<input type="button" name="Brecord_creation_date" value="Select Date" 
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:121px"
+onclick="parent.L.selectOneOptionDate(this,'600','700')">
+&nbsp;<input type="button" name="Crecord_creation_date" value="Clear" 
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:100px"
+ onclick="parent.L.clearDateNoQual(this)" >
+<font face='arial' size='1'><br>&nbsp;Date this form is completed.
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td class="label13u">
+Language of Cataloging
+</td>
+<td>&nbsp;<input type="text" name="language_of_cataloging" value="eng" size="2" class="requirednw" READONLY
+>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;<input type="text" name="language_of_cataloging_display" value="English" xsize="36" READONLY class="required300w" 
+>
+&nbsp;<input type="button" name="Blanguage_of_cataloging" value="Select Language" class="button120w"
+onclick="parent.L.selectOneOption(this,'400','600')" >
+&nbsp;<input type="button" name="Clanguage_of_cataloging" value="Clear"  class="button80w"
+onclick="parent.L.clearSelection(this,2)" >
+&nbsp;&nbsp;<font face="arial" size="1"><br>&nbsp;&nbsp;iso639-2 Code
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ Description for Language. Enter values by clicking the Select Language Button.
+<br>&nbsp;&nbsp;Values are from <a href="http://www.loc.gov/standards/iso639-2/php/code_list.php" target="_blank">http://www.loc.gov/standards/iso639-2/php/code_list.php</a>.
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+
+<tr class="bgstandard">
+<td  class="label13u">
+Use and Reproduction
+</td>
+<td>&nbsp;
+<select name="access_condition_type" size="1" style="background:#ffffaa;">
+<option  value="useAndReproduction">useAndReproduction</option>
+<option value="restrictionOnAccess">restrictionOnAccess</option>
+</select>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="text" name="access_condition_text" value="" size="50" 
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:300px; background:#ffffff"
+>
+<br><font face="arial" size="1">&nbsp;&nbsp;access condition type (required)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+access condition, URL (required, should be valid URL including http://)
+
+</font>
+<br>
+<font face="arial" size="2"><b>&nbsp;&nbsp;
+<a href="localRights.htm" target="_blank" width="500">Click here for more information.</a>
+<input type="hidden" name="use_and_reproduction" value="localRights.htm">
+</b>
+</font>
+	
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+
+
+
+
+<tr class="bgstandard"><td colspan="3" align="center">
+&nbsp;&nbsp;
+<input type="button" name="B_UF" value="Save" class="buttonnw" onclick="buildModsTags(10);">
+<!---input type="button" name="B_DF" value="Reset"  class="buttonnw" onclick="load_DF_form();"--->
+
+<input type="button" name="B2" 
+value="Save Data and View MODS TAGS" class="buttonnw"
+onclick="buildModsTags(1)">
+
+
+</td></tr>
+
+<tr class="bgstandard" >
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+</table>
+
+
+
+
+
+
+
+</form name="forms[0]">
+
+<center><font face="arial">
+<h2><script> document.write(parent.adb_project_name); </script></h2>
+</center>
+
+
+<script>
+
+
+function load_UF_form() {
+
+parent.U.document.UF.physical_location_repository.value = document.DF.physical_location_repository.value
+parent.U.document.UF.physical_location_detail.value = document.DF.physical_location_detail.value
+parent.U.document.UF.physical_location_city.value = document.DF.physical_location_city.value
+parent.U.document.UF.physical_location_state.value = document.DF.physical_location_state.value 
+parent.U.document.UF.physical_location_county.value = document.DF.physical_location_county.value
+//parent.U.document.UF.physical_location_county_display.value = document.DF.physical_location_county_display.value
+
+parent.U.document.UF.location_url_00.value = document.DF.location_url_00.value 
+for (i=0;i<4;i++) { parent.U.document.UF.access_00[i].selected = document.DF.access_00[i].selected; }
+parent.U.document.UF.location_url_01.value = document.DF.location_url_01.value 
+for (i=0;i<4;i++) { parent.U.document.UF.access_01[i].selected = document.DF.access_01[i].selected; }
+parent.U.document.UF.location_url_02.value = document.DF.location_url_02.value 
+for (i=0;i<4;i++) { parent.U.document.UF.access_02[i].selected = document.DF.access_02[i].selected; }
+parent.U.document.UF.location_url_03.value = document.DF.location_url_03.value 
+for (i=0;i<4;i++) { parent.U.document.UF.access_03[i].selected = document.DF.access_03[i].selected; }
+
+parent.U.document.UF.collection_id_name.value = document.DF.collection_id_name.value
+
+parent.U.document.UF.collection_id_number.value = document.DF.collection_id_number.value
+for(i=0;i<6;i++ ) {
+parent.U.document.UF.collection_id_num_type[i].selected = document.DF.collection_id_num_type[i].selected;
+}
+//parent.U.document.UF.museum_accession_number.value = document.DF.museum_accession_number.value
+//parent.U.document.UF.museum_credit_line.value = document.DF.museum_credit_line.value 
+parent.U.document.UF.record_content_source.value = document.DF.record_content_source.value
+
+for (i=0;i<3;i++) { parent.U.document.UF.rcs_authority[i].selected = document.DF.rcs_authority[i].selected; }
+
+parent.U.document.UF.record_info_origin.value = document.DF.record_info_origin.value;
+
+parent.U.document.UF.record_creation_date.value = document.DF.record_creation_date.value
+parent.U.document.UF.language_of_cataloging.value = document.DF.language_of_cataloging.value
+parent.U.document.UF.language_of_cataloging_display.value = document.DF.language_of_cataloging_display.value
+parent.U.document.UF.use_and_reproduction.value = document.DF.use_and_reproduction.value
+
+for (i=0;i<2;i++) { parent.U.document.UF.access_condition_type[i].selected = document.DF.access_condition_type[i].selected; }
+parent.U.document.UF.access_condition_text.value = document.DF.access_condition_text.value
+
+
+return;
+}
+
+
+function load_DF_form() {
+
+document.DF.physical_location_repository.value = parent.U.document.UF.physical_location_repository.value;
+document.DF.physical_location_city.value = parent.U.document.UF.physical_location_city.value;
+document.DF.physical_location_state.value = parent.U.document.UF.physical_location_state.value;
+document.DF.physical_location_county.value = parent.U.document.UF.physical_location_county.value;
+
+//url_00, url_01, url_02, url_03
+document.DF.location_url_00.value = parent.U.document.UF.location_url_00.value 
+for (i=0;i<4;i++) { document.DF.access_00[i].selected = parent.U.document.UF.access_00[i].selected; }
+document.DF.location_url_01.value = parent.U.document.UF.location_url_01.value 
+for (i=0;i<4;i++) { document.DF.access_01[i].selected = parent.U.document.UF.access_01[i].selected; }
+document.DF.location_url_02.value = parent.U.document.UF.location_url_02.value 
+for (i=0;i<4;i++) { document.DF.access_02[i].selected = parent.U.document.UF.access_02[i].selected; }
+document.DF.location_url_03.value = parent.U.document.UF.location_url_03.value 
+for (i=0;i<4;i++) { document.DF.access_03[i].selected = parent.U.document.UF.access_03[i].selected; }
+
+//collection_id_name -- parent.adb_collname
+	document.DF.collection_id_name.value = parent.U.document.UF.collection_id_name.value;
+
+//collection_id_number -- parent.adb_collidn
+//collection_id_num_type -- parent.adb_collidndes
+if ( parent.U.document.UF.collection_id_number.value != "" ) {
+	document.DF.collection_id_number.value = parent.U.document.UF.collection_id_number.value;
+	//also do collection_id_num_type 
+	for(i=0;i<6;i++ ) {
+		document.DF.collection_id_num_type[i].selected = parent.U.document.UF.collection_id_num_type[i].selected;
+	}
+}else {
+	document.DF.collection_id_number.value = parent.adb_collidn;
+	//collection_id_num_type -- parent.adb_collidndes
+	//calculate index of selected=true in select box
+	var iii = 0;//index of selected
+	if (parent.adb_collidndes != "" ) {
+		iii = parent.L.getCode(parent.L.aCollection_id_num_type,parent.adb_collidndes)
+		///alert("collection_id_num_type iii="+iii);
+	}
+	document.DF.collection_id_num_type[iii].selected = true;
+}//end else
+
+//detail -- no parent.adb_VALUE for detail
+document.DF.physical_location_detail.value = parent.U.document.UF.physical_location_detail.value;
+
+//record content source 
+document.DF.record_content_source.value = parent.U.document.UF.record_content_source.value;
+for (i=0;i<3;i++) { document.DF.rcs_authority[i].selected = parent.U.document.UF.rcs_authority[i].selected; }
+
+
+//alert("parent.U.document.UF.record_info_origin.value'\n"+parent.U.document.UF.record_info_origin.value);
+document.DF.record_info_origin.value = parent.U.document.UF.record_info_origin.value;
+
+document.DF.language_of_cataloging.value = parent.U.document.UF.language_of_cataloging.value;///"eng"
+document.DF.language_of_cataloging_display.value = parent.U.document.UF.language_of_cataloging_display.value;///"English"
+
+
+//record creation date
+document.DF.record_creation_date.value = parent.U.document.UF.record_creation_date.value;
+
+//hardcoded -- rights -- hidden field
+document.DF.use_and_reproduction.value = parent.U.document.UF.use_and_reproduction.value;
+
+
+for (i=0;i<2;i++) { document.DF.access_condition_type[i].selected = parent.U.document.UF.access_condition_type[i].selected; }
+document.DF.access_condition_text.value = parent.U.document.UF.access_condition_text.value;
+
+return;
+
+}//end function load_DF_form() 
+
+
+function buildModsTags(N) {
+
+
+
+////do this first so current values are loaded regardless of validation status
+load_UF_form();
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+//before writing MODS TAGS, make sure all required fields are populated
+//checkAllRequired... true  validation sets validation status to 1  -- complete
+//checkAllRequired... false validation sets validation status to 0  -- incomplete
+
+if (!parent.L.checkAllRequiredElements_Page_06() ) {
+	parent.L.update_page_validation(6,0);
+	return;
+}
+parent.L.update_page_validation(6,1);
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+var num = new Number();
+    num = N;
+
+if (num == 10) {
+        alert("Values have been saved.");
+        return;
+        }
+
+
+var aps= new Array();
+var aps= new Array();
+var hps= new Array();
+var cps= new Array();
+    
+    hps = buildTagsArray_header(num);
+    aps = buildTagsArray_page_06(num);
+    cps = buildTagsArray_closer(num);
+
+
+//=================================================
+
+document.write('<input type="button" name="BBACK" onclick="javascript: history.back()" value="BACK"><P>');
+document.write('<font face="Elephant" size="3" color="a00000">'+parent.adb_project_name+' Workbook, Page 6<p></font>');
+//PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+document.write( "This is the generated xml script.  Values you entered are highlighted in red.<HR>");
+
+//document.write('< ? xml version="1.0"  ? > \r\n'); 
+///document.write("Content-Type: text/xml ")
+
+
+
+for (i=0;i<hps.length;i++) {
+	var vps = new String(hps[i]);
+ 	document.write("<br>"+vps);
+	}
+
+
+
+for (i=0;i<aps.length;i++) {
+	var vps = new String(aps[i]);
+	document.write("<br>"+vps);
+	}
+
+
+
+for (i=0;i<cps.length;i++) {
+	var vps = new String(cps[i]);
+	document.write("<br>"+vps);
+
+	}
+
+
+
+}//end function
+
+
+
+
+</script>
+	
+
+
+</body>
+</html>
+

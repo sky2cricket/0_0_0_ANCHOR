@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>Setting up cron jobs for DLXS</title>
+
+
+
+
+
+
+
+<link href="../dlxsdocs.css" rel="stylesheet" type="text/css"> </head>         <body>
+<div class="pageTitle">Setting up cron jobs for DLXS</div>
+
+<h1>Sessions</h1>
+<p>All DLXS classes use session management, with session files that need to be occasionally purged. The <tt>managesession.pl</tt> script is supplied as a tool to help with this maintenance task.</p>
+<p>The syntax of the managesession.pl program options is:
+<pre>
+   managesession.pl [-a age] -m [clean|list] -s [File|MySQL]
+</pre>
+where
+<blockquote>
+<dl>
+<dt><tt>-a</tt> signifies the maximum <i>age</i> of session inactivity in minutes</dt>
+<dt><tt>-m</tt> signifies the <i>mode</i></dt>
+<dd><tt>clean</tt> will remove sessions that exceed the specified age</dd>
+<dd><tt>list</tt> will simlpy list the sessions that exceed the specified age</dd>
+<dt><tt>-s</tt> signifies the <i>data store</i></dt>
+<dd><tt>File</tt> indicates a file-based (CSV) data store</dd>
+<dd><tt>MySQL</tt> indicates a MySQL-based data store</dd>
+</dl>
+</blockquote>
+</P>
+<p>You <b>must</b> add a crontab entry to clear the session files. For example, the following crontab entry will run hourly, removing data for sessions that have not been accessed in 120 minutes. Replace the string <code>$DLXSROOT</code> with the DLXSROOT for your installation.</p>
+<p>The default <code>SESSION_AGE</code> value is 120 minutes.</p>
+<pre>
+    #
+    # clear old web sessions from DLXS sessions database
+    51 * * * * (DLXSROOT=$DLXSROOT; export DLXSROOT; $DLXSROOT/bin/managesessions.pl -m clean -a 120 -s File)
+</pre>
+
+
+<h1>Web cache</h1>
+<p>DLXS uses a cache directory (<code>$DLXSROOT/web/cache</code>) for dynamically converted page images, style sheets, and other files that are more efficiently served in a static form.  To absolutely maximize performance, you may choose to configure your systems with enough disk space to keep all converted page images, and develop a local script to clear other sorts of files from the cache, but generally, you <b>should</b> add a crontab entry to clear the cache on a regular basis.  We recommend that you add the following line (replacing the string <code>$DLXSROOT</code> with the DLXSROOT for your installation) to the crontab of any non-root user who has write privilege in the cache directory.  It will remove cached files that have not been accessed in a number of days (seven, by default).  See the comments within the script if you wish to change the default cache file lifetime for your installation.</p>
+<pre>
+    #
+    # clear web cache
+    23 1 * * * $DLXSROOT/bin/managecache.sh
+</pre>
+
+</body>
+
+                            
+
+</html>

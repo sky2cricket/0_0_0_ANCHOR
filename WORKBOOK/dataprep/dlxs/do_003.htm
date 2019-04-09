@@ -1,0 +1,74 @@
+<html>
+<head>
+<title>
+char_check
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+</head>
+<!-- body  class="bg_aabbcc" -->
+<body bgcolor="aabbcc">
+<font face="arial" size="3">
+<center><font face="arial">
+<h2>DLXS File Ingestion dothis 0</h2>
+<p>
+</center>
+<table  class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="99aabb">
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+<tr class="bgstandardwhite" ><td colspan="3" align="left">
+<font face="arial" size="4" > <b>
+<pre>
+/d1/workarea/dlxs/telfiles/dothis
+
+first, go to /d1 and mount area2 of store1.
+Then check for oddly-named directories, for which you will have to change scripts.
+
+the commands in:
+Before_Pickup
+  are to clean out the directories where you will be depositing materials, putting
+older (already processed) files into the subdirectories where they will be needed.
+They will need to be modified to move 0012* files into an SPC subdirectory in each 
+area, for preprocessing for inclusion in SPC.  The OAI and preservation copies of
+these files will belong to SPC, and should NOT be in VV.
+
+check_incoming
+
+deprecated:duplicates (checks Receive0 directories); duplicates_xml checks xml directories
+
+onedirDerivatives
+
+depricated:duplicates_xml > ./results/dupeCheck121707  (today's date)
+duplicates_noproc_noreworked > results/duplicates_noproc_noreworked_080401.txt
+
+fieldtest 
+
+Correct problems
+
+
+pickupTime
+
+Go to each directory and work the files.
+
+/d1/workarea/dlxs/image/tel/singles
+/d1/workarea/dlxs/image/tel/multiples
+/d1/workarea/dlxs/text/tel/
+
+
+
+listFiles   (send results to Cricket)
+tiflist  (send results to Tiffani)
+jpglist (ditto)
+
+
+after processing, the following counts xml from bib/mods/vv/xml directory, for current count for Tiffani
+totalSoFar
+
+
+
+</pre>
+</font>
+</td></tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+</table>
+
+

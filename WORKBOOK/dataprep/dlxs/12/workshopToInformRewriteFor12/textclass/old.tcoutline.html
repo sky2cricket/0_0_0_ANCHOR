@@ -1,0 +1,637 @@
+<!DOCTYPE HTML PUBLIC "-//SoftQuad Software//DTD XMetaL 2.0::19990601::extensions to HTML 4.0//EN">
+<html> 
+  <head> 
+	 <title>Text Class Collection Implementation</title>
+	 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	 <link rel="stylesheet" href="../icstyle/icstyles.css" type="TEXT/CSS">
+	 <link rel="stylesheet" href="../styles.css" type="TEXT/CSS"> 
+  </head>
+    
+  <body bgcolor="#ffffcc" class="mainpalette"> 
+	 
+   <p>&nbsp;
+   </p>
+   <h1>Text Class Collection Implementation</h1> 
+	 <h2> <a href="../index.html">DLXS Workshop, August
+		2005</a></h2> 
+	 <p>Text Class Instructor: <b>Chris Powell</b> </p> 
+	 <p>This portion of the DLXS Workshop focuses on
+		implementing a collection in the Text Class. It is organized as a hands-on
+		lesson, with the entire process outlined in detail. All of the steps are
+		included so that it can be repeated or used as a guide later. Links to the
+		detailed Text Class documentation are included.</p> 
+	 <p>A printed copy of this document will be available at
+		the workshop. </p><hr align="left" noshade="NOSHADE" width="100%"> 
+	 <p> 
+	<a href="#WorkshopDay2TuesdayAfternoon">Workshop Day 2 -- Tuesday Afternoon</a>
+  </p> 
+	 <ul> 
+		<li><a name="TOCTextClassContentPrep" href="#TextClassContentPrep">Text Class Content
+		  Preparation</a>
+		  <ul> 
+			 <li> <a href="#TextClassDTDOverview">Text Class
+				DTD Overview</a></li> 
+			 <li><a href="#TextConversionStrategies">Text
+				Conversion Strategies</a></li> 
+			 <li><a href="#OtherTextModifications">Other Text
+				Modifications</a></li> 
+			 <li> <a href="#ValidateandNormalizeSGML">Validate and Normalize
+				SGML</a> </li> 
+			 <li><a href="#StoringTextsandPageImages">Storing
+				Texts and Page Images</a></li> 
+		  </ul></li> 
+	 </ul> 
+	 <p> <a href="#WorkshopDay3WednesdayMorning">Workshop Day 3 -- Wednesday
+		Morning</a> </p> 
+	 <ul> 
+		<li> <a name="TOCTextClassIndexBuildingwithXPAT" href="#TextClassIndexBuildingwithXPAT">Text Class Index Building
+		  with XPAT</a> 
+		  <ul> 
+			 <li> <a href="#SetupDirectoriesforXPATIndex">Set Up Directories and
+				Files for XPAT Indexing</a> </li> 
+			 <li> <a href="#BuildtheCollection">Build the Collection Specific Text
+				Class DTD</a></li> 
+			 <li> <a href="#BuildtheXPATIndex">Build the XPAT Index</a> </li> 
+		  </ul></li> 
+	 </ul> 
+	 <p> <a href="#WorkshopDay3WednesdayAfternoon">Workshop Day 3 -- Wednesday
+		Afternoon</a> </p> 
+	 <ul> 
+		<li> <a name="TOCTextClassCollectiontoWeb" href="#TextClassCollectiontoWeb">Text Class Collection to Web</a>
+		  
+		  <ul> 
+			 <li> <a href="#ReviewtheCollectionDatabaseEntrywithCollMgr">Review
+				the Collection Database Entry with CollMgr </a> </li> 
+			 <li> <a href="#ReviewtheGroupsDatabaseEntrywithCollMgr">Review the
+				Groups Database Entry with CollMgr</a> </li> 
+			 <li> <a href="#MakeCollectionmaps">Make Collection Map</a> </li> 
+			 <li> <a href="#SetuptheCollectionsWebDirectory">Set Up the
+				Collection's Web Directory</a> </li> 
+			 <li> <a href="#TryItOut">Try It Out</a> </li> 
+		  </ul></li> 
+		<li><a name="TOCReviewOldCollections" href="#ReviewOldCollections">Reviewing Existing Collections After
+		  a Move to Release 10</a> 
+		  
+         <ul>
+             
+			 
+            <li>Check the Fabricated Regions</li>
+            <li>Check the CollMgr</li>
+            <li>Update the Map</li>
+         </ul>
+      </li> 
+	 </ul> 
+	 <p> For simplified Data Flow Diagaram overview of
+		TextClass data prep and delivery, including the directories in which files are
+		created, see the <a href="../graphics/DirStructureDFD.gif"
+		target="sample">TextClass Prep DFD</a>.</p> 
+	 <h3 class="dayheader"> Workshop Day 2 -- Tuesday Afternoon<a
+		name="WorkshopDay2TuesdayAfternoon"> </a></h3> 
+	 <h2 class="partheader"><a name="TextClassContentPrep"></a>Text Class Content Preparation</h2> 
+	 <p align="right" class="navlink"> <a
+		href="#TOCTextClassContentPrep">go to table of contents</a> </p> 
+	 <p> In Text Class Content Prep we discuss the elements
+		and attributes required for Text Class delivery, the necessary architecture for
+		storing texts and collections, strategies and methods for converting texts to
+		conform to the Text Class DTD, and normalization.</p> 
+	 <hr align="left" noshade="NOSHADE" width="100%"> 
+	 <h3 class="sectionheader"><a name="TextClassDTDOverview"></a>Text Class DTD
+		Overview </h3> 
+	 <p>It is assumed that any texts to be converted to Text
+		Class already validate against another DTD for encoding monographic materials,
+		such as TEI Lite, that represents corresponding structures (chapters, pages,
+		etc.). Because of the extremely lax content modelling (almost every element is
+		defined to permit ANY of the named elements), the Text Class DTD is only useful
+		to ensure that the nomenclatures have been changed appropriately.
+		<font color="#FF0000">No markup changes were made to accommodate release 10.
+		Any collections you have already converted to the Text Class DTD need not be
+		changed.</font></p> 
+	 <p>If you elect to modify the Text Class DTD to
+		validate your source documents, you may need to change the Text Class
+		middleware; you will almost certainly have to adjust SGML/XML to HTML
+		filtering,and changes may affect searching and results list behaviors.</p> 
+	 <p>The following elements and attributes are
+		required:</p> 
+	 <ul> 
+		<li>DLPSTEXTCLASS</li> 
+		<li>HEADER 
+		  <ul> 
+			 <li>EDITORIALDECL with N attribute according with
+				<a href="http://www.indiana.edu/~letrs/tei/">TEI in Libraries
+				recommendations</a> for encoding levels. </li> 
+			 <li>IDNO -- must be unique for each text in a collection</li> 
+		  </ul></li> 
+		<li>TEXT 
+		  <ul> 
+			 <li>BODY</li> 
+			 <li>nested numbered DIVs, with at least one DIV1 
+				<ul> 
+				  <li>Each DIV should have TYPE and must have NODE attributes</li> 
+				  <li>All content, such as pagebreaks, should be in DIVs, not
+					 between, if at all possible</li> 
+				</ul></li> 
+			 <li>nested numbered elements that contain themselves 
+				<ul> 
+				  <li>for example, NOTE, Q, HI become NOTE1, Q1, H1, containing
+					 NOTE2, Q2, H2</li> 
+				</ul></li> 
+			 <li>NOTE1 and PTR must have N and ID attributes 
+				<ul> 
+				  <li>default value for N is *; IDs will be automatically assigned
+					 for elements without them</li> 
+				</ul></li> 
+		  </ul></li> 
+	 </ul> 
+	 <p>The Text Class DTD is a fluid document; more
+		attributes, and occassionally elements, are added as the need arises in
+		processing new collections. These basic requirements are unlikely to change,
+		however.</p><hr align="left" noshade="NOSHADE" width="100%"> 
+	 <h3 class="sectionheader"> <a name="TextConversionStrategies"></a>Text
+		Conversion Strategies</h3> 
+	 <p>DLPS does not have any preferred methods or quick
+		and easy tools for this stage of the process. Only you, looking at your texts
+		and your encoding practices, can do the intellectual work required to convert
+		the texts. You should do this with the tools you are most comfortable using,
+		whether they be macros in your favorite editor, perl scripts if you have strong
+		programming skills, OmniMark if you like that, or XSLT (my personal choice). We
+		have a fairly detailed XSLT strategy on the documentation website, which uses
+		freely-available or ubiquitous tools, and if you are creating XML documents
+		anyway, this might be a reasonable route to pursue. </p> 
+	 <p>We have also used a perl script to do conversions of
+		TEI Lite-encoded SGML into Text Class SGML, and are willing to make these
+		(largely undocumented) scripts available. We are happy to offer suggestions and
+		our historical experience in converting collections, but cannot really support
+		you with specific tools or methods in your conversion, as it is particular to
+		the encoding of your texts.</p> 
+	 <p>For today, we are going to be working with some
+		texts that are already in Text Class, and one file that is in a DTD based on
+		TEI Lite. We will be building them into a collection we are going to call
+		<b>workshoptc</b>.</p> 
+	 <p>This documentation will make use of the concept of
+		the $DLXSROOT, which is the place at which your DLXS directory structure
+		starts. We generally use /l1/, but for the workshop, we each have our own
+		$DLXSROOT in the form of /l1/workshop/userX. To determine what your $DLXSROOT
+		is, type the following commands at the command prompt: </p> 
+	 <blockquote> 
+		<pre class="unixcommand">cd $DLXSROOT<br>pwd</pre></blockquote> 
+	 <p>Create directory $DLXSROOT/prep/w/workshoptc with
+		the following command: </p> 
+	 <blockquote> 
+		<pre class="unixcommand">mkdir -p $DLXSROOT/prep/w/workshoptc/data</pre></blockquote> 
+	 <p>Move into that directory with the following command:
+  </p> 
+	 <blockquote> 
+		<pre class="unixcommand">cd $DLXSROOT/prep/w/workshoptc/data</pre></blockquote> 
+	 <p>This will be your staging area for all the things
+		you will be doing to your texts, and ultimately to your collection. At present,
+		all it contains is the data subdirectory you created a moment ago. We will be
+		populating it further over the course of the next two days. Unlike the contents
+		of other directories, everything in prep should be ultimately expendable in the
+		production environment.</p> 
+	 <p>Copy the necessary files into your data directory
+		with the following commands:</p> 
+	 <blockquote> 
+		<pre class="unixcommand">cp $DLXSROOT/obj/b/a/b/bab3633.0001.001/bab3633.0001.001.sgm $DLXSROOT/prep/w/workshoptc/data
+<br>cp $DLXSROOT/obj/a/a/s/aas7611.0001.001/aas7611.0001.001.sgm $DLXSROOT/prep/w/workshoptc/data
+<br>cp $DLXSROOT/obj/a/b/e/abe5413.0001.001/abe5413.0001.001.sgm $DLXSROOT/prep/w/workshoptc/data
+<br>cp $DLXSROOT/obj/a/b/u/abu0246.0001.001/abu0246.0001.001.sgm $DLXSROOT/prep/w/workshoptc/data
+<br>cp $DLXSROOT/obj/a/f/g/afg3177.0001.001/afg3177.0001.001.sgm $DLXSROOT/prep/w/workshoptc/data</pre></blockquote> 
+	 <p>The first file, bab3633.0001.001.sgm, is not yet in
+		the Text Class DTD. However, since it is a very simple text, a few changes will
+		make it so:</p> 
+	 <ul> 
+		<li>TEI.2 to DLPSTEXTCLASS</li> 
+		<li>TEIHEADER to HEADER</li> 
+		<li>DIV to DIV1</li> 
+	 </ul> 
+	 <p>We'll also change the N attribute value in the
+		EDITORIALDECL to 4, as it is pretty fully encoded for its size. If you feel
+		confident in your file editing skills in the unix environment, you can do so
+		now (don't forget the end tags!). Otherwise, copy the following script and use
+		it to change your file:</p> 
+	 <blockquote> 
+		<pre class="unixcommand">$DLXSROOT/prep/s/sampletc/tagfixer.pl $DLXSROOT/prep/w/workshoptc/data/bab3633.0001.001.sgm</pre></blockquote> 
+	 <p><b>Please note that this script is only effective
+		for the sample documents for the workshop! It might suggest strategies you
+		would use to convert your own source documents to Text Class, but does not
+		handle many of the phrase-level elements you might normally expect to
+		see.</b></p><hr align="left" noshade="NOSHADE" width="100%"> 
+	 <h3 class="sectionheader"> <a name="OtherTextModifications"> </a>Other Text
+		Modifications</h3> 
+	 <p>You need to decide whether you wish to keep
+		character entities (for example, &amp;eacute;) in your text files or replace
+		them with their 8-bit ISO Latin 1 equivalent (for example, &eacute;). If you
+		choose to do this, you will be able to search for blessed, for example, and
+		retrieve both bless&eacute;d and blessed, because the indexing process maps
+		both of these characters to just e. Otherwise, you would have to search for
+		bless&amp;eacute;d to retrieve the word with the diacritic. If you want to do
+		this (and this process is not necessarily valid for XML!), use the following
+		command:</p> 
+	 <blockquote> 
+		<pre class="unixcommand">$DLXSROOT/bin/t/text/isolat128bit.pl $DLXSROOT/prep/w/workshoptc/data/bab3633.0001.001.sgm</pre></blockquote> 
+	 <p>One way to help the cgi with identifying specific
+		text structures, like divisions, exactly is to insert unique attributes based
+		on a combination of the IDNO and the sequence of the division in the text. This
+		is an expendable ID and not meant to permanently identify a structure -- use
+		you own throughtfully assigned and permanent ID attributes for that. Before
+		indexing, check to see if node attributes have been applied when the documents
+		were converted to Text Class -- they will appear in the DIV tags for each
+		division and will look like this: &lt;DIV1 NODE="AAN8938.0001.001:1"&gt;. If
+		they have not, use the following command to insert them:</p> 
+	 <blockquote> 
+		<pre class="unixcommand">$DLXSROOT/bin/t/text/nodefy $DLXSROOT/prep/w/workshoptc/data/bab3633.0001.001.sgm<br>
+cp $DLXSROOT/prep/w/workshoptc/data/bab3633.0001.001.sgm.noded $DLXSROOT/prep/w/workshoptc/data/bab3633.0001.001.sgm</pre></blockquote><hr align="left" noshade="NOSHADE" width="100%"> 
+	 <h3 class="sectionheader"><a name="ValidateandNormalizeSGML"> </a>Validate
+		and Normalize SGML </h3> 
+	 <p>This step checks the SGML against the Text Class DTD
+		to validate the SGML. It also normalizes the SGML, which, if necessary, adjusts
+		the SGML tagging so that it is consistent in terms of case and order of element
+		attributes.</p> 
+	 <p>There are not likely to be any errors with the
+		<b>workshoptc</b> data, but tell the instructor if there are. </p> 
+	 <blockquote> 
+		<pre class="unixcommand">foreach file (*.sgm)<br>sgmlnorm $DLXSROOT/prep/s/sampletc/sampletc.text.inp $file &gt; $file.norm<br>end</pre></blockquote> 
+	 <p>Since most of you are set up for bash, here's the
+		same command in that shell:</p> 
+	 <blockquote> 
+		<pre class="unixcommand">for file in *.sgm<br>do<br>sgmlnorm $DLXSROOT/prep/s/sampletc/sampletc.text.inp $file &gt; $file.norm<br>done</pre></blockquote> 
+	 <p>This will normalize the texts and result in new
+		texts with a .norm extension added. These are the files we will use to build
+		our new collection tomorrow morning.</p> 
+	 <hr align="left" noshade="NOSHADE" width="100%"> 
+	 <h3 class="sectionheader"> <a name="StoringTextsandPageImages"></a>Storing
+		Texts and Page Images </h3> 
+	 <p>As you may have noticed from our file copying steps
+		earlier, we store each digitized text in its own directory, based on its DLPS
+		ID, along with the related page images. The DLPS ID is a unique ID for each
+		text, based on the ID assigned to its MARC record by the OPAC. Directories are
+		created in the form $DLXSROOT/obj/d/l/p/dlpsid (the DLPS ID can consist of a
+		mix of number and letter characters). Pageviewer defaults to search for page
+		images stored in a directory based on this form, although there is a method
+		that can be overriden.</p> 
+	 <p>To facilitate links between the texts and the images
+		stored in the $DLXSROOT/obj directories, the middleware is configured to read a
+		four-million row table on our MySQL server containing page image metadata. In
+		$DLXSROOT/misc/bb there's a file called Pageview that is a CSV version of that
+		table that continas only the rows for the pages in the sample collection. <b>We
+		are not using this during the workshop</b>. During DLXS installation yesterday,
+		Alan and Phil could have chosen CSV as the database format, and you can always
+		look at this table as an example of necessary metadata fields. However, we have
+		found that CSV does not scale, and while it is feasible for the fewer than 2000
+		pages in the sample collection, it was not adequate in our production
+		environment. The most recent release of the DLXS middleware does not support
+		pageview.dat files. If you have created pageview.dat files in the past and
+		would like to upgrade to the new middleware, we are delivering a program
+		($DLXSROOT/bin/t/text/makepageviewdata.pl) that will convert pageview.dat files
+		into MySQL rows. Invocation is simple <b>(don't do it -- just FYI)</b>:</p> 
+	 <blockquote> 
+		<pre class="unixcommand">$DLXSROOT/bin/t/text/importpageviewdata.pl [-f] -d "$DLXSROOT/obj"</pre></blockquote> 
+	 <p>The -f flag indicates a "full run", i.e., process
+		all files regardless of whether they've changed since the last run (otherwise,
+		there is a timestamp file to determine which files have changed since the last
+		run). Based on what database format you chose during DLXS installation, this
+		process will populate the database with the information from any pageview.dat
+		files it encounters as it runs through the directory you specified
+		recursively.</p> 
+	 <h3 class="sectionheader"> <i>More Documentation</i></h3> 
+	 <ul> 
+		<li><a href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/text/tc-overview.html"
+		  class="Overview of Text Cl">Overview of Text Class</a></li> 
+		<li><a href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/text/tc-docstruct.html">Text Class
+		  Documents -- Structure</a></li> 
+		<li> <a href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/text/tc-convert.html">Converting
+		  Collections to Text Class</a></li> 
+		<li><a href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/text/tc-prep.html">Preparing Data
+		  for Index Building</a></li> 
+		<li><a
+		  href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/text/tc-pageviewer.html">Page Image Access
+		  Mechanisms</a></li> 
+	 </ul> 
+	 <p> <a name="WorkshopDay3WednesdayMorning"> </a></p> 
+	 <h3 class="dayheader">Workshop Day 3 -- Wednesday Morning<a
+		name="TextClassIndexBuildingwithXPAT"> </a></h3> 
+	 <h2 class="partheader">Text Class Index Building with XPAT</h2> 
+	 <p align="right" class="navlink">
+		<a href="#TOCTextClassIndexBuildingwithXPAT">go to table of contents</a> </p> 
+	 <p>In this section the <b>workshoptc</b> SGML will be
+		concatenated and indexed with the XPAT search engine, preparing it for use with
+		the DLXS middleware.</p><hr align="left" noshade="NOSHADE" width="100%"> 
+	 <h3 class="sectionheader"><a name="SetupDirectoriesforXPATIndex"> </a>Set
+		Up Directories and Files for XPAT Indexing </h3> 
+	 <p>Yesterday, we did what we needed to do with our
+		materials "by hand" -- today, we will work with the materials packaged in the
+		<b>sampletc</b> collection and adapt them for use with <b>workshoptc</b>. This
+		should parallel what you'll be doing back at your institutions. First, we need
+		to create the rest of the directories in the <b>workshoptc</b> environment with
+		the following commands: </p> 
+	 <blockquote> 
+		<pre class="unixcommand">mkdir -p $DLXSROOT/bin/w/workshoptc<br>mkdir -p $DLXSROOT/obj/w/workshoptc<br>mkdir -p $DLXSROOT/idx/w/workshoptc</pre></blockquote> 
+	 <p> The bin directory holds and scripts or tools used
+		for the collection specifically; obj holds the "object" or SGML/XML file for
+		the collection, and idx holds the XPAT indexes. Now we need to populate the
+		directories. First, change directories into $DLXSROOT/prep/w/workshoptc/data
+		and concatenate the texts into one collection with the following command:</p> 
+	 <blockquote> 
+		<pre class="unixcommand">cat bab3633.0001.001.sgm.norm aas7611.0001.001.sgm.norm abe5413.0001.001.sgm.norm abu0246.0001.001.sgm.norm afg3177.0001.001.sgm.norm &gt; $DLXSROOT/obj/w/workshoptc/workshoptc.sgm</pre></blockquote> 
+	 <p>Next, we'll copy and edit the necessary files from
+		<b>sampletc</b> to get our <b>workshoptc</b> collection together. </p> 
+	 <blockquote> 
+		<pre class="unixcommand">cp $DLXSROOT/bin/s/sampletc/Makefile $DLXSROOT/bin/w/workshoptc/Makefile<br>cp $DLXSROOT/prep/s/sampletc/charents.frag $DLXSROOT/prep/w/workshoptc<br>cp $DLXSROOT/prep/s/sampletc/textclass.stripped.dtd $DLXSROOT/prep/w/workshoptc<br>cp $DLXSROOT/prep/s/sampletc/sampletc.single.blank.dd $DLXSROOT/prep/w/workshoptc/workshoptc.single.blank.dd<br>cp $DLXSROOT/prep/s/sampletc/sampletc.extra.srch $DLXSROOT/prep/w/workshoptc/workshoptc.extra.srch<br>cp $DLXSROOT/prep/s/sampletc/sampletc.inp $DLXSROOT/prep/w/workshoptc/workshoptc.inp </pre></blockquote> 
+	 <p>Four of these files need to be edited to reflect the
+		new collection name and the paths to your particular directories. This will be
+		true when you use these at your home institution as well, even if you use the
+		same directory architecture as we do, because they will always need to reflect
+		the uniqname of each collection. Failure to change even one file can result in
+		puzzling errors, because the scripts <i>are</i> working, just not necessarily
+		in the directories you are looking at.</p> 
+	 <p>If you are comfortable editing in the unix
+		environment, in the Makefile, workshoptc.single.blank.dd,
+		workshoptc.extra.srch, and workshoptc.inp, change all references to /l1/ to
+		your $DLXSROOT value, /s/ to /w/ and sampletc to workshoptc. Otherwise, run the
+		following command:</p> 
+	 <blockquote> 
+		<pre class="unixcommand">sh $DLXSROOT/paths</pre></blockquote><hr align="left" noshade="NOSHADE" width="100%"> 
+	 <h3 class="sectionheader"> <a name="BuildtheCollection"> </a>Build the
+		Collection Specific Text Class DTD</h3> 
+	 <p>Before indexing your collection, you will need to
+		create a collection-specific Text Class DTD. Because the class DTD supports any
+		element having any of the declared attributes (for convenience of DTD
+		creation), indexing "as-is" with XPAT will cause your index to be unnecessarily
+		large. This may also cause problems for SGML/XML validation tools. A copy of
+		the textclass.stripped.dtd is included in the sample collection; you can create
+		your own from more recent versions of the Text Class DTD by running the
+		following command: <b>(don't do it -- just FYI)</b></p> 
+	 <blockquote> 
+		<pre class="unixcommand">egrep -i "&lt;\!ELEMENT" textclass.dtd &gt; textclass.stripped.dtd</pre></blockquote> 
+	 <p>Next, use the "make dtd" command from the Makefile
+		to determine which attributes are used in your collection and build a custom
+		DTD. Using the "make validate" command will then validate your collection
+		against the new DTD. If the individual texts validated before, they should
+		validate as a concatenated collection now.</p> 
+	 <blockquote> 
+		<pre class="unixcommand">cd $DLXSROOT/bin/w/workshoptc<br>make dtd<br>make validate</pre></blockquote><hr align="left" noshade="NOSHADE" width="100%"> 
+	 <h3 class="sectionheader"> <a name="BuildtheXPATIndex"> </a>Build the XPAT
+		Index </h3> 
+	 <p>Everything is now set up to build the XPAT index.
+		The Makefile in the bin directory contains the commands necessary to build the
+		index, and can be executed easily.</p> 
+	 <p>To create an index for use with the Text Class
+		interface, you will need to index the words in the collection, then index the
+		SGML/XML (the structural metadata, if you will), and then finally "fabricate"
+		structures based on a combination of elements (for example, defining what the
+		"main entry" is, without adding a &lt;MAINENTRY&gt; tag around the appropriate
+		&lt;AUTHOR&gt; or &lt;TITLE&gt; element). The following commands can be used to
+		make the index, alone or in combination. We will be using "make singledd," make
+		sgml," and "make post."</p> 
+	 <p><b>make singledd</b> indexes words for texts that
+		have been concatenated into on large file for a collection. This is the
+		recommended process. </p> 
+	 <p><b>make sgml</b> indexes the SGML structure by
+		reading the DTD. Validates as it indexes. Slower than multiregion indexing (see
+		below) for this reason. However, necessary for collections that have nested
+		elements of the same name (for example a P within a NOTE1 within a P). </p> 
+	 <p><b>make multi</b> (multiregion structure indexing)
+		indexes the SGML structure and relies on a "tags file" (included in the sample
+		collection) to know what SGML elements and attributes to index. Rarely used
+		with fully-encoded full-text collections because of the nesting problem
+		mentioned above. If you'd like to try this on your own, index only the new text
+		(bab3433.0001.001.sgm.norm)</p> 
+	 <p><b>make mfsdd</b> (multi-file system indexing)
+		indexes words and structure for each SGML text listed in the data dictionary
+		(dd) individually. Seems like a good idea -- no redundant copies of files! --
+		but searching is slower than an index built of concatenated files. Also, if any
+		one of the files referenced changes in any way, the entire index fails. We no
+		longer use MFS indexes ourselves for this reason. If you'd like to try this on
+		your own, note that this is pointing to the obj directories for the individual
+		texts, and does not include the fifth file we edited yesterday. You'd want to
+		point to your normalized texts in $DLXSROOT/prep/w/workshoptc/data <b>or</b>
+		rename those and copy them out to their individual $DLXSROOT/obj/x/y/z
+		directories.</p> 
+	 <p><b>make post</b> builds and indexes fabricated
+		regions based on the XPAT queries stored in the workshoptc.extra.srch file.</p>
+	 
+	 <blockquote> 
+		<pre class="unixcommand">make singledd</pre></blockquote> 
+	 <blockquote> 
+		<pre>cp 
+/l1/workshop/sooty/dlxs/prep/w/workshoptc/workshoptc.single.blank.dd /l1/workshop/sooty/dlxs/idx/w/workshoptc/workshoptc.dd 
+/l/local/xpat/bin/xpatbld -m 12m -D /l1/workshop/sooty/dlxs/idx/w/workshoptc/workshoptc.dd 
+cp /l1/workshop/sooty/dlxs/idx/w/workshoptc/workshoptc.dd /l1/workshop/sooty/dlxs/prep/w/workshoptc/workshoptc.presgml.dd</pre></blockquote> 
+	 <blockquote> 
+		<pre class="unixcommand">make sgml</pre></blockquote> 
+	 <blockquote> 
+		<pre>cp /l1/workshop/sooty/dlxs/prep/w/workshoptc/workshoptc.presgml.dd 
+/l1/workshop/sooty/dlxs/idx/w/workshoptc/workshoptc.dd /l/local/xpat/bin/sgmlrgn 
+-m region -o /l1/workshop/sooty/dlxs/idx/w/workshoptc/workshoptc -D /l1/workshop/sooty/dlxs/idx/w/workshoptc/workshoptc.dd 
+/l1/workshop/sooty/dlxs/prep/w/workshoptc/workshoptc.inp //l1/workshop/sooty/dlxs/obj/w/workshoptc/workshoptc.sgm 
+cp /l1/workshop/sooty/dlxs/idx/w/workshoptc/workshoptc.dd /l1/workshop/sooty/dlxs/prep/w/workshoptc/workshoptc.prepost.dd</pre></blockquote> 
+	 <blockquote> 
+		<pre class="unixcommand">make post</pre></blockquote> 
+	 <blockquote> 
+		<pre>cp /l1/workshop/sooty/dlxs/prep/w/workshoptc/workshoptc.prepost.dd 
+/l1/workshop/sooty/dlxs/idx/w/workshoptc/workshoptc.dd touch /l1/workshop/sooty/dlxs/idx/w/workshoptc/workshoptc.init 
+/l/local/xpat/bin/xpat -q /l1/workshop/sooty/dlxs/idx/w/workshoptc/workshoptc.dd 
+&lt; /l1/workshop/sooty/dlxs/prep/w/workshoptc/workshoptc.extra.srch | /l1/workshop/sooty/dlxs/bin/t/text/output.dd.frag.pl 
+/l1/workshop/sooty/dlxs/idx/w/workshoptc/ &gt; /l1/workshop/sooty/dlxs/prep/w/workshoptc/workshoptc.extra.dd 
+/l1/workshop/sooty/dlxs/bin/t/text/inc.extra.dd.pl /l1/workshop/sooty/dlxs/prep/w/workshoptc/workshoptc.extra.dd 
+/l1/workshop/sooty/dlxs/idx/w/workshoptc/workshoptc.dd</pre></blockquote> 
+	 <p>
+      <span><font color="#FF0000">For release 10, there have been some changes in
+		fabricated regions used by Text Class. mainauthor and maintitle, which existed
+		previously, have been joined by maindate. mainauthor and maindate should only
+		exist, of course, if you have the metadata to support them. Previously, the
+		fabricated regions merely identifed the elements in which these values occurred
+		-- the maintitle is the TITLE element in the SOURCEDESC, for example (not other
+		TITLE elements elsewhere). However, sorting requires that you have only
+		<b>one</b> maintitle, mainauthor and maindate per text, so that you have one
+		value on which to sort. Your extra.srch files may need to be changed in order
+		to be more specific. If you do not, some sort operations will give you a
+		<tt>sortkey</tt> assertion failure.</font>
+   </span>
+   </p>
+   <p>
+      <span><font color="#FF0000">Some examples of more specific searches in your
+		extra.srch are provided below. The first relies on identifying metadata that
+		has been specified through the use of attributes; the second merely chooses the
+		first occurrence as an indication that it is the "main" value.</font></span>
+</p> 
+	 <pre>(((region TITLE incl "type=main") within region TITLESTMT) within region SOURCEDESC); 
+{exportfile "/l1/idx/e/example/maintitle.rgn"}; export; ~sync "maintitle";</pre>
+	 <pre>(((region AUTHOR within (region "&lt;TITLESTMT".."&lt;/AUTHOR&gt;")) within (region 
+TITLESTMT within region FILEDESC)) not within (region SOURCEDESC)); {exportfile 
+"/l1/idx/e/example/mainauthor.rgn"}; export; ~sync "mainauthor";</pre>
+	 <h3 class="sectionheader"> <i>More Documentation</i></h3> 
+	 <ul> 
+		<li><a href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/text/tc-indexing.html">Indexing
+		  the Collection</a></li> 
+	 </ul> 
+	 <h3 class="dayheader"><a name="WorkshopDay3WednesdayAfternoon"></a>Workshop Day 3 -- Wednesday Afternoon</h3> 
+	 <h2 class="partheader"><a name="TextClassCollectiontoWeb"> </a>Text Class Collection to Web</h2> 
+	 <p align="right" class="navlink"> <a
+		href="#TOCTextClassCollectiontoWeb">go to table of contents</a> </p> 
+	 <p>These are the final steps in deploying an Text Class
+		collection online. Here the <b>Collection Manager</b> will be used to review
+		the <b>Collection Database</b> entry for <b>workshoptc</b> . The <b>Collection
+		Manager</b> will also be used to check the <b>Group Database</b>. Finally, we
+		need to work with the collection map and the set up the collection's web
+		directory.</p><hr align="left" noshade="NOSHADE" width="100%"> 
+	 <h3 class="sectionheader"><a
+		name="ReviewtheCollectionDatabaseEntrywithCollMgr"> </a>Review the Collection
+		Database Entry with CollMgr </h3> 
+	 <p>Each collection has a record in the collection
+		database that holds collection specific configurations for the middleware.
+		CollMgr (Collection Manager) is a web based interface to the collection
+		database that provides functionality for editing each collection's record.
+		Collections can be checked-out for editing, checked-in for testing, and
+		released to production.<b>A collection database record for workshoptc has
+		already been created and we will edit it.</b> In general, a new collection
+		needs to have a CollMgr record created from scratch before the middleware can
+		be used. Take a look at the record to become familiar with it.</p> 
+	 <p
+	>http://username.ws.umdl.umich.edu/cgi/c/collmgr/collmgr</p>
+	 
+	 <p>Notice that it thinks it's the <b>sampletc</b>
+		collection. Change references to s/sampletc to w/workshoptc . Since we are not
+		building word wheels, remove the data in that field. Let's change the name as
+		well -- remove the reference to graphic:most-logo3bd3.gif and change it to
+		text:whatever you want to call it.</p> 
+	 <h3 class="sectionheader"> <i>More Documentation</i> </h3> 
+	 <ul> 
+		<li>
+		  <a target="external"
+		  href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/collmeta/collmgr-fields.html">Collection Manager
+		  Field Descriptions</a></li> 
+	 </ul><hr align="left" noshade="NOSHADE" width="100%"> 
+	 <h3 class="sectionheader">
+		<a name="ReviewtheGroupsDatabaseEntrywithCollMgr"></a>Review the Groups
+		Database Entry with CollMgr </h3> 
+	 <p>Another function of CollMgr allows the grouping of
+		collections for cross-collection searching. Any number of collection groups may
+		be created for Text Class. Text Class supports a group with the groupid "all".
+		It is not a requirement that all collections be in this group, though that's
+		the basic idea. Groups are created and modified using CollMgr. <b>For this
+		workshop, the group "all" record has already been edited to include the
+		workshoptc collection.</b> Take a look at the record to become familiar with
+		it.</p> 
+	 <p
+	>http://username.ws.umdl.umich.edu/cgi/c/collmgr/collmgr</p>
+	 
+	 <p>We won't be doing anything with groups; I'm sure you
+		will in Image Class.</p><hr align="left" noshade="NOSHADE" width="100%"> 
+	 <h3 class="sectionheader"><a name="MakeCollectionmaps"> </a>Make Collection
+		Map </h3> 
+	 <p>Collection mapper files exist to identify the
+		regions and operators used by the middleware when interacting with the search
+		forms. Each collection will need one, but most collections can use a fairly
+		standard map file, such as the one in the <b>sampletc</b> collection. The map
+		files for all Text Class collections are stored in
+		$DLXSROOT/misc/t/text/maps</p> 
+	 <p>Map files take language that is used in the forms
+		and translates it into language for the cgi and for XPAT. For example, if you
+		want your users to be able to search within chapters, you would need to add a
+		mapping for how you want it to appear in the search interface (case is
+		important, as is pluralization!), how the cgi variable would be set (usually
+		all caps, and not stepping on an existing variable), and how XPAT will identify
+		and retrieve this natively.</p> 
+	 <p>The first part of the file is operator mapping, for
+		the form, the cgi, and XPAT. The second part is for region mapping, as in the
+		example above. There is an optional third part for collections with metadata
+		applied bibliographically, such as genre categories.</p> 
+	 <blockquote> 
+		<pre class="unixcommand">cd $DLXSROOT/misc/t/text/maps<br>cp sampletc.map workshoptc.map</pre></blockquote> 
+	 <p><font color="#FF0000">In release 10, the map <b>must</b> have a mapping
+		for the SYNTHETIC value ID. To facilitate sorting, the system must be able to
+		assign one ID uniquely with each text.</font></p> 
+	 <pre>&lt;mapping&gt;
+&lt;label&gt;unique item identifier&lt;/label&gt;
+&lt;synthetic&gt;ID&lt;/synthetic&gt;
+&lt;native&gt;region id&lt;/native&gt;
+&lt;nativeregionname&gt;id&lt;/nativeregionname&gt;
+&lt;/mapping&gt;</pre>
+	 <p><font color="#FF0000">Mappings are also needed for maintitle,
+		mainauthor, and maindate (if the latter are applicable).</font></p> 
+	 <h3 class="sectionheader"> <i>More Documentation</i> </h3> 
+	 <ul> 
+		<li>
+		  <a target="external" href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/collmeta/maps.html">DLXS
+		  Map Files</a></li> 
+	 </ul><hr align="left" noshade="NOSHADE" width="100%"> 
+	 <h3 class="sectionheader"><a name="SetuptheCollectionsWebDirectory"></a>Set
+		Up the Collection's Web Directory </h3> 
+	 <p>Each collection may have a web directory with custom
+		Cascading Style Sheets, interface templates, graphics, and javascript. The
+		default is for a collection to use the web templates at $DLXSROOT/web/t/text. A
+		collection specific web directory may be created, and it is necessary if you
+		have any customization at all. For a minimal collection, you will want three
+		files: index.html, home.tpl, and textclass-specific.css.</p> 
+	 <blockquote> 
+		<pre class="unixcommand">mkdir -p $DLXSROOT/web/w/workshoptc<br>cp $DLXSROOT/web/s/sampletc/index.html $DLXSROOT/web/w/workshoptc/index.html<br>cp $DLXSROOT/web/s/sampletc/home.tpl $DLXSROOT/web/w/workshoptc/home.tpl<br>cp $DLXSROOT/web/s/sampletc/testclass-specific.css $DLXSROOT/web/w/workshoptc/textclass-specific.css</pre> 
+		<pre class="unixcommand"></pre></blockquote> 
+	 <p>Or for a simpler set of pages to edit</p> 
+	 <blockquote> 
+		<pre class="unixcommand">cp /l1/workshop/test01/dlxs/web/s/sampletc/* $DLXSROOT/web/w/workshoptc</pre></blockquote> 
+	 <p>As always, we'll need to change the collection name
+		and paths. You might want to change the look radically, if your HTML skills are
+		up to it.</p> 
+	 <p><font color="#FF0000">In release 10, web templates have changed. More on
+		this subject onFriday.</font></p> 
+	 <h3 class="sectionheader"> <i>More Documentation</i> </h3> 
+	 <ul> 
+		<li><a href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/text/tc-templates.html"
+		  target="external">Text Class Templates</a></li> 
+		<li><a
+		  href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/text/tc-gen-pg-layout.html"
+		  target="external">Text Class General Page Layout and Color</a></li> 
+		<li><a href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/text/tc-graphics.html"
+		  target="external">Text Class Graphics Files</a></li> 
+		<li><a
+		  href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/text/tc-ind-coll-chars.html">Specifying
+		  Individual Collection Characteristics</a></li> 
+		<li><a
+		  href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/text/tc-textclass-css.html"
+		  target="external">Full Text of textclass.css</a></li> 
+		<li><a href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/text/tc-pis.html"
+		  target="external">Text Class Processing Instructions</a></li> 
+	 </ul><hr align="left" noshade="NOSHADE" width="100%"> 
+	 <h3 class="sectionheader"><a name="TryItOut"> </a>Try It Out </h3> 
+	 <p class="sectionheader"><a
+		href="http://yourworkshopvirtualhost/cgi/i/image/image-idx"
+		class="mainpalette">http://username.ws.umdl.umich.edu/cgi/t/text/text-idx</a></p>
+	 
+	 <h3 class="sectionheader"> <i>More Documentation</i> </h3> 
+	 <ul> 
+		<li><a
+		  href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/text/tc-index.html"> <b>Guide to All Text Class
+		  Documentation</b> </a></li> 
+		<li><a
+		  href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/text/tc-ww.html">Building Text Class Word
+		  Wheels</a></li> 
+	 </ul> 
+	 
+   <h2 class="partheader"><a name="ReviewOldCollections" id="ReviewOldCollections"></a>Reviewing
+		Existing Collections After a Move to Release 10</h2> 
+	 <p align="right" class="navlink"> <a
+		href="#TOCReviewOldCollections">go to table of contents</a> </p> 
+	 <h3 class="sectionheader">Check the Fabricated Regions</h3> 
+	 
+   <ul>
+       
+		
+      <li>If you have more than one IDNO value per text, have you identified
+		  the text's unique ID in an id.rgn?</li>
+      <li>Do you have only one maintitle, mainauthor, and maindate per
+		  text?</li>
+   </ul> 
+	 <h3 class="sectionheader">Check the CollMgr</h3> 
+	 <ul> 
+		
+      <li>Are any of the default values that have been automatically added to
+		  your older collections inappropriate?</li> 
+	 </ul> 
+	 <h3 class="sectionheader">Update the Map</h3> 
+	 <ul> 
+		
+      <li>Do you have a mapping for the synthetic value ID?</li> 
+	 </ul> 
+	 <p>&nbsp;</p> </body>
+</html>

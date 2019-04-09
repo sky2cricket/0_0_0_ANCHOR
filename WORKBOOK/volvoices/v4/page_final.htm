@@ -1,0 +1,757 @@
+
+<html>
+<head>
+<title>
+page_01
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+
+<script>
+
+//document.forms[0].VVcomment_04.value HIDDEN  VVcomment_04 validation string
+
+var VVcomment_04 = new String('');
+    VVcomment_04 = "<!-- PAGE VALIDATION :";
+    VVcomment_04 += parent.U.document.UF.validate_page_begin.value+":";
+    VVcomment_04 += parent.U.document.UF.validate_page_01.value+":";
+    VVcomment_04 += parent.U.document.UF.validate_page_02.value+":";
+    VVcomment_04 += parent.U.document.UF.validate_page_03.value+":";
+    VVcomment_04 += parent.U.document.UF.validate_page_04.value+":";
+    VVcomment_04 += parent.U.document.UF.validate_page_05.value+":";
+    VVcomment_04 += parent.U.document.UF.validate_page_06.value+":";
+    VVcomment_04 += " -->";
+
+var STATUS = new Array(
+	"-----Incomplete-----"
+	,"Complete"
+	);
+
+function checkValStatusBegin() {
+	document.write(STATUS[parent.U.document.UF.validate_page_begin.value]);
+}//end function
+
+function checkValStatus1() {
+	document.write(STATUS[parent.U.document.UF.validate_page_01.value]);
+}//end function
+
+function checkValStatus2() {
+	document.write(STATUS[parent.U.document.UF.validate_page_02.value]);
+}//end function
+
+function checkValStatus3() {
+	document.write(STATUS[parent.U.document.UF.validate_page_03.value]);
+}//end function
+
+function checkValStatus4() {
+	document.write(STATUS[parent.U.document.UF.validate_page_04.value]);
+}//end function
+
+function checkValStatus5() {
+	document.write(STATUS[parent.U.document.UF.validate_page_05.value]);
+}//end function
+
+function checkValStatus6() {
+	document.write(STATUS[parent.U.document.UF.validate_page_06.value]);
+}//end function
+
+
+
+</script>
+
+
+</head>
+
+
+<script>document.write('<body onload="load_DF_form();"  bgcolor="'+parent.adb_background_color+'" >');</script>
+
+<font face="arial" size="3">
+<center><font face="arial">
+<h2> <script> document.write(parent.adb_project_name); </script>
+ Workbook Final Page </h2>
+</center>
+
+<script>
+///Civil War Salt Peter Mining None, LCNAF, ULAN. 
+
+
+</script>
+
+<form name="DF"  action="saveXML.php" method="POST">
+
+<script>
+document.write('<input type="hidden"  name="VVcomment_04" value="'+VVcomment_04+'" >');
+</script> 
+
+<table class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="ddeeff">
+<tr class="bgstandard"><td colspan="3">
+
+This is where we will submit the final form when all pages are Complete.
+
+
+</td></tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+&nbsp;
+</td>
+<td>&nbsp;
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+<tr class="bgstandard">
+<td valign="top"><font face="arial" size="2" color="000000" ><b></u>
+Page
+</td>
+<td><font face="arial" size="2" color="000000" ><b></u>
+Validation Status <br>All pages should be in status Complete.
+<br>Incomplete may indicate that  you have not saved that particular page.
+</td>
+
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Begin
+</td>
+<td><font face="arial" size="2" color="000000" ><b></u>
+<script>
+checkValStatusBegin()
+</script>
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Page 1
+</td>
+<td><font face="arial" size="2" color="000000" ><b></u>
+<script>
+checkValStatus1()
+</script>
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Page 2
+</td>
+<td><font face="arial" size="2" color="000000" ><b></u>
+
+<script>
+checkValStatus2();
+</script>
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Page 3
+</td>
+<td><font face="arial" size="2" color="000000" ><b></u>
+<script>
+checkValStatus3();
+</script>
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Page 4
+</td>
+<td><font face="arial" size="2" color="000000" ><b></u>
+<script>
+checkValStatus4();
+</script>
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Page 5
+</td>
+<td><font face="arial" size="2" color="000000" ><b></u>
+<script>
+checkValStatus5();
+</script>
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Page 6
+</td>
+<td><font face="arial" size="2" color="000000" ><b></u>
+<script>
+checkValStatus6();
+</script>
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+&nbsp;
+</td>
+<td>&nbsp;
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td colspan="3">
+<input type="button" name="B2" 
+value="View MODS TAGS" class="buttonnw"
+onclick="buildModsTags(2)">
+&nbsp;&nbsp;
+
+<p><input type="button" name="Bx1" 
+value="Create Incomplete XML File" class="buttonnw"
+onclick="doSaveXML(2)"
+>&nbsp;&nbsp;
+&nbsp;&nbsp;
+ <p><input type="button" name="Bx2" 
+value="Create FINAL XML File with validation" class="buttonnw"
+onclick="doSaveXML(0)"
+>
+&nbsp;&nbsp;
+&nbsp<font face="arial" size="1"></font></td>
+</tr>
+
+
+
+
+
+<tr class="bgstandard">
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+
+
+
+
+<tr class="bgstandard"><td colspan="3" align="left">
+To properly save your file to your computer, please use the following:<br>
+<script>
+document.write("<br>&nbsp;&nbsp;&nbsp;DIRECTORY: <b>"+parent.U.document.UF.XMLPATHFULL.value+"</b>");
+document.write("<br>&nbsp;&nbsp;&nbsp;FILENAME: <b>"+parent.U.document.UF.XMLBASE.value+"0000.xml</b>");
+</script>
+<!---hidden value for debug purposes--->
+<input type="hidden" name="validate_page_final" value="">
+<p>Refer to the illustration below and make sure that you have the designated directory (<b>
+<script>
+document.write(parent.U.document.UF.XMLPATHFULL.value)</script></b>) <br>available on your computer.
+<p>If you are unsure about where to save your work, save the file as <b><script>document.write(parent.U.document.UF.XMLBASE.value+"0000.xml")</script></b> to your desktop and later move it to the proper folder.
+<p>If you do not save this file, you will <b>lose</b> your work.
+</td></tr>
+
+
+<tr class="bgstandard">
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+
+
+<tr class="bgstandard"><td colspan="1" class="label12u">
+Folders for Volunteer Voices
+</td><td class="value12nou">
+<table border="1" cellpadding="4" cellspacing="0" bgcolor="004400">
+<tr class="greenrow">
+<td class="label12nou" valign="top">
+<img src ="../images/Scan2.JPG">
+</td>
+<td class="label12nou" valign="top">
+<img src ="../images/Reworked2.JPG">
+</td>
+</tr>
+<tr class="bgstandard"><td class="label10nou" valign="top" bgcolor="ffffff">
+<u>New Files</u><br>
+The Scan directory should be in your top directory 
+<br>and have a path of <u>C:\Scan</u>
+<br>in order to correctly generate the files.
+</td><td class="label10nou" bgcolor="ffffff" valign="top">
+<u>Reworked Files</u><br>
+The Reworked directory should be in your top directory 
+<br>and have a path of <u>C:\Reworked</u>
+<br>in order to correctly generate the files. 
+</td></tr>
+</table>
+</td><td>&nbsp:</td>
+</tr>
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+</table>
+<!---hidden value for debug purposes--->
+<input type="hidden" name="validate_page_final" value="">
+
+<!--- hidden values to be passed to saveXML.php ----------->
+<input type="hidden" name="sHeader" value=""> 
+<input type="hidden" name="sCloser" value=""> 
+<input type="hidden" name="sPage_01" value=""> 
+<input type="hidden" name="sPage_02" value=""> 
+<input type="hidden" name="sPage_03" value=""> 
+<input type="hidden" name="sPage_04" value=""> 
+<input type="hidden" name="sPage_05" value=""> 
+<input type="hidden" name="sPage_06" value=""> 
+
+<input type="hidden" name="myfilename" value="">
+
+
+</form name="forms[0]">
+
+<center><font face="arial">
+<h2> <script> document.write(parent.adb_project_name); </script>
+ Workbook Final Page </h2>
+</center>
+
+
+<hr>
+
+
+<script>
+
+function load_UF_form() {
+parent.U.document.UF.validate_page_final.value = document.DF.validate_page_final.value
+parent.U.document.UF.VVcomment_04.value = document.DF.VVcomment_04.value
+return;
+}
+
+function load_DF_form() {
+document.DF.validate_page_final.value = parent.U.document.UF.validate_page_final.value
+return;
+}
+
+function doSaveXML(N){
+
+
+//N="0" - real file download with validation
+//N="2" - incomplete file download with no validation
+
+//alert ("doSaveXML("+N+")" );
+
+
+
+
+//document.forms[0].action ="myphp/test_12_p.php";
+///alert ("doSaveXML: document.forms[0].action="+document.forms[0].action );
+///num = 0 raw
+///num = 1 html
+///num = 2 raw but no validation
+///num = 10 - Test raw with no validation
+var num = new Number(N);
+
+
+var VALIDATION = 0;
+
+//alert ( "num="+num);
+
+      if (    parent.U.document.UF.validate_page_begin.value=="0" 
+	    ||  parent.U.document.UF.validate_page_01.value=="0" 
+	    ||  parent.U.document.UF.validate_page_02.value=="0" 
+	    ||  parent.U.document.UF.validate_page_03.value=="0" 
+	    ||  parent.U.document.UF.validate_page_04.value=="0" 
+	    ||  parent.U.document.UF.validate_page_05.value=="0" 
+	    ||  parent.U.document.UF.validate_page_06.value=="0" 
+	)   {
+		VALIDATION = 0;//at least one incomplete
+	}else {	
+		VALIDATION = 1;//all are complete
+	}
+
+if (parent.U.document.UF.validate_page_final.value == 1 ) {//debug short cut
+	VALIDATION = 1; //pretend they are all complete
+	}
+
+if (num==10) {
+	document.forms[0].action = "saveXML_10.php";
+	VALIDATION = 1;  //pretend they are all complete
+	}
+
+if( num == 0 && VALIDATION == 0 ) {
+	alert ("One of your pages is incomplete.\n\nPlease finish your work before saving\n\nor use one of the other buttons\n\nto check your work.");
+	return;
+} else {
+
+//----------------------------------------------------
+
+var hps= new Array();
+var aps_01= new Array();
+var aps_02= new Array();
+var aps_03= new Array();
+var aps_04= new Array();
+var aps_05= new Array();
+var aps_06= new Array();
+var cps= new Array();
+
+var HPS= new String("");
+var APS_01= new String("");
+var APS_02= new String("");
+var APS_03= new String("");
+var APS_04= new String("");
+var APS_05= new String("");
+var APS_06= new String("");
+var CPS= new String("");
+
+    
+    hps = parent.U.buildTagsArray_header(0);
+    aps_01 = parent.U.buildTagsArray_page_01(0);
+    aps_02 = parent.U.buildTagsArray_page_02(0);
+    aps_03 = parent.U.buildTagsArray_page_03(0);
+    aps_04 = parent.U.buildTagsArray_page_04(0);
+    aps_05 = parent.U.buildTagsArray_page_05(0);
+    aps_06 = parent.U.buildTagsArray_page_06(0);
+    cps = parent.U.buildTagsArray_closer(0);
+
+
+for ( i=0; i< hps.length; i++ ) { HPS += hps[i]; }
+for ( i=0; i< aps_01.length; i++ ) { APS_01 += aps_01[i]; }
+for ( i=0; i< aps_02.length; i++ ) { APS_02 += aps_02[i]; }
+for ( i=0; i< aps_03.length; i++ ) { APS_03 += aps_03[i]; }
+for ( i=0; i< aps_04.length; i++ ) { APS_04 += aps_04[i]; }
+for ( i=0; i< aps_05.length; i++ ) { APS_05 += aps_05[i]; }
+for ( i=0; i< aps_06.length; i++ ) { APS_06 += aps_06[i]; }
+for ( i=0; i< cps.length; i++ ) { CPS += cps[i]; }
+
+document.forms[0].sHeader.value= HPS;
+document.forms[0].sPage_01.value= APS_01;
+document.forms[0].sPage_02.value= APS_02;
+document.forms[0].sPage_03.value= APS_03;
+document.forms[0].sPage_04.value= APS_04;
+document.forms[0].sPage_05.value= APS_05;
+document.forms[0].sPage_06.value= APS_06;
+document.forms[0].sCloser.value= CPS;
+
+
+var str_filename= new String();
+    str_filename= parent.U.document.UF.XMLBASE.value+"0000.xml";
+    document.forms[0].myfilename.value = str_filename;
+
+//alert ("document.forms[0].myfilename.value=\n"+document.forms[0].myfilename.value);
+document.forms[0].submit();
+}//end if
+
+}//end function
+
+
+
+
+
+function buildModsTags(N) {
+
+
+
+var num = new Number();
+    num = N;
+
+///num=2 for incomplete tags
+if (num < 2 ) {
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+//before writing anything, make sure all required fields are populated
+
+if ( parent.U.document.UF.validate_page_begin.value == "0" ) {
+	alert("You have not completed required fields on the begin page.");
+	return false;
+	}
+if ( parent.U.document.UF.validate_page_01.value == "0" ) {
+	alert("You have not completed required fields on page 1.");
+	return false;
+	}
+
+if ( parent.U.document.UF.validate_page_02.value == "0" ) {
+	alert("You have not completed required fields on page 2.");
+	return false;
+	}
+
+if ( parent.U.document.UF.validate_page_03.value == "0" ) {
+	alert("You have not completed required fields on page 3.");
+	return false;
+	}
+
+if ( parent.U.document.UF.validate_page_04.value == "0" ) {
+	alert("You have not completed required fields on page 4.");
+	return false;
+	}
+
+if ( parent.U.document.UF.validate_page_05.value == "0" ) {
+	alert("You have not completed required fields on page 5.");
+	return false;
+	}
+
+
+if ( parent.U.document.UF.validate_page_06.value == "0" ) {
+	alert("You have not completed required fields on page 6.");
+	return false;
+	}
+
+
+//var tch=true;
+//tch = checkAllRequiredElements();
+//if (!tch) return;
+//if (!confirm("tch="+tch))return;
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+}
+if (num==2) num=1;
+
+load_UF_form();
+
+var aps_01= new Array();
+var aps_02= new Array();
+var aps_03= new Array();
+var aps_04= new Array();
+var aps_05= new Array();
+var aps_06= new Array();
+
+var hps= new Array();
+var cps= new Array();
+    
+    hps = parent.U.buildTagsArray_header(num);
+    aps_01 = parent.U.buildTagsArray_page_01(num);
+    aps_02 = parent.U.buildTagsArray_page_02(num);
+    aps_03 = parent.U.buildTagsArray_page_03(num);
+    aps_04 = parent.U.buildTagsArray_page_04(num);
+    aps_05 = parent.U.buildTagsArray_page_05(num);
+    aps_06 = parent.U.buildTagsArray_page_06(num);
+    cps = parent.U.buildTagsArray_closer(num);
+
+//alert("aps_06=\n"+aps_06);
+//=================================================
+
+if (num == "0") {
+
+document.write('header("Content-type: application/octet-stream");');
+///document.write('header("Content-Disposition: attachment; filename=\"new.xml\"");');
+document.write('\n\n');	
+
+}else{
+
+
+document.write('<input type="button" name="BBACK" onclick="javascript: history.back()" value="BACK"><P>');
+document.write('<font face="Elephant" size="3" color="a00000">'+parent.adb_project_name+' Workbook, Final Page <p></font>');
+document.write('<font face="Elephant" size="3" color="a00000">PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+		+"This is the generated xml script.  Values you entered are highlighted in red."
+		+"<HR>");
+
+///document.write('< ? xml version="1.0"  ? > \r\n'); 
+///document.write("Content-Type: text/xml ")
+
+}
+
+
+var  abreak = new String("");
+
+if (num != "0") {
+    abreak = "<BR>";
+	}
+
+for (i=0;i<hps.length;i++) {
+	var vps = new String(hps[i]);
+ 	document.write(abreak+vps);
+	}
+
+
+
+
+
+for (i=0;i<aps_01.length;i++) {
+	var vps = new String(aps_01[i]);
+	document.write(abreak+vps);
+	}
+
+for (i=0;i<aps_02.length;i++) {
+	var vps = new String(aps_02[i]);
+	document.write("<br>"+vps);
+	}
+
+for (i=0;i<aps_03.length;i++) {
+	var vps = new String(aps_03[i]);
+	document.write(abreak+vps);
+	}
+
+for (i=0;i<aps_04.length;i++) {
+	var vps = new String(aps_04[i]);
+	document.write(abreak+vps);
+	}
+
+for (i=0;i<aps_05.length;i++) {
+	var vps = new String(aps_05[i]);
+	document.write("<br>"+vps);
+	}
+
+
+for (i=0;i<aps_06.length;i++) {
+	var vps = new String(aps_06[i]);
+	document.write(abreak+vps);
+	}
+
+
+
+
+
+for (i=0;i<cps.length;i++) {
+	var vps = new String(cps[i]);
+	document.write(abreak+vps);
+	}
+
+
+//document.forms[0].target="new.xml";
+//document.forms[0].submit();
+
+}//end function
+
+
+
+
+function xxxxxxxxgenerate_xml_file () {
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+//before writing anything, make sure all required fields are populated
+
+if ( parent.U.document.UF.validate_page_begin.value == "0" ) {
+	alert("You have not completed required fields on the begin page.");
+	return false;
+	}
+if ( parent.U.document.UF.validate_page_01.value == "0" ) {
+	alert("You have not completed required fields on page 1.");
+	return false;
+	}
+
+if ( parent.U.document.UF.validate_page_02.value == "0" ) {
+	alert("You have not completed required fields on page 2.");
+	return false;
+	}
+
+if ( parent.U.document.UF.validate_page_03.value == "0" ) {
+	alert("You have not completed required fields on page 3.");
+	return false;
+	}
+
+if ( parent.U.document.UF.validate_page_04.value == "0" ) {
+	alert("You have not completed required fields on page 4.");
+	return false;
+	}
+
+if ( parent.U.document.UF.validate_page_05.value == "0" ) {
+	alert("You have not completed required fields on page 5.");
+	return false;
+	}
+
+
+if ( parent.U.document.UF.validate_page_06.value == "0" ) {
+	alert("You have not completed required fields on page 6.");
+	return false;
+	}
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+
+var aps_01= new Array();
+var aps_02= new Array();
+var aps_03= new Array();
+var aps_04= new Array();
+var aps_05= new Array();
+var aps_06= new Array();
+
+var hps= new Array();
+var cps= new Array();
+    
+    hps = parent.U.buildTagsArray_header(0);
+    aps_01 = parent.U.buildTagsArray_page_01(0);
+    aps_02 = parent.U.buildTagsArray_page_02(0);
+    aps_03 = parent.U.buildTagsArray_page_03(0);
+    aps_04 = parent.U.buildTagsArray_page_04(0);
+    aps_05 = parent.U.buildTagsArray_page_05(0);
+    aps_06 = parent.U.buildTagsArray_page_06(0);
+    cps = parent.U.buildTagsArray_closer(0);
+
+document.write('header("Content-type: application/octet-stream");');
+///document.write('header("Content-Disposition: attachment; filename=\"new.xml\"");');
+document.write('\n\n');	
+
+
+var vv = new String("")
+
+for (i=0;i<hps.length;i++) {
+	var vps = new String(hps[i]);
+ 	document.write(vps+vv);
+	}
+
+
+for (i=0;i<aps_01.length;i++) {
+	var vps = new String(aps_01[i]);
+	document.write(vps+vv);
+	}
+
+for (i=0;i<aps_02.length;i++) {
+	var vps = new String(aps_02[i]);
+	document.write(vps+vv);
+	}
+
+for (i=0;i<aps_03.length;i++) {
+	var vps = new String(aps_03[i]);
+	document.write(vps+vv);
+
+	}
+
+for (i=0;i<aps_04.length;i++) {
+	var vps = new String(aps_04[i]);
+	document.write(vps+vv);
+	}
+
+for (i=0;i<aps_05.length;i++) {
+	var vps = new String(aps_05[i]);
+	document.write(vps+vv);
+
+	}
+
+
+for (i=0;i<aps_06.length;i++) {
+	var vps = new String(aps_06[i]);
+	document.write(vps+vv);
+	}
+
+
+
+for (i=0;i<cps.length;i++) {
+	var vps = new String(cps[i]);
+	document.write(vps+vv);
+	}
+
+
+
+///parent.U.document.UF.method = "POST"
+///parent.U.document.UF.target = "new.xml";
+///parent.U.document.UF.submit();
+
+
+}//end function generate_xml_file()
+
+
+
+
+</script>
+	
+
+
+</body>
+</html>
+

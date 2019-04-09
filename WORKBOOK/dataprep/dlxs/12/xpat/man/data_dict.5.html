@@ -1,0 +1,964 @@
+<html>
+<head>
+<title>data_dict (man page):  data_dictionary - XPAT Data Dictionary file format for DLXS XPAT databases</title>
+
+
+
+ </head>         <body>
+<div class="pageTitle">DATA_DICT (man page):  data_dictionary - XPAT Data Dictionary file format for DLXS XPAT databases</div>
+<a name="lbAC"></a><h1>DESCRIPTION</h1>
+<p>Each DLXS XPAT database has a Data Dictionary containing information to:</p>
+<ul>
+<li>control the view of the text, such as character mappings and stopwords</li>
+<li>control what is indexed in the text</li>
+<li>locate relevant files, such as the text, index, and region files</li>
+</ul>
+<p>A Data Dictionary is made up of several sections.
+Each section is delimited by ``tags'' - short labels enclosed by angle
+brackets: `&lt;' and `&gt;'.
+For example, information about the database's
+text is preceded by a &lt;Text&gt; start tag and followed by a &lt;/Text&gt;
+end tag.  The slash (`/') character is used to distinguish between end 
+tags and start tags.
+The entire Data Dictionary is enclosed by &lt;DB&gt; and &lt;/DB&gt; tags.
+</p>
+<p>Each section and field in the Data Dictionary is described separately in the
+following paragraphs.  The Data Dictionary contains a Thesaurus field, a Text
+section, an Indices section, and a Regions section.
+</p>
+
+<a name="lbAD"></a><h1>Thesaurus FIELD</h1>
+<p>The Thesaurus field is enclosed by &lt;Thesaurus&gt; and
+&lt;/Thesaurus&gt; tags.  It contains the name of a file with
+thesaurus definitions.  The format of this file is
+described in the `<b>thesaurus</b>' entry of the <i>XPat Reference Manual and Tutorial</i>.
+The filename can be specified using either a relative path or an absolute
+path.
+</p>
+
+<a name="lbAE"></a><h1>Text SECTION</h1>
+<p>The Text section is enclosed by &lt;Text&gt; and &lt;/Text&gt; tags.
+It contains information relating to the text itself.  Specifically,
+it contains an MfsFiles section, which describes all the individual
+files that make up the database.
+</p>
+<dl>
+<dt><b>NOTE:</b></dt><dd>
+For backward-compatibility, the Text section may also
+contain a Files section instead of the MfsFiles section.
+Refer to the ``BACKWARD-COMPATIBILITY'' section at the end
+of this man page for descriptions of this Files section and all the
+fields it contains.</dd>
+</dl>
+
+<a name="lbAF"></a><h1>MfsFiles SECTION</h1>
+<p>The MfsFiles section is enclosed by &lt;MfsFiles&gt; and
+&lt;/MfsFiles&gt; tags.  The fields within the MfsFiles
+section are described in the <b><a href="http://localhost/cgi-bin/man/man2html?5+mfs">mfs</a></b>(5) man page.  Refer to that man page
+for the details.
+</p>
+
+<a name="lbAG"></a><h1>Indices SECTION</h1>
+<p>The Indices section is enclosed by &lt;Indices&gt; and &lt;/Indices&gt;
+tags.  It contains one or more Index sections.
+</p>
+
+<a name="lbAH"></a><h1>Index SECTION</h1>
+<p>The Index section is enclosed by &lt;Index&gt; and &lt;/Index&gt;
+tags.  It contains information about a single, named Main Index.
+Specifically, it contains a Name field, a FastFind section (if a
+Fast-Find index has been built on this Main Index), a File section, an
+InitFile field, an IndexPoints section, a Mappings section, and an
+IntegrityCheck field.
+</p>
+
+<a name="lbAI"></a><h1>Name FIELD</h1>
+<p>The Name field is enclosed by <tt>&lt;Name&gt;</tt> and &lt;/Name&gt; tags.
+It names the index contained within the enclosing Index section.  It
+is used when
+invoking <b>xpat</b> to specify which index is to be used in searching.  The
+first Index section may have an empty Name field.  All other Index
+sections must have non-empty Name fields.
+</p>
+
+<a name="lbAJ"></a><h1>FastFind SECTION</h1>
+<p>The FastFind section is enclosed by &lt;FastFind&gt; and &lt;/FastFind&gt;
+tags.  It contains a FastFindCompression section, a FastFindIndex section
+and a FastFindWordList section.  These sections describe information for
+each of the three files that constitute the FastFind index.  Note that
+these sections are present in the Data Dictionary only if a Fast-Find index has
+been built on the database (this is always the case for MFS databases).
+</p>
+
+<a name="lbAK"></a><h1>FastFindCompression SECTION</h1>
+<p>The FastFindCompression section is enclosed by &lt;FastFindCompression&gt; and
+&lt;/FastFindCompression&gt; tags.  It contains one File section.
+</p>
+
+<a name="lbAL"></a><h1>File SECTION</h1>
+<p>The File section is enclosed by &lt;File&gt; and &lt;/File&gt;
+tags.  It specifies the FastFind Compression file.  It contains a
+SysName field, a ModDate field, and an Offset field.
+</p>
+
+<a name="lbAM"></a><h1>SysName FIELD</h1>
+<p>The SysName field is enclosed by &lt;SysName&gt; and &lt;/SysName&gt;
+tags.  It contains the file's filename or path.
+</p>
+
+<a name="lbAN"></a><h1>ModDate FIELD</h1>
+<p>The ModDate field is enclosed by &lt;ModDate&gt; and &lt;/ModDate&gt;
+tags.  In contains the last modification date of the file, encoded as
+a number.  The database system maintains this number to
+ensure that the database hasn't been changed in an unauthorized manner.
+</p>
+
+<a name="lbAO"></a><h1>Offset FIELD</h1>
+<p>The Offset field is enclosed by &lt;Offset&gt; and &lt;/Offset&gt; tags.
+It contains the logical starting offset of the current information
+within the file.  This field is usually set to 0, except in Region
+sections.  Refer to the Region section, below, for details.
+</p>
+
+<a name="lbAP"></a><h1>FastFindIndex SECTION</h1>
+<p>The FastFindIndex section is enclosed by &lt;FastFindIndex&gt; and
+&lt;/FastFindIndex&gt; tags.  It contains one File section that specifies
+the main Fast-Find Index file.
+The contents of the File section is described in the
+section on FastFindCompression, above.  Refer to that section for details.
+</p>
+
+<a name="lbAQ"></a><h1>FastFindWordList SECTION</h1>
+<p>The FastFindWordList section is enclosed by &lt;FastFindWordList&gt; and
+&lt;/FastFindWordList&gt; tags.  It contains one File section that
+specifies the Fast-Find Word List file.
+The contents of the File section is described in the
+section on FastFindCompression, above.  Refer to that section for details.
+</p>
+
+<a name="lbAR"></a><h1>File SECTION</h1>
+<p>This section specifies the Main Index file.
+The contents of the File section is described in the
+section on FastFindCompression, above.  Refer to that section for details.
+</p>
+
+<a name="lbAS"></a><h1>InitFile FIELD</h1>
+<p>The InitFile field is enclosed by <tt>&lt;InitFile&gt;</tt> and
+&lt;/InitFile&gt; tags.
+It contains the name of a file which is read by <b>xpat</b>
+during initialization.  Any legal <b>xpat</b>
+command may be contained in the initialization file.  Typical uses are
+setting the DefaultRegion, defining macros,
+or defining a match set or region set commonly used in a <b>xpat</b> session.
+Refer to the <i>XPat Reference Manual and Tutorial</i> for more information on the valid Pat commands.
+</p>
+
+<a name="lbAT"></a><h1>IndexPoints SECTION</h1>
+<p>The IndexPoints section is enclosed by &lt;IndexPoints&gt; and
+&lt;/IndexPoints&gt; tags.
+It contains one or more IndexPt section.
+</p>
+
+<a name="lbAU"></a><h1>IndexPt SECTION</h1>
+<p>Each IndexPt section is enclosed by &lt;IndexPt&gt; and
+&lt;/IndexPt&gt; tags.  These fields contain strings which indicate
+points in the text which should be indexed.</p>
+<p>The simplest index point is simply two characters, such as
+<tt>&lt;IndexPt&gt;ab&lt;/IndexPt&gt;</tt>.  This example instructs <b>xpatbld</b>
+to create an index point each time an ``ab'' occurs in the text.
+For each such occurrence, an index point is generated for the ``b''.</p>
+<p>Since listing each two-letter combination to index can be cumbersome,
+each IndexPt section can contain meta-characters.  A meta-character
+stands for a number of characters.  For instance, the meta-character
+`&amp;uppercase.' represents the characters ``ABCDEFG...'' and so on.
+An index point containing <tt>&lt;IndexPt&gt; &amp;uppercase.&lt;/IndexPt&gt;</tt>
+(note the space immediately preceding the `&amp;' character) is equivalent
+to specifying the following:</p>
+<pre>
+<tt>        &lt;IndexPt&gt; A&lt;/IndexPt&gt;
+        &lt;IndexPt&gt; B&lt;/IndexPt&gt;
+        &lt;IndexPt&gt; C&lt;/IndexPt&gt;</tt>
+        and so on...
+</pre>
+<p>A meta-character may appear in place of either the first character, the
+second character, or both.  The following meta-characters are defined:</p>
+<dl>
+<dt>&amp;printable.</dt><dd>
+All ASCII printable characters:
+<pre>
+!@#$%^&amp;*()_+~|1234567890-=`\{}:&quot;&lt;&gt;?[];',./
+abcdefghijklmnopqrstuvwxyz
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+</pre></dd>
+<dt>&amp;ISO_printable.</dt><dd>
+All ASCII printable characters as defined above, plus printable characters
+from the ISO character set.  Note that not every character with the 8th bit
+set is an ISO printable character.  In octal, the character are:
+<pre>
+\241 \242 \243 \244 \245 \246 \247
+\250 \251 \252 \253 \254 \255 \256 \257
+\260 \261 \262 \263 \264 \265 \266 \267
+\270 \271 \272 \273 \274 \275 \276 \277
+\300 \301 \302 \303 \304 \305 \306 \307
+\310 \311 \312 \313 \314 \315 \316 \317
+\320 \321 \322 \323 \324 \325 \326 \327
+\330 \331 \332 \333 \334 \335 \336 \337
+\340 \341 \342 \343 \344 \345 \346 \347
+\350 \351 \352 \353 \354 \355 \356 \357
+\360 \361 \362 \363 \364 \365 \366 \367
+\370 \371 \372 \373 \374 \375 \376 \377
+</pre></dd>
+<dt>&amp;alphabetic.</dt><dd>
+Alphabetic characters <tt>A-Z</tt> and <tt>a-z</tt>.</dd>
+<dt>&amp;ISO_alphabetic.</dt><dd>
+ASCII alphabetic characters as defined above, plus ISO alphabetic characters:
+<pre>
+\300 \301 \302 \303 \304 \305 \306 \307
+\310 \311 \312 \313 \314 \315 \316 \317
+\321 \322 \323 \324 \325 \326
+\331 \332 \333 \334 \335
+\340 \341 \342 \343 \344 \345 \346 \347
+\350 \351 \352 \353 \354 \355 \356 \357
+\361 \362 \363 \364 \365 \366
+\371 \372 \373 \374 \375 \377
+</pre></dd>
+<dt>&amp;uppercase.</dt><dd>
+Uppercase alphabetic characters <tt>A-Z</tt>.</dd>
+<dt>&amp;ISO_uppercase.</dt><dd>
+ASCII uppercase characters as defined above, plus ISO uppercase characters:
+<pre>
+\300 \301 \302 \303 \304 \305 \306 \307
+\310 \311 \312 \313 \314 \315 \316 \317
+\321 \322 \323 \324 \325 \326
+\331 \332 \333 \334 \335
+</pre></dd>
+<dt>&amp;lowercase.</dt><dd>
+Lowercase alphabetic characters <tt>a-z</tt>.</dd>
+<dt>&amp;ISO_lowercase.</dt><dd>
+ASCII uppercase characters as defined above, plus ISO lowercase characters:
+<pre>
+\340 \341 \342 \343 \344 \345 \346 \347
+\350 \351 \352 \353 \354 \355 \356 \357
+\361 \362 \363 \364 \365 \366
+\371 \372 \373 \374 \375 \377
+</pre></dd>
+<dt>&amp;alphanumeric.</dt><dd>
+The alphabetic and numeric characters:  <tt>0-9</tt>, <tt>A-Z</tt>, and
+<tt>a-z</tt>.</dd>
+<dt>&amp;ISO_alphanumeric.</dt><dd>
+The ISO_alphabetic characters as defined above, plus <tt>0-9</tt>.</dd>
+<dt>&amp;special.</dt><dd>
+Non-alphanumeric ASCII printable characters:
+<tt>!@#$%^&amp;*()_+~|-=`\{}[]:&quot;;'&lt;&gt;?,./</tt></dd>
+<dt>&amp;ISO_special.</dt><dd>
+The ASCII special characters defined above, plus ISO special characters:
+<pre>
+\241 \242 \243 \244 \245 \246 \247
+\250 \251 \252 \253 \254 \255 \256 \257
+\260 \261 \262 \263 \264 \265 \266 \267
+\270 \271 \272 \273 \274 \275 \276 \277
+\320 \327
+\330 \336 \337
+\360 \367 \370 \376
+</pre></dd>
+<dt>&amp;all.</dt><dd>
+Every 7-bit character, including `\0'.</dd>
+<dt>&amp;ISO_all.</dt><dd>
+Every 8-bit character, including `\0'.</dd>
+<dt>&amp;numeric.</dt><dd>
+The numeric digits:  <tt>0123456789</tt>.
+<p>The following meta-characters represent single characters which are special
+in the syntax of the Data Dictionary: </p>
+<pre>
+&amp;amp.          &amp;    
+&amp;backspace.    \b
+&amp;lt.           &lt;    
+&amp;gt.           &gt;    
+&amp;return.       \r
+&amp;newline.      \n
+&amp;tab.          \t
+</pre></dd>
+</dl>
+
+<p>
+        <b>The Following meta-characters are defined for Unicode support. Note
+the code points are specified in ranges using the Unicode 'U+'
+notation.</b>
+</p>
+
+<dl>
+<dt>&amp;printable.</dt>
+<dd>
+All ASCII printable characters:
+<pre>
+!@#$%^&amp;*()_+~|1234567890-=`}:&quot;&lt;&gt;?[];',./
+abcdefghijklmnopqrstuvwxyz
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+</pre></dd>
+
+
+<dt>&amp;special.</dt>
+
+<dd>Non-alphanumeric ASCII printable characters:
+<pre>
+!@#$%^&amp;*()_+~|-=`\{}[]:&quot;;'&lt;&gt;?,./
+</pre></dd></dl>
+
+<p> The following meta-characters represent single  characters  which  are special in the syntax of the Data Dictionary:
+<pre> 
+&amp;amp.          &amp;
+&amp;backspace.    \b
+&amp;lt.           &lt;
+&amp;gt.           &gt;
+&amp;return.       \r
+&amp;newline.      \n
+&amp;tab.          \t
+
+</pre>
+</P>
+
+<p> The  following scripts are based on UnicodeData.txt and Perl 5.8 unicore/lib files.
+</p>
+
+<dl>
+<dt>&amp;Latin.</dt>
+<dd>
+<pre>
+U+0041-U+005A U+0061-U+007A U+00AA-U+00AA U+00BA-U+00BA
+U+00C0-U+00D6 U+00D8-U+00F6 U+00F8-U+0220 U+0222-U+0233
+U+0250-U+02AD U+02B0-U+02B8 U+02E0-U+02E4 U+1E00-U+1E9B
+U+1EA0-U+1EF9 U+2071-U+2071 U+207F-U+207F U+212A-U+212B
+U+FB00-U+FB06 U+FF21-U+FF3A U+FF41-U+FF5A
+</pre></dd>
+
+<dt>&amp;Armenian.</dt>
+<dd>
+<pre>
+U+0531-U+0556 U+0559-U+0559 U+0561-U+0587 U+FB13-U+FB17
+</pre></dd>
+
+<dt>&amp;Bengali.</dt>
+<dd>
+<pre>
+U+0981-U+0983 U+0985-U+098C U+098F-U+0990 U+0993-U+09A8
+U+09AA-U+09B0 U+09B2-U+09B2 U+09B6-U+09B9 U+09BC-U+09BC
+U+09BE-U+09C4 U+09C7-U+09C8 U+09CB-U+09CD U+09D7-U+09D7
+U+09DC-U+09DD U+09DF-U+09E3 U+09E6-U+09F1
+</pre></dd>
+
+<dt>&amp;Bopomofo.</dt>
+<dd>
+<pre>
+U+3105-U+312C U+31A0-U+31B7
+</pre></dd>
+<dt>&amp;Buhid.</dt>
+<dd>
+<pre>
+U+1740-U+1753
+</pre></dd>
+
+<dt>&amp;Cherokee.</dt>
+<dd>
+<pre>
+U+13A0-U+13F4
+</pre></dd>
+
+<dt>&amp;Cyrillic.</dt>
+<dd>
+<pre>
+U+0400-U+0481 U+048A-U+04CE U+04D0-U+04F5 U+04F8-U+04F9
+U+0500-U+050F
+U+0901-U+0903 U+0905-U+0939 U+093C-U+094D U+0950-U+0954
+U+0958-U+0963 U+0966-U+096F
+</pre></dd>
+
+<dt>&amp;Ethiopic.</dt>
+<dd>
+<pre>
+U+1200-U+1206 U+1208-U+1246 U+1248-U+1248 U+124A-U+124D
+U+1250-U+1256 U+1258-U+1258 U+125A-U+125D U+1260-U+1286
+U+1288-U+1288 U+128A-U+128D U+1290-U+12AE U+12B0-U+12B0
+U+12B2-U+12B5 U+12B8-U+12BE U+12C0-U+12C0 U+12C2-U+12C5
+U+12C8-U+12CE U+12D0-U+12D6 U+12D8-U+12EE U+12F0-U+130E
+U+1310-U+1310 U+1312-U+1315 U+1318-U+131E U+1320-U+1346
+U+1348-U+135A U+1369-U+137C
+</pre></dd>
+
+<dt>&amp;Georgian.</dt>
+<dd>
+<pre>
+U+10A0-U+10C5 U+10D0-U+10F8
+</pre></dd>
+
+<dt>&amp;Greek.</dt>
+<dd>
+<pre>
+U+00B5-U+00B5 U+037A-U+037A U+0386-U+0386 U+0388-U+038A
+U+038C-U+038C U+038E-U+03A1 U+03A3-U+03CE U+03D0-U+03F5
+U+1F00-U+1F15 U+1F18-U+1F1D U+1F20-U+1F45 U+1F48-U+1F4D
+U+1F50-U+1F57 U+1F59-U+1F59 U+1F5B-U+1F5B U+1F5D-U+1F5D
+U+1F5F-U+1F7D U+1F80-U+1FB4 U+1FB6-U+1FBC U+1FBE-U+1FBE
+U+1FC2-U+1FC4 U+1FC6-U+1FCC U+1FD0-U+1FD3 U+1FD6-U+1FDB
+U+1FE0-U+1FEC U+1FF2-U+1FF4 U+1FF6-U+1FFC U+2126-U+2126
+</pre></dd>
+
+<dt>&amp;Gujarati.</dt>
+<dd>
+<pre>
+U+0A81-U+0A83 U+0A85-U+0A8B U+0A8D-U+0A8D U+0A8F-U+0A91
+U+0A93-U+0AA8 U+0AAA-U+0AB0 U+0AB2-U+0AB3 U+0AB5-U+0AB9
+U+0ABC-U+0AC5 U+0AC7-U+0AC9 U+0ACB-U+0ACD U+0AD0-U+0AD0
+U+0AE0-U+0AE0 U+0AE6-U+0AEF
+</pre></dd>
+
+<dt>&amp;Gurmukhi.</dt>
+<dd>
+<pre>
+U+0A02-U+0A02 U+0A05-U+0A0A U+0A0F-U+0A10 U+0A13-U+0A28
+U+0A2A-U+0A30 U+0A32-U+0A33 U+0A35-U+0A36 U+0A38-U+0A39
+U+0A3C-U+0A3C U+0A3E-U+0A42 U+0A47-U+0A48 U+0A4B-U+0A4D
+U+0A59-U+0A5C U+0A5E-U+0A5E U+0A66-U+0A74
+</pre></dd>
+
+<dt>&amp;Hangul.</dt>
+<dd>
+<pre>
+U+1100-U+1159 U+115F-U+11A2 U+11A8-U+11F9 U+3131-U+318E
+U+AC00-U+D7A3 U+FFA0-U+FFBE U+FFC2-U+FFC7 U+FFCA-U+FFCF
+U+FFD2-U+FFD7 U+FFDA-U+FFDC
+</pre></dd>
+
+<dt>&amp;Han.</dt>
+<dd>
+<pre>
+U+2E80-U+2E99 U+2E9B-U+2EF3 U+2F00-U+2FD5 U+3005-U+3005
+U+3007-U+3007 U+3021-U+3029 U+3038-U+303B U+3400-U+4DB5
+U+4E00-U+9FA5 U+F900-U+FA2D U+FA30-U+FA6A
+</pre></dd>
+
+<dt>&amp;Hanunoo.</dt>
+<dd>
+<pre>
+U+1720-U+1734
+</pre></dd>
+
+<dt>&amp;Hebrew.</dt>
+<dd>
+<pre>
+U+05D0-U+05EA U+05F0-U+05F2 U+FB1D-U+FB1D U+FB1F-U+FB28
+U+FB2A-U+FB36 U+FB38-U+FB3C U+FB3E-U+FB3E U+FB40-U+FB41
+U+FB43-U+FB44 U+FB46-U+FB4F
+</pre></dd>
+
+<dt>&amp;Hiragana.</dt>
+<dd>
+<pre>
+U+3041-U+3096 U+309D-U+309F
+</pre></dd>
+<dt>&amp;Kannada.</dt>
+<dd>
+<pre>
+U+0C82-U+0C83 U+0C85-U+0C8C U+0C8E-U+0C90 U+0C92-U+0CA8
+U+0CAA-U+0CB3 U+0CB5-U+0CB9 U+0CBE-U+0CC4 U+0CC6-U+0CC8
+U+0CCA-U+0CCD U+0CD5-U+0CD6 U+0CDE-U+0CDE U+0CE0-U+0CE1
+U+0CE6-U+0CEF
+</pre></dd>
+
+<dt>&amp;Katakana.</dt>
+<dd>
+<pre>
+U+30A1-U+30FA U+30FD-U+30FF U+31F0-U+31FF U+FF66-U+FF6F
+U+FF71-U+FF9D
+</pre></dd>
+
+<dt>&amp;Khmer.</dt>
+<dd>
+<pre>
+U+1780-U+17D3 U+17E0-U+17E9
+</pre></dd>
+
+<dt>&amp;Lao.</dt>
+<dd>
+<pre>
+U+0E81-U+0E82 U+0E84-U+0E84 U+0E87-U+0E88 U+0E8A-U+0E8A
+U+0E8D-U+0E8D U+0E94-U+0E97 U+0E99-U+0E9F U+0EA1-U+0EA3
+U+0EA5-U+0EA5 U+0EA7-U+0EA7 U+0EAA-U+0EAB U+0EAD-U+0EB9
+U+0EBB-U+0EBD U+0EC0-U+0EC4 U+0EC6-U+0EC6 U+0EC8-U+0ECD
+U+0ED0-U+0ED9 U+0EDC-U+0EDD
+</pre></dd>
+
+<dt>&amp;Malayalam.</dt>
+<dd>
+<pre>
+U+0D02-U+0D03 U+0D05-U+0D0C U+0D0E-U+0D10 U+0D12-U+0D28
+U+0D2A-U+0D39 U+0D3E-U+0D43 U+0D46-U+0D48 U+0D4A-U+0D4D
+U+0D57-U+0D57 U+0D60-U+0D61 U+0D66-U+0D6F
+</pre></dd>
+
+<dt>&amp;Mongolian.</dt>
+<dd>
+<pre>
+U+1810-U+1819 U+1820-U+1877 U+1880-U+18A9
+</pre></dd>
+
+<dt>&amp;Myanmar.</dt>
+<dd>
+<pre>
+U+1000-U+1021 U+1023-U+1027 U+1029-U+102A U+102C-U+1032
+U+1036-U+1039 U+1040-U+1049 U+1050-U+1059
+</pre></dd>
+
+<dt>&amp;Oriya.</dt>
+<dd>
+<pre>
+U+0B01-U+0B03 U+0B05-U+0B0C U+0B0F-U+0B10 U+0B13-U+0B28
+U+0B2A-U+0B30 U+0B32-U+0B33 U+0B36-U+0B39 U+0B3C-U+0B43
+U+0B47-U+0B48 U+0B4B-U+0B4D U+0B56-U+0B57 U+0B5C-U+0B5D
+U+0B5F-U+0B61 U+0B66-U+0B6F
+</pre></dd>
+
+<dt>&amp;Runic.</dt>
+<dd>
+<pre>
+U+16A0-U+16EA U+16EE-U+16F0
+</pre></dd>
+
+<dt>&amp;Sinhala.</dt>
+<dd>
+<pre>
+U+0D82-U+0D83 U+0D85-U+0D96 U+0D9A-U+0DB1 U+0DB3-U+0DBB
+U+0DBD-U+0DBD U+0DC0-U+0DC6 U+0DCA-U+0DCA U+0DCF-U+0DD4
+U+0DD6-U+0DD6 U+0DD8-U+0DDF U+0DF2-U+0DF3
+</pre></dd>
+<dt>&amp;Syriac.</dt>
+<dd>
+<pre>
+U+0710-U+072C U+0730-U+074A
+</pre></dd>
+
+<dt>&amp;Tagalog.</dt>
+<dd>
+<pre>
+U+0710-U+072C U+0730-U+074A
+</pre></dd>
+
+<dt>&amp;Tagbanwa.</dt>
+<dd>
+<pre>
+U+1760-U+176C U+176E-U+1770 U+1772-U+1773
+</pre></dd>
+
+<dt>&amp;Tamil.</dt>
+<dd>
+<pre>
+U+0B82-U+0B83 U+0B85-U+0B8A U+0B8E-U+0B90 U+0B92-U+0B95
+U+0B99-U+0B9A U+0B9C-U+0B9C U+0B9E-U+0B9F U+0BA3-U+0BA4
+U+0BA8-U+0BAA U+0BAE-U+0BB5 U+0BB7-U+0BB9 U+0BBE-U+0BC2
+U+0BC6-U+0BC8 U+0BCA-U+0BCD U+0BD7-U+0BD7 U+0BE7-U+0BF2
+</pre></dd>
+
+<dt>&amp;Telugu.</dt>
+<dd>
+<pre>
+U+0C01-U+0C03 U+0C05-U+0C0C U+0C0E-U+0C10 U+0C12-U+0C28
+U+0C2A-U+0C33 U+0C35-U+0C39 U+0C3E-U+0C44 U+0C46-U+0C48
+U+0C4A-U+0C4D U+0C55-U+0C56 U+0C60-U+0C61 U+0C66-U+0C6F
+</pre></dd>
+
+<dt>&amp;Thaana.</dt>
+<dd>
+<pre>
+U+0780-U+07B1
+</pre></dd>
+
+<dt>&amp;Thai.</dt>
+<dd>
+<pre>
+U+0E01-U+0E3A U+0E40-U+0E4E U+0E50-U+0E59
+</pre></dd>
+
+<dt>&amp;Tibetan.</dt>
+<dd>
+<pre>
+U+0F00-U+0F00 U+0F18-U+0F19 U+0F20-U+0F33 U+0F35-U+0F35
+U+0F37-U+0F37 U+0F39-U+0F39 U+0F40-U+0F47 U+0F49-U+0F6A
+U+0F71-U+0F84 U+0F86-U+0F8B U+0F90-U+0F97 U+0F99-U+0FBC
+U+0FC6-U+0FC6
+</pre></dd>
+
+<dt>&amp;UnifiedIdeograph.</dt>
+<dd>
+<pre>
+U+3400-U+4DB5 U+4E00-U+9FA5 U+FA0E-U+FA0F U+FA11-U+FA11
+U+FA13-U+FA14 U+FA1F-U+FA1F U+FA21-U+FA21 U+FA23-U+FA24
+U+FA27-U+FA29
+</pre></dd></dl>
+
+
+
+
+
+<a name="lbAV"></a><h1>Mappings SECTION</h1>
+<p>The Mappings section is enclosed by <tt>&lt;Mappings&gt;</tt> and &lt;/Mappings&gt;
+tags.  It consists
+of two distinct parts.  The first part is a list of Map sections,
+each of which maps a character, enclosed by <tt>&lt;From&gt;</tt> and
+&lt;/From&gt; tags, to another
+character, enclosed by <tt>&lt;To&gt;</tt> and &lt;/To&gt; tags.  The most common
+use is to
+map uppercase letters into their lowercase equivalents, or punctuation
+into spaces.</p>
+<p> It  is  also  possible to map <i>ranges</i> of characters to their lower case equivalents (where this concept is applicable). The beginning character of  the  range enclosed in &lt;First&gt; and &lt;/First&gt; is followed by the last character in the range enclosed in &lt;Last&gt; and &lt;/Last&gt;.  These  two  tag pairs are enclosed by &lt;CharRange&gt; and &lt;/CharRange&gt;. The &lt;CharRange&gt; tag pair is enclosed by the &lt;From&gt; and &lt;To&gt; tag pairs as  described  for  a single character above. For example:
+ <pre>
+       &lt;From&gt;
+         &lt;CharRange&gt;
+           &lt;First&gt;A&lt;/First&gt;
+           &lt;Last&gt;Z&lt;/Last&gt;
+         &lt;/CharRange&gt; 
+       &lt;/From&gt;
+
+       &lt;To&gt;
+         &lt;CharRange&gt;
+           &lt;First&gt;a&lt;/First&gt;
+           &lt;Last&gt;z&lt;/Last&gt;
+         &lt;/CharRange&gt; 
+       &lt;/To&gt;
+</pre>
+</P>
+<p><b>Note:</b> When <b>xpat</b> starts up, it first builds an initial map
+which maps all non-ASCII and all non-printable characters to NULL.  <b>xpat</b>
+then reads the user-defined character mappings defined in the Mappings
+section and adds those specifications to the initial map.  The user-defined
+mappings override the default mappings.  One use of character mappings is to
+map selected non-printable characters to themselves.  This effectively
+undoes the NULL mapping that <b>xpat</b> creates for those characters by default.</p>
+<p>Two escape mechanisms exist to specify non-printable characters
+in the From and the To fields.  The first
+mechanism is octal specification.  Each octal specification consists
+of a backslash
+followed by three octal digits (e.g., `\003' for `^C').  The
+second mechanism is entity reference specification.  The following table
+illustrates the entity references that can be used.  The characters in
+the right-hand column can be specified using the corresponding entity
+reference in the left-hand column:</p>
+<pre>
+&amp;amp.       &amp;
+&amp;backspace. \b
+&amp;lt.        &lt;
+&amp;gt.        &gt;
+&amp;return.    \r
+&amp;newline.   \n
+&amp;tab.       \t
+</pre>
+<p>Each of the From and To fields can
+contain at most one character, one octal code, or one entity reference.
+If a To field is empty, it means that the corresponding From
+character should be mapped to NULL.</p>
+<p>The second part of the Mappings section is a list of stopwords - words
+which are not indexed.  The words themselves are enclosed by <tt>&lt;Ignore&gt;</tt>
+and &lt;/Ignore&gt; tags.  The whole list is enclosed by
+<tt>&lt;StopWords&gt;</tt> and &lt;/StopWords&gt; tags. Note that stopwords are not
+supported by <b>xpatbldu</b>, the Unicode enabled version of <b>xpatbld</b>.
+</p>
+
+<a name="lbAW"></a><h1>IntegrityCheck FIELD</h1>
+<p>The IntegrityCheck field is enclosed by &lt;IntegrityCheck&gt; and
+&lt;/IntegrityCheck&gt; tags.  This field contains a single number
+that encodes relevant information about the indexing parameters to
+ensure that the descriptive information in the Data Dictionary matches the
+information used to actually create the index.  It is maintained by
+the programs that build and maintain indices (e.g., <b>xpatbld</b> and <b>xpatmaint</b>).  The
+IntegrityCheck value is also checked by <b>xpat</b> on startup.  If an integrity
+error is detected, <b>xpat</b> will print an error message to that effect and
+will not search the database.
+</p>
+
+<a name="lbAX"></a><h1>Regions SECTION</h1>
+<p>The Regions section is enclosed by &lt;Regions&gt; and
+&lt;/Regions&gt; tags.  It usually contains one or more Region
+sections.  However, it may be empty or omitted if no regions are
+defined.
+</p>
+
+<a name="lbAY"></a><h1>Region SECTION</h1>
+<p>Each Region section is enclosed by <tt>&lt;Region&gt;</tt> and
+&lt;/Region&gt; tags.  It contains
+information defining a region of the database.  Regions are used by 
+<b>xpat</b> in the ``within'' and ``including'' commands (refer to the <i>XPat Reference Manual and Tutorial</i>
+for more information).</p>
+<p>Each Region section has zero or more FastRegion sections, a Name field,
+a Desc field, a File section, a Count field, and a Type field.
+</p>
+
+<a name="lbAZ"></a><h1>FastRegion SECTION</h1>
+<p>Each FastRegion section is enclosed by &lt;FastRegion&gt; and
+&lt;/FastRegion&gt; tags.  Each FastRegion section contains information
+defining the FastRegion index between the enclosing region and a specific
+Main Index.  Within a particular Region section, there can be at most
+one FastRegion section for each Index section in the Data Dictionary.  The
+FastRegion sections are created by the <b>xpatfr</b> program when it builds the
+FastRegion indices.</p>
+<p>Each FastRegion section contains a File section and an IndexName
+section.
+</p>
+
+<a name="lbBA"></a><h1>File SECTION</h1>
+<p>The File section is enclosed by &lt;File&gt; and &lt;/File&gt;
+tags.  It specifies the actual file that contains the FastRegion
+index data for the enclosing FastRegion section.  The contents of
+the File section are described in the FastFindCompression section above.
+Refer to that section for details.
+</p>
+
+<a name="lbBB"></a><h1>IndexName SECTION</h1>
+<p>The IndexName section is enclosed by &lt;IndexName&gt; and
+&lt;/IndexName&gt; tags.  It specifies the name of the Main Index in this
+Data Dictionary for which this particular FastRegion index was built.  The
+index name in this field has to be the same as the Name in one of the
+Index sections in this Data Dictionary.  This field can be empty if the FastRegion
+was built on the default index (which does not have a name).
+</p>
+
+<a name="lbBC"></a><h1>Name FIELD</h1>
+<p>The Name field is enclosed by &lt;Name&gt; and &lt;/Name&gt; tags.  It
+contains the name by which that region is referenced in <b>xpat</b>.
+</p>
+
+<a name="lbBD"></a><h1>Desc FIELD</h1>
+<p>The Desc field is enclosed by &lt;Desc&gt; and &lt;/Desc&gt; tags.  It
+contains a description of the region and may be empty or omitted.
+</p>
+
+<a name="lbBE"></a><h1>File SECTION</h1>
+<p>The File section is enclosed by &lt;File&gt; and &lt;/File&gt;
+tags.  It indicates where to find the file containing the region's
+pointers into the text.  The contents of
+the File section are described in the FastFindCompression section above.
+Refer to that section for details.  Note that the Offset field with
+the File section may be non-zero.  This is because the region building
+programs place the index data for several regions inside a single
+file.  The Offset specifies where in that file the current region's
+segment begins.
+</p>
+
+<a name="lbBF"></a><h1>Count FIELD</h1>
+<p>The Count field is enclosed by &lt;Count&gt; and &lt;/Count&gt; tags.
+It gives the number of pointers for this region.  Note that this
+number is twice the number of regions defined because each region in a
+region set consists of a start pointer and an end pointer.
+</p>
+
+<a name="lbBG"></a><h1>Type FIELD</h1>
+<p>The Type field is enclosed by &lt;Type&gt; and &lt;/Type&gt; tags.
+The only type that is currently supported is the `pairs' type
+(where each region is explicitly defined by a start and an end
+pointer).
+</p>
+
+<a name="lbBH"></a><h1>Grammar SECTION</h1>
+<p>This section is enclosed by <tt>&lt;Grammar&gt;</tt> and &lt;/Grammar&gt;
+tags and is reserved for future XPAT use.
+</p>
+
+<a name="lbBI"></a><h1>Display SECTION</h1>
+<p>This section is enclosed by <tt>&lt;Display&gt;</tt> and &lt;/Display&gt; tags
+and is reserved for future XPAT use.
+</p>
+
+<a name="lbBJ"></a><h1>EXAMPLES</h1>
+<p>The following is the Data Dictionary for a complete database.
+Note that parts of some sections have been removed to reduce the size of the
+example.</p>
+<pre>
+&lt;DB&gt;
+  &lt;Thesaurus&gt;/usr/ot/default.the&lt;/Thesaurus&gt;
+  &lt;Text&gt;
+    &lt;MfsFiles&gt;
+      &lt;FileMap&gt;mydb&lt;/FileMap&gt;
+      &lt;FilterChain&gt;
+        &lt;SearchView&gt;meta&lt;/SearchView&gt;
+        &lt;DisplayView&gt;meta&lt;/DisplayView&gt;
+        &lt;RawView&gt;meta&lt;/RawView&gt;
+        &lt;DisplayFmt&gt;ASCII&lt;/DisplayFmt&gt;
+        &lt;DefaultDataTag&gt;&lt;/DefaultDataTag&gt;
+        &lt;FileGroup&gt;
+          &lt;MfsDir&gt;data&lt;/MfsDir&gt;
+          &lt;MfsFile&gt;*.txt&lt;/MfsFile&gt;
+          &lt;MfsExpand&gt;file&lt;/MfsExpand&gt;
+        &lt;/FileGroup&gt;
+      &lt;/FilterChain&gt;
+    &lt;/MfsFiles&gt;
+  &lt;/Text&gt;
+  &lt;Indices&gt;
+    &lt;Index&gt;
+      &lt;Name&gt;default&lt;/Name&gt;
+      &lt;File&gt;
+        &lt;SysName&gt;/usr/ot/manual/def.idx&lt;/SysName&gt;
+        &lt;ModDate&gt;679335524&lt;/ModDate&gt;
+        &lt;Offset&gt;0&lt;/Offset&gt;
+      &lt;/File&gt;
+      &lt;InitFile&gt;/usr/ot/manual/init&lt;/InitFile&gt;
+      &lt;IndexPoints&gt;
+        &lt;IndexPt&gt; &amp;alphanumeric.&lt;/IndexPt&gt;
+      &lt;/IndexPoints&gt;
+      &lt;Mappings&gt;
+        &lt;Map&gt;&lt;From&gt;&lt;/From&gt;&lt;To&gt;&lt;/To&gt;&lt;/Map&gt;
+        &lt;Map&gt;&lt;From&gt;&amp;backspace.&lt;/From&gt;&lt;To&gt; &lt;/To&gt;&lt;/Map&gt;
+        &lt;Map&gt;&lt;From&gt;&amp;tab.&lt;/From&gt;&lt;To&gt; &lt;/To&gt;&lt;/Map&gt;
+        &lt;Map&gt;&lt;From&gt;&amp;newline.&lt;/From&gt;&lt;To&gt; &lt;/To&gt;&lt;/Map&gt;
+        &lt;Map&gt;&lt;From&gt;&amp;return.&lt;/From&gt;&lt;To&gt; &lt;/To&gt;&lt;/Map&gt;
+        &lt;Map&gt;&lt;From&gt;!&lt;/From&gt;&lt;To&gt; &lt;/To&gt;&lt;/Map&gt;
+        &lt;Map&gt;&lt;From&gt;&quot;&lt;/From&gt;&lt;To&gt; &lt;/To&gt;&lt;/Map&gt;
+        &lt;Map&gt;&lt;From&gt;#&lt;/From&gt;&lt;To&gt; &lt;/To&gt;&lt;/Map&gt;
+        &lt;Map&gt;&lt;From&gt;$&lt;/From&gt;&lt;To&gt; &lt;/To&gt;&lt;/Map&gt;
+        &lt;Map&gt;&lt;From&gt;%&lt;/From&gt;&lt;To&gt; &lt;/To&gt;&lt;/Map&gt;
+        &lt;Map&gt;&lt;From&gt;&amp;amp.&lt;/From&gt;&lt;To&gt; &lt;/To&gt;&lt;/Map&gt;
+            ...Note: Some text deleted.<tt>
+        &lt;Map&gt;&lt;From&gt;A&lt;/From&gt;&lt;To&gt;a&lt;/To&gt;&lt;/Map&gt;
+        &lt;Map&gt;&lt;From&gt;B&lt;/From&gt;&lt;To&gt;b&lt;/To&gt;&lt;/Map&gt;
+        &lt;Map&gt;&lt;From&gt;C&lt;/From&gt;&lt;To&gt;c&lt;/To&gt;&lt;/Map&gt;
+        &lt;Map&gt;&lt;From&gt;D&lt;/From&gt;&lt;To&gt;d&lt;/To&gt;&lt;/Map&gt;
+        &lt;Map&gt;&lt;From&gt;E&lt;/From&gt;&lt;To&gt;e&lt;/To&gt;&lt;/Map&gt;
+              ...   </tt>Note: Some text deleted.<tt>
+        &lt;Map&gt;&lt;From&gt;~&lt;/From&gt;&lt;To&gt; &lt;/To&gt;&lt;/Map&gt;
+        &lt;StopWords&gt;
+          &lt;Ignore&gt;a&lt;/Ignore&gt;
+          &lt;Ignore&gt;an&lt;/Ignore&gt;
+          &lt;Ignore&gt;and&lt;/Ignore&gt;
+          &lt;Ignore&gt;are&lt;/Ignore&gt;
+                ...   </tt>Note: Some text deleted.<tt>
+          &lt;Ignore&gt;with&lt;/Ignore&gt;
+        &lt;/StopWords&gt;
+      &lt;/Mappings&gt;
+      &lt;LongestMatch&gt;
+        &lt;Length&gt;0&lt;/Length&gt;
+        &lt;Resolution&gt;0&lt;/Resolution&gt;
+      &lt;/LongestMatch&gt;
+      &lt;IntegrityCheck&gt;1846024038&lt;/IntegrityCheck&gt;
+    &lt;/Index&gt;
+    &lt;Index&gt;
+      &lt;Name&gt;word&lt;/Name&gt;
+      &lt;File&gt;
+        &lt;SysName&gt;/usr/ot/manual/word.idx&lt;/SysName&gt;
+        &lt;ModDate&gt;679335592&lt;/ModDate&gt;
+        &lt;Offset&gt;0&lt;/Offset&gt;
+      &lt;/File&gt;
+      &lt;IndexPoints&gt;
+        &lt;IndexPt&gt; &amp;printable.&lt;/IndexPt&gt;
+        &lt;IndexPt&gt;-&amp;alphanumeric.&lt;/IndexPt&gt;
+        &lt;IndexPt&gt;&amp;alphanumeric.-&lt;/IndexPt&gt;
+        &lt;IndexPt&gt;&amp;printable.&amp;lt.&lt;/IndexPt&gt;
+      &lt;/IndexPoints&gt;
+      &lt;Mappings&gt;
+        &lt;Map&gt;&lt;From&gt;&lt;/From&gt;&lt;To&gt;&lt;/To&gt;&lt;/Map&gt;
+        &lt;Map&gt;&lt;From&gt;&amp;backspace.&lt;/From&gt;&lt;To&gt; &lt;/To&gt;&lt;/Map&gt;
+        &lt;Map&gt;&lt;From&gt;&amp;tab.&lt;/From&gt;&lt;To&gt; &lt;/To&gt;&lt;/Map&gt;
+        &lt;Map&gt;&lt;From&gt;&amp;newline.&lt;/From&gt;&lt;To&gt; &lt;/To&gt;&lt;/Map&gt;
+        &lt;Map&gt;&lt;From&gt;&amp;return.&lt;/From&gt;&lt;To&gt; &lt;/To&gt;&lt;/Map&gt;
+        &lt;Map&gt;&lt;From&gt;!&lt;/From&gt;&lt;To&gt; &lt;/To&gt;&lt;/Map&gt;
+              ...   </tt>Note: Some text deleted.<tt>
+        &lt;Map&gt;&lt;From&gt;~&lt;/From&gt;&lt;To&gt; &lt;/To&gt;&lt;/Map&gt;
+        &lt;StopWords&gt;&lt;/StopWords&gt;
+      &lt;/Mappings&gt;
+      &lt;LongestMatch&gt;
+        &lt;Length&gt;0&lt;/Length&gt;
+        &lt;Resolution&gt;0&lt;/Resolution&gt;
+      &lt;/LongestMatch&gt;
+      &lt;IntegrityCheck&gt;736122026&lt;/IntegrityCheck&gt;
+    &lt;/Index&gt;
+  &lt;/Indices&gt;
+  &lt;Regions&gt;
+    &lt;Region&gt;
+      &lt;Name&gt;cmd&lt;/Name&gt;
+      &lt;Desc&gt;Illustrations of xpat commands.&lt;/Desc&gt;
+      &lt;File&gt;
+        &lt;SysName&gt;/usr/ot/manual/rgn.cmd&lt;/SysName&gt;
+        &lt;ModDate&gt;679335629&lt;/ModDate&gt;
+        &lt;Offset&gt;0&lt;/Offset&gt;
+      &lt;/File&gt;
+      &lt;Count&gt;672&lt;/Count&gt;
+      &lt;Type&gt;pairs&lt;/Type&gt;
+    &lt;/Region&gt;
+    &lt;Region&gt;
+      ...   </tt>Note: Some text deleted.<tt>
+    &lt;/Region&gt;
+    &lt;Region&gt;
+      ...   </tt>Note: Some text deleted.<tt>
+    &lt;/Region&gt;
+  &lt;/Regions&gt;
+&lt;/DB&gt;
+</tt></pre>
+
+<a name="lbBK"></a><h1>BACKWARD-COMPATIBILITY</h1>
+<p>The following paragraphs describe the contents of the Files section
+used in Release 4.x Data Dictionaries.
+</p>
+
+<a name="lbBL"></a><h1>Files SECTION</h1>
+<p>The Files section is enclosed by &lt;Files&gt; and &lt;/Files&gt;
+tags.  It contains one File section that describes the text file (in
+Release 4.x database, the text was in ASCII or tagged ASCII format, and
+was in a single file).  The contents of the File section
+are described in the FastFindCompression section above.  Refer to that
+section for details.
+</p>
+
+<a name="lbBM"></a><h1>FILES</h1>
+<p>The following sections of the Data Dictionary reference specific files:</p>
+<pre>
+<tt>&lt;Thesaurus&gt;</tt>                  thesaurus file
+<tt>&lt;Text&gt;&lt;Files&gt;</tt>                database's text
+<tt>&lt;Indices&gt;&lt;Index&gt;&lt;File&gt;</tt>       index over the database
+<tt>&lt;Indices&gt;&lt;Index&gt;&lt;InitFile&gt;</tt>   initialization commands for <b>xpat</b>
+<tt>&lt;Regions&gt;&lt;Region&gt;&lt;File&gt;</tt>      region files
+</pre>
+
+<a name="lbBN"></a><h1>SEE ALSO</h1>
+<p><b><a href="xpat.1.html">xpat</a></b>(1), <b><a href="xpatbld.1.html">xpatbld</a></b>(1), <b>xpatmaint</b>(1), <b>xpatrgn</b>(1), <b><a href="multirgn.1.html">multirgn</a></b>(1), <b><a href="sgmlrgn.1.html">sgmlrgn</a></b>(1),
+<b><a href="xpat_export.5.html">xpat_export</a></b>(5), <b><a href="regions.5.html">regions</a></b>(5)</p>
+
+<h1>Index</h1>
+<ul>
+<li><a href="#lbAC">DESCRIPTION</a></li>
+<li><a href="#lbAD">Thesaurus FIELD</a></li>
+<li><a href="#lbAE">Text SECTION</a></li>
+<li><a href="#lbAF">MfsFiles SECTION</a></li>
+<li><a href="#lbAG">Indices SECTION</a></li>
+<li><a href="#lbAH">Index SECTION</a></li>
+<li><a href="#lbAI">Name FIELD</a></li>
+<li><a href="#lbAJ">FastFind SECTION</a></li>
+<li><a href="#lbAK">FastFindCompression SECTION</a></li>
+<li><a href="#lbAL">File SECTION</a></li>
+<li><a href="#lbAM">SysName FIELD</a></li>
+<li><a href="#lbAN">ModDate FIELD</a></li>
+<li><a href="#lbAO">Offset FIELD</a></li>
+<li><a href="#lbAP">FastFindIndex SECTION</a></li>
+<li><a href="#lbAQ">FastFindWordList SECTION</a></li>
+<li><a href="#lbAR">File SECTION</a></li>
+<li><a href="#lbAS">InitFile FIELD</a></li>
+<li><a href="#lbAT">IndexPoints SECTION</a></li>
+<li><a href="#lbAU">IndexPt SECTION</a></li>
+<li><a href="#lbAV">Mappings SECTION</a></li>
+<li><a href="#lbAW">IntegrityCheck FIELD</a></li>
+<li><a href="#lbAX">Regions SECTION</a></li>
+<li><a href="#lbAY">Region SECTION</a></li>
+<li><a href="#lbAZ">FastRegion SECTION</a></li>
+<li><a href="#lbBA">File SECTION</a></li>
+<li><a href="#lbBB">IndexName SECTION</a></li>
+<li><a href="#lbBC">Name FIELD</a></li>
+<li><a href="#lbBD">Desc FIELD</a></li>
+<li><a href="#lbBE">File SECTION</a></li>
+<li><a href="#lbBF">Count FIELD</a></li>
+<li><a href="#lbBG">Type FIELD</a></li>
+<li><a href="#lbBH">Grammar SECTION</a></li>
+<li><a href="#lbBI">Display SECTION</a></li>
+<li><a href="#lbBJ">EXAMPLES</a></li>
+<li><a href="#lbBK">BACKWARD-COMPATIBILITY</a></li>
+<li><a href="#lbBL">Files SECTION</a></li>
+<li><a href="#lbBM">FILES</a></li>
+<li><a href="#lbBN">SEE ALSO</a></li>
+</ul>
+
+</body>
+
+</html>

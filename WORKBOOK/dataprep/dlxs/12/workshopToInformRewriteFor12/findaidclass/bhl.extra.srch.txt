@@ -1,0 +1,115 @@
+(region ead); {exportfile "/l1/idx/b/bhlead/main.rgn"}; export; ~sync "main";
+##
+##
+(((region "<c01".."</did>" + region "<c02".."</did>" + region "<c03".."</did>" + region "<c04".."</did>" + region "<c05".."</did>" + region "<c06".."</did>" + region "<c07".."</did>" + region "<c08".."</did>" + region "<c09".."</did>") not incl ("level=file" + "level=item")) incl "level="); {exportfile "/l1/idx/b/bhlead/c0xhead.rgn"}; export; ~sync "c0xhead";
+##
+##
+((region "<origination".."</unittitle>") within ((region did within region archdesc) not within region dsc)); {exportfile "/l1/idx/b/bhlead/maintitle.rgn"}; export; ~sync "maintitle";
+##
+##
+#(region "author" within region "eadheader"); {exportfile "/l1/idx/b/bhlead/mainauthor.rgn"}; export; ~sync "mainauthor";
+((region "persname" + region "corpname" + region "famname" + region "name") within (region "origination" within ( region "did" within (region "archdesc")))); {exportfile "/l1/idx/b/bhlead/mainauthor.rgn"}; export; ~sync "mainauthor";
+##
+##
+(region "abstract" within ((region did within region archdesc) not within region "c01")); {exportfile "/l1/idx/b/bhlead/mainabstract.rgn"}; export; ~sync "mainabstract";
+##
+##
+(region unittitle within ((region did within region archdesc) not within region dsc)); {exportfile "/l1/idx/b/bhlead/colltitle.rgn"}; export; ~sync "colltitle";
+##
+##
+((region unitdate incl "encodinganalog=245$f") within ((region did within region archdesc) not within region dsc)); {exportfile "/l1/idx/b/bhlead/colldate.rgn"}; export; ~sync "colldate";
+##
+##
+##
+##
+(region "eadid"); {exportfile "/l1/idx/b/bhlead/callnum.rgn"}; export; ~sync "callnum";
+##
+##
+(region "dsc-T"); {exportfile "/l1/idx/b/bhlead/contentslist-t.rgn"}; export; ~sync "contentslist-t";
+##
+##
+(region dsc); {exportfile "/l1/idx/b/bhlead/contentslist.rgn"}; export; ~sync "contentslist";
+##
+## ########## admininfo ########
+admininfot = (region "descgrp-T" incl (region "A-type" incl "admin")); {exportfile "/l1/idx/b/bhlead/admininfo-t.rgn"}; export; ~sync "admininfo-t";
+##
+##
+(region "descgrp" incl *admininfot); {exportfile "/l1/idx/b/bhlead/admininfo.rgn"}; export; ~sync "admininfo";
+##
+
+## ########## add ######
+addt = (region "descgrp-T" incl (region "A-type" incl "add")); {exportfile "/l1/idx/b/bhlead/add-t.rgn"}; export; ~sync "add-t";
+
+##
+##
+(region "descgrp" incl *addt); {exportfile "/l1/idx/b/bhlead/add.rgn"}; export; ~sync "add";
+##
+
+## ########## frontmatter/titlepage ########
+frontmattert = region "frontmatter-T"; {exportfile "/l1/idx/b/bhlead/frontmatter-t.rgn"}; export; ~sync "frontmatter-t";
+##
+##
+# frontmatter itself not needed as fabricated region since it exists
+# as a regular xml region
+##
+
+## ########## bioghist ########
+bioghist = ((region "bioghist" within region "archdesc") not within region "dsc"); {exportfile "/l1/idx/b/bhlead/bioghist.rgn"}; export; ~sync "bioghist";
+##
+##
+region "bioghist-T" within *bioghist; {exportfile "/l1/idx/b/bhlead/bioghist-t.rgn"}; export; ~sync "bioghist-t";
+##
+##
+##bioghisthead = ((region "<bioghist" .. "</head>" within region "archdesc") not within region "dsc"); {exportfile "/l1/idx/b/bhlead/bioghisthead.rgn"}; export; ~sync "bioghisthead";
+##
+
+## ########## arrangement ########
+arrangementt = region "arrangement-T"; {exportfile "/l1/idx/b/bhlead/arrangement-t.rgn"}; export; ~sync "arrangement-t";
+##
+##
+# arrangement itself not needed as fabricated region since it exists
+# as a regular xml region
+##
+##
+
+
+region "controlaccess-T" ^ region "controlaccess"; {exportfile "/l1/idx/b/bhlead/controlaccess-t.rgn"}; export; ~sync "controlaccess-t";
+##
+##
+(region "controlaccess"); {exportfile "/l1/idx/b/bhlead/controlaccess.rgn"}; export; ~sync "controlaccess";
+##
+##
+(region "scopecontent-T" ^ (region scopecontent not within region dsc)); {exportfile "/l1/idx/b/bhlead/scopecontent-t.rgn"}; export; ~sync "scopecontent-t";
+##
+##
+(region scopecontent not within region dsc); {exportfile "/l1/idx/b/bhlead/scopecontent.rgn"}; export; ~sync "scopecontent";
+##
+##
+(region scopecontent); {exportfile "/l1/idx/b/bhlead/allscopecontent.rgn"}; export; ~sync "allscopecontent";
+##
+##
+(region "did-T" ^ ((region did within region archdesc) not within region dsc)); {exportfile "/l1/idx/b/bhlead/summaryinfo-t.rgn"}; export; ~sync "summaryinfo-t";
+##
+##
+((region did within region archdesc) not within region dsc); {exportfile "/l1/idx/b/bhlead/summaryinfo.rgn"}; export; ~sync "summaryinfo";;
+##
+##
+
+#############################
+
+(region "subject" + region "occupation" + region "corpname" + region "famname" + region "name" + region "persname" + region "geogname"); {exportfile "/l1/idx/b/bhlead/subjects.rgn"}; export; ~sync "subjects";
+
+(region "corpname" + region "famname" + region "name" + region "persname"); {exportfile "/l1/idx/b/bhlead/names.rgn"}; export; ~sync "names";
+
+
+(region geogname); {exportfile "/l1/idx/b/bhlead/places.rgn"}; export; ~sync "places";
+
+#(region "organization-T" ^ (region organization not within region dsc)); {exportfile "/l1/idx/b/bhlead/organization-t.rgn"}; export; ~sync "organization-t";
+
+#(region organization not within region dsc); {exportfile "/l1/idx/b/bhlead/organization.rgn"}; export; ~sync "organization";
+
+
+#(region "odd-T" ^ (region odd not within region dsc)); {exportfile "/l1/idx/b/bhlead/odd-t.rgn"}; export; ~sync "odd-t";
+
+#(region odd not within region dsc); {exportfile "/l1/idx/b/bhlead/odd.rgn"}; export; ~sync "odd";
+

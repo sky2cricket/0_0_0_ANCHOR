@@ -1,0 +1,217 @@
+<html>
+<head>
+<script language=javascript src="links/vv_functions_links.js"></script>
+<title>
+char_check
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+</head>
+<!-- body  class="bg_aabbcc" -->
+<body bgcolor="aabbcc">
+<font face="arial" size="3">
+<center><font face="arial">
+<script>//document.write(dlxs_vv_header);</script>
+<p>
+</center>
+<table  class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="99aabb">
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+<tr class="bgstandardwhite" ><td colspan="3" align="left" class="step">
+<pre>
+step_005.htm
+STEP FIVE - processing 00 files - /d1/workarea/dlxs/image/tel/singles
+PROCESSING WITH NO PROBLEMS
+
+[root@diglib2 telfiles]# cd /d1/workarea/dlxs/image/tel/singles
+[root@diglib2 singles]# ls
+15_60_227char  countfiles2  here               jpegs/           NOTE           spc/
+15_60_227hex   done/        hex                linkfile         olderVersions/ testfiles/
+categories     dothis       hexmess            minithumbs/      open           thumbs/
+catref         entry        httpEncodings      mods/            opensearch     titles
+checkme        fieldtest    ic/                modsbib/         preservation/  translate
+close          fixSubjects  ic.vvz.unnorm.sgm  modsICsearchOai  problems/      vvzHeader
+countfiles     footer       infotrack          newmods/         search/
+
+SCRIPTS TO RUN
+
+a. modsICsearchOai >nameYourRedirect.txt
+	# this transforms MODS xml files into
+	# image class files (ic/*) and
+	# bib class files (modsbib/*) and
+	# search class files (search/*)
+	# assigns pid and puts it in file, storing this link in 
+	# paul's locserve database on diglib  (after testing)
+
+   modsICsearchOai script checks linkfile for persistant url for xml base
+   The line in link file for 0031_000050_000203_0000 xml base is:
+	
+	0031_000050_000203_0000  http://idserver.utk.edu/?id=200800000001402
+
+   Since this data was entered in 2008, it will be in the y2008 table in the locserv database on diglib.
+
+   Use the query shown below to see this row in locserve.y2008
+
+   	SELECT * FROM `y2008` 
+	WHERE realurl LIKE '%0031_000050_000203_0000%'
+ 
+   If modsICsearchOai finds xmlbase in linkfile, move on
+   If modsICsearchOai does not find the purl on list, 
+		a. it creates new purl 
+		b. adds the xmlbase, purl to list in linkfile.
+			You can see the new lines in the link file
+   		c. adds new purl to paul's locserve database on diglib
+		   (https://diglib.lib.utk.edu/pxmxap/index.php?db=locserve)
+		  	You can see the new rows in the database table.
+
+   When you run modsICsearchOai >nameYourRedirect.txt the input is
+	mods/* ..............................Workbook Mods picked up by pickupTime <a href="xfiles/00_vvz/mods_0031_000050_000203_0000.xml.txt" target="_blank">0031_000050_000203_0000.xml</a>
+   The output is 
+	ic/* ................................files in image class format <a href="xfiles/00_vvz/ic_0031_000050_000203_0000.txt" target="_blank">0031_000050_000203_0000</a>
+	modsbib/* ...........................files in bib class format <a href="xfiles/00_vvz/modsbib_0031_000050_000203_0000.txt" target="_blank">0031_000050_000203_0000</a>
+	newmods/* ...........................files in mods format <a href="xfiles/00_vvz/newmods_0031_000050_000203_0000.xml.txt" target="_blank">0031_000050_000203_0000.xml</a>
+	preservation/* ......................files in preservation format <a href="xfiles/00_vvz/preservation_0031_000050_000203_0000.xml.txt" target="_blank">0031_000050_000203_0000.xml</a>
+	search/*  ...........................files in search format <a href="xfiles/00_vvz/search_0031_000050_000203_0000.txt" target="_blank">0031_000050_000203_0000</a>
+
+The next step is to create the unnormalized sgml file for image class.
+cat vvzHeader ic/* done/ic/* footer > ic.vvz.unnorm.sgm
+cp ic.vvz.unnorm.sgm /d1/dlxs/prep/v/vvz/.
+rm /d1/dlxs/prep/v/vvz/ic.vvz.norm.sgm
+cp thumbs/* /d1/dlxs/img/v/vvz/thumb/
+cp jpegs/* /d1/dlxs/img/v/vvz/large/
+
+The next step is image class setup.
+----------------end of this page, notes for next----------------
+
+Image class setup
+
+cd /d1/dlxs/bin/i/image
+[root@diglib2 singles]# cd /d1/dlxs/bin/i/image
+[root@diglib2 image]# ls
+A2.txt  A.txt                           idb             imageprep.cfg       tab2html.pl
+A3.txt  clean.newlines.inplace.pl       idb.20070327jd  localimageprep.cfg
+A4.txt  firestar_xpat_images_steps.txt  idb.bak         makefieldbrowse.pl
+A5.txt  getoneline.pl                   idb.bk          old
+A6.txt  html2tab.pl                     imageprep       setupcollindex
+
+imageprep vvz > A.txt
+
+imageprep is UMICH file to do imageprep things, bad characters break it and
+	 	you have to go back to singles and take care of problems.
+
+idb norm vvz
+idb	 is UMICH file to do idb things - normalize the unnormal ic.vvz.unnorm.sgm
+
+Then you have to get rid of the existing 
+/d1/dlxs/idx/v/vvi directory
+rmdir vvi
+
+Then you can run setupcollindex (UMICH program)
+setupcollindex v/vvi > nameYourRedirect.txt
+
+Then go to the new vvi directory you just made
+
+[root@diglib2 vvi]# pwd
+/d1/dlxs/idx/v/vvi
+[root@diglib2 vvi]# ls
+image.blank.dd  image.cfg  image.dd  image.idx  image.inp  image.rgn  Makefile  tags.txt
+
+and run >> make all
+
+Then do imageclass release to production
+
+http://diglib2.lib.utk.edu/cgi/c/collmgr/collmgr?type=%24TYPE&class=image&submit=release
+
+go to browser vvi multiples
+http://diglib2.lib.utk.edu/cgi/i/image/image-idx?c=vvi and see if your files are there
+
+browser for vvz singles
+http://diglib2.lib.utk.edu/cgi/i/image/image-idx?c=vvz;page=index;sid=62d234aadea2e9f26dbc8c96047124e9;g=vvv
+
+
+
+
+  ***In the case that a digital object item is changed from
+	one class to another, there have to be corresponding changes in purls
+	1.  There is one link file for each class.
+		vvz-00 /d1/workarea/dlxs/image/tel/singles/linkfile
+		vvi-01 /d1/workarea/dlxs/image/tel/multiples/linkfile
+		vvt-03, vvo-02, vvb04, /d1/workarea/dlxs/text/tel/linkfile
+ 
+	2. When a digital object goes from one class to another, you have to
+		a. Find original persistant id in the first link file - 
+		b. copy this to the new appropriate link file
+		c. need to go to locServe database on diglib and change the link by hand
+		d. locServe has redirects in it for purls create correct url
+
+	3. Examine the persistant id in weblink= at top of search/*.xml file
+
+	c. modsICsearchOai inserts new purl into locserv database
+
+
+   When you run modsICsearchOai >checkme
+   this creates 
+	ic/*
+	modsbib/*
+	newmods/*
+	search/*
+
+
+b.  fixSubjects - this process now done at /d1/workarea/dlxs/bib/mods/vv
+	# fixSubjects
+	# repairs the MODS and the modsbib (not the search)
+	# so that each subject is contained in its own &lt;subject auth= tag.
+	# also, for LCSH ones, splits them out on the "--" value.
+	# if the  value contains "century" or numbers (dashes?), label it temporal
+	# if the value contains only "Tennessee" or "United States" and spaces,
+	#    label it geographic
+	# otherwise, the first value keeps its current tag, and all following 
+	# values (that don't meet those specs) get labeled topic, and stay within the
+	# same subject tag.
+
+c. hexmess - use only if software breaks when you normalize
+	#hexmess
+	#hexdumps files and checks the hexdump for bad characters.
+	# outputs list of characters that must be removed or replaced.
+	# use to test OCR files in particular
+
+<!---------------------------------
+other things to do, including special handling for special collectios
+this came from the "dothis" file in /d1/workarea/dlxs/image/tel/singles
+
+
+separate out the newmods from institution 0012 and put in spc directory.
+/bin/mv newmods/0012* spc/mods/.
+
+for bib class:
+/bin/mv  modsbib/0012* spc/modsbib/.
+/bin/cp modsbib/* /d1/workarea/dlxs/bib/mods/vv/xml
+
+
+for search:
+/bin/cp search/0012* spc/modssearch/.
+/bin/cp search/* /d1/workarea/dlxs/bib/search/vv/xml/
+
+You will go there to put all the search and mods files from different directories up.
+scp minithumbs/* diglib@diglib.lib.utk.edu:/d1/dlxs/web/thumbs/vv/.
+(need these for search display)
+
+run fixSubjects
+
+(more about fixSubjects in MODS dir where we will be making preservation versions)
+
+do NOT run infotrack on these yet, as we need to relate them to their EADs,
+and alter them for crosslinking.
+
+hopefully you have all new dlc files in one directory alone.
+point infotrack at this directory and run it, to put info on files into
+InfoTrack database.  then copy new stuff to store1.
+-->
+
+
+</pre>
+</font>
+</td></tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+</table>
+
+

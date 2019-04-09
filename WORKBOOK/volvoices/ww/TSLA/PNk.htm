@@ -1,0 +1,428 @@
+<html>
+<head>
+<title>vv_popupCA</title>
+
+<link href="../vv_workbook.css" type="text/css" rel="stylesheet">
+
+
+
+
+<script language="javascript">
+
+var select_id= new String();
+function get_select_id() {
+
+var str = new String();
+    str = parent.location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  parent.window.opener.location.href="+parent.window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=get_select_id();
+
+
+
+var strSelect_PN_A = new String('');
+
+
+strSelect_PN_A = '<select name="aaa"  size="24" style="font-size:10px"> \r\n'
+	+'<option value="0" selected>No value selected</option> \r\n'
+		
+
+
+
+
+	+'<option>KADIRI, NURATU OLAREWAJU ABEKE, - 1978-</option>  \r\n'
+	+'<option>KAHN, ALFRED E. - (ALFRED EDWARD)</option>  \r\n'
+	+'<option>KAISER FAMILY</option>  \r\n'
+	+'<option>KAISER, HENRY J., - 1882-</option>  \r\n'
+	+'<option>KALB, JEAN, - BARON DE, ORIGINALLY JOHANN KALB, - 1721-1780</option>  \r\n'
+	+'<option>KALM, PEHR, - 1716-1779</option>  \r\n'
+	+'<option>KALOLA, - HIGH PRIEST OF THE NYAMWESI, - 1856?-1933?</option>  \r\n'
+	+'<option>KALTENBORN, H. V. - (HANS), - 1878-1965</option>  \r\n'
+	+'<option>KAMEHAMEHA - I, - THE GREAT, KING OF THE HAWAIIAN ISLANDS, - D. 1819</option>  \r\n'
+	+'<option>KAMM, JACOB, - 1823-1912</option>  \r\n'
+	+'<option>KAMMER, RAYMOND GERARD, - 1947-</option>  \r\n'
+	+'<option>KANNAN, GEETHA, - 1985-</option>  \r\n'
+	+'<option>KANT, IMMANUEL, - 1724-1804</option>  \r\n'
+	+'<option>KANTOR, MICHAEL, - 1939-</option>  \r\n'
+	+'<option>KAPLAN, ELAINE DEBRA, - 1955-</option>  \r\n'
+	+'<option>KAPLAN, STEPHEN HOWARD, - 1947-</option>  \r\n'
+	+'<option>KAPNEK, THEODORE H. </option>  \r\n'
+	+'<option>KAPPUS, FRANZ XAVER, - 1883-1966</option>  \r\n'
+	+'<option>KAROLYI, GASPAR, - CA. 1529-1591</option>  \r\n'
+	+'<option>KARPAN, KATHLEEN MARIE, - 1942-</option>  \r\n'
+	+'<option>KARWEIL FAMILY</option>  \r\n'
+	+'<option>KARWEIL, LELA SABIN, - 1921- </option>  \r\n'
+	+'<option>KASSON, JOHN ADAM, - 1822-1910</option>  \r\n'
+	+'<option>KASTNER FAMILY</option>  \r\n'
+	+'<option>KATZEN, SALLY</option>  \r\n'
+	+'<option>KAUFFMAN FAMILY</option>  \r\n'
+	+'<option>KAUFMAN, PHIL</option>  \r\n'
+	+'<option>KAVANAUGH, H. H. - (HUBBARD HINDE), - 1802-1884</option>  \r\n'
+	+'<option>KAY FAMILY</option>  \r\n'
+	+'<option>KAYLON FAMILY</option>  \r\n'
+	+'<option>KEAGY FAMILY</option>  \r\n'
+	+'<option>KEANE FAMILY</option>  \r\n'
+	+'<option>KEATHLEY FAMILY</option>  \r\n'
+	+'<option>KEATOR FAMILY</option>  \r\n'
+	+'<option>KEATS, JOHN, - 1795-1821</option>  \r\n'
+	+'<option>KEATTS, BURWELL C.</option>  \r\n'
+	+'<option>KECK FAMILY</option>  \r\n'
+	+'<option>KEEBLE FAMILY</option>  \r\n'
+	+'<option>KEEBLE, MARSHALL, - 1878-1968</option>  \r\n'
+	+'<option>KEECH FAMILY</option>  \r\n'
+	+'<option>KEELAN, JAMES, - B. CA. 1826,</option>  \r\n'
+	+'<option>KEELE, WILLIAM, - 1781-1861</option>  \r\n'
+	+'<option>KEELER FAMILY</option>  \r\n'
+	+'<option>KEELER, OSCAR T. </option>  \r\n'
+	+'<option>KEELER, WILLIAM WAYNE, - 1908-1987</option>  \r\n'
+	+'<option>KEELING FAMILY</option>  \r\n'
+	+'<option>KEETON FAMILY</option>  \r\n'
+	+'<option>KEFAUVER, ESTES, - 1903-1963</option>  \r\n'
+	+'<option>KEITH FAMILY</option>  \r\n'
+	+'<option>KELL FAMILY</option>  \r\n'
+	+'<option>KELL, JOHN MCINTOSH, - 1823-1900</option>  \r\n'
+	+'<option>KELLAR, HERBERT ANTHONY, - 1887-1955</option>  \r\n'
+	+'<option>KELLER FAMILY</option>  \r\n'
+	+'<option>KELLER, HELEN, - 1880-1968</option>  \r\n'
+	+'<option>KELLER, RODGITO, - 1970-</option>  \r\n'
+	+'<option>KELLER, WALTER MARION, - 1887-</option>  \r\n'
+	+'<option>KELLEY FAMILY</option>  \r\n'
+	+'<option>KELLEY, DANIEL, - PVT</option>  \r\n'
+	+'<option>KELLEY, HOWARD S.</option>  \r\n'
+	+'<option>KELLEY, WILLIAM DENNIS, - 1825-1888</option>  \r\n'
+	+'<option>KELLOGG FAMILY</option>  \r\n'
+	+'<option>KELLOGG, FRANK B. - (FRANK BILLINGS), - 1856-1937</option>  \r\n'
+	+'<option>KELLOGG, W. K. - (WILL KEITH), - 1860-1951</option>  \r\n'
+	+'<option>KELLY, EMMA CHENAULT, - 1905-</option>  \r\n'
+	+'<option>KELLY, MACHINE GUN, - 1897-1954</option>  \r\n'
+	+'<option>KELLY, MARGARET LAVINIA (CAMPBELL), - 1806-1877</option>  \r\n'
+	+'<option>KELLY, RAYMOND W., - 1941-</option>  \r\n'
+	+'<option>KELMAN, STEVEN J., - 1948-</option>  \r\n'
+	+'<option>KELSEY FAMILY</option>  \r\n'
+	+'<option>KELSO FAMILY</option>  \r\n'
+	+'<option>KEMBLE, FANNY, - 1809-1893</option>  \r\n'
+	+'<option>KEMMER, ROBERT WALTER, - 1893-1977</option>  \r\n'
+	+'<option>KEMMERER FAMILY</option>  \r\n'
+	+'<option>KEMP FAMILY</option>  \r\n'
+	+'<option>KEMPLEN, TILDA</option>  \r\n'
+	+'<option>KEMPTHORNE, DIRK, - 1951-</option>  \r\n'
+	+'<option>KENDALL FAMILY</option>  \r\n'
+	+'<option>KENDALL, GEO. WILKINS - (GEORGE WILKINS), - 1809-1867</option>  \r\n'
+	+'<option>KENDIEGH, JANE</option>  \r\n'
+	+'<option>KENNA, MICHAEL, - 1858-</option>  \r\n'
+	+'<option>KENNAMER FAMILY</option>  \r\n'
+	+'<option>KENNAMER, LORRIN GARFIELD, - 1897-</option>  \r\n'
+	+'<option>KENNAN FAMILY</option>  \r\n'
+	+'<option>KENNAN, GEORGE FROST, - 1904- </option>  \r\n'
+	+'<option>KENNARD, WILLIAM E., - 1957-</option>  \r\n'
+	+'<option>KENNEDY FAMILY</option>  \r\n'
+	+'<option>KENNEDY, ANTHONY, - 1810-1892</option>  \r\n'
+	+'<option>KENNEDY, EDWARD MOORE, - 1932-</option>  \r\n'
+	+'<option>KENNEDY, GRADY</option>  \r\n'
+	+'<option>KENNEDY, JOHN F. - (JOHN FITZGERALD), - 1917-1963</option>  \r\n'
+	+'<option>KENNEDY, JOHN F. - (JOHN FITZGERALD), - 1960-</option>  \r\n'
+	+'<option>KENNEDY, JOHN PENDLETON, - 1795-1870</option>  \r\n'
+	+'<option>KENNEDY, ROBERT COBB</option>  \r\n'
+	+'<option>KENNEDY, ROBERT F., - 1925-1968</option>  \r\n'
+	+'<option>KENNEDY, WILLIAM H., - 1951-</option>  \r\n'
+	+'<option>KENNER FAMILY</option>  \r\n'
+	+'<option>KENNERLY FAMILY</option>  \r\n'
+	+'<option>KENNERLY, WESLEY TRAVIS, - 1877-1944</option>  \r\n'
+	+'<option>KENNEY FAMILY</option>  \r\n'
+	+'<option>KENNEY, GEORGE C. - (GEORGE CHURCHILL), - 1889-1977</option>  \r\n'
+	+'<option>KENT FAMILY</option>  \r\n'
+	+'<option>KENT, JAMES, - 1763-1847</option>  \r\n'
+	+'<option>KENT, SUSANNAH SIMPSON</option>  \r\n'
+	+'<option>KENTON, SIMON, - 1755-1836</option>  \r\n'
+	+'<option>KENWORTHY FAMILY</option>  \r\n'
+	+'<option>KERBY FAMILY</option>  \r\n'
+	+'<option>KERCHEVAL FAMILY</option>  \r\n'
+	+'<option>KERESTER, THOMAS P.</option>  \r\n'
+	+'<option>KERLIN FAMILY</option>  \r\n'
+	+'<option>KERN FAMILY</option>  \r\n'
+	+'<option>KERN, EDWARD MEYER, - 1823-1863</option>  \r\n'
+	+'<option>KERR FAMILY</option>  \r\n'
+	+'<option>KERR, ANDREW HART, - 1853-1866</option>  \r\n'
+	+'<option>KERR, MARGARET HARRISON, - 1918-</option>  \r\n'
+	+'<option>KERR, MARY CLARISSA, - 1847-1867</option>  \r\n'
+	+'<option>KERR, SARAH WARD, - 1859-1867</option>  \r\n'
+	+'<option>KERSEY FAMILY</option>  \r\n'
+	+'<option>KERSHNER FAMILY</option>  \r\n'
+	+'<option>KESSLER FAMILY</option>  \r\n'
+	+'<option>KESSLER, ALAN C., - 1950-</option>  \r\n'
+	+'<option>KESTER, HOWARD, - 1904-1977</option>  \r\n'
+	+'<option>KETTELL, THOMAS PRENTICE</option>  \r\n'
+	+'<option>KETTENRING FAMILY</option>  \r\n'
+	+'<option>KEY FAMILY</option>  \r\n'
+	+'<option>KEY, DAVID MCKENDREE, - 1824-1900</option>  \r\n'
+	+'<option>KEY, FRANCIS SCOTT, - 1779-1843</option>  \r\n'
+	+'<option>KEY, WILLIAM, - 1833-1909</option>  \r\n'
+	+'<option>KEYES FAMILY</option>  \r\n'
+	+'<option>KEYS FAMILY</option>  \r\n'
+	+'<option>KEYS, JOHN W.</option>  \r\n'
+	+'<option>KHALINA, MARINA, - 1961-</option>  \r\n'
+	+'<option>KHOMEINI, RUHOLLAH</option>  \r\n'
+	+'<option>KHRUSHCHEV, NIKITA SERGEEVICH, - 1894-1971</option>  \r\n'
+	+'<option>KICKLIGHTER, CLAUDE MILTON, - 1933-</option>  \r\n'
+	+'<option>KIDD FAMILY</option>  \r\n'
+	+'<option>KIDD, JIM, - MRS</option>  \r\n'
+	+'<option>KIDD, REUBEN VAUGHAN - 1839-1863</option>  \r\n'
+	+'<option>KIDDOO FAMILY</option>  \r\n'
+	+'<option>KIDWELL FAMILY</option>  \r\n'
+	+'<option>KIDWILL, J. M. - (JAMES MONROE), - 1836-1892</option>  \r\n'
+	+'<option>KIEFFER, ALDINE SILLIMAN, - 1840-1904</option>  \r\n'
+	+'<option>KIEL FAMILY</option>  \r\n'
+	+'<option>KIENER FAMILY</option>  \r\n'
+	+'<option>KIESS FAMILY</option>  \r\n'
+	+'<option>KIGER FAMILY</option>  \r\n'
+	+'<option>KILDAY FAMILY</option>  \r\n'
+	+'<option>KILGORE FAMILY</option>  \r\n'
+	+'<option>KILGORE, DAVID, - 1804-1900</option>  \r\n'
+	+'<option>KILGORE, THOMAS</option>  \r\n'
+	+'<option>KILLEBREW FAMILY</option>  \r\n'
+	+'<option>KILLEBREW, ELIAS</option>  \r\n'
+	+'<option>KILLEBREW, J. B. - (JOSEPH BUCKNER), - 1831-1906</option>  \r\n'
+	+'<option>KILLEBREW, LEVI</option>  \r\n'
+	+'<option>KILLEBREW, MARY KATHERINE WIMBERLEY, - 1838-1906</option>  \r\n'
+	+'<option>KILLEN, BUDDY</option>  \r\n'
+	+'<option>KILLEN, WANDA SMITH</option>  \r\n'
+	+'<option>KILPATRICK FAMILY</option>  \r\n'
+	+'<option>KILPATRICK, JUDSON, - 1836-1881</option>  \r\n'
+	+'<option>KILPIN, SAMUEL WYKE, - 1806-1818</option>  \r\n'
+	+'<option>KIM, JAY C., - 1939-</option>  \r\n'
+	+'<option>KIMBALL FAMILY</option>  \r\n'
+	+'<option>KIMBALL, EDGAR ADDISON, - B. 1824</option>  \r\n'
+	+'<option>KIMBERLY FAMILY</option>  \r\n'
+	+'<option>KIMBLE, GARY NILES</option>  \r\n'
+	+'<option>KIMBLE, JESSE</option>  \r\n'
+	+'<option>KIMBROUGH FAMILY</option>  \r\n'
+	+'<option>KIMERY FAMILY</option>  \r\n'
+	+'<option>KIMMELMAN, MIRA RYCZKE, - 1923-</option>  \r\n'
+	+'<option>KIMZEY FAMILY</option>  \r\n'
+	+'<option>KINARD FAMILY</option>  \r\n'
+	+'<option>KINCAID FAMILY</option>  \r\n'
+	+'<option>KINCANNON, ANDREW A.</option>  \r\n'
+	+'<option>KINDER FAMILY</option>  \r\n'
+	+'<option>KINDRED FAMILY</option>  \r\n'
+	+'<option>KING FAMILY</option>  \r\n'
+	+'<option>KING, B. B.</option>  \r\n'
+	+'<option>KING, CHARLES BIRD, - 1785-1862</option>  \r\n'
+	+'<option>KING, CORETTA SCOTT, - 1927-</option>  \r\n'
+	+'<option>KING, ELIJAH</option>  \r\n'
+	+'<option>KING, GEORGE, - CAPTAIN</option>  \r\n'
+	+'<option>KING, HENRY CHURCHILL, - 1858-1934</option>  \r\n'
+	+'<option>KING, JAMES B., - 1935-</option>  \r\n'
+	+'<option>KING, JAMES, - 1822-1856</option>  \r\n'
+	+'<option>KING, JEANNETTE MOORE</option>  \r\n'
+	+'<option>KING, LARRY L.</option>  \r\n'
+	+'<option>KING, MARTIN LUTHER, - JR., - 1929-1968</option>  \r\n'
+	+'<option>KING, MARY - (MARY ELIZABETH)</option>  \r\n'
+	+'<option>KING, PEE WEE, - 1914-</option>  \r\n'
+	+'<option>KING, PRESTON, - 1806-1865</option>  \r\n'
+	+'<option>KING, RUFUS, - 1755-1827</option>  \r\n'
+	+'<option>KING, T. BUTLER - (THOMAS BUTLER), - 1800-1864</option>  \r\n'
+	+'<option>KING, THOMAS REX</option>  \r\n'
+	+'<option>KING, WILLIAM, - 1769-1808</option>  \r\n'
+	+'<option>KINGFISHER FAMILY</option>  \r\n'
+	+'<option>KINGMAN, EDWARD ROCKWELL, - 1948-</option>  \r\n'
+	+'<option>KINGSBURY FAMILY</option>  \r\n'
+	+'<option>KINKEAD, NANCY ANN, - B. 1837</option>  \r\n'
+	+'<option>KINNEBREW FAMILY</option>  \r\n'
+	+'<option>KINNISON FAMILY</option>  \r\n'
+	+'<option>KINO, EUSEBIO FRANCISCO, - 1644-1711</option>  \r\n'
+	+'<option>KINSELLA FAMILY</option>  \r\n'
+	+'<option>KINSEY FAMILY</option>  \r\n'
+	+'<option>KINSLER FAMILY</option>  \r\n'
+	+'<option>KINSOLVING FAMILY</option>  \r\n'
+	+'<option>KINTE FAMILY</option>  \r\n'
+	+'<option>KIRBY FAMILY</option>  \r\n'
+	+'<option>KIRBY, JOHN THOMAS, - 1821-1909</option>  \r\n'
+	+'<option>KIRBY, SARAH (PAYNE), - 1824-1909</option>  \r\n'
+	+'<option>KIRBY-SMITH, EDMUND, - 1824-1893</option>  \r\n'
+	+'<option>KIRK FAMILY</option>  \r\n'
+	+'<option>KIRK, JOHN, - SIR, - 1832-1922</option>  \r\n'
+	+'<option>KIRKLAND, JAMES H. - (JAMES HAMPTON), - 1859-1939</option>  \r\n'
+	+'<option>KIRKLAND, RICHARD ROWLAND, - 1843-1863</option>  \r\n'
+	+'<option>KIRKLAND, THOMAS J.</option>  \r\n'
+	+'<option>KIRKPATRICK FAMILY</option>  \r\n'
+	+'<option>KIRKPATRICK, ANDREW, - 1756-1831</option>  \r\n'
+	+'<option>KIRKPATRICK, JACOB, - 1785-1866</option>  \r\n'
+	+'<option>KIRKPATRICK, JACOB, 1828-1859</option>  \r\n'
+	+'<option>KIRKPATRICK, JANE BAYARD, - 1772-1851</option>  \r\n'
+	+'<option>KIRKPATRICK, JOHN, - 1739?-1822</option>  \r\n'
+	+'<option>KIRKSEY FAMILY</option>  \r\n'
+	+'<option>KIRKSEY, MARY M.</option>  \r\n'
+	+'<option>KIRSTEIN FAMILY</option>  \r\n'
+	+'<option>KIRWAN, ALBERT DENNIS</option>  \r\n'
+	+'<option>KISLING FAMILY</option>  \r\n'
+	+'<option>KISSLING FAMILY</option>  \r\n'
+	+'<option>KITCHEL FAMILY</option>  \r\n'
+	+'<option>KITCHENER, HORATIO HERBERT KITCHENER, - EARL, - 1850-1916</option>  \r\n'
+	+'<option>KITCHIN, CLAUDE, - 1869-1923</option>  \r\n'
+	+'<option>KITE FAMILY</option>  \r\n'
+	+'<option>KITE, JOHN</option>  \r\n'
+	+'<option>KITE, JOHN, - JR., - 1839-1924</option>  \r\n'
+	+'<option>KITTEL FAMILY</option>  \r\n'
+	+'<option>KITTO, JOHN, - 1804-1854</option>  \r\n'
+	+'<option>KITTRELL FAMILY</option>  \r\n'
+	+'<option>KITTRELL, THOMAS G., - D. 1933</option>  \r\n'
+	+'<option>KITWEILER FAMILY</option>  \r\n'
+	+'<option>KITZMILLER FAMILY</option>  \r\n'
+	+'<option>KIZER, KENNETH W.</option>  \r\n'
+	+'<option>KLAUENBERG FAMILY</option>  \r\n'
+	+'<option>KLEIN FAMILY</option>  \r\n'
+	+'<option>KLEIN, JOEL I., - 1946-</option>  \r\n'
+	+'<option>KLEPPER FAMILY</option>  \r\n'
+	+'<option>KLUMPH FAMILY</option>  \r\n'
+	+'<option>KNAPP FAMILY</option>  \r\n'
+	+'<option>KNAPP, SEAMAN ASHAHEL, - 1833-1911</option>  \r\n'
+	+'<option>KNEPPER FAMILY</option>  \r\n'
+	+'<option>KNEWSTEP FAMILY</option>  \r\n'
+	+'<option>KNIGHT FAMILY</option>  \r\n'
+	+'<option>KNIGHT, AARON W.</option>  \r\n'
+	+'<option>KNIGHT, EDWARD S., - 1951-</option>  \r\n'
+	+'<option>KNIGHT, PETER SAGE, - 1951-</option>  \r\n'
+	+'<option>KNISLEY, S. D.</option>  \r\n'
+	+'<option>KNOBLOCK FAMILY</option>  \r\n'
+	+'<option>KNOBLOCK, EDWARD, - 1874-1945</option>  \r\n'
+	+'<option>KNOPF, ADOLPH, - 1882-</option>  \r\n'
+	+'<option>KNOTT FAMILY</option>  \r\n'
+	+'<option>KNOTT, J. PROCTOR - (JAMES PROCTOR), - 1830-1911</option>  \r\n'
+	+'<option>KNOWLES FAMILY</option>  \r\n'
+	+'<option>KNOWLTON, THOMAS, - 1740-1776</option>  \r\n'
+	+'<option>KNOX FAMILY</option>  \r\n'
+	+'<option>KNOX, CHARLES, - 1818-1895</option>  \r\n'
+	+'<option>KNOX, GEORGE L., - 1841-1927</option>  \r\n'
+	+'<option>KNOX, HENRY, - 1750-1806</option>  \r\n'
+	+'<option>KNOX, JACK, - 1910-</option>  \r\n'
+	+'<option>KOCH, KATHLEEN DAY, - 1948-</option>  \r\n'
+	+'<option>KOEHLER FAMILY</option>  \r\n'
+	+'<option>KOEHLER, R. - (RENE), - B. 1860</option>  \r\n'
+	+'<option>KOENIG FAMILY</option>  \r\n'
+	+'<option>KOLB FAMILY</option>  \r\n'
+	+'<option>KOLLOCK FAMILY</option>  \r\n'
+	+'<option>KOLLOCK, JOHN</option>  \r\n'
+	+'<option>KOONCE FAMILY</option>  \r\n'
+	+'<option>KOONTZ FAMILY</option>  \r\n'
+	+'<option>KOOTER FAMILY</option>  \r\n'
+	+'<option>KOPP, KRISHANTHI SAVA</option>  \r\n'
+	+'<option>KORESH, DAVID, - 1959-1993</option>  \r\n'
+	+'<option>KORNMEYER, PAUL</option>  \r\n'
+	+'<option>KORSON, GEORGE GERSHON, - 1899-1967</option>  \r\n'
+	+'<option>KOSKINEN, JOHN ANDREW, - 1939-</option>  \r\n'
+	+'<option>KOSSUTH, LAJOS, - 1802-1894</option>  \r\n'
+	+'<option>KOSZTA, MARTIN</option>  \r\n'
+	+'<option>KOVACH, NORA, - 1931-</option>  \r\n'
+	+'<option>KRAJCA FAMILY</option>  \r\n'
+	+'<option>KRAMEK, ROBERT E.</option>  \r\n'
+	+'<option>KRAVITZ, NEAL ELLIOT, - 1957-</option>  \r\n'
+	+'<option>KREBS, MARTHA ANNE, - 1944-</option>  \r\n'
+	+'<option>KREIS FAMILY</option>  \r\n'
+	+'<option>KREISLER, FRITZ, - 1875-1962</option>  \r\n'
+	+'<option>KREUGER, IVAR, - 1880-1932</option>  \r\n'
+	+'<option>KREY FAMILY</option>  \r\n'
+	+'<option>KRISTINA, - QUEEN OF SWEDEN, - 1626-1689</option>  \r\n'
+	+'<option>KRUESI, FRANK EUGENE, - 1950-</option>  \r\n'
+	+'<option>KRUGER, PAUL, - 1825-1904</option>  \r\n'
+	+'<option>KRUPP FAMILY</option>  \r\n'
+	+'<option>KRUSI, HERMANN, - 1775-1844</option>  \r\n'
+	+'<option>KRUTCH, JOSEPH WOOD, - 1893-1970</option>  \r\n'
+	+'<option>KUBRICK, WILLIAM A.</option>  \r\n'
+	+'<option>KUDER FAMILY</option>  \r\n'
+	+'<option>KUHN FAMILY</option>  \r\n'
+	+'<option>KUSHNER, TONY</option>  \r\n'
+	+'<option>KUTSCH FAMILY</option>  \r\n'
+	+'<option>KUYKENDALL FAMILY</option>  \r\n'
+	+'<option>KWAK, CHONG HO</option>  \r\n'
+	+'<option>KWONG, SUCHADA, - 1967-</option>  \r\n'
+	+'<option>KYLE FAMILY</option>  \r\n'
+	+'<option>KYNER, JAMES HENRY, - 1846-</option>  \r\n'
+
++'</select> \r\n';
+	
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+<body class="background">
+
+
+
+
+<form name="FormOne" >
+
+
+<div name="SS" id="SS">
+<script>
+document.write(
+
+	 '<table border="1" cellpadding="4" cellspacing="0"  width="90%">\r\n'
+	+'<tr><td  bgcolor="ddeeff">\r\n'
+	///+'vv_functions.htm called by '+select_id+' <br>\r\n'
+	+'<b>Select Personal Name K</b> \r\n'
+	+'</td></tr><tr><td bgcolor="ddeeff"> \r\n' 
+	+ strSelect_PN_A
+
+	+'</td></tr></table> \r\n'
+	///+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+</script>
+	
+</div>
+
+<input type="button" onclick="showSelection();" name="B1" value="Personal Name">
+
+</form>
+
+<script>
+
+
+
+                  
+
+function showSelection() {
+
+val = new String();
+
+for ( i=0; i< document.FormOne.aaa.length; i++ ) {
+
+if ( document.FormOne.aaa[i].selected == true ) {
+  	val = document.FormOne.aaa[i].text;
+	break;
+	}
+else { val = "you never selected anything"; 
+	}
+
+}
+////////////////////////alert ("You selected " +val);
+
+switch ( select_id ) {
+
+case  "subject_name_lcsh_01" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_01.value=val;
+	parent.window.close();
+	break;
+
+case  "subject_name_lcsh_02" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_02.value=val;
+	parent.window.close();
+	break;
+}//end switch
+
+}///end function
+</script>
+

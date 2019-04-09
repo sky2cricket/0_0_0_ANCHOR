@@ -1,0 +1,888 @@
+
+<html>
+<head>
+<title>
+page_begin_alt
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+<script language=javascript src="vv_functions.js"></script>
+<script language=javascript src="vv_functions_radio.js"></script>
+<script language=javascript src="vv_validation.js"></script>
+
+<script>
+
+
+// Only let numbers in the  Year field, max length=4
+function testInput(event,sbox,Nlen) {
+var e = event;
+var KS; //keystroke value
+var rmc = 2; //right mouse click IE
+   // KS the keystroke entered
+  if ( typeof(e.which) != 'undefined' ) {//netscape
+	KS = e.which; 
+  	rmc = 3; //right mouse click netscape
+   }else { 
+	KS = e.keyCode; 
+   }
+//alert("kStroke = " + KS +"\nsbox.value.length="+sbox.value.length);
+
+var LEN = new Number(Nlen);
+    LEN = LEN -1;
+   if (sbox.value.length >LEN ) { 
+	alert("You may not type more than "+Nlen+" digits for this input."); 
+	return false; 
+	} 
+
+
+   if ((KS > 47) && (KS < 58)) { return true;} //integer
+   if (KS == 8) return true; // Backspace
+   if (KS == 9) return true; // Tab
+   ////if (KS == 32) return true; //whitespace
+
+   alert("Only integer numbers are allowed in this field.");
+
+   return false;
+}
+
+function buildUTKfilename() {
+
+var strFull = new String();
+
+
+if ( document.forms[0].XMLmaster_01.value.length != 4 ) {
+	alert("You must enter 4 digits for the Instition Number. ")
+	document.forms[0].XMLmaster_01.value="";
+	document.forms[0].XMLmaster_01.focus();
+	return;
+	}
+
+
+if ( document.forms[0].XMLmaster_02.value.length != 6 ) {
+	alert("You must enter 6 digits for the Collection Number. ")
+	document.forms[0].XMLmaster_02.value="";
+	document.forms[0].XMLmaster_02.focus();
+	return;
+	}
+
+if ( document.forms[0].XMLmaster_03.value.length != 6 ) {
+	alert("You must enter 6 digits for the Item Number. ")
+	document.forms[0].XMLmaster_03.value="";
+	document.forms[0].XMLmaster_03.focus();
+	return;
+	}
+strFull =   document.forms[0].XMLmaster_01.value + "_"; 
+strFull +=  document.forms[0].XMLmaster_02.value + "_";
+strFull +=  document.forms[0].XMLmaster_03.value + "_";
+
+document.forms[0].XMLBASE.value=strFull;
+/*
+if (!confirm ("Institution: "+document.forms[0].XMLmaster_01.value
+	+"\nCollection: "+document.forms[0].XMLmaster_02.value
+	+"\nItem: "+document.forms[0].XMLmaster_03.value
+	+"\nBase File Name="+document.forms[0].XMLBASE.value
+	+"\nFull Name: "+document.forms[0].adb_fullname.value
+	+"\nusername: "+document.forms[0].adb_username.value
+	+"\n\nGo to the Begin Page now?"
+	)) return;
+*/
+
+
+parent.adb_institutionid=document.forms[0].XMLmaster_01.value;
+parent.adb_admdb_data=strFull;
+parent.admindb_data=strFull;
+parent.adb_project_name="Training";
+parent.adb_username = document.forms[0].adb_username.value;
+parent.adb_fullname = document.forms[0].adb_fullname.value;
+
+//alert(parent.adb_admdb_data)
+//document.forms[0].submit();
+parent.U.document.UF.XMLmaster_01.value = document.DF.XMLmaster_01.value;
+parent.U.document.UF.XMLmaster_02.value = document.DF.XMLmaster_02.value;
+parent.U.document.UF.XMLmaster_03.value = document.DF.XMLmaster_03.value;
+parent.U.document.UF.XMLmaster_04.value = "0000";
+parent.U.document.UF.XMLmaster_05.value = ".xml";
+parent.U.document.UF.XMLBASE.value = document.DF.XMLBASE.value;
+
+
+
+//document.location.href = "page_begin.htm";
+
+}//end function buildUTKfilename
+
+function enterValues() {
+alert("enterValues");
+if ( document.DF.XMLBASE.value == "" ) {
+	alert("Please build UTK DLC filename.");
+	return;
+	}
+
+
+parent.adb_username = document.forms[0].adb_username.value;
+parent.adb_fullname = document.forms[0].adb_fullname.value;
+parent.adb_instname = document.forms[0].adb_instname.value;
+parent.adb_instaddr = document.forms[0].adb_instaddr.value;
+parent.adb_instcity = document.forms[0].adb_instcity.value;
+parent.adb_instcounty = document.forms[0].adb_instcounty.value;
+parent.adb_inststate = document.forms[0].adb_inststate.value;
+parent.adb_instzip = document.forms[0].adb_instzip.value;
+parent.adb_collidn = document.forms[0].adb_collidn.value;
+
+for(i=0;i<6;i++ ) {
+parent.U.document.UF.collection_id_num_type[i].selected = document.DF.collection_id_num_type[i].selected;
+}
+
+
+parent.adb_collidndesc = document.forms[0].adb_collidndesc.value;
+parent.adb_collname = document.forms[0].adb_collname.value;
+parent.adb_colldes = document.forms[0].adb_colldes.value;
+parent.adb_collextent = document.forms[0].adb_collextent.value;
+parent.adb_itemtempname = document.forms[0].adb_itemtempname.value;
+parent.adb_itemtitle = document.forms[0].adb_itemtitle.value;
+parent.adb_itemdate = document.forms[0].adb_itemdate.value;
+parent.adb_itemdescr = document.forms[0].adb_itemdescr.value;
+parent.adb_itemtype = document.forms[0].adb_itemtype.value;
+parent.adb_genre = document.forms[0].adb_genre.value;
+parent.adb_itemdim = document.forms[0].adb_itemdim.value;
+parent.adb_itemlocation = document.forms[0].adb_itemlocation.value;
+parent.adb_itemcreator = document.forms[0].adb_itemcreator.value;
+parent.adb_projectname = document.forms[0].adb_projectname.value;
+parent.adb_projectid = document.forms[0].adb_projectid.value;
+
+document.location.href = "page_begin.htm";
+}//end function enterValues
+
+
+
+function enterValuesAlt() {
+
+
+document.forms[0].XMLBASE.value=document.forms[0].XMLBASEALT.value;
+parent.U.document.UF.XMLBASE.value = document.DF.XMLBASE.value;
+parent.U.document.UF.XMLPATH.value = document.DF.XMLPATHALT.value;
+parent.U.document.UF.XMLPATHFULL.value = document.DF.XMLPATHALT.value;
+parent.U.document.UF.numConstituentsTIFF.value = document.DF.numConstituentsTIFF.value;
+parent.U.document.UF.validate_page_begin.value = "1";
+
+
+parent.adb_username = document.forms[0].adb_username.value;
+parent.adb_fullname = document.forms[0].adb_fullname.value;
+parent.adb_instname = document.forms[0].adb_instname.value;
+parent.adb_instaddr = document.forms[0].adb_instaddr.value;
+parent.adb_instcity = document.forms[0].adb_instcity.value;
+parent.adb_instcounty = document.forms[0].adb_instcounty.value;
+parent.adb_inststate = document.forms[0].adb_inststate.value;
+parent.adb_instzip = document.forms[0].adb_instzip.value;
+parent.adb_collidn = document.forms[0].adb_collidn.value;
+parent.adb_collidndesc = document.forms[0].adb_collidndesc.value;
+parent.adb_collname = document.forms[0].adb_collname.value;
+parent.adb_colldes = document.forms[0].adb_colldes.value;
+parent.adb_collextent = document.forms[0].adb_collextent.value;
+parent.adb_itemtempname = document.forms[0].adb_itemtempname.value;
+parent.adb_itemtitle = document.forms[0].adb_itemtitle.value;
+parent.adb_itemdate = document.forms[0].adb_itemdate.value;
+parent.adb_itemdescr = document.forms[0].adb_itemdescr.value;
+parent.adb_itemtype = document.forms[0].adb_itemtype.value;
+parent.adb_genre = document.forms[0].adb_genre.value;
+parent.adb_itemdim = document.forms[0].adb_itemdim.value;
+parent.adb_itemlocation = document.forms[0].adb_itemlocation.value;
+parent.adb_itemcreator = document.forms[0].adb_itemcreator.value;
+parent.adb_projectname = document.forms[0].adb_projectname.value;
+parent.adb_projectid = document.forms[0].adb_projectid.value;
+
+
+alert("enterValuesAlt");
+
+}//end function
+
+
+
+function alt_generate_file_list_tiff() {
+
+if ( document.forms[0].numConstituentsTIFFalt.value == "" ) {
+	alert("Please enter a value for # of Constituent Files Alt.");
+	return;
+	}
+
+if ( document.forms[0].XMLBASEALT.value == "" ){
+	alert("Please build a Base File Name Alt.");
+	return;
+	}
+
+document.forms[0].numConstituentsTIFF.value = document.forms[0].numConstituentsTIFFalt.value;
+document.forms[0].XMLBASE.value = document.forms[0].XMLBASEALT.value;
+generic_file_list_tiff( document.forms[0].XMLBASEALT.value, document.forms[0].numConstituentsTIFFalt.value);
+
+}//end function
+
+function std_generate_file_list_tiff() {
+
+if ( document.forms[0].numConstituentsTIFF.value == "" ) {
+	alert("Please enter a value for # of Constituent Files.");
+	return;
+	}
+
+if ( document.forms[0].XMLBASE.value == "" ){
+	alert("Please build a Base File Name.");
+	return;
+	}
+
+document.forms[0].numConstituentsTIFFalt.value = document.forms[0].numConstituentsTIFF.value;
+document.forms[0].XMLBASEALT.value = document.forms[0].XMLBASE.value;
+generic_file_list_tiff( document.forms[0].XMLBASE.value, document.forms[0].numConstituentsTIFF.value);
+
+}//end function
+
+
+
+
+function generic_file_list_tiff(basename, numcons ) {
+
+
+var str = new String();
+var msg = new String();
+//var N = 0;
+ //   N = Number(document.forms[0].numConstituentsTIFF.value );
+//var base = document.forms[0].XMLBASE.value ;
+
+var base = new String(basename);
+
+var N = new Number(numcons);
+
+
+
+var append = new String();
+var j=0, chop=0;
+
+for ( i=0; i<N; i++ ) {
+	j= i+1;
+	append = "0000"+String(j);
+	chop = append.length -4;
+	append=append.substring(chop);
+	///alert("tiff file: "+base+append);
+	str += ","+base+append;
+	msg += ",\n"+base+append;
+}
+
+str = str.substring(1);
+msg = msg.substring(1);
+parent.U.document.UF.file_list_tiff.value=str;
+
+alert("generate_file_list_tiff\n "+msg);
+
+
+//return str;
+
+
+
+}//end function alt_generate_file_list_tiff() 
+
+
+function load_DF_form() {
+
+
+
+}//end function
+
+</script>
+
+</head>
+
+
+<script>document.write('<body bgcolor="'+parent.adb_background_color+'" xonload="load_DF_form()" >');</script>
+<font face="arial" size="3">
+<center><font face="arial">
+<h2> <script> document.write(parent.adb_project_name); </script>
+ Workbook Begin Alt Page </h2>
+</center>
+
+<script>
+///Civil War Salt Peter Mining None, LCNAF, ULAN. 
+
+
+
+//document.write("test php<hr>parent.mytest="+parent.mytest+"<HR>");
+
+document.write("parent.parent.new_frame="+parent.parent.new_frame+"<hr>");
+
+</script>
+
+<form name="DF"  >
+
+<table class="bgINNer"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="ddeeff">
+<tr class="bgstandard"><td colspan="3">
+
+Dear Content Contributors,
+
+Thank you for....
+
+</td></tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+<tr class="bgstandard"><td colspan="3">
+Build your MODS file using the UTK DLC standard format filename.
+<br>The <u>Base File Name</u> created here will be used to name <u>Constituent Files</u> on Page 5.
+<br>&nbsp;
+</td></tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Institution ID
+<br>parent.adb_institution_id 
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="8" name="XMLmaster_01"  
+value="0012"
+onKeypress="return testInput(event,this,4)"
+xonKeypress="return digits_only_rule(event,this)" > Please enter 4 digits.
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+<form >
+Collection
+<br>from parent.adb_itemfbname
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="8" name="XMLmaster_02"  
+value="000060"
+onKeypress="return testInput(event,this,6)"
+xonKeypress="return digits_only_rule(event,this)" > Please enter 6 digits.
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Item
+<br>from parent.adb_itemfbname
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="8" name="XMLmaster_03"  
+value="000236"
+onKeypress="return testInput(event,this,6)"
+xonKeypress="return digits_only_rule(event,this)" > Please enter 6 digits.
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Base File Name
+<br>parent.adb_itemfbname
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="20" name="XMLBASE" READONLY> This value will be in the correct format for the Workbook.
+<input type="hidden" name="XMLmaster_04" value="0000">
+<input type="hidden" name="XMLmaster_05" value=".xml">
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+File Path
+&nbsp;
+</td>
+<td>&nbsp;
+For standard processing, this value will be selected on the Begin Page.
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+# Constituent Files
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="4" name="numConstituentsTIFF" > 
+For standard processing, this value will be entered on the standard Begin Page.
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="button" value="Build Filename in UTK DLC Format" name="B0" onclick="buildUTKfilename()" > 
+&nbsp;&nbsp;&nbsp;<input type="button" value="View Constituent File Names" name="B1view" onclick="std_generate_file_list_tiff()" > 
+&nbsp;&nbsp;&nbsp;<input type="button" value="Go to standard Begin Page" name="B1" onclick="enterValues()" > 
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+<tr class="bgstandard"><td colspan="3">
+Build your MODS file using your own standard format filename.
+<br>The <u>Base File Name</u> created here will be used to name <u>Constituent Files</u> on Page 5.
+<br>&nbsp;
+</td></tr>
+
+
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Base File Name Alt
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="20" name="XMLBASEALT" > This value will be in the correct format for the Workbook.
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+File Path Alt
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="40" name="XMLPATHALT" value="C:\"> For standard processing, this value would be selected on the Begin Page.
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+# Constituent Files Alt
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="4" name="numConstituentsTIFFalt" > For standard processing, this value would be entered on the standard Begin Page.
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="button" value="Build Your Own File Name" name="B2" onclick="enterValuesAlt()" > 
+&nbsp;&nbsp;<input type="button" value="View Consituent File Names" name="B3" onclick="alt_generate_file_list_tiff()" > 
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Server Side
+&nbsp;
+</td>
+<td>For standard processing, these variables are supplied by a database on our server.
+<br>Here they are entered as form variables to demonstrate how all the fields are filled in through each page of the workbook.
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Full Name
+<br>parent.adb_fullname
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="30" name="adb_fullname"  
+value="default_fullname"
+> Please enter your name. -- Begin Page, generated comments.
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+User Name
+<br>parent.adb_username
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="30" name="adb_username"  
+value="default_username"
+> Please enter your username. -- Begin Page, generated comments.
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Institution
+<br>parent.adb_instname
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="60" name="adb_instname"  
+value="University of Tennessee Special Collections Library"
+> -- Page 6, Contributing Institution
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Institution Address
+<br>parent.adb_instaddr
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="60" name="adb_instaddr"  
+value = "James D. Hoskins Library, Room 200"
+ > -- Archival data, not displayed 
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Institution City
+<br>parent.adb_instcity
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="60" name="adb_instcity"  
+value = "Knoxville"
+ > -- Page 6, City
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Institution County
+<br>parent.adb_instcounty
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="60" name="adb_instcounty"  
+value = "Knox"
+ > -- Page 6, County
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Institution State
+<br>parent.adb_inststate
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="60" name="adb_inststate"  
+value = "Tennessee"
+> -- Page 6, State
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Institution Zip
+<br>parent.adb_instzip
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="60" name="adb_instzip"  
+value = "37996-4006"
+> -- Archival data, not displayed
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Collection ID #
+<br>parent.adb_collidn
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="60" name="adb_collidn"  
+value = "253"
+ > -- Page 6, Collection ID Number
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td valign="top"><font face="arial" size="2" color="000000" ><b></u>
+Collection ID # Type
+<br>parent.adb_collidndesc
+&nbsp;
+</td>
+<td>&nbsp;
+<br><select size="6" name="collection_id_num_type">
+<option value="none" >none selected</option>
+<option value="manuscriptNumber" selected>Manuscript Number</option>
+<option value="archiveNumber">Archive Number</option>
+<option value="callNumber">Call Number</option>
+<option value="accessionNumber">Accession Number</option>
+<option value="otherIdentificationNumber">Other Identification Number</option>
+</select> -- Page 6, Collection ID Number Type <br> A string value is passed from the AdminDB and this value
+matches one of the option values in the dropdown list.<br>
+So here the value passed is "manuscriptNumber", the option text is Manuscript Number.
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Collection Name 
+<br>parent.adb_collname
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="60" name="adb_collname"  
+value = "James Gettys McGready Ramsey Papers, 1790-1912"
+ > -- Page 6, Collection Name
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td valign="top"><font face="arial" size="2" color="000000" ><b></u>
+Collection Description
+<br>parent.adb_colldes
+&nbsp;
+</td>
+<td>&nbsp;
+<textarea cols="60" rows="8" name="adb_colldes"  
+>This collection consists primarily of correspondence and some official documents related to both the Ramsey family and J.G.M. Ramsey\'s historical research, including his research on the Mecklenburg Declaration. Ramsey was a physician, public servant, secessionist, religious leader, banker, railroad advocate, and scholar of early Tennessee history.</textarea>
+-- Archival data, not displayed
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Collection Extent
+<br>parent.adb_collextent
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="60" name="adb_collextent"  
+value = "3 boxes"
+ > -- Page 3, Extent Help display
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Item Temp Name
+<br>parent.adb_itemtempname
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="60" name="adb_itemtempname"  
+value = "temp"
+ > -- project identifier 
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td valign="top"><font face="arial" size="2" color="000000" ><b></u>
+Item Title
+<br>parent.adb_itemtitle
+&nbsp;
+</td>
+<td>&nbsp;
+<textarea cols="60" rows="5" name="adb_itemtitle"  
+>Letter, Gen. Andrew Jackson, the Hermitage, Nashville, Tenn., to J.G.M. Ramsey, Mecklenburg, near Knoxville, Tenn. 1823 June 14</textarea>
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Item Date
+<br>parent.adb_itemdate
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="60" name="adb_itemdate"  
+value = "1823-06-14"
+ > 
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td valign="top"><font face="arial" size="2" color="000000" ><b></u>
+Genre Description (abstract)
+<br>parent.adb_itemdescr
+&nbsp;
+</td>
+<td>&nbsp;
+<textarea cols="60" rows="5" name="adb_itemdescr"  
+>1823 June 14 Gen. Andrew Jackson, the Hermitage, near Nashville, Tenn., to J.G.M. Ramsey, Mecklenburg, 
+near Knoxville, Tenn. In reply to Dr. Ramsey's request, explains that he was too young to take part in the Mecklenburg 
+Convention and that he can offer no further information on the subject.</textarea>
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Item Type (of resource)
+<br>parent.adb_itemtype
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="60" name="adb_itemtype"  
+value = "text"
+ > 
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td valig="top"><font face="arial" size="2" color="000000" ><b></u>
+Item Genre
+<br>parent.adb_genre
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="60"  name="adb_genre"  
+value="letter">
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Item Dimensions
+<br>parent.adb_itemdim
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="60" name="adb_itemdim"  
+value = "optional" > 
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Item Location
+<br>parent.adb_itemlocation
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="60" name="adb_itemlocation"  
+value = "details on location" > 
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Item Creator (the author)
+<br>parent.adb_itemcreator
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="60" name="adb_itemcreator"  
+value = "Gen. Andrew Jackson" > 
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Project Name
+<br>parent.adb_projectname
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="60" name="adb_projectname"  
+value = "DLC-MODS" > 
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td><font face="arial" size="2" color="000000" ><b></u>
+Project ID 
+<br>parent.adb_projectid
+&nbsp;
+</td>
+<td>&nbsp;
+<input type="text" size="60" name="adb_projectid"  
+value = "DLC" > 
+&nbsp;</td>
+<td>&nbsp</td>
+</tr>
+
+
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+
+
+
+
+<tr class="bgstandard"><td colspan="3" align="center">
+&nbsp;&nbsp;
+
+</td></tr>
+
+</table>
+
+
+</form name="forms[0]">
+
+
+
+<center><font face="arial">
+<h2> <script> document.write(parent.adb_project_name); </script>
+ Workbook Begin Alt Page </h2>
+</center>
+<hr>
+<script>
+
+
+/////chdchdchd
+
+
+
+
+
+</script>
+	
+
+
+</body>
+</html>
+

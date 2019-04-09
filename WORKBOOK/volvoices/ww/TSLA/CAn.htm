@@ -1,0 +1,175 @@
+<html>
+<head>
+<title>vv_popupCA</title>
+
+<link href="../vv_workbook.css" type="text/css" rel="stylesheet">
+
+
+
+
+<script language="javascript">
+
+var select_id= new String();
+function get_select_id() {
+
+var str = new String();
+    str = parent.location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  parent.window.opener.location.href="+parent.window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=get_select_id();
+
+
+
+var strSelect_PN_A = new String('');
+
+
+strSelect_PN_A = '<select name="aaa"  size="24" style="font-size:10px"> \r\n'
+	+'<option value="0" selected>No value selected</option> \r\n'
+		
+
+
+
+
+
+
+
+	+'<option>NASHVILLE (TENN.) - BOARD OF EDUCATION</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - FIRE DEPARTMENT</option>  \r\n'
+	+'<option>NASHVILLE (TENN.) - SELECTIVE SERVICE BOARD</option>  \r\n'
+	+'<option>NASHVILLE AND DAVIDSON COUNTY (TENN.) - BOARD OF PARKS AND RECREATION</option>  \r\n'
+	+'<option>NASHVILLE AREA AGRICULTURAL CLUB (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>NASHVILLE CITY CEMETERY (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>NASHVILLE COMMANDERY NO. 1 (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>NASHVILLE CRIPPLED CHILDREN\'S HOME (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>NASHVILLE FOUNDATION (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>NASHVILLE LIFE INSURANCE COMPANY (TENN.)</option>  \r\n'
+	+'<option>NASHVILLE ROTARY CLUB (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>NASHVILLE STREET RAILWAY AND LIGHT COMPANY (TENN.)</option>  \r\n'
+	+'<option>NATIONAL ASSOCIATION OF FREE WILL BAPTISTS (U.S.)</option>  \r\n'
+	+'<option>NATIONAL CEMETERY (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>NATIONAL GUARD ASSOCIATION OF TENNESSEE</option>  \r\n'
+	+'<option>NATIONAL SOCIETY CHILDREN OF THE AMERICAN REVOLUTION - TENNESSEE STATE SOCIETY</option>  \r\n'
+	+'<option>NATIONAL SOCIETY OF THE COLONIAL DAMES OF AMERICA, IN TENNESSEE</option>  \r\n'
+	+'<option>NATIONAL SOCIETY UNITED STATES DAUGHTERS OF 1812 - COLONEL THOMAS HART BENTON CHAPTER (SPRINGFIELD, TENN.)</option>  \r\n'
+	+'<option>NATIONAL SOCIETY UNITED STATES DAUGHTERS OF 1812 - TENNESSEE SOCIETY</option>  \r\n'
+	+'<option>NATIONAL YOUTH ADMINISTRATION, TENNESSEE</option>  \r\n'
+	+'<option>NATIVE AMERICAN INDIAN ASSOCIATION OF TENNESSEE</option>  \r\n'
+	+'<option>NEELY CHAPTER (HARDEMAN COUNTY, TENN.)</option>  \r\n'
+	+'<option>NETHERLAND INN AND COMPLEX (KINGSPORT, TENN.)</option>  \r\n'
+	+'<option>NEW BETHEL PRESBYTERIAN CHURCH (SULLIVAN COUNTY, TENN.)</option>  \r\n'
+	+'<option>NEW GRAY CEMETERY (KNOX COUNTY, TENN.)</option>  \r\n'
+	+'<option>NEW HOPE BAPTIST CHURCH (DECATUR COUNTY, TENN.)</option>  \r\n'
+	+'<option>NEW HOPE BAPTIST CHURCH (HERMITAGE, TENN.)</option>  \r\n'
+	+'<option>NEW HOPE CUMBERLAND PRESBYTERIAN CHURCH (HARDEMAN COUNTY, TENN.)</option>  \r\n'
+	+'<option>NEW HOPE CUMBERLAND PRESBYTERIAN CHURCH (ROANE COUNTY, TENN.)</option>  \r\n'
+	+'<option>NEW HOPE METHODIST CHURCH (WEAKLEY COUNTY, TENN.)</option>  \r\n'
+	+'<option>NEW HOPE METHODIST EPISCOPAL CHURCH, SOUTH (WEAKLEY COUNTY, TENN.)</option>  \r\n'
+	+'<option>NEW HOPE PRIMITIVE BAPTIST CHURCH (BEDFORD COUNTY, TENN.)</option>  \r\n'
+	+'<option>NEW HOPEWELL BAPTIST CHURCH (MCMINN COUNTY, TENN.)</option>  \r\n'
+	+'<option>NEW PROVIDENCE CUMBERLAND PRESBYTERIAN CHURCH (MCNAIRY COUNTY, TENN.)</option>  \r\n'
+	+'<option>NEW PROVIDENCE PRESBYTERIAN CHURCH (BEDFORD COUNTY, TENN.)</option>  \r\n'
+	+'<option>NEW PROVIDENCE PRESBYTERIAN CHURCH (HAWKINS COUNTY, TENN.)</option>  \r\n'
+	+'<option>NEW SALEM CUMBERLAND PRESBYTERIAN CHURCH (SELMER, TENN.)</option>  \r\n'
+	+'<option>NEW SALEM CUMBERLAND PRESBYTERIAN CHURCH (WEAKLEY COUNTY, TENN.)</option>  \r\n'
+	+'<option>NEW SALEM UNITED METHODIST CHURCH (KNOX COUNTY, TENN.)</option>  \r\n'
+	+'<option>NEW YORK UNIVERSITY OF TENNESSEE CLUB</option>  \r\n'
+	+'<option>NEWBERN STATE AREA VOCATIONAL-TECHNICAL SCHOOL (TENN.)</option>  \r\n'
+	+'<option>NEWHOPE BAPTIST CHURCH (BEDFORD COUNTY, TENN.)</option>  \r\n'
+	+'<option>NICHOLSON HOTEL (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>NICKAJACK RESORT STATE PARK (TENN.) (PROPOSED)</option>  \r\n'
+	+'<option>NOLACHUCKY ASSOCIATION OF PRIMITIVE BAPTISTS (TENNESSEE)</option>  \r\n'
+	+'<option>NOLACHUCKY BAPTIST ASSOCIATION (TENNESSEE)</option>  \r\n'
+	+'<option>NORENE SCHOOL (NORENE, TENN.)</option>  \r\n'
+	+'<option>NORMANDY UNITED METHODIST CHURCH (NORMANDY, TENN.)</option>  \r\n'
+	+'<option>NORTHWEST TENNESSEE DEVELOPMENT DISTRICT</option>  \r\n'
+	+'<option>NORTHWEST TENNESSEE HUMAN RESOURCE AGENCY (MARTIN, TENN.)</option>  \r\n'
+
+
++'</select> \r\n';
+	
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+<body class="background">
+
+
+
+
+<form name="FormOne" >
+
+
+<div name="SS" id="SS">
+<script>
+document.write(
+
+	 '<table border="1" cellpadding="4" cellspacing="0"  width="90%">\r\n'
+	+'<tr><td  bgcolor="ddeeff">\r\n'
+	///+'vv_functions.htm called by '+select_id+' <br>\r\n'
+	+'<b>Select Corporate Author N</b> \r\n'
+	+'</td></tr><tr><td bgcolor="ddeeff"> \r\n' 
+	+ strSelect_PN_A
+
+	+'</td></tr></table> \r\n'
+	///+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+</script>
+	
+</div>
+
+<input type="button" onclick="showSelection();" name="B1" value="Corporate Author">
+
+</form>
+
+<script>
+
+
+
+                  
+
+function showSelection() {
+
+val = new String();
+
+for ( i=0; i< document.FormOne.aaa.length; i++ ) {
+
+if ( document.FormOne.aaa[i].selected == true ) {
+  	val = document.FormOne.aaa[i].text;
+	break;
+	}
+else { val = "you never selected anything"; 
+	}
+
+}
+////////////////////////alert ("You selected " +val);
+
+switch ( select_id ) {
+
+case  "subject_name_lcsh_01" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_01.value=val;
+	parent.window.close();
+	break;
+
+case  "subject_name_lcsh_02" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_02.value=val;
+	parent.window.close();
+	break;
+}//end switch
+
+}///end function
+</script>
+

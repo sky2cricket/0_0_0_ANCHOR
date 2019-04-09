@@ -1,0 +1,56 @@
+
+diglib2, database: InfoTrack, table: items
+
+SELECT count(*) FROM `items` WHERE newid like '00%' and newid not like '0012%'
+RESULT 0
+
+SELECT count( * )  FROM `items`  WHERE newid LIKE '0012%' 
+RESULT: 1558
+
+
+SELECT count( * )  FROM `items` WHERE 1 
+RESULT: 16756
+
+
+SELECT count(*) FROM `items` WHERE oaiID is null
+RESULT 0
+
+
+SELECT count(*) FROM `items` WHERE oaiID is not null
+RESULT: 16756
+
+=========================================================================
+
+grep "InfoTrack" */*  ( all notes files in storyboard directory )
+
+Binary file 080222/preservation scripts and such.msg matches
+Binary file 080310/preservation_scripts.msg matches
+080319/080319_training.txt:InfoTrack database.  then copy new stuff to store1.
+080402/080402b.txt:InfoTrack database.  then copy new stuff to store1.
+Binary file 080402/RE training  questions.msg matches
+----------------------------------------
+
+From email ( in jody_training on my computer) 4-2-2008  080402
+
+
+1.  Which volunteer voices online digital objects have been entered into the InfoTrack database?
+        I think the answer is all UT Special Collections ( all with file base " 0012_* " )
+
+1)  None.  I have not yet finished changing the files to the form needed for SPC, and creating all the interlinking.  If existing SPC collections are sucked in (such as TDH) those are already in the database, but list the current collection as their home.  Additional collections would need to be added to the database, and possibly other persistent identifiers.  If they are linked to their finding aids, that would need to be added in too.
+
+2.  Why have Volunteer voices online digital objects from other institutions ( not 0012 ) not been
+    added to the InfoTrack database?
+
+2)  First, because I identify them there by their persistent identifier, and if they are to move to another system, that will no longer work.
+Second, because they have not finished moving them from one subcollection to another.  In the InfoTrack, I identify the collection it belongs with.  If something is moved from 04 to 03, that is a move from vvo to vvt.  If it is moved from 04 to 00, that is a move from vvo to vvz and ALSO a change of format from image to text, which impacts the ARL stats, as it is a change in category.
+
+3.  You said some scripts for something have yet to be written.
+        To make OAI identifiers?
+        To make persistant urls?
+        Others?
+
+
+3) Mostly scripts to handle the rework into SPC, with correct linking between constituent files and finding aids.  Also, scripts to deliver the incoming SPC stuff, and the software needs to be adapted to handle those collections in the new MODS.  Also, scripts to rework TDH after the TEI is repaired and the MODS created.  Also, scripts to put stuff in InfoTrack when it’s finally finalized.  The scripts you are running to put up each collection are creating the persistent URLS.  The filenames those scripts create for the bib records form the basis for the OAI identifiers, which are created by broker20.
+-----------------------------------------------------------
+The good news is that NO ROWS have been created for vv records in InfoTrack.
+

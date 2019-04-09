@@ -1,0 +1,259 @@
+<!--
+    This code is issued under the GNU General Public License, 
+    version 3, 29 June 2007.
+
+    The DLC-MODS Workbook provides a series of web pages to help you 
+    generate a MODS metadata record that follows the Digital Library 
+    Federation Implementation Guidelines for Shareable MODS Records, 
+    as described in the DLF Aquifer Guidlines November 2006.  These 
+    Guidelines and the specific MODS Profile are documented on the 
+    MODS Profile Page of the DLC-MODS Workbook.
+
+    Copyright (C) 2007 
+    Christine Haygood Deane 
+    University of Tennessee Libraries
+    Digital Library Center
+ 
+
+    This program is free software: you can redistribute it and/or modify    
+    it under the terms of the GNU General Public License as published by    
+    the Free Software Foundation, version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see http://www.gnu.org/licenses/
+-->
+
+<html>
+<head>
+<title>
+programmerdoc
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+
+</head>
+<script>
+parent.adb_background_color="#d0d0d0";
+parent.adb_project_name= 'The University of Tennessee Libraries<br>Digital Library Center<br>DLC-MODS Workbook 1.2<br> '; 
+</script>
+
+<script>document.write('<body bgcolor="'+parent.adb_background_color+'" >');</script>
+
+<font face="arial" size="3">
+<center><font face="arial">
+<h3> <script> document.write(parent.adb_project_name); </script>
+ Programmer Documentation</h3>
+<script>
+
+//var adb_project_id  = 'WB1.2'; 
+if ( typeof(parent.adb_project_id) != "undefined")  { 
+	document.write('<p><a href="page_programmerdoc.htm" target="_blank">Printer Friendly Programmer Documentation</a>');
+	}
+</script>
+</center>
+<script>
+
+</script>
+
+
+<p>
+<table class="bgINNer"  border="0" cellpadding="2" cellspacing="1" width="98%">
+<tr class="bgstandard"><td colspan="3">
+
+&nbsp;
+</td></tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+<tr class="bgstandard" >
+<td colspan="3"><font face="arial" size="2" color="000000" ><b></u> &nbsp; </td>
+</tr>
+
+<tr class="bgstandard">
+<td colspan="3" align="center">
+<table border="1" cellpadding="4" cellspacing="0" bgcolor="ffffff" width="92%">
+<tr><td><font face="arial" size="3" color="000000" >
+<b>Installation</b><br>
+The DLC-MODS Workbook is a set of files in one directory <b>WB</b>
+<br>Put WB/* whereever you like.
+<br>To use locally on WINDOWS with Inetpub, put WB in C:\Inetpub\wwwroot\WB
+<br>To use locally on WINDOWS with Tomcat, put WB in the webapps directory of your TOMCAT_HOME
+<br>To use on linux, put WB under any public_html/ directory
+<br>To use on linux with apache/tomcat, put WB in the webapps directory of your TOMCAT_HOME
+<br>In discussion below, I will refer to files as WB/filename.
+</td></tr>
+<tr><td><font face="arial" size="3" color="000000" >
+<b>Before you begin...</b><br>
+This workbook requires the use of popup windows.  Please <u>turn off your popup blocker</u> now.
+</td></tr>
+<tr><td><font face="arial" size="3" color="000000" >
+<b>Debug and No Debug</b><br>
+The typical user will access these pages using the <b>no debug</b> option. 
+<br>To look under the covers and develop your own code, use the <b>debug</b> option.
+<br><b>no debug</b> Link to <u>WB/workbook.htm</u>
+<br><b>debug</b> Link to <u>WB/workbook_debug.htm</u>
+<br>The difference between debug and no debug is 
+<li>the definition of the frameset ( allowing display of all frames )
+<li>the list of links in the left frame with some of my help notes
+<li>the display of document.form[0].elements array at the bottom of each input page
+<li>the link to the Reload dev page (development reload) with a full xml test page hardcoded into the input textarea
+<br>Each of the features on the debug workbook was developed by me to help myself.
+</td></tr>
+<tr><td><font face="arial" size="3" color="000000" >
+<b>The no debug frameset</b><br>
+<pre>
+&lt;frameset cols="160,*"  border="0" name="P">
+        &lt;frame name="T" src="page_links_static.htm" >
+        &lt;frameset rows="0,0,*" >
+                &lt;frame name="U" src="page_10_upper.htm"  >
+                &lt;frame name="L" src="page_11_lower.htm" >
+                &lt;frame name="D" src="page_welcome.htm" scrolling="yes">
+        &lt;/frameset>
+&lt;/frameset>
+</pre>
+</td></tr>
+<tr><td><font face="arial" size="3" color="000000" >
+<b>The debug frameset</b><br>
+<pre>
+&lt;frameset cols="160,*"  border="01" name="P">
+        &lt;frame name="T" src="page_links_debug_static.htm" >
+        &lt;frameset rows="150,15,*" >
+                &lt;frame name="U" src="page_10_upper.htm"  >
+                &lt;frame name="L" src="page_11_lower.htm" >
+                &lt;frame name="D" src="page_welcome.htm" scrolling="yes">
+        &lt;/frameset>
+&lt;/frameset>
+</pre>
+</td></tr>
+<tr><td><font face="arial" size="3" color="000000" >
+<b>The Upper Frame</b><br>
+This is page_10_upper.htm, loaded once when you first load the WB/workbook.htm page.
+<br>It is for storage and contains two forms, UF and U2.
+<br>parent.U.document.UF -- for storage of input from tag pages
+<br>parent.U.document.U2 -- for storage of input from reload page
+<br>This page persists the data throughout the session.  
+</td></tr>
+<tr><td><font face="arial" size="3" color="000000" >
+<b>The Lower Frame</b><br>
+This is page_11_lower.htm, loaded once when you first load the WB/workbook.htm page.
+<br>parent.L.your_function_name_goes_here
+<br>This page includes all functions, arrays, and anything else that can be called a constant.
+<br>This page includes the "welcome" alert, which does not appear until everything else is loaded.
+<br>The alert prevents users from clicking on any side before the Lower Frame has finished loaded.
+<br>Because all these functions are loaded at the beginning, they are immediately available to display pages.
+</td></tr>
+<tr><td><font face="arial" size="3" color="000000" >
+<b>The Display Frame</b><br>
+This is every page that can be accessed from the Link Frame.
+<br>Welcome, Contents, Begin, Documentation, <titleInfo>, etc.
+<br>When the display page contains an input form, it is always named DF.
+</td></tr>
+<tr><td><font face="arial" size="3" color="000000" >
+<b>The Link Frame</b><br>
+This frame contains the link table running down the left side of the page in the parent.T frame.
+<br>When this frame first loads, the source filename contains the word static.
+<br>After you click on a link, the source filename contains the word active.
+<br>This was so I could highlight the name of the page in the Display Frame.
+<br>There are 4 of these link files, 2 for non-debug and 2 for debug.
+<li> WB/page_links_static.htm 
+<li> WB/page_links_active.htm
+<li> WB/page_links_debug_static.htm
+<li> WB/page_links_debug_active.htm
+</td></tr>
+<tr><td><font face="arial" size="3" color="000000" >
+<b>How the frames work together to build the output</b><br>
+Use the debug option.
+<br>Select <u>&lt;titleInfo></u> on the link page.
+<br>Enter required (yellow input boxes) data, click the <u>Save and View MODS Tags</u> button.
+<br>You will see the tags you created for the <u>&lt;titleInfo></u> with input in red.
+<br>If you enlarge the upper frame, you will see the input boxes for <u>&lt;titleInfo></u> filled in.
+<br>The next time you visit this input page, your values are preserved,<br>because they have been loaded from the upper frame.
+<br>So each time you save, values are loaded from the display frame to the upper frame.
+<br>And each time you click on the link for any page, values are loaded from upper frame to display frame.
+<br>Examine function <u>load_UF_form</u> and function <u>load_DF_form</u> on each page.
+<br>The final page submits values from the upper frame to build the output.
+<br>All tags for all pages are built in the file WB/vv_compose_tags.js.
+</td></tr>
+<tr><td><font face="arial" size="3" color="000000" >
+<b>Reloading Data (Reload Page, Reload dev Page)</b><br>
+If you have an incomplete file or a file you wish to revise, you can use reload.
+<br>Open the XML file with notepad.
+<br>Cut and paste into the input box on the Reload Page.
+<br>Push the <u>Process Data in Text Area</u> button.
+<br>This dumps your field data into the upper frame. ( view in debug option )
+<br>Start revising your data.
+<br>This is handy if you haven't finished your whole file by the end of the day or if you are reviewing data and finding errors.
+<br>The <u>Reload dev</u> page is helpful for code development.
+<br>The input data is parsed and processed in WB/vv_process_tags.js.
+</td></tr>
+<tr><td><font face="arial" size="3" color="000000" >
+<b>Submit Button(s)</b><br>
+At the bottom of each input form there is a single button
+<li><u>Save Data and View MODS TAGS</u>
+<br>There is also a second button <u>Save</u> that has been commented out.
+<br>The code for the <u>Save</u> button is shown below.
+<br><font face="terminal" size="2"> &lt;input type="button" name="B_UF" value="Save" class="buttonnw" onclick="buildModsTags(10);"></font>
+<br>&nbsp;
+<br>The code to support the <u>Save</u> button is still in place and you may decide that the <u>Save</u> button is useful.
+<br>Unfortunately, it has been my experience that the <u>Save</u> button causes confusion. 
+<br>To test the <u>Save</u> button, uncomment it on one page and take it for a test drive.
+</td></tr>
+
+<tr><td><font face="arial" size="3" color="000000" >
+<b>Final Page</b><br>
+The purpose of the final page is to <u>View</u> or <u>Download</u> your xml file.
+<br>The display contains validation status by page (complete/incomplete).
+<br>If any page is incomplete, you will have to create and <u>incomplete</u> xml file.
+<br>This file can be saved and then copied to the <u>Reload</u> page for continuation of work at a later date.
+<br>If all pages are in status <u>complete</u>, you may create the <u>final</u> xml file.
+<br>There are 3 buttons on this page.
+<li><u>View MODS TAGS</u> -- A quick way to preview the file.
+<li><u>Create Incomplete XML File</u> -- Save the work you have done so far, complete later.
+<li><u>Create FINAL XML File with valildation</u> -- Final work, validation will catch any incomplete pages.
+</td></tr>
+
+
+<tr><td><font face="arial" size="3" color="000000" >
+<b>Review Page</b><br>
+The Review Page is discussed in detail in the User Documentation.
+<br>I initially considered this page was just a service to users and not a serious undertaking.
+<br>As I wrote the page, I discovered all sorts of nasty little errors.
+<br>So if you are adding new code, you may wish to add your new fields to the Review Page, just to make sure they work.
+
+</td></tr></table>
+</td>
+</tr>
+
+
+
+
+<tr class="bgstandard">
+<td colspan="3">&nbsp</td>
+</tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+<tr class="bgstandard"><td colspan="3" align="center">
+&nbsp;&nbsp;
+</td></tr>
+</table>
+
+
+
+
+
+
+
+<font face="arial" size="3">
+<center><font face="arial">
+<h3> <script> document.write(parent.adb_project_name); </script>
+ Programmer Documentation</h3>
+</center>
+
+
+</body>
+</html>
+

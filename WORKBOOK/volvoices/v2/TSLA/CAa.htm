@@ -1,0 +1,160 @@
+<html>
+<head>
+<title>vv_popupCA</title>
+
+<link href="../vv_workbook.css" type="text/css" rel="stylesheet">
+<script language=javascript src="../vv_functions_tsla.js"></script>
+
+
+
+
+<script language="javascript">
+
+var select_id= new String();
+function get_select_id() {
+
+var str = new String();
+    str = parent.location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  parent.window.opener.location.href="+parent.window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=get_select_id();
+
+
+
+var strSelect_PN_A = new String('');
+
+
+strSelect_PN_A = '<select name="aaa"  size="24" style="font-size:10px"> \r\n'
+	+'<option value="0" selected>No value selected</option> \r\n'
+		
+
+	+'<option>ABBE INSTITUTE (LEBANON, TENN.)</option>  \r\n'
+	+'<option>ABRAHAM LINCOLN MUSEUM (HARROGATE, TENN.)</option>  \r\n'
+	+'<option>ADAS ISRAEL (BROWNSVILLE, TENN.)</option>  \r\n'
+	+'<option>ADVENT EVANGELICAL LUTHERAN CHURCH (MURFREESBORO, TENN.)</option>  \r\n'
+	+'<option>AFRICAN METHODIST EPISCOPAL CHURCH - TENNESSEE</option>  \r\n'
+	+'<option>AGRICULTURAL STABILIZATION AND CONSERVATION COMMITTEE (TENNESSEE)</option>  \r\n'
+	+'<option>AILOR MORTUARY (UNION COUNTY, TENN.)</option>  \r\n'
+	+'<option>ALABAMA UNIVERSITIES/TENNESSEE VALLEY AUTHORITY RESEARCH CONSORTIUM</option>  \r\n'
+	+'<option>ALEX HALEY HISTORIC SITE AND MUSEUM (HENNING, TENN.)</option>  \r\n'
+	+'<option>ALEX HALEY VISITORS\' CENTER (HENNING, TENN.)</option>  \r\n'
+	+'<option>ALVIN C. YORK INDUSTRIAL INSTITUTE (JAMESTOWN, TENN.)</option>  \r\n'
+	+'<option>AMERICAN CAMPING ASSOCIATION - TENNESSEE VALLEY SECTION</option>  \r\n'
+	+'<option>AMERICAN INSTITUTE OF ARCHITECTS - TENNESSEE SOCIETY</option>  \r\n'
+	+'<option>AMERICAN LEGION - AUXILIARY - UNIT NO. 48 (SPRINGFIELD, TENN.)</option>  \r\n'
+	+'<option>AMERICAN LEGION - DEPARTMENT OF TENNESSEE AUXILIARY</option>  \r\n'
+	+'<option>AMERICAN NATIONAL BANK (DAYTON, TENN.)</option>  \r\n'
+	+'<option>AMERICAN PARTY - TENNESSEE</option>  \r\n'
+	+'<option>AMERICAN TEMPERANCE UNIVERSITY (HARRIMAN, TENN.)</option>  \r\n'
+	+'<option>AMERICAN UNIVERSITY OF HARRIMAN (TENN.)</option>  \r\n'
+	+'<option>ANDREW JACKSON HOTEL (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>ANDREWS CHAPEL METHODIST CHURCH (HUNTERSVILLE, TENN.)</option>  \r\n'
+	+'<option>ANTIOCH BAPTIST CHURCH (JEFFERSON COUNTY, TENN.)</option>  \r\n'
+	+'<option>ANTIOCH PRIMITIVE BAPTIST CHURCH (HARDEMAN COUNTY, TENN.)</option>  \r\n'
+	+'<option>ANTIQUARIAN SOCIETY OF TENNESSEE</option>  \r\n'
+	+'<option>AQUINAS JUNIOR COLLEGE (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>ARLINGTON DEVELOPMENTAL CENTER (TENN.)</option>  \r\n'
+	+'<option>ARLINGTON HOSPITAL & SCHOOL (TENN.)</option>  \r\n'
+	+'<option>ARLINGTON METHODIST CHURCH (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>ASBURY CEMETERY (KNOX COUNTY, TENN.)</option>  \r\n'
+	+'<option>ASSOCIATION FOR RETARDED CITIZENS OF DAVIDSON COUNTY, TENNESSEE</option>  \r\n'
+	+'<option>ASSOCIATION FOR RETARDED CITIZENS-TENNESSEE</option>  \r\n'
+	+'<option>ASSOCIATION FOR THE PRESERVATION OF TENNESSEE ANTIQUITIES</option>  \r\n'
+	+'<option>ASSOCIATION FOR THE PRESERVATION OF TENNESSEE ANTIQUITIES - NASHVILLE CHAPTER</option>  \r\n'
+	+'<option>ASSOCIATION FOR THE PRESERVATION OF VIRGINIA ANTIQUITIES - NASHVILLE CHAPTER (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>ATCHLEY FUNERAL HOME (SEVIERVILLE, TENN.)</option>  \r\n'
+	+'<option>ATHENAEUM (COLUMBIA, TENN.)</option>  \r\n'
+	+'<option>AUBURN BAPTIST CHURCH (AUBURNTOWN, TENN.)</option>  \r\n'
+
++'</select> \r\n';
+	
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+<body class="background">
+
+
+
+
+<form name="FormOne" >
+
+
+<div name="SS" id="SS">
+<script>
+document.write(
+
+	 '<font color="eeffee">vv_functions.htm called by '+select_id+' </font>\r\n'
+	+'<table border="1" cellpadding="4" cellspacing="0"  width="90%">\r\n'
+	+'<tr><td  bgcolor="ddeeff">\r\n'
+	///+'vv_functions.htm called by '+select_id+' <br>\r\n'
+	+'<b>Select Corporate Author A</b> \r\n'
+	+'</td></tr><tr><td bgcolor="ddeeff"> \r\n' 
+	+ strSelect_PN_A
+
+	+'</td></tr></table> \r\n'
+	///+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+</script>
+	
+</div>
+
+<input type="button" onclick="showSelection();" name="B1" value="Corporate Author">
+
+</form>
+
+<script>
+
+
+
+                  
+
+function showSelection() {
+
+val = new String();
+
+for ( i=0; i< document.FormOne.aaa.length; i++ ) {
+
+if ( document.FormOne.aaa[i].selected == true ) {
+  	val = document.FormOne.aaa[i].text;
+	break;
+	}
+else { val = "you never selected anything"; 
+	}
+
+}
+////////////////////////alert ("CAa.htm function showSelection: You selected \n" +val);
+val=reformatCa(val);
+////////////////////////alert ("CAa.htm function showSelection after reformat: You selected \n" +val);
+
+
+switch ( select_id ) {
+
+case  "subject_name_lcsh_01" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_01.value=val;
+	parent.window.close();
+	break;
+
+case  "subject_name_lcsh_02" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_02.value=val;
+	parent.window.close();
+	break;
+}//end switch
+
+}///end function
+</script>
+

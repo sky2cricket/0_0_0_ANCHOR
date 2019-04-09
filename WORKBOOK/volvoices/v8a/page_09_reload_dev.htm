@@ -1,0 +1,448 @@
+<!--
+    This code is issued under the GNU General Public License, 
+    version 3, 29 June 2007.
+
+    The DLC-MODS Workbook provides a series of web pages to help you 
+    generate a MODS metadata record that follows the Digital Library 
+    Federation Implementation Guidelines for Shareable MODS Records, 
+    as described in the DLF Aquifer Guidlines November 2006.  These 
+    Guidelines and the specific MODS Profile are documented on the 
+    MODS Profile Page of the DLC-MODS Workbook.
+
+    Copyright (C) 2007 
+    Christine Haygood Deane 
+    University of Tennessee Libraries
+    Digital Library Center
+ 
+
+    This program is free software: you can redistribute it and/or modify    
+    it under the terms of the GNU General Public License as published by    
+    the Free Software Foundation, version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see http://www.gnu.org/licenses/
+-->
+
+<html>
+<head>
+<title>
+page_reload
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+
+
+
+</head>
+
+<script>document.write('<body   bgcolor="'+parent.adb_background_color+'" >');</script>
+
+<font face="arial" size="3">
+<center><font face="arial">
+
+<h2> <script> document.write(parent.adb_project_name); </script>
+ Reload Page DEV</h2>
+</center>
+
+<script>
+
+
+function clearData() {
+document.forms[0].chomp.value = "";
+parent.U.document.UF.reset();
+return;
+}
+
+
+</script>
+
+<form name="DF"  action="new.xml">
+
+
+<!---table border="1" cellpadding="2" cellspacing="0" width="98%" bgcolor="ddeeff"--->
+<table  class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="99aabb">
+
+<tr class="bgstandard" ><td colspan="3">
+The purpose of this page is to upload an existing XML file from C:\Scan or C:Reworked directory.
+<br>So the file can be updated using the Volunteer Voices Workbook.
+<p>Cut and paste the entire xml workbook file into the text area below.
+<p><font face="arial" size="2">
+<script>
+var base = new String(parent.adb_admindb_data);
+document.write("You have generated this workbook from Admin DB location: "+base);
+document.write("<br>Your filename for reload should be: "+base+"_0000.xml");
+document.write("<br>If not, return to the Admin DB and generate the workbook that matches your filename."); 
+</script>
+</font>
+</td></tr>
+
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+<tr class="bgstandard" ><td colspan="3" align="left">
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+
+<input type="button" name ="bChompA" onclick="ingestData()"   value="Process Data in TextArea">
+&nbsp;
+&nbsp;
+<input type="button" name ="bClearA" onclick="clearData();" value="Clear TextArea">
+&nbsp;
+&nbsp;
+&nbsp;
+</td></tr>
+<tr class="bgstandard" >
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard" ><td colspan="1" class="label12u">
+Reload<br>Data
+</td><td class="value10nou">
+textarea: document.DF.chompXXX.value<br>
+<textarea name="chompXXX"
+rows="1" cols="80">chompXXX not use in testing</textarea>
+<br>
+textarea: document.DF.chomp <br>
+<textarea name="chomp" rows="10" cols="80">
+<?xml version="1.0" encoding="UTF-8"  ?>
+<mods:mods xmlns:mods="http://www.loc.gov/mods/v3" 
+ xmlns:xlink="http://www.w3.org/1999/xlink" 
+ xmlns="http://www.loc.gov/mods/v3" 
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+ xsi:schemaLocation="http://www.loc.gov/mods/v3 
+ http://www.loc.gov/standards/mods/v3/mods-3-2.xsd" ID="MODS" version="3.2"><!-- DLC-MODS Workbook 
+ version 1.2 released 16 September 2007 by Christine Haygood Deane  -->
+<!-- CONTENT CONTRIBUTOR: Melanie -->  
+<!-- INSTITUTION: UTK -->  
+<!-- RECORD CREATION DATE: Fri Aug 31 12:56:01 EDT 2007 -->  
+<!-- RECORD RELOAD DATE: Fri Sep 14 15:00:12 EDT 2007 --> 
+<!-- FILENAME: test.xml -->  
+<!-- BLOCK ITERATION :1:4:2:1:1:1:2:1:3:2:4:3:4:4:1: -->
+<!-- PAGE VALIDATION :A:B:C:D:E:F:G:H:I:J:K:L:M:N:O: -->  
+<mods:titleInfo>
+<mods:nonSort>the </mods:nonSort>
+<mods:title>book</mods:title>
+<mods:subTitle>(the book)</mods:subTitle>
+<mods:partNumber>part num</mods:partNumber>
+<mods:partName>part name</mods:partName>
+</mods:titleInfo>
+<mods:titleInfo displayLabel="dispLabel_one" type="abbreviated" authority="hlasja"> 
+<mods:nonSort>the</mods:nonSort> 
+<mods:title>dyn_book</mods:title> 
+</mods:titleInfo> 
+<mods:titleInfo displayLabel="dLabel2" type="translated"> 
+<mods:nonSort>the </mods:nonSort> 
+<mods:title>second book</mods:title> 
+</mods:titleInfo> 
+<mods:titleInfo> 
+<mods:nonSort>the</mods:nonSort> 
+<mods:title>third book</mods:title> 
+<mods:subTitle>third sub title</mods:subTitle> 
+<mods:partNumber>third part number</mods:partNumber> 
+<mods:partName>third part name</mods:partName> 
+</mods:titleInfo> 
+
+<mods:name type="personal" authority="ULAN">
+<mods:namePart type="family">smith</mods:namePart>
+<mods:namePart type="given">aaa bbb</mods:namePart>
+<mods:namePart type="termsOfAddress">miss</mods:namePart>
+<mods:namePart type="date">1111-2222</mods:namePart>
+<mods:role>
+<mods:roleTerm authority="marcrelator" type="text">Actor</mods:roleTerm>
+<mods:roleTerm authority="marcrelator" type="text"> Adapter</mods:roleTerm>
+<mods:roleTerm authority="marcrelator" type="text"> Annotator</mods:roleTerm>
+</mods:role>
+</mods:name>
+<mods:name type="corporate" authority="LCNAF">
+<mods:namePart>tva</mods:namePart>
+<mods:role>
+<mods:roleTerm authority="marcrelator" type="text">Sponsor</mods:roleTerm>
+</mods:role>
+</mods:name>
+<mods:typeOfResource>cartographic</mods:typeOfResource>
+<mods:typeOfResource> notated music</mods:typeOfResource>
+<mods:genre authority="marcgt">atlas</mods:genre>
+
+<mods:genre authority="aat">aaa</mods:genre> 
+<mods:genre authority="aat">bbb</mods:genre> 
+<mods:genre authority="aat">ccc</mods:genre> 
+<mods:genre authority="nmc">xxx</mods:genre> 
+<mods:genre authority="nmc">yyy</mods:genre> 
+<mods:genre authority="nmc">zzz</mods:genre> 
+<mods:genre authority="marcgt">art reproduction</mods:genre> 
+<mods:genre authority="marcgt">atlas</mods:genre> 
+<mods:genre authority="marcgt">autobiography</mods:genre> 
+<mods:genre authority="marcgt">bibliography</mods:genre> 
+<mods:genre authority="marcgt">biography</mods:genre> 
+<mods:genre authority="marcgt">book</mods:genre> 
+<mods:genre authority="marcgt">catalog</mods:genre> 
+
+<mods:originInfo>
+<mods:dateCreated  keyDate="yes"  encoding="w3cdtf">2007-08-31</mods:dateCreated>
+<mods:dateIssued qualifier="approximate" encoding="w3cdtf">2007</mods:dateIssued>
+<mods:place>
+<mods:placeTerm type="code" authority="marccountry" >Tennessee</mods:placeTerm>
+</mods:place>
+<mods:publisher>UT PRESS, KTN</mods:publisher>
+</mods:originInfo>
+<mods:language>
+<mods:languageTerm type="code" authority="iso639-2b">eng</mods:languageTerm>
+<mods:languageTerm type="text" authority="iso639-2b">English</mods:languageTerm>
+</mods:language>
+<mods:language>
+<mods:languageTerm type="code" authority="iso639-2b">fra</mods:languageTerm>
+<mods:languageTerm type="text" authority="iso639-2b">French</mods:languageTerm>
+</mods:language>
+<mods:physicalDescription>
+<mods:form type="technique" authority="aat">something</mods:form>
+<mods:form type="medium" authority="aat">medium</mods:form>
+<mods:digitalOrigin>born digital</mods:digitalOrigin>
+<mods:internetMediaType>image/jpeg</mods:internetMediaType>
+<mods:extent>extebt</mods:extent>
+<mods:note>niote</mods:note>
+</mods:physicalDescription>
+<mods:abstract>aaaaaaaaaaaaaaaaaaa</mods:abstract>
+<mods:abstract>bbbbbbbbbbbbbbbbbbbbb</mods:abstract>
+<mods:abstract>cccccccccccccccccccccccc</mods:abstract>
+<mods:subject authority="aat"><mods:cartographics>
+<mods:coordinates>aaaaaaaaaaaaaaaaa</mods:coordinates>
+</mods:cartographics>
+</mods:subject><mods:subject authority="bella"><mods:hierarchicalGeographic>
+<mods:continent>cccccccccccccccccccccccccc</mods:continent>
+</mods:hierarchicalGeographic>
+</mods:subject><mods:relatedItem displayLabel="related item one" type="constituent" xlink:href="one one one" />
+<mods:relatedItem displayLabel="ri two" xlink:href="two two two" />
+<mods:relatedItem type="original" xlink:href="three three three" />
+<mods:relatedItem  xlink:href="four four four" />
+<mods:identifier displayLabel="id display one" type="ARK">id one</mods:identifier>
+<mods:identifier displayLabel="id display two" invalid="yes" type="isbn">id two</mods:identifier>
+<mods:identifier displayLabel="empty_string" type="ismn">TRE TRE TRE</mods:identifier>
+<mods:location>
+<mods:url usage="primary display" access="preview">e</mods:url>
+<mods:url access="raw object">f</mods:url>
+<mods:url>g</mods:url>
+<mods:url access="object in context">h</mods:url>
+</mods:location>
+<mods:accessCondition type="useAndReproduction">use and repor</mods:accessCondition>
+<mods:accessCondition type="useAndReproduction">aaa</mods:accessCondition> 
+<mods:accessCondition type="restrictionOnAccess">bbb</mods:accessCondition> 
+<mods:accessCondition type="useAndReproduction">ccc</mods:accessCondition> 
+<mods:recordInfo>
+<mods:recordContentSource authority="">d</mods:recordContentSource>
+<mods:recordOrigin>d</mods:recordOrigin>
+<mods:recordCreationDate encoding="w3cdtf">2007-08-31</mods:recordCreationDate>
+<mods:languageOfCataloging>
+<mods:languageTerm type="code" authority="iso639-2b">eng</mods:languageTerm>
+</mods:languageOfCataloging>
+</mods:recordInfo>
+</mods:mods>
+
+</textarea>
+<br>
+&nbsp;</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+<tr class="bgstandard" ><td colspan="3" align="left">
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+
+<input type="button" name ="bChomp" onclick="ingestData()"   value="Process Data in TextArea">
+&nbsp;
+&nbsp;
+<input type="button" name ="bClear" onclick="clearData();" value="Clear TextArea">
+&nbsp;
+&nbsp;
+&nbsp;
+</td></tr>
+
+
+<tr class="bgstandard" >
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+<tr class="bgstandard" >
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+
+</table>
+
+<h2> <script> document.write(parent.adb_project_name); </script></h2>
+
+</form name="forms[0]">
+<script>
+function ingestData() {
+//alert("ingestData");
+parent.U.document.UF.reset();
+parent.U.document.U2.reset();
+//if(!confirm("Continue?")){return;}
+
+parent.U.document.U2.chomp.value = document.DF.chomp.value;
+
+//parent.L.endSuccess("calling endSuccess from the reload_dev page");
+parent.L.orig_parseData();
+
+//parent.L.processData();
+//alert("Processing data input is complete.")
+alert("parent.L.processData called with page_09_reload_dev.htm");
+
+}//end function ingestData
+</script>
+
+<pre>
+
+&lt;?xml version="1.0" encoding="UTF-8"  ?>
+&lt;mods:mods xmlns:mods="http://www.loc.gov/mods/v3" 
+ xmlns:xlink="http://www.w3.org/1999/xlink" 
+ xmlns="http://www.loc.gov/mods/v3" 
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+ xsi:schemaLocation="http://www.loc.gov/mods/v3 
+ http://www.loc.gov/standards/mods/v3/mods-3-2.xsd" ID="MODS" version="3.2">&lt;!-- Volunteer Voices MODS profile 
+ released 14 December 2006 by Melanie Feltner-Reichert -->
+&lt;!-- Volunteer Voices Workbook 
+ version 1.0 released 6 February 2007 by Christine Haygood Deane  -->
+&lt;!-- Content Contributor:  Melanie -->  
+&lt;!-- Institution:  UTK -->  
+&lt;!-- Record Creation Date:  Fri Aug 31 12:56:01 EDT 2007 -->  
+&lt;!-- FILENAME: test.xml  -->  
+&lt;!-- NUMBER_OF_RELATED_ITEMS: 4: -->  
+&lt;!-- NUMBER_OF_IDENTIFIERS: 2: -->  
+&lt;!-- NUMBER_OF_SUBJECT_BLOCKS: 2: --> 
+&lt;!-- NUMBER_OF_NAME_BLOCKS: 2: --> 
+&lt;!-- NUMBER_OF_LOCATION_URL_BLOCKS: 1: --> 
+&lt;!-- NUMBER_OF_ACCESS_CONDITION_BLOCKS: 4: --> 
+&lt;!-- Reload: none --> 
+&lt;!-- BLOCK ITERATION :1:1:2:1:1:1:1:1:1:2:4:3:4:4:1: -->
+&lt;!-- PAGE VALIDATION :A:B:C:D:E:F:G:H:I:J:K:L:M:N:O: -->  
+&lt;mods:titleInfo>
+&lt;mods:nonSort>the &lt;/mods:nonSort>
+&lt;mods:title>book&lt;/mods:title>
+&lt;mods:subTitle>(the book)&lt;/mods:subTitle>
+&lt;mods:partNumber>part  num&lt;/mods:partNumber>
+&lt;mods:partName>part name&lt;/mods:partName>
+&lt;/mods:titleInfo>
+&lt;mods:titleInfo displayLabel="dispLabel_one" type="abbreviated" authority="hlasja"> 
+&lt;mods:nonSort>the</mods:nonSort> 
+&lt;mods:title>dyn_book</mods:title> 
+&lt;/mods:titleInfo> 
+&lt;mods:titleInfo displayLabel="dLabel2" type="translated"> 
+&lt;mods:nonSort>the </mods:nonSort> 
+&lt;mods:title>second book</mods:title> 
+&lt;/mods:titleInfo> 
+&lt;mods:titleInfo> 
+&lt;mods:nonSort>the</mods:nonSort> 
+&lt;mods:title>third book</mods:title> 
+&lt;mods:subTitle>third sub title</mods:subTitle> 
+&lt;mods:partNumber>third part number</mods:partNumber> 
+&lt;mods:partName>third part name</mods:partName> 
+&lt;/mods:titleInfo> 
+&lt;mods:name type="personal" authority="ULAN">
+&lt;mods:namePart type="family">smith&lt;/mods:namePart>
+&lt;mods:namePart type="given">aaa bbb&lt;/mods:namePart>
+&lt;mods:namePart type="termsOfAddress">miss&lt;/mods:namePart>
+&lt;mods:namePart type="date">1111-2222&lt;/mods:namePart>
+&lt;mods:role>
+&lt;mods:roleTerm authority="marcrelator" type="text">Actor&lt;/mods:roleTerm>
+&lt;mods:roleTerm authority="marcrelator" type="text"> Adapter&lt;/mods:roleTerm>
+&lt;mods:roleTerm authority="marcrelator" type="text"> Annotator&lt;/mods:roleTerm>
+&lt;/mods:role>
+&lt;/mods:name>
+&lt;mods:name type="corporate" authority="LCNAF">
+&lt;mods:namePart>tva&lt;/mods:namePart>
+&lt;mods:role>
+&lt;mods:roleTerm authority="marcrelator" type="text">Sponsor&lt;/mods:roleTerm>
+&lt;/mods:role>
+&lt;/mods:name>
+&lt;mods:typeOfResource>cartographic&lt;/mods:typeOfResource>
+&lt;mods:typeOfResource> notated music&lt;/mods:typeOfResource>
+&lt;mods:genre authority="marcgt">atlas&lt;/mods:genre>
+&lt;mods:originInfo>
+&lt;mods:dateCreated  keyDate="yes"  encoding="w3cdtf">2007-08-31&lt;/mods:dateCreated>
+&lt;mods:dateIssued qualifier="approximate" encoding="w3cdtf">2007&lt;/mods:dateIssued>
+&lt;mods:place>
+&lt;mods:placeTerm type="code" authority="marccountry" >Tennessee&lt;/mods:placeTerm>
+&lt;/mods:place>
+&lt;mods:publisher>UT PRESS, KTN&lt;/mods:publisher>
+&lt;/mods:originInfo>
+&lt;mods:language>
+&lt;mods:languageTerm type="code" authority="iso639-2b">eng&lt;/mods:languageTerm>
+&lt;/mods:language>
+&lt;mods:physicalDescription>
+&lt;mods:form type="technique" authority="aat">something&lt;/mods:form>
+&lt;mods:form type="medium" authority="aat">medium&lt;/mods:form>
+&lt;mods:digitalOrigin>born digital&lt;/mods:digitalOrigin>
+&lt;mods:internetMediaType>image/jpeg&lt;/mods:internetMediaType>
+&lt;mods:extent>extebt&lt;/mods:extent>
+&lt;mods:note>niote&lt;/mods:note>
+&lt;/mods:physicalDescription>
+&lt;mods:abstract>abstract&lt;/mods:abstract>
+&lt;mods:subject authority="aat">&lt;mods:cartographics>
+&lt;mods:coordinates>aaaaaaaaaaaaaaaaa&lt;/mods:coordinates>
+&lt;/mods:cartographics>
+&lt;/mods:subject>&lt;mods:subject authority="bella">&lt;mods:hierarchicalGeographic>
+&lt;mods:continent>cccccccccccccccccccccccccc&lt;/mods:continent>
+&lt;/mods:hierarchicalGeographic>
+&lt;/mods:subject>
+
+&lt;mods:relatedItem displayLabel="related item one" xlink:href="one one one" />
+&lt;mods:relatedItem displayLabel="ri two" type="host" xlink:href="two two two" /> 
+&lt;mods:relatedItem displayLabel="ri  xlink:href="three three three" /> 
+&lt;mods:relatedItem displayLabel="ri four" type="otherVersion" xlink:href="four four four" /> 
+
+&lt;mods:identifier displayLabel="id display one" type="ARK">id one&lt;/mods:identifier> 
+&lt;mods:identifier displayLabel="id display two" invalid="yes" type="isbn">id two&lt;/mods:identifier> 
+&lt:mods:identifier type="ismn">TRE TRE TRE&lt;/mods:identifier> 
+
+
+&lt;mods:location>
+
+&lt;mods:url usage="primary display" access="preview">e&lt;/mods:url>
+&lt;mods:url access="raw object">f&lt;/mods:url>
+&lt;mods:url>g&lt;/mods:url>
+&lt;mods:url access="object in context">h&lt;/mods:url>
+
+&lt;mods:physicalLocation type="repository">a&lt;/mods:physicalLocation>
+&lt;mods:physicalLocation type="city">b&lt;/mods:physicalLocation>
+&lt;mods:physicalLocation type="state">c&lt;/mods:physicalLocation>
+&lt;mods:physicalLocation type="collection">a&lt;/mods:physicalLocation>
+&lt;mods:physicalLocation type="archiveNumber">b&lt;/mods:physicalLocation>
+&lt;mods:physicalLocation type="note">physical_location_note</mods:physicalLocation> 
+
+&lt;/mods:location>
+&lt;mods:accessCondition type="useAndReproduction">use and repor&lt;/mods:accessCondition>
+&lt;mods:accessCondition type="useAndReproduction">aaa</mods:accessCondition> 
+&lt;mods:accessCondition type="restrictionOnAccess">bbb</mods:accessCondition> 
+&lt;mods:accessCondition type="useAndReproduction">ccc</mods:accessCondition> 
+
+
+&lt;mods:recordInfo>
+&lt;mods:recordContentSource authority="marcorg">d&lt;/mods:recordContentSource>
+&lt;mods:recordOrigin>d&lt;/mods:recordOrigin>
+&lt;mods:recordCreationDate encoding="w3cdtf">2007-08-31&lt;/mods:recordCreationDate>
+&lt;mods:languageOfCataloging>
+&lt;mods:languageTerm type="code" authority="iso639-2b">eng&lt;/mods:languageTerm>
+&lt;/mods:languageOfCataloging>
+&lt;/mods:recordInfo>
+&lt;/mods:mods>
+
+</pre>
+
+</body>
+</html>
+
+

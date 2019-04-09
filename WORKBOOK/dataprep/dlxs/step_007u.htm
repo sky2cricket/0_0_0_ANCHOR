@@ -1,0 +1,288 @@
+
+<html>
+<head>
+<title>step_007u</title>
+</head>
+<body>
+<font face="arial" size="3">
+step_007u.htm
+<br>http://diglib.lib.utk.edu/~cdeane/WORKBOOK/dataprep/dlxs/step_007u.htm
+<br><a href="http://diglib.lib.utk.edu/~cdeane/WORKBOOK/dataprep/dlxs/step_007u.htm"
+target="_blank">step_007u new window</a> (table width="100%")&nbsp;&nbsp;&nbsp; 
+<p><u>TEI files processed for pageviews</u>
+<hr>
+<p>&nbsp;
+<table border="1" cellpadding="4" cellspacing="0" width="100%">
+<tr>
+<td valign="top" width="3%">&nbsp;</td>
+<td valign="top" width="32%">04 notext vvb</td>
+<td valign="top" width="32%">02 ocr vvo</td>
+<td valign="top" width="32%">03 typed vvt</td>
+</tr>
+
+<tr>
+<td valign="top" width="3%">&nbsp;</td>
+<td valign="top" colspan="3">
+<u>Tasks immediately after making pageview rows</u>
+<p>&nbsp;
+<br><u>WORD WHEEL FILES</u>
+<p>&nbsp;
+<br>cd /d1/dlxs/idx/v/vvo/WW
+<br>make all
+<br>cd /d1/dlxs/idx/v/vvt/WW
+<br>make all
+<br>cd /d1/dlxs/idx/v/vvb/WW
+<br>make all
+</td>
+</tr>
+
+<tr>
+<td valign="top" width="3%">&nbsp;</td>
+<td valign="top" colspan="3">
+<u>FILE COPY</u>
+<p>&nbsp;
+<br>for bib class:
+<br>separate out the newmods from institution 0012 and put in spc directory.
+<br>/bin/mv newmods/ocr/0012* spc/mods/ocr/.
+<br>/bin/mv newmods/typed/0012* spc/mods/typed/.
+<br>/bin/mv newmods/notext/0012* spc/mods/notext/.
+
+<p>&nbsp;
+<br>copy modsbib and search files from 0012 there also, for changes.
+<br>/bin/cp modsbib/0012* spc/modsbib/.
+<br>/bin/cp search/0012* spc/modssearch/.
+
+<p>&nbsp;
+<br>/bin/cp modsbib/* /d1/workarea/dlxs/bib/mods/vv/xml
+
+<p>&nbsp;
+<br>for search:
+<br>/bin/cp search/* /d1/workarea/dlxs/bib/search/vv/xml/
+
+</td>
+</tr>
+
+<tr>
+<td valign="top" width="3%">&nbsp;</td>
+<td valign="top" colspan="3">
+<u>BIB CLASS COPY</u>
+
+<p>&nbsp;
+<br>
+cd /d1/workarea/dlxs/bib/mods/vv
+<br>
+cat openbib xml/* closebib > vvs-mods.xml  
+<br>
+/bin/cp vvs-mods.xml /d1/dlxs/prep/v/vvs-mods/
+<br>
+cd /d1/dlxs/prep/v/vvs-mods
+<br>
+perl transform
+<br>
+/bin/cp vvs-mods.xml /d1/dlxs/obj/v/vvs-mods
+<br>
+cd /d1/dlxs/idx/v/vvs-mods
+<br>
+make all
+
+<p>&nbsp;
+(make a release to production:  bib class)
+
+<p>&nbsp;
+</td>
+</tr>
+
+<tr>
+<td valign="top" width="3%">&nbsp;</td>
+<td valign="top" colspan="3">
+<u>THUMBS</u>
+
+<p>&nbsp;
+/d1/workarea/dlxs/search/dothis
+
+<br>
+Put thumbs in
+<br>
+/d1/dlxs/web/thumbs/
+<p>&nbsp;
+<br> cd /d1/workarea/dlxs/text/tel
+<br> /bin/cp notext/thumbs/* /d1/dlxs/web/thumbs/
+<br> /bin/cp ocr/thumbs/*    /d1/dlxs/web/thumbs/
+<br> /bin/cp typed/thumbs/*  /d1/dlxs/web/thumbs/
+<p>&nbsp;
+<br> cd /d1/workarea/dlxs/text/tel
+
+<br>scp */minithumbs/*jpg  diglib@diglib.lib.utk.edu:/d1/dlxs/web/thumbs/vv/.
+
+<p>&nbsp;
+<br>
+WHAT WORKED -- log on to diglib as root, go to store1/area2/volvoices2008/vvImport
+
+<br>
+[root@diglib vvImport]# /bin/cp   080107/02/minithumbs/*   /d1/dlxs/web/thumbs/vv/
+<br>
+[root@diglib vvImport]# /bin/cp   080107/04/minithumbs/*   /d1/dlxs/web/thumbs/vv/
+<br>
+[root@diglib vvImport]# /bin/cp   080201/02/minithumbs/*   /d1/dlxs/web/thumbs/vv/
+<br>
+[root@diglib vvImport]# /bin/cp   080201/03/minithumbs/*   /d1/dlxs/web/thumbs/vv/
+<br>
+[root@diglib vvImport]# /bin/cp   080201/04/minithumbs/*   /d1/dlxs/web/thumbs/vv/
+<br>
+[root@diglib vvImport]# /bin/cp   080416/03/minithumbs/*   /d1/dlxs/web/thumbs/vv/
+<br>
+[root@diglib vvImport]# /bin/cp   080812/02/minithumbs/*   /d1/dlxs/web/thumbs/vv/
+<br>
+[root@diglib vvImport]# /bin/cp   080812/04/minithumbs/*   /d1/dlxs/web/thumbs/vv/
+<br>
+
+
+
+
+
+
+
+</td>
+</tr>
+
+
+<tr>
+<td valign="top" width="3%">&nbsp;</td>
+<td valign="top" colspan="3">
+<u>fixSubjectsBib</u>
+<p>&nbsp;
+
+<br>
+/d1/workarea/dlxs/bib/mods/vv/dothis
+
+<br>
+cd /d1/workarea/dlxs/bib/mods/vv/
+
+<br>
+perl badfiles > look_date.txt
+<br>
+examine look_date.txt - if bad, fix,  if good, continue
+<br>
+<p>&nbsp;
+perl fixSubjectsBib  (repairs subjects in xml directory, puts them in newSubxml)
+<br>
+cat openbib newSubxml/* closebib >  vvs-mods.xml
+<br>
+cp vvs-mods.xml /d1/dlxs/prep/v/vvs-mods/.
+<br>
+	overwrite warning for cp, answer y
+
+<br>
+cd /d1/dlxs/prep/v/vvs-mods/
+<br>
+do bib class setup  (run transform, and copy xml to obj directory
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        
+comment added by chd 080403 to explain the line above
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        
+        [root@diglib2 vvs-mods]# transform
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        
+        [root@diglib2 vvs-mods]# cp vvs-mods.xml /d1/dlxs/obj/v/vvs-mods/
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        
+        cp: overwrite `/d1/dlxs/obj/v/vvs-mods/vvs-mods.xml'? Y
+
+<p>
+cd /d1/dlxs/idx/v/vvs-mods
+<br>
+run: make all
+<br>
+make sure it's in the <u>httpd conf</u> directory, restart if adding release to production
+<p>&nbsp;
+
+
+<tr>
+<td valign="top" width="3%">&nbsp;</td>
+<td valign="top" colspan="3">
+<u>OAI TASKS</u>
+
+<p>&nbsp;
+<br>
+cd /d1/workarea/dlxs/bib/mods/vv/
+<br>
+perl fixPreserveSubjectsBib 
+<br>
+perl OAI_modsbibToPresMods
+<br>
+perl OAI_modsbibToMods
+<br>
+perl OAI_modsbibToDC
+<p>&nbsp;
+
+<table cellpadding="4" cellspacing="0" border="01">
+<tr><td colspan="3">PROCESSING</td></tr>
+<tr><td>perl program</td><td>input dir</td><td>output dir</td></tr>
+<tr><td>perl fixSubjectsBib</td><td>xml/</td><td> newSubxml/ </td></tr>
+<tr><td>perl fixPreserveSubjectsBib</td><td>xml/</td><td> newPresSubxml/</td></tr>
+<tr><td>perl OAI_modsbibToPresMods </td><td>newPresSubxml/</td><td> DLCpres/</td></tr>
+<tr><td>perl OAI_modsbibToMods 	</td><td>newSubxml/</td><td> DLCnewSub/</td></tr>
+<tr><td>perl OAI_modsbibToDC</td><td>newSubxml/</td><td> OAIDC/</td></tr>
+</table>
+
+<br>
+OAI_modsbibToMods and OAI_modsbibToDC are for testing the broker output of the
+bib
+<br>
+records in mods and bib, writing the results to OAIDC and DLCnewSub
+
+<br>
+fixSubjects takes MODS from DLC and repairs the subjects and puts the files in
+DLCnewSub
+(older script not currently in use).
+
+</td>
+</tr>
+
+
+
+<tr>
+<td valign="top" width="3%">&nbsp;</td>
+<td valign="top" colspan="3">
+<u>SEARCH TASKS</u>
+
+<p>&nbsp;
+cd /d1/workarea/dlxs/bib/search/vv
+<br>
+cat opensearch xml/* closesearch > vvs-bib.xml  (or whatever, match colleciton)
+<br>
+cp vvs-bib.xml /d1/dlxs/prep/v/vvs-bib/.
+<br>
+cd /d1/dlxs/prep/v/vvs-bib
+<br>
+perl transform
+<br>
+cp vvs-bib.xml ../../../obj/v/vvs-bib
+<br>
+cd ../../../idx/v/vvs-bib
+<br>
+make all
+
+<p>&nbsp;
+</td>
+</tr>
+<tr>
+<td valign="top" width="3%">&nbsp;</td>
+<td valign="top" colspan="3">
+<u>file ownership and restart</u>
+<br><u>THANK PAUL!!!</u>
+
+<p>&nbsp;
+<br> cd /d1/dlxs
+<br> chown -R diglib.diglib *
+<br>cd /d1/dlxs/web/t/text/
+<br>chown -R apache.apache gifcvtdir
+<br>service httpd restart
+
+</td>
+</tr>
+
+
+
+
+
+</table>
+<p>&nbsp;
+

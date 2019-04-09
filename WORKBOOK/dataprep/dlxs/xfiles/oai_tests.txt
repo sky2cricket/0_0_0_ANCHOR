@@ -1,0 +1,203 @@
+
+ Open Archives Initiative - Repository Explorer 
+explorer version - 1.46c : protocol version - 2.0 : December 2006 
+
+Open Archives Initiative :: Protocol for Metadata Harvesting v2.0
+RE Protocol Tester 1.46c :: UCT AIM :: December 2006
+
+(1) Testing : Identify
+URL : http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=Identify
+Test Result : OK
+---- [ Repository Name = The University of Tennessee Libraries ]
+---- [ Protocol Version = 2.0 ]
+---- [ Base URL = http://diglib2.lib.utk.edu/cgi/b/broker20/broker20 ]
+---- [ Admin Email = oaiadmin@listserv.utk.edu ]
+---- [ Granularity = YYYY-MM-DD ]
+---- [ Earliest Datestamp = 2000-08-17 ]
+
+(2) Testing : Identify (illegal_parameter)
+URL : http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=Identify&test=test
+Test Result : OK
+
+(3) Testing : ListMetadataFormats
+URL : http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=ListMetadataFormats
+Test Result : OK
+---- [ Only oai_dc supported ]
+
+(4) Testing : ListSets
+URL : http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=ListSets
+Test Result : OK
+---- [ Sample Set Spec = UTMods:armods ]
+
+(5) Skipping : ListSets (resumptionToken)
+This test is being skipped because it cannot or should not be performed.
+
+(6) Testing : ListIdentifiers (oai_dc)
+URL : http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=ListIdentifiers&metadataPrefix=oai_dc
+Test Result : OK
+---- [ Sample Identifier = oai:diglib2.lib.utk.edu:ar1 ]
+---- [ Identifier Resumption Token = ,2200-01-01,1800-01-01,oai_dc,ar-mods,ar-mods.dd,0, ]
+
+(7) Testing : ListIdentifiers (resumptionToken)
+URL : http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=ListIdentifiers&resumptionToken=,2200-01-01,1800-01-01,oai_dc,ar-mods,ar-mods.dd,0,
+Test Result : OK
+
+(8) Testing : ListIdentifiers (resumptionToken, oai_dc)
+URL : http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=ListIdentifiers&resumptionToken=,2200-01-01,1800-01-01,oai_dc,ar-mods,ar-mods.dd,0,&metadataPrefix=oai_dc
+Test Result : OK
+
+(9) Testing : ListIdentifiers (oai_dc, from/until)
+URL : http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=ListIdentifiers&metadataPrefix=oai_dc&from=2000-01-01&until=2000-01-01
+Test Result : OK
+
+(10) Testing : ListIdentifiers (oai_dc, set, from/until)
+URL : http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=ListIdentifiers&metadataPrefix=oai_dc&set=UTMods:armods&from=2000-01-01&until=2000-01-01
+Test Result : OK
+
+(11) Testing : ListIdentifiers (oai_dc, illegal_set, illegal_from/until)
+URL : http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=ListIdentifiers&metadataPrefix=oai_dc&set=really_wrong_set&from=some_random_date&until=some_random_date
+Test Result : OK
+
+(12) Testing : ListIdentifiers (oai_dc, from granularity != until granularity)
+URL : http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=ListIdentifiers&metadataPrefix=oai_dc&from=2001-01-01&until=2002-01-01T00:00:00Z
+Test Result : OK
+
+(13) Testing : ListIdentifiers (oai_dc, from > until)
+URL : http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=ListIdentifiers&metadataPrefix=oai_dc&from=2000-01-01&until=1999-01-01
+Test Result : OK
+
+(14) Testing : ListIdentifiers ()
+URL : http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=ListIdentifiers
+Test Result : OK
+
+(15) Skipping : ListIdentifiers (metadataPrefix)
+This test is being skipped because it cannot or should not be performed.
+
+(16) Testing : ListIdentifiers (illegal_mdp)
+URL : http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=ListIdentifiers&metadataPrefix=illegal_mdp
+Test Result : OK
+
+(17) Testing : ListIdentifiers (mdp, mdp)
+URL : http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=ListIdentifiers&metadataPrefix=oai_dc&metadataPrefix=oai_dc
+Test Result : OK
+
+(18) Testing : ListIdentifiers (illegal_resumptiontoken)
+URL : http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=ListIdentifiers&resumptionToken=junktoken
+Test Result : OK
+
+(19) Testing : ListIdentifiers (oai_dc, from YYYY-MM-DD)
+URL : http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=ListIdentifiers&metadataPrefix=oai_dc&from=2001-01-01
+Test Result : OK
+
+(20) Testing : ListIdentifiers (oai_dc, from YYYY-MM-DDThh:mm:ssZ)
+URL : http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=ListIdentifiers&metadataPrefix=oai_dc&from=2001-01-01T00:00:00Z
+Test Result : OK
+
+(21) Testing : ListIdentifiers (oai_dc, from YYYY)
+URL : http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=ListIdentifiers&metadataPrefix=oai_dc&from=2001
+Test Result : OK
+
+(22) Testing : ListMetadataFormats (identifier)
+URL : http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=ListMetadataFormats&identifier=oai:diglib2.lib.utk.edu:ar1
+Test Result : OK
+---- [ Only oai_dc supported ]
+
+(23) Testing : ListMetadataFormats (illegal_id)
+URL : http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=ListMetadataFormats&identifier=really_wrong_id
+Test Result : OK
+
+(24) Skipping : GetRecord (identifier, metadataPrefix)
+This test is being skipped because it cannot or should not be performed.
+
+(25) Testing : GetRecord (identifier, oai_dc)
+URL : http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=GetRecord&identifier=oai:diglib2.lib.utk.edu:ar1&metadataPrefix=oai_dc
+Test Result : OK
+
+(26) Testing : GetRecord (identifier)
+URL : http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=GetRecord&identifier=oai:diglib2.lib.utk.edu:ar1
+Test Result : OK
+
+(27) Testing : GetRecord (identifier, illegal_mdp)
+URL : http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=GetRecord&identifier=oai:diglib2.lib.utk.edu:ar1&metadataPrefix=really_wrong_mdp
+Test Result : OK
+
+(28) Testing : GetRecord (oai_dc)
+URL : http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=GetRecord&metadataPrefix=oai_dc
+Test Result : OK
+
+(29) Testing : GetRecord (illegal_id, oai_dc)
+URL : http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=GetRecord&identifier=really_wrong_id&metadataPrefix=oai_dc
+Test Result : OK
+
+(30) Testing : GetRecord (invalid_id, oai_dc)
+URL : http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=GetRecord&identifier=invalid\"id&metadataPrefix=oai_dc
+Test Result : OK
+
+(31) Testing : ListRecords (oai_dc, from/until)
+URL : http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=ListRecords&metadataPrefix=oai_dc&from=2000-01-01&until=2000-01-01
+Test Result : OK
+
+(32) Skipping : ListRecords (resumptionToken)
+This test is being skipped because it cannot or should not be performed.
+
+(33) Skipping : ListRecords (metadataPrefix, from/until)
+This test is being skipped because it cannot or should not be performed.
+
+(34) Testing : ListRecords (oai_dc, illegal_set, illegal_from/until)
+URL : http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=ListRecords&metadataPrefix=oai_dc&set=really_wrong_set&from=some_random_date&until=some_random_date
+Test Result : OK
+
+(35) Testing : ListRecords
+URL : http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=ListRecords
+Test Result : OK
+
+(36) Testing : ListRecords (oai_dc, from granularity != until granularity)
+URL : http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=ListRecords&metadataPrefix=oai_dc&from=2001-01-01&until=2002-01-01T00:00:00Z
+Test Result : OK
+
+(37) Testing : ListRecords (oai_dc, until before earliestDatestamp)
+URL : http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=ListRecords&metadataPrefix=oai_dc&until=1999-08-17
+Test Result : OK
+
+(38) Testing : ListRecords (oai_dc)
+URL : http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=ListRecords&metadataPrefix=oai_dc
+Test Result : OK
+
+(39) Testing : ListRecords (illegal_resumptiontoken)
+URL : http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=ListRecords&resumptionToken=junktoken
+Test Result : OK
+
+(40) Testing : ListIdentifiers (oai_dc, set)
+URL : http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=ListIdentifiers&metadataPrefix=oai_dc&set=UTMods:armods
+Test Result : OK
+
+(41) Testing : GetRecord (identifier, oai_dc)
+URL : http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=GetRecord&identifier=oai:diglib2.lib.utk.edu:ar1&metadataPrefix=oai_dc
+Test Result : OK
+---- [ Found setSpec in header ]
+
+(42) Testing : IllegalVerb
+URL : http://diglib2.lib.utk.edu/cgi/b/broker20/broker20?verb=IllegalVerb
+Test Result : OK
+
+
+---- Total Errors : 0
+
+
+--------------------------------------------------------------------------------
+
+Congratulations !
+Your archive satisfied all the tests we performed. You may now add it to the list of archives on the front page if you wish by filling in the following additional details:
+
+Base URL of Archive : http://diglib2.lib.utk.edu/cgi/b/broker20/broker20
+
+Name of Archive : 
+
+Archive website : 
+
+
+
+
+--------------------------------------------------------------------------------
+home about Send all comments to hussein@cs.uct.ac.za --- Dept of Computer Science@U. of Cape Town 
+

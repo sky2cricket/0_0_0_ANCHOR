@@ -1,0 +1,503 @@
+080307_training.txt 
+
+[root@diglib2 dlxs]# pwd
+/d1/workarea/dlxs
+[root@diglib2 dlxs]# ls
+bib  countfiles  ead  image  mail  mets  oai  search  tdh  telfiles  text  vv2spc  ww
+[root@diglib2 dlxs]# cd telfiles
+[root@diglib2 telfiles]#  vi dothis
+
+[root@diglib2 d1]# pwd
+/d1
+first, go to /d1 and mount area2 of store1.
+Then check for oddly-named directories, for which you will have to change scripts.
+
+[root@diglib2 d1]# mount store1-area2
+mount: can't find /d1/store1-area2 in /etc/fstab or /etc/mtab
+
+-------how to mount-----------------------------------------------------------
+[root@diglib2 d1]# ls
+backups  inbox-sc    mnt-store1-area2  mount-ts      unmount-area2     unmount-inbox-ts
+dlxs     inbox-ts    mnt-store1-area3  store1-area2  unmount-area3     workarea
+inbox    lost+found  mount-sc          store1-area3  unmount-inbox-sc  wpa
+[root@diglib2 d1]# ls store1-area2
+[root@diglib2 d1]# ----------------------------------ls yields nothing------------
+[root@diglib2 d1]# mnt-store1-area2
+[root@diglib2 d1]# ls store1-area2
+existenceCheck  Shortcut to D Drive on 'Dlcprod03' (V).lnk  test-diglib     volvoices
+lost_found      spcoll                                      test-root       wil_video
+PROJECTS        TDH_work_area                               Total_YRB_Proj
+sermons         temp                                        vasser
+[root@diglib2 d1]# 
+----------------------------------------------------------------------------------
+
+
+the commands in:
+Before_Pickup
+  are to clean out the directories where you will be depositing materials, putting
+older (already processed) files into the subdirectories where they will be needed.
+They will need to be modified to move 0012* files into an SPC subdirectory in each
+area, for preprocessing for inclusion in SPC.  The OAI and preservation copies of
+these files will belong to SPC, and should NOT be in VV.
+
+-------------see 080306 for the above-------------------------------------
+
+>>>>>>>>check_incoming
+
+[root@diglib2 telfiles]# check_incoming
+Do you want to test 070514_proc?  Please press y or n, then enter:
+n
+Do you want to test 080303?  Please press y or n, then enter:
+y
+Do you want to test 070510_proc?  Please press y or n, then enter:
+n
+Do you want to test temp?  Please press y or n, then enter:
+n
+Do you want to test docs?  Please press y or n, then enter:
+n
+Do you want to test 080107?  Please press y or n, then enter:
+n
+Do you want to test 070817_proc?  Please press y or n, then enter:
+n
+Do you want to test 070101_proc?  Please press y or n, then enter:
+n
+Do you want to test 070327_proc?  Please press y or n, then enter:
+n
+Do you want to test 070404_proc?  Please press y or n, then enter:
+n
+Do you want to test 070511_proc?  Please press y or n, then enter:
+n
+Do you want to test 080201?  Please press y or n, then enter:
+n
+Do you want to test 010101_hold_TnoX_XpriorT?  Please press y or n, then enter:
+n
+Do you want to test 071115_proc?  Please press y or n, then enter:
+n
+Do you want to test CORRECTIONS_PROBLEMS?  Please press y or n, then enter:
+n
+Do you want to test 071205_proc?  Please press y or n, then enter:
+n
+Do you want to test 071215_chd_test?  Please press y or n, then enter:
+n
+
+Then we are testing the following directories:
+/d1/store1-area2/volvoices/vvimport/080303/
+
+ Is this correct?  Please press y or n, then enter:
+Y
+
+Results are in ./results/IncomingTest_2008037151044.txt file
+Thank you!  Bye!
+[root@diglib2 telfiles]# 
+[root@diglib2 telfiles]# vi ./results/IncomingTest_2008037151044.txt
+
+autocheck everything
+
+
+
+
+>>>>>>>>duplicates (checks Receive0 directories); duplicates_xml checks xml directories
+okay
+
+>>>>>>>>>>>onedirDerivatives
+[root@diglib2 telfiles]# onedirDerivatives
+This script will check files, including necessary derivatives, 
+for readiness to submit for online delivery.
+For each batch you are working, 
+please enter the number next to the directory name,
+ then hit enter.
+
+If more than one batch, enter each number on a new line.
+  Hit enter twice when done.
+
+1    070514_proc
+2    080303
+3    070510_proc
+4    temp
+5    docs
+6    080107
+7    070817_proc
+8    070101_proc
+9    070327_proc
+10    070404_proc
+11    070511_proc
+12    080201
+13    010101_hold_TnoX_XpriorT
+14    071115_proc
+15    CORRECTIONS_PROBLEMS
+16    071205_proc
+17    071215_chd_test
+
+2
+
+ I will work this directory: /d1/store1-area2/volvoices/vvImport/080303/
+
+    IS THIS CORRECT?  Please enter Y (for yes) or N (for no) and hit enter
+y
+Yes?  Then here we go.....
+
+/d1/store1-area2/volvoices/vvImport/080303/05/ does not exist
+
+ ALL DONE! 
+    Please check ./results/derivatives_2008037151603.txt for results.  
+Thank  you!!!!  Bye!
+[root@diglib2 telfiles]# vi ./results/derivatives_2008037151603.txt 
+okaydu
+
+
+
+>>>>>>>>>>>>>>>>>>duplicates_xml > ./results/dupeCheck121707  (today's date)
+[root@diglib2 telfiles]# duplicates_xml > ./results/dupxml_080307.txt
+vi ./results/dupxml_080307.txt
+
+>>>>>>>>>>>>>>>fieldtest
+Then we are testing the following directories:
+/d1/store1-area2/volvoices/vvimport/080303/
+/d1/store1-area2/volvoices/vvimport/080107/
+/d1/store1-area2/volvoices/vvimport/080201/
+Results are in ./results/FieldTest2008037153250.txt file
+[root@diglib2 telfiles]# vi ./results/FieldTest2008037153250.txt
+
+OKAY
+
+>>>>>>>>>>>>>Correct problems
+
+
+>>>>>>>>>>>>>>>>>>>>>>>pickupTime
+
+
+
+
+
+
+
+[root@diglib2 telfiles]# pickupTime
+/d1/workarea/dlxs/image/tel/multiples/text/ does not exist
+/d1/workarea/dlxs/image/tel/multiples/text/ does not exist
+/d1/workarea/dlxs/image/tel/singles/text/ does not exist
+/d1/workarea/dlxs/image/tel/singles/text/ does not exist
+/d1/workarea/dlxs/text/tel/notext/text/ does not exist
+/d1/workarea/dlxs/text/tel/notext/text/ does not exist
+This script will copy xml files and derivatives from chosen directories
+to appropriate delivery processing areas.
+For each batch you are working, 
+please enter the number next to the directory name,
+ then hit enter.
+
+If more than one batch, enter each number on a new line.
+  Hit enter twice when done.
+
+1    070514_proc
+2    080303
+3    070510_proc
+4    temp
+5    docs
+6    080107
+7    070817_proc
+8    070101_proc
+9    070327_proc
+10    070404_proc
+11    070511_proc
+12    080201
+13    010101_hold_TnoX_XpriorT
+14    071115_proc
+15    CORRECTIONS_PROBLEMS
+16    071205_proc
+17    071215_chd_test
+
+2
+
+ I will work this directory: /d1/store1-area2/volvoices/vvimport/080303/
+
+    IS THIS CORRECT?  Please enter Y (for yes) or N (for no) and hit enter
+y
+Yes?  Then here we go.....
+
+We have 1 directories.  Is that right? if not, Control C out!!
+y
+1)  we are working /d1/store1-area2/volvoices/vvimport/080303/ and 080303
+ checking /d1/store1-area2/volvoices/vvimport/02/ for Receive0
+  working  /d1/store1-area2/volvoices/vvimport/080303/02/Receive0/  for /d1/workarea/dlxs/text/tel/ocr/
+ NOW DERIVATIVES
+/d1/store1-area2/volvoices/vvimport/080303/02/JPEG/ copying to /d1/workarea/dlxs/text/tel/ocr/jpegs/
+/d1/store1-area2/volvoices/vvimport/080303/02/txt/ doesn't exist
+/d1/store1-area2/volvoices/vvimport/080303/02/ocr/ copying to /d1/workarea/dlxs/text/tel/ocr/text/
+/d1/store1-area2/volvoices/vvimport/080303/02/thumbs/ copying to /d1/workarea/dlxs/text/tel/ocr/thumbs/
+/d1/store1-area2/volvoices/vvimport/080303/02/minithumbs/ copying to /d1/workarea/dlxs/text/tel/ocr/minithumbs/
+ finished with 02 bucket
+ checking /d1/store1-area2/volvoices/vvimport/080303/02/Receive0/01/ for Receive0
+  working  /d1/store1-area2/volvoices/vvimport/080303/01/Receive0/  for /d1/workarea/dlxs/image/tel/multiples/
+ NOW DERIVATIVES
+/d1/store1-area2/volvoices/vvimport/080303/01/JPEG/ copying to /d1/workarea/dlxs/image/tel/multiples/jpegs/
+/d1/store1-area2/volvoices/vvimport/080303/01/txt/ doesn't exist
+/d1/store1-area2/volvoices/vvimport/080303/01/ocr/ doesn't exist
+/d1/store1-area2/volvoices/vvimport/080303/01/thumbs/ copying to /d1/workarea/dlxs/image/tel/multiples/thumbs/
+/d1/store1-area2/volvoices/vvimport/080303/01/minithumbs/ copying to /d1/workarea/dlxs/image/tel/multiples/minithumbs/
+ finished with 01 bucket
+ checking /d1/store1-area2/volvoices/vvimport/080303/01/Receive0/00/ for Receive0
+  working  /d1/store1-area2/volvoices/vvimport/080303/00/Receive0/  for /d1/workarea/dlxs/image/tel/singles/
+ NOW DERIVATIVES
+/d1/store1-area2/volvoices/vvimport/080303/00/JPEG/ copying to /d1/workarea/dlxs/image/tel/singles/jpegs/
+/d1/store1-area2/volvoices/vvimport/080303/00/txt/ doesn't exist
+/d1/store1-area2/volvoices/vvimport/080303/00/ocr/ copying to /d1/workarea/dlxs/image/tel/singles/text/
+/d1/store1-area2/volvoices/vvimport/080303/00/thumbs/ copying to /d1/workarea/dlxs/image/tel/singles/thumbs/
+/d1/store1-area2/volvoices/vvimport/080303/00/minithumbs/ copying to /d1/workarea/dlxs/image/tel/singles/minithumbs/
+ finished with 00 bucket
+ checking /d1/store1-area2/volvoices/vvimport/080303/00/Receive0/04/ for Receive0
+  working  /d1/store1-area2/volvoices/vvimport/080303/04/Receive0/  for /d1/workarea/dlxs/text/tel/notext/
+ NOW DERIVATIVES
+/d1/store1-area2/volvoices/vvimport/080303/04/JPEG/ copying to /d1/workarea/dlxs/text/tel/notext/jpegs/
+/d1/store1-alrea2/volvoices/vvimport/080303/04/txt/ doesn't exist
+/d1/store1-area2/volvoices/vvimport/080303/04/ocr/ doesn't exist
+/d1/store1-area2/volvoices/vvimport/080303/04/thumbs/ copying to /d1/workarea/dlxs/text/tel/notext/thumbs/
+/d1/store1-area2/volvoices/vvimport/080303/04/minithumbs/ copying to /d1/workarea/dlxs/text/tel/notext/minithumbs/
+ finished with 04 bucket
+ checking /d1/store1-area2/volvoices/vvimport/080303/04/Receive0/01_cd / for Receive0
+ checking /d1/store1-area2/volvoices/vvimport/080303/01_music/Receive0/03/ for Receive0
+  working  /d1/store1-area2/volvoices/vvimport/080303/03/Receive0/  for /d1/workarea/dlxs/text/tel/typed/
+ NOW DERIVATIVES
+/d1/store1-area2/volvoices/vvimport/080303/03/JPEG/ copying to /d1/workarea/dlxs/text/tel/typed/jpegs/
+/d1/store1-area2/volvoices/vvimport/080303/03/txt/ copying to /d1/workarea/dlxs/text/tel/typed/text/
+/d1/store1-area2/volvoices/vvimport/080303/03/ocr/ doesn't exist
+/d1/store1-area2/volvoices/vvimport/080303/03/thumbs/ copying to /d1/workarea/dlxs/text/tel/typed/thumbs/
+/d1/store1-area2/volvoices/vvimport/080303/03/minithumbs/ copying to /d1/workarea/dlxs/text/tel/typed/minithumbs/
+ finished with 03 bucket
+finished with 080303 batch (1 of 1)
+bye-bye!
+[root@diglib2 telfiles]# 
+[root@diglib2 telfiles]# pwd
+/d1/workarea/dlxs/telfiles
+[root@diglib2 telfiles]# ls
+BeforePickup    dothis          filemess    logs                    pickuplog   scripts
+check_incoming  duplicates      forWindows  olderVersions           pickupTime  testfiles
+dedupe          duplicates_xml  jpglist     onedirDerivatives       problems    tiflist
+done            fieldtest       listFiles   onedirDerivatives_size  results     totalSoFar
+[root@diglib2 telfiles]# 
+
+[root@diglib2 telfiles]# pwd
+/d1/workarea/dlxs/telfiles
+[root@diglib2 telfiles]# ls
+BeforePickup    dothis          filemess    logs                    pickuplog   scripts
+check_incoming  duplicates      forWindows  olderVersions           pickupTime  testfiles
+dedupe          duplicates_xml  jpglist     onedirDerivatives       problems    tiflist
+done            fieldtest       listFiles   onedirDerivatives_size  results     totalSoFar
+[root@diglib2 telfiles]# cd ..
+[root@diglib2 dlxs]# ls
+bib  countfiles  ead  image  mail  mets  oai  search  tdh  telfiles  text  vv2spc  ww
+[root@diglib2 dlxs]# cd text
+[root@diglib2 text]# ls
+arr4020285_0002unicode.txt  arrow  arrowArt  arrowArtMETS  emn  sgm  spc  tel
+[root@diglib2 text]# cd tel
+[root@diglib2 tel]# ls
+BadColl      chkid          hextest    NOTE           rebatch        teiHeadOcrText  typed
+badocr       countfiles     howmany    notext         search         teiTail         validate
+batchedOut   crossmappings  infotrack  ocr            spc            test
+categories   done           linkfile   olderVersions  specify        testfiles
+charTest.pl  dothis         modsbib    output         tei            transform
+checkme      fieldtest      modsTC     preservation   teiHead        translate
+chkfiles     hexmess        newmods    problems       teiHeadNoText  ttout.txt
+============================
+/d1/workarea/dlxs/image/tel/singles/  this is the 00 directory
+
+/d1/workarea/dlxs/image/tel/singles
+
+[root@diglib2 singles]# pwd
+/d1/workarea/dlxs/image/tel/singles
+
+[root@diglib2 singles]# ls
+15_60_227char  fixSubjects        mods                        problems
+15_60_227hex   footer             modsbib                     search
+categories     here               modsICsearchOai             spc
+catref         hex                modsICsearchOai.20070509    testfiles
+checkme        hexmess            modsICsearchOai.20070510    thumbs
+close          hextest            modsICsearchOai.20070605    titles
+countfiles     httpEncodings      modsICsearchOai.20080114jd  translate
+countfiles2    ic                 modsICsearchOai.bk          vvs-bib.xml
+done           ic.vvz.unnorm.sgm  newmods                     vvz-bib.sgm
+dothis         infotrack          NOTE                        vvzHeader
+dothisbib      jpegs              open                        vvz-mods.xml
+dothissearch   linkfile           opensearch
+entry          linkfile.bk        output
+fieldtest      minithumbs         preservation
+[root@diglib2 singles]# ls mods
+0015_000066_000200_0000.xml  0015_000066_000202_0000.xml  0015_000066_000204_0000.xml
+0015_000066_000201_0000.xml  0015_000066_000203_0000.xml
+[root@diglib2 singles]# ls jpegs
+0015_000066_000200_0001.jpg  0015_000066_000202_0001.jpg  0015_000066_000204_0001.jpg
+0015_000066_000201_0001.jpg  0015_000066_000203_0001.jpg
+[root@diglib2 singles]# ls minithumbs/
+0015_000066_000200_0001.jpg  0015_000066_000202_0001.jpg  0015_000066_000204_0001.jpg
+0015_000066_000201_0001.jpg  0015_000066_000203_0001.jpg
+[root@diglib2 singles]# ls thumbs
+0015_000066_000200_0001.jpg  0015_000066_000202_0001.jpg  0015_000066_000204_0001.jpg
+0015_000066_000201_0001.jpg  0015_000066_000203_0001.jpg
+[root@diglib2 singles]# 
+
+
+
+
+
+============================
+
+/d1/workarea/dlxs/image/tel/multiples/ this is the 01 directory
+[root@diglib2 dlxs]# ls
+bib  countfiles  ead  image  mail  mets  oai  search  tdh  telfiles  text  vv2spc  ww
+[root@diglib2 dlxs]# cd image
+[root@diglib2 image]# ls
+arrowmont  gsm  roth  spc  steps  tel
+[root@diglib2 image]# cd tel
+[root@diglib2 tel]# ls
+multiples  singles
+[root@diglib2 tel]# cd multiples/
+[root@diglib2 multiples]# ls
+categories     footer             mocsICsearchOai.20070605b      open
+catref         hex                mods                           opensearch
+checkme        hexmess            modsbib                        preservation
+close          hextest            modsICsearchOai.20070510jd     problems
+cochran        ic                 modsICsearchOai.20070605       problem_xml
+countfiles     ic.vvi.unnorm.sgm  modsICsearchOai.20071216       search
+countfiles2    infotrack          modsICsearchOai.bk             spc
+done           jpegs              modsICsearchOaiMusic           testfiles
+dothis         jpegsMusic         modsICsearchOaiMusic.20080120  textMusic
+dothisbib      linkfile           modsICsearchOaiMusic.20080123  thumbs
+entry          linkfile.bk        modsICsearchOaiMusic.20080131  thumbsMusic
+fake_linkfile  makebib            modsMusic                      vviHeader
+fieldtest      miniMusic          newmods                        what
+fixSubjects    minithumbs         NOTE
+[root@diglib2 multiples]# pwd
+/d1/workarea/dlxs/image/tel/multiples
+[root@diglib2 multiples]# ls mods
+0018_000054_000220_0000.xml  0018_000054_000224_0000.xml  0018_000054_000232_0000.xml
+0018_000054_000221_0000.xml  0018_000054_000225_0000.xml  0018_000054_000235_0000.xml
+0018_000054_000223_0000.xml  0018_000054_000226_0000.xml
+[root@diglib2 multiples]# 
+UNFORTUNATELY, MODS MUSIC went into MODS also jpgs, thumbs, minithumbs
+[root@diglib2 multiples]# mv mods/0018_000054_000220_0000.xml modsMusic/
+[root@diglib2 multiples]# mv mods/0018_000054_000221_0000.xml modsMusic/
+[root@diglib2 multiples]# mv mods/0018_000054_000223_0000.xml modsMusic/
+[root@diglib2 multiples]# mv mods/0018_000054_000226_0000.xml modsMusic/
+[root@diglib2 multiples]# mv jpegs/0018_000054_000220* jpegsMusic/
+[root@diglib2 multiples]# mv jpegs/0018_000054_000221* jpegsMusic/
+[root@diglib2 multiples]# mv jpegs/0018_000054_000223* jpegsMusic/
+[root@diglib2 multiples]# mv jpegs/0018_000054_000226* jpegsMusic/
+[root@diglib2 multiples]# mv minithumbs/0018_000054_000220* miniMusic/
+[root@diglib2 multiples]# mv minithumbs/0018_000054_000221* miniMusic/
+[root@diglib2 multiples]# mv minithumbs/0018_000054_000223* miniMusic/
+[root@diglib2 multiples]# mv minithumbs/0018_000054_000226* miniMusic/
+[root@diglib2 multiples]# mv thumbs/0018_000054_000220* thumbsMusic/
+[root@diglib2 multiples]# mv thumbs/0018_000054_000221* thumbsMusic/
+[root@diglib2 multiples]# mv thumbs/0018_000054_000223* thumbsMusic/
+[root@diglib2 multiples]# mv thumbs/0018_000054_000226* thumbsMusic/
+okay now
+
+============================
+
+
+============================ls
+
+/d1/workarea/dlxs/text/tel/ocr/  this is the 02 directory
+[root@diglib2 tel]# ls ocr
+cleantext  jpegs  minithumbs  mods  text  text_fixme  thumbs
+[root@diglib2 tel]# ls ocr/mods
+0022_000060_000204_0000.xml  0022_000060_000207_0000.xml  0022_000060_000209_0000.xml
+0022_000060_000206_0000.xml  0022_000060_000208_0000.xml
+[root@diglib2 tel]# ls ocr/jpegs
+0022_000060_000204_0001.jpg  0022_000060_000207_0001.jpg  0022_000060_000209_0001.jpg
+0022_000060_000206_0001.jpg  0022_000060_000208_0001.jpg
+[root@diglib2 tel]# ls ocr/text
+0022_000060_000204_0001.txt  0022_000060_000207_0001.txt  0022_000060_000209_0001.txt
+0022_000060_000206_0001.txt  0022_000060_000208_0001.txt
+[root@diglib2 tel]# ls ocr/minithumbs/
+0022_000060_000204_0001.jpg  0022_000060_000207_0001.jpg  0022_000060_000209_0001.jpg
+0022_000060_000206_0001.jpg  0022_000060_000208_0001.jpg
+[root@diglib2 tel]# ls ocr/thumbs/
+0022_000060_000204_0001.jpg  0022_000060_000207_0001.jpg  0022_000060_000209_0001.jpg
+0022_000060_000206_0001.jpg  0022_000060_000208_0001.jpg
+[root@diglib2 tel]# 
+
+============================
+ /d1/workarea/dlxs/text/tel/typed/  this is the 03 directory
+
+[root@diglib2 dlxs]# cd text/tel/typed
+[root@diglib2 typed]# pwd
+/d1/workarea/dlxs/text/tel/typed
+[root@diglib2 typed]# ls
+badtext  cleantext  jpegs  minithumbs  mods  text  thumbs
+[root@diglib2 typed]# 
+
+[root@diglib2 typed]# ls mods
+0012_000070_000250_0000.xml  0012_000144_000216_0000.xml  0082_000050_000204_0000.xml
+0012_000070_000388_0000.xml  0076_000050_000204_0000.xml
+[root@diglib2 typed]# ls jpegs
+0012_000070_000250_0001.jpg  0012_000144_000216_0001.jpg  0082_000050_000204_0001.jpg
+0012_000070_000388_0001.jpg  0076_000050_000204_0001.jpg
+[root@diglib2 typed]# ls thumbs
+0012_000070_000250_0001.jpg  0012_000144_000216_0001.jpg  0082_000050_000204_0001.jpg
+0012_000070_000388_0001.jpg  0076_000050_000204_0001.jpg
+[root@diglib2 typed]# 
+
+
+
+============================
+/d1/workarea/dlxs/text/tel/notext/ this is the 04 directory
+[root@diglib2 notext]# pwd
+/d1/workarea/dlxs/text/tel/notext
+[root@diglib2 notext]# ls
+jpegs  minithumbs  mods  thumbs
+[root@diglib2 notext]# 
+
+[root@diglib2 notext]# ls
+jpegs  minithumbs  mods  thumbs
+[root@diglib2 notext]# ls mods/*
+mods/0012_000070_000245_0000.xml  mods/0012_000070_000248_0000.xml
+mods/0012_000070_000246_0000.xml  mods/0012_000070_000249_0000.xml
+mods/0012_000070_000247_0000.xml
+[root@diglib2 notext]# ls jpegs/*
+jpegs/0012_000070_000245_0001.jpg  jpegs/0012_000070_000247_0003.jpg
+jpegs/0012_000070_000245_0002.jpg  jpegs/0012_000070_000247_0004.jpg
+jpegs/0012_000070_000246_0001.jpg  jpegs/0012_000070_000248_0001.jpg
+jpegs/0012_000070_000246_0002.jpg  jpegs/0012_000070_000248_0002.jpg
+jpegs/0012_000070_000247_0001.jpg  jpegs/0012_000070_000249_0001.jpg
+jpegs/0012_000070_000247_0002.jpg  jpegs/0012_000070_000249_0002.jpg
+[root@diglib2 notext]# ls minithumbs/*
+minithumbs/0012_000070_000245_0001.jpg  minithumbs/0012_000070_000247_0003.jpg
+minithumbs/0012_000070_000245_0002.jpg  minithumbs/0012_000070_000247_0004.jpgc
+minithumbs/0012_000070_000246_0001.jpg  minithumbs/0012_000070_000248_0001.jpg
+minithumbs/0012_000070_000246_0002.jpg  minithumbs/0012_000070_000248_0002.jpg
+minithumbs/0012_000070_000247_0001.jpg  minithumbs/0012_000070_000249_0001.jpg
+minithumbs/0012_000070_000247_0002.jpg  minithumbs/0012_000070_000249_0002.jpg
+[root@diglib2 notext]# ls thumbs/*
+thumbs/0012_000070_000245_0001.jpg  thumbs/0012_000070_000247_0003.jpg
+thumbs/0012_000070_000245_0002.jpg  thumbs/0012_000070_000247_0004.jpg
+thumbs/0012_000070_000246_0001.jpg  thumbs/0012_000070_000248_0001.jpg
+thumbs/0012_000070_000246_0002.jpg  thumbs/0012_000070_000248_0002.jpg
+thumbs/0012_000070_000247_0001.jpg  thumbs/0012_000070_000249_0001.jpg
+thumbs/0012_000070_000247_0002.jpg  thumbs/0012_000070_000249_0002.jpg
+[root@diglib2 notext]# 
+============================
+
+support for 03 and 04 files in parent directory
+
+[root@diglib2 notext]# cd ..
+[root@diglib2 tel]# pwd
+/d1/workarea/dlxs/text/tel
+[root@diglib2 tel]# ls
+BadColl      chkid          hextest    NOTE           rebatch        teiHeadOcrText  typed
+badocr       countfiles     howmany    notext         search         teiTail         validate
+batchedOut   crossmappings  infotrack  ocr            spc            test
+categories   done           linkfile   olderVersions  specify        testfiles
+charTest.pl  dothis         modsbib    output         tei            transform
+checkme      fieldtest      modsTC     preservation   teiHead        translate
+chkfiles     hexmess        newmods    problems       teiHeadNoText  ttout.txt
+
+At this point, go to each place where files have been deposited and do the processing.
+
+===================================
+
+>>>>>>>>>>>>>>>>>listFiles   (send results to Cricket)
+>>>>>>>>>>>>>>>>>tiflist  (send results to Tiffani)
+>>>>>>>>>>>>>>>>>>jpglist (ditto)
+
+
+after processing, the following counts xml from bib/mods/vv/xml directory, for current count for Tiffani
+>>>>>>>>>>>>>>>>>>>>>>>>>totalSoFar

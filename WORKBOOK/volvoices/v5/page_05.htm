@@ -1,0 +1,272 @@
+
+<html>
+<head>
+<title>
+page_05
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+<script language=javascript src="vv_compose_tags.js"></script>
+
+
+
+</head>
+
+<script>document.write('<body onload="load_DF_form();"  bgcolor="'+parent.adb_background_color+'" >');</script>
+
+<font face="arial" size="3">
+<center><font face="arial">
+<h2> <script> document.write(parent.adb_project_name); </script>
+ Workbook Page 5 </h2>
+</center>
+
+<script>
+///Civil War Salt Peter Mining None, LCNAF, ULAN. 
+
+
+
+
+
+</script>
+
+<script>
+/*
+document.write("<hr>XMLBASE: "+parent.U.document.UF.XMLBASE.value 
+	+"<BR>XMLPATH: "+parent.U.document.UF.XMLPATH.value 
+	+"<BR>numConstituentsTIFF: "+parent.U.document.UF.numConstituentsTIFF.value 
+	+"<HR>");
+*/
+</script>
+
+<form name="DF"  action="new.xml" onload="load_DF_form()"  >
+
+<table class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="ddeeff">
+<tr class="bgstandard"><td colspan="3">
+
+Required Fields are <u>underlined</u>.
+Non-Required Fields are not underlined.
+</td></tr>
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>MODS LABEL</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+<font face="arial">
+<script>
+
+/*
+=================================================================
+*/
+
+var str_file_list_tiff = new String(parent.U.document.forms[0].file_list_tiff.value);
+
+var atiff = new Array();
+    atiff = str_file_list_tiff.split(",");
+
+
+var numC = parent.U.document.UF.numConstituentsTIFF.value;
+
+
+strCFN = new String();//strConstituentFileName
+strFV = new String("constituent_file_name");//name of the form variable - an array
+
+for(j=0;j<numC; j++) {
+
+strCFN = atiff[j];
+
+document.write('<tr class="bgstandard"> \r\n'
++'<td class="label12u"> \r\n'
++'Constituent File Name</td> \r\n'
++'<td class="value12u">&nbsp;<input type="text" name="'+strFV+'" value="'+strCFN+'" size="36" READONLY \r\n'
++'class="required300w"  >  \r\n'
++'&nbsp;&nbsp;<font face="arial" size="1">\r\n'
++'<br>&nbsp;full file name: ' +parent.U.document.UF.XMLPATHFULL.value +strCFN+".tif"
++'</td> \r\n'
++'<td>&nbsp</td> \r\n'
++'</tr> \r\n'
+);
+
+
+
+
+}//end for loop
+
+
+document.write('<input type="hidden" name="file_list_tiff" value=""> \r\n');
+
+</script>
+
+ <!--- placeholder for consitutent_file_uri_1 that JODY makes--->
+<input type="hidden" name="constituent_file_uri_1" value="">
+
+
+
+
+
+<tr class="bgstandard">
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+<tr class="bgstandard"><td colspan="3" class="value10nou">
+If you have too few or too many Constituent Files:
+<li>Return to the Begin Page and revise the Number of Consitutent Files.
+<li>Save the new value.
+<li>Then come back to Page 5 and continue.
+<li>You may not change the file name or file order of Constituent Files.
+<br>&nbsp;
+</td>
+</tr>
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+
+
+
+
+<tr class="bgstandard"><td colspan="3" align="center">
+&nbsp;&nbsp;
+
+<input type="button" name="B_page_01" class="buttonnw" onclick ="javascript:location.replace('page_begin.htm')" value="Return to Begin Page">
+&nbsp;&nbsp;<input type="button" name="B_UF" value="Save" class="buttonnw" onclick="buildModsTags(10);">&nbsp;&nbsp;
+<!---input type="button" name="B_DF" value="Reset"  class="buttonnw" onclick="load_DF_form();"--->
+
+<input type="button" name="B2" 
+value="Save Data and View MODS TAGS" class="buttonnw"
+onclick="buildModsTags(1)">
+
+
+
+</td></tr>
+
+</table>
+
+
+
+</form name="forms[0]">
+
+<center><font face="arial">
+<h2> <script> document.write(parent.adb_project_name); </script>
+ Workbook Page 5</h2>
+</center>
+
+
+<hr>
+<script>
+
+
+
+function load_UF_form() {//this list is controlled by begin page and can only be changed there.
+//alert("load_UF_form");
+//parent.U.document.UF.constituent_file_name_1.value = document.DF.constituent_file_name_1.value;
+//parent.U.document.UF.constituent_file_uri_1.value = document.DF.constituent_file_uri_1.value;
+
+return;
+}
+
+function load_DF_form() {//page 05 gets info from page_upper
+//document.DF.constituent_file_name_1.value = parent.U.document.UF.constituent_file_name_1.value;
+//document.DF.constituent_file_uri_1.value = parent.U.document.UF.constituent_file_uri_1.value;
+
+document.DF.file_list_tiff.value = parent.U.document.UF.file_list_tiff.value;
+
+
+return;
+}
+
+
+function buildModsTags(N) {
+
+////do this first so current values are loaded regardless of validation status
+load_UF_form();
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+//before writing MODS TAGS, make sure all required fields are populated
+//checkAllRequired... true  validation sets validation status to 1  -- complete
+//checkAllRequired... false validation sets validation status to 0  -- incomplete
+
+/*
+if (!parent.L.checkAllRequiredElements_Page_05() ) {
+	parent.L.update_page_validation(5,0);
+	return;
+}
+parent.L.update_page_validation(5,1);
+*/
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+var num = new Number();
+    num = N;
+
+if (num == 10) {
+        alert("Values have been saved.");
+        return;
+        }
+
+
+
+var abreak = new String("");
+if (num != "0" && num!=10 ) {
+	abreak = "<BR>";
+	}
+
+load_UF_form();
+
+var aps= new Array();
+var aps= new Array();
+var hps= new Array();
+var cps= new Array();
+    
+    hps = buildTagsArray_header(num);
+    aps = buildTagsArray_page_05(num);
+    cps = buildTagsArray_closer(num);
+
+//=================================================
+
+document.write('<input type="button" name="BBACK" onclick="javascript: history.back()" value="BACK"><P>');
+document.write('<font face="Elephant" size="3" color="a00000">'+parent.adb_project_name+' Workbook, Page 5<p></font>');
+//PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+document.write('<font face="Elephant" size="3" color="a00000">PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+		+"This is the generated xml script.  Values you entered are highlighted in red."
+		+"<HR>");
+//document.write( "This is the generated xml script.  Values you entered are highlighted in red.<HR>");
+
+///document.write('< ? xml version="1.0"  ? > \r\n'); 
+///document.write("Content-Type: text/xml ")
+
+
+
+for (i=0;i<hps.length;i++) {
+	var vps = new String(hps[i]);
+ 	document.write(abreak+vps);
+	}
+
+
+
+for (i=0;i<aps.length;i++) {
+	var vps = new String(aps[i]);
+	document.write(abreak+vps);
+	}
+
+
+
+for (i=0;i<cps.length;i++) {
+	var vps = new String(cps[i]);
+	document.write(abreak+vps);
+	}
+
+
+}//end function
+
+
+
+
+
+</script>
+	
+
+
+</body>
+</html>
+

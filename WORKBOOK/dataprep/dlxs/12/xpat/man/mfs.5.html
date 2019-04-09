@@ -1,0 +1,442 @@
+
+
+<html><head><title>Manpage of MFS</title>
+<link href="../../dlxsdocs.css" rel="stylesheet" type="text/css"> </head><body>
+<h1>MFS</h1>
+Section: File Formats (5)<br>Updated: November 2000<br><a href="#index">Index</a>
+<a href="http://localhost/cgi-bin/man/man2html">Return to Main Contents</a><hr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="lbAB">&nbsp;</a>
+<h2>NAME</h2>
+
+<b>mfs</b> - XPAT Multi-File/Filter Support system
+<a name="lbAC">&nbsp;</a>
+<h2>DESCRIPTION</h2>
+
+The MFS (Multi-File/Filter Support) system is an extension to
+the I/O subsystem that is used by all
+XPAT index-building and search programs.  It allows these
+programs to handle databases consisting of
+many separate files in multiple formats.
+Conceptually, the MFS system extracts the text from all the individual
+files, adds some structure to those extracted pieces of text, and groups them
+all together
+as a single `virtual text'.  The XPAT programs then operate on
+that virtual text as if it were a single file.  The MFS system creates
+this virtual text through the use of a <i>FileMap</i>, which is essentially 
+a directory of all the files in the database, along with extra
+information about each file (such as the timestamps).
+<p>
+
+The FileMap must be built before
+any of the other index-building and search programs can be used.
+This is accomplished with the <b>mfsbld</b> program which reads the MFS
+specifications from the database's Data Dictionary.  These
+specifications are described in the next section.
+<a name="lbAD">&nbsp;</a>
+<h2>MFS SECTIONS IN THE DATA DICTIONARY</h2>
+
+The difference between the Data Dictionary of a regular database and that of an MFS
+database lies in the contents of the `Text' section (which is enclosed
+by <tt>&lt;Text&gt;</tt> and <tt>&lt;/Text&gt;</tt> tags).  In a regular database,
+this section contains a `Files' section which specifies the
+database's text file.  In an MFS database, the `Files' section is
+replaced by an `MfsFiles' section.  This `MfsFiles' section specifies all
+the files that make
+up the MFS database, along with extra information for each one, such
+as the method to extract their texts.
+<p>
+
+The following sections describe the contents of the `MfsFiles' section
+in the Data Dictionary.  You may want to refer
+to the example at the end of this man page while reading these
+descriptions.  Refer to the <i>Database Administration Guide</i> for more details on the
+`Files' section used in regular databases.
+<p>
+
+Each `MfsFiles' section contains a `FileMap'
+field and one or more `FilterChain' sections.
+<dl compact><dt><dd>
+<dl compact>
+<dt>-<dd>
+The `FileMap' field specifies the
+prefix of the FileMap files.  These files have
+the suffixes `<tt>.fmp</tt>', `<tt>.lmp</tt>' and
+`<tt>.xmp</tt>'.  When <b>mfsbld</b> creates these files, it names them with the
+prefix specified in the `FileMap' field in the Data Dictionary.
+<dt>-<dd>
+The `FilterChain' section defines the files and data filtering
+parameters for one type of file in the database.
+Most MFS databases consist of files of several different file types;
+each file type is defined in its own `FilterChain' section.  Each
+`FilterChain' section defines three types of parameters: the filter
+chains for the required database views, the Display View Format label,
+and the files in the database of the file type being defined.
+<dt> <dd>
+A filter chain is a group of data filters that perform some
+transformation on the data.
+In doing so, each filter chain provides a <i>view</i> of the data.
+For example, a filter chain that extracts the text from a word
+processor file provides a view of the text of the file.  In contrast,
+a filter chain that extracts the text along with the formatting information
+provides a formatted view of the data.  Each `FilterChain'
+section in the Data Dictionary contains filter chain definitions for three database views.
+These filter chains are contained in the `SearchView', `DisplayView', and
+`RawView' fields.
+In addition to those fields, each `FilterChain' section contains 
+a `DisplayFmt' field and one or more `FileGroup' sections.
+<dt>-<dd>
+The `SearchView' field specifies the filter chain for the 
+Search View of the database.
+The Search View is used for indexing and search
+purposes.  The filter chain is written as a list of filters in the
+style of Unix pipeline specifications.  For example, the
+`SearchView' field
+<dt> <dd>
+<tt>    &lt;SearchView&gt;wfw(05,3)|meta&lt;/SearchView&gt;</tt>
+<dt> <dd>
+describes two filters.  The first filter is the `<tt>wfw</tt>' filter
+with the parameter `<tt>(05,3)</tt>'.  Because this filter
+is the first one in the chain, it reads the
+data files directly.  The `wfw' filter is actually a ``super-filter''
+supplied by XPAT, which can extract the text from a wide variety of
+data formats.  The second filter
+is the `<tt>meta</tt>' filter.  It receives its input from the
+`<tt>wfw</tt>' filter and sends its output to the indexing and search
+programs.  The `<tt>meta</tt>' filter is a special filter, also supplied
+by XPAT, that
+surrounds the text coming from the previous filters in the chain with
+tags.  These tags provide file-level structure to text that may be
+otherwise unstructured.
+It also inserts extra fields, called meta-fields, in front of that text.
+These meta-fields contain the FileMap information for the file, which is
+very useful to user interfaces.
+<dt> <dd>
+The `meta' filter can generate the meta-fields very quickly
+(usually much faster than the other filters in the chain can generate
+the filtered text).  For this reason, the meta-fields are usually
+used to build summary lists in the user interfaces.
+You should always terminate every Search
+View filter chain with the `<tt>meta</tt>' filter.
+Refer to the <i>Database Administration Guide</i> for
+further details of the `<tt>wfw</tt>' and `<tt>meta</tt>' filters.
+Refer the section below on User Meta Data for more information on
+adding custom information to the meta-fields.
+<dt>-<dd>
+The `DisplayView' field contains the filter chain that
+provides the Display View.  This view is used by the user interfaces
+to display the text in a formatted form.  Refer to the <i>Database Administration Guide</i>
+for further details and examples of the Display View.
+As with the Search View, this filter chain
+should always end with the `<tt>meta</tt>' filter.
+<dt>-<dd>
+The `RawView' field contains the filter chain that
+provides the Raw View.  This view is currently
+unused by XPAT user interfaces, but is reserved for
+future use.  You should set it to be the same as the DisplayView
+filter chain (because each view definition must
+contain at least one filter).
+<dt>-<dd>
+The `DisplayFmt' field contains a short label that identifies the
+Display View output format.
+This label is necessary in databases where several different Display View
+data formats may be produced (e.g., SGML text from SGML files, raw word
+processor data from the word processor files, and GIF from the
+graphics files).  The user interface may need to send each of these
+data formats to its own viewer program.  Since the `DisplayFmt' field
+is one of the meta-fields that the `<tt>meta</tt>' filter generates,
+the user interface can use it to automatically send the Display View
+data to the right viewer program.
+<dt> <dd>
+You can put any label you want in this field, as long as you
+configure the user interface send data
+with that label to the correct viewer.  Short identifiers,
+such as `<tt>sgml</tt>', are recommended to
+minimize the size of the FileMap files (since the Display Format label
+for each file is kept in that file's entry in the FileMap).
+<dt>-<dd>
+The `DefaultDataTag' field contains the default data tag name that will
+be used
+to construct the OTDefaultData regions.
+If this field is not specified, the default tag name OTData
+will be assumed.
+<dt>-<dd>
+The `FileGroup' sections specify the files which
+are to be included in the database, for the enclosing `FilterChain'
+section.  Each `FileGroup' section defines
+a directory and a file pattern within that directory.
+Multiple `FileGroup' sections
+may be used to define different directories and patterns.
+Each `FileGroup' section contains an `MfsDir' field,
+an `MfsFile' field and an `MfsExpand' field.
+<dl compact><dt><dd>
+<dl compact>
+<dt>-<dd>
+The `MfsDir' field defines
+the path to the directory which contains the files.
+<dt>-<dd>
+The `MfsFile' field defines the file pattern which specifies the
+files.  This pattern consists of a complete or partial filename which
+may contain the following wildcards:
+<dl compact><dt><dd>
+<dl compact>
+<dt>-<dd>
+`<tt>*</tt>', which matches any string, including the null string.
+For example, `<tt>*.wp</tt>' will match any filename ending with
+a `<tt>.wp</tt>' extension.
+<dt>-<dd>
+`<tt>?</tt>', which matches a single character.
+For example, `<tt>A??.wp</tt>' will match any filename starting with
+an `<tt>A</tt>', followed by any two characters, and ending with
+a `<tt>.wp</tt>' extension.
+<dt>-<dd>
+`<tt>[...]</tt>', which matches any one of the characters enclosed
+between `<tt>[</tt>' and `<tt>]</tt>'.
+For example, `<tt>str[XYZ]</tt>' will match the filenames `<tt>strX</tt>',
+`<tt>strY</tt>' and `<tt>strZ</tt>'.  In addition, the character
+`<tt>-</tt>' may be used between two characters to specify the range
+between (and including) those two characters.
+For example, `<tt>str[1-5]</tt>' will match the filenames `<tt>str1</tt>',
+`<tt>str2</tt>', <tt>...</tt>, `<tt>str5</tt>'.
+<dt>-<dd>
+`<tt>\</tt>', which escapes special characters.
+</dl>
+</dl>
+
+<dt>-<dd>
+The `MfsExpand' field defines whether
+<b>mfsbld</b> should look in just the directory specified by the `MfsDir' field
+or also in the entire subtree rooted at that directory, to find files
+matching the pattern.
+The valid keywords in the `MfsExpand' field are `<tt>tree</tt>' and
+`<tt>file</tt>'.  The `<tt>tree</tt>' keyword tells <b>mfsbld</b> to find the files
+recursively in the subdirectory, while the `<tt>file</tt>' keyword
+tells <b>mfsbld</b> to find only the files in the specified directory.
+</dl>
+</dl>
+
+</dl>
+</dl>
+
+<a name="lbAE">&nbsp;</a>
+<h2>MFS DATA DICTIONARY EXAMPLE</h2>
+
+This is an example `Text' section of a Data Dictionary for an MFS database.
+<pre>
+  &lt;Text&gt;
+    &lt;MfsFiles&gt;
+      &lt;FileMap&gt;amap&lt;/FileMap&gt;
+      &lt;FilterChain&gt;
+        &lt;SearchView&gt;wfw(05,0)|meta&lt;/SearchView&gt;
+        &lt;DisplayView&gt;meta&lt;/DisplayView&gt;
+        &lt;RawView&gt;meta&lt;/RawView&gt;
+        &lt;DisplayFmt&gt;wp&lt;/DisplayFmt&gt;
+        &lt;FileGroup&gt;
+          &lt;MfsDir&gt;/usr/wordprocessor/doc&lt;/MfsDir&gt;
+          &lt;MfsFile&gt;*.wp&lt;/MfsFile&gt;
+          &lt;MfsExpand&gt;tree&lt;/MfsExpand&gt;
+        &lt;/FileGroup&gt;
+        &lt;FileGroup&gt;
+          &lt;MfsDir&gt;../../mydata/texts&lt;/MfsDir&gt;
+          &lt;MfsFile&gt;MyFile*.[4-6]&lt;/MfsFile&gt;
+          &lt;MfsExpand&gt;file&lt;/MfsExpand&gt;
+        &lt;/FileGroup&gt;
+      &lt;/FilterChain&gt;
+      &lt;FilterChain&gt;
+        &lt;SearchView&gt;sys(&quot;uncompress&quot;)|wfw(21,4X)|meta&lt;/SearchView&gt;
+        &lt;DisplayView&gt;sys(&quot;uncompress&quot;)|meta&lt;/DisplayView&gt;
+        &lt;RawView&gt;flat&lt;/RawView&gt;
+        &lt;DisplayFmt&gt;wfw&lt;/DisplayFmt&gt;
+        &lt;FileGroup&gt;
+          &lt;MfsDir&gt;/u2/compressed/texts&lt;/MfsDir&gt;
+          &lt;MfsFile&gt;*.Z&lt;/MfsFile&gt;
+          &lt;MfsExpand&gt;tree&lt;/MfsExpand&gt;
+        &lt;/FileGroup&gt;
+      &lt;/FilterChain&gt;
+    &lt;MfsFiles&gt;
+  &lt;/Text&gt;
+</pre>
+
+
+<a name="lbAF">&nbsp;</a>
+<h2>FILE MAP FILES</h2>
+
+As mentioned above, the FileMap consists of three files:
+<dl compact><dt><dd>
+<dl compact>
+<dt>-<dd>
+The FileMap file itself with a `<tt>.fmp</tt>' extension.
+<dt>-<dd>
+The Filter List file with a `<tt>.lmp</tt>' extension.
+<dt>-<dd>
+The Compiled FileMap file with a `<tt>.xmp</tt>' extension.
+</dl>
+<p>
+
+These files are generated by <b>mfsbld</b>.
+The `<tt>.fmp</tt>' and `<tt>.lmp</tt>' files are both
+ASCII files; the `<tt>.xmp</tt>' file is a binary file.
+All XPAT programs that use MFS load the `<tt>.xmp</tt>'
+file into memory for fast access.
+This file consumes 8 bytes of memory for each file entry.  Therefore,
+a FileMap containing 131,072 files will occupy 1 MB of memory.
+</dl>
+<a name="lbAG">&nbsp;</a>
+<h2>USER META DATA</h2>
+
+One of the meta-fields that the `meta' filter produces contains
+free text that is associated with the file.  This free text is called
+the <i>user meta-data</i>.  This data is usually a summary
+or a title for the file that users can use to quickly identify the
+file or its contents.  This field is intended to allow database
+administrators to place database-specific and file-specific data into
+the meta-fields.  This data can then be used in the user interface's
+summary list, allowing it to contain much more useful
+information than would otherwise be possible.  Note that
+this field can be left empty if the existing information
+in the other meta-fields is sufficient to construct the summary list.
+<p>
+
+The user meta-data is incorporated into the FileMap at the time it is
+built, via a user meta-data template file.  You can create an empty
+template file by using the `-t' option to the <b>mfsbld</b> program
+(refer to the <b><a href="http://localhost/cgi-bin/man/man2html?1+mfsbld">mfsbld</a></b>(1) man
+page for the details).  The template file has the suffix `.dat'.
+The user meta-data are added to this template file using one of the
+methods described below.  <b>mfsbld</b> is then executed again (without the
+`-t' option) to build the FileMap
+files.  <b>mfsbld</b> automatically incorporates the data in the
+`.dat' file into the FileMap if the `.dat' file
+is present (it should be
+in the same location as the other FileMap files, as specified by
+the Data Dictionary's `FileMap' field).
+<p>
+
+<b>NOTE:</b> You usually do not run <b>mfsbld</b> by hand.  Instead, you usually
+run <b>dbbuild</b>, which in turn calls <b>mfsbld</b> and all the other index-building programs.
+Refer to the <b><a href="http://localhost/cgi-bin/man/man2html?1+dbbuild">dbbuild</a></b>(1) man page for more details.
+<p>
+
+The `.dat' file that <b>mfs</b> creates consists of a number
+of entries, one for each file in the database.  Each entry looks like
+the following (in the real file there are no newlines in each entry):
+<p>
+
+<pre>
+  &lt;OTUserData&gt;&lt;OTFile&gt;../dir1/dir2/somefile.doc&lt;/OTFile&gt;
+  &lt;OTFields&gt;&lt;/OTFields&gt;&lt;/OTUserData&gt;
+</pre>
+
+<p>
+
+You should enter the user meta-data for each database file in the 
+`OTFields' field in that file's `OTUserData' entry.
+You can do this either by editing it by hand or by using a
+program that automatically merges a pre-built list
+of user meta-data with this template file.  If the user meta-data
+consists of pieces of text that come from the files themselves (such
+as title fields), you need to have run a program to extract these pieces
+beforehand.
+<p>
+
+Note that in the simplest form, the user meta-data are just strings of
+text.  However, in more complex forms, they may consist of more than
+single tagged fields.  Because the user meta-data are
+meta-fields in the virtual text produced by the MFS system, 
+you can simply build region indices on the tags
+in the user meta-data.  For example, you might create a template file
+entry as follows:
+<p>
+
+<pre>
+  &lt;OTUserData&gt;&lt;OTFile&gt;somefile.doc&lt;/OTFile&gt;&lt;OTFields&gt;&lt;HeadLine&gt;This
+  is the text of the headline&lt;/HeadLine&gt;&lt;PageNum&gt;344&lt;/PageNum&gt;&lt;/OTFields&gt;
+  &lt;/OTUserData&gt;
+</pre>
+
+<p>
+
+In the above example, you could build regions on `HeadLine' tags
+and on `PageNum' tags.  For example, you could use the `HeadLine'
+region in the
+summary list, and the `PageNum' field in the viewer program.
+Refer to the <i>Database Administration Guide</i> for more details and examples
+of this form of user meta-data and building region indices.
+<p>
+
+Note that you should edit ONLY the contents of the `OTFields' fields;
+the contents of the `OTFile' fields must remain unchanged or the user
+meta-data may not get properly matched up with the right files.
+<a name="lbAH">&nbsp;</a>
+<h2>INTEGRITY CHECKS</h2>
+
+<b>mfsbld</b> will generate integrity check data for the FileMap inside the
+`<tt>.xmp</tt>' file.  This integrity check data is used by the various
+indexing and search programs to verify
+that the three FileMap files are consistent.
+<b>It is important NOT TO EDIT FileMap files directly</b>.  Doing
+so may corrupt the database's integrity.  <b>xpat</b> will detect such
+problems and will not allow searching in those cases.
+<p>
+
+As far as integrity checking of the actual database files is
+concerned, each entry in the FileMap contains the corresponding file's
+timestamp.  This allows <b>xpat</b> to detect if any of the files
+have been modified since the database was built.  Note that <b>xpat</b> will
+still search databases that have modified files.  However, searches
+will be performed against
+the versions of the files at the time they were indexed, while text
+output (e.g., to viewer programs) will
+use the current versions.  In order to search the indexed version
+of the database, you will have to rebuild or update the database
+(refer to the <b><a href="http://localhost/cgi-bin/man/man2html?1+xpatbld">xpatbld</a></b>(1) and <b><a href="http://localhost/cgi-bin/man/man2html?1+dbbuild">dbbuild</a></b>(1) man pages and the <i>Database Administration Guide</i> for more
+details).
+<a name="lbAI">&nbsp;</a>
+<h2>SEE ALSO</h2>
+
+<i>Database Administration Guide</i>
+<br>
+
+<b><a href="http://localhost/cgi-bin/man/man2html?1+mfsbld">mfsbld</a></b>(1), <b><a href="http://localhost/cgi-bin/man/man2html?1+xpatffw">xpatffw</a></b>(1), <b><a href="http://localhost/cgi-bin/man/man2html?1+xpatffi">xpatffi</a></b>(1), <b><a href="http://localhost/cgi-bin/man/man2html?5+data_dict">data_dict</a></b>(5)
+<p>
+
+<hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">NAME</a><dd>
+<dt><a href="#lbAC">DESCRIPTION</a><dd>
+<dt><a href="#lbAD">MFS SECTIONS IN THE DATA DICTIONARY</a><dd>
+<dt><a href="#lbAE">MFS DATA DICTIONARY EXAMPLE</a><dd>
+<dt><a href="#lbAF">FILE MAP FILES</a><dd>
+<dt><a href="#lbAG">USER META DATA</a><dd>
+<dt><a href="#lbAH">INTEGRITY CHECKS</a><dd>
+<dt><a href="#lbAI">SEE ALSO</a><dd>
+</dl>
+<hr>
+This document was created by
+<a href="http://localhost/cgi-bin/man/man2html">man2html</a>,
+using the manual pages.<br>
+Time: 18:03:38 GMT, March 26, 2001
+</body>
+</html>

@@ -1,0 +1,30 @@
+
+Ok, it is done.
+
+ in /root/temp
+
+are the files:
+
+dlxs20081002-save.sql    which is the one I just did with the good 00 and 01 records.
+
+dlxs_20080801T040101.sql   which is the aug 1st edition  we have restored this morning.
+
+In case you need to, you can put the whole db back with
+
+mysql -uyouruser -p dlxs < dlxs20081002-save.sql
+
+(I'm not sure if that will worK with the aug 1st edition, you may have to delete the dlxs db to do that one.  The other one I made with drop-table commands so it will replace tables as it goes.)
+
+
+---------------
+on diglib2
+
+dlxs database - current working db
+	Pageview 357 bad rows
+
+dlxs081001 - made yesterday
+	Pageview_080930 923 bad rows
+	PV_080930 no bad rows
+	Pageview 357 bad rows
+dlxs20081002 - made today
+	no bad pageview rows

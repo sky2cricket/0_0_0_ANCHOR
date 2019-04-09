@@ -1,0 +1,108 @@
+note_081027.txt
+
+
+on store1
+/area2/volvoices2008/vvProcess/step_80/repAmp3.py
+
+Today, wrote python script repAmp3.py to change all hex unicode back to
+xml entities including multiple ampersand strings (a0-a1-a2-a3)
+
+# & ampersand           &amp;  &#038; &#x0026;
+# ' apostrophe          &apos; &#039; &#x0027;
+# " doublequote         &quot; &#034; &#x0022;
+# < left angle bracket  &lt;   &#060; &#x003C;
+# > right angle bracket &gt;   &#062; &#x003E;
+
+R0= '&#x'
+R1= '&#X'
+
+
+a0 = '&#x0026;#x0026;#x0026;#x0026;#x'
+a1 = '&#x0026;#x0026;#x0026#x'
+a2 = '&#x0026;#x0026;#x'
+a3 = '&#x0026;#x'
+
+
+Applied this code to 
+
+080107/02/xml
+080107/02/ocr
+080107/04/xml
+
+080201/02/xml
+080201/02/ocr
+080201/03/xml
+080201/03/txt
+080201/04/xml
+
+080416 needs to be examined in detail before running this script
+
+
+To test if files are completely corrected, use
+
+grep -ci "&#x" dir/*
+
+This will give a count of number of occurences of "&#x" and the filename.
+
+Since I am not replacing out-of-range characters, it should expose these.
+I need to test this case.
+Tomorrow.
+
+-----------------------------------
+081028
+
+completed repAmp3.py processing on
+
+080416/03/xml
+080416/03/txt
+
+-------------------------------
+just sent this note to Bridger:
+
+Hi Bridger,
+ 
+I am finding the following errors in TDH
+ 
+&apos
+&amp
+&quot
+&gt
+&lt
+ 
+Please note the correct entitities would be  
+ 
+&apos;
+&amp;
+&quot;
+&gt;
+&lt;
+ 
+ 
+I think that you can drop the apostrophe in dlxs9 because it is sgml.
+ 
+Not so in dlxs10 xml and text files. ( Remember text is put into tei after a
+<pb /> tag.)
+ 
+Beware.
+ 
+cheers!
+cricket!
+-----------------
+
+I fixed these missing semi-colon things in 080416/03/txt by hand.
+
+
+
+completed repAmp3.py processing on
+
+080812/02/xml
+080812/02/ocr
+080812/04/xml
+
+
+That completes all repAmp3.py processing.
+
+I have put part of today's log in yesterday's note in order to keep all
+repAmp3.py processing notes together.  
+
+Now moving to today's note.

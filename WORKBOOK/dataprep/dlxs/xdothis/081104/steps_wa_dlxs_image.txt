@@ -1,0 +1,65 @@
+/d1/workarea/dlxs/image/steps
+
+I.  Changes to incoming xml file:
+      (must fit image dtd)
+	name of file needs to be all in small letters and in this 
+           format (ex: UTKgsm)
+	   ic.utkgsm.unnorm.sgm
+
+II. put it in prep/_/_collectionname (_ has to match)
+    and make sure there are no other such files in there!!!! 
+
+III. make directory img/_/_collectionname (_ has to match), with subdirectories
+     thumb and large;  put thumbnails in thumb, large images in large.
+     Make sure directories are 775, files are 664 permissions.
+
+IV.  after putting your images in these folders, you need to run 
+     $DLXSROOT/bin/i/image/imageprep collid
+     this creates an index directory of the image files that cgi uses to 
+     retrieve images more quickly.
+
+V.   make directories (obj/_/_collname)( idb will give you an error if you forget)
+     (idb is the step after next)
+
+VI. (skip this with pre-generated sgml:)
+     if you have more than Dublin Core: "Modify the "idb" program to add your 
+     metanames and abbreviations to the gGenMetaNamesHash. Then use your mappings 
+     in Record 3 of the configuration file. You will also need to use CollMgr to 
+     add the new mappings to the relevant collection groups." 
+     (http://docs.dlxs.org/class/image/image-datatransform.xml).  
+
+VII. Then run /bin/i/image/idb norm collid (correct any errors)
+     (collid is the Coll ID from the sgml file)
+
+VIII. (if you are re-indexing, remove idx/c/coll and its contents.)
+       run bin/i/image/setupcollindex c/collid   (collid is as above, directory
+       containing it must be named by its first letter)
+      
+IX.  go to the idx/c/collid directory (whatever that might be);
+     correct makefile and do: "make all"
+
+X.  add collection to /d1/dlxs/cgi/i/image/AUTHZD_COLL
+
+XI. add collection to /etc/httpd/conf/httpd.conf under PUBLIC_COLL
+    <Directory "/d1/dlxs/cgi/i/image">
+      SetEnv AUTHZD_COLL ":"
+      SetEnv PUBLIC_COLL ":sampleic:workshopic:utkgsm:"
+    </Directory>
+
+XII. run /etc/init.d/httpd restart
+
+XIII. go to Collmgr and create the collection;  make a release to production
+     make sure host is "localhost" and dd is filename of correct dd (no path)
+     Entrydivsdefault can only have one entry:  full image, description, 
+     or other views;
+     the order needs to be just like that in the fields where you use more.
+     Make the fields match the others before experimenting, including which
+     dd file you use.  Try image.dd first.
+
+XIV.  go to Collmgr and manage groups;  edit collection "all";  add this
+      collection to "all"; release to production
+
+XV. go to cgi/i/image and run makeCollectionmaps-idx (every time you update
+      the collection on collmgr also)
+
+

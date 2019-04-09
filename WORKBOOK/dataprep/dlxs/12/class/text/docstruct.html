@@ -1,0 +1,96 @@
+<html>
+<head>
+<title>Text Class Documents -- Structure</title>
+
+
+
+
+
+
+
+<link href="../../dlxsdocs.css" rel="stylesheet" type="text/css"> </head>         <body>
+<div class="pageTitle">Text Class Documents -- Structure</div>
+		
+			<h1>Introduction</h1>
+			<p>This document lays out the elements and attributes required in all Text Class texts.  It is assumed that any texts to be converted to Text Class already validate against another DTD for encoding monographic materials, such as TEI Lite, that represent corresponding structures (chapters, pages, etc.).  Because of the extremely lax content modelling (almost every element is defined to permit ANY of the named elements), the Text Class DTD is useful only  to ensure that the nomenclatures have been changed appropriately.</p>
+		
+		
+			<h1>Basic Requirements</h1>
+			<p>The following elements and attributes are required:</p>
+			<ul>
+				<li>DLPSTEXTCLASS</li>
+				<li>HEADER</li>
+				<li>EDITORIALDECL with N attribute according to <a href="http://www.indiana.edu/~letrs/tei/">TEI in Libraries recommendations</a> for encoding levels.
+				</li>
+				<li>IDNO -- must be unique for each text in a collection, and should not contain spaces</li>
+				<li>TEXT</li>
+				<li>BODY</li>
+				<li>Nested numbered DIVs, with at least one DIV1<ul>
+						<li>Each DIV must have TYPE and NODE attributes</li>
+						<li>All content, such as pagebreaks, should be in DIVs, not between, if at all possible</li>
+					</ul>
+				</li>
+				<li>Nested numbered elements that contain themselves <ul>
+						<li>For example, NOTE, Q, HI become NOTE1, Q1, H1 containing NOTE2, etc.</li>
+					</ul>
+				</li>
+				<li>NOTE1 and PTR must have N and ID attributes<ul>
+						<li>default value for N is *; IDs will be automatically assigned for elements without them</li>
+					</ul>
+				</li>
+			</ul><p>See the following example document:</p>
+			<p>&lt;DLPSTEXTCLASS&gt;<br/>
+&lt;HEADER&gt;<br/>
+&lt;FILEDESC&gt;<br/>
+&lt;TITLESTMT&gt;<br/>
+&lt;TITLE TYPE="245"&gt;Some Book&lt;/TITLE&gt;<br/>
+&lt;AUTHOR&gt;Some Author&lt;/AUTHOR&gt;<br/>
+&lt;/TITLESTMT&gt;<br/>
+&lt;EXTENT&gt;1 600dpi TIFF G4 page image&lt;/EXTENT&gt;<br/>
+&lt;PUBLICATIONSTMT&gt;<br/>
+&lt;PUBLISHER&gt;Humanities Text Initiative&lt;/PUBLISHER&gt;<br/>
+&lt;PUBPLACE&gt;University of Michigan&lt;/PUBPLACE&gt;<br/>
+&lt;IDNO TYPE="dlps"&gt;acw8433.1-01.001&lt;/IDNO&gt;<br/>
+&lt;AVAILABILITY&gt;<br/>
+&lt;P&gt;These pages may be freely searched and displayed.  Permission must be received for subsequent distribution in print or electronically.  Please contact umdl-info@umich.edu for more information.&lt;/P&gt;<br/>
+&lt;/AVAILABILITY&gt;<br/>
+&lt;/PUBLICATIONSTMT&gt;<br/>
+&lt;SOURCEDESC&gt;<br/>
+&lt;BIBL&gt;<br/>
+&lt;TITLE TYPE="main"&gt;Some Book&lt;/TITLE&gt;<br/>
+&lt;AUTHOR&gt;Some Author&lt;/AUTHOR&gt;<br/>
+&lt;PUBLISHER&gt;D. Appleton and Company.&lt;/PUBLISHER&gt;<br/>
+&lt;PUBPLACE&gt;New York,&lt;/PUBPLACE&gt;<br/>
+&lt;DATE&gt;Apr 3, 1869&lt;/DATE&gt;<br/>
+&lt;/BIBL&gt;<br/>
+&lt;/SOURCEDESC&gt;<br/>
+&lt;/FILEDESC&gt;<br/>
+&lt;ENCODINGDESC&gt;<br/>
+&lt;PROJECTDESC&gt;<br/>
+&lt;P&gt;Revised with script moajrnltotextclass.pl on 2001-11-21.&lt;/P&gt;<br/>
+&lt;/PROJECTDESC&gt;<br/>
+&lt;EDITORIALDECL N="1"&gt;<br/>
+&lt;P&gt;This electronic text file was created by Optical Character Recognition (OCR). No corrections have been made to the OCR-ed text and no editing has been done to the content of the original document.  Encoding has been done through an automated process using the recommendations for Level 1 of the TEI in Libraries Guidelines.  Digital page images are linked to the text file.&lt;/P&gt;<br/>
+&lt;/EDITORIALDECL&gt;<br/>
+&lt;/ENCODINGDESC&gt;<br/>
+&lt;PROFILEDESC&gt;<br/>
+&lt;TEXTCLASS&gt;<br/>
+&lt;KEYWORDS&gt;<br/>
+&lt;TERM&gt;Equations, Abelian.&lt;/TERM&gt;<br/>
+&lt;/KEYWORDS&gt;<br/>
+&lt;/TEXTCLASS&gt;<br/>
+&lt;/PROFILEDESC&gt;<br/>
+&lt;/HEADER&gt;<br/>
+&lt;TEXT&gt;<br/>
+&lt;BODY&gt;<br/>
+&lt;DIV1 NODE="acw8433.1-01.001:1"&gt;<br/>
+&lt;P&gt;<br/>
+&lt;PB REF="00000001.tif" SEQ="00000001" RES="600dpi" FMT="TIFF6.0" FTR="UNSPEC" CNF="874" N=""/&gt;asdfqwerwerwer &lt;NOTE1 N="*" ID="note0001"&gt;see asdfasdft&lt;/NOTE1&gt;&lt;/P&gt;<br/>
+&lt;/DIV1&gt;<br/>
+&lt;/BODY&gt;<br/>
+&lt;/TEXT&gt;<br/>
+&lt;/DLPSTEXTCLASS&gt;</p>
+		
+	</body>
+
+</html>

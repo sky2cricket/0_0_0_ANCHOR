@@ -1,0 +1,286 @@
+<!--
+    This code is issued under the GNU General Public License, 
+    version 3, 29 June 2007.
+
+    The DLC-MODS Workbook provides a series of web pages to help you 
+    generate a MODS metadata record that follows the Digital Library 
+    Federation Implementation Guidelines for Shareable MODS Records, 
+    as described in the DLF Aquifer Guidlines November 2006.  These 
+    Guidelines and the specific MODS Profile are documented on the 
+    MODS Profile Page of the DLC-MODS Workbook.
+
+    Copyright (C) 2007 
+    Christine Haygood Deane 
+    University of Tennessee Libraries
+    Digital Library Center
+ 
+
+    This program is free software: you can redistribute it and/or modify    
+    it under the terms of the GNU General Public License as published by    
+    the Free Software Foundation, version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see http://www.gnu.org/licenses/
+-->
+
+<html>
+<head>
+<title>
+userdoc
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+
+</head>
+<script>
+parent.adb_background_color="#d0d0d0";
+parent.adb_project_name= 'The University of Tennessee Libraries<br>Digital Library Center<br>DLC-MODS Workbook 1.2<br> '; 
+</script>
+
+<script>document.write('<body bgcolor="'+parent.adb_background_color+'" >');</script>
+
+<font face="arial" size="3">
+<center><font face="arial">
+<h3> <script> document.write(parent.adb_project_name); </script>
+ User Documentation</h3>
+<script>
+
+//var adb_project_id  = 'WB1.2'; 
+if ( typeof(parent.adb_project_id) != "undefined")  { 
+	document.write('<p><a href="page_userdoc.htm" target="_blank">Printer Friendly User Documentation</a>');
+	}
+</script>
+</center>
+<script>
+
+</script>
+
+
+<p>
+<table class="bgINNer"  border="0" cellpadding="2" cellspacing="1" width="98%">
+<tr class="bgstandard"><td colspan="3">
+
+&nbsp;
+</td></tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+<tr class="bgstandard" >
+<td colspan="3"><font face="arial" size="2" color="000000" ><b></u> &nbsp; </td>
+</tr>
+
+<tr class="bgstandard">
+<td colspan="3" align="center">
+<table border="1" cellpadding="4" cellspacing="0" bgcolor="ffffff" width="92%">
+<tr><td><font face="arial" size="3" color="000000" >
+<b>Before you begin...</b><br>
+This workbook requires the use of popup windows.  Please <u>turn off your popup blocker</u> now.
+</td></tr>
+<tr><td><font face="arial" size="3" color="000000" >
+<b>Save your data on each page...</b><br>
+Each page has one button at the bottom of the form.
+
+<li>  <u>Save Data and View MODS TAGS</u>
+<br>When you are done entering data, you must click this button to save the data you have entered.
+<br>You will be presented with a display of the MODS tags that have been built for this page.
+</td></tr>
+<tr><td><font face="arial" size="3" color="000000" >
+<b>&lt;header></b><br>
+All fields on the &lt;header> Page are required and you will not be allowed to save the page unless
+you have filled them in.  
+</td></tr>
+<tr><td><font face="arial" size="3" color="000000" >
+<b>&lt;titleInfo></b><br>
+The <u>Non Sort</u> field is for words in the title that are to be ignored in searches, such as <u>the</u> or <u>a</u>.
+<br>The <u>Title</u> field  is required.  This field has a yellow background.
+<br><u>Sub Title</u>, <u>Part Number</u>, and <u>Part Name</u> are not required but recommended when applicable.
+</td></tr>
+<tr><td><font face="arial" size="3" color="000000" >
+<b>&lt;name></b><br>
+When you first bring up this page, you will see one <u>Name Block</u>.  The <u>personal lastname OR corperate/conforerence name</u>
+field is required. This field has a yellow background.
+<br>You may add as many <u>Name Blocks</u> as needed, as long as you fill in the field with the yellow background.
+</td></tr>
+<tr><td><font face="arial" size="3" color="000000" >
+<b>&lt;typeOfResource></b><br>
+The <u>typeOfResource</u> field is required.  Select up to 3 values from the popup menu.
+</td></tr>
+<tr><td><font face="arial" size="3" color="000000" >
+<b>&lt;genre></b><br>
+The <u>genre</u> is recommended.  If used, the DLF Aquifer Guidelines require the use of a value from a contolled list.
+<br>The workbook supplies a popup menu for MARC genre terms, a link to <u>aat</u> online genre terms, and a reference
+for <u>chenhall</u> genre terms.
+</td></tr>
+<tr><td><font face="arial" size="3" color="000000" >
+<b>&lt;originInfo></b><br>
+One of the <u>Date of Creation</u> fields is requried.  You may use 
+<br>either <u>Single Date of Creation</u> or <u>Creation Date Range</u> to satisfy the requirement.
+<br>Dates are entered from a popup date selector menu.
+<br>Other fields are not required but are recommended.
+</td></tr>
+
+<tr><td><font face="arial" size="3" color="000000" >
+<b>&lt;language></b><br>
+Language is required.  English is autopopulated on this page, but you still <u>must</u> save the data
+in order to build the MODS tags.
+</td></tr>
+
+<tr><td><font face="arial" size="3" color="000000" >
+<b>&lt;physicalDescription></b><br>
+On this page, <u>Digital Origin</u> and <u>Internet Media Type</u> are required and highlighted with yellow.
+<br>For other fields, enter as much information as you have.
+</td></tr>
+
+<tr><td><font face="arial" size="3" color="000000" >
+<b>&lt;abstract></b><br>
+The <u>abstract</u> field is not required.  If you fill nothing in and save the page, no mods:abstract tag is made.
+</td></tr>
+
+<tr><td><font face="arial" size="3" color="000000" >
+<b>&lt;subject></b><br>
+This page allows you to add one or more <u>subject blocks</u>.
+<br>At least one <u>subject</u> element is required.
+<br>Click the <u>Add one Subject Block</u> button to generate an input form for a new </u>subject block</u>.
+<br>Click the <u>Removed one Subject Block</u> button to remove the last input form for a <u>subject block</u>.
+<br>Having at lease one <u>subelement</u> inside each <u>subject block</u> is required.
+<br>These fields are all populated by clicking buttons and selecting from popup windows.
+<br>The <u>subject authority attribute</u> must be selected before selecting any <u>subelements</u>.
+<br>The <u>subelements</u> listed on page 53 of the <u>DLF Aquifer Guidelines</u> are:
+<li>topic
+<li>geographic
+<li>temporal
+<li>titleInfo
+<li>name (personal, corporate, conference)
+<li>genre
+<li>hierarchicalGeographic
+<li>cartographics
+<li>geographicCode
+<li>occupation
+<br>Please consult the <a href="http://www.diglib.org/aquifer/dlfmodsimplementationguidelines_finalnov2006.pdf" 
+target="_new">DLF Aquifer Guidelines</a> for complete instructions on building <u>subject blocks</u>.
+</td></tr>
+
+<tr><td><font face="arial" size="3" color="000000" >
+<b>&lt;relatedItem></b><br>
+The only type of Related Item supported by the workbook is a link to the Related Item's metadata record.
+<br>The <u>relatedItem</u> element is recommended but not required.
+<br>This page allows you to add one or more <u>related item blocks</u>.
+<br>To build the tags for a <u>related item</u>, you must enter a valid url for the item.
+<br>The attributes for <u>Display Label</u> and for <u>Type</u> are optional. 
+<br>The <u>Type</u> is from a controlled vocabulary in a drop down menu.
+<br>Click the <u>Add one Related Item</u> button to generate an input form for a new </u>related item block</u>.
+<br>Click the <u>Remove one Related Item</u> button to remove the last input form for a <u>related item block</u>.
+</td></tr>
+
+<tr><td><font face="arial" size="3" color="000000" >
+<b>&lt;identifier></b><br>
+The <u>identifier</u> element is recommended but not required.
+<br>This page allows you to add one or more <u>identifier blocks</u>.
+<br>The <u>identifier</u> value and <u>type</u> attribute are required for an <u>identifier block</u>.
+<br>The <u>type</u> is from a controlled vocabulary in a drop down menu.
+<br>To build the tags for an <u>identifier</u>, you must enter a valid <u>identifier</u> for the selected <u>type</u>. 
+<br>The attribute for <u>Display Label</u> is optional. 
+<br>The attribute for <u>invalid</u> has a default value of <u>no</u> and is only added to the tag when <u>invalid="yes"</u>.
+<br>Click the <u>Add one Identifier</u> button to generate an input form for a new </u>identifier block</u>.
+<br>Click the <u>Remove one Identifier</u> button to remove the last input form for a <u>identifier block</u>.
+</td></tr>
+
+<tr><td><font face="arial" size="3" color="000000" >
+<b>&lt;location></b><br>
+The only type of <u>location</u> subelement supported by the workbook is <u>url</u>.
+<br>One <u>location</u> element is required with the subelement <u>url</u> and the attribute <u>usage="primary display"</u>.
+<br>The workbook provides input boxes to correctly build the required subelement.
+<br>The workbook allows addition of up to 3 other <u>url</u> subelements, but per <u>DLF Aquifer Guidelines</u>, 
+<br>none of these has the <u>usage="primary display"</u> attribute.
+<br>It is recommended that all URLs used with the <u>location</u> element be persistsent.
+</td></tr>
+
+<tr><td><font face="arial" size="3" color="000000" >
+<b>&lt;accessCondition></b><br>
+The <u>accessCondition</u> element is required with the <u>type</u> attribute.
+<br>The workbook provides an example of an <u>accessCondition</u> web page ( localRights.htm ),
+<br>but this is only an example.
+<br>It is your responsibility to discover the rules about your local resources 
+<br>and to write your own <u>localRights.htm</u> webpage.
+</td></tr>
+
+<tr><td><font face="arial" size="3" color="000000" >
+<b>&lt;recordInfo></b><br>
+The <u>recordInfo</u> element is required with the <u>languageOfCataloging</u> subelement.
+<br>The <u>recordContentSource</u> is not required but recommended.
+</td></tr>
+
+<tr><td><font face="arial" size="3" color="000000" >
+<b>Review Page</b><br>
+This is where you may review your work.
+<br>A visit to the <u>Review Page</u> displays all the values you have entered, but changes nothing.
+<br>Required fields are highlighted with a yellow background.
+<br>You may visit this page as often as you like.
+<br>This page is helpful when you are reloading an xml file that was created by somebody else.
+</td></tr>
+
+<tr><td><font face="arial" size="3" color="000000" >
+<b>Final Page</b><br>
+The purpose of the final page is to <u>View</u> or <u>Download</u> your xml file.
+<br>The display contains validation status by page (complete/incomplete).
+<br>If any page is incomplete, you will have to create and <u>incomplete</u> xml file.
+<br>This file can be saved and then copied to the <u>Reload</u> page for continuation of work at a later date.
+<br>If all pages are in status <u>complete</u>, you may create the <u>final</u> xml file.
+<br>There are 3 buttons on this page.
+<li><u>View MODS TAGS</u> -- A quick way to preview the file.
+<li><u>Create Incomplete XML File</u> -- Save the work you have done so far, complete later.
+<li><u>Create FINAL XML File with valildation</u> -- Final work, validation will catch any incomplete pages.
+</td></tr>
+
+
+<tr><td><font face="arial" size="3" color="000000" >
+<b>Reload Page</b><br>
+This page allows reload of an xml file created by the workbook.
+<br>Step 1:  Open the file with notepad or other text editor.
+<br>Step 2:  Cut and paste the entire xml file into the textarea on the reload page.
+<br>Step 3:  Press the <u>Process Data in TextArea</u> button.
+<br>Step 4:  Revisit each page in the workbook to enter your revisions.  (Remember to <u>save</u> your data!)
+<br>Step 5:  When revisions are complete, go to the Final page and download a new xml file.
+
+</td></tr></table>
+</td>
+</tr>
+
+
+
+
+<tr class="bgstandard">
+<td colspan="3">&nbsp</td>
+</tr>
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+
+
+
+
+<tr class="bgstandard"><td colspan="3" align="center">
+&nbsp;&nbsp;
+
+</td></tr>
+
+</table>
+
+
+
+<font face="arial" size="3">
+<center><font face="arial">
+<h3> <script> document.write(parent.adb_project_name); </script>
+ User Documentation</h3>
+</h2>
+</center>
+
+</body>
+</html>
+

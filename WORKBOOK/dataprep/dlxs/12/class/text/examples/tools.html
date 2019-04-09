@@ -1,0 +1,110 @@
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.75 [en] (WinNT; U) [Netscape]">
+   <title>Tools</title>
+<link href="../../../dlxsdocs.css" rel="stylesheet" type="text/css"> </head>         <body>
+<h2><a name="top">Tools</a></h2>
+<p><b>Xpat searching</b>
+<blockquote>&nbsp;
+<table border cols=2 width="90%" >
+<tr>
+<td><b>Command</b></td>
+
+<td><b>Results</b></td>
+</tr>
+
+<tr>
+<td>1: pr.500 shift.-400 sample.5</td>
+
+<td>Show 500 characters of text for each match; move context to point 400
+bytes before match; show a sample of 5 matches.</td>
+</tr>
+
+<tr>
+<td>2: region DOC incl.2 region PLAY</td>
+
+<td>Match DOCs which include at least two PLAY elements</td>
+</tr>
+
+<tr>
+<td>3: 2 not incl.3 region PLAY</td>
+
+<td>All DOCs with exactly two PLAY elements (initial '2' represents results
+of previous query)</td>
+</tr>
+
+<tr>
+<td>4: region DOC incl [2844920]</td>
+
+<td>The DOC which includes a particular byte offset</td>
+</tr>
+
+<tr>
+<td>5: (region HI within region P) not within region HEADER</td>
+
+<td>Nested query: A P containing a HI, which is not within a HEADER.</td>
+</tr>
+</table>
+</blockquote>
+
+<blockquote>How to find the title of a document which contains a particular
+byte offset:
+<blockquote>1: region DOC incl [byteoffset]
+<br>2: region TITLE within region DOC
+<br>3: pr.region.2</blockquote>
+</blockquote>
+
+<blockquote>See also: <a href="http://docs.umdl.umich.edu/dlxs/xpat/xpat-index.xml">Xpat online documentation</a>.</blockquote>
+
+<p><br><b>scp (Cygwin)</b></p>
+<blockquote><b><tt>scp</tt></b>, a command in <a href="http://sources.redhat.com/cygwin/">Cygwin</a>,
+is a huge timesaver.&nbsp; It allows command-line copying of files from
+a server onto a local hard drive and back again.
+<p>From the first Cygwin screen, type <b><tt>cd /cygdrive/DRIVENAME </tt></b>(e.g.,
+<b><tt>cd
+/cygdrive/c</tt></b>).&nbsp; Using <b><tt>cd</tt></b>, change to the directory
+to which or from which you wish to copy files.</p>
+<p>To <b>get </b>files from server:
+<blockquote><b><tt>scp <i>USERNAME</i>@<i>SERVER</i>:[<i>ABSOLUTE PATH</i>]
+.</tt></b></p>
+<p>For example:
+<br><b><tt>scp jsmith@server.umich.edu:/dlxs/prep/e/eepf/conversion/0raw/eepf01.xml
+.</tt></b></p>
+<p>(copies <b><tt>eepf01.xml</tt></b> from server to current local directory)</blockquote>
+To <b>put </b>files on server:
+<blockquote><b><tt>scp <i>FILE</i> <i>USERNAME</i>@<i>SERVER</i>:[<i>ABSOLUTE
+PATH</i>]</tt></b></p>
+<p>For example:
+<br><b><tt>scp eepf01.xml jsmith@server.umich.edu:/dlxs/prep/e/eepf/conversion/0raw/</tt></b>
+<p>(Copies <b><tt>eepf01.xml</tt></b> from current local directory to <b><tt>0raw</tt></b>
+directory on server.)
+<br>&nbsp;</blockquote>
+</blockquote></p>
+
+<p><br><b>cat (UNIX)</b></br></p>
+
+<blockquote>Joins contents of files.
+<p>Usage:
+<blockquote><tt>cat <b><i>FILES</i></b> > <b><i>OUTPUTFILE</i></b></tt></blockquote>
+For example:
+<blockquote><b><tt>cat *.errs > allerrors</tt></b>
+<br>joins the contents of all <b><tt>.errs</tt></b> files and combines
+them into the file <b><tt>allerrors</tt></b>.&nbsp; When using the <b><tt>*</tt></b>
+matching operator, make sure that it doesn't also match the name of the
+output file (the file will be twice as big as it should be).&nbsp; Also,
+make sure that you're not matching any files you don't want (e.g., beware
+that <b><tt>xemacs</tt></b> creates backup files with a tilde suffix).</blockquote>
+</blockquote></p>
+
+<p><br><b>foreach (UNIX)</b></p>
+<blockquote><b><tt>foreach file (*.xml)</tt></b>
+<br><b><tt>nsgmls -s -f $file.errors doctype $file</tt></b>
+<br><b><tt>end</tt></b></blockquote>
+
+<p><br><b>Find zero-byte files and delete them</b></p>
+<blockquote>This can be used to delete error files produced by <b><tt>nsgmls</tt></b>.
+<p><b><tt>find . -type f -size 0 -prune -exec rm {} \;</tt></b></p></blockquote>
+<p>&nbsp;</p>
+</body>
+</html>

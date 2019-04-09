@@ -1,0 +1,66 @@
+[root@diglib2 image]# cd /d1/dlxs/img/v/vvz
+[root@diglib2 vvz]# ls
+index  large  thumb
+[root@diglib2 vvz]# ls thumb/0031_000050*
+thumb/0031_000050_000200_0001.jpg  thumb/0031_000050_000203_0001.jpg
+thumb/0031_000050_000201_0001.jpg  thumb/0031_000050_000204_0001.jpg
+thumb/0031_000050_000202_0001.jpg
+[root@diglib2 vvz]# ls -l thumb/0031_000050*
+-rwxrwxr-x    1 root     root        35871 Apr  1 13:57 thumb/0031_000050_000200_0001.jpg
+-rwxrwxr-x    1 root     root        38646 Apr  1 13:57 thumb/0031_000050_000201_0001.jpg
+-rwxrwxr-x    1 root     root        36991 Apr  1 13:57 thumb/0031_000050_000202_0001.jpg
+-rwxrwxr-x    1 root     root        37186 Apr  1 13:57 thumb/0031_000050_000203_0001.jpg
+-rwxrwxr-x    1 root     root        42007 Apr  1 13:57 thumb/0031_000050_000204_0001.jpg
+[root@diglib2 vvz]# ls 
+index  large  thumb
+[root@diglib2 vvz]# ls index/0031_000050*
+ls: index/0031_000050*: No such file or directory
+[root@diglib2 vvz]# ls large/0031_000050*
+large/0031_000050_000200_0001.jpg  large/0031_000050_000203_0001.jpg
+large/0031_000050_000201_0001.jpg  large/0031_000050_000204_0001.jpg
+large/0031_000050_000202_0001.jpg
+[root@diglib2 vvz]# cd ..
+[root@diglib2 v]# ls
+vvi  vvz
+[root@diglib2 v]# cd vvi
+[root@diglib2 vvi]# ls
+index  large  thumb
+[root@diglib2 vvi]# ls index
+0
+[root@diglib2 vvi]# cd ../vvz
+[root@diglib2 vvz]# ls
+index  large  thumb
+[root@diglib2 vvz]# ls index
+0  3  h
+[root@diglib2 vvz]# cd index
+[root@diglib2 index]# ls *
+0:
+0
+
+3:
+6
+
+h:
+i
+[root@diglib2 index]# ls */*
+0/0:
+1  6
+
+3/6:
+2
+
+h/i:
+s
+[root@diglib2 1]# pwd
+/d1/dlxs/img/v/vvz/index/0/0/1
+[root@diglib2 1]# ls 0031*
+0031_000050_000200_0001.inf
+0031_000050_000200_0001.jpg
+0031_000050_000201_0001.inf
+0031_000050_000201_0001.jpg
+0031_000050_000202_0001.inf
+0031_000050_000202_0001.jpg
+0031_000050_000203_0001.inf
+0031_000050_000203_0001.jpg
+0031_000050_000204_0001.inf
+0031_000050_000204_0001.jpg

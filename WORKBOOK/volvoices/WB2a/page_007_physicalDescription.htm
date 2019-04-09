@@ -1,0 +1,364 @@
+<!--
+    This code is issued under the GNU General Public License, 
+    version 3, 29 June 2007.
+
+    The DLC-MODS Workbook provides a series of web pages to help you 
+    generate a MODS metadata record that follows the Digital Library 
+    Federation Implementation Guidelines for Shareable MODS Records, 
+    as described in the DLF Aquifer Guidlines November 2006.  These 
+    Guidelines and the specific MODS Profile are documented on the 
+    MODS Profile Page of the DLC-MODS Workbook.
+
+    Copyright (C) 2007 
+    Christine Haygood Deane 
+    University of Tennessee Libraries
+    Digital Library Center
+ 
+
+    This program is free software: you can redistribute it and/or modify    
+    it under the terms of the GNU General Public License as published by    
+    the Free Software Foundation, version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see http://www.gnu.org/licenses/
+-->
+
+<html>
+<head>
+<title>
+physicalDescription
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+<script>
+parent.L.thisDocument = parent.D.document;
+
+
+function clearPage() { 
+        if (!confirm("All data entered for this page will be cleared.\n\nDo you wish to continue?")) {return};
+        parent.U.document.UF.pd_block_list.value = "";
+        parent.L.update_block_iteration("physicalDescription","0");
+        parent.L.update_page_validation('physicalDescription','h');
+        parent.D.location.replace("page_007_physicalDescription.htm");
+        return;
+}//end function
+
+
+
+</script>
+
+</head>
+
+<script> document.write('<body onload="load_DF_form();"  bgcolor="'+parent.adb_background_color+'" >'); </script>
+
+<font face="arial" size="3">
+<center><font face="arial">
+<h3><script> document.write(parent.adb_project_name); </script>
+&lt;physicalDescription></h3>
+</center>
+
+<form name="DF"  >
+
+<table class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" >
+<tr class="bgstandard"><td colspan="3"><font face="arial" size="2">
+<li>Summary of Requirements for &lt;physicalDescription>
+<br>The DLF/Aquifer Implementation Guidelines for Shareable MODS Records require the use of one &lt;physicalDescription> element, one subelement &lt;digitalOrigin>, and at least one subelement &lt;internetMediaType>. This element is not repeatable. (page 39)
+<hr style="width:50%">
+<li>Per the Levels of Adoption Document Level 2: At least one &lt;physicalDescription> element with &lt;internetMediaType> subelement; value to be taken from appropriate list 
+<li>Per the Levels of Adoption Document Level 3: &lt;form> subelement of &lt;physicalDescription> with @authority attribute 
+<li>Per the Levels of Adoption Document Level 4: &lt;digitalOrigin> subelement of &lt;physicalDescription> 
+<li>Per the Levels of Adoption Document Level 4: @authority attributes in general 
+<li>Per the Levels of Adoption Document Level 5: &lt;note> subelement within <physicalDescription>, when applicable  
+<li>Per the Levels of Adoption Document Level 5: @authority attribute on <location> subelement <physicalLocation>, when applicable 
+  
+<hr style="width:50%">
+<li>Required Fields have yellow-highlighted input box. 
+</td></tr>
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>MODS LABEL</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+<font face="arial">
+
+<!-- sentiinel_00.value = number of elements in a physicalDescription_block
+     sentinel_00.name signals that the set(s) of physicalDescription_block elements starts with next element -->
+<input type="hidden" name="sentinel_00" value="0">
+
+
+<tr class="bgstandard" ><td colspan="3">
+<b>Physical Description</b>
+</td></tr>
+
+<tr class="bgstandard">
+<td class="label13u">
+Digital Origin
+</td>
+<td>&nbsp;
+<select name="dyn_mods_digital_origin" style="background:#ffffaa; color:#000080; font-weight:bold;">
+<option selected value="_zero">none selected</option>
+<option value="born digital">Born Digital</option>
+<option value="reformatted digital">Reformatted Digital</option>
+<option value="digitized microfilm">Digitized Microfilm</option>
+<option value="digitized other analog">Digitized Other Analog</option>
+</select>
+
+&nbsp;&nbsp;<font face="arial" size="1"> This is a required field.
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard">
+<td class="label13nou">
+Technique
+</td>
+<td>&nbsp;
+<select name="dyn_technique_authority" style="color:#000080; font-weight:bold">
+<option selected value="_zero">none</option>
+<option value="aat">aat</option>
+</select>&nbsp;&nbsp;
+
+<input type="text" name="dyn_museum_form_type_technique" value="" size="36" 
+class="notrequired300w">
+&nbsp;&nbsp;<font face="arial" size="1">
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Authority&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Process or tools employed in artwork.
+
+Recommended terms for Technique may be drawn from the Art and Architecture Thesaurus: 
+<a href="http://www.getty.edu/research/conducting_research/vocabularies/aat/" target="_blank">
+http://www.getty.edu/research/conducting_research/vocabularies/aat/</a>
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label13nou">
+Medium
+</td>
+<td>&nbsp;
+<select name="dyn_medium_authority" style="color:#000080; font-weight:bold">
+<option selected value="_zero">none</option>
+<option value="aat">aat</option>
+</select>&nbsp;&nbsp;
+
+<input type="text" name="dyn_museum_form_type_medium" value="" size="36" 
+class="notrequired300w" >
+&nbsp;&nbsp;<font face="arial" size="1">
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Authority&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Material employed in artwork.
+Recommended terms for Medium from the Art and Architecture Thesaurus: 
+<a href="http://www.getty.edu/research/conducting_research/vocabularies/aat/" target="_blank">
+http://www.getty.edu/research/conducting_research/vocabularies/aat/</a>
+
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+<tr class="bgstandard" >
+<td class="label13u">
+Internet Media Type
+</td>
+<td>&nbsp;<input type="text" name="dyn_internetmediatype" value="" size="2" READONLY  class="required300w"
+>
+
+<input type="button" name="Bdyn_internetmediatype" value="Select" class="button120w"
+onclick="parent.L.selectOneOption(this,'400','600')">
+<input type="button" name="Cdyn_internetmediatype" value="Clear" class="button80w"
+onclick="parent.L.clearSelection(this,1)">
+<font face="arial" size="1" color="000000" ><br> Enter 1 value by clicking the Select button. 
+<br>Please use a standard IANA term. For more information: <a href="http://www.iana.org/assignments/media-types/" target="_blank">IANA.ORG</a>
+, <a href="http://en.wikipedia.org/wiki/Internet_media_type" target="_blank">Wikipedia</a>
+</td>
+<td>&nbsp</td>
+</tr>
+
+<tr class="bgstandard">
+<td class="label10nou">
+<font face="arial" size="2"><b><u>Extent</u></b></font><br> 
+</td>
+<td>&nbsp;<input type="text" name="dyn_mods_extent" value="" size="36" 
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; width:300px; background:#ffffff"
+><font face='arial' size='1'>
+</td>
+<td>&nbsp</td>
+</tr>
+
+
+
+<tr class="bgstandard">
+<td class="label10nou">
+<font face="arial" size="2"><b>Note</b></font><br>1500 characters
+</td>
+<td class="value10nou" >&nbsp;
+<textarea name="dyn_mods_note_physdesc" cols="60" rows="8"  
+style="font-face:arial; font-weight:bold; font-size:12px; color:#000080; xwidth:300px"
+cols="60" rows="8" 
+>
+</textarea>
+<font face='arial' size='1'><br>Short description of the physical details of the resource.  1500 characters or less.
+</td>
+<td>&nbsp</td>
+</tr>
+
+<!-- sentiinel_01.value = 0 , verify end
+     sentinel_01.name signals that the set(s) of physicalDescription_block elements ends here -->
+<input type="hidden" name="sentinel_01" value="0">
+<input type="hidden" name="pd_block_list" value="">
+
+<tr class="bgstandard">
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+
+
+
+
+<tr class="bgstandard"><td colspan="3" align="center">
+&nbsp;&nbsp;
+
+<input type="button" name="B2" value="Save Data and View MODS TAGS" class="buttonnw" onclick="buildModsTags(1)">
+&nbsp;&nbsp;
+<input type="button" name="Bclear" value="Clear Data and Restart this Page" class="buttonnw" onclick="clearPage();">
+
+
+
+</td></tr>
+
+<tr class="bgstandard" >
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+</table>
+
+
+
+
+
+</form name="forms[0]">
+
+
+<center><font face="arial">
+<h3>
+<script> document.write(parent.adb_project_name); </script>
+</h3>
+</center>
+
+<script>
+
+
+
+function load_UF_form() {
+
+parent.U.document.UF.pd_block_list.value = document.DF.pd_block_list.value;
+
+return;
+}
+
+function load_DF_form() {
+
+document.DF.pd_block_list.value = parent.U.document.UF.pd_block_list.value;
+parent.L.populate_DF_webform_from_UF_blocklist("pd_block_list");
+
+return;
+}
+
+
+
+function buildModsTags(N) {
+
+document.DF.pd_block_list.value = parent.L.populate_DF_blocklist_from_DF_webform("pd_block_list");
+//alert("document.DF.pd_block_list.value=\n"+document.DF.pd_block_list.value);
+
+
+////do this first so current values are loaded regardless of validation status
+load_UF_form();
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+//before writing MODS TAGS, make sure all required fields are populated
+//checkAllRequired... true  validation sets validation status to H  -- complete
+//checkAllRequired... false validation sets validation status to h  -- incomplete
+
+if (!parent.L.checkAllRequiredElements_Page_physicalDescription() ) {
+	parent.L.update_page_validation('physicalDescription','h');
+	return;
+}
+parent.L.update_page_validation('physicalDescription','H');
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+var num = new Number();
+    num = N;
+
+if (num == 10) { 
+	alert("Values have been saved.");
+	return;
+	}
+
+var aps= new Array();
+var hps= new Array();
+var cps= new Array();
+    
+    hps = parent.L.buildTagsArray_header(num);
+    aps = parent.L.buildTagsArray_physicalDescription(num);
+    cps = parent.L.buildTagsArray_closer(num);
+//=================================================
+
+document.write('<input type="button" name="BBACK" onclick="javascript: history.back()" value="BACK"><P>');
+document.write('<font face="Elephant" size="3" color="a00000">'+parent.adb_project_name+' &lt;physicalDescription&lt;physicalDescription><p></font>');
+//PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+//document.write('<font face="Elephant" size="3" color="a00000">PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+document.write(parent.adb_workbook_version+'<p>'
+		+"This is the generated xml script.  Values you entered are highlighted in red."
+		+"<HR>");
+//document.write( "This is the generated xml script.  Values you entered are highlighted in red.<HR>");
+
+//document.write('< ? xml version="1.0"  ? > \r\n'); 
+///document.write("Content-Type: text/xml ")
+
+
+
+for (i=0;i<hps.length;i++) {
+	var vps = new String(hps[i]);
+ 	document.write("<br>"+vps);
+	}
+
+
+
+for (i=0;i<aps.length;i++) {
+	var vps = new String(aps[i]);
+	document.write("<br>"+vps);
+	}
+
+
+
+for (i=0;i<cps.length;i++) {
+	var vps = new String(cps[i]);
+	document.write("<br>"+vps);
+	}
+
+
+
+}//end function
+
+
+
+</script>
+	
+<script language=javascript src="elements.js"></script>
+<script>elements();</script>
+
+
+</body>
+</html>
+

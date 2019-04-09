@@ -1,0 +1,503 @@
+
+
+<html><head><title>Manpage of DBBUILD</title>
+<link href="../../dlxsdocs.css" rel="stylesheet" type="text/css"> </head><body>
+<h1>DBBUILD</h1>
+Section: User Commands  (1)<br>Updated: November 2000<br><a href="#index">Index</a>
+<a href="http://localhost/cgi-bin/man/man2html">Return to Main Contents</a><hr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="lbAB">&nbsp;</a>
+<h2>NAME</h2>
+
+<b>dbbuild</b> - XPAT database build control program
+<a name="lbAC">&nbsp;</a>
+<h2>SYNOPSIS</h2>
+
+<b>dbbuild</b>
+[
+<b>-ver</b>
+]
+[
+-v
+]
+[
+-no_run
+]
+[
+-l &quot;logfile&quot;
+]
+[
+-no_ff
+]
+[
+-no_opt
+]
+[
+-merge
+]
+[
+-dos
+]
+[
+-m &quot; memory&quot;
+k|m ]
+[
+-o &quot; output_prefix&quot;
+]
+
+[
+-w &quot; word_wheel&quot;
+]
+[
+-wwdb
+]
+
+[
+-f &quot; Fast_Region_file&quot;
+]
+[ [
+-t &quot; tags_file&quot;
+] |
+[
+-inp &quot; inp_file&quot;
+] |
+[
+-c &quot; regions_config_file&quot;
+] ]
+[
+-O &quot; optimize_file&quot;
+]
+[
+-tmp &quot; temp_file&quot;
+]
+[
+-u &quot; user_tags_file&quot;
+]
+[
+-r &quot; phase_count&quot;
+]
+-D
+<i>data_dictionary</i>
+<a name="lbAD">&nbsp;</a>
+<h2>DESCRIPTION</h2>
+
+<b>dbbuild</b> builds all the necessary files for the database specified
+by <i>data_dictionary</i>.  A <i>data_dictionary</i> must be prepared before using <b>dbbuild</b>, as well as a template file
+for any user meta-data (see <b><a href="http://localhost/cgi-bin/man/man2html?1+mfsbld">mfsbld</a></b>(1)).  Refer
+to the <i>Database Administration Guide</i> for further details.
+<a name="lbAE">&nbsp;</a>
+<h2>OPTIONS</h2>
+
+<dl compact>
+<dt><b>-ver</b><dd>
+version - display version number.  This option identifies the version number of the 
+program and then exits.
+<dt><b>-v</b><dd>
+verbose - specify verbose mode.  This option tells <b>dbbuild</b> to turn on the verbose
+mode of all the index-building programs it runs.  With verbose mode turned
+on, these programs print progress messages as they proceed.
+By default, <b>dbbuild</b> works quietly, only printing a minimum of messages.
+<dt><b>-no_run</b><dd>
+do not run- specify that <b>dbbuild</b> should not run the index builders.  This option 
+tells <b>dbbuild</b> to display the
+commands that it would issue to build the database.  This allows the user to
+redirect the output from <b>dbbuild</b> to a file, which could then be executed as a shell
+script. In this mode, the commands themselves are not executed.
+<dt><b>-l</b> <i>log_file</i><dd>
+log - specify the log file.  This option tells <b>dbbuild</b>
+to send all the progress information that is produced by
+the programs that it runs to the specified <i>log_file</i>.  This option
+is very useful for recording the details of the build process in long
+build operations or in helping to diagnose any build problems that might
+occur.  This option can be used in
+combination with the <b>-v</b> option, in which case the
+diagnostic output is sent to both the screen and the log file.
+<dt><b>-no_ff</b><dd>
+no Fast Find indices - eliminates the building of Fast Find indices.  Open
+Text strongly recommends the building of Fast Find indices, especially for MFS
+databases.  Fast Find indices are built by default.
+<dt><b>-no_opt</b><dd>
+no optimization - turn optimization off.  When building MFS databases, <b>dbbuild</b> 
+uses an optimization method by default.  This optimization
+involves generating the virtual text of the entire MFS database
+and writing it out to a temporary file on disk at the same time as it builds
+the FileMap.
+<b>dbbuild</b> then runs all the index-building programs on that text file.
+It deletes the text file when all the necessary files have been built.
+This temporary text file is usually considerably smaller than the total
+size of all the word processor files combined, especially
+in databases which consist mainly of word processor files.
+This is because a significant amount of space is used in
+each file for word processor formatting commands and related overhead.
+<dt><dd>
+In some situations, the disk space required for this file is simply
+not available.  In these cases, the <b>-no_opt</b> option may be
+specified to allow <b>dbbuild</b> to proceed with the database build, at a
+somewhat slower speed.
+<dt><b>-merge</b><dd>
+region merging - make <b>multirgn</b> and <b>sgmlrgn</b> to merge the new regions into the existing
+regions. If the regions with the same name happens in different region building
+phase, the later set of regions will completely replace the old region set.
+This option allows the regions with the same name to be merged into the same
+region set without replacement.
+<dt><b>-dos</b><dd>
+dos processing option - make <b>sgmlrgn</b> processing aware of special MS-DOS characters.
+With this option, <b>sgmlrgn</b> will replace the special MS-DOS characters to blank
+in order to avoid error during parsing.
+<dt><b>-m</b> <i>N</i><b>k</b><dd>
+<dt><b>-m</b> <i>N</i><b>m</b><dd>
+memory - use <i>N</i> <b>k</b>ilobytes or <i>N</i>
+<b>m</b>egabytes of physical memory during the database building process.
+The speed with which the various index building programs operate
+is affected by the amount of physical memory available.  By
+default, <b>dbbuild</b> allocates 512 KB of memory for the index building programs it
+runs.  While this is adequate for very small databases, larger databases
+benefit by allocating more physical memory.  The <b>-m</b> option specifies
+how much memory
+programs can use.  A number immediately followed by the letter <b>k</b>
+specifies that number of kilobytes.  A number immediately followed by
+the letter <b>m</b> specifies that number of megabytes.  For instance,
+`-m 4m' allocates 4 megabytes of memory for use by programs invoked by
+<b>dbbuild</b>.  For large databases (where the text is broken into more than 10 chunks
+by <b>xpatbld</b>), the amount of memory that is specified is critical to the efficiency
+of the build operation.  Refer to the <b><a href="http://localhost/cgi-bin/man/man2html?1+xpatbld">xpatbld</a></b>(1) man page and the section on <b>xpatbld</b>
+parameters in the <i>Database Administration Guide</i> for the details on how to specify this memory parameter.
+<dt><b>-o</b> <i>output_prefix</i><dd>
+output filename prefix - specify the prefix to use for output files.
+This option explicitly specifies the output filename prefix
+for the files produced by the indexing programs.  The
+default prefix is the prefix of the <i>data_dictionary</i>.
+
+<dt><b>-w</b> <i>word_wheel</i><dd>
+
+word wheel - specify that <b>dbbuild</b> is to build a word wheel file.
+<b>dbbuild</b> will build this file using any regions prefixed with a
+``*'' character in the <i>regions_list_file</i>.  See the <i>Database Administration Guide</i> for
+an explanation of the word wheel.
+<dt><b>-wwdb<dd>
+
+word wheel - specify that <b>dbbuild</b> is to build a XPAT database on the
+word wheel file specified with the
+-w</B> <i>word_wheel</i> option.
+<b>dbbuild</b> will also build
+region indices in the word wheel database for any regions prefixed with a
+``*'' character in the <i>regions_list_file</i>.  See the <i>Database Administration Guide</i> for
+an explanation of the word wheel.
+
+<dt><b>-f</b> <i>Fast_Region_file</i><dd>
+Fast-Region list file -
+specify that <b>dbbuild</b> is to build Fast-Region indices over the regions listed in
+the <i>Fast_Region_file</i>.  The file should contain one region
+name per line.
+
+If a region name is prefixed with a &quot;*&quot;
+character, <b>dbbuild</b> will build regions indices for the corresponding region in the
+word wheel database (see the <b>-w</b> option).
+
+See the <i>Database Administration Guide</i> for an explanation
+of Fast-Regions.
+<dt><b>-t</b> <i>tag_file</i><dd>
+tag names file -
+specify that <b>dbbuild</b> is to build region indices over the tags in the database
+listed in the <i>tag_file</i> file.
+This file is passed directly to <b>multirgn</b>.
+The tag names file is only used with consolidated databases. 
+Refer to the sections on building Release 5.0
+databases in the <i>Database Administration Guide</i> and the <b><a href="http://localhost/cgi-bin/man/man2html?1+multirgn">multirgn</a></b>(1) man page for more information
+on the <i>tag_file</i> file.
+<br>
+
+The -t, -inp and -c options are mutually exclusive.  The -t and -inp files are
+used with consolidated databases.  The -c option is used with MFS databases.
+<dt><b>-inp</b> <i>inp_file</i><dd>
+inp file -
+specify that <b>dbbuild</b> is to build region indices over the database using the <b>sgmlrgn</b>
+program in region mode.
+Refer to the sections on building Release 5.0
+databases in the <i>Database Administration Guide</i> and the <b><a href="http://localhost/cgi-bin/man/man2html?1+sgmlrgn">sgmlrgn</a></b>(1) man page for more information on
+the <i>inp_file</i> file.
+<br>
+
+The -t, -inp and -c options are mutually exclusive.  The -t and -inp files are
+used with consolidated databases.  The -c option is used with MFS databases.
+<dt><b>-c</b> <i>regions_config_file</i><dd>
+regions configuration file -
+specify that <b>dbbuild</b> is to build region indices over the sections of the MFS
+database specified in the regions_config_file.  The regions configuration file
+is only used with MFS databases.
+The regions configuration file can consist of a mixture two types of regions
+specifications: <b>multirgn</b> and <b>sgmlrgn</b>.  <b>multirgn</b> regions specifications consist of the
+following tags:
+<br>
+
+
+&lt;Regions&gt;&lt;DisplayFmt&gt;&lt;/DisplayFmt&gt;&lt;TagFile&gt;&lt;/TagFile&gt;&lt;/Regions&gt;
+
+<br>
+
+Each such specification instructs <b>dbbuild</b> to invoke <b>multirgn</b> to build region indices
+over the files referenced in the Data Dictionary by the DisplayFmt using TagFile specified.
+See the <b><a href="http://localhost/cgi-bin/man/man2html?1+multirgn">multirgn</a></b>(1) man page for further details.
+<br>
+
+<b>sgmlrgn</b> regions specifications consist of the following tags:
+<br>
+
+
+&lt;Regions&gt;&lt;GroupName&gt;&lt;/GroupName&gt;&lt;INPFile&gt;&lt;/INPFile&gt;&lt;/Regions&gt;
+
+<br>
+
+Each such specification instructs <b>dbbuild</b> to invoke <b>sgmlrgn</b> to build region indices
+over the files references in the Data Dictionary by the GroupName, using the <b>.inp</b>
+file specified.  See the <b><a href="http://localhost/cgi-bin/man/man2html?1+sgmlrgn">sgmlrgn</a></b>(1) man page for further details.
+<br>
+
+The -t, -inp and -c options are mutually exclusive.  The -t and -inp files are
+used with consolidated databases.  The -c option is used with MFS databases.
+<dt><b>-O</b> <i>optimize_file</i><dd>
+optimize file - specify the name and location of the MFS optimization file.
+This is useful if there is not enough space on the current disk to hold both
+the database and the optimization file.
+If both <b>-no_opt</b> and <b>-O</b> options are specified on the command line,
+<b>dbbuild</b> will take the last specification as the correct specification.
+<dt><b>-tmp</b> <i>temp_file</i><dd>
+temporary filename prefix - specify the file name prefix and location of
+the <b>xpatbld</b> and
+<b>xpatffi</b> temporary files.  This is useful if the current disk does not have enough
+space to hold both the database and the temporary files.
+<dt><b>-r</b> <i>phase_count</i><dd>
+restart - specify that <b>dbbuild</b> is to restart from the last successful build
+phase and continue for another <i>phase_count</i> phases.  This is useful for
+stepping through each of the phases of <b>dbbuild</b>.  If more phases are specified then
+remain in the database build, <b>dbbuild</b> continues until it has finished.  If the 
+<b>-r</b> option is specified for a <b>dbbuild</b> that was never started, <b>dbbuild</b> starts from
+the beginning of the database building process.  The phase information is
+stored in the file called <b>restart.ot</b> in the local directory.
+<dt><b>-u</b> <i>user_tags_file</i><dd>
+tags file for user meta data - specify that <b>dbbuild</b> should use the 
+<i>user_tags_file</i> to build regions within the user meta data.  The format of
+the <i>user_tags_file</i> is as for the <b>-t</b> option.  The <b>-u</b> option
+is used with MFS databases.
+</dl>
+<a name="lbAF">&nbsp;</a>
+<h2>EXAMPLE</h2>
+
+<p>
+
+A typical consolidated database building session is invoked with the following
+parameters:  
+<p>
+
+
+<pre>
+  dbbuild -v -l logfile -m 28m -o db -D db.dd
+</pre>
+
+
+<p>
+
+This example specifies that messages generated during the building
+process should be echoed to the screen (-v) and to the log file
+called logfile (-l logfile).  28 megabytes of memory
+are allocated to <b>dbbuild</b> (-m 28m) and the index
+files are all named with the prefix `db' (-o db).  The Data
+Dictionary is called `db.dd' (-D db.dd).
+<p>
+Should the user stop the build process before it completes, the following will
+restart <b>dbbuild</b> after the last successful build phase and will stop after the next
+two phases are complete:
+<p>
+
+
+<pre>
+  dbbuild -r 2
+</pre>
+
+
+<p>
+
+A typical MFS database building session is invoked with the following
+parameters:  
+<p>
+
+
+<pre>
+  dbbuild -v -l logfile -m 28m -o db -c db.cfg -D db.dd
+</pre>
+
+
+<p>
+
+All the parameters for this build operation are the same as for the
+consolidated database example, except that db.dd is an MFS
+Data Dictionary and there is a regions configuration file (db.cfg).
+<br>
+
+For this example, assume the Data Dictionary had the following FilterChain
+specifications:
+<p>
+
+
+<pre>
+      &lt;FilterChain&gt;
+        &lt;SearchView&gt;meta&lt;/SearchView&gt;
+        &lt;DisplayView&gt;meta&lt;/DisplayView&gt;
+        &lt;RawView&gt;meta&lt;/RawView&gt;
+        &lt;DisplayFmt&gt;wp&lt;/DisplayFmt&gt;
+        &lt;FileGroup&gt;
+          &lt;MfsDir&gt;wp&lt;/MfsDir&gt;
+          &lt;MfsFile&gt;wp*&lt;/MfsFile&gt;
+          &lt;MfsExpand&gt;tree&lt;/MfsExpand&gt;
+        &lt;/FileGroup&gt;
+      &lt;/FilterChain&gt;
+      &lt;FilterChain&gt;
+        &lt;SearchView&gt;meta&lt;/SearchView&gt;
+        &lt;DisplayView&gt;meta&lt;/DisplayView&gt;
+        &lt;RawView&gt;meta&lt;/RawView&gt;
+        &lt;DisplayFmt&gt;bus&lt;/DisplayFmt&gt;
+        &lt;FileGroup&gt;
+          &lt;MfsDir&gt;bus&lt;/MfsDir&gt;
+          &lt;MfsFile&gt;bus.txt&lt;/MfsFile&gt;
+          &lt;MfsExpand&gt;file&lt;/MfsExpand&gt;
+        &lt;/FileGroup&gt;
+      &lt;/FilterChain&gt;
+      &lt;FilterChain&gt;
+        &lt;SearchView&gt;meta&lt;/SearchView&gt;
+        &lt;DisplayView&gt;meta&lt;/DisplayView&gt;
+        &lt;RawView&gt;meta&lt;/RawView&gt;
+        &lt;DisplayFmt&gt;sgml,simple&lt;/DisplayFmt&gt;
+        &lt;FileGroup&gt;
+          &lt;MfsDir&gt;simple&lt;/MfsDir&gt;
+          &lt;MfsFile&gt;simple.sgm&lt;/MfsFile&gt;
+          &lt;MfsExpand&gt;file&lt;/MfsExpand&gt;
+        &lt;/FileGroup&gt;
+      &lt;/FilterChain&gt;
+</pre>
+
+
+<p>
+
+This Data Dictionary specifies three FilterChains which we will characterize by
+their DisplayFmts.  The first FilterChain consists of a directory of word
+processor files, which have no structure tags.  The second FilterChain consists
+of a file called bus, which is a tagged text file suitable for <b>multirgn</b> to
+build region indices over.  The third FilterChain consists of an SGML file,
+which is suitable for <b>sgmlrgn</b> to build region indices over.
+<br>
+
+The following is an appropriate regions configuration file (db.cfg) for
+the above Data Dictionary:
+<p>
+
+
+<pre>
+&lt;Regions&gt;&lt;DisplayFmt&gt;bus&lt;/DisplayFmt&gt;&lt;TagFile&gt;bus/bus.tag&lt;/TagFile&gt;&lt;/Regions&gt;
+&lt;Regions&gt;&lt;GroupName&gt;simple&lt;/GroupName&gt;&lt;INPFile&gt;simple/simple.inp&lt;/INPFile&gt;&lt;/Regions&gt;
+</pre>
+
+
+<p>
+
+When <b>dbbuild</b> is run with this regions configuration file, <b>multirgn</b> will be run over the
+files specified by the bus DisplayFmt using the bus/bus.tag
+tag names file.  <b>sgmlrgn</b> will be run over the files specified by the
+sgml,simple DisplayFmt using the <b>.inp</b> called
+simple/simple.inp.
+<br>
+
+Note that no region indices will be built over the word processor files
+specified by the wp DisplayFmt.
+<br>
+
+Again, the user can also use the restart option.
+<p>
+
+
+<a name="lbAG">&nbsp;</a>
+<h2>DETAILED OPERATION</h2>
+
+
+The <b>dbbuild</b> program works by invoking each of the necessary database
+building tools in the correct sequence.  The following paragraphs
+describe how each of these tools works.
+<p>
+
+
+The first phase in building an MFS database is to generate the
+FileMap.  The FileMap is generated by the <b>mfsbld</b> program.  This program
+reads the MFS fields in the Data Dictionary and generates the three 
+FileMap files.  Refer to the <b><a href="http://localhost/cgi-bin/man/man2html?1+mfsbld">mfsbld</a></b>(1) man page for further details.
+This phase is skipped for regular databases.
+<p>
+
+
+Once <b>mfsbld</b> has finished building the FileMap, <b>dbbuild</b> calls the
+<b>xpatbld</b> program to build the Main Index.  Refer to the <b><a href="http://localhost/cgi-bin/man/man2html?1+xpatbld">xpatbld</a></b>(1) man
+page for further details on this process.
+<p>
+
+
+The next phase builds the Fast-Find Index.  This index is built
+using the <b>xpatffi</b> and <b>xpatffw</b> programs.  Refer to the <b><a href="http://localhost/cgi-bin/man/man2html?1+xpatffi">xpatffi</a></b>(1) and <b><a href="http://localhost/cgi-bin/man/man2html?1+xpatffw">xpatffw</a></b>(1)
+man pages for further details on the Fast-Find indices and their build programs.
+<p>
+
+
+The final phase involves building the region indices using the <b>multirgn</b> program.
+Note that <b>dbbuild</b> passes
+the name of the <i>tag_names</i> file directly to <b>multirgn</b>.  Refer to
+the <b><a href="http://localhost/cgi-bin/man/man2html?1+multirgn">multirgn</a></b>(1) man page for further details about this program.
+<p>
+
+
+Once the region building process has completed, <b>dbbuild</b> removes any
+temporary files and then exits.  The database is then ready to be
+searched with <b>xpat</b>.
+
+<a name="lbAH">&nbsp;</a>
+<h2>SEE ALSO</h2>
+
+<b><a href="http://localhost/cgi-bin/man/man2html?1+mfsbld">mfsbld</a></b>(1), <b><a href="http://localhost/cgi-bin/man/man2html?1+xpatbld">xpatbld</a></b>(1), <b><a href="http://localhost/cgi-bin/man/man2html?1+multirgn">multirgn</a></b>(1), <b><a href="http://localhost/cgi-bin/man/man2html?1+xpatfsr">xpatfsr</a></b>(1), <b><a href="http://localhost/cgi-bin/man/man2html?1+xpatffi">xpatffi</a></b>(1), <b><a href="http://localhost/cgi-bin/man/man2html?1+xpatffw">xpatffw</a></b>(1), <b><a href="http://localhost/cgi-bin/man/man2html?5+data_dict">data_dict</a></b>(5), <b><a href="http://localhost/cgi-bin/man/man2html?5+mfs">mfs</a></b>(5)
+<p>
+
+<hr>
+<a name="index">&nbsp;</a><h2>Index</h2>
+<dl>
+<dt><a href="#lbAB">NAME</a><dd>
+<dt><a href="#lbAC">SYNOPSIS</a><dd>
+<dt><a href="#lbAD">DESCRIPTION</a><dd>
+<dt><a href="#lbAE">OPTIONS</a><dd>
+<dt><a href="#lbAF">EXAMPLE</a><dd>
+<dt><a href="#lbAG">DETAILED OPERATION</a><dd>
+<dt><a href="#lbAH">SEE ALSO</a><dd>
+</dl>
+<hr>
+This document was created by
+<a href="http://localhost/cgi-bin/man/man2html">man2html</a>,
+using the manual pages.<br>
+Time: 18:03:38 GMT, March 26, 2001
+</body>
+</html>

@@ -1,0 +1,87 @@
+/d1/workarea/dlxs/text/arrow/dothis
+
+
+1)put xml files in TEI  folder, access images in access folder
+2) chkjpg  # makes sure you have a jpeg for each one referenced
+3)run chkid to make sure internal id matches file name
+  and to verify you don't have 2 files with the same name
+
+4) run transform here 
+5) cat validate and run that command to validate
+6)check ./output/arrt.errors 
+
+#  then do the same with the stuff in the diary folder
+
+cat open diary/output/*000.xml output/*000.xml close > arrt.xml
+cp arrt.xml  /d1/dlxs/obj/a/arrt/.
+ /bin/cp output/*000.xml /d1/dlxs/prep/a/arrt/subfiles/.
+ /bin/cp diary/output/*000.xml /d1/dlxs/prep/a/arrt/subfiles/.
+
+
+#  this step not needed in arrowmont 7)idno   #puts id tags for spcid on
+#  took care of this too 8) cat open arrt close > arrt.xml  #puts tags on
+
+#9) cp output/arrt.xml /d1/dlxs/obj/a/arrt/.
+  # and
+   #/bin/cp output/*000.xml /d1/dlxs/prep/a/arrt/subfiles/.
+
+10) then go to /d1/dlxs/bin/a/arrt and run:
+11) make convert
+12) make nodefy
+13) if you changed mappings or regions, do:
+  make singledd
+  make sgml
+  make post
+14) index 
+15) make a release to production
+
+make sure jpegs are in place
+16)copy new xml/sgml into /d1/dlxs/prep/a/arrt (needed for pageview)
+ cp ../../../obj/a/arrt/arrt.xml ../../../prep/a/arrt/arrt.xml
+and
+/bin/cp output/*000.xml /d1/dlxs/prep/a/arrt/subfiles/.
+
+17) run make pageview
+18) go to idx/ww directory and run make all
+   do any browse stuff
+ and go on with the textclass stuff 
+19) run ww
+
+For search and bib:
+
+1) run teisplit, to create text files for searching; check them
+2) run tei2mods  and check output
+
+FILES IN MODS DIRECTORY ARE MODS FILES FOR OAI (end in -mods)
+FILES IN SEARCH DIRECTORY ARE MODIFIED FOR SEARCHING  (end in -bib)
+
+3) cp search/*  (and others?  arri?  arra?  arrm?) into same directory (search)
+/d1/workarea/dlxs/bib/search/arrowmont/xml/.
+cd there
+cat opensearch xml/*  closesearch > arr-bib.xml
+cp arr-bib.xml /d1/dlxs/prep/a/arr-bib/.
+
+cd /d1/dlxs/prep/a/arr-bib/
+run transform, copy sgm to obj directory
+go to idx directory and run make all
+
+4) this for OAI:
+cp mods/* /d1/workarea/dlxs/bib/mods/arrowmont/xml
+cd there
+cat openbib xml/* closebib > arr-mods.xml
+cp arrt-mods.xml /d1/dlxs/prep/a/arr-mods/.
+go to /d1/dlxs/idx/a/arr-mods
+run transform, copy xml to obj directory
+do bib class set up
+
+release to production
+
+run chkbib
+
+check everything
+run infotrack
+
+
+24) copy stuff to diglib
+25) copy stuff to store1
+

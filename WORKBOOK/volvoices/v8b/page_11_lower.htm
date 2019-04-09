@@ -1,0 +1,113 @@
+<!--
+    This code is issued under the GNU General Public License, 
+    version 3, 29 June 2007.
+
+    The DLC-MODS Workbook provides a series of web pages to help you 
+    generate a MODS metadata record that follows the Digital Library 
+    Federation Implementation Guidelines for Shareable MODS Records, 
+    as described in the DLF Aquifer Guidlines November 2006.  These 
+    Guidelines and the specific MODS Profile are documented on the 
+    MODS Profile Page of the DLC-MODS Workbook.
+
+    Copyright (C) 2007 
+    Christine Haygood Deane 
+    University of Tennessee Libraries
+    Digital Library Center
+ 
+
+    This program is free software: you can redistribute it and/or modify    
+    it under the terms of the GNU General Public License as published by    
+    the Free Software Foundation, version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see http://www.gnu.org/licenses/
+-->
+
+<html>
+<head>
+<title>page_lower.htm</title>
+<script language="javascript" src="vv_tuple.js"></script>
+<script language="javascript" src="vv_process_tags.js"></script>
+<script language=javascript src="vv_functions.js"></script>
+<script language=javascript src="vv_dyn_functions.js"></script>
+<script language=javascript src="vv_radio_functions.js"></script>
+<script language=javascript src="vv_validation.js"></script>
+<script language=javascript src="vv_compose_tags.js"></script>
+
+<script>
+//page_lower.htm loaded once, never reloaded
+//the arrays on this page are CONSTANTS
+
+
+////The script files included above are all used by files in parent.D frame.
+////In order to use vv_compose_tags.js in both the parent.D and the parent.U frames,
+////the alias var thisDocument is set for each use.
+
+///The alert ("Welcome to the Workbook.") is to prevent a user from attempting
+///to access any page before page_11_lower.htm is fully loaded.
+
+///When you are in debug mode, you may write messages to yourself and display 
+///them on this (pink background) page. This is safe.
+///It is highly recommended that you do not do this with page_10_upper.htm.
+
+
+
+</script>
+</head>
+<body bgcolor="ffddee">
+<font face="arial" size="1">
+<script>
+
+
+
+var thisDocument = parent.D.document;//used in vv_compose_tags.js
+var userName = new String();///parent.adb_fullname;
+var instName = new String();///parent.adb_instname
+if (parent.adb_fullname=="") {
+	userName=window.prompt("Please enter your name below.","","left=1200,top=1200");
+	parent.adb_fullname=userName;
+}else{
+	userName = parent.adb_fullname;
+}
+
+
+if (parent.adb_instname=="") {
+	instName=window.prompt(userName+"\nPlease enter your institution name below.","");
+	parent.adb_instname=instName;
+}else{
+	instName = parent.adb_instname;
+}
+	parent.U.document.UF.contributorName.value = userName;
+	parent.U.document.UF.institutionName.value = instName;
+        if (parent.workbook_debug == "true") {
+        parent.T.location.replace("page_links_debug_static.htm");
+        }else{
+        parent.T.location.replace("page_links_static.htm");
+        }
+        parent.D.location.replace("page_welcome.htm");
+
+
+
+alert(userName +"\n\nWelcome to the Workbook!\n\nPlease close this alert.");
+document.write("document.location.href="+document.location.href);
+</script>
+<hr>
+<br>&lt;script language="javascript" src="vv_tuple.js">
+<br>&lt;script language="javascript" src="vv_process_tags.js">
+<br>&lt;script language=javascript src="vv_functions.js">
+<br>&lt;script language=javascript src="vv_dyn_functions.js">
+<br>&lt;script language=javascript src="vv_radio_functions.js">
+<br>&lt;script language=javascript src="vv_validation.js">
+<br>&lt;script language=javascript src="vv_compose_tags.js">
+
+</font>
+
+
+</body>
+</html>

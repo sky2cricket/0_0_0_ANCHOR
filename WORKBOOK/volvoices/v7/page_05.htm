@@ -1,0 +1,569 @@
+<!--
+    This code is issued under the GNU General Public License, 
+    version 3, 29 June 2007.
+
+    The DLC-MODS Workbook provides a series of web pages to help you 
+    generate a MODS metadata record that follows the Digital Library 
+    Federation Implementation Guidelines for Shareable MODS Records, 
+    as described in the DLF Aquifer Guidlines November 2006.  These 
+    Guidelines and the specific MODS Profile are documented on the 
+    MODS Profile Page of the DLC-MODS Workbook.
+
+    Copyright (C) 2007 
+    Christine Haygood Deane 
+    University of Tennessee Libraries
+    Digital Library Center
+ 
+
+    This program is free software: you can redistribute it and/or modify    
+    it under the terms of the GNU General Public License as published by    
+    the Free Software Foundation, version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see http://www.gnu.org/licenses/
+-->
+
+<html>
+<head>
+<title>
+page_05
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+<script>
+var split_token=parent.U.split_token;
+parent.L.thisDocument = parent.D.document;
+
+
+function addOneRelatedItemBlock() {
+//alert("addOneRelatedItemBlock");
+if (!confirm("You have chosen to add one Related Item Block.\n\nDo you wish to continue?")){return;} 
+buildModsTags(11);
+var N = new Number( parent.U.document.UF.numRelatedItems.value);
+N=N+1;
+parent.U.document.UF.numRelatedItems.value = N;
+parent.U.document.UF.VVcomment_02.value = "<!-- NUMBER_OF_RELATED_ITEMS: "+N+": -->"; 
+parent.D.location.replace("page_05.htm");
+}//end function
+
+function addOneIdentifierBlock() {
+//alert("addOneIdentifierBlock");
+if (!confirm("You have chosen to add one Identifier Block.\n\nDo you wish to continue?")){return;} 
+buildModsTags(11);
+var N = new Number( parent.U.document.UF.numIdentifiers.value);
+N=N+1;
+parent.U.document.UF.numIdentifiers.value = N;
+parent.U.document.UF.VVcomment_02a.value = "<!-- NUMBER_OF_IDENTIFIERS: "+N+": -->"; 
+parent.D.location.replace("page_05.htm");
+}//end function
+
+
+function subtractOneRelatedItemBlock() {
+//alert("subtractOneRelatedItemBlock");
+var N = new Number( parent.U.document.UF.numRelatedItems.value);
+if (N==1) {
+	alert("Related Item Block #1 may not be removed.");
+	return;
+	}
+if (!confirm("You have chosen to remove one Related Item Block.\n\nDo you wish to continue?")){return;} 
+N=N-1;
+parent.U.document.UF.numRelatedItems.value = N;
+parent.U.document.UF.VVcomment_02.value = "<!-- NUMBER_OF_RELATED_ITEMS: "+N+": -->"; 
+parent.D.location.replace("page_05.htm");
+}//end function
+
+function subtractOneIdentifierBlock() {
+//alert("subtractOneIdentifierBlock");
+var N = new Number( parent.U.document.UF.numIdentifiers.value);
+if (N==1) {
+	alert("Identifier Block #1 may not be removed.");
+	return;
+	}
+if (!confirm("You have chosen to remove one Identifier Block.\n\nDo you wish to continue?")){return;} 
+N=N-1;
+parent.U.document.UF.numIdentifiers.value = N;
+parent.U.document.UF.VVcomment_02a.value = "<!-- NUMBER_OF_IDENTIFIERS: "+N+": -->"; 
+parent.D.location.replace("page_05.htm");
+}//end function
+
+
+</script>
+
+</head>
+
+<script>document.write('<body onload="load_DF_form();"  bgcolor="'+parent.adb_background_color+'" >');</script>
+
+<font face="arial" size="3">
+<center><font face="arial">
+<h2> <script> document.write(parent.adb_project_name); </script>
+&lt;relatedItem>&nbsp;&lt;identifier></h2>
+</center>
+
+<form name="DF"  action="new.xml" onload="load_DF_form()"  >
+
+<table class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="ddeeff">
+<tr class="bgstandard"><td colspan="3">
+Required Fields have yellow-highlighted input box. 
+</td></tr>
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>MODS LABEL</td>
+<td colspan="4"><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+</tr>
+<tr class="bgstandard">
+<td colspan="4" class="label12u">
+The only type of Related Item supported is a Link to a related item's metadata record.</font></td><td>&nbsp</td>
+</tr>
+<script>
+
+//The Number of Related Items (numRelatedItems) is set to 1 on the Begin Page, then imcremented/decremented here
+
+var numRI = parent.U.document.UF.numRelatedItems.value;
+
+var str_ri_block_list = new String(parent.U.document.forms[0].ri_block_list.value);
+
+var ari_block = new Array();
+    ari_block = str_ri_block_list.split("split_token");
+
+var jj=0;
+for(j=0;j<numRI; j++) {
+
+jj=j+1;
+
+document.write('<tr class="bgstandard"> \r\n'
++'<td class="label12u" width="15%"> \r\n'
++'Related Item # '+jj+'</td> \r\n'
++'<td class="value12u" width="15%">&nbsp;<input type="text" name="dyn_itemDisplayLabel_0'+j+'" size="20" value="">'
++'<br><font face="arial" size="1">&nbsp;Display Label (optional)</font></td>'
++'<td class="value12u" width="15%">&nbsp;'
++'<select name="dyn_itemType_0'+j+'" size="1">'
++'<option value="none" selected>none</option>'
++'<option value="constituent">constituent</option>'
++'<option value="host">host</option>'
++'<option value="isReferencedBy">isReferencedBy</option>'
++'<option value="original">original</option>'
++'<option value="otherFormat">otherFormat</option>'
++'<option value="otherVersion">otherVersion</option>'
++'<option value="preceeding">preceeding</option>'
++'<option value="series">series</option>'
++'<option value="succeeding">succeeding</option>'
++'</select>'
++'<br><font face="arial" size="1">&nbsp;Type (optional)</font></td>'
++'<td class="value12u" colspan="2">&nbsp;<input type="text" name="dyn_itemURL_0'+j+'" value="" size="72"  \r\n'
++'class="required300w"  >  \r\n'
++'<br><font face="arial" size="1">&nbsp;URL (required) Must be a valid URL starting with <u>http://</u></font></td>'
++'<input type="hidden" name="dyn_itemEND_RI_BLOCK_0'+j+'" value="END_RI_BLOCK_0'+j+'">'
++'</td> \r\n'
+//+'<td>&nbsp</td> \r\n'
++'</tr> \r\n'
+);
+
+
+
+
+}//end for loop
+
+
+document.write('<input type="hidden" name="ri_block_list" value=""> \r\n');
+</script>
+
+
+<tr class="bgstandard">
+<td>&nbsp</td><td colspan="3">&nbsp</td><td>&nbsp</td>
+</tr>
+
+<tr class="greenrow"><td colspan="5" >&nbsp;</td></tr>
+<tr class="bgstandard">
+<td class="label13u">Add or Remove<br>One Related Item</td><td colspan="3">&nbsp;
+<input type="button" name="AddOneRIBlock" 
+value="Click here to Add One Related Item" class="buttonnw" onClick="addOneRelatedItemBlock();">
+<input type="button" name="SubtractOneRIBlock" 
+value="Click here to Remove One Related Item" class="buttonnw" onClick="subtractOneRelatedItemBlock();">
+
+</td><td>&nbsp;</td>
+</tr>
+
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>MODS LABEL</td>
+<td colspan="4"><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+</tr>
+
+
+<script>
+
+
+//The Number of Identifiers (numIdentifiers) is set to 1 on the Begin Page, then imcremented/decremented here
+
+var numID = parent.U.document.UF.numIdentifiers.value;
+
+var str_id_block_list = new String(parent.U.document.forms[0].id_block_list.value);
+
+var aid_block = new Array();
+    aid_block = str_id_block_list.split("split_token");
+
+
+var jj=0;
+
+for(j=0;j<numID; j++) {
+
+jj=j+1;
+document.write('<tr class="bgstandard"> \r\n'
++'<td class="label12u" width="15%" > \r\n'
++'Identifier # '+jj+'</td> \r\n'
++'<td class="value12u" width="15%" valign="top">&nbsp;<input type="text" name="dyn_identDisplayLabel_0'+j+'" size="20" value="">'
++'<br><font face="arial" size="1">&nbsp;Display Label (optional)</font></td>'
++'<td class="value12u" valign="top">&nbsp;'
++'<select name="dyn_identInvalid_0'+j+'" size="1">\r\n'
++'<option value="no" selected>invalid = no</option>\r\n'
++'<option value="yes">invalid = yes</option>\r\n'
++'</select>'
++'<br><font face="arial" size="1">&nbsp;invalid=yes for deprecated id</font></td>\r\n'
++'<td class="value12u" width="15%" valign="top">&nbsp;'
++'<select name="dyn_identType_0'+j+'" size="1">'
++'<option value="none" selected>none selected</option>'
++'<option value="ARK" style="background:#ffccff">Archival Res Key (ARK)</option>'
++'<option value="doi" style="background:#ffccff">Digital Res Id (doi)</option>'
++'<option value="hdl" style="background:#ffccff">Handle (hdl)</option>'
++'<option value="uri" style="background:#ffccff">Uniform Res Id (uri)</option>'
++'<option value="isbn" style="background:#ccffee">Internat Std Book # (isbn)</option>'
++'<option value="ismn" style="background:#ccffee">Internat Std Music # (ismn)</option>'
++'<option value="isrc" style="background:#ccffee">Intnat Std Rec Code (isrc)</option>'
++'<option value="issue num" style="background:#ccffee">issue number</option>'
++'<option value="istc" style="background:#ccffee">Internat Std Text Code (istc)</option>'
++'<option value="lccn" style="background:#ccffee">LOC Control # (lccn) </option>'
++'<option value="matrix number"  style="background:#ccffee">matrix number</option>'
++'<option value="music plate"  style="background:#ccffee">music plate</option>'
++'<option value="music publisher" style="background:#ccffee">music publisher</option>'
++'<option value="sici" style="background:#ccffee">Serial Item & Contr Id (sici)</option>'
++'<option value="stock number" style="background:#ccffee">stock number</option>'
++'<option value="upc" style="background:#ccffee">Univ Prod Code (upc)</option>'
++'</select>'
++'<br><font face="arial" size="1">&nbsp;Type (required)</font></td>'
++'<td class="value12u" valign="top">'
++'&nbsp;<input type="text" name="dyn_identifier_0'+j+'" value="" size="72"  \r\n'
++'class="required300w"  >  \r\n'
++'<br><font face="arial" size="1">&nbsp;Identifier (required) Must be a valid Identifier for its type</font></td>'
++'<input type="hidden" name="dyn_identifierEND_ID_BLOCK_0'+j+'" value="END_ID_BLOCK_0'+j+'">'
++'</td> \r\n'
+//+'<td>&nbsp</td> \r\n'
++'</tr> \r\n'
+);
+
+
+
+
+}//end for loop
+
+
+document.write('<input type="hidden" name="id_block_list" value=""> \r\n');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+ <!--- placeholder for consitutent_file_uri_1 that JODY makes--->
+<input type="hidden" name="constituent_file_uri_1" value="">
+
+<tr class="bgstandard">
+<td>&nbsp;</td><td >&nbsp;</td><td>&nbsp;</td>
+<td><font face="arial" size="1">&nbsp;digital types highlighted pink<br>&nbsp;analog types highlighted green</td><td>&nbsp;</td>
+</tr>
+<tr class="bgstandard">
+<td>&nbsp;</td><td colspan="3">&nbsp</td><td>&nbsp</td>
+</tr>
+
+<tr class="greenrow"><td colspan="5" >&nbsp;</td></tr>
+<tr class="bgstandard">
+<td class="label13u">Add or Remove<br>One Identifier</td><td colspan="3">&nbsp;
+<input type="button" name="AddOneIdBlock" 
+value="Click here to Add One Identifier" class="buttonnw" onClick="addOneIdentifierBlock();">
+<input type="button" name="SubtractOneIdBlock" 
+value="Click here to Remove One Identifier" class="buttonnw" onClick="subtractOneIdentifierBlock();">
+
+</td><td>&nbsp;</td>
+</tr>
+
+<tr class="greenrow"><td colspan="5" >&nbsp;</td></tr>
+
+
+
+
+<tr class="bgstandard"><td colspan="5" align="center">
+&nbsp;&nbsp;
+
+&nbsp;&nbsp;<input type="button" name="B_UF" value="Save" class="buttonnw" onclick="buildModsTags(10);">&nbsp;&nbsp;
+<!---input type="button" name="B_DF" value="Reset"  class="buttonnw" onclick="load_DF_form();"--->
+
+<input type="button" name="B2" 
+value="Save Data and View MODS TAGS" class="buttonnw"
+onclick="buildModsTags(1)">
+
+
+
+</td></tr>
+<tr class="bgstandard" >
+<td>&nbsp</td><td colspan="3">&nbsp</td><td>&nbsp</td>
+</tr>
+
+</table>
+
+
+
+</form name="forms[0]">
+
+<center><font face="arial">
+<h2> <script> document.write(parent.adb_project_name); </script></h2>
+</center>
+
+
+<script>
+
+
+function load_UF_form() {
+//alert("load_UF_form");
+
+parent.U.document.forms[0].ri_block_list.value = document.DF.ri_block_list.value;
+parent.U.document.forms[0].id_block_list.value = document.DF.id_block_list.value;
+
+return;
+}
+
+
+
+function load_DF_form() {//page 05 gets info from page_upper
+
+if (parent.U.document.UF.ri_block_list.value == "" && parent.U.document.UF.id_block_list == "") {
+	return;
+	}
+
+var split_token=parent.U.split_token;
+
+
+////PROCESS RELATED ITEMS
+document.DF.ri_block_list.value = parent.U.document.UF.ri_block_list.value;
+//alert("load_DF_form\ndocument.DF.ri_block_list.value=\n"+document.DF.ri_block_list.value+"\nsplit_token="+split_token)
+
+var str_ri_block = new String(parent.U.document.UF.ri_block_list.value);
+var Ari = new Array();
+    Ari = str_ri_block.split(split_token);   
+
+for (i=0;i<Ari.length;i++){
+	//alert("Ari["+i+"]="+Ari[i]);
+	}
+
+var numRI = new Number(parent.U.document.UF.numRelatedItems.value); 
+var m=0; //counter for Ari[m] array
+var mm = 0 ; //counter for ri_blocks
+for(i=0;i<document.DF.length;i++)
+{
+var sbox = document.DF.elements[i];
+//alert("document.DF.elements["+i+"].name="+sbox.name+"\ndocuments.DF.elements["+i+"].value="+sbox.value);
+if ( sbox.name.indexOf("dyn_item") == 0 ) {
+		mm = mm +1;
+		if(typeof(Ari[m]) != "undefined") {
+		//alert("Ari["+m+"]="+Ari[m]);
+		if (Ari[m] == "empty_string"||Ari[m]=="") {
+			if (sbox.name.indexOf("Type")>-1) {
+				sbox.value="none";
+				m++;
+			}else{
+				sbox.value ="";
+				m++;
+			}
+		}else{
+			sbox.value = Ari[m++];	
+		}
+		//alert("document.DF.elements["+i+"].name="+sbox.name+"\ndocuments.DF.elements["+i+"].value="+sbox.value);
+		}else{
+		sbox.value="";
+		}
+	}
+
+}//end for
+
+
+////PROCESS IDENTIFIERS
+document.DF.id_block_list.value = parent.U.document.UF.id_block_list.value;
+var str_id_block = new String(parent.U.document.UF.id_block_list.value);
+
+var Aid = new Array();
+    Aid = str_id_block.split(split_token);
+
+//for (i=0;i<Aid.length;i++){
+	//alert("Aid["+i+"]="+Aid[i]);
+	//}
+
+var numID = new Number(parent.U.document.UF.numIdentifiers.value);
+var m=0; //counter for Aid[m] array
+for(i=0;i<document.DF.length;i++)
+{
+var sbox = document.DF.elements[i];
+if ( sbox.name.indexOf("dyn_ident") == 0 ) {
+		if(typeof(Aid[m]) != "undefined") {
+		   if(Aid[m]=="empty_string") {
+			sbox.value="";
+			m++;
+		   }else{
+			sbox.value = Aid[m++];	
+		   }
+		///alert("document.DF.elements["+i+"].name="+sbox.name+"\ndocuments.DF.elements["+i+"].value="+sbox.value);
+		}else{
+		sbox.value="";
+		}
+	}//end if
+}//end for
+
+return;
+}
+
+
+function buildModsTags(N) {
+var split_token=parent.U.split_token;
+
+
+//alert("buildModsTags("+N+") get to here 1");
+
+var riaAll = new String("");
+var idaAll = new String("");
+var s= new String("");
+var temp = new String("");
+var count_id_block=0;
+for(i=0;i<document.DF.length;i++)
+{
+s = document.DF.elements[i].name;
+//alert("document.DF.elements["+i+"].name="+document.DF.elements[i].name
+ //  +"\ndocument.DF.elements["+i+"].value="+document.DF.elements[i].value);
+
+if ( s.indexOf("dyn_item") == 0 ) {
+	temp = document.DF.elements[i].value;
+	if ( temp == "") { temp = "empty_string"; } 
+	riaAll += split_token + temp;
+	//alert("page_05 function buildModsTags"
+	//+"\nRI document.DF.elements["+i+"].name="+s
+	//+"\n RI document.DF.elements["+i+"].value = "+document.DF.elements[i].value
+	//+"\nriaAll=\n"+riaAll);
+	}
+if ( s.indexOf("dyn_ident") == 0 ) {
+	temp = document.DF.elements[i].value;
+	if ( temp == "") { temp = "empty_string"; } 
+	idaAll += split_token + temp;
+	//alert("page_05 function buildModsTags"
+	//+"\nID document.DF.elements["+i+"].name="+s
+	//+"\n ID document.DF.elements["+i+"].value = "+document.DF.elements[i].value
+	//+"\nidaAll=\n"+idaAll);
+	}
+
+}
+
+riaAll = riaAll.substring(split_token.length);
+idaAll = idaAll.substring(split_token.length);
+
+//load hidden values
+document.DF.ri_block_list.value = riaAll;
+document.DF.id_block_list.value = idaAll;
+
+
+
+////do this first so current values are loaded regardless of validation status
+load_UF_form();
+
+var num = new Number();
+    num = N;
+
+if (num == 11) {return;} //no validation required.
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+//before writing MODS TAGS, make sure all required fields are populated
+//checkAllRequired... true  validation sets validation status to 1  -- complete
+//checkAllRequired... false validation sets validation status to 0  -- incomplete
+
+if (!parent.L.checkAllRequiredElements_Page_05() ) {
+	parent.L.update_page_validation(5,0);
+	return;
+}
+parent.L.update_page_validation(5,1);
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+if (num == 10) {
+        alert("Values have been saved.");
+        return;
+        }
+
+
+
+var abreak = new String("");
+if (num != "0" && num!=10 ) {
+	abreak = "<BR>";
+	}
+
+load_UF_form();
+
+var aps= new Array();
+var aps= new Array();
+var hps= new Array();
+var cps= new Array();
+    
+    hps = parent.L.buildTagsArray_header(num);
+    aps = parent.L.buildTagsArray_page_05(num);
+    cps = parent.L.buildTagsArray_closer(num);
+
+//=================================================
+
+document.write('<input type="button" name="BBACK" onclick="javascript: history.back()" value="BACK"><P>');
+document.write('<font face="Elephant" size="3" color="a00000">'+parent.adb_project_name+' Workbook, Page 5<p></font>');
+//PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+document.write('<font face="Elephant" size="3" color="a00000">PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+		+"This is the generated xml script.  Values you entered are highlighted in red."
+		+"<HR>");
+//document.write( "This is the generated xml script.  Values you entered are highlighted in red.<HR>");
+
+///document.write('< ? xml version="1.0"  ? > \r\n'); 
+///document.write("Content-Type: text/xml ")
+
+
+
+for (i=0;i<hps.length;i++) {
+	var vps = new String(hps[i]);
+ 	document.write(abreak+vps);
+	}
+
+
+
+for (i=0;i<aps.length;i++) {
+	var vps = new String(aps[i]);
+	document.write(abreak+vps);
+	}
+
+
+
+for (i=0;i<cps.length;i++) {
+	var vps = new String(cps[i]);
+	document.write(abreak+vps);
+	}
+
+
+}//end function
+
+
+</script>
+	
+<hr>
+
+</body>
+</html>

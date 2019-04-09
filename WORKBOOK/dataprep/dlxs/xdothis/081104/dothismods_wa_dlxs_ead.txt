@@ -1,0 +1,17 @@
+faToModsBib creates latest version of MODS for OAI :  writes to redonemods as well as to modsbib and mods directory
+   if redonemods differ from the copies in modsbib, move them there.  
+
+faToSearch creates search files
+fixSubjectsBib repairs the ModsBib and puts them in modsbibNewSubs
+OAI_modsbibToMods creates MODS files for preservation -- those go in OAImods
+OAI_modsbibToDC puts DC as delivered by OAI into OAImodsDC dir
+
+#OLD
+#faToBibNew creates DC OAI files from finding aids (go into bib and redonebib)
+
+#fachangeNew  makes finding aids into search files (check $indir value); they go in newsearch dir.
+#searchToOai  turns those into OAI files for mods  (go into modsbib dir )
+
+#modsbibToMods turns those files in ../search/modsbib into MODS as delivered by OAI  (go into OAImods dir)
+#modsbibToDC turns those into DC as delivered by OAI  (go into OAImodsDC dir)
+

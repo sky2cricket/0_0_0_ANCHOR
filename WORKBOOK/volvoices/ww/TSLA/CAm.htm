@@ -1,0 +1,221 @@
+<html>
+<head>
+<title>vv_popupCA</title>
+
+<link href="../vv_workbook.css" type="text/css" rel="stylesheet">
+
+
+
+
+<script language="javascript">
+
+var select_id= new String();
+function get_select_id() {
+
+var str = new String();
+    str = parent.location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  parent.window.opener.location.href="+parent.window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=get_select_id();
+
+
+
+var strSelect_PN_A = new String('');
+
+
+strSelect_PN_A = '<select name="aaa"  size="24" style="font-size:10px"> \r\n'
+	+'<option value="0" selected>No value selected</option> \r\n'
+		
+
+
+
+
+	+'<option>MACEDONIA BAPTIST CHURCH (WHITE COUNTY, TENN.)</option>  \r\n'
+	+'<option>MADISON ACADEMY (MADISON, TENN.)</option>  \r\n'
+	+'<option>MADISON COLLEGE (MADISON, TENN.)</option>  \r\n'
+	+'<option>MADISON STREET METHODIST CHURCH (CLARKSVILLE, TENN.)</option>  \r\n'
+	+'<option>MANCHESTER ROTARY CLUB (MANCHESTER, TENN.)</option>  \r\n'
+	+'<option>MAPLE SPRINGS CUMBERLAND PRESBYTERIAN CHURCH (MADISON COUNTY, TENN.)</option>  \r\n'
+	+'<option>MARBLE PLAINS METHODIST CHURCH (WINCHESTER, TENN.)</option>  \r\n'
+	+'<option>MARBLE PLAINS METHODIST EPISCOPAL CHURCH, SOUTH (WINCHESTER, TENN.)</option>  \r\n'
+	+'<option>MARR AND HOLMAN, ARCHITECTS (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>MARS HILL PRESBYTERIAN CHURCH (ATHENS, TENN.)</option>  \r\n'
+	+'<option>MARTIN COLLEGE (PULASKI, TENN.)</option>  \r\n'
+	+'<option>MARTIN FUNERAL HOME (ANDERSON COUNTY, TENN.)</option>  \r\n'
+	+'<option>MARTIN\'S CHAPEL UNITED METHODIST CHURCH (SPRINGFIELD, TENN.)</option>  \r\n'
+	+'<option>MARY SHARP COLLEGE (WINCHESTER, TENN.)</option>  \r\n'
+	+'<option>MASONIC FEMALE INSTITUTE (HARTSVILLE, TENN.)</option>  \r\n'
+	+'<option>MASONIC WIDOWS\' AND ORPHANS\' HOME (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>MAURY ACADEMY (DANDRIDGE, TENN.)</option>  \r\n'
+	+'<option>MAURY COUNTY ARCHIVES (TENN.)</option>  \r\n'
+	+'<option>MAXWELL FUNERAL HOME (HARRIMAN, TENN.)</option>  \r\n'
+	+'<option>MAXWELL HOUSE (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>MAY CORPORATION (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>MAY HOSIERY MILL (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>MCCALLIE SCHOOL (CHATTANOOGA, TENN.)</option>  \r\n'
+	+'<option>MCDONALD AND SON (CARROLL COUNTY, TENN.)</option>  \r\n'
+	+'<option>MCEVOY FUNERAL HOME (PARIS, TENN.)</option>  \r\n'
+	+'<option>MCILLWAIN CUMBERLAND PRESBYTERIAN CHURCH (BENTON COUNTY, TENN.)</option>  \r\n'
+	+'<option>MCKAY CUMBERLAND PRESBYTERIAN CHURCH (WILLIAMSON COUNTY, TENN.)</option>  \r\n'
+	+'<option>MCKENDREE METHODIST CHURCH (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>MCMINN COUNTY LIVING HERITAGE MUSEUM (ATHENS, TENN.)</option>  \r\n'
+	+'<option>MECHANICS\' INSTITUTE AND LIBRARY ASSOCIATION OF TENNESSEE</option>  \r\n'
+	+'<option>MEDINA FIRST UNITED METHODIST CHURCH (MEDINA, TENN.)</option>  \r\n'
+	+'<option>MEMPHIS (TENN.) - MAYOR (1960-1963; 1968-1971 : LOEB)</option>  \r\n'
+	+'<option>MEMPHIS BUILDING AND LOAN ASSOCIATION COMPANY (TENN.)</option>  \r\n'
+	+'<option>MEMPHIS MEDICAL COLLEGE (MEMPHIS, TENN.)</option>  \r\n'
+	+'<option>MERIDIAN STREET CHURCH OF GOD (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>METHODIST CHURCH (U.S.) - CONFERENCES - TENNESSEE</option>  \r\n'
+	+'<option>METHODIST CHURCH (U.S.) - CONFERENCES - TENNESSEE - WESLEYAN SERVICE GUILD</option>  \r\n'
+	+'<option>METHODIST CHURCH (U.S.) - CONFERENCES - TENNESSEE - WOMAN\'S MISSIONARY SOCIETY</option>  \r\n'
+	+'<option>METHODIST CHURCH (U.S.) - CONFERENCES - TENNESSEE - WOMAN\'S SOCIETY OF CHRISTIAN SERVICE</option>  \r\n'
+	+'<option>METHODIST CHURCH IN TENNESSEE</option>  \r\n'
+	+'<option>METHODIST EPISCOPAL CHURCH (CLARKSVILLE, TENN.)</option>  \r\n'
+	+'<option>METHODIST EPISCOPAL CHURCH IN TENNESSEE</option>  \r\n'
+	+'<option>METHODIST EPISCOPAL CHURCH, SOUTH - CONFERENCES - TENNESSEE</option>  \r\n'
+	+'<option>METHODIST EPISCOPAL CHURCH, SOUTH - CONFERENCES - TENNESSEE - WOMAN\'S MISSIONARY SOCIETY</option>  \r\n'
+	+'<option>METHODIST EPISCOPAL CHURCH, SOUTH - TENNESSEE</option>  \r\n'
+	+'<option>METHODIST EPISCOPAL CHURCH, SOUTH - TENNESSEE CONFERENCE</option>  \r\n'
+	+'<option>METHODIST PUBLISHING HOUSE. (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>METROPOLITAN ACTION COMMISSION (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>MID-CUMBERLAND COMPREHENSIVE HEALTH PLANNING COUNCIL (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>MIDDLE TENNESSEE GENEALOGICAL SOCIETY</option>  \r\n'
+	+'<option>MIDDLE TENNESSEE RAILROAD COMPANY</option>  \r\n'
+	+'<option>MIDDLE TENNESSEE STATE COLLEGE</option>  \r\n'
+	+'<option>MIDDLE TENNESSEE STATE UNIVERSITY</option>  \r\n'
+	+'<option>MILL CREEK BAPTIST CHURCH (HARDEMAN COUNTY, TENN.)</option>  \r\n'
+	+'<option>MILL CREEK BAPTIST CHURCH (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>MILLERS COVE BAPTIST CHURCH (BLOUNT COUNTY, TENN.)</option>  \r\n'
+	+'<option>MISS DAISY\'S TEAROOM (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>MISSIONARY BAPTIST STATE CONVENTION OF TENNESSEE</option>  \r\n'
+	+'<option>MISSISSIPPI CENTRAL AND TENNESSEE RAILROAD COMPANY</option>  \r\n'
+	+'<option>MISSISSIPPI-ARKANSAS-TENNESSEE COUNCIL OF GOVERNMENTS/MEMPHIS DELTA DEVELOPMENT DISTRICT</option>  \r\n'
+	+'<option>MITCHELL HOUSE (LEBANON, TENN.)</option>  \r\n'
+	+'<option>MOCCASIN BEND MENTAL HEALTH INSTITUTE (CHATTANOOGA, TENN.)</option>  \r\n'
+	+'<option>MONMOUTH PRESBYTERIAN CHURCH (RHEA COUNTY, TENN.)</option>  \r\n'
+	+'<option>MONROE HARDING CHILDREN\'S HOME (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>MONROE STREET UNITED METHODIST CHURCH (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>MONTEAGLE SUNDAY SCHOOL ASSEMBLY (GRUNDY COUNTY, TENN.)</option>  \r\n'
+	+'<option>MONTGOMERY BELL ACADEMY (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>MONTGOMERY BELL STATE PARK (TENN.)</option>  \r\n'
+	+'<option>MOORE MEMORIAL MISSION SUNDAY SCHOOL (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>MOORE MEMORIAL PRESBYTERIAN CHURCH (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>MOORE-MOTLOW FUNERAL HOME (TULLAHOMA, TENN.)</option>  \r\n'
+	+'<option>MORGAN COUNTY MEDICAL CENTER (WARTBURG, TENN.)</option>  \r\n'
+	+'<option>MORRISTOWN COLLEGE (MORRISTOWN, TENN.)</option>  \r\n'
+	+'<option>MORRISTOWN NORMAL AND INDUSTRIAL COLLEGE (MORRISTOWN, TENN.)</option>  \r\n'
+	+'<option>MOUNT LEBANON MISSIONARY BAPTIST CHURCH (MARSHALL COUNTY, TENN.)</option>  \r\n'
+	+'<option>MOUNT MORIAH PRIMITIVE BAPTIST CHURCH (MARION COUNTY, TENN.)</option>  \r\n'
+	+'<option>MOUNT OLIVE CEMETERY (KNOX COUNTY, TENN.)</option>  \r\n'
+	+'<option>MOUNT OLIVE MISSIONARY BAPTIST CHURCH (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>MOUNT OLIVET CEMETERY (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>MOUNT VERNON ASSOCIATION (TENN.)</option>  \r\n'
+	+'<option>MOUNT ZION BAPTIST CHURCH (KNOXVILLE, TENN.)</option>  \r\n'
+	+'<option>MOUNT ZION CUMBERLAND PRESBYTERIAN CHURCH (LEBANON, TENN.)</option>  \r\n'
+	+'<option>MOUNT ZION METHODIST EPISCOPAL CHURCH (GALLAWAY, TENN.)</option>  \r\n'
+	+'<option>MOUNT ZION METHODIST EPISCOPAL CHURCH, SOUTH (WARREN COUNTY, TENN.)</option>  \r\n'
+	+'<option>MRS. WHELESS\' SELECT SCHOOL FOR GIRLS (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>MT. CARMEL METHODIST EPISCOPAL CHURCH, SOUTH (SPARTA, TENN.)</option>  \r\n'
+	+'<option>MT. COMFORT CUMBERLAND PRESBYTERIAN CHURCH (HARDEMAN COUNTY, TENN.)</option>  \r\n'
+	+'<option>MT. GILEAD BAPTIST CHURCH (MCNAIRY COUNTY, TENN.)</option>  \r\n'
+	+'<option>MT. OLIVET BAPTIST CHURCH (LEEVILLE, TENN.)</option>  \r\n'
+	+'<option>MT. SHARON CUMBERLAND PRESBYTERIAN CHURCH (MCNAIRY COUNTY, TENN.)</option>  \r\n'
+	+'<option>MT. TABOR CUMBERLAND PRESBYTERIAN CHURCH (MADISON COUNTY, TENN.)</option>  \r\n'
+	+'<option>MT. VERNON CUMBERLAND PRESBYTERIAN CHURCH (MCNAIRY COUNTY, TENN.)</option>  \r\n'
+	+'<option>MT. ZION CEMETERY (ENVILLE, TENN.)</option>  \r\n'
+	+'<option>MT. ZION CUMBERLAND PRESBYTERIAN CHURCH (MT. ZION, TENN.)</option>  \r\n'
+	+'<option>MULBERRY GAP ASSOCIATION OF THE BAPTIST CHURCH (TENN.)</option>  \r\n'
+	+'<option>MURFREESBORO MUNICIPAL AIRPORT (TENN.)</option>  \r\n'
+	+'<option>MURPHY FUNERAL HOME (ETOWAH, TENN.)</option>  \r\n'
+	+'<option>MURRAY\'S CHAPEL METHODIST CHURCH (WILSON COUNTY, TENN.)</option>  \r\n'
+	+'<option>MUSEUM OF EAST TENNESSEE HISTORY</option>  \r\n'
+
+
++'</select> \r\n';
+	
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+<body class="background">
+
+
+
+
+<form name="FormOne" >
+
+
+<div name="SS" id="SS">
+<script>
+document.write(
+
+	 '<table border="1" cellpadding="4" cellspacing="0"  width="90%">\r\n'
+	+'<tr><td  bgcolor="ddeeff">\r\n'
+	///+'vv_functions.htm called by '+select_id+' <br>\r\n'
+	+'<b>Select Corporate Author M</b> \r\n'
+	+'</td></tr><tr><td bgcolor="ddeeff"> \r\n' 
+	+ strSelect_PN_A
+
+	+'</td></tr></table> \r\n'
+	///+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+</script>
+	
+</div>
+
+<input type="button" onclick="showSelection();" name="B1" value="Corporate Author">
+
+</form>
+
+<script>
+
+
+
+                  
+
+function showSelection() {
+
+val = new String();
+
+for ( i=0; i< document.FormOne.aaa.length; i++ ) {
+
+if ( document.FormOne.aaa[i].selected == true ) {
+  	val = document.FormOne.aaa[i].text;
+	break;
+	}
+else { val = "you never selected anything"; 
+	}
+
+}
+////////////////////////alert ("You selected " +val);
+
+switch ( select_id ) {
+
+case  "subject_name_lcsh_01" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_01.value=val;
+	parent.window.close();
+	break;
+
+case  "subject_name_lcsh_02" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_02.value=val;
+	parent.window.close();
+	break;
+}//end switch
+
+}///end function
+</script>
+

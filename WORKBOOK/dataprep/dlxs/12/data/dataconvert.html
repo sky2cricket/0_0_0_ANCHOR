@@ -1,0 +1,26 @@
+<html>
+<head>
+<title>Converting Data for DLXS Implementations</title>
+
+
+
+
+
+
+
+<link href="../dlxsdocs.css" rel="stylesheet" type="text/css"> </head>         <body>
+<div class="pageTitle">Converting Data for DLXS Implementations</div>
+
+<p>Three of the DLXS classes require that materials be converted to class-specific DTDs -- Text Class, Image Class, and Bib Class. DLXS does not formally support mechanisms for the conversion of data to encoding formats/DTDs supported by DLXS, as each case of conversion is specific to your material and cannot readily be generalized.  Nevertheless, we do provide here some class-specific documentation on strategies, tools, and methods we have found helpful for data conversion.</p>
+<ul>
+<li><a href="../class/text/convert.html">Converting Data for Text Class</a></li>
+<li><a href="../class/image/datatransform.html">Converting Data for Image Class</a></li>
+<li><a href="../class/bib/transforming.html">Converting Data for Bib Class</a></li>
+</ul>
+<p><b>General information</b> </p>
+<p>In some cases, DLXS-conformant data must be further modified (e.g., the insertion of "nodes" in Text Class) to work effectively with DLXS, and this process of <a href="dataprep.html">data preparation</a>, along with suggested directory structuring,  is covered in DLXS documentation.  Also, documentation for <a href="indexing.html">indexing</a> with the XPAT search engine once data has been converted and prepared is provided.</p><p>For Image Class and Bib Class, the documents linked above provide a fairly straightforward strategy and some tools for converting the fielded data typical in these classes.  </p><p>For Text Class, DLPS does not have any preferred methods or quick and easy tools for for the conversion process. Only you, looking at your texts and your
+encoding practices, can do the intellectual work required to convert the texts to support the necessary <a href="../class/text/docstruct.html">Text Class data structure</a>. You should do this with the tools you are most comfortable
+using, whether they be macros in your favorite editor, perl scripts if you have strong programming skills, OmniMark if you like that, or XSLT if your source files are or can be converted to XML. The Text Class document linked above describes a fairly detailed XSLT strategy, which uses freely-available or ubiquitous tools.</p>
+</body>
+
+</html>

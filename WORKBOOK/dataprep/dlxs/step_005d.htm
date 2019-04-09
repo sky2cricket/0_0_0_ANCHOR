@@ -1,0 +1,395 @@
+<html>
+<head>
+<script language=javascript src="links/vv_functions_links.js"></script>
+<title>
+char_check
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+</head>
+<!-- body  class="bg_aabbcc" -->
+<body bgcolor="aabbcc">
+<font face="arial" size="3">
+<center><font face="arial">
+<script>//document.write(dlxs_vv_header);</script>
+<p>
+</center>
+<table  class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="99aabb">
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+<tr class="bgstandardwhite" ><td colspan="3" align="left" class="step">
+<pre>
+step_005d.htm
+Image class setup
+================================
+See step_005a2.htm for SUMMARY.
+================================
+============
+SUMMARY
+
+
+/d1/dlxs/bin/i/image/imageprep vvz  > imgprep_081001.txt
+
+/d1/dlxs/bin/i/image/idb norm vvz
+
+
+/bin/rm /d1/dlxs/idx/v/vvz/*
+/bin/rmdir /d1/dlxs/idx/v/vvz
+
+
+/d1/dlxs/bin/i/image/setupcollindex v/vvz
+
+cd /d1/dlxs/idx/v/vvz/
+make all
+
+--------------------------------------------------------------
+Now you are ready for imageclass release to production.
+==============
+
+The target files to be processed are in........... /d1/dlxs/prep/v/vvz/
+See 5c files for prep dir for details.
+
+The program files to do the process are in........ /d1/dlxs/bin/i/image/
+Relevant files in this directory are:
+idb
+imageprep.cfg
+imageprep
+setupcollindex
+
+The index files for this process are in.......... /d1/dlxs/idx/v/vvz
+
+[root@diglib2 image]# ls /d1/dlxs/img/v/vvz
+index  large  thumb
+[root@diglib2 image]# ls /d1/dlxs/img/v/vvz/thumb/0031_000050*
+thumb/0031_000050_000200_0001.jpg  thumb/0031_000050_000203_0001.jpg
+thumb/0031_000050_000201_0001.jpg  thumb/0031_000050_000204_0001.jpg
+thumb/0031_000050_000202_0001.jpg
+[root@diglib2 vvz]# ls /d1/dlxs/img/v/vvz/large/0031_000050*
+large/0031_000050_000200_0001.jpg  large/0031_000050_000203_0001.jpg
+large/0031_000050_000201_0001.jpg  large/0031_000050_000204_0001.jpg
+large/0031_000050_000202_0001.jpg
+[root@diglib2 1]# ls /d1/dlxs/img/v/vvz/index/0/0/1/0031*
+0031_000050_000200_0001.inf
+0031_000050_000200_0001.jpg
+0031_000050_000201_0001.inf
+0031_000050_000201_0001.jpg
+0031_000050_000202_0001.inf
+0031_000050_000202_0001.jpg
+0031_000050_000203_0001.inf
+0031_000050_000203_0001.jpg
+0031_000050_000204_0001.inf
+0031_000050_000204_0001.jpg
+
+To create an image directory of image files for cgi, run the command below,
+where vvz stands for the type/class designator.
+
+
+/d1/dlxs/bin/i/image/imageprep vvz
+
+-----------------------------------------------------------------
+chd 080910
+run the command 
+/d1/dlxs/bin/i/image/imageprep vvz
+
+get a whole bunch of these..............
+100%  got a match! /thumb/([^/]+)\.(jpg)   in   /d1/dlxs/img/v/vvz/thumb/wgb9362.jpg 
+base is wgb9362; extension is jpg; name = wgb9362.; ipath = /d1/dlxs/img/v/vvz/thumb/; suffix = jpg
+now basename = wgb9362; name = wgb9362.; subbasename = 362; dirlevels = -3
+indexfilepath: /d1/dlxs/img/v/vvz/indexprep/3/6/2/wgb9362.inf
+dupenum is 0
+
+
+New index successfully built and activated.
+## ## ## ## ##
+Deleting old index. This may take a while.
+
+Done with everything.
+## ## ## ## ##
+[root@diglib2 d1]# 
+
+-------------------------------------------------------------------
+
+
+To create the normalized version of ic.vvz.unnorm.sgm, run idb
+idb is UMICH file to do idb things - normalize the unnormal ic.vvz.unnorm.sgm
+
+/d1/dlxs/bin/i/image/idb norm vvz
+
+-------------------------------------------------------------------
+chd 080910  output
+DLXSDATAROOT = /d1/dlxs
+DLXSROOT = /d1/dlxs
+Validating and normalizing vvz SGML with sgmlnorm -E 200001.
+Done validating and normalizing vvz SGML.
+
+-------------------------------------------------------------------
+
+Then you have to get rid of the existing 
+/d1/dlxs/idx/v/vvz directory
+rmdir /d1/dlxs/idx/v/vvz
+-----------------------------------------
+chd 080910 what happens...
+[root@diglib2 singles]# /bin/rmdir /d1/dlxs/idx/v/vvz
+/bin/rmdir: `/d1/dlxs/idx/v/vvz': Directory not empty
+[root@diglib2 singles]# ls /d1/dlxs/idx/v/vvz
+image.blank.dd  image.cfg  image.dd  image.idx  image.inp  image.rgn  Makefile  tags.txt
+[root@diglib2 singles]# rm /d1/dlxs/idx/v/vvz/*
+rm: remove regular file `/d1/dlxs/idx/v/vvz/image.blank.dd'? y
+rm: remove regular file `/d1/dlxs/idx/v/vvz/image.cfg'? y
+rm: remove regular file `/d1/dlxs/idx/v/vvz/image.dd'? y
+rm: remove regular file `/d1/dlxs/idx/v/vvz/image.idx'? y
+rm: remove regular file `/d1/dlxs/idx/v/vvz/image.inp'? y
+rm: remove regular file `/d1/dlxs/idx/v/vvz/image.rgn'? y
+rm: remove regular file `/d1/dlxs/idx/v/vvz/Makefile'? y
+rm: remove regular file `/d1/dlxs/idx/v/vvz/tags.txt'? y
+[root@diglib2 singles]# rmdir /d1/dlxs/idx/v/vvz
+-----------------------------------------------------
+At this point, the /d1/dlxs/idx/v directory contains no vvz sub directory.
+
+[root@diglib2 v]# ls /d1/dlxs/idx/v
+vvb  vvi  vvo  vvs-bib  vvs-mods  vvt  vvzBack
+----------------------------------------------------
+
+
+Then you can run setupcollindex (UMICH program) to create v/vvz directory
+and its contents.
+
+/d1/dlxs/bin/i/image/setupcollindex v/vvz
+-------------------------------------
+what happens...
+[root@diglib2 v]# /d1/dlxs/bin/i/image/setupcollindex v/vvz
+using /d1/dlxs.
+setting up /d1/dlxs/idx for v/vvz
+done.
+setting up /d1/dlxs/obj up for v/vvz
+done.
+[root@diglib2 v]# ls
+vvb  vvi  vvo  vvs-bib  vvs-mods  vvt  vvz  vvzBack
+--------------------------------------
+
+
+Then go to the new vvz directory that you made with the setupcollindex command.
+The new vvz directory you just made contains 5 files.
+After you run >> make all, the vvz directory contains 8 files.
+-----------
+there is a link problem for finding xpatbld, multirgn
+Paul is working on this
+--------------------------------------------------------
+
+BEFORE [root@diglib2 vvz]# ls
+image.blank.dd  image.cfg  image.inp  Makefile  tags.txt
+
+[root@diglib2 vvz]# make all
+
+echo "working..."
+working...
+rm -f ./image.ffc
+rm -f ./image.ffi
+rm -f ./image.ffw
+rm -f ./image.idx
+rm -f ./image.maps.*
+rm -f ./image.mfs
+rm -f ./image*.rgn
+rm -f ./image.str
+rm -f ./image.dd
+rm -f ../../../obj/v/vvz/image.sgm
+cat ../../../obj/v/vvz/ic.*.norm.sgm > ../../../obj/v/vvz/image.sgm
+cp ./image.blank.dd ./image.dd
+xpatbld -D ./image.dd
+multirgn -f -D ./image.dd -t ./tags.txt
+
+AFTER[root@diglib2 vvz]# ls
+image.blank.dd  image.cfg  image.dd  image.idx  image.inp  image.rgn  Makefile  tags.txt
+
+Now you are ready for imageclass release to production.
+
+<a href="http://diglib2.lib.utk.edu/cgi/c/collmgr/collmgr?type=%24TYPE&class=image&submit=release" target = "_blank">http://diglib2.lib.utk.edu/cgi/c/collmgr/collmgr?type=%24TYPE&class=image&submit=release</a>
+<!--- uname: dlxsadm - pword: eva39 --->
+go to browser for vvz singles and see if your files are there.
+<a href="http://diglib2.lib.utk.edu/cgi/i/image/image-idx?c=vvz" target="_blank">http://diglib2.lib.utk.edu/cgi/i/image/image-idx?c=vvz</a>
+
+<!---
+go to browser vvi multiples and see if your files are there.
+<a href="http://diglib2.lib.utk.edu/cgi/i/image/image-idx?c=vvi" target="_blank">http://diglib2.lib.utk.edu/cgi/i/image/image-idx?c=vvi</a>
+-->
+
+
+
+===============================================================
+===============================================================
+===============================================================
+
+================
+[root@diglib2 vvz]# pwd
+/d1/dlxs/idx/v/vvz
+[root@diglib2 vvz]# ls
+image.blank.dd  image.cfg  image.dd  image.idx  image.inp  image.rgn  Makefile  tags.txt
+[root@diglib2 vvz]# 
+
+=================explain this=============================
+
+
+
+
+VIII. (if you are re-indexing, remove idx/c/coll and its contents.)
+       run bin/i/image/setupcollindex c/collid   (collid is as above, directory
+       containing it must be named by its first letter)
+      
+IX.  go to the idx/c/collid directory (whatever that might be);
+     correct makefile and do: "make all"
+
+X.  add collection to /d1/dlxs/cgi/i/image/AUTHZD_COLL
+
+XI. add collection to /etc/httpd/conf/httpd.conf under PUBLIC_COLL
+    <Directory "/d1/dlxs/cgi/i/image">
+      SetEnv AUTHZD_COLL ":"
+      SetEnv PUBLIC_COLL ":sampleic:workshopic:utkgsm:"
+    </Directory>
+
+XII. run /etc/init.d/httpd restart
+
+XIII. go to Collmgr and create the collection;  make a release to production
+     make sure host is "localhost" and dd is filename of correct dd (no path)
+     Entrydivsdefault can only have one entry:  full image, description, 
+     or other views;
+     the order needs to be just like that in the fields where you use more.
+     Make the fields match the others before experimenting, including which
+     dd file you use.  Try image.dd first.
+
+XIV.  go to Collmgr and manage groups;  edit collection "all";  add this
+      collection to "all"; release to production
+
+XV. go to cgi/i/image and run makeCollectionmaps-idx (every time you update
+      the collection on collmgr also)
+
+==========================================================
+
+[root@diglib2 ]# cd /d1/dlxs/bin/i/image
+[root@diglib2 image]# ls
+A.txt                           idb             imageprep.cfg       tab2html.pl
+clean.newlines.inplace.pl       idb.20070327jd  localimageprep.cfg
+firestar_xpat_images_steps.txt  idb.bak         makefieldbrowse.pl
+getoneline.pl                   idb.bk          old
+html2tab.pl                     imageprep       setupcollindex
+
+imageprep vvz > A.txt
+
+imageprep is UMICH file to do imageprep things, bad characters break it and
+	 	you have to go back to singles and take care of problems.
+
+idb norm vvz
+idb	 is UMICH file to do idb things - normalize the unnormal ic.vvz.unnorm.sgm
+
+Then you have to get rid of the existing 
+/d1/dlxs/idx/v/vvi directory
+rmdir vvi
+
+Then you can run setupcollindex (UMICH program)
+setupcollindex v/vvi > nameYourRedirect.txt
+
+Then go to the new vvi directory you just made
+
+[root@diglib2 vvi]# pwd
+/d1/dlxs/idx/v/vvi
+[root@diglib2 vvi]# ls
+image.blank.dd  image.cfg  image.dd  image.idx  image.inp  image.rgn  Makefile  tags.txt
+
+and run >> make all
+
+Then do imageclass release to production
+
+http://diglib2.lib.utk.edu/cgi/c/collmgr/collmgr?type=%24TYPE&class=image&submit=release
+
+go to browser vvi multiples
+http://diglib2.lib.utk.edu/cgi/i/image/image-idx?c=vvi and see if your files are there
+
+browser for vvz singles
+http://diglib2.lib.utk.edu/cgi/i/image/image-idx?c=vvz;page=index;sid=62d234aadea2e9f26dbc8c96047124e9;g=vvv
+
+
+
+
+  ***In the case that a digital object item is changed from
+	one class to another, there have to be corresponding changes in purls
+	1.  There is one link file for each class.
+		vvz-00 /d1/workarea/dlxs/image/tel/singles/linkfile
+		vvi-01 /d1/workarea/dlxs/image/tel/multiples/linkfile
+		vvt-03, vvo-02, vvb04, /d1/workarea/dlxs/text/tel/linkfile
+ 
+	2. When a digital object goes from one class to another, you have to
+		a. Find original persistant id in the first link file - 
+		b. copy this to the new appropriate link file
+		c. need to go to locServe database on diglib and change the link by hand
+		d. locServe has redirects in it for purls create correct url
+
+	3. Examine the persistant id in weblink= at top of search/*.xml file
+
+	c. modsICsearchOai inserts new purl into locserv database
+
+
+   When you run modsICsearchOai >checkme
+   this creates 
+	ic/*
+	modsbib/*
+	newmods/*
+	search/*
+
+
+b.  fixSubjects - this process now done at /d1/workarea/dlxs/bib/mods/vv
+	# fixSubjects
+	# repairs the MODS and the modsbib (not the search)
+	# so that each subject is contained in its own &lt;subject auth= tag.
+	# also, for LCSH ones, splits them out on the "--" value.
+	# if the  value contains "century" or numbers (dashes?), label it temporal
+	# if the value contains only "Tennessee" or "United States" and spaces,
+	#    label it geographic
+	# otherwise, the first value keeps its current tag, and all following 
+	# values (that don't meet those specs) get labeled topic, and stay within the
+	# same subject tag.
+
+c. hexmess - use only if software breaks when you normalize
+	#hexmess
+	#hexdumps files and checks the hexdump for bad characters.
+	# outputs list of characters that must be removed or replaced.
+	# use to test OCR files in particular
+
+<!---------------------------------
+other things to do, including special handling for special collectios
+this came from the "dothis" file in /d1/workarea/dlxs/image/tel/singles
+
+
+separate out the newmods from institution 0012 and put in spc directory.
+/bin/mv newmods/0012* spc/mods/.
+
+for bib class:
+/bin/mv  modsbib/0012* spc/modsbib/.
+/bin/cp modsbib/* /d1/workarea/dlxs/bib/mods/vv/xml
+
+
+for search:
+/bin/cp search/0012* spc/modssearch/.
+/bin/cp search/* /d1/workarea/dlxs/bib/search/vv/xml/
+
+You will go there to put all the search and mods files from different directories up.
+scp minithumbs/* diglib@diglib.lib.utk.edu:/d1/dlxs/web/thumbs/vv/.
+(need these for search display)
+
+run fixSubjects
+
+(more about fixSubjects in MODS dir where we will be making preservation versions)
+
+do NOT run infotrack on these yet, as we need to relate them to their EADs,
+and alter them for crosslinking.
+
+hopefully you have all new dlc files in one directory alone.
+point infotrack at this directory and run it, to put info on files into
+InfoTrack database.  then copy new stuff to store1.
+-->
+
+
+</pre>
+</font>
+</td></tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+</table>
+
+

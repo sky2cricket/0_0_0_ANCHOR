@@ -1,0 +1,76 @@
+<html>
+<head>
+<script language=javascript src="links/vv_functions_links.js"></script>
+<title>
+step_02
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+</head>
+<!-- body  class="bg_aabbcc" -->
+<body bgcolor="aabbcc">
+<font face="arial" size="3">
+<center><font face="arial">
+<script>//document.write(dlxs_vv_header);</script>
+<p>
+</center>
+<table  class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" xbgcolor="99aabb">
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+<tr class="bgstandardwhite" ><td colspan="3" align="left" class="step">
+<pre>
+step_003.htm
+STEP THREE - clear out directories that will receive new mini-batch files
+Ideally, you already did this as the last step of previous processing,
+but just in case...
+
+From the file /d1/workarea/dlxs/telfiles/BeforePickup
+in the directory diglib2: /d1/workarea/dlxs/telfiles
+
+
+cd /d1/workarea/dlxs/text/tel
+ cp -r notext/* done/mods/notext/
+/bin/rm notext/*/*
+cp -r ocr/* done/mods/ocr/
+/bin/rm ocr/*/*
+ cp -r typed/* done/mods/typed/
+ /bin/rm typed/*/*
+
+cp -r newmods/* done/newmods/
+/bin/rm newmods/*/*
+ mv search/* done/search/
+ mv modsbib/* done/modsbib/
+cp -r preservation/* done/preservation/
+/bin/rm preservation/*/*
+
+
+
+cd /d1/workarea/dlxs/image/singles
+ /bin/rm jpegs/*
+ /bin/rm thumbs/*
+ /bin/rm minithumbs/*
+ mv preservation/* done/preservation/
+ mv search/* done/search/
+mv modsbib/* done/modsbib/
+ mv newmods/* done/newmods/
+ mv mods/* done/mods/
+mv ic/* done/ic/
+
+
+cd /d1/workarea/dlxs/image/multiples
+ /bin/rm jpegs/*
+ /bin/rm thumbs/*
+ /bin/rm minithumbs/*
+ mv preservation/* done/preservation/
+ mv search/* done/search/
+mv modsbib/* done/modsbib/
+ mv newmods/* done/newmods/.
+ mv mods/* done/mods/
+mv ic/* done/ic/
+
+</pre>
+</font>
+</td></tr>
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+</table>
+
+

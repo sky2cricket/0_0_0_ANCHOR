@@ -1,0 +1,156 @@
+080402a.txt
+
+attempting to do multiples
+
+[root@diglib2 multiples]# pwd
+/d1/workarea/dlxs/image/tel/multiples
+
+[root@diglib2 multiples]# ls
+categories   done         hexmess            linkfile              NOTE           search
+catref       dothis       hextest            minithumbs            olderVersions  spc
+close        entry        ic                 mods                  open           textMusic
+cochran      fieldtest    ic.vvi.unnorm.sgm  modsbib               opensearch     thumbs
+countfiles   fixSubjects  infotrack          modsICsearchOaiMusic  preservation   vviHeader
+countfiles2  footer       jpegs              newmods               problems
+[root@diglib2 multiples]# modsICsearchOaiMusic > checkme.txt
+Missing right curly or square bracket at ./modsICsearchOaiMusic line 2120, at end of line
+syntax error at ./modsICsearchOaiMusic line 2120, at EOF
+Execution of ./modsICsearchOaiMusic aborted due to compilation errors.
+
+The modsICsearchOaiMusic worked okay
+but.............txt files not picked up.
+
+I looked in pickupTime and I think what happened was when you rewrote things to
+put 01_music in 01 the txt files got lost or forgotten about.
+
+I tried ssh to move the txt files -  even changed ownership from diglib.diglib to root.root
+and it did not work.
+
+I will try scp but have little hope.
+
+[diglib@store1 txt]$ pwd
+/home/diglib/area_2/volvoices/vvImport/080303/01_music/txt
+[diglib@store1 txt]$ scp * root@diglib2.lib.utk.edu:/d1/workarea/dlxs/image/multiples/textMusic/
+-bash: spc: command not found
+[diglib@store1 txt]$ scp * root@diglib2.lib.utk.edu:/d1/workarea/dlxs/image/multiples/textMusic/
+The authenticity of host 'diglib2.lib.utk.edu (160.36.192.195)' can't be established.
+RSA key fingerprint is c8:ef:54:e7:fc:e8:39:14:de:5a:0c:9f:6c:5f:ab:d9.
+Are you sure you want to continue connecting (yes/no)? y
+Please type 'yes' or 'no': yes
+Warning: Permanently added 'diglib2.lib.utk.edu,160.36.192.195' (RSA) to the list of known hosts.
+root@diglib2.lib.utk.edu's password: 
+Permission denied, please try again.
+root@diglib2.lib.utk.edu's password: 
+[diglib@store1 txt]$ 
+
+[diglib@store1 txt]$ scp * diglib@diglib2.lib.utk.edu:/d1/workarea/dlxs/image/multiples/textMusic/
+diglib@diglib2.lib.utk.edu's password: 
+scp: /d1/workarea/dlxs/image/multiples/textMusic/: No such file or directory
+
+[root@diglib2 textMusic]# pwd
+/d1/workarea/dlxs/image/tel/multiples/textMusic
+
+[diglib@store1 txt]$ [root@store1 txt]# !scp
+scp * diglib@diglib2.lib.utk.edu:/d1/workarea/dlxs/image/tel/multiples/textMusic/
+diglib@diglib2.lib.utk.edu's password: 
+scp: /d1/workarea/dlxs/image/tel/multiples/textMusic//0018_000054_000220_0001.txt: Permission denied
+scp: /d1/workarea/dlxs/image/tel/multiples/textMusic//0018_000054_000221_0001.txt: Permission denied
+scp: /d1/workarea/dlxs/image/tel/multiples/textMusic//0018_000054_000223_0001.txt: Permission denied
+scp: /d1/workarea/dlxs/image/tel/multiples/textMusic//0018_000054_000226_0001.txt: Permission denied
+
+[root@store1 txt]# chmod 644 *
+[root@store1 txt]# ls -l
+total 16
+-rw-r--r-- 1 root root 1085 Mar  5 16:51 0018_000054_000220_0001.txt
+-rw-r--r-- 1 root root 2090 Mar  5 16:51 0018_000054_000221_0001.txt
+-rw-r--r-- 1 root root 1154 Mar  5 16:51 0018_000054_000223_0001.txt
+-rw-r--r-- 1 root root  930 Mar  5 16:51 0018_000054_000226_0001.txt
+[root@store1 txt]# !scp
+scp * diglib@diglib2.lib.utk.edu:/d1/workarea/dlxs/image/tel/multiples/textMusic/
+diglib@diglib2.lib.utk.edu's password: 
+scp: /d1/workarea/dlxs/image/tel/multiples/textMusic//0018_000054_000220_0001.txt: Permission denied
+scp: /d1/workarea/dlxs/image/tel/multiples/textMusic//0018_000054_000221_0001.txt: Permission denied
+scp: /d1/workarea/dlxs/image/tel/multiples/textMusic//0018_000054_000223_0001.txt: Permission denied
+scp: /d1/workarea/dlxs/image/tel/multiples/textMusic//0018_000054_000226_0001.txt: Permission denied
+[root@store1 txt]# chown -R diglib.diglib *
+[root@store1 txt]# !scp
+scp * diglib@diglib2.lib.utk.edu:/d1/workarea/dlxs/image/tel/multiples/textMusic/
+diglib@diglib2.lib.utk.edu's password: 
+scp: /d1/workarea/dlxs/image/tel/multiples/textMusic//0018_000054_000220_0001.txt: Permission denied
+scp: /d1/workarea/dlxs/image/tel/multiples/textMusic//0018_000054_000221_0001.txt: Permission denied
+scp: /d1/workarea/dlxs/image/tel/multiples/textMusic//0018_000054_000223_0001.txt: Permission denied
+scp: /d1/workarea/dlxs/image/tel/multiples/textMusic//0018_000054_000226_0001.txt: Permission denied
+[root@store1 txt]# 
+
+I tried changing ownership and permissions on files in txt.
+
+=============================================
+There is a virtual directory diglib/store1/area2 on diglib2
+
+Last login: Wed Apr  2 10:57:37 2008 from dlc02.lib.utk.edu
+[cdeane@diglib2 cdeane]$ sudo su
+[root@diglib2 cdeane]# cd /d1
+[root@diglib2 d1]# ls
+backups     mnt-store1-area2  unmount-area2
+dlxs        mnt-store1-area3  unmount-area3
+inbox       mount-sc          unmount-inbox-sc
+inbox-sc    mount-ts          unmount-inbox-ts
+inbox-ts    store1-area2      workarea
+lost+found  store1-area3      wpa
+[root@diglib2 d1]# ls store1-area2
+existenceCheck
+lost_found
+PROJECTS
+sermons
+Shortcut to D Drive on 'Dlcprod03' (V).lnk
+spcoll
+TDH_work_area
+temp
+test-diglib
+test-root
+Total_YRB_Proj
+vasser
+volvoices
+wil_video
+
+
+You can do the ls of store1-area2 if the virtual directory is MOUNTED.
+
+If you need to MOUNT it, use the small program
+
+mnt-store1-area2.
+====================================================
+
+[root@diglib2 d1]# cd workarea/dlxs/image/tel/multiples
+[root@diglib2 multiples]# ls
+categories   done         hextest            mods                  opensearch    thumbs
+catref       dothis       ic                 modsbib               preservation  vviHeader
+checkme.txt  entry        ic.vvi.unnorm.sgm  modsICsearchOaiMusic  problems
+close        fieldtest    infotrack          newmods               search
+cochran      fixSubjects  jpegs              NOTE                  spc
+countfiles   footer       linkfile           olderVersions         test
+countfiles2  hexmess      minithumbs         open                  textMusic
+[root@diglib2 multiples]# ls textMusic/
+[root@diglib2 multiples]# mv textMusic text
+[root@diglib2 multiples]# ls /d1/store1-area2/volvoices/vvImport/080303/01_music/txt
+0018_000054_000220_0001.txt  0018_000054_000223_0001.txt
+0018_000054_000221_0001.txt  0018_000054_000226_0001.txt
+[root@diglib2 multiples]# ls
+categories   done         hextest            mods                  opensearch    thumbs
+catref       dothis       ic                 modsbib               preservation  vviHeader
+checkme.txt  entry        ic.vvi.unnorm.sgm  modsICsearchOaiMusic  problems
+close        fieldtest    infotrack          newmods               search
+cochran      fixSubjects  jpegs              NOTE                  spc
+countfiles   footer       linkfile           olderVersions         test
+countfiles2  hexmess      minithumbs         open                  text
+[root@diglib2 multiples]# cd text
+[root@diglib2 text]# cp /d1/store1-area2/volvoices/vvImport/080303/01_music/txt/* .
+[root@diglib2 text]# ls
+0018_000054_000220_0001.txt  0018_000054_000223_0001.txt
+0018_000054_000221_0001.txt  0018_000054_000226_0001.txt
+[root@diglib2 text]# 
+
+Had to make a new dir textMusic because
+pickupTime works to put files in text
+modsICsearchOai looks for files in textMusic
+

@@ -1,0 +1,366 @@
+<!--
+    This code is issued under the GNU General Public License, 
+    version 3, 29 June 2007.
+
+    The DLC-MODS Workbook provides a series of web pages to help you 
+    generate a MODS metadata record that follows the Digital Library 
+    Federation Implementation Guidelines for Shareable MODS Records, 
+    as described in the DLF Aquifer Guidlines November 2006.  These 
+    Guidelines and the specific MODS Profile are documented on the 
+    MODS Profile Page of the DLC-MODS Workbook.
+
+    Copyright (C) 2007 
+    Christine Haygood Deane 
+    University of Tennessee Libraries
+    Digital Library Center
+ 
+
+    This program is free software: you can redistribute it and/or modify    
+    it under the terms of the GNU General Public License as published by    
+    the Free Software Foundation, version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see http://www.gnu.org/licenses/
+-->
+
+<html>
+<head>
+<title>
+targetAudience
+</title>
+<link href="vv_workbook.css" type="text/css" rel="stylesheet">
+
+<script>
+parent.L.thisDocument = parent.D.document;
+split_token = new String(parent.U.split_token);
+
+
+function addOneTargetAudienceBlock() {
+if (!confirm("You have chosen to add one TargetAudience Block.\n\nDo you wish to continue?")){return;}
+buildModsTags(11);
+parent.L.update_block_iteration("targetAudience","1");
+parent.D.location.replace("page_010_targetAudience.htm");
+}//end function
+
+
+function subtractOneTargetAudienceBlock() {
+var N = new Number( parent.L.get_block_iteration("targetAudience"));
+if (N==1) {
+        alert("TargetAudience Block #1 may not be removed.");
+        return;
+        }
+if (!confirm("You have chosen to remove one TargetAudience Block.\n\nDo you wish to continue?")){return;}
+buildModsTags(11);
+parent.L.update_block_iteration("targetAudience","-1");
+parent.D.location.replace("page_010_targetAudience.htm");
+}//end function
+
+function clearPage() { 
+        if (!confirm("All data entered for this page will be cleared.\n\nDo you wish to continue?")) {return};
+        parent.U.document.UF.taud_block_list.value = "";
+        parent.L.update_block_iteration("targetAudience","0");
+        parent.L.update_page_validation('targetAudience','K');//language not required
+        parent.D.location.replace("page_010_targetAudience.htm");
+        return;
+}//end function
+
+
+function pop_taud_text(N){
+
+var num = new String(N);
+
+var t_auth = new String();
+var t_list = new String();
+    t_list = "document.DF.dyn_taudList_0"+num+".value";
+var t_text_new = new String();
+var t_list_test = new String();
+    t_list_test = eval (t_list);
+
+if ( t_list_test == "_zero" ){
+	t_text_new = ' document.DF.dyn_taudText_0'+num+'.value= "";'; 
+    	t_auth = ' document.DF.dyn_taudAuth_0'+num+'[0].selected=true;';
+	eval (t_text_new );
+	eval (t_auth);
+}else{
+	t_text_new = ' document.DF.dyn_taudText_0'+num+'.value= document.DF.dyn_taudList_0'+num+'.value;';
+    	t_auth = ' document.DF.dyn_taudAuth_0'+num+'[1].selected=true;';
+	eval(t_text_new);
+	eval(t_auth);
+}
+
+return;
+}//end function
+
+function change_taud_text(N) {
+
+var num = new String(N);
+
+var t_auth = new String();
+var t_list = new String();
+var t_text = new String();
+    t_text = ' document.DF.dyn_taudText_0'+num+'.value';
+
+//check t_text value, if not match any t_list values, set the menus to none selected
+if (   t_text != 'adolescent'
+    && t_text != 'adult'
+    && t_text != 'general'
+    && t_text != 'juvenile'
+    && t_text != 'preschool'
+    && t_text != 'specialized' 
+   ){
+	t_list=  ' document.DF.dyn_taudList_0'+num+'[0].selected=true;';
+    	t_auth = ' document.DF.dyn_taudAuth_0'+num+'[0].selected=true;';
+	eval(t_list);
+	eval(t_auth);
+}
+return;
+
+
+}//end function
+</script>
+
+</head>
+
+<script> document.write('<body onload="load_DF_form();"  bgcolor="'+parent.adb_background_color+'" >'); </script>
+
+<font face="arial" size="3">
+<center><font face="arial">
+<h3><script> document.write(parent.adb_project_name); </script>
+&lt;targetAudience></h3>
+</center>
+
+<form name="DF"  >
+
+<table class="bgINNER"  border="0" cellpadding="2" cellspacing="1" width="98%" >
+<tr class="bgstandard"><td colspan="3"><font face="arial" size="2">
+<li>Summary of Requirements for &lt;targetAudience>
+<br>The DLF/Aquifer Implementation Guidelines for Shareable MODS Records recommend the use of at least one <targetAudience> element when applicable, and a controlled vocabulary when available. This element is repeatable.
+<hr style="width:50%">
+<li>Per the Levels of Adoption Document Level 5: at least <targetAudience> element, with @authority attribute when applicable 
+<li>If you fill in nothing, no tags are made for this page.
+</td></tr>
+<tr class="greenrow">
+<td><font face="arial" size="3" color="ffffff" ><b>MODS LABEL</td>
+<td><font face="arial" size="3" color="ffffff" ><b>VALUE</td>
+<td><font face="arial" size="3" color="ffffff" >&nbsp;</td>
+</tr>
+<font face="arial">
+
+
+<!-- sentinel_00.name signals that the set(s) of targetAudience_block elements starts with next element -->
+<input type="hidden" name="sentinel_00" value="0">
+
+<script>
+var a400="400";
+var a600="600";
+var j= 0;
+///this is the limit on the loop to write form blocks
+var numLangBlocks = new Number( parent.L.get_block_iteration("targetAudience"));
+
+for (i=0;i<numLangBlocks;i++) {
+j=i+1;//display only
+document.write(
+ '<tr class="bgstandard">\r\n'
++'<td class="label13u">Target Audience # '+j+'</td>\r\n'
++'<td>\r\n'
++'&nbsp;<select name="dyn_taudAuth_0'+i+'" size="1" >\r\n'
++' <option value="_zero" selected>none selected&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>\r\n'
++' <option value="marctarget">marctarget</option>\r\n'
++' </select>\r\n'
++'&nbsp;<select name="dyn_taudList_0'+i+'" size="1" class="requirednw" onchange="pop_taud_text('+i+')">\r\n'
++' <option value="_zero" selected>none selected&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>\r\n'
++' <option value="adolescent">adolescent</option>\r\n'
++' <option value="adult">adult</option>\r\n'
++' <option value="general">general</option>\r\n'
++' <option value="juvenile">juvenile</option>\r\n'
++' <option value="preschool">preschool</option>\r\n'
++' <option value="specialized">specialized</option>\r\n'
++' </select>\r\n'
++'&nbsp;&nbsp;<font face="arial" size="1"><br>&nbsp;Select a value from the MARC Value List for Target Audience. \r\n'
++'&nbsp;<a href="http://www.loc.gov/marc/sourcecode/target/targetlist.html" target="_blank">http://www.loc.gov/marc/sourcecode/target/targetlist.html</a> \r\n'
++'<br>&nbsp;<input type="text" name="dyn_taudText_0'+i+'" value="" class="notrequired300w" onblur="change_taud_text('+i+')">\r\n'
++'Or enter your own value for &lt;targetAudience> with <u>none selected</u> for authority. \r\n'
++'<td>&nbsp</td></tr>\r\n'
++'<tr class="greenrow"><td colspan="5" height="08"></td></tr>\r\n' 
+);
+}//end for i
+
+</script>
+
+<!-- sentiinel_01.value = 0 , verify end
+     sentinel_01.name signals that the set(s) of language_block elements ends here -->
+<input type="hidden" name="sentinel_01" value="0">
+<input type="hidden"  name="taud_block_list" value="">
+
+<tr class="bgstandard">
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+<tr class="bgstandard">
+<td class="label13u">Add or Remove<br>One TargetAudience Block </td><td colspan="4">&nbsp;
+<input type="button" name="AddOneLaBlock" 
+value="Add One TargetAudience Block" class="buttonnw" onClick="addOneTargetAudienceBlock();">
+<input type="button" name="SubtractOneTargetAudienceBlock" 
+value="Remove One TargetAudience Block" class="buttonnw" onClick="subtractOneTargetAudienceBlock();">
+
+</td><td>&nbsp;</td>
+</tr>
+
+<tr class="greenrow"><td colspan="3" >&nbsp;</td></tr>
+
+
+
+
+<tr class="bgstandard"><td colspan="3" align="center">
+&nbsp;&nbsp;
+
+<input type="button" name="B2" value="Save Data and View MODS TAGS" class="buttonnw" onclick="buildModsTags(1)">
+&nbsp;&nbsp;
+<input type="button" name="Bclear" value="Clear Data and Restart this Page" class="buttonnw" onclick="clearPage();">
+
+
+
+</td></tr>
+
+<tr class="bgstandard" >
+<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+</tr>
+</table>
+
+
+
+
+
+</form name="forms[0]">
+
+
+<center><font face="arial">
+<h3>
+<script> document.write(parent.adb_project_name); </script>
+</h3>
+</center>
+
+<script>
+
+
+
+function load_UF_form() {
+
+parent.U.document.UF.taud_block_list.value = document.DF.taud_block_list.value;
+
+return;
+}
+
+function load_DF_form() {
+
+document.DF.taud_block_list.value = parent.U.document.UF.taud_block_list.value;
+parent.L.populate_DF_webform_from_UF_blocklist("taud_block_list");
+
+return;
+}
+
+
+
+function buildModsTags(N) {
+
+document.DF.taud_block_list.value = parent.L.populate_DF_blocklist_from_DF_webform("taud_block_list");
+
+
+
+////do this first so current values are loaded regardless of validation status
+load_UF_form();
+
+var num = new Number();
+    num = N;
+
+if (num == 11) {return;} //no validation required.
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+//before writing MODS TAGS, make sure all required fields are populated
+//checkAllRequired... true  validation sets validation status to K  -- complete
+//checkAllRequired... false validation sets validation status to k  -- incomplete
+
+/*
+if (!parent.L.checkAllRequiredElements_Page_targetAudience() ) {
+	parent.L.update_page_validation('language','k');
+	return;
+}*/
+parent.L.update_page_validation('targetAudience','K');
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+
+if (num == 10) { 
+	alert("Values have been saved.");
+	return;
+	}
+
+var aps= new Array();
+var hps= new Array();
+var cps= new Array();
+    
+    hps = parent.L.buildTagsArray_header(num);
+    aps = parent.L.buildTagsArray_targetAudience(num);
+    cps = parent.L.buildTagsArray_closer(num);
+//=================================================
+
+document.write('<input type="button" name="BBACK" onclick="javascript: history.back()" value="BACK"><P>');
+document.write('<font face="Elephant" size="3" color="a00000">'+parent.adb_project_name+' &lt;language><p></font>');
+//PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+//document.write('<font face="Elephant" size="3" color="a00000">PRELIMINARY COPY FOR DEMONSTRATION PURPOSES ONLY</font><p>'
+document.write(parent.adb_workbook_version+'<p>'
+		+"This is the generated xml script.  Values you entered are highlighted in red."
+		+"<HR>");
+//document.write( "This is the generated xml script.  Values you entered are highlighted in red.<HR>");
+
+//document.write('< ? xml version="1.0"  ? > \r\n'); 
+///document.write("Content-Type: text/xml ")
+
+
+
+for (i=0;i<hps.length;i++) {
+	var vps = new String(hps[i]);
+ 	document.write("<br>"+vps);
+	}
+
+
+
+for (i=0;i<aps.length;i++) {
+	var vps = new String(aps[i]);
+	document.write("<br>"+vps);
+	}
+
+
+
+for (i=0;i<cps.length;i++) {
+	var vps = new String(cps[i]);
+	document.write("<br>"+vps);
+	}
+
+
+
+}//end function
+
+
+
+</script>
+	
+<script language=javascript src="elements.js"></script>
+<script>elements();</script>
+
+
+</body>
+</html>
+

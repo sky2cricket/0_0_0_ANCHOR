@@ -1,0 +1,586 @@
+<html>
+<head>
+<title>Image Class Collection Implementation</title>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="../icstyle/icstyles.css" type="TEXT/CSS">
+<link rel="stylesheet" href="../styles.css" type="TEXT/CSS">
+<style type="text/css">
+<!--
+.style1 {
+	color: #FF0907;
+	font-weight: bold;
+}
+-->
+</style>
+</head>
+<body bgcolor="#ffffcc" leftmargin="15" topmargin="15" marginwidth="15" marginheight="15">
+<h1 class="mainpalette">Image Class Collection Implementation</h1>
+<h2 class="mainpalette"><a href="../index.html">DLXS Workshop, August 2005</a></h2>
+<p class="mainpalette">Image Class Instructor: <strong>John Weise</strong></p>
+<p class="mainpalette"><strong> 
+  If you have questions, please address them to <a href="mailto:dlxs-info@umich.edu">dlxs-info@umich.edu</a>. 
+  </strong></p>
+<p class="mainpalette">This portion of the DLXS Workshop focuses on implementing 
+  a collection in the Image Class. It is organized as a hands-on lesson, with 
+  the entire process outlined in detail. All of the steps are included so that 
+  it can be repeated or used as a guide later. Links to the detailed Image Class 
+  documentation are included. Check out the database of <a href="http://images.umdl.umich.edu/cgi/i/image/image-idx?c=workshopic" target="external">UM 
+  Campus Photos</a> that we'll be working with in the workshop.</p>
+<p class="mainpalette">A printed copy of this document will be available at the 
+  workshop. </p>
+<a name="TOC"></a><hr align="LEFT" noshade width="100%">
+<p><a href="#ThursdayMorning">Workshop 
+  Day 4 &#150; Thursday Morning</a></p>
+<ul>
+  <li class="mainpalette"><a href="#ImageClassContentPrep" >Image 
+    Class Content Prep</a> 
+    <ul>
+      <li class="mainpalette"><a href="#CollectionDeploymentChecklist">Choose 
+        a Collection ID and Enable Access</a></li>
+
+      <li class="mainpalette"> <a href="#ReviewtheCollectionDatabaseEntrywithCollectionManager">Create a Collection Database Entry using Collection
+      Manager</a></li>
+      <li class="mainpalette"><a href="#ReviewProcessandInstalltheImages">Review, 
+        Process, and Install the Images</a></li>
+    
+
+  
+      <li class="mainpalette"><a href="#TellImageClasstoUseMySQL">Tell Image Class To
+      Use MySQL</a></li>
+      <li><a href="#AddDescriptiveDatatoDatabase">Add Descriptive 
+        Data to Database</a></li>
+      <li><a href="#ConfigureImageClassforLoadingofData">Configure Image Class for Loading of Data</a></li>
+      <li><a href="#ExporttheData">Export the 
+        Data</a></li>
+      <li><a href="#TransferDatatoUnixDataPrepEnvironment">Transfer 
+        Data to Unix Data Prep Environment</a></li>
+    </ul>
+  </li>
+</ul>
+<p><a href="#ThursdayAfternoon">Workshop Day 4- Thursday 
+  Afternoon</a></p>
+<ul>
+  <li><a href="#ImageClassContentPrepContinued">Image Class Content Prep, Continued</a>
+    <ul>
+      <li><a href="#LoadtheDataintoMySQL"> Load the Data into MySQL</a></li>
+        <li><a href="#TryItOut">Try It Out</a> </li>
+        <li><a href="#SatisfiedReleasetheTables">Satisfied? Release the Tables</a></li>
+    </ul>
+  </li>
+  <li><a href="#ImageClassCollectiontoWeb">Image Class Collection to Web </a>    
+    <ul>
+      <li> <a href="#ReviewtheGroupsDatabaseEntrywithCollMgr">Review the Groups Database Entry with CollMgr</a></li>
+      <li><a href="#ConfiguretheCollectionforDynamicBrowsingUsingCollMgr"> Configure the Collection for Dynamic Browsing Using CollMgr</a> </li>
+      <li> <a href="#SetuptheCollectionsWebDirectory">Setup the Collection's Web Directory</a></li>
+    </ul>
+  <li><a href="#ImageClassCollectionCustomizations">Image 
+  Class Collection Customization</a></li>
+  <li><a href="#ImageClassOtherAdvancedTopics">Image 
+            Class Other/Advanced Topics</a></li>
+</ul>
+<p><a name="ThursdayMorning"></a></p>
+<h3 class="dayheader"> Workshop Day 4 &#150; Thursday Morning<a name="ImageClassContentPrep"></a></h3>
+<h2 class="partheader">Image Class Content Prep&nbsp;</h2>
+<p align="right" class="navlink"><a href="#TOC">go 
+  to table of contents</a></p>
+<p><span class="mainpalette">In the Image Class Content Prep portion of the workshop
+    we work with some new images and descriptive data, adding them to an existing
+    image database. We will  generate JPEG2000 images and put them in place on
+    the server.</span></p>
+<p><a href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/image/graphics/ImageClassWorkFlow.jpg"><img src="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/image/graphics/ImageClassWorkFlow_thumb.jpg" alt="Image Class Collection Deployment Flow Chart"></a></p>
+<p></p>
+<h3 class="sectionheader"> <a name="ChooseaCollectionIDandEnableAccess"></a> 
+  <hr align="LEFT" noshade width="100%">
+  <span class="mainpalette">Choose a Collection ID and Enable Access</span></h3>
+<p class="mainpalette">In this workshop we are working with a collection that
+  already exists. However if it were a new collection it would be necessary to
+  choose a collection identifier, and  enable web access to the collid. When
+  choosing a collid, it helps to keep it short and to keep in mind that it should
+  be unique, not just within Image Class, but across all of the classes. Consider
+  including a consistent class specific ending on each collid to help avoid conflicts.
+  For example, <strong>workshopic</strong> is the collid for the collection 
+  that will be used in this lesson. </p>
+<p class="mainpalette">Managing access to collections will be covered elsewhere 
+  in the workshop, since it applies to all DLXS Classes.</p>
+  <span class="mainpalette">
+</span><ol>
+  <li class="mainpalette"><span class="mainpalette"><i>choose collid</i></span></li>
+  <li class="mainpalette"><span class="mainpalette"><i>enable web access for the collid (setup authentication/authorization)</i></span></li>
+  </ol>
+<h3 class="sectionheader"><a name="ReviewtheCollectionDatabaseEntrywithCollectionManager"></a>
+    <hr align="LEFT" noshade width="100%">
+  Create a Collection Database Entry using <em>Collection Manager</em></h3>
+<p class="mainpalette">Each collection has a record in the <strong>Collection
+    Database</strong>  that holds collection specific configuration information.
+    A collection's record is used by the middleware, and in the case of Image
+    Class, by the scripts used to load data. <strong>The Collection Manager (CollMgr</strong>)
+    is a web based interface to the Collection Database that provides functionality
+    for editing each collection's record. Collection Database records can be
+    <em>checked-out</em> for editing, <em>checked-in</em> for testing, and <em>released</em> to
+    production. In general, a <strong>new</strong> collection needs to have a
+    CollMgr record created from scratch before the middleware can be used. </p>
+<p class="mainpalette"><strong>A Collection Database record for workshopic has
+    already been created.</strong> Take a look at the record to
+    become familiar with it.</p>
+<p class="mainpalette">http://<strong>yourworkshopid</strong>.ws.umdl.umich.edu/cgi/c/collmgr/collmgr</p>
+<h3 class="sectionheader"><i>More Documentation</i></h3>
+<ul>
+  <li><a href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/image/colldb.html" target="external">Image
+      Class COLLDB (Collection Database)</a></li>
+</ul>
+<h3 class="sectionheader"> <a name="TellImageClasstoUseMySQL"></a>
+    <hr align="LEFT" noshade width="100%">
+  Tell Image Class To Use MySQL</h3>
+<p class="mainpalette">To make Image Class use <strong>MySQL</strong> and not
+   XPat for search and retrieval of images, the following <strong>Collection
+   Database</strong> fields
+  for the <strong>workshopic</strong> collection must be set <strong></strong> as
+  follows...</p>
+<table cellpadding="5" cellspacing="1" border="0" bgcolor="black">
+  <tr bgcolor="white">
+    <th class="mainpalette"><strong>collmgr field</strong></th>
+    <th class="mainpalette"><strong>value</strong></th>
+  </tr>
+  <tr bgcolor="white">
+    <td  class="mainpalette">appmodule</td>
+    <td class="mainpalette">ImageApp/mysqlImageApp</td>
+  </tr>
+  <tr bgcolor="white">
+    <td class="mainpalette">querylanguage</td>
+    <td class="mainpalette">sql</td>
+  </tr>
+  <tr bgcolor="white">
+    <td class="mainpalette">data_table</td>
+    <td class="mainpalette">workshopic</td>
+  </tr>
+  <tr bgcolor="white">
+    <td class="mainpalette">media_table</td>
+    <td class="mainpalette">workshopic_media</td>
+  </tr>
+</table>
+<h3 class="sectionheader"><i>More Documentation</i></h3>
+<ul>
+  <li><a href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/image/colldb.html" target="external">Image
+      Class COLLDB (Collection Database)</a><span class="mainpalette"></span></li>
+</ul>
+<h3 class="sectionheader"> <a name="ReviewProcessandInstalltheImages"></a>
+  <hr align="LEFT" noshade width="100%">
+  Review, Process, and Install the Images</h3>
+<p class="mainpalette">Images, in general need to be converted to a format suitable
+  to use on the web. Image Class supports a couple of special formats that allow
+  for enhanced functionality (zooming), MrSID and JPEG2000. Image Class provides
+  tools for generating JPEG2000 files, but does not provide tools for managing
+  the workflow of converting master image files to web formats. </p>
+<ul>
+  <li class="mainpalette">Quickly review the new images</li>
+  <li class="mainpalette">Convert the images to the MrSID or JPEG2000 format (converted files are provided for the workshop)
+    <ul>
+      <li><i class="mainpalette">Demonstration of Michigan's image processing 
+        methods.</i></li>
+    </ul>
+  </li>
+  <li class="mainpalette">Transfer images to server (this has been taken care of for the workshop)</li>
+  <li class="mainpalette">Build an index directory of the image files using the
+    imageprep program (each workshop participant will do this step) </li>
+</ul>
+
+<blockquote>
+  <pre class="unixcommand">$DLXSROOT/bin/i/image/imageprep workshopic</pre>
+</blockquote>
+
+
+<h3 class="sectionheader"><i>More Documentation</i></h3>
+<ul>
+  <li><a href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/image/imagefilenaming.html" target="external">Image 
+    Class Image File Naming</a></li>
+  <li><a href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/image/imageloading.html" target="external">Image 
+    Class Image Loading</a></li>
+</ul>
+<h3 class="sectionheader"> <a name="AddDescriptiveDatatoDatabase"></a>
+  <hr align="LEFT" noshade width="100%">
+  Add Descriptive Data to Database</h3>
+
+<p class="mainpalette">In this part, descriptive info for the new images will be added to the database. FileMaker Pro will be used to edit the database. FileMaker Pro is a useful tool for preparing 
+  data for Image Class, though other tools can be used instead.</p>
+<p class="sectionheader">Each participant will do this work on their own machine.</p>
+
+<p class="sectionheader">A good convention for naming collection's data file
+   is <strong>collid-data.fp5 (e.g. workshopic-data.fp5)</strong>.</p>
+
+
+
+<p class="mainpalette">Import the descriptive data for the new images in to the existing database. New 
+  records will be created for each. The database is setup to create record ID 
+  numbers and some other information automatically.</p>
+<ol>
+<li class="mainpalette">Download ( <a href="icwsadds.zip">zip</a>  ) this small
+  set of files that will provide a starting point for your work.</li>
+  <li class="mainpalette">Open <strong>collid-data.fp5</strong> with Filemaker Pro</li>
+  <li class="mainpalette">Choose<strong> Import Records...</strong> from the <strong>File</strong> 
+    menu</li>
+  <li class="mainpalette">Select the <strong>workshop_import.xls</strong> file for 
+    import (you will need to know that the first row has fieldnames, not data. )</li>
+  <li class="mainpalette">Select the <strong>add new records</strong> import action.</li>
+  <li class="mainpalette">Map the incoming filenames to the existing database 
+    fields.</li>
+</ol>
+<p><img src="icscreenshots/import.JPG" width="500" height="419" border="1"></p>
+<h3 class="sectionheader"> <a name="ConfigureImageClassforLoadingofData" id="ConfigureImageClassforLoadingofData"></a>
+  <hr align="LEFT" noshade width="100%">
+  Configure Image Class for Loading of Data </h3>
+<p class="mainpalette">Image Class can use XPAT/XML or MySQL for storage and
+  retrieval of records. <strong>This lesson  uses MySQL</strong>. Configuration is largely the
+  same in either case. </p>
+<p class="mainpalette">A set of scripts specifically for loading data are provided
+  with Image Class. The scripts differ for MySQL and XPAT/XML. Only the MySQL
+  oriented scripts are covered here.</p>
+<p class="mainpalette">Provided a set of data records, the scripts load the data
+  into a pair of MySQL tables, known generically as &quot;data&quot; and &quot;media&quot;.</p>
+<p class="mainpalette">We need to configure the collection so the scripts know
+  which fields to load and how to put them to use for unique record identification,
+  media file linking, searching, sorting and display.</p>
+<p class="mainpalette">Configuration information is stored in the <strong>Collection
+Database</strong> and entered using the <strong>CollMgr</strong> web interface. The following fields must
+  be configured.</p>
+<p class="mainpalette">&nbsp;</p>
+<p class="mainpalette">Collmgr field: <strong>field_load_maps</strong></p>
+<p class="mainpalette"><strong>field_load_maps</strong> holds the list of fields
+  from the source data to be loaded into Image Class MySQL tables. The fields
+  are optionally mapped to abbreviations. Abbreviations are defined in field_load_maps
+  and once established must be used everywhere the field is referenced. Three
+  colons &quot;:::&quot; separate the original field name and the abbreviation.</p>
+<p class="mainpalette"><strong>DisplayDate</strong> (<strong>workshopic_dd</strong>) does not actually exist in
+  the FileMaker table. DisplayDate is created during the preload process in
+  a special subclass of Perl code used to modify the data as a repeatable part
+  of loading. </p>
+<p class="mainpalette"><img src="icscreenshots/field_load_maps.png" width="575" height="136" border="1"></p>
+<p class="mainpalette">&nbsp;</p>
+<p class="mainpalette">Collmgr field: <strong>field_labels</strong></p>
+<p class="mainpalette"><strong>field_labels</strong> holds the list of abbreviations
+  mapped to thelabels to be used for display in Image Class. This sometimes will
+  be a reverse mapping of field_load_maps, but often the labels differ from the
+  original field names may not have been created with public use in mind. <em>Field
+  labels are not needed to load data, but no time like the present to get this
+  done.</em></p>
+<p class="mainpalette"><strong>workshop_da</strong> (<strong>Date</strong>) and <strong>workshop_dd</strong> (<strong>DisplayDate</strong>) share
+  the same label, &quot;Date&quot;. <strong>workshop_da</strong> is used for sorting, and  appears
+  in the sort menu as &quot;Date&quot;. The value of the <strong>workshop_dd</strong> field is used for
+  when the record is displayed. It also is labeled as &quot;Date&quot;. To the user the
+  difference is transparent, but functionally the difference in the system is
+  significant. </p>
+<p class="mainpalette"><strong>dc_da</strong>  is a
+  cross collection field (more on this soon enough) also used at the collection
+  level therefore it needs a label assigned. It appears to the user in the search
+  form as &quot;Date&quot;. <strong>dc_da</strong> allows the user to search both forms of the date field
+  when searching. </p>
+<p class="mainpalette"><strong><strong><img src="icscreenshots/field_labels.png" width="575" height="164" border="1"></strong></strong></p>
+<p class="mainpalette">&nbsp;</p>
+<p class="mainpalette">Collmgr field: <strong>admin_field_maps</strong></p>
+<p class="mainpalette"><strong>admin_field_maps</strong> holds the &quot;administrative&quot;
+  mappings used to mark the record identifer field, image filename fields, and
+  other mission critical fields that facilitate the loading of data. The most
+  commonly used mappings are for <strong>record
+  IDs (ic_id)</strong>, <strong>image filenames</strong> <strong>(ic_fn)</strong>,
+  and <strong>captions (ic_vi) </strong>. </p>
+<p class="mainpalette">The <strong>ic_all</strong> fields will be copied during
+  the run of the load scripts into a single field used for searching all fields
+  at once. Sometimes it is best to only map a subset of the fields to ic_all.
+  In this case, all of the fields are mapped to <strong>ic_all</strong>. </p>
+<p class="mainpalette"><img src="icscreenshots/field_admin_maps.png" width="575" height="123" border="1"></p>
+<p class="mainpalette">Strictly speaking, only <strong>field_load_maps</strong>, <strong>field_labels</strong>  and <strong>admin_field_maps</strong> need to be completed in order to load data into MySQL
+  for Image Class. However the next two fields affect how indexes are built on
+  the data, which in turn affect performance.</p>
+<p class="mainpalette">&nbsp;</p>
+<p class="mainpalette">Collmgr field: <strong>field_xcoll_maps</strong></p>
+<p class="mainpalette">Collection specific fields must be mapped to cross collection
+fields for the purpose of searching multiple collections simultaneously. These
+  mappings also affect how MySQL indexes are built.  If changes to this field
+  are made after the data is loaded, reloading the data or manually adding indexes
+  may be necessary in order to achieve the best performance.</p>
+<p class="mainpalette">The default cross
+    collection abbreviations are loosely based on Dublin Core. Collections must
+    belong to a group in order for cross collection searching to be enabled.
+  Cross collection fields are defined in the group level Collmgr record. Other
+  mappings may be created as needed simply by making-up new abbreviations at
+  the group level and applying them  at the collection level.</p>
+<p class="mainpalette"><strong>workshopic_all</strong> is mapped to <strong>ic_all</strong> for backward compatability
+  with DLXS 11 and old bookmarks. They have always been essentially equivalent.
+  New collections should only use <strong>ic_all</strong>. </p>
+<p class="mainpalette">The <strong>dlxs_ma</strong> (main entry) mapping is slightly special because
+  the fields mapped to it are routinely displayed together in the Image Class
+  user interface (adjacent to the image). Usually cross collection fields are
+  only used for searching and are not displayed. </p>
+<p class="mainpalette"><img src="icscreenshots/field_xcoll_maps.png" width="575" height="137" border="1"> </p>
+<p class="mainpalette">&nbsp;</p>
+<p class="mainpalette">Collmgr field: <strong>dfltsrchflds </strong>(default
+search fields) </p>
+<p class="mainpalette"><strong>dfltsrchflds </strong>holds the list of fields
+  to be presented in the search form as searchable. The fields listed here 
+  affect how indexes are built in MySQL. If changes to this field are made after
+  the data is loaded, reloading the data or manually adding indexes may be necessary
+  in order to achieve the best performance.</p>
+<p class="mainpalette">Why is <strong>dc_da</strong> in the list? <strong>dc_da</strong> is
+  a cross collection field mapping for Date, but cross collection fields can
+  be used for searching individual collections as well. <strong>dc_da</strong> is mapped to both
+  <strong>workshopic_da</strong> (date in the form YYYY-MM-DD) and <strong>workshopic_dd</strong> (long version
+  of date formatted for display). It would be convenient to search both even
+  at the single collection level, so <strong>dc_da</strong> is used.</p>
+<p class="mainpalette"><img src="icscreenshots/dfltsrchflds.png" width="575" height="138" border="1"></p>
+<p class="mainpalette">&nbsp;</p>
+<p class="mainpalette">Collmgr field: <strong>entryauth</strong></p>
+<p class="mainpalette">Within a collection it is possible to control access to
+  each image/media item individually. The <strong>entryauth</strong> field holds
+      the default value applied to each image/media file loaded into Image Class
+  ultimately controlling whether the user is allowed to see the media. To keep
+  things simple, use the value &quot;world,&quot; which places no restrictions on access
+  to the image. </p>
+<p class="mainpalette"><img src="icscreenshots/entryauth.png" width="575" height="32" border="1"></p>
+<p class="mainpalette">&nbsp;</p>
+<p class="mainpalette">Collmgr
+  field: <strong>searchable_items</strong></p>
+<p class="mainpalette">Controls display of images in search results when
+  a record has multiple images. Values are &quot;detail&quot;, &quot;summary&quot;, &quot;both&quot;. &quot;Both&quot; is
+  the default value. If records only have one image, &quot;summary&quot; and &quot;both&quot; are
+safe choices. Read about <a href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/image/imagestructures.html">Mapping
+Image Structures</a> for more information.</p>
+<p class="mainpalette"><img src="icscreenshots/searchable_items.png" width="575" height="33" border="1"><br>
+</p>
+<p class="mainpalette">Collmgr fields: <strong>data_table</strong> and <strong>media_table</strong> </p>
+<p class="mainpalette">Each collection's data is loaded into a set of two MySQL
+tables. One is the Data Table, and the second the Media Table. The<strong> data_table</strong> and
+  <strong>media_table</strong> fields hold the names to be used when the tables
+  are created. </p>
+<p class="mainpalette"><img src="icscreenshots/data_media_tables.png" width="575" height="66" border="1"> </p>
+<p class="mainpalette">&nbsp;</p>
+<h3 class="sectionheader"><i>More Documentation</i></h3>
+<ul>
+  <li><a href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/image/mysql.html" target="external"><strong>Image
+  Class Data Loading: MySQL</strong></a></li>
+  <li><a href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/image/imagestructures.html">Image
+      Class: <strong>Mapping Image Structures</strong></a></li>
+</ul>
+<h3 class="sectionheader"><a name="ExporttheData"></a>
+  <hr align="LEFT" noshade width="100%">
+  Export the Data</h3>
+<p class="mainpalette">The descriptive data records must be exported from the
+  database in to an XML  file. FileMaker Pro provides this function.
+  In an upcoming step, the XML  will be read by a Perl script, parsed into records
+  and fields, and inserted into MySQL tables.</p>
+<p class="mainpalette">Export <strong>descriptive data</strong> file...</p>
+<ul>
+  <li class="mainpalette">Select the window for <strong>workshopic-data.fp5</strong></li>
+  <li class="mainpalette">Select the menu item <strong>Records:Show All Records</strong></li>
+  <li class="mainpalette">Select the menu item <strong>File:Export Records... </strong></li>
+  <li class="mainpalette">Choose to save the file on the <strong>desktop</strong> as
+    type <font color="#FF0000"> 
+    <strong> XML </strong></font> with the name <strong>workshopic-data.<font color="#FF0000">xml</font></strong>. Click <strong>Save</strong>.</li>
+  <li class="mainpalette">Select the <span class="style1">FMPDSORESULT</span> Grammar and click <strong>OK</strong>. </li>
+  <li class="mainpalette">Click the <strong>Move All</strong> button to include all fields 
+    in the export</li>
+  <li class="mainpalette">Click the Export button to complete the task</li>
+</ul>
+<h3 class="sectionheader"><i>More Documentation</i></h3>
+<ul>
+  <li><a href="http://dev-mysql.umdl.umich.edu/d/dlxs/docs/class/image/mysql.html#inputformats" target="external">Image
+  Class Data Loading: Loading Data Records, <strong>Overview of Input Formats</strong></a></li>
+</ul>
+<h3 class="sectionheader"><a name="TransferDatatoUnixDataPrepEnvironment"></a> 
+  <hr align="LEFT" noshade width="100%">
+  Transfer Data to Unix Data Prep Environment</h3>
+<p class="mainpalette">The tools for transforming the data to SGML are setup for 
+  use on the unix machine called <strong>jolt.umdl.umich.edu.</strong></p>
+<ul>
+  <li class="mainpalette">Transfer the the <strong class="mainpalette">workshopic-data.xml</strong> file to the directory<strong> $DLXSROOT/prep/w/workshopic</strong>. </li>
+</ul>
+<h3 class="sectionheader"><i>More Documentation</i></h3>
+<ul>
+  <li><a href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/image/mysql.html#dataprepdir" target="external">Image
+      Class Data Loading: Loading Data Records, <strong>The Data Prep Directory and File
+      Naming Conventions</strong></a></li>
+</ul>
+<p><a name="ThursdayAfternoon"></a></p>
+<h3 class="dayheader">Workshop Day 4 &#150; Thursday Afternoon<a name="ThursdayAfternoon"></a></h3>
+
+
+<a name="ImageClassContentPrepContinued"></a>
+<h2 class="partheader">Image Class Content Prep, Continued </h2>
+<p align="right" class="navlink"><a href="#TOC">go 
+  to table of contents</a></p>
+<p class="mainpalette">In this section the workshopic data will be loaded into
+  MySQL tables for use with the DLXS middleware.</p>
+<h3 class="sectionheader"> <a name="LoadtheDataintoMySQL"></a>
+  <hr align="LEFT" noshade width="100%">
+  Load the Data into MySQL </h3>
+<p class="mainpalette">At this point you have the critical pieces in place to
+  actually load the data into MySQL. The pieces are:</p>
+<ul>
+  <li class="mainpalette">$DLXSROOT/<strong>img</strong>/w/workshopic/<strong>index</strong> directory created by the <strong>imageprep</strong> script.</li>
+  <li class="mainpalette">$DLXSROOT/<strong>prep</strong>/w/workshopic/<strong>workshopic-data.xml</strong> containing the data records.</li>
+  <li class="mainpalette">A properly configured record for the collection, created with CollMgr.</li>
+</ul>
+<p class="mainpalette">Now issue the following command which will create two
+  tables in the DLXS MySQL database: <strong>workshopic_prep</strong> and <strong>workshopic_media_prep</strong>.
+  The XML data are loaded into the tables.  Existing prep tables if
+  they exist are replaced. Production tables, if any, are not touched.</p>
+<blockquote>
+  <pre class="unixcommand">$DLXSROOT/bin/i/image/load.pl c=workshopic</pre>
+</blockquote>
+<p class="mainpalette"><b>load.pl</b> was made to make your life easier. If
+  your data needs special handling, it uses modules that can be subclassed to
+  handle other formats and to do complex operations on the data records before
+  and after being loaded to the to the Image Class tables. Out of the box it
+  supports loading of data from FileMaker HTML (as in previous versions of DLXS),
+  text files, and MySQL tables in addition to FileMaker generated XML. load.pl
+  in turn executes other scripts to get the job done. These scripts can also
+  be used individually. </p>
+<h3 class="sectionheader"><i>More Documentation</i></h3>
+<ul>
+  <li><a href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/image/mysql.html#provided_tools" target="external">Image
+      Class Data Loading: Loading Data Records, <strong>Overview of Provided Tools</strong> </a></li>
+  <li><a href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/image/mysql.html"><strong>Image
+  Class Data Loading: MySQL</strong></a></li>
+</ul>
+<h3 class="sectionheader"><a name="TryItOut"></a>
+    <hr align="LEFT" noshade width="100%">
+  Try It Out</h3>
+<p class="mainpalette">Now that the data has been loaded, test the <strong>prep</strong> tables
+  with the middleware by adding <strong>prep=1</strong>  to
+  the normal URL. </p>
+<blockquote class="unixcommand">
+  <pre>
+http://<strong>yourworkshopid</strong>.ws.umdl.umich.edu/cgi/i/image/image-idx?c=workshopic;<strong>prep=1</strong>
+</pre>
+</blockquote>
+<h3 class="sectionheader"><a name="SatisfiedReleasetheTables"></a>
+    <hr align="LEFT" noshade width="100%">
+  Satisfied? Release the Tables </h3>
+<p class="mainpalette">When you are satisfied that the prep tables are in good
+  working order, the following command can be used to move the current production
+  tables out of the way and put the prep tables in their place. Once you have
+  done so <strong>prep=1</strong> is no longer necessary on the URL. </p>
+<blockquote class="unixcommand">
+  <pre>cd $DLXSROOT/bin/i/image
+
+
+./prep2prod.pl c=workshopic
+
+
+</pre>
+</blockquote>
+<h3 class="sectionheader"><i>More Documentation</i></h3>
+<ul>
+  <li><a href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/image/mysql.html#detailedsteps" target="external">Image
+      Class Data Loading: Loading Data Records, <strong>Detailed Steps </strong> </a></li>
+</ul>
+<p>&nbsp;</p>
+<p><a name="ImageClassCollectiontoWeb"></a></p>
+<h2 class="partheader">Image Class Collection to Web </h2>
+<p align="right" class="navlink"><a href="#TOC">go 
+  to table of contents</a></p>
+<p class="mainpalette">The final steps in deploying an Image Class collection
+   online usually include making adjustments to the Collection and Group records
+  using the <strong>Collection Manager</strong>. Here the <strong>Collection
+   Manager</strong> will
+   be used to review the <strong>Collection 
+  Database</strong> entry for <strong>workshopic</strong>. The <strong>Collection
+  Manager</strong> will 
+  also be used to check the <strong>Group Database</strong>.</p>
+<span class="mainpalette">http://<strong>yourworkshopid</strong>.ws.umdl.umich.edu/cgi/c/collmgr/collmgr-idx</span> 
+<h3 class="sectionheader"> <a name="ReviewtheGroupsDatabaseEntrywithCollMgr"></a>
+  <hr align="LEFT" noshade width="100%">
+  Review the Groups Database Entry with CollMgr</h3>
+<p class="mainpalette"><strong>CollMgr</strong> can be used to group collections
+   for cross-collection searching. Any number of collection groups may be created
+  for Image Class. <strong>For
+  this workshop, the group 
+  &quot;samplegroupic&quot; record has already been edited to include the workshopic
+  and sampleic collections.</strong> 
+  Take a look at the record to become familiar with it.</p>
+<h3 class="sectionheader"> <a name="ConfiguretheCollectionforDynamicBrowsingUsingCollMgr" id="ConfiguretheCollectionforDynamicBrowsingUsingCollMgr"></a>
+    <hr align="LEFT" noshade width="100%"> 
+Configure the Collection for Dynamic Browsing Using CollMgr</h3>
+<p class="mainpalette">You have already spent some time in CollMgr working with
+  the collection record for workshopic. Dynamic browsing is a new feature introduced
+  in DLXS release 12. Adding dynamic browsing to to a collection is a matter
+  of simple configuration in CollMgr and then running a script on the command
+  line to populate the browse tables with data to facilitate browsing.</p>
+<p class="mainpalette">Collmgr field: <strong>browseable</strong></p>
+<p class="mainpalette">To enable browsing, the <strong>browseable</strong> field must be set to
+  &quot;yes&quot;. </p>
+<p class="mainpalette"><img src="icscreenshots/browseable.png" width="575" height="35" border="1"> </p>
+<p class="mainpalette">Collmgr field: <strong>browsenav</strong></p>
+<p class="mainpalette">The <strong>browsenav</strong> field must have a value of 0, 1 or 2. Small
+  collections should use 0. Medium collections 1. Large collections 2. </p>
+<p class="mainpalette"><img src="icscreenshots/browsenav.png" width="575" height="32" border="1"></p>
+<p class="mainpalette">Collmgr field: <strong>browsefields</strong></p>
+<p class="mainpalette"><strong>browsefields</strong>  holds the list of fields
+  you would like to be browseable. This list is used to prepare the data for
+  browsing, and also to present browsing options to the user.</p>
+<p class="mainpalette"><img src="icscreenshots/browsefields.png" width="575" height="124" border="1"></p>
+<p class="mainpalette">With the above fields properly configured, the <strong>updatebrowsedb.pl</strong> script
+  can be run. It populates the ItemBrowse and ItemBrowseCounts tables with information
+  from the collection's data and media tables. ImageClass uses the ItemBrowse
+  and ItemBrowseCounts tables to allow users to browse the collection. </p>
+<blockquote>
+  <pre class="unixcommand">$DLXSROOT/bin/browse/updatebrowsedb.pl class=image c=workshopic</pre>
+</blockquote>
+<h3 class="sectionheader"><i>More Documentation</i></h3>
+<ul>
+  <li><a href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/collmeta/browse.html" target="external">DLXS:
+      <strong>Browsing</strong>  </a></li>
+</ul>
+<h3 class="sectionheader"> <a name="SetuptheCollectionsWebDirectory"></a>
+  <hr align="LEFT" noshade width="100%">
+  Setup the Collection's Web Directory</h3>
+<p class="mainpalette">Each collection may have a web directory with custom Cascading
+   Style Sheets (CSS), XML templates, XSL, graphics, and javascript. The default
+  is for a collection to use the web directory for the class, which 
+  is at $DLXSROOT/web/i/image. Optionally, a collection specific web directory
+  may be created. </p>
+<p class="mainpalette">There is one more purpose of the web directory, which
+  is to allow quick and easy loading of thumbnails as documents rather than retrieving
+     thumbnails through slower CGI calls. <strong>Enable quick display
+    of thumbnails</strong>  by  creating a collection specific web directory and a symlink to the thumbnails.</p>
+<p class="mainpalette"><em>These steps have already been done for the workshop.</em>
+
+<blockquote class="unixcommand"> 
+  <pre>mkdir -p $DLXSROOT/web/w/workshopic</pre>
+  <pre>cd $DLXSROOT/web/w/workshopic</pre>
+  <pre>ln -s $DLXSROOT/img/w/workshopic/index thumb</pre>
+</blockquote>
+<p><a name="ImageClassCollectionCustomization"></a></p>
+<h2 class="partheader">Image Class Collection Customization</h2>
+<p align="right" class="navlink"><a href="#TOC">go 
+  to table of contents</a></p>
+<p class="mainpalette">Assuming we are on schedule, we will spend this part of
+   the workshop looking at how to customize Image Class collections using the
+  Collection  Manager.</p>
+<h3 class="sectionheader"><i>More Documentation</i></h3>
+<ul>
+  <li class="mainpalette"><a href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/ui/index.html" target="external">DLXS User Interface Issues</a></li>
+  <li class="mainpalette"><a href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/image/colldb.html" target="external">Image Class COLLDB (Collection Database) Configuration</a></li>
+</ul>
+<p><a name="ImageClassOtherAdvancedTopics"></a></p>
+<h2 class="partheader">Image Class Other/Advanced Topics</h2>
+<p align="right" class="navlink"><a href="#TOC">go 
+  to table of contents</a></p>
+<p class="mainpalette">There is much more that Image Class can do. It can... </p>
+<ul>
+  <li class="mainpalette">serve other types of media such as audio, video and flash</li>
+  <li class="mainpalette">display complex relationships among a variety of media types all associated
+    with a single record</li>
+  <li class="mainpalette">search, retrieve, and display unicode data using utf8</li>
+  <li class="mainpalette">turn field values into links for easy browsing</li>
+  <li class="mainpalette">control access on a per item basis</li>
+</ul>
+<h3 class="sectionheader"><i>More Documentation</i></h3>
+<ul>
+  <li class="mainpalette"><a href="http://dev-linux.umdl.umich.edu/d/dlxs/docs/class/image/index.html" target="external"><strong>Guide 
+    to All Image Class Documentation</strong></a></li>
+</ul>
+<p>&nbsp;</p>
+<p class="sectionheader">&nbsp;</p>
+</body>
+</html>

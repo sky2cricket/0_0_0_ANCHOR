@@ -1,0 +1,285 @@
+<html>
+<head>
+<title>vv_popupGE</title>
+
+<link href="../vv_workbook.css" type="text/css" rel="stylesheet">
+<script language=javascript src="../vv_functions_tsla.js"></script>
+
+
+
+
+<script language="javascript">
+
+var select_id= new String();
+function get_select_id() {
+
+var str = new String();
+    str = parent.location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  parent.window.opener.location.href="+parent.window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=get_select_id();
+
+
+
+var strSelect_GE_A = new String('');
+
+strSelect_GE_A = '<select name="aaa"  size="24" style="font-size:10px"> \r\n'
+	+'<option  selected>No Value Selected</option> \r\n'	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	+'<option>PAINT ROCK RIVER VALLEY (TENN. AND ALA.) - GENEALOGY</option>  \r\n'
+	+'<option>PALL MALL (TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+	+'<option>PALMYRA (TENN.)</option>  \r\n'
+	+'<option>PANTHER CREEK STATE PARK (TENN.)</option>  \r\n'
+	+'<option>PARIS (TENN.)</option>  \r\n'
+	+'<option>PARIS (TENN.) - DESCRIPTION AND TRAVEL - VIEWS</option>  \r\n'
+	+'<option>PARIS (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>PARIS (TENN.) - FLOODS</option>  \r\n'
+	+'<option>PARIS (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>PARIS (TENN.) - HISTORY</option>  \r\n'
+	+'<option>PARIS (TENN.) - HISTORY - PERIODICALS</option>  \r\n'
+	+'<option>PARIS (TENN.) - MAPS</option>  \r\n'
+	+'<option>PARIS (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>PARIS LANDING STATE PARK (TENN.)</option>  \r\n'
+	+'<option>PARKER CROSSROADS (TENN.) - HISTORY</option>  \r\n'
+	+'<option>PARKS SITE (TENN.)</option>  \r\n'
+	+'<option>PARKSVILLE RESERVOIR (TENN.)</option>  \r\n'
+	+'<option>PARROTTSVILLE (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>PARROTTSVILLE (TENN.) - HISTORY</option>  \r\n'
+	+'<option>PARSONS (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>PELHAM (TENN.)</option>  \r\n'
+	+'<option>PELHAM (TENN.) - HISTORY</option>  \r\n'
+	+'<option>PELHAM (TENN.) - PHOTOGRAPHS</option>  \r\n'
+	+'<option>PENNINGTON BEND (NASHVILLE, TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>PENNINGTON BEND (NASHVILLE, TENN.) - HISTORY</option>  \r\n'
+	+'<option>PERCY WARNER PARK (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>PERCY WARNER PARK (NASHVILLE, TENN.) - PICTORIAL WORKS</option>  \r\n'
+	+'<option>PERRY COUNTY (TENN.)</option>  \r\n'
+	+'<option>PERRY COUNTY (TENN.) - BIBLIOGRAPHY</option>  \r\n'
+	+'<option>PERRY COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>PERRY COUNTY (TENN.) - CENSUS</option>  \r\n'
+	+'<option>PERRY COUNTY (TENN.) - CENSUS, 1820</option>  \r\n'
+	+'<option>PERRY COUNTY (TENN.) - CENSUS, 1850</option>  \r\n'
+	+'<option>PERRY COUNTY (TENN.) - CENSUS, 1860</option>  \r\n'
+	+'<option>PERRY COUNTY (TENN.) - CENSUS, 1870</option>  \r\n'
+	+'<option>PERRY COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>PERRY COUNTY (TENN.) - CENSUS, 1900</option>  \r\n'
+	+'<option>PERRY COUNTY (TENN.) - CENSUS, 1910</option>  \r\n'
+	+'<option>PERRY COUNTY (TENN.) - CENSUS, 1920</option>  \r\n'
+	+'<option>PERRY COUNTY (TENN.) - ECONOMIC CONDITIONS</option>  \r\n'
+	+'<option>PERRY COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>PERRY COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>PERRY COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>PERRY COUNTY (TENN.) - MAPS</option>  \r\n'
+	+'<option>PERRY COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>PERRY COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>PERRY COUNTY (TENN.) - POLITICS AND GOVERNMENT</option>  \r\n'
+	+'<option>PERRY COUNTY (TENN.) - POPULATION - STATISTICS</option>  \r\n'
+	+'<option>PERRY COUNTY (TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+	+'<option>PHIPPS BEND SITE (TENN.)</option>  \r\n'
+	+'<option>PICKETT COUNTY (TENN.)</option>  \r\n'
+	+'<option>PICKETT COUNTY (TENN.) - ANTIQUITIES</option>  \r\n'
+	+'<option>PICKETT COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>PICKETT COUNTY (TENN.) - CENSUS, 1900</option>  \r\n'
+	+'<option>PICKETT COUNTY (TENN.) - CENSUS, 1910</option>  \r\n'
+	+'<option>PICKETT COUNTY (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>PICKETT COUNTY (TENN.) - ECONOMIC CONDITIONS</option>  \r\n'
+	+'<option>PICKETT COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>PICKETT COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>PICKETT COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>PICKETT COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>PICKETT COUNTY (TENN.) - SOCIAL CONDITIONS</option>  \r\n'
+	+'<option>PICKETT STATE FOREST (TENN.)</option>  \r\n'
+	+'<option>PICKETT STATE PARK (TENN.)</option>  \r\n'
+	+'<option>PICKWICK LANDING DAM STATE PARK (PROPOSED) (HARDIN COUNTY, TENN.)</option>  \r\n'
+	+'<option>PIGEON FORGE (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>PIGEON FORGE (TENN.) - HISTORY</option>  \r\n'
+	+'<option>PIGEON FORGE (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>PIGEON RIVER (N.C. AND TENN.)</option>  \r\n'
+	+'<option>PIGEON RIVER (N.C. AND TENN.)</option>  \r\n'
+	+'<option>PIKEVILLE (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>PIKEVILLE (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>PIKEVILLE (TENN.) - PHOTOGRAPHS</option>  \r\n'
+	+'<option>PINEWOOD (MAURY COUNTY, TENN.)</option>  \r\n'
+	+'<option>PINSON INDIAN MOUND STATE PARK (TENN.)</option>  \r\n'
+	+'<option>PINSON MOUNDS (TENN.)</option>  \r\n'
+	+'<option>PIONEER CEMETERY (MOORE COUNTY, TENN.)</option>  \r\n'
+	+'<option>PISGAH (TENN.) - HISTORY</option>  \r\n'
+	+'<option>PLEASANT VIEW (TENN.) - HISTORY</option>  \r\n'
+	+'<option>PLEASANT VIEW (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>PLUNDER\'S CREEK (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>PLUNDER\'S CREEK (TENN.) - HISTORY</option>  \r\n'
+	+'<option>POLK COUNTY (TENN.)</option>  \r\n'
+	+'<option>POLK COUNTY (TENN.) - ANTIQUITIES</option>  \r\n'
+	+'<option>POLK COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>POLK COUNTY (TENN.) - CENSUS, 1840</option>  \r\n'
+	+'<option>POLK COUNTY (TENN.) - CENSUS, 1850</option>  \r\n'
+	+'<option>POLK COUNTY (TENN.) - CENSUS, 1860</option>  \r\n'
+	+'<option>POLK COUNTY (TENN.) - CENSUS, 1870</option>  \r\n'
+	+'<option>POLK COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>POLK COUNTY (TENN.) - CENSUS, 1900</option>  \r\n'
+	+'<option>POLK COUNTY (TENN.) - CENSUS, 1910</option>  \r\n'
+	+'<option>POLK COUNTY (TENN.) - CENSUS, 1920</option>  \r\n'
+	+'<option>POLK COUNTY (TENN.) - ECONOMIC CONDITIONS</option>  \r\n'
+	+'<option>POLK COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>POLK COUNTY (TENN.) - GENEALOGY - PERIODICALS</option>  \r\n'
+	+'<option>POLK COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>POLK COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>POLK COUNTY (TENN.) - HISTORY - MAPS, MANUSCRIPT</option>  \r\n'
+	+'<option>POLK COUNTY (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>POLK COUNTY (TENN.) - MAPS</option>  \r\n'
+	+'<option>POLK COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>POLK COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>POMONA (TENN.) - HISTORY</option>  \r\n'
+	+'<option>PORT ROYAL (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>PORT ROYAL (TENN.) - HISTORY</option>  \r\n'
+	+'<option>PORTLAND (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>PORTLAND (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>POWELL (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>POWELL RIVER (VA. AND TENN.)</option>  \r\n'
+	+'<option>PRATER (TENN.) - HISTORY</option>  \r\n'
+	+'<option>PRENTICE COOPER STATE FOREST (TENN.)</option>  \r\n'
+	+'<option>PRESSMEN\'S HOME (TENN.) - HISTORY</option>  \r\n'
+	+'<option>PRIMM SPRINGS (TENN.)</option>  \r\n'
+	+'<option>PROSPECT (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>PRUDEN (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>PRUDEN (TENN.) - HISTORY</option>  \r\n'
+	+'<option>PUBLIC WORKS - TENNESSEE - JACKSON</option>  \r\n'
+	+'<option>PUBLIC WORKS - TENNESSEE - MEMPHIS</option>  \r\n'
+	+'<option>PUBLIC WORKS - TENNESSEE - SHELBY COUNTY</option>  \r\n'
+	+'<option>PULASKI (TENN.)</option>  \r\n'
+	+'<option>PULASKI (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>PULASKI (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>PULASKI (TENN.) - CITY PLANNING</option>  \r\n'
+	+'<option>PULASKI (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>PULASKI (TENN.) - ECONOMIC CONDITIONS</option>  \r\n'
+	+'<option>PULASKI (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>PULASKI (TENN.) - HISTORY</option>  \r\n'
+	+'<option>PULASKI (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>PULASKI (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>PURDY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>PURDY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>PUTNAM COUNTY (TENN.)</option>  \r\n'
+	+'<option>PUTNAM COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>PUTNAM COUNTY (TENN.) - CENSUS, 1860</option>  \r\n'
+	+'<option>PUTNAM COUNTY (TENN.) - CENSUS, 1870</option>  \r\n'
+	+'<option>PUTNAM COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>PUTNAM COUNTY (TENN.) - CENSUS, 1900</option>  \r\n'
+	+'<option>PUTNAM COUNTY (TENN.) - CENSUS, 1910</option>  \r\n'
+	+'<option>PUTNAM COUNTY (TENN.) - CENSUS, 1930</option>  \r\n'
+	+'<option>PUTNAM COUNTY (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>PUTNAM COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>PUTNAM COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>PUTNAM COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>PUTNAM COUNTY (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>PUTNAM COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>PUTNAM COUNTY (TENN.) - ORAL HISTORY - VIETNAM</option>  \r\n'
+	+'<option>PUTNAM COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>PUTNAM COUNTY (TENN.) - SOCIAL CONDITIONS</option>  \r\n'
+	+'<option>PUTNAM COUNTY (TENN.) - VETERANS</option>  \r\n'
+        +'<option>(NO Q AVAILABLE)</option> \r\n'
+
+
+
++'</select> \r\n';
+	
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+<body class="background">
+
+
+
+
+<form name="FormOne" >
+
+
+<div name="SS" id="SS">
+<script>
+document.write(
+
+	 '<table border="1" cellpadding="4" cellspacing="0"  width="90%">\r\n'
+	+'<tr><td  bgcolor="ddeeff">\r\n'
+	///+'vv_functions.htm called by '+select_id+' <br>\r\n'
+	+'<b>Select Geographic Subject P-Q </b> \r\n'
+	+'</td></tr><tr><td bgcolor="ddeeff"> \r\n' 
+	+ strSelect_GE_A
+
+	+'</td></tr></table> \r\n'
+	///+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+</script>
+	
+</div>
+
+<input type="button" onclick="showSelection();" name="B1" value="Geographic Name">
+
+</form>
+
+<script>
+
+
+
+                  
+
+function showSelection() {
+
+val = new String();
+
+for ( i=0; i< document.FormOne.aaa.length; i++ ) {
+
+if ( document.FormOne.aaa[i].selected == true ) {
+  	val = document.FormOne.aaa[i].text;
+	break;
+	}
+else { val = "you never selected anything"; 
+	}
+
+}
+////////////////////////alert ("You selected " +val);
+val=reformatGeo(val);
+
+switch ( select_id ) {
+
+case  "subject_geographic_lcsh_01" :
+	parent.window.opener.document.forms[0].subject_geographic_lcsh_01.value=val;
+	parent.window.close();
+	break;
+
+case  "subject_geographic_lcsh_02" :
+	parent.window.opener.document.forms[0].subject_geographic_lcsh_02.value=val;
+	parent.window.close();
+	break;
+
+}//end switch
+
+}///end function
+</script>
+

@@ -1,0 +1,128 @@
+training 080520
+
+OAI -- modsbib - transformed by broker20 into oaidc or mods for oai delivery
+
+mods bib object -- use big file ( for example vvs-mods.xml )
+
+vvs-bib only delivers dc
+
+same as used for bib class interface.
+
+------------------------------------
+
+finding aids
+
+http://dlc.lib.utk.edu/f/fa/
+
+
+1/  group http://dlc.lib.utk.edu/cgi/f/findaid/findaid-idx?xg=1;page=simple;g=findaid
+
+
+2 goup + digitized items http://diglib.lib.utk.edu/cgi/b/bib/bib-idx?page=simple;c=spc-bib;cc=spc-bib
+
+
+3 brows manuscript
+3 brows authors http://dlc.lib.utk.edu/f/fa/browse/author/a.html
+
+4  browse subjects http://dlc.lib.utk.edu/f/fa/browse/subject/a.html
+
+5.  browse ms number http://dlc.lib.utk.edu/f/fa/browse/MS/150.html
+
+
+
+4.  brows archival  http://dlc.lib.utk.edu/a/ar/browse/author/c.html
+
+
+5.   search only ms default dlxs http://dlc.lib.utk.edu/cgi/f/findaid/findaid-idx?page=simple;c=fa
+
+
+6. archival  http://dlc.lib.utk.edu/cgi/f/findaid/findaid-idx?page=simple;c=ar
+
+
+7  search only digitized - separate bib index
+
+
+
+http://dlc.lib.utk.edu/cgi/f/findaid/findaid-idx?c=fa;cc=fa;q1=roth;rgn=main;view=text;didno=0012_001011_000000_0000
+
+http://diglib.lib.utk.edu/cgi/b/bib/bib-idx?type=simple&c=spc-bib&sid=64a7487117c658a4d0e5b9f61e410218&q1=roth&rgn1=entire+record
+
+
+
+
+--------http://dlc.lib.utk.edu/f/fa/fulltext/0552.html
+
+collection finding aid has links to images --http://diglib.lib.utk.edu/cgi/i/image/image-idx?c=wcc;view=entry;subview=detail;cc=wcc;entryid=x-wcc009;viewid=1;
+
+at image click on description --http://diglib.lib.utk.edu/cgi/i/image/image-idx?c=wcc;view=entry;subview=detail;cc=wcc;entryid=x-wcc009;viewid=1;
+
+brings up text for that specific image --http://dlc.lib.utk.edu/f/fa/fulltext/0552.html
+\
+
+on deliglib2
+/d1/workarea/dlxs/ead
+
+delivered on diglib - all the bib stuff 
+
+
+all the ead stuff is processed on scholar and delivered on dlc
+
+scholar
+/d1/dlxs12/prep/f/fa
+/d1/dlxs12/prep/a/ar
+
+web page on scholar http://dlxs12test.lib.utk.edu/cgi/f/findaid/findaid-idx?c=ar;c=fa;cc=fa;g=findaid;xc=1;xg=1;q1=cochran;rgn=main;view=text;didno=0012_000207_000000_0000
+
+click on finding aid go to dlc
+
+click on other link go to diglib (online document)
+
+http://dlxs12test.lib.utk.edu/f/fa/
+
+ 
+
+use dlxs12test instead of scholar in the URL
+
+---------------------
+
+When going live have to update diglib and diglib2
+
+everything for dlc processed onscholar.
+
+---------------------------
+
+l
+start on scholar/d1/dlxs12/prep/f/fa
+
+
+DOTHESE talks about site map and browse
+
+[root@scholar wgetStuff]# ls
+createAuthHtml               getOneCopy            putInLinks
+createAuthorBrowse           here                  wgetlinks
+createAuthorBrowse.20070819  htmlstuff             wgetlinks.ended.2007-09-10
+createBrowse                 mailme                wgetlinks.ended.2007-09-11
+createHtmlBrowse             makeSiteMap           wgetlinks.ended.2007-09-12
+doublecheck                  maketextlinks         wgetlinks.ended.2007-11-0
+filesForMeta                 metatags              wgetlinks.ended.2007-11-05
+gatheredMetadata             old                   wgetlinks.ended.2007-11-14
+getcopies                    old.createBrowse.swp  wgetlinks.ended.2007-11-5
+getcopies.dlc                problems
+[root@scholar wgetStuff]# pwd
+/d1/dlxs12/prep/f/fa/wgetStuff
+[root@scholar wgetStuff]# 
+
+
+
+metatags takes metadata out of eads and puts into browse for search engines
+This was done as a research project by jody
+
+
+
+
+
+
+
+
+
+

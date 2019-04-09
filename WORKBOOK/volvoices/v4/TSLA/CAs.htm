@@ -1,0 +1,248 @@
+<html>
+<head>
+<title>vv_popupCA</title>
+
+<link href="../vv_workbook.css" type="text/css" rel="stylesheet">
+
+
+
+
+<script language="javascript">
+
+var select_id= new String();
+function get_select_id() {
+
+var str = new String();
+    str = parent.location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  parent.window.opener.location.href="+parent.window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=get_select_id();
+
+
+
+var strSelect_PN_A = new String('');
+
+
+strSelect_PN_A = '<select name="aaa"  size="24" style="font-size:10px"> \r\n'
+	+'<option value="0" selected>No value selected</option> \r\n'
+		
+
+
+
+
+
+
+
+
+
+
+
+
+	+'<option>SAINT ANDREW\'S EPISCOPAL CHURCH (COLLIERVILLE, TENN.)</option>  \r\n'
+	+'<option>SAINT ANDREWS CHURCH (MARYVILLE, TENN.)</option>  \r\n'
+	+'<option>SAINT ANDREWS EPISCOPAL CHURCH (HARRIMAN, TENN.)</option>  \r\n'
+	+'<option>SAINT BARNABAS\' CHURCH (TULLAHOMA, TENN.)</option>  \r\n'
+	+'<option>SAINT FRANCIS HOSPITAL (MEMPHIS, TENN.)</option>  \r\n'
+	+'<option>SAINT JAMES BAPTIST CHURCH (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>SAINT JAMES CHURCH (BOLIVAR, TENN.)</option>  \r\n'
+	+'<option>SAINT JAMES LUTHERAN CHURCH (GREENE COUNTY, TENN.)</option>  \r\n'
+	+'<option>SAINT JOHN\'S EPISCOPAL CHURCH, KNOXVILLE (TENN.)</option>  \r\n'
+	+'<option>SAINT JOHN\'S METHODIST CHURCH (MEMPHIS, TENN.)</option>  \r\n'
+	+'<option>SAINT LOUIS AND TENNESSEE RIVER PACKET COMPANY</option>  \r\n'
+	+'<option>SAINT MICHAEL\'S CHURCH (CEDAR HILL, TENN.)</option>  \r\n'
+	+'<option>SAINT PATRICK\'S CATHOLIC CHURCH (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>SAINT PETER\'S PARISH (MEMPHIS, TENN.)</option>  \r\n'
+	+'<option>SAINTS PETER AND PAUL CHURCH (CHATTANOOGA, TENN.)</option>  \r\n'
+	+'<option>SALEM BAPTIST CHURCH (DEKALB COUNTY, TENN.)</option>  \r\n'
+	+'<option>SALEM BAPTIST CHURCH (WILSON COUNTY, TENN.)</option>  \r\n'
+	+'<option>SALEM METHODIST CHURCH (RUTHERFORD COUNTY, TENN.)</option>  \r\n'
+	+'<option>SALEM METHODIST EPISCOPAL CHURCH (OVERALL, TENN.)</option>  \r\n'
+	+'<option>SALINE CREEK BAPTIST CHURCH (STEWART COUNTY, TENN.)</option>  \r\n'
+	+'<option>SAM DAVIS HOTEL (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>SCHRADER LANE CHURCH OF CHRIST (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>SCHUBERT FUNERAL HOME (WARTBURG, TENN.)</option>  \r\n'
+	+'<option>SCOTT COUNTY (TENN.) - DEPT. OF EDUCATION</option>  \r\n'
+	+'<option>SCOTT COUNTY HISTORICAL SOCIETY (TENN.)</option>  \r\n'
+	+'<option>SCOTTISH RITE (MASONIC ORDER) - TENNESSEE</option>  \r\n'
+	+'<option>SEARS CROSSTOWN BUILDING (MEMPHIS, TENN.)</option>  \r\n'
+	+'<option>SECOND BAPTIST CHURCH (KNOXVILLE, TENN.)</option>  \r\n'
+	+'<option>SECOND CREEK CHURCH (LAWRENCE COUNTY, TENN.)</option>  \r\n'
+	+'<option>SECOND DISTRICT DENTAL SOCIETY (KNOXVILLE, TENN.)</option>  \r\n'
+	+'<option>SECOND METHODIST CHURCH (KNOXVILLE, TENN.)</option>  \r\n'
+	+'<option>SECOND PRESBYTERIAN CHURCH (JONESBORO, TENN.)</option>  \r\n'
+	+'<option>SECOND PRESBYTERIAN CHURCH (KNOXVILLE, TENN.)</option>  \r\n'
+	+'<option>SECOND PRESBYTERIAN CHURCH (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>SHADY GROVE BAPTIST CHURCH (JEFFERSON COUNTY, TENN.)</option>  \r\n'
+	+'<option>SHADY GROVE BAPTIST CHURCH (OBION COUNTY, TENN.)</option>  \r\n'
+	+'<option>SHANNONDALE PRESBYTERIAN CHURCH (KNOXVILLE, TENN.)</option>  \r\n'
+	+'<option>SHELBY COUNTY (TENN.) - CORRECTIONAL CENTER</option>  \r\n'
+	+'<option>SHELBY COUNTY (TENN.) - PENAL FARM</option>  \r\n'
+	+'<option>SHELBY COUNTY BAPTIST ASSOCIATION (SHELBY COUNTY, TENN.)</option>  \r\n'
+	+'<option>SHERWOOD (TENN.) - EPIPHANY MISSION</option>  \r\n'
+	+'<option>SHILOH PRESBYTERIAN CHURCH (SUMNER COUNTY, TENN.)</option>  \r\n'
+	+'<option>SHOFNER CEMETERY (BEDFORD COUNTY, TENN.)</option>  \r\n'
+	+'<option>SHUNEM CHURCH (STRAWBERRY PLAINS, TENN.)</option>  \r\n'
+	+'<option>SIAM BAPTIST CHURCH (ELIZABETHTON, TENNESSEE)</option>  \r\n'
+	+'<option>SILOAM MISSIONARY BAPTIST CHURCH (MACON COUNTY, TENN.)</option>  \r\n'
+	+'<option>SILVER CREEK SOCIETY OF THE CUMBERLAND PRESBYTERIAN CHURCH (MAURY COUNTY, TENN.)</option>  \r\n'
+	+'<option>SILVER MINING COMPANY (TENN.)</option>  \r\n'
+	+'<option>SINKING CREEK BAPTIST CHURCH (CARTER COUNTY, TENN.)</option>  \r\n'
+	+'<option>SISTERS OF MERCY, TENNESSEE</option>  \r\n'
+	+'<option>SIX MILE BAPTIST CHURCH (BLOUNT COUNTY, TENN.)</option>  \r\n'
+	+'<option>SLATE CREEK BAPTIST CHURCH (COCKE COUNTY, TENN.)</option>  \r\n'
+	+'<option>SMITH SPRINGS BAPTIST CHURCH (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>SMYRNA METHODIST CHURCH (SMYRNA, TENN.)</option>  \r\n'
+	+'<option>SMYRNA PRESBYTERIAN CHURCH (RUTHERFORD COUNTY, TENN.)</option>  \r\n'
+	+'<option>SOCIETY OF THE SIGMA XI - UNIVERSITY OF TENNESSEE CHAPTER</option>  \r\n'
+	+'<option>SONS AND DAUGHTERS OF CHARITY (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>SONS OF TEMPERANCE OF NORTH AMERICA - GRAND DIVISION OF TENNESSEE</option>  \r\n'
+	+'<option>SONS OF THE AMERICAN REVOLUTION - TENNESSEE SOCIETY</option>  \r\n'
+	+'<option>SOULE FEMALE COLLEGE (MURFREESBORO, TENN.)</option>  \r\n'
+	+'<option>SOUTH CENTRAL TENNESSEE DEVELOPMENT DISTRICT</option>  \r\n'
+	+'<option>SOUTH KNOXVILLE BAPTIST CHURCH (KNOXVILLE, TENN.)</option>  \r\n'
+	+'<option>SOUTH WESTERN THEOLOGICAL SEMINARY (MARYVILLE, TENN.)</option>  \r\n'
+	+'<option>SOUTHEAST TENNESSEE DEVELOPMENT DISTRICT</option>  \r\n'
+	+'<option>SOUTHERN COLLEGE OF OPTOMETRY (MEMPHIS, TENN.)</option>  \r\n'
+	+'<option>SOUTHERN SCHOOL OF PHOTOGRAPHY (MCMINNVILLE, TENN.)</option>  \r\n'
+	+'<option>SOUTHERN STUDENT ORGANIZING COMMITTEE (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>SOUTHWEST TENNESSEE DEVELOPMENT DISTRICT</option>  \r\n'
+	+'<option>SOUTHWESTERN (MEMPHIS, TENN.)</option>  \r\n'
+	+'<option>SOUTHWESTERN PRESBYTERIAN UNIVERSITY (CLARKSVILLE, TENN.)</option>  \r\n'
+	+'<option>SPARTA SPOKE FACTORY (TENN.)</option>  \r\n'
+	+'<option>SPENCER CLACK CHAPTER (SEVIERVILLE, TENN.)</option>  \r\n'
+	+'<option>SPRING CITY HIGH SCHOOL (SPRING CITY, TENN.)</option>  \r\n'
+	+'<option>SPRING CREEK BAPTIST CHURCH (JACKSON AND OVERTON COUNTIES, TENN.)</option>  \r\n'
+	+'<option>SPRING CREEK CUMBERLAND PRESBYTERIAN CHURCH (MADISON COUNTY, TENN.)</option>  \r\n'
+	+'<option>SPRING CREEK PRESBYTERIAN CHURCH (LEBANON, TENN.)</option>  \r\n'
+	+'<option>SPRING HILL UNITED METHODIST CHURCH (SPRING HILL, TENN.)</option>  \r\n'
+	+'<option>ST. CECILIA\'S ACADEMY (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>ST. GEORGE\'S EPISCOPAL CHURCH (GERMANTOWN, TENN.)</option>  \r\n'
+	+'<option>ST. JOSEPH\'S CATHOLIC CHURCH (SAINT JOSEPH, TENN.)</option>  \r\n'
+	+'<option>ST. KATHARINE\'S SCHOOL (BOLIVAR, TENN.)</option>  \r\n'
+	+'<option>ST. LOUIS CHURCH (MEMPHIS, TENN.)</option>  \r\n'
+	+'<option>ST. LUKE CHRISTIAN METHODIST EPISCOPAL CHURCH (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>ST. LUKE\'S EPISCOPAL CHURCH (CLEVELAND, TENN.)</option>  \r\n'
+	+'<option>ST. MARY\'S CHURCH (NASHVILLE, TENN.)</option>  \r\n'
+	+'<option>ST. MARY\'S EPISCOPAL SCHOOL (MEMPHIS, TENN.)</option>  \r\n'
+	+'<option>ST. MICHAEL\'S CATHOLIC CHURCH (CEDAR HILL, TENN.)</option>  \r\n'
+	+'<option>ST. PAUL UNITED PRESBYTERIAN CHURCH (MORRISTOWN, TENN.)</option>  \r\n'
+	+'<option>ST. PAUL\'S EPISCOPAL CHURCH (FRANKLIN, TENN.)</option>  \r\n'
+	+'<option>ST. PAUL\'S PRESBYTERIAN CHURCH (HAMBLEN COUNTY, TENN.)</option>  \r\n'
+	+'<option>ST. PAUL\'S SCHOOL (MORRISTOWN, TENN.)</option>  \r\n'
+	+'<option>ST. PETER\'S CHURCH (MEMPHIS, TENN.)</option>  \r\n'
+	+'<option>ST. PETER\'S EPISCOPAL CHURCH (COLUMBIA, TENN.)</option>  \r\n'
+	+'<option>ST. THOMAS EPISCOPAL CHURCH (SOMERVILLE, TENN.)</option>  \r\n'
+	+'<option>STATE AREA VOCATIONAL-TECHNICAL SCHOOL AT CRUMP (TENN.)</option>  \r\n'
+	+'<option>STATE AREA VOCATIONAL-TECHNICAL SCHOOL AT JACKSON (TENN.)</option>  \r\n'
+	+'<option>STATE AREA VOCATIONAL-TECHNICAL SCHOOL AT KNOXVILLE (TENN.)</option>  \r\n'
+	+'<option>STATE AREA VOCATIONAL-TECHNICAL SCHOOL AT MCKENZIE (TENN.)</option>  \r\n'
+	+'<option>STATE AREA VOCATIONAL-TECHNICAL SCHOOL AT PARIS (TENN.)</option>  \r\n'
+	+'<option>STATE TEACHERS COLLEGE (MURFREESBORO, TENN.)</option>  \r\n'
+	+'<option>STATE TEACHERS COLLEGE LIBRARY (JOHNSON CITY, TENN.)</option>  \r\n'
+	+'<option>STATE UNIVERSITY AND COMMUNITY COLLEGE SYSTEM OF TENNESSEE</option>  \r\n'
+	+'<option>STEWART COLLEGE (CLARKSVILLE, TENN.)</option>  \r\n'
+	+'<option>STEWART COUNTY HIGH SCHOOL (DOVER, TENN.)</option>  \r\n'
+	+'<option>STOKLEY MEMORIAL LIBRARY (NEWPORT, TENN.)</option>  \r\n'
+	+'<option>STONES RIVER NATIONAL BATTLEFIELD (TENN.)</option>  \r\n'
+	+'<option>STONES RIVER PRESYBTERIAN CHURCH (RUTHERFORD COUNTY, TENN.)</option>  \r\n'
+	+'<option>STROTHER METHODIST CHURCH (SUMNER COUNTY, TENN.)</option>  \r\n'
+	+'<option>SUGGS CREEK CUMBERLAND PRESBYTERIAN CHURCH (WILSON COUNTY, TENN.)</option>  \r\n'
+	+'<option>SULLIVAN COUNTY GENEALOGICAL SOCIETY (TENN.)</option>  \r\n'
+	+'<option>SULPHER CREEK CHURCH OF CHRIST (HICKMAN COUNTY, TENN.)</option>  \r\n'
+	+'<option>SULPHER SPRINGS M.E. CHURCH, SOUTH (MARION COUNTY, TENN.)</option>  \r\n'
+	+'<option>SUMNER COUNTY ARCHIVES (TENN.)</option>  \r\n'
+	+'<option>SWEETEN\'S COVE PRIMITIVE BAPTIST CHURCH (MARION COUNTY, TENN.)</option>  \r\n'
+	+'<option>SWEETWATER ASSOCIATION OF UNITED BAPTISTS (TENN.)</option>  \r\n'
+	+'<option>SWEETWATER MEMORY CHAPEL (SWEETWATER, TENN.)</option>  \r\n'
+	+'<option>SYLVAN HEIGHTS SCHOOL (MAURY COUNTY, TENN.)</option>  \r\n'
+	+'<option>SYNOD OF TENNESSEE</option>  \r\n'
+
+
++'</select> \r\n';
+	
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+<body class="background">
+
+
+
+
+<form name="FormOne" >
+
+
+<div name="SS" id="SS">
+<script>
+document.write(
+
+	 '<table border="1" cellpadding="4" cellspacing="0"  width="90%">\r\n'
+	+'<tr><td  bgcolor="ddeeff">\r\n'
+	///+'vv_functions.htm called by '+select_id+' <br>\r\n'
+	+'<b>Select Corporate Author S</b> \r\n'
+	+'</td></tr><tr><td bgcolor="ddeeff"> \r\n' 
+	+ strSelect_PN_A
+
+	+'</td></tr></table> \r\n'
+	///+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+</script>
+	
+</div>
+
+<input type="button" onclick="showSelection();" name="B1" value="Corporate Author">
+
+</form>
+
+<script>
+
+
+
+                  
+
+function showSelection() {
+
+val = new String();
+
+for ( i=0; i< document.FormOne.aaa.length; i++ ) {
+
+if ( document.FormOne.aaa[i].selected == true ) {
+  	val = document.FormOne.aaa[i].text;
+	break;
+	}
+else { val = "you never selected anything"; 
+	}
+
+}
+////////////////////////alert ("You selected " +val);
+
+switch ( select_id ) {
+
+case  "subject_name_lcsh_01" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_01.value=val;
+	parent.window.close();
+	break;
+
+case  "subject_name_lcsh_02" :
+	parent.window.opener.document.forms[0].subject_name_lcsh_02.value=val;
+	parent.window.close();
+	break;
+}//end switch
+
+}///end function
+</script>
+

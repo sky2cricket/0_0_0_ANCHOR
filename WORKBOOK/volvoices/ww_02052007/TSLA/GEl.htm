@@ -1,0 +1,346 @@
+<html>
+<head>
+<title>vv_popupCA</title>
+
+<link href="../vv_workbook.css" type="text/css" rel="stylesheet">
+
+
+
+
+<script language="javascript">
+
+var select_id= new String();
+function get_select_id() {
+
+var str = new String();
+    str = parent.location.href;
+    str = str.substring( str.indexOf("=") );
+    //alert(str);
+    select_id= str.substr(2);
+    ///alert("select_id="+select_id);
+//alert("vv_functions.htm:  parent.window.opener.location.href="+parent.window.opener.location.href );
+return(select_id);
+
+}//end function
+
+select_id=get_select_id();
+
+
+
+var strSelect_GE_A = new String('');
+
+strSelect_GE_A = '<select name="aaa"  size="24" style="font-size:10px"> \r\n'
+	+'<option  selected>No Value Selected</option> \r\n'	
+
+
+
+
+
+
+	+'<option>LA FOLLETTE (TENN.)</option>  \r\n'
+	+'<option>LA FOLLETTE (TENN.) - CITY PLANNING</option>  \r\n'
+	+'<option>LA FOLLETTE (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>LA FOLLETTE (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>LA FOLLETTE (TENN.) - SOCIAL CONDITIONS</option>  \r\n'
+	+'<option>LA GRANGE (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>LA GRANGE (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>LA VERGNE (TENN.)</option>  \r\n'
+	+'<option>LA VERGNE (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>LA VERGNE (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>LA VERGNE (TENN.) - HISTORY</option>  \r\n'
+	+'<option>LA VERGNE (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>LABOR SUPPLY - TENNESSEE - MEMPHIS METROPOLITAN AREA</option>  \r\n'
+	+'<option>LAFAYETTE (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>LAFAYETTE (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>LAKE CITY (TENN.) - CHURCHES</option>  \r\n'
+	+'<option>LAKE CITY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>LAKE CITY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>LAKE CITY (TENN.) - HISTORY - FICTION</option>  \r\n'
+	+'<option>LAKE CITY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>LAKE CITY (TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+	+'<option>LAKE COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>LAKE COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>LAKE COUNTY (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>LAKE COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>LAKE COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>LAKE COUNTY (TENN.) - HISTORY, MILITARY</option>  \r\n'
+	+'<option>LAKE COUNTY (TENN.) - MAPS</option>  \r\n'
+	+'<option>LAKE COUNTY (TENN.) - MAPS, MANUSCRIPT</option>  \r\n'
+	+'<option>LAKE COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>LAKE COUNTY (TENN.) - PICTORIAL WORKS</option>  \r\n'
+	+'<option>LAKE COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>LAKELAND (TENN.) - PLANNING</option>  \r\n'
+	+'<option>LAKEWOOD (TENN.) - ANTIQUITIES</option>  \r\n'
+	+'<option>LAKEWOOD (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>LAND BETWEEN THE LAKES (KY. AND TENN.)</option>  \r\n'
+	+'<option>LAND BETWEEN THE LAKES (KY. AND TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>LASCASSAS [TENN.] - HISTORY</option>  \r\n'
+	+'<option>LAUDERDALE COUNTY (TENN.)</option>  \r\n'
+	+'<option>LAUDERDALE COUNTY (TENN.) - ANTIQUITIES</option>  \r\n'
+	+'<option>LAUDERDALE COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>LAUDERDALE COUNTY (TENN.) - CENSUS, 1840</option>  \r\n'
+	+'<option>LAUDERDALE COUNTY (TENN.) - CENSUS, 1850</option>  \r\n'
+	+'<option>LAUDERDALE COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>LAUDERDALE COUNTY (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>LAUDERDALE COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>LAUDERDALE COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>LAUDERDALE COUNTY (TENN.) - HISTORY - PICTORIAL WORKS</option>  \r\n'
+	+'<option>LAUDERDALE COUNTY (TENN.) - MAPS</option>  \r\n'
+	+'<option>LAUDERDALE COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>LAUDERDALE COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>LAWRENCE (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>LAWRENCE COUNTY (TENN.)</option>  \r\n'
+	+'<option>LAWRENCE COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>LAWRENCE COUNTY (TENN.) - CENSUS, 1820</option>  \r\n'
+	+'<option>LAWRENCE COUNTY (TENN.) - CENSUS, 1840</option>  \r\n'
+	+'<option>LAWRENCE COUNTY (TENN.) - CENSUS, 1850</option>  \r\n'
+	+'<option>LAWRENCE COUNTY (TENN.) - CENSUS, 1860</option>  \r\n'
+	+'<option>LAWRENCE COUNTY (TENN.) - CENSUS, 1870</option>  \r\n'
+	+'<option>LAWRENCE COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>LAWRENCE COUNTY (TENN.) - CENSUS, 1900</option>  \r\n'
+	+'<option>LAWRENCE COUNTY (TENN.) - CENSUS, 1910</option>  \r\n'
+	+'<option>LAWRENCE COUNTY (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>LAWRENCE COUNTY (TENN.) - COMMERCE - 19TH CENTURY</option>  \r\n'
+	+'<option>LAWRENCE COUNTY (TENN.) - ECONOMIC CONDITIONS</option>  \r\n'
+	+'<option>LAWRENCE COUNTY (TENN.) - ECONOMIC POLICY</option>  \r\n'
+	+'<option>LAWRENCE COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>LAWRENCE COUNTY (TENN.) - GENEALOGY - PERIODICALS</option>  \r\n'
+	+'<option>LAWRENCE COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>LAWRENCE COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>LAWRENCE COUNTY (TENN.) - HISTORY - PERIODICALS</option>  \r\n'
+	+'<option>LAWRENCE COUNTY (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>LAWRENCE COUNTY (TENN.) - MAPS</option>  \r\n'
+	+'<option>LAWRENCE COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>LAWRENCE COUNTY (TENN.) - PICTORIAL WORKS</option>  \r\n'
+	+'<option>LAWRENCE COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>LAWRENCEBURG (TENN.)</option>  \r\n'
+	+'<option>LAWRENCEBURG (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>LAWRENCEBURG (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>LAWRENCEBURG (TENN.) - HISTORY</option>  \r\n'
+	+'<option>LAWRENCEBURG (TENN.) - HISTORY - PICTORIAL WORKS</option>  \r\n'
+	+'<option>LAWRENCEBURG (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>LAWYERS - 19TH CENTURY - TENNESSEE - CLEVELAND</option>  \r\n'
+	+'<option>LEBANON (TENN.)</option>  \r\n'
+	+'<option>LEBANON (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>LEBANON (TENN.) - BOUNDARIES</option>  \r\n'
+	+'<option>LEBANON (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>LEBANON (TENN.) - COMMERCE - DIRECTORIES</option>  \r\n'
+	+'<option>LEBANON (TENN.) - COMMERCE - SOURCES</option>  \r\n'
+	+'<option>LEBANON (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>LEBANON (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>LEBANON (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>LEBANON (TENN.) - HISTORY</option>  \r\n'
+	+'<option>LEBANON (TENN.) - HISTORY - CIVIL WAR, 1861-1865 - SOURCES</option>  \r\n'
+	+'<option>LEBANON (TENN.) - HISTORY - PICTORIAL WORKS</option>  \r\n'
+	+'<option>LEBANON (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>LEBANON (TENN.) - POLITICS AND GOVERNMENT</option>  \r\n'
+	+'<option>LEBANON (TENN.) - SOCIAL LIFE AND CUSTOMS - HISTORY - SOURCES</option>  \r\n'
+	+'<option>LEBANON STATE FOREST (TENN.)</option>  \r\n'
+	+'<option>LECONTE, MOUNT (TENN.)</option>  \r\n'
+	+'<option>LECONTE, MOUNT (TENN.) - DESCRIPTION AND TRAVEL</option>  \r\n'
+	+'<option>LECONTE, MOUNT (TENN.) - HISTORY</option>  \r\n'
+	+'<option>LEEVILLE (TENN.) - CHURCHES</option>  \r\n'
+	+'<option>LEIPER\'S FORK (TENN.) - HISTORY</option>  \r\n'
+	+'<option>LEIPER\'S FORK (TENN.) - HISTORY - PICTORIAL WORKS</option>  \r\n'
+	+'<option>LEIPER\'S FORK (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>LENOIR CITY (TENN.)</option>  \r\n'
+	+'<option>LENOIR CITY (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>LENOIR CITY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>LENOIR CITY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>LEWIS COUNTY (TENN.)</option>  \r\n'
+	+'<option>LEWIS COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>LEWIS COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>LEWIS COUNTY (TENN.) - CHURCH HISTORY</option>  \r\n'
+	+'<option>LEWIS COUNTY (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>LEWIS COUNTY (TENN.) - ECONOMIC CONDITIONS</option>  \r\n'
+	+'<option>LEWIS COUNTY (TENN.) - ECONOMIC POLICY</option>  \r\n'
+	+'<option>LEWIS COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>LEWIS COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>LEWIS COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>LEWIS COUNTY (TENN.) - MAPS</option>  \r\n'
+	+'<option>LEWIS COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>LEWIS COUNTY (TENN.) - PLANNING</option>  \r\n'
+	+'<option>LEWIS STATE FOREST (TENN.)</option>  \r\n'
+	+'<option>LEWISBURG (TENN.)</option>  \r\n'
+	+'<option>LEWISBURG (TENN.) - CHURCH HISTORY - SOURCES</option>  \r\n'
+	+'<option>LEWISBURG (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>LEWISBURG (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>LEXINGTON (TENN.)</option>  \r\n'
+	+'<option>LEXINGTON (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>LEXINGTON (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>LEXINGTON (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>LEXINGTON (TENN.) - HISTORY</option>  \r\n'
+	+'<option>LEXINGTON (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>LIBERTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>LIBERTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>LIBERTY GAP (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>LIBERTY GAP (TENN.) - HISTORY</option>  \r\n'
+	+'<option>LIMESTONE (TENN.) - HISTORY</option>  \r\n'
+	+'<option>LIMESTONE (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>LINCOLN COUNTY (TENN.)</option>  \r\n'
+	+'<option>LINCOLN COUNTY (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>LINCOLN COUNTY (TENN.) - CENSUS, 1820</option>  \r\n'
+	+'<option>LINCOLN COUNTY (TENN.) - CENSUS, 1840</option>  \r\n'
+	+'<option>LINCOLN COUNTY (TENN.) - CENSUS, 1850</option>  \r\n'
+	+'<option>LINCOLN COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>LINCOLN COUNTY (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>LINCOLN COUNTY (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>LINCOLN COUNTY (TENN.) - GENEALOGY - PERIODICALS</option>  \r\n'
+	+'<option>LINCOLN COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>LINCOLN COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>LINCOLN COUNTY (TENN.) - HISTORY - CIVIL WAR, 1861-1865 - SOURCES</option>  \r\n'
+	+'<option>LINCOLN COUNTY (TENN.) - HISTORY - PERIODICALS</option>  \r\n'
+	+'<option>LINCOLN COUNTY (TENN.) - HISTORY - PICTORIAL WORKS</option>  \r\n'
+	+'<option>LINCOLN COUNTY (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>LINCOLN COUNTY (TENN.) - MILITIA</option>  \r\n'
+	+'<option>LINCOLN COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>LINCOLN COUNTY (TENN.) - PICTORIAL WORKS</option>  \r\n'
+	+'<option>LINCOLN COUNTY (TENN.) - SCHOOLS</option>  \r\n'
+	+'<option>LINCOLN COUNTY (TENN.) - SOCIAL LIFE AND CUSTOMS - 19TH CENTURY</option>  \r\n'
+	+'<option>LINDEN (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>LINDEN (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>LIQUOR TRAFFIC - TENNESSEE</option>  \r\n'
+	+'<option>LITTLE RIVER VALLEY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>LITTLE TENNESSEE RIVER (GA.-TENN.)</option>  \r\n'
+	+'<option>LITTLE TENNESSEE RIVER VALLEY (GA. AND TENN.) - MAPS - EARLY WORKS TO 1800</option>  \r\n'
+	+'<option>LITTLE TENNESSEE RIVER VALLEY (GA.-TENN.) - ANTIQUITIES</option>  \r\n'
+	+'<option>LITTLE TENNESSEE RIVER VALLEY (GA.-TENN.) - HISTORY</option>  \r\n'
+	+'<option>LITTLE TENNESSEE RIVER VALLEY (GA.-TENN.) - MAPS - EARLY WORKS TO 1800 - FACSIMILES</option>  \r\n'
+	+'<option>LITTLE TENNESSEE RIVER VALLEY (GA.-TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+	+'<option>LITTLE TENNESSEE RIVER WATERSHED</option>  \r\n'
+	+'<option>LITTLE TENNESSEE RIVER WATERSHED (GA.-TENN.)</option>  \r\n'
+	+'<option>LITTLECRAB (TENN.) - HISTORY</option>  \r\n'
+	+'<option>LIVINGSTON (TENN.) - ECONOMIC CONDITIONS - 19TH CENTURY - SOURCES</option>  \r\n'
+	+'<option>LIVINGSTON (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>LIVINGSTON (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>LOCKELAND SPRINGS (NASHVILLE, TENN.) - PERIODICALS</option>  \r\n'
+	+'<option>LONG BRANCH (DEKALB COUNTY, TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>LONG BRANCH (DEKALB COUNTY, TENN.) - HISTORY</option>  \r\n'
+	+'<option>LONG HUNTER STATE PARK (TENN.)</option>  \r\n'
+	+'<option>LOOKOUT MOUNTAIN (TENN.)</option>  \r\n'
+	+'<option>LOOKOUT MOUNTAIN (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>LOOKOUT MOUNTAIN (TENN.) - DESCRIPTION AND TRAVEL</option>  \r\n'
+	+'<option>LOOKOUT MOUNTAIN (TENN.) - DESCRIPTION AND TRAVEL - GUIDEBOOKS</option>  \r\n'
+	+'<option>LOOKOUT MOUNTAIN (TENN.) - DESCRIPTION AND TRAVEL - POETRY</option>  \r\n'
+	+'<option>LOOKOUT MOUNTAIN (TENN.) - DESCRIPTION AND TRAVEL - VIEWS</option>  \r\n'
+	+'<option>LOOKOUT MOUNTAIN (TENN.) - HISTORY</option>  \r\n'
+	+'<option>LOOKOUT MOUNTAIN (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>LOOKOUT MOUNTAIN (TENN.) - PHOTOGRAPHS</option>  \r\n'
+	+'<option>LOOKOUT MOUNTAIN (TENN.) - PICTORIAL WORKS</option>  \r\n'
+	+'<option>LOOKOUT MOUNTAIN (TENN.) - SOCIAL LIFE AND CUSTOMS</option>  \r\n'
+	+'<option>LOOKOUT MOUNTAIN (TENN.), BATTLE OF, 1863</option>  \r\n'
+	+'<option>LOOSAHATCHIE RIVER (TENN.)</option>  \r\n'
+	+'<option>LORETTO (TENN.) - HISTORY</option>  \r\n'
+	+'<option>LORETTO (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>LOUDON (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>LOUDON (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>LOUDON (TENN.) - POLITICS AND GOVERNMENT</option>  \r\n'
+	+'<option>LOUDON COUNTY (TENN.)</option>  \r\n'
+	+'<option>LOUDON COUNTY (TENN.) - ANTIQUITIES</option>  \r\n'
+	+'<option>LOUDON COUNTY (TENN.) - CENSUS, 1880</option>  \r\n'
+	+'<option>LOUDON COUNTY (TENN.) - CENSUS, 1910</option>  \r\n'
+	+'<option>LOUDON COUNTY (TENN.) - DIRECTORIES</option>  \r\n'
+	+'<option>LOUDON COUNTY (TENN.) - ECONOMIC CONDITIONS</option>  \r\n'
+	+'<option>LOUDON COUNTY (TENN.) - ECONOMIC CONDITIONS - HISTORY - 19TH CENTURY</option>  \r\n'
+	+'<option>LOUDON COUNTY (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>LOUDON COUNTY (TENN.) - HISTORY</option>  \r\n'
+	+'<option>LOUDON COUNTY (TENN.) - HISTORY - PICTORIAL WORKS</option>  \r\n'
+	+'<option>LOUDON COUNTY (TENN.) - JUVENILE LITERATURE</option>  \r\n'
+	+'<option>LOUDON COUNTY (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>LOUDON COUNTY (TENN.) - PHOTOGRAPHS</option>  \r\n'
+	+'<option>LOUDON COUNTY (TENN.) - SOCIAL CONDITIONS</option>  \r\n'
+	+'<option>LUTTRELL (TENN.) - HISTORY</option>  \r\n'
+	+'<option>LUTTS (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>LUTTS (TENN.) - HISTORY</option>  \r\n'
+	+'<option>LYNCHBURG (TENN.) - BIOGRAPHY</option>  \r\n'
+	+'<option>LYNCHBURG (TENN.) - GENEALOGY</option>  \r\n'
+	+'<option>LYNCHBURG (TENN.) - GENEALOGY - SOURCES</option>  \r\n'
+	+'<option>LYNCHBURG (TENN.) - HISTORY</option>  \r\n'
+	+'<option>LYNCHBURG (TENN.) - HISTORY - SOURCES</option>  \r\n'
+	+'<option>LYNCHBURG (TENN.) - NEWSPAPERS</option>  \r\n'
+	+'<option>LYNCHBURG (TENN.) - PICTORIAL WORKS</option>  \r\n'
+	+'<option>LYNCHBURG (TENN.) - SOCIAL LIFE AND CUSTOMS - PICTORIAL WORKS</option>  \r\n'
+	+'<option>LYNNVILLE (TENN.) - NEWSPAPERS</option>  \r\n'
+
++'</select> \r\n';
+	
+
+
+
+</script>
+
+
+
+
+
+
+</head>
+<body class="background">
+
+
+
+
+<form name="FormOne" >
+
+
+<div name="SS" id="SS">
+<script>
+document.write(
+
+	 '<table border="1" cellpadding="4" cellspacing="0"  width="90%">\r\n'
+	+'<tr><td  bgcolor="ddeeff">\r\n'
+	///+'vv_functions.htm called by '+select_id+' <br>\r\n'
+	+'<b>Select Geographic Subject L </b> \r\n'
+	+'</td></tr><tr><td bgcolor="ddeeff"> \r\n' 
+	+ strSelect_GE_A
+
+	+'</td></tr></table> \r\n'
+	///+'<input type="hidden" name="hidden_select_id" value="'+select_id+'" > \r\n'
+	);
+</script>
+	
+</div>
+
+<input type="button" onclick="showSelection();" name="B1" value="Geographic Name">
+
+</form>
+
+<script>
+
+
+
+                  
+
+function showSelection() {
+
+val = new String();
+
+for ( i=0; i< document.FormOne.aaa.length; i++ ) {
+
+if ( document.FormOne.aaa[i].selected == true ) {
+  	val = document.FormOne.aaa[i].text;
+	break;
+	}
+else { val = "you never selected anything"; 
+	}
+
+}
+////////////////////////alert ("You selected " +val);
+
+switch ( select_id ) {
+
+case  "subject_geographic_lcsh_01" :
+	parent.window.opener.document.forms[0].subject_geographic_lcsh_01.value=val;
+	parent.window.close();
+	break;
+
+case  "subject_geographic_lcsh_02" :
+	parent.window.opener.document.forms[0].subject_geographic_lcsh_02.value=val;
+	parent.window.close();
+	break;
+
+}//end switch
+
+}///end function
+</script>
+

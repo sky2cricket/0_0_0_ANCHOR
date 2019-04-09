@@ -1,0 +1,27 @@
+<html>
+<head>
+<title>Web Server Overview</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="../styles.css" type="text/css">
+</head>
+<body bgcolor="#FFFFFF" class="mainpalette">
+<h3>Web Server Overview</h3>
+<p>We give here, as an example, the DLPS environment.</p>
+<ul>
+  <li><a href="http://www.apache.org" target="external">Apache</a> (version 1.3.27
+      as of this workshop date)</li>
+  <li>Virtual hosts for various collections with their own specific 
+    <ul>
+      <li> DocumentRoot</li>
+      <li>ScriptAlias</li>
+      <li>DLXSROOT environment variable (see <a href="dirstructure.html">directory
+      structure</a>) </li>
+      <li>If no external <a href="auth.html">Auth</a> system, set the <span class="unixcommand">AUTHZD_COLL</span>        environment
+         variable in the virtual host to contain a colon-separated list of
+        authorized collections (Middleware expects this environment variable
+        to be set) </li>
+    </ul>
+  </li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<html>
+<head>
+<title>DLXS Functionality Overview</title>
+
+
+
+ <link href="../dlxsdocs.css" rel="stylesheet" type="text/css">
+</head>         <body>
+<div class="pageTitle">DLXS Functionality Overview</div>
+
+<p><b>Contents:</b><br/>
+   <a href="#searching">Searching</a><br/>
+    <a href="#browsing">Browsing</a><br/>
+  <a href="#session">Session tracking</a><br/>
+  <a href="#history">Search History</a><br/>
+  <a href="#bookbag">Bookbags</a><br/>
+  <a href="#portfolio">Portfolios</a> <br/>
+    <a href="#recorddisplay">Bibliographic Header / Image Viewer Displays</a><br/>
+    <a href="#doc">Displaying and Navigating Documents</a><br/>
+</p>
+<h2><a name="searching"></a>Searching</h2>
+    <p>XPAT, the way it is usually implemented for DLXS middleware, provides string matching capabilities combined with the ability to search individual text structures and use logical connectors between query terms. 
+      String capabilities include:</p>
+    <ul>
+      <li> Word and exact phrase matching; </li>
+      <li> right-hand truncation in word or exact phrase matching (i.e., query 
+        terms as entered are assumed to match against a word boundary on the right 
+      side unless a wild card character is included). (This functionality is provided as per the default query construction in the middleware.);</li>
+      <li> Non-case sensitive matching (optional, as per our indexing practice);</li>
+      <li> All punctuation entered in a query is treated as a blank space (optional, 
+        as per our indexing practice);</li>
+    </ul>
+    <p>In addition to the string capabilities mentioned above, XPAT supports a 
+      variety of search functions that allow searches to be targeted at specified 
+      data structures (known to XPAT as regions) identified in the SGML and that 
+      also support Boolean and proximity operators.</p>
+    <p>With this search functionality as a foundation, the DLXS middleware supports 
+      a variety of search types, including</p>
+<ul>
+      <li><b>&quot;Simple&quot; searches</b>: word or phrase searches within one 
+        or more selected data structures (complete text, paragraph, play, etc.).<br/> 
+      </li>
+  <li> 
+<b>Boolean searches:</b> searches composed of multiple 
+        word or phrase searches all within a selected data structure combined by Boolean 
+        operators (AND, OR, NOT).<br/>
+
+  </li>
+  <li> 
+<b>Proximity searches</b>: composed of multiple word 
+        or phrase searches all within a selected data structure with various proximity 
+        conditions (FOLLOWED BY, NOT FOLLOWED BY, NEAR, NOT NEAR) and proximity 
+        ranges (e.g., nn characters).<br/>
+ 
+  </li>
+      <li> <b>Word indexes:</b> allows one to build queries through the selection of one 
+        or more "words" from selected fields that are treated as an "or"-ed list of search terms. 
+        The lists are built with scripts from selected SGML/XML regions. Currently 
+        this functionality is implemented as a stand alone search type. </li>
+</ul>
+ 
+    <p>For each of these types, DLXS middleware implements word stemming via the 
+      * wild card character, allowing one to match variations on a word stem (e.g., 
+      work* matches work, worker, works, working, etc.).</p>
+    <p>DLXS middleware is configurable such that any or all of the above search 
+      types can be implemented to suit individual collection data for Text Class-based 
+      collections. Image and Bibliographic, and Finding Aid Classes support simple and Boolean search types only.  The middleware for Text, Image, and Bibliographic Classes also provides the capability to conduct class-specific search types against more than one collection of a single class at a time. 
+    </p>
+    <p>DLXS middleware also provides an option for refining searches, allowing users 
+    to change search type, and/or easily add or remove terms from search queries.</p>
+    <h2><a name="browsing"></a>Browsing</h2>
+    <p>Currently DLXS middleware supports a limited browse functionality for Text 
+Class-related collections. Text Class middleware supports a general method for linking between any template-generated pages.  This allows us to create template pages of browse lists that provide custom browse features by collection.</p>
+    <h2><a name="session"></a>Session tracking</h2>
+<p>DLXS Text, Bibliographic and Image Class middleware create and manage user 
+  sessions to support &quot;state&quot; functionality. Primary session-related 
+  functionality includes search history and &quot;bookbag&quot; repositories 
+(for Text and Bibliographic classes) and &quot;portfolios&quot; (for Image class).</p>
+<h2><a name="history"></a>Search History</h2>
+<p>Currently implemented in Text and Bibliographic class-based collections, the 
+  search history is stored in the user's session, and contains all successfully 
+  submitted searches within a single user session. The search history stores, 
+  for each search:</p>
+<ul>
+  <li> query terms</li>
+  <li> collection or collections searched </li>
+  <li> total number of results<br/>
+  </li>
+</ul>
+<p>When retrieved, the history shows queries in the order submitted, with query 
+terms as links for resubmission.</p>
+<h2><a name="bookbag"></a>Bookbags</h2>
+<p>bookbag functionality is currently implemented in Text and Bibliographic Classes. 
+  As implemented, the bookbag provides a repository to &quot;store&quot; items 
+  as selected while searching either Bibliographic or Text collections. When viewed, 
+  bookbags display short or brief bibliographic information, and also, where 
+  appropriate, provide links to access source books directly. Items in the book 
+  bag can be saved to local disk as well as emailed to any email address. Additionally, 
+  in Text Class, items can be searched using any of the search methods provided 
+  for the class. The life span of the bookbag is the duration of the current 
+session.</p>
+<h2><a name="portfolio"></a>Portfolios</h2>
+<p>Image Class implements "portfolios" that are similar to bookbags, but offer enhanced functionality. Portfolios are implemented in MySQL and interfaced through 
+  Perl's DBI module. Portfolios add, for designated users, the ability to create 
+  multiple portfolios, to save them over multiple sessions, and to share them 
+with other authorized users.</p>
+<h2><a name="recorddisplay"></a>Bibliographic Header / Image Viewer Displays</h2>
+ 
+<h3>Bibliographic Header Displays</h3>
+<p>Bibliographic headers for Text Class items provide bibliographic information 
+  for the text, as well as a linked table of contents. Bibliographic header displays 
+  also provide options for searching the current book only.</p>
+
+ 
+<h3>Image Viewer Displays</h3>
+<p>Item records for Image Class collections provide full record information as 
+  well as a suite of tools to resize, zoom in or out, and pan within the digital 
+  image (note: zoom and pan options are provided only for images captured in the 
+MrSID file format).</p> 
+  <h2><a name="doc"></a>Displaying and Navigating Documents</h2>
+<p>Text Class-based books are delivered in one of three ways:</p>
+<ul>
+  <li><b>Encoded text</b>: Text is transformed dynamically to HTML by middleware filters and delivered to the user on a section-by-section 
+    basis . That is, encoded texts can be accessed at any document division level chosen  
+    from results or from a table of contents. Each section, as viewed, links to 
+    previous and succeeding sections, as well as to parent sections. Encoded 
+    sections also provide linked access to most current search results listings, 
+    and to the bibliographic header. Each viewed section also allows users to 
+    add the item to their bookbag, and to view inline notes.<br/>
+  </li>
+	  <li><b>Facsimile page image</b>: Some collections (e.g., <a href="http://moa.umdl.umich.edu/">Making of America</a>) are digitized by scanning pages to an archival image file format (i.e., TIFF), and then using OCR to capture page text from the images.  Text is delivered to the user on a page-by-page 
+    basis via middleware that generates web-enabled derivatives to a browser on the fly.  Users may view each page as a bitonal gif (in multiple sizes), PDF (requiring the Adobe PDFviewer plug-in), 
+    or unencoded ASCII text. In addition, users can navigate among pages using 
+    either a pull-down page menu, or via &quot;previous&quot; or &quot;next&quot; 
+    page links.</li>
+  <li><b>Encoded text and page image</b>: In cases where texts are delivered as 
+    both encoded text and page image, users can switch back and forth. From the 
+    encoded text, links to page images can be provided as simple text links or 
+    as thumbnails.</li>
+</ul>
+
+ 
+</body>
+
+</html>

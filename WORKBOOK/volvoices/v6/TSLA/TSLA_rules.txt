@@ -1,0 +1,53 @@
+
+These are the rules applied to TSLA data.
+che - 03302007
+
+
+-------------------------------------------------------------------------
+Corporate Names
+
+
+//for TSLA data
+/// 1.  convert to camel case
+/// 2.  change single dash to double dash ( but not in date ranges )
+function reformatCa(str) 
+
+
+EXAMPLE:
+
+
+before:	CATHOLIC CHURCH - EDUCATION - HISTORY - TENNESSEE
+
+after:	Catholic Church -- Education -- History -- Tennessee
+
+
+-------------------------------------------------------------------------
+Personal Names
+
+//for TSLA data
+/// 1.  convert to camel case
+/// 2.  change single dash to white space ( but not in date ranges )
+function reformatPn(str)
+
+
+EXAMPLE: 
+
+before:	ABERDEEN, GEORGE HAMILTON GORDON, - EARL OF, - 1784-1860
+
+after:	Aberdeen, George Hamilton Gordon, Earl Of, 1784-1860
+
+
+-------------------------------------------------------------------------
+Geographic Names
+
+//for TSLA data - geographic
+/// 1.  convert to camel case
+/// 2.  change single dash to double dash ( but not in date ranges )
+function reformatGeo(str) 
+
+EXAMPLE:
+
+before:	ANDERSON COUNTY (TENN.) - HISTORY - PICTORIAL WORKS
+after:	Anderson County (Tenn.) -- History -- Pictorial Works
+
+-------------------------------------------------------------------------
